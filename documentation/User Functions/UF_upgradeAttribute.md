@@ -1,1 +1,0 @@
-this function controlls the update of attributes. several checks will be executed based on the system settings. on an upgrade, an legend point history entry will be created.

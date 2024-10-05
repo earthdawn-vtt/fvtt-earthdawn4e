@@ -1,0 +1,1 @@
+the rotate item status function is looking for the next status in line and calls [UF_PhysicalItems-updateItemStates](../User%20Functions/UF_Physicalitems/UF_Physicalitems-updateItemStates.md) to verify if that status is available.

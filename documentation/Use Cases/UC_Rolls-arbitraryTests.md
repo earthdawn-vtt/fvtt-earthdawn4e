@@ -50,13 +50,13 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls-explodingDice.md)
+[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls/UF_Rolls-explodingDice.md)
 
-[UF_Rolls-triggerRollStep](../User%20Functions/UF_Rolls-triggerRollStep.md)
+[UF_Rolls-triggerRollStep](../User%20Functions/UF_Rolls/UF_Rolls-triggerRollStep.md)
 
-[UF_Journal-enichRoll](../User%20Functions/UF_Journal-enichRoll.md)
+[UF_Journal-enichRoll](../User%20Functions/UF_Journal/UF_Journal-enichRoll.md)
 
-[UF_Rolls-rollStepPrompt](../User%20Functions/UF_Rolls-rollStepPrompt.md)
+[UF_Rolls-rollStepPrompt](../User%20Functions/UF_Rolls/UF_Rolls-rollStepPrompt.md)
 
 ### Related Test Coverage
 

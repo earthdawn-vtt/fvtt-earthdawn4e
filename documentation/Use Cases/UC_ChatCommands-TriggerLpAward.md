@@ -23,7 +23,7 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_ChatCommand-triggerLPAward](../User%20Functions/UF_ChatCommand-triggerLPAward.md)
+[UF_ChatCommand-triggerLPAward](../User%20Functions/UF_ChatCommand/UF_ChatCommand-triggerLPAward.md)
 
 [UF_AssignLpPrompt-assignLp](../User%20Functions/UF_AssignLpPrompt-assignLp.md)
 
@@ -33,7 +33,7 @@ stateDiagram-v2
 
 [UF_AssignLpPrompt-assignLpPrompt](../User%20Functions/UF_AssignLpPrompt-assignLpPrompt.md)
 
-[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking-addLpTransaction.md)
+[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking/UF_LpTracking-addLpTransaction.md)
 
 
 ### Related Test Coverage

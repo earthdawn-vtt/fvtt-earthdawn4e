@@ -34,13 +34,13 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking-addLpTransaction.md)
+[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking/UF_LpTracking-addLpTransaction.md)
 
-[UF_LpTracking-legendpointHistory](../User%20Functions/UF_LpTracking-legendpointHistory.md)
+[UF_LpTracking-legendpointHistory](../User%20Functions/UF_LpTracking/UF_LpTracking-legendpointHistory.md)
 
-[UF_LpTracking-toggleTransactionDetails](../User%20Functions/UF_LpTracking-toggleTransactionDetails.md)
+[UF_LpTracking-toggleTransactionDetails](../User%20Functions/UF_LpTracking/UF_LpTracking-toggleTransactionDetails.md)
 
-[UF_LpTracking-status](../User%20Functions/UF_LpTracking-status.md)
+[UF_LpTracking-status](../User%20Functions/UF_LpTracking/UF_LpTracking-status.md)
 
 ### Related Test Coverage
 

@@ -38,13 +38,13 @@ state4 --> [*]
 
 ### Related User Functions
 
-[UF_LpTracking-upgradeAbility](../User%20Functions/UF_LpTracking-upgradeAbility.md)
+[UF_LpTracking-upgradeAbility](../User%20Functions/UF_LpTracking/UF_LpTracking-upgradeAbility.md)
 
-[UF_LpTracking-validateAbilityUpgrade](../User%20Functions/UF_LpTracking-validateAbilityUpgrade.md)
+[UF_LpTracking-validateAbilityUpgrade](../User%20Functions/UF_LpTracking/UF_LpTracking-validateAbilityUpgrade.md)
 
-[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking-addLpTransaction.md)
+[UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking/UF_LpTracking-addLpTransaction.md)
 
-[UF_LpTracking-showOptionsPrompt](../User%20Functions/UF_LpTracking-showOptionsPrompt.md)
+[UF_LpTracking-showOptionsPrompt](../User%20Functions/UF_LpTracking/UF_LpTracking-showOptionsPrompt.md)
 
 
 ### Related Test Coverage

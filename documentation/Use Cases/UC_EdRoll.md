@@ -172,47 +172,47 @@ foundryCore1 --> [*]
 
 ### Related User Functions
 
-[UF_Rolls-total](../User%20Functions/UF_Rolls-total.md)
+[UF_Rolls-total](../User%20Functions/UF_Rolls/UF_Rolls-total.md)
 
-[UF_Rolls-ruleOfOne](../User%20Functions/UF_Rolls-ruleOfOne.md)
+[UF_Rolls-ruleOfOne](../User%20Functions/UF_Rolls/UF_Rolls-ruleOfOne.md)
 
-[UF_Rolls-isSuccess](../User%20Functions/UF_Rolls-isSuccess.md)
+[UF_Rolls-isSuccess](../User%20Functions/UF_Rolls/UF_Rolls-isSuccess.md)
 
-[UF_Rolls-isFailure](../User%20Functions/UF_Rolls-isFailure.md)
+[UF_Rolls-isFailure](../User%20Functions/UF_Rolls/UF_Rolls-isFailure.md)
 
-[UF_Rolls-numDice](../User%20Functions/UF_Rolls-numDice.md)
+[UF_Rolls-numDice](../User%20Functions/UF_Rolls/UF_Rolls-numDice.md)
 
-[UF_Rolls-totalStrain](../User%20Functions/UF_Rolls-totalStrain.md)
+[UF_Rolls-totalStrain](../User%20Functions/UF_Rolls/UF_Rolls-totalStrain.md)
 
-[UF_Rolls-numSuccesses](../User%20Functions/UF_Rolls-numSuccesses.md)
+[UF_Rolls-numSuccesses](../User%20Functions/UF_Rolls/UF_Rolls-numSuccesses.md)
 
-[UF_Rolls-numExtraSuccesses](../User%20Functions/UF_Rolls-numExtraSuccesses.md)
+[UF_Rolls-numExtraSuccesses](../User%20Functions/UF_Rolls/UF_Rolls-numExtraSuccesses.md)
 
-[UF_Rolls-getChatFlavor](../User%20Functions/UF_Rolls-getChatFlavor.md)
+[UF_Rolls-getChatFlavor](../User%20Functions/UF_Rolls/UF_Rolls-getChatFlavor.md)
 
-[UF_Rolls-setChatFlavor](../User%20Functions/UF_Rolls-setChatFlavor.md)
+[UF_Rolls-setChatFlavor](../User%20Functions/UF_Rolls/UF_Rolls-setChatFlavor.md)
 
-[UF_Rolls-stepFormula](../User%20Functions/UF_Rolls-stepFormula.md)
+[UF_Rolls-stepFormula](../User%20Functions/UF_Rolls/UF_Rolls-stepFormula.md)
 
-[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls-explodingDice.md)
+[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls/UF_Rolls-explodingDice.md)
 
-[UF_Rolls-addExtraDice](../User%20Functions/UF_Rolls-addExtraDice.md)
+[UF_Rolls-addExtraDice](../User%20Functions/UF_Rolls/UF_Rolls-addExtraDice.md)
 
-[UF_Rolls-addResourceDice](../User%20Functions/UF_Rolls-addResourceDice.md)
+[UF_Rolls-addResourceDice](../User%20Functions/UF_Rolls/UF_Rolls-addResourceDice.md)
 
-[UF_Rolls-addExtraSteps](../User%20Functions/UF_Rolls-addExtraSteps.md)
+[UF_Rolls-addExtraSteps](../User%20Functions/UF_Rolls/UF_Rolls-addExtraSteps.md)
 
-[UF_Rolls-getFlavorTemplateData](../User%20Functions/UF_Rolls-getFlavorTemplateData.md)
+[UF_Rolls-getFlavorTemplateData](../User%20Functions/UF_Rolls/UF_Rolls-getFlavorTemplateData.md)
 
-[UF_Rolls-addSuccessClass](../User%20Functions/UF_Rolls-addSuccessClass.md)
+[UF_Rolls-addSuccessClass](../User%20Functions/UF_Rolls/UF_Rolls-addSuccessClass.md)
 
-[UF_Rolls-getTooltipsRollData](../User%20Functions/UF_Rolls-getTooltipsRollData.md)
+[UF_Rolls-getTooltipsRollData](../User%20Functions/UF_Rolls/UF_Rolls-getTooltipsRollData.md)
 
-[UF_Rolls-getTooltip](../User%20Functions/UF_Rolls-getTooltip.md)
+[UF_Rolls-getTooltip](../User%20Functions/UF_Rolls/UF_Rolls-getTooltip.md)
 
-[UF_Rolls-render](../User%20Functions/UF_Rolls-render.md)
+[UF_Rolls-render](../User%20Functions/UF_Rolls/UF_Rolls-render.md)
 
-[UF_Rolls-toMessage](../User%20Functions/UF_Rolls-toMessage.md)
+[UF_Rolls-toMessage](../User%20Functions/UF_Rolls/UF_Rolls-toMessage.md)
 
 
 
