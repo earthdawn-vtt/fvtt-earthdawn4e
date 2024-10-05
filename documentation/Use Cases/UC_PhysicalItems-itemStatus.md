@@ -228,13 +228,8 @@ stateDiagram-v2
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
+| Test case | [[Test] - equip and unequip Shields](https://github.com/patrickmohrmann/earthdawn4eV2/issues/804) |
+| Test case | [[Test] - equip and unequip Armor](https://github.com/patrickmohrmann/earthdawn4eV2/issues/806) |
+| Test case | [[Test] - equip and unequip Equipments](https://github.com/patrickmohrmann/earthdawn4eV2/issues/802) |
+| Test case | [[Test] - equip and unequip Weapons](https://github.com/patrickmohrmann/earthdawn4eV2/issues/802) |
+

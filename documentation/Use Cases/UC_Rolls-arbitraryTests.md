@@ -2,9 +2,7 @@ Tests in Earthdawn are considered to be one of two types. Either an **Action Tes
 
 ## Arbitrary Tests
 
-Arbitrary tests are everything which can be either action or effect test. They provide success or failure information as well as extra successes if a target value is set or required, but otherwise just roll the appropriate step.
-
-Arbitrary steps very often do not have an Actor or Item context. If a special step roll is needed for falling damage for example. the arbitrary step can easily be used for that. 
+Arbitrary steps are used to roll steps outside of a specific context. Arbitrary steps very often do not have an Actor or Item context. If a special step roll is needed for falling damage for example. the arbitrary step can easily be used for that.
 
 ### Diagram
 ```mermaid
@@ -19,15 +17,7 @@ stateDiagram-v2
 
     triggerAction1: Initiate Test
 
-    state1: evaluate Successes
-    state2: evaluate Extra Successes
-    state3: roll result
-
-
-    ####################### Decisions #######################
-
-    state DECISION1 <<choice>>
-    state DECISION2 <<choice>>
+    state1: UC_EdRolls
 
     ######################## Colorations ######################
 
@@ -36,16 +26,8 @@ stateDiagram-v2
     ##################### StateDiagram ########################
 
     [*] --> triggerAction1
-    triggerAction1 --> DECISION1: Difficulty set?
-    DECISION1 --> DECISION2: yes
-    DECISION1 --> state3: no
-
-    DECISION2 --> state1: success
-    DECISION2 --> state3: failure
-    state1 --> state2
-    state2 --> [*]
-
-    state3 --> [*]
+    triggerAction1 --> state1
+    state1 --> [*]
 ```
 
 ### Related User Functions
