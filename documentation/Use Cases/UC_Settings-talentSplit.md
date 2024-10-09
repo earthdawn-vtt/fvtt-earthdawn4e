@@ -6,26 +6,12 @@ Settings do not required a diagram
 
 ### Related User Functions
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
+[UF_Settings-chooseTalentsSplitOption](../User%20Functions//UF_Settings/UF_Settings-chooseTalentsSplitOption.md)
 
 ### Related Test Coverage
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
+| Test case | [[Test] - Setting Talent Split](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1032) |
 
 
