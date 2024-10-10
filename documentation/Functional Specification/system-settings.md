@@ -21,3 +21,15 @@ this setting allows the talents to be either in one table in the actors view or 
 **Affects:** client
 
 **Use Case:** [UC_Settings-talentSplit](../Use%20Cases/UC_Settings-talentSplit.md)
+
+## Character Generation
+
+**Affects:** World
+
+**Use Case:** [UC_Settings-XXXXX](../Use%20Cases/UC_Settings-XXXXX.md)
+
+## SETTING XY
+
+**Affects:** World Client
+
+**Use Case:** [UC_Settings-XXXXX](../Use%20Cases/UC_Settings-XXXXX.md)

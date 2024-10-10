@@ -442,7 +442,10 @@ export default function registerSystemSettings() {
     )
   } );
 
-  // Split Talents
+  /**
+   * Split Talents is used to divide talents by category or not.
+   * @userFunction                UF_Settings-chooseTalentsSplitOption
+   */
   game.settings.register( "ed4e", "talentsSplit", {
     name:    "ED.Settings.talentsSplit",
     hint:    "ED.Settings.talentsSplitHint",
