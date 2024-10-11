@@ -1,0 +1,1 @@
+Ensure the provided string is a valid earthdawn id (a strictly slugged string).

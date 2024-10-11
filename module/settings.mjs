@@ -31,6 +31,24 @@ export default function registerSystemSettings() {
   const fields = foundry.data.fields;
 
   /* -------------------------------------------------------------------------------- */
+  /*                               other settings                                     */
+  /* -------------------------------------------------------------------------------- */
+
+
+  /**
+   * Split Talents is used to divide talents by category or not.
+   * @userFunction                UF_Settings-chooseTalentsSplitOption
+   */
+  game.settings.register( "ed4e", "talentsSplit", {
+    name:    "ED.Settings.talentsSplit",
+    hint:    "ED.Settings.talentsSplitHint",
+    scope:   "world",
+    config:  true,
+    default: true,
+    type:    Boolean
+  } );
+
+  /* -------------------------------------------------------------------------------- */
   /*                                      ED-IDs                                      */
   /* -------------------------------------------------------------------------------- */
 
@@ -399,15 +417,10 @@ export default function registerSystemSettings() {
   /*                                GAME MECHANICS                                    */
   /* -------------------------------------------------------------------------------- */
 
-  // Game Mechanics settings Header
-  /*
-  game.settings.register( "ed4e", "loreHeader", {
-      name: "ED.Settings.Lore.loreHeader",
-      config: true,
-  } );
-  */
-
-  // Languages
+  /**
+   * Languages used in the game.
+   * @userFunction                UF_Settings-mechanicsLanguages
+   */
   game.settings.register( "ed4e", "languages", {
     name:   "ED.Settings.Mechanics.languages",
     hint:   "ED.Settings.Mechanics.languagesHint",

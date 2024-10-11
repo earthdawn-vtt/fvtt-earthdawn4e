@@ -1,0 +1,1 @@
+This system Setting is responsible for the maximum number of Attribute Points characters have available during character generation.

@@ -1,8 +1,6 @@
-The Character Generation has several system settings.
-- activating character generation automatically
-- amount of attribute points
-- maximum Ranks for skills, talents or devotions
-- maximum circle of spells available to choose from.
+These settings have influence on specific game mechanics:
+- available languages
+- spellcasting Types (wizard, nethermancer etc.)
 
 ### Diagram
 
@@ -10,13 +8,10 @@ Settings do not required a diagram
 
 ### Related User Functions
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-autoOpenCharGen.md)
+[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-languages.md)
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-attributePoints.md)
+[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-spellcastingTypes.md)
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-maxRanks.md)
-
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_Settings/UF_Settings-maxSpellCircle.md)
 
 
 ### Related Test Coverage
