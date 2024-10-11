@@ -17,3 +17,5 @@ some item types have equip-status which only allow one item to be in this status
 **main and off hand.** if a main hand is already equipped, the next status will be off hand for a weapon which smaller than two handed.
 
 **two-handed weapons.** all bows, crossbows or weapons with a size greater or equal to the minimal two handed weapon size will unequipp all other weapons and or shields (except tail weapons or shields for bow usage - see above)
+
+**Weapon size:** if a weapon is either to small in size (lower than the namegivers minimal one handed weapon size) or to big (greater than the namegivers maximum two handed size) the weapon cannot be equipped. a Warning will inform the user about the problem with the size.
