@@ -1,27 +1,5 @@
 import ED4E from "./config.mjs";
-
-import EdIdField from "./data/fields/edid-field.mjs";
-
-/**
- * Get an ed4e setting from the system settings.
- * @param {string} settingKey   The key of the setting to get.
- * @returns {*}                 The value of the setting.
- */
-export function getSetting( settingKey ) {
-  return game.settings.get( "ed4e", settingKey );
-}
-
-/**
- * Set an ed4e setting in the system settings
- * @param {string} settingKey  The key of the setting to set.
- * @param {*} value            The value to set the setting to.
- * @param {object} [options]   Any additional options to pass to the setting.
- *                             See {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#set}
- * @returns {*}                The assigned value of the setting.
- */
-export function setSetting( settingKey, value, options={} ) {
-  return game.settings.set( "ed4e", settingKey, value, options );
-}
+import { EdIdField } from "./data/fields.mjs";
 
 /**
  * Register all the system's settings.
@@ -141,16 +119,6 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
-  // edid for unarmed combat
-  game.settings.register( "ed4e", "edidUnarmedCombat", {
-    name:    "ED.Settings.Edid.unarmedCombat",
-    hint:    "ED.Settings.Edid.unarmedCombatHint",
-    scope:   "world",
-    config:  true,
-    default: "unarmed-combat",
-    type:    new EdIdField(),
-  } );
-
   /* -------------------------------------------------------------------------------- */
   /*                                  STEP TABLES                                     */
   /* -------------------------------------------------------------------------------- */
@@ -175,7 +143,7 @@ export default function registerSystemSettings() {
   } );
 
   /* -------------------------------------------------------------------------------- */
-  /*                                  OWNED ITEMS                                     */
+  /*                                  owned Items                                     */
   /* -------------------------------------------------------------------------------- */
 
   /**
@@ -189,6 +157,40 @@ export default function registerSystemSettings() {
     config:  true,
     type:    Boolean,
     default: true,
+  } );
+
+  /* -------------------------------------------------------------------------------- */
+  /*                                  DARK MODE                                       */
+  /* -------------------------------------------------------------------------------- */
+
+  // Dark Mode settings Header
+  // game.settings.register( "ed4e", "darkModeHeader", {
+  //     name: "ED.Settings.DarkMode.darkModeHeader",
+  //     config: true,
+  // } );
+
+  /**
+   * dark mode. Css adjustements are located in the dark-theme.less file.
+   */
+  game.settings.register( "ed4e", "darkMode", {
+    name:    "ED.Settings.DarkMode.darkMode",
+    hint:    "ED.Settings.DarkMode.hint",
+    scope:   "client",
+    config:  true,
+    default: 1,
+    type:    Number,
+    range:   {
+      min:  1,
+      max:  10,
+      step: 1
+    },
+    onChange: async( val ) => {
+      if ( val > 1 ) {
+        $( ":root" ).addClass( "dark-theme" );
+      } else {
+        $( ":root" ).removeClass( "dark-theme" );
+      }
+    }
   } );
 
   /* -------------------------------------------------------------------------------- */
@@ -453,38 +455,6 @@ export default function registerSystemSettings() {
         initial:  Object.values( ED4E.spellcastingTypes ),
       }
     )
-  } );
-
-  /**
-   * Split Talents is used to divide talents by category or not.
-   * @userFunction                UF_Settings-chooseTalentsSplitOption
-   */
-  game.settings.register( "ed4e", "talentsSplit", {
-    name:    "ED.Settings.talentsSplit",
-    hint:    "ED.Settings.talentsSplitHint",
-    scope:   "world",
-    config:  true,
-    default: true,
-    type:    Boolean
-  } );
-
-  // Minimum difficulty for tests
-  game.settings.register( "ed4e", "minimumDifficulty", {
-    name:    "ED.Settings.GameMechanics.minimumDifficulty",
-    hint:    "ED.Settings.GameMechanics.minimumDifficultyHint",
-    scope:   "world",
-    config:  true,
-    default: 2,
-    type:    new fields.NumberField( {
-      required: true,
-      nullable: false,
-      min:      0,
-      initial:  2,
-      step:     1,
-      integer:  true,
-      label:    "ED.Settings.GameMechanics.minimumDifficulty",
-      hint:     "ED.Settings.GameMechanics.minimumDifficultyHint",
-    } )
   } );
 
   /* -------------------------------------------------------------------------------- */

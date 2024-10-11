@@ -1,0 +1,1 @@
+This function returns a single item with a specific ed-id.
