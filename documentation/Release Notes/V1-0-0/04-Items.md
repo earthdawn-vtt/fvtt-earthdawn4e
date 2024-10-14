@@ -46,8 +46,6 @@ all Items will be described below in a separate chapter.
 
 the ED-ID or Earthdawn id is used as identifier. There are several entries in the System Settings for identifiers (ED-ID). If the identifier from the setting (e.g. *thread-weaving*) is noted down in the ED-ID field of an ability, this ability will be identified as thread weaving talent and the system can trigger based on these ids different workflows. For a complete list of all ED-IDs please see the settings section.
 
-
-
 ## Physical Items
 
 ### General information
@@ -161,6 +159,7 @@ all abilities share a set of data fields which are available on the general tab 
 - strian
 - attribute
 - action
+- tier
 
   ### devotions
 
@@ -172,7 +171,7 @@ all abilities share a set of data fields which are available on the general tab 
 
   ### talents
 
-  Talents are the abilities of adepts. They work similar to other abilities with a maximum of 15 ranks.
+  Talents are the abilities of adepts. They work similar to other abilities with a maximum of 15 ranks. in addtion to the standard ability values, talents have a value for talent category (discipline, optional etc.)
 
 ## masks
 
@@ -188,8 +187,6 @@ the details tab offers the following information which are more game mechanic re
 * weight modifier
 * tail (yes / no)
 * living armor only (yes / no)
-
-
 
 ## poison / diseases
 
