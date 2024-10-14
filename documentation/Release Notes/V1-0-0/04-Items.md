@@ -79,6 +79,8 @@ left-click & right-click (change the item status up or down one position)
 shift-left-click (change the item status to carried)
 middle-click (change the item status to owned)
 
+#### Usable items
+
 ### Armor
 
 Every Actor can wear one piece of armor at any given time. Wearing Armor affects initiative, physical armor and mystical armor.
@@ -94,8 +96,6 @@ Namegiver with the **living armor only** option checked will not be able to equi
 ### Equipment
 
 #### Ammunition
-
-#### Usable items
 
 ### Shields
 
@@ -126,27 +126,35 @@ Bows and crossbows always count as two handed weapons, therefore they are handle
 
 ## Knacks
 
-  ### abilities knacks
+### abilities knacks
 
-  ### karma knacks
+### karma knacks
 
-  ### special maneuver knacks
+### special maneuver knacks
 
 ## Vocations
 
-  ### disciplines
+All vocation items contain an additional tab **advancement** which holds all information about the different optional abilities and the information of each circle / rank.
 
-  ### Questors
+### disciplines 
 
-  ### paths
+Disciplines are the main vocation in Earthdawn. They are the only vocation with a Durability value. In addition the circle of the discipline is taken into account for the calculation of several data like karma or legend point cost of talents.
+
+### Questors
+
+Questor are another vocation similar to Disciplines, but they do not provide durability by default. The questor rank is used for the caluclation of the maximum devotion points
+
+### paths
+
+Paths are the third vocation which relys heavy on the roleplaying aspect. From the game persepctive it only provides some additional abilities and characteristic bonuses.
 
 ## spell items
 
-  ### spells
+### spells
 
-  ### spell knacks
+### spell knacks
 
-  ### binding secrets
+### binding secrets
 
 ## effects
 

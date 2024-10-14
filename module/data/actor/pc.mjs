@@ -430,6 +430,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the base health ratings based on items.
    * @private
+   * @UserFunction UF_Pc-prepareDerivedHealth
    */
   #prepareDerivedHealth() {
     const durabilityItems = this.parent.items.filter(

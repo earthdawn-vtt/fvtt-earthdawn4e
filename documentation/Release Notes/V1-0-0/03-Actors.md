@@ -48,6 +48,23 @@ Character token have the following settings per default:
 
 ## Creatures
 
+### Data Preparations
+
+Actors of type character have a lot of data automatically calculated based on the items and ranks the actor has in other items. The prepared data are:
+- Attribute Steps based on values
+- total damage
+- Characteristics
+  - Defenses
+  - Armor
+  - Health (Wound threshold, unconsious- and death rating)
+  - recovery tests per day
+- Initiative
+- Encumbrance 
+- carrying capacity
+- movement
+- karma
+- devotion  
+
 ## Spirits
 
 ## Horrors
