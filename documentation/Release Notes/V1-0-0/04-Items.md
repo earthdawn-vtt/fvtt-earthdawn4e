@@ -50,6 +50,11 @@ the ED-ID or Earthdawn id is used as identifier. There are several entries in th
 
 ### General information
 
+All Physical items (armor, equipment, shields and weapons) have the following data values in common:
+- cost (together with the denomination)
+- weight
+- availability
+
 #### equipment state
 
 Every physical item (armor, equipment, shield or weapon) has a status which defines the equipped state. the following states are possible:
@@ -81,9 +86,27 @@ middle-click (change the item status to owned)
 
 #### Usable items
 
+Items can be actually used like healing potions to provide some bonus to a specific action triggered by this item. Therefore every item has the option in the details tab to become a usable item. Usable items have the following additional data fields:
+
+- arbitrary step
+- action type
+- Recovery parameter (used for healing potions or abilities requireing a recovery test)
+
+in addition, all items except weapons (they have thes values by default) the target data fields become available:
+
+- target defense
+- fixed difficulty
+- group difficulty setting
+
 ### Armor
 
-Every Actor can wear one piece of armor at any given time. Wearing Armor affects initiative, physical armor and mystical armor.
+Every Actor can wear one piece of armor at any given time. Wearing Armor affects initiative, physical armor and mystical armor. Armor items have the following data fields:
+- phyiscal armor
+- mysticla armor
+- physical armor forge bonus
+- mystical armor forge bonus
+- initiative penalty
+- 
 
 #### Piecemeal Armor
 
