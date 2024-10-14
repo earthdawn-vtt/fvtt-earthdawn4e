@@ -2,6 +2,8 @@
 
 ## General information
 
+all Items have the same structure with an image, the item name and the item description on top of the sheet. The lower part of the sheet starts with a navigator with at least a **General**, a **Details** and an **Effects** tab. Every item has the **Description** on the general tab and the **ED-ID** field on the details tab in addition to any other fields.
+
 The Earthdawn system supports the following items types:
 - physical items 
   - armor
@@ -39,6 +41,12 @@ The Earthdawn system supports the following items types:
 **Note:** Matrices are not a separate item type like they where in the previous system, but are either a talent or a physical item.
 
 all Items will be described below in a separate chapter.
+
+### ED-ID
+
+the ED-ID or Earthdawn id is used as identifier. There are several entries in the System Settings for identifiers (ED-ID). If the identifier from the setting (e.g. *thread-weaving*) is noted down in the ED-ID field of an ability, this ability will be identified as thread weaving talent and the system can trigger based on these ids different workflows. For a complete list of all ED-IDs please see the settings section.
+
+
 
 ## Physical Items
 
@@ -156,11 +164,15 @@ all abilities share a set of data fields which are available on the general tab 
 
   ### devotions
 
-  devotions are the abilities of questors. they work similar to other abilities but have a maximum of 12 ranks and might require the usage of a devotion point.
+  devotions are the abilities of questors. They work similar to other abilities but have a maximum of 12 ranks and might require the usage of a devotion point.
 
   ### skills
 
+  Skills are none-mystical abilities. They work similar to other abilities but have a maximum of 10 ranks.
+
   ### talents
+
+  Talents are the abilities of adepts. They work similar to other abilities with a maximum of 15 ranks.
 
 ## masks
 
