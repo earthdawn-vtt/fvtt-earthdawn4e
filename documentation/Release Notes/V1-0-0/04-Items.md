@@ -54,10 +54,11 @@ All Physical items (armor, equipment, shields and weapons) have the following da
 - cost (together with the denomination)
 - weight
 - availability
+- description
 
 #### equipment state
 
-Every physical item (armor, equipment, shield or weapon) has a status which defines the equipped state. the following states are possible:
+Besides the self explaining values, every physical item (armor, equipment, shield or weapon) has a status which defines the equipped state. the following states are possible:
 
 - owned
 - carried
@@ -98,6 +99,13 @@ in addition, all items except weapons (they have thes values by default) the tar
 - fixed difficulty
 - group difficulty setting
 
+#### Weight Modifier
+
+all all owned physical itms also have an option to modify its weight based on the **weight modifier** of the namegiver item. This option will change the item by adding the name of the namegiver behind the current name in brackets and multiply the current weight with the weight modifier of the namegiver item. This option can only be activated once (a Game master has the option to rest it though).
+
+#### Blood Magic Damage
+
+all phyiscal Items can cause blood magic damage (see blood magic damage for further information). 
 ### Armor
 
 Every Actor can wear one piece of armor at any given time. Wearing Armor affects initiative, physical armor and mystical armor. Armor items have the following data fields:
