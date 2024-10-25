@@ -314,7 +314,7 @@ class ActorPromptFactory extends PromptFactory {
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
-        title:       "ED.Dialogs.Title.chooseDiscipline",
+        title:       game.i18n.localize( "ED.Dialogs.Title.chooseDiscipline" ),
         minimizable: false
       },
       modal:   false,
@@ -359,12 +359,16 @@ class ItemPromptFactory extends PromptFactory {
     <p>${ game.i18n.localize( "ED.Dialogs.Legend.learnOnZeroOrOne" ) }</p>
     `;
 
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.learnAbility", {
+      abilityName: this.document.name,
+    } );
+
     return DialogClass.wait( {
       id:       "learn-ability-prompt",
       uniqueId: String( ++globalThis._appId ),
       classes:  [ "earthdawn4e", "learn-ability-prompt" ],
       window:   {
-        title:       "ED.Dialogs.Title.learnAbility",
+        title:       titleFlavor,
         minimizable: false
       },
       modal:   false,
@@ -405,12 +409,16 @@ class ItemPromptFactory extends PromptFactory {
       },
     );
 
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.lpIncrease", {
+      abilityName: this.document.name,
+    } );
+
     return DialogClass.wait( {
       id:       "lp-increase-prompt",
       uniqueId: String( ++globalThis._appId ),
       classes:  [ "earthdawn4e", "lp-increase-prompt" ],
       window:   {
-        title:       "ED.Dialogs.Title.lpIncrease",
+        title:       titleFlavor,
         minimizable: false
       },
       modal:   false,
@@ -437,13 +445,17 @@ class ItemPromptFactory extends PromptFactory {
       }
     );
 
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.talentCategory", {
+      abilityName: this.document.name,
+    } );
+
     return DialogClass.wait( {
       rejectClose: false,
       id:          "talent-category-prompt",
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "talent-category-prompt", "flexcol" ],
       window:      {
-        title:       "ED.Dialogs.Title.talentCategory",
+        title:       titleFlavor,
         minimizable: false
       },
       modal:   false,

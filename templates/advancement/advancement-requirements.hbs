@@ -7,6 +7,7 @@
   {{#each requirementGroups}}
     <fieldset>
       <legend>{{localize @key}}</legend>
+      {{log this}}
       {{#each this as |requirement|}}
         <div class="flexrow advancement-requirement {{ifThen fulfilled "requirement-fulfilled" ""}}">
           <span class="advancement-requirement-name">
