@@ -19,8 +19,7 @@
         <div class="ability-card__grid--item card__name">{{name}}</div>
         <div class="ability-card__grid--item">{{system.action}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{system.level}}</div>
-        {{!-- <div class="ability-card__grid--item text__alignment--center">{{add system.level (edGetAttributeValue system.attribute this.actor.system.attributes)}}</div> --}}
-        <div class="ability-card__grid--item text__alignment--center undefined">TODO</div>
+        <div class="ability-card__grid--item text__alignment--center">{{this.system.rankFinal}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{system.strain}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{system.attribute}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}</div>

@@ -110,6 +110,18 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     } );
   }
 
+  /* -------------------------------------------- */
+  /*  Getters                   */
+  /* -------------------------------------------- */
+
+  /**
+   * The final rank of the ability (attribute step + level).
+   * @type {number}
+   */
+  get rankFinal() {
+    return ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 ) + this.level;
+  }
+
   /** @inheritDoc */
   get canBeLearned() {
     return true;
