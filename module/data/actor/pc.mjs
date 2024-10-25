@@ -349,9 +349,9 @@ export default class PcData extends NamegiverTemplate {
     const strengthFifth = Math.ceil( strengthValue / 5 );
 
     this.encumbrance.max = -12.5 * strengthFifth ** 2
-          + 5 * strengthFifth * strengthValue
-          + 12.5 * strengthFifth
-          + 5;
+      + 5 * strengthFifth * strengthValue
+      + 12.5 * strengthFifth
+      + 5;
   }
 
   /* -------------------------------------------- */
@@ -391,7 +391,7 @@ export default class PcData extends NamegiverTemplate {
   #prepareDerivedBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
       ( item ) => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.itemStatus === "equipped" ) ||
-            ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
+        ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
     );
     // Calculate sum of defense bonuses, defaults to zero if no shields equipped
     const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
@@ -443,10 +443,14 @@ export default class PcData extends NamegiverTemplate {
       }, 0 );
     }
 
-    const maxCircle = durabilityItems
-      .filter( item => item.type === "discipline" )
-      .map( item => item.system.level )
-      .reduce( ( max, level ) => Math.max( max, level ), 0 ); // Default to 0 if no items
+    const maxCircle = Math.max(
+      ...durabilityItems.filter(
+        item => item.type === "discipline"
+      ).map(
+        item => item.system.level
+      ),
+      0
+    );
 
     const maxDurability = sum( Object.values( durabilityByCircle ) );
 
@@ -475,18 +479,18 @@ export default class PcData extends NamegiverTemplate {
     // relevant items are those with a weight property and are either equipped or carried
     const relevantItems = this.parent.items.filter( item =>
       item.system.hasOwnProperty( "weight" )
-          && ( item.system.itemStatus === "equipped" || item.system.itemStatus === "carried" )
+      && ( item.system.itemStatus === "equipped" || item.system.itemStatus === "carried" )
     );
 
     const carriedWeight = relevantItems.reduce( ( accumulator, currentItem ) => {
       return accumulator
-              + (
-                currentItem.system.weight.value
-                * (
-                  ( currentItem.system.amount ?? 1 )
-                  / ( currentItem.system.bundleSize > 1 ? currentItem.system.bundleSize : 1 )
-                )
-              );
+        + (
+          currentItem.system.weight.value
+          * (
+            ( currentItem.system.amount ?? 1 )
+            / ( currentItem.system.bundleSize > 1 ? currentItem.system.bundleSize : 1 )
+          )
+        );
     }, 0 );
 
     this.encumbrance.value = carriedWeight;
