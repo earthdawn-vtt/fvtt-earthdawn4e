@@ -114,14 +114,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /*  Getters                   */
   /* -------------------------------------------- */
 
-  /** @override */
+  /**
+   * The final rank of the ability (attribute step + level).
+   * @type {number}
+   */
   get rankFinal() {
-    if ( this.isActorEmbedded ) {
-      const abilityAttribute = this.attribute;
-      const actorAttribute = abilityAttribute === "" ? 0 : this.parentActor.system.attributes[abilityAttribute];
-      const actorAtttributeStep = actorAttribute === 0 ? 0 : actorAttribute.step;
-      return actorAtttributeStep + this.level;
-    } else return this.level;
+    return ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 ) + this.level;
   }
 
   /** @inheritDoc */
