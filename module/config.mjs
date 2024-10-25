@@ -213,6 +213,7 @@ ED4E.poisonActivation = {
   injury:         "ED.Config.PoisonActivation.injury",
   wound:          "ED.Config.PoisonActivation.wound",
 };
+preLocalize( "poisonActivation" );
 
 /**
  * Different types of Illusions
@@ -221,9 +222,11 @@ ED4E.poisonActivation = {
 ED4E.illusionType = {
   "figment":      "ED.Config.IllusionType.figment",
   "glamour":      "ED.Config.IllusionType.glamour",
+  "illusion":     "ED.Config.IllusionType.illusion",
   "phantasm":     "ED.Config.IllusionType.phantasm",
   "shadow":       "ED.Config.IllusionType.shadow",
 };
+preLocalize( "illusionType" );
 
 /**
  * Group  Difficulty
