@@ -244,7 +244,7 @@
         "standard": "Standard",
         "sustained": "Anhaltend"
       },
-      "ActivationType": {
+      "PoisonActivation": {
         "contact":                                                "Kontakt",
         "ingested":                                               "Einnahme",
         "inhaled":                                                "Einatmen",

@@ -206,12 +206,12 @@ preLocalize( "targetDifficulty" );
  * activation Types of Poisons and Diseases
  * @enum {string}
  */
-ED4E.activationType = {
-  contact:        "ED.Config.ActivationType.contact",
-  ingested:       "ED.Config.ActivationType.ingested",
-  inhaled:        "ED.Config.ActivationType.inhaled",
-  injury:         "ED.Config.ActivationType.injury",
-  wound:          "ED.Config.ActivationType.wound",
+ED4E.poisonActivation = {
+  contact:        "ED.Config.PoisonActivation.contact",
+  ingested:       "ED.Config.PoisonActivation.ingested",
+  inhaled:        "ED.Config.PoisonActivation.inhaled",
+  injury:         "ED.Config.PoisonActivation.injury",
+  wound:          "ED.Config.PoisonActivation.wound",
 };
 
 /**

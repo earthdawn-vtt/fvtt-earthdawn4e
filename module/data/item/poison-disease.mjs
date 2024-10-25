@@ -103,7 +103,7 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
         required: true,
         blank:    false,
         initial:  "wound",
-        choices:  ED4E.activationType,
+        choices:  ED4E.PoisonActivation,
         label:    this.labelKey( "PoisonDisease.activation" ),
         hint:     this.hintKey( "PoisonDisease.activation" )
       } ),
