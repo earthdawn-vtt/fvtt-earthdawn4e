@@ -53,7 +53,17 @@ export default class DocumentCreateDialog extends FormApplication {
 
   getData( options = {} ) {
     const folders = this.parent ? [] : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
-
+    const compendiumPacks  = game.packs;
+    let compendiumFolders = [];
+    for ( const pack of compendiumPacks ) {
+      if ( pack.metadata.type !== this.documentType ) continue;
+      const folder = pack.folders;
+      compendiumFolders.push( folder );
+    }
+    for ( const folder of compendiumFolders ) {
+      folders.push( ...folder );
+    }
+    
     const types = CONFIG.ED4E.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
       Object.entries( types ).map( ( [ k, v ], i ) => {
