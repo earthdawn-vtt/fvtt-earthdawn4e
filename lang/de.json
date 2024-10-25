@@ -244,6 +244,13 @@
         "standard": "Standard",
         "sustained": "Anhaltend"
       },
+      "PoisonActivation": {
+        "contact":                                                "Kontakt",
+        "ingested":                                               "Einnahme",
+        "inhaled":                                                "Einatmen",
+        "injury":                                                 "Verletzung",
+        "wound":                                                  "Verwundung"
+      },
       "AmmunitionType": {
         "arrow":                                              "Pfeil",
         "bolt":                                               "Bolzen",
@@ -267,6 +274,11 @@
         "ranged": "Fernkampf",
         "throwing": "Wurfwaffen Fernkampf",
         "unarmed": "Unbewaffneter Nahkampf"
+      },
+      "curseType": {
+        "minor":                        "Kleiner Fluch",
+        "major":                        "Großer Fluch",
+        "horror":                       "Dämonenfluch"
       },
       "Defenses": {
         "highestOfGroup": "Höchste der Gruppe",
@@ -453,13 +465,40 @@
             "bloodMagicDamage":                             "Blutmagie Schaden",
             "sourceDiscipline":                             "Herkunfts Disziplin"
           },
+          "Curse": {
+            "step":                                         "Fluchstufe",
+            "curseType":                                    "Art des Fluches",
+            "curseActive":                                  "ist der Fluch aktiv?",
+            "curseDetected":                                "ist der Fluch erkannt?"
+          },
           "edid":                                           "Eine ID mit der ein Item unabhängig vom Namen identifziert werden kann",
           "Equipment": {
               "consumable":                               "Wird dieser Gegenstand bei der benutzung verbraucht?",
               "ammunition":                                "Welcher Munitionstyp ist dieser Gegenstand?",
               "bundleSize":                               "Wie viele Gegenstände gehören zu einem Bündel?"
             },
-          "livingArmorOnly":                                "Nur legendige Rüstung",
+          "Knack":{
+            "isPathKnack":                                  "Ist dieser Kniff ein Pfadkniff?",
+            "standardEffect":                               "Wird der Effekt des Ursprungtalentes mit ausgelöst?",
+            "sourceTalentUuid":                             "Von welchem Talent stammt dieser Kniff?",
+            "minLevel":                                     "welchen Rang muss das Ursprungstalent mindestens haben?",
+            "lpCost":                                       "Hat dieser Kniff abweichende LP Kosten zum Ursprungstalentrang?"  
+          },                             
+          "Maneuver": {
+            "extraSuccesses":                               "Wie viele zusätzliche Erfolge werden benötigt?"
+          },
+          "Namegiver":{
+            "livingArmorOnly":                              "Es kann nur nur lebendige Rüstung getragen werden.",
+            "WeaponSize": {
+              "twoHandedmax":                                 "Maximalgröße für Zweihandwaffen",
+              "twoHandedmin":                                 "Minimalgröße für Zweihandwaffen",
+              "oneHandedmax":                                 "Maximalgröße für Einhandwaffen",
+              "oneHandedmin":                                 "Minimalgröße für Einhandwaffen"
+            },
+            "tail":                                         "Kann dieser Namensgeber Angriffe mit dem Schwanz ausführen",
+            "weightMultiplier":                             "Um wie viel wird das Gewicht eines Gegenstandes für diesen Namensgeber multipliziert?",
+            "karmaModifier":                                "Wie viele Karma Punkte erhält dieser Namensgeber pro Kreis?"
+          },
           "PhysicalItems": {
             "action":                                       "Aktionsart, welche für die benutzung des Gegenstandes verwendet wird.",
             "arbitraryStep":                                "Willkürliche Stufe, die beim benutzen des Gegenstandes verwendet wird.",
@@ -486,6 +525,25 @@
               "multiplier":                                 "Der Multiplikator des Namensgebers"
             }
           },
+          "PoisonDisease": {
+            "damageStep":                                   "Schadensstufe des Giftes/der Krankheit",
+            "paralysisStep":                                "Lähmungsstufe des Giftes/der Krankheit",
+            "debilitationStep":                             "Schwächungsstufe des Giftes/der Krankheit",
+            "effect":                                       "Effekt des Giftes/der Krankheit",
+            "totalEffects":                                 "Gesamteffekte des Giftes/der Krankheit",
+            "timeInBetween":                                "Zeit zwischen den Effekten",
+            "interval":                                     "Intervall zwischen den Effekten",
+            "onsetTime":                                    "Einsetzzeit des Giftes/der Krankheit",
+            "duration":                                     "Dauer des Giftes/der Krankheit",
+            "activation":                                   "Aktivierungsart des Giftes/der Krankheit",
+            "death":                                        "Ist das Gift/die Krankheit tödlich?"
+          },
+          "Powers": {
+            "action":                                       "Aktionsart",
+            "strain":                                       "Überanstrengung",
+            "powerStep":                                    "Aktionsstufe",
+            "damageStep":                                   "Schadensstufe"
+          },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
             "defenseBonusMystical":                         "Mystischer Verteidigungsbonus",
@@ -494,6 +552,46 @@
             "broken":                                       "Ist dieser Schild zerbrochen?",
             "livingArmor":                                  "Gilt dieser Schild als Lebendige Rüstung?",
             "bowUsage":                                     "Kann dieser Schild mit einem Bogen benutzt werden?"
+          },
+          "ShipWeapon":{
+            "firePowerPoints":                              "Wie viel Feuerkraft Punkte hat diese Waffe?",
+            "crewWeapon":                                   "Wie viele Crewmitglieder werden benötigt um diese Waffe zu bedienen?",
+            "rangeShort":                                   "Reichweite Kurz Minimum",
+            "rangeLong":                                    "Reichweite Lang Minimum",
+            "salvoCost":                                    "Wie viel kostet eine Salve?",
+            "characterDamage":                              "Wie viel Schaden macht die Waffe an Lebewesen?"
+          },
+          "Spell": {  
+            "magicType":                                    "Magie Typ",
+            "circle":                                       "Kreis",
+            "threadsrequired":                              "Benötigte Fäden",
+            "weavingdifficulty":                            "Weben Schwierigkeit",
+            "reattunedifficulty":                           "Neuabstimmen Schwierigkeit",
+            "effect":                                       "Effekt des Giftes/der Krankheit",
+            "concentration":                                "Konzentration",
+            "binding":                                      "Bindung",
+            "spirit":                                       "Geist",
+            "summoning":                                    "Beschwörung",
+            "resist":                                       "Widerstand",
+            "duration": {
+              "value":                                      "Dauer",
+              "uom":                                        "Einheit"
+            },
+            "range": {
+              "value":                                      "Reichweite",
+              "uom":                                        "Einheit"
+            },
+            "spellArea": {
+              "value":                                      "Form",
+              "uom":                                        "Einheit",
+              "shape":                                      "Form"
+            },
+            "illusionType":                                 "Illusionstyp",
+            "sensingDifficulty":                            "Wahrnehmungsschwierigkeit",
+            "spellIllustion":                               "Illusion",
+            "elementType":                                  "Elementtyp",
+            "elementSubtype":                               "Elementuntertyp",
+            "spellElement":                                 "Element"
           },
           "Weapons": {
             "weaponType":                                   "Waffentyp",
@@ -563,13 +661,40 @@
             "bloodMagicDamage":                             "Blutmagie Schaden",
             "sourceDiscipline":                             "Herkunfts Disziplin"
           },
+          "Curse": {
+            "step":                                         "Fluchstufe",
+            "curseType":                                    "Fluchart",
+            "curseActive":                                  "Aktiv?",
+            "curseDetected":                                "Erkannt?"
+          },
           "edid":                                           "ED-ID",
           "Equipment": {
               "consumable":                               "Verbrauchsgegenstand?",
               "ammunition":                                "Munitionstyp",
               "bundleSize":                               "Bündelgröße"
             },
-          "livingArmorOnly":                                "Es kann nur nur lebendige Rüstung getragen werden.",
+          "Knack":{
+            "isPathKnack":                                  "Pfad Kniff",
+            "standardEffect":                               "Standard Effekt",
+            "sourceTalentUuid":                             "Ursprungstalent",
+            "minLevel":                                     "Min. Rang",  
+            "lpCost":                                       "LP Kosten"
+          },
+          "Maneuver": {
+            "extraSuccesses":                               "Zusätzliche Erfolge"
+          },
+          "Namegiver":{
+            "livingArmorOnly":                              "Nur legendige Rüstung",
+            "WeaponSize":{
+              "twoHandedmax":                                 "Zweihandwaffen max.",
+              "twoHandedmin":                                 "Zweihandwaffen min.",
+              "oneHandedmax":                                 "Einhandwaffen max.",
+              "oneHandedmin":                                 "Einhandwaffen min."
+            },
+            "tail":                                         "Schwanz",
+            "weightMultiplier":                             "Gewichtsmultiplikator",
+            "karmaModifier":                                "Karma Modifikator"
+          },
           "PhysicalItems": {
             "amount":                                       "Menge",
             "availability":                                 "Verfügbarkeit",
@@ -594,6 +719,25 @@
               "multiplier":                                 "Multiplikator"
             }
           },
+          "PoisonDisease": {
+            "damageStep":                                   "Schadensstufe",
+            "paralysisStep":                                "Lähmungsstufe",
+            "debilitationStep":                             "Schwächungsstufe",
+            "effect":                                       "Effekt",
+            "totalEffects":                                 "Gesamteffekte",
+            "timeInBetween":                                "Zeit zwischen den Effekten",
+            "interval":                                     "Intervall",
+            "onsetTime":                                    "Einsetzzeit",
+            "duration":                                     "Dauer",
+            "activation":                                   "Aktivierung",
+            "death":                                        "Tod"
+          },
+          "Powers": {
+            "action":                                       "Aktionsart",
+            "strain":                                       "Überanstrengung",
+            "powerStep":                                    "Aktionsstufe",
+            "damageStep":                                   "Schadensstufe"
+          },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
             "defenseBonusMystical":                         "Mystischer Verteidigungsbonus",
@@ -602,6 +746,48 @@
             "broken":                                       "Zerbrochen",
             "livingArmor":                                  "Lebendige Rüstung?",
             "bowUsage":                                     "Tartsche?"
+          },
+          "ShipWeapon":{
+            "firePowerPoints":                              "Feuerkraft Punkte",
+            "crewWeapon":                                   "Besatzung",
+            "rangeShort":                                   "Kurze Reichweite",
+            "rangeLong":                                    "Lange Reichweite",
+            "salvoCost":                                    "Salve Kosten",
+            "characterDamage":                              "Charakter Schaden"
+          },
+          "Spell": { 
+            "ding": {
+            "magicType":                                    "Magie Typ"
+            }, 
+            "circle":                                       "Kreis",
+            "threadsrequired":                              "Benötigte Fäden",
+            "weavingdifficulty":                            "Weben Schwierigkeit",
+            "reattunedifficulty":                           "Neuabstimmen Schwierigkeit",
+            "effect":                                       "Effekt des Giftes/der Krankheit",
+            "concentration":                                "Konzentration",
+            "binding":                                      "Bindung",
+            "spirit":                                       "Geist",
+            "summoning":                                    "Beschwörung",
+            "resist":                                       "Widerstand",
+            "duration": {
+              "value":                                      "Dauer",
+              "uom":                                        "Einheit"
+            },
+            "range": {
+              "value":                                      "Reichweite",
+              "uom":                                        "Einheit"
+            },
+            "spellArea": {
+              "value":                                      "Form",
+              "uom":                                        "Einheit",
+              "shape":                                      "Form"
+            },
+            "illusionType":                                 "Illusionstyp",
+            "sensingDifficulty":                            "Wahrnehmungsschwierigkeit",
+            "spellIllustion":                               "Illusion",
+            "elementType":                                  "Elementtyp",
+            "elementSubtype":                               "Elementuntertyp",
+            "spellElement":                                 "Element"
           },
           "Weapons": {
             "weaponType":                                   "Waffentyp",

@@ -1,37 +1,16 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
-    {{!-- Rank --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.rank"}}:</label>
-        <input class="input__circle-input partial__55--right" name="system.level" type="text" value="{{item.system.level}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Strain --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.strain"}}:</label>
-        <input class="input__circle-input partial__55--right" name="system.strain" type="text" value="{{item.system.strain}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Attribute --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.attribute"}}:</label>
-        <select class="partial__55--right" name="system.attribute">
-            {{selectOptions config.attributes selected=item.system.attribute blank="" labelAttr="label" localize=true }}
-        </select>
-    </div>
-    {{!-- Action --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.action"}}:</label>
-        <select class="partial__55--right" name="system.action">
-            {{selectOptions config.action selected=item.system.action localize=true }}
-        </select>
-    </div>
-
-
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
     {{!-- Standard Effect --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.standardEffect"}}:</label>
-        <input class="input__circle-input partial__55--right" name="system.standardEffect" type="checkbox" value="{{item.system.standardEffect}}">
+    {{formField systemFields.standardEffect name="system.standardEffect" value=item.system.standardEffect localize=true}}
+    {{!-- Source --}}
+    <div class="knack-ability__source-min-level">
+        <div class="knack-ability__source">
+            {{formField systemFields.sourceTalentUuid name="system.sourceTalentUuid" value=item.system.sourceTalentUuid label=(localize "ED.Data.Item.Labels.Knack.sourceTalentUuid") localize=true}}
+        </div>
+        <div class="knack-ability__min-level">
+            {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+        </div>
     </div>
 </div>
 <div class="item__right--main sheet__editor">

@@ -1,47 +1,14 @@
-<div>
-    
-    {{!-- weight Multiplier--}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.General.weightMultiplier"}}</label>
-        <input class="partial__55--right" type="number" name="system.weightMultiplier"
-            value="{{item.system.weightMultiplier}}">
-    </div>
-    {{!-- Tail Attack --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "X-TailAttack"}}:</label>
-        <input class="partial__55--right" type="checkbox" name="system.tailAttack" {{checked
-            item.system.tailAttack}}>
-    </div>
-    {{!-- One Handed Weapon Size Minimum--}}
-    <div>
-        <div class="item-data__input--line">
-            <label class="partial__40--left">{{localize "ED.Item.Namegiver.WeaponSize.OneHanded.min"}}</label>
-            <input class="partial__55--right" type="number" name="system.weaponSize.oneHanded.min"
-                value="{{item.system.weaponSize.oneHanded.min}}">
-        </div>
-        {{!-- One Handed Weapon Size Maximum--}}
-        <div class="item-data__input--line">
-            <label class="partial__40--left">{{localize "ED.Item.Namegiver.WeaponSize.OneHanded.max"}}</label>
-            <input class="partial__55--right" type="number" name="system.weaponSize.oneHanded.max"
-                value="{{item.system.weaponSize.oneHanded.max}}">
-        </div>
-    </div>
-    {{!-- Two Handed Weapon Size Minimum--}}
-    <div>
-        <div class="item-data__input--line">
-            <label class="partial__40--left">{{localize "ED.Item.Namegiver.WeaponSize.TwoHanded.min"}}</label>
-            <input class="partial__55--right" type="number" name="system.weaponSize.twoHanded.min"
-                value="{{item.system.weaponSize.twoHanded.min}}">
-        </div>
-        {{!-- Two Handed Weapon Size Maximum--}}
-        <div class="item-data__input--line">
-            <label class="partial__40--left">{{localize "ED.Item.Namegiver.WeaponSize.TwoHanded.max"}}</label>
-            <input class="partial__55--right" type="number" name="system.weaponSize.twoHanded.max"
-                value="{{item.system.weaponSize.twoHanded.max}}">
-        </div>
-    </div>
-    {{!-- living armor only --}}
-    <div class="item-data__input--line">
-        {{formField systemFields.livingArmorOnly name="system.livingArmorOnly" value=item.system.livingArmorOnly localize=true}}
-    </div>
-</div>
+{{!-- weight Multiplier--}}
+{{formField systemFields.weightMultiplier name="system.weightMultiplier" value=item.system.weightMultiplier localize=true}}
+{{!-- Tail Attack --}}
+{{formField systemFields.tailAttack name="system.tailAttack" value=item.system.tailAttack localize=true}}
+{{!-- One Handed Weapon Size Minimum--}}
+{{formField systemFields.weaponSize.fields.oneHanded.fields.min name="system.weaponSize.oneHanded.min" value=item.system.weaponSize.oneHanded.min localize=true}}
+{{!-- One Handed Weapon Size Maximum--}}
+{{formField systemFields.weaponSize.fields.oneHanded.fields.max name="system.weaponSize.oneHanded.max" value=item.system.weaponSize.oneHanded.max localize=true}}
+{{!-- Two Handed Weapon Size Minimum--}}
+{{formField systemFields.weaponSize.fields.twoHanded.fields.min name="system.weaponSize.twoHanded.min" value=item.system.weaponSize.twoHanded.min localize=true}}
+{{!-- Two Handed Weapon Size Maximum--}}
+{{formField systemFields.weaponSize.fields.twoHanded.fields.max name="system.weaponSize.twoHanded.max" value=item.system.weaponSize.twoHanded.max localize=true}}
+{{!-- living armor only --}}
+{{formField systemFields.livingArmorOnly name="system.livingArmorOnly" value=item.system.livingArmorOnly localize=true}}

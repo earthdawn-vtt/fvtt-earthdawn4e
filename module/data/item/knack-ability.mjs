@@ -18,14 +18,17 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      // TODO @Chris how do we do this
-      // restrictions: [], // there will be several options possible see issue #212
-      // requirements: [], // there will be several options possible see issue #212 
       isPathKnack: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "knackAbilityIsPathKnack" ),
-        hint:     this.hintKey( "knackAbilityIsPathKnack" ),
+        label:    this.labelKey( "Knack.isPathKnack" ),
+        hint:     this.hintKey( "Knack.isPathKnack" ),
+      } ),
+      standardEffect: new fields.BooleanField( {
+        required: true,
+        initial:  false,
+        label:    this.labelKey( "Knack.standardEffect" ),
+        hint:     this.hintKey( "Knack.standardEffect" ),
       } ),
     } );
   }

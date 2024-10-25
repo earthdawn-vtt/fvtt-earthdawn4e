@@ -1,3 +1,4 @@
+import ED4E from "../../config.mjs";
 import ActorEd from "../../documents/actor.mjs";
 import SystemDataModel, { ItemDataModel } from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -24,22 +25,29 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Curse.step"
+        label:    this.labelKey( "Curse.step" ),
+        hint:     this.hintKey( "Curse.step" )
       } ), 
       type: new fields.StringField( {
         required: true,
-        blank:    false,
+        nullable: true,
+        blank:    true,
+        trim:     true,
         initial:  "minor",
-        label:    "ED.Item.Curse.curseType"
+        choices:  ED4E.curseType,
+        label:    this.labelKey( "Curse.curseType" ),
+        hint:     this.hintKey( "Curse.curseType" )
       } ),
       active: new fields.BooleanField( {
         required: true,
-        label:    "ED.Item.Curse.curseActive"
+        label:    this.labelKey( "Curse.curseActive" ),
+        hint:     this.hintKey( "Curse.curseActive" )
       } ),
       detected: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Curse.curseDetected"
+        label:    this.labelKey( "Curse.curseDetected" ),
+        hint:     this.hintKey( "Curse.curseDetected" )
       } ),
       source: new fields.ForeignDocumentField( SystemDataModel, {
         idOnly: true,

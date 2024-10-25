@@ -1,41 +1,17 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Fire Power Points --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.firePowerPoints"}}:</label>
-        <input class="input__circle-input" name="system.firePowerPoints" type="text" value="{{item.system.firePowerPoints}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.firePowerPoints name="system.firePowerPoints" value=item.system.firePowerPoints hint="" localize=true}}
     {{!-- Crew required to fire the weapon --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.crewWeapon"}}:</label>
-        <input class="input__circle-input" name="system.crewWeapon" type="text" value="{{item.system.crewWeapon}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.crewWeapon name="system.crewWeapon" value=item.system.crewWeapon hint="" localize=true}}
     {{!-- Short Range --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.rangeShort"}}:</label>
-        <input class="input__number-input" name="system.range.short" type="text" value="{{item.system.range.short}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.range.fields.short name="system.range.short" value=item.system.range.short hint="" localize=true}}
     {{!-- Long Range --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.rangeLong"}}:</label>
-        <input class="input__number-input" name="system.range.long" type="text" value="{{item.system.range.long}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.range.fields.long name="system.range.long" value=item.system.range.long hint="" localize=true}}
     {{!-- Salvo Cost --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.salvoCost"}}:</label>
-        <input class="input__circle-input" name="system.salvoCost" type="text" value="{{item.system.salvoCost}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.salvoCost name="system.salvoCost" value=item.system.salvoCost hint="" localize=true}}
     {{!-- Weapon Damage against single Namegivers --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.characterDamage"}}:</label>
-        <input class="input__circle-input" name="system.characterDamage" type="text" value="{{item.system.characterDamage}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.characterDamage name="system.characterDamage" value=item.system.characterDamage hint="" localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

@@ -1,15 +1,16 @@
-<div class="sheet__editor">
+<div class="item__left--main">
+    <h3>{{localize "ED.Item.Header.general"}}</h3>
+    {{!-- Source --}}
+    <div class="knack-ability__source-min-level">
+    <div class="knack-ability__source">
+        {{formField systemFields.sourceTalentUuid name="system.sourceTalentUuid" value=item.system.sourceTalentUuid label=(localize "ED.Data.Item.Labels.Knack.sourceTalentUuid") localize=true}}
+    </div>
+    <div class="knack-ability__min-level">
+        {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+    </div>
+</div>
+</div>
+<div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>
     {{> "systems/ed4e/templates/global/editor.hbs"}}
 </div>
-{{!-- min Level Source Talent --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Knack.minLevel"}}:</label>
-        <input class="input__text-input" name="system.source.minLevel" type="text" value="{{item.system.source.minLevel}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Standard Effect --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Knack.standardEffect"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.standardEffect">
-    </div>

@@ -19,7 +19,8 @@ export default class ManeuverData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Knack.extraSuccesses"
+        label:    this.labelKey( "Maneuver.extraSuccesses" ),
+        hint:     this.hintKey( "Maneuver.extraSuccesses" ),
       } ),
     } );
   }

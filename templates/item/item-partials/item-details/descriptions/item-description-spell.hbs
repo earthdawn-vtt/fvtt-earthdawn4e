@@ -1,87 +1,60 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Magic Type --}}
-    {{formField systemFields.magicType name="system.magicType" value=item.system.magicType}}
+    {{formField systemFields.magicType name="system.magicType" value=item.system.magicType localize=true}}
     {{!-- Circle --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.circle"}}:</label>
-        <input class="input__circle-input" name="system.level" type="text" value="{{item.system.level}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
     {{!-- Required Threads --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.threadsrequired"}}:</label>
-        <input class="input__circle-input" name="system.threadsrequired" type="text" value="{{item.system.threadsrequired}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.threadsrequired name="system.threadsrequired" value=item.system.threadsrequired localize=true}}
     {{!-- Weaving Difficulty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.weavingdifficulty"}}:</label>
-        <input class="input__circle-input" name="system.weavingdifficulty" type="text" value="{{item.system.weavingdifficulty}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.weavingdifficulty name="system.weavingdifficulty" value=item.system.weavingdifficulty localize=true}}
     {{!-- Reattune Difficulty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.reattunedifficultyShort"}}:</label>
-        <input class="input__circle-input" name="system.reattunedifficulty" type="text" value="{{item.system.reattunedifficulty}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Casting Difficulty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.castingdifficulty"}}:</label>
-        <input class="input__text-input" name="system.castingdifficulty" type="text" value="{{item.system.castingdifficulty}}"
-            data-dtype="String">
-    </div>
-    {{!-- Effect --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.effect"}}:</label>
-        <input class="input__text-input" name="system.effect" type="text" value="{{item.system.effect}}"
-            data-dtype="String">
-    </div>
-    {{!-- Source Discipline --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.sourceDiscipline"}}:</label>
-        <input class="input__text-input" name="system.sourceDiscipline" type="text" value="{{item.system.sourceDiscipline}}"
-            data-dtype="String">
-    </div>
+    {{formField systemFields.reattunedifficulty name="system.reattunedifficulty" value=item.system.reattunedifficulty localize=true}}
+    {{!-- effect --}}
+    {{formField systemFields.effect name="system.effect" value=item.system.effect localize=true}}
+    {{!-- concentration --}}
+    {{formField systemFields.concentration name="system.concentration" value=item.system.concentration localize=true}}
+    {{!-- binding --}}
+    {{formField systemFields.binding name="system.binding" value=item.system.binding localize=true}}
+    {{!-- spirit --}}
+    {{formField systemFields.spirit name="system.spirit" value=item.system.spirit localize=true}}
+    {{!-- summoning --}}
+    {{formField systemFields.summoning name="system.summoning" value=item.system.summoning localize=true}}
     {{!-- duration --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.duration"}}:</label>
-        <input class="input__number-input" name="system.duration.value" type="text" value="{{item.system.duration.value}}"
-            data-dtype="String">
-        <input class="input__number-input" name="system.duration.uom" type="text" value="{{item.system.duration.uom}}"
-            data-dtype="String">
+    <div class="spell__duration-unit">
+        <div class="spell__duration">
+            {{formField systemFields.duration.fields.value name="system.duration.value" value=item.system.duration.value localize=true}}
+        </div>
+        <div class="spell__unit">
+            {{formInput systemFields.duration.fields.uom name="system.duration.uom" value=item.system.duration.uom}}
+        </div>
     </div>
     {{!-- range --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.range"}}:</label>
-        <input class="input__number-input" name="system.range.value" type="text" value="{{item.system.range.value}}"
-            data-dtype="String">
-        <input class="input__number-input" name="system.range.uom" type="text" value="{{item.system.range.uom}}"
-            data-dtype="String">
+    <div class="spell__range-unit">
+        <div class="spell__range">
+            {{formField systemFields.range.fields.value name="system.range.value" value=item.system.range.value localize=true}}
+        </div>
+        <div class="spell__unit">
+            {{formInput systemFields.range.fields.uom name="system.range.uom" value=item.system.range.uom}}
+        </div>
     </div>
     {{!-- Spell area --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.spellArea"}}:</label>
-        <input class="input__number-input" name="system.spellArea.shape" type="text" value="{{item.system.spellArea.shape}}"
-            data-dtype="String">
-        <input class="input__number-input" name="system.spellArea.uom" type="text" value="{{item.system.spellArea.uom}}"
-            data-dtype="String">
+    <div class="spell__shape-unit">
+        <div class="spell__shape">
+            {{formField systemFields.spellArea.fields.value name="system.spellArea.value" value=item.system.spellArea.value localize=true}}
+        </div>
+        <div class="spell__unit">
+            {{formInput systemFields.spellArea.fields.uom name="system.spellArea.uom" value=item.system.spellArea.uom}}
+        </div>
     </div>
-        {{!-- Spell Illusion --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.spellIllustion"}}:</label>
-        <input class="input__text-input" name="system.spellIllustion.illusionType" type="text" value="{{item.system.spellIllustion.illusionType}}"
-            data-dtype="String">
-    </div>
+    {{!-- Spell Shape --}}
+    {{formField systemFields.spellArea.fields.shape name="system.spellArea.shape" value=item.system.spellArea.shape localize=true}}
+    {{!-- Spell Illusion --}}
+    {{formField systemFields.spellIllusion.fields.illusionType name="system.spellIllusion.illusionType" value=item.system.spellIllusion.illusionType localize=true}}
     {{!-- Elemental --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Spell.spellElement"}}:</label>
-        <input class="input__number-input" name="system.spellElement.elementType" type="text" value="{{item.system.spellElement.elementType}}"
-            data-dtype="String">
-        <input class="input__number-input" name="system.spellElement.elementSubtype" type="text" value="{{item.system.spellElement.elementSubtype}}"
-            data-dtype="String">
-    </div>
+    {{formField systemFields.spellElement.fields.elementType name="system.spellElement.elementType" value=item.system.spellElement.elementType localize=true}}
+    {{!-- Elemental Subtype--}}
+    {{formField systemFields.spellElement.fields.elementSubtype name="system.spellElement.elementSubtype" value=item.system.spellElement.elementSubtype localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

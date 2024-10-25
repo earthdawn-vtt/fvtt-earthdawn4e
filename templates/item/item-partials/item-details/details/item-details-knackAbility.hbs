@@ -1,53 +1,5 @@
 <div>
-    
-    {{!-- Maneuver --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.maneuver"}}:</label>
-         <input class="input__number-input partial__55--right" type="checkbox" name="system.maneuver" value="{{item.system.maneuver}}">
-        {{#if (eq this.item.system.maneuver true)}}
-        {{!-- extraSuccesses --}}
-        <label>{{localize "ED.Item.Knack.extraSuccesses"}}:</label>
-        <input class="input__number-input" name="system.extraSuccesses" type="text" value="{{item.system.extraSuccesses}}"
-            data-dtype="Number">
-        {{/if}}
-    </div>
-        {{!-- min Level Source Talent --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.minLevel"}}:</label>
-        <input class="input__circle-input partial__55--right" name="system.source.minLevel" type="text" value="{{item.system.source.minLevel}}"
-            data-dtype="Number">
-    </div>
-        {{!-- Source Talent --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.sourceTalent"}}:</label>
-        <input class="input__circle-input partial__55--right" name="system.source.knackSource" type="text" value="{{item.system.source.knackSource}}"
-        data-dtype="String">
-    </div>
     {{!-- LP Cost if this is not calculated by min Level --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Knack.lpCost"}}:</label>
-        <input class="input__number-input partial__55--right" name="system.lpCost" type="text" value="{{item.system.lpCost}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Target Difficulty --}}
-<div class="item-data__input--line">
-  <label class="partial__40--left">{{localize "ED.Item.Talent.difficultyFixed"}}:</label>
-  <input class="input__number-input partial__55--right" name="system.difficulty.fixed" type="text"
-         value="{{item.system.difficulty.fixed}}" data-dtype="Number">
-</div>
-{{!-- Target Difficulty --}}
-<div class="item-data__input--line">
-  <label class="partial__40--left">{{localize "ED.Item.Talent.difficultyTarget"}}:</label>
-  <select class=" partial__55--right" name="system.difficulty.target">
-    {{selectOptions config.targetDifficulty selected=item.system.difficulty.target localize=true }}
-  </select>
-</div>
-{{!-- Group Difficulty --}}
-<div class="item-data__input--line">
-  <label class="partial__40--left">{{localize "ED.Item.Talent.difficultyGroup"}}:</label>
-  <select class=" partial__55--right" name="system.difficulty.group">
-    {{selectOptions config.groupDifficulty selected=item.system.difficulty.group localize=true }}
-  </select>
-</div>
-
+    {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost label=(localize "ED.Data.Item.Labels.Knack.lpCost") localize=true}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
 </div>

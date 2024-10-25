@@ -18,8 +18,8 @@ export default class MagicTemplate extends ItemDataModel .mixin(
         blank:    true,
         trim:     true,
         choices:  ED4E.spellcastingTypes,
-        label:    "X.magicType",
-        hint:     "X.the type of thread weaving this talent belongs to",
+        label:    this.labelKey( "Spell.magicType" ),
+        hint:     this.hintKey( "Spell.magicType" )
       } ),
       level: new fields.NumberField( {
         required: true,
@@ -28,7 +28,8 @@ export default class MagicTemplate extends ItemDataModel .mixin(
         initial:  1,
         integer:  true,
         positive: true,
-        label:    "ED.Item.Spell.circle"
+        label:    this.labelKey( "Spell.circle" ),
+        hint:     this.hintKey( "Spell.circle" )
       } ), 
       threadsrequired: new fields.NumberField( {
         required: true,
@@ -36,7 +37,8 @@ export default class MagicTemplate extends ItemDataModel .mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Spell.threadsrequired"
+        label:    this.labelKey( "Spell.threadsrequired" ),
+        hint:     this.hintKey( "Spell.threadsrequired" )
       } ),
       weavingdifficulty: new fields.NumberField( {
         required: true,
@@ -44,7 +46,8 @@ export default class MagicTemplate extends ItemDataModel .mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Spell.weavingdifficulty"
+        label:    this.labelKey( "Spell.weavingdifficulty" ),
+        hint:     this.hintKey( "Spell.weavingdifficulty" )
       } ),
       reattunedifficulty: new fields.NumberField( {
         required: true,
@@ -52,108 +55,121 @@ export default class MagicTemplate extends ItemDataModel .mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Spell.threadsrreattunedifficultyequired"
-      } ),
-      castingdifficulty: new fields.StringField( {
-        required: true,
-        blank:    true,
-        initial:  "mystic defense",
-        label:    "ED.Item.Spell.castingdifficulty"
+        label:    this.labelKey( "Spell.reattunedifficulty" ),
+        hint:     this.hintKey( "Spell.reattunedifficulty" )
       } ),
       effect: new fields.StringField( {
         required: true,
         blank:    true,
         initial:  "",
-        label:    "ED.Item.Spell.effect"
+        label:    this.labelKey( "Spell.effect" ),
+        hint:     this.hintKey( "Spell.effect" )
       } ),
       concentration: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Spell.concentration"
+        label:    this.labelKey( "Spell.concentration" ),
+        hint:     this.hintKey( "Spell.concentration" )
       } ),
       binding: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Spell.binding"
+        label:    this.labelKey( "Spell.binding" ),
+        hint:     this.hintKey( "Spell.binding" )
       } ),
       spirit: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Spell.spirit"
+        label:    this.labelKey( "Spell.spirit" ),
+        hint:     this.hintKey( "Spell.spirit" )
       } ),
       summoning: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Spell.summoning"
+        label:    this.labelKey( "Spell.summoning" ),
+        hint:     this.hintKey( "Spell.summoning" )
       } ),
       resist: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Item.Spell.resist"
+        label:    this.labelKey( "Spell.resist" ),
+        hint:     this.hintKey( "Spell.resist" )
       } ),
       duration: new fields.SchemaField( {
         value: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "0",
-          label:    "ED.Item.Spell.value"
+          label:    this.labelKey( "Spell.duration.value" ),
+          hint:     this.hintKey( "Spell.duration.value" )
         } ),
         uom: new fields.StringField( {
           required: true,
-          blank:    false,
-          initial:  "yard",
-          label:    "ED.Item.Spell.uom"
+          blank:    true,
+          initial:  "rd",
+          label:    this.labelKey( "Spell.duration.uom" ),
+          hint:     this.hintKey( "Spell.duration.uom" )
         } )
       },
       {
-        label: "ED.Item.Spell.duration"
+        label:    this.labelKey( "Spell.duration" ),
+        hint:     this.hintKey( "Spell.duration" )
       } ),
       range: new fields.SchemaField( {
         value: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "0",
-          label:    "ED.Item.Spell.shape"
+          label:    this.labelKey( "Spell.range.value" ),
+          hint:     this.hintKey( "Spell.range.value" )
         } ),
         uom: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "yard",
-          label:    "ED.Item.Spell.uom"
+          label:    this.labelKey( "Spell.range.uom" ),
+          hint:     this.hintKey( "Spell.range.uom" )
         } )
       },
       {
-        label: "ED.Item.Spell.range"
+        label:    this.labelKey( "Spell.range" ),
+        hint:     this.hintKey( "Spell.range" )
       } ),
       spellArea: new fields.SchemaField( {
         shape: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "0",
-          label:    "ED.Item.Spell.shape"
+          label:    this.labelKey( "Spell.spellArea.shape" ),
+          hint:     this.hintKey( "Spell.spellArea.shape" )
         } ),
         value: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "0",
-          label:    "ED.Item.Spell.shape"
+          label:    this.labelKey( "Spell.spellArea.value" ),
+          hint:     this.hintKey( "Spell.spellArea.value" )
         } ),
         uom: new fields.StringField( {
           required: true,
-          blank:    false,
+          blank:    true,
           initial:  "yard",
-          label:    "ED.Item.Spell.uom"
+          label:    this.labelKey( "Spell.spellArea.uom" ),
+          hint:     this.hintKey( "Spell.spellArea.uom" )
         } )
       },
       {
-        label: "ED.Item.Spell.spellArea"
+        label:    this.labelKey( "Spell.spellArea" ),
+        hint:     this.hintKey( "Spell.spellArea" )
       } ),
-      spellIllustion: new fields.SchemaField( {
+      spellIllusion: new fields.SchemaField( {
         illusionType: new fields.StringField( {
-          required: true,
-          blank:    false,
-          initial:  "figment",
-          label:    "ED.Item.Spell.illusionType"
+          required:   true,
+          blank:      false,
+          initial:    "figment",
+          choice:     ED4E.illusionType,
+          label:      this.labelKey( "Spell.illusionType" ),
+          hint:       this.hintKey( "Spell.illusionType" )
         } ),
         sensingDifficulty: new fields.NumberField( {
           required: true,
@@ -161,28 +177,33 @@ export default class MagicTemplate extends ItemDataModel .mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Spell.sensingDifficulty"
+          label:    this.labelKey( "Spell.sensingDifficulty" ),
+          hint:     this.hintKey( "Spell.sensingDifficulty" )
         } )
       },
       {
-        label: "ED.Item.Spell.spellIllustion"
+        label:    this.labelKey( "Spell.spellIllustion" ),
+        hint:     this.hintKey( "Spell.spellIllustion" )
       } ),
       spellElement: new fields.SchemaField( {
         elementType: new fields.StringField( {
           required: true,
           blank:    true,
           initial:  "",
-          label:    "ED.Item.Spell.elementType"
+          label:    this.labelKey( "Spell.elementType" ),
+          hint:     this.hintKey( "Spell.elementType" )
         } ),
         elementSubtype: new fields.StringField( {
           required: true,
           blank:    true,
           initial:  "",
-          label:    "ED.Item.Spell.elementSubtype"
+          label:    this.labelKey( "Spell.elementSubtype" ),
+          hint:     this.hintKey( "Spell.elementSubtype" )
         } )
       },
       {
-        label: "ED.Item.Spell.spellElement"
+        label:    this.labelKey( "Spell.spellElement" ),
+        hint:     this.hintKey( "Spell.spellElement" )
       } ),
       // @chriss its not working like this
       // extraSuccessesList: [],

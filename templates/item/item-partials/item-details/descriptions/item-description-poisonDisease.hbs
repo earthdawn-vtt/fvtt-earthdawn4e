@@ -1,58 +1,23 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Damage Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.damageStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.damageStep" type="text" value="{{item.system.effect.damageStep}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
     {{!-- Paralyse Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.paralysisStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.paralysisStep" type="text" value="{{item.system.effect.paralysisStep}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
     {{!-- Debilitation Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.debilitationStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.debilitationStep" type="text" value="{{item.system.effect.debilitationStep}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
     {{!-- Interval Total effects --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.totalEffects"}}:</label>
-        <input class="input__circle-input" name="system.interval.totalEffects" type="text" value="{{item.system.interval.totalEffects}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
     {{!-- Innterval time in between --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.timeInBetweenShort"}}:</label>
-        <input class="input__circle-input" name="system.interval.timeInBetween" type="text" value="{{item.system.interval.timeInBetween}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
     {{!-- Onset time --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.onsetTime"}}:</label>
-        <input class="input__circle-input" name="system.onsetTime" type="text" value="{{item.system.onsetTime}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
     {{!-- duration --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.duration"}}:</label>
-        <input class="input__circle-input" name="system.duration" type="text" value="{{item.system.duration}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
     {{!-- activation --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.activation"}}:</label>
-        <input class="input__text-input" name="system.activation" type="text" value="{{item.system.activation}}"
-            data-dtype="String">
-    </div>
-        {{!-- death --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.death"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.death">
-    </div>
+    {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
+    {{!-- death --}}
+    {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

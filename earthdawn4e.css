@@ -1007,3 +1007,45 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
   width: 24%;
   float: right;
 }
+.knack-ability__source-min-level .knack-ability__source {
+  width: 90%;
+  float: left;
+}
+.knack-ability__source-min-level .knack-ability__min-level {
+  margin-top: 3px;
+  height: inherit;
+  width: 10%;
+  float: right;
+}
+.item-data__input--line {
+  height: 26px;
+  margin-bottom: 3px;
+}
+.item-data__input--line .partial__40--left {
+  width: 70%;
+  float: left;
+}
+.item-data__input--line .partial__55--right {
+  width: 30%;
+  float: right;
+}
+.spell__duration-unit .spell__duration,
+.spell__range-unit .spell__duration,
+.spell__shape-unit .spell__duration,
+.spell__duration-unit .spell__range,
+.spell__range-unit .spell__range,
+.spell__shape-unit .spell__range,
+.spell__duration-unit .spell__shape,
+.spell__range-unit .spell__shape,
+.spell__shape-unit .spell__shape {
+  width: 75%;
+  float: left;
+}
+.spell__duration-unit .spell__unit,
+.spell__range-unit .spell__unit,
+.spell__shape-unit .spell__unit {
+  margin-top: 3px;
+  height: inherit;
+  width: 24%;
+  float: right;
+}

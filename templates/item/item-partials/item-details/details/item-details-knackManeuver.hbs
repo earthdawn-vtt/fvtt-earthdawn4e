@@ -1,9 +1,4 @@
 <div>
-    
-</div>
     {{!-- LP Cost if this is not calculated by min Level --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Knack.lpCost"}}:</label>
-        <input class="input__text-input" name="system.lpCost" type="text" value="{{item.system.lpCost}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost label=(localize "ED.Data.Item.Labels.Knack.lpCost") localize=true}}
+</div>

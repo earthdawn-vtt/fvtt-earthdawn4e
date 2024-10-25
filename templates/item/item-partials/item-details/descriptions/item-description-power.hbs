@@ -1,30 +1,13 @@
-<div class="item__left--main">
+<div id="base-information-attack-item" class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Power Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Power.powerStep"}}:</label>
-        <input class="input__circle-input" name="system.powerStep" type="text" value="{{item.system.powerStep}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Power Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Power.damageStep"}}:</label>
-        <input class="input__circle-input" name="system.damageStep" type="text" value="{{item.system.damageStep}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.powerStep name="system.powerStep" value=item.system.powerStep hint="" localize=true}}
+    {{!-- Damage Step --}}
+    {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep hint="" localize=true}}
     {{!-- Strain --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.strainShort"}}:</label>
-        <input class="input__circle-input" name="system.strain" type="text" value="{{item.system.strain}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.strain name="system.strain" value=item.system.strain hint="" localize=true}}
     {{!-- Action --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Action.action"}}:</label>
-        <select name="system.action">
-            {{selectOptions config.action selected=item.system.action localize=true }}
-        </select>
-    </div>
+    {{formField systemFields.action name="system.action" value=item.system.action hint="" localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

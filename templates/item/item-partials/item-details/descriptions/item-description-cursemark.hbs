@@ -1,32 +1,13 @@
 <div id="base-information-curse-item" class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Curse Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.step"}}:</label>
-        <input class="input__circle-input" name="system.step" type="text" value="{{item.system.step}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
     {{!-- Curse Type --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseType"}}:</label>
-        <select class="input__select-input" name="system.type" value="{{item.system.type}}" {{#select
-            item.system.type}}>
-            <option value="minor">{{localize "ED.Item.Curse.minor"}}</option>
-            <option value="major">{{localize "ED.Item.Curse.major"}}</option>
-            <option value="horror">{{localize "ED.Item.Curse.horror"}}</option>
-            {{/select}}
-        </select>
-    </div>
+    {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
     {{!-- active --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseActive"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.active">
-    </div>
+    {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
     {{!-- detected --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseDetected"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.detected">
-    </div>
+    {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

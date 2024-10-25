@@ -244,6 +244,13 @@
                 "standard":                                         "Standard",
                 "sustained":                                        "Sustained"
             },
+            "PoisonActivation": {
+                "contact":                                          "Contact",
+                "ingested":                                         "Ingested",
+                "inhaled":                                          "Inhaled",
+                "injury":                                           "Injury",
+                "wound":                                            "Wound"
+            },
             "AmmunitionType": {
                 "arrow":                                              "Arrow",
                 "bolt":                                               "Bolt",
@@ -442,13 +449,40 @@
                         "bloodMagicDamage":                             "Blood Magic Damage",
                         "sourceDiscipline":                             "Source Discipline"
                     },
+                    "Curse": {
+                        "step":                                         "Curse Step",
+                        "curseType":                                    "Curse Type",
+                        "curseActive":                                  "Aktive?",
+                        "curseDetected":                                "Detected?"
+                    },
                     "edid":                                         "An ID to identify an item without considering its name",
                     "Equipment": {
                         "consumable":                               "The quantity of this item will be reduced by one after each use.",
                         "ammunition":                                "Which type of ammunition is this item?",
                         "bundleSize":                               "How many items are in this bundle?"
                     },
-                    "livingArmorOnly":                              "This item is considered as living armor.",
+                    "Knack":{
+                        "isPathKnack":                                  "Path Knack",
+                        "standardEffect":                               "Standard Effect",
+                        "sourceTalentUuid":                             "Source Talent",
+                        "minLevel":                                     "Min. Rank",
+                        "lpCost":                                       "LP cost"
+                    },
+                    "Maneuver": {
+                        "extraSuccesses":                               "Extra Successes"
+                    },
+                    "Namegiver":{
+                        "livingArmorOnly":                              "This item is considered as living armor.",
+                        "WeaponSize": {
+                            "twoHandedmax":                                 "TwoHanded max.",
+                            "twoHandedmin":                                 "TwoHanded min.",
+                            "oneHandedmax":                                 "OneHanded max.",
+                            "oneHandedmin":                                 "OneHanded min."
+                        },
+                        "tail":                                         "Tail",
+                        "weightMultiplier":                             "Weight Multiplier",
+                        "karmaModifier":                                "Karma Modifier"
+                    },
                     "PhysicalItems": {
                         "amount":                                       "Amount",
                         "availability":                                 "Availability",
@@ -473,6 +507,25 @@
                         "multiplier":                                 "Multiplier"
                         }
                     },
+                    "PoisonDisease": {
+                        "damageStep":                                   "Damage Step",
+                        "paralysisStep":                                "Paralysis Step",
+                        "debilitationStep":                             "Debilitation Step",
+                        "effect":                                       "Effect",
+                        "totalEffects":                                 "Total Effects",
+                        "timeInBetween":                                "Time in between",
+                        "interval":                                     "Interval",
+                        "onsetTime":                                    "Onset Time",
+                        "duration":                                     "Duration",
+                        "activation":                                   "Activation",
+                        "death":                                        "Death"
+                    },
+                    "Powers": {
+                        "action":                                       "Action",
+                        "strain":                                       "Strain",
+                        "powerStep":                                    "Power Step",
+                        "damageStep":                                   "Damage Step"
+                    },
                     "Shields": {
                         "defenseBonusPhysical":                         "Physical Defense Bonus",
                         "defenseBonusMystical":                         "Mystical Defense Bonus",
@@ -481,6 +534,46 @@
                         "broken":                                       "Broken?",
                         "livingArmor":                                  "Living Armor",
                         "bowUsage":                                     "Bow Usage"
+                    },
+                    "ShipWeapon":{
+                        "firePowerPoints":                              "Fire Power Points",
+                        "crewWeapon":                                   "Crew",
+                        "rangeShort":                                   "Short Range",
+                        "rangeLong":                                    "Long Range",
+                        "salvoCost":                                    "Salvo Cost",
+                        "characterDamage":                              "Character Damage"
+                    },
+                    "Spell": {  
+                        "magicType":                                    "Magic Type",
+                        "circle":                                       "Circle",
+                        "threadsrequired":                              "Threads required",
+                        "weavingdifficulty":                            "Weaving Difficulty",
+                        "reattunedifficulty":                           "Reattune Difficulty",
+                        "effect":                                       "Effect",
+                        "concentration":                                "Concentration",
+                        "binding":                                      "Binding",
+                        "spirit":                                       "Spirit",
+                        "summoning":                                    "Summoning",
+                        "resist":                                       "Resist",
+                        "duration": {
+                        "value":                                      "Duration",
+                        "uom":                                        "Unit"
+                        },
+                        "range": {
+                        "value":                                      "Range",
+                        "uom":                                        "Unit"
+                        },
+                        "spellArea": {
+                        "value":                                      "Area",
+                        "uom":                                        "Unit",
+                        "shape":                                      "Shape"
+                        },
+                        "illusionType":                                 "Illusion Type",
+                        "sensingDifficulty":                            "Sensing Difficulty",
+                        "spellIllustion":                               "Illusion",
+                        "elementType":                                  "Element Type",
+                        "elementSubtype":                               "Element Subtype",
+                        "spellElement":                                 "Element"
                     },
                     "Weapons": {
                         "weaponType":                                   "Weapon Type",
@@ -550,13 +643,40 @@
                         "bloodMagicDamage":                             "Blood Magic Damage",
                         "sourceDiscipline":                             "Source Discipline"
                     },
+                    "Curse": {
+                        "step":                                         "Curse Step",
+                        "curseType":                                    "Curse Type",
+                        "curseActive":                                  "Aktive?",
+                        "curseDetected":                                "Detected?"
+                    },
                     "edid":                                         "ED-ID",
                     "Equipment": {
                         "consumable":                               "Consumable?",
                         "ammunition":                                "Ammunition type",
                         "bundleSize":                               "Bundle size"
                     },
-                    "livingArmorOnly":                              "Living Armor Only",
+                    "Knack":{
+                        "isPathKnack":                                  "Path Knack",
+                        "standardEffect":                               "Standard Effect",
+                        "sourceTalentUuid":                             "Source Talent",
+                        "minLevel":                                     "Min. Rank",
+                        "lpCost":                                       "LP cost"  
+                    },
+                    "Maneuver": {
+                        "extraSuccesses":                               "Extra Successes"
+                    },
+                    "Namegiver":{
+                        "livingArmorOnly":                              "Living Armor Only",
+                        "WeaponSize": {
+                            "twoHandedmax":                                 "TwoHanded max.",
+                            "twoHandedmin":                                 "TwoHanded min.",
+                            "oneHandedmax":                                 "OneHanded max.",
+                            "oneHandedmin":                                 "OneHanded min."
+                        },
+                        "tail":                                         "Tail",
+                        "weightMultiplier":                             "Weight Multiplier",
+                        "karmaModifier":                                "Karma Modifier"
+                    },
                     "PhysicalItems": {
                         "amount":                                       "Amount",
                         "availability":                                 "Availability",
@@ -581,6 +701,25 @@
                         "multiplier":                                 "Multiplier"
                         }
                     },
+                    "PoisonDisease": {
+                        "damageStep":                                   "Damage Step",
+                        "paralysisStep":                                "Paralysis Step",
+                        "debilitationStep":                             "Debilitation Step",
+                        "effect":                                       "Effect",
+                        "totalEffects":                                 "Total Effects",
+                        "timeInBetween":                                "Time in between",
+                        "interval":                                     "Interval",
+                        "onsetTime":                                    "Onset Time",
+                        "duration":                                     "Duration",
+                        "activation":                                   "Activation",
+                        "death":                                        "Death"
+                    },
+                    "Powers": {
+                        "action":                                       "Action",
+                        "strain":                                       "Strain",
+                        "powerStep":                                    "Power Step",
+                        "damageStep":                                   "Damage Step"
+                    },
                     "Shields": {
                         "defenseBonusPhysical":                         "Physical Defense Bonus",
                         "defenseBonusMystical":                         "Mystical Defense Bonus",
@@ -589,6 +728,46 @@
                         "broken":                                       "Broken?",
                         "livingArmor":                                  "Living Armor",
                         "bowUsage":                                     "Bow Usage"
+                    },
+                    "ShipWeapon":{
+                        "firePowerPoints":                              "Fire Power Points",
+                        "crewWeapon":                                   "Crew",
+                        "rangeShort":                                   "Short Range",
+                        "rangeLong":                                    "Long Range",
+                        "salvoCost":                                    "Salvo Cost",
+                        "characterDamage":                              "Character Damage"
+                    },
+                    "Spell": {  
+                        "magicType":                                    "Magic Type",
+                        "circle":                                       "Circle",
+                        "threadsrequired":                              "Threads required",
+                        "weavingdifficulty":                            "Weaving Difficulty",
+                        "reattunedifficulty":                           "Reattune Difficulty",
+                        "effect":                                       "Effect",
+                        "concentration":                                "Concentration",
+                        "binding":                                      "Binding",
+                        "spirit":                                       "Spirit",
+                        "summoning":                                    "Summoning",
+                        "resist":                                       "Resist",
+                        "duration": {
+                        "value":                                      "Duration",
+                        "uom":                                        "Unit"
+                        },
+                        "range": {
+                        "value":                                      "Range",
+                        "uom":                                        "Unit"
+                        },
+                        "spellArea": {
+                        "value":                                      "Area",
+                        "uom":                                        "Unit",
+                        "shape":                                      "Shape"
+                        },
+                        "illusionType":                                 "Illusion Type",
+                        "sensingDifficulty":                            "Sensing Difficulty",
+                        "spellIllustion":                               "Illusion",
+                        "elementType":                                  "Element Type",
+                        "elementSubtype":                               "Element Subtype",
+                        "spellElement":                                 "Element"
                     },
                     "Weapons": {
                         "weaponType":                                   "Weapon Type",

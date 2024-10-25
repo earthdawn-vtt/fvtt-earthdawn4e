@@ -45,7 +45,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Namegiver.karmaModifier"
+        label:    this.labelKey( "Namegiver.karmaModifier" ),
+        hint:     this.hintKey( "Namegiver.karmaModifier" )
       } ),
       ...MovementFields.movement,
       weightMultiplier: new fields.NumberField( {
@@ -54,18 +55,20 @@ export default class NamegiverData extends ItemDataModel.mixin(
         initial:  1,
         integer:  false,
         positive: true,
-        label:    "ED.Item.Namegiver.weightMultiplier"
+        label:    this.labelKey( "Namegiver.weightMultiplier" ),
+        hint:     this.hintKey( "Namegiver.weightMultiplier" )
       } ),
       tailAttack: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "X-TailAttack"
+        label:    this.labelKey( "Namegiver.tail" ),
+        hint:     this.hintKey( "Namegiver.tail" )
       } ),
       livingArmorOnly: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Data.Item.Labels.livingArmorOnly",
-        hint:     "ED.Data.Item.Hints.livingArmorOnly"
+        label:    this.labelKey( "Namegiver.livingArmorOnly" ),
+        hint:     this.hintKey( "Namegiver.livingArmorOnly" )
       } ),
       weaponSize: new fields.SchemaField( {
         oneHanded: new fields.SchemaField( {
@@ -75,7 +78,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  1,
             integer:  false,
             positive: true,
-            label:    "ED.Item.Namegiver.WeaponSize.OneHanded.min"
+            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedmin" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedmin" )
           } ),
           max: new fields.NumberField( {
             required: true,
@@ -83,7 +87,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  3,
             integer:  false,
             positive: true,
-            label:    "ED.Item.Namegiver.WeaponSize.OneHanded.max"
+            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedmax" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedmax" )
           } ),
         } ),
         twoHanded: new fields.SchemaField( {
@@ -93,7 +98,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  4,
             integer:  false,
             positive: true,
-            label:    "ED.Item.Namegiver.WeaponSize.TwoHanded.min"
+            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedmin" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedmin" )
           } ),
           max: new fields.NumberField( {
             required: true,
@@ -101,7 +107,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  6,
             integer:  false,
             positive: true,
-            label:    "ED.Item.Namegiver.WeaponSize.TwoHanded.max"
+            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedmax" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedmax" )
           } )
         } )
       } )

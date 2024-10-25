@@ -37,41 +37,17 @@
             data-dtype="Number">
     </div>
     {{!-- Karma Modifier --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.karmaModifier"}}:</label>
-        <input class="partial__55--right" name="system.karmaModifier" type="number" value="{{item.system.karmaModifier}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.karmaModifier name="system.karmaModifier" value=item.system.karmaModifier localize=true}}
     {{!-- Walk Movement --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.walk"}}:</label>
-        <input class="partial__55--right" name="system.movement.walk" type="number" value="{{item.system.movement.walk}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
     {{!-- Fly Movement --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.fly"}}:</label>
-        <input class="partial__55--right" name="system.movement.fly" type="number" value="{{item.system.movement.fly}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
     {{!-- Swim Movement --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.swim"}}:</label>
-        <input class="partial__55--right" name="system.movement.swim" type="number" value="{{item.system.movement.swim}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
     {{!-- Burrow Movement --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.burrow"}}:</label>
-        <input class="partial__55--right" name="system.movement.burrow" type="number" value="{{item.system.movement.burrow}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
     {{!-- Climb Movement --}}
-    <div class="item-data__input--line">
-        <label class="partial__40--left">{{localize "ED.Item.Namegiver.climb"}}:</label>
-        <input class="partial__55--right" name="system.movement.climb" type="number" value="{{item.system.movement.climb}}"
-            data-dtype="Number">
-    </div>
+    {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

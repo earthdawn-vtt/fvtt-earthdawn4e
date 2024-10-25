@@ -1,6 +1,8 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
+    {{!-- Tier --}}
+    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
     {{!-- Type --}}
     {{formField systemFields.skillType name="system.skillType" value=item.system.skillType localize=true}}
 </div>

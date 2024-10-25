@@ -22,7 +22,8 @@ export default class NoneNamegiverPowerData extends ActionTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Power.powerStep"
+        label:    this.labelKey( "Powers.powerStep" ),
+        hint:     this.hintKey( "Powers.powerStep" )
       } ),
       damageStep: new fields.NumberField( {
         required: false,
@@ -30,7 +31,8 @@ export default class NoneNamegiverPowerData extends ActionTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Power.damageStep"
+        label:    this.labelKey( "Powers.damageStep" ),
+        hint:     this.hintKey( "Powers.damageStep" )
       } ),
     } );
   }

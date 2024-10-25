@@ -25,8 +25,8 @@ export default class KnackTemplate extends SystemDataModel.mixin(
           return undefined; // undefined means do further validation
         },
         validationError: "must be of type 'talent'",
-        label:           this.labelKey( "knackSourceTalentUuid" ),
-        hint:            this.hintKey( "knackSourceTalentUuid" ),
+        label:           this.labelKey( "Knack.sourceTalentUuid" ),
+        hint:            this.hintKey( "Knack.sourceTalentUuid" ),
       } ),
       minLevel:      new fields.NumberField( {
         required: false,
@@ -35,11 +35,20 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         integer:  true,
         min:      1,
         initial:  1,
-        label:    this.labelKey( "knackMinLevel" ),
-        hint:     this.hintKey( "knackMinLevel" ),
+        label:    this.labelKey( "Knack.minLevel" ),
+        hint:     this.hintKey( "Knack.minLevel" ),
+      } ),
+      lpCost:      new fields.NumberField( {
+        required: false,
+        initial:  0,
+        label:    this.labelKey( "Knack.lpCost" ),
+        hint:     this.hintKey( "Knack.lpCost" ),
       } ),
       restrictions: new fields.NumberField(),
       requirements: new fields.NumberField(),
+      // TODO @Chris how do we do this
+      // restrictions: [], // there will be several options possible see issue #212
+      // requirements: [], // there will be several options possible see issue #212 
     } );
   }
 

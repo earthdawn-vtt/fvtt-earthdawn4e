@@ -125,6 +125,19 @@ ED4E.globalBonuses = {
 };
 preLocalize( "globalBonuses", {key: "label"} );
 
+
+
+/**
+ * Denomination options
+ * @enum {string}
+ */
+ED4E.curseType = {
+  minor:       "ED.Config.curseType.minor",
+  major:       "ED.Config.curseType.major",
+  horror:      "ED.Config.curseType.horror"
+};
+preLocalize( "curseType" );
+
 /**
  * Denomination options
  * @enum {string}
@@ -188,6 +201,32 @@ ED4E.targetDifficulty = {
   social:     "ED.Config.Defenses.social",
 };
 preLocalize( "targetDifficulty" );
+
+/**
+ * activation Types of Poisons and Diseases
+ * @enum {string}
+ */
+ED4E.poisonActivation = {
+  contact:        "ED.Config.PoisonActivation.contact",
+  ingested:       "ED.Config.PoisonActivation.ingested",
+  inhaled:        "ED.Config.PoisonActivation.inhaled",
+  injury:         "ED.Config.PoisonActivation.injury",
+  wound:          "ED.Config.PoisonActivation.wound",
+};
+preLocalize( "poisonActivation" );
+
+/**
+ * Different types of Illusions
+ * @enum {string}
+ */
+ED4E.illusionType = {
+  "figment":      "ED.Config.IllusionType.figment",
+  "glamour":      "ED.Config.IllusionType.glamour",
+  "illusion":     "ED.Config.IllusionType.illusion",
+  "phantasm":     "ED.Config.IllusionType.phantasm",
+  "shadow":       "ED.Config.IllusionType.shadow",
+};
+preLocalize( "illusionType" );
 
 /**
  * Group  Difficulty
