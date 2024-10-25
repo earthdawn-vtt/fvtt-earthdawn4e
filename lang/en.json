@@ -812,6 +812,51 @@
             "Placeholder": {
                 "lpDescription":                                    "Enter your description here"
             },
+            "Legend": {
+                "LearnSpell": {
+                "chatFlavorPatterncraft":         "{name} tries to lern the {spell} spell.",
+                "chatFlavorTeacherTest":          "{name} tries to lern the {spell} spell, with the help of a mentor. Spellcasting of the Mentor:",
+                "legendPatterncraft":             "Patterncraft options to learn the spell",
+                "legendRequirements":             "Voraussetzungen",
+                "legendTeacherTest":              "Supporting Mentor",
+                "noPatterncraftTalentFound":      "No fitting Patterncraft talent found (see ed-ids)",
+                "noSpellcastingTalentFound":      "No fitting Spellcasting talent found (see ed-ids)",
+                "teacherBonusModifier":           "Supporting Mentor"
+                },
+                "Rules": {
+                "disciplineLearnShortRequirements": "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
+                "questorClassIncreaseShortRequirements": "<ul>\n<li>Commune with the Passion by using the Questor Devotion</li>\n<li>no Test required</li>\n<li>Only one Devotion can be learned or increased per day, and no more than one rank can be increased at a time</li>\n<li>There are no limitations to increasing the rank of the Questor Devotion within the same category, other than the legend point cost and the time required for the Devotion</li>\n<li>Change from one category to another (e. g. from follower to adherent) requires taking on and fulfilling a Quest in the name of the Passion</li>\n<li>A devotion can also be learned from a precious tier</li>\n<li>Legend point cost for increasing a devotion is based on when it becomes available, even if it is learned later</li>\n</ul>\n"
+                },
+                "Validation": {
+                "availableLp": "Enough Legendpoints? Cost: ",
+                "availableMoney": "Enough Silver? Cost: ",
+                "enoughTalentsOfTier": "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel}). ---WIP",
+                "enoughTalentsOnMinRank": "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel})---WIP",
+                "hasDamage": "Current Damage?",
+                "hasRequiredJourneymanTalents": "Erforderliche Anzahl Gesellen-Talente auf neuem Rang?---WIP",
+                "hasRequiredMasterTalents": "Erforderliche Anzahl Meister-Talente auf neuem Rang?---WIP",
+                "hasRequiredNoviceTalents": "Erforderliche Anzahl Novizen-Talente auf neuem Rang?---WIP",
+                "hasRequiredWardenTalents": "Erforderliche Anzahl Wächter-Talente auf neuem Rang?---WIP",
+                "hasTalentFromCurrentCircle": "Talent aus aktuellem Kreis auf erforderlichem Rang?---WIP",
+                "hasTalentsOnMinRank": "Alle Talente auf dem erforderlichen Rang?---WIP",
+                "hasWounds": "Current Wounds?",
+                "maxLevel": "Maximaler Rang erreicht? Aktuell: ---WIP",
+                "notEnoughTalentsOfTier": "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+                "notEnoughTalentsOnMinRank": "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+                "noTalentFromCurrentCircleOnNewLevel": "Mindestens ein Talent aus dem aktuellen Kreis ist nicht auf dem erforderlichen Rang {nextLevel}.---WIP",
+                "talentFromCurrentCircleOnNewLevel": "Mindestens ein Talent aus aktuellem Kreis ist auf erforderlichem Rang. Sehr gut gemacht!---WIP",
+                "talentOptionLp": "Genügend Legendenpunkte für Talentoption? Kostet: ---WIP",
+                "talentsRequirement": "Alle Bedingungen für vorherige Talente erfüllt?---WIP",
+                "talentsRequirementFailed": "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}---WIP",
+                "talentsRequirementFulfilled": "Alle Disziplintalente sind auf dem erforderlichen Rang---WIP"
+                },
+                "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)---WIP",
+                "learnOnZeroOrOne": "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?---WIP",
+                "learnQuestorPrompt": "Soll die Questor Weihekraft erlernt werden?---WIP",
+                "questorDevotionNotFound": "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})---WIP",
+                "spendLp": "Spend Legend points",
+                "writtenRules": "Rules"
+            },
             "Title": {
                 "assignLp":                                         "Assign Legend Points",
                 "rollPrompt":                                       "Roll Options",

@@ -388,11 +388,17 @@
       "Actor": {
         "Hints": {
           "isMob":                                        "Mob Regeln",
-          "challengeRate":                                "Herausforderungsrate"
+          "challengeRate":                                "Herausforderungsrate",
+          "Characteristics":{
+            "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
+          }
         },
         "Labels": {
           "challengeRate":                                "Herausforderungsrate des Akteurs",
-          "isMob":                                        "Dieser Acteur benutzt ausschließlich Wunden anstatt Schaden"
+          "isMob":                                        "Dieser Acteur benutzt ausschließlich Wunden anstatt Schaden",
+          "Characteristics":{
+            "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
+          }
         }
       },
       "General": {
@@ -808,6 +814,34 @@
       "Journal": {
         "Hints": {},
         "Labels": {}
+      },
+      "Other": {
+        "Hints": {
+          "learnSpell": {
+            "lpCost":                             "Legendenpunkte für den Zauber Kosten",
+            "patterncraftToLearnSpell":           "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
+            "freePatterncraftToLearnSpell":       "Freies Struktur Verstehen um den Zauber zu lernen",
+            "useRecoveryTestToLearnSpell":        "Soll eine Erholungsprobe geopfert werden um einen weiteren versuch zu unternehmen einen Zauber am gleichen Tag zu erlernen?",
+            "patterncraftSuccessful":             "Struktur Verstehen erfolgreich", 
+            "teacherToLearnSpell":                "gibt es einen Lehrmeister der das erlernen des Zaubers unterstützt?",
+            "teacherRank":                        "Welchen Rang hat der Lehrmeister in Spruchzauberei",
+            "teacherTestSuccessful":              "Der Spruchzaubereiwurf war erfolgreich. Der Lehrerrang wird nun als Bonus zum lernen des Zaubers addiert.",
+            "learnDifficulty":                    "Schwierigkeit des Lernens"
+          }
+        },
+        "Labels": {
+          "learnSpell": {
+            "lpCost":                             "Lp Kosten",
+            "patterncraftToLearnSpell":           "Struktur Verstehen",
+            "freePatterncraftToLearnSpell":       "Freies Struktur Verstehen",
+            "useRecoveryTestToLearnSpell":        "Erholungsprobe",
+            "patterncraftSuccessful":             "Erfolg", 
+            "teacherToLearnSpell":                "Lehrmeister vorhanden?",
+            "teacherRank":                        "Lehrerrang",
+            "teacherTestSuccessful":              "Erfolgreicher Spruchzaubereiwurf",
+            "learnDifficulty":                    "Schwierigkeit"
+          }
+        }
       }
     },
     "Dialogs": {
@@ -819,6 +853,7 @@
         "add": "Hinzufügen",
         "cancel": "Abbrechen",
         "close": "Schließen",
+        "continue": "Weiter",
         "free": "Umsonst",
         "learn": "Lernen",
         "learnSpellPatterncraftTest": "Lernen durch Struktur Verstehen",
@@ -881,12 +916,13 @@
         "writtenRules": "Regeln"
       },
       "Title": {
-        "classAdvancement": "Rang- und Kreisaufstieg",
-        "learnAbility":     "Fähigkeit lernen",
-        "learnSpell":       "Zauber lernen",
-        "recovery":         "Erholungsprobe",
-        "takeDamage":       "Schaden nehmen",
-        "talentCategory":   "Talentkategorie"
+        "classAdvancement":                                   "Rang- und Kreisaufstieg",
+        "learnAbility":                                       "Erlernen von {abilityName}",
+        "learnSpell":                                         "Zauber lernen",
+        "recovery":                                           "Erholungsprobe",
+        "takeDamage":                                         "Schaden nehmen",
+        "talentCategory":                                     "Talentkategorie von {abilityName}",
+        "lpIncrease":                                         "Steigerung von {abilityName}"
       },
       "armor": "Rüstung",
       "armorType": "Rüstungsart",
@@ -1079,6 +1115,11 @@
       "successesAchieved": "Gesamt Erfolge",
       "targetDifficulty": "Schwierigkeit",
       "targetModifiers": "Ziel Modifikatoren"
+    },
+    "Rules": {
+      "disciplineIncreaseShortRequirements":                          "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
+      "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n"
+    
     },
     "Settings": {
       "Edid": {

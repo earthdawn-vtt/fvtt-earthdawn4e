@@ -2,8 +2,8 @@
   <fieldset>
     <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendRequirements" }}</legend>
     {{localize "ED.Dialogs.Legend.Validation.hasDamage"}} <i class="fas fa-light fa-{{ ifThen hasDamage "hexagon-xmark" "hexagon-check" }}"></i>
-    {{ formField fields.lpCost value=source.lpCost rootId=partId readonly=true }}
-    {{ formField fields.learnDifficulty value=source.learnDifficulty rootId=partId readonly=true }}
+    {{ formField fields.lpCost value=source.lpCost rootId=partId readonly=true localize=true}}
+    {{ formField fields.learnDifficulty value=source.learnDifficulty rootId=partId readonly=true localize=true}}
   </fieldset>
 
   <br>
@@ -11,16 +11,16 @@
   <fieldset>
     <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendTeacherTest" }}</legend>
     {{#if hasSpellcasting}}
-      {{ formField fields.teacher value=source.teacher }}
+      {{ formField fields.teacher value=source.teacher localize=true}}
       {{#if source.teacher}}
-        {{ formField fields.teacherRank value=source.teacherRank }}
+        {{ formField fields.teacherRank value=source.teacherRank localize=true}}
         <button type="button" class="{{ ifThen source.teacherTestSuccessful "roll-success" "" }}"
                 data-action="useTeacherSpellcasting" {{#unless source.teacher}}disabled{{/unless}}
         >
           <i class="{{ config.icons.spellcasting }}" inert></i>
-          {{ localize "ED.Dialogs.Button.teacherSpellcasting" }}
+          {{ localize "ED.Dialogs.Buttons.teacherSpellcasting" }}
         </button>
-        {{ formField fields.teacherTestSuccessful value=source.teacherTestSuccessful }}
+        {{ formField fields.teacherTestSuccessful value=source.teacherTestSuccessful localize=true}}
       {{/if}}
     {{else}}
       {{localize "ED.Dialogs.Legend.LearnSpell.noSpellcastingTalentFound"}}
@@ -33,15 +33,15 @@
   <fieldset>
     <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendPatterncraft" }}</legend>
     {{#if hasPatterncraft}}
-      {{ formField fields.patterncraft value=source.patterncraft rootId=partId }}
+      {{ formField fields.patterncraft value=source.patterncraft rootId=partId localize=true}}
       {{#if source.patterncraft}}
-        {{ formField fields.useRecoveryTest value=source.useRecoveryTest rootId=partId }}
-        {{ formField actorFields.characteristics.fields.recoveryTestsResource.fields.value value=actor.system.characteristics.recoveryTestsResource.value rootId=partId readonly=true }}
+        {{ formField fields.useRecoveryTest value=source.useRecoveryTest rootId=partId localize=true}}
+        {{ formField actorFields.characteristics.fields.recoveryTestsResource.fields.value value=actor.system.characteristics.recoveryTestsResource.value rootId=partId readonly=true localize=true}}
         <button type="button" class="{{ ifThen source.patterncraftSuccessful "roll-success" "" }}"
                 data-action="patterncraftTest" {{#unless source.patterncraft}}disabled{{/unless}}
         >
           <i class="{{ config.icons.patterncraft }}" inert></i>
-          {{ localize "ED.Dialogs.Button.learnSpellPatterncraftTest" }}
+          {{ localize "ED.Dialogs.Buttons.learnSpellPatterncraftTest" }}
         </button>
       {{/if}}
     {{else}}
