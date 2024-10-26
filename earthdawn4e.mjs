@@ -14,7 +14,7 @@ import ED4E from "./module/config.mjs";
 // Import submodules
 import * as applications from "./module/applications/_module.mjs";
 import * as canvas from "./module/canvas/_module.mjs";
-import * as dataModels from "./module/data/_module.mjs";
+import * as data from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as enrichers from "./module/enrichers.mjs";
@@ -31,7 +31,7 @@ globalThis.ed4e = {
   applications,
   canvas,
   config: ED4E,
-  dataModels,
+  data,
   dice,
   documents,
   enrichers,
@@ -55,7 +55,7 @@ system.registerHooks();
 export {
   applications,
   canvas,
-  dataModels,
+  data,
   dice,
   documents,
   enrichers,

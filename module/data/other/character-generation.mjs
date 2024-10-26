@@ -1,5 +1,4 @@
 import { SparseDataModel } from "../abstract.mjs";
-import { MappingField } from "../fields.mjs";
 import ED4E from "../../config.mjs";
 import {
   filterObject,
@@ -10,6 +9,7 @@ import {
   sum
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
+import MappingField from "../fields/mapping-field.mjs";
 
 /**
  * The data used during character generation. Also used as the object of the

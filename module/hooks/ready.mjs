@@ -1,5 +1,6 @@
 
 import EdTour from "../tours/ed-tours.mjs";
+import { RollData } from "../data/other/_module.mjs";
 
 /**
  * TODO
@@ -151,7 +152,7 @@ async function _createDebugDocuments() {
   };
 
   for( const testType of Object.keys( CONFIG.ED4E.testTypes ) ) {
-    const rollOptions = new ed4e.dataModels.other.RollData( {
+    const rollOptions = new RollData( {
       testType:   testType,
       chatFlavor: "This is debug custom flavor text for this roll. Great, he?",
       step:       {
