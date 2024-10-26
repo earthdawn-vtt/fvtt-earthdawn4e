@@ -2,6 +2,7 @@ import { ItemDataModel } from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import MovementFields from "../actor/templates/movement.mjs";
 import { MappingField } from "../fields.mjs";
+
 /**
  * Data model template with information on namegiver items.
  * @property {object} attributeValues                           Attribute Schema Object
@@ -111,7 +112,17 @@ export default class NamegiverData extends ItemDataModel.mixin(
             hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedmax" )
           } )
         } )
-      } )
+      } ),
+      abilities: new fields.SetField(
+        new fields.DocumentUUIDField( ItemDataModel, {
+          label:    this.labelKey( "Namegiver.abilities" ),
+          hint:     this.hintKey( "Namegiver.abilities"  )
+        } ),
+        {
+          required: false,
+          nullable: true,
+          initial:  [],
+        } ),
     } );
   }
   /* -------------------------------------------- */
@@ -122,4 +133,7 @@ export default class NamegiverData extends ItemDataModel.mixin(
     super.migrateData( source );
     // specific migration functions
   }
+
+
+
 }

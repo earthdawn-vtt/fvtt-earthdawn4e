@@ -48,6 +48,9 @@
     {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
     {{!-- Climb Movement --}}
     {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
+
+    {{formField systemFields.abilities label=(localize "ED.Data.Item.Labels.Namegiver.abilities") 
+    hint=(localize "ED.Data.Item.Hints.Namegiver.abilities") name="system.abilities" value=item.system.abilities localize=true }}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>
