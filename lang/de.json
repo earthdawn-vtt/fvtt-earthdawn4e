@@ -690,7 +690,7 @@
             "extraSuccesses":                               "Zusätzliche Erfolge"
           },
           "Namegiver":{
-            "abilities":                                    "Rassen-Fähigkeiten",
+            "abilities":                                    "Namensgeber-Fähigkeiten",
 
             "livingArmorOnly":                              "Nur legendige Rüstung",
             "WeaponSize":{
