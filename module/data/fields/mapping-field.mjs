@@ -1,3 +1,5 @@
+const { setInputAttributes } = foundry.applications.fields;
+
 /**
  * @callback MappingFieldInitialValueBuilder
  * @param {string} key       The key within the object where this new value is being generated.
@@ -141,6 +143,64 @@ export default class MappingField extends foundry.data.fields.ObjectField {
     else if ( path.length === 1 ) return this.model;
     path.shift();
     return this.model._getField( path );
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _toInput( config ) {
+    if ( !this.model.constructor.hasFormSupport ) return super._toInput( config );
+    const { name, value } = config;
+    const div = document.createElement( "div" );
+    div.name = config.name;
+    setInputAttributes( div, config );
+
+    Object.entries( value ).forEach( ( [ fieldName, fieldValue ] ) => {
+      const fieldInput = this.model.toInput( {
+        ...config,
+        name:  `${ name }.${ fieldName }`,
+        value: fieldValue,
+      } );
+      div.appendChild( fieldInput );
+    } );
+
+    return div;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  toFormGroup( groupConfig={}, inputConfig={} ) {
+    if ( groupConfig.widget instanceof Function ) return groupConfig.widget( this, groupConfig, inputConfig );
+    groupConfig.label ??= this.label ?? this.fieldPath;
+    groupConfig.hint ??= this.hint;
+    let { hint, label, localize } = groupConfig;
+
+    const fieldset = document.createElement( "fieldset" );
+
+    const legend = document.createElement( "legend" );
+    legend.textContent = localize ? game.i18n.localize( label ) : label;
+    fieldset.appendChild( legend );
+    if ( hint ) {
+      const span = document.createElement( "p" );
+      span.classList.add( "hint" );
+      span.textContent = localize ? game.i18n.localize( hint ) : hint;
+      fieldset.appendChild( span );
+    }
+
+    Object.entries( inputConfig.value ).forEach( ( [ fieldName, fieldValue ] ) => {
+      const { units, input, rootId, classes, stacked, localize, widget } = groupConfig;
+      const fieldGroup = this.model.toFormGroup(
+        { input, localize, stacked, widget, rootId, classes, units },
+        {
+          ...inputConfig,
+          name:  `${ name }.${ fieldName }`,
+          value: fieldValue,
+        } );
+      fieldset.appendChild( fieldGroup );
+    } );
+
+    return fieldset;
   }
 
 }
