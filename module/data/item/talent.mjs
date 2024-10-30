@@ -175,8 +175,16 @@ export default class TalentData extends AbilityTemplate.mixin(
 
     const actor = this.parent.actor;
     const sourceClass = fromUuidSync( this.source.class );
-    if ( !sourceClass ) return undefined;
 
+    // for talents which are not tied to any class (versatility or others)
+    if ( !sourceClass ) {
+      return ED4E.legendPointsCost[
+        this.level 
+        +1 // new level
+        + ED4E.lpIndexModForTier[1][this.tier]
+      ];
+    }
+    
     // each tier starts at the next value in the fibonacci sequence
     let tierModifier = ED4E.lpIndexModForTier[sourceClass.system.order][this.tier];
 
@@ -259,7 +267,7 @@ export default class TalentData extends AbilityTemplate.mixin(
       const promptFactoryActor = PromptFactory.fromDocument( actor );
       const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
       const discipline = await fromUuid( disciplineUuid );
-      const learnedAt = discipline.system.level;
+      const learnedAt = discipline?.system.level;
 
       const updateData = {
         system: {},

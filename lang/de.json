@@ -831,15 +831,15 @@
         },
         "Labels": {
           "learnSpell": {
-            "lpCost":                             "Lp Kosten",
-            "patterncraftToLearnSpell":           "Struktur Verstehen",
-            "freePatterncraftToLearnSpell":       "Freies Struktur Verstehen",
-            "useRecoveryTestToLearnSpell":        "Erholungsprobe",
-            "patterncraftSuccessful":             "Erfolg", 
-            "teacherToLearnSpell":                "Lehrmeister vorhanden?",
-            "teacherRank":                        "Lehrerrang",
-            "teacherTestSuccessful":              "Erfolgreicher Spruchzaubereiwurf",
-            "learnDifficulty":                    "Schwierigkeit"
+            "lpCost":                                       "Lp Kosten",
+            "patterncraftToLearnSpell":                     "Struktur Verstehen",
+            "freePatterncraftToLearnSpell":                 "Freies Struktur Verstehen",
+            "useRecoveryTestToLearnSpell":                  "Erholungsprobe",
+            "patterncraftSuccessful":                       "Erfolg", 
+            "teacherToLearnSpell":                          "Lehrmeister vorhanden?",
+            "teacherRank":                                  "Lehrerrang",
+            "teacherTestSuccessful":                        "Erfolgreicher Spruchzaubereiwurf",
+            "learnDifficulty":                              "Schwierigkeit"
           }
         }
       }
@@ -850,22 +850,23 @@
         "legendPoints": "Legendenpunkte"
       },
       "Buttons": {
-        "add": "Hinzufügen",
-        "cancel": "Abbrechen",
-        "close": "Schließen",
-        "continue": "Weiter",
-        "free": "Umsonst",
-        "learn": "Lernen",
-        "learnSpellPatterncraftTest": "Lernen durch Struktur Verstehen",
-        "nightRest": "Vollständige Rast",
+        "add":                                              "Hinzufügen",
+        "cancel":                                           "Abbrechen",
+        "close":                                            "Schließen",
+        "continue":                                         "Weiter",
+        "free":                                             "Umsonst",
+        "learn":                                            "Lernen",
+        "learnSpellPatterncraftTest":                       "Lernen durch Struktur Verstehen",
+        "nightRest":                                        "Vollständige Rast",
         "noAbilityDex":                                     "Geschicklichkeit",
         "noAbilityStr":                                     "Stärke",
-        "recoverStun": "Betäubungsschaden Erholungsprobe",
-        "recovery": "Erholungsprobe",
-        "save": "Speichern",
-        "spendLp": "Legendenpunkte ausgeben",
-        "takeDamage": "Schaden nehmen",
-        "teacherSpellcasting": "Spruchzauberei der Lehrenden"
+        "noDiscipline":                                     "Ohne Disziplin/Pfad",
+        "recoverStun":                                      "Betäubungsschaden Erholungsprobe",
+        "recovery":                                         "Erholungsprobe",
+        "save":                                             "Speichern",
+        "spendLp":                                          "Legendenpunkte ausgeben",
+        "takeDamage":                                       "Schaden nehmen",
+        "teacherSpellcasting":                              "Spruchzauberei der Lehrenden"
       },
       "Errors": {
         "noLp": "Keine Legendenpunkte angegeben!"

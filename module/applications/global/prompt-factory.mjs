@@ -307,6 +307,15 @@ class ActorPromptFactory extends PromptFactory {
 
   async _chooseDisciplinePrompt() {
     const buttons = await this._getItemButtons( this.document.disciplines, "type" );
+    buttons.push(
+      {
+        action:  "noDiscipline",
+        label:   "ED.Dialogs.Buttons.noDiscipline",
+        icon:    "",
+        class:   "button-noDiscipline",
+        default: false
+      }
+    );
 
     return DialogClass.wait( {
       rejectClose: false,
@@ -345,7 +354,9 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
+
     lpIncrease:     this._lpIncreasePrompt.bind( this ),
+    chooseTier:     this._chooseTierPrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
     talentCategory: this._talentCategoryPrompt.bind( this ),
   };
@@ -391,6 +402,37 @@ class ItemPromptFactory extends PromptFactory {
         this.constructor.cancelButton
       ],
       rejectClose: false,
+    } );
+  }
+
+  async _chooseTierPrompt() {
+    const buttons = Object.entries( ED4E.tier ).map(
+      ( [ key, label ] ) => {
+        return {
+          action:  key,
+          label:   label,
+          icon:    "",
+          class:   `button-${ key }`,
+          default: false
+        };
+      }
+    );
+
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.chooseTier", {
+      abilityName: this.document.name,
+    } );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "choose-tier-prompt",
+      uniqueId:    String( ++globalThis._appId ),
+      classes:     [ "earthdawn4e", "choose-tier-prompt", "flexcol" ],
+      window:      {
+        title:       titleFlavor,
+        minimizable: false
+      },
+      modal:   false,
+      buttons,
     } );
   }
 
