@@ -690,6 +690,8 @@
             "extraSuccesses":                               "Zusätzliche Erfolge"
           },
           "Namegiver":{
+            "abilities":                                    "Namensgeber-Fähigkeiten",
+
             "livingArmorOnly":                              "Nur legendige Rüstung",
             "WeaponSize":{
               "twoHandedmax":                                 "Zweihandwaffen max.",
