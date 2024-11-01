@@ -88,37 +88,37 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     },
     "namegiver-tab": {
       template: "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
-      id:       "-namegiver",
+      id:       "-namegiver-tab",
       classes:  [ "namegiver" ],
     },
     "class-tab": {
       template: "systems/ed4e/templates/actor/generation/class-selection.hbs",
-      id:       "-class",
+      id:       "-class-tab",
       classes:  [ "class" ],
     },
     "attribute-tab": {
       template: "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
-      id:       "-attribute",
+      id:       "-attribute-tab",
       classes:  [ "attribute" ],
     },
     "spell-tab": {
       template: "systems/ed4e/templates/actor/generation/spell-selection.hbs",
-      id:       "-spell",
+      id:       "-spell-tab",
       classes:  [ "spell" ],
     },
     "skill-tab": {
       template: "systems/ed4e/templates/actor/generation/skill-selection.hbs",
-      id:       "-skill",
+      id:       "-skill-tab",
       classes:  [ "skill" ],
     },
     "language-tab": {
       template: "systems/ed4e/templates/actor/generation/language-selection.hbs",
-      id:       "-language",
+      id:       "-language-tab",
       classes:  [ "language" ],
     },
     "equipment-tab": {
       template: "systems/ed4e/templates/actor/generation/equipment.hbs",
-      id:       "-equipment",
+      id:       "-equipment-tab",
       classes:  [ "equipment" ],
     },
     footer: {
@@ -139,17 +139,17 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       case "tabs": return this._prepareTabsContext( context, options );
       case "namegiver-tab":
         break;
-      case "class":
+      case "class-tab":
         break;
-      case "attribute":
+      case "attribute-tab":
         break;
-      case "spell":
+      case "spell-tab":
         break;
-      case "skill":
+      case "skill-tab":
         break;
-      case "language":
+      case "language-tab":
         break;
-      case "equipment":
+      case "equipment-tab":
         break;
     }
 
@@ -184,7 +184,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.namegiver",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "class-tab": {
       id:       "class-tab",
@@ -192,7 +192,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.class",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "attribute-tab": {
       id:       "attribute-tab",
@@ -200,7 +200,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.attribute",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "spell-tab": {
       id:       "spell-tab",
@@ -208,7 +208,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.spell",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "skill-tab": {
       id:       "skill-tab",
@@ -216,7 +216,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.skill",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "language-tab": {
       id:       "language-tab",
@@ -224,7 +224,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.language",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
     "equipment-tab": {
       id:       "equipment-tab",
@@ -232,7 +232,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       icon:     "",
       label:    "ED.Dialogs.Tabs.CharGen.equipment",
       active:   false,
-      cssClass: "",
+      cssClass: ""
     },
   };
 
@@ -312,7 +312,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.magicType = await this.object.getMagicType();
 
     // Re-render sheet with updated values
-    return this.render( true );
+    this.render( true );
   }
 
   /* ----------------------------------------------------------- */
@@ -324,7 +324,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // if ( !this._validateOnChangeTab() ) return;
     this._currentStep++;
     this.activateTab( this._steps[this._currentStep] );
-    return this.render( true );
+    this.render( true );
   }
 
   static _previousTab( event, target ) {
@@ -332,7 +332,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // if ( !this._validateOnChangeTab() ) return;
     this._currentStep--;
     this.activateTab( this._steps[this._currentStep] );
-    return this.render( true );
+    this.render( true );
   }
 
   _hasNextStep() {
