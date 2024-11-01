@@ -1064,6 +1064,9 @@ ED4E.icons = {
   recovery:         "fa-heartbeat",
   spellcasting:     "fa-thin fa-sparkles",
   threadWeaving:    "fa-thin fa-chart-network",
+  finishCharGen:    "fa-thin fa-check-double",
+  previousCharGen:  "fa-thin fa-arrow-left",
+  nextCharGen:      "fa-thin fa-arrow-right",
 };
 
 
