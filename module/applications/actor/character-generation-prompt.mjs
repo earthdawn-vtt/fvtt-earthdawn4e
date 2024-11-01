@@ -36,6 +36,10 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       "equipment"
     ];
     this._currentStep = 0;
+
+    this.tabGroups = {
+      primary: "namegiver-tab",
+    };
   }
 
   static errorMessages = {
@@ -82,37 +86,37 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       id:       "-tabs-navigation",
       classes:  [ "navigation" ],
     },
-    namegiver: {
+    "namegiver-tab": {
       template: "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
       id:       "-namegiver",
       classes:  [ "namegiver" ],
     },
-    class: {
+    "class-tab": {
       template: "systems/ed4e/templates/actor/generation/class-selection.hbs",
       id:       "-class",
       classes:  [ "class" ],
     },
-    attribute: {
+    "attribute-tab": {
       template: "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
       id:       "-attribute",
       classes:  [ "attribute" ],
     },
-    spell: {
+    "spell-tab": {
       template: "systems/ed4e/templates/actor/generation/spell-selection.hbs",
       id:       "-spell",
       classes:  [ "spell" ],
     },
-    skill: {
+    "skill-tab": {
       template: "systems/ed4e/templates/actor/generation/skill-selection.hbs",
       id:       "-skill",
       classes:  [ "skill" ],
     },
-    language: {
+    "language-tab": {
       template: "systems/ed4e/templates/actor/generation/language-selection.hbs",
       id:       "-language",
       classes:  [ "language" ],
     },
-    equipment: {
+    "equipment-tab": {
       template: "systems/ed4e/templates/actor/generation/equipment.hbs",
       id:       "-equipment",
       classes:  [ "equipment" ],
@@ -133,7 +137,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     switch ( partId ) {
       case "tabs": return this._prepareTabsContext( context, options );
-      case "namegiver":
+      case "namegiver-tab":
         break;
       case "class":
         break;
