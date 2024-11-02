@@ -186,6 +186,26 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return this.parent;
   }
 
+  async chooseTier( ) {
+    const promptFactory = PromptFactory.fromDocument( this.parent );
+    const tier = await promptFactory.getPrompt( "chooseTier" );
+
+    if ( !tier || tier === "cancel" || tier === "close" ) return;
+
+    const updatedItem = await this.parent.update( {
+      "system.tier": tier,
+    } );
+
+    if ( foundry.utils.isEmpty( updatedItem ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    return updatedItem;
+  }
+
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
     if ( !item.system.canBeLearned ) {
@@ -209,6 +229,32 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
     const learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+
+    let category = null;
+    if ( item.type === "talent" ) {
+      // assign the talent category
+      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+      category = await promptFactoryItem.getPrompt( "talentCategory" );
+
+      // assign the level at which the talent was learned
+      const promptFactoryActor = PromptFactory.fromDocument( actor );
+      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
+      const discipline = await fromUuid( disciplineUuid );
+      const learnedAt = discipline?.system.level;
+
+      const updateData = {
+        system: {},
+      };
+      if ( category ) updateData.system.talentCategory = category;
+      if ( learnedAt >= 0 ) updateData.system.source = {
+        class:   discipline.uuid,
+        atLevel: learnedAt,
+      };
+    }
+
+    if ( !createData?.system?.source.class ) {
+      if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.chooseTier();
+    }
 
     if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.increase();
 

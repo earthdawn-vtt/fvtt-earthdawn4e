@@ -2,7 +2,7 @@ import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
-import PromptFactory from "../../applications/global/prompt-factory.mjs";
+// import PromptFactory from "../../applications/global/prompt-factory.mjs";
 
 /**
  * Data model template with information on talent items.
@@ -164,7 +164,7 @@ export default class TalentData extends AbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.talentIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.talentIncreaseShortRequirements" );
   }
 
   /**
@@ -179,12 +179,12 @@ export default class TalentData extends AbilityTemplate.mixin(
     // for talents which are not tied to any class (versatility or others)
     if ( !sourceClass ) {
       return ED4E.legendPointsCost[
-        this.level 
+        this.level
         +1 // new level
         + ED4E.lpIndexModForTier[1][this.tier]
       ];
     }
-    
+
     // each tier starts at the next value in the fibonacci sequence
     let tierModifier = ED4E.lpIndexModForTier[sourceClass.system.order][this.tier];
 
@@ -258,27 +258,27 @@ export default class TalentData extends AbilityTemplate.mixin(
   static async learn( actor, item, createData = {} ) {
     const learnedItem = await super.learn( actor, item, createData );
     if ( learnedItem ) {
-      // assign the talent category
-      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-      let category = await promptFactoryItem.getPrompt( "talentCategory" );
+      // // assign the talent category
+      // const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+      // let category = await promptFactoryItem.getPrompt( "talentCategory" );
 
-      // assign the level at which the talent was learned
+      // // assign the level at which the talent was learned
 
-      const promptFactoryActor = PromptFactory.fromDocument( actor );
-      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-      const discipline = await fromUuid( disciplineUuid );
-      const learnedAt = discipline?.system.level;
+      // const promptFactoryActor = PromptFactory.fromDocument( actor );
+      // const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
+      // const discipline = await fromUuid( disciplineUuid );
+      // const learnedAt = discipline?.system.level;
 
-      const updateData = {
-        system: {},
-      };
-      if ( category ) updateData.system.talentCategory = category;
-      if ( learnedAt >= 0 ) updateData.system.source = {
-        class:   discipline.uuid,
-        atLevel: learnedAt,
-      };
+      // const updateData = {
+      //   system: {},
+      // };
+      // if ( category ) updateData.system.talentCategory = category;
+      // if ( learnedAt >= 0 ) updateData.system.source = {
+      //   class:   discipline.uuid,
+      //   atLevel: learnedAt,
+      // };
 
-      await learnedItem.update( updateData );
+      // await learnedItem.update( updateData );
     }
     return learnedItem;
   }

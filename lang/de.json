@@ -853,8 +853,10 @@
         "add":                                              "Hinzufügen",
         "cancel":                                           "Abbrechen",
         "close":                                            "Schließen",
+        "complete":                                         "Abschließen",
         "continue":                                         "Weiter",
         "free":                                             "Umsonst",
+        "goBack":                                           "Zurück",
         "learn":                                            "Lernen",
         "learnSpellPatterncraftTest":                       "Lernen durch Struktur Verstehen",
         "nightRest":                                        "Vollständige Rast",
@@ -872,6 +874,21 @@
         "noLp": "Keine Legendenpunkte angegeben!"
       },
       "Legend": {
+        "ClassAdvancement": {
+          "YouCanChooseSpells":                                 "Du kannst nun Zauber auswählen, die du lernen möchtest.",
+          "NoSpellsAvailable":                                  "Keine Zauber verfügbar.",
+          "SelectedSpells":                                     "Ausgewählte Zauber",
+          "NoSpellsSelected":                                   "Keine Zauber ausgewählt.",
+          "learningClass":                                      "Lernen einer neuen Disziplin",
+          "classIncreasedTier":                                 "Kreis erhöht",
+          "optionalAbilityGained":                              "Optionale Fähigkeit erhalten",
+          "classAbilitiesGained":                               "Fähigkeiten erhalten",
+          "effectsGained":                                      "Effekte erhalten",
+          "spellsGained":                                       "Zauber erhalten",
+          "chooseAbilityOption":                                "Wähle ein optionales Talent",
+          "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis ",
+          "resourceStepIncreased":                              "Ressourcenstufe erhöht"
+        },
         "LearnSpell": {
           "chatFlavorPatterncraft":         "{name} versucht den Zauber {spell} zu lernen.",
           "chatFlavorTeacherTest":          "{name} versucht mit Hilfe der Lehrenden den Zauber {spell} zu lernen. Spruchzauberei der Lehrenden:",
@@ -884,7 +901,8 @@
         },
         "Rules": {
           "disciplineLearnShortRequirements": "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
-          "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n"
+          "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
+          "talentIncreaseShortRequirements":                  "<ul>\n<li>Legendnepunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n"
         },
         "Validation": {
           "availableLp": "Genügend Legendenpunkte? Kostet: ",
@@ -909,6 +927,8 @@
           "talentsRequirementFailed": "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}",
           "talentsRequirementFulfilled": "Alle Disziplintalente sind auf dem erforderlichen Rang"
         },
+        "chooseAbilityOption":                                "Wähle ein optionales Talent",
+        "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis ",
         "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)",
         "learnOnZeroOrOne": "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?",
         "learnQuestorPrompt": "Soll die Questor Weihekraft erlernt werden?",
@@ -918,6 +938,7 @@
       },
       "Title": {
         "classAdvancement":                                   "Rang- und Kreisaufstieg",
+        "chooseDiscipline":                                   "Disziplin wählen",
         "learnAbility":                                       "Erlernen von {abilityName}",
         "learnSpell":                                         "Zauber lernen",
         "recovery":                                           "Erholungsprobe",

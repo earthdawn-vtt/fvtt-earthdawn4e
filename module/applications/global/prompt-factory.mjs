@@ -317,13 +317,16 @@ class ActorPromptFactory extends PromptFactory {
       }
     );
 
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.chooseDiscipline", {
+    } );
+
     return DialogClass.wait( {
       rejectClose: false,
       id:          "choose-discipline-prompt",
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
-        title:       game.i18n.localize( "ED.Dialogs.Title.chooseDiscipline" ),
+        title:       titleFlavor,
         minimizable: false
       },
       modal:   false,
@@ -355,8 +358,8 @@ class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
 
-    lpIncrease:     this._lpIncreasePrompt.bind( this ),
     chooseTier:     this._chooseTierPrompt.bind( this ),
+    lpIncrease:     this._lpIncreasePrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
     talentCategory: this._talentCategoryPrompt.bind( this ),
   };
@@ -405,7 +408,8 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
-  async _chooseTierPrompt() {
+  async _chooseTierPrompt( ) {
+
     const buttons = Object.entries( ED4E.tier ).map(
       ( [ key, label ] ) => {
         return {
@@ -475,7 +479,20 @@ class ItemPromptFactory extends PromptFactory {
   }
 
   async _talentCategoryPrompt() {
-    const buttons = Object.entries( ED4E.talentCategory ).map(
+
+    const versatilityId = game.settings.get( "ed4e", "edidVersatility" );
+    const actor = this.document.actor;
+    let category = ED4E.talentCategory;
+    if ( actor.items.filter( item => item.system.edid === versatilityId ).length === 0 ) {
+      if ( typeof category === "object" && category !== null ) {
+        category = Object.fromEntries(
+          Object.entries( category ).filter( ( [ key, value ] ) => key !== "versatility" )
+        );
+      } else {
+        console.error( "category is not an object" );
+      }
+    }
+    const buttons = Object.entries( category ).map(
       ( [ key, label ] ) => {
         return {
           action:  key,
