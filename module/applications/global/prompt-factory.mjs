@@ -345,6 +345,7 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
+    learnKnack:     this._learnKnackPrompt.bind( this ),
     lpIncrease:     this._lpIncreasePrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
     talentCategory: this._talentCategoryPrompt.bind( this ),
@@ -460,6 +461,51 @@ class ItemPromptFactory extends PromptFactory {
       },
       modal:   false,
       buttons,
+    } );
+  }
+
+  async _learnKnackPrompt() {
+    const buttons = await this._getChildKnacks();
+
+    const noAbilityButton = this.constructor.cancelButton;
+    noAbilityButton.label = "ED.Dialogs.Buttons.noAbility";
+    buttons.push( noAbilityButton );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "jump-up-prompt",
+      uniqueId:    String( ++globalThis._appId ),
+      classes:     [ "earthdawn4e", "learn-knack-prompt" ],
+      window:      {
+        title:       "ED.Dialogs.Title.learnKnack",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: buttons
+    } );
+  }
+
+  async _getChildKnacks() {
+    const availableKnacks = this.document.system.knacks.available;
+    const knacksWithNames = await Promise.all( availableKnacks.map( async ( uuid ) => {
+      const item = await fromUuid( uuid );
+      return {
+        uuid: uuid,
+        name: item.name
+      };
+    } ) );
+    return this._getKnackButtons( knacksWithNames, "knack" );
+  }
+
+  async _getKnackButtons( items, buttonClass ) {
+    return items.map( ( item ) => {
+      return {
+        action:  item.uuid,
+        label:   item.name,
+        icon:    "",
+        class:   `button-${buttonClass} ${item.name}`,
+        default: false
+      };
     } );
   }
 }

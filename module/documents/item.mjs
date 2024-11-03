@@ -1,10 +1,13 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
+import PromptFactory from "../applications/global/prompt-factory.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.
  */
 export default class ItemEd extends Item {
+
+  _promptFactory = PromptFactory.fromDocument( this );
 
   /** @inheritDoc */
   static async createDialog( data = {}, { parent = null, pack = null, ...options } = {} ) {
@@ -31,6 +34,31 @@ export default class ItemEd extends Item {
     } else if ( this.system.weight.calculated ) {
       ui.notifications.warn( game.i18n.localize( "X.cantUpdateItemWeight" ) );
     }
+  }
+
+  async learnKnack( sourceTalent ) {
+    const knackToLearn = await this.getPrompt( "learnKnack" );
+    
+    console.log( "knackToLearn", knackToLearn );
+    const actor = this.parent;
+    const createData = {
+      "name": knackToLearn.name,
+      "type": "knack",
+      "data": {
+        "system": {
+          "knack": {
+            "source": sourceTalent.id
+          },
+        },
+      },
+    };
+
+    return this.learn( actor, this, createData );
+  }
+
+
+  async getPrompt( promptType ) {
+    return this._promptFactory.getPrompt( promptType );
   }
 
   async addAdvancementAbilities( abilityUUID, poolType, level ) {

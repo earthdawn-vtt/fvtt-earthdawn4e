@@ -1038,17 +1038,18 @@
         "lpDescription": "Trage hier eine Beschreibung ein"
       },
       "Talent": {
-        "action": "Aktion",
-        "attribute": "Attribut",
-        "description": "Beschreibung",
-        "difficultyFixed": "Feste Schwierigkeit",
-        "difficultyGroup": "Schwierigkeit bei Gruppe",
-        "difficultyTarget": "Ziel Schwierigkeit",
-        "rank": "Rang",
-        "strain": "Überanstrengung",
-        "talentCategory": "Kategorie",
-        "talentIdentifier": "Talent Identifikator",
-        "tier": "Stufe"
+        "action":                                               "Aktion",
+        "attribute":                                            "Attribut",
+        "description":                                          "Beschreibung",
+        "difficultyFixed":                                      "Feste Schwierigkeit",
+        "difficultyGroup":                                      "Schwierigkeit bei Gruppe",
+        "difficultyTarget":                                     "Ziel Schwierigkeit",
+        "lernKnack":                                            "Kniff lernen",
+        "rank":                                                 "Rang",
+        "strain":                                               "Überanstrengung",
+        "talentCategory":                                       "Kategorie",
+        "talentIdentifier":                                     "Talent Identifikator",
+        "tier":                                                 "Stufe"
       },
       "Title": {
         "assignLp": "Legendenpunkte zuweisen",

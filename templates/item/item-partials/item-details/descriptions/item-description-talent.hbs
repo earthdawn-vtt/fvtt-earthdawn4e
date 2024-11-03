@@ -5,6 +5,14 @@
     {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
     {{!-- talent Category --}}
     {{formField systemFields.talentCategory name="system.talentCategory" value=item.system.talentCategory localize=true}}
+    {{!-- Knacks --}}
+    {{formField systemFields.knacks.fields.available label=(localize "ED.Data.Item.Labels.Ability.talentKnacksAvailable") 
+    hint=(localize "ED.Data.Item.Hints.Ability.talentKnacksAvailable") name="system.knacks.available" value=item.system.knacks.available localize=true }}
+    {{!-- Learn knacks --}}
+    {{#if item.isOwned }}
+        <button class="knack__learn--button button">{{localize "ED.Item.Talent.lernKnack"}}</button>
+    {{/if}}
+
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

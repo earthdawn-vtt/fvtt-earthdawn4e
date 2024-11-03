@@ -1,7 +1,7 @@
 import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config.mjs";
-import KnackTemplate from "./templates/knack-item.mjs";
+// import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 
 /**
@@ -59,13 +59,13 @@ export default class TalentData extends AbilityTemplate.mixin(
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {
-            required:        true,
-            nullable:        false,
-            validate:        ( value, options ) => {
-              if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
-              return undefined; // undefined means do further validation
-            },
-            validationError:  "must be a knack type",
+            // required:        true,
+            // nullable:        false,
+            // validate:        ( value, options ) => {
+            //   if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
+            //   return undefined; // undefined means do further validation
+            // },
+            // validationError:  "must be a knack type",
             label:            this.labelKey( "Ability.talentAvailableKnack" ),
             hint:             this.hintKey( "Ability.talentAvailableKnack" )
           } ),
@@ -79,13 +79,13 @@ export default class TalentData extends AbilityTemplate.mixin(
         ),
         learned:   new fields.SetField(
           new fields.DocumentUUIDField( {
-            required:        true,
-            nullable:        false,
-            validate:        ( value, options ) => {
-              if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
-              return undefined; // undefined means do further validation
-            },
-            validationError:  "must be a knack type",
+            // required:        true,
+            // nullable:        false,
+            // validate:        ( value, options ) => {
+            //   if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
+            //   return undefined; // undefined means do further validation
+            // },
+            // validationError:  "must be a knack type",
             label:            this.labelKey( "Ability.talentLearnedKnack" ),
             hint:             this.hintKey( "Ability.talentLearnedKnack" )
           } ),

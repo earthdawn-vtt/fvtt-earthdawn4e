@@ -97,6 +97,9 @@ export default class ItemSheetEd extends ItemSheet {
     // Triggering weight calculation for physical items
     html.find( ".weight-calculation--button" ).click( this._onWeightCalculation.bind( this ) );
 
+    // Triggering knack learning
+    html.find( ".knack__learn--button" ).click( this._onLearnKnack.bind( this ) );
+
     // Effect Management
     html.find( ".effect-add" ).click( this._onEffectAdd.bind( this ) );
     html.find( ".effect-edit" ).click( this._onEffectEdit.bind( this ) );
@@ -248,6 +251,15 @@ export default class ItemSheetEd extends ItemSheet {
    */
   async _onWeightCalculation() {
     this.item.tailorToNamegiver( this.item.parent.namegiver );
+  }
+
+  /* ----------------------------------------------------------------------- */
+  /*                     trigger learn knack function                        */
+  /* ----------------------------------------------------------------------- */
+
+  async _onLearnKnack( event ) {
+    event.preventDefault();
+    this.item.learnKnack( this );
   }
 }
 
