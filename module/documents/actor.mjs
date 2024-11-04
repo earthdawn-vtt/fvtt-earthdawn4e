@@ -11,6 +11,8 @@ import LpTrackingData from "../data/advancement/lp-tracking.mjs";
 import { sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
+import Workflows from "../applications/workflows/workflows.mjs";
+// import { getWorkflow } from "../applications/workflows/workflows.mjs";
 
 const futils = foundry.utils;
 
@@ -21,6 +23,8 @@ const futils = foundry.utils;
 export default class ActorEd extends Actor {
 
   _promptFactory = PromptFactory.fromDocument( this );
+
+  workflowsInstance = new Workflows( this );
 
   /**
    * The class items if this actor has any (has to be of type "character" or "npc" for this).
@@ -236,6 +240,14 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+
+  async callGetWorkflow( workflow, inputs = {}, options = {} ) {
+    const workflowFunction = await this.workflowsInstance.getWorkflow( workflow, inputs );
+    const edRollOptions = workflowFunction.edRollOptions;
+    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
+    return this.#processRoll( roll );
+  }
+
   /**
    * Roll a generic attribute test. Uses {@link RollPrompt} for further input data.
    * @param {string} attributeId            The 3-letter id for the attribute (e.g. "per").
@@ -243,7 +255,7 @@ export default class ActorEd extends Actor {
    * @param {object} options                Any additional options for the {@link EdRoll}.
    * @returns {Promise<EdRoll>}             The processed Roll.
    */
-  async rollAttribute( attributeId, edRollOptionsData = {}, options = {} ) {
+  async rollAttribute1( attributeId, edRollOptionsData = {}, options = {} ) {
     const attributeStep = this.system.attributes[attributeId].step;
     const step = { base: attributeStep };
     const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAttribute", {

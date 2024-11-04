@@ -224,8 +224,10 @@ export default class ActorSheetEd extends ActorSheet {
    */
   _onRollAttribute( event ) {
     event.preventDefault();
-    const attribute = event.currentTarget.dataset.attribute;
-    this.actor.rollAttribute( attribute, {}, { event: event } );
+    const input ={
+      attribute:  event.currentTarget.dataset.attribute,
+    };
+    this.actor.callGetWorkflow( "rollAttribute", input, {} );
   }
 
   /**
