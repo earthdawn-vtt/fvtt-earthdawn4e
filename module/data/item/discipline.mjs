@@ -144,8 +144,8 @@ export default class DisciplineData extends ClassTemplate.mixin(
     const requirementValue = game.i18n.format(
       `ED.Dialogs.Legend.Validation.${
         fulfilled
-          ? "talentsRequirementFailed"
-          : "talentsRequirementFulfilled"
+          ? "talentsRequirementFulfilled"
+          : "talentsRequirementFailed"
       }`,
       {
         requiredLevel:      nextLevel,
