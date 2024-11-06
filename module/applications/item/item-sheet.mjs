@@ -1,5 +1,6 @@
 import ED4E from "../../config.mjs";
 import ClassTemplate from "../../data/item/templates/class.mjs";
+import KnackAbilityData from "../../data/item/knack-ability.mjs";
 
 // noinspection JSClosureCompilerSyntax
 /**
@@ -259,7 +260,10 @@ export default class ItemSheetEd extends ItemSheet {
 
   async _onLearnKnack( event ) {
     event.preventDefault();
-    this.item.learnKnack( this );
+    const knackToLearn = await this.item.learnKnack( this );
+    const talentUuid = this.object.uuid;
+    const actor = this.object.parent;
+    return KnackAbilityData.learn( actor, knackToLearn, { talentUuid } );
   }
 }
 

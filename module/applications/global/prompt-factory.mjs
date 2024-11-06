@@ -345,10 +345,11 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-    learnKnack:     this._learnKnackPrompt.bind( this ),
-    lpIncrease:     this._lpIncreasePrompt.bind( this ),
-    learnAbility:   this._learnAbilityPrompt.bind( this ),
-    talentCategory: this._talentCategoryPrompt.bind( this ),
+    learnableKnack:     this._learnableKnackPrompt.bind( this ),
+    learnKnack:         this._learnKnackPrompt.bind( this ),
+    lpIncrease:         this._lpIncreasePrompt.bind( this ),
+    learnAbility:       this._learnAbilityPrompt.bind( this ),
+    talentCategory:     this._talentCategoryPrompt.bind( this ),
   };
 
   async _learnAbilityPrompt() {
@@ -406,7 +407,7 @@ class ItemPromptFactory extends PromptFactory {
       {
         render:             { requirements: true },
         writtenRules:       this.document?.system?.increaseRules,
-        requirementGroups: this.document?.system?.increaseValidationData ?? {},
+        requirementGroups:  this.document?.system?.increaseValidationData ?? {},
       },
     );
 
@@ -464,24 +465,58 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
-  async _learnKnackPrompt() {
+  async _learnableKnackPrompt() {
     const buttons = await this._getChildKnacks();
-
-    const noAbilityButton = this.constructor.cancelButton;
-    noAbilityButton.label = "ED.Dialogs.Buttons.noAbility";
-    buttons.push( noAbilityButton );
 
     return DialogClass.wait( {
       rejectClose: false,
-      id:          "jump-up-prompt",
+      id:          "learn-knack-prompt",
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "learn-knack-prompt" ],
       window:      {
-        title:       "ED.Dialogs.Title.learnKnack",
+        title:       "ED.Dialogs.Title.learnKnacks",
         minimizable: false
       },
       modal:   false,
       buttons: buttons
+    } );
+  }
+
+  async _learnKnackPrompt() {
+    if ( !this.document.system.hasMixin( LearnableTemplate ) ) {
+      throw new Error( "Item must be a subclass of LearnableTemplate to use this prompt." );
+    }
+
+    const validationTemplate = "systems/ed4e/templates/advancement/advancement-requirements.hbs";
+    const content = await renderTemplate(
+      validationTemplate,
+      {
+        render:             { requirements: true },
+        writtenRules:       this.document?.system?.learnKnackRules,
+        requirementGroups:  this.document?.system?.learnKnackValidationData ?? {},
+      },
+    );
+
+    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.learnKnack", {
+      knackName: this.document.name,
+    } );
+
+    return DialogClass.wait( {
+      id:       "learn-knack-prompt",
+      uniqueId: String( ++globalThis._appId ),
+      classes:  [ "earthdawn4e", "learn-knack-prompt" ],
+      window:   {
+        title:       titleFlavor,
+        minimizable: false
+      },
+      modal:   false,
+      content,
+      buttons: [
+        this.constructor.freeButton,
+        this.constructor.spendLpButton,
+        this.constructor.cancelButton
+      ],
+      rejectClose: false,
     } );
   }
 

@@ -36,24 +36,11 @@ export default class ItemEd extends Item {
     }
   }
 
-  async learnKnack( sourceTalent ) {
-    const knackToLearn = await this.getPrompt( "learnKnack" );
-    
-    console.log( "knackToLearn", knackToLearn );
-    const actor = this.parent;
-    const createData = {
-      "name": knackToLearn.name,
-      "type": "knack",
-      "data": {
-        "system": {
-          "knack": {
-            "source": sourceTalent.id
-          },
-        },
-      },
-    };
+  async learnKnack( ) {
+    const knackToLearnUuid = await this.getPrompt( "learnableKnack" );
+    const knackToLearn = await fromUuid( knackToLearnUuid );
 
-    return this.learn( actor, this, createData );
+    return knackToLearn;
   }
 
 

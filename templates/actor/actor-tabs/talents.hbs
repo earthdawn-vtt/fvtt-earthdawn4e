@@ -19,10 +19,12 @@
             </div>
             <div>
                 {{#each (ed-getTalentCategory actor.itemTypes.talent "discipline") as |talent i|}}
+  {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+
+{{/each}}
+                <hr>
+                {{#each actor.itemTypes.knackAbility}}
                         {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-                        {{!--#each (getSourceAbility talent actor.itemTypes.knackAbility) as |knack id|}}
-                        {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-                        {{/each--}}
                 {{/each}}
             </div>
         </div> 

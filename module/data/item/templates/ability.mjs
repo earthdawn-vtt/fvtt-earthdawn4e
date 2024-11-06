@@ -196,23 +196,67 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     }
 
     let learn = "learn";
+    const knackTypes = [ "knackAbility", "knackManeuver", "knackKarma" ];
     if ( item.system.increasable ) {
       const promptFactory = PromptFactory.fromDocument( item );
       learn = await promptFactory.getPrompt( "learnAbility" );
     }
-
     if ( !learn || learn === "cancel" || learn === "close" ) return;
 
     const itemData = foundry.utils.mergeObject(
       item.toObject(),
       foundry.utils.expandObject( createData ),
     );
-    if ( !createData?.system?.level ) itemData.system.level = 0;
-    const learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
 
-    if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.increase();
+    if ( !createData?.system?.level ) itemData.system.level ||= 0;
+    if ( knackTypes.includes( item.type ) ) {
+      itemData.system.sourceTalentUuid = createData.talentUuid;
+    }
+    const learnedItem = await Item.create( itemData, {parent: actor} );
 
+    if ( learnedItem && learn === "learn" && item.system.increasable ) {
+      await learnedItem.system.increase();
+    } else if ( learnedItem && learn === "learn" && knackTypes.includes( item.type ) ) {
+      await learnedItem.system.learnKnackTransaction();
+    }
+  
     return learnedItem;
+  }
+
+  async learnKnackTransaction() {
+    if ( !this.isActorEmbedded ) return;
+
+    const promptFactory = PromptFactory.fromDocument( this.parent );
+    const spendLp = await promptFactory.getPrompt( "learnKnack" );
+
+    if ( !spendLp || spendLp === "cancel" || spendLp === "close" ) return;
+
+    let legendPointCost = 0;
+    if ( spendLp === "spendLp" ) {
+      if ( this.parent.system.lpCost > 0 ) {
+        legendPointCost = this.parent.system.lpCost;
+      } else {
+        legendPointCost = ED4E.legendPointsCost[
+          this.parent.system.minLevel
+        ];
+      }
+    }
+
+    const updatedActor = await this.parent.actor.addLpTransaction(
+      "spendings",
+      LpSpendingTransactionData.dataFromLevelItem(
+        this.parent,
+        spendLp === "spendLp" ? legendPointCost : 0,
+        this.lpSpendingDescription,
+      ),
+    );
+
+    if ( foundry.utils.isEmpty( updatedActor ) )
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+      );
+
+    return this.parent;
   }
 
   /* -------------------------------------------- */

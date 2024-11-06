@@ -59,6 +59,7 @@ export default class TalentData extends AbilityTemplate.mixin(
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {
+            // shall be fixed with issue #1109
             // required:        true,
             // nullable:        false,
             // validate:        ( value, options ) => {
@@ -79,6 +80,7 @@ export default class TalentData extends AbilityTemplate.mixin(
         ),
         learned:   new fields.SetField(
           new fields.DocumentUUIDField( {
+            // shall be fixed with issue #1109
             // required:        true,
             // nullable:        false,
             // validate:        ( value, options ) => {

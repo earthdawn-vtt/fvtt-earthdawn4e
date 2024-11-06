@@ -15,16 +15,18 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceTalentUuid: new fields.DocumentUUIDField( {
-        required: false,
-        nullable: true,
-        trim:     true,
-        blank:    false,
-        validate: ( value, options ) => {
-          if ( fromUuidSync( value, {strict: false} )?.type !== "talent" ) return false;
-          return undefined; // undefined means do further validation
-        },
-        validationError: "must be of type 'talent'",
+      // shall be fixed with issue #1109
+      // sourceTalentUuid: new fields.DocumentUUIDField( {
+      //   required: false,
+      //   nullable: true,
+      //   trim:     true,
+      //   blank:    false,
+      //   validate: ( value, options ) => {
+      //     if ( fromUuidSync( value, {strict: false} )?.type !== "talent" ) return false;
+      //     return undefined; // undefined means do further validation
+      //   },
+      //   validationError: "must be of type 'talent'",
+      sourceTalentUuid: new fields.StringField( {
         label:           this.labelKey( "Knack.sourceTalentUuid" ),
         hint:            this.hintKey( "Knack.sourceTalentUuid" ),
       } ),
