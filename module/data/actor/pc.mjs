@@ -138,6 +138,22 @@ export default class PcData extends NamegiverTemplate {
       ...spellDocuments
     ] );
 
+    const disciplineAfterCreation = newActor.items.filter( item => item.type === "discipline" )[0];
+    if ( disciplineAfterCreation ) {
+      const newActorTalents = newActor.items.filter( item => item.type === "talent" ); 
+      for ( const talent of newActorTalents ) {
+        if ( talent.system.source.class === classDocument.uuid ) {
+          await talent.update( { 
+            "system.source.class":   disciplineAfterCreation.uuid,
+          } );
+          await talent.update( { 
+            "system.source.atLevel":   1,
+          } );
+
+        }
+      }
+    }
+    console.log( "newActor", newActor );
     const actorApp = newActor.sheet.render( true, {focus: true} );
     // we have to wait until the app is rendered to activate a tab
     requestAnimationFrame( () => actorApp.activateTab( "actor-notes-tab" ) );
