@@ -18,14 +18,14 @@ export default class QuestorData extends ClassTemplate.mixin(
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       questorDevotion: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-        validate: ( value, options ) => {
-          const item = fromUuidSync( value, {strict: false} );
-          if ( item.system?.edid !== game.settings.get( "ed4e", "edidQuestorDevotion" ) ) return false;
-          return undefined;
-        },
+        // required: true,
+        // nullable: true,
+        // type:     "Item",
+        // validate: ( value, options ) => {
+        //   const item = fromUuidSync( value, {strict: false} );
+        //   if ( item.system?.edid !== game.settings.get( "ed4e", "edidQuestorDevotion" ) ) return false;
+        //   return undefined;
+        // },
         validationError: "must be a questor talent with the questor edId.",
         label:           this.labelKey( "questorDevotion" ),
         hint:            this.hintKey( "questorDevotion" ),
@@ -76,7 +76,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   }
 
   /** @inheritDoc */
-  async increase() {
+  async increaseQuestorDevotion() {
     if ( !this.isActorEmbedded ) return;
 
     const promptFactory = PromptFactory.fromDocument( this.parent );

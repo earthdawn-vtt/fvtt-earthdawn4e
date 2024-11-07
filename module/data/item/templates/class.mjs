@@ -3,6 +3,11 @@ import AdvancementData from "../../advancement/base-advancement.mjs";
 import LpIncreaseTemplate from "./lp-increase.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import ClassAdvancementDialog from "../../../applications/advancement/class-advancement.mjs";
+import { createContentLink } from "../../../utils.mjs";
+import PromptFactory from "../../../applications/global/prompt-factory.mjs";
+import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
+
+const { DialogV2 } = foundry.applications.api;
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
@@ -184,6 +189,68 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     for ( const ability of freeAbilities ) {
       await ability.update( { "system.level": nextLevel } );
     }
+
+    if ( this.parent.type === "questor" ) {
+      const questorDevotion = await fromUuid( this.questorDevotion );
+      if ( !questorDevotion ) return this.parent;
+
+      const content =  `
+        <p>
+          ${game.i18n.format( "ED.Dialogs.Legend.increaseQuestorDevotionPrompt" )}
+        </p>
+        <p>
+          ${createContentLink( questorDevotion.uuid, questorDevotion.name )}
+        </p>
+      `;
+      const increaseDevotion = await DialogV2.confirm( {
+        rejectClose: false,
+        content:     await TextEditor.enrichHTML( content ),
+      } );
+      if ( increaseDevotion ) {
+        const questorDevotionUpdate = await this.increaseDevotion( questorDevotion );
+        console.log( questorDevotionUpdate );
+      }
+    }
+  }
+
+  async increaseDevotion( questorDevotion ) {
+    if ( !this.isActorEmbedded ) return;
+
+    const promptFactory = PromptFactory.fromDocument( questorDevotion );
+    const spendLp = await promptFactory.getPrompt( "lpIncrease" );
+
+    if ( !spendLp
+      || spendLp === "cancel"
+      || spendLp === "close" ) return;
+
+    const currentLevel = questorDevotion.system.level;
+
+    const updatedItem = await questorDevotion.update( {
+      "system.level": currentLevel + 1,
+    } );
+
+    if ( foundry.utils.isEmpty( updatedItem ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    const updatedActor = await this.parent.parent.addLpTransaction(
+      "spendings",
+      LpSpendingTransactionData.dataFromLevelItem(
+        questorDevotion,
+        spendLp === "spendLp" ? this.requiredLpForIncrease : 0,
+        this.lpSpendingDescription,
+      ),
+    );
+
+    if ( foundry.utils.isEmpty( updatedActor ) )
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+      );
+
+    return this.parent;
   }
 
   /* -------------------------------------------- */
