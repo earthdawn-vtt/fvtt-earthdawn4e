@@ -107,6 +107,16 @@ export default class PromptFactory {
     };
   }
 
+  static get chooseNoDisciplineButton() {
+    return {
+      action:  "noDiscipline",
+      label:   "ED.Dialogs.Buttons.noDiscipline",
+      icon:    "",
+      class:   "button-noDiscipline",
+      default: false
+    };
+  }
+
   /**
    * Creates an instance of the appropriate factory class based on the document type.
    * @param {object} document - The document object.
@@ -131,7 +141,6 @@ export default class PromptFactory {
   async getPrompt( type ) {
     return this._promptTypeMapping[type]();
   }
-
 }
 
 class ActorPromptFactory extends PromptFactory {
@@ -306,19 +315,10 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   async _chooseDisciplinePrompt() {
+    
+    const chooseNoDisciplineButton = this.constructor.chooseNoDisciplineButton;
     const buttons = await this._getItemButtons( this.document.disciplines, "type" );
-    buttons.push(
-      {
-        action:  "noDiscipline",
-        label:   "ED.Dialogs.Buttons.noDiscipline",
-        icon:    "",
-        class:   "button-noDiscipline",
-        default: false
-      }
-    );
-
-    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.chooseDiscipline", {
-    } );
+    buttons.push( chooseNoDisciplineButton );
 
     return DialogClass.wait( {
       rejectClose: false,
@@ -326,7 +326,7 @@ class ActorPromptFactory extends PromptFactory {
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
-        title:       titleFlavor,
+        title:       "ED.Dialogs.Title.chooseDiscipline",
         minimizable: false
       },
       modal:   false,
@@ -357,7 +357,6 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-
     chooseTier:     this._chooseTierPrompt.bind( this ),
     lpIncrease:     this._lpIncreasePrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
@@ -480,10 +479,11 @@ class ItemPromptFactory extends PromptFactory {
 
   async _talentCategoryPrompt() {
 
-    const versatilityId = game.settings.get( "ed4e", "edidVersatility" );
-    const actor = this.document.actor;
+    const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
+    
     let category = ED4E.talentCategory;
-    if ( actor.items.filter( item => item.system.edid === versatilityId ).length === 0 ) {
+    const versatility = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
+    if ( !versatility ) {
       if ( typeof category === "object" && category !== null ) {
         category = Object.fromEntries(
           Object.entries( category ).filter( ( [ key, value ] ) => key !== "versatility" )

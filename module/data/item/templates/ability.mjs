@@ -228,8 +228,8 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       foundry.utils.expandObject( createData ),
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
-    const learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
-
+    let learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+    const learnedItemData = learnedItem;
     let category = null;
     if ( item.type === "talent" ) {
       // assign the talent category
@@ -242,23 +242,20 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       const discipline = await fromUuid( disciplineUuid );
       const learnedAt = discipline?.system.level;
 
-      const updateData = {
-        system: {},
-      };
-      if ( category ) updateData.system.talentCategory = category;
-      if ( learnedAt >= 0 ) updateData.system.source = {
-        class:   discipline.uuid,
-        atLevel: learnedAt,
-      };
+      await learnedItem.update( {
+        "system.talentCategory":        category,
+        "system.source.class":          discipline ? discipline.uuid : null,
+        "system.source.atLevel":        learnedAt ? learnedAt : null,
+      } );
     }
 
     if ( !createData?.system?.source.class ) {
-      if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.chooseTier();
+      if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItemData.system.chooseTier();
     }
 
-    if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.increase();
+    if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItemData.system.increase();
 
-    return learnedItem;
+    return learnedItemData;
   }
 
   /* -------------------------------------------- */
