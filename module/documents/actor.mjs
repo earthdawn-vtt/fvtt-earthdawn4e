@@ -72,7 +72,7 @@ export default class ActorEd extends Actor {
     return this.disciplines.reduce( ( highest, discipline ) => {
       if ( !highest || discipline.system.level > highest.system.level ) return discipline;
       return highest;
-    }, null );
+    }, undefined );
   }
 
   /**

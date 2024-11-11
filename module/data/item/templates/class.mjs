@@ -172,9 +172,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     // TODO: activate permanent effects immediately
 
     // increase resource step of the discipline
-    const highestClass = this.parentActor.highestDiscipline;
+    const highestDiscipline = this.parentActor.highestDiscipline;
     
-    if ( this.parent.type === "discipline" && this.parent.id === highestClass.id ) {
+    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
       const resourceStep = nextLevelData.resourceStep;
       await this.parentActor.update( { "system.karma.step": resourceStep } );
     } else if ( this.parent.type === "questor" ) {
