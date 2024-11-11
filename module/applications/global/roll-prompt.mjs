@@ -56,6 +56,10 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     uniqueId: String( ++globalThis._appId ),
     classes:  [ "earthdawn4e", "roll-prompt" ],
     tag:      "form",
+    position: {
+      width:  "auto",
+      height: "auto",
+    },
     window:   {
       frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
@@ -82,11 +86,11 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
       id:       "-base-input",
       classes:  [ "base-input" ],
     },
-    "other-tab": {
-      template: "systems/ed4e/templates/placeholder.hbs",
-      id:       "-other-input",
-      classes:  [ "other-input" ],
-    },
+    // "other-tab": {
+    //   template: "systems/ed4e/templates/placeholder.hbs",
+    //   id:       "-other-input",
+    //   classes:  [ "other-input" ],
+    // },
     footer: {
       template: "templates/generic/form-footer.hbs",
       id:       "-footer",

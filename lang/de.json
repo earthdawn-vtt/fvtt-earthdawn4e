@@ -850,22 +850,23 @@
         "legendPoints": "Legendenpunkte"
       },
       "Buttons": {
-        "add": "Hinzufügen",
-        "cancel": "Abbrechen",
-        "close": "Schließen",
-        "continue": "Weiter",
-        "free": "Umsonst",
-        "learn": "Lernen",
-        "learnSpellPatterncraftTest": "Lernen durch Struktur Verstehen",
-        "nightRest": "Vollständige Rast",
+        "add":                                              "Hinzufügen",
+        "cancel":                                           "Abbrechen",
+        "close":                                            "Schließen",
+        "continue":                                         "Weiter",
+        "free":                                             "Umsonst",
+        "learn":                                            "Lernen",
+        "learnSpellPatterncraftTest":                       "Lernen durch Struktur Verstehen",
+        "nightRest":                                        "Vollständige Rast",
         "noAbilityDex":                                     "Geschicklichkeit",
         "noAbilityStr":                                     "Stärke",
-        "recoverStun": "Betäubungsschaden Erholungsprobe",
-        "recovery": "Erholungsprobe",
-        "save": "Speichern",
-        "spendLp": "Legendenpunkte ausgeben",
-        "takeDamage": "Schaden nehmen",
-        "teacherSpellcasting": "Spruchzauberei der Lehrenden"
+        "recoverStun":                                      "Betäubungsschaden Erholungsprobe",
+        "recovery":                                         "Erholungsprobe",
+        "roll":                                             "Würfeln",               
+        "save":                                             "Speichern",
+        "spendLp":                                          "Legendenpunkte ausgeben",
+        "takeDamage":                                       "Schaden nehmen",
+        "teacherSpellcasting":                              "Spruchzauberei der Lehrenden"
       },
       "Errors": {
         "noLp": "Keine Legendenpunkte angegeben!"
@@ -914,6 +915,22 @@
         "questorDevotionNotFound": "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})",
         "spendLp": "Legendenpunkte ausgeben",
         "writtenRules": "Regeln"
+      },
+      "RollPrompt": {
+        "step":                                               "Stufe",
+        "modifier":                                           "Modifikator",    
+        "karma":                                              "Karma",
+        "devotion":                                           "Weihepunkt",
+        "karmaStep":                                          "Karma Stufe",  
+        "devotionStep":                                       "Weihepunkt Stufe",
+        "difficulty":                                         "Schwierigkeit",
+        "strain":                                             "Überanstrengung",
+        "karmaDice":                                          "Karma Würfel",
+        "devotionDice":                                       "Weihepunkt Würfel"
+      },
+      "Tabs": {
+        "rollPromptBaseTab":                                  "Basis Einstellungen",
+        "rollPromptOtherTab":                                 "Weitere Einstellungen"
       },
       "Title": {
         "classAdvancement":                                   "Rang- und Kreisaufstieg",
