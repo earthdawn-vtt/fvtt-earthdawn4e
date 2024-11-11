@@ -9,24 +9,6 @@ export default function registerSystemSettings() {
   const fields = foundry.data.fields;
 
   /* -------------------------------------------------------------------------------- */
-  /*                               other settings                                     */
-  /* -------------------------------------------------------------------------------- */
-
-
-  /**
-   * Split Talents is used to divide talents by category or not.
-   * @userFunction                UF_Settings-chooseTalentsSplitOption
-   */
-  game.settings.register( "ed4e", "talentsSplit", {
-    name:    "ED.Settings.talentsSplit",
-    hint:    "ED.Settings.talentsSplitHint",
-    scope:   "world",
-    config:  true,
-    default: true,
-    type:    Boolean
-  } );
-
-  /* -------------------------------------------------------------------------------- */
   /*                                      ED-IDs                                      */
   /* -------------------------------------------------------------------------------- */
 
@@ -143,7 +125,7 @@ export default function registerSystemSettings() {
   } );
 
   /* -------------------------------------------------------------------------------- */
-  /*                                  owned Items                                     */
+  /*                                  OWNED ITEMS                                     */
   /* -------------------------------------------------------------------------------- */
 
   /**
@@ -157,40 +139,6 @@ export default function registerSystemSettings() {
     config:  true,
     type:    Boolean,
     default: true,
-  } );
-
-  /* -------------------------------------------------------------------------------- */
-  /*                                  DARK MODE                                       */
-  /* -------------------------------------------------------------------------------- */
-
-  // Dark Mode settings Header
-  // game.settings.register( "ed4e", "darkModeHeader", {
-  //     name: "ED.Settings.DarkMode.darkModeHeader",
-  //     config: true,
-  // } );
-
-  /**
-   * dark mode. Css adjustements are located in the dark-theme.less file.
-   */
-  game.settings.register( "ed4e", "darkMode", {
-    name:    "ED.Settings.DarkMode.darkMode",
-    hint:    "ED.Settings.DarkMode.hint",
-    scope:   "client",
-    config:  true,
-    default: 1,
-    type:    Number,
-    range:   {
-      min:  1,
-      max:  10,
-      step: 1
-    },
-    onChange: async( val ) => {
-      if ( val > 1 ) {
-        $( ":root" ).addClass( "dark-theme" );
-      } else {
-        $( ":root" ).removeClass( "dark-theme" );
-      }
-    }
   } );
 
   /* -------------------------------------------------------------------------------- */
@@ -419,10 +367,15 @@ export default function registerSystemSettings() {
   /*                                GAME MECHANICS                                    */
   /* -------------------------------------------------------------------------------- */
 
-  /**
-   * Languages used in the game.
-   * @userFunction                UF_Settings-mechanicsLanguages
-   */
+  // Game Mechanics settings Header
+  /*
+  game.settings.register( "ed4e", "loreHeader", {
+      name: "ED.Settings.Lore.loreHeader",
+      config: true,
+  } );
+  */
+
+  // Languages
   game.settings.register( "ed4e", "languages", {
     name:   "ED.Settings.Mechanics.languages",
     hint:   "ED.Settings.Mechanics.languagesHint",
@@ -455,6 +408,35 @@ export default function registerSystemSettings() {
         initial:  Object.values( ED4E.spellcastingTypes ),
       }
     )
+  } );
+
+  // Split Talents
+  game.settings.register( "ed4e", "talentsSplit", {
+    name:    "ED.Settings.talentsSplit",
+    hint:    "ED.Settings.talentsSplitHint",
+    scope:   "world",
+    config:  true,
+    default: true,
+    type:    Boolean
+  } );
+
+  // Minimum difficulty for tests
+  game.settings.register( "ed4e", "minimumDifficulty", {
+    name:    "ED.Settings.GameMechanics.minimumDifficulty",
+    hint:    "ED.Settings.GameMechanics.minimumDifficultyHint",
+    scope:   "world",
+    config:  true,
+    default: 2,
+    type:    new fields.NumberField( {
+      required: true,
+      nullable: false,
+      min:      0,
+      initial:  2,
+      step:     1,
+      integer:  true,
+      label:    "ED.Settings.GameMechanics.minimumDifficulty",
+      hint:     "ED.Settings.GameMechanics.minimumDifficultyHint",
+    } )
   } );
 
   /* -------------------------------------------------------------------------------- */
