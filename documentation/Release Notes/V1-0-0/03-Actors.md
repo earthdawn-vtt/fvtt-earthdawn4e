@@ -20,6 +20,21 @@ All actors share the same sheet set up. The image on the top left, next to Chara
 
 ### Actor Sheet Tabs
 
+### Talents, Skills and Devotion Tabs
+
+Talents are the main ability type in Earthdawn, next to skills and devotions. the card- or list view offers the following information:
+- image (if it is a rollable ability, it will show a turning dice on hover and a black dice to roll. otherwise if it still can be used and might cost strain, three blood drops will be visibile instead. If the ability is neither (spell matrix for example) it will just be the image)
+- Name (clicking on the name will show the description beneath the ability, this can be hidden and shown as desired)
+- Action
+- Rank
+- Step (final step combining thread bonuses, attribute, rank etc.)
+- Strain
+- Attribute (abbreviation for the related attribute)
+- control icons (increase rank - triggers Lp tracking, prompt to chat (not jet implemented), delete, edit)
+
+editing the ability will open up the standard ability sheet
+
+
 #### Information:
 
 ##### Editor:
