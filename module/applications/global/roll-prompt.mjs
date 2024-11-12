@@ -25,7 +25,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
 
   /**
    * Wait for dialog to be resolved.
-   * @param edRollOptions             The roll options that are updated by the prompt.
+   * @param {object} edRollOptions             The roll options that are updated by the prompt.
    * @param {object} [options]        Options to pass to the constructor.
    * @returns {Promise<EdRoll|null>}  Created roll instance or `null`.
    */
