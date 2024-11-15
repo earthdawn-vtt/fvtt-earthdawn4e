@@ -41,6 +41,7 @@ export default [ ...compat.extends( "eslint:recommended", "plugin:jsdoc/recommen
       Dialog:                 false,
       DiceTerm:               false,
       Die:                    false,
+      DurationData:           false,
       EdRoll:                 false,
       Folder:                 false,
       FormApplication:        false,
