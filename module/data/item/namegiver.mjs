@@ -1,7 +1,8 @@
 import { ItemDataModel } from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import MovementFields from "../actor/templates/movement.mjs";
-import { MappingField } from "../fields.mjs";
+
+import MappingField from "../fields/mapping-field.mjs";
 
 /**
  * Data model template with information on namegiver items.

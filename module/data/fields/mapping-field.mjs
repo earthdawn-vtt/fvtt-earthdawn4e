@@ -1,103 +1,3 @@
-import ED4E from "../config.mjs";
-import { slugify, validateEdid } from "../utils.mjs";
-import { getLocalizeKey } from "./abstract.mjs";
-
-/**
- * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
- * A special case string field that represents a strictly slugged string.
- */
-export class EdIdField extends foundry.data.fields.StringField {
-
-  /** @inheritdoc */
-  static get _defaults() {
-    return foundry.utils.mergeObject( super._defaults, {
-      initial:  ED4E.reserved_edid.DEFAULT,
-      blank:    false,
-      required: true,
-      label:    getLocalizeKey( "Item", false, "edid" ),
-      hints:    getLocalizeKey( "Item", true, "edid" ),
-    } );
-  }
-
-  /**
-   * @override
-   */
-  clean( value, options ) {
-    const slug = slugify( value );
-    // only return slug if non-empty so empty slugs will be shown as errors
-    return super.clean( slug ? slug : value, options );
-  }
-
-  /**
-   * @override
-   */
-  _validateType( value, _ ) {
-    return validateEdid( value );
-  }
-}
-
-/*
-* Field implementations are taken from the [DnD5e system]{@link https://github.com/foundryvtt/dnd5e}
-*/
-
-/**
- * Special case StringField that includes automatic validation for identifiers.
- */
-export class IdentifierField extends foundry.data.fields.StringField {
-  /**
-   * @override
-   */
-  _validateType( value ) {
-    if ( !ed4e.utils.validators.isValidIdentifier( value ) ) {
-      throw new Error( game.i18n.localize( "ED.Errors.IdentifierError" ) );
-    }
-  }
-}
-
-/* -------------------------------------------- */
-
-/**
- * @typedef {StringFieldOptions} FormulaFieldOptions
- * @property {boolean} [deterministic=false]  Is this formula not allowed to have dice values?
- */
-
-/**
- * Special case StringField which represents a formula.
- * @param {FormulaFieldOptions} [options={}]  Options which configure the behavior of the field.
- * @property {boolean} [deterministic=false]  Is this formula not allowed to have dice values?
- */
-export class FormulaField extends foundry.data.fields.StringField {
-
-  /** @inheritdoc */
-  static get _defaults() {
-    return foundry.utils.mergeObject( super._defaults, {
-      deterministic: false
-    } );
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  _validateType( value ) {
-    if ( this.options.deterministic ) {
-      const roll = new Roll( value );
-      if ( !roll.isDeterministic ) throw new Error( "must not contain dice terms" );
-      Roll.safeEval( roll.formula );
-    }
-    else Roll.validate( value );
-    super._validateType( value );
-  }
-}
-
-/* -------------------------------------------- */
-
-export class DatetimeField extends foundry.data.fields.DataField {
-  // TODO: implement
-}
-
-/* -------------------------------------------- */
-
-
 /**
  * @callback MappingFieldInitialValueBuilder
  * @param {string} key       The key within the object where this new value is being generated.
@@ -124,7 +24,7 @@ export class DatetimeField extends foundry.data.fields.DataField {
  * @property {boolean} [initialKeysOnly=false]  Should the keys in the initialized data be limited to the keys provided
  *                                              by `options.initialKeys`?
  */
-export class MappingField extends foundry.data.fields.ObjectField {
+export default class MappingField extends foundry.data.fields.ObjectField {
   constructor( model, options ) {
     if ( !( model instanceof foundry.data.fields.DataField ) ) {
       throw new Error( "MappingField must have a DataField as its contained element" );
@@ -147,7 +47,7 @@ export class MappingField extends foundry.data.fields.ObjectField {
     return foundry.utils.mergeObject( super._defaults, {
       initialKeys:     null,
       initialValue:    null,
-      initialKeysOnly: false,
+      initialKeysOnly: false
     } );
   }
 
@@ -164,7 +64,7 @@ export class MappingField extends foundry.data.fields.ObjectField {
       // (the irony of the fact that this comment now make the code more unreadable than just using curly braces is not lost on me ;) )
       // see https://github.com/eslint/eslint/issues/5150
       /* eslint-disable */
-      ([k, v]) => (value[k] = this.model.clean(v, options)),
+      ( [ k, v ] ) => ( value[k] = this.model.clean( v, options ) )
       /* eslint-enable */
     );
     return value;
@@ -210,7 +110,7 @@ export class MappingField extends foundry.data.fields.ObjectField {
     if ( !foundry.utils.isEmpty( errors ) ) {
       throw new foundry.data.validation.DataModelValidationError(
         Object.entries( errors ).map(
-          ( [ k, v ] ) => `\n${k}: ${errors[k].toString()}`
+          ( [ k, v ] ) => `\n${ k }: ${ errors[k].toString() }`
         ).join( "" )
       );
     }
@@ -240,7 +140,7 @@ export class MappingField extends foundry.data.fields.ObjectField {
    */
   initialize( value, model, options = {} ) {
     if ( !value ) return value;
-    const obj ={};
+    const obj = {};
     const initialKeys = ( this.initialKeys instanceof Array ) ? this.initialKeys : Object.keys( this.initialKeys ?? {} );
     const keys = this.initialKeysOnly ? initialKeys : Object.keys( value );
     for ( const key of keys ) {

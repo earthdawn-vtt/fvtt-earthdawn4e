@@ -1,6 +1,6 @@
 import { ActorDataModel } from "../../abstract.mjs";
-import { MappingField } from "../../fields.mjs";
 import ActorDescriptionTemplate from "./description.mjs";
+import MappingField from "../../fields/mapping-field.mjs";
 
 /**
  * A template for all actors that share the common template.

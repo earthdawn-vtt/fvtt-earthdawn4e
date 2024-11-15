@@ -166,7 +166,7 @@ export default [ ...compat.extends( "eslint:recommended", "plugin:jsdoc/recommen
     "max-lines":                    "off",
     "max-lines-per-function":       "off",
     "max-nested-callbacks":         [ "error", 3 ],
-    "max-params":                   [ "warn", 3 ],
+    "max-params":                   [ "warn", 5 ],
     "max-statements":               "off",
     "max-statements-per-line":      "off",
     "multiline-comment-style":      "off",

@@ -1,7 +1,8 @@
 import { SparseDataModel } from "../abstract.mjs";
-import { IdentifierField, MappingField } from "../fields.mjs";
 import ED4E from "../../config.mjs";
 import AbilityTemplate from "../item/templates/ability.mjs";
+import IdentifierField from "../fields/identifier-field.mjs";
+import MappingField from "../fields/mapping-field.mjs";
 
 /**
  * A level in an advancement.
