@@ -1,14 +1,14 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import MagicTemplate from "./templates/magic-item.mjs";
 import LearnableTemplate from "./templates/learnable.mjs";
 import ED4E from "../../config.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 
 /**
  * Data model template with information on Spell items.
  * @mixes LearnableTemplate
  */
-export default class SpellData extends MagicTemplate.mixin(
+export default class SpellData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
   LearnableTemplate
 )  {

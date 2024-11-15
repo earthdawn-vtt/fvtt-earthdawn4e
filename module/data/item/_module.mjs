@@ -63,7 +63,6 @@ export {default as ClassTemplate} from "./templates/class.mjs";
 export {default as ItemDescriptionTemplate} from "./templates/item-description.mjs";
 export {default as KnackTemplate} from "./templates/knack-item.mjs";
 export {default as LpIncreaseTemplate} from "./templates/lp-increase.mjs";
-export {default as MagicTemplate} from "./templates/magic-item.mjs";
 export {default as NoneNamegiverPowerData} from "./templates/none-namegiver-power.mjs";
 export {default as PhysicalItemTemplate} from "./templates/physical-item.mjs";
 export {default as TargetTemplate} from "./templates/targeting.mjs";
