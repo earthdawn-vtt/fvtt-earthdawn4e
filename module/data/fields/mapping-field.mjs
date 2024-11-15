@@ -48,7 +48,7 @@ export default class MappingField extends foundry.data.fields.ObjectField {
     return foundry.utils.mergeObject( super._defaults, {
       initialKeys:     null,
       initialValue:    null,
-      initialKeysOnly: false
+      initialKeysOnly: false,
     } );
   }
 
