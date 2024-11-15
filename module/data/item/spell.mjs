@@ -99,6 +99,8 @@ export default class SpellData extends ItemDataModel.mixin(
         required: true,
         nullable: false,
         initial:  [],
+        label:    this.labelKey( "keywords" ),
+        hint:     this.hintKey( "keywords" ),
       } ),
       element: new SchemaField( {
         type: new StringField( {

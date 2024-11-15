@@ -12,58 +12,6 @@ const { SchemaField, StringField } = foundry.data.fields;
 export default class DurationField extends SchemaField {
   constructor( fields={}, options={} ) {
     const newFields = {
-      /* value:   new SchemaField( {
-        type: new StringField( {
-          required: true,
-          nullable: false,
-          blank:    false,
-          trim:     true,
-          choices:  ED4E.formulaValueTypes,
-          label:    "ED.Data.Fields.Labels.Duration.valueType",
-          hint:     "ED.Data.Fields.Hints.Duration.valueType",
-        } ),
-        numeric: new NumberField( {
-          required: true,
-          nullable: true,
-          initial:  0,
-          integer:  true,
-          label:    "ED.Data.Fields.Labels.Duration.numericValue",
-          hint:     "ED.Data.Fields.Hints.Duration.numericValue",
-        } ),
-        attribute: new StringField( {
-          required: true,
-          nullable: true,
-          blank:    false,
-          trim:     true,
-          choices:  mapObject(
-            ED4E.attributes,
-            ( key, label ) => [ key, label["abbreviation"] ]
-          ),
-          label:    "ED.Data.Fields.Labels.Duration.attribute",
-          hint:     "ED.Data.Fields.Hints.Duration.attribute",
-        } ),
-        rank:    new DocumentUUIDField(
-          {
-            type:     "Item",
-            embedded: true,
-            validate: ( value, _ ) => {
-              if (
-                fromUuidSync( value, {strict: false} )?.system instanceof AbilityTemplate
-              ) return undefined; // undefined means do further validation
-              else return false;
-            },
-            validationError: "must be an ability",
-            label:           "ED.Data.Fields.Labels.Duration.rank",
-            hint:            "ED.Data.Fields.Hints.Duration.rank",
-          } ),
-        special: new StringField( {
-          nullable: true,
-          blank:    true,
-          trim:     false,
-          label:    "ED.Data.Fields.Labels.Duration.special",
-          hint:     "ED.Data.Fields.Hints.Duration.special",
-        } ),
-      } ), */
       value:   new FormulaField( { deterministic: true } ),
       units:   new StringField( { initial: "inst" } ),
       special: new StringField(),
@@ -108,7 +56,7 @@ export default class DurationField extends SchemaField {
   /**
    * Create duration data usable for an active effect based on this duration.
    * @this {DurationData}
-   * @returns {EffectDurationData}
+   * @returns {EffectDurationData} The duration data for an active effect.
    */
   static getEffectDuration() {
     if ( !Number.isNumeric( this.value ) ) return {};

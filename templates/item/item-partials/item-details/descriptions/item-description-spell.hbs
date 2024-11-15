@@ -1,62 +1,59 @@
 <div class="item__left--main">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
-    {{!-- Magic Type --}}
-    {{formField systemFields.magicType name="system.magicType" value=item.system.magicType localize=true}}
-    {{!-- Circle --}}
-    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
-    {{!-- Required Threads --}}
-    {{formField systemFields.threadsrequired name="system.threadsrequired" value=item.system.threadsrequired localize=true}}
-    {{!-- Weaving Difficulty --}}
-    {{formField systemFields.weavingdifficulty name="system.weavingdifficulty" value=item.system.weavingdifficulty localize=true}}
-    {{!-- Reattune Difficulty --}}
-    {{formField systemFields.reattunedifficulty name="system.reattunedifficulty" value=item.system.reattunedifficulty localize=true}}
-    {{!-- effect --}}
-    {{formField systemFields.effect name="system.effect" value=item.system.effect localize=true}}
-    {{!-- concentration --}}
-    {{formField systemFields.concentration name="system.concentration" value=item.system.concentration localize=true}}
-    {{!-- binding --}}
-    {{formField systemFields.binding name="system.binding" value=item.system.binding localize=true}}
-    {{!-- spirit --}}
-    {{formField systemFields.spirit name="system.spirit" value=item.system.spirit localize=true}}
-    {{!-- summoning --}}
-    {{formField systemFields.summoning name="system.summoning" value=item.system.summoning localize=true}}
-    {{!-- duration --}}
-    <div class="spell__duration-unit">
-        <div class="spell__duration">
-            {{formField systemFields.duration.fields.value name="system.duration.value" value=item.system.duration.value localize=true}}
-        </div>
-        <div class="spell__unit">
-            {{formInput systemFields.duration.fields.uom name="system.duration.uom" value=item.system.duration.uom}}
-        </div>
-    </div>
-    {{!-- range --}}
-    <div class="spell__range-unit">
-        <div class="spell__range">
-            {{formField systemFields.range.fields.value name="system.range.value" value=item.system.range.value localize=true}}
-        </div>
-        <div class="spell__unit">
-            {{formInput systemFields.range.fields.uom name="system.range.uom" value=item.system.range.uom}}
-        </div>
-    </div>
-    {{!-- Spell area --}}
-    <div class="spell__shape-unit">
-        <div class="spell__shape">
-            {{formField systemFields.spellArea.fields.value name="system.spellArea.value" value=item.system.spellArea.value localize=true}}
-        </div>
-        <div class="spell__unit">
-            {{formInput systemFields.spellArea.fields.uom name="system.spellArea.uom" value=item.system.spellArea.uom}}
-        </div>
-    </div>
-    {{!-- Spell Shape --}}
-    {{formField systemFields.spellArea.fields.shape name="system.spellArea.shape" value=item.system.spellArea.shape localize=true}}
-    {{!-- Spell Illusion --}}
-    {{formField systemFields.spellIllusion.fields.illusionType name="system.spellIllusion.illusionType" value=item.system.spellIllusion.illusionType localize=true}}
-    {{!-- Elemental --}}
-    {{formField systemFields.spellElement.fields.elementType name="system.spellElement.elementType" value=item.system.spellElement.elementType localize=true}}
-    {{!-- Elemental Subtype--}}
-    {{formField systemFields.spellElement.fields.elementSubtype name="system.spellElement.elementSubtype" value=item.system.spellElement.elementSubtype localize=true}}
+  <h3>{{localize "ED.Item.Header.general"}}</h3>
+  {{!-- Spellcasting Type --}}
+  {{formGroup systemFields.spellcastingType name="system.spellcastingType" value=item.system.spellcastingType localize=true}}
+  {{!-- Circle --}}
+  {{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
+  {{!-- Required Threads --}}
+  {{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
+  {{!-- Weaving Difficulty --}}
+  {{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
+  {{!-- Reattune Difficulty --}}
+  {{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+  {{!-- Spellcasting Difficulty --}}
+  {{!--formGroup systemFields.spellcastingDifficulty name="system.spellcastingDifficulty" value=item.system.spellcastingDifficulty localize=true--}}
+  {{!-- effect --}}
+  {{formGroup systemFields.effect name="system.effect" value=item.system.effect localize=true}}
+  {{!-- keywords --}}
+  {{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
+
+  {{!-- duration --}}
+  <div class="spell__duration-unit">
+      <div class="spell__duration">
+          {{formGroup systemFields.duration.fields.value name="system.duration.value" value=item.system.duration.value localize=true}}
+      </div>
+      <div class="spell__unit">
+          {{formInput systemFields.duration.fields.uom name="system.duration.uom" value=item.system.duration.uom}}
+      </div>
+  </div>
+  {{!-- range --}}
+  <div class="spell__range-unit">
+      <div class="spell__range">
+          {{formGroup systemFields.range.fields.value name="system.range.value" value=item.system.range.value localize=true}}
+      </div>
+      <div class="spell__unit">
+          {{formInput systemFields.range.fields.uom name="system.range.uom" value=item.system.range.uom}}
+      </div>
+  </div>
+  {{!-- Spell area --}}
+  <div class="spell__shape-unit">
+      <div class="spell__shape">
+          {{formGroup systemFields.spellArea.fields.value name="system.spellArea.value" value=item.system.spellArea.value localize=true}}
+      </div>
+      <div class="spell__unit">
+          {{formInput systemFields.spellArea.fields.uom name="system.spellArea.uom" value=item.system.spellArea.uom}}
+      </div>
+  </div>
+  {{!-- Spell Shape --}}
+  {{!--formField systemFields.spellArea.fields.shape name="system.spellArea.shape" value=item.system.spellArea.shape localize=true--}}
+  {{!-- Spell Illusion --}}
+  {{!--formField systemFields.spellIllusion.fields.illusionType name="system.spellIllusion.illusionType" value=item.system.spellIllusion.illusionType localize=true--}}
+  {{!-- Elemental --}}
+  {{!--formField systemFields.spellElement.fields.elementType name="system.spellElement.elementType" value=item.system.spellElement.elementType localize=true--}}
+  {{!-- Elemental Subtype--}}
+  {{!--formField systemFields.spellElement.fields.elementSubtype name="system.spellElement.elementSubtype" value=item.system.spellElement.elementSubtype localize=true--}}
 </div>
 <div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+  <h3>{{localize "ED.Item.Header.description"}}</h3>
+  {{> "systems/ed4e/templates/global/editor.hbs"}}
 </div>
