@@ -65,6 +65,17 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Returns the highest discipline of an actor
+   * @type {Item|undefined}
+   */ 
+  get highestDiscipline() {
+    return this.disciplines.reduce( ( highest, discipline ) => {
+      if ( !highest || discipline.system.level > highest.system.level ) return discipline;
+      return highest;
+    }, undefined );
+  }
+
+  /**
    * Whether this actor has more than one discipline. Returns `true` if this actor has more than one discipline, `false` otherwise
    * @type {boolean}
    */
