@@ -1,7 +1,8 @@
-import { FormulaField, MappingField } from "../fields.mjs";
 import { sum } from "../../utils.mjs";
 import getDice from "../../dice/step-tables.mjs";
 import ED4E from "../../config.mjs";
+import MappingField from "../fields/mapping-field.mjs";
+import FormulaField from "../fields/formula-field.mjs";
 
 export default class EdRollOptions extends foundry.abstract.DataModel {
   /** @inheritDoc */

@@ -1,5 +1,6 @@
 import ED4E from "./config.mjs";
-import { EdIdField } from "./data/fields.mjs";
+
+import EdIdField from "./data/fields/edid-field.mjs";
 
 /**
  * Register all the system's settings.
