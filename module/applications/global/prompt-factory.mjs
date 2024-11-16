@@ -474,9 +474,6 @@ class ItemPromptFactory extends PromptFactory {
   async _talentCategoryPrompt() {
 
     const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
-    
-    // let category = ED4E.talentCategory;
-    // const versatility = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
 
     const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
     // eslint-disable-next-line no-unused-vars
