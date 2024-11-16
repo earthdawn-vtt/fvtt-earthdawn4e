@@ -61,7 +61,7 @@ export default class ActorEd extends Actor {
    * @type {Item[]}
    */
   get disciplines() {
-    return this.items.filter( item => item.type === "discipline" );
+    return this.itemTypes.discipline;
   }
 
   /**
