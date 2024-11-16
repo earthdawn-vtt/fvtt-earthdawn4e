@@ -475,28 +475,22 @@ class ItemPromptFactory extends PromptFactory {
 
     const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
     
-    let category = ED4E.talentCategory;
-    const versatility = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
-    if ( !versatility ) {
-      if ( typeof category === "object" && category !== null ) {
-        category = Object.fromEntries(
-          Object.entries( category ).filter( ( [ key, value ] ) => key !== "versatility" )
-        );
-      } else {
-        console.error( "category is not an object" );
-      }
-    }
-    const buttons = Object.entries( category ).map(
-      ( [ key, label ] ) => {
-        return {
-          action:  key,
-          label:   label,
-          icon:    "",
-          class:   `button-${ key }`,
-          default: false
-        };
-      }
-    );
+    // let category = ED4E.talentCategory;
+    // const versatility = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
+
+    const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
+    // eslint-disable-next-line no-unused-vars
+    const { versatility, ...categoriesWithoutVersatility } = ED4E.talentCategory;
+
+    const buttons = Object.entries( versatilityItem ? ED4E.talentCategory : categoriesWithoutVersatility  ).map( ( [ key, label ] ) => {
+      return {
+        action:  key,
+        label:   label,
+        icon:    "",
+        class:   `button-${ key }`,
+        default: false
+      };
+    } );
 
     return DialogClass.wait( {
       rejectClose: false,
