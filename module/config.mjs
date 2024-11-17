@@ -767,13 +767,14 @@ ED4E.formulaValueTypes = {
  * @enum {string}
  */
 ED4E.scalarTimePeriods = {
-  turn:   "ED.Config.ScalarTimePeriods.TimeTurn",
-  round:  "ED.Config.ScalarTimePeriods.TimeRound",
-  minute: "ED.Config.ScalarTimePeriods.TimeMinute",
-  hour:   "ED.Config.ScalarTimePeriods.TimeHour",
-  day:    "ED.Config.ScalarTimePeriods.TimeDay",
-  month:  "ED.Config.ScalarTimePeriods.TimeMonth",
-  year:   "ED.Config.ScalarTimePeriods.TimeYear"
+  turn:   "ED.Config.ScalarTimePeriods.turn",
+  round:  "ED.Config.ScalarTimePeriods.round",
+  minute: "ED.Config.ScalarTimePeriods.minute",
+  hour:   "ED.Config.ScalarTimePeriods.hour",
+  day:    "ED.Config.ScalarTimePeriods.day",
+  week:   "ED.Config.ScalarTimePeriods.week",
+  month:  "ED.Config.ScalarTimePeriods.month",
+  year:   "ED.Config.ScalarTimePeriods.year"
 };
 preLocalize( "scalarTimePeriods" );
 
@@ -782,9 +783,7 @@ preLocalize( "scalarTimePeriods" );
  * @enum {string}
  */
 ED4E.permanentTimePeriods = {
-  disp: "ED.Config.PermanentTimePeriods.TimeDisp",
-  dstr: "ED.Config.PermanentTimePeriods.TimeDispTrig",
-  perm: "ED.Config.PermanentTimePeriods.TimePerm"
+  perm: "ED.Config.PermanentTimePeriods.perm"
 };
 preLocalize( "permanentTimePeriods" );
 
@@ -795,8 +794,8 @@ preLocalize( "permanentTimePeriods" );
  * @enum {string}
  */
 ED4E.specialTimePeriods = {
-  inst: "ED.Config.specialTimePeriods.TimeInst",
-  spec: "ED.Config.specialTimePeriods.Special"
+  inst: "ED.Config.SpecialTimePeriods.inst",
+  spec: "ED.Config.SpecialTimePeriods.special"
 };
 preLocalize( "specialTimePeriods" );
 

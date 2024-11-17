@@ -18,40 +18,7 @@
   {{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
 
   {{!-- duration --}}
-  <div class="spell__duration-unit">
-      <div class="spell__duration">
-          {{formGroup systemFields.duration.fields.value name="system.duration.value" value=item.system.duration.value localize=true}}
-      </div>
-      <div class="spell__unit">
-          {{formInput systemFields.duration.fields.uom name="system.duration.uom" value=item.system.duration.uom}}
-      </div>
-  </div>
-  {{!-- range --}}
-  <div class="spell__range-unit">
-      <div class="spell__range">
-          {{formGroup systemFields.range.fields.value name="system.range.value" value=item.system.range.value localize=true}}
-      </div>
-      <div class="spell__unit">
-          {{formInput systemFields.range.fields.uom name="system.range.uom" value=item.system.range.uom}}
-      </div>
-  </div>
-  {{!-- Spell area --}}
-  <div class="spell__shape-unit">
-      <div class="spell__shape">
-          {{formGroup systemFields.spellArea.fields.value name="system.spellArea.value" value=item.system.spellArea.value localize=true}}
-      </div>
-      <div class="spell__unit">
-          {{formInput systemFields.spellArea.fields.uom name="system.spellArea.uom" value=item.system.spellArea.uom}}
-      </div>
-  </div>
-  {{!-- Spell Shape --}}
-  {{!--formField systemFields.spellArea.fields.shape name="system.spellArea.shape" value=item.system.spellArea.shape localize=true--}}
-  {{!-- Spell Illusion --}}
-  {{!--formField systemFields.spellIllusion.fields.illusionType name="system.spellIllusion.illusionType" value=item.system.spellIllusion.illusionType localize=true--}}
-  {{!-- Elemental --}}
-  {{!--formField systemFields.spellElement.fields.elementType name="system.spellElement.elementType" value=item.system.spellElement.elementType localize=true--}}
-  {{!-- Elemental Subtype--}}
-  {{!--formField systemFields.spellElement.fields.elementSubtype name="system.spellElement.elementSubtype" value=item.system.spellElement.elementSubtype localize=true--}}
+  {{formGroup systemFields.duration name="system.duration" value=item.system.duration localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
   <h3>{{localize "ED.Item.Header.description"}}</h3>

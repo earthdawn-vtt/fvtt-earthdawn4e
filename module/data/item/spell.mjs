@@ -4,6 +4,7 @@ import ED4E from "../../config.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
+import DurationField from "../fields/duration-field.mjs";
 
 
 
@@ -28,8 +29,8 @@ export default class SpellData extends ItemDataModel.mixin(
         blank:    false,
         trim:     true,
         choices:  ED4E.spellcastingTypes,
-        label:    this.labelKey( "spellcastingType" ),
-        hint:     this.hintKey( "spellcastingType" ),
+        label:    this.labelKey( "Spell.spellcastingType" ),
+        hint:     this.hintKey( "Spell.spellcastingType" ),
       } ),
       level: new NumberField( {
         required: true,
@@ -38,8 +39,8 @@ export default class SpellData extends ItemDataModel.mixin(
         initial:  1,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "level" ),
-        hint:     this.hintKey( "level" ),
+        label:    this.labelKey( "Spell.level" ),
+        hint:     this.hintKey( "Spell.level" ),
       } ),
       spellDifficulty:    new SchemaField( {
         reattune: new NumberField( {
@@ -48,8 +49,8 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      ED4E.minDifficulty,
           initial:  ( data ) => { return data.weaving + 5 || ED4E.minDifficulty; },
           integer:  true,
-          label:    this.labelKey( "reattuneDifficulty" ),
-          hint:     this.hintKey( "reattuneDifficulty" ),
+          label:    this.labelKey( "Spell.reattuneDifficulty" ),
+          hint:     this.hintKey( "Spell.reattuneDifficulty" ),
         } ),
         weaving: new NumberField( {
           required: true,
@@ -57,8 +58,8 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      ED4E.minDifficulty,
           initial:  ( _ ) => { return this.parent?.parent?.fields?.level?.initial + 4 || ED4E.minDifficulty; },
           integer:  true,
-          label:    this.labelKey( "weavingDifficulty" ),
-          hint:     this.hintKey( "weavingDifficulty" ),
+          label:    this.labelKey( "Spell.weavingDifficulty" ),
+          hint:     this.hintKey( "Spell.weavingDifficulty" ),
         } ),
       } ),
       threads: new SchemaField( {
@@ -68,8 +69,8 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "spellThreadsRequired" ),
-          hint:     this.hintKey( "spellThreadsRequired" ),
+          label:    this.labelKey( "Spell.spellThreadsRequired" ),
+          hint:     this.hintKey( "Spell.spellThreadsRequired" ),
         } ),
         woven: new NumberField( {
           required: true,
@@ -77,8 +78,8 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "spellThreadsWoven" ),
-          hint:     this.hintKey( "spellThreadsWoven" ),
+          label:    this.labelKey( "Spell.spellThreadsWoven" ),
+          hint:     this.hintKey( "Spell.spellThreadsWoven" ),
         } ),
         extra: new NumberField( {} ),
       } ),
@@ -86,7 +87,8 @@ export default class SpellData extends ItemDataModel.mixin(
         required: true,
         blank:    true,
         initial:  "",
-        label:    "ED.Item.Spell.effect"
+        label:    this.labelKey( "Spell.effect" ),
+        hint:     this.hintKey( "Spell.effect" ),
       } ),
       keywords: new SetField( new StringField( {
         required: true,
@@ -94,13 +96,14 @@ export default class SpellData extends ItemDataModel.mixin(
         blank:    false,
         trim:     true,
         choices:  ED4E.spellKeywords,
-        label:    "ED.Item.Spell.keywords"
+        label:    this.labelKey( "Spell.keyword" ),
+        hint:     this.hintKey( "Spell.keyword" ),
       } ), {
         required: true,
         nullable: false,
         initial:  [],
-        label:    this.labelKey( "keywords" ),
-        hint:     this.hintKey( "keywords" ),
+        label:    this.labelKey( "Spell.keywords" ),
+        hint:     this.hintKey( "Spell.keywords" ),
       } ),
       element: new SchemaField( {
         type: new StringField( {
@@ -109,8 +112,8 @@ export default class SpellData extends ItemDataModel.mixin(
           blank:    false,
           trim:     true,
           choices:  ED4E.elements,
-          label:    this.labelKey( "spellElementType" ),
-          hint:     this.hintKey( "spellElementType" ),
+          label:    this.labelKey( "Spell.spellElementType" ),
+          hint:     this.hintKey( "Spell.spellElementType" ),
         } ),
         subtype: new StringField( {
           required: true,
@@ -122,36 +125,22 @@ export default class SpellData extends ItemDataModel.mixin(
           ).map(
             subtypes => Object.keys( subtypes )
           ).flat(),
-          label:    this.labelKey( "spellElementSubtype" ),
-          hint:     this.hintKey( "spellElementSubtype" ),
+          label:    this.labelKey( "Spell.spellElementSubtype" ),
+          hint:     this.hintKey( "Spell.spellElementSubtype" ),
         } )
       },
       {
         required: true,
         nullable: true,
-        label:    this.labelKey( "spellElement" ),
-        hint:     this.hintKey( "spellElement" ),
+        label:    this.labelKey( "Spell.spellElement" ),
+        hint:     this.hintKey( "Spell.spellElement" ),
       } ),
 
-
-      duration: new SchemaField( {
-        value: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "0",
-          label:    "ED.Item.Spell.value"
-        } ),
-        uom: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "yard",
-          label:    "ED.Item.Spell.uom"
-        } )
-      },
-      {
-        label: "ED.Item.Spell.duration"
+      duration: new DurationField( {}, {
+        label: this.labelKey( "Spell.duration" ),
+        hint:  this.hintKey( "Spell.duration" ),
       } ),
-      range: new SchemaField( {
+      range:    new SchemaField( {
         value: new StringField( {
           required: true,
           blank:    false,

@@ -295,6 +295,24 @@
         "gold":                                                 "Gold",
         "silver":                                               "Silber"
       },
+      "Elements": {
+        "air":                                                      "Luft",
+        "airElectricity":                                           "Elektrizität",
+        "earth":                                                    "Erde",
+        "earthMetal":                                               "Metall",
+        "fire":                                                     "Feuer",
+        "water":                                                    "Wasser",
+        "waterAcid":                                                "Säure",
+        "waterCold":                                                "Kälte",
+        "wood":                                                     "Holz"
+      },
+      "FormulaValueTypes": {
+        "attribute":                                            "Attribut",
+        "circle":                                               "Kreis",
+        "numeric":                                              "Zahl",
+        "rank":                                                 "Rang",
+        "special":                                              "Spezial"
+      },
       "ItemStatus": {
         "carried":                                              "Getragen",
         "equipped":                                             "Ausgerüstet",
@@ -333,6 +351,9 @@
         "lowestOfGroup": "Niedrigster der Gruppe",
         "lowestX": "Niedrigster + Ziele"
       },
+      "PermanentTimePeriods": {
+        "perm":                                                     "Permanent"
+      },
       "rollTypes": {
         "ability": "Fähigkeit",
         "attack": "Angriff",
@@ -352,12 +373,36 @@
                 "abilityStep":                                      "Fähigkeitsstufe",
                 "noHealing":                                        "Keine Heilung"
             },
+      "ScalarTimePeriods": {
+        "turn":                                                     "Zug",
+        "round":                                                    "Runde",
+        "minute":                                                   "Minute",
+        "hour":                                                     "Stunde",
+        "day":                                                      "Tag",
+        "week":                                                     "Woche",
+        "month":                                                    "Monat",
+        "year":                                                     "Jahr"
+      },
+      "SpecialTimePeriods": {
+        "inst":                                                     "Sofort",
+        "special":                                                  "Spezial"
+      },
       "spellcastingTypes": {
         "elementalism": "Elementarist",
         "illusionism": "Illusionist",
         "nethermancy": "Geisterbeschwörer",
         "shamanism": "Schamane",
         "wizardry": "Magier"
+      },
+      "SpellKeywords": {
+        "binding":                                                    "Bindung",
+        "concentration":                                              "Konzentration",
+        "fate":                                                       "Schicksal",
+        "figment":                                                    "Gebilde",
+        "illusion":                                                   "Illusion",
+        "pack":                                                       "Rudel",
+        "spirit":                                                     "Geist",
+        "summon":                                                     "Beschwörung"
       },
       "talentCategory": {
         "discipline": "Disziplin",
@@ -401,6 +446,28 @@
           }
         }
       },
+      "Fields": {
+        "Hints": {
+          "Duration": {
+            "special":                                      "Beschreibung der speziellen Dauer",
+            "unit":                                         "Die Einheit der Dauer",
+            "value":                                        "Der Wert der Dauer"
+          }
+        },
+        "Labels": {
+          "Duration": {
+            "special":                                      "Spezial",
+            "unit":                                         "Einheit",
+            "value":                                        "Wert"
+          }
+        },
+        "Options": {
+          "Duration": {
+            "groupPermanentTime":                           "Permanent",
+            "groupScalarTime":                              "Zeit"
+          }
+        }
+      },
       "General": {
         "Hints": {
           "Target": {
@@ -436,7 +503,7 @@
               "spellcasting":                           "Spruchzauberei",
               "magicType":                              "Magie Typ",
               "magic":                                  "Magie"
-            },                                  
+            },
             "talentAvailableKnacks":                        "Verfügbare Kniffe",
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
@@ -488,8 +555,8 @@
             "standardEffect":                               "Wird der Effekt des Ursprungtalentes mit ausgelöst?",
             "sourceTalentUuid":                             "Von welchem Talent stammt dieser Kniff?",
             "minLevel":                                     "welchen Rang muss das Ursprungstalent mindestens haben?",
-            "lpCost":                                       "Hat dieser Kniff abweichende LP Kosten zum Ursprungstalentrang?"  
-          },                             
+            "lpCost":                                       "Hat dieser Kniff abweichende LP Kosten zum Ursprungstalentrang?"
+          },
           "Maneuver": {
             "extraSuccesses":                               "Wie viele zusätzliche Erfolge werden benötigt?"
           },
@@ -567,37 +634,21 @@
             "salvoCost":                                    "Wie viel kostet eine Salve?",
             "characterDamage":                              "Wie viel Schaden macht die Waffe an Lebewesen?"
           },
-          "Spell": {  
-            "magicType":                                    "Magie Typ",
-            "circle":                                       "Kreis",
-            "threadsrequired":                              "Benötigte Fäden",
-            "weavingdifficulty":                            "Weben Schwierigkeit",
-            "reattunedifficulty":                           "Neuabstimmen Schwierigkeit",
-            "effect":                                       "Effekt des Giftes/der Krankheit",
-            "concentration":                                "Konzentration",
-            "binding":                                      "Bindung",
-            "spirit":                                       "Geist",
-            "summoning":                                    "Beschwörung",
-            "resist":                                       "Widerstand",
-            "duration": {
-              "value":                                      "Dauer",
-              "uom":                                        "Einheit"
-            },
-            "range": {
-              "value":                                      "Reichweite",
-              "uom":                                        "Einheit"
-            },
-            "spellArea": {
-              "value":                                      "Form",
-              "uom":                                        "Einheit",
-              "shape":                                      "Form"
-            },
-            "illusionType":                                 "Illusionstyp",
-            "sensingDifficulty":                            "Wahrnehmungsschwierigkeit",
-            "spellIllustion":                               "Illusion",
-            "elementType":                                  "Elementtyp",
-            "elementSubtype":                               "Elementuntertyp",
-            "spellElement":                                 "Element"
+          "Spell": {
+            "duration":                                     "Dauer des Effekts",
+            "effect":                                       "Effekt des Zaubers",
+            "keyword":                                      "Besonderheit des Zaubers",
+            "keywords":                                     "Besonderheiten des Zaubers",
+            "level":                                        "Der Kreis zu dem dieser Zauber gehört",
+            "reattuneDifficulty":                           "Die Schwierigkeit um  den Zauber auf die Schnelle neu abzustimmen",
+            "sensingDifficulty":                            "Die Schwierigkeit um diese Illusion zu durchschauen",
+            "spellcastingType":                             "Art der Spruchzauberei die für diesen Zauber benötigt wird",
+            "spellElement":                                 "Element des Zaubers",
+            "spellElementSubtype":                          "Unterart des Elements",
+            "spellElementType":                             "Typ des Elements",
+            "spellThreadsRequired":                         "Die Anzahl der Fäden die zum Wirken benötigt werden",
+            "spellThreadsWoven":                            "Die Anzahl der Fäden die bereits gewoben wurden",
+            "weavingDifficulty":                            "Die Schwierigkeit um den Zauber erfolgreich zu wirken"
           },
           "Weapons": {
             "weaponType":                                   "Waffentyp",
@@ -683,7 +734,7 @@
             "isPathKnack":                                  "Pfad Kniff",
             "standardEffect":                               "Standard Effekt",
             "sourceTalentUuid":                             "Ursprungstalent",
-            "minLevel":                                     "Min. Rang",  
+            "minLevel":                                     "Min. Rang",
             "lpCost":                                       "LP Kosten"
           },
           "Maneuver": {
@@ -763,39 +814,21 @@
             "salvoCost":                                    "Salve Kosten",
             "characterDamage":                              "Charakter Schaden"
           },
-          "Spell": { 
-            "ding": {
-            "magicType":                                    "Magie Typ"
-            }, 
-            "circle":                                       "Kreis",
-            "threadsrequired":                              "Benötigte Fäden",
-            "weavingdifficulty":                            "Weben Schwierigkeit",
-            "reattunedifficulty":                           "Neuabstimmen Schwierigkeit",
-            "effect":                                       "Effekt des Giftes/der Krankheit",
-            "concentration":                                "Konzentration",
-            "binding":                                      "Bindung",
-            "spirit":                                       "Geist",
-            "summoning":                                    "Beschwörung",
-            "resist":                                       "Widerstand",
-            "duration": {
-              "value":                                      "Dauer",
-              "uom":                                        "Einheit"
-            },
-            "range": {
-              "value":                                      "Reichweite",
-              "uom":                                        "Einheit"
-            },
-            "spellArea": {
-              "value":                                      "Form",
-              "uom":                                        "Einheit",
-              "shape":                                      "Form"
-            },
-            "illusionType":                                 "Illusionstyp",
-            "sensingDifficulty":                            "Wahrnehmungsschwierigkeit",
-            "spellIllustion":                               "Illusion",
-            "elementType":                                  "Elementtyp",
-            "elementSubtype":                               "Elementuntertyp",
-            "spellElement":                                 "Element"
+          "Spell": {
+            "duration":                                     "Dauer",
+            "effect":                                       "Effekt",
+            "keyword":                                      "Schlüsselwort",
+            "keywords":                                     "Schlüsselwörter",
+            "level":                                        "Kreis",
+            "reattuneDifficulty":                           "Neuabstimmungsschwierigkeit",
+            "sensingDifficulty":                            "Durchschauenmindestwurf",
+            "spellcastingType":                             "Spruchzauberei Typ",
+            "spellElement":                                 "Element",
+            "spellElementSubtype":                          "Element Subtyp",
+            "spellElementType":                             "Element Typ",
+            "spellThreadsRequired":                         "Benötigte Fäden",
+            "spellThreadsWoven":                            "Gewebte Fäden",
+            "weavingDifficulty":                            "Webschwierigkeit"
           },
           "Weapons": {
             "weaponType":                                   "Waffentyp",
@@ -824,7 +857,7 @@
             "patterncraftToLearnSpell":           "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
             "freePatterncraftToLearnSpell":       "Freies Struktur Verstehen um den Zauber zu lernen",
             "useRecoveryTestToLearnSpell":        "Soll eine Erholungsprobe geopfert werden um einen weiteren versuch zu unternehmen einen Zauber am gleichen Tag zu erlernen?",
-            "patterncraftSuccessful":             "Struktur Verstehen erfolgreich", 
+            "patterncraftSuccessful":             "Struktur Verstehen erfolgreich",
             "teacherToLearnSpell":                "gibt es einen Lehrmeister der das erlernen des Zaubers unterstützt?",
             "teacherRank":                        "Welchen Rang hat der Lehrmeister in Spruchzauberei",
             "teacherTestSuccessful":              "Der Spruchzaubereiwurf war erfolgreich. Der Lehrerrang wird nun als Bonus zum lernen des Zaubers addiert.",
@@ -833,15 +866,15 @@
         },
         "Labels": {
           "learnSpell": {
-            "lpCost":                                       "Lp Kosten",
-            "patterncraftToLearnSpell":                     "Struktur Verstehen",
-            "freePatterncraftToLearnSpell":                 "Freies Struktur Verstehen",
-            "useRecoveryTestToLearnSpell":                  "Erholungsprobe",
-            "patterncraftSuccessful":                       "Erfolg", 
-            "teacherToLearnSpell":                          "Lehrmeister vorhanden?",
-            "teacherRank":                                  "Lehrerrang",
-            "teacherTestSuccessful":                        "Erfolgreicher Spruchzaubereiwurf",
-            "learnDifficulty":                              "Schwierigkeit"
+            "lpCost":                             "Lp Kosten",
+            "patterncraftToLearnSpell":           "Struktur Verstehen",
+            "freePatterncraftToLearnSpell":       "Freies Struktur Verstehen",
+            "useRecoveryTestToLearnSpell":        "Erholungsprobe",
+            "patterncraftSuccessful":             "Erfolg",
+            "teacherToLearnSpell":                "Lehrmeister vorhanden?",
+            "teacherRank":                        "Lehrerrang",
+            "teacherTestSuccessful":              "Erfolgreicher Spruchzaubereiwurf",
+            "learnDifficulty":                    "Schwierigkeit"
           }
         }
       }
@@ -867,7 +900,7 @@
         "noDiscipline":                                     "Ohne Disziplin/Pfad",
         "recoverStun":                                      "Betäubungsschaden Erholungsprobe",
         "recovery":                                         "Erholungsprobe",
-        "roll":                                             "Würfeln",               
+        "roll":                                             "Würfeln",
         "save":                                             "Speichern",
         "spendLp":                                          "Legendenpunkte ausgeben",
         "takeDamage":                                       "Schaden nehmen",
@@ -941,10 +974,10 @@
       },
       "RollPrompt": {
         "step":                                               "Stufe",
-        "modifier":                                           "Modifikator",    
+        "modifier":                                           "Modifikator",
         "karma":                                              "Karma",
         "devotion":                                           "Weihepunkt",
-        "karmaStep":                                          "Karma Stufe",  
+        "karmaStep":                                          "Karma Stufe",
         "devotionStep":                                       "Weihepunkt Stufe",
         "difficulty":                                         "Schwierigkeit",
         "strain":                                             "Überanstrengung",
@@ -1119,7 +1152,7 @@
           "noTalentCategorySelected": "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
           "questorItemNotUpdated": "Questor-Item konnte nicht aktualisiert werden"
         },
-        "livingArmorOnly":                                  "Es kann nur nur lebendige Rüstung getragen werden.", 
+        "livingArmorOnly":                                  "Es kann nur nur lebendige Rüstung getragen werden.",
         "piecemealArmorSizeExceeded": "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
       }
     },
@@ -1160,7 +1193,6 @@
     "Rules": {
       "disciplineIncreaseShortRequirements":                          "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
       "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n"
-    
     },
     "Settings": {
       "Edid": {
