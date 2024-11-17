@@ -550,7 +550,7 @@ export class ItemDataModel extends SystemDataModel {
       content: await renderTemplate(
         this.constructor.ITEM_TOOLTIP_TEMPLATE, await this.getCardData( enrichmentOptions )
       ),
-      classes: [ "ed4e", "ed4e-tooltip", "item-tooltip" ]
+      classes: [ "earthdawn4e", "earthdawn4e-tooltip", "item-tooltip" ]
     };
   }
 
