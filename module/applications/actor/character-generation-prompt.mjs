@@ -138,18 +138,25 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     switch ( partId ) {
       case "tabs": return this._prepareTabsContext( context, options );
       case "namegiver-tab":
+        context.namegivers = this.namegivers;
         break;
       case "class-tab":
+        context.disciplines = this.disciplines;
         break;
       case "attribute-tab":
+        context.attributes = console.log( "attributes Tab" );
         break;
       case "spell-tab":
+        context.spells = console.log( "spell Tab" );
         break;
       case "skill-tab":
+        context.skill = console.log( "skill Tab" );
         break;
       case "language-tab":
+        context.language = console.log( "language Tab" );
         break;
       case "equipment-tab":
+        context.equipment = console.log( "equipment Tab" );
         break;
     }
 
