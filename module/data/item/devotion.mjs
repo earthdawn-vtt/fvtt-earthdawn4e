@@ -153,6 +153,12 @@ export default class DevotionData extends AbilityTemplate.mixin(
     return updatedDevotion;
   }
 
+  static async learn( actor, item, createData = {} ) {
+    const learnedItem = await super.learn( actor, item, createData );
+    await learnedItem.system.chooseTier();
+    return learnedItem;
+  }
+
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */

@@ -196,7 +196,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       "system.tier": tier,
     } );
 
-    if ( foundry.utils.isEmpty( updatedItem ) ) {
+    if ( foundry.utils.isEmpty( updatedItem ) && !this.schema.fields.tier.initial ) {
       ui.notifications.warn(
         game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
       );
@@ -214,48 +214,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       );
       return;
     }
-
-    let learn = "learn";
-    if ( item.system.increasable ) {
-      const promptFactory = PromptFactory.fromDocument( item );
-      learn = await promptFactory.getPrompt( "learnAbility" );
-    }
-
-    if ( !learn || learn === "cancel" || learn === "close" ) return;
-
     const itemData = foundry.utils.mergeObject(
       item.toObject(),
       foundry.utils.expandObject( createData ),
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
-    let learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
-    const learnedItemData = learnedItem;
-    let category = null;
-    if ( item.type === "talent" ) {
-      // assign the talent category
-      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-      category = await promptFactoryItem.getPrompt( "talentCategory" );
-
-      // assign the level at which the talent was learned
-      const promptFactoryActor = PromptFactory.fromDocument( actor );
-      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-      const discipline = await fromUuid( disciplineUuid );
-      const learnedAt = discipline?.system.level;
-
-      await learnedItem.update( {
-        "system.talentCategory":        category,
-        "system.source.class":          discipline ? discipline.uuid : null,
-        "system.source.atLevel":        learnedAt ? learnedAt : null,
-      } );
-    }
-
-    if ( !createData?.system?.source.class ) {
-      if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItemData.system.chooseTier();
-    }
-
-    if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItemData.system.increase();
-
-    return learnedItemData;
+    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];;
   }
 
   /* -------------------------------------------- */
