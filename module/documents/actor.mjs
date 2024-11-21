@@ -61,7 +61,18 @@ export default class ActorEd extends Actor {
    * @type {Item[]}
    */
   get disciplines() {
-    return this.items.filter( item => item.type === "discipline" );
+    return this.itemTypes.discipline;
+  }
+
+  /**
+   * Returns the highest discipline of an actor
+   * @type {Item|undefined}
+   */ 
+  get highestDiscipline() {
+    return this.disciplines.reduce( ( highest, discipline ) => {
+      if ( !highest || discipline.system.level > highest.system.level ) return discipline;
+      return highest;
+    }, undefined );
   }
 
   /**

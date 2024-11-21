@@ -6,7 +6,7 @@ import registerHandlebarHelpers from "../handlebar-helpers.mjs";
 // Import submodules
 import * as applications from "../applications/_module.mjs";
 import * as canvas from "../canvas/_module.mjs";
-import * as dataModels from "../data/_module.mjs";
+import * as data from "../data/_module.mjs";
 import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
@@ -37,8 +37,8 @@ export default function () {
     enrichers.registerCustomEnrichers();
 
     // Hook up system data types
-    CONFIG.Actor.dataModels = dataModels.actor.config;
-    CONFIG.Item.dataModels = dataModels.item.config;
+    CONFIG.Actor.dataModels = data.actor.config;
+    CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes
     Actors.unregisterSheet( "core", ActorSheet );

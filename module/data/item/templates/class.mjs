@@ -171,6 +171,17 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     await this.parentActor.createEmbeddedDocuments( "ActiveEffect", effects );
     // TODO: activate permanent effects immediately
 
+    // increase resource step of the discipline
+    const highestDiscipline = this.parentActor.highestDiscipline;
+    
+    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
+      const resourceStep = nextLevelData.resourceStep;
+      await this.parentActor.update( { "system.karma.step": resourceStep } );
+    } else if ( this.parent.type === "questor" ) {
+      const resourceStep = nextLevelData.resourceStep;
+      await this.parentActor.update( { "system.devotion.step": resourceStep } );
+    }
+
     // increase all abilities of category "free" to new circle, if lower
     const freeAbilities = this.parentActor.items.filter(
       i => i.system.talentCategory === "free"

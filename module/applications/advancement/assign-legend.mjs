@@ -22,7 +22,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
   }
 
   static DEFAULT_OPTIONS = {
-    id:       "assign-legend-prompt",
+    id:       "assign-legend-prompt-{id}",
     uniqueId: String( ++globalThis._appId ),
     classes:  [ "earthdawn4e", "assign-legend" ],
     tag:      "form",

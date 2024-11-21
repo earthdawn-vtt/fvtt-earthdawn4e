@@ -690,6 +690,8 @@
             "extraSuccesses":                               "Zusätzliche Erfolge"
           },
           "Namegiver":{
+            "abilities":                                    "Namensgeber-Fähigkeiten",
+
             "livingArmorOnly":                              "Nur legendige Rüstung",
             "WeaponSize":{
               "twoHandedmax":                                 "Zweihandwaffen max.",
@@ -865,6 +867,7 @@
         "noDiscipline":                                     "Ohne Disziplin/Pfad",
         "recoverStun":                                      "Betäubungsschaden Erholungsprobe",
         "recovery":                                         "Erholungsprobe",
+        "roll":                                             "Würfeln",               
         "save":                                             "Speichern",
         "spendLp":                                          "Legendenpunkte ausgeben",
         "takeDamage":                                       "Schaden nehmen",
@@ -935,6 +938,22 @@
         "questorDevotionNotFound": "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})",
         "spendLp": "Legendenpunkte ausgeben",
         "writtenRules": "Regeln"
+      },
+      "RollPrompt": {
+        "step":                                               "Stufe",
+        "modifier":                                           "Modifikator",    
+        "karma":                                              "Karma",
+        "devotion":                                           "Weihepunkt",
+        "karmaStep":                                          "Karma Stufe",  
+        "devotionStep":                                       "Weihepunkt Stufe",
+        "difficulty":                                         "Schwierigkeit",
+        "strain":                                             "Überanstrengung",
+        "karmaDice":                                          "Karma Würfel",
+        "devotionDice":                                       "Weihepunkt Würfel"
+      },
+      "Tabs": {
+        "rollPromptBaseTab":                                  "Basis Einstellungen",
+        "rollPromptOtherTab":                                 "Weitere Einstellungen"
       },
       "Title": {
         "classAdvancement":                                   "Rang- und Kreisaufstieg",

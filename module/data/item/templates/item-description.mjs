@@ -1,5 +1,5 @@
-import { EdIdField } from "../../fields.mjs";
 import SystemDataModel from "../../abstract.mjs";
+import EdIdField from "../../fields/edid-field.mjs";
 
 /**
  * Data model template with item description
