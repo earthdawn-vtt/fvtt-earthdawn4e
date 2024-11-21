@@ -129,12 +129,75 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   };
 
   /* ----------------------------------------------------------- */
+  /* --------------------  _prepareContext  -------------------- */
+  /* ----------------------------------------------------------- */
+
+  async _prepareContext( options = {} ) {
+    const context = super._prepareContext( options );
+
+    context.config = ED4E;
+
+    // Namegiver
+    context.namegivers = this.namegivers;
+    // context.namegiverDocument = await context.object.namegiverDocument;
+
+    // Class
+    context.disciplines = this.disciplines;
+    context.disciplineRadioChoices = documentsToSelectChoices( this.disciplines );
+    context.questors = this.questors;
+    context.questorRadioChoices = documentsToSelectChoices( this.questors );
+    // context.classDocument = await context.object.classDocument;
+
+    // Talents & Devotions
+    context.maxAssignableRanks = game.settings.get( "ed4e", "charGenMaxRank" );
+
+    // Abilities
+    // remove language skills from general skills, otherwise they will be displayed twice
+    const languageSkills = this.skills.filter( skill => [ this.edidLanguageRW, this.edidLanguageSpeak ].includes( skill.system.edid ) );
+    const filteredSkills = this.skills.filter( skill => !languageSkills.includes( skill ) );
+    context.skills = {
+      general:    filteredSkills.filter( skill => skill.system.skillType === "general" ),
+      artisan:    filteredSkills.filter( skill => skill.system.skillType === "artisan" ),
+      knowledge:  filteredSkills.filter( skill => skill.system.skillType === "knowledge" ),
+      language:   languageSkills,
+    };
+
+    // Attributes
+    // context.finalAttributeValues = await context.object.getFinalAttributeValues();
+    // context.availableAttributePoints = context.object.availableAttributePoints;
+    context.maxAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
+    // context.previews = await context.object.getCharacteristicsPreview();
+
+    // Spells
+    // context.availableSpellPoints = await this.object.getAvailableSpellPoints();
+    // context.maxSpellPoints = await this.object.getMaxSpellPoints();
+    context.spells = this.spells.filter( spell => spell.system.magicType === this.magicType );
+    context.spellsBifurcated = context.spells.map(
+      spell => this.object.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
+    );
+    context.spellsByCircle = context.spellsBifurcated?.reduce( ( acc, spellTuple ) => {
+      const { system: { level } } = spellTuple[0] ?? spellTuple[1];
+      acc[level] ??= [];
+      acc[level].push( spellTuple );
+      return acc;
+    }, {} );
+
+    // Dialog Config
+    context.hasNextStep = this._hasNextStep();
+    context.hasNoNextStep = !context.hasNextStep;
+    context.hasPreviousStep = this._hasPreviousStep();
+    context.hasNoPreviousStep = !context.hasPreviousStep;
+
+    return context;
+  }
+
+  /* ----------------------------------------------------------- */
   /* -------------------  preparePartContext  ------------------ */
   /* ----------------------------------------------------------- */
 
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
-
+    
     switch ( partId ) {
       case "tabs": return this._prepareTabsContext( context, options );
       case "namegiver-tab":
@@ -532,72 +595,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       options.resolve = resolve;
       new this( data, options, docCollections ).render( true, { focus: true } );
     } );
-  }
-
-
-  /* ----------------------------------------------------------- */
-  /* --------------------  _prepareContext  -------------------- */
-  /* ----------------------------------------------------------- */
-
-  async _prepareContext( options = {} ) {
-    const context = super._prepareContext( options );
-
-    context.config = ED4E;
-
-    // Namegiver
-    context.namegivers = this.namegivers;
-    // context.namegiverDocument = await context.object.namegiverDocument;
-
-    // Class
-    context.disciplines = this.disciplines;
-    context.disciplineRadioChoices = documentsToSelectChoices( this.disciplines );
-    context.questors = this.questors;
-    context.questorRadioChoices = documentsToSelectChoices( this.questors );
-    // context.classDocument = await context.object.classDocument;
-
-    // Talents & Devotions
-    context.maxAssignableRanks = game.settings.get( "ed4e", "charGenMaxRank" );
-
-    // Abilities
-    // remove language skills from general skills, otherwise they will be displayed twice
-    const languageSkills = this.skills.filter( skill => [ this.edidLanguageRW, this.edidLanguageSpeak ].includes( skill.system.edid ) );
-    const filteredSkills = this.skills.filter( skill => !languageSkills.includes( skill ) );
-    context.skills = {
-      general:    filteredSkills.filter( skill => skill.system.skillType === "general" ),
-      artisan:    filteredSkills.filter( skill => skill.system.skillType === "artisan" ),
-      knowledge:  filteredSkills.filter( skill => skill.system.skillType === "knowledge" ),
-      language:   languageSkills,
-    };
-
-    // Attributes
-    // context.finalAttributeValues = await context.object.getFinalAttributeValues();
-    // context.availableAttributePoints = context.object.availableAttributePoints;
-    context.maxAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
-    // context.previews = await context.object.getCharacteristicsPreview();
-
-    // Spells
-    // context.availableSpellPoints = await this.object.getAvailableSpellPoints();
-    // context.maxSpellPoints = await this.object.getMaxSpellPoints();
-    context.spells = this.spells.filter( spell => spell.system.magicType === this.magicType );
-    context.spellsBifurcated = context.spells.map(
-      spell => this.object.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
-    );
-    context.spellsByCircle = context.spellsBifurcated?.reduce( ( acc, spellTuple ) => {
-      const { system: { level } } = spellTuple[0] ?? spellTuple[1];
-      acc[level] ??= [];
-      acc[level].push( spellTuple );
-      return acc;
-    }, {} );
-
-    // Dialog Config
-    context.hasNextStep = this._hasNextStep();
-    context.hasNoNextStep = !context.hasNextStep;
-    context.hasPreviousStep = this._hasPreviousStep();
-    context.hasNoPreviousStep = !context.hasPreviousStep;
-
-    return context;
-  }
-  
+  } 
 }
 
 
