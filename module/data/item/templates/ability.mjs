@@ -186,6 +186,26 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return this.parent;
   }
 
+  async chooseTier( ) {
+    const promptFactory = PromptFactory.fromDocument( this.parent );
+    const tier = await promptFactory.getPrompt( "chooseTier" );
+
+    if ( !tier || tier === "cancel" || tier === "close" ) return;
+
+    const updatedItem = await this.parent.update( {
+      "system.tier": tier,
+    } );
+
+    if ( foundry.utils.isEmpty( updatedItem ) && !this.schema.fields.tier.initial ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    return updatedItem;
+  }
+
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
     if ( !item.system.canBeLearned ) {
@@ -194,25 +214,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       );
       return;
     }
-
-    let learn = "learn";
-    if ( item.system.increasable ) {
-      const promptFactory = PromptFactory.fromDocument( item );
-      learn = await promptFactory.getPrompt( "learnAbility" );
-    }
-
-    if ( !learn || learn === "cancel" || learn === "close" ) return;
-
     const itemData = foundry.utils.mergeObject(
       item.toObject(),
       foundry.utils.expandObject( createData ),
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
-    const learnedItem = ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
-
-    if ( learnedItem && learn === "learn" && item.system.increasable ) await learnedItem.system.increase();
-
-    return learnedItem;
+    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];;
   }
 
   /* -------------------------------------------- */

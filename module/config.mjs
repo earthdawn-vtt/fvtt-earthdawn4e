@@ -376,9 +376,9 @@ ED4E.multiDisciplineNewTalentLpCost = [
 ED4E.lpIndexModForTier = [
   {},
   { novice: 0, journeyman: 1, warden: 2, master: 3, },  // First Discipline
-  { novice: 1, journeyman: 2, warden: 3, master: 3, }, // Second Discipline
-  { novice: 2,  journeyman: 3, warden: 3, master: 3, }, // Third Discipline
-  { novice: 3, journeyman: 3, warden: 3, master: 3, }, // Fourth+ Discipline
+  { novice: 1, journeyman: 2, warden: 3, master: 4, }, // Second Discipline
+  { novice: 2,  journeyman: 3, warden: 4, master: 5, }, // Third Discipline
+  { novice: 3, journeyman: 4, warden: 5, master: 6, }, // Fourth+ Discipline
 ];
 
 ED4E.lpSpendingTypes = {

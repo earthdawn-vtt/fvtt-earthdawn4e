@@ -107,6 +107,16 @@ export default class PromptFactory {
     };
   }
 
+  static get noDisciplineButton() {
+    return {
+      action:  "noDiscipline",
+      label:   "ED.Dialogs.Buttons.noDiscipline",
+      icon:    "",
+      class:   "button-noDiscipline",
+      default: false
+    };
+  }
+
   /**
    * Creates an instance of the appropriate factory class based on the document type.
    * @param {object} document - The document object.
@@ -131,7 +141,6 @@ export default class PromptFactory {
   async getPrompt( type ) {
     return this._promptTypeMapping[type]();
   }
-
 }
 
 class ActorPromptFactory extends PromptFactory {
@@ -306,7 +315,10 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   async _chooseDisciplinePrompt() {
+    
+    const noDisciplineButton = this.constructor.noDisciplineButton;
     const buttons = await this._getItemButtons( this.document.disciplines, "type" );
+    buttons.push( noDisciplineButton );
 
     return DialogClass.wait( {
       rejectClose: false,
@@ -314,7 +326,7 @@ class ActorPromptFactory extends PromptFactory {
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
-        title:       game.i18n.localize( "ED.Dialogs.Title.chooseDiscipline" ),
+        title:       "ED.Dialogs.Title.chooseDiscipline",
         minimizable: false
       },
       modal:   false,
@@ -345,6 +357,7 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
+    chooseTier:     this._chooseTierPrompt.bind( this ),
     lpIncrease:     this._lpIncreasePrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
     talentCategory: this._talentCategoryPrompt.bind( this ),
@@ -359,16 +372,14 @@ class ItemPromptFactory extends PromptFactory {
     <p>${ game.i18n.localize( "ED.Dialogs.Legend.learnOnZeroOrOne" ) }</p>
     `;
 
-    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.learnAbility", {
-      abilityName: this.document.name,
-    } );
-
     return DialogClass.wait( {
       id:       "learn-ability-prompt",
       uniqueId: String( ++globalThis._appId ),
       classes:  [ "earthdawn4e", "learn-ability-prompt" ],
       window:   {
-        title:       titleFlavor,
+        title:       game.i18n.format( "ED.Dialogs.Title.learnAbility", {
+          abilityName: this.document.name,
+        } ),
         minimizable: false
       },
       modal:   false,
@@ -394,6 +405,36 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  async _chooseTierPrompt( ) {
+
+    const buttons = Object.entries( ED4E.tier ).map(
+      ( [ key, label ] ) => {
+        return {
+          action:  key,
+          label:   label,
+          icon:    "",
+          class:   `button-${ key }`,
+          default: false
+        };
+      }
+    );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "choose-tier-prompt",
+      uniqueId:    String( ++globalThis._appId ),
+      classes:     [ "earthdawn4e", "choose-tier-prompt", "flexcol" ],
+      window:      {
+        title:       game.i18n.format( "ED.Dialogs.Title.chooseTier", {
+          abilityName: this.document.name,
+        } ),
+        minimizable: false
+      },
+      modal:   false,
+      buttons,
+    } );
+  }
+
   async _lpIncreasePrompt() {
     if ( !this.document.system.hasMixin( LpIncreaseTemplate ) ) {
       throw new Error( "Item must be a subclass of LpIncreaseTemplate to use this prompt." );
@@ -409,16 +450,14 @@ class ItemPromptFactory extends PromptFactory {
       },
     );
 
-    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.lpIncrease", {
-      abilityName: this.document.name,
-    } );
-
     return DialogClass.wait( {
       id:       "lp-increase-prompt",
       uniqueId: String( ++globalThis._appId ),
       classes:  [ "earthdawn4e", "lp-increase-prompt" ],
       window:   {
-        title:       titleFlavor,
+        title:       game.i18n.format( "ED.Dialogs.Title.lpIncrease", {
+          abilityName: this.document.name,
+        } ),
         minimizable: false
       },
       modal:   false,
@@ -433,20 +472,21 @@ class ItemPromptFactory extends PromptFactory {
   }
 
   async _talentCategoryPrompt() {
-    const buttons = Object.entries( ED4E.talentCategory ).map(
-      ( [ key, label ] ) => {
-        return {
-          action:  key,
-          label:   label,
-          icon:    "",
-          class:   `button-${ key }`,
-          default: false
-        };
-      }
-    );
 
-    const titleFlavor = game.i18n.format( "ED.Dialogs.Title.talentCategory", {
-      abilityName: this.document.name,
+    const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
+
+    const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
+    // eslint-disable-next-line no-unused-vars
+    const { versatility, ...categoriesWithoutVersatility } = ED4E.talentCategory;
+
+    const buttons = Object.entries( versatilityItem ? ED4E.talentCategory : categoriesWithoutVersatility  ).map( ( [ key, label ] ) => {
+      return {
+        action:  key,
+        label:   label,
+        icon:    "",
+        class:   `button-${ key }`,
+        default: false
+      };
     } );
 
     return DialogClass.wait( {
@@ -455,7 +495,9 @@ class ItemPromptFactory extends PromptFactory {
       uniqueId:    String( ++globalThis._appId ),
       classes:     [ "earthdawn4e", "talent-category-prompt", "flexcol" ],
       window:      {
-        title:       titleFlavor,
+        title:       game.i18n.format( "ED.Dialogs.Title.talentCategory", {
+          abilityName: this.document.name,
+        } ),
         minimizable: false
       },
       modal:   false,
