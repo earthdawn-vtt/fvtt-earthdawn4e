@@ -334,6 +334,12 @@
         "spendLpPerCircle":                                     "Bei Kreisaufstieg (kostet Legendenpunkte)",
         "freePerCircle":                                        "Bei Kreisaufstieg (kostenlos)"
       },
+      "MovementUnits": {
+        "inch":                                                     "Zoll",
+        "feet":                                                     "Fuß",
+        "yard":                                                     "Schritt",
+        "mile":                                                     "Meile"
+      },
       "Skills": {
         "general":                                              "Allgemein",
         "artisan":                                              "Kunsthandwerk",
@@ -353,6 +359,12 @@
       },
       "PermanentTimePeriods": {
         "perm":                                                     "Permanent"
+      },
+      "RangeTypes": {
+        "self":                                                     "Selbst",
+        "touch":                                                    "Berührung",
+        "special":                                                     "Spezial",
+        "any":                                                      "Beliebig"
       },
       "rollTypes": {
         "ability": "Fähigkeit",
@@ -452,10 +464,20 @@
             "special":                                      "Beschreibung der speziellen Dauer",
             "unit":                                         "Die Einheit der Dauer",
             "value":                                        "Der Wert der Dauer"
+          },
+          "Range": {
+            "special":                                      "Beschreibung der speziellen Reichweite",
+            "unit":                                         "Die Einheit der Reichweite",
+            "value":                                        "Der Wert der Reichweite"
           }
         },
         "Labels": {
           "Duration": {
+            "special":                                      "Spezial",
+            "unit":                                         "Einheit",
+            "value":                                        "Wert"
+          },
+          "Range": {
             "special":                                      "Spezial",
             "unit":                                         "Einheit",
             "value":                                        "Wert"
@@ -465,6 +487,9 @@
           "Duration": {
             "groupPermanentTime":                           "Permanent",
             "groupScalarTime":                              "Zeit"
+          },
+          "Range": {
+            "groupMovementUnits":                           "Entfernung"
           }
         }
       },
@@ -820,6 +845,7 @@
             "keyword":                                      "Schlüsselwort",
             "keywords":                                     "Schlüsselwörter",
             "level":                                        "Kreis",
+            "range":                                        "Reichweite",
             "reattuneDifficulty":                           "Neuabstimmungsschwierigkeit",
             "sensingDifficulty":                            "Durchschauenmindestwurf",
             "spellcastingType":                             "Spruchzauberei Typ",

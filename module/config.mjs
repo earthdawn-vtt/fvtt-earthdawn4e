@@ -812,6 +812,62 @@ ED4E.timePeriods = {
 };
 preLocalize( "timePeriods" );
 
+/* -------------------------------------------- */
+
+/**
+ * The various types of movement of moving entities.
+ * @enum {string}
+ */
+ED4E.movementTypes = {
+  burrow: "ED.Config.MovementTypes.burrow",
+  climb:  "ED.Config.MovementTypes.Climb",
+  fly:    "ED.Config.MovementTypes.Fly",
+  swim:   "ED.Config.MovementTypes.Swim",
+  walk:   "ED.Config.MovementTypes.Walk"
+};
+preLocalize( "movementTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default, this uses the imperial units of feet and miles.
+ * @enum {string}
+ */
+ED4E.movementUnits = {
+  in: "ED.Config.MovementUnits.inch",
+  ft: "ED.Config.MovementUnits.feet",
+  yd: "ED.Config.MovementUnits.yard",
+  mi: "ED.Config.MovementUnits.mile",
+};
+preLocalize( "movementUnits" );
+
+/* -------------------------------------------- */
+
+/**
+ * The types of range that are used for measuring actions and effects.
+ * @enum {string}
+ */
+ED4E.rangeTypes = {
+  self:  "ED.Config.RangeTypes.self",
+  touch: "ED.Config.RangeTypes.touch",
+  spec:  "ED.Config.RangeTypes.special",
+  any:   "ED.Config.RangeTypes.any",
+};
+preLocalize( "rangeTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for the range of an action or effect. A combination of {@link ED4E.movementUnits}
+ * and {@link ED4E.rangeTypes}.
+ * @enum {string}
+ */
+ED4E.distanceUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.rangeTypes,
+};
+preLocalize( "distanceUnits" );
 
 /* -------------------------------------------- */
 /*  Chat Commands                               */

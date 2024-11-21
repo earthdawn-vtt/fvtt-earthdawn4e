@@ -5,6 +5,7 @@ import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import DurationField from "../fields/duration-field.mjs";
+import RangeField from "../fields/range-field.mjs";
 
 
 
@@ -140,22 +141,9 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.duration" ),
         hint:  this.hintKey( "Spell.duration" ),
       } ),
-      range:    new SchemaField( {
-        value: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "0",
-          label:    "ED.Item.Spell.shape"
-        } ),
-        uom: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "yard",
-          label:    "ED.Item.Spell.uom"
-        } )
-      },
-      {
-        label: "ED.Item.Spell.range"
+      range:    new RangeField( {}, {
+        label: this.labelKey( "Spell.range" ),
+        hint:  this.hintKey( "Spell.range" ),
       } ),
       spellArea: new SchemaField( {
         shape: new StringField( {
