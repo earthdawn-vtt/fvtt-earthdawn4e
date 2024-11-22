@@ -3,7 +3,12 @@ import FormulaField from "./formula-field.mjs";
 const { SchemaField, StringField } = foundry.data.fields;
 const { createSelectInput } = foundry.applications.fields;
 
-
+/**
+ * Field for storing data that have units which are possibly scalar (like duration or range).
+ * @property {string} value   Scalar value for the unit.
+ * @property {string} unit    Unit that is used.
+ * @property {string} special Description of any special unit details.
+ */
 export default class UnitField extends SchemaField {
 
   constructor( fields={}, options={} ) {

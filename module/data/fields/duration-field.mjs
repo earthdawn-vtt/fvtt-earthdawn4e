@@ -34,10 +34,18 @@ export default class DurationField extends UnitField {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
+  /**
+   * The default lang key for the object containing labels for the duration field.
+   * @type {string}
+   */
   get labelKey() {
     return "ED.Data.Fields.Labels.Duration";
   }
 
+  /**
+   * The default lang key for the object containing hints for the duration field.
+   * @type {string}
+   */
   get hintKey() {
     return "ED.Data.Fields.Hints.Duration";
   }
