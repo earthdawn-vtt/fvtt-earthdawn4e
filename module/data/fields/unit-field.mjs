@@ -20,7 +20,7 @@ export default class UnitField extends SchemaField {
       } ),
       unit:   new StringField( {
         required: true,
-        nullable: false,
+        nullable: true,
         blank:    false,
         trim:     true,
       } ),

@@ -6,6 +6,7 @@ import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import DurationField from "../fields/duration-field.mjs";
 import RangeField from "../fields/range-field.mjs";
+import AreaField from "../fields/area-field.mjs";
 
 
 
@@ -145,28 +146,9 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.range" ),
         hint:  this.hintKey( "Spell.range" ),
       } ),
-      spellArea: new SchemaField( {
-        shape: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "0",
-          label:    "ED.Item.Spell.shape"
-        } ),
-        value: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "0",
-          label:    "ED.Item.Spell.shape"
-        } ),
-        uom: new StringField( {
-          required: true,
-          blank:    false,
-          initial:  "yard",
-          label:    "ED.Item.Spell.uom"
-        } )
-      },
-      {
-        label: "ED.Item.Spell.spellArea"
+      area: new AreaField( {}, {
+        label: this.labelKey( "Spell.area" ),
+        hint:  this.hintKey( "Spell.area" ),
       } ),
 
       // extraSuccessesList: [],

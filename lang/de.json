@@ -244,6 +244,17 @@
         "standard": "Standard",
         "sustained": "Anhaltend"
       },
+      "AreaTargets": {
+        "circle":                                                   "Kreis",
+        "cone":                                                     "Kegel",
+        "cube":                                                     "Würfel",
+        "cylinder":                                                 "Zylinder",
+        "line":                                                     "Linie",
+        "radius":                                                   "Radius",
+        "sphere":                                                   "Kugel",
+        "square":                                                   "Quadrat",
+        "wall":                                                     "Wand"
+      },
       "PoisonActivation": {
         "contact":                                                "Kontakt",
         "ingested":                                               "Einnahme",
@@ -460,6 +471,15 @@
       },
       "Fields": {
         "Hints": {
+          "Area": {
+            "count":                                        "Anzahl der Bereiche",
+            "height":                                       "Höhe des Bereichs",
+            "special":                                      "Beschreibung des speziellen Bereichs",
+            "type":                                         "Form des Bereichs",
+            "unit":                                         "Einheit der Größe des Bereichs",
+            "value":                                        "Größe des Bereichs an der Hauptachse",
+            "width":                                        "Breite des Bereichs"
+          },
           "Duration": {
             "special":                                      "Beschreibung der speziellen Dauer",
             "unit":                                         "Die Einheit der Dauer",
@@ -472,6 +492,15 @@
           }
         },
         "Labels": {
+          "Area": {
+            "count":                                        "Anzahl",
+            "height":                                       "Höhe",
+            "special":                                      "Spezial",
+            "type":                                         "Typ",
+            "unit":                                         "Einheit",
+            "value":                                        "Wert",
+            "width":                                        "Breite"
+          },
           "Duration": {
             "special":                                      "Spezial",
             "unit":                                         "Einheit",
@@ -660,6 +689,7 @@
             "characterDamage":                              "Wie viel Schaden macht die Waffe an Lebewesen?"
           },
           "Spell": {
+            "area":                                         "Wirkungsbereich des Zaubers",
             "duration":                                     "Dauer des Effekts",
             "effect":                                       "Effekt des Zaubers",
             "keyword":                                      "Besonderheit des Zaubers",
@@ -840,6 +870,7 @@
             "characterDamage":                              "Charakter Schaden"
           },
           "Spell": {
+            "area":                                         "Bereich",
             "duration":                                     "Dauer",
             "effect":                                       "Effekt",
             "keyword":                                      "Schlüsselwort",

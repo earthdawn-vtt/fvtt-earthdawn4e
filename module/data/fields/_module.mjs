@@ -1,7 +1,9 @@
 /*
-* Field implementations are taken from the [DnD5e system]{@link https://github.com/foundryvtt/dnd5e}
+* Some field implementations are taken from the [DnD5e]{@link https://github.com/foundryvtt/dnd5e} and [SWADE]{@link
+* https://gitlab.com/peginc/swade} systems.
 */
 
+export { default as AreaField } from "./area-field.mjs";
 export { default as DatetimeField } from "./datetime-field.mjs";
 export { default as DurationField } from "./duration-field.mjs";
 export { default as EdidField } from "./edid-field.mjs";

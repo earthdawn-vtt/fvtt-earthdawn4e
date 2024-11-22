@@ -870,6 +870,71 @@ ED4E.distanceUnits = {
 preLocalize( "distanceUnits" );
 
 /* -------------------------------------------- */
+
+/**
+ * Information needed to represent different area of effect target types.
+ * @typedef {object} AreaTargetDefinition
+ * @property {string} label        Localize(d) label for this type.
+ * @property {string} template     Type of `MeasuredTemplate` create for this target type.
+ * @property {string} [reference]  Reference to a rule page describing this area of effect.
+ * @property {string[]} [sizes]    List of available sizes for this template. Options are chosen from the list: "angle",
+ *                                 "radius", "width", "height", "length", "thickness". No more than 3 dimensions may
+ *                                 be specified.
+ */
+
+/**
+ * Types for effects that cover an area.
+ * @type {AreaTargetDefinition}
+ */
+ED4E.areaTargetDefinition = {
+  circle:   {
+    label:    "ED.Config.AreaTargets.circle",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  cone:     {
+    label:    "ED.Config.AreaTargets.cone",
+    template: "cone",
+    sizes:    [ "angle", "radius" ],
+  },
+  cube:     {
+    label:    "ED.Config.AreaTargets.cube",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  cylinder: {
+    label:    "ED.Config.AreaTargets.cylinder",
+    template: "circle",
+    sizes:    [ "radius", "height" ],
+  },
+  line:     {
+    label:    "ED.Config.AreaTargets.line",
+    template: "ray",
+    sizes:    [ "length", "width" ],
+  },
+  radius:   {
+    label:    "ED.Config.AreaTargets.radius",
+    template: "circle",
+  },
+  sphere:   {
+    label:    "ED.Config.AreaTargets.sphere",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  square:   {
+    label:    "ED.Config.AreaTargets.square",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  wall:     {
+    label:    "ED.Config.AreaTargets.wall",
+    template: "ray",
+    sizes:    [ "length", "thickness", "height" ],
+  },
+};
+preLocalize( "areaTargetDefinition", { key: "label", sort: true } );
+
+/* -------------------------------------------- */
 /*  Chat Commands                               */
 /* -------------------------------------------- */
 
