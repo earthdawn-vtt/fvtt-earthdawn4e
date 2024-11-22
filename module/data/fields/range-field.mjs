@@ -9,6 +9,7 @@ import UnitField from "./unit-field.mjs";
  * @property {string} special           Description of any special range details.
  */
 export default class RangeField extends UnitField {
+
   constructor( fields={}, options={} ) {
     super( fields, options );
 
