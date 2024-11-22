@@ -1,5 +1,4 @@
 import FormulaField from "./formula-field.mjs";
-import ED4E from "../../config.mjs";
 
 const { SchemaField, StringField } = foundry.data.fields;
 const { createSelectInput } = foundry.applications.fields;
