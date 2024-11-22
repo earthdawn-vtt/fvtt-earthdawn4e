@@ -11,16 +11,10 @@ export default class DurationField extends UnitField {
   constructor( fields={}, options={} ) {
     super( fields, options );
 
-    this.fields.value.label = `${this.labelKey}.value`;
-    this.fields.value.hint = `${this.hintKey}.value`;
+    this._initFieldLocalizeKeys();
 
-    this.fields.unit.label = `${this.labelKey}.unit`;
-    this.fields.unit.hint = `${this.hintKey}.unit`;
     this.fields.unit.choices = ED4E.timePeriods;
     this.fields.unit.initial = "inst";
-
-    this.fields.special.label = `${this.labelKey}.special`;
-    this.fields.special.hint = `${this.hintKey}.special`;
 
     this.scalarConfig = ED4E.scalarTimePeriods;
     this.unitGroupOptions = {

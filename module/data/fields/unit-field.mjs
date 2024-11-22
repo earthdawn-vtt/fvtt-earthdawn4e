@@ -1,4 +1,5 @@
 import FormulaField from "./formula-field.mjs";
+import ED4E from "../../config.mjs";
 
 const { SchemaField, StringField } = foundry.data.fields;
 const { createSelectInput } = foundry.applications.fields;
@@ -34,6 +35,17 @@ export default class UnitField extends SchemaField {
     this.scalarConfig = {};
     this.specialUnitKey = "spec";
     this.unitGroupOptions = {};
+  }
+
+  _initFieldLocalizeKeys() {
+    this.fields.value.label = `${this.labelKey}.value`;
+    this.fields.value.hint = `${this.hintKey}.value`;
+
+    this.fields.unit.label = `${this.labelKey}.unit`;
+    this.fields.unit.hint = `${this.hintKey}.unit`;
+
+    this.fields.special.label = `${this.labelKey}.special`;
+    this.fields.special.hint = `${this.hintKey}.special`;
   }
 
   /* -------------------------------------------- */
