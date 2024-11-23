@@ -78,30 +78,73 @@ export default class AreaField extends UnitField {
 
   /** @inheritDoc */
   _toInput( config ) {
-    const inputs = document.createElement( "fieldset" );
+    const inputs = document.createElement( "div" );
+    inputs.classList.add( "form-fields" );
 
-    const legend = document.createElement( "legend" );
-    legend.textContent = config.localize ? game.i18n.localize( this.label ) : this.label;
-    inputs.appendChild( legend );
+    inputs.appendChild( this.fields.count.toInput( {
+      name:        `${ config.name }.count`,
+      value:       config.value.count,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "count",
+    } ) );
+    inputs.appendChild( this.fields.type.toInput( {
+      name:     `${ config.name }.type`,
+      value:    config.value.type,
+      required: true,
+      localize: config.localize ?? true,
+    } ) );
+    inputs.appendChild( this.fields.angle.toInput( {
+      name:        `${ config.name }.angle`,
+      value:       config.value.angle,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "angle",
+    } ) );
+    inputs.appendChild( this.fields.height.toInput( {
+      name:        `${ config.name }.height`,
+      value:       config.value.height,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "height",
+    } ) );
+    inputs.appendChild( this.fields.length.toInput( {
+      name:        `${ config.name }.length`,
+      value:       config.value.length,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "length",
+    } ) );
+    inputs.appendChild( this.fields.radius.toInput( {
+      name:        `${ config.name }.radius`,
+      value:       config.value.radius,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "radius",
+    } ) );
+    inputs.appendChild( this.fields.thickness.toInput( {
+      name:        `${ config.name }.thickness`,
+      value:       config.value.thickness,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "thickness",
+    } ) );
+    inputs.appendChild( this.fields.width.toInput( {
+      name:        `${ config.name }.width`,
+      value:       config.value.width,
+      required:    true,
+      localize:    config.localize ?? true,
+      placeholder: "width",
+    } ) );
+    /* inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "type", config ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "angle", { unit: "°", ...config } ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "height", config ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "length", config ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "radius", config ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "thickness", config ) ) );
+    inputs.appendChild( document.createElement( "p" ).appendChild( this._getFieldFormGroup( "width", config ) ) ); */
 
-    const hint = document.createElement( "p" );
-    hint.classList.add( "hint" );
-    hint.textContent = config.localize ? game.i18n.localize( this.hint ) : this.hint;
-    inputs.appendChild( hint );
-
-    inputs.appendChild( this._getFieldFormGroup( "count", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "type", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "angle", { unit: "°", ...config } ) );
-    inputs.appendChild( this._getFieldFormGroup( "height", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "length", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "radius", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "thickness", config ) );
-    inputs.appendChild( this._getFieldFormGroup( "width", config ) );
-
-    const result = document.createElement( "div" );
-    result.classList.add( "form-fields" );
-    result.appendChild( inputs );
-    return result;
+    return inputs;
   }
 
 }

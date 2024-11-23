@@ -95,29 +95,22 @@ export default class SpellEnhancementField extends UnitField {
 
   /** @inheritDoc */
   _toInput( config ) {
-    const inputs = document.createElement( "fieldset" );
-
-    const legend = document.createElement( "legend" );
-    legend.textContent = config.localize ? game.i18n.localize( this.label ) : this.label;
-    inputs.appendChild( legend );
-
-    const hint = document.createElement( "p" );
-    hint.classList.add( "hint" );
-    hint.textContent = config.localize ? game.i18n.localize( this.hint ) : this.hint;
-    inputs.appendChild( hint );
+    const inputs = document.createElement( "div" );
+    inputs.classList.add( "form-fields" );
 
     const units = this.unitInputs[config.value.type]( config );
-    units.appendChild( this.fields.type.toInput( {
+    const typeDiv = document.createElement( "div" );
+    typeDiv.classList.add( "form-fields" );
+    typeDiv.appendChild( this.fields.type.toInput( {
       value:    config.value.type,
       required: true,
       localize: config.localize ?? true,
     } ) );
 
+    inputs.appendChild( typeDiv );
     inputs.appendChild( units );
 
-    const result = document.createElement( "div" );
-    result.classList.add( "form-fields" );
-    result.appendChild( inputs );
+
     return inputs;
   }
 
