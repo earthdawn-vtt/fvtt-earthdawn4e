@@ -374,6 +374,38 @@ preLocalize(
   { keys: [ "air", "earth", "fire", "water", "wood" ] }
 );
 
+ED4E.spellEnhancements = {
+  area: {
+    label:      "ED.Config.SpellEnhancements.area",
+    unitConfig: "movementUnits",
+  },
+  duration: {
+    label:      "ED.Config.SpellEnhancements.duration",
+    unitConfig: "timePeriods",
+  },
+  effect: {
+    label:      "ED.Config.SpellEnhancements.effect",
+    unitConfig: "",
+  },
+  range: {
+    label:      "ED.Config.SpellEnhancements.range",
+    unitConfig: "movementUnits",
+  },
+  section: {
+    label:      "ED.Config.SpellEnhancements.section",
+    unitConfig: "",
+  },
+  special: {
+    label:      "ED.Config.SpellEnhancements.special",
+    unitConfig: "",
+  },
+  target: {
+    label:      "ED.Config.SpellEnhancements.target",
+    unitConfig: "",
+  },
+};
+preLocalize( "spellEnhancements", { key: "label", sort: true } );
+
 
 /* -------------------------------------------- */
 /*  Active Effects Shortcuts                    */
@@ -933,6 +965,12 @@ ED4E.areaTargetDefinition = {
   },
 };
 preLocalize( "areaTargetDefinition", { key: "label", sort: true } );
+
+ED4E.spellEnhancementUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.scalarTimePeriods,
+};
+preLocalize( "spellEnhancementUnits" );
 
 /* -------------------------------------------- */
 /*  Chat Commands                               */

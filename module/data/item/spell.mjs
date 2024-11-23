@@ -7,6 +7,7 @@ import TargetTemplate from "./templates/targeting.mjs";
 import DurationField from "../fields/duration-field.mjs";
 import RangeField from "../fields/range-field.mjs";
 import AreaField from "../fields/area-field.mjs";
+import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
 
 
 
@@ -22,7 +23,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const { StringField, NumberField, SchemaField, SetField } = foundry.data.fields;
+    const { ArrayField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 
     return this.mergeSchema( super.defineSchema(), {
       spellcastingType: new StringField( {
@@ -137,7 +138,6 @@ export default class SpellData extends ItemDataModel.mixin(
         label:    this.labelKey( "Spell.spellElement" ),
         hint:     this.hintKey( "Spell.spellElement" ),
       } ),
-
       duration: new DurationField( {}, {
         label: this.labelKey( "Spell.duration" ),
         hint:  this.hintKey( "Spell.duration" ),
@@ -150,9 +150,21 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.area" ),
         hint:  this.hintKey( "Spell.area" ),
       } ),
-
-      // extraSuccessesList: [],
-      // extraThreadsList: [],
+      extraSuccess: new SpellEnhancementField( {}, {
+        label: this.labelKey( "Spell.extraSuccess" ),
+        hint:  this.hintKey( "Spell.extraSuccess" ),
+      } ),
+      extraThreads: new ArrayField( new SpellEnhancementField( {}, {
+        label: this.labelKey( "Spell.extraThreadOption" ),
+        hint:  this.hintKey( "Spell.extraThreadOption" ),
+      } ),
+      {
+        required: true,
+        nullable: true,
+        initial:  [],
+        label:    this.labelKey( "Spell.extraThreads" ),
+        hint:     this.hintKey( "Spell.extraThreads" ),
+      } ),
     } );
   }
 

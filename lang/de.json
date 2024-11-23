@@ -417,6 +417,15 @@
         "shamanism": "Schamane",
         "wizardry": "Magier"
       },
+      "SpellEnhancements": {
+        "area":                                                     "Wirkungsbereich",
+        "duration":                                                 "Dauer",
+        "effect":                                                   "Effekt",
+        "range":                                                    "Reichweite",
+        "section":                                                  "Abschnitt",
+        "special":                                                  "Spezial",
+        "target":                                                   "Ziel"
+      },
       "SpellKeywords": {
         "binding":                                                    "Bindung",
         "concentration":                                              "Konzentration",
@@ -508,6 +517,12 @@
           },
           "Range": {
             "special":                                      "Spezial",
+            "unit":                                         "Einheit",
+            "value":                                        "Wert"
+          },
+          "SpellEnhancement": {
+            "special":                                      "Spezial",
+            "type":                                         "Typ",
             "unit":                                         "Einheit",
             "value":                                        "Wert"
           }
@@ -692,6 +707,9 @@
             "area":                                         "Wirkungsbereich des Zaubers",
             "duration":                                     "Dauer des Effekts",
             "effect":                                       "Effekt des Zaubers",
+            "extraSuccess":                                 "Effekt bei zusätzlichen Erfolgen",
+            "extraThreadOption":                            "Effekt des zusatzlichen Faden",
+            "extraThreads":                                 "Mögliche Effekte bei zusätzlichen Fäden",
             "keyword":                                      "Besonderheit des Zaubers",
             "keywords":                                     "Besonderheiten des Zaubers",
             "level":                                        "Der Kreis zu dem dieser Zauber gehört",
@@ -873,6 +891,9 @@
             "area":                                         "Bereich",
             "duration":                                     "Dauer",
             "effect":                                       "Effekt",
+            "extraSuccess":                                 "Zusätzliche Erfolge",
+            "extraThreadOption":                            "Effekt",
+            "extraThreads":                                 "Zusätzliche Fäden",
             "keyword":                                      "Schlüsselwort",
             "keywords":                                     "Schlüsselwörter",
             "level":                                        "Kreis",
