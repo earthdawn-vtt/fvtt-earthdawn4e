@@ -133,9 +133,10 @@ export default class SpellEnhancementField extends UnitField {
     const input = document.createElement( "div" );
     input.classList.add( "form-fields" );
     input.appendChild( this.fields.value.toInput( {
-      value:    config.value.value,
-      required: false,
-      localize: config.localize ?? true,
+      value:       config.value.value,
+      required:    false,
+      localize:    config.localize ?? true,
+      placeholder: "-1 + 2 + @rank"
     } ) );
     return input;
   }

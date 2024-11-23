@@ -1,7 +1,5 @@
 export {default as SystemDataModel, SparseDataModel, getLocalizeKey} from "./abstract.mjs";
 
-export * as fields from "./fields/_module.mjs";
-
 export * as actor from "./actor/_module.mjs";
 export * as advancement from "./advancement/_module.mjs";
 export * as fields from "./fields/_module.mjs";

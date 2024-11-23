@@ -381,7 +381,7 @@ ED4E.spellEnhancements = {
   },
   duration: {
     label:      "ED.Config.SpellEnhancements.duration",
-    unitConfig: "timePeriods",
+    unitConfig: "scalarTimePeriods",
   },
   effect: {
     label:      "ED.Config.SpellEnhancements.effect",
