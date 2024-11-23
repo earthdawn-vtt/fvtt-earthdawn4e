@@ -98,21 +98,10 @@ export default class AreaField extends UnitField {
     inputs.appendChild( this._getFieldFormGroup( "thickness", config ) );
     inputs.appendChild( this._getFieldFormGroup( "width", config ) );
 
-    return inputs;
-  }
-
-  _getFieldFormGroup( field, config ) {
-    return this.fields[field].toFormGroup( {
-      label:    `${this.fields[field].label}`,
-      hint:     `${this.fields[field].hint}`,
-      unit:     config.unit,
-      localize: config.localize ?? true,
-    }, {
-      name:     `${config.name}.${field}`,
-      value:    config.value[field],
-      required: true,
-      localize: config.localize ?? true,
-    } );
+    const result = document.createElement( "div" );
+    result.classList.add( "form-fields" );
+    result.appendChild( inputs );
+    return result;
   }
 
 }

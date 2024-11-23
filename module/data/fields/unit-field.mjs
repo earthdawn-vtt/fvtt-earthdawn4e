@@ -155,4 +155,17 @@ export default class UnitField extends SchemaField {
     return inputs;
   }
 
+  _getFieldFormGroup( field, config ) {
+    return this.fields[field].toFormGroup( {
+      label:    `${ this.fields[field].label }`,
+      hint:     `${ this.fields[field].hint }`,
+      unit:     config.unit,
+      localize: config.localize ?? true
+    }, {
+      name:     `${ config.name }.${ field }`,
+      value:    config.value[field],
+      required: true,
+      localize: config.localize ?? true
+    } );
+  }
 }
