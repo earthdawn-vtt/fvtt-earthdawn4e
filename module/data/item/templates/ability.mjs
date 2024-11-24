@@ -219,7 +219,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       foundry.utils.expandObject( createData ),
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
-    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];;
+    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
   }
 
   /* -------------------------------------------- */

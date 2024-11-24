@@ -1,10 +1,10 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import MagicTemplate from "./templates/magic-item.mjs";
+import KnackTemplate from "./templates/knack-item.mjs";
 
 /**
  * Data model template with information on Spell items.
  */
-export default class SpellKnackData extends MagicTemplate.mixin(
+export default class SpellKnackData extends KnackTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 

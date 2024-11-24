@@ -334,6 +334,78 @@ ED4E.spellcastingTypes = {
 };
 preLocalize( "spellcastingTypes" );
 
+ED4E.spellKeywords = {
+  binding:        "ED.Config.SpellKeywords.binding",
+  concentration:  "ED.Config.SpellKeywords.concentration",
+  fate:           "ED.Config.SpellKeywords.fate",
+  figment:        "ED.Config.SpellKeywords.figment",
+  illusion:       "ED.Config.SpellKeywords.illusion",
+  pack:           "ED.Config.SpellKeywords.pack",
+  spirit:         "ED.Config.SpellKeywords.spirit",
+  summon:         "ED.Config.SpellKeywords.summon",
+};
+preLocalize( "spellKeywords" );
+
+ED4E.elements = {
+  air:        "ED.Config.Elements.air",
+  earth:      "ED.Config.Elements.earth",
+  fire:       "ED.Config.Elements.fire",
+  water:      "ED.Config.Elements.water",
+  wood:       "ED.Config.Elements.wood",
+};
+preLocalize( "elements" );
+
+ED4E.elementSubtypes = {
+  air: {
+    electric:   "ED.Config.Elements.airElectric",
+  },
+  earth: {
+    metal:      "ED.Config.Elements.earthMetal",
+  },
+  fire:  {},
+  water: {
+    acid:       "ED.Config.Elements.waterAcid",
+    cold:       "ED.Config.Elements.waterCold",
+  },
+  wood: {},
+};
+preLocalize(
+  "elementSubtypes",
+  { keys: [ "air", "earth", "fire", "water", "wood" ] }
+);
+
+ED4E.spellEnhancements = {
+  area: {
+    label:      "ED.Config.SpellEnhancements.area",
+    unitConfig: "movementUnits",
+  },
+  duration: {
+    label:      "ED.Config.SpellEnhancements.duration",
+    unitConfig: "scalarTimePeriods",
+  },
+  effect: {
+    label:      "ED.Config.SpellEnhancements.effect",
+    unitConfig: "",
+  },
+  range: {
+    label:      "ED.Config.SpellEnhancements.range",
+    unitConfig: "movementUnits",
+  },
+  section: {
+    label:      "ED.Config.SpellEnhancements.section",
+    unitConfig: "",
+  },
+  special: {
+    label:      "ED.Config.SpellEnhancements.special",
+    unitConfig: "",
+  },
+  target: {
+    label:      "ED.Config.SpellEnhancements.target",
+    unitConfig: "",
+  },
+};
+preLocalize( "spellEnhancements", { key: "label", sort: true } );
+
 
 /* -------------------------------------------- */
 /*  Active Effects Shortcuts                    */
@@ -581,6 +653,12 @@ preLocalize( "encumbranceStatus" );
 /* -------------------------------------------- */
 
 /**
+ * The minimum difficulty for any test.
+ * @type {number}
+ */
+ED4E.minDifficulty = 2;
+
+/**
  * The available types of (roll) tests for {@link EdRollOptions}.
  * @enum {string}
  */
@@ -666,8 +744,8 @@ ED4E.combatTypes = {
     label:            "ED.Config.combatTypes.melee",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
-  Mounted: {
-    label:            "ED.Config.combatTypes.Mounted",
+  mounted: {
+    label:            "ED.Config.combatTypes.mounted",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   projectile: {
@@ -708,6 +786,191 @@ ED4E.reserved_edid = {
   ANY:        "any",
 };
 
+ED4E.formulaValueTypes = {
+  attribute:  "ED.Config.FormulaValueTypes.attribute",
+  circle:     "ED.Config.FormulaValueTypes.circle",
+  numeric:    "ED.Config.FormulaValueTypes.numeric",
+  rank:       "ED.Config.FormulaValueTypes.rank",
+  special:    "ED.Config.FormulaValueTypes.special",
+};
+
+/**
+ * Time periods that accept a numeric value.
+ * @enum {string}
+ */
+ED4E.scalarTimePeriods = {
+  turn:   "ED.Config.ScalarTimePeriods.turn",
+  round:  "ED.Config.ScalarTimePeriods.round",
+  minute: "ED.Config.ScalarTimePeriods.minute",
+  hour:   "ED.Config.ScalarTimePeriods.hour",
+  day:    "ED.Config.ScalarTimePeriods.day",
+  week:   "ED.Config.ScalarTimePeriods.week",
+  month:  "ED.Config.ScalarTimePeriods.month",
+  year:   "ED.Config.ScalarTimePeriods.year"
+};
+preLocalize( "scalarTimePeriods" );
+
+/**
+ * Time periods for spells that don't have a defined ending.
+ * @enum {string}
+ */
+ED4E.permanentTimePeriods = {
+  perm: "ED.Config.PermanentTimePeriods.perm"
+};
+preLocalize( "permanentTimePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods that don't accept a numeric value.
+ * @enum {string}
+ */
+ED4E.specialTimePeriods = {
+  inst: "ED.Config.SpecialTimePeriods.inst",
+  spec: "ED.Config.SpecialTimePeriods.special"
+};
+preLocalize( "specialTimePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * The various lengths of time over which effects can occur.
+ * @enum {string}
+ */
+ED4E.timePeriods = {
+  ...ED4E.specialTimePeriods,
+  ...ED4E.permanentTimePeriods,
+  ...ED4E.scalarTimePeriods
+};
+preLocalize( "timePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * The various types of movement of moving entities.
+ * @enum {string}
+ */
+ED4E.movementTypes = {
+  burrow: "ED.Config.MovementTypes.burrow",
+  climb:  "ED.Config.MovementTypes.Climb",
+  fly:    "ED.Config.MovementTypes.Fly",
+  swim:   "ED.Config.MovementTypes.Swim",
+  walk:   "ED.Config.MovementTypes.Walk"
+};
+preLocalize( "movementTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default, this uses the imperial units of feet and miles.
+ * @enum {string}
+ */
+ED4E.movementUnits = {
+  in: "ED.Config.MovementUnits.inch",
+  ft: "ED.Config.MovementUnits.feet",
+  yd: "ED.Config.MovementUnits.yard",
+  mi: "ED.Config.MovementUnits.mile",
+};
+preLocalize( "movementUnits" );
+
+/* -------------------------------------------- */
+
+/**
+ * The types of range that are used for measuring actions and effects.
+ * @enum {string}
+ */
+ED4E.rangeTypes = {
+  self:  "ED.Config.RangeTypes.self",
+  touch: "ED.Config.RangeTypes.touch",
+  spec:  "ED.Config.RangeTypes.special",
+  any:   "ED.Config.RangeTypes.any",
+};
+preLocalize( "rangeTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for the range of an action or effect. A combination of {@link ED4E.movementUnits}
+ * and {@link ED4E.rangeTypes}.
+ * @enum {string}
+ */
+ED4E.distanceUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.rangeTypes,
+};
+preLocalize( "distanceUnits" );
+
+/* -------------------------------------------- */
+
+/**
+ * Information needed to represent different area of effect target types.
+ * @typedef {object} AreaTargetDefinition
+ * @property {string} label        Localize(d) label for this type.
+ * @property {string} template     Type of `MeasuredTemplate` create for this target type.
+ * @property {string} [reference]  Reference to a rule page describing this area of effect.
+ * @property {string[]} [sizes]    List of available sizes for this template. Options are chosen from the list: "angle",
+ *                                 "radius", "width", "height", "length", "thickness". No more than 3 dimensions may
+ *                                 be specified.
+ */
+
+/**
+ * Types for effects that cover an area.
+ * @type {AreaTargetDefinition}
+ */
+ED4E.areaTargetDefinition = {
+  circle:   {
+    label:    "ED.Config.AreaTargets.circle",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  cone:     {
+    label:    "ED.Config.AreaTargets.cone",
+    template: "cone",
+    sizes:    [ "angle", "radius" ],
+  },
+  cube:     {
+    label:    "ED.Config.AreaTargets.cube",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  cylinder: {
+    label:    "ED.Config.AreaTargets.cylinder",
+    template: "circle",
+    sizes:    [ "radius", "height" ],
+  },
+  line:     {
+    label:    "ED.Config.AreaTargets.line",
+    template: "ray",
+    sizes:    [ "length", "width" ],
+  },
+  radius:   {
+    label:    "ED.Config.AreaTargets.radius",
+    template: "circle",
+  },
+  sphere:   {
+    label:    "ED.Config.AreaTargets.sphere",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  square:   {
+    label:    "ED.Config.AreaTargets.square",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  wall:     {
+    label:    "ED.Config.AreaTargets.wall",
+    template: "ray",
+    sizes:    [ "length", "thickness", "height" ],
+  },
+};
+preLocalize( "areaTargetDefinition", { key: "label", sort: true } );
+
+ED4E.spellEnhancementUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.scalarTimePeriods,
+};
+preLocalize( "spellEnhancementUnits" );
 
 /* -------------------------------------------- */
 /*  Chat Commands                               */
