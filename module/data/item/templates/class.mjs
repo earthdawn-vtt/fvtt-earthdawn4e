@@ -3,6 +3,7 @@ import AdvancementData from "../../advancement/base-advancement.mjs";
 import LpIncreaseTemplate from "./lp-increase.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import ClassAdvancementDialog from "../../../applications/advancement/class-advancement.mjs";
+import ED4E from "../../../config.mjs";
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
@@ -76,7 +77,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   get requiredLpForIncrease() {
-    return 0;
+    return this.calculateRequiredLp();
   }
 
   /* -------------------------------------------- */
@@ -87,6 +88,20 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+
+  calculateRequiredLp() {
+    if ( this.parent.type !== "discipline" ) return 0;
+    const nextLevel = this.level + 1;
+    const disciplineSortingFactor = this.order - 1;
+    const nextLevelTier = nextLevel === 0 ? "novice" : this.advancement.levels.find( l => l.level === nextLevel )?.tier;
+    const lpCost = ED4E.legendPointsCost[
+      1 // new level
+      + disciplineSortingFactor
+      + ED4E.lpIndexModForTier[1][nextLevelTier]
+    ];
+    return lpCost;
+  }
+
 
   /** @inheritDoc */
   async increase() {

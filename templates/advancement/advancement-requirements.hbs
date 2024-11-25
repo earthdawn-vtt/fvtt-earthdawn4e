@@ -5,6 +5,7 @@
   </fieldset>
 
   {{#each requirementGroups}}
+  {{log "requirementGroups" this}}
     <fieldset>
       <legend>{{localize @key}}</legend>
       {{#each this as |requirement|}}
