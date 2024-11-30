@@ -1,7 +1,13 @@
-<div class="tab language-tab">
-  <h3>{{localize "X.Languages"}}</h3>
-  <h4>{{localize "X.Speak"}}</h4>
+<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="language-tab">
+  <h4>{{localize "ED.Dialogs.CharGen.Title.languages"}}</h4>
+
+  <!-- Skills explainer -->
+  <p class="explainer-text">
+    {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
+  </p>
+
+  {{localize "ED.Dialogs.CharGen.Title.speak"}}
   {{formField object.schema.fields.languages.fields.speak value=object.languages.speak name="languages.speak"}}
-  <h4>{{localize "X.Read / Write"}}</h4>
+  {{localize "ED.Dialogs.CharGen.Title.readWrite"}}
   {{formField object.schema.fields.languages.fields.readWrite value=object.languages.readWrite name="languages.readWrite"}}
 </div>

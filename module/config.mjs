@@ -53,7 +53,7 @@ ED4E.attributes = {
   },
   str: {
     label:          "ED.Actor.Attributes.strength",
-    abbreviation:   "ED.Attribute.strengthAbbr"
+    abbreviation:   "ED.Actor.Attributes.strengthAbbr"
   },
   tou: {
     label:          "ED.Actor.Attributes.toughness",
@@ -1067,6 +1067,7 @@ ED4E.icons = {
   finishCharGen:    "fa-thin fa-check-double",
   previousCharGen:  "fa-thin fa-arrow-left",
   nextCharGen:      "fa-thin fa-arrow-right",
+  resetPoints:      "fa-arrows-rotate",
 };
 
 

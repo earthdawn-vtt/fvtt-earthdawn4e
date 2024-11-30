@@ -1,11 +1,16 @@
 
-<div class="tab class-tab flexcol">
-{{log this}}
+<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="class-tab">
+ <!-- Class explainer -->
+  <h4>{{localize "ED.Dialogs.CharGen.chooseClass"}}</h4>
+  <p class="explainer-text">
+    {{{localize "ED.Dialogs.CharGen.chooseClassRules"}}}
+  </p>
+
   <!-- choose class type: discipline or questor -->
   <section class="discipline-questor-switch-group flexrow">
     <label class="discipline-questor-switch-group flexrow">
               <span class="{{#unless object.isAdept}}deselected-class-type{{/unless}}" id="char-gen-class-type-discipline-label">
-                {{localize "ED.General.discipline"}}
+                {{localize "ED.Dialogs.CharGen.discipline"}}
               </span>
       <input type="checkbox" name="isAdept" {{checked object.isAdept}} hidden="">
       {{#if object.isAdept}}
@@ -14,7 +19,7 @@
         <i id="char-gen-class-type-select-arrow" class="arrow-toggle-switch fas fa-duotone fa-arrow-right-from-line fa-xl"></i>
       {{/if}}
       <span class="{{#if object.isAdept}}deselected-class-type{{/if}}" id="char-gen-class-type-questor-label">
-        {{localize "ED.General.questor"}}
+        {{localize "ED.Dialogs.CharGen.questor"}}
       </span>
     </label>
   </section>
@@ -29,10 +34,13 @@
   </section>
 
   <!-- Abilities explainer -->
-  <h4>{{localize "X.Abilities"}}</h4>
+  <h4>{{localize "ED.Dialogs.CharGen.abilities"}}</h4>
   <p class="explainer-text">
-    {{{localize "X. Below you find all abilities that the chosen class is granted on character generation. Please choose <em>one</em> of the optionals by clicking on the talent."}}}
-    {{{localize "X. The number indicates the starting rank. You can assign them Config.maxrank. Free abilities are at level 1 for free."}}}
+    {{#if object.isAdept}}
+      {{{localize "ED.Dialogs.CharGen.chooseTalentsRules"}}}
+    {{else}}
+      {{{localize "ED.Dialogs.CharGen.chooseDevotionRules"}}}
+    {{/if}}
   </p>
 
   <!-- Rank assignment -->
@@ -41,39 +49,15 @@
     <!-- Available Ranks Indicator -->
     <div class="availability-meter available-talent-ranks flexrow">
       <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
-              title="X.Clear all assigned ranks and reset to zero." data-reset-type="classAbilities">
+              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-reset-type="classAbilities">
         <i class="fa-light fa-arrows-rotate"></i>
-        {{localize "X.Reset"}}
+        {{localize "ED.Dialogs.CharGen.Buttons.resetRanks"}}
       </button>
-      <label>{{localize "X.Available Ranks: "}}{{lookup object.availableRanks (ifThen object.isAdept "talent" "devotion" )}}{{!--format "X.availablePointsKarma" points=... --}}</label>
+      <button class="reset">{{this.button.reset}}</button>
+      <label>{{localize "ED.Dialogs.CharGen.availableRanks"}}: {{lookup object.availableRanks (ifThen object.isAdept "talent" "devotion" )}}{{!--format "X.availablePointsKarma" points=... --}}</label>
       <meter value="{{lookup object.availableRanks (ifThen object.isAdept "talent" "devotion" )}}" min="0" max="{{lookup config.availableRanks (ifThen object.isAdept "talent" "devotion" )}}">
       </meter>
     </div>
-    <!--
-
-    &lt;!&ndash; Talent/Devotion List &ndash;&gt;
-    <div class="abilities-list">
-      <ul class="unlist">
-        {{#each object.abilities.class}}
-          <li data-ability-uuid="{{@key}}" data-level="{{this}}">
-            {{ed-nameFromUuid @key}}
-            <label>
-              {{!--numberInput this name=(concat "abilities.class[" @key "]") step=1 min=0 max=@root.maxAssignableRanks--}}
-            </label>
-          </li>
-        {{/each}}
-      {{#each object.abilities.optional}}
-          <li data-ability-uuid="{{@key}}" data-level="{{this}}">
-            {{ed-nameFromUuid @key}}
-            <label>
-              {{!--numberInput this name=(concat "abilities.optional[" @key "]") step=1 min=0 max=@root.maxAssignableRanks--}}
-            </label>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
--->
-
   </section>
 
   <!-- Ability selection -->
@@ -85,7 +69,11 @@
         <col />
       </colgroup>
       <tr>
-        <th colspan="2">{{localize "X.Optional Talents"}}</th>
+        {{#if object.isAdept}}
+          <th colspan="2">{{localize "ED.Dialogs.CharGen.optionalTalents"}}</th>
+        {{else}}
+          <th colspan="2">{{localize "ED.Dialogs.CharGen.optionalDevotions"}}</th>
+        {{/if}}
       </tr>
       {{#each classDocument.system.advancement.abilityOptions.novice}}
         <tr class="flexrow">
@@ -98,14 +86,14 @@
           <td class="flexrow rank-change">
             {{#if (ed-hasOwnProperty @root.object.abilities.optional this)}}
               <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                    data-change-type="decrease" data-ability-uuid="{{this}}" data-ability-type="optional">
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="optional">
               <i class="fa-light fa-circle-minus"></i>
             </span>
               <span class="rank-change-value">
                 {{lookup @root.object.abilities.optional this}}
               </span>
               <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                    data-change-type="increase" data-ability-uuid="{{this}}" data-ability-type="optional">
+                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="optional">
               <i class="fa-light fa-circle-plus"></i>
             </span>
             {{/if}}
@@ -120,7 +108,11 @@
         <col span="2"/>
       </colgroup>
       <tr>
-        <th colspan="2">{{localize "X.Class Abilities" classType=classDocument.type}}</th>
+        {{#if object.isAdept}}
+          <th colspan="2">{{localize "ED.Dialogs.CharGen.disciplineTalents" classType=classDocument.type}}</th>
+        {{else}}
+          <th colspan="2">{{localize "ED.Dialogs.CharGen.questorDevotion" classType=classDocument.type}}</th>
+        {{/if}}     
       </tr>
       {{#each classDocument.system.advancement.levels.0.abilities}}
         {{#if (ed-hasItems this)}}
@@ -134,14 +126,14 @@
             {{#if (eq @../key "class")}}
               <td class="flexrow rank-change">
               <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                    data-change-type="decrease" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
                 <i class="fa-light fa-circle-minus"></i>
               </span>
                 <span class="rank-change-value">
                   {{lookup @root.object.abilities.class this}}
                 </span>
                 <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                      data-change-type="increase" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
+                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
                 <i class="fa-light fa-circle-plus"></i>
               </span>
               </td>
@@ -152,4 +144,4 @@
     </table>
   </div>
 
-</div>
+</section>
