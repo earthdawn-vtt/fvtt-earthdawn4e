@@ -375,7 +375,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Set class specifics
     if ( data.selectedClass ) {
-      this.classAbilities = await fromUuid( data.selectedClass );
+      this.charGenData.classAbilities = await fromUuid( data.selectedClass );
     }
 
     // process selected class option ability
@@ -433,7 +433,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return this._currentStep > 0;
   }
 
-  async _finishGeneration( event ) {
+  static _finishGeneration( event ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
@@ -443,7 +443,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       return;
     }
 
-    this.resolve?.( this.object );
+    this.resolve?.( this.charGenData );
     return this.close();
   }
 
@@ -458,7 +458,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _validateNamegiver( errorLevel = "warn", displayNotification = false ) {
-    const hasNamegiver = !!this.object.namegiver;
+    const hasNamegiver = !!this.charGenData.namegiver;
     if ( displayNotification ) {
       if ( !hasNamegiver ) this._displayValidationError( errorLevel, "noNamegiver" );
     }
@@ -466,7 +466,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _validateClass( errorLevel = "warn", displayNotification = false ) {
-    const hasClass = !!this.object.selectedClass;
+    const hasClass = !!this.charGenData.selectedClass;
     if ( displayNotification ) {
       if ( !hasClass ) this._displayValidationError( errorLevel, "noClass" );
     }
@@ -474,7 +474,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _validateClassRanks( errorLevel = "warn", displayNotification = false ) {
-    const hasRanks = this.object.availableRanks[this.object.isAdept ? "talent" : "devotion"] > 0;
+    const hasRanks = this.charGenData.availableRanks[this.charGenData.isAdept ? "talent" : "devotion"] > 0;
     if ( displayNotification ) {
       if ( hasRanks ) this._displayValidationError( errorLevel, "talentRanksLeft" );
     }
@@ -482,7 +482,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _validateAttributes( errorLevel = "info", displayNotification = false ) {
-    const hasAttributePoints = this.object.availableAttributePoints > 0;
+    const hasAttributePoints = this.charGenData.availableAttributePoints > 0;
     if ( displayNotification ) {
       if ( hasAttributePoints ) this._displayValidationError( errorLevel, "attributes" );
     }
@@ -491,10 +491,10 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   _validateSkills( errorLevel = "warn", displayNotification = false ) {
     const availableRanks = filterObject(
-      this.object.availableRanks,
+      this.charGenData.availableRanks,
       ( [ key, _ ] ) => ![ "talent", "devotion" ].includes( key )
     );
-    availableRanks[this.object.isAdept ? "devotion" : "talent"] = 0;
+    availableRanks[this.charGenData.isAdept ? "devotion" : "talent"] = 0;
     availableRanks["readWrite"] = 0;
     availableRanks["speak"] = 0;
     const hasRanks = Object.values( availableRanks ).some( value => value > 0 );
@@ -526,14 +526,14 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   static _onClickSpell( event, target ) {
-    const spellSelected = event.currentTarget.dataset.spellSelected;
+    const spellSelected = target.dataset.spellSelected;
     let result;
     if ( spellSelected === "false" ) {
       // add the spell
-      result = this.object.addSpell( event.currentTarget.dataset.spellUuid );
+      result = this.charGenData.addSpell( target.dataset.spellUuid );
     } else if ( spellSelected === "true" ) {
       // unselect the spell
-      result = this.object.removeSpell( event.currentTarget.dataset.spellUuid );
+      result = this.charGenData.removeSpell( target.dataset.spellUuid );
     }
     result.then( _ => this.render() );
   }

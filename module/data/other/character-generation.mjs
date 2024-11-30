@@ -333,7 +333,14 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   async getMagicType() {
     for ( const abilityUuid of Object.keys( this.abilities.class ) ) {
-      const ability = await fromUuid( abilityUuid );
+
+
+
+
+
+      
+      let ability = await fromUuid( abilityUuid );
+
       if ( ability?.system.magic?.threadWeaving ) return ability.system.magic.magicType;
     }
     return undefined;

@@ -30,8 +30,6 @@
         <th>{{localize "ED.Dialogs.CharGen.Title.step"}}</th>
       </tr>
       {{#if namegiverDocument}}
-      {{log "namegiverDocument" this}}
-
         {{#each object.attributes}}
           <tr data-attribute="{{@key}}">
             <td class="input--centered attribute-label">{{lookup (lookup @root.config.attributes @key)
