@@ -1,7 +1,10 @@
+
+
 // basic sheet layout for all actor- and item-sheets
 // individual settings will be found in the respective sheet.less files
-.app.window-app.earthdawn4e.sheet{
-    background-image: url('assets/sheet/background.png');
+// .app.window-app.earthdawn4e.sheet{
+.application.sheet.earthdawn4e.actor {
+    // background-image: url('assets/sheet/background.png');
     background-size: cover;
     header {
         position: relative;
@@ -20,7 +23,7 @@
         }
     }
     .window-content {
-        background-image: url('assets/sheet/background.png');
+        // background-image: url('assets/sheet/background.png');
         background-size: cover;
         padding: 0; 
         .header__frame {
@@ -30,33 +33,36 @@
             img {
                 border: none;  
             }
+        }
             .section__name {
                 position: relative;
                 z-index: 4;
-                margin-top: -22px;
+                // hängt mit dem Frame zusammen. im alten sheet war der Frame im main html das jetzt nicht mehr benutzt wird.
+                // margin-top: -22px;
+                .header-section__name {
+                    .sheet-header__indent--left {
+                        width: 45%;
+                        float: left;
+                        padding-left: 5px;
+                    }
 
-                .sheet-header__indent--left {
-                    width: 45%;
-                    float: left;
-                    padding-left: 5px;
-                }
-
-                .sheet-header__indent--right {
-                    width: 45%;
-                    float: right;
-                    padding-right: 10px;
+                    .sheet-header__indent--right {
+                        width: 45%;
+                        float: right;
+                        padding-right: 10px;
+                    }
                 }
             }
-        }
-        .body {
-            position: relative;
-            z-index: 4;
-            margin-top: 30px;
-            .navigator__flex {
-                .navigator__tab {
-                    padding-left: 5px;
-                }
-            }
+        
+        // .body {
+        //     position: relative;
+        //     z-index: 4;
+        //     margin-top: 30px;
+        //     .navigator__flex {
+        //         .navigator__tab {
+        //             padding-left: 5px;
+        //         }
+        //     }
             .top {
                 .image__grid-item { 
                     grid-area: image; 
@@ -161,6 +167,7 @@
 
                 .actor-image {
                     width: 160px;
+                    border: none;
                 }
 
             }
@@ -201,7 +208,7 @@
                 }
                 
             }
-        }
+        // }
         
         .footer__frame {
             position: absolute;

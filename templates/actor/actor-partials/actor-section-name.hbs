@@ -1,4 +1,4 @@
-<div>
+<section class="section__name">
     <div class="header-section__name">
         <div class="sheet-header__indent--left">
             <h3 class="header__no-border header-name__no-border">
@@ -6,7 +6,8 @@
             </h3>
         </div>
         <div class="sheet-header__indent--right">
-            {{#each actor.itemTypes.namegiver}}
+            {{log "this.actor.itemTypes.namegiver" this.actor.itemTypes.namegiver}}
+            {{#each this.actor.itemTypes.namegiver}}
             <div class="item-id" data-item-id="{{_id}}">
                 <h3 class="header__no-border">
                     {{name}}
@@ -18,4 +19,4 @@
             {{/each}}
         </div>
     </div>
-</div>
+</section>

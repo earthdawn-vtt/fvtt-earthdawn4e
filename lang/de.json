@@ -22,13 +22,18 @@
         "willpowerAbbr": "Wil"
       },
       "Buttons": {
-        "halfMagic": "Halbmagie",
-        "initiative": "Initiative",
-        "jumpUp": "Aufspringen",
-        "knockDownTest": "Niederschlag",
-        "legendHistory": "LP Übersicht",
-        "recovery": "Erholung",
-        "takeDamage": "Schaden"
+        "halfMagic":                                        "Halbmagie",
+        "initiative":                                       "Initiative",
+        "jumpUp":                                           "Aufspringen",
+        "knockDownTest":                                    "Niederschlag",
+        "karmaRitual":                                      "Karmaritual",
+        "legendHistory":                                    "LP Übersicht",
+        "recovery":                                         "Erholung",
+        "takeDamage":                                       "Schaden",
+        "upgrade":                                          "Verbessern",
+        "displayItem":                                      "Item anzeigen",
+        "deleteItem":                                       "Item löschen",
+        "editItem":                                         "Item bearbeiten"
       },
       "Cards": {
         "chat": "Zeige Item Informationan als Chat Nachricht",
@@ -159,19 +164,19 @@
         "attributeImprovement": "Attribut Erhöhung"
       },
       "Navigator": {
-        "classes": "Berufung",
+        "classes":                                          "Berufung",
         "configuration":                                    "Konfiguration",
-        "devotions": "Weihekräfte",
-        "equipment": "Ausrüstung",
-        "general": "Allgemein",
-        "information": "Informationen",
-        "legend": "Legende",
+        "devotions":                                        "Weihekräfte",
+        "equipment":                                        "Ausrüstung",
+        "general":                                          "Allgemein",
+        "information":                                      "Informationen",
+        "legend":                                           "Legende",
         "power":                                            "Kräfte",
-        "reputation": "Ruf",
-        "skills": "Fertigkeiten",
-        "specials": "Besonders",
-        "spells": "Zauber",
-        "talents": "Talente"
+        "reputation":                                       "Ruf",
+        "skills":                                           "Fertigkeiten",
+        "specials":                                         "Besonders",
+        "spells":                                           "Zauber",
+        "talents":                                          "Talente"
       },
       "Spellcasting": {
         "elementalist": "Elementarist",
