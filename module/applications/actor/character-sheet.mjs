@@ -6,6 +6,7 @@ import ED4E from "../../config.mjs";
  */
 export default class ActorSheetEdCharacter extends ActorSheetEd {
 
+  // region DEFAULT_OPTIONS
   /** 
    * @override 
    */
@@ -28,6 +29,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     }
   };
 
+  // region PARTS
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -106,6 +108,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     },
   };
 
+  // region getTabs 
   #getTabs() {
     const tabs = {
       general:    { id: "general-tab", group: "sheet", icon: "fa-solid fa-user", label: "general" },
@@ -126,7 +129,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     }
     return tabs;
   }
-
+  // region _prepareContext
   async _prepareContext() {
     const context = await super._prepareContext();
     context.tabs = this.#getTabs();
@@ -179,6 +182,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     return context;
   }
 
+  // region _prepare Part Context
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
     switch ( partId ) {
@@ -210,6 +214,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     return context;
   }
 
+  // region Actions
   static async rollHalfMagic( event, target ) {
     event.preventDefault();
     ui.notifications.info( "Half magic not done yet" );
