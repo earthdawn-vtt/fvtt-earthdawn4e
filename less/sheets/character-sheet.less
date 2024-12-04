@@ -61,6 +61,15 @@
                     }
                 }
 
+                .icon__position--right {
+                    display: flex;
+                    align-items: center;
+                    input {
+                        display: flex;
+                    align-items: center;
+                    }
+                }
+
                 .karma-devotion__grid--container {
                     align-items: center;
                     text-align: center;
@@ -96,7 +105,8 @@
             }
         }
 
-        .tab__legend {
+        //.tab__legend {
+        .legend.tab {
             .legend-card__grid--container {
                 align-items: center;
                 height: 30px;
@@ -112,7 +122,7 @@
                 ;
             }
         }
-        .tab__class {
+        .classes.tab {
             .class-card__grid--container {
                 align-items: center;
                 height: 30px;
@@ -151,7 +161,9 @@
         button {
             position: relative;
             z-index: 4;
-            width: 100px;
+            width: 90px;
+            display: inline;
+            margin-left: 5px;
         }
 
         .buttons--left {

@@ -66,7 +66,6 @@
   height: 30px;
   border-radius: 50%;
   padding-top: 5px;
-  background: rgba(0, 0, 0, 0.1);
 }
 .input--centered {
   text-align: center;
@@ -89,31 +88,34 @@ input.input__number-input {
 .text__alignment--center {
   text-align: center;
 }
-.font__bold {
+.application .font__bold {
   font-weight: bold;
 }
-.text-break__auto {
+.application .text-break__auto {
   word-break: normal;
 }
-#chat-log,
-.window-content,
-input,
-.body {
+.application #chat-log,
+.application .window-content,
+.application input,
+.application .body {
   font-family: 'ArnoPro Regular', serif;
   font-size: 1.05em;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.application .h1,
+.application h2,
+.application h3,
+.application h4,
+.application h5,
+.application h6 {
   font-family: 'WarhorseDIY', serif;
+  font-size: 1em;
+  color: inherit;
+  padding-top: 5px;
 }
-p {
+.application p {
   font-size: large;
 }
-.font__no-underline {
+.application .font__no-underline {
   border-bottom: none;
 }
 .display__inline-block {
@@ -422,7 +424,27 @@ p {
 .application.sheet.earthdawn4e.actor .window-content .section__name .header-section__name .sheet-header__indent--right {
   width: 45%;
   float: right;
+  padding-top: 10px;
   padding-right: 10px;
+}
+.application.sheet.earthdawn4e.actor .window-content .tab.general,
+.application.sheet.earthdawn4e.actor .window-content .talents,
+.application.sheet.earthdawn4e.actor .window-content .skills,
+.application.sheet.earthdawn4e.actor .window-content .devotions,
+.application.sheet.earthdawn4e.actor .window-content .spells,
+.application.sheet.earthdawn4e.actor .window-content .equipment,
+.application.sheet.earthdawn4e.actor .window-content .notes,
+.application.sheet.earthdawn4e.actor .window-content .reputation,
+.application.sheet.earthdawn4e.actor .window-content .specials,
+.application.sheet.earthdawn4e.actor .window-content .legend,
+.application.sheet.earthdawn4e.actor .window-content .classes {
+  height: 450px;
+  /* Set the desired fixed height */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+}
+.application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
+  gap: 0.5rem;
 }
 .application.sheet.earthdawn4e.actor .window-content .top {
   grid-area: empty;
@@ -901,6 +923,14 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
   height: 25px;
   border: none;
 }
+.general .left-part .icon__position--right {
+  display: flex;
+  align-items: center;
+}
+.general .left-part .icon__position--right input {
+  display: flex;
+  align-items: center;
+}
 .general .left-part .karma-devotion__grid--container {
   align-items: center;
   text-align: center;
@@ -921,21 +951,21 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
   height: 30px;
   grid-template-columns: 40px 220px;
 }
-.tab__legend .legend-card__grid--container {
+.legend.tab .legend-card__grid--container {
   align-items: center;
   height: 30px;
   display: grid;
   padding-left: 2px;
   grid-template-columns: 158px 158px 158px 158px 158px;
 }
-.tab__class .class-card__grid--container {
+.classes.tab .class-card__grid--container {
   align-items: center;
   height: 30px;
   display: grid;
   padding-left: 2px;
   grid-template-columns: 40px 450px 200px 100px;
 }
-.tab__class .item__image {
+.classes.tab .item__image {
   width: 25px;
   border: none;
 }
@@ -948,7 +978,9 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
 .section__button .action--buttons button {
   position: relative;
   z-index: 4;
-  width: 100px;
+  width: 90px;
+  display: inline;
+  margin-left: 5px;
 }
 .section__button .action--buttons .buttons--left {
   margin-left: 45px;

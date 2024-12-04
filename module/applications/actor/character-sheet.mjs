@@ -20,6 +20,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
       jumpUp:       this.jumpUp,
       initiative:   this.rollInitiative,
       halfMagic:    this.rollHalfMagic,
+      upgradeItem:      this.upgradeItem,
     },
     position: {
       //   top:    0, // number,
@@ -48,9 +49,9 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
       classes:  [ "tabs-navigation" ],
     },
     "general-tab": {
-      template: "systems/ed4e/templates/actor/actor-tabs/general.hbs",
-      id:       "general-tab",
-      classes:  [ "tab", "general", "active" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/general.hbs",
+      id:         "general-tab",
+      classes:    [ "tab", "general", "active" ],
     },
     "talents-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/talents.hbs",
