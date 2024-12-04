@@ -23,6 +23,14 @@
         }
     }
     .window-content {
+        .tab.notes {
+            .sheet__editor {
+                .editor {
+                    min-height: 200px;
+                    max-height: 100%;
+                }
+            }
+        }
         // background-image: url('assets/sheet/background.png');
         background-size: cover;
         padding: 0; 
@@ -191,14 +199,52 @@
                 }
 
             }
-            .main {
+            // .main {
+            //     padding-top: 1px;
+            //     height: 440px;
+            //     overflow-y: auto;
+            //     padding-left: 5px;
+            //     padding-right: 5px;
+                
+            //     .sheet__editor {
+            //         min-height: 400px;
+            //         max-height: 100%;
+            //         display: flex;
+            //         flex-direction: column;
+                
+            //         .editor,
+            //         .prosemirror,
+            //         .editor-container,
+            //         .editor-content {
+            //             min-height: 350px;
+            //             max-height: 100%;
+            //         }
+            //     }
+
+            //     .form-group {
+            //         label {
+            //             float: left;
+            //             width: 40%;
+            //         }
+            //         .form-fields {
+            //             float: right;
+            //             width: 60%;
+            //         }
+            //         .hint {
+            //             font-size:smaller;
+            //         }
+            //     }
+                
+            // }
+            
                 padding-top: 1px;
                 height: 440px;
                 overflow-y: auto;
                 padding-left: 5px;
                 padding-right: 5px;
                 
-                .sheet__editor {
+                .sheet__editor,
+                .editor {
                     min-height: 400px;
                     max-height: 100%;
                     display: flex;
@@ -207,7 +253,8 @@
                     .editor,
                     .prosemirror,
                     .editor-container,
-                    .editor-content {
+                    .editor-content
+                    .editor {
                         min-height: 350px;
                         max-height: 100%;
                     }
@@ -226,8 +273,15 @@
                         font-size:smaller;
                     }
                 }
-                
-            }
+                .tab.notes {
+                    .sheet__editor {
+                        .editor {
+                            min-height: 200px;
+                            max-height: 100%;
+                        }
+                    }
+                }
+            
         // }
         
         .footer__frame {
@@ -244,3 +298,4 @@
         z-index: 5;
     }
 }
+

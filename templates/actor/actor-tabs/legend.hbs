@@ -25,7 +25,7 @@
                 value="{{actor.system.lp.status}}">
         </div>
         <div class="legend-card__grid--item text__alignment--center">
-            <button class="legend-point__history">{{localize "ED.Actor.Buttons.legendHistory"}}</button>
+            <button class="legend-point__history" data-action="legendPointHistory">{{localize "ED.Actor.Buttons.legendHistory"}}</button>
         </div>
     </div>
 </div>
@@ -56,7 +56,7 @@
                         value="{{timesIncreased}}">
                 </td>
                 <td>
-                     <a class="item-control item-upgrade__attribute"  data-attribute="{{@key}}" title="{{localize 'earthdawn.u.upgrade'}}">
+                     <a class="item-control item-upgrade__attribute" data-action="upgradeItem" data-attribute="{{@key}}" title="{{localize 'earthdawn.u.upgrade'}}">
                         <i class="fas fa-arrow-circle-up"></i>
                     </a>
                 </td>

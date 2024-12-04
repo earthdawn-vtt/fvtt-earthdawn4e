@@ -403,6 +403,15 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content {
   background-size: cover;
   padding: 0;
+  padding-top: 1px;
+  height: 440px;
+  overflow-y: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
+  min-height: 200px;
+  max-height: 100%;
 }
 .application.sheet.earthdawn4e.actor .window-content .header__frame {
   position: absolute;
@@ -531,36 +540,38 @@ input.input__number-input {
   width: 160px;
   border: none;
 }
-.application.sheet.earthdawn4e.actor .window-content .main {
-  padding-top: 1px;
-  height: 440px;
-  overflow-y: auto;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.application.sheet.earthdawn4e.actor .window-content .main .sheet__editor {
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor,
+.application.sheet.earthdawn4e.actor .window-content .editor {
   min-height: 400px;
   max-height: 100%;
   display: flex;
   flex-direction: column;
 }
-.application.sheet.earthdawn4e.actor .window-content .main .sheet__editor .editor,
-.application.sheet.earthdawn4e.actor .window-content .main .sheet__editor .prosemirror,
-.application.sheet.earthdawn4e.actor .window-content .main .sheet__editor .editor-container,
-.application.sheet.earthdawn4e.actor .window-content .main .sheet__editor .editor-content {
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .prosemirror,
+.application.sheet.earthdawn4e.actor .window-content .editor .prosemirror,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor-container,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor-container,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor-content .editor,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor-content .editor {
   min-height: 350px;
   max-height: 100%;
 }
-.application.sheet.earthdawn4e.actor .window-content .main .form-group label {
+.application.sheet.earthdawn4e.actor .window-content .form-group label {
   float: left;
   width: 40%;
 }
-.application.sheet.earthdawn4e.actor .window-content .main .form-group .form-fields {
+.application.sheet.earthdawn4e.actor .window-content .form-group .form-fields {
   float: right;
   width: 60%;
 }
-.application.sheet.earthdawn4e.actor .window-content .main .form-group .hint {
+.application.sheet.earthdawn4e.actor .window-content .form-group .hint {
   font-size: smaller;
+}
+.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
+  min-height: 200px;
+  max-height: 100%;
 }
 .application.sheet.earthdawn4e.actor .window-content .footer__frame {
   position: absolute;
@@ -968,12 +979,6 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
 .classes.tab .item__image {
   width: 25px;
   border: none;
-}
-.section__button .action--buttons {
-  padding-top: 5px;
-  position: relative;
-  width: 100%;
-  z-index: -6;
 }
 .section__button .action--buttons button {
   position: relative;

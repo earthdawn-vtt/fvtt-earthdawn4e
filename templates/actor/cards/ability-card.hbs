@@ -5,18 +5,20 @@
             {{#if (ne this.system.attribute "")}}
                 <img class="ability-icon" src="{{img}}"/>
                 <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
-                <img class="roll-icon__pointer rollable" src="icons/svg/d20-black.svg">
+                <img class="roll-icon__pointer rollable" 
+                data-rolltype="ability"
+                data-action="rollable" src="icons/svg/d20-black.svg">
             {{else}} 
             {{#if (ne this.system.strain 0)}}
                 <img class="ability-icon" src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
                 <img class="roll-icon__hover-fixed blood" src="icons/svg/blood.svg">
-                <img class="roll-icon__pointer take-strain" src="systems/ed4e/assets/icons/red-blood.svg" data-attribute="{{@key}}">
+                <img class="roll-icon__pointer take-strain" data-action="takeStrain" src="systems/ed4e/assets/icons/red-blood.svg" data-attribute="{{@key}}">
             {{else}}
                     <img class="item__image--visible" src="{{img}}" title="{{name}}" height="25" width="25" />
                 {{/if}}
             {{/if}}
         </div>
-        <div class="ability-card__grid--item card__name">{{name}}</div>
+        <div class="ability-card__grid--item card__name" data-action="expandItem">{{name}}</div>
         <div class="ability-card__grid--item">{{system.action}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{system.level}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{this.system.rankFinal}}</div>

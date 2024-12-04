@@ -26,17 +26,22 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     },
     form: {
       submitOnChange: true,
-      closeOnSubmit:  true,
     },
     actions:  {
       editImage:    ActorSheetEd._onEditImage,
-      editItem:     this._onItemEdit,
-      deleteItem:   this._onItemDelete,
-      editEffect:   this._onEffectEdit,
-      deleteEffect: this._onEffectDelete,
-      addEffect:    this._onEffectAdd,
-      expandItem:   this._onCardExpand,
-      displayItem:  this._onDisplayItem,
+      editItem:     ActorSheetEd._onItemEdit,
+      deleteItem:   ActorSheetEd._onItemDelete,
+      editEffect:   ActorSheetEd._onEffectEdit,
+      deleteEffect: ActorSheetEd._onEffectDelete,
+      addEffect:    ActorSheetEd._onEffectAdd,
+      expandItem:   ActorSheetEd._onCardExpand,
+      displayItem:  ActorSheetEd._onDisplayItem,
+      takeDamage:   ActorSheetEd.takeDamage,
+      knockDown:    ActorSheetEd.knockdownTest,
+      recovery:     ActorSheetEd.rollRecovery,
+      jumpUp:       ActorSheetEd.jumpUp,
+      initiative:   ActorSheetEd.rollInitiative,
+      rollable:     ActorSheetEd.rollable,
     },
   };
 
@@ -48,11 +53,22 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       items:                  this.document.items,
       options:                this.options,
       systemFields:           this.document.system.schema.fields,
-      // enrichment:             await this.actor._enableHTMLEnrichment(),
-      // enrichmentEmbededItems: await this.actor._enableHTMLEnrichmentEmbeddedItems(),
+      enrichment:             await this.document._enableHTMLEnrichment(),
+      enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
       config:                 ED4E,
       splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
     };
+
+    context.enrichedDescription = await TextEditor.enrichHTML(
+      this.document.system.description.value,
+      {
+        // Only show secret blocks to owner
+        secrets:  this.document.isOwner,
+        // rollData: this.document.getRollData
+
+      }
+    );
+
     return context;
   }
 
@@ -60,6 +76,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     const attr = target.dataset.edit;
     const current = foundry.utils.getProperty( this.document, attr );
     const { img } = this.document.constructor.getDefaultArtwork?.( this.document.toObject() ) ?? {};
+    // eslint-disable-next-line no-undef
     const fp = new FilePicker( {
       current,
       type:           "image",
@@ -73,83 +90,107 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     return fp.browse();
   }
 
-  static async _onItemEdit( event ) {
+  static async _onItemEdit( event, target ) {
+    event.preventDefault();
+    const itemId = target.parentElement.dataset.itemId;
+    const item = this.document.items.get( itemId );
+    return item.sheet?.render( true );
   }
 
-  static async _onItemDelete( event ) {
+  static async _onItemDelete( event, target ) {
+    event.preventDefault();
+    const itemId = target.parentElement.dataset.itemId;
+    const item = this.document.items.get( itemId );
+    if ( !item ) return;
+    return item.deleteDialog();
   }
 
-  static async _onEffectEdit( event ) {
+  static async _onEffectEdit( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
   }
 
-  static async _onEffectDelete( event ) {
+  static async _onEffectDelete( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
   }
 
-  static async _onEffectAdd( event ) {
+  static async _onEffectAdd( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
   }
 
-  static async _onCardExpand( event ) {
+  static async _onCardExpand( event, target ) {
+    event.preventDefault();
+
+    const itemDescription = $( target )
+      .parent( ".item-id" )
+      .parent( ".card__ability" )
+      .children( ".card__description" );
+
+    itemDescription.toggleClass( "card__description--toggle" );
   }
 
-  static async _onDisplayItem( event ) {
+  static async _onDisplayItem( event, target ) {
+    ui.notifications.info( "Display Item not done yet" );
+  }
+
+  static async takeDamage( event, target ) {
+    const takeDamage = await this.document.getPrompt( "takeDamage" );
+    if ( !takeDamage || takeDamage === "close" ) return;
+
+    this.document.takeDamage(
+      takeDamage.damage,
+      false,
+      takeDamage.damageType,
+      takeDamage.armorType,
+      takeDamage.ignoreArmor,
+    );
+  }
+
+  static async knockdownTest( event, target ) {
+    event.preventDefault();
+    const damageTaken = 0;
+    this.document.knockdownTest( damageTaken );
+  }
+
+  static async rollRecovery( event, target ) {
+    event.preventDefault();
+    const recoveryMode = await this.document.getPrompt( "recovery" );
+    this.document.rollRecovery( recoveryMode, {event: event} );
+  }
+
+  static async jumpUp( event, target ) {
+    event.preventDefault();
+    this.document.jumpUp( {event: event} );
+  }
+
+  static async rollInitiative( event, target ) {
+    event.preventDefault();
+    ui.notifications.info( "Initiative not done yet" );
+    this.document.rollInitiative( {event: event} );
+  }
+
+  static async rollable( event, target ) {
+    event.preventDefault();
+    const rolltype = target.dataset.rolltype;
+    if ( rolltype === "attribute" ) {
+      const attribute = target.dataset.attribute;
+      this.document.rollAttribute( attribute, {}, { event: event } );
+    } else if ( rolltype === "ability" ) {
+      const li = target.closest( ".item-id" );
+      const ability = this.document.items.get( li.dataset.itemId );
+      this.document.rollAbility( ability, {}, { event: event } );
+    } else if ( rolltype === "equipment" ) {
+      const li = target.closest( ".item-id" );
+      const equipment = this.document.items.get( li.dataset.itemId );
+      this.document.rollEquipment( equipment, { event: event } );
+    }
   }
 
   /* -------------------------------------------- */
 
 
   // region TODOS
-  // die actions umsetzten
   // drag and drop einbauen
-  // enrichments oben in prepareContext einbauen
-
-
-
-  // /* -------------------------------------------- */
-  // /*                   Effects                    */
-  // /* -------------------------------------------- */
-
-  // /**
-  //  * Handle creating an owned ActiveEffect for the Actor.
-  //  * @param {Event} event     The originating click event.
-  //  * @returns {Promise|null}  Promise that resolves when the changes are complete.
-  //  * @private
-  //  */
-  // _onEffectAdd( event ) {
-  //   event.preventDefault();
-  //   return this.actor.createEmbeddedDocuments( "ActiveEffect", [ {
-  //     label:    "New Effect",
-  //     icon:     "icons/svg/item-bag.svg",
-  //     duration: { rounds: 1 },
-  //     origin:   this.actor.uuid
-  //   } ] );
-  // }
-
-  // /**
-  //  * Handle deleting an existing Owned ActiveEffect for the Actor.
-  //  * @param {Event} event                       The originating click event.
-  //  * @returns {Promise<ActiveEffect>|undefined} The deleted item if something was deleted.
-  //  * @private
-  //  */
-  // _onEffectDelete( event ) {
-  //   event.preventDefault();
-  //   const itemId = event.currentTarget.parentElement.dataset.itemId;
-  //   const effect = this.actor.effects.get( itemId );
-  //   if ( !effect ) return;
-  //   return effect.deleteDialog();
-  // }
-
-  // /**
-  //  * Handle editing an existing Owned ActiveEffect for the Actor.
-  //  * @param {Event}event    The originating click event.
-  //  * @returns {any}         The rendered item sheet.
-  //  * @private
-  //  */
-
-  // _onEffectEdit( event ) {
-  //   event.preventDefault();
-  //   const itemId = event.currentTarget.parentElement.dataset.itemId;
-  //   const effect = this.actor.effects.get( itemId );
-  //   return effect.sheet?.render( true );
-  // }
+  // enrichments oben in prepareContext einbauen -- roll data & enrichment funktioniert nicht richtig
+  // wechsel der tabs nicht richtig, nach #nderung kommt der general tab aber aktiv scheint noch der vorgänger...
 
 }
