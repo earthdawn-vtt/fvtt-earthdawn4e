@@ -59,6 +59,10 @@ export default function () {
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true
     } );
+    Items.registerSheet( "earthdawn4e", applications.item.ClassItemSheetEd, { 
+      types:       [ "discipline", "questor", "path" ],
+      makeDefault: true 
+    } );
     Journal.unregisterSheet( "core", JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
       makeDefault: true

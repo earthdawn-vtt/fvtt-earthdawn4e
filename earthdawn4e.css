@@ -976,24 +976,47 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
   height: 26px;
   line-height: 22px;
 }
-.body .item-section__top {
-  height: 158px;
-}
-.body .item-section__top img {
+.application.sheet.earthdawn4e.item .window-content img {
   width: 158px;
   border: none;
 }
-.body .item__left--main {
+.application.sheet.earthdawn4e.item .window-content .item-name .sheet-header__indent--left {
+  width: 45%;
+  float: left;
+}
+.application.sheet.earthdawn4e.item .window-content .item-name .sheet-header__indent--right {
+  width: 45%;
+  float: right;
+}
+.application.sheet.earthdawn4e.item .tab.general,
+.application.sheet.earthdawn4e.item .tab.details,
+.application.sheet.earthdawn4e.item .tab.effects,
+.application.sheet.earthdawn4e.item .tab.advancements {
+  overflow-y: auto;
+}
+.application.sheet.earthdawn4e.item .tab.general .item__left--main,
+.application.sheet.earthdawn4e.item .tab.details .item__left--main,
+.application.sheet.earthdawn4e.item .tab.effects .item__left--main,
+.application.sheet.earthdawn4e.item .tab.advancements .item__left--main {
   width: 38%;
   float: left;
 }
-.body .item__left--main div.form-group label {
+.application.sheet.earthdawn4e.item .tab.general .item__left--main div.form-group label,
+.application.sheet.earthdawn4e.item .tab.details .item__left--main div.form-group label,
+.application.sheet.earthdawn4e.item .tab.effects .item__left--main div.form-group label,
+.application.sheet.earthdawn4e.item .tab.advancements .item__left--main div.form-group label {
   flex-basis: 50%;
 }
-.body .item__left--main div.form-group .hint {
+.application.sheet.earthdawn4e.item .tab.general .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .tab.details .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .tab.effects .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .tab.advancements .item__left--main div.form-group .hint {
   display: none;
 }
-.body .item__right--main {
+.application.sheet.earthdawn4e.item .tab.general .item__right--main,
+.application.sheet.earthdawn4e.item .tab.details .item__right--main,
+.application.sheet.earthdawn4e.item .tab.effects .item__right--main,
+.application.sheet.earthdawn4e.item .tab.advancements .item__right--main {
   width: 60%;
   float: right;
 }

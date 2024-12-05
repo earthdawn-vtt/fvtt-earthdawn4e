@@ -1,13 +1,13 @@
 import ED4E from "../../config.mjs";
-
-const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+// import ClassTemplate from "../../data/item/templates/class.mjs";
+import ItemSheetEd from "./item-sheet.mjs";
 
 // noinspection JSClosureCompilerSyntax
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ItemSheet}
  */
-export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
+export default class ClassItemSheetEd extends ItemSheetEd {
   
   constructor( options = {} ) {
     super( options );
@@ -32,10 +32,6 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       submitOnChange: true,
     },
     actions:  {
-      editImage:        ItemSheetEd._onEditImage,
-      editEffect:       ItemSheetEd._onEffectEdit,
-      deleteEffect:     ItemSheetEd._onEffectDelete,
-      addEffect:        ItemSheetEd._onEffectAdd,
     },
     position: {
       top:    50, 
@@ -77,13 +73,19 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       id:       "effects-tab",
       classes:  [ "effects" ] 
     },
+    "advancement-tab": { 
+      template: "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
+      id:       "advancement-tab",
+      classes:  [ "advancement" ] 
+    },
   };
 
   #getTabs() {
     const tabs = {
-      general:    { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
-      details:    { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
+      general:     { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
+      details:     { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
       effects:     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
+      advancement:     { id: "advancement-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "advancement" },
     };
     for ( const v of Object.values( tabs ) ) {
       v.active = this.tabGroups[v.group] === v.id;
@@ -104,12 +106,13 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
         break;
       case "effects-tab":
         break;
+      case "advancement-tab":
+        break;
     }
     return context;
   }
 
   async _prepareContext() {
-    
     const context = {
       item:                   this.document,
       system:                 this.document.system,
@@ -135,34 +138,5 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
     return context;
   }
 
-  static async _onEditImage( event, target ) {
-    const attr = target.dataset.edit;
-    const current = foundry.utils.getProperty( this.document, attr );
-    const { img } = this.document.constructor.getDefaultArtwork?.( this.document.toObject() ) ?? {};
-    // eslint-disable-next-line no-undef
-    const fp = new FilePicker( {
-      current,
-      type:           "image",
-      redirectToRoot: img ? [ img ] : [],
-      callback:       ( path ) => {
-        this.document.update( { [attr]: path } );
-      },
-      top:  this.position.top + 40,
-      left: this.position.left + 10,
-    } );
-    return fp.browse();
-  }
-
-  static async _onEffectEdit( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectDelete( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectAdd( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
 }
 
