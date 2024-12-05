@@ -11,6 +11,9 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
   
   constructor( options = {} ) {
     super( options );
+    this.tabGroups = {
+      "item-sheet": "general-tab",
+    };
   }
 
   /**
@@ -64,26 +67,23 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
     },
     "general-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
-      id:       "general-tab",
       classes:  [ "general" ] 
     },
     "details-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
-      id:       "details-tab",
       classes:  [ "details" ] 
     },
     "effects-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
-      id:       "effects-tab",
       classes:  [ "effects" ] 
     },
   };
 
   #getTabs() {
     const tabs = {
-      general:    { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
-      details:    { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
-      effects:     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
+      "general-tab":    { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
+      "details-tab":    { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
+      "effects-tab":     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
     };
     for ( const v of Object.values( tabs ) ) {
       v.active = this.tabGroups[v.group] === v.id;
@@ -93,9 +93,11 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
   }
 
   // region _prepare Part Context
-  async _preparePartContext( partId, context, options ) {
-    await super._preparePartContext( partId, context, options );
+  async _preparePartContext( partId, contextInput, options ) {
+    const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
+      case "header":
+      case "top":
       case "tabs": 
         break;
       case "general-tab":
@@ -105,6 +107,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       case "effects-tab":
         break;
     }
+    context.tab = context.tabs[partId];
     return context;
   }
 
@@ -127,8 +130,8 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       this.document.system.description.value,
       {
         // Only show secret blocks to owner
-        secrets:  this.document.isOwner,
-        // rollData: this.document.getRollData
+        secrets:    this.document.isOwner,
+        EdRollData: this.document.getRollData
       }
     );
 

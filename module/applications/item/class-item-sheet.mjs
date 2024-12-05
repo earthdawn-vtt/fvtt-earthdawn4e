@@ -32,6 +32,9 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       submitOnChange: true,
     },
     actions:  {
+      addClassLevel:     ClassItemSheetEd.addClassLevel,
+      deleteClassLevel:  ClassItemSheetEd.deleteClassLevel,
+
     },
     position: {
       top:    50, 
@@ -60,32 +63,28 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     },
     "general-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
-      id:       "general-tab",
       classes:  [ "general" ] 
     },
     "details-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
-      id:       "details-tab",
       classes:  [ "details" ] 
     },
     "effects-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
-      id:       "effects-tab",
       classes:  [ "effects" ] 
     },
     "advancement-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
-      id:       "advancement-tab",
       classes:  [ "advancement" ] 
     },
   };
 
   #getTabs() {
     const tabs = {
-      general:     { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
-      details:     { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
-      effects:     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
-      advancement:     { id: "advancement-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "advancement" },
+      "general-tab":     { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
+      "details-tab":     { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
+      "effects-tab":     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
+      "advancement-tab":     { id: "advancement-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "advancement" },
     };
     for ( const v of Object.values( tabs ) ) {
       v.active = this.tabGroups[v.group] === v.id;
@@ -94,10 +93,35 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return tabs;
   }
 
+  // #getClassTabs() {
+  //   const classTabs = {
+  //     "general-tab":     { id: "general-tab", group: "item-sheet-class", icon: "fa-solid fa-user", label: "general" },
+  //     "level1-tab":     { id: "level1-tab", group: "item-sheet-class", icon: "fa-solid fa-user", label: "level1" },
+  //     // multiple based on the number of levels
+  //   };
+  //   for ( const v of Object.values( classTabs ) ) {
+  //     v.active = this.tabGroups[v.group] === v.id;
+  //     v.cssClass = v.active ? "active" : "";
+  //   }
+  //   return classTabs;
+  // }
+
   // region _prepare Part Context
-  async _preparePartContext( partId, context, options ) {
-    await super._preparePartContext( partId, context, options );
+  async _preparePartContext( partId, contextInput, options ) {
+    const context = await super._preparePartContext( partId, contextInput, options );
+    // const classTabs = this.#getClassTabs();
+    // if ( partId in classTabs ) {
+    //   switch ( partId ) {
+    //     case "options":
+    //       break;
+    //     case "level1":
+    //       break;
+    //       // continue based on the number of levels
+    //   } 
+    // }else {
     switch ( partId ) {
+      case "header":
+      case "top":
       case "tabs": 
         break;
       case "general-tab":
@@ -109,6 +133,9 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       case "advancement-tab":
         break;
     }
+    // }
+    // context.classTab = context.classTabs[partId];
+    context.tab = context.tabs[partId];
     return context;
   }
 
@@ -138,5 +165,16 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return context;
   }
 
-}
+  static async addClassLevel( event, target ) {
+    event.preventDefault();
+    this.document.system.advancement.addLevel();
+    this.render();
+  }
 
+  static async deleteClassLevel( event, target ) {
+    event.preventDefault();
+    this.document.system.advancement.deleteLevel();
+    this.render();
+  }
+
+}
