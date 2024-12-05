@@ -1,24 +1,26 @@
-<div id="effects-information-item">
-    <p>effecte</p>
-    <p>embedded items</p>
-    <p>makros</p>
-</div>
-<div class="effects space-smaller">  
-            <table>
-                <h3 class="headerLine">
-                    <div>
-                        {{localize "earthdawn.e.effects"}}
-                    </div>
-                    <a class="effect-add align-right-button" data-type="effect" title="{{localize "earthdawn.n.newItem" }}">
-                        <I class="fas fa-plus"></I>
-                    </a>
-                </h3>
-                <tr>
-                    <div class="item-list effects-list">
-                        {{#each item.effects as |effects id|}}
-                        {{> "systems/ed4e/templates/global/effect-card.hbs" effects }}
-                        {{/each}}
-                    </div>
-                </tr>
-            </table> 
-        </div>
+<section class="tab {{tab.cssClass}}" data-group="item-sheet" data-tab="effects-tab">
+    <div id="effects-information-item">
+        <p>effecte</p>
+        <p>embedded items</p>
+        <p>makros</p>
+    </div>
+    <div class="effects space-smaller">  
+        <table>
+            <h3 class="headerLine">
+                <div>
+                    {{localize "earthdawn.e.effects"}}
+                </div>
+                <a class="effect-add align-right-button" data-type="effect" title="{{localize "earthdawn.n.newItem" }}">
+                    <I class="fas fa-plus"></I>
+                </a>
+            </h3>
+            <tr>
+                <div class="item-list effects-list">
+                    {{#each item.effects as |effects id|}}
+                    {{> "systems/ed4e/templates/global/effect-card.hbs" effects }}
+                    {{/each}}
+                </div>
+            </tr>
+        </table> 
+    </div>
+</section>
