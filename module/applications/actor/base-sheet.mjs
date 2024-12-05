@@ -25,6 +25,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       resizable:      true,
     },
     form: {
+      handler:        ActorSheetEd.#onFormSubmission,
       submitOnChange: true,
     },
     actions:  {
@@ -45,6 +46,11 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       changeItemStatus: ActorSheetEd.changeItemStatus,
     },
   };
+
+  static async #onFormSubmission( event, form, formData ) {
+    const data = foundry.utils.expandObject( formData.object );
+    console.log( "onFormSubmission", data );
+  }
 
   async _prepareContext() {
     // TODO: überprüfen was davon benötigt wird

@@ -6,6 +6,13 @@ import ED4E from "../../config.mjs";
  */
 export default class ActorSheetEdCharacter extends ActorSheetEd {
 
+  constructor( options = {} ) {
+    super( options );
+    this.tabGroups = {
+      sheet: "general-tab",
+    };
+  }
+
   // region DEFAULT_OPTIONS
   /** 
    * @override 
@@ -33,77 +40,77 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
-      id:       "header",
+      // id:       "header",
       classes:  [ "sheet-header" ],
     },
     characteristics: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
-      id:       "characteristics",
+      // id:       "characteristics",
       classes:  [ "characteristics" ],
     },
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
-      id:       "-tabs-navigation",
+      // id:       "-tabs-navigation",
       classes:  [ "tabs-navigation" ],
     },
     "general-tab": {
       template:   "systems/ed4e/templates/actor/actor-tabs/general.hbs",
-      id:         "general-tab",
+      // id:         "general-tab",
       classes:    [ "tab", "general" ],
     },
     "talents-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/talents.hbs",
-      id:       "talents-tab",
+      // id:       "talents-tab",
       classes:  [ "tab", "talents" ]
     },
     "skills-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/skills.hbs",
-      id:       "skills-tab",
+      // id:       "skills-tab",
       classes:  [ "tab", "skills" ]
     },
     "devotions-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/devotions.hbs",
-      id:       "devotions-tab",
+      // id:       "devotions-tab",
       classes:  [ "tab", "devotions" ]
     },
     "spells-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
-      id:       "spells-tab",
+      // id:       "spells-tab",
       classes:  [ "tab", "spells" ]
     },
     "equipment-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
-      id:       "equipment-tab",
+      // id:       "equipment-tab",
       classes:  [ "tab", "equipment" ]
     },
     "notes-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
-      id:       "notes-tab",
+      // id:       "notes-tab",
       classes:  [ "tab", "notes" ]
     },
     "reputation-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      id:       "reputation-tab",
+      // id:       "reputation-tab",
       classes:  [ "tab", "reputation" ]
     },
     "specials-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
-      id:       "specials-tab",
+      // id:       "specials-tab",
       classes:  [ "tab", "specials" ]
     },
     "legend-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/legend.hbs",
-      id:       "legend-tab",
+      // id:       "legend-tab",
       classes:  [ "tab", "legend" ]
     },
     "classes-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
-      id:       "classes-tab",
+      // id:       "classes-tab",
       classes:  [ "tab", "classes" ]
     },
     footer: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      id:       "base-tab",
+      // id:       "base-tab",
       classes:  [ "sheet-footer" ]
     },
   };
@@ -111,21 +118,21 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
   // region getTabs 
   #getTabs() {
     const tabs = {
-      general:    { id: "general-tab", group: "sheet", icon: "fa-solid fa-user", label: "general" },
-      talents:    { id: "talents-tab", group: "sheet", icon: "fa-solid fa-user", label: "talents" },
-      skills:     { id: "skills-tab", group: "sheet", icon: "fa-solid fa-user", label: "skills" },
-      devotions:  { id: "devotions-tab", group: "sheet", icon: "fa-solid fa-user", label: "devotions" },
-      spells:     { id: "spells-tab", group: "sheet", icon: "fa-solid fa-user", label: "spells" },
-      equipment:  { id: "equipment-tab", group: "sheet", icon: "fa-solid fa-user", label: "equipment" },
-      notes:      { id: "notes-tab", group: "sheet", icon: "fa-solid fa-user", label: "notes" },
-      reputation: { id: "reputation-tab", group: "sheet", icon: "fa-solid fa-user", label: "reputation" },
-      specials:   { id: "specials-tab", group: "sheet", icon: "fa-solid fa-user", label: "specials" },
-      legend:     { id: "legend-tab", group: "sheet", icon: "fa-solid fa-user", label: "legend" },
-      classes:    { id: "classes-tab", group: "sheet", icon: "fa-solid fa-user", label: "classes" },
+      "general-tab":    { id: "general-tab", group: "sheet", icon: "fa-solid fa-user", label: "general" },
+      "talents-tab":    { id: "talents-tab", group: "sheet", icon: "fa-solid fa-user", label: "talents" },
+      "skills-tab":     { id: "skills-tab", group: "sheet", icon: "fa-solid fa-user", label: "skills" },
+      "devotions-tab":  { id: "devotions-tab", group: "sheet", icon: "fa-solid fa-user", label: "devotions" },
+      "spells-tab":     { id: "spells-tab", group: "sheet", icon: "fa-solid fa-user", label: "spells" },
+      "equipment-tab":  { id: "equipment-tab", group: "sheet", icon: "fa-solid fa-user", label: "equipment" },
+      "notes-tab":      { id: "notes-tab", group: "sheet", icon: "fa-solid fa-user", label: "notes" },
+      "reputation-tab": { id: "reputation-tab", group: "sheet", icon: "fa-solid fa-user", label: "reputation" },
+      "specials-tab":   { id: "specials-tab", group: "sheet", icon: "fa-solid fa-user", label: "specials" },
+      "legend-tab":     { id: "legend-tab", group: "sheet", icon: "fa-solid fa-user", label: "legend" },
+      "classes-tab":    { id: "classes-tab", group: "sheet", icon: "fa-solid fa-user", label: "classes" },
     };
-    for ( const v of Object.values( tabs ) ) {
-      v.active = this.tabGroups[v.group] === v.id;
-      v.cssClass = v.active ? "active" : "";
+    for ( const tab of Object.values( tabs ) ) {
+      tab.active = this.tabGroups[tab.group] === tab.id;
+      tab.cssClass = tab.active ? "active" : "";
     }
     return tabs;
   }
@@ -183,9 +190,11 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
   }
 
   // region _prepare Part Context
-  async _preparePartContext( partId, context, options ) {
-    await super._preparePartContext( partId, context, options );
+  async _preparePartContext( partId, contextInput, options ) {
+    const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
+      case "header":
+      case "characteristics":
       case "tabs": 
         break;
       case "general-tab":
@@ -211,6 +220,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
       case "classes-tab":
         break;
     }
+    context.tab = context.tabs[partId];  
     return context;
   }
 
@@ -256,8 +266,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     const ability = this.document.items.get( li.dataset.itemId );
     this.document.takeStrain( ability.system.strain );
   }
-
-
 
   // region TODOS
 
