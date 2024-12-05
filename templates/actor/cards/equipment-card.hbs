@@ -19,7 +19,7 @@
             system.mystical.forgeBonus}}</div>
         <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center">
+        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title="{{localize "ED.Actor.Tooltips.notEquipped"}}">
@@ -39,7 +39,7 @@
         <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center">
+        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title="{{localize "ED.Actor.Tooltips.notEquipped"}}">
@@ -60,7 +60,7 @@
         <div class="equipment-card__grid--item text__alignment--center">{{system.defenseBonus.mystical}}</div>
         <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center">
+        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
         
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
@@ -91,7 +91,7 @@
             <div class="equipment-card__grid--item text__alignment--center">{{system.range.longMax}}</div>
             <div class="equipment-card__grid--item text__alignment--center">{{system.amount}}</div>
         {{/if}}
-        <div class="equipment-card__grid--item text__alignment--center">
+        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title={{localize "ED.Actor.Tooltips.notEquipped"}}>

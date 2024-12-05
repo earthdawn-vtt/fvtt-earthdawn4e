@@ -49,7 +49,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     "general-tab": {
       template:   "systems/ed4e/templates/actor/actor-tabs/general.hbs",
       id:         "general-tab",
-      classes:    [ "tab", "general", "active" ],
+      classes:    [ "tab", "general" ],
     },
     "talents-tab": {
       template: "systems/ed4e/templates/actor/actor-tabs/talents.hbs",

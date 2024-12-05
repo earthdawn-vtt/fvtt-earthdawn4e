@@ -28,20 +28,21 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       submitOnChange: true,
     },
     actions:  {
-      editImage:    ActorSheetEd._onEditImage,
-      editItem:     ActorSheetEd._onItemEdit,
-      deleteItem:   ActorSheetEd._onItemDelete,
-      editEffect:   ActorSheetEd._onEffectEdit,
-      deleteEffect: ActorSheetEd._onEffectDelete,
-      addEffect:    ActorSheetEd._onEffectAdd,
-      expandItem:   ActorSheetEd._onCardExpand,
-      displayItem:  ActorSheetEd._onDisplayItem,
-      takeDamage:   ActorSheetEd.takeDamage,
-      knockDown:    ActorSheetEd.knockdownTest,
-      recovery:     ActorSheetEd.rollRecovery,
-      jumpUp:       ActorSheetEd.jumpUp,
-      initiative:   ActorSheetEd.rollInitiative,
-      rollable:     ActorSheetEd.rollable,
+      editImage:        ActorSheetEd._onEditImage,
+      editItem:         ActorSheetEd._onItemEdit,
+      deleteItem:       ActorSheetEd._onItemDelete,
+      editEffect:       ActorSheetEd._onEffectEdit,
+      deleteEffect:     ActorSheetEd._onEffectDelete,
+      addEffect:        ActorSheetEd._onEffectAdd,
+      expandItem:       ActorSheetEd._onCardExpand,
+      displayItem:      ActorSheetEd._onDisplayItem,
+      takeDamage:       ActorSheetEd.takeDamage,
+      knockDown:        ActorSheetEd.knockdownTest,
+      recovery:         ActorSheetEd.rollRecovery,
+      jumpUp:           ActorSheetEd.jumpUp,
+      initiative:       ActorSheetEd.rollInitiative,
+      rollable:         ActorSheetEd.rollable,
+      changeItemStatus: ActorSheetEd.changeItemStatus,
     },
   };
 
@@ -184,6 +185,50 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       this.document.rollEquipment( equipment, { event: event } );
     }
   }
+
+  /**
+   * Handle changing the holding type of owned items.
+   * @description itemStatus.value =
+   * @param target
+   * 1: owned,
+   * 2: carried,
+   * 3: equipped,
+   * 4: mainHand,
+   * 5: offHand,
+   * 6: twoHanded,
+   * 7: tail
+   * @param {Event} event     The originating click event.
+   * @returns {Application}   The rendered item sheet.
+   * @private
+   * @userFunction              UF_PhysicalItems-onChangeItemStatus
+   */
+  // eslint-disable-next-line complexity
+  static async changeItemStatus( event, target ) {
+    event.preventDefault();
+
+    // if left click is used, rotate the item normally
+    const rotate = event.button === 0 || event.button === 2;
+    // if shift+left click is used, unequip the item
+    const unequip = rotate && event.shiftKey;
+    // middle click is used to deposit the item
+    const deposit = event.button === 1;
+    // if right click is used, rotate status backwards
+    const backwards = event.button === 2;
+
+    const li = target.closest( ".item-id" );
+    const item = this.document.items.get( li.dataset.itemId );
+
+    if ( unequip ) return item.system.carry()?.then( _ => this.render() );
+    if ( rotate ) return this.document.rotateItemStatus( item.id, backwards ).then( _ => this.render() );
+    if ( deposit ) return item.system.deposit()?.then( _ => this.render() );
+    return this;
+  }
+
+
+
+
+  
+
 
   /* -------------------------------------------- */
 
