@@ -60,19 +60,19 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       items:                  this.document.items,
       options:                this.options,
       systemFields:           this.document.system.schema.fields,
-      enrichment:             await this.document._enableHTMLEnrichment(),
-      enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
+      // enrichment:             await this.document._enableHTMLEnrichment(),
+      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
       config:                 ED4E,
       splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
     };
+
 
     context.enrichedDescription = await TextEditor.enrichHTML(
       this.document.system.description.value,
       {
         // Only show secret blocks to owner
-        secrets:  this.document.isOwner,
-        // rollData: this.document.getRollData
-
+        secrets:    this.document.isOwner,
+        EdRollData: this.document.getRollData
       }
     );
 
