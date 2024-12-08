@@ -195,7 +195,8 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
   /**
    * Handle changing the holding type of owned items.
    * @description itemStatus.value =
-   * @param target
+   * @param {Event} event     The originating click event.
+   * @param {number} target
    * 1: owned,
    * 2: carried,
    * 3: equipped,
@@ -203,7 +204,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
    * 5: offHand,
    * 6: twoHanded,
    * 7: tail
-   * @param {Event} event     The originating click event.
    * @returns {Application}   The rendered item sheet.
    * @private
    * @userFunction              UF_PhysicalItems-onChangeItemStatus
