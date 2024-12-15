@@ -3,9 +3,7 @@
     <legend>{{localize "ED.Dialogs.Legend.writtenRules"}}</legend>
     {{{writtenRules}}}
   </fieldset>
-
   {{#each requirementGroups}}
-  {{log "requirementGroups" this}}
     <fieldset>
       <legend>{{localize @key}}</legend>
       {{#each this as |requirement|}}

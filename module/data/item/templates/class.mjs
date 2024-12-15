@@ -77,19 +77,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   get requiredLpForIncrease() {
-    return this.calculateRequiredLp();
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  get requiredLpToLearn() {
-    return 0;
-  }
-
-  /* -------------------------------------------- */
-
-  calculateRequiredLp() {
     if ( this.parent.type !== "discipline" ) return 0;
     const nextLevel = this.level + 1;
     const disciplineSortingFactor = this.order - 1;
@@ -102,6 +89,14 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return lpCost;
   }
 
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  get requiredLpToLearn() {
+    return 0;
+  }
+
+  /* -------------------------------------------- */
 
   /** @inheritDoc */
   async increase() {
