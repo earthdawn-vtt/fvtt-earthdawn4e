@@ -1000,7 +1000,7 @@
           "effectsGained":                                      "Effekte erhalten",
           "spellsGained":                                       "Zauber erhalten",
           "chooseAbilityOption":                                "Wähle ein optionales Talent",
-          "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis ",
+          "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis {increaseClassToLevel}",
           "resourceStepIncreased":                              "Ressourcenstufe erhöht"
         },
         "LearnSpell": {
