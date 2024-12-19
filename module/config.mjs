@@ -21,7 +21,7 @@ ED4E.typeGroups = {
     Powers:       [ "attack", "maneuver", "power" ],
     Abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
     Conditions:   [ "cursemark", "effect", "poisonDisease" ],
-    Magic:        [ "spell", "thread", "spellKnack", "bindingSecret", "matrix" ],
+    Magic:        [ "spell", "thread", "spellKnack", "bindingSecret", "matrix", "pattern" ],
     Classes:      [ "discipline", "path", "questor" ],
     Other:        [ "mask", "namegiver", "shipWeapon" ]
   },

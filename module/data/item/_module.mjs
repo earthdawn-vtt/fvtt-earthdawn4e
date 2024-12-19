@@ -14,6 +14,7 @@ import MaskData from "./mask.mjs";
 import MatrixData from "./matrices.mjs";
 import NamegiverData from "./namegiver.mjs";
 import PathData from "./path.mjs";
+import PatternData from "./pattern.mjs";
 import PoisonDiseaseData from "./poison-disease.mjs";
 import PowerData from "./power.mjs";
 import QuestorData from "./questor.mjs";
@@ -44,6 +45,7 @@ export {
   MatrixData,
   NamegiverData,
   PathData,
+  PatternData,
   PoisonDiseaseData,
   PowerData,
   QuestorData,
@@ -84,6 +86,7 @@ export const config = {
   matrix:         MatrixData,
   namegiver:      NamegiverData,
   path:           PathData,
+  pattern:        PatternData,
   poisonDisease:  PoisonDiseaseData,
   power:          PowerData,
   questor:        QuestorData,

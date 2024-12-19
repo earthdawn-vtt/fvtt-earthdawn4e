@@ -22,7 +22,7 @@ export default class ThreadData extends SystemDataModel.mixin(
         label:    this.labelKey( "Thread.level" ),
         hint:     this.hintKey( "Thread.level" )
       } ),
-      advancement: new fields.EmbeddedDataField(
+      pattern: new fields.EmbeddedDataField(
         PatternThreadData,
         {
           required: true,
