@@ -368,6 +368,11 @@
         "lowestOfGroup": "Niedrigster der Gruppe",
         "lowestX": "Niedrigster + Ziele"
       },
+      "PatternType": {
+        "minor":                                            "Klein",
+        "major":                                            "Groß",
+        "core":                                             "Kern"
+      },
       "PermanentTimePeriods": {
         "perm":                                                     "Permanent"
       },
@@ -723,6 +728,16 @@
             "spellThreadsWoven":                            "Die Anzahl der Fäden die bereits gewoben wurden",
             "weavingDifficulty":                            "Die Schwierigkeit um den Zauber erfolgreich zu wirken"
           },
+          "Thread": {
+            "mysticalDefense":                                "Mystische Verteidigung",
+            "maxRank":                                        "Maximaler Rang",
+            "maxThreads":                                     "Maximale Fäden",
+            "patternType":                                    "Muster Typ",
+            "enchantmentPatternUuid":                         "Verzauberungsstruktur",
+            "tier":                                           "Stufe",
+            "isAnalyzed":                                     "Analysiert",
+            "isKnown":                                        "Bekannt"
+          },
           "Weapons": {
             "weaponType":                                   "Waffentyp",
             "damageAttribute":                              "Schaden Attribut",
@@ -907,6 +922,16 @@
             "spellThreadsRequired":                         "Benötigte Fäden",
             "spellThreadsWoven":                            "Gewebte Fäden",
             "weavingDifficulty":                            "Webschwierigkeit"
+          },
+          "Thread": {
+            "mysticalDefense":                                "Mystische Verteidigung",
+            "maxRank":                                        "Maximaler Rang",
+            "maxThreads":                                     "Maximale Fäden",
+            "patternType":                                    "Muster Typ",
+            "enchantmentPatternUuid":                         "Verzauberungsstruktur",
+            "tier":                                           "Stufe",
+            "isAnalyzed":                                     "Analysiert",
+            "isKnown":                                        "Bekannt"
           },
           "Weapons": {
             "weaponType":                                   "Waffentyp",
@@ -1182,7 +1207,8 @@
         "advancement": "Fortschritt",
         "details": "Details",
         "effects": "Effekte",
-        "general": "Allgemein"
+        "general": "Allgemein",
+        "threads": "Fäden"    
       },
       "Placeholder": {
         "lpDescription": "Trage hier eine Beschreibung ein"

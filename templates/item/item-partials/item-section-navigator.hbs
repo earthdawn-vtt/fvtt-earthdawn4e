@@ -6,11 +6,14 @@
     </h4>
     <nav class="item-sheet-tabs navigator__flex">
       <a class="navigator__tab" data-tab="item-description-tab">{{localize "ED.Item.Navigator.general"}}</a>
+      {{#if (eq this.item.type "thread")}}
+        <a class="navigator__tab" data-tab="item-thread-tab">{{localize "ED.Item.Navigator.threads"}}</a>
+      {{/if}}
       <a class="navigator__tab" id="item-navigator-detials-tab" data-tab="item-details-tab">{{localize "ED.Item.Navigator.details"}}</a>
-      <a class="navigator__tab" data-tab="item-effects-tab">{{localize "ED.Item.Navigator.effects"}}</a>
       {{#if isClass }}
         <a class="navigator__tab" data-tab="item-class-tab">{{localize "ED.Item.Navigator.advancement"}}</a>
       {{/if}}
+      <a class="navigator__tab" data-tab="item-effects-tab">{{localize "ED.Item.Navigator.effects"}}</a>
     </nav>
     <hr>
   </div>

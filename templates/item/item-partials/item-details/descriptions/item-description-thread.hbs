@@ -1,5 +1,21 @@
 <div class="item__left--main">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
+    {{!-- mystical Defense --}}
+    {{formField systemFields.pattern.fields.characteristics.fields.defenses.fields.mystical.fields.value name="system.pattern.characteristics.defenses.mystical.value" value=item.system.pattern.characteristics.defenses.mystical.value localize=true}}
+    {{!-- maximum Rank --}}
+    {{formField systemFields.pattern.fields.maxRank name="system.pattern.maxRank" value=item.system.pattern.maxRank localize=true}}
+    {{!-- maximum Threads --}}
+    {{formField systemFields.pattern.fields.maxThreads name="system.pattern.maxThreads" value=item.system.pattern.maxThreads localize=true}}
+    {{!-- pattern Type --}}
+    {{formField systemFields.pattern.fields.patternType name="system.pattern.patternType" value=item.system.pattern.patternType localize=true}}
+    {{!-- enchantmentPatternUuid --}}
+    {{formField systemFields.pattern.fields.enchantmentPatternUuid name="system.pattern.enchantmentPatternUuid" value=item.system.pattern.enchantmentPatternUuid localize=true}}
+    {{!-- tier --}}
+    {{formField systemFields.pattern.fields.tier name="system.pattern.tier" value=item.system.pattern.tier localize=true}}
+    {{!-- isAnalyzed --}}
+    {{formField systemFields.pattern.fields.isAnalyzed name="system.pattern.isAnalyzed" value=item.system.pattern.isAnalyzed localize=true}}
+    {{!-- isKnown --}}
+    {{formField systemFields.pattern.fields.isKnown name="system.pattern.isKnown" value=item.system.pattern.isKnown localize=true}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>

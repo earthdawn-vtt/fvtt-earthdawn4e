@@ -783,6 +783,7 @@ export async function preloadHandlebarsTemplates() {
 
     // other tabs
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/other-tabs/thread-level.hbs",
 
     // Build your own Legend
     "systems/ed4e/templates/actor/legend-points/history.hbs",

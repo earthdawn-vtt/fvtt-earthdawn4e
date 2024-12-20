@@ -132,11 +132,22 @@ preLocalize( "globalBonuses", {key: "label"} );
  * @enum {string}
  */
 ED4E.curseType = {
-  minor:       "ED.Config.curseType.minor",
-  major:       "ED.Config.curseType.major",
-  horror:      "ED.Config.curseType.horror"
+  minor:       "ED.Config.CurseType.minor",
+  major:       "ED.Config.CurseType.major",
+  horror:      "ED.Config.CurseType.horror"
 };
 preLocalize( "curseType" );
+
+/**
+ * Denomination options
+ * @enum {string}
+ */
+ED4E.patternType = {
+  minor:        "ED.Config.PatternType.minor",
+  major:        "ED.Config.PatternType.major",
+  core:         "ED.Config.PatternType.core"  
+};
+preLocalize( "patternType" );
 
 /**
  * Denomination options

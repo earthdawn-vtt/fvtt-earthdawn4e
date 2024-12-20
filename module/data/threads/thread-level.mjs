@@ -37,14 +37,14 @@ export default class PatternThreadLevelData extends SparseDataModel {
           hint:     "ED.TheSetOfActiveAbilitiesGrantedOnThisLevel"
         }
       ),
-      analysed: new fields.BooleanField( {
+      isAnalysed: new fields.BooleanField( {
         required: true,
         nullable: false,
         initial:  false,
         label:    "ED.analysed",
         hint:     "ED.analysed"
       } ),
-      active: new fields.BooleanField( {
+      isActive: new fields.BooleanField( {
         required: true,
         nullable: false,
         initial:  false,
@@ -52,7 +52,7 @@ export default class PatternThreadLevelData extends SparseDataModel {
         hint:     "ED.active"
       } ),
       keyKnowledge: new fields.SchemaField( {
-        required: new fields.BooleanField( {
+        isRequired: new fields.BooleanField( {
           required: true,
           nullable: false,
           initial:  false,
@@ -82,7 +82,7 @@ export default class PatternThreadLevelData extends SparseDataModel {
         } )
       } ),
       deed: new fields.SchemaField( {
-        required: new fields.BooleanField( {
+        isRequired: new fields.BooleanField( {
           required: true,
           nullable: false,
           initial:  false,
@@ -96,7 +96,7 @@ export default class PatternThreadLevelData extends SparseDataModel {
           label:    "ED.description",
           hint:     "ED.description"
         } ),
-        completed: new fields.BooleanField( {
+        isCompleted: new fields.BooleanField( {
           required: true,
           nullable: false,
           initial:  false,
