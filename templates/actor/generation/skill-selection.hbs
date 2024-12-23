@@ -1,16 +1,17 @@
-<div class="tab skill-tab flexcol" data-group="primary" data-tab="skill-tab">
+<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="skill-tab">
 
-  <h3>{{localize "X.Skills"}}</h3>
+  <h4>{{localize "ED.Dialogs.CharGen.chooseSkills"}}</h4>
 
   <!-- Skills explainer -->
   <p class="explainer-text">
-    {{{localize "X. Below you find all available skills. Add ranks by clicking on the plus and minus. General Skill Points can be used on artisan and knowledge skill."}}}
+    {{{localize "ED.Dialogs.CharGen.chooseSkillsRules"}}}
   </p>
+  
   <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
-          title="X.Clear all assigned ranks and reset to zero." data-reset-type="skills">
-    <i class="fa-light fa-arrows-rotate"></i>
-    {{localize "X.Reset"}}
-  </button>
+              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-action="reset" data-reset-type="skills">
+        <i class="fa-light fa-arrows-rotate"></i>
+        {{localize "ED.Dialogs.CharGen.Buttons.resetSkills"}}
+      </button>
 
   <div class="flexcol skill-assignment">
 
@@ -18,7 +19,7 @@
     <div class="skill-options artisan-skills flexrow">
       <table>
         <tr>
-          <th>{{localize "X.Artisan Options"}}</th>
+          <th>{{localize "ED.Dialogs.CharGen.Title.artisanSkills"}}</th>
         </tr>
         {{#each skills.artisan}}
           <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
@@ -28,7 +29,7 @@
             <td class="flexrow rank-change">
               {{#if (ed-hasOwnProperty @root.object.abilities.artisan this.uuid)}}
                 <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                      data-change-type="decrease" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
+                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
                   <i class="fa-light fa-circle-minus"></i>
               {{/if}}
                 </span>
@@ -36,19 +37,20 @@
                   {{lookup @root.object.abilities.artisan this.uuid}}
                 </span>
                 <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                      data-change-type="increase" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
+                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
                   <i class="fa-light fa-circle-plus"></i>
                 </span>
             </td>
           </tr>
         {{else}}
-          {{localize "X.No Artisan Skills available."}}
+          {{localize "ED.Dialogs.CharGen.noArtisanSkillsAvailable"}}
         {{/each}}
       </table>
 
       <span class="flexcol availability-meter available-ranks available-artisan-ranks">
         <label class="flexcol">
-          {{localize "X.Available Artisan Ranks: "}}{{object.availableRanks.artisan}}{{!--format "X.availablePointsKarma" points=... --}}
+          {{!-- {{localize "ED.Dialogs.CharGen.requiredArtisanSkillPoints"}}: {{object.availableRanks.artisan}} --}}
+          {{localize "ED.Dialogs.CharGen.requiredArtisanSkillPoints"}}
         </label>
         <meter value="{{object.availableRanks.artisan}}" min="0" max="{{config.availableRanks.artisan}}"></meter>
       </span>
@@ -58,7 +60,7 @@
     <div class="skill-options knowledge-skills flexrow">
       <table>
         <tr>
-          <th>{{localize "X.Knowledge Options"}}</th>
+          <th>{{localize "ED.Dialogs.CharGen.Title.knowledgeSkills"}}</th>
         </tr>
         {{#each skills.knowledge}}
           <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
@@ -68,7 +70,7 @@
             <td class="flexrow rank-change">
               {{#if (ed-hasOwnProperty @root.object.abilities.knowledge this.uuid)}}
               <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                    data-change-type="decrease" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
                   <i class="fa-light fa-circle-minus"></i>
               </span>
               {{/if}}
@@ -76,19 +78,19 @@
                 {{lookup @root.object.abilities.knowledge this.uuid}}
               </span>
               <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                    data-change-type="increase" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
+                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
                 <i class="fa-light fa-circle-plus"></i>
               </span>
             </td>
           </tr>
         {{else}}
-          {{localize "X.No Knowledge Skills available."}}
+          {{localize "ED.Dialogs.CharGen.noKnowledgeSkillsAvailable"}}
         {{/each}}
       </table>
 
       <span class="flexcol availability-meter available-ranks available-knowledge-ranks">
         <label class="flexcol">
-          {{localize "X.Available Knowledge Ranks: "}}{{object.availableRanks.knowledge}}{{!--format "X.availablePointsKarma" points=... --}}
+          {{localize "ED.Dialogs.CharGen.requiredKnowledgeSkillPoints"}}: {{object.availableRanks.knowledge}}{{!--format "X.availablePointsKarma" points=... --}}
         </label>
         <meter value="{{object.availableRanks.knowledge}}" min="0" max="{{config.availableRanks.knowledge}}"></meter>
       </span>
@@ -98,7 +100,7 @@
     <div class="skill-options language-skills flexrow">
       <table>
         <tr>
-          <th>{{localize "X.Language Options"}}</th>
+          <th>{{localize "ED.Dialogs.CharGen.Title.languageSkills"}}</th>
         </tr>
         {{#each skills.language}}
           <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
@@ -108,7 +110,7 @@
             <td class="flexrow rank-change">
               {{#if (ed-hasOwnProperty @root.object.abilities.language this.uuid)}}
                 <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                      data-change-type="decrease" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
+                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
                   <i class="fa-light fa-circle-minus"></i>
               </span>
               {{/if}}
@@ -116,18 +118,18 @@
                 {{lookup @root.object.abilities.language this.uuid}}
               </span>
               <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                    data-change-type="increase" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
+                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
                 <i class="fa-light fa-circle-plus"></i>
               </span>
             </td>
           </tr>
         {{else}}
-          {{localize "X.No Language Skills available."}}
+          {{localize "ED.Dialogs.CharGen.noLanguageSkillsAvailable"}}
         {{/each}}
       </table>
 
       <span class="flexcol available-ranks available-language-ranks">
-        {{localize "X.You always have a minimum of 2 ranks in Speaking, and 1 rank in Reading/Writing. You can assign more, if wanted."}}
+        {{localize "ED.Dialogs.CharGen.minimumLanguageSkillPoints"}}
       </span>
     </div>
 
@@ -135,7 +137,7 @@
     <div class="skill-options general-skills flexrow">
       <table>
         <tr>
-          <th>{{localize "X.General Options"}}</th>
+          <th>{{localize "ED.Dialogs.CharGen.Title.generalSkills"}}</th>
         </tr>
         {{#each skills.general}}
           <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
@@ -145,7 +147,7 @@
             <td class="flexrow rank-change">
               {{#if (ed-hasOwnProperty @root.object.abilities.general this.uuid)}}
               <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                    data-change-type="decrease" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
                   <i class="fa-light fa-circle-minus"></i>
               </span>
               {{/if}}
@@ -153,19 +155,19 @@
                 {{lookup @root.object.abilities.general this.uuid}}
               </span>
               <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                    data-change-type="increase" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
+                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
                   <i class="fa-light fa-circle-plus"></i>
                 </span>
             </td>
           </tr>
         {{else}}
-          {{localize "X.No General Skills available."}}
+          {{localize "ED.Dialogs.CharGen.noGeneralSkillsAvailable"}}
         {{/each}}
       </table>
 
       <span class="flexcol availability-meter available-ranks available-general-ranks">
         <label class="flexcol">
-          {{localize "X.Available General Ranks: "}}{{object.availableRanks.general}}{{!--format "X.availablePointsKarma" points=... --}}
+          {{localize "ED.Dialogs.CharGen.availabelSkillPoints"}}: {{object.availableRanks.general}}
         </label>
         <meter value="{{object.availableRanks.general}}" min="0" max="{{config.availableRanks.general}}"></meter>
       </span>
@@ -173,4 +175,4 @@
 
   </div>
 
-</div>
+</section>

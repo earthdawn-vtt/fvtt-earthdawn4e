@@ -1,17 +1,16 @@
+<section class="tab {{tab.cssClass}}" data-group="sheet" data-tab="general-tab">
 <div class="left-part">
     {{!-- Attribute --}}
     <div>
         <h3 class="margin__none">
             <label>{{localize "ED.Actor.Header.attributes"}}</label>
-            <a class="icon__position--right fa-regular fa-circle-up" title="{{localize "
-                ED.Actor.LpTracking.attributeImprovement"}}"></a>
         </h3>
         <div class="attribute-card__grid--container font__bold">
             <div class="attribute-card__grid--item"></div>
             <div class="attribute-card__grid--item">
                 <label>{{localize "ED.Actor.Attributes.attributeName"}}</label>
             </div>
-            {{#if (eq this.data.type "character")}}
+            {{#if (eq this.actor.type "character")}}
             <div class="attribute-card__grid--item">
                 <label>
                     {{localize "ED.Actor.Attributes.attributeValue"}}
@@ -29,7 +28,7 @@
                 </label>
             </div>
         </div>
-        {{#if (eq this.data.type "character")}}
+        {{#if (eq this.actor.type "character")}}
         {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
         {{else}}
         {{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
@@ -43,7 +42,7 @@
             <span class="icon__position--right one-line__vertical-align">
                 <input type="checkbox" name="system.karma.useAlways" {{checked actor.system.karma.useAlways}} title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
                 <a class="karma__ritual">
-                    <button class="button__Karma-refresh" title="Karma-Ritual">
+                    <button class="button__Karma-refresh" data-action="karmaRitual" title="Karma-Ritual">
                         <i class="fa-solid fa-person-rays" title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
                     </button>
                 </a>
@@ -61,7 +60,7 @@
             </div>
             <div class="karma-devotion__grid--item">
                 <input class="input__circle-input--centered" name="system.karma.max"
-                            value="{{actor.system.karma.max}}" {{#if (eq this.data.type "character")}}readonly{{/if}}>
+                            value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
             </div>
             <div class="karma-devotion__grid--item">
                 <input class="input__circle-input--centered" name="system.karma.step"
@@ -86,7 +85,7 @@
             </div>
             <div class="karma-devotion__grid--item">
                 <input class="input__circle-input--centered" name="system.devotion.max"
-                            value="{{actor.system.devotion.max}}" {{#if (eq this.data.type "character")}}readonly{{/if}}>
+                            value="{{actor.system.devotion.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
             </div>
             <div class="karma-devotion__grid--item">
                 <input class="input__circle-input--centered" name="system.devotion.step"
@@ -208,7 +207,7 @@
         <h3>{{localize "ED.Actor.Header.specialAbility"}}</h3>
         <div>
             wie soll diese ansicht aussehen, wie Rollable items oder nicht?
-            {{#each actor.itemTypes.specialAbility}}
+            {{#each this.actor.itemTypes.specialAbility}}
             <div class="item-id one-line__vertical-align" data-item-id="{{_id}}">
                 <div class="partial__two one-line__vertical-align">
                     <img src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
@@ -222,3 +221,4 @@
         </div>
     </div>
 </div>
+</section>

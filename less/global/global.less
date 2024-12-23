@@ -51,7 +51,7 @@
     height: 30px;
     border-radius: 50%;
     padding-top: 5px;
-    background: rgba(0, 0, 0, 0.1);
+    // background: rgba(0, 0, 0, 0.1);
 }
 
 .input--centered {
@@ -88,31 +88,35 @@ input.input__number-input {
 //###########################################################
 //                       Fonts
 //###########################################################
+.application {
 
-.font__bold {
-    font-weight: bold;
+    .font__bold {
+        font-weight: bold;
+    }
+
+    .text-break__auto {
+        word-break: normal;
+    }
+
+    #chat-log, .window-content, input, .body {
+        .ArnoProRegular;
+    }
+
+    .h1, h2, h3, h4, h5, h6 {
+        .WarhorseDIY;
+        font-size: 1em;
+        color:inherit;
+        padding-top: 5px;
+    }
+
+    p {
+        font-size: large;
+    }
+
+    .font__no-underline {
+        border-bottom: none;
+    }
 }
-
-.text-break__auto {
-    word-break:normal;
-}
-
-#chat-log, .window-content, input, .body {
-    .ArnoProRegular;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    .WarhorseDIY;
-}
-
-p {
-    font-size: large;
-}
-
-.font__no-underline {
-    border-bottom: none;
-}
-
 
 //###########################################################
 //                       Displays

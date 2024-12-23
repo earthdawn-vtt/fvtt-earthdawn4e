@@ -1,21 +1,21 @@
-<div class="tab spell-tab" data-group="primary" data-tab="spell-tab">
+<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="spell-tab">
 
-  <h3>{{localize "X.Spells"}}</h3>
+  <h4>{{localize "ED.Dialogs.CharGen.chooseSpells"}}</h4>
 
   <!-- Skills explainer -->
   <p class="explainer-text">
-    {{localize "X. Below you find all spells available to your selected discipline. You have points available equal to your Perception step. Each spell costs points equal to it's level. Spells can have a maximum level of game.settings."}}
+    {{{localize "ED.Dialogs.CharGen.chooseSpellsRules"}}}
   </p>
 
   <section class="rank-assignment">
 
     <div class="availability-meter available-talent-ranks flexrow">
-      <button class="reset-points" id="char-gen-clear-spell-selection-button" type="button"
-              title="X.Reset all selected spells." data-reset-type="spells">
+      <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
+              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-reset-type="classAbilities">
         <i class="fa-light fa-arrows-rotate"></i>
-        {{localize "X.Reset"}}
+        {{localize "ED.Dialogs.CharGen.Buttons.resetSpells"}}
       </button>
-      <label>{{localize "X.Available Spell Points: "}}{{availableSpellPoints}}{{!--format "X.availablePointsKarma" points=... --}}</label>
+      <label>{{localize "ED.Dialogs.CharGen.availableSpellPoints"}}: {{availableSpellPoints}}{{!--format "X.availablePointsKarma" points=... --}}</label>
       <meter value="{{availableSpellPoints}}" min="0" max="{{maxSpellPoints}}">
       </meter>
     </div>
@@ -26,8 +26,8 @@
     <table style="table-layout: fixed;text-align: center">
       <thead>
       <tr>
-        <th >{{localize "X.Options"}}</th>
-        <th >{{localize "X.Selected"}}</th>
+        <th >{{localize "ED.Dialogs.CharGen.Title.spellOptions"}}</th>
+        <th >{{localize "ED.Dialogs.CharGen.Title.chosenSpells"}}</th>
       </tr>
       </thead>
       <tbody>
@@ -38,13 +38,13 @@
         {{#each this}}
           <tr>
             {{#if this.[0]}}
-              <td class="spell-name" data-spell-uuid="{{this.0.uuid}}" data-spell-selected="{{ifThen this.[0] "false" "true"}}" title="{{this.0.system.description}}">
+              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.0.uuid}}" data-spell-selected="{{ifThen this.[0] "false" "true"}}" title="{{this.0.system.description}}">
                 {{this.0.name}}
               </td>
               <td></td>
             {{else}}
               <td></td>
-              <td class="spell-name" data-spell-uuid="{{this.1.uuid}}" data-spell-selected="{{ifThen this.[1] "true" "false"}}" title="{{this.1.system.description}}">
+              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.1.uuid}}" data-spell-selected="{{ifThen this.[1] "true" "false"}}" title="{{this.1.system.description}}">
                 {{this.1.name}}
               </td>
             {{/if}}
@@ -55,4 +55,4 @@
     </table>
   </div>
 
-</div>
+</section>

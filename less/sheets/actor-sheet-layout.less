@@ -1,7 +1,10 @@
+
+
 // basic sheet layout for all actor- and item-sheets
 // individual settings will be found in the respective sheet.less files
-.app.window-app.earthdawn4e.sheet{
-    background-image: url('assets/sheet/background.png');
+// .app.window-app.earthdawn4e.sheet{
+.application.sheet.earthdawn4e.actor {
+    // background-image: url('assets/sheet/background.png');
     background-size: cover;
     header {
         position: relative;
@@ -20,7 +23,15 @@
         }
     }
     .window-content {
-        background-image: url('assets/sheet/background.png');
+        .tab.notes {
+            .sheet__editor {
+                .editor {
+                    min-height: 200px;
+                    max-height: 100%;
+                }
+            }
+        }
+        // background-image: url('assets/sheet/background.png');
         background-size: cover;
         padding: 0; 
         .header__frame {
@@ -30,11 +41,13 @@
             img {
                 border: none;  
             }
-            .section__name {
-                position: relative;
-                z-index: 4;
-                margin-top: -22px;
-
+        }
+        .section__name {
+            position: relative;
+            z-index: 4;
+            // hängt mit dem Frame zusammen. im alten sheet war der Frame im main html das jetzt nicht mehr benutzt wird.
+            // margin-top: -22px;
+            .header-section__name {
                 .sheet-header__indent--left {
                     width: 45%;
                     float: left;
@@ -44,19 +57,40 @@
                 .sheet-header__indent--right {
                     width: 45%;
                     float: right;
+                    padding-top: 10px;
                     padding-right: 10px;
                 }
             }
         }
-        .body {
-            position: relative;
-            z-index: 4;
-            margin-top: 30px;
-            .navigator__flex {
-                .navigator__tab {
-                    padding-left: 5px;
-                }
-            }
+
+        .tab.general, 
+        .talents, 
+        .skills, 
+        .devotions, 
+        .spells, 
+        .equipment, 
+        .notes,
+        .reputation,
+        .specials,
+        .legend,
+        .classes {
+            height: 450px; /* Set the desired fixed height */
+            overflow-y: auto; /* Enable vertical scrolling */
+          }
+
+        .sheet-tabs.tabs.tabs-navigation {
+            gap: 0.5rem;
+        }
+        
+        // .body {
+        //     position: relative;
+        //     z-index: 4;
+        //     margin-top: 30px;
+        //     .navigator__flex {
+        //         .navigator__tab {
+        //             padding-left: 5px;
+        //         }
+        //     }
             .top {
                 .image__grid-item { 
                     grid-area: image; 
@@ -161,17 +195,56 @@
 
                 .actor-image {
                     width: 160px;
+                    border: none;
                 }
 
             }
-            .main {
+            // .main {
+            //     padding-top: 1px;
+            //     height: 440px;
+            //     overflow-y: auto;
+            //     padding-left: 5px;
+            //     padding-right: 5px;
+                
+            //     .sheet__editor {
+            //         min-height: 400px;
+            //         max-height: 100%;
+            //         display: flex;
+            //         flex-direction: column;
+                
+            //         .editor,
+            //         .prosemirror,
+            //         .editor-container,
+            //         .editor-content {
+            //             min-height: 350px;
+            //             max-height: 100%;
+            //         }
+            //     }
+
+            //     .form-group {
+            //         label {
+            //             float: left;
+            //             width: 40%;
+            //         }
+            //         .form-fields {
+            //             float: right;
+            //             width: 60%;
+            //         }
+            //         .hint {
+            //             font-size:smaller;
+            //         }
+            //     }
+                
+            // }
+            
                 padding-top: 1px;
                 height: 440px;
                 overflow-y: auto;
                 padding-left: 5px;
                 padding-right: 5px;
                 
-                .sheet__editor {
+                .sheet__editor,
+                .editor {
                     min-height: 400px;
                     max-height: 100%;
                     display: flex;
@@ -180,7 +253,8 @@
                     .editor,
                     .prosemirror,
                     .editor-container,
-                    .editor-content {
+                    .editor-content
+                    .editor {
                         min-height: 350px;
                         max-height: 100%;
                     }
@@ -199,9 +273,16 @@
                         font-size:smaller;
                     }
                 }
-                
-            }
-        }
+                .tab.notes {
+                    .sheet__editor {
+                        .editor {
+                            min-height: 200px;
+                            max-height: 100%;
+                        }
+                    }
+                }
+            
+        // }
         
         .footer__frame {
             position: absolute;
@@ -217,3 +298,4 @@
         z-index: 5;
     }
 }
+

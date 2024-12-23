@@ -1,134 +1,196 @@
 import ED4E from "../../config.mjs";
 
-// noinspection JSClosureCompilerSyntax
+const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ActorSheet}
  */
-export default class ActorSheetEd extends ActorSheet {
+export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
 
-  /**
-   * @override
+  constructor( options = {} ) {
+    super( options );
+  }
+
+  /** 
+   * @override 
    */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject( super.defaultOptions, {
-      classes: [ "earthdawn4e", "sheet", "actor", ],
-      width:   800,
-      height:  800,
-      tabs:    [
-        {
-          navSelector:     ".actor-sheet-tabs",
-          contentSelector: ".actor-sheet-body",
-          initial:         "main",
-        },
-        {
-          navSelector:     ".actor-sheet-spell-tabs",
-          contentSelector: ".actor-sheet-spell-body",
-          initial:         "spell-matrix-tab",
-        },
-      ],
-      scrollY: [
-        ".main",
-      ],
-    } );
-  }
+  static DEFAULT_OPTIONS = {
+    classes:  [ "earthdawn4e", "sheet", "actor" ],
+    window:   {
+      frame:          true,
+      positioned:     true,
+      icon:           false,
+      minimizable:    true,
+      resizable:      true,
+    },
+    form: {
+      submitOnChange: true,
+    },
+    actions:  {
+      editImage:        ActorSheetEd._onEditImage,
+      editItem:         ActorSheetEd._onItemEdit,
+      deleteItem:       ActorSheetEd._onItemDelete,
+      editEffect:       ActorSheetEd._onEffectEdit,
+      deleteEffect:     ActorSheetEd._onEffectDelete,
+      addEffect:        ActorSheetEd._onEffectAdd,
+      expandItem:       ActorSheetEd._onCardExpand,
+      displayItem:      ActorSheetEd._onDisplayItem,
+      takeDamage:       ActorSheetEd.takeDamage,
+      knockDown:        ActorSheetEd.knockdownTest,
+      recovery:         ActorSheetEd.rollRecovery,
+      jumpUp:           ActorSheetEd.jumpUp,
+      initiative:       ActorSheetEd.rollInitiative,
+      rollable:         ActorSheetEd.rollable,
+      changeItemStatus: ActorSheetEd.changeItemStatus,
+    },
+  };
 
-  /** @override */
-  get template() {
-    return `systems/ed4e/templates/actor/${this.actor.type}-sheet.hbs`;
-  }
+  async _prepareContext() {
+    // TODO: überprüfen was davon benötigt wird
+    const context = {
+      actor:                  this.document,
+      system:                 this.document.system,
+      items:                  this.document.items,
+      options:                this.options,
+      systemFields:           this.document.system.schema.fields,
+      // enrichment:             await this.document._enableHTMLEnrichment(),
+      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
+      config:                 ED4E,
+      splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
+    };
 
-  /* -------------------------------------------- */
-  /*  Get Data            */
-  /* -------------------------------------------- */
-  async getData() {
-    const systemData = super.getData();
-    systemData.systemFields = this.document.system.schema.fields;
-    systemData.enrichment = await this.actor._enableHTMLEnrichment();
-    await this.actor._enableHTMLEnrichmentEmbeddedItems();
-    systemData.config = ED4E;
-    systemData.splitTalents = game.settings.get( "ed4e", "talentsSplit" );
 
-    return systemData;
-  }
-
-  /* -------------------------------------------- */
-  /*  Event Listeners and Handlers                */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  activateListeners( html ) {
-    super.activateListeners( html );
-
-    // View Item Sheets
-    html.find( ".item-edit" ).click( this._onItemEdit.bind( this ) );
-
-    // All listeners below are only needed if the sheet is editable
-    if ( !this.isEditable ) return;
-
-    // Attribute tests
-    html.find( ".attribute-card__grid--item .rollable" ).click( this._onRollAttribute.bind( this ) );
-
-    // Ability tests
-    html.find( ".card__ability .rollable" ).click( this._onRollAbility.bind( this ) );
-
-    // Equipment tests
-    html.find( ".card__equipment .rollable" ).click( this._onRollEquipment.bind( this ) );
-
-    // take strain
-    html.find( ".card__ability .take-strain" ).click( this._onTakeStrain.bind( this ) );
-
-    // toggle holding Tpye of an owned item
-    html.find( ".item__status" ).mousedown( this._onChangeItemStatus.bind( this ) );
-
-    // Owned Item management
-    html.find( ".item-delete" ).click( this._onItemDelete.bind( this ) );
-
-    // Actor Sheet Buttons
-    html.find( ".action-buttons" ).click( event => {
-      const action = event.currentTarget.dataset.action;
-      const actionMapping = {
-        "recovery":      () => this._onRecoveryRoll( event ),
-        "takeDamage":    () => this._onTakeDamage( event ),
-        "jumpUp":        () => this._onJumpUp( event ),
-        "initiative":    () => this._onInitiative( event ),
-        "halfMagic":     () => this._onHalfMagic( event ),
-        "knockdownTest": () => this._onKnockDown( event ),
-      };
-      // Check if the action exists in the mapping and call it
-      if ( actionMapping.hasOwnProperty( action ) ) {
-        actionMapping[action]();
+    context.enrichedDescription = await TextEditor.enrichHTML(
+      this.document.system.description.value,
+      {
+        // Only show secret blocks to owner
+        secrets:    this.document.isOwner,
+        EdRollData: this.document.getRollData
       }
-    } );
+    );
 
-    // Effect Management
-    html.find( ".effect-add" ).click( this._onEffectAdd.bind( this ) );
-    html.find( ".effect-edit" ).click( this._onEffectEdit.bind( this ) );
-    html.find( ".effect-delete" ).click( this._onEffectDelete.bind( this ) );
-
-    // Karma refresh button --> karma ritual
-    html.find( ".button__Karma-refresh" ).click( this._onKarmaRefresh.bind( this ) );
-
-    // item card description shown on item click
-    html.find( ".card__name" ).click( event => this._onCardExpand( event ) );
-
-    // Legend point Tracking
-    html.find( ".legend-point__history" ).click( this._onLegendPointHistory.bind( this ) );
-
-    html.find( ".item-upgrade__attribute" ).click( this._onAttributeEnhancement.bind( this ) );
-
-    html.find( ".item-upgrade__ability" ).click( this._onAbilityEnhancement.bind( this ) );
-
-    html.find( ".item-upgrade__class" ).click( this._onClassEnhancement.bind( this ) );
+    return context;
   }
 
-  /* -------------------------------------------- */
-  /*              Equipment Toggle                */
-  /* -------------------------------------------- */
+  static async _onEditImage( event, target ) {
+    const attr = target.dataset.edit;
+    const current = foundry.utils.getProperty( this.document, attr );
+    const { img } = this.document.constructor.getDefaultArtwork?.( this.document.toObject() ) ?? {};
+    // eslint-disable-next-line no-undef
+    const fp = new FilePicker( {
+      current,
+      type:           "image",
+      redirectToRoot: img ? [ img ] : [],
+      callback:       ( path ) => {
+        this.document.update( { [attr]: path } );
+      },
+      top:  this.position.top + 40,
+      left: this.position.left + 10,
+    } );
+    return fp.browse();
+  }
+
+  static async _onItemEdit( event, target ) {
+    event.preventDefault();
+    const itemId = target.parentElement.dataset.itemId;
+    const item = this.document.items.get( itemId );
+    return item.sheet?.render( true );
+  }
+
+  static async _onItemDelete( event, target ) {
+    event.preventDefault();
+    const itemId = target.parentElement.dataset.itemId;
+    const item = this.document.items.get( itemId );
+    if ( !item ) return;
+    return item.deleteDialog();
+  }
+
+  static async _onEffectEdit( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
+  }
+
+  static async _onEffectDelete( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
+  }
+
+  static async _onEffectAdd( event, target ) {
+    ui.notifications.info( "Effects not done yet" );
+  }
+
+  static async _onCardExpand( event, target ) {
+    event.preventDefault();
+
+    const itemDescription = $( target )
+      .parent( ".item-id" )
+      .parent( ".card__ability" )
+      .children( ".card__description" );
+
+    itemDescription.toggleClass( "card__description--toggle" );
+  }
+
+  static async _onDisplayItem( event, target ) {
+    ui.notifications.info( "Display Item not done yet" );
+  }
+
+  static async takeDamage( event, target ) {
+    const takeDamage = await this.document.getPrompt( "takeDamage" );
+    if ( !takeDamage || takeDamage === "close" ) return;
+
+    this.document.takeDamage(
+      takeDamage.damage,
+      false,
+      takeDamage.damageType,
+      takeDamage.armorType,
+      takeDamage.ignoreArmor,
+    );
+  }
+
+  static async knockdownTest( event, target ) {
+    event.preventDefault();
+    const damageTaken = 0;
+    this.document.knockdownTest( damageTaken );
+  }
+
+  static async rollRecovery( event, target ) {
+    event.preventDefault();
+    const recoveryMode = await this.document.getPrompt( "recovery" );
+    this.document.rollRecovery( recoveryMode, {event: event} );
+  }
+
+  static async jumpUp( event, target ) {
+    event.preventDefault();
+    this.document.jumpUp( {event: event} );
+  }
+
+  static async rollInitiative( event, target ) {
+    event.preventDefault();
+    ui.notifications.info( "Initiative not done yet" );
+    this.document.rollInitiative( {event: event} );
+  }
+
+  static async rollable( event, target ) {
+    event.preventDefault();
+    const rolltype = target.dataset.rolltype;
+    if ( rolltype === "attribute" ) {
+      const attribute = target.dataset.attribute;
+      this.document.rollAttribute( attribute, {}, { event: event } );
+    } else if ( rolltype === "ability" ) {
+      const li = target.closest( ".item-id" );
+      const ability = this.document.items.get( li.dataset.itemId );
+      this.document.rollAbility( ability, {}, { event: event } );
+    } else if ( rolltype === "equipment" ) {
+      const li = target.closest( ".item-id" );
+      const equipment = this.document.items.get( li.dataset.itemId );
+      this.document.rollEquipment( equipment, { event: event } );
+    }
+  }
 
   /**
    * Handle changing the holding type of owned items.
    * @description itemStatus.value =
+   * @param {Event} event     The originating click event.
+   * @param {number} target
    * 1: owned,
    * 2: carried,
    * 3: equipped,
@@ -136,13 +198,12 @@ export default class ActorSheetEd extends ActorSheet {
    * 5: offHand,
    * 6: twoHanded,
    * 7: tail
-   * @param {Event} event     The originating click event.
    * @returns {Application}   The rendered item sheet.
    * @private
    * @userFunction              UF_PhysicalItems-onChangeItemStatus
    */
   // eslint-disable-next-line complexity
-  _onChangeItemStatus( event ) {
+  static async changeItemStatus( event, target ) {
     event.preventDefault();
 
     // if left click is used, rotate the item normally
@@ -154,259 +215,27 @@ export default class ActorSheetEd extends ActorSheet {
     // if right click is used, rotate status backwards
     const backwards = event.button === 2;
 
-    const li = event.currentTarget.closest( ".item-id" );
-    const item = this.actor.items.get( li.dataset.itemId );
+    const li = target.closest( ".item-id" );
+    const item = this.document.items.get( li.dataset.itemId );
 
     if ( unequip ) return item.system.carry()?.then( _ => this.render() );
-    if ( rotate ) return this.actor.rotateItemStatus( item.id, backwards ).then( _ => this.render() );
+    if ( rotate ) return this.document.rotateItemStatus( item.id, backwards ).then( _ => this.render() );
     if ( deposit ) return item.system.deposit()?.then( _ => this.render() );
     return this;
   }
 
-  /* -------------------------------------------- */
-  /*             LP Tracking Trigger              */
-  /* -------------------------------------------- */
 
-  /**
-   * @description               Open the Legend Point history of the actor
-   * @param { Event } event     The originating click event.
-   * @private
-   */
-  _onLegendPointHistory( event ) {
-    event.preventDefault();
-    this.actor.legendPointHistory( this.actor );
-  }
 
-  /**
-   * @description             This function is used to upgrade attributes
-   * @param {Event} event     The originating click event.
-   * @private
-   */
-  async _onAttributeEnhancement( event ) {
-    event.preventDefault();
-    const attribute = event.currentTarget.dataset.attribute;
-    await this.actor.system.increaseAttribute( attribute );
-  }
 
-  /**
-   * @description             This function is used to upgrade abilities
-   * @param {Event} event     The originating click event.
-   * @private
-   */
-  async _onAbilityEnhancement( event ) {
-    event.preventDefault();
-    const li = event.currentTarget.closest( ".item-id" );
-    const ability = this.actor.items.get( li.dataset.itemId );
-    if ( typeof ability.system.increase === "function" ) ability.system.increase();
-  }
-
-  /**
-   * @description             This function is used to upgrade Classes
-   * @param {Event} event     The originating click event.
-   * @private
-   */
-  async _onClassEnhancement( event ) {
-    event.preventDefault();
-    const li = event.currentTarget.closest( ".item-id" );
-    const classItem = this.actor.items.get( li.dataset.itemId );
-    classItem.system.increase();
-  }
+  
 
 
   /* -------------------------------------------- */
-  /*                 Roll Trigger                 */
-  /* -------------------------------------------- */
-
-  /**
-   * Handle rolling an attribute test.
-   * @param {Event} event      The originating click event.
-   * @private
-   */
-  _onRollAttribute( event ) {
-    event.preventDefault();
-    const attribute = event.currentTarget.dataset.attribute;
-    this.actor.rollAttribute( attribute, {}, { event: event } );
-  }
-
-  /**
-   * Handle rolling an attribute test.
-   * @param {Event} event      The originating click event.
-   * @private
-   */
-  _onRollAbility( event ) {
-    event.preventDefault();
-    const li = event.currentTarget.closest( ".item-id" );
-    const ability = this.actor.items.get( li.dataset.itemId );
-    this.actor.rollAbility( ability, {}, { event: event } );
-  }
-
-  /**
-   * Handle rolling an attribute test.
-   * @param {Event} event      The originating click event.
-   * @private
-   * @userFunction              UF_PhysicalItems-onRollEquipment
-   */
-  _onRollEquipment( event ) {
-    event.preventDefault();
-    const li = event.currentTarget.closest( ".item-id" );
-    const equipment = this.actor.items.get( li.dataset.itemId );
-    this.actor.rollEquipment( equipment, { event: event } );
-  }
-
-  /**
-   * @description             Take strain is used for non-rollable abilities which requires strain. player can click on the icon to take the strain damage
-   * @param {Event} event     The originating click event
-   * @private
-   */
-  _onTakeStrain( event ) {
-    event.preventDefault();
-    const li = event.currentTarget.closest( ".item-id" );
-    const ability = this.actor.items.get( li.dataset.itemId );
-    this.actor.takeStrain( ability.system.strain );
-  }
-
-  /* -------------------------------------------- */
-  /*                Action Button                 */
-  /* -------------------------------------------- */
-
-  /**
-   * Handles Recovery tests
-   * @param {Event} event The originating click event.
-   * @private
-   */
-  async _onRecoveryRoll( event ) {
-    event.preventDefault();
-    const recoveryMode = await this.actor.getPrompt( "recovery" );
-    this.actor.rollRecovery( recoveryMode, {event: event} );
-  }
-
-  async _onTakeDamage( _ ) {
-    const takeDamage = await this.actor.getPrompt( "takeDamage" );
-    if ( !takeDamage || takeDamage === "close" ) return;
-
-    this.actor.takeDamage(
-      takeDamage.damage,
-      false,
-      takeDamage.damageType,
-      takeDamage.armorType,
-      takeDamage.ignoreArmor,
-    );
-  }
-
-  _onJumpUp( event ) {
-    event.preventDefault();
-    this.actor.jumpUp( {event: event} );
-  }
-
-  _onInitiative( event ) {
-    event.preventDefault();
-    this.actor.rollInitiative( {event: event} );
-  }
-
-  _onHalfMagic( event ) {
-    event.preventDefault();
-    this.actor.rollHalfMagic( {event: event} );
-  }
-
-  _onKnockDown( event ) {
-    event.preventDefault();
-    const damageTaken = 0;
-    this.actor.knockdownTest( damageTaken );
-  }
-
-  _onKarmaRefresh() {
-    this.actor.karmaRitual();
-  }
 
 
-  /* -------------------------------------------- */
-  /*                   Effects                    */
-  /* -------------------------------------------- */
+  // region TODOS
+  // drag and drop einbauen
+  // enrichments oben in prepareContext einbauen -- roll data & enrichment funktioniert nicht richtig
+  // wechsel der tabs nicht richtig, nach #nderung kommt der general tab aber aktiv scheint noch der vorgänger...
 
-  /**
-   * Handle creating an owned ActiveEffect for the Actor.
-   * @param {Event} event     The originating click event.
-   * @returns {Promise|null}  Promise that resolves when the changes are complete.
-   * @private
-   */
-  _onEffectAdd( event ) {
-    event.preventDefault();
-    return this.actor.createEmbeddedDocuments( "ActiveEffect", [ {
-      label:    "New Effect",
-      icon:     "icons/svg/item-bag.svg",
-      duration: { rounds: 1 },
-      origin:   this.actor.uuid
-    } ] );
-  }
-
-  /**
-   * Handle deleting an existing Owned ActiveEffect for the Actor.
-   * @param {Event} event                       The originating click event.
-   * @returns {Promise<ActiveEffect>|undefined} The deleted item if something was deleted.
-   * @private
-   */
-  _onEffectDelete( event ) {
-    event.preventDefault();
-    const itemId = event.currentTarget.parentElement.dataset.itemId;
-    const effect = this.actor.effects.get( itemId );
-    if ( !effect ) return;
-    return effect.deleteDialog();
-  }
-
-  /**
-   * Handle editing an existing Owned ActiveEffect for the Actor.
-   * @param {Event}event    The originating click event.
-   * @returns {any}         The rendered item sheet.
-   * @private
-   */
-
-  _onEffectEdit( event ) {
-    event.preventDefault();
-    const itemId = event.currentTarget.parentElement.dataset.itemId;
-    const effect = this.actor.effects.get( itemId );
-    return effect.sheet?.render( true );
-  }
-
-
-  /* -------------------------------------------- */
-  /*             Owned item Handler               */
-  /* -------------------------------------------- */
-  /**
-   * Handle deleting an existing Owned Item for the Actor.
-   * @param {Event} event                 The originating click event.
-   * @returns {Promise<ItemEd>|undefined} The deleted item if something was deleted.
-   * @private
-   */
-  async _onItemDelete( event ) {
-    event.preventDefault();
-    const itemId = event.currentTarget.parentElement.dataset.itemId;
-    const item = this.actor.items.get( itemId );
-    if ( !item ) return;
-    return item.deleteDialog();
-  }
-
-  /**
-   * Handle editing an existing Owned Item for the Actor.
-   * @param {Event}event    The originating click event.
-   * @returns {ItemSheetEd} The rendered item sheet.
-   * @private
-   */
-  _onItemEdit( event ) {
-    event.preventDefault();
-    const itemId = event.currentTarget.parentElement.dataset.itemId;
-    const item = this.actor.items.get( itemId );
-    return item.sheet?.render( true );
-  }
-
-  _onCardExpand( event ) {
-    event.preventDefault();
-
-    const itemDescription = $( event.currentTarget )
-      .parent( ".item-id" )
-      .parent( ".card__ability" )
-      .children( ".card__description" );
-
-    itemDescription.toggleClass( "card__description--toggle" );
-  }
 }
-

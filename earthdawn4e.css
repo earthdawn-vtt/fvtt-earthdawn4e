@@ -66,7 +66,6 @@
   height: 30px;
   border-radius: 50%;
   padding-top: 5px;
-  background: rgba(0, 0, 0, 0.1);
 }
 .input--centered {
   text-align: center;
@@ -89,31 +88,34 @@ input.input__number-input {
 .text__alignment--center {
   text-align: center;
 }
-.font__bold {
+.application .font__bold {
   font-weight: bold;
 }
-.text-break__auto {
+.application .text-break__auto {
   word-break: normal;
 }
-#chat-log,
-.window-content,
-input,
-.body {
+.application #chat-log,
+.application .window-content,
+.application input,
+.application .body {
   font-family: 'ArnoPro Regular', serif;
   font-size: 1.05em;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.application .h1,
+.application h2,
+.application h3,
+.application h4,
+.application h5,
+.application h6 {
   font-family: 'WarhorseDIY', serif;
+  font-size: 1em;
+  color: inherit;
+  padding-top: 5px;
 }
-p {
+.application p {
   font-size: large;
 }
-.font__no-underline {
+.application .font__no-underline {
   border-bottom: none;
 }
 .display__inline-block {
@@ -380,186 +382,207 @@ p {
 .app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__amount {
   width: 20%;
 }
-.app.window-app.earthdawn4e.sheet {
-  background-image: url('assets/sheet/background.png');
+.application.sheet.earthdawn4e.actor {
   background-size: cover;
 }
-.app.window-app.earthdawn4e.sheet header {
+.application.sheet.earthdawn4e.actor header {
   position: relative;
   z-index: 3;
   border: none;
 }
-.app.window-app.earthdawn4e.sheet header .window-title {
+.application.sheet.earthdawn4e.actor header .window-title {
   padding-left: 80px;
   margin-top: -4px;
 }
-.app.window-app.earthdawn4e.sheet header .header-button {
+.application.sheet.earthdawn4e.actor header .header-button {
   margin-top: -4px;
 }
-.app.window-app.earthdawn4e.sheet header .close {
+.application.sheet.earthdawn4e.actor header .close {
   padding-right: 80px;
 }
-.app.window-app.earthdawn4e.sheet .window-content {
-  background-image: url('assets/sheet/background.png');
+.application.sheet.earthdawn4e.actor .window-content {
   background-size: cover;
   padding: 0;
-}
-.app.window-app.earthdawn4e.sheet .window-content .header__frame {
-  position: absolute;
-  margin-top: -70px;
-  z-index: 2;
-}
-.app.window-app.earthdawn4e.sheet .window-content .header__frame img {
-  border: none;
-}
-.app.window-app.earthdawn4e.sheet .window-content .header__frame .section__name {
-  position: relative;
-  z-index: 4;
-  margin-top: -22px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .header__frame .section__name .sheet-header__indent--left {
-  width: 45%;
-  float: left;
-  padding-left: 5px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .header__frame .section__name .sheet-header__indent--right {
-  width: 45%;
-  float: right;
-  padding-right: 10px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body {
-  position: relative;
-  z-index: 4;
-  margin-top: 30px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .navigator__flex .navigator__tab {
-  padding-left: 5px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top {
-  grid-area: empty;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .image__grid-item {
-  grid-area: image;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-defenses-header__grid-item {
-  grid-area: defensesHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-defenses-physical__grid-item {
-  grid-area: defensePhyscial;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-defenses-mystical__grid-item {
-  grid-area: defenseMystical;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-defenses-social__grid-item {
-  grid-area: defenseSocial;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-health-header__grid-item {
-  grid-area: healthHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-health-1__grid-item {
-  grid-area: healthWound;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-health-2__grid-item {
-  grid-area: healthUnconscious;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-health-3__grid-item {
-  grid-area: healthDeath;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-armor-header__grid-item {
-  grid-area: armorHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-armor-physical__grid-item {
-  grid-area: armorPhysical;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-armor-mystical__grid-item {
-  grid-area: armorMystical;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-movement-header__grid-item {
-  grid-area: movementHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-movement__grid-item {
-  grid-area: movement;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-damage-header__grid-item {
-  grid-area: damageHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-damage-damage__grid-item {
-  grid-area: damageDamage;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-damage-wounds__grid-item {
-  grid-area: damageWounds;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-recovery-header__grid-item {
-  grid-area: recoveryHeader;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-recovery__grid-item {
-  grid-area: recovery;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .characteristics-max-wounds__grid-item {
-  grid-area: maxWounds;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .image-characteristics__grid-container {
-  display: grid;
-  grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-  grid-column-gap: 4px;
-  margin-left: 4px;
-  grid-template-areas: 'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader' 'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath' 'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath' 'image armorHeader armorHeader movementHeader damageHeader damageHeader recoveryHeader' 'image armorPhysical armorMystical movement damageDamage damageWounds recovery' 'image armorPhysical armorMystical movement damageDamage damageWounds recovery';
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .image-characteristics-mob__grid-container {
-  display: grid;
-  grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-  grid-column-gap: 4px;
-  margin-left: 4px;
-  grid-template-areas: 'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader' 'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious' 'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious' 'image armorHeader armorHeader movementHeader empty empty empty' 'image armorPhysical armorMystical movement damageDamage healthWound recovery' 'image armorPhysical armorMystical movement damageDamage healthWound recovery';
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .image-characteristics__grid-container > div,
-.app.window-app.earthdawn4e.sheet .window-content .body .top .image-characteristics-mob__grid-container > div {
-  text-align: center;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .top .actor-image {
-  width: 160px;
-}
-.app.window-app.earthdawn4e.sheet .window-content .body .main {
   padding-top: 1px;
   height: 440px;
   overflow-y: auto;
   padding-left: 5px;
   padding-right: 5px;
 }
-.app.window-app.earthdawn4e.sheet .window-content .body .main .sheet__editor {
+.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
+  min-height: 200px;
+  max-height: 100%;
+}
+.application.sheet.earthdawn4e.actor .window-content .header__frame {
+  position: absolute;
+  margin-top: -70px;
+  z-index: 2;
+}
+.application.sheet.earthdawn4e.actor .window-content .header__frame img {
+  border: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .section__name {
+  position: relative;
+  z-index: 4;
+}
+.application.sheet.earthdawn4e.actor .window-content .section__name .header-section__name .sheet-header__indent--left {
+  width: 45%;
+  float: left;
+  padding-left: 5px;
+}
+.application.sheet.earthdawn4e.actor .window-content .section__name .header-section__name .sheet-header__indent--right {
+  width: 45%;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.application.sheet.earthdawn4e.actor .window-content .tab.general,
+.application.sheet.earthdawn4e.actor .window-content .talents,
+.application.sheet.earthdawn4e.actor .window-content .skills,
+.application.sheet.earthdawn4e.actor .window-content .devotions,
+.application.sheet.earthdawn4e.actor .window-content .spells,
+.application.sheet.earthdawn4e.actor .window-content .equipment,
+.application.sheet.earthdawn4e.actor .window-content .notes,
+.application.sheet.earthdawn4e.actor .window-content .reputation,
+.application.sheet.earthdawn4e.actor .window-content .specials,
+.application.sheet.earthdawn4e.actor .window-content .legend,
+.application.sheet.earthdawn4e.actor .window-content .classes {
+  height: 450px;
+  /* Set the desired fixed height */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
+}
+.application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
+  gap: 0.5rem;
+}
+.application.sheet.earthdawn4e.actor .window-content .top {
+  grid-area: empty;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image__grid-item {
+  grid-area: image;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-defenses-header__grid-item {
+  grid-area: defensesHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-defenses-physical__grid-item {
+  grid-area: defensePhyscial;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-defenses-mystical__grid-item {
+  grid-area: defenseMystical;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-defenses-social__grid-item {
+  grid-area: defenseSocial;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-health-header__grid-item {
+  grid-area: healthHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-health-1__grid-item {
+  grid-area: healthWound;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-health-2__grid-item {
+  grid-area: healthUnconscious;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-health-3__grid-item {
+  grid-area: healthDeath;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-armor-header__grid-item {
+  grid-area: armorHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-armor-physical__grid-item {
+  grid-area: armorPhysical;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-armor-mystical__grid-item {
+  grid-area: armorMystical;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-movement-header__grid-item {
+  grid-area: movementHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-movement__grid-item {
+  grid-area: movement;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-damage-header__grid-item {
+  grid-area: damageHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-damage-damage__grid-item {
+  grid-area: damageDamage;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-damage-wounds__grid-item {
+  grid-area: damageWounds;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-recovery-header__grid-item {
+  grid-area: recoveryHeader;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-recovery__grid-item {
+  grid-area: recovery;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .characteristics-max-wounds__grid-item {
+  grid-area: maxWounds;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container {
+  display: grid;
+  grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+  grid-column-gap: 4px;
+  margin-left: 4px;
+  grid-template-areas: 'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader' 'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath' 'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath' 'image armorHeader armorHeader movementHeader damageHeader damageHeader recoveryHeader' 'image armorPhysical armorMystical movement damageDamage damageWounds recovery' 'image armorPhysical armorMystical movement damageDamage damageWounds recovery';
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container {
+  display: grid;
+  grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+  grid-column-gap: 4px;
+  margin-left: 4px;
+  grid-template-areas: 'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader' 'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious' 'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious' 'image armorHeader armorHeader movementHeader empty empty empty' 'image armorPhysical armorMystical movement damageDamage healthWound recovery' 'image armorPhysical armorMystical movement damageDamage healthWound recovery';
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container > div,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container > div {
+  text-align: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .actor-image {
+  width: 160px;
+  border: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor,
+.application.sheet.earthdawn4e.actor .window-content .editor {
   min-height: 400px;
   max-height: 100%;
   display: flex;
   flex-direction: column;
 }
-.app.window-app.earthdawn4e.sheet .window-content .body .main .sheet__editor .editor,
-.app.window-app.earthdawn4e.sheet .window-content .body .main .sheet__editor .prosemirror,
-.app.window-app.earthdawn4e.sheet .window-content .body .main .sheet__editor .editor-container,
-.app.window-app.earthdawn4e.sheet .window-content .body .main .sheet__editor .editor-content {
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .prosemirror,
+.application.sheet.earthdawn4e.actor .window-content .editor .prosemirror,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor-container,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor-container,
+.application.sheet.earthdawn4e.actor .window-content .sheet__editor .editor-content .editor,
+.application.sheet.earthdawn4e.actor .window-content .editor .editor-content .editor {
   min-height: 350px;
   max-height: 100%;
 }
-.app.window-app.earthdawn4e.sheet .window-content .body .main .form-group label {
+.application.sheet.earthdawn4e.actor .window-content .form-group label {
   float: left;
   width: 40%;
 }
-.app.window-app.earthdawn4e.sheet .window-content .body .main .form-group .form-fields {
+.application.sheet.earthdawn4e.actor .window-content .form-group .form-fields {
   float: right;
   width: 60%;
 }
-.app.window-app.earthdawn4e.sheet .window-content .body .main .form-group .hint {
+.application.sheet.earthdawn4e.actor .window-content .form-group .hint {
   font-size: smaller;
 }
-.app.window-app.earthdawn4e.sheet .window-content .footer__frame {
+.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
+  min-height: 200px;
+  max-height: 100%;
+}
+.application.sheet.earthdawn4e.actor .window-content .footer__frame {
   position: absolute;
   transform: rotate(180deg);
   bottom: -45px;
   z-index: 2;
 }
-.app.window-app.earthdawn4e.sheet .window-content .footer__frame img {
+.application.sheet.earthdawn4e.actor .window-content .footer__frame img {
   border: none;
 }
-.app.window-app.earthdawn4e.sheet .window-resizable-handle {
+.application.sheet.earthdawn4e.actor .window-resizable-handle {
   z-index: 5;
 }
 .ability-card__grid--container {
@@ -888,85 +911,89 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
 .body .actor-section__top .padding__top-small {
   height: 80px;
 }
-.main .actor-sheet-body .tab__general .left-part {
+.general .left-part {
   float: left;
   width: 250px;
 }
-.main .actor-sheet-body .tab__general .left-part .margin__none {
+.general .left-part .margin__none {
   margin-bottom: 0;
 }
-.main .actor-sheet-body .tab__general .left-part .fa-star {
+.general .left-part .fa-star {
   font-size: 7px;
 }
-.main .actor-sheet-body .tab__general .left-part .attribute__increases {
+.general .left-part .attribute__increases {
   text-align: left;
   padding-left: 2px;
   margin-bottom: 12px;
 }
-.main .actor-sheet-body .tab__general .left-part .karma-devotion__header {
+.general .left-part .karma-devotion__header {
   height: 30px;
 }
-.main .actor-sheet-body .tab__general .left-part .karma-devotion__header .button__Karma-refresh {
+.general .left-part .karma-devotion__header .button__Karma-refresh {
   width: 25px;
   height: 25px;
   border: none;
 }
-.main .actor-sheet-body .tab__general .left-part .karma-devotion__grid--container {
+.general .left-part .icon__position--right {
+  display: flex;
+  align-items: center;
+}
+.general .left-part .icon__position--right input {
+  display: flex;
+  align-items: center;
+}
+.general .left-part .karma-devotion__grid--container {
   align-items: center;
   text-align: center;
   display: grid;
   height: 30px;
   grid-template-columns: 83px 83px 83px;
 }
-.main .actor-sheet-body .tab__general .right-part {
+.general .right-part {
   float: right;
   width: 520px;
 }
-.main .actor-sheet-body .tab__general .right-part .margin__right {
+.general .right-part .margin__right {
   margin-right: 20px;
 }
-.main .actor-sheet-body .tab__general .right-part .conditions__grid--container {
+.general .right-part .conditions__grid--container {
   align-items: center;
   display: grid;
   height: 30px;
   grid-template-columns: 40px 220px;
 }
-.main .actor-sheet-body .tab__legend .legend-card__grid--container {
+.legend.tab .legend-card__grid--container {
   align-items: center;
   height: 30px;
   display: grid;
   padding-left: 2px;
   grid-template-columns: 158px 158px 158px 158px 158px;
 }
-.main .actor-sheet-body .tab__class .class-card__grid--container {
+.classes.tab .class-card__grid--container {
   align-items: center;
   height: 30px;
   display: grid;
   padding-left: 2px;
   grid-template-columns: 40px 450px 200px 100px;
 }
-.main .actor-sheet-body .tab__class .item__image {
+.classes.tab .item__image {
   width: 25px;
   border: none;
 }
-.action--buttons {
-  padding-top: 5px;
-  position: relative;
-  width: 100%;
-  z-index: -6;
-}
-.action--buttons button {
+.section__button .action--buttons button {
   position: relative;
   z-index: 4;
-  width: 100px;
+  width: 90px;
+  display: inline;
+  margin-left: 5px;
 }
-.action--buttons .buttons--left {
+.section__button .action--buttons .buttons--left {
   margin-left: 45px;
   margin-right: 25px;
   float: left;
   width: 40%;
 }
-.action--buttons .buttons--right {
+.section__button .action--buttons .buttons--right {
   float: right;
   width: 40%;
   margin-left: 25px;

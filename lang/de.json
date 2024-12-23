@@ -4,31 +4,36 @@
       "Abilities": {
       },
       "Attributes": {
-        "attribueStep": "Stufe",
-        "attributeName": "Attribut",
-        "attributeValue": "Wert",
-        "charisma": "Charisma",
-        "charismaAbbr": "Cha",
-        "dexterity": "Geschick",
-        "dexterityAbbr": "Ges",
-        "increase": "Steig.",
-        "perception": "Wahrnehmung",
-        "perceptionAbbr": "Wah",
-        "strength": "Stärke",
-        "strengthAbbr": "Stä",
-        "toughness": "Zähigkeit",
-        "toughnessAbbr": "Zäh",
-        "willpower": "Willenskraft",
-        "willpowerAbbr": "Wil"
+        "attribueStep":                         "Stufe",
+        "attributeName":                        "Attribut",
+        "attributeValue":                       "Wert",
+        "charisma":                             "Charisma",
+        "charismaAbbr":                         "Cha",
+        "dexterity":                            "Geschick",
+        "dexterityAbbr":                        "Ges",
+        "increase":                             "Steig.",
+        "perception":                           "Wahrnehmung",
+        "perceptionAbbr":                       "Wah",
+        "strength":                             "Stärke",
+        "strengthAbbr":                         "Stä",
+        "toughness":                            "Zähigkeit",
+        "toughnessAbbr":                        "Zäh",
+        "willpower":                            "Willenskraft",
+        "willpowerAbbr":                        "Wil"
       },
       "Buttons": {
-        "halfMagic": "Halbmagie",
-        "initiative": "Initiative",
-        "jumpUp": "Aufspringen",
-        "knockDownTest": "Niederschlag",
-        "legendHistory": "LP Übersicht",
-        "recovery": "Erholung",
-        "takeDamage": "Schaden"
+        "halfMagic":                                        "Halbmagie",
+        "initiative":                                       "Initiative",
+        "jumpUp":                                           "Aufspringen",
+        "knockDownTest":                                    "Niederschlag",
+        "karmaRitual":                                      "Karmaritual",
+        "legendHistory":                                    "LP Übersicht",
+        "recovery":                                         "Erholung",
+        "takeDamage":                                       "Schaden",
+        "upgrade":                                          "Verbessern",
+        "displayItem":                                      "Item anzeigen",
+        "deleteItem":                                       "Item löschen",
+        "editItem":                                         "Item bearbeiten"
       },
       "Cards": {
         "chat": "Zeige Item Informationan als Chat Nachricht",
@@ -159,19 +164,19 @@
         "attributeImprovement": "Attribut Erhöhung"
       },
       "Navigator": {
-        "classes": "Berufung",
+        "classes":                                          "Berufung",
         "configuration":                                    "Konfiguration",
-        "devotions": "Weihekräfte",
-        "equipment": "Ausrüstung",
-        "general": "Allgemein",
-        "information": "Informationen",
-        "legend": "Legende",
+        "devotions":                                        "Weihekräfte",
+        "equipment":                                        "Ausrüstung",
+        "general":                                          "Allgemein",
+        "information":                                      "Informationen",
+        "legend":                                           "Legende",
         "power":                                            "Kräfte",
-        "reputation": "Ruf",
-        "skills": "Fertigkeiten",
-        "specials": "Besonders",
-        "spells": "Zauber",
-        "talents": "Talente"
+        "reputation":                                       "Ruf",
+        "skills":                                           "Fertigkeiten",
+        "specials":                                         "Besonders",
+        "spells":                                           "Zauber",
+        "talents":                                          "Talente"
       },
       "Spellcasting": {
         "elementalist": "Elementarist",
@@ -198,6 +203,13 @@
         "offHand": "Nebenhand",
         "tail": "Schwanz",
         "twoHanded": "Zweihändig"
+      }
+    },
+    "Advancement": {
+      "Pools": {
+        "class":                                  "Berufung",
+        "free":                                   "Frei",
+        "namegiver":                              "Namensgeber"
       }
     },
     "Chat": {
@@ -959,8 +971,8 @@
     },
     "Dialogs": {
       "AssignLp": {
-        "description": "Beschreibung",
-        "legendPoints": "Legendenpunkte"
+        "description":                            "Beschreibung",
+        "legendPoints":                           "Legendenpunkte"
       },
       "Buttons": {
         "add":                                              "Hinzufügen",
@@ -982,7 +994,85 @@
         "save":                                             "Speichern",
         "spendLp":                                          "Legendenpunkte ausgeben",
         "takeDamage":                                       "Schaden nehmen",
-        "teacherSpellcasting":                              "Spruchzauberei der Lehrenden"
+        "teacherSpellcasting":                              "Spruchzauberei der Lehrenden",
+        "finish":                                 "Abschließen",
+        "nextStep":                               "Nächster Schritt",
+        "previousStep":                           "Vorheriger Schritt",
+        "resetRanks":                             "Ränge zurücksetzen"
+      },
+      "CharGen":{
+        "Title": {
+          "languages":                            "Sprachen",
+          "equipment":                            "Ausrüstung",
+          "speak":                                "Gesprochene Sprachen",
+          "readWrite":                            "Lesen/Schreiben",
+          "attribute":                            "Attribut",
+          "baseValue":                            "Grundwert",
+          "cost":                                 "Kosten",
+          "change":                               "Änderung",
+          "value":                                "Wert",
+          "step":                                 "Stufe",
+          "health":                               "Gesundheit",
+          "characteristics":                      "Charakteristiken",
+          "defenses":                             "Verteidigungen",
+          "armor":                                "Rüstung",
+          "other":                                "Sonstiges",
+          "preview":                              "Vorschau der Änderungen",
+          "spellOptions":                         "Verfügbare Zauber",
+          "chosenSpells":                         "Gewählte Zauber",
+          "artisanSkills":                        "Kunsthandwerksfertigkeiten",
+          "knowledgeSkills":                      "Wissensfertigkeiten",
+          "languageSkills":                       "Sprachfertigkeiten",
+          "generalSkills":                        "Allgemeine Fertigkeiten"
+        },
+        "Buttons":{
+          "resetRanks":                           "Ränge zurücksetzen",
+          "resetAttributes":                      "Attribute zurücksetzen",
+          "resetSpells":                          "Zauber zurücksetzen",
+          "resetSkills":                          "Fähigkeiten zurücksetzen"
+        },
+        "noArtisanSkillsAvailable":               "Keine Kunsthandwerksfertigkeiten verfügbar",
+        "noKnowledgeSkillsAvailable":             "Keine Wissensfertigkeiten verfügbar",
+        "noLanguageSkillsAvailable":              "Keine Sprachfertigkeiten verfügbar",
+        "noGeneralSkillsAvailable":               "Keine Allgemeinen Fertigkeiten verfügbar",
+        "requiredArtisanSkillPoints":             "Ein Kunsthandwerk muss mindestens einen Rang von 1 haben.",
+        "requiredKnowledgeSkillPoints":           "Mindestens 2 Ränge in Wissensfertigkeiten müssen gewählt werden",
+        "availabelSkillPoints":                   "Verfügbare Fertigkeitsränge",
+        "minimumLanguageSkillPoints":             "Mindestnes 1 Rang in Lesen/Schreiben und 2 Ränge in Fremdsprachen sind Voraussetzung. Weitere Ränge können frei gewählt werden.",
+        "chooseSkills":                           "Wähle Fähigkeiten aus",
+        "availableSpellPoints":                   "Verfügbare Punkte",
+        "chooseSpells":                           "Wähle Zauber aus",
+        "physicalDefense":                        "Physische Verteidigung",
+        "mysticDefense":                          "Mystische Verteidigung",
+        "socialDefense":                          "Soziale Verteidigung",
+        "physicalArmor":                          "Physische Rüstung",
+        "mysticArmor":                            "Mystische Rüstung",
+        "carryCapacity":                          "Tragkraft",
+        "initiative":                             "Initiativestufe / Würfel",
+        "unconciousDeathRate":                    "Bewusstlosigkeits- und Todesschwelle",
+        "woundThreshold":                         "Wundschwelle",
+        "recoveryPerDay":                         "Erholungsproben pro Tag",
+        "recoveryDice":                           "Erholungswürfel",
+        "availableAttributePoints":               "Verfügbare Attributspunkte",
+        "chooseClass":                            "Wähle eine Berufung",
+        "chooseAttributes":                       "Verteile deine Attributspunkte",
+        "optionalTalents":                        "Optionale Talente",
+        "optionalDevotions":                      "Optionale Weihekraft",
+        "disciplineTalents":                      "Disziplin Talente",
+        "questorDevotion":                        "Questor Weihekraft",
+        "availableRanks":                         "Verfügbare Ränge",
+        "abilities":                              "Wähle deine Fähigkeiten",    
+        "chooseNamegiver":                        "Wähle einen Namensgeber",
+        "discipline":                             "Wähle eine Disziplin",
+        "questor":                                "Wähle einen Questor",
+        "charGenRules":                           "Die Charaktererschaffung folgt den Regeln aus dem Spielerhandbuch im gleichnamigen Kapitel.<br> Die folgenden Schritte sind nach einander zu erfüllen: <br><ul><li>Wähle einen Namensgeber aus (Diser Tab)</li>\n<li>Wähle eine Berufung (Disziplin oder Questor) und die entsprechenden Fähigkeiten.</li>\n<li>Bestimme die Attribute.</li>\n<li>Wähle Zauber (nur wenn die Disziplin zu den Zaubernden gehört).</li>\n<li>Wähle deine Fähigkeiten aus.</li>\n<li>Wähle deine Sprachen aus.</li>\n<li>Wähle deine Ausrüstung aus.</li></ul>",
+        "chooseTalentsRules":                     "Unten sind die Talente des ersten Kreises und die optionalen Novizentalente aufgeführt.<br> Ein Optionales Talent kann ausgewählt werden und zusammen mit den Disziplintalenten gesteigert werden.<br> Freie Talente haben immer einen Rang der dem Kreis entspricht.<br> Der zugewiesene Rang entspricht dem Startrang.",
+        "chooseDevotionRules":                    "Wähle eine optionale Weihekraft und erhöhe den Rang auf 1.<br> die Questor-Weihekraft kann zum start nicht erhöht werden. Sie bleibt auf Rang 1.",
+        "chooseClassRules":                       "Wähle entweder eine Disziplin aus den Optionen oder schalte um auf Questoren um dort ein Questor zu werden.",
+        "chooseSpellsRules":                      "Wähle Zauber aus den unten aufgeführten Listen aus.<br>Es können Zauber gleich der Wahrnehmungsstufe gewählt werden.<br> Kreis 1 Zauber kosten 1 Punkt, Kreis 2 Zauber kosten 2.",
+        "chooseSkillsRules":                      "Wähle Fähigkeiten aus den unten aufgeführten Listen aus.<br>Es muss mindestens ein Kunsthandwerk und mindestens zwei Ränge in Wissensfertigkeiten gewählt werden.",
+        "chooseLanguagesRules":                   "Wähle die Sprachen aus die der Charakter spricht und liest/schreibt.<br>Es können maximal so viele Sprachen gewählt werden wie die Ränge in Lesen/Schreiben und Fremdsprachen entsprechen (redo this Text)",	
+        "chooseAttributesRules":                  "Verteile die freien Attributspunkte auf die sechs Attribute. Nicht verteilte Attributespunkte werden 1:1 als zusätztliche Karmapunkte umgewandelt.<br>Unter Vorschau sind die Werteänderungen zu sehen wenn das jeweilige Attribut erhöht oder gesenkt wird."
       },
       "Errors": {
         "noLp": "Keine Legendenpunkte angegeben!"
@@ -1000,7 +1090,7 @@
           "effectsGained":                                      "Effekte erhalten",
           "spellsGained":                                       "Zauber erhalten",
           "chooseAbilityOption":                                "Wähle ein optionales Talent",
-          "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis ",
+          "increaseClassTo":                                    "Erhöhe die Disziplin auf Kreis {increaseClassToLevel}",
           "resourceStepIncreased":                              "Ressourcenstufe erhöht"
         },
         "LearnSpell": {
@@ -1064,11 +1154,20 @@
       },
       "Tabs": {
         "rollPromptBaseTab":                                  "Basis Einstellungen",
-        "rollPromptOtherTab":                                 "Weitere Einstellungen"
+        "rollPromptOtherTab":                                 "Weitere Einstellungen",
+        "CharGen": {
+          "namegiver":                            "Namensgeber",
+          "class":                                "Berufung",
+          "attribute":                            "Attribute",
+          "spell":                                "Zauber",
+          "skill":                                "Fertigkeiten",
+          "language":                             "Sprachen",
+          "equipment":                            "Ausrüstung"
+        }
       },
       "Title": {
         "classAdvancement":                                   "Rang- und Kreisaufstieg",
-        "chooseDiscipline":                                   "Disziplin wählen",
+        "characterGeneration":                                "Charaktererschaffung",
         "learnAbility":                                       "Erlernen von {abilityName}",
         "learnSpell":                                         "Zauber lernen",
         "recovery":                                           "Erholungsprobe",
@@ -1076,17 +1175,20 @@
         "talentCategory":                                     "Talentkategorie von {abilityName}",
         "lpIncrease":                                         "Steigerung von {abilityName}"
       },
-      "armor": "Rüstung",
-      "armorType": "Rüstungsart",
-      "damage": "Schaden",
-      "damageStandard": "Tödlicher Schaden",
-      "damageStun": "Betäubungsschaden",
-      "damageType": "Schadensart",
-      "ignoreArmor": "Ignoriere Rüstung",
-      "jumpUpChoice": "Wähle die Fähigkeit um aufzuspringen",
-      "knockDownChoice": "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
-      "mystical": "Mystischer Schaden",
-      "physical": "Körperlicher Schaden"
+      "ToolTips": {
+        "resetAbilityRanks":                                  "Setzt alle Ränge auf 0 zurück"
+      },
+      "armor":                                    "Rüstung",
+      "armorType":                                "Rüstungsart",
+      "damage":                                   "Schaden",
+      "damageStandard":                           "Tödlicher Schaden",
+      "damageStun":                               "Betäubungsschaden",
+      "damageType":                               "Schadensart",
+      "ignoreArmor":                              "Ignoriere Rüstung",
+      "jumpUpChoice":                             "Wähle die Fähigkeit um aufzuspringen",
+      "knockDownChoice":                          "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "mystical":                                 "Mystischer Schaden",
+      "physical":                                 "Körperlicher Schaden"
     },
     "Documents": {
         "ActorSheetEdCharacter":                                "Charakterbogen",

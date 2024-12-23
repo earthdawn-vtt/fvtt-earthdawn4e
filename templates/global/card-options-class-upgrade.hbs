@@ -1,17 +1,17 @@
 <div class="itemControlGroup" data-item-id="{{_id}}">
-  <a class="item-control item-upgrade__class" title="{{localize 'earthdawn.u.upgrade'}}">
+  <a class="item-control item-upgrade__class" data-action="upgradeItem" title="{{localize 'earthdawn.u.upgrade'}}">
     <i class="fas fa-arrow-circle-up"></i>
   </a>
-  <a class="item-control item-downgrade" title="{{localize 'earthdawn.d.downgrade'}}">
+  {{!-- <a class="item-control item-downgrade" data-action="displayItem" title="{{localize 'earthdawn.d.downgrade'}}">
     <i class="fas fa-arrow-circle-down"></i>
-  </a>
-  <a class="item-control item-display" title="Display Item">
+  </a> --}}
+  <a class="item-control item-display" data-action="displayItem" title="Display Item">
     <i class="fas fa-comments"></i>
   </a>
-  <a class="item-control item-delete" title="Delete Item">
+  <a class="item-control item-delete" data-action="deleteItem" title="Delete Item">
     <i class="fas fa-trash"></i>
   </a>
-  <a class="item-control item-edit" title="Edit Item">
+  <a class="item-control item-edit" data-action="editItem" title="Edit Item">
     <i class="fas fa-edit"></i>
   </a>
 </div>

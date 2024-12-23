@@ -28,11 +28,11 @@
 //###########################################################
 //                       Main Section
 //###########################################################
-.main {
-    .actor-sheet-body {
+// .main {
+//     .actor-sheet-body {
 
         // General Section
-        .tab__general {
+        .general {
             .left-part {
                 float: left;
                 width: 250px;
@@ -58,6 +58,15 @@
                         width: 25px;
                         height: 25px;
                         border: none;
+                    }
+                }
+
+                .icon__position--right {
+                    display: flex;
+                    align-items: center;
+                    input {
+                        display: flex;
+                    align-items: center;
                     }
                 }
 
@@ -96,7 +105,8 @@
             }
         }
 
-        .tab__legend {
+        //.tab__legend {
+        .legend.tab {
             .legend-card__grid--container {
                 align-items: center;
                 height: 30px;
@@ -112,7 +122,7 @@
                 ;
             }
         }
-        .tab__class {
+        .classes.tab {
             .class-card__grid--container {
                 align-items: center;
                 height: 30px;
@@ -134,37 +144,36 @@
 
         }
 
-    }
-}
+//     }
+// }
 
 
 //###########################################################
 //                       Action Button
 //###########################################################
-.action--buttons {
-    padding-top: 5px;
-    position: relative;
-    width: 100%;
-    z-index: -6;
+.section__button {
+    .action--buttons {
+        button {
+            position: relative;
+            z-index: 4;
+            width: 90px;
+            display: inline;
+            margin-left: 5px;
+        }
 
-    button {
-        position: relative;
-        z-index: 4;
-        width: 100px;
-    }
+        .buttons--left {
+            margin-left: 45px;
+            margin-right: 25px;
+            float: left;
+            width: 40%;
+        }
 
-    .buttons--left {
-        margin-left: 45px;
-        margin-right: 25px;
-        float: left;
-        width: 40%;
-    }
-
-    .buttons--right {
-        float: right;
-        width: 40%;
-        margin-left: 25px;
-        margin-right: 45px;
+        .buttons--right {
+            float: right;
+            width: 40%;
+            margin-left: 25px;
+            margin-right: 45px;
+        }
     }
 }
 
