@@ -13,11 +13,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   constructor( charGen, options = {}, documentCollections ) {
     const charGenData = charGen ?? new CharacterGenerationData();
     super( options );
-    console.log( "CharGenData", charGenData );
     this.resolve = options.resolve;
     this.charGenData = charGenData;
-
-    this.charGenRules = game.i18n.localize( "ED.Dialogs.CharGen.charGenRules" );
 
     this.namegivers = documentCollections.namegivers;
     this.disciplines = documentCollections.disciplines;
@@ -142,6 +139,72 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   };
 
   /* ----------------------------------------------------------- */
+  /* --------------------------  Tabs  ------------------------- */
+  /* ----------------------------------------------------------- */
+
+  /**
+   * @type {Record<string, ApplicationTab>}
+   */
+  static TABS = {
+    "namegiver-tab": {
+      id:       "namegiver-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.namegiver",
+      active:   false,
+      cssClass: ""
+    },
+    "class-tab": {
+      id:       "class-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.class",
+      active:   false,
+      cssClass: ""
+    },
+    "attribute-tab": {
+      id:       "attribute-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.attribute",
+      active:   false,
+      cssClass: ""
+    },
+    "spell-tab": {
+      id:       "spell-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.spell",
+      active:   false,
+      cssClass: ""
+    },
+    "skill-tab": {
+      id:       "skill-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.skill",
+      active:   false,
+      cssClass: ""
+    },
+    "language-tab": {
+      id:       "language-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.language",
+      active:   false,
+      cssClass: ""
+    },
+    "equipment-tab": {
+      id:       "equipment-tab",
+      group:    "primary",
+      icon:     "",
+      label:    "ED.Dialogs.Tabs.CharGen.equipment",
+      active:   false,
+      cssClass: ""
+    },
+  };
+
+  /* ----------------------------------------------------------- */
   /* --------------------  _prepareContext  -------------------- */
   /* ----------------------------------------------------------- */
 
@@ -153,18 +216,18 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     context.options = options;
 
     // Rules
-    context.charGenRules = game.i18n.format( "ED.Dialogs.CharGen.charGenRules" );
+    context.charGenRules = game.i18n.localize( "ED.Dialogs.CharGen.charGenRules" );
 
     // Namegiver
     context.namegivers = this.namegivers;
-    context.namegiverDocument = await context.object.namegiverDocument;
+    context.namegiverDocument = await this.charGenData.namegiverDocument;
 
     // Class
     context.disciplines = this.disciplines;
     context.disciplineRadioChoices = documentsToSelectChoices( this.disciplines );
     context.questors = this.questors;
     context.questorRadioChoices = documentsToSelectChoices( this.questors );
-    context.classDocument = await context.object.classDocument;
+    context.classDocument = await this.charGenData.classDocument;
 
     // Talents & Devotions
     context.maxAssignableRanks = game.settings.get( "ed4e", "charGenMaxRank" );
@@ -181,17 +244,17 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     };
 
     // Attributes
-    context.finalAttributeValues = await context.object.getFinalAttributeValues();
-    context.availableAttributePoints = context.object.availableAttributePoints;
+    context.finalAttributeValues = await this.charGenData.getFinalAttributeValues();
+    context.availableAttributePoints = this.charGenData.availableAttributePoints;
     context.maxAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
-    context.previews = await context.object.getCharacteristicsPreview();
+    context.previews = await this.charGenData.getCharacteristicsPreview();
 
     // Spells
-    context.availableSpellPoints = await context.object.getAvailableSpellPoints();
-    context.maxSpellPoints = await context.object.getMaxSpellPoints();
+    context.availableSpellPoints = await this.charGenData.getAvailableSpellPoints();
+    context.maxSpellPoints = await this.charGenData.getMaxSpellPoints();
     context.spells = this.spells.filter( spell => spell.system.magicType === this.magicType );
     context.spellsBifurcated = context.spells.map(
-      spell => context.object.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
+      spell => this.charGenData.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
     );
     context.spellsByCircle = context.spellsBifurcated?.reduce( ( acc, spellTuple ) => {
       const { system: { level } } = spellTuple[0] ?? spellTuple[1];
@@ -293,72 +356,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.tabGroups[tabGroup] = tabId;
     context.tabs[tabId].cssClass = "active";
   }
-
-  /* ----------------------------------------------------------- */
-  /* --------------------------  Tabs  ------------------------- */
-  /* ----------------------------------------------------------- */
-
-  /**
-   * @type {Record<string, ApplicationTab>}
-   */
-  static TABS = {
-    "namegiver-tab": {
-      id:       "namegiver-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.namegiver",
-      active:   false,
-      cssClass: ""
-    },
-    "class-tab": {
-      id:       "class-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.class",
-      active:   false,
-      cssClass: ""
-    },
-    "attribute-tab": {
-      id:       "attribute-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.attribute",
-      active:   false,
-      cssClass: ""
-    },
-    "spell-tab": {
-      id:       "spell-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.spell",
-      active:   false,
-      cssClass: ""
-    },
-    "skill-tab": {
-      id:       "skill-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.skill",
-      active:   false,
-      cssClass: ""
-    },
-    "language-tab": {
-      id:       "language-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.language",
-      active:   false,
-      cssClass: ""
-    },
-    "equipment-tab": {
-      id:       "equipment-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.equipment",
-      active:   false,
-      cssClass: ""
-    },
-  };
   
   /* ----------------------------------------------------------- */
   /* --------------------------  Form  ------------------------- */
@@ -400,7 +397,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // wait for the update, so we can use the data models method
     this.magicType = await this.charGenData.getMagicType();
 
-    // this.charGenData.udateSource( data );
     // Re-render sheet with updated values
     this.render( true );
   }
@@ -508,24 +504,24 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
   }
 
-  static _onSelectTalentOption( event, target ) {
-    event.currentTarget.querySelector( "input[type=\"radio\"]" ).click();
+  static _onSelectTalentOption( _, target ) {
+    target.querySelector( "input[type=\"radio\"]" ).click();
   }
 
-  static _onChangeRank( event, target ) {
+  static _onChangeRank( _, target ) {
     const abilityUuid = target.dataset.abilityUuid;
     const abilityType = target.dataset.abilityType;
     const changeType = target.dataset.changeType;
     this.charGenData.changeAbilityRank( abilityUuid, abilityType, changeType ).then( _ => this.render() );
   }
 
-  static _onChangeAttributeModifier( event, target ) {
+  static _onChangeAttributeModifier( _, target ) {
     const attribute = target.dataset.attribute;
     const changeType = target.dataset.changeType;
     this.charGenData.changeAttributeModifier( attribute, changeType ).then( _ => this.render() );
   }
 
-  static _onClickSpell( event, target ) {
+  static _onClickSpell( _, target ) {
     const spellSelected = target.dataset.spellSelected;
     let result;
     if ( spellSelected === "false" ) {
@@ -538,7 +534,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     result.then( _ => this.render() );
   }
 
-  static _onReset( event, target ) {
+  static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
