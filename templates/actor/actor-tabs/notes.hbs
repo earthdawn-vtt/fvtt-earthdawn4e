@@ -1,20 +1,23 @@
-<div class="sheet__editor">
-  <h3>{{localize "ED.Actor.Header.information"}}</h3>
-  {{#if (ne actor.type "character")}}
-  <div>
-    {{formField systemFields.challenge.fields.rate value=actor.system.challenge.rate name="system.challenge.rate" localize=true}}
+<section class="tab {{tab.cssClass}}" data-group="sheet" data-tab="notes-tab">
+  <div class="sheet__editor">
+    <h3>{{localize "ED.Actor.Header.information"}}</h3>
+    {{#if (ne actor.type "character")}}
+    <div>
+      {{formField systemFields.challenge.fields.rate value=actor.system.challenge.rate name="system.challenge.rate" localize=true}}
+    </div>
+    {{/if}}
+    <h4>{{localize "X.Languages"}}</h4>
+    <div class="flexrow">
+    <span>
+      <h5>{{localize "X.Speak"}}</h5>
+      {{formField systemFields.languages.fields.speak value=actor.system.languages.speak name="system.languages.speak"}}
+    </span>
+    <span>
+      <h5>{{localize "X.Read / Write"}}</h5>
+      {{formField systemFields.languages.fields.readWrite value=actor.system.languages.readWrite name="system.languages.readWrite"}}
+    </span>
+    </div>
+
+    {{> "systems/ed4e/templates/global/editor.hbs"}}
   </div>
-  {{/if}}
-  <h4>{{localize "X.Languages"}}</h4>
-  <div class="flexrow">
-  <span>
-    <h5>{{localize "X.Speak"}}</h5>
-    {{formField systemFields.languages.fields.speak value=actor.system.languages.speak name="system.languages.speak"}}
-  </span>
-  <span>
-    <h5>{{localize "X.Read / Write"}}</h5>
-    {{formField systemFields.languages.fields.readWrite value=actor.system.languages.readWrite name="system.languages.readWrite"}}
-  </span>
-  </div>
-  {{> "systems/ed4e/templates/global/editor.hbs"}}
-</div>
+</section>
