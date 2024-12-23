@@ -12,8 +12,14 @@ import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 
 /**
- * The data used during character generation. Also used as the object of the
- * FormApplication dialogue during character generation.
+The application responsible for handling character generation
+@augments {FormApplication}
+@param {CharacterGenerationData} charGen         The data model which is the
+target data structure to be updated by the form.
+@param {FormApplicationOptions} [options={}]     Additional options which
+modify the rendering of the sheet.
+@param {{string:[Document]}} documentCollections An object mapping the
+document subtypes to arrays of the available documents of that type.
  */
 export default class CharacterGenerationData extends SparseDataModel {
 
@@ -333,7 +339,8 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   async getMagicType() {
     for ( const abilityUuid of Object.keys( this.abilities.class ) ) {
-      const ability = await fromUuid( abilityUuid );
+      let ability = await fromUuid( abilityUuid );
+
       if ( ability?.system.magic?.threadWeaving ) return ability.system.magic.magicType;
     }
     return undefined;

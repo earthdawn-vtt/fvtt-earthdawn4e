@@ -1,23 +1,13 @@
-<div class="tab namegiver-tab flexcol" data-group="primary" data-tab="namegiver-tab">
-  Namegiver
-
+<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="namegiver-tab">
   <div>
-    liste von allen Namegivern
+    <p>{{{charGenRules}}}</p>
   </div>
-
-  <div>
-    liste von Sprachen
-    checkliste für Lesen und Schreiben
-    Zwergisch ist vorbelegt bei beiden
-    Namegiversprache wird auch vorbelegt, nach der auswahl.
-  </div>
-
   <label for="char-gen-namegiver-select">
-    {{localize "X.Choose namegiver: "}}
+    {{localize "ED.Dialogs.CharGen.chooseNamegiver"}}
     <select id="char-gen-namegiver-select" name="namegiver">
       <option value="">&ndash;&ndash;&ndash;</option>
       {{selectOptions namegivers selected=object.namegiver valueAttr="uuid" labelAttr="name"}}
     </select>
   </label>
 
-</div>
+</section>
