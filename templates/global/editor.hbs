@@ -1,38 +1,8 @@
 <div class="editor prosemirror">
-    {{log "system.description.value" system.description.value}}
-    {{!-- {{editor enrichment.system.description.value target="system.description.value" button=true owner=owner
-    editable=editable engine="prosemirror"}} --}}
-    {{!-- {{editor enrichedDescription target="system.description" editable=editable button=true engine="prosemirror" collaborate=false}} --}}
    {{formInput 
     systemFields.description.fields.value 
     enriched=enrichedDescription 
     value=system.description.value 
     name="system.description.value" 
     toggled=true}}
-
-
-    {{!-- {{formGroup description.field value=description.value enriched=description.enriched height=300}} --}}
-
-    {{!-- {{formInput
-    systemFields.description.fields.value
-    enriched=description.enriched
-    value=description.value
-    name="description.value"
-    toggled=true
-    }} --}}
-
-    {{!-- {{formInput
-
 </div>
-
-
-{{!-- <fieldset>
-    <legend>{{localize "ED.Label.description"}}</legend>
-    {{formInput
-      systemFields.description
-      enriched=enrichedDescription
-      value=system.description
-      name="system.description"
-      toggled="false"
-    }}
-  </fieldset> --}}

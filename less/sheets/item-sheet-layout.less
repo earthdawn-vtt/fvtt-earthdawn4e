@@ -1,108 +1,42 @@
-.body {
-    .item-section__top {
-        height: 158px;
-
+.application.sheet.earthdawn4e.item {
+    .window-content {
         img {
             width: 158px;
             border: none;
         }
-    }
-    
-
-    .item__left--main {
-        width: 38%;
-        float: left;
-            div.form-group {  
-                 label {
-                    flex-basis: 50%;
-                 }
-                //  input {
-                //     flex-basis: 40%;
-                //  }
-                //  select {
-                //     // flex-grow: 0;
-                //     // flex-shrink: 0;
-                //     flex-basis: 30%;
-                //  }
-                 .hint {
-                    display: none;
-                 }
+        .item-name {
+            .sheet-header__indent--left {
+                width: 45%;
+                float: left;
             }
+            .sheet-header__indent--right {
+                width: 45%;
+                float: right;
+            }
+        }
     }
-
-    .item__right--main {
-        width: 60%;
-        float: right;
+    .tab.general,
+    .tab.details,
+    .tab.effects,
+    .tab.advancements {
+        overflow-y: auto; 
+        
+        .item__left--main {
+            width: 38%;
+            float: left;
+            div.form-group {  
+                label {
+                    flex-basis: 50%;
+                }
+                .hint {
+                    display: none;
+                }
+            }
+        }
+    
+        .item__right--main {
+            width: 60%;
+            float: right;
+        }
     }
-
-//     .item-data__input--line {
-//         height: 30px;
-
-//         div.form-group {
-//             label {
-//                 width: 40%;
-//                 float: left;
-//                 background-color: aqua;
-//             }
-//             div.form-fields {
-//                 margin-left: 5%;
-//                 input {
-//                     width: 40%;
-//                     float: right;
-//                     background-color: aqua;
-//                 }
-                
-                
-//             }
-//         }
-
-
-
-//         label, input {
-//             height: 28px;
-//             display: flex;
-//             align-items: center;
-//         }
-//         input {
-//             width: 55%;
-//             float: right;
-//         }
-//         .partial__40--left {
-//             width: 40%;
-//             float: left;
-//         }
-//         .partial__55--right {
-//             width: 55%;
-//             float: right;
-//         }
-//     }
-// }
-
-// .item__left--main {
-//     width: 35%;
-//     float: left;
-// }
-
-// .item__right--main {
-//     width: 60%;
-//     float: right;
-// }
-
-// .item-data__input--line {
-//     height: 30px;
-//     label, input {
-//         height: 28px;
-//         display: flex;
-//         align-items: center;
-//     }
-
-//     .partial__40--left {
-//         width: 40%;
-//         float: left;
-//     }
-
-//     .partial__55--right {
-//         width: 55%;
-//         float: right;
-//     }
 }
