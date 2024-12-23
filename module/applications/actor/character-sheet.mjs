@@ -266,18 +266,4 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     const ability = this.document.items.get( li.dataset.itemId );
     this.document.takeStrain( ability.system.strain );
   }
-
-  // region TODOS
-
-  
-  // die listener bauen
-
-
-  // _onRender() {
-  //   super._onRender();
-  //   this._addListeners();
-  // itemStatusToggle
-  // }
-
-  
 }
