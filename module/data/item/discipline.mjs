@@ -109,7 +109,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     if ( !learn ) validationData[ED4E.validationCategories.newAbilityLp] = [
       {
         name:      "ED.Dialogs.Legend.Validation.talentOptionLp",
-        value:     nextTalentLpCost,
+        value:     this.requiredLpForIncrease,
         fulfilled: nextTalentLpCost <= this.parentActor.currentLp,
       },
     ];
