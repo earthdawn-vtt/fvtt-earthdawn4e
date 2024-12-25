@@ -422,7 +422,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     const availabilityType = this._getAvailabilityType( abilityType, costDifference );
     if ( !( ( this.availableRanks[availabilityType] - costDifference ) >= 0 ) || !isRankValid ) {
       ui.notifications.warn( game.i18n.localize(
-        "X.No more points available. You can only change the rank of an ability in the range from 0 (languages: 1 and 2) through 3."
+        "ED.Dialogs.CharGen.Errors.noMoreSkillRanks"
       ) );
       return ;
     }
@@ -462,7 +462,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     // Add old cost, otherwise they're included in the calculation of available points
     if ( ( newCost > ( this.availableAttributePoints + oldCost ) ) || !isModifierValid ) {
       ui.notifications.warn( game.i18n.localize(
-        "X.No more points available. You can only modify an attribute in the range from -2 through +8."
+        "ED.Dialogs.CharGen.Errors.noMoreAttributeChange"
       ) );
       return ;
     }
@@ -492,7 +492,7 @@ export default class CharacterGenerationData extends SparseDataModel {
       } );
     } else {
       ui.notifications.warn( game.i18n.localize(
-        "X.No more points available. The spells level is to high for your available points."
+        "ED.Dialogs.CharGen.Errors.noMoreSpellPoints"
       ) );
       return {};
     }

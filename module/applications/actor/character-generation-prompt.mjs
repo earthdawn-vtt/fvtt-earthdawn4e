@@ -43,14 +43,34 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     };
   }
 
+  // Define a static method to hold the localization paths
+  static getLocalizationPaths() {
+    return {
+      noNamegiver:         "ED.Dialogs.CharGen.Errors.noNamegiver",
+      noClass:             "ED.Dialogs.CharGen.Errors.noClass",
+      attributes:          "ED.Dialogs.CharGen.Errors.attributes",
+      talentRanksLeft:     "ED.Dialogs.CharGen.Errors.talentRanksLeft",
+      skillRanksLeft:      "ED.Dialogs.CharGen.Errors.skillRanksLeft",
+      notFinished:         "ED.Dialogs.CharGen.Errors.notFinished",
+      maxLanguagesToSpeak: "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak",
+      maxLanguagesToRead:  "ED.Dialogs.CharGen.Errors.maxLanguagesToRead",
+    };
+  }
+  
   // #region Error Messages
-  static errorMessages = {
-    noNamegiver:      "X.You didn't choose a namegiver. Pretty difficult to be a person then, don't you think?",
-    noClass:          "X.There's no class selected. Don't you wanna be magic?",
-    attributes:       "X. This is just reminder: there are still some unspent attribute points. They will be converted to extra karma.",
-    talentRanksLeft:  "X.There's still some ranks left for your class abilities. Use them, they're free.",
-    skillRanksLeft:   "X.You haven't used all of your skill ranks. Come on, don't be shy.",
-  };
+  static get errorMessages() {
+    const paths = this.getLocalizationPaths();
+    return {
+      noNamegiver:         game.i18n.localize( paths.noNamegiver ),
+      noClass:             game.i18n.localize( paths.noClass ),
+      attributes:          game.i18n.localize( paths.attributes ),
+      talentRanksLeft:     game.i18n.localize( paths.talentRanksLeft ),
+      skillRanksLeft:      game.i18n.localize( paths.skillRanksLeft ),
+      notFinished:         game.i18n.localize( paths.notFinished ),
+      maxLanguagesToSpeak: game.i18n.localize( paths.maxLanguagesToSpeak ),
+      maxLanguagesToRead:  game.i18n.localize( paths.maxLanguagesToRead ),
+    };
+  }
 
   // #region DEFAULT_OPTIONS
   static DEFAULT_OPTIONS = {
@@ -58,9 +78,11 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     classes: [ "earthdawn4e", "character-generation" ],
     tag:     "form",
     window:  {
-      frame: true,
-      icon:  "fa-thin fa-user",
-      title: "ED.Dialogs.Title.characterGeneration",
+      frame:       true,
+      icon:        "fa-thin fa-user",
+      title:       "ED.Dialogs.Title.characterGeneration",
+      resizable:   true,
+      minimizable: true,
     },
     actions: {
       next:            this._nextTab,
@@ -79,10 +101,12 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       submitOnChange: true,
       submitOnClose:  false,
     },
-    // position: {
-    //   width:  1000,
-    //   height: 600,
-    // }
+    position: {
+      width:  1000,
+      top:    100,
+      left:   100,
+      height: 300,
+    }
   };
 
   /* ----------------------------------------------------------- */
@@ -97,39 +121,46 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       classes:  [ "navigation" ],
     },
     "namegiver-tab": {
-      template: "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
-      id:       "-namegiver-tab",
-      classes:  [ "namegiver" ],
+      template:   "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
+      id:         "-namegiver-tab",
+      classes:    [ "namegiver" ],
+      scrollable: [ "" ],
     },
     "class-tab": {
-      template: "systems/ed4e/templates/actor/generation/class-selection.hbs",
-      id:       "-class-tab",
-      classes:  [ "class" ],
+      template:   "systems/ed4e/templates/actor/generation/class-selection.hbs",
+      id:         "-class-tab",
+      classes:    [ "class" ],
+      scrollable: [ "" ],
     },
     "attribute-tab": {
-      template: "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
-      id:       "-attribute-tab",
-      classes:  [ "attribute" ],
+      template:   "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
+      id:         "-attribute-tab",
+      classes:    [ "attribute" ],
+      scrollable: [ "" ],
     },
     "spell-tab": {
-      template: "systems/ed4e/templates/actor/generation/spell-selection.hbs",
-      id:       "-spell-tab",
-      classes:  [ "spell" ],
+      template:   "systems/ed4e/templates/actor/generation/spell-selection.hbs",
+      id:         "-spell-tab",
+      classes:    [ "spell" ],
+      scrollable: [ "" ],
     },
     "skill-tab": {
-      template: "systems/ed4e/templates/actor/generation/skill-selection.hbs",
-      id:       "-skill-tab",
-      classes:  [ "skill" ],
+      template:   "systems/ed4e/templates/actor/generation/skill-selection.hbs",
+      id:         "-skill-tab",
+      classes:    [ "skill" ],
+      scrollable: [ "" ],
     },
     "language-tab": {
-      template: "systems/ed4e/templates/actor/generation/language-selection.hbs",
-      id:       "-language-tab",
-      classes:  [ "language" ],
+      template:   "systems/ed4e/templates/actor/generation/language-selection.hbs",
+      id:         "-language-tab",
+      classes:    [ "language" ],
+      scrollable: [ "" ],
     },
     "equipment-tab": {
-      template: "systems/ed4e/templates/actor/generation/equipment.hbs",
-      id:       "-equipment-tab",
-      classes:  [ "equipment" ],
+      template:   "systems/ed4e/templates/actor/generation/equipment.hbs",
+      id:         "-equipment-tab",
+      classes:    [ "equipment" ],
+      scrollable: [ "" ],
     },
     footer: {
       template: "templates/generic/form-footer.hbs",
@@ -252,7 +283,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // Spells
     context.availableSpellPoints = await this.charGenData.getAvailableSpellPoints();
     context.maxSpellPoints = await this.charGenData.getMaxSpellPoints();
-    context.spells = this.spells.filter( spell => spell.system.magicType === this.magicType );
+    context.spells = this.spells.filter( spell => spell.system.spellcastingType === this.magicType );
     context.spellsBifurcated = context.spells.map(
       spell => this.charGenData.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
     );
@@ -384,11 +415,11 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     const languageSkillRanks = await this.charGenData.getLanguageSkillRanks();
     if ( data.languages.speak.length > languageSkillRanks.speak ) {
       delete data.languages.speak;
-      ui.notifications.warn( game.i18n.format( "X.Can only choose X languages to speak (your rank in that skill." ) );
+      this._displayValidationError( "warn", "maxLanguagesToSpeak" );
     }
     if ( data.languages.readWrite.length > languageSkillRanks.readWrite ) {
       delete data.languages.readWrite;
-      ui.notifications.warn( game.i18n.format( "X.Can only choose X languages to read / write (your rank in that skill." ) );
+      this._displayValidationError( "warn", "maxLanguagesToRead" );
     }
     if ( foundry.utils.isEmpty( data.languages ) ) delete data.languages;
 
@@ -435,7 +466,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     event.stopImmediatePropagation();
 
     if ( !this._validateCompletion() ) {
-      ui.notifications.error( game.i18n.localize( "X.No no no, You're not finished yet." ) );
+      this._displayValidationError( "error", "notFinished" );
       return;
     }
 
