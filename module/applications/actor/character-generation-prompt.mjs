@@ -105,7 +105,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       width:  1000,
       top:    100,
       left:   100,
-      height: 300,
     }
   };
 
