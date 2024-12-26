@@ -42,33 +42,18 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       primary: "namegiver-tab",
     };
   }
-
-  // Define a static method to hold the localization paths
-  static getLocalizationPaths() {
-    return {
-      noNamegiver:         "ED.Dialogs.CharGen.Errors.noNamegiver",
-      noClass:             "ED.Dialogs.CharGen.Errors.noClass",
-      attributes:          "ED.Dialogs.CharGen.Errors.attributes",
-      talentRanksLeft:     "ED.Dialogs.CharGen.Errors.talentRanksLeft",
-      skillRanksLeft:      "ED.Dialogs.CharGen.Errors.skillRanksLeft",
-      notFinished:         "ED.Dialogs.CharGen.Errors.notFinished",
-      maxLanguagesToSpeak: "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak",
-      maxLanguagesToRead:  "ED.Dialogs.CharGen.Errors.maxLanguagesToRead",
-    };
-  }
   
   // #region Error Messages
   static get errorMessages() {
-    const paths = this.getLocalizationPaths();
     return {
-      noNamegiver:         game.i18n.localize( paths.noNamegiver ),
-      noClass:             game.i18n.localize( paths.noClass ),
-      attributes:          game.i18n.localize( paths.attributes ),
-      talentRanksLeft:     game.i18n.localize( paths.talentRanksLeft ),
-      skillRanksLeft:      game.i18n.localize( paths.skillRanksLeft ),
-      notFinished:         game.i18n.localize( paths.notFinished ),
-      maxLanguagesToSpeak: game.i18n.localize( paths.maxLanguagesToSpeak ),
-      maxLanguagesToRead:  game.i18n.localize( paths.maxLanguagesToRead ),
+      noNamegiver:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.noNamegiver" ),
+      noClass:             game.i18n.localize( "ED.Dialogs.CharGen.Errors.noClass" ),
+      attributes:          game.i18n.localize( "ED.Dialogs.CharGen.Errors.attributes" ),
+      talentRanksLeft:     game.i18n.localize( "ED.Dialogs.CharGen.Errors.talentRanksLeft" ),
+      skillRanksLeft:      game.i18n.localize( "ED.Dialogs.CharGen.Errors.skillRanksLeft" ),
+      notFinished:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.notFinished" ),
+      maxLanguagesToSpeak: game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak" ),
+      maxLanguagesToRead:  game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToRead" ),
     };
   }
 
