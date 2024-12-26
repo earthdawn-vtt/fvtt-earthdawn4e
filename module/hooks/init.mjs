@@ -25,6 +25,7 @@ export default function () {
     // record configuration values
     CONFIG.ED4E = ED4E;
     CONFIG.Actor.documentClass = documents.ActorEd;
+    CONFIG.ChatMessage.documentClass = documents.ChatMessageEd;
     CONFIG.Item.documentClass = documents.ItemEd;
     CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
 
@@ -38,6 +39,7 @@ export default function () {
 
     // Hook up system data types
     CONFIG.Actor.dataModels = data.actor.config;
+    CONFIG.ChatMessage.dataModels = data.chat.config;
     CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes
