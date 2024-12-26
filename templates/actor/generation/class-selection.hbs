@@ -1,5 +1,5 @@
 
-<section class="tab {{tab.cssClass}}" data-group="primary" data-tab="class-tab">
+<section class="tab {{tab.cssClass}} scrollable" data-group="primary" data-tab="class-tab">
  <!-- Class explainer -->
   <h4>{{localize "ED.Dialogs.CharGen.chooseClass"}}</h4>
   <p class="explainer-text">
@@ -9,9 +9,9 @@
   <!-- choose class type: discipline or questor -->
   <section class="discipline-questor-switch-group flexrow">
     <label class="discipline-questor-switch-group flexrow">
-              <span class="{{#unless object.isAdept}}deselected-class-type{{/unless}}" id="char-gen-class-type-discipline-label">
-                {{localize "ED.Dialogs.CharGen.discipline"}}
-              </span>
+      <span class="{{#unless object.isAdept}}deselected-class-type{{/unless}}" id="char-gen-class-type-discipline-label">
+        {{localize "ED.Dialogs.CharGen.discipline"}}
+      </span>
       <input type="checkbox" name="isAdept" {{checked object.isAdept}} hidden="">
       {{#if object.isAdept}}
         <i id="char-gen-class-type-select-arrow" class="arrow-toggle-switch fas fa-duotone fa-arrow-left-from-line fa-xl"></i>
@@ -53,7 +53,6 @@
         <i class="fa-light fa-arrows-rotate"></i>
         {{localize "ED.Dialogs.CharGen.Buttons.resetRanks"}}
       </button>
-      <button class="reset">{{this.button.reset}}</button>
       <label>{{localize "ED.Dialogs.CharGen.availableRanks"}}: {{lookup object.availableRanks (ifThen object.isAdept "talent" "devotion" )}}{{!--format "X.availablePointsKarma" points=... --}}</label>
       <meter value="{{lookup object.availableRanks (ifThen object.isAdept "talent" "devotion" )}}" min="0" max="{{lookup config.availableRanks (ifThen object.isAdept "talent" "devotion" )}}">
       </meter>

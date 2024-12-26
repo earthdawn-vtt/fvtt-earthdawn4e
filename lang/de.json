@@ -1023,7 +1023,21 @@
           "artisanSkills":                        "Kunsthandwerksfertigkeiten",
           "knowledgeSkills":                      "Wissensfertigkeiten",
           "languageSkills":                       "Sprachfertigkeiten",
-          "generalSkills":                        "Allgemeine Fertigkeiten"
+          "generalSkills":                        "Allgemeine Fertigkeiten",
+          "overview":                             "Übersicht"
+        },
+        "Errors":{
+          "noNamegiver":                          "Du musst einen Namensgeber auswählen um fortzufahren.",
+          "noClass":                              "Du musst eine Disziplin oder Questor auswählen um fortzufahren.",
+          "attributes":                           "Bist du dir sicher, dass du alle unverbrauchten Attributspunkte in Karma verwandeln möchtest?",
+          "talentRanksLeft":                      "Du musst alle Talentränge vergeben um fortzufahren.",
+          "skillRanksLeft":                       "Du musst alle Fertigkeitsränge vergeben um fortzufahren.",
+          "notFinished":                          "Du kannst die Charaktererschaffung noch nicht abschließen, du musst zuvor noch einiges erledigen.",
+          "maxLanguagesToSpeak":                  "Du kannst maximal soviele Sprachen sprechen wie du Rang in der Fertigkeit Fremdsprachen hast",
+          "maxLanguagesToRead":                   "Du kannst maximal soviele Sprachen lesen/schreiben wie du Rang in der Fertigkeit Lesen/Schreiben hast",
+          "noMoreSkillRanks":                     "Du hast keine weiteren Fertigkeitsränge zur Verfügung. Das maximum ist 3.",
+          "noMoreAttributeChange":                "Du hast dieses Attribute nicht weiter Steigern. Es können maximal -2 Attributspunkte abgezogen und +8 Attributspunkte hinzgefügt werden.",
+          "noMoreSpellPoints":                    "Du kannst keine weiteren Zaubersprüche auswählen. Deine Wahrnehmungsstufe bestimmt die Anzahl der Zauber (Der Kreis entspricht den Kosten)."
         },
         "Buttons":{
           "resetRanks":                           "Ränge zurücksetzen",
