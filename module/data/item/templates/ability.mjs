@@ -73,15 +73,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         label:    this.labelKey( "Ability.rank" ),
         hint:     this.hintKey( "Ability.rank" )
       } ),
-      rollType: new fields.StringField( {
-        required: false,
-        nullable: true,
-        blank:    true,
-        initial:  "",
-        choices:  ED4E.rollTypes,
-        label:    this.labelKey( "Ability.type" ),
-        hint:     this.hintKey( "Ability.type" )
-      } ),
       damageAbilities: new fields.SchemaField( {
         damage: new fields.BooleanField( {
           required: false,

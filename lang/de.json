@@ -551,6 +551,9 @@
       },
       "General": {
         "Hints": {
+          "Rollable": {
+            "type":                                         "Welche Aktionsart wird für diese Fähigkeit verwendet?"
+          },
           "Target": {
             "target":                                       "Welcher Widerstandstyp des Ziels wird für diese Fähigkeit verwendet?",
             "group":                                        "Welche Gruppen Parameter werden für mehrere Ziele verwendet?",
@@ -558,6 +561,9 @@
           }
         },
         "Labels": {
+          "Rollable": {
+            "type":                                         "Aktionsart"
+          },
           "Target": {
             "target":                                       "Widerstandstyp",
             "group":                                        "Gruppen Parameter",
@@ -590,7 +596,6 @@
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
             "talentKnacks":                                 "Kniffe",
-            "type":                                         "Welche Aktionsart wird für diese Fähigkeit verwendet?",
             "DamageAbilities": {
             "damage":                                       "Ist diese Fähigkeit eine Schadensfägigkeit",
             "substitute":                                   "Ersetzt Schadesattribute",
@@ -774,7 +779,6 @@
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
             "talentKnacks":                                 "Kniffe",
-            "type":                                         "Aktionsart",
             "DamageAbilities": {
             "damage":                                       "Schaden",
             "substitute":                                   "Ersetzt Schadensattribute",
