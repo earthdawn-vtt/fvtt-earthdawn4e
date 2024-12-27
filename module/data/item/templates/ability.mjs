@@ -73,6 +73,49 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         label:    this.labelKey( "Ability.rank" ),
         hint:     this.hintKey( "Ability.rank" )
       } ),
+      rollTypeDetails: new fields.SchemaField( {
+        ability:       new fields.SchemaField( {}, {} ),
+        attack:        new fields.SchemaField( {
+          weaponItemStatus: new fields.StringField( {
+            required: false,
+            nullable: true,
+            blank:    false,
+            initial:  null,
+            choices:  ED4E.itemStatus,
+            label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
+          } ),
+        }, {
+          required: false,
+          label:    this.labelKey( "Ability.RollTypeDetails.attack" ),
+          hint:     this.hintKey( "Ability.RollTypeDetails.attack" )
+        } ),
+        damage:        new fields.SchemaField( {}, {} ),
+        effect:        new fields.SchemaField( {}, {} ),
+        initiative:    new fields.SchemaField( {}, {} ),
+        reaction:      new fields.SchemaField( {
+          defenseType: new fields.StringField( {
+            required: true,
+            nullable: false,
+            blank:    false,
+            initial:  "physical",
+            choices:  ED4E.targetDifficulty,
+            label:    this.labelKey( "Ability.RollTypeDetails.Reaction.defenseType" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Reaction.defenseType" )
+          } ),
+        }, {
+          required: false,
+          label:    this.labelKey( "Ability.RollTypeDetails.reaction" ),
+          hint:     this.hintKey( "Ability.RollTypeDetails.reaction" ),
+        } ),
+        recovery:      new fields.SchemaField( {}, {} ),
+        spellcasting:  new fields.SchemaField( {}, {} ),
+        threadWeaving: new fields.SchemaField( {}, {} ),
+      }, {
+        required: false,
+        label:    this.labelKey( "Ability.rollTypeDetails" ),
+        hint:     this.hintKey( "Ability.rollTypeDetails" )
+      } ),
       damageAbilities: new fields.SchemaField( {
         damage: new fields.BooleanField( {
           required: false,
@@ -211,6 +254,22 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     );
     if ( !createData?.system?.level ) itemData.system.level = 0;
     return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+  }
+
+  /* -------------------------------------------- */
+  /*                    Rolling                   */
+  /* -------------------------------------------- */
+
+  async rollAttack() {
+    console.log( "Rolling attack" );
+    if ( !this.isActorEmbedded ) return;
+
+    // ed-id "second-weapon" for offhand weapons
+    // don't forget to add tail attack
+    const equippedWeapons = this.parentActor.equippedWeapons;
+    console.log( "Equipped weapons: ", equippedWeapons );
+    const attackType = !equippedWeapons ? "unarmed" : equippedWeapons[0].system.weaponType;
+    console.log( "Attack type: ", attackType );
   }
 
   /* -------------------------------------------- */

@@ -65,6 +65,16 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Returns the equipped weapons of this actor, if any.
+   * @type {ItemEd[]}
+   */
+  get equippedWeapons() {
+    return this.itemTypes["weapon"].filter(
+      item => [ "mainHand", "offHand", "twoHands" ].includes( item.system.itemStatus )
+    );
+  }
+
+  /**
    * Returns the highest discipline of an actor
    * @type {Item|undefined}
    */ 

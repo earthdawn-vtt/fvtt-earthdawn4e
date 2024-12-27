@@ -712,6 +712,10 @@ ED4E.rollTypes = {
     label:            "ED.Config.rollTypes.initiative",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/initiative-roll-flavor.hbs",
   },
+  reaction: {
+    label:            "ED.Config.rollTypes.reaction",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/reaction-roll-flavor.hbs",
+  },
   recovery: {
     label:            "ED.Config.rollTypes.recovery",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/recovery-roll-flavor.hbs",

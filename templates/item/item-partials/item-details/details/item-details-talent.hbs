@@ -1,15 +1,22 @@
-<div>
-    {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs"}}
-{{!-- class Identifier --}}
-{{formField systemFields.source.fields.class label=(localize "ED.Data.Item.Labels.Ability.Source.class") 
-hint=(localize "ED.Data.Item.Hints.Ability.Source.class") name="system.source.class" value=item.system.source.class localize=true }}
-{{!-- Added at Level --}}
-{{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
-{{! -- Magic Type -- }}
-<div>
-  <h3>{{localize "ED.Item.Header.magic"}}</h3>
-</div>
+{{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs"}}
 
-{{formField systemFields.magic.fields.spellcasting name="system.magic.spellcasting" value=item.system.magic.spellcasting localize=true}}
-{{formField systemFields.magic.fields.threadWeaving name="system.magic.threadWeaving" value=item.system.magic.threadWeaving localize=true}}
-{{formField systemFields.magic.fields.magicType name="system.magic.magicType" value=item.system.magic.magicType required=false localize=true}}
+<fieldset>
+  <legend>{{localize "ED.Item.Header.talentSource"}}</legend>
+
+  {{!-- class Identifier --}}
+  {{formField systemFields.source.fields.class label=(localize "ED.Data.Item.Labels.Ability.Source.class")
+  hint=(localize "ED.Data.Item.Hints.Ability.Source.class") name="system.source.class" value=item.system.source.class localize=true }}
+
+  {{!-- Added at Level --}}
+  {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
+</fieldset>
+
+{{! -- Magic Type -- }}
+<fieldset>
+  <legend>{{localize "ED.Item.Header.magic"}}</legend>
+
+  {{formField systemFields.magic.fields.spellcasting name="system.magic.spellcasting" value=item.system.magic.spellcasting localize=true}}
+  {{formField systemFields.magic.fields.threadWeaving name="system.magic.threadWeaving" value=item.system.magic.threadWeaving localize=true}}
+  {{formField systemFields.magic.fields.magicType name="system.magic.magicType" value=item.system.magic.magicType required=false localize=true}}
+</fieldset>
+

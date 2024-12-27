@@ -396,6 +396,7 @@
         "effect": "Effekt",
         "halfmagic": "Halb Magie",
         "initiative": "Initiative",
+        "reaction": "Reaktion",
         "recovery": "Erholung",
         "spellcasting": "Spruchzauberei",
         "threadWeaving": "Fadenweben"
@@ -591,6 +592,17 @@
               "magicType":                              "Magie Typ",
               "magic":                                  "Magie"
             },
+            "rollTypeDetails":                              "Details zur Aktionsart",
+            "RollTypeDetails": {
+              "attack":                                     "Details für Aktionstyp 'Angriff'",
+              "Attack": {
+                "weaponItemStatus":                         "Wie muss die Waffe getragen werden um damit anzugreifen"
+              },
+              "reaction":                                   "Details für Aktionstyp 'Reaktion'",
+              "Reaction": {
+                "defenseType":                             "Auf welchen Widerstand muss eine Fähigkeit zielen damit diese Reaktion ausgelöst wird?"
+              }
+            },
             "talentAvailableKnacks":                        "Verfügbare Kniffe",
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
@@ -768,11 +780,29 @@
             "durability":                                   "Unempfindlichkeit",
             "devotionRequired":                             "Weihepunkt benötigt",
             "talentCategory":                               "Talent Kategorie",
-              "Magic": {
+            "Magic": {
               "threadWeaving":                          "Fadenweben",
               "spellcasting":                           "Spruchzauberei",
               "magicType":                              "Magie Typ",
               "magic":                                  "Magie"
+            },
+            "rollTypeDetails":                              "Details zur Aktionsart",
+            "RollTypeDetails": {
+              "ability":                                   "Fähigkeit",
+              "attack":                                    "Angriff",
+              "Attack": {
+                "weaponItemStatus":                         "Waffenstatus"
+              },
+              "damage":                                    "Schaden",
+              "effect":                                    "Effekt",
+              "initiative":                                "Initiative",
+              "reaction":                                  "Reaktion",
+              "Reaction": {
+                "defenseType":                              "Verteidigungstyp"
+              },
+              "recovery":                                  "Erholung",
+              "spellcasting":                              "Spruchzauberei",
+              "threadWeaving":                             "Fadenweben"
             },
             "talentAvailableKnacks":                        "Verfügbare Kniffe",
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
@@ -1248,6 +1278,7 @@
       },
       "Header": {
         "activeUser": "Aktive Spieler",
+        "actionType": "Aktionstyp",
         "actorsNoUserConfigured": "Nicht konfigurierte, zugewiesene Akteure",
         "description": "Beschreibung",
         "details": "Details",
@@ -1256,6 +1287,8 @@
         "inactiveUser": "Inaktive Spieler",
         "magic": "Magie",
         "navigator": "Navigator",
+        "talentSource": "Talent Ursprung",
+        "targetingDetails":   "Ziel Details",
         "type": "Typ"
       },
       "Knack": {

@@ -20,4 +20,20 @@ export default class RollableTemplate extends SystemDataModel {
     } );
   }
 
+  async roll() {
+    let rollFunc;
+    switch ( this.rollType ) {
+      case "ability": rollFunc = this.rollAbility; break;
+      case "attack": rollFunc = this.rollAttack; break;
+      case "damage": rollFunc = this.rollDamage; break;
+      case "effect": rollFunc = this.rollEffect; break;
+      case "initiative": rollFunc = this.rollInitiative; break;
+      case "reaction": rollFunc = this.rollReaction; break;
+      case "recovery": rollFunc = this.rollRecovery; break;
+      case "spellcasting": rollFunc = this.rollSpellcasting; break;
+      case "threadWeaving": rollFunc = this.rollThreadWeaving; break;
+    }
+    return rollFunc();
+  }
+
 }
