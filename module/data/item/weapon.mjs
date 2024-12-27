@@ -35,7 +35,14 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         label:    this.labelKey( "Weapons.weaponType" ),
         hint:     this.hintKey( "Weapons.weaponType" )
       } ),
-      damage: new fields.SchemaField( {
+      weaponSubType: new fields.StringField( {
+        required: true,
+        initial:  "bow",
+        choices:  ED4E.weaponSubType,
+        label:    this.labelKey( "Weapons.weaponSubType" ),
+        hint:     this.hintKey( "Weapons.weaponSubType" ),
+      } ),
+      damage:        new fields.SchemaField( {
         attribute: new fields.StringField( {
           required: true,
           nullable: false,
@@ -192,7 +199,8 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
    * @type {boolean}
    */
   get isTwoHandedRanged() {
-    return [ "bow", "crossbow" ].includes( this.weaponType );
+    return false;
+    // TODO: add additional datafield
   }
 
   get isRanged() {

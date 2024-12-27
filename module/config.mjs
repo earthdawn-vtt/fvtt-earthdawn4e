@@ -257,26 +257,14 @@ preLocalize( "armor" );
  * @enum {string}
  */
 ED4E.weaponType = {
-  blowgun:         {
-    label:      "ED.Config.WeaponType.blowgun",
-    ranged:     true,
-  },
-  bow:            {
-    label:      "ED.Config.WeaponType.bow",
-    ranged:     true,
-  },
-  crossbow:       {
-    label:      "ED.Config.WeaponType.crossbow",
-    ranged:     true,
-  },
   melee:          {
     label:      "ED.Config.WeaponType.melee",
     ranged:     false,
   },
-  sling:         {
-    label:      "ED.Config.WeaponType.sling",
+  missile:        {
+    label:      "ED.Config.WeaponType.missile",
     ranged:     true,
-  },  
+  },
   thrown:         {
     label:      "ED.Config.WeaponType.thrown",
     ranged:     true,
@@ -287,6 +275,17 @@ ED4E.weaponType = {
   },
 };
 preLocalize( "weaponType", { key: "label" } );
+
+ED4E.weaponSubType = {
+  bow: {
+    label:      "ED.Config.WeaponSubType.bow",
+    weaponType: "missile",
+  },
+  crossbow: {
+    label:      "ED.Config.WeaponSubType.crossbow",
+    weaponType: "missile",
+  },
+};
 
 /**
  * Damage type

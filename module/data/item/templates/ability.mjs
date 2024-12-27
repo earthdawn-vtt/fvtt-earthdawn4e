@@ -76,14 +76,26 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       rollTypeDetails: new fields.SchemaField( {
         ability:       new fields.SchemaField( {}, {} ),
         attack:        new fields.SchemaField( {
-          weaponItemStatus: new fields.StringField( {
-            required: false,
-            nullable: true,
+          weaponItemStatus: new fields.SetField(
+            new fields.StringField( {
+              required: true,
+              blank:    false,
+              choices:  ED4E.itemStatus,
+            } ),
+            {
+              required: true,
+              initial:  [ "equipped" ],
+              label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
+              hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
+            }
+          ),
+          combatType: new fields.StringField( {
+            required: true,
             blank:    false,
-            initial:  null,
-            choices:  ED4E.itemStatus,
-            label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
-            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
+            initial:  "melee",
+            choices:  ED4E.weaponType,
+            label:    this.labelKey( "Ability.RollTypeDetails.Attack.combatType" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.combatType" )
           } ),
         }, {
           required: false,
@@ -264,7 +276,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     console.log( "Rolling attack" );
     if ( !this.isActorEmbedded ) return;
 
-    // ed-id "second-weapon" for offhand weapons
     // don't forget to add tail attack
     const equippedWeapons = this.parentActor.equippedWeapons;
     console.log( "Equipped weapons: ", equippedWeapons );

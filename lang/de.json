@@ -460,12 +460,25 @@
         "physical": "Körperlich",
         "social": "Sozial"
       },
-      "WeaponType": {
-        "blowgun": "Blasrohr",
+      "WeaponSubType" : {
+        "axe": "Axt",
         "bow": "Bogen",
+        "blade": "Klinge",
+        "bola": "Bola",
         "crossbow": "Armbrust",
+        "club": "Keule",
+        "dart": "Wurfpfeil",
+        "dagger": "Dolch",
+        "hawkHatchet": "Falkenklaue",
+        "net": "Netz",
+        "polearm": "Stangenwaffe",
+        "spear": "Speer",
+        "staff": "Stab",
+        "sword": "Schwert"
+      },
+      "WeaponType": {
         "melee": "Nahkampf",
-        "sling": "Schleuder",
+        "missile": "Projektilwaffe",
         "thrown": "Wurfwaffe",
         "unarmed": "Unbewaffnet"
       }
@@ -596,6 +609,7 @@
             "RollTypeDetails": {
               "attack":                                     "Details für Aktionstyp 'Angriff'",
               "Attack": {
+                "combatType":                               "Welchen Kampftyp muss die verwendete Waffe haben?",
                 "weaponItemStatus":                         "Wie muss die Waffe getragen werden um damit anzugreifen"
               },
               "reaction":                                   "Details für Aktionstyp 'Reaktion'",
@@ -753,7 +767,8 @@
             "weavingDifficulty":                            "Die Schwierigkeit um den Zauber erfolgreich zu wirken"
           },
           "Weapons": {
-            "weaponType":                                   "Waffentyp",
+            "weaponType":                                   "Der Kampftyp der Waffe",
+            "weaponSubType":                                "Die Art der Waffe",
             "damageAttribute":                              "Schaden Attribut",
             "damageBaseStep":                               "Grundschaden Stufe",
             "size":                                         "Größe",
@@ -791,6 +806,7 @@
               "ability":                                   "Fähigkeit",
               "attack":                                    "Angriff",
               "Attack": {
+                "combatType":                               "Kampftyp",
                 "weaponItemStatus":                         "Waffenstatus"
               },
               "damage":                                    "Schaden",
@@ -955,7 +971,8 @@
             "weavingDifficulty":                            "Webschwierigkeit"
           },
           "Weapons": {
-            "weaponType":                                   "Waffentyp",
+            "weaponType":                                   "Kampftyp",
+            "weaponSubType":                                "Waffensubtyp",
             "damageAttribute":                              "Schaden Attribut",
             "damageBaseStep":                               "Grundschaden Stufe",
             "size":                                         "Größe",
