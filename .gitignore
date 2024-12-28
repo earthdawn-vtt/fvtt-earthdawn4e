@@ -16,9 +16,10 @@ signature.json
 earthdawn4e.lock
 
 # compendium
+packs/
+systems/
 systems/ed4e/packs/manual/
 systems/ed4e/packs/manual-german/
 system/ed4e/packs/tour-items/
 
 package.json
-packs/
