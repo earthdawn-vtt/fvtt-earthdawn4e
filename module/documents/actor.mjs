@@ -70,7 +70,7 @@ export default class ActorEd extends Actor {
    */
   get equippedWeapons() {
     return this.itemTypes["weapon"].filter(
-      item => [ "mainHand", "offHand", "twoHands" ].includes( item.system.itemStatus )
+      item => [ "mainHand", "offHand", "twoHands", "tail" ].includes( item.system.itemStatus )
     );
   }
 
