@@ -621,12 +621,7 @@
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
-            "talentKnacks":                                 "Kniffe",
-            "DamageAbilities": {
-            "damage":                                       "Ist diese Fähigkeit eine Schadensfägigkeit",
-            "substitute":                                   "Ersetzt Schadesattribute",
-            "relatedRollType":                              "gilt für Aktionstyp"
-            }
+            "talentKnacks":                                 "Kniffe"
           },
           "Action": {
             "action":                                       "Aktion",
@@ -824,12 +819,7 @@
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
-            "talentKnacks":                                 "Kniffe",
-            "DamageAbilities": {
-            "damage":                                       "Schaden",
-            "substitute":                                   "Ersetzt Schadensattribute",
-            "relatedRollType":                              "gilt für Aktionstyp"
-            }
+            "talentKnacks":                                 "Kniffe"
           },
           "Action": {
             "action":                                       "Aktion",

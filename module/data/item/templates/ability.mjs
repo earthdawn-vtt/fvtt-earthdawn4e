@@ -129,31 +129,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         label:    this.labelKey( "Ability.rollTypeDetails" ),
         hint:     this.hintKey( "Ability.rollTypeDetails" )
       } ),
-      damageAbilities: new fields.SchemaField( {
-        damage: new fields.BooleanField( {
-          required: false,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.DamageAbilities.damage" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.damage" )
-        } ),
-        substitute: new fields.BooleanField( {
-          required: false,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.DamageAbilities.substitute" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.substitute" )
-        } ),
-        relatedRollType: new fields.StringField( {
-          required: false,
-          nullable: true,
-          blank:    true,
-          initial:  "",
-          choices:  ED4E.rollTypes,
-          label:    this.labelKey( "Ability.DamageAbilities.relatedRollType" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.relatedRollType" )
-        } ),
-      } ),
     } );
   }
 

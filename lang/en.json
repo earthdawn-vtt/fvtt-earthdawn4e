@@ -420,12 +420,7 @@
                         "talentLearnedKnacks":                          "Learned Knacks",
                         "talentKnacksLearned":                          "Knacks learned",
                         "talentKnacks":                                 "Knacks",
-                        "type":                                         "Type",
-                        "DamageAbilities": {
-                        "damage":                                       "Damage",
-                        "substitute":                                   "Replaces damage Attribute",
-                        "relatedRollType":                              "related action type"
-                        }
+                        "type":                                         "Type"
                     },
                     "Action": {
                         "action":                                       "Action",
@@ -614,12 +609,7 @@
                         "talentLearnedKnacks":                          "Learned Knacks",
                         "talentKnacksLearned":                          "Knacks learned",
                         "talentKnacks":                                 "Knacks",
-                        "type":                                         "Type",
-                        "DamageAbilities": {
-                        "damage":                                       "Damage",
-                        "substitute":                                   "Replaces damage Attribute",
-                        "relatedRollType":                              "related action type"
-                        }
+                        "type":                                         "Type"
                     },
                     "Action": {
                         "action":                                       "Action",
