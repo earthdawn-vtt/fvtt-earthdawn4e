@@ -1,0 +1,29 @@
+{
+  "name": "toggle Hooks",
+  "type": "script",
+  "scope": "global",
+  "author": "9DL3m5MaXaCel8Ys",
+  "img": "icons/svg/dice-target.svg",
+  "command": "CONFIG.debug.hooks = !CONFIG.debug.hooks;\nui.notifications.info(\n    CONFIG.debug.hooks\n    ? \"Debug Hooks: ON\"\n    : \"Debug Hooks: OFF\"\n)",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426520089,
+    "modifiedTime": 1735426520089,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "o8OlS8s2CXnPlhH7",
+  "sort": 0,
+  "_key": "!macros!o8OlS8s2CXnPlhH7"
+}

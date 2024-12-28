@@ -1,0 +1,72 @@
+{
+  "folder": "1V3RHNZzxzdw04Zq",
+  "type": "talent",
+  "name": "Erster Eindruck",
+  "system": {
+    "description": {
+      "value": ""
+    },
+    "action": "standard",
+    "source": {
+      "class": null,
+      "atLevel": null
+    },
+    "level": 0,
+    "strain": 0,
+    "attribute": "str",
+    "rollType": "",
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "edid": "undefined",
+    "tier": "novice",
+    "rollTypeDetails": {
+      "ability": {},
+      "attack": {
+        "weaponItemStatus": [],
+        "weaponType": "melee"
+      },
+      "damage": {},
+      "effect": {},
+      "initiative": {},
+      "reaction": {
+        "defenseType": "physical"
+      },
+      "recovery": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "talentCategory": null,
+    "magic": {
+      "threadWeaving": false,
+      "spellcasting": false,
+      "magicType": ""
+    },
+    "knacks": {
+      "available": [],
+      "learned": []
+    }
+  },
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.ed4e.tour-items.Item.D4kxdsTArEpRJEdQ",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426502289,
+    "modifiedTime": 1735426502289,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "aRLtHFmr1hfrpS4K",
+  "sort": 0,
+  "_key": "!items!aRLtHFmr1hfrpS4K"
+}
