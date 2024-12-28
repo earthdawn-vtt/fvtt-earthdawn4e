@@ -1,6 +1,7 @@
 import SystemDataModel from "../../abstract.mjs";
 import ED4E from "../../../config.mjs";
 import EdRollOptions from "../../other/roll-options.mjs";
+import { filterObject } from "../../../utils.mjs";
 
 const { fields } = foundry.data;
 
@@ -14,7 +15,10 @@ export default class RollableTemplate extends SystemDataModel {
         nullable: true,
         blank:    true,
         initial:  "",
-        choices:  ED4E.rollTypes,
+        choices:  filterObject(
+          ED4E.rollTypes,
+          ( key, _ ) => ![ "attribute", "halfmagic" ].includes( key )
+        ),
         label:    this.labelKey( "Rollable.type" ),
         hint:     this.hintKey( "Rollable.type" )
       } ),
