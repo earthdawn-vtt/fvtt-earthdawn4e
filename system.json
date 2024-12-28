@@ -35,41 +35,45 @@
     {
       "name": "manual-english",
       "label": "System Manual - English",
-      "system": "ed4e",
-      "path": "systems/ed4e/packs/manual.db",
-      "type": "JournalEntry",
       "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
-      "private": false,
+      "type": "JournalEntry",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
       "flags": {}
     },
     {
-      "name": "manual-german",
+      "name": "manual-deutsch",
       "label": "System Manual - Deutsch",
-      "system": "ed4e",
-      "path": "systems/ed4e/packs/manual-german.db",
-      "type": "JournalEntry",
       "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
-      "private": false,
+      "type": "JournalEntry",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
       "flags": {}
     },
     {
       "name": "tour-items",
-      "label": "tour-items",
-      "system": "ed4e",
-      "path": "systems/ed4e/packs/tour-items.db",
-      "type": "Item",
+      "label": "Tour Items",
       "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
-      "private": false,
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
       "flags": {}
     },
     {
       "name": "macros",
-      "label": "macros",
-      "system": "ed4e",
-      "path": "systems/ed4e/packs/macros.db",
-      "type": "Macro",
+      "label": "Macros",
       "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
-      "private": false,
+      "type": "Macro",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
       "flags": {}
     }
   ],
@@ -80,7 +84,7 @@
       "color": "#0d4e09",
       "packs": [
         "manual-english",
-        "manual-german",
+        "manual-deutsch",
         "tour-items",
         "macros"
       ]

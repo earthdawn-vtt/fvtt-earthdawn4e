@@ -5,7 +5,9 @@
     "build:css": "gulp buildCSS",
     "build:watch": "gulp",
     "lint": "gulp lint",
-    "lint:fix": "gulp lint --fix"
+    "lint:fix": "gulp lint --fix",
+    "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
+    "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
