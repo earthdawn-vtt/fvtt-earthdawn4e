@@ -9,7 +9,7 @@
   {{#each systemFields.rollTypeDetails.fields as |field key|}}
     {{#if (eq key ../item.system.rollType)}}
       {{#each field.fields as |subField subKey|}}
-        {{formGroup subField name=(concat "system.rollTypeDetails." key "." subKey.name) value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey) localize=true}}
+        {{formGroup subField name=(concat "system.rollTypeDetails." key "." subKey) value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey) localize=true}}
       {{/each}}
     {{/if}}
   {{/each}}
