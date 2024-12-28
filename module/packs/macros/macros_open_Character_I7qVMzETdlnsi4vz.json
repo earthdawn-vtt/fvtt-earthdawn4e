@@ -1,0 +1,29 @@
+{
+  "name": "open Character",
+  "type": "script",
+  "scope": "global",
+  "author": "9DL3m5MaXaCel8Ys",
+  "img": "icons/svg/mystery-man.svg",
+  "command": "game.actors.getName(\"character\").sheet.render(true);",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426518736,
+    "modifiedTime": 1735426518741,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "I7qVMzETdlnsi4vz",
+  "sort": 200000,
+  "_key": "!macros!I7qVMzETdlnsi4vz"
+}

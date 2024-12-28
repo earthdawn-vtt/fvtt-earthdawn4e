@@ -1,0 +1,79 @@
+{
+  "type": "discipline",
+  "name": "Troubadour",
+  "system": {
+    "description": {
+      "value": "<p>Troubadoure sind Unterhalter, Geschichtenerzähler, Schauspieler und Komponisten. Für das einfache Volk sind sie damit das, was einem Historiker oder Gelehrten am nächsten kommt.</p><p><strong>Wichtige Attribute:</strong> Charisma, Wahrnehmung</p><p><strong>Karmaritual:</strong> Der Troubadour führt eine Ballade oder Parodie vor einem mindestens zweiköpfigen Publikum auf. Er kann jonglieren, Witze oder Lügengeschichten erzählen oder ernsthafte Legenden singen. Eine halbe Stunde nach Beginn vollendet der Troubadour seine Aufführung mit einer kurzen Geschichte und beendet diese mit dem Satz „Und hier endet es, denn solcherart ist die Wahrheit der Dinge.“</p><p><strong>Kunsthandwerksfertigkeiten:</strong> Handwerk, Körpermalerei, Sticken</p><p><strong>Halbmagie:</strong> Troubadoure können Halbmagie-Proben für das Wissen um Legenden, Mythen und Folklore der Lande und Völker ihrer Heimatprovinz ablegen, außerdem für das Identifizieren von Instrumenten und darstellenden Künsten verschiedener Gegenden.</p>"
+    },
+    "level": 1,
+    "advancement": {
+      "levels": [
+        {
+          "level": 1,
+          "identifier": "",
+          "tier": "",
+          "abilities": {
+            "class": [
+              "Compendium.ed4e.tour-items.Item.pjSKt9T3JCk9UJTV",
+              "Compendium.ed4e.tour-items.Item.D4kxdsTArEpRJEdQ",
+              "Compendium.ed4e.tour-items.Item.GqTCQtC4m1tWNJWP",
+              "Compendium.ed4e.tour-items.Item.8hJ49Mv51cjVE8yf",
+              "Compendium.ed4e.tour-items.Item.68QE77pXrHcjCvw4"
+            ],
+            "free": [],
+            "special": [
+              "Compendium.ed4e.tour-items.Item.KMvDuR3MFAlEDobQ"
+            ]
+          },
+          "effects": [],
+          "resourceStep": 4
+        }
+      ],
+      "abilityOptions": {
+        "novice": [
+          "Compendium.ed4e.tour-items.Item.9wE2yore06LTigDJ",
+          "Compendium.ed4e.tour-items.Item.GByjtnXajki6ZxZi",
+          "Compendium.ed4e.tour-items.Item.PEiXrRgn050QgVjt",
+          "Compendium.ed4e.tour-items.Item.vJDMasTjskVgpIPN",
+          "Compendium.ed4e.tour-items.Item.qOl3mhm4h5nHWOVC",
+          "Compendium.ed4e.tour-items.Item.lmbqFrQtuuHcZMC8",
+          "Compendium.ed4e.tour-items.Item.cKOenxveqL03nVvn",
+          "Compendium.ed4e.tour-items.Item.fnxuejLXjasOlv2N",
+          "Compendium.ed4e.tour-items.Item.b10h2uKdokwd7DNg",
+          "Compendium.ed4e.tour-items.Item.Sby7Oz2GsRbXnXc1"
+        ],
+        "journeyman": [],
+        "warden": [],
+        "master": []
+      },
+      "learnedOptions": {}
+    },
+    "durability": 5,
+    "spellcasting": false,
+    "edid": "undefined",
+    "order": 1
+  },
+  "img": "icons/magic/holy/meditation-chi-focus-blue.webp",
+  "effects": [],
+  "folder": "1V3RHNZzxzdw04Zq",
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.ed4e.tour-items.Item.kXVgj6ztAubKigwm",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426502289,
+    "modifiedTime": 1735426502289,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "2w1EhouJS1lJhJrw",
+  "sort": 0,
+  "_key": "!items!2w1EhouJS1lJhJrw"
+}

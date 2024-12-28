@@ -1,0 +1,29 @@
+{
+  "name": "LP",
+  "type": "script",
+  "scope": "global",
+  "author": "9DL3m5MaXaCel8Ys",
+  "img": "icons/svg/upgrade.svg",
+  "command": "// Pop up \nnew Dialog(\n    {\n      title: game.i18n.localize('X-LP'), \n      content:`  \n        <form> \n          <div>\n            <label>${game.i18n.localize('X-LPAmount')}</label>\n            <input type='number' id='legendPoints'></input>\n          </div>  \n          <div>\n            <label>${game.i18n.localize('X-Description')}</label>\n            <input type='string' id='description'></input>\n          </div> \n        </form>`,\n      buttons:{\n        yes: {\n          icon: \"<i class='fas fa-check'></i>\",\n          label: game.i18n.localize('earthdawn.o.ok')\n        },\n        no: {\n            icon: \"<i class='fas fa-times'></i>\",\n            label: game.i18n.localize('earthdawn.c.cancel')\n        }\n      },\n      default:'yes',\n  \n      // Code\n      close: async (html) => {\n  \n        //variable -- getting result from input field\n        const resultLp = document.getElementById(\"legendPoints\").value;\n        const resultDescription = document.getElementById(\"description\").value;\n        console.log(\" pop up eingabe: \", resultLp, resultDescription);\n        \n        if (resultLp !== ''){\n        //find all selected tokens and map them to the actor\n        const actors = canvas.tokens.controlled.map(token => token.actor);\n        \n        console.log(token)\n        //update the legendpoint total of the actor with the result of the pop up input\n        const transactionData = {\n            amount: Number(resultLp),\n            lpBefore: token.actor.system.lp.current,\n            lpAfter: token.actor.system.lp.current + Number(resultLp),\n            description: resultDescription,\n        }\n        token.actor.addLpTransaction( \"earnings\", transactionData)\n        // const actorUpdates = actors.map(actor => ({\n        //      _id: actor.id, \"data.legendpointtotal\": actor.data.data.legendpointtotal += Number(result) }));\n        // const actorUpdatescurrent = actors.map(actor => ({ _id: actor.id, \"data.legendpointcurrent\": actor.data.data.legendpointcurrent += Number(result) }));\n        // await Actor.updateDocuments(actorUpdates);\n        // await Actor.updateDocuments(actorUpdatescurrent);\n        // actors.forEach(element => console.log(element));\n        //   // message output\n        //   for (const element of actors) {\n        //       let chatData = {\n        //       actor: element.id,\n        //       speaker: ChatMessage.getSpeaker({actor: element}),\n        //       content: `${game.i18n.localize('earthdawn.e.earns')} ${result} ${game.i18n.localize('earthdawn.l.legend')}`,      \n        //       };\n              // chat output\n            //   await ChatMessage.create(chatData, {});\n            // };\n  }\n      }   \n    }\n  ).render(true);",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426517529,
+    "modifiedTime": 1735426518741,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "MCnTk0ifaMLo54PA",
+  "sort": 300000,
+  "_key": "!macros!MCnTk0ifaMLo54PA"
+}

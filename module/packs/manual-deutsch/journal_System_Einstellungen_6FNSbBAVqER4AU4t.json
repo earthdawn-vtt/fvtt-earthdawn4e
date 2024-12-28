@@ -1,0 +1,365 @@
+{
+  "name": "System Einstellungen",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Step Tables",
+      "type": "text",
+      "_id": "wOCsmAmgNl2TCSZ9",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This setting can be chosen by the Gamemaster and will be system wide. This setting has four options.</p><p><strong>1. Fourth Edition Step Table (Default)</strong></p><p>For further information please check out the <a href=\"https://earthdawn.fasa.wiki/4E/Systems/Step-and-Action-Table\">FASA wiki page</a></p><p><strong>2. First Edition Step Table</strong></p><p>For further information please check out the <a href=\"https://earthdawn.fasa.wiki/en/4E/Systems/Step-and-Action-Table-1E\">FASA wiki page</a></p><p><strong>3. Third Edition Step Table</strong></p><p>For further information please check out the <a href=\"https://earthdawn.fasa.wiki/en/4E/Systems/Step-and-Action-Table-3E\">FASA wiki page</a></p><p><strong>4. Classic Edition Step Table</strong> </p><p>For further information please check out ??? official page???</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.wOCsmAmgNl2TCSZ9"
+    },
+    {
+      "sort": 200000,
+      "name": "Dark Mode",
+      "type": "text",
+      "_id": "CXyQVtm8bh1pdbx2",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>this setting can be changed for each client, so each user can decide for himself if wanted. The slider will change the GUI of the system from the light mode (default) to the dark mode. Each step on the slider will darken the GUI further until the text will be completely white and the rest will be black</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.CXyQVtm8bh1pdbx2"
+    },
+    {
+      "sort": 300000,
+      "name": "LP Tracking",
+      "type": "text",
+      "_id": "EG2mUWwS95NDiAna",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>LP Tracking has several setting options.</p><ol><li><p>@UUID[.eTxNEEBD3CCHveSw]{Turn LP tracking on / off}</p></li><li><p>@UUID[.iX9OFeibRJEPfHBX]{Attribute enhancement}</p></li><li><p>@UUID[.6m38q7t9a3UFE5Bq]{Circle enhancement talent requirements}</p></li><li><p>@UUID[.lA9HYXz6HJhqXUvc]{Automatic reduction of Silver}</p></li></ol>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.EG2mUWwS95NDiAna"
+    },
+    {
+      "sort": 400000,
+      "name": "Encumbrance",
+      "type": "text",
+      "_id": "0VnFqTwnpx80J4tx",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This setting is a Global setting only available for the Gamemaster. It has two options:</p><p><strong>1. Encumbrance will only be shown, but without consequences.</strong></p><p>if this option is chosen, the total weight the actor is carrying will be calculated and shown only.</p><p><strong>2. Encumbrance will be calculated and has consequences on the actor.</strong></p><p>this option on the other side will use the rules for @UUID[JournalEntry.YwVqQZdBQwsdfgsdg11Yqzg]{encumbrance} on page. 404 of the Players Guide</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.0VnFqTwnpx80J4tx"
+    },
+    {
+      "sort": 500000,
+      "name": "Chat Avatar",
+      "type": "text",
+      "_id": "9zjUHF8vJDUMovDd",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This System Setting is only available for the Gamemaster and will be set globally for every player. There are two options:</p><p><strong>1. Avatar of the Configuration</strong></p><p>if this setting is chosen, every chat message will show the configured image set up in the config menu. </p><img src=\"systems/ed4e/assets/manual/settings/chat-avatar-config.PNG\" class=\"centered\" /><p><strong>2. Avatar of the Token</strong></p><p>If this setting is chosen, it will for every chat message a player creates, use either the token image of the owned token if the player has the token selected, or will use the character portrait if no or another (not owned by the player) token is selected.</p><p>This is similar for Gamemaster, but since the GM is not owning any (or all) tokens, the chat message will either show the selected token, or use the Avatar from the configuration as a fallback.</p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.9zjUHF8vJDUMovDd"
+    },
+    {
+      "sort": 350000,
+      "name": "Turn LP tracking on / off",
+      "type": "text",
+      "_id": "eTxNEEBD3CCHveSw",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This System Setting either enables the LP tracking or disables it.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.eTxNEEBD3CCHveSw"
+    },
+    {
+      "sort": 375000,
+      "name": "Attribute enhancement",
+      "type": "text",
+      "_id": "iX9OFeibRJEPfHBX",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The Attribute enhancement setting has three options.</p><p><strong>1. Paid enhancement</strong></p><p>this follows the rules on page 447 Players Guide. </p><p><strong>2. One Paid enhancement per circle</strong></p><p>this option follows the first optional rule on page 448 Players Guide</p><p><strong>3. One free enhancement per circle</strong></p><p>this option follows the second optional rule on page 448 Players Guide</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.iX9OFeibRJEPfHBX"
+    },
+    {
+      "sort": 387500,
+      "name": "Circle enhancement talent Requirment",
+      "type": "text",
+      "_id": "6m38q7t9a3UFE5Bq",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>this setting has three options:</p><p><strong>1. Discipline Talents to Advance</strong></p><p>this settings enables the rules described on page 452 of the Players Guide</p><p><strong>2. All talents to Advance</strong></p><p>this setting enables the rules described on page 453 of the Players Guide</p><p><strong>3. All talents to Advance - House Rule</strong></p><p>this setting enables the house rule which works similar to the All Talents to Advance Optional Rule, with the following differences shown in the table. It is basically a mixture from standard and all talents to advance. It has the flexibility, but keeps the requirement of the number of talents on the tier level</p><p> </p><table border=\"1\"><colgroup><col></col><col></col><col></col><col></col><col></col><col></col></colgroup><tbody><tr style=\"background-color:rgb(149, 165, 166)\"><td>New Circle</td><td>Min Novice Talents</td><td>Min Journeyman Talents</td><td>min Warden Talents</td><td>Min Master Taletns</td><td>Min rank of all required Talents</td></tr><tr><td>2</td><td>5</td><td>0</td><td>0</td><td>0</td><td>2</td></tr><tr><td>3</td><td>6</td><td>0</td><td>0</td><td>0</td><td>3</td></tr><tr><td>4</td><td>7</td><td>0</td><td>0</td><td>0</td><td>4</td></tr><tr><td>5</td><td>8</td><td>0</td><td>0</td><td>0</td><td>5</td></tr><tr><td>6</td><td>8</td><td>1</td><td>0</td><td>0</td><td>6</td></tr><tr><td>7</td><td>8</td><td>2</td><td>0</td><td>0</td><td>7</td></tr><tr><td>8</td><td>8</td><td>3</td><td>0</td><td>0</td><td>8</td></tr><tr><td>9</td><td>8</td><td>4</td><td>0</td><td>0</td><td>9</td></tr><tr><td>10</td><td>8</td><td>4</td><td>1</td><td>0</td><td>10</td></tr><tr><td>11</td><td>8</td><td>4</td><td>2</td><td>0</td><td>11</td></tr><tr><td>12</td><td>8</td><td>4</td><td>3</td><td>0</td><td>12</td></tr><tr><td>13</td><td>8</td><td>4</td><td>4</td><td>0</td><td>13</td></tr><tr><td>14</td><td>8</td><td>4</td><td>4</td><td>1</td><td>14</td></tr><tr><td>15</td><td>8</td><td>4</td><td>4</td><td>2</td><td>15</td></tr></tbody></table>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {
+        "core": {
+          "sheetClass": ""
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.6m38q7t9a3UFE5Bq"
+    },
+    {
+      "sort": 393750,
+      "name": "Automatic Reduction of Silver",
+      "type": "text",
+      "_id": "lA9HYXz6HJhqXUvc",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>this setting has two options:</p><p><strong>1. Automatic reduction of Silver</strong></p><p>this setting will automatically reduce the silver when a skill or circle is enhanced.</p><p><strong>2. Show Silver cost without automatic reduction</strong></p><p>this setting will only show the standard amount of silver but the Player has to reduce the silver itself</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "IcgDoAkqmq05OOJI": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!6FNSbBAVqER4AU4t.lA9HYXz6HJhqXUvc"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426391023,
+    "modifiedTime": 1735426392507,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "6FNSbBAVqER4AU4t",
+  "sort": 300000,
+  "_key": "!journal!6FNSbBAVqER4AU4t"
+}

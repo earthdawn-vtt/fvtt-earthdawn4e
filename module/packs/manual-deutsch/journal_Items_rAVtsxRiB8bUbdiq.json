@@ -1,0 +1,1174 @@
+{
+  "name": "Items",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Armor",
+      "type": "text",
+      "_id": "QbA2rfLPz7ZiXLVh",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.QbA2rfLPz7ZiXLVh"
+    },
+    {
+      "sort": 0,
+      "name": "Equipment Kategory",
+      "type": "text",
+      "_id": "IZEXPb83t1xkCUHS",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>There are 4 different types of Equipments available:</p><ul><li><p>Armor</p></li><li><p>Equipment</p></li><li><p>Shields</p></li><li><p>Weapons</p></li></ul><p></p><p>they all share some basic functions / Options:</p><ul><li><p>Weight</p></li><li><p>Price</p></li><li><p>Amount</p></li><li><p>Blood Magic</p></li><li><p>Usability</p></li></ul>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.IZEXPb83t1xkCUHS"
+    },
+    {
+      "sort": 300000,
+      "name": "Shield",
+      "type": "text",
+      "_id": "b0VxRbuXx6i8LSno",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.b0VxRbuXx6i8LSno"
+    },
+    {
+      "sort": 400000,
+      "name": "Equipment",
+      "type": "text",
+      "_id": "egCnhjIT8FUULSW4",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.egCnhjIT8FUULSW4"
+    },
+    {
+      "sort": 500000,
+      "name": "Weapon",
+      "type": "text",
+      "_id": "ilgjLpKEjvzHX6pO",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.ilgjLpKEjvzHX6pO"
+    },
+    {
+      "sort": 50000,
+      "name": "Weight",
+      "type": "text",
+      "_id": "Y24Wo8cf9VCQT7Or",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.Y24Wo8cf9VCQT7Or"
+    },
+    {
+      "sort": 75000,
+      "name": "Price",
+      "type": "text",
+      "_id": "OwlCZEzHY5BPBOjP",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.OwlCZEzHY5BPBOjP"
+    },
+    {
+      "sort": 87500,
+      "name": "Amount",
+      "type": "text",
+      "_id": "kP0m3teZLB8rOE7p",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.kP0m3teZLB8rOE7p"
+    },
+    {
+      "sort": 93750,
+      "name": "Blood Magic",
+      "type": "text",
+      "_id": "tCqkY595ZH9DHF80",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.tCqkY595ZH9DHF80"
+    },
+    {
+      "sort": 96875,
+      "name": "Usability",
+      "type": "text",
+      "_id": "V4p84gSPIAf1MItK",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.V4p84gSPIAf1MItK"
+    },
+    {
+      "sort": 600000,
+      "name": "Abilities",
+      "type": "text",
+      "_id": "mWt7iOza1zPYXqea",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.mWt7iOza1zPYXqea"
+    },
+    {
+      "sort": 700000,
+      "name": "Attacks",
+      "type": "text",
+      "_id": "w27lU4RjVs58Ckbr",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.w27lU4RjVs58Ckbr"
+    },
+    {
+      "sort": 800000,
+      "name": "Devotions",
+      "type": "text",
+      "_id": "I3SzJ380ddcpKCG5",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.I3SzJ380ddcpKCG5"
+    },
+    {
+      "sort": 900000,
+      "name": "Knacks",
+      "type": "text",
+      "_id": "SBpQ0rowcUplDYFX",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.SBpQ0rowcUplDYFX"
+    },
+    {
+      "sort": 1000000,
+      "name": "Maneuver",
+      "type": "text",
+      "_id": "ttY9kceXXESSRppB",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.ttY9kceXXESSRppB"
+    },
+    {
+      "sort": 1100000,
+      "name": "Power",
+      "type": "text",
+      "_id": "VD7BVM6I8KBy2FV6",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.VD7BVM6I8KBy2FV6"
+    },
+    {
+      "sort": 1200000,
+      "name": "Skills",
+      "type": "text",
+      "_id": "xzfOyk1G6z6IOtdt",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.xzfOyk1G6z6IOtdt"
+    },
+    {
+      "sort": 1300000,
+      "name": "Special Abilities",
+      "type": "text",
+      "_id": "isy9FK8UiaJbks6u",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.isy9FK8UiaJbks6u"
+    },
+    {
+      "sort": 1400000,
+      "name": "Talents",
+      "type": "text",
+      "_id": "htYfwkj09tBRvViV",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.htYfwkj09tBRvViV"
+    },
+    {
+      "sort": 1825000,
+      "name": "Curse/Mark",
+      "type": "text",
+      "_id": "UdUa1hlCVsPyis9h",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.UdUa1hlCVsPyis9h"
+    },
+    {
+      "sort": 1850000,
+      "name": "Effects",
+      "type": "text",
+      "_id": "Ujx6FBa0urwCd0dk",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.Ujx6FBa0urwCd0dk"
+    },
+    {
+      "sort": 1900000,
+      "name": "Poison / Disease",
+      "type": "text",
+      "_id": "uHBSbDOPBIODT0m7",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.uHBSbDOPBIODT0m7"
+    },
+    {
+      "sort": 1800000,
+      "name": "Conditions",
+      "type": "text",
+      "_id": "8wwjntH4DPAu64pN",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.8wwjntH4DPAu64pN"
+    },
+    {
+      "sort": 2000000,
+      "name": "Vocations",
+      "type": "text",
+      "_id": "BscR5Vl3eXvCCRD6",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Earthdawn has three different types of \"Vocation\"-items:</p><ul><li><p>@UUID[.sLunX6ghRMdsaDB0]{Disciplines}</p></li><li><p>@UUID[.X40ILkq8K4jwA6SX]{Paths}</p></li><li><p>@UUID[.tOvXq0FKV3K8NNW0]{Questors}</p></li></ul><p>Disciplines are the main focus of vocations, where Paths are additions to Disciplines and Questors are really limited options not belonging to one of the other.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.BscR5Vl3eXvCCRD6"
+    },
+    {
+      "sort": 2100000,
+      "name": "Discipline",
+      "type": "text",
+      "_id": "sLunX6ghRMdsaDB0",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Disciplines are items, containing everything described under @UUID[Item.y8ummCmOF1ROzawefqVz]{Disciplines} or in the Players Guide on Page 79.</p><p>In additon to general information they contain  the current circle of an Character and, the durability value.</p><p>During the Character Advancement in a discipilne, they information on the <strong>Advancement Tab</strong> will be used to advance to a new circle, containing all optional Talents, Karma-,  special abilities and other modifications.</p><p>Modifications will be activated with the advancement to the current circle, and they will be visible in the <strong>Effects Tab</strong></p><p></p><p>for further information about Disciplines. please enjoy the Tour </p><p><strong>Discipline Items </strong></p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.sLunX6ghRMdsaDB0"
+    },
+    {
+      "sort": 2200000,
+      "name": "Path",
+      "type": "text",
+      "_id": "X40ILkq8K4jwA6SX",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.X40ILkq8K4jwA6SX"
+    },
+    {
+      "sort": 2300000,
+      "name": "Questor",
+      "type": "text",
+      "_id": "tOvXq0FKV3K8NNW0",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.tOvXq0FKV3K8NNW0"
+    },
+    {
+      "sort": 2400000,
+      "name": "Other",
+      "type": "text",
+      "_id": "nNGtNUcHLQO0hCi9",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.nNGtNUcHLQO0hCi9"
+    },
+    {
+      "sort": 2500000,
+      "name": "Mask",
+      "type": "text",
+      "_id": "u8e9ApkTASB9EYXV",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.u8e9ApkTASB9EYXV"
+    },
+    {
+      "sort": 2600000,
+      "name": "Namegiver",
+      "type": "text",
+      "_id": "LlkE8wBy7yfkITON",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.LlkE8wBy7yfkITON"
+    },
+    {
+      "sort": 2700000,
+      "name": "Ship Weapons",
+      "type": "text",
+      "_id": "Uhre1LYYrsDOmyCL",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "12.331",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!rAVtsxRiB8bUbdiq.Uhre1LYYrsDOmyCL"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "9DL3m5MaXaCel8Ys": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426389571,
+    "modifiedTime": 1735426392507,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "_id": "rAVtsxRiB8bUbdiq",
+  "sort": 100000,
+  "_key": "!journal!rAVtsxRiB8bUbdiq"
+}
