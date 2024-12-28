@@ -6,6 +6,7 @@ import LpIncreaseTemplate from "./lp-increase.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
+import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 const isEmpty = foundry.utils.isEmpty;
 
 /**
@@ -84,18 +85,18 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             } ),
             {
               required: true,
-              initial:  [ "equipped" ],
+              initial:  [],
               label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
               hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
             }
           ),
-          combatType: new fields.StringField( {
+          weaponType: new fields.StringField( {
             required: true,
             blank:    false,
             initial:  "melee",
             choices:  ED4E.weaponType,
-            label:    this.labelKey( "Ability.RollTypeDetails.Attack.combatType" ),
-            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.combatType" )
+            label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponType" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponType" )
           } ),
         }, {
           required: false,
@@ -159,6 +160,46 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /* -------------------------------------------- */
   /*  Getters                   */
   /* -------------------------------------------- */
+
+  get baseRollOptions() {
+    const rollOptions = super.baseRollOptions;
+    const updates = {
+      step:            {
+        base:      this.level,
+        modifiers: {},
+      },
+      karma:           {
+        // is set in super
+        // pointsUsed: 0,
+        // available:  0,
+        // step:       0,
+      },
+      devotion:        {
+        // is set in super
+        // pointsUsed: 0,
+        // available:  0,
+        // step:       0,
+      },
+      extraDice:       {
+        // this should be the place for things like flame weapon, etc. but still needs to be implemented
+      },
+      target:          {
+        base:      this.getDifficulty(),
+        modifiers: {},
+        public:    false,
+      },
+      strain:          {
+        base:      this.strain,
+        modifiers: {},
+      },
+      chatFlavor:      "AbilityTemplate: ABILITY ROLL",
+      testType:        "action",
+      rollType:        "",
+    };
+
+    rollOptions.updateSource( updates );
+    return rollOptions;
+  }
 
   /**
    * The final rank of the ability (attribute step + level).
@@ -273,15 +314,69 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /* -------------------------------------------- */
 
   async rollAttack() {
-    console.log( "Rolling attack" );
     if ( !this.isActorEmbedded ) return;
 
-    // don't forget to add tail attack
     const equippedWeapons = this.parentActor.equippedWeapons;
-    console.log( "Equipped weapons: ", equippedWeapons );
-    const attackType = !equippedWeapons ? "unarmed" : equippedWeapons[0].system.weaponType;
-    console.log( "Attack type: ", attackType );
+
+    const whatToDo = this._checkEquippedWeapons( equippedWeapons );
+    if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
+
+    const continueAttack = this[whatToDo]();
+    if ( !continueAttack ) {
+      ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
+      return;
+    }
+
+    const rollOptions = this.baseRollOptions;
+    const rollOptionsUpdate = {
+      chatFlavor: "AbilityTemplate: ATTACK ROLL",
+      rollType:   "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+    };
+    rollOptions.updateSource( rollOptionsUpdate );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      {
+        rollData: this.parentActor.system,
+      }
+    );
+    return this.parentActor.processRoll( roll );
   }
+
+  _attack() {
+    return true;
+  }
+
+  _drawWeapon() {
+    ui.notifications.info( "It's coming. Patience please!" );
+    return false;
+  }
+
+  _switchWeapon() {
+    ui.notifications.info( "It's coming. Patience please!" );
+    return false;
+  }
+
+  /**
+   * Check if the character has the required weapon with the correct type equipped.
+   * @param {ItemEd[]} equippedWeapons - An array of weapon items equipped by the character.
+   * @returns {string} - The action to take or an empty string (which should not happen!).
+   * @protected
+   */
+  _checkEquippedWeapons( equippedWeapons ) {
+
+    const requiredWeaponStatus = this.rollTypeDetails.attack.weaponItemStatus;
+    const requiredWeaponType = this.rollTypeDetails.attack.weaponType;
+
+    const weaponByStatus = equippedWeapons.find( weapon => requiredWeaponStatus.has( weapon.system.itemStatus ) );
+    const weaponByType = equippedWeapons.find( weapon => weapon.system.weaponType === requiredWeaponType );
+
+    if ( weaponByStatus?.uuid === weaponByType?.uuid ) return "_attack";
+    if ( !weaponByType ) return "_switchWeapon";
+    if ( !weaponByStatus ) return "_drawWeapon";
+    return "";
+  }
+
 
   /* -------------------------------------------- */
   /*  Migrations                                  */

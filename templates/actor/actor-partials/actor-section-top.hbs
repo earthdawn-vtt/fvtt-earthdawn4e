@@ -1,10 +1,6 @@
 <section class="actor-section__top">
     <div class="top">
-        {{log "actor-section-top" this}}
-        {{log "this.actor" this.actor}}
-        {{log "this.actor.type" this.actor.type}}
         {{#if (eq this.actor.type "npc")}}
-        {{log "bin drin???" this}}
             {{#if (eq this.actor.system.mobRules true)}}
             <div class="image-characteristics-mob__grid-container">
             {{else}}
@@ -88,7 +84,6 @@
             </div>
 
             <!-- GRID - Damage & Recovery -->
-            {{log "this.actor.type" this.actor.type}}
             {{#if (eq this.actor.type "character")}}
                 {{> "systems/ed4e/templates/actor/cards/damage-character-card.hbs"}}
             {{else}}

@@ -43,8 +43,11 @@ import FormulaField from "../fields/formula-field.mjs";
  * @property { RollStepData } step Ever information related to the step of the action, Mods, Boni, Mali etc.
  * @property { RollRessourceData } karma Available Karma, Karma dice and used karma.
  * @property { RollRessourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
+ * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
+ *                                            Keys are localized labels. Values are the number of dice.
  * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
  * @property { RollStrainData } strain How much strain this roll will cost
+ * @property { string } chatFlavor The text that is added to the ChatMessage when this call is put to chat.
  * @property { ( 'action' | 'effect' ) } testType The type of roll.
  * @property { string } rollType Type of roll, like
  *                               damageRanged (Effect), damageMelee (Effect), attackRanged, attackMelee,
@@ -281,7 +284,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
     return new EdRollOptions( data, options );
   }
 
-  static initResourceStep( source ) {
+  static initResourceStep( _ ) {
     const parentField = this?.parent?.name;
     return ED4E.resourceDefaultStep[parentField] ?? 4;
   }

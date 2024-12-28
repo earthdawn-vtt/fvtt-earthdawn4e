@@ -44,7 +44,7 @@ export default class EdRoll extends Roll {
       }]`;
     super( baseTerm, data, edRollOptions );
 
-    this.flavorTemplate = ED4E.testTypes[this.options.testType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
+    this.flavorTemplate = ED4E.rollTypes[this.options.rollType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
 
     if ( !this.options.extraDiceAdded ) this.#addExtraDice();
     if ( !this.options.configured ) this.#configureModifiers();

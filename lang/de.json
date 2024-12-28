@@ -609,7 +609,7 @@
             "RollTypeDetails": {
               "attack":                                     "Details für Aktionstyp 'Angriff'",
               "Attack": {
-                "combatType":                               "Welchen Kampftyp muss die verwendete Waffe haben?",
+                "weaponType":                               "Welchen Kampftyp muss die verwendete Waffe haben?",
                 "weaponItemStatus":                         "Wie muss die Waffe getragen werden um damit anzugreifen"
               },
               "reaction":                                   "Details für Aktionstyp 'Reaktion'",
@@ -806,7 +806,7 @@
               "ability":                                   "Fähigkeit",
               "attack":                                    "Angriff",
               "Attack": {
-                "combatType":                               "Kampftyp",
+                "weaponType":                               "Kampftyp",
                 "weaponItemStatus":                         "Waffenstatus"
               },
               "damage":                                    "Schaden",
@@ -1400,7 +1400,8 @@
           "noTalentCategorySelected": "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
           "questorItemNotUpdated": "Questor-Item konnte nicht aktualisiert werden"
         },
-        "livingArmorOnly":                                  "Es kann nur nur lebendige Rüstung getragen werden.",
+        "livingArmorOnly":                                 "Es kann nur nur lebendige Rüstung getragen werden.",
+        "noWeaponToAttackWith":                            "Keine Waffe zum Angreifen verfügbar :(",
         "piecemealArmorSizeExceeded": "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
       }
     },
