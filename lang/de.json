@@ -396,6 +396,7 @@
         "effect": "Effekt",
         "halfmagic": "Halb Magie",
         "initiative": "Initiative",
+        "reaction": "Reaktion",
         "recovery": "Erholung",
         "spellcasting": "Spruchzauberei",
         "threadWeaving": "Fadenweben"
@@ -459,12 +460,25 @@
         "physical": "Körperlich",
         "social": "Sozial"
       },
-      "WeaponType": {
-        "blowgun": "Blasrohr",
+      "WeaponSubType" : {
+        "axe": "Axt",
         "bow": "Bogen",
+        "blade": "Klinge",
+        "bola": "Bola",
         "crossbow": "Armbrust",
+        "club": "Keule",
+        "dart": "Wurfpfeil",
+        "dagger": "Dolch",
+        "hawkHatchet": "Falkenklaue",
+        "net": "Netz",
+        "polearm": "Stangenwaffe",
+        "spear": "Speer",
+        "staff": "Stab",
+        "sword": "Schwert"
+      },
+      "WeaponType": {
         "melee": "Nahkampf",
-        "sling": "Schleuder",
+        "missile": "Projektilwaffe",
         "thrown": "Wurfwaffe",
         "unarmed": "Unbewaffnet"
       }
@@ -551,6 +565,9 @@
       },
       "General": {
         "Hints": {
+          "Rollable": {
+            "type":                                         "Welche Aktionsart wird für diese Fähigkeit verwendet?"
+          },
           "Target": {
             "target":                                       "Welcher Widerstandstyp des Ziels wird für diese Fähigkeit verwendet?",
             "group":                                        "Welche Gruppen Parameter werden für mehrere Ziele verwendet?",
@@ -558,6 +575,9 @@
           }
         },
         "Labels": {
+          "Rollable": {
+            "type":                                         "Aktionsart"
+          },
           "Target": {
             "target":                                       "Widerstandstyp",
             "group":                                        "Gruppen Parameter",
@@ -585,17 +605,23 @@
               "magicType":                              "Magie Typ",
               "magic":                                  "Magie"
             },
+            "rollTypeDetails":                              "Details zur Aktionsart",
+            "RollTypeDetails": {
+              "attack":                                     "Details für Aktionstyp 'Angriff'",
+              "Attack": {
+                "weaponType":                               "Welchen Kampftyp muss die verwendete Waffe haben?",
+                "weaponItemStatus":                         "Wie muss die Waffe getragen werden um damit anzugreifen"
+              },
+              "reaction":                                   "Details für Aktionstyp 'Reaktion'",
+              "Reaction": {
+                "defenseType":                             "Auf welchen Widerstand muss eine Fähigkeit zielen damit diese Reaktion ausgelöst wird?"
+              }
+            },
             "talentAvailableKnacks":                        "Verfügbare Kniffe",
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
-            "talentKnacks":                                 "Kniffe",
-            "type":                                         "Welche Aktionsart wird für diese Fähigkeit verwendet?",
-            "DamageAbilities": {
-            "damage":                                       "Ist diese Fähigkeit eine Schadensfägigkeit",
-            "substitute":                                   "Ersetzt Schadesattribute",
-            "relatedRollType":                              "gilt für Aktionstyp"
-            }
+            "talentKnacks":                                 "Kniffe"
           },
           "Action": {
             "action":                                       "Aktion",
@@ -736,7 +762,8 @@
             "weavingDifficulty":                            "Die Schwierigkeit um den Zauber erfolgreich zu wirken"
           },
           "Weapons": {
-            "weaponType":                                   "Waffentyp",
+            "weaponType":                                   "Der Kampftyp der Waffe",
+            "weaponSubType":                                "Die Art der Waffe",
             "damageAttribute":                              "Schaden Attribut",
             "damageBaseStep":                               "Grundschaden Stufe",
             "size":                                         "Größe",
@@ -763,23 +790,36 @@
             "durability":                                   "Unempfindlichkeit",
             "devotionRequired":                             "Weihepunkt benötigt",
             "talentCategory":                               "Talent Kategorie",
-              "Magic": {
+            "Magic": {
               "threadWeaving":                          "Fadenweben",
               "spellcasting":                           "Spruchzauberei",
               "magicType":                              "Magie Typ",
               "magic":                                  "Magie"
             },
+            "rollTypeDetails":                              "Details zur Aktionsart",
+            "RollTypeDetails": {
+              "ability":                                   "Fähigkeit",
+              "attack":                                    "Angriff",
+              "Attack": {
+                "weaponType":                               "Kampftyp",
+                "weaponItemStatus":                         "Waffenstatus"
+              },
+              "damage":                                    "Schaden",
+              "effect":                                    "Effekt",
+              "initiative":                                "Initiative",
+              "reaction":                                  "Reaktion",
+              "Reaction": {
+                "defenseType":                              "Verteidigungstyp"
+              },
+              "recovery":                                  "Erholung",
+              "spellcasting":                              "Spruchzauberei",
+              "threadWeaving":                             "Fadenweben"
+            },
             "talentAvailableKnacks":                        "Verfügbare Kniffe",
             "talentKnacksAvailable":                        "Verfügbare Kniffe",
             "talentLearnedKnacks":                          "Gelernte Kniffe",
             "talentKnacksLearned":                          "Gelernte Kniffe",
-            "talentKnacks":                                 "Kniffe",
-            "type":                                         "Aktionsart",
-            "DamageAbilities": {
-            "damage":                                       "Schaden",
-            "substitute":                                   "Ersetzt Schadensattribute",
-            "relatedRollType":                              "gilt für Aktionstyp"
-            }
+            "talentKnacks":                                 "Kniffe"
           },
           "Action": {
             "action":                                       "Aktion",
@@ -921,7 +961,8 @@
             "weavingDifficulty":                            "Webschwierigkeit"
           },
           "Weapons": {
-            "weaponType":                                   "Waffentyp",
+            "weaponType":                                   "Kampftyp",
+            "weaponSubType":                                "Waffensubtyp",
             "damageAttribute":                              "Schaden Attribut",
             "damageBaseStep":                               "Grundschaden Stufe",
             "size":                                         "Größe",
@@ -1244,6 +1285,7 @@
       },
       "Header": {
         "activeUser": "Aktive Spieler",
+        "actionType": "Aktionstyp",
         "actorsNoUserConfigured": "Nicht konfigurierte, zugewiesene Akteure",
         "description": "Beschreibung",
         "details": "Details",
@@ -1252,6 +1294,8 @@
         "inactiveUser": "Inaktive Spieler",
         "magic": "Magie",
         "navigator": "Navigator",
+        "talentSource": "Talent Ursprung",
+        "targetingDetails":   "Ziel Details",
         "type": "Typ"
       },
       "Knack": {
@@ -1346,7 +1390,8 @@
           "noTalentCategorySelected": "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
           "questorItemNotUpdated": "Questor-Item konnte nicht aktualisiert werden"
         },
-        "livingArmorOnly":                                  "Es kann nur nur lebendige Rüstung getragen werden.",
+        "livingArmorOnly":                                 "Es kann nur nur lebendige Rüstung getragen werden.",
+        "noWeaponToAttackWith":                            "Keine Waffe zum Angreifen verfügbar :(",
         "piecemealArmorSizeExceeded": "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
       }
     },

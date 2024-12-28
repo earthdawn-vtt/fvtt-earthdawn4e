@@ -1,11 +1,17 @@
 {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
-{{!-- abilty action type --}}
-{{formField systemFields.rollType name="system.rollType" value=item.system.rollType localize=true}}
-{{!-- Damage ability yes / no --}}
-{{formField systemFields.damageAbilities.fields.damage name="system.damageAbilities.damage" value=item.system.damageAbilities.damage localize=true}}
-{{!-- Damage adder yes / no --}}
-{{formField systemFields.damageAbilities.fields.substitute name="system.damageAbilities.substitute" value=item.system.damageAbilities.substitute localize=true}}
-{{#if (eq item.system.damageAbilities.substitute true)}}
-{{!-- Strength SUbstitute is based on the rolltype --}}
-{{formField systemFields.damageAbilities.fields.relatedRollType name="system.damageAbilities.relatedRollType" value=item.system.damageAbilities.relatedRollType localize=true}}
-{{/if}}
+
+<fieldset>
+  <legend>{{localize "ED.Item.Header.actionType"}}</legend>
+
+  {{!-- abilty action type --}}
+  {{formGroup systemFields.rollType name="system.rollType" value=item.system.rollType localize=true}}
+
+  {{#each systemFields.rollTypeDetails.fields as |field key|}}
+    {{#if (eq key ../item.system.rollType)}}
+      {{#each field.fields as |subField subKey|}}
+        {{formGroup subField name=(concat "system.rollTypeDetails." key "." subKey) value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey) localize=true}}
+      {{/each}}
+    {{/if}}
+  {{/each}}
+
+</fieldset>

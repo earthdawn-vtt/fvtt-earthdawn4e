@@ -65,6 +65,16 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Returns the equipped weapons of this actor, if any.
+   * @type {ItemEd[]}
+   */
+  get equippedWeapons() {
+    return this.itemTypes["weapon"].filter(
+      item => [ "mainHand", "offHand", "twoHands", "tail" ].includes( item.system.itemStatus )
+    );
+  }
+
+  /**
    * Returns the highest discipline of an actor
    * @type {Item|undefined}
    */ 
@@ -275,7 +285,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.#processRoll( roll );
+    return this.processRoll( roll );
   }
 
   /**
@@ -317,7 +327,7 @@ export default class ActorEd extends Actor {
     );
     edRollOptions.updateSource( edRollOptionsData );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.#processRoll( roll );
+    return this.processRoll( roll );
   }
 
   /**
@@ -355,7 +365,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    this.#processRoll( roll );
+    this.processRoll( roll );
   }
 
   /**
@@ -453,7 +463,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    this.#processRoll( roll );
+    this.processRoll( roll );
   }
 
 
@@ -560,7 +570,7 @@ export default class ActorEd extends Actor {
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
 
-    this.#processRoll( roll );
+    this.processRoll( roll );
   }
 
   async jumpUp( options = {} ) {
@@ -605,7 +615,7 @@ export default class ActorEd extends Actor {
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
 
-    this.#processRoll( roll );
+    this.processRoll( roll );
   }
 
 
@@ -633,7 +643,7 @@ export default class ActorEd extends Actor {
    * @param {EdRoll} roll The prepared Roll.
    * @returns {EdRoll}    The processed Roll.
    */
-  async #processRoll( roll ) {
+  async processRoll( roll ) {
     if ( !roll ) {
       // No roll available, do nothing.
       return;

@@ -4,6 +4,60 @@ import ED4E from "../../config.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 
+/**
+ * @typedef { object} RollStepData Data for a roll step.
+ * @property { number } base The base step that is used to determine the dice that are rolled.
+ * @property { Record<string, number> } modifiers All modifiers that are applied to the base step.
+ *                                              Keys are localized labels. Values are the modifier.
+ * @property { number } total The final step that is used to determine the dice that are rolled.
+ *                            The sum of all modifiers is added to the base value.
+ */
+
+/**
+ * @typedef { object } RollRessourceData Data for a roll resource like karma or devotion.
+ * @property { number } pointsUsed How many points of this resource should be consumed after rolling.
+ * @property { number } available How many points of this resource are available.
+ * @property { number } step The step that is used to determine the dice that are rolled for this resource.
+ * @property { string } dice The dice that are rolled for this resource.
+ */
+
+/**
+ * @typedef { object } RollTargetData Data for the target number of a roll.
+ * @property { number } base The base target number.
+ * @property { Record<string, number> } modifiers All modifiers that are applied to the base target number.
+ *                                             Keys are localized labels. Values are the modifier.
+ * @property { number } total The final target number. The sum of all modifiers is added to the base value.
+ * @property { boolean } public Whether the target number is shown in chat or hidden.
+ */
+
+/**
+ * @typedef { object } RollStrainData Data for the strain that is taken after a roll.
+ * @property { number } base The base strain that is taken.
+ * @property { Record<string, number> } modifiers All modifiers that are applied to the base strain.
+ *                                            Keys are localized labels. Values are the modifier.
+ * @property { number } total The final strain that is taken. The sum of all modifiers is added to the base value.
+ */
+
+/**
+ * EdRollOptions for creating an EdRoll instance.
+ * @property { RollStepData } step Ever information related to the step of the action, Mods, Boni, Mali etc.
+ * @property { RollRessourceData } karma Available Karma, Karma dice and used karma.
+ * @property { RollRessourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
+ * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
+ *                                            Keys are localized labels. Values are the number of dice.
+ * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
+ * @property { RollStrainData } strain How much strain this roll will cost
+ * @property { string } chatFlavor The text that is added to the ChatMessage when this call is put to chat.
+ * @property { ( 'action' | 'effect' ) } testType The type of roll.
+ * @property { string } rollType Type of roll, like
+ *                               damageRanged (Effect), damageMelee (Effect), attackRanged, attackMelee,
+ *                               ability,
+ *                               resistances (Effect), reaction, opposed
+ *                               spellCasting, threadWeaving, spellCastingEffect (Effect)
+ *                               Initiative (effect), Recovery (Effect), effects (Effect)
+ *                               poison
+ *                               etc. TODO: complete list
+ */
 export default class EdRollOptions extends foundry.abstract.DataModel {
   /** @inheritDoc */
   static defineSchema() {
@@ -230,7 +284,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
     return new EdRollOptions( data, options );
   }
 
-  static initResourceStep( source ) {
+  static initResourceStep( _ ) {
     const parentField = this?.parent?.name;
     return ED4E.resourceDefaultStep[parentField] ?? 4;
   }
@@ -275,8 +329,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
 
   /**
    * @description Bonus resources to be added globally
-   * @type {object}
-   * @property {number} something Value of the global bonus
+   * @type { RollRessourceData }
    */
   static get #bonusResource() {
     const fields = foundry.data.fields;

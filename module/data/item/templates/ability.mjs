@@ -6,6 +6,7 @@ import LpIncreaseTemplate from "./lp-increase.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
+import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 const isEmpty = foundry.utils.isEmpty;
 
 /**
@@ -73,39 +74,60 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         label:    this.labelKey( "Ability.rank" ),
         hint:     this.hintKey( "Ability.rank" )
       } ),
-      rollType: new fields.StringField( {
+      rollTypeDetails: new fields.SchemaField( {
+        ability:       new fields.SchemaField( {}, {} ),
+        attack:        new fields.SchemaField( {
+          weaponItemStatus: new fields.SetField(
+            new fields.StringField( {
+              required: true,
+              blank:    false,
+              choices:  ED4E.itemStatus,
+            } ),
+            {
+              required: true,
+              initial:  [],
+              label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
+              hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
+            }
+          ),
+          weaponType: new fields.StringField( {
+            required: true,
+            blank:    false,
+            initial:  "melee",
+            choices:  ED4E.weaponType,
+            label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponType" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponType" )
+          } ),
+        }, {
+          required: false,
+          label:    this.labelKey( "Ability.RollTypeDetails.attack" ),
+          hint:     this.hintKey( "Ability.RollTypeDetails.attack" )
+        } ),
+        damage:        new fields.SchemaField( {}, {} ),
+        effect:        new fields.SchemaField( {}, {} ),
+        initiative:    new fields.SchemaField( {}, {} ),
+        reaction:      new fields.SchemaField( {
+          defenseType: new fields.StringField( {
+            required: true,
+            nullable: false,
+            blank:    false,
+            initial:  "physical",
+            choices:  ED4E.targetDifficulty,
+            label:    this.labelKey( "Ability.RollTypeDetails.Reaction.defenseType" ),
+            hint:     this.hintKey( "Ability.RollTypeDetails.Reaction.defenseType" )
+          } ),
+        }, {
+          required: false,
+          label:    this.labelKey( "Ability.RollTypeDetails.reaction" ),
+          hint:     this.hintKey( "Ability.RollTypeDetails.reaction" ),
+        } ),
+        recovery:      new fields.SchemaField( {}, {} ),
+        spellcasting:  new fields.SchemaField( {}, {} ),
+        threadWeaving: new fields.SchemaField( {}, {} ),
+      }, {
         required: false,
-        nullable: true,
-        blank:    true,
-        initial:  "",
-        choices:  ED4E.rollTypes,
-        label:    this.labelKey( "Ability.type" ),
-        hint:     this.hintKey( "Ability.type" )
-      } ),
-      damageAbilities: new fields.SchemaField( {
-        damage: new fields.BooleanField( {
-          required: false,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.DamageAbilities.damage" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.damage" )
-        } ),
-        substitute: new fields.BooleanField( {
-          required: false,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.DamageAbilities.substitute" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.substitute" )
-        } ),
-        relatedRollType: new fields.StringField( {
-          required: false,
-          nullable: true,
-          blank:    true,
-          initial:  "",
-          choices:  ED4E.rollTypes,
-          label:    this.labelKey( "Ability.DamageAbilities.relatedRollType" ),
-          hint:     this.hintKey( "Ability.DamageAbilities.relatedRollType" )
-        } ),
+        label:    this.labelKey( "Ability.rollTypeDetails" ),
+        hint:     this.hintKey( "Ability.rollTypeDetails" )
       } ),
     } );
   }
@@ -113,6 +135,46 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /* -------------------------------------------- */
   /*  Getters                   */
   /* -------------------------------------------- */
+
+  get baseRollOptions() {
+    const rollOptions = super.baseRollOptions;
+    const updates = {
+      step:            {
+        base:      this.level,
+        modifiers: {},
+      },
+      karma:           {
+        // is set in super
+        // pointsUsed: 0,
+        // available:  0,
+        // step:       0,
+      },
+      devotion:        {
+        // is set in super
+        // pointsUsed: 0,
+        // available:  0,
+        // step:       0,
+      },
+      extraDice:       {
+        // this should be the place for things like flame weapon, etc. but still needs to be implemented
+      },
+      target:          {
+        base:      this.getDifficulty(),
+        modifiers: {},
+        public:    false,
+      },
+      strain:          {
+        base:      this.strain,
+        modifiers: {},
+      },
+      chatFlavor:      "AbilityTemplate: ABILITY ROLL",
+      testType:        "action",
+      rollType:        "",
+    };
+
+    rollOptions.updateSource( updates );
+    return rollOptions;
+  }
 
   /**
    * The final rank of the ability (attribute step + level).
@@ -221,6 +283,75 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     if ( !createData?.system?.level ) itemData.system.level = 0;
     return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
   }
+
+  /* -------------------------------------------- */
+  /*                    Rolling                   */
+  /* -------------------------------------------- */
+
+  async rollAttack() {
+    if ( !this.isActorEmbedded ) return;
+
+    const equippedWeapons = this.parentActor.equippedWeapons;
+
+    const whatToDo = this._checkEquippedWeapons( equippedWeapons );
+    if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
+
+    const continueAttack = this[whatToDo]();
+    if ( !continueAttack ) {
+      ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
+      return;
+    }
+
+    const rollOptions = this.baseRollOptions;
+    const rollOptionsUpdate = {
+      chatFlavor: "AbilityTemplate: ATTACK ROLL",
+      rollType:   "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+    };
+    rollOptions.updateSource( rollOptionsUpdate );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      {
+        rollData: this.parentActor.system,
+      }
+    );
+    return this.parentActor.processRoll( roll );
+  }
+
+  _attack() {
+    return true;
+  }
+
+  _drawWeapon() {
+    ui.notifications.info( "It's coming. Patience please!" );
+    return false;
+  }
+
+  _switchWeapon() {
+    ui.notifications.info( "It's coming. Patience please!" );
+    return false;
+  }
+
+  /**
+   * Check if the character has the required weapon with the correct type equipped.
+   * @param {ItemEd[]} equippedWeapons - An array of weapon items equipped by the character.
+   * @returns {string} - The action to take or an empty string (which should not happen!).
+   * @protected
+   */
+  _checkEquippedWeapons( equippedWeapons ) {
+
+    const requiredWeaponStatus = this.rollTypeDetails.attack.weaponItemStatus;
+    const requiredWeaponType = this.rollTypeDetails.attack.weaponType;
+
+    const weaponByStatus = equippedWeapons.find( weapon => requiredWeaponStatus.has( weapon.system.itemStatus ) );
+    const weaponByType = equippedWeapons.find( weapon => weapon.system.weaponType === requiredWeaponType );
+
+    if ( weaponByStatus?.uuid === weaponByType?.uuid ) return "_attack";
+    if ( !weaponByType ) return "_switchWeapon";
+    if ( !weaponByStatus ) return "_drawWeapon";
+    return "";
+  }
+
 
   /* -------------------------------------------- */
   /*  Migrations                                  */

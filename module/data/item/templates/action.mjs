@@ -1,12 +1,15 @@
 import { ItemDataModel } from "../../abstract.mjs";
 import ED4E from "../../../config.mjs";
+import RollableTemplate from "./rollable.mjs";
 
 /**
  * Data model template with information on Attack items.
  * @property {number} strain        strain
  * @property {string} action        action type
  */
-export default class ActionTemplate extends ItemDataModel {
+export default class ActionTemplate extends ItemDataModel.mixin(
+  RollableTemplate,
+) {
 
   /** @inheritDoc */
   static defineSchema() {

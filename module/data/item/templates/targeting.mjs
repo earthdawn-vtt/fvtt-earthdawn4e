@@ -32,10 +32,9 @@ export default class TargetTemplate extends SystemDataModel {
           hint:     this.hintKey( "Target.group" )
         } ),
         fixed: new foundry.data.fields.NumberField( {
-          required: true,
-          nullable: false,
+          required: false,
+          nullable: true,
           min:      0,
-          initial:  () => game.settings.get( "ed4e", "minimumDifficulty" ),
           integer:  true,
           label:    this.labelKey( "Target.fixed" ),
           hint:     this.hintKey( "Target.fixed" )
@@ -59,11 +58,7 @@ export default class TargetTemplate extends SystemDataModel {
     let fixedDifficultySetting = this.difficulty.fixed;
 
     if ( numTargets <= 0 || targetDifficultySetting === "none" ) {
-      if ( fixedDifficultySetting > 0 ) {
-        difficulty = fixedDifficultySetting;
-      } else {
-        difficulty = 0;
-      }
+      difficulty = ( fixedDifficultySetting > 0 ) ? fixedDifficultySetting : game.settings.get( "ed4e", "minimumDifficulty" );
     } else {
       let baseDifficulty;
       let additionalTargetDifficulty = 0;
