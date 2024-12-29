@@ -110,6 +110,11 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
           hint:     "localize: all data about how the step is composed",
         },
       ),
+      rolledByActor: new fields.DocumentUUIDField( {
+        required: false,
+        label:    "TODO.RolledByActor",
+        hint:     "TODO.RolledByActorHint",
+      } ),
       karma:     this.#bonusResource,
       devotion:  this.#bonusResource,
       extraDice: new MappingField( new fields.NumberField( {
@@ -171,6 +176,16 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
             initial:  true,
             label:    "X.targetPublic",
             hint:     "X.whetherTheDifficultyIsKnownPublicly"
+          } ),
+          actors: new fields.SetField( new fields.DocumentUUIDField(
+            {
+              label: "TODO.Target.actorUuid",
+              hint:  "TODO.Target.actorUuidHint",
+            }
+          ), {
+            required: false,
+            label:    "TODO.Target.actors",
+            hint:     "TODO.Target.actorsHint",
           } ),
         },
         {
@@ -280,6 +295,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
       available:  actor.system.devotion.value,
       step:       actor.system.devotion.step,
     };
+    data.rolledByActor = actor.uuid;
 
     return new EdRollOptions( data, options );
   }
