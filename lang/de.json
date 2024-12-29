@@ -1065,7 +1065,8 @@
           "knowledgeSkills":                      "Wissensfertigkeiten",
           "languageSkills":                       "Sprachfertigkeiten",
           "generalSkills":                        "Allgemeine Fertigkeiten",
-          "overview":                             "Übersicht"
+          "overview":                             "Übersicht",
+          "namegiverAbilities":                   "Namensgeber Fähigkeiten"
         },
         "Errors":{
           "noNamegiver":                          "Du musst einen Namensgeber auswählen um fortzufahren.",

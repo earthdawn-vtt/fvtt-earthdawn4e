@@ -237,6 +237,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     context.namegivers = this.namegivers;
     context.namegiverDocument = await this.charGenData.namegiverDocument;
 
+    // Add namegiver abilities to the context
+    context.namegiverAbilities = await this.charGenData.getNamegiverAbilities();
+
     // Class
     context.disciplines = this.disciplines;
     context.disciplineRadioChoices = documentsToSelectChoices( this.disciplines );
@@ -382,6 +385,12 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     data.namegiver ??= null;
 
+    // Set namegiver specifics
+    if ( data.namegiver ) {
+      const namegiverDocument = await fromUuid( data.namegiver );
+      this.charGenData.namegiverAbilities = namegiverDocument;
+    }
+  
     // Reset selected class if class type changed
     if ( data.isAdept !== this.charGenData.isAdept ) data.selectedClass = null;
 
