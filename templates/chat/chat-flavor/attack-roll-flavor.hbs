@@ -1,22 +1,93 @@
 <div class="custom-flavor">{{ customFlavor }}</div>
-{{#if (eq  ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-{{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-{{!-- <div>
-  <p class="undefined">to be reworked with #284</p>
-  {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
-</div> --}}
-{{#if (ne numSuccesses 0)}}
-{{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
-{{/if}}
-<div class="modifier-lists flexrow">
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-  {{#if target.public}}
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+
+  <!-- Target(s) Section -->
+  {{#if targets}}
+    <div class="targets-section">
+      <h4>{{localize "ED.Chat.Header.attackTargets"}}</h4>
+      <ul>
+        {{#each targets}}
+          <li>
+            <img class="avatar" src="{{this.texture.src}}" title="{{this.name}}">
+            {{this.name}}
+            <!--span class="target-info">{{!--this.status--}}</span-->
+          </li>
+        {{/each}}
+      </ul>
+    </div>
   {{/if}}
-  
-</div>
+
+  <!-- Rule of One Check -->
+  {{#if (eq  ruleOfOne true)}}
+    <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
+  {{else}}
+
+  <!-- Roll Successes -->
+  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
+
+  <!-- Modifier Lists -->
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+    {{#if target.public}}
+      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+    {{/if}}
+  </div>
+
+  <!-- Conditional Section: Success-based Options -->
+  {{#if (ne numSuccesses 0)}}
+
+    <!-- Reactions Section -->
+    {{#if reactions}}
+      <div class="reactions-section">
+        <h4>{{localize "ED.Chat.Header.attackReactions"}}</h4>
+        <ul>
+          {{#each reactions}}
+            <li>
+              <button class="reaction-button" data-reaction-id="{{this.id}}">
+                {{this.name}}
+              </button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <!-- Roll Damage Button -->
+    <div class="damage-section">
+      {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
+    </div>
+
+    <!-- Maneuvers Section -->
+    {{#if maneuvers}}
+      <div class="maneuvers-section">
+        <h4>{{localize "ED.Chat.Header.attackManeuvers"}}</h4>
+        <ul>
+          {{#each maneuvers}}
+            <li>
+              <button class="maneuver-button" data-maneuver-id="{{this.id}}">
+                {{this.name}} ({{this.cost}} {{localize "ED.Common.successes"}})
+              </button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <!-- Active Effects Section -->
+    {{#if activeEffects}}
+      <div class="effects-section">
+        <h4>{{localize "ED.Effects.activeEffects"}}</h4>
+        <ul>
+          {{#each activeEffects}}
+            <li>
+              {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+  {{/if}}
+
 {{/if}}
 {{!-- 
 todo:

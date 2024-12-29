@@ -1,4 +1,4 @@
-import EdRollOptions from "../data/other/roll-options.mjs";
+import EdRollOptions from "../data/roll/common.mjs";
 import PcData from "../data/actor/pc.mjs";
 import LpTransactionData from "../data/advancement/lp-transaction.mjs";
 

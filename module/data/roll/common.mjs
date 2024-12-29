@@ -3,6 +3,7 @@ import getDice from "../../dice/step-tables.mjs";
 import ED4E from "../../config.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import { SparseDataModel } from "../abstract.mjs";
 
 /**
  * @typedef { object} RollStepData Data for a roll step.
@@ -58,7 +59,7 @@ import FormulaField from "../fields/formula-field.mjs";
  *                               poison
  *                               etc. TODO: complete list
  */
-export default class EdRollOptions extends foundry.abstract.DataModel {
+export default class EdRollOptions extends SparseDataModel {
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -110,13 +111,8 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
           hint:     "localize: all data about how the step is composed",
         },
       ),
-      rollingActor: new fields.DocumentUUIDField( {
-        required: false,
-        label:    "TODO.RollingActor",
-        hint:     "TODO.RollingActorHint",
-      } ),
-      karma:     this.#bonusResource,
-      devotion:  this.#bonusResource,
+      karma:     this._bonusResource,
+      devotion:  this._bonusResource,
       extraDice: new MappingField( new fields.NumberField( {
         required: true,
         nullable: false,
@@ -177,15 +173,16 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
             label:    "X.targetPublic",
             hint:     "X.whetherTheDifficultyIsKnownPublicly"
           } ),
-          actors: new fields.SetField( new fields.DocumentUUIDField(
+          tokens: new fields.SetField( new fields.DocumentUUIDField(
             {
-              label: "TODO.Target.actorUuid",
-              hint:  "TODO.Target.actorUuidHint",
+              // type:  "Token",
+              label: "TODO.Target.tokenUuid",
+              hint:  "TODO.Target.tokenUuidHint",
             }
           ), {
             required: false,
-            label:    "TODO.Target.actors",
-            hint:     "TODO.Target.actorsHint",
+            label:    "TODO.Target.tokens",
+            hint:     "TODO.Target.tokensHint",
           } ),
         },
         {
@@ -265,7 +262,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
         label:    "localize: roll type",
         hint:     "localize: type of this roll, like attackMelee, or threadWeaving",
       } ),
-      rollSubType: new fields.StringField( {  
+      rollSubType: new fields.StringField( {
         required: false,
         nullable: true,
         blank:    true,
@@ -347,7 +344,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
    * @description Bonus resources to be added globally
    * @type { RollRessourceData }
    */
-  static get #bonusResource() {
+  static get _bonusResource() {
     const fields = foundry.data.fields;
     return new fields.SchemaField(
       {

@@ -1,5 +1,5 @@
 import EdRoll from "../../dice/ed-roll.mjs";
-import EdRollOptions from "../../data/other/roll-options.mjs";
+import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;

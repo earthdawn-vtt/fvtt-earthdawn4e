@@ -5,4 +5,5 @@ export * as advancement from "./advancement/_module.mjs";
 export * as chat from "./chat/_module.mjs";
 export * as fields from "./fields/_module.mjs";
 export * as item from "./item/_module.mjs";
+export * as roll from "./roll/_module.mjs";
 export * as other from "./other/_module.mjs";

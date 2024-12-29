@@ -179,30 +179,6 @@ export default class EdRoll extends Roll {
   /* -------------------------------------------- */
 
   /**
-   * @description                     The text that is added to this roll's chat message when calling `toMessage`.
-   * @type {Promise<string>}
-   * @userFunction                    UF_Rolls-getChatFlavor
-   */
-  get chatFlavor() {
-    return renderTemplate( this.flavorTemplate, this.getFlavorTemplateData() );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * @description                     Set the text of this roll's chat message.
-   * @type {string}
-   * @userFunction                    UF_Rolls-setChatFlavor
-   */
-  set chatFlavor( flavor ) {
-    this.options.updateSource( {
-      chatFlavor: flavor,
-    } );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * @description                     Returns the formula string based on strings instead of dice.
    * @type {string}
    * @userFunction                    UF_Rolls-stepsFormula
@@ -331,13 +307,25 @@ export default class EdRoll extends Roll {
   /* -------------------------------------------- */
 
   /**
+   * @description                     The text that is added to this roll's chat message when calling `toMessage`.
+   * @returns {Promise<string>}       The rendered chat flavor text.
+   * @userFunction                    UF_Rolls-getChatFlavor
+   */
+  async getChatFlavor() {
+    return renderTemplate( this.flavorTemplate, await this.getFlavorTemplateData() );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * @description                       Prepare the roll data for rendering the flavor template.
    * @returns {object}                  The context data object used to render the flavor template.
    * @userFunction                      UF_Rolls-getFlavorTemplateData
    */
-  getFlavorTemplateData() {
-    const templateData = {};
+  async getFlavorTemplateData() {
+    let templateData = {};
 
+    // Basic Data
     templateData.roller = game.user.character?.name
       ?? canvas.tokens.controlled[0]
       ?? game.user.name;
@@ -351,6 +339,9 @@ export default class EdRoll extends Roll {
     templateData.failure = this.isFailure;
     templateData.numSuccesses = this.numSuccesses ?? 0;
     templateData.numExtraSuccesses = this.numExtraSuccesses ?? 0;
+
+    // Roll Type specific data
+    if ( this.options.getFlavorTemplateData instanceof Function ) templateData = await this.options.getFlavorTemplateData( templateData );
 
     return templateData;
   }
@@ -457,7 +448,7 @@ export default class EdRoll extends Roll {
   async toMessage( messageData = {}, options = {} ) {
     if ( !this._evaluated ) await this.evaluate();
 
-    messageData.flavor = await this.chatFlavor;
+    messageData.flavor = await this.getChatFlavor();
 
     return super.toMessage( messageData, options );
   }

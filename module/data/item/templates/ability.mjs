@@ -7,6 +7,8 @@ import LearnableTemplate from "./learnable.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
+import AttackRollOptions from "../../roll/attack.mjs";
+import EdRollOptions from "../../roll/common.mjs";
 const isEmpty = foundry.utils.isEmpty;
 
 /**
@@ -138,23 +140,13 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
-    const updates = {
+    const abilityRollOptions = {
       step:            {
-        base:      this.level,
+        base:      this.level + ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 ),
         modifiers: {},
       },
-      karma:           {
-        // is set in super
-        // pointsUsed: 0,
-        // available:  0,
-        // step:       0,
-      },
-      devotion:        {
-        // is set in super
-        // pointsUsed: 0,
-        // available:  0,
-        // step:       0,
-      },
+      karma:           rollOptions.karma,
+      devotion:        rollOptions.devotion,
       extraDice:       {
         // this should be the place for things like flame weapon, etc. but still needs to be implemented
       },
@@ -172,8 +164,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       rollType:        "",
     };
 
-    rollOptions.updateSource( updates );
-    return rollOptions;
+    return new EdRollOptions( abilityRollOptions );
   }
 
   /**
@@ -296,21 +287,26 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const whatToDo = this._checkEquippedWeapons( equippedWeapons );
     if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
 
-    const continueAttack = this[whatToDo]();
-    if ( !continueAttack ) {
+    let weapon = whatToDo.uuid ? whatToDo : null;
+    if ( !weapon ) weapon = this[whatToDo]();
+    if ( !weapon ) {
       ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
       return;
     }
 
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
-      chatFlavor: "AbilityTemplate: ATTACK ROLL",
-      rollType:   "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+      ...rollOptions.toObject(),
+      rollingActor:  this.parentActor.uuid,
+      target:        { tokens: game.user.targets.map( token => token.document.uuid ) },
+      attackAbility: this.parent.uuid,
+      weapon:        weapon.uuid,
+      chatFlavor:    "AbilityTemplate: ATTACK ROLL",
+      rollType:      "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
     };
-    rollOptions.updateSource( rollOptionsUpdate );
 
     const roll = await RollPrompt.waitPrompt(
-      rollOptions,
+      new AttackRollOptions( rollOptionsUpdate ),
       {
         rollData: this.parentActor.system,
       }
@@ -346,7 +342,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const weaponByStatus = equippedWeapons.find( weapon => requiredWeaponStatus.has( weapon.system.itemStatus ) );
     const weaponByType = equippedWeapons.find( weapon => weapon.system.weaponType === requiredWeaponType );
 
-    if ( weaponByStatus?.uuid === weaponByType?.uuid ) return "_attack";
+    if ( weaponByStatus?.uuid === weaponByType?.uuid ) return weaponByStatus;
     if ( !weaponByType ) return "_switchWeapon";
     if ( !weaponByStatus ) return "_drawWeapon";
     return "";
