@@ -1,9 +1,9 @@
 <div class="custom-flavor">{{ customFlavor }}</div>
 
-  <!-- Rule of One Check -->
-  {{#if (eq  ruleOfOne true)}}
-    <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-  {{else}}
+<!-- Rule of One Check -->
+{{#if (eq  ruleOfOne true)}}
+  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
+{{else}}
 
   <!-- Roll Successes -->
   {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
@@ -20,19 +20,44 @@
   {{#if targets}}
     <h4>{{localize "ED.Chat.Header.attackTargets"}} {{#if reactionsByTarget}}&mdash; {{localize "ED.Chat.Header.attackReactions"}}{{/if}}</h4>
     <div class="targets-section flexrow">
-      <img class="avatar" src="{{rollingActorTokenDocument.texture.src}}" title="{{rollingActor.name}}">
+
+      <!-- Rolling Actor & Maneuvers -->
+      <span>
+        <img class="avatar" src="{{rollingActorTokenDocument.texture.src}}" title="{{rollingActor.name}}">
+        {{#if maneuvers}}
+            <details>
+              <summary>{{localize "ED.Chat.Header.attackManeuvers"}}</summary>
+              <span>
+                <ul class="unlist">
+                  {{#each maneuvers as |maneuver|}}
+                    <li>
+                      <button class="reaction-button" data-action="maneuver" data-ability-uuid="{{maneuver.uuid}}">
+                        {{maneuver.name}}
+                      </button>
+                    </li>
+                  {{/each}}
+                </ul>
+              </span>
+            </details>
+        {{/if}}
+      </span>
+
       <i class="fa-duotone fa-solid fa-sword"></i>
+
+      <!-- Target(s) -->
       {{#each targets}}
         <span>
-          {{#if ../reactionsByTarget}}
-            <img class="avatar" src="{{this.texture.src}}" title="{{this.actor.name}}">
+          <img class="avatar" src="{{this.texture.src}}" title="{{this.actor.name}}">
+
+          <!-- Reactions Section -->
+          {{#if ( lookup ../reactionsByTarget this.actor.name )}}
             <details>
               <summary>{{this.actor.name}}</summary>
               <span>
                 <ul class="unlist">
                   {{#each (lookup ../reactionsByTarget this.actor.name) as |reactions|}}
                     <li>
-                      <button class="reaction-button" data-action="reaction" data-reaction-uuid="{{this.uuid}}">
+                      <button class="reaction-button" data-action="reaction" data-ability-uuid="{{this.uuid}}">
                         {{this.name}}
                       </button>
                     </li>
@@ -41,7 +66,7 @@
               </span>
             </details>
           {{/if}}
-          <!--span class="target-info">{{!--this.status--}}</span-->
+
         </span>
       {{/each}}
     </div>
@@ -73,13 +98,8 @@
       </div>
     {{/if--}}
 
-    <!-- Roll Damage Button -->
-    <div class="damage-section">
-      {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
-    </div>
-
     <!-- Maneuvers Section -->
-    {{#if maneuvers}}
+    {{!--#if maneuvers}}
       <h4>{{localize "ED.Chat.Header.attackManeuvers"}}</h4>
       <div class="maneuvers-section">
         <ul>
@@ -92,7 +112,7 @@
           {{/each}}
         </ul>
       </div>
-    {{/if}}
+    {{/if--}}
 
     <!-- Active Effects Section -->
     {{#if activeEffects}}
@@ -107,6 +127,11 @@
         </ul>
       </div>
     {{/if}}
+
+    <!-- Roll Damage Button -->
+    <div class="damage-section">
+      {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
+    </div>
 
   {{/if}}
 

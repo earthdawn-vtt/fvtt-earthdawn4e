@@ -18,6 +18,7 @@ export default class AttackRollOptions extends AbilityRollOptions {
 
     context.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
     context.reactionsByTarget = await this._getDefendantReactions();
+    context.maneuvers = await this._getManeuvers();
 
     return context;
   }
@@ -37,5 +38,11 @@ export default class AttackRollOptions extends AbilityRollOptions {
       }
     }
     return reactionsByTarget;
+  }
+
+  async _getManeuvers() {
+    const actor = await fromUuid( this.rollingActorUuid );
+    return actor.itemTypes.knackManeuver;
+    // TODO: this needs to be filtered by available number of successes in the ChatMessage "getHTML" method, we don't have a possibly modifier number of successes anywhere else than in the ChatMessages DataModel
   }
 }
