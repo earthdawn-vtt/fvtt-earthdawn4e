@@ -38,13 +38,13 @@
         {{#each this}}
           <tr>
             {{#if this.[0]}}
-              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.0.uuid}}" data-spell-selected="{{ifThen this.[0] "false" "true"}}" title="{{this.0.system.description}}">
+              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.0.uuid}}" data-spell-selected="{{ifThen this.[0] "false" "true"}}" title="{{localize "ED.Dialogs.CharGen.ToolTips.addSpell"}}">
                 {{this.0.name}}
               </td>
               <td></td>
             {{else}}
               <td></td>
-              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.1.uuid}}" data-spell-selected="{{ifThen this.[1] "true" "false"}}" title="{{this.1.system.description}}">
+              <td class="spell-name" data-action="changeSpell" data-spell-uuid="{{this.1.uuid}}" data-spell-selected="{{ifThen this.[1] "true" "false"}}" title="{{localize "ED.Dialogs.CharGen.ToolTips.removeSpell"}}">
                 {{this.1.name}}
               </td>
             {{/if}}
