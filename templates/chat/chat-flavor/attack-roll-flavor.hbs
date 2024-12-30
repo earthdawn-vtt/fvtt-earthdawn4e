@@ -1,21 +1,5 @@
 <div class="custom-flavor">{{ customFlavor }}</div>
 
-  <!-- Target(s) Section -->
-  {{#if targets}}
-    <div class="targets-section">
-      <h4>{{localize "ED.Chat.Header.attackTargets"}}</h4>
-      <ul>
-        {{#each targets}}
-          <li>
-            <img class="avatar" src="{{this.texture.src}}" title="{{this.name}}">
-            {{this.name}}
-            <!--span class="target-info">{{!--this.status--}}</span-->
-          </li>
-        {{/each}}
-      </ul>
-    </div>
-  {{/if}}
-
   <!-- Rule of One Check -->
   {{#if (eq  ruleOfOne true)}}
     <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
@@ -32,24 +16,62 @@
     {{/if}}
   </div>
 
+  <!-- Target(s) Section -->
+  {{#if targets}}
+    <h4>{{localize "ED.Chat.Header.attackTargets"}} {{#if reactionsByTarget}}&mdash; {{localize "ED.Chat.Header.attackReactions"}}{{/if}}</h4>
+    <div class="targets-section flexrow">
+      <img class="avatar" src="{{rollingActorTokenDocument.texture.src}}" title="{{rollingActor.name}}">
+      <i class="fa-duotone fa-solid fa-sword"></i>
+      {{#each targets}}
+        <span>
+          {{#if ../reactionsByTarget}}
+            <img class="avatar" src="{{this.texture.src}}" title="{{this.actor.name}}">
+            <details>
+              <summary>{{this.actor.name}}</summary>
+              <span>
+                <ul class="unlist">
+                  {{#each (lookup ../reactionsByTarget this.actor.name) as |reactions|}}
+                    <li>
+                      <button class="reaction-button" data-action="reaction" data-reaction-uuid="{{this.uuid}}">
+                        {{this.name}}
+                      </button>
+                    </li>
+                  {{/each}}
+                </ul>
+              </span>
+            </details>
+          {{/if}}
+          <!--span class="target-info">{{!--this.status--}}</span-->
+        </span>
+      {{/each}}
+    </div>
+  {{/if}}
+
   <!-- Conditional Section: Success-based Options -->
   {{#if (ne numSuccesses 0)}}
 
     <!-- Reactions Section -->
-    {{#if reactions}}
+    {{!--#if reactionsByTarget}}
+      <h4>{{localize "ED.Chat.Header.attackReactions"}}</h4>
       <div class="reactions-section">
-        <h4>{{localize "ED.Chat.Header.attackReactions"}}</h4>
-        <ul>
-          {{#each reactions}}
-            <li>
-              <button class="reaction-button" data-reaction-id="{{this.id}}">
-                {{this.name}}
-              </button>
-            </li>
-          {{/each}}
-        </ul>
+        {{#each reactionsByTarget as |reactions targetName|}}
+          <details>
+            <summary>{{targetName}}</summary>
+            <span>
+              <ul class="unlist">
+                {{#each reactions}}
+                  <li>
+                    <button class="reaction-button" data-action="reaction" data-reaction-uuid="{{this.uuid}}">
+                      {{this.name}}
+                    </button>
+                  </li>
+                {{/each}}
+              </ul>
+            </span>
+          </details>
+        {{/each}}
       </div>
-    {{/if}}
+    {{/if--}}
 
     <!-- Roll Damage Button -->
     <div class="damage-section">
@@ -58,8 +80,8 @@
 
     <!-- Maneuvers Section -->
     {{#if maneuvers}}
+      <h4>{{localize "ED.Chat.Header.attackManeuvers"}}</h4>
       <div class="maneuvers-section">
-        <h4>{{localize "ED.Chat.Header.attackManeuvers"}}</h4>
         <ul>
           {{#each maneuvers}}
             <li>

@@ -8,7 +8,7 @@ import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
-import EdRollOptions from "../../roll/common.mjs";
+import AbilityRollOptions from "../../roll/ability.mjs";
 const isEmpty = foundry.utils.isEmpty;
 
 /**
@@ -141,7 +141,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
-      step:            {
+      rollingActorUuid: this.parentActor.uuid,
+      abilityUuid:      this.parent.uuid,
+      step:             {
         base:      this.level + ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 ),
         modifiers: {},
       },
@@ -164,7 +166,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       rollType:        "",
     };
 
-    return new EdRollOptions( abilityRollOptions );
+    return new AbilityRollOptions( abilityRollOptions );
   }
 
   /**
