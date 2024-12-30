@@ -392,5 +392,13 @@ export default class EdRollOptions extends SparseDataModel {
     );
   }
 
+  /**
+   * @description Get the data that is used to render the flavor template for the given roll type.
+   * @param { object } context The Handlebars context data that is used to render the flavor template.
+   * @returns {Promise<object>} The possibly updated data that is used to render the flavor template.
+   */
+  async getFlavorTemplateData( context ) {
+    return context;
+  }
 
 }
