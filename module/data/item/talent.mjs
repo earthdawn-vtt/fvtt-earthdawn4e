@@ -18,9 +18,8 @@ export default class TalentData extends AbilityTemplate.mixin(
     return this.mergeSchema( super.defineSchema(), {
       talentCategory: new fields.StringField( {
         required: true,
-        nullable: true,
         blank:    false,
-        initial:  null,
+        initial:  "free",
         trim:     true,
         choices:  ED4E.talentCategory,
         label:    this.labelKey( "Ability.talentCategory" ),
