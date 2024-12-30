@@ -14,13 +14,13 @@ export default class AttackRollOptions extends AbilityRollOptions {
 
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
-    context = await super.getFlavorTemplateData( context );
+    const newContext = await super.getFlavorTemplateData( context );
 
-    context.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
-    context.reactionsByTarget = await this._getDefendantReactions();
-    context.maneuvers = await this._getManeuvers();
+    newContext.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
+    newContext.reactionsByTarget = await this._getDefendantReactions();
+    newContext.maneuvers = await this._getManeuvers();
 
-    return context;
+    return newContext;
   }
 
   async _getDefendantReactions() {
