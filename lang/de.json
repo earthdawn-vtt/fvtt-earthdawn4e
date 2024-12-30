@@ -218,7 +218,7 @@
         "applyDamageTitle": "Füge den Schaden den ausgewählten Zielen zu!",
         "applyEffect": "Effekt zufügen",
         "applyEffectTitle": "Füge den Effect den ausgewählten Zielen zu!",
-        "rollDamage": "Effektwurf",
+        "rollDamage": "Schadenswurf",
         "rollDamageTitle": "Würfel den Effect",
         "rollEffect": "Effektwurf",
         "rollEffectTitle": "Würfel den Effect",
@@ -243,6 +243,9 @@
         "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}"
       },
       "Header": {
+        "attackManeuvers": "Manöver",
+        "attackReactions": "Reaktionen",
+        "attackTargets": "Ziele",
         "actionTest": "Aktions Test",
         "arbitraryTest": "Willkürlicher Test",
         "effectTest": "Effect Test"
@@ -1425,7 +1428,7 @@
       "ruleOfOne": "Fehlschlag, Regel der Eins",
       "step": "Stufe",
       "stepModifiers": "Stufen Modifikatoren",
-      "successesAchieved": "Gesamt Erfolge",
+      "successesAchieved": "Gesamt Erfolge ( {numSuccesses} + {numExtraSuccesses} extra Erfolge )",
       "targetDifficulty": "Schwierigkeit",
       "targetModifiers": "Ziel Modifikatoren"
     },

@@ -1,6 +1,6 @@
 import SystemDataModel from "../../abstract.mjs";
 import ED4E from "../../../config.mjs";
-import EdRollOptions from "../../other/roll-options.mjs";
+import EdRollOptions from "../../roll/common.mjs";
 import { filterObject } from "../../../utils.mjs";
 
 const { fields } = foundry.data;

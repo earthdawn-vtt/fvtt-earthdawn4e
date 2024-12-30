@@ -3,6 +3,7 @@ import getDice from "../../dice/step-tables.mjs";
 import ED4E from "../../config.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import { SparseDataModel } from "../abstract.mjs";
 
 /**
  * @typedef { object} RollStepData Data for a roll step.
@@ -58,7 +59,7 @@ import FormulaField from "../fields/formula-field.mjs";
  *                               poison
  *                               etc. TODO: complete list
  */
-export default class EdRollOptions extends foundry.abstract.DataModel {
+export default class EdRollOptions extends SparseDataModel {
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -110,8 +111,8 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
           hint:     "localize: all data about how the step is composed",
         },
       ),
-      karma:     this.#bonusResource,
-      devotion:  this.#bonusResource,
+      karma:     this._bonusResource,
+      devotion:  this._bonusResource,
       extraDice: new MappingField( new fields.NumberField( {
         required: true,
         nullable: false,
@@ -171,6 +172,17 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
             initial:  true,
             label:    "X.targetPublic",
             hint:     "X.whetherTheDifficultyIsKnownPublicly"
+          } ),
+          tokens: new fields.SetField( new fields.DocumentUUIDField(
+            {
+              // type:  "Token",
+              label: "TODO.Target.tokenUuid",
+              hint:  "TODO.Target.tokenUuidHint",
+            }
+          ), {
+            required: false,
+            label:    "TODO.Target.tokens",
+            hint:     "TODO.Target.tokensHint",
           } ),
         },
         {
@@ -250,7 +262,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
         label:    "localize: roll type",
         hint:     "localize: type of this roll, like attackMelee, or threadWeaving",
       } ),
-      rollSubType: new fields.StringField( {  
+      rollSubType: new fields.StringField( {
         required: false,
         nullable: true,
         blank:    true,
@@ -280,6 +292,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
       available:  actor.system.devotion.value,
       step:       actor.system.devotion.step,
     };
+    data.rollingActor = actor.uuid;
 
     return new EdRollOptions( data, options );
   }
@@ -331,7 +344,7 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
    * @description Bonus resources to be added globally
    * @type { RollRessourceData }
    */
-  static get #bonusResource() {
+  static get _bonusResource() {
     const fields = foundry.data.fields;
     return new fields.SchemaField(
       {
@@ -379,5 +392,13 @@ export default class EdRollOptions extends foundry.abstract.DataModel {
     );
   }
 
+  /**
+   * @description Get the data that is used to render the flavor template for the given roll type.
+   * @param { object } context The Handlebars context data that is used to render the flavor template.
+   * @returns {Promise<object>} The possibly updated data that is used to render the flavor template.
+   */
+  async getFlavorTemplateData( context ) {
+    return context;
+  }
 
 }

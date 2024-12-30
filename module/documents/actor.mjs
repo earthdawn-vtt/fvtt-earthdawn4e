@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import EdRollOptions from "../data/other/roll-options.mjs";
+import EdRollOptions from "../data/roll/common.mjs";
 import ED4E from "../config.mjs";
 import RollPrompt from "../applications/global/roll-prompt.mjs";
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
@@ -107,6 +107,10 @@ export default class ActorEd extends Actor {
    */
   get namegiver() {
     return this.items.filter( item => item.type === "namegiver" )[0];
+  }
+
+  get reactions() {
+    return this.items.filter( item => item.system.rollType === "reaction" );
   }
 
   /** @inheritDoc */

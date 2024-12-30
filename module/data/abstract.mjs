@@ -654,6 +654,17 @@ export class SparseDataModel extends foundry.abstract.DataModel {
     Object.keys( clone ).filter( k => clone[k] === undefined ).forEach( k => delete clone[k] );
     return foundry.utils.expandObject( clone );
   }
+
+  /**
+   * Merge two schema definitions together as well as possible.
+   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
+   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
+   * @returns {DataModel}  Fully merged schema.
+   */
+  static mergeSchema( a, b ) {
+    Object.assign( a, b );
+    return a;
+  }
 }
 
 /* -------------------------------------------- */
