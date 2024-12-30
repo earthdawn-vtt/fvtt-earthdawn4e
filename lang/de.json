@@ -1428,7 +1428,7 @@
       "ruleOfOne": "Fehlschlag, Regel der Eins",
       "step": "Stufe",
       "stepModifiers": "Stufen Modifikatoren",
-      "successesAchieved": "Gesamt Erfolge",
+      "successesAchieved": "Gesamt Erfolge ( {numSuccesses} + {numExtraSuccesses} extra Erfolge )",
       "targetDifficulty": "Schwierigkeit",
       "targetModifiers": "Ziel Modifikatoren"
     },
