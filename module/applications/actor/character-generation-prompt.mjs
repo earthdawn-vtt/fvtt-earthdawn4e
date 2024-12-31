@@ -232,6 +232,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Rules
     context.charGenRules = game.i18n.localize( "ED.Dialogs.CharGen.charGenRules" );
+    context.chooseEquipmentRules = game.i18n.localize( "ED.Dialogs.CharGen.chooseEquipmentRules" );
 
     // Namegiver
     context.namegivers = this.namegivers;
