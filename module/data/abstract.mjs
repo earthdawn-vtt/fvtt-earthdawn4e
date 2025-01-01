@@ -215,7 +215,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   async _preCreate( data, options, user ) {
-    const actor = this.parent.actor;
+    const actor = this.parent?.actor;
     if ( ( actor?.type !== "character" ) || !this.metadata?.singleton ) return;
     if ( actor.itemTypes[data.type]?.length ) {
       ui.notifications.error( game.i18n.format( "ED.Notifications.ActorWarningSingleton", {
