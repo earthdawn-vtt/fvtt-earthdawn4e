@@ -449,7 +449,7 @@ export default class EdRoll extends Roll {
     if ( !this._evaluated ) await this.evaluate();
 
     messageData.flavor = await this.getChatFlavor();
-    if ( this.options.rollType in CONFIG.ChatMessage.typeLabels ) messageData.type = this.options.rollType;
+    messageData.type = ( this.options.rollType in CONFIG.ChatMessage.typeLabels ) ? this.options.rollType : "common";
 
     return super.toMessage( messageData, options );
   }
