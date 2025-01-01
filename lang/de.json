@@ -694,6 +694,7 @@
               "value":                                      "Preis",
               "denomination":                               "Währung"
             },
+            "isThreadItem":                                 "Ist dieser Gegenstand ein Faden Gegenstand?",
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
               "selector":                                   "Kann der Gegenstand benutzt werden?",
@@ -892,6 +893,7 @@
               "value":                                      "Wert",
               "denomination":                               "Währung"
             },
+            "isThreadItem":                                 "Faden Gegenstand?",
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
               "selector":                                   "Benutzbar",

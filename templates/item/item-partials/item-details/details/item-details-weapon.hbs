@@ -8,4 +8,6 @@
         {{!-- automatic Weight Calculation --}}
         {{> "systems/ed4e/templates/item/item-partials/item-details/partials/tailor-to-namegiver.hbs"}}
     {{/if}}
+    {{!-- is this item a Thread item? --}}
+    {{formField systemFields.isThreadItem name="system.isThreadItem" value=item.system.isThreadItem localize=true}}
 </div>
