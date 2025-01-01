@@ -2,4 +2,140 @@ import SystemDataModel from "../abstract.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
+  constructor( data, options ) {
+    super( data, options );
+
+    // Configure Options
+    this.options = Object.freeze( this._initializeOptions( {} ) );
+  }
+
+  /**
+   * Designates which upstream class in this class' inheritance chain is the base data model.
+   * Any DEFAULT_OPTIONS of super-classes further upstream of the BASE_DATA_MODEL are ignored.
+   * Hook events for super-classes further upstream of the BASE_DATA_MODEL are not dispatched.
+   * @type {typeof BaseMessageData}
+   * @see {foundry.applications.types.ApplicationV2#BASE_APPLICATION}
+   */
+  static BASE_DATA_MODEL = BaseMessageData;
+
+  static DEFAULT_OPTIONS = {
+    actions: {},
+  };
+
+  /**
+   * Render the HTML for the ChatMessage which should be added to the log. Analogous to {@link ChatMessage#getHTML}
+   * @param {HTMLElement} baseHtml - The base HTML element which should be enhanced
+   * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML
+   */
+  async getHTML( baseHtml ) {
+    return this._attachListeners( baseHtml );
+  }
+
+  /**
+   * Iterate over the inheritance chain of this Application. Analogous to {@link foundry.applications.ApplicationV2#inheritanceChain}
+   * @see BaseMessageData.BASE_DATA_MODEL
+   * @generator
+   * @yields {typeof ApplicationV2}
+   */
+  static *inheritanceChain() {
+    let cls = this;
+    while ( cls ) {
+      yield cls;
+      if ( cls === this.BASE_DATA_MODEL ) return;
+      cls = Object.getPrototypeOf( cls );
+    }
+  }
+
+  /**
+   * Initialize the default options for this. Analogous to {@link foundry.applications.ApplicationV2#_initializeApplicationOptions}
+   * @param {object} options Options provided directly to the constructor
+   * @param {object} [options.actions] - Action handlers defined for this Application.
+   * @returns {object} Configured options for the application instance
+   * @see {foundry.applications.types.ApplicationConfiguration#actions}
+   * @protected
+   */
+  _initializeOptions( options ) {
+
+    // Options initialization order
+    const order = [ options ];
+    for ( const cls of this.constructor.inheritanceChain() ) {
+      order.unshift( cls.DEFAULT_OPTIONS );
+    }
+
+    // Intelligently merge with parent class options
+    const applicationOptions = {};
+    for ( const opts of order ) {
+      for ( const [ k, v ] of Object.entries( opts ) ) {
+        if ( ( k in applicationOptions ) ) {
+          const v0 = applicationOptions[k];
+          if ( Array.isArray( v0 ) ) applicationOptions[k].push( ...v );                // Concatenate arrays
+          else if ( foundry.utils.getType( v0 ) === "Object" ) Object.assign( v0, v );   // Merge objects
+          else applicationOptions[k] = foundry.utils.deepClone( v );                  // Override option
+        }
+        else applicationOptions[k] = foundry.utils.deepClone( v );
+      }
+    }
+
+    return applicationOptions;
+  }
+
+  /**
+   * Attach event listeners to the message HTML
+   * @param {HTMLElement} element - The message HTML element
+   * @returns {HTMLElement} The element to which listeners were attached
+   * @protected
+   */
+  _attachListeners( element ) {
+
+    const click = this.#onClick.bind( this );
+    element.addEventListener( "click", click );
+
+    return element;
+  }
+
+  /**
+   * Centralized handling of click events which occur on or within the Application frame. Taken from {@link foundry.applications.ApplicationV2}
+   * @param { PointerEvent } event - The originating click event
+   * @private
+   */
+  #onClick( event ) {
+    event.preventDefault();
+    const target = event.target;
+    const actionButton = target.closest( "[data-action]" );
+    if ( actionButton ) return this.#onClickAction( event, actionButton );
+  }
+
+  /**
+   * Handle a click event on an element which defines a [data-action] handler. Taken from {@link foundry.applications.ApplicationV2}.
+   * @param {PointerEvent} event      The originating click event
+   * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+   */
+  #onClickAction ( event, target ) {
+    const action = target.dataset.action;
+    let handler = this.options.actions[ action ];
+
+    // No defined handler
+    if ( !handler ) this._onClickAction( event, target );
+
+    // Defined handler
+    let buttons = [ 0 ];
+    if ( typeof handler === "object" ) {
+      buttons = handler.buttons;
+      handler = handler.handler;
+    }
+    if ( buttons.includes( event.buttons ) ) handler?.call( this, event, target );
+  }
+
+  /**
+   * A generic event handler for action clicks which can be extended by subclasses.
+   * Action handlers defined in DEFAULT_OPTIONS are called first. This method is only called for actions which have
+   * no defined handler.
+   * @param {PointerEvent} event      The originating click event
+   * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+   * @protected
+   */
+  _onClickAction( event, target ) {
+    console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
+  }
+  
 }

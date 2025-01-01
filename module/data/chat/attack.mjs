@@ -2,6 +2,13 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class AttackMessageData extends BaseMessageData {
 
+
+  static DEFAULT_OPTIONS = {
+    actions: {
+      "roll-damage": this._onApplyDamage.bind( this ),
+    },
+  };
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -26,6 +33,11 @@ export default class AttackMessageData extends BaseMessageData {
         initial:  0,
       } ),
     } );
+  }
+
+  static async _onApplyDamage( event, button ) {
+    event.preventDefault();
+    console.log( "In _onApplyDamage ChatMessage listener" );
   }
 
 }
