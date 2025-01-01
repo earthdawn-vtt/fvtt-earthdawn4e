@@ -12,11 +12,62 @@
     </a>
   </div>
 
+  <!-- basic information -->
+  <fieldset>
+    <div>
+      {{!-- isIdentified --}}
+      {{formField systemFields.threadData.fields.isIdentified name="system.threadData.isIdentified" value=item.system.threadData.isIdentified localize=true}}
+      {{!-- isAnalysed --}}
+      {{formField systemFields.threadData.fields.isAnalysed name="system.threadData.isAnalysed" value=item.system.threadData.isAnalysed localize=true}}
+      {{!-- Mystical Defense --}}
+      {{formField systemFields.threadData.fields.characteristics.fields.defenses.fields.mystical.fields.value name="system.threadData.characteristics.defenses.mystical.value" value=item.system.threadData.characteristics.defenses.mystical.value localize=true}}
+      {{!-- maxThreads --}}
+      {{formField systemFields.threadData.fields.maxThreads name="system.threadData.maxThreads" value=item.system.threadData.maxThreads localize=true}}
+      {{!-- tier --}}
+      {{formField systemFields.threadData.fields.tier name="system.threadData.tier" value=item.system.threadData.tier localize=true}}
+      {{!-- enchantmentPattern --}}
+      {{formField systemFields.threadData.fields.enchantmentPattern name="system.threadData.enchantmentPattern" value=item.system.threadData.enchantmentPattern localize=true}}
+    </div>
+  </fieldset>
+
+  <!-- actions -->
+  <div class="item-controls flexrow">
+    <button data-action="itemHistoryCheck" title="{{localize "ED.ToolTips.itemHistoryCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.itemHistoryCheck"}}</b>
+        <i class="fas fa-history"></i>
+      </span>
+    </button>
+    <button data-action="researchCheck" title="{{localize "ED.ToolTips.researchCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.researchCheck"}}</b>
+        <i class="fas fa-search"></i>
+      </span>
+    </button>
+    <button data-action="weaveThreadCheck" title="{{localize "ED.ToolTips.weaveThreadCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.weaveThreadCheck"}}</b>
+        <i class="fas fa-connectdevelop"></i>
+      </span>
+    </button>
+  </div>
 
   <!-- Level Contents -->
   {{#each item.system.threadData.levels}}
     <div>
-        level X 
+      analyzed
+        active
+        key information
+        - required
+        - question
+        - answer
+        - known
+        deed
+        - required
+        - description
+        - fulfilled
+        effect description
+        effect pool
     </div>
     {{/each}}
 </section>

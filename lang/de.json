@@ -695,6 +695,14 @@
               "denomination":                               "Währung"
             },
             "isThreadItem":                                 "Ist dieser Gegenstand ein Faden Gegenstand?",
+            "ThreadItem": {
+              "isIdentified":                               "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
+              "isAnalysed":                                 "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
+              "mysticalDefense":                            "Die Mystisch Verteidigung des Fadengegenstand.",
+              "maxThreads":                                 "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
+              "tier":                                       "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?",
+              "enchantmentPattern":                         "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde."
+            },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
               "selector":                                   "Kann der Gegenstand benutzt werden?",
@@ -708,6 +716,7 @@
               "calculated":                                 "Wurde dieser Gegenstand bereits mit dem Multipliktor des Namensgebers berechnet?",
               "multiplier":                                 "Der Multiplikator des Namensgebers"
             }
+            
           },
           "PoisonDisease": {
             "damageStep":                                   "Schadensstufe des Giftes/der Krankheit",
@@ -894,6 +903,14 @@
               "denomination":                               "Währung"
             },
             "isThreadItem":                                 "Faden Gegenstand?",
+            "ThreadItem": {
+              "isIdentified":                               "Identifiziert?",
+              "isAnalysed":                                 "Analysiert?",
+              "mysticalDefense":                            "Mystisch Verteidigung",
+              "maxThreads":                                 "Maximale Fäden?",
+              "tier":                                       "Kategorie?",
+              "enchantmentPattern":                         "Verzauberungsanleitung"
+            },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
               "selector":                                   "Benutzbar",
@@ -1363,7 +1380,10 @@
       },
       "PhysicalItems": {
         "addThreadLevel":                                 "Füge einen Fadenrang hinzu.",
-        "deleteThreadLevel":                              "Entferne den letzten (höchsten) Fadenrang."
+        "deleteThreadLevel":                              "Entferne den letzten (höchsten) Fadenrang.",
+        "itemHistoryCheck":                               "Artefaktgeschichte ",
+        "weaveThreadCheck":                               "Fadenweben ",
+        "researchCheck":                                  "Forschen "
       },
       "Talent": {
         "action": "Aktion",
@@ -1491,9 +1511,12 @@
       "talentsSplit": "Talente nach Kategorie gruppieren",
       "talentsSplitHint": "Talente Gruppieren"
     },
-    "Tooltips": {
+    "ToolTips": {
       "addThreadLevel":                                   "Füge einen Fadenrang hinzu.",
-      "deleteThreadLevel":                                "Entferne den letzten (höchsten) Fadenrang."
+      "deleteThreadLevel":                                "Entferne den letzten (höchsten) Fadenrang.",
+      "itemHistoryCheck":                                 "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
+      "weaveThreadCheck":                                 "Würfle Fadenweben um den Fadenrang zu erhöhen.",
+      "researchCheck":                                    "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen."
     }
   },
   "TYPES": {
