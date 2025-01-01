@@ -701,7 +701,23 @@
               "mysticalDefense":                            "Die Mystisch Verteidigung des Fadengegenstand.",
               "maxThreads":                                 "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
               "tier":                                       "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?",
-              "enchantmentPattern":                         "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde."
+              "enchantmentPattern":                         "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde.",
+              "identifier":                                 "Wurde der Fadengegenstand bereits identifiziert?",
+              "level":                                      "Fadenrang",
+              "isActive":                                   "Ist dieser Fadenrang aktiv?",
+              "KeyKnowledge": {
+                "isRequired":                               "Wird eine Schlüsselinformation benötigt?",
+                "question":                                 "Wie ist die Fagestellung der Schlüsselinformation?",
+                "answer":                                   "Wie ist die Antwort der Schlüsselinformation?",
+                "isknown":                                  "Ist die Schlüsselinformation bekannt?"
+              },
+              "Deed": {
+                "isRequired":                               "Ist eine Tat erforderlich?",
+                "description":                              "Was für eine Tat ist erforderlich?",
+                "isCompleted":                              "Ist die Tat abgeschlossen?"
+              },
+              "effect":                                     "Welchen Effekt hat dieser Fadenrang",
+              "activeEffect":                               "Welche Active Effects hat dieser Fadenrang"
             },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
@@ -909,7 +925,23 @@
               "mysticalDefense":                            "Mystisch Verteidigung",
               "maxThreads":                                 "Maximale Fäden?",
               "tier":                                       "Kategorie?",
-              "enchantmentPattern":                         "Verzauberungsanleitung"
+              "enchantmentPattern":                         "Verzauberungsanleitung",
+              "identifier":                                 "Identifiziert",
+              "level":                                      "Rang",
+              "isActive":                                   "Aktiv",
+              "KeyKnowledge": {
+                "isRequired":                               "Schlüsselinformation benötigt?",
+                "question":                                 "Schlüsselinformation",
+                "answer":                                   "Antwort",
+                "isknown":                                  "bekannt"
+              },
+              "Deed": {
+                "isRequired":                               "Tat erforderlich?",
+                "description":                              "Tat",
+                "isCompleted":                              "Abgeschlossen"
+              },
+              "effect":                                     "Effekt",
+              "activeEffect":                               "Aktive Effekte"
             },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {

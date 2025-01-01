@@ -36,9 +36,10 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       classes:  [ "top" ] 
     },
     tabs: {
-      template: "templates/generic/tab-navigation.hbs",
-      id:       "-tabs-navigation",
-      classes:  [ "tabs-navigation" ],
+      template:   "templates/generic/tab-navigation.hbs",
+      id:         "-tabs-navigation",
+      classes:    [ "tabs-navigation" ],
+      scrollable: [ "" ],
     },
     "general-tab": { 
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
@@ -53,8 +54,10 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       classes:  [ "effects" ] 
     },
     "thread-tab": { 
-      template: "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs", 
-      classes:  [ "thread" ] 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs", 
+      id:         "-thread-tab",
+      classes:    [ "thread" ],
+      scrollable: [ "" ], 
     },
   };
   

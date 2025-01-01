@@ -1,4 +1,4 @@
-<section class="tab {{tab.cssClass}}" data-group="item-sheet" data-tab="thread-tab">
+<section class="tab {{tab.cssClass}} scrollable" data-group="item-sheet" data-tab="thread-tab">
     <!-- Button controls -->
   <div class="item-controls flexrow">
     <a class="advancement__title class__add-level" data-action="addThreadLevel" title="{{localize "ED.ToolTips.addThreadLevel"}}">
@@ -54,20 +54,33 @@
 
   <!-- Level Contents -->
   {{#each item.system.threadData.levels}}
-    <div>
-      analyzed
-        active
-        key information
-        - required
-        - question
-        - answer
-        - known
-        deed
-        - required
-        - description
-        - fulfilled
-        effect description
-        effect pool
-    </div>
+    <fieldset>
+      <div>
+        {{!-- level --}}
+        {{formField this.schema.fields.level name="system.threadData.level" value=item.system.threadData.level localize=true}}
+        {{!-- isAnalysed --}}
+        {{formField this.schema.fields.isAnalysed name="system.threadData.isAnalysed" value=item.system.threadData.isAnalysed localize=true}}
+        {{!-- isActive --}}
+        {{formField this.schema.fields.isActive name="system.threadData.isActive" value=item.system.threadData.isActive localize=true}}
+        {{!-- keyKnowledge isRequired --}}
+        {{formField this.schema.fields.keyKnowledge.fields.isRequired name="system.threadData.keyKnowledge.isRequired" value=item.system.threadData.keyKnowledge.isRequired localize=true}}
+        {{!-- keyKnowledge question --}}
+        {{formField this.schema.fields.keyKnowledge.fields.question name="system.threadData.keyKnowledge.question" value=item.system.threadData.keyKnowledge.question localize=true}}
+        {{!-- keyKnowledge answer --}}
+        {{formField this.schema.fields.keyKnowledge.fields.answer name="system.threadData.keyKnowledge.answer" value=item.system.threadData.keyKnowledge.answer localize=true}}
+        {{!-- keyKnowledge isknown --}}
+        {{formField this.schema.fields.keyKnowledge.fields.isknown name="system.threadData.keyKnowledge.isknown" value=item.system.threadData.keyKnowledge.isknown localize=true}}
+        {{!-- deed isRequired --}}
+        {{formField this.schema.fields.deed.fields.isRequired name="system.threadData.deed.isRequired" value=item.system.threadData.deed.isRequired localize=true}}
+        {{!-- deed description --}}
+        {{formField this.schema.fields.deed.fields.description name="system.threadData.deed.description" value=item.system.threadData.deed.description localize=true}}
+        {{!-- deed isCompleted --}}
+        {{formField this.schema.fields.deed.fields.isCompleted name="system.threadData.deed.isCompleted" value=item.system.threadData.deed.isCompleted localize=true}}
+        {{!-- effect --}}
+        {{formField this.schema.fields.effect name="system.threadData.effect" value=item.system.threadData.effect localize=true}}
+        {{!-- activeEffect --}}
+        {{formField this.schema.fields.activeEffect name="system.threadData.activeEffect" value=item.system.threadData.activeEffect localize=true}}
+      </div> 
+    </fieldset>
     {{/each}}
 </section>
