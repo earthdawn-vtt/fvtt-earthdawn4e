@@ -5,7 +5,7 @@ export default class AttackRollOptions extends AbilityRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      weapon:        new fields.DocumentUUIDField( {
+      weaponUuid:        new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,
       } ),

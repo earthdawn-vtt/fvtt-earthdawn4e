@@ -15,32 +15,90 @@ export default class AttackMessageData extends BaseMessageData {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      attacker: new fields.DocumentUUIDField( {
-        required: false,
-        nullable: true,
-      } ),
-      targets: new fields.ArrayField(
-        new fields.DocumentUUIDField( {
-          required: false,
-          nullable: true,
-        } ),
-        {
-          required: false,
-          nullable: true,
-        }
-      ),
       damageDealt: new fields.NumberField( {
         required: false,
         nullable: true,
+        step:     1,
         min:      0,
         initial:  0,
+        integer:  true,
       } ),
+      // as value/max, so it can be used as like other resources, like an HTML meter element
+      successes: new fields.SchemaField( {
+        // available successes
+        value: new fields.NumberField( {
+          step:     1,
+          initial:  0,
+          integer:  true,
+        } ),
+        // num successes on the original roll
+        max: new fields.NumberField( {
+          step:     1,
+          initial:  0,
+          integer:  true,
+        } )
+      } ),
+      successful: new fields.BooleanField( {} ),
     } );
   }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  /**
+   * The Actor that is attacking.
+   * @type {Document | object | null}
+   */
+  get attacker() {
+    return fromUuidSync( this.roll.options.rollingActorUuid );
+  }
+
+  /**
+   * The attack roll of this message.
+   * @type {EdRoll}
+   */
+  get roll() {
+    return this.parent?.rolls[0];
+  }
+
+  /**
+   * The targets of the attack.
+   * @type {Set[ActorEd]}
+   */
+  get targets() {
+    return this.roll.options.target.tokens.map( token => fromUuidSync( token ) );
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _preCreate( data, options, user ) {
+    if ( ( await super._preCreate( data, options, user ) ) === false ) return false;
+
+    const roll = this.parent?.rolls[0];
+    const updates = {};
+
+    updates.successful = roll.isSuccess;
+    updates.successes = {
+      value: roll.numSuccesses,
+      max:   roll.numSuccesses,
+    };
+
+    this.updateSource( updates );
+  }
+
+
+  /* -------------------------------------------- */
+  /*  Listeners                                   */
+  /* -------------------------------------------- */
 
   static async _onApplyDamage( event, button ) {
     event.preventDefault();
     console.log( "In _onApplyDamage ChatMessage listener" );
+    // update the damageDealt in the DataModel
   }
 
   static async _onApplyEffect( event, button ) {
@@ -51,6 +109,7 @@ export default class AttackMessageData extends BaseMessageData {
   static async _onUseManeuver( event, button ) {
     event.preventDefault();
     ui.notifications.info( "Maneuvers are not done yet. We're working on it :)" );
+    // update the number of successes in the DataModel
     /* console.log( "In _onUseManeuver ChatMessage listener" );
     const ability = await fromUuid( button.dataset.abilityUuid );
     console.log( "Ability: ", ability ); */
@@ -59,6 +118,7 @@ export default class AttackMessageData extends BaseMessageData {
   static async _onUseReaction( event, button ) {
     event.preventDefault();
     ui.notifications.info( "Reactions are not done yet. We're working on it :)" );
+    // potentially update the success of the roll in the DataModel, e.g. with avoid blow
     /* console.log( "In _onUseReaction ChatMessage listener" );
     const ability = await fromUuid( button.dataset.abilityUuid );
     console.log( "Ability: ", ability ); */
