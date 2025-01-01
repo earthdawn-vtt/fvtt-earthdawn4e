@@ -1,3 +1,22 @@
 <section class="tab {{tab.cssClass}}" data-group="item-sheet" data-tab="thread-tab">
-    this is the tab for threads
+    <!-- Button controls -->
+  <div class="item-controls flexrow">
+    <a class="advancement__title class__add-level" data-action="addThreadLevel" title="{{localize "ED.ToolTips.addThreadLevel"}}">
+      <b>{{localize "ED.Item.PhysicalItems.addThreadLevel"}}</b>
+      <i class="fas fa-plus"></i>
+    </a>
+    <a class="item-control thread__delete-level text-align-middle" data-action="deleteThreadLevel"  title="{{localize "ED.ToolTips.deleteThreadLevel"}}"
+       data-drop-function="delete-pool-ability">
+      <b>{{localize "ED.Item.PhysicalItems.deleteThreadLevel"}}</b>
+      <i class="fas fa-trash"></i>
+    </a>
+  </div>
+
+
+  <!-- Level Contents -->
+  {{#each item.system.threadData.levels}}
+    <div>
+        level X 
+    </div>
+    {{/each}}
 </section>

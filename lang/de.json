@@ -1361,6 +1361,10 @@
       "Placeholder": {
         "lpDescription": "Trage hier eine Beschreibung ein"
       },
+      "PhysicalItems": {
+        "addThreadLevel":                                 "Füge einen Fadenrang hinzu.",
+        "deleteThreadLevel":                              "Entferne den letzten (höchsten) Fadenrang."
+      },
       "Talent": {
         "action": "Aktion",
         "attribute": "Attribut",
@@ -1486,6 +1490,10 @@
       },
       "talentsSplit": "Talente nach Kategorie gruppieren",
       "talentsSplitHint": "Talente Gruppieren"
+    },
+    "Tooltips": {
+      "addThreadLevel":                                   "Füge einen Fadenrang hinzu.",
+      "deleteThreadLevel":                                "Entferne den letzten (höchsten) Fadenrang."
     }
   },
   "TYPES": {

@@ -117,13 +117,13 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   
   static async addThreadLevel( event, target ) {
     event.preventDefault();
-    this.document.system.thread.addLevel();
+    this.document.system.threadData.addLevel();
     this.render();
   }
   
   static async deleteThreadLevel( event, target ) {
     event.preventDefault();
-    this.document.system.thread.deleteLevel();
+    this.document.system.threadData.deleteLevel();
     this.render();
   }
 
