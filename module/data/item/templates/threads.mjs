@@ -1,4 +1,6 @@
 import { ItemDataModel } from "../../abstract.mjs";
+import ThreadBaseData from "../../thread/thread-base.mjs";
+
 
 /**
  * Data model template with information on Ability items.
@@ -18,6 +20,24 @@ export default class ThreadTemplate extends ItemDataModel {
         label:    this.labelKey( "PhysicalItems.isThreadItem" ),
         hint:     this.hintKey( "PhysicalItems.isThreadItem" )
       } ),
+      threadData: new fields.EmbeddedDataField(
+        ThreadBaseData,
+        {
+          required: true,
+          label:    this.labelKey( "PhysicalItems.threadData" ),
+          hint:     this.hintKey( "PhysicalItems.threadData" )
+        }
+      )
     } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  static migrateData( source ) {
+    super.migrateData( source );
+    // specific migration functions
   }
 }
