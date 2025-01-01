@@ -24,7 +24,6 @@ import SpecialAbilityData from "./special-ability.mjs";
 import SpellKnackData from "./spell-knacks.mjs";
 import SpellData from "./spell.mjs";
 import TalentData from "./talent.mjs";
-import ThreadData from "./thread.mjs";
 import WeaponData from "./weapon.mjs";
 
 export {
@@ -54,7 +53,6 @@ export {
   SpellKnackData,
   SpellData,
   TalentData,
-  ThreadData,
   WeaponData
 };
 
@@ -94,6 +92,5 @@ export const config = {
   spellKnack:     SpellKnackData,
   spell:          SpellData,
   talent:         TalentData,
-  thread:         ThreadData,
   weapon:         WeaponData
 };
