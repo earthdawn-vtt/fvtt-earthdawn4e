@@ -99,10 +99,12 @@ export default class BaseMessageData extends SystemDataModel {
    * @private
    */
   #onClick( event ) {
-    event.preventDefault();
     const target = event.target;
     const actionButton = target.closest( "[data-action]" );
-    if ( actionButton ) return this.#onClickAction( event, actionButton );
+    if ( actionButton ) {
+      event.preventDefault();
+      return this.#onClickAction( event, actionButton );
+    }
   }
 
   /**
