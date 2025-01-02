@@ -270,8 +270,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   set namegiverAbilities( namegiverDocument ) {
     // Only update data if namegiver changes
     if ( !namegiverDocument || ( this.selectedNamegiver === namegiverDocument.uuid ) ) return;
-    console.log( "namegiverAbilities", namegiverDocument.system.abilities );
-  
+
     this.updateSource( {
       abilities: {
         namegiver: Object.fromEntries( namegiverDocument.system.abilities.map( ability => [ ability, 0 ] ) ),
