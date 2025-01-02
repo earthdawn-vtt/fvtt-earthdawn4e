@@ -357,7 +357,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return context;
   }
 
-  async _prepareTabsContext( context, options ) {
+  async _prepareTabsContext( context, _ ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
     const tab = this.tabGroups.primary;
@@ -402,8 +402,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Set namegiver specifics
     if ( data.namegiver ) {
-      const namegiverDocument = await fromUuid( data.namegiver );
-      this.charGenData.namegiverAbilities = namegiverDocument;
+      this.charGenData.namegiverAbilities = await fromUuid( data.namegiver );
     }
   
     // Reset selected class if class type changed
@@ -444,7 +443,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ------------------------  Actions  ------------------------ */
   /* ----------------------------------------------------------- */
 
-  static _nextTab( event, target ) {
+  static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
 
     // if ( !this._validateOnChangeTab() ) return;
@@ -453,7 +452,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
-  static _previousTab( event, target ) {
+  static _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
 
     // if ( !this._validateOnChangeTab() ) return;

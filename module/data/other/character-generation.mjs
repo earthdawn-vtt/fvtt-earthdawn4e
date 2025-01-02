@@ -13,7 +13,6 @@ import MappingField from "../fields/mapping-field.mjs";
 
 /**
 The application responsible for handling character generation
-@augments {FormApplication}
 @param {CharacterGenerationData} charGen         The data model which is the
 target data structure to be updated by the form.
 @param {FormApplicationOptions} [options={}]     Additional options which
