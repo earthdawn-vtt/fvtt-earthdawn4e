@@ -299,12 +299,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActor:  this.parentActor.uuid,
-      target:        { tokens: game.user.targets.map( token => token.document.uuid ) },
-      attackAbility: this.parent.uuid,
-      weapon:        weapon.uuid,
-      chatFlavor:    "AbilityTemplate: ATTACK ROLL",
-      rollType:      "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+      rollingActorUuid: this.parentActor.uuid,
+      target:           { tokens: game.user.targets.map( token => token.document.uuid ) },
+      abilityUuid:      this.parent.uuid,
+      weaponUuid:       weapon.uuid,
+      chatFlavor:       "AbilityTemplate: ATTACK ROLL",
+      rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
     };
 
     const roll = await RollPrompt.waitPrompt(

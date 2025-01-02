@@ -16,7 +16,7 @@
   "ChatMessage": {
     "types": [
       "attack",
-      "base"
+      "common"
       ]
   },
   "Item": {

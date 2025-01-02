@@ -7,6 +7,6 @@ export {
 };
 
 export const config = {
-  base:   BaseMessageData,
+  common:   BaseMessageData,
   attack: AttackMessageData,
 };
