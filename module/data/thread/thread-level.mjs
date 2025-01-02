@@ -30,10 +30,10 @@ export default class ThreadLevelData extends SparseDataModel {
         required: true,
         nullable: false,
         initial:  false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.isAnalysed" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isAnalysed" )
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isAnalysed",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isAnalysed"
+        // label:    this.labelKey( "PhysicalItems.ThreadItem.isLevelAnalysed" ),
+        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isLevelAnalysed" )
+        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isLevelAnalysed",
+        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isLevelAnalysed"
       } ),
       isActive: new fields.BooleanField( {
         required: true,

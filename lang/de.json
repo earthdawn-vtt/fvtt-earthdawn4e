@@ -698,6 +698,7 @@
             "ThreadItem": {
               "isIdentified":                               "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
               "isAnalysed":                                 "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
+              "isLevelAnalysed":                            "Dieser Fadenrang ist analysiert und kann erforscht werden.",
               "mysticalDefense":                            "Die Mystisch Verteidigung des Fadengegenstand.",
               "maxThreads":                                 "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
               "tier":                                       "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?",

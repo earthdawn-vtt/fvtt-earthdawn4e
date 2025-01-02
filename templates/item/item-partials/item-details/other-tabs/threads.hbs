@@ -57,29 +57,29 @@
     <fieldset>
       <div>
         {{!-- level --}}
-        {{formField this.schema.fields.level name="system.threadData.level" value=item.system.threadData.level localize=true}}
+        {{formField this.schema.fields.level name=(concat "system.threadData.levels." @index ".level") value=this.level localize=true}}
         {{!-- isAnalysed --}}
-        {{formField this.schema.fields.isAnalysed name="system.threadData.isAnalysed" value=item.system.threadData.isAnalysed localize=true}}
+        {{formField this.schema.fields.isAnalysed name=(concat "system.threadData.levels." @index ".isAnalysed") value=this.isAnalysed localize=true}}
         {{!-- isActive --}}
-        {{formField this.schema.fields.isActive name="system.threadData.isActive" value=item.system.threadData.isActive localize=true}}
+        {{formField this.schema.fields.isActive name=(concat "system.threadData.levels." @index ".isActive") value=this.isActive localize=true}}
         {{!-- keyKnowledge isRequired --}}
-        {{formField this.schema.fields.keyKnowledge.fields.isRequired name="system.threadData.keyKnowledge.isRequired" value=item.system.threadData.keyKnowledge.isRequired localize=true}}
+        {{formField this.schema.fields.keyKnowledge.fields.isRequired name=(concat "system.threadData.levels." @index ".keyKnowledge.isRequired") value=this.keyKnowledge.isRequired localize=true}}
         {{!-- keyKnowledge question --}}
-        {{formField this.schema.fields.keyKnowledge.fields.question name="system.threadData.keyKnowledge.question" value=item.system.threadData.keyKnowledge.question localize=true}}
+        {{formField this.schema.fields.keyKnowledge.fields.question name=(concat "system.threadData.levels." @index ".keyKnowledge.question") value=this.keyKnowledge.question localize=true}}
         {{!-- keyKnowledge answer --}}
-        {{formField this.schema.fields.keyKnowledge.fields.answer name="system.threadData.keyKnowledge.answer" value=item.system.threadData.keyKnowledge.answer localize=true}}
+        {{formField this.schema.fields.keyKnowledge.fields.answer name=(concat "system.threadData.levels." @index ".keyKnowledge.answer") value=this.keyKnowledge.answer localize=true}}
         {{!-- keyKnowledge isknown --}}
-        {{formField this.schema.fields.keyKnowledge.fields.isknown name="system.threadData.keyKnowledge.isknown" value=item.system.threadData.keyKnowledge.isknown localize=true}}
+        {{formField this.schema.fields.keyKnowledge.fields.isknown name=(concat "system.threadData.levels." @index ".keyKnowledge.isknown") value=this.keyKnowledge.isknown localize=true}}
         {{!-- deed isRequired --}}
-        {{formField this.schema.fields.deed.fields.isRequired name="system.threadData.deed.isRequired" value=item.system.threadData.deed.isRequired localize=true}}
+        {{formField this.schema.fields.deed.fields.isRequired name=(concat "system.threadData.levels." @index ".deed.isRequired") value=this.deed.isRequired localize=true}}
         {{!-- deed description --}}
-        {{formField this.schema.fields.deed.fields.description name="system.threadData.deed.description" value=item.system.threadData.deed.description localize=true}}
+        {{formField this.schema.fields.deed.fields.description name=(concat "system.threadData.levels." @index ".deed.description") value=this.deed.description localize=true}}
         {{!-- deed isCompleted --}}
-        {{formField this.schema.fields.deed.fields.isCompleted name="system.threadData.deed.isCompleted" value=item.system.threadData.deed.isCompleted localize=true}}
+        {{formField this.schema.fields.deed.fields.isCompleted name=(concat "system.threadData.levels." @index ".deed.isCompleted") value=this.deed.isCompleted localize=true}}
         {{!-- effect --}}
-        {{formField this.schema.fields.effect name="system.threadData.effect" value=item.system.threadData.effect localize=true}}
+        {{formField this.schema.fields.effect name=(concat "system.threadData.levels." @index ".effect") value=this.effect localize=true}}
         {{!-- activeEffect --}}
-        {{formField this.schema.fields.activeEffect name="system.threadData.activeEffect" value=item.system.threadData.activeEffect localize=true}}
+        {{formField this.schema.fields.activeEffect name=(concat "system.threadData.levels." @index ".activeEffect") value=this.activeEffect localize=true}}
       </div> 
     </fieldset>
     {{/each}}
