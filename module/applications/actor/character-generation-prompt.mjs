@@ -288,37 +288,35 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     context.hasPreviousStep = this._hasPreviousStep();
     context.hasNoPreviousStep = !context.hasPreviousStep;
 
-
-    context.buttons = [
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
-        cssClass: "cancel",
-        icon:     `fas ${ED4E.icons.cancel}`,
-        action:   "close",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
-        cssClass: "previous",
-        icon:     `fas ${ED4E.icons.previousCharGen}`,
-        action:   "previous",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
-        cssClass: "next",
-        icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
-        action:   "next",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.finish" ),
-        cssClass: "finish",
-        icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
-        action:   "finish",
-      },
-    ];
+    // Add buttons
+    context.buttons = [ {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      cssClass: "cancel",
+      icon:     `fas ${ED4E.icons.cancel}`,
+      action:   "close",
+    }, ];
+    if ( context.hasPreviousStep ) context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
+      cssClass: "previous",
+      icon:     `fas ${ED4E.icons.previousCharGen}`,
+      action:   "previous",
+    } );
+    if ( context.hasNextStep ) context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
+      cssClass: "next",
+      icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
+      action:   "next",
+    } );
+    context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.finish" ),
+      cssClass: "finish",
+      icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
+      action:   "finish",
+    }, );
   
 
 
@@ -367,6 +365,10 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return context;
   }
 
+
+  /* ----------------------------------------------------------- */
+  /* -------------------  Tab Handling  ------------------------ */
+  /* ----------------------------------------------------------- */
   async activateTab ( context, tabId ) {
     const tabGroup = "primary";
     for ( const tab of Object.values( this.constructor.TABS ) ) {
@@ -384,6 +386,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // check if the currentStep is still valid with the active tab
     // this is not the case if the tab was changed via the navigation, not the buttons
     this._currentStep = this._steps.indexOf( tab );
+    this.render( { parts: [ "footer" ] } );
   }
   
   /* ----------------------------------------------------------- */
