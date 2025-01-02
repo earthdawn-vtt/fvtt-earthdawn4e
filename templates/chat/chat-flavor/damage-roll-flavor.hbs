@@ -7,9 +7,6 @@ Damage Flavor contains:
 - Target Modifiers 
 --}}
 <div class="custom-flavor">{{ customFlavor }}</div>
-{{#if (eq ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
 <div class="flexrow message-buttons damage-roll-buttons" data-roll-total={{ result }}>
   <button type="button" class="apply-damage" title="{{ localize "ED.Chat.Button.applyDamageTitle" }}" data-action="apply-damage">
     {{ localize "ED.Chat.Button.applyDamage" }}
@@ -20,9 +17,4 @@ Damage Flavor contains:
 </div>
 <div class="modifier-lists flexrow">
   {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-  {{#if target.public}}
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-  {{/if}}
-  
 </div>
-{{/if}}
