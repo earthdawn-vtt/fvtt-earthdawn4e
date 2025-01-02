@@ -299,17 +299,17 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       },
       {
         type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
-        cssClass: "next",
-        icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
-        action:   "next",
-      },
-      {
-        type:     "button",
         label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
         cssClass: "previous",
         icon:     `fas ${ED4E.icons.previousCharGen}`,
         action:   "previous",
+      },
+      {
+        type:     "button",
+        label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
+        cssClass: "next",
+        icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
+        action:   "next",
       },
       {
         type:     "button",
