@@ -923,6 +923,7 @@
             "ThreadItem": {
               "isIdentified":                               "Identifiziert?",
               "isAnalysed":                                 "Analysiert?",
+              "isLevelAnalysed":                            "Fadenrang Analysiert?",
               "mysticalDefense":                            "Mystisch Verteidigung",
               "maxThreads":                                 "Maximale Fäden?",
               "tier":                                       "Kategorie?",
