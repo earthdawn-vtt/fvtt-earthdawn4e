@@ -316,6 +316,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       cssClass: "finish",
       icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
       action:   "finish",
+      disabled: !this._validateCompletion( "" ),
     }, );
   
 
@@ -483,9 +484,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return this.close();
   }
 
-
-  _validateCompletion() {
-    const errorLevel = "error";
+  _validateCompletion( errorLevel = "error" ) {
     return this._validateNamegiver( errorLevel, true )
       && this._validateClass( errorLevel, true )
       && this._validateClassRanks( errorLevel, true )
@@ -541,7 +540,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _displayValidationError( level, type ) {
-    ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
+    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
   }
 
   static _onSelectTalentOption( _, target ) {
