@@ -28,13 +28,13 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
 
     this._steps = [
-      "namegiver",
-      "class",
-      "attribute",
-      "spell",
-      "skill",
-      "language",
-      "equipment"
+      "namegiver-tab",
+      "class-tab",
+      "attribute-tab",
+      "spell-tab",
+      "skill-tab",
+      "language-tab",
+      "equipment-tab",
     ];
     this._currentStep = 0;
 
@@ -288,37 +288,36 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     context.hasPreviousStep = this._hasPreviousStep();
     context.hasNoPreviousStep = !context.hasPreviousStep;
 
-
-    context.buttons = [
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
-        cssClass: "cancel",
-        icon:     `fas ${ED4E.icons.cancel}`,
-        action:   "close",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
-        cssClass: "next",
-        icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
-        action:   "next",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
-        cssClass: "previous",
-        icon:     `fas ${ED4E.icons.previousCharGen}`,
-        action:   "previous",
-      },
-      {
-        type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.finish" ),
-        cssClass: "finish",
-        icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
-        action:   "finish",
-      },
-    ];
+    // Add buttons
+    context.buttons = [ {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      cssClass: "cancel",
+      icon:     `fas ${ED4E.icons.cancel}`,
+      action:   "close",
+    }, ];
+    if ( context.hasPreviousStep ) context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
+      cssClass: "previous",
+      icon:     `fas ${ED4E.icons.previousCharGen}`,
+      action:   "previous",
+    } );
+    if ( context.hasNextStep ) context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
+      cssClass: "next",
+      icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
+      action:   "next",
+    } );
+    context.buttons.push( {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.finish" ),
+      cssClass: "finish",
+      icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
+      action:   "finish",
+      disabled: !this._validateCompletion( "" ),
+    }, );
   
 
 
@@ -358,7 +357,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return context;
   }
 
-  async _prepareTabsContext( context, options ) {
+  async _prepareTabsContext( context, _ ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
     const tab = this.tabGroups.primary;
@@ -367,13 +366,28 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return context;
   }
 
+
+  /* ----------------------------------------------------------- */
+  /* -------------------  Tab Handling  ------------------------ */
+  /* ----------------------------------------------------------- */
   async activateTab ( context, tabId ) {
     const tabGroup = "primary";
     for ( const tab of Object.values( this.constructor.TABS ) ) {
       tab.active = tab.id === tabId;  
     }
     this.tabGroups[tabGroup] = tabId;
-    context.tabs[tabId].cssClass = "active";
+    if ( context?.tabs ) context.tabs[tabId].cssClass = "active";
+  }
+
+  /** @inheritDoc */
+  changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
+    super.changeTab( tab, group, {event, navElement, force, updatePosition} );
+
+    // until we have a `_onChangeTab` method we need to do it here
+    // check if the currentStep is still valid with the active tab
+    // this is not the case if the tab was changed via the navigation, not the buttons
+    this._currentStep = this._steps.indexOf( tab );
+    this.render( { parts: [ "footer" ] } );
   }
   
   /* ----------------------------------------------------------- */
@@ -388,8 +402,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Set namegiver specifics
     if ( data.namegiver ) {
-      const namegiverDocument = await fromUuid( data.namegiver );
-      this.charGenData.namegiverAbilities = namegiverDocument;
+      this.charGenData.namegiverAbilities = await fromUuid( data.namegiver );
     }
   
     // Reset selected class if class type changed
@@ -430,20 +443,22 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ------------------------  Actions  ------------------------ */
   /* ----------------------------------------------------------- */
 
-  static _nextTab( event, target ) {
+  static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
+
     // if ( !this._validateOnChangeTab() ) return;
+
     this._currentStep++;
-    this.activateTab( this.charGenData, this._steps[this._currentStep] );
-    this.render( true );
+    this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
-  static _previousTab( event, target ) {
+  static _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
+
     // if ( !this._validateOnChangeTab() ) return;
+
     this._currentStep--;
-    this.activateTab( this._steps[this._currentStep] );
-    this.render( true );
+    this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
   _hasNextStep() {
@@ -468,9 +483,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return this.close();
   }
 
-
-  _validateCompletion() {
-    const errorLevel = "error";
+  _validateCompletion( errorLevel = "error" ) {
     return this._validateNamegiver( errorLevel, true )
       && this._validateClass( errorLevel, true )
       && this._validateClassRanks( errorLevel, true )
@@ -526,7 +539,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   _displayValidationError( level, type ) {
-    ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
+    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
   }
 
   static _onSelectTalentOption( _, target ) {

@@ -149,7 +149,6 @@
     <h4>{{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}</h4>
     <table>
       {{#each namegiverAbilities}}
-      {{log "Namegiver Ability: " this}}
         <tr class="flexrow" data-ability-uuid="{{this}}">
           <td class="ability-name" title="{{this.system.description}}">
             {{ed-nameFromUuid this}}

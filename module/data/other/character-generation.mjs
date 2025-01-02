@@ -13,7 +13,6 @@ import MappingField from "../fields/mapping-field.mjs";
 
 /**
 The application responsible for handling character generation
-@augments {FormApplication}
 @param {CharacterGenerationData} charGen         The data model which is the
 target data structure to be updated by the form.
 @param {FormApplicationOptions} [options={}]     Additional options which
@@ -270,8 +269,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   set namegiverAbilities( namegiverDocument ) {
     // Only update data if namegiver changes
     if ( !namegiverDocument || ( this.selectedNamegiver === namegiverDocument.uuid ) ) return;
-    console.log( "namegiverAbilities", namegiverDocument.system.abilities );
-  
+
     this.updateSource( {
       abilities: {
         namegiver: Object.fromEntries( namegiverDocument.system.abilities.map( ability => [ ability, 0 ] ) ),
