@@ -109,7 +109,7 @@ export default class CharacterGenerationData extends SparseDataModel {
         ), {
           required:        true,
           initialKeysOnly: true,
-          initialKeys:     [ "optional", "class", "free", "special", "artisan", "knowledge", "general", "language" ],
+          initialKeys:     [ "optional", "class", "free", "special", "artisan", "knowledge", "general", "language", "namegiver" ],
         } ),
       availableRanks: new fields.SchemaField( {
         talent: new fields.NumberField( {
@@ -261,6 +261,35 @@ export default class CharacterGenerationData extends SparseDataModel {
         special: Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.special.map( ability => [ ability, 0 ] ) ),
       }
     } );
+  }
+
+  get namegiverAbilities() {
+    return this.abilities.namegiver;
+  }
+  
+  set namegiverAbilities( namegiverDocument ) {
+    // Only update data if namegiver changes
+    if ( !namegiverDocument || ( this.selectedNamegiver === namegiverDocument.uuid ) ) return;
+    console.log( "namegiverAbilities", namegiverDocument.system.abilities );
+  
+    this.updateSource( {
+      abilities: {
+        namegiver: Object.fromEntries( namegiverDocument.system.abilities.map( ability => [ ability, 0 ] ) ),
+      }
+    } );
+  }
+  
+  async getNamegiverAbilities() {
+    const namegiver = await this.namegiverDocument;
+    if ( !namegiver ) return [];
+  
+    const abilitiesUuid = namegiver.system.abilities || [];
+    const abilities = await Promise.all( abilitiesUuid.map( async ( abilityUuid ) => {
+      const ability = await fromUuid( abilityUuid );
+      return ability.type === "talent" ? abilityUuid : null;
+    } ) );
+  
+    return abilities.filter( uuid => uuid !== null );
   }
 
   async getCharacteristicsPreview() {
@@ -597,7 +626,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   _getAbilityClassType( abilityType ) {
-    const isClass = [ "class", "optional", "free" ].includes( abilityType );
+    const isClass = [ "class", "optional", "free", "namegiver" ].includes( abilityType );
     if ( isClass && this.isAdept ) return "talent";
     if ( isClass && !this.isAdept ) return "devotion";
     if ( abilityType === "language" ) return "general";

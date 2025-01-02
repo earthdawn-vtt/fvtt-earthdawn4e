@@ -143,4 +143,34 @@
     </table>
   </div>
 
+{{#if object.isAdept}}
+  <!-- Namegiver Abilities -->
+  <div class="namegiver-abilities">
+    <h4>{{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}</h4>
+    <table>
+      {{#each namegiverAbilities}}
+      {{log "Namegiver Ability: " this}}
+        <tr class="flexrow" data-ability-uuid="{{this}}">
+          <td class="ability-name" title="{{this.system.description}}">
+            {{ed-nameFromUuid this}}
+          </td>
+          <td class="flexrow rank-change">
+            <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
+                  data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="namegiver">
+              <i class="fa-light fa-circle-minus"></i>
+            </span>
+            <span class="rank-change-value">
+              {{lookup @root.object.abilities.namegiver this}}
+            </span>
+            <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
+                  data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="namegiver">
+              <i class="fa-light fa-circle-plus"></i>
+            </span>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+  {{/if}}
+
 </section>
