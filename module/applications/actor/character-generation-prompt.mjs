@@ -28,13 +28,13 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
 
     this._steps = [
-      "namegiver",
-      "class",
-      "attribute",
-      "spell",
-      "skill",
-      "language",
-      "equipment"
+      "namegiver-tab",
+      "class-tab",
+      "attribute-tab",
+      "spell-tab",
+      "skill-tab",
+      "language-tab",
+      "equipment-tab",
     ];
     this._currentStep = 0;
 
@@ -373,7 +373,17 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       tab.active = tab.id === tabId;  
     }
     this.tabGroups[tabGroup] = tabId;
-    context.tabs[tabId].cssClass = "active";
+    if ( context?.tabs ) context.tabs[tabId].cssClass = "active";
+  }
+
+  /** @inheritDoc */
+  changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
+    super.changeTab( tab, group, {event, navElement, force, updatePosition} );
+
+    // until we have a `_onChangeTab` method we need to do it here
+    // check if the currentStep is still valid with the active tab
+    // this is not the case if the tab was changed via the navigation, not the buttons
+    this._currentStep = this._steps.indexOf( tab );
   }
   
   /* ----------------------------------------------------------- */
@@ -432,18 +442,20 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   static _nextTab( event, target ) {
     if ( !this._hasNextStep() ) return;
+
     // if ( !this._validateOnChangeTab() ) return;
+
     this._currentStep++;
-    this.activateTab( this.charGenData, this._steps[this._currentStep] );
-    this.render( true );
+    this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
   static _previousTab( event, target ) {
     if ( !this._hasPreviousStep() ) return;
+
     // if ( !this._validateOnChangeTab() ) return;
+
     this._currentStep--;
-    this.activateTab( this._steps[this._currentStep] );
-    this.render( true );
+    this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
   _hasNextStep() {
