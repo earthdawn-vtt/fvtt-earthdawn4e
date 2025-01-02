@@ -79,6 +79,7 @@ export default [ ...compat.extends( "eslint:recommended", "plugin:jsdoc/recommen
       mergeObject:            false,
       packs:                  false,
       renderTemplate:         false,
+      socketlib:              false,
       ui:                     false,
     },
 
