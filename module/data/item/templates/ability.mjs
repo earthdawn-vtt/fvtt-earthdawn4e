@@ -310,7 +310,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor.system,
+        rollData: this.parentActor,
       }
     );
     return this.parentActor.processRoll( roll );

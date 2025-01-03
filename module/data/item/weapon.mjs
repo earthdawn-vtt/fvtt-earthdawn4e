@@ -2,6 +2,9 @@ import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { filterObject, inRange, sum } from "../../utils.mjs";
 import ED4E from "../../config.mjs";
+import RollPrompt from "../../applications/global/roll-prompt.mjs";
+import DamageRollOptions from "../roll/damage.mjs";
+import RollableTemplate from "./templates/rollable.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -18,7 +21,8 @@ import ED4E from "../../config.mjs";
  * @property {number} forgeBonus      forged damage bonus
  */
 export default class WeaponData extends PhysicalItemTemplate.mixin(
-  ItemDescriptionTemplate
+  ItemDescriptionTemplate,
+  RollableTemplate,
 ) {
 
   static _itemStatusOrder = [ "owned", "carried", "mainHand", "offHand", "twoHands", "tail" ];
@@ -164,6 +168,33 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     } else return 0;
   }
 
+  /** @inheritDoc */
+  get baseRollOptions() {
+    const rollOptions = super.baseRollOptions;
+    const damageRollOptions = {
+      step:            {
+        base:      this.damageTotal,
+        modifiers: {},
+      },
+      karma:           rollOptions.karma,
+      devotion:        rollOptions.devotion,
+      extraDice:       {
+        // this should be the place for things like flame weapon, etc. but still needs to be implemented
+      },
+      strain:          {
+        base:      0,
+        modifiers: {},
+      },
+      chatFlavor:      "WeaponTemplate: Weapon (Damage) Roll",
+      testType:        "effect",
+      rollType:        "damage",
+      weaponUuid:       this.parent?.uuid,
+      damageAbilities:  new Set( [] ),
+    };
+
+    return new DamageRollOptions( damageRollOptions );
+  }
+
   /** @override */
   get damageTotal() {
     if ( this.isActorEmbedded ) {
@@ -292,6 +323,19 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
       default:
         return "owned";
     }
+  }
+
+  async rollDamage() {
+    const rollData = this.baseRollOptions;
+
+    const roll = await RollPrompt.waitPrompt(
+      new DamageRollOptions( rollData ),
+      {
+        rollData: this.parentActor,
+      }
+    );
+
+    return this.parentActor.processRoll( roll );
   }
 
   /**

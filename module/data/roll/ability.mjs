@@ -5,11 +5,6 @@ export default class AbilityRollOptions extends EdRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      rollingActorUuid: new fields.DocumentUUIDField( {
-        required: false,
-        label:    "TODO.RollingActor",
-        hint:     "TODO.RollingActorHint",
-      } ),
       abilityUuid: new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,

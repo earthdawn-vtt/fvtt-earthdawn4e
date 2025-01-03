@@ -246,6 +246,11 @@ export default class EdRollOptions extends SparseDataModel {
         label:    "localize: roll chat flavour",
         hint:     "localize: text that is added to the chatmessage when this call is put to chat",
       } ),
+      rollingActorUuid: new fields.DocumentUUIDField( {
+        required: false,
+        label:    "TODO.RollingActor",
+        hint:     "TODO.RollingActorHint",
+      } ),
       testType: new fields.StringField( {
         required: true,
         nullable: false,
@@ -292,7 +297,7 @@ export default class EdRollOptions extends SparseDataModel {
       available:  actor.system.devotion.value,
       step:       actor.system.devotion.step,
     };
-    data.rollingActor = actor.uuid;
+    data.rollingActorUuid = actor.uuid;
 
     return new EdRollOptions( data, options );
   }
