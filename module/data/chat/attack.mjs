@@ -47,14 +47,6 @@ export default class AttackMessageData extends BaseMessageData {
   }
 
   /**
-   * The attack roll of this message.
-   * @type {EdRoll}
-   */
-  get roll() {
-    return this.parent?.rolls[0];
-  }
-
-  /**
    * The targets of the attack.
    * @type {Set[ActorEd]}
    */

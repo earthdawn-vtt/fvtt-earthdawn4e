@@ -489,9 +489,14 @@ export default class ActorEd extends Actor {
    * @param {("physical"|"mystical")} [armorType]               The type of armor that protects from this damage, one of either
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
+   * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
+   * @returns {{damageTaken: number, knockdownTest: boolean}}
+   *                                                            An object containing:
+   *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
+   *                                                            - `knockdownTest`: whether a knockdown test should be made.
    */
   // eslint-disable-next-line max-params
-  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor ) {
+  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll ) {
     const { armor, health } = this.system.characteristics;
     const finalAmount = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
     const newDamage = health.damage[damageType] + finalAmount;
@@ -516,13 +521,17 @@ export default class ActorEd extends Actor {
       speaker: ChatMessage.getSpeaker( { actor: this.actor } ),
       content: "THIS WILL BE FIXED LATER see #756"
     };
-    if ( isStrain === false ) {
+    if ( !damageRoll && isStrain === false ) {
       ChatMessage.create( messageData );
     }
 
-    if ( !this.system.condition.knockedDown && finalAmount >= health.woundThreshold + 5 ) {
-      this.knockdownTest( finalAmount );
-    }
+    const knockdownTest = !this.system.condition.knockedDown && finalAmount >= health.woundThreshold + 5;
+    if ( knockdownTest ) this.knockdownTest( finalAmount );
+
+    return {
+      damageTaken:       finalAmount,
+      knockdownTest,
+    };
   }
 
   async knockdownTest( damageTaken, options = {} ) {

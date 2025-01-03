@@ -9,6 +9,12 @@ export default class BaseMessageData extends SystemDataModel {
     this.options = Object.freeze( this._initializeOptions( {} ) );
   }
 
+  /** @inheritDoc */
+  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Chat", false );
+
+  /** @inheritDoc */
+  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "Chat", true );
+
   /**
    * Designates which upstream class in this class' inheritance chain is the base data model.
    * Any DEFAULT_OPTIONS of super-classes further upstream of the BASE_DATA_MODEL are ignored.
@@ -21,6 +27,14 @@ export default class BaseMessageData extends SystemDataModel {
   static DEFAULT_OPTIONS = {
     actions: {},
   };
+
+  /**
+   * The roll that generated this message. If multiple, only returns the first.
+   * @type {EdRoll|undefined}
+   */
+  get roll() {
+    return this.parent?.rolls[0];
+  }
 
   /**
    * Render the HTML for the ChatMessage which should be added to the log. Analogous to {@link ChatMessage#getHTML}

@@ -11,9 +11,11 @@ Damage Flavor contains:
   <button type="button" class="apply-damage" title="{{ localize "ED.Chat.Button.applyDamageTitle" }}" data-action="apply-damage">
     {{ localize "ED.Chat.Button.applyDamage" }}
   </button>
-  <button type="button" class="take-damage" title="{{ localize "ED.Chat.Button.takeDamageTitle" }}" data-action="take-damage">
-    {{ localize "ED.Chat.Button.takeDamage" }}
-  </button>
+  {{#if hasAssignedCharacter}}
+    <button type="button" class="take-damage" title="{{ localize "ED.Chat.Button.takeDamageTitle" }}" data-action="take-damage">
+      {{ localize "ED.Chat.Button.takeDamage" }}
+    </button>
+  {{/if}}
 </div>
 <div class="modifier-lists flexrow">
   {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}

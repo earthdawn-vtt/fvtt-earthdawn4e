@@ -1,6 +1,11 @@
 <div>
-    {{!-- usable Item ?--}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
+  {{!-- usable Item ?--}}
+  <fieldset>
+    <legend>{{localize "TODO.Weapon Specific Details"}}</legend>
+    {{formField systemFields.armorType name="system.armorType" value=item.system.armorType localize=true}}
+    {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
+  </fieldset>
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
 </div>

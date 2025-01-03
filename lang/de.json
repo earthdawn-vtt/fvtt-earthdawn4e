@@ -240,7 +240,9 @@
         "rollEquipmentMultipleTargets": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen mehrere Ziele",
         "rollEquipmentSingleTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
         "rollEquipmentWithoutTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
-        "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}"
+        "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}",
+        "actorTookDamage": "{dealtTo} hat Schaden genommen",
+        "undoDamage": "Schaden zurücknehmen"
       },
       "Header": {
         "attackManeuvers": "Manöver",
@@ -803,7 +805,9 @@
             "rangeLongMin":                                 "Reichweite Lang Minimum",
             "rangeLongMax":                                 "Reichweite Lang Maximum",
             "ammunitionType":                               "Welcher Munitionstyp wird für diese Waffe benötigt?",
-            "forgeBonus":                                   "Schmiedebonus"
+            "forgeBonus":                                   "Schmiedebonus",
+            "armorType":                                    "Der Typ von Rüstungs den diese Waffe angreift",
+            "damageType":                                   "Die Art von Schaden die diese Waffe verursacht"
           }
         },
         "Labels": {
@@ -1027,7 +1031,9 @@
             "rangeLongMin":                                 "Reichweite Lang Minimum",
             "rangeLongMax":                                 "Reichweite Lang Maximum",
             "ammunitionType":                               "Munitionstyp",
-            "forgeBonus":                                   "Schmiedebonus"
+            "forgeBonus":                                   "Schmiedebonus",
+            "armorType":                                    "Rüstungstyp",
+            "damageType":                                   "Schadensart"
           }
         }
       },
