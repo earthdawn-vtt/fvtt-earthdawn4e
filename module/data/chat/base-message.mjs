@@ -9,6 +9,12 @@ export default class BaseMessageData extends SystemDataModel {
     this.options = Object.freeze( this._initializeOptions( {} ) );
   }
 
+  /** @inheritDoc */
+  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Chat", false );
+
+  /** @inheritDoc */
+  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "Chat", true );
+
   /**
    * Designates which upstream class in this class' inheritance chain is the base data model.
    * Any DEFAULT_OPTIONS of super-classes further upstream of the BASE_DATA_MODEL are ignored.
