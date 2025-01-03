@@ -1,6 +1,7 @@
 import { ItemDataModel } from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config.mjs";
+import ThreadTemplate from "./threads.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -17,7 +18,8 @@ import ED4E from "../../../config.mjs";
  * @property {number} usableItem.recoveryPropertyValue      recovery type value
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
-  TargetTemplate
+  TargetTemplate,
+  ThreadTemplate
 ) {
 
   /**

@@ -694,6 +694,31 @@
               "value":                                      "Preis",
               "denomination":                               "Währung"
             },
+            "ThreadItem": {
+              "isIdentified":                               "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
+              "isAnalysed":                                 "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
+              "isLevelAnalysed":                            "Dieser Fadenrang ist analysiert und kann erforscht werden.",
+              "mysticalDefense":                            "Die Mystisch Verteidigung des Fadengegenstand.",
+              "maxThreads":                                 "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
+              "tier":                                       "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?",
+              "enchantmentPattern":                         "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde.",
+              "identifier":                                 "Wurde der Fadengegenstand bereits identifiziert?",
+              "level":                                      "Fadenrang",
+              "isActive":                                   "Ist dieser Fadenrang aktiv?",
+              "KeyKnowledge": {
+                "isRequired":                               "Wird eine Schlüsselinformation benötigt?",
+                "question":                                 "Wie ist die Fagestellung der Schlüsselinformation?",
+                "answer":                                   "Wie ist die Antwort der Schlüsselinformation?",
+                "isknown":                                  "Ist die Schlüsselinformation bekannt?"
+              },
+              "Deed": {
+                "isRequired":                               "Ist eine Tat erforderlich?",
+                "description":                              "Was für eine Tat ist erforderlich?",
+                "isCompleted":                              "Ist die Tat abgeschlossen?"
+              },
+              "effect":                                     "Welchen Effekt hat dieser Fadenrang",
+              "activeEffect":                               "Welche Active Effects hat dieser Fadenrang"
+            },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
               "selector":                                   "Kann der Gegenstand benutzt werden?",
@@ -707,6 +732,7 @@
               "calculated":                                 "Wurde dieser Gegenstand bereits mit dem Multipliktor des Namensgebers berechnet?",
               "multiplier":                                 "Der Multiplikator des Namensgebers"
             }
+            
           },
           "PoisonDisease": {
             "damageStep":                                   "Schadensstufe des Giftes/der Krankheit",
@@ -891,6 +917,31 @@
             "Price": {
               "value":                                      "Wert",
               "denomination":                               "Währung"
+            },
+            "ThreadItem": {
+              "isIdentified":                               "Identifiziert?",
+              "isAnalysed":                                 "Analysiert?",
+              "isLevelAnalysed":                            "Fadenrang Analysiert?",
+              "mysticalDefense":                            "Mystisch Verteidigung",
+              "maxThreads":                                 "Maximale Fäden?",
+              "tier":                                       "Kategorie?",
+              "enchantmentPattern":                         "Verzauberungsanleitung",
+              "identifier":                                 "Identifiziert",
+              "level":                                      "Rang",
+              "isActive":                                   "Aktiv",
+              "KeyKnowledge": {
+                "isRequired":                               "Schlüsselinformation benötigt?",
+                "question":                                 "Schlüsselinformation",
+                "answer":                                   "Antwort",
+                "isknown":                                  "bekannt"
+              },
+              "Deed": {
+                "isRequired":                               "Tat erforderlich?",
+                "description":                              "Tat",
+                "isCompleted":                              "Abgeschlossen"
+              },
+              "effect":                                     "Effekt",
+              "activeEffect":                               "Aktive Effekte"
             },
             "usableItem":                                   "Benutzbarer Gegenstand",
             "UsableItem": {
@@ -1360,6 +1411,13 @@
       "Placeholder": {
         "lpDescription": "Trage hier eine Beschreibung ein"
       },
+      "PhysicalItems": {
+        "addThreadLevel":                                 "Füge einen Fadenrang hinzu.",
+        "deleteThreadLevel":                              "Entferne den letzten (höchsten) Fadenrang.",
+        "itemHistoryCheck":                               "Artefaktgeschichte ",
+        "weaveThreadCheck":                               "Fadenweben ",
+        "researchCheck":                                  "Forschen "
+      },
       "Talent": {
         "action": "Aktion",
         "attribute": "Attribut",
@@ -1485,6 +1543,13 @@
       },
       "talentsSplit": "Talente nach Kategorie gruppieren",
       "talentsSplitHint": "Talente Gruppieren"
+    },
+    "ToolTips": {
+      "addThreadLevel":                                   "Füge einen Fadenrang hinzu.",
+      "deleteThreadLevel":                                "Entferne den letzten (höchsten) Fadenrang.",
+      "itemHistoryCheck":                                 "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
+      "weaveThreadCheck":                                 "Würfle Fadenweben um den Fadenrang zu erhöhen.",
+      "researchCheck":                                    "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen."
     }
   },
   "TYPES": {

@@ -717,10 +717,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-spell.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-spellKnack.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-talent.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-thread.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-weapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-shipWeapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs",
 
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-armor.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-attack.hbs",
@@ -747,7 +747,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-spell.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-spellKnack.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-talent.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-thread.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-weapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shipWeapon.hbs",
 
@@ -783,6 +782,7 @@ export async function preloadHandlebarsTemplates() {
 
     // other tabs
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs",
 
     // Build your own Legend
     "systems/ed4e/templates/actor/legend-points/history.hbs",

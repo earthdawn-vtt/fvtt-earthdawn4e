@@ -1,0 +1,86 @@
+<section class="tab {{tab.cssClass}} scrollable" data-group="item-sheet" data-tab="thread-tab">
+    <!-- Button controls -->
+  <div class="item-controls flexrow">
+    <a class="advancement__title class__add-level" data-action="addThreadLevel" title="{{localize "ED.ToolTips.addThreadLevel"}}">
+      <b>{{localize "ED.Item.PhysicalItems.addThreadLevel"}}</b>
+      <i class="fas fa-plus"></i>
+    </a>
+    <a class="item-control thread__delete-level text-align-middle" data-action="deleteThreadLevel"  title="{{localize "ED.ToolTips.deleteThreadLevel"}}"
+       data-drop-function="delete-pool-ability">
+      <b>{{localize "ED.Item.PhysicalItems.deleteThreadLevel"}}</b>
+      <i class="fas fa-trash"></i>
+    </a>
+  </div>
+
+  <!-- basic information -->
+  <fieldset>
+    <div>
+      {{!-- isIdentified --}}
+      {{formField systemFields.threadData.fields.isIdentified name="system.threadData.isIdentified" value=item.system.threadData.isIdentified localize=true}}
+      {{!-- isAnalysed --}}
+      {{formField systemFields.threadData.fields.isAnalysed name="system.threadData.isAnalysed" value=item.system.threadData.isAnalysed localize=true}}
+      {{!-- Mystical Defense --}}
+      {{formField systemFields.threadData.fields.characteristics.fields.defenses.fields.mystical.fields.value name="system.threadData.characteristics.defenses.mystical.value" value=item.system.threadData.characteristics.defenses.mystical.value localize=true}}
+      {{!-- maxThreads --}}
+      {{formField systemFields.threadData.fields.maxThreads name="system.threadData.maxThreads" value=item.system.threadData.maxThreads localize=true}}
+      {{!-- tier --}}
+      {{formField systemFields.threadData.fields.tier name="system.threadData.tier" value=item.system.threadData.tier localize=true}}
+      {{!-- enchantmentPattern --}}
+      {{formField systemFields.threadData.fields.enchantmentPattern name="system.threadData.enchantmentPattern" value=item.system.threadData.enchantmentPattern localize=true}}
+    </div>
+  </fieldset>
+
+  <!-- actions -->
+  <div class="item-controls flexrow">
+    <button data-action="itemHistoryCheck" title="{{localize "ED.ToolTips.itemHistoryCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.itemHistoryCheck"}}</b>
+        <i class="fas fa-history"></i>
+      </span>
+    </button>
+    <button data-action="researchCheck" title="{{localize "ED.ToolTips.researchCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.researchCheck"}}</b>
+        <i class="fas fa-search"></i>
+      </span>
+    </button>
+    <button data-action="weaveThreadCheck" title="{{localize "ED.ToolTips.weaveThreadCheck"}}">
+      <span>
+        <b>{{localize "ED.Item.PhysicalItems.weaveThreadCheck"}}</b>
+        <i class="fas fa-connectdevelop"></i>
+      </span>
+    </button>
+  </div>
+
+  <!-- Level Contents -->
+  {{#each item.system.threadData.levels}}
+    <fieldset>
+      <div>
+        {{!-- level --}}
+        {{formField this.schema.fields.level name=(concat "system.threadData.levels." @index ".level") value=this.level localize=true}}
+        {{!-- isAnalysed --}}
+        {{formField this.schema.fields.isAnalysed name=(concat "system.threadData.levels." @index ".isAnalysed") value=this.isAnalysed localize=true}}
+        {{!-- isActive --}}
+        {{formField this.schema.fields.isActive name=(concat "system.threadData.levels." @index ".isActive") value=this.isActive localize=true}}
+        {{!-- keyKnowledge isRequired --}}
+        {{formField this.schema.fields.keyKnowledge.fields.isRequired name=(concat "system.threadData.levels." @index ".keyKnowledge.isRequired") value=this.keyKnowledge.isRequired localize=true}}
+        {{!-- keyKnowledge question --}}
+        {{formField this.schema.fields.keyKnowledge.fields.question name=(concat "system.threadData.levels." @index ".keyKnowledge.question") value=this.keyKnowledge.question localize=true}}
+        {{!-- keyKnowledge answer --}}
+        {{formField this.schema.fields.keyKnowledge.fields.answer name=(concat "system.threadData.levels." @index ".keyKnowledge.answer") value=this.keyKnowledge.answer localize=true}}
+        {{!-- keyKnowledge isknown --}}
+        {{formField this.schema.fields.keyKnowledge.fields.isknown name=(concat "system.threadData.levels." @index ".keyKnowledge.isknown") value=this.keyKnowledge.isknown localize=true}}
+        {{!-- deed isRequired --}}
+        {{formField this.schema.fields.deed.fields.isRequired name=(concat "system.threadData.levels." @index ".deed.isRequired") value=this.deed.isRequired localize=true}}
+        {{!-- deed description --}}
+        {{formField this.schema.fields.deed.fields.description name=(concat "system.threadData.levels." @index ".deed.description") value=this.deed.description localize=true}}
+        {{!-- deed isCompleted --}}
+        {{formField this.schema.fields.deed.fields.isCompleted name=(concat "system.threadData.levels." @index ".deed.isCompleted") value=this.deed.isCompleted localize=true}}
+        {{!-- effect --}}
+        {{formField this.schema.fields.effect name=(concat "system.threadData.levels." @index ".effect") value=this.effect localize=true}}
+        {{!-- activeEffect --}}
+        {{formField this.schema.fields.activeEffect name=(concat "system.threadData.levels." @index ".activeEffect") value=this.activeEffect localize=true}}
+      </div> 
+    </fieldset>
+    {{/each}}
+</section>
