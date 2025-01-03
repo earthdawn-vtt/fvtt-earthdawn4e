@@ -489,8 +489,7 @@ export default class ActorEd extends Actor {
    * @param {("physical"|"mystical")} [armorType]               The type of armor that protects from this damage, one of either
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
-   * @param {EdRoll|undefined} [damageRoll]                               The roll that caused this damage or undefined if not caused by one.
-   * @param damageRoll
+   * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
    * @returns {{damageTaken: number, knockdownTest: boolean}}
    *                                                            An object containing:
    *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
