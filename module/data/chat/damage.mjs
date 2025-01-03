@@ -91,12 +91,12 @@ export default class DamageMessageData extends BaseMessageData {
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
-  static async _onApplyDamage( event, button ) {
+  static async _onApplyDamage( event, _ ) {
     event.preventDefault();
     console.log( "Coming up: Apply Damage" );
   }
 
-  static async _onTakeDamage( event, button ) {
+  static async _onTakeDamage( event, _ ) {
     event.preventDefault();
     const targetActor = game.user.character;
     if ( !targetActor ) {
