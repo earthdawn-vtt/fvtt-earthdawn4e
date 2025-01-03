@@ -34,10 +34,6 @@ export default class ThreadBaseData extends SparseDataModel {
               step:     1,
               initial:  0,
               integer:  true,
-              // label:    this.labelKey( "PhysicalItems.ThreadItem.mysticalDefense" ),
-              // hint:     this.hintKey( "PhysicalItems.ThreadItem.mysticalDefense" )
-              label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.mysticalDefense",
-              hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.mysticalDefense"
             } ),
             value: new fields.NumberField( {
               required: true,
@@ -46,6 +42,10 @@ export default class ThreadBaseData extends SparseDataModel {
               step:     1,
               initial:  0,
               integer:  true,
+              // label:    this.labelKey( "PhysicalItems.ThreadItem.mysticalDefense" ),
+              // hint:     this.hintKey( "PhysicalItems.ThreadItem.mysticalDefense" )
+              label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.mysticalDefense",
+              hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.mysticalDefense"
             } ),
           } ),
         } ),
