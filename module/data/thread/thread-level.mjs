@@ -1,5 +1,4 @@
 import { SparseDataModel } from "../abstract.mjs";
-import IdentifierField from "../fields/identifier-field.mjs";
 
 export default class ThreadLevelData extends SparseDataModel {
   /** @inheritDoc */
@@ -7,14 +6,6 @@ export default class ThreadLevelData extends SparseDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
-      identifier: new IdentifierField( {
-        required: true,
-        nullable: false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.identifier" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.identifier" )
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.identifier",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.identifier"
-      } ),
       level: new fields.NumberField( {
         required: true,
         nullable: false,
