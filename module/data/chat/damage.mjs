@@ -93,37 +93,28 @@ export default class DamageMessageData extends BaseMessageData {
 
   static async _onApplyDamage( event, _ ) {
     event.preventDefault();
-    console.log( "Coming up: Apply Damage" );
+
+    const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
+    if ( targets.length === 0 ) {
+      ui.notifications.warn( "TODO: You must target at least one token to apply damage." );
+      return;
+    }
+
+    for ( let targetActor of targets ) {
+      await this.applyDamage( targetActor );
+    }
   }
 
   static async _onTakeDamage( event, _ ) {
     event.preventDefault();
+
     const targetActor = game.user.character;
     if ( !targetActor ) {
       ui.notifications.warn( "TODO: You must have an assigned character to take damage. Otherwise target tokens and use the 'applyDamage' button instead." );
       return;
     }
 
-    const { damageTaken } = targetActor.takeDamage(
-      this.roll.total,
-      false,
-      this.roll.options.damageType,
-      this.roll.options.armorType,
-      this.roll.options.ignoreArmor,
-      this.roll,
-    );
-
-    const transaction = {
-      damage:    damageTaken,
-      dealtTo:   targetActor.uuid,
-      timestamp: new Date().valueOf(),
-    };
-
-    await this.parent.update( {
-      system: {
-        transactions: [ ...this.transactions, transaction ],
-      },
-    } );
+    await this.applyDamage( targetActor );
   }
 
   static async _onUndoDamage( event, button ) {
@@ -144,6 +135,37 @@ export default class DamageMessageData extends BaseMessageData {
           && tx.timestamp === Number( button.dataset.txTimestamp ) )
         ),
       },
+    } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Methods                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Apply damage to a target Actor and record the transaction.
+   * @param {ActorEd} targetActor - The Actor to apply damage to
+   */
+  async applyDamage( targetActor ) {
+    const { damageTaken } = targetActor.takeDamage(
+      this.roll.total,
+      false,
+      this.roll.options.damageType,
+      this.roll.options.armorType,
+      this.roll.options.ignoreArmor,
+      this.roll
+    );
+
+    const transaction = {
+      damage:    damageTaken,
+      dealtTo:   targetActor.uuid,
+      timestamp: new Date().valueOf()
+    };
+
+    await this.parent.update( {
+      system: {
+        transactions: [ ...this.transactions, transaction ]
+      }
     } );
   }
 
