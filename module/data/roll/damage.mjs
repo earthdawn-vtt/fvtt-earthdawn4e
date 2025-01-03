@@ -53,6 +53,15 @@ export default class DamageRollOptions extends EdRollOptions {
     await this._removeDamageAbilityModifiers( changes );
   }
 
+  /** @inheritDoc */
+  async getFlavorTemplateData( context ) {
+    const newContext = await super.getFlavorTemplateData( context );
+
+    newContext.hasAssignedCharacter = !!game.user.character;
+
+    return newContext;
+  }
+
   async _addDamageAbilityModifiers( changes ) {
     const addedDamageAbilities = changes.system?.damageAbilities?.difference( this.damageAbilities );
     console.log( "Coming up: addedDamageAbilities", addedDamageAbilities );
