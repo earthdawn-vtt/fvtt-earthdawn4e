@@ -241,7 +241,8 @@
         "rollEquipmentSingleTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
         "rollEquipmentWithoutTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
         "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}",
-        "actorTookDamage": "{dealtTo} hat Schaden genommen"
+        "actorTookDamage": "{dealtTo} hat Schaden genommen",
+        "undoDamage": "Schaden zurücknehmen"
       },
       "Header": {
         "attackManeuvers": "Manöver",

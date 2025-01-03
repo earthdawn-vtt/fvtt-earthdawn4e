@@ -6,6 +6,7 @@ export default class DamageMessageData extends BaseMessageData {
     actions: {
       "apply-damage":  this._onApplyDamage,
       "take-damage":   this._onTakeDamage,
+      "undo-damage":   this._onUndoDamage,
     },
   };
 
@@ -29,6 +30,9 @@ export default class DamageMessageData extends BaseMessageData {
               type:  "Actor",
               label: this.labelKey( "Damage.Transactions.transaction.dealtTo" ),
               hint:  this.hintKey( "Damage.Transactions.transaction.dealtTo" ),
+            } ),
+            timestamp: new fields.NumberField( {
+              initial: new Date().valueOf(),
             } ),
           }, {
             label: this.labelKey( "Damage.Transactions.transaction" ),
@@ -65,12 +69,15 @@ export default class DamageMessageData extends BaseMessageData {
 
       const transactionDiv = document.createElement( "div" );
       transactionDiv.classList.add( "damage-transaction" );
-      transactionDiv.dataset.damageDealt = transaction.damage;
       transactionDiv.textContent = message;
 
       const undoButton = document.createElement( "i" );
       undoButton.classList.add( "fa-light", "fa-undo" );
+      undoButton.title = game.i18n.localize( "ED.Chat.Flavor.undoDamage" );
       undoButton.dataset.action = "undo-damage";
+      undoButton.dataset.damageDealt = transaction.damage;
+      undoButton.dataset.dealtTo = transaction.dealtTo;
+      undoButton.dataset.txTimestamp = transaction.timestamp;
 
       transactionDiv.appendChild( undoButton );
 
@@ -107,13 +114,35 @@ export default class DamageMessageData extends BaseMessageData {
     );
 
     const transaction = {
-      damage:  damageTaken,
-      dealtTo: targetActor.uuid,
+      damage:    damageTaken,
+      dealtTo:   targetActor.uuid,
+      timestamp: new Date().valueOf(),
     };
 
     await this.parent.update( {
       system: {
         transactions: [ ...this.transactions, transaction ],
+      },
+    } );
+  }
+
+  static async _onUndoDamage( event, button ) {
+    event.preventDefault();
+    const actor = await fromUuid( button.dataset.dealtTo );
+    const actorDamageProperty = `system.characteristics.health.damage.${ this.roll.options.damageType }`;
+    const newDamage = Math.max(
+      0,
+      foundry.utils.getProperty( actor, actorDamageProperty ) - Number( button.dataset.damageDealt )
+    );
+    await actor.update( { [ actorDamageProperty ]: newDamage } );
+    const newTransactions = structuredClone( this.transactions );
+    await this.parent.update( {
+      system: {
+        transactions: newTransactions.filter( tx =>
+          !( tx.damage === Number( button.dataset.damageDealt )
+          && tx.dealtTo === button.dataset.dealtTo
+          && tx.timestamp === Number( button.dataset.txTimestamp ) )
+        ),
       },
     } );
   }
