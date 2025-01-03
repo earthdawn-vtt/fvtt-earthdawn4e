@@ -694,7 +694,6 @@
               "value":                                      "Preis",
               "denomination":                               "Währung"
             },
-            "isThreadItem":                                 "Ist dieser Gegenstand ein Faden Gegenstand?",
             "ThreadItem": {
               "isIdentified":                               "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
               "isAnalysed":                                 "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
@@ -919,7 +918,6 @@
               "value":                                      "Wert",
               "denomination":                               "Währung"
             },
-            "isThreadItem":                                 "Faden Gegenstand?",
             "ThreadItem": {
               "isIdentified":                               "Identifiziert?",
               "isAnalysed":                                 "Analysiert?",
