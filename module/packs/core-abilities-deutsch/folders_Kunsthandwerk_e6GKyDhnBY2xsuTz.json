@@ -1,0 +1,22 @@
+{
+  "name": "Kunsthandwerk",
+  "sorting": "a",
+  "folder": "Y9VGNS7ZOvk9S4ZG",
+  "type": "Item",
+  "_id": "e6GKyDhnBY2xsuTz",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!e6GKyDhnBY2xsuTz"
+}

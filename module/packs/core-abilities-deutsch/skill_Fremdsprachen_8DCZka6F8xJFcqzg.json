@@ -1,0 +1,63 @@
+{
+  "folder": "BNxfdedU2FarOYEX",
+  "type": "skill",
+  "name": "Fremdsprachen",
+  "system": {
+    "rollType": "",
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Der Adept lernt auf magische Weise, mit anderen Leuten in verschiedenen Sprachen zu kommunizieren. Mit diesem Talent kann er eine Anzahl von Sprachen gleich seinem Fremdsprachen- Rang erlernen. Wenn er dieses Maximum noch nicht erreicht hat, kann er versuchen, eine neue Sprache zu lernen, indem er einem Charakter, der diese Sprache fließend spricht, mindestens eine Minute lang zuhört und dann eine Fremdsprachen-Probe gegen die Lernschwierigkeit der Sprache ablegt. Wenn die Probe gelingt, hat er die Sprache erlernt und notiert sie auf seinem Charakterblatt. Wenn die Probe misslingt, kann er erst wieder versuchen, dieselbe Sprache zu lernen, wenn er seinen Rang in Fremdsprachen erhöht hat.</p><p>Die Lernschwierigkeit für die verschiedenen Rassensprachen ist in der Tabelle Sprachen angegeben; die angegebenen Mindestwürfe spiegeln die Schwierigkeit wider, die „Basisversionen“ dieser Sprachen zu erlernen. Dialekte gelten für die Zwecke dieses Talents als eigene Sprachen (siehe unten).</p><p>Wenn der Adept eine mit diesem Talent erlernte Sprache spricht, legt er eine Fremdsprachen-Probe gegen die Lernschwierigkeit der Sprache ab. Die Anzahl der Erfolge bestimmt, wie gut er kommunizieren kann.</p><p>Um einfache Sätze und Ideen zu vermitteln, wie etwa „Wo geht’s hier zur Wache?“, reicht ein einzelner Erfolg. Normale Unterhaltung, die Idiome und Jargons enthält, erfordert zwei Erfolge. Technische Unterhaltungen oder andere Diskussionen, bei denen ein spezialisierter Jargon verwendet wird, erfordern drei Erfolge. Um sich über Philosophie oder andere abstrakte Konzepte zu unterhalten, sind vier oder mehr Erfolge erforderlich. Teilerfolge können nach Maßgabe des Spielleiters mehr oder weniger Details vermitteln.</p><p>Die Wirkung jeder Fremdsprachen-Probe hält für eine Anzahl von Stunden gleich dem Fremdsprachen-Rang des Adepten an. Dies erlaubt es ihm, sich während dieser Zeit in der gewählten Sprache über Dinge zu unterhalten, deren maximale Komplexität abhängig von den erzielten Erfolgen ist. Wenn er sich über ein komplexeres Thema unterhalten will, muss er dafür eine weitere Fremdsprachen-Probe ablegen. Die Überanstrengungskosten spiegeln die für die Kommunikation erforderliche Konzentration wider.</p><h5 style=\"text-align: center;\">Sprachtabelle</h5><table style=\"width: 90.8676%; height: 144px;\" border=\"1\"><tbody><tr style=\"height: 16px; background-color: #95a5a6;\"><td style=\"width: 36.0473%; height: 16px;\"><p><strong>Lernschwierigkeit</strong></p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p><strong>Sprache</strong></p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>6</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Menschlich</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>7</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Obsidianisch</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>6</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Or'zet (Orkisch)</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>6</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Sperethiel (Elf)</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>7</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>T'skrang</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>6</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Trollisch</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>7</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Windlingisch</p></td></tr><tr style=\"height: 16px;\"><td style=\"width: 36.0473%; height: 16px;\"><p>5</p></td><td style=\"width: 29.4311%; height: 16px;\" data-colwidth=\"42\"><p>Zwergisch</p></td></tr></tbody></table><p>* Alle Charaktere, die das Spiel mit Kenntnis der zwergischen Sprache beginnen, kennen den throalischen Dialekt.</p><h3>Dialekte</h3><p>Sprachen sind oft sehr komplex, und die meisten von ihnen weisen mehrere Variationen – Dialekte – auf. Diese Dialekte sind manchmal regional, andere wechseln je nach Stadt oder sogar je nach Kaer. Die Lernschwierigkeit eines Dialekts basiert auf der Ursprungssprache und beträgt gewöhnlich Grundmindestwurf +2, aber auch höhere Mindestwürfe sind möglich. Der Adept muss die Ursprungssprache sprechen können, bevor er versuchen kann, einen Dialekt dieser Sprache zu lernen. Wenn er die Ursprungssprache eines Dialekts kennt, kann er mit Leuten, die diesen Dialekt sprechen, kommunizieren, aber nach Maßgabe des Spielleiters kann seine Kommunikationsfähigkeit eingeschränkt sein.</p>"
+    },
+    "edid": "undefined",
+    "action": "standard",
+    "strain": 0,
+    "attribute": "per",
+    "tier": "novice",
+    "source": {
+      "class": null,
+      "atLevel": null
+    },
+    "level": 0,
+    "rollTypeDetails": {
+      "ability": {},
+      "attack": {
+        "weaponItemStatus": [],
+        "weaponType": "melee"
+      },
+      "damage": {},
+      "effect": {},
+      "initiative": {},
+      "reaction": {
+        "defenseType": "physical"
+      },
+      "recovery": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "skillType": "general"
+  },
+  "_id": "8DCZka6F8xJFcqzg",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735946467936,
+    "modifiedTime": 1735946570071,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!8DCZka6F8xJFcqzg"
+}

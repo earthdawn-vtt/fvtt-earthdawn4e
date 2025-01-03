@@ -1,0 +1,60 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Wasser- oder Weinschlauch",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Ein Lederschlauch mit einem verschließbaren Hals, in dem Flüssigkeiten aufbewahrt werden. Ein normaler Wasserschlauch enthält genug Wasser für einen Tag. Das angegebene Gewicht gilt für einen vollen Schlauch.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 2,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 4,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "everyday",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "d2dzfa6mPibJKEO1",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 700000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735940858832,
+    "modifiedTime": 1735945528494,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!d2dzfa6mPibJKEO1"
+}

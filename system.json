@@ -66,6 +66,50 @@
       "flags": {}
     },
     {
+      "name": "core-abilities-deutsch",
+      "label": "Standard Fähigkeiten - Deutsch",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-abilities-english",
+      "label": "Core Abilities - English",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-items-deutsch",
+      "label": "Standard Ausrüstung - Deutsch",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-items-english",
+      "label": "Core Equipment - English",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
       "name": "macros",
       "label": "Macros",
       "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
@@ -86,7 +130,11 @@
         "manual-english",
         "manual-deutsch",
         "tour-items",
-        "macros"
+        "macros",
+        "core-abilities-deutsch",
+        "core-abilities-english",
+        "core-items-deutsch",
+        "core-items-english"
       ]
     }
   ],

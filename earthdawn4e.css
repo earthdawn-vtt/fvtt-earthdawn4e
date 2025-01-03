@@ -1047,6 +1047,16 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
   width: 60%;
   float: right;
 }
+.application.sheet.earthdawn4e.item .tab.general .item__right--main .editor,
+.application.sheet.earthdawn4e.item .tab.details .item__right--main .editor,
+.application.sheet.earthdawn4e.item .tab.effects .item__right--main .editor,
+.application.sheet.earthdawn4e.item .tab.advancements .item__right--main .editor,
+.application.sheet.earthdawn4e.item .tab.general .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .tab.details .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .tab.effects .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .tab.advancements .item__right--main .prosemirror {
+  height: 430px;
+}
 .denomination__value-currency .denomination__value {
   width: 75%;
   float: left;

@@ -1,0 +1,60 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Künstlerwerkzeug (Schnitzen)",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Die Werkzeuge, die ein Charakter benötigt, um seine Kunsthandwerksfertigkeit auszuüben. Sie reichen aus, damit der Charakter die typischen Arbeiten ausführen kann, die mit seiner Kunsthandwerksfertigkeit verbunden sind – für schwierigere Arbeiten wird er meist einen umfangreicheren Satz an Werkzeugen brauchen, der mindestens das Fünffache des hier angegebenen Preises kostet. Der Preis für diese Werkzeuge schließt eventuell benötigte Materialien nicht mit ein. Alle Charaktere beginnen das Spiel mit dem Künstlerwerkzeug, das für das Ausüben ihrer Kunsthandwerksfertigkeit notwendig ist.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 15,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 3,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735945531642,
+    "modifiedTime": 1735945531642,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_id": "38QuMhtR3djGN5qA",
+  "sort": 0,
+  "_key": "!items!38QuMhtR3djGN5qA"
+}

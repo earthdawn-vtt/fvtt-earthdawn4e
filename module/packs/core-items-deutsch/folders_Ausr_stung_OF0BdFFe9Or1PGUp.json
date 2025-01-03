@@ -1,0 +1,22 @@
+{
+  "name": "Ausrüstung",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "OF0BdFFe9Or1PGUp",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735937867325,
+    "modifiedTime": 1735937867325,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!folders!OF0BdFFe9Or1PGUp"
+}

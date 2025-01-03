@@ -1,0 +1,60 @@
+{
+  "folder": "VWi8VXOIEpclXf5f",
+  "type": "equipment",
+  "name": "Weiche Stiefel",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": ""
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 1,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 1,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "everyday",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "PHMxb31tiLLQC1NZ",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735941026318,
+    "modifiedTime": 1735945726812,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!PHMxb31tiLLQC1NZ"
+}

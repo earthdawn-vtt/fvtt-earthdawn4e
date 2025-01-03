@@ -1,0 +1,60 @@
+{
+  "folder": "VWi8VXOIEpclXf5f",
+  "type": "equipment",
+  "name": "Reisekleidung (Hose)",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Beinhaltet:<br>@UUID[Compendium.ed4e.core-items-deutsch.Item.PHMxb31tiLLQC1NZ]{Weiche Stiefel}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.MWRKfzNdbFE953tC]{Gürtel}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.AfSPCXYdvZLT47VR]{Hemd}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.Z9KaKS8TFj6M5ixA]{Hose}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.z9cEPE63TKyht1Ij]{Umhang}</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 8,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 3,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "iWgU0JKCKC2NjzJi",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735945600851,
+    "modifiedTime": 1735945885570,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!iWgU0JKCKC2NjzJi"
+}

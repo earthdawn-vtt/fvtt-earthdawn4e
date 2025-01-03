@@ -1,0 +1,60 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Fackel",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Ein Holzstab, dessen Spitze mit einem ölgetränkten Lumpen umwickelt ist. Sie kann durch den Funken eines Feuersteins entzündet werden und brennt etwa eine Stunde lang. Die Fackel ist die geläufige Lichtquelle für Abenteurer und beleuchtet einen Radius von 10 Schritt. Unangezündet kann sie als Keule im Nahkampf verwendet werden, gilt dann aber als improvisierte Waffe. Eine brennende Fackel kann auch brennbare Ziele, wie etwa trockenes Stroh oder Tuch, in Brand setzen.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 5,
+      "denomination": "copper"
+    },
+    "weight": {
+      "value": 1,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "everyday",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "qyLwljtWgScvpZn2",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735940824807,
+    "modifiedTime": 1735945528494,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!qyLwljtWgScvpZn2"
+}
