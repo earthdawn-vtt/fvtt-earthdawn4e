@@ -66,6 +66,7 @@ export default class DamageMessageData extends BaseMessageData {
       this.roll.options.damageType,
       this.roll.options.armorType,
       this.roll.options.ignoreArmor,
+      this.roll,
     );
 
     const transaction = {
