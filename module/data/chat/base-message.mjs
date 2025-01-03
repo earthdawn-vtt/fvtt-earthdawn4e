@@ -29,6 +29,14 @@ export default class BaseMessageData extends SystemDataModel {
   };
 
   /**
+   * The roll that generated this message. If multiple, only returns the first.
+   * @type {EdRoll|undefined}
+   */
+  get roll() {
+    return this.parent?.rolls[0];
+  }
+
+  /**
    * Render the HTML for the ChatMessage which should be added to the log. Analogous to {@link ChatMessage#getHTML}
    * @param {HTMLElement} baseHtml - The base HTML element which should be enhanced
    * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML

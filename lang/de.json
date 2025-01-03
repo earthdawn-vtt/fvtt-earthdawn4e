@@ -803,7 +803,9 @@
             "rangeLongMin":                                 "Reichweite Lang Minimum",
             "rangeLongMax":                                 "Reichweite Lang Maximum",
             "ammunitionType":                               "Welcher Munitionstyp wird für diese Waffe benötigt?",
-            "forgeBonus":                                   "Schmiedebonus"
+            "forgeBonus":                                   "Schmiedebonus",
+            "armorType":                                    "Der Typ von Rüstungs den diese Waffe angreift",
+            "damageType":                                   "Die Art von Schaden die diese Waffe verursacht"
           }
         },
         "Labels": {
@@ -1027,7 +1029,9 @@
             "rangeLongMin":                                 "Reichweite Lang Minimum",
             "rangeLongMax":                                 "Reichweite Lang Maximum",
             "ammunitionType":                               "Munitionstyp",
-            "forgeBonus":                                   "Schmiedebonus"
+            "forgeBonus":                                   "Schmiedebonus",
+            "armorType":                                    "Rüstungstyp",
+            "damageType":                                   "Schadensart"
           }
         }
       },

@@ -25,10 +25,10 @@ export default class DamageMessageData extends BaseMessageData {
               label:    this.labelKey( "Damage.Transactions.transaction.damage" ),
               hint:     this.hintKey( "Damage.Transactions.transaction.damage" ),
             } ),
-            dealtBy: new fields.DocumentUUIDField( {
+            dealtTo: new fields.DocumentUUIDField( {
               type:  "Actor",
-              label: this.labelKey( "Damage.Transactions.transaction.dealtBy" ),
-              hint:  this.hintKey( "Damage.Transactions.transaction.dealtBy" ),
+              label: this.labelKey( "Damage.Transactions.transaction.dealtTo" ),
+              hint:  this.hintKey( "Damage.Transactions.transaction.dealtTo" ),
             } ),
           }, {
             label: this.labelKey( "Damage.Transactions.transaction" ),
@@ -47,7 +47,37 @@ export default class DamageMessageData extends BaseMessageData {
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
-  static async _onApplyDamage( event, button ) {}
+  static async _onApplyDamage( event, button ) {
+    event.preventDefault();
+    console.log( "Coming up: Apply Damage" );
+  }
 
-  static async _onTakeDamage( event, button ) {}
+  static async _onTakeDamage( event, button ) {
+    event.preventDefault();
+    const targetActor = game.user.character;
+    if ( !targetActor ) {
+      ui.notifications.warn( "TODO: You must have an assigned character to take damage. Otherwise target tokens and use the 'applyDamage' button instead." );
+      return;
+    }
+
+    const { damageTaken } = targetActor.takeDamage(
+      this.roll.total,
+      false,
+      this.roll.options.damageType,
+      this.roll.options.armorType,
+      this.roll.options.ignoreArmor,
+    );
+
+    const transaction = {
+      damage:  damageTaken,
+      dealtTo: targetActor.uuid,
+    };
+
+    await this.parent.update( {
+      system: {
+        transactions: [ ...this.transactions, transaction ],
+      },
+    } );
+  }
+
 }

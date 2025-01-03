@@ -64,6 +64,12 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           label:    this.labelKey( "Weapons.damageBaseStep" ),
           hint:     this.hintKey( "Weapons.damageBaseStep" )
         } ),
+        type: new fields.StringField( {
+          initial:  "standard",
+          choices:  ED4E.damageType,
+          label:    this.labelKey( "Weapons.damageType" ),
+          hint:     this.hintKey( "Weapons.damageType" )
+        } ),
       } ),
       size: new fields.NumberField( {
         required: true,
@@ -152,6 +158,12 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         label:    this.labelKey( "Weapons.forgeBonus" ),
         hint:     this.hintKey( "Weapons.forgeBonus" )
       } ),
+      armorType: new fields.StringField( {
+        initial:  "physical",
+        choices:  ED4E.armor,
+        label:    this.labelKey( "Weapons.armorType" ),
+        hint:     this.hintKey( "Weapons.armorType" )
+      } ),
     } );
   }
 
@@ -190,6 +202,8 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
       rollType:        "damage",
       weaponUuid:       this.parent?.uuid,
       damageAbilities:  new Set( [] ),
+      armorType:       this.armorType,
+      damageType:      this.damage.type,
     };
 
     return new DamageRollOptions( damageRollOptions );

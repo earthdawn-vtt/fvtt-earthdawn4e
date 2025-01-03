@@ -489,6 +489,10 @@ export default class ActorEd extends Actor {
    * @param {("physical"|"mystical")} [armorType]               The type of armor that protects from this damage, one of either
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
+   * @returns {{damageTaken: number, knockdownTest: boolean}}
+   *                                                            An object containing:
+   *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
+   *                                                            - `knockdownTest`: whether a knockdown test should be made.
    */
   // eslint-disable-next-line max-params
   takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor ) {
@@ -520,9 +524,13 @@ export default class ActorEd extends Actor {
       ChatMessage.create( messageData );
     }
 
-    if ( !this.system.condition.knockedDown && finalAmount >= health.woundThreshold + 5 ) {
-      this.knockdownTest( finalAmount );
-    }
+    const knockdownTest = !this.system.condition.knockedDown && finalAmount >= health.woundThreshold + 5;
+    if ( knockdownTest ) this.knockdownTest( finalAmount );
+
+    return {
+      damageTaken:       finalAmount,
+      knockdownTest,
+    };
   }
 
   async knockdownTest( damageTaken, options = {} ) {

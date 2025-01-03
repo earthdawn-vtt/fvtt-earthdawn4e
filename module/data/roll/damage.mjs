@@ -1,4 +1,5 @@
 import EdRollOptions from "./common.mjs";
+import ED4E from "../../config.mjs";
 
 export default class DamageRollOptions extends EdRollOptions {
 
@@ -15,6 +16,32 @@ export default class DamageRollOptions extends EdRollOptions {
           embedded: true,
         } ),
         {}
+      ),
+      armorType:         new fields.StringField( {
+        initial:  "physical",
+        choices:  ED4E.armor,
+      } ),
+      damageType: new fields.StringField( {
+        initial:  "standard",
+        choices:  ED4E.damageType,
+      } ),
+      ignoreArmor: new fields.BooleanField( {
+        initial:  false,
+      } ),
+      element: new fields.SchemaField(
+        {
+          type: new fields.StringField( {
+            required: false,
+            choices:  ED4E.elements,
+          } ),
+          subtype: new fields.StringField( {
+            required: false,
+            choices:  ED4E.elementSubtypes,
+          } ),
+        },
+        {
+          required: false,
+        }
       ),
     } );
   }

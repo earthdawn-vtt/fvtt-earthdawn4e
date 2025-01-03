@@ -298,6 +298,24 @@ ED4E.damageType = {
 preLocalize( "damageType" );
 
 /**
+ * Damage resistances
+ * @enum {string}
+ */
+ED4E.resistances = {
+  fire:       "ED.Config.Resistances.fire",
+};
+preLocalize( "resistances" );
+
+/**
+ * Damage vulnerabilities
+ * @enum {string}
+ */
+ED4E.vulnerabilities = {
+  fire:       "ED.Config.Vulnerabilities.fire",
+};
+preLocalize( "vulnerabilities" );
+
+/**
  * The possible states for a physical item that describe in which way they connect to an actor.
  * @enum {string}
  */
