@@ -6,7 +6,7 @@ export default class AttackMessageData extends BaseMessageData {
   static DEFAULT_OPTIONS = {
     actions: {
       "apply-effect":  this._onApplyEffect,
-      "roll-damage":   this._onApplyDamage,
+      "roll-damage":   this._onRollDamage,
       "maneuver":      this._onUseManeuver,
       "reaction":      this._onUseReaction,
     },
@@ -15,14 +15,6 @@ export default class AttackMessageData extends BaseMessageData {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      damageDealt: new fields.NumberField( {
-        required: false,
-        nullable: true,
-        step:     1,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
       // as value/max, so it can be used as like other resources, like an HTML meter element
       successes: new fields.SchemaField( {
         // available successes
@@ -95,10 +87,12 @@ export default class AttackMessageData extends BaseMessageData {
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
-  static async _onApplyDamage( event, button ) {
+  static async _onRollDamage( event, button ) {
     event.preventDefault();
     console.log( "In _onApplyDamage ChatMessage listener" );
     // update the damageDealt in the DataModel
+    const weapon = await fromUuid( this.roll.options.weaponUuid );
+    if ( weapon?.system.roll instanceof Function ) await weapon.system.rollDamage();
   }
 
   static async _onApplyEffect( event, button ) {
