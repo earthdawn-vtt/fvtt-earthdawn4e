@@ -1089,6 +1089,7 @@ ED4E.icons = {
   previousCharGen:  "fa-thin fa-arrow-left",
   nextCharGen:      "fa-thin fa-arrow-right",
   resetPoints:      "fa-arrows-rotate",
+  undo:             "fa-arrow-rotate-left",
 };
 
 

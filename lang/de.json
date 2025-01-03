@@ -240,7 +240,8 @@
         "rollEquipmentMultipleTargets": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen mehrere Ziele",
         "rollEquipmentSingleTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
         "rollEquipmentWithoutTarget": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
-        "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}"
+        "rollRecovery": "{sourceActor} erholt sich mit Stufe {step}",
+        "actorTookDamage": "{dealtTo} hat Schaden genommen"
       },
       "Header": {
         "attackManeuvers": "Manöver",

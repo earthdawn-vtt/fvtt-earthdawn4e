@@ -44,6 +44,43 @@ export default class DamageMessageData extends BaseMessageData {
   }
 
   /* -------------------------------------------- */
+  /*  Rendering                                  */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async getHTML( baseHtml ) {
+    const newHTML = await super.getHTML( baseHtml );
+    const damageButtonsDiv = newHTML.querySelector( ".damage-roll-buttons" );
+    damageButtonsDiv.parentNode.insertBefore( await this.getTransactionsHTML(), damageButtonsDiv.nextSibling );
+    return newHTML;
+  }
+
+  async getTransactionsHTML() {
+    const div = document.createElement( "div" );
+    div.classList.add( "damage-transactions" );
+    for ( let transaction of this.transactions ) {
+      const dealtTo = await fromUuid( transaction.dealtTo );
+      const dealtToName = dealtTo ? dealtTo.name : game.i18n.localize( "TODO.Unknown Actor" );
+      const message = game.i18n.format( "ED.Chat.Flavor.actorTookDamage", { dealtTo: dealtToName } );
+
+      const transactionDiv = document.createElement( "div" );
+      transactionDiv.classList.add( "damage-transaction" );
+      transactionDiv.dataset.damageDealt = transaction.damage;
+      transactionDiv.textContent = message;
+
+      const undoButton = document.createElement( "i" );
+      undoButton.classList.add( "fa-light", "fa-undo" );
+      undoButton.dataset.action = "undo-damage";
+
+      transactionDiv.appendChild( undoButton );
+
+      div.appendChild( transactionDiv );
+    }
+
+    return div;
+  }
+
+  /* -------------------------------------------- */
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
