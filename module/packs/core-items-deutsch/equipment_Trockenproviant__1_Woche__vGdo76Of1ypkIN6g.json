@@ -1,0 +1,60 @@
+{
+  "folder": "7pYcZ2vZ8VEQcjMp",
+  "type": "equipment",
+  "name": "Trockenproviant (1 Woche)",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Die meisten Abenteurer und Reisenden verwenden Trockenproviant – getrocknete Nahrung, die lange haltbar bleibt, ohne zu verderben. Trockenproviant besteht aus getrockneten Früchten, getrocknetem Fleisch und Nüssen.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 10,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 8,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "vGdo76Of1ypkIN6g",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735941234669,
+    "modifiedTime": 1735945962655,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!vGdo76Of1ypkIN6g"
+}

@@ -1,0 +1,75 @@
+{
+  "folder": "1NMzleHKLEAs7Gtn",
+  "type": "weapon",
+  "name": "Dolch",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Ein Dolch ist eine kleine Waffe mit einer scharfen Klinge und einer maximalen Länge von zwölf Zoll. Ein Dolch mit einer längeren Klinge gilt als Schwert.</p>"
+    },
+    "edid": "undefined",
+    "rollType": "",
+    "price": {
+      "value": 8,
+      "denomination": "copper"
+    },
+    "weight": {
+      "value": 1,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "weaponType": "melee",
+    "weaponSubType": "bow",
+    "damage": {
+      "attribute": "str",
+      "baseStep": 2
+    },
+    "size": 1,
+    "strengthMinimum": 4,
+    "dexterityMinimum": 1,
+    "range": {
+      "shortMin": 0,
+      "shortMax": 0,
+      "longMin": 0,
+      "longMax": 1
+    },
+    "ammunition": {
+      "type": ""
+    },
+    "forgeBonus": 0
+  },
+  "_id": "9sTzuUGNIgIJaVEu",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735940941987,
+    "modifiedTime": 1735945086732,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!9sTzuUGNIgIJaVEu"
+}

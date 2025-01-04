@@ -1,0 +1,63 @@
+{
+  "folder": "BNxfdedU2FarOYEX",
+  "type": "skill",
+  "name": "Lesen / Schreiben",
+  "system": {
+    "rollType": "",
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Der Charakter lernt das Lesen und Schreiben verschiedener Sprachen. Zu den Unterschieden zwischen dem Talent und der Fertigkeit Lesen/Schreiben siehe @UUID[Compendium.earthdawnspielerhandbuch.spielerhandbuch.oMzuQNwWGOTKUFYB.JournalEntryPage.Jr9bPUeVTJNGePl2]{Sprachfertigkeiten}. Ansonsten funktioniert die Fertigkeit genauso wie das Talent @Compendium[earthdawnspielerhandbuch.talent-beschreibung.fjpvUH0eduWCScwK]{Lesen und Schreiben}verursacht aber keine Überanstrengung.</p><p> </p><p>Der Adept lernt, verschiedene Sprachen zu lesen und zu schreiben. Mit diesem Talent kann er eine maximale Anzahl von Sprachen gleich seinem Rang in Lesen/Schreiben erlernen. Wenn er dieses Maximum noch nicht erreicht hat, kann er versuchen, eine neue Sprache zu lernen, indem er für mindestens eine Minute mindestens eine Seite in dieser Sprache liest und dann eine Lesen/Schreiben-Probe gegen die Lernschwierigkeit der Sprache ablegt. Wenn die Probe gelingt, hat er die Sprache gelernt und notiert sie auf seinem Charakterblatt. Wenn die Probe misslingt, kann er erst wieder versuchen, dieselbe Sprache zu lernen, wenn er seinen Rang in Lesen/Schreiben gesteigert hat.</p><p>Die Lernschwierigkeiten für die verschiedenen Rassensprachen sind in der Tabelle Sprachen angegeben. Die angegebenen Werte spiegeln die Schwierigkeit wider, die „Basisversionen“ dieser Sprachen zu erlernen. Dialekte gelten für die Zwecke dieses Talents als eigene Sprachen (siehe unten).</p><p>Wenn der Adept eine Sprache liest, die er durch dieses Talent gelernt hat, legt er eine Lesen/Schreiben-Probe ab. Die Anzahl der Erfolge bestimmt, wie gut er den Inhalt versteht.</p><p>Um einfache Sätze und Ideen zu verstehen, wie etwa „Das Haus des Bürgermeisters liegt östlich von hier“, reicht ein Erfolg. Geschichten oder Legenden, die eigenartige Idiome oder blumige Phrasen enthalten, erfordern zwei Erfolge. Handbücher oder andere Bücher, die einen Jargon enthalten, der spezifisch für ein Fachgebiet ist, erfordern drei Erfolge. Um philosophische Abhandlungen über die Natur der Magie oder andere Texte zu verstehen, die spezialisierte akademische Sprache oder abstrakte Ideen wiedergeben, braucht es vier oder mehr Erfolge. Teilerfolge können nach Maßgabe des Spielleiters mehr oder weniger Details vermitteln. Für das Schreiben in einer Sprache gelten, je nach Komplexität des Themas, über das der Adept schreibt, dieselben Mindestwürfe.</p><p class=\"MsoNormal\" style=\"margin-bottom: .0001pt; line-height: normal; mso-layout-grid-align: none; text-autospace: none\">Die Wirkung jeder Probe hält für eine Anzahl von Stunden gleich dem Rang des Adepten in Lesen/Schreiben an, und erlaubt ihm, während dieser Zeit Texte in dieser Sprache zu lesen und zu schreiben, deren Komplexität von den erzielten Erfolgen abhängt. Wenn der Adept einen komplexeren Text lesen oder schreiben will, muss er dafür eine weitere Lesen/Schreiben-Probe ablegen. Die Überanstrengungskosten spiegeln die erforderliche Konzentration in dieser Zeit wider. Der Adept braucht etwa eine Minute, um eine Seite Text zu lesen, und 10 Minuten, um eine Seite Text zu schreiben.</p><h5 style=\"box-sizing: border-box; user-select: text; color: #191813; font-family: 'ArnoPro Regular'; font-size: large; text-align: center;\"><span style=\"font-family: 'ArnoPro Regular'\">Language Table</span></h5><table style=\"box-sizing: border-box; user-select: text; width: 327px; color: #191813; font-family: 'ArnoPro Regular'; font-size: large; height: 132px;\" border=\"1\"><tbody><tr style=\"box-sizing: border-box; user-select: text; height: 16px; background-color: #95a5a6;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\"><strong>Lernschwierigkeit</strong></span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\"><strong>Sprache</strong></span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">6</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Menschlich</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">7</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Obsidianisch</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">6</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Or’zet (Orkisch)</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">6</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Sperethiel (Elf)</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">7</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">T'skrang</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">6</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 16px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Trollisch</span></p></td></tr><tr style=\"box-sizing: border-box; user-select: text; height: 16px;\"><td style=\"box-sizing: border-box; user-select: text; width: 184px; height: 10px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">7</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px; height: 10px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Windlingisch</span></p></td></tr><tr><td style=\"box-sizing: border-box; user-select: text; width: 184px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">5</span></p></td><td style=\"box-sizing: border-box; user-select: text; width: 256px;\"><p><span style=\"font-family: 'ArnoPro Regular'\">Zwergisch*</span></p></td></tr></tbody></table><p>* Alle Charaktere, die das Spiel mit Kenntnis der zwergischen Sprache beginnen, kennen den throalischen Dialekt.</p><h3>Dialekte</h3><p>Sprachen sind oft sehr komplex, und die meisten weisen mehrere Variationen – Dialekte – auf. Diese Dialekte sind manchmal regional, andere wechseln je nach Stadt oder sogar je nach Kaer. Die Lernschwierigkeit eines Dialekts basiert auf der Ursprungssprache und beträgt gewöhnlich Grundmindestwurf +2, aber auch höhere Mindestwürfe sind möglich. Der Adept muss die Ursprungssprache lesen und schreiben können, bevor er versuchen kann, einen Dialekt dieser Sprache zu lernen. Wenn er die Ursprungssprache eines Dialekts kennt, kann er in dem Dialekt grundsätzlich kommunizieren, aber nach Maßgabe des Spielleiters kann seine Kommunikationsfähigkeit eingeschränkt sein.</p>"
+    },
+    "edid": "undefined",
+    "action": "standard",
+    "strain": 0,
+    "attribute": "per",
+    "tier": "novice",
+    "source": {
+      "class": null,
+      "atLevel": null
+    },
+    "level": 0,
+    "rollTypeDetails": {
+      "ability": {},
+      "attack": {
+        "weaponItemStatus": [],
+        "weaponType": "melee"
+      },
+      "damage": {},
+      "effect": {},
+      "initiative": {},
+      "reaction": {
+        "defenseType": "physical"
+      },
+      "recovery": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "skillType": "general"
+  },
+  "_id": "PAzQZypUopg7a8Tu",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735946484088,
+    "modifiedTime": 1735946644024,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!items!PAzQZypUopg7a8Tu"
+}

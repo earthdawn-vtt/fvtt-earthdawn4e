@@ -1,0 +1,22 @@
+{
+  "name": "Sprache",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "BNxfdedU2FarOYEX",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735946456508,
+    "modifiedTime": 1735946456508,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!folders!BNxfdedU2FarOYEX"
+}
