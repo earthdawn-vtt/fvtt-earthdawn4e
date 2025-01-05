@@ -6,10 +6,12 @@ import {
   getSingleGlobalItemByEdid,
   mapObject,
   renameKeysWithPrefix,
-  sum
+  sum,
+  getEquipmentItemsFromCompendium
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+
 
 /**
 The application responsible for handling character generation
@@ -174,6 +176,17 @@ export default class CharacterGenerationData extends SparseDataModel {
         speak:     NamegiverTemplate.getLanguageDataField(),
         readWrite: NamegiverTemplate.getLanguageDataField(),
       } ),
+
+      // Equipment
+      // equipment: new fields.SchemaField( {
+      //   armor:     new fields.ArrayField( new fields.DocumentUUIDField() ),
+      //   equipment: new fields.ArrayField( new fields.DocumentUUIDField() ),
+      //   shields:   new fields.ArrayField( new fields.DocumentUUIDField() ),
+      //   weapons:   new fields.ArrayField( new fields.DocumentUUIDField() ),
+      // } ),
+
+      // equipment
+      equipment: new fields.SetField( new fields.DocumentUUIDField() ),
     };
   }
 
@@ -226,6 +239,12 @@ export default class CharacterGenerationData extends SparseDataModel {
     const allSpells = this.spells.map( async ( spell ) => await fromUuid( spell ) );
 
     return Promise.all( allSpells );
+  }
+
+  get equipmentDocuments() {
+    const allEquipment = this.equipment.map( async ( equipment ) => await fromUuid( equipment ) );
+
+    return Promise.all( allEquipment );
   }
 
   get abilityOption() {
@@ -288,6 +307,44 @@ export default class CharacterGenerationData extends SparseDataModel {
     } ) );
   
     return abilities.filter( uuid => uuid !== null );
+  }
+
+  async getEquipmentItems( type ) {
+    const compendiumName = "ed4e.core-items-deutsch";
+    const itemNames = {
+      armor:     [  ],
+      equipment: [
+        "Abenteuerpaket",
+        "Fackel",
+        "Feuerstein & Stahl",
+        "Grimoire",
+        "Großer Sack",
+        "Künstlerwerkzeug (Bildhauerei)",
+        "Künstlerwerkzeug (Malerei)",
+        "Künstlerwerkzeug (Schmieden)",
+        "Künstlerwerkzeug (Schnitzerei)",
+        "Künstlerwerkzeug (Sticken&Nähen)",
+        "Rucksack",
+        "Schlafsack",
+        "Wasser-oder Weinschlauch",
+        "Gürtel",
+        "Hemd",
+        "Hose",
+        "Reisekleidung (Gewand)",
+        "Reisekleidung (Hose)",
+        "Reiseumhang",
+        "Robe (Leinen)",
+        "Weiche Stiefel",
+        "Trockenproviant (1 Woche)"
+      ],
+      shields:   [  ],
+      weapons:   [ 
+        "Dolch",
+        "Messer"
+      ],
+    }[type];
+
+    return await getEquipmentItemsFromCompendium( compendiumName, itemNames );
   }
 
   async getCharacteristicsPreview() {
@@ -530,6 +587,20 @@ export default class CharacterGenerationData extends SparseDataModel {
     const newSpellSet = new Set( this.spells );
     newSpellSet.delete( spellUuid );
     return this.updateSource( { spells: newSpellSet } );
+  }
+
+  async addEquipment( equipmentUuid ) {
+    if ( !equipmentUuid ) return {};
+    return this.updateSource( {
+      equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
+    } );
+  }
+
+  async removeEquipment( equipmentUuid ) {
+    if ( !equipmentUuid ) return {};
+    const newEquipmentSet = new Set( this.equipment );
+    newEquipmentSet.delete( equipmentUuid );
+    return this.updateSource( { spells: newEquipmentSet } );
   }
 
   async resetPoints( type ) {

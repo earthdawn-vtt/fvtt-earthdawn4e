@@ -131,11 +131,24 @@ export default class PcData extends NamegiverTemplate {
     );
     const spellDocuments = await generation.spellDocuments;
 
+    const equipmentUUIDs = await generation.equipment;
+    const equipmentDocuments = [];
+
+    for ( const uuid of equipmentUUIDs ) {
+      if ( uuid !== null ) {
+        const equipmentDocument = await fromUuid( uuid );
+        if ( equipmentDocument ) {
+          equipmentDocuments.push( equipmentDocument.toObject() );
+        }
+      }
+    }
+
     await newActor.createEmbeddedDocuments( "Item", [
       namegiverDocument,
       classDocument,
       ...abilities,
-      ...spellDocuments
+      ...spellDocuments,
+      ...equipmentDocuments
     ] );
 
     const disciplineAfterCreation = newActor.disciplines[0];
