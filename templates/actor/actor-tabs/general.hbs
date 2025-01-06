@@ -203,22 +203,58 @@
             <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.overwhelmed"}}</div>
         </div>
     </div>
-    <div class="partial__two undefined">
-        <h3>{{localize "ED.Actor.Header.specialAbility"}}</h3>
-        <div>
-            wie soll diese ansicht aussehen, wie Rollable items oder nicht?
-            {{#each this.actor.itemTypes.specialAbility}}
-            <div class="item-id one-line__vertical-align" data-item-id="{{_id}}">
-                <div class="partial__two one-line__vertical-align">
-                    <img src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
-                    {{name}}
-                </div>
-                <div class="partial__two one-line__vertical-align">
-                    {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
-                </div>
-            </div>
-            {{/each}}
-        </div>
+
+  <!-- Attacks -->
+  <div class="partial__two">
+    <div>
+      <h3>{{localize "ED.Actor.Header.defaultAttacks"}}</h3>
+      <div>
+
+
+        {{#if this.actor.namegiver.system.tailAttack}}
+          <div class="partial__three">
+            <button class="attack-substitude__weapon-attack" data-item-id="weapon-attack">Weapon Attack</button>
+          </div>
+          <div class="partial__three">
+            <button class="attack-substitude__unarmed-attack" data-item-id="unarmed-attack">Unarmed Attack</button>
+          </div>
+          <div class="partial__three">
+            <button class="attack-substitude__tail-attack" data-item-id="tail-attack">Tail Attack</button>
+          </div>
+        {{else}}
+          <div class="partial__two">
+            <button class="attack-substitude__weapon-attack" data-item-id="weapon-attack">Weapon Attack</button>
+          </div>
+          <div class="partial__two">
+            <button class="attack-substitude__unarmed-attack" data-item-id="unarmed-attack">Unarmed Attack</button>
+          </div>
+        {{/if}}
+      </div>
     </div>
+    {{!-- tobe removed --}}
+    <br>
+    <br>
+
+
+
+    <div>
+      <h3 class="undefined">{{localize "ED.Actor.Header.specialAbility"}}</h3>
+      <div class="undefined">
+        wie soll diese ansicht aussehen, wie Rollable items oder nicht?
+        {{#each actor.itemTypes.specialAbility}}
+          <div class="item-id one-line__vertical-align" data-item-id="{{_id}}">
+            <div class="partial__two one-line__vertical-align">
+              <img src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
+              {{name}}
+            </div>
+            <div class="partial__two one-line__vertical-align">
+              {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
