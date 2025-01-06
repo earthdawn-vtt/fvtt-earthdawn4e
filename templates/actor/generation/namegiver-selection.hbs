@@ -1,13 +1,28 @@
 <section class="tab {{tab.cssClass}} scrollable" data-group="primary" data-tab="namegiver-tab">
-  <h4>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h4>
-  <div>
-    <p>{{{charGenRules}}}</p>
+
+  <div class="namegiver-selection">
+    <div>
+      <h1>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h1>
+      <p>{{{charGenRules}}}</p>
+    </div>
+      <div><h4>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h4></div>
+    <div class="char-gen-namegiver-select">
+      <div class="flexrow">
+      {{#each namegiversRadio as |namegiver uuid|}}
+        <label class="checkbox">
+          <input type="radio" name="namegiver" value="{{uuid}}" {{#if (eq ../object.namegiver uuid)}}checked{{/if}}>
+          <figure>
+            <img src="{{ifThen (eq namegiver.portrait "" ) "icons/svg/mystery-man-black.svg" namegiver.portrait }}">
+            <figcaption>{{namegiver.name}}</figcaption>
+          </figure>
+        </label>
+      {{/each}}
+      </div>
+    </div>
   </div>
-  <label for="char-gen-namegiver-select">
-    <h4>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h4>
-    <select id="char-gen-namegiver-select" name="namegiver">
-      <option value="">&ndash;&ndash;&ndash;</option>
-      {{selectOptions namegivers selected=object.namegiver valueAttr="uuid" labelAttr="name"}}
-    </select>
-  </label>
+  <div class="namegiver-preview">
+    <img src="{{namegiverDocument.img}}">
+    <h4>{{namegiverDocument.name}}</h4>
+    <div class="namegiver-description">{{{namegiverDocument.system.description.value}}}</div>
+  </div>
 </section>

@@ -66,8 +66,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       frame:       true,
       icon:        "fa-thin fa-user",
       title:       "ED.Dialogs.Title.characterGeneration",
-      resizable:   true,
-      minimizable: true,
+      resizable:   false,
+      minimizable: false,
     },
     actions: {
       next:            this._nextTab,
@@ -87,11 +87,11 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       submitOnChange: true,
       submitOnClose:  false,
     },
-    position: {
+    /* position: {
       width:  1000,
       top:    100,
       left:   100,
-    }
+    } */
   };
 
   /* ----------------------------------------------------------- */
@@ -237,6 +237,13 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // Namegiver
     context.namegivers = this.namegivers;
     context.namegiverDocument = await this.charGenData.namegiverDocument;
+    context.namegiversRadio = {};
+    context.namegivers.forEach( namegiver => {
+      context.namegiversRadio[namegiver.uuid] = {
+        name:     namegiver.name,
+        portrait: namegiver.system.portrait ?? "",
+      };
+    } );
 
     // Add namegiver abilities to the context
     context.namegiverAbilities = await this.charGenData.getNamegiverAbilities();

@@ -1,3 +1,180 @@
+//###########################################################
+//                       Char Gen
+//###########################################################
+
+form#character-generation-prompt {
+
+  @bg-color: #121212; // Dark background
+  @primary-color: #00d1ff; // Neon cyan for highlights
+  @secondary-color: #ff007f; // Neon magenta for accents
+  @ink-color: #362d24 ; // Ink color for text
+  @text-color: #f5f5f5; // Light text
+  @input-bg: #1e1e1e; // Input fields' background
+  @input-border: @primary-color; // Input border color
+  @button-hover: lighten(@primary-color, 10%);
+  @font-family: 'Cinzel', serif;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  // Base Styles
+  margin: 0;
+  padding: 0;
+  background: url('assets/foundry/Foundry_EDV2_CharGen_Design.png');
+  background-size: 100% 100%;
+  color: @text-color;
+  font-family: @font-family;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  min-width: 100%;
+  overflow: hidden;
+
+  header, menu {
+    display: none;
+  }
+
+  section.window-content {
+    padding: 0;
+    backdrop-filter: grayscale(0%);
+    font-size: 1.2em;
+
+    // Grid
+    display: grid;
+    grid-template-columns: 10% 8% 36% 7% 2% 1fr 3% 7%;
+    grid-template-rows: 6% 2% 3.8% 5.5% 1fr 7% 5%;
+    grid-template-areas:
+    ". tab-nav-left tab-nav-left . tab-nav-right tab-nav-right tab-nav-right ."
+    ". . . . . . . ."
+    ". . tab-header . . . . ."
+    "top-safety top-safety top-safety top-safety top-safety top-safety top-safety top-safety"
+    "tab-nav . main-left . . main-right . ."
+    "bottom-safety bottom-safety bottom-safety bottom-safety bottom-safety bottom-safety bottom-safety bottom-safety"
+    "footer footer footer footer footer footer footer footer";
+
+    h4 {
+      text-align: center;
+      text-shadow: #ddcfcd 1px 1px 1px;
+      font-weight: bold;
+    }
+
+    nav {
+      flex-direction: column;
+      align-items: stretch;
+      padding-right: 0.3em;
+      padding-left: 0.5em;
+      margin-right: 0;
+      color: @ink-color;
+      grid-area: tab-nav;
+      a[data-action='tab'] {
+        color: blanchedalmond;
+        text-align: right;
+        padding: 0.5em;
+        border-top-left-radius: 18%;
+        border-bottom-left-radius: 40%;
+        background-image: url('assets/sheet/background-darker.jpg');
+      }
+    }
+
+    h3 {
+      grid-area: tab-header;
+      text-align: center;
+    }
+
+    section.tab.active {
+      grid-area: 5 / 3 / 6 / 7;
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+
+      color: @ink-color;
+      text-shadow: #ddcfcd 1px 1px 1px;
+
+      ul {
+        list-style-type: "〽";
+      }
+
+      &.namegiver {
+
+        .namegiver-selection {
+          grid-area: main-left;
+
+          h1 {
+            font-family: 'OldLondon', serif;
+            color: rgba(152, 114, 85, 0);
+            text-shadow: #675741 1px 1px 0;
+            padding-bottom: 0.07em;
+            margin-bottom: 1em;
+            border-bottom-color: #5a000055;
+          }
+
+          .char-gen-namegiver-select {
+            [type="radio"] {
+              margin: 0;
+              padding: 0;
+              appearance: none;
+            }
+            [type="radio"] + figure {
+              cursor: pointer;
+              img {
+                border: none;
+                filter: grayscale(100%);
+                height: 8em;
+                &:hover {
+                  filter: none;
+                  transition: filter 0.3s;
+                }
+              }
+            }
+            [type="radio"]:checked + figure {
+              img {
+                filter: none;
+              }
+            }
+
+            label {
+              height: auto;
+            }
+
+          }
+        }
+        .namegiver-preview {
+          grid-area: main-right;
+          min-height: 0;
+          overflow-y: auto;
+          padding-right: 1em;
+
+          img {
+            width: 100%;
+            border: none;
+            margin: auto;
+            display: block;
+
+            animation: fadeIn 2s;
+          }
+          .namegiver-description {
+            overflow: scroll;
+          }
+        }
+      }
+    }
+
+    footer {
+      grid-area: footer;
+    }
+  }
+
+}
+
+
+
+/*
 .character-generation {
 
     .window-header {
@@ -311,4 +488,4 @@
             cursor: pointer;
         }
     }
-}
+}*/

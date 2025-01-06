@@ -27,6 +27,10 @@ export default class NamegiverData extends ItemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
+      portrait:        new fields.StringField( {
+        required: false,
+        trim:     true,
+      } ),
       attributeValues: new MappingField(
         new fields.NumberField( {
           required: true,
