@@ -42,7 +42,8 @@
         {{/if}}
       </span>
 
-      <i class="fa-duotone fa-solid fa-sword"></i>
+      {{log combatIcons weaponType}}
+      <img class="avatar" src="{{lookup combatIcons weaponType}}"/>
 
       <!-- Target(s) -->
       {{#each targets}}
