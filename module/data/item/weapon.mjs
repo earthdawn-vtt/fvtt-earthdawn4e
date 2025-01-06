@@ -182,31 +182,30 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
 
   /** @inheritDoc */
   get baseRollOptions() {
-    const rollOptions = super.baseRollOptions;
-    const damageRollOptions = {
-      step:            {
-        base:      this.damageTotal,
-        modifiers: {},
-      },
-      karma:           rollOptions.karma,
-      devotion:        rollOptions.devotion,
-      extraDice:       {
+    return DamageRollOptions.fromActor(
+      {
+        step:            {
+          base:      this.damageTotal,
+          modifiers: {},
+        },
+        extraDice:       {
         // this should be the place for things like flame weapon, etc. but still needs to be implemented
+        },
+        strain:          {
+          base:      0,
+          modifiers: {},
+        },
+        chatFlavor:      "WeaponTemplate: Weapon (Damage) Roll",
+        testType:        "effect",
+        rollType:        "damage",
+        weaponUuid:       this.parent?.uuid,
+        damageAbilities:  new Set( [] ),
+        armorType:       this.armorType,
+        damageType:      this.damage.type,
       },
-      strain:          {
-        base:      0,
-        modifiers: {},
-      },
-      chatFlavor:      "WeaponTemplate: Weapon (Damage) Roll",
-      testType:        "effect",
-      rollType:        "damage",
-      weaponUuid:       this.parent?.uuid,
-      damageAbilities:  new Set( [] ),
-      armorType:       this.armorType,
-      damageType:      this.damage.type,
-    };
+      this.parentActor
+    );
 
-    return new DamageRollOptions( damageRollOptions );
   }
 
   /** @override */

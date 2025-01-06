@@ -81,10 +81,11 @@ export default class AttackMessageData extends BaseMessageData {
 
   static async _onRollDamage( event, button ) {
     event.preventDefault();
-    console.log( "In _onApplyDamage ChatMessage listener" );
-    // update the damageDealt in the DataModel
+
     const weapon = await fromUuid( this.roll.options.weaponUuid );
-    if ( weapon?.system.roll instanceof Function ) await weapon.system.rollDamage();
+    if ( weapon?.system.roll instanceof Function ) return await weapon.system.rollDamage();
+
+    if ( this.roll.options.weaponType === "unarmed" ) return this.attacker.rollUnarmedDamage();
   }
 
   static async _onApplyEffect( event, button ) {
