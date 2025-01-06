@@ -11,6 +11,7 @@ import LpTrackingData from "../data/advancement/lp-tracking.mjs";
 import { sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
+import DamageRollOptions from "../data/roll/damage.mjs";
 
 const futils = foundry.utils;
 
@@ -261,6 +262,11 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+
+  /* -------------------------------------------- */
+  /*                   Rolls                      */
+  /* -------------------------------------------- */
+
   /**
    * Roll a generic attribute test. Uses {@link RollPrompt} for further input data.
    * @param {string} attributeId            The 3-letter id for the attribute (e.g. "per").
@@ -470,6 +476,41 @@ export default class ActorEd extends Actor {
     this.processRoll( roll );
   }
 
+  async rollUnarmedDamage( rollOptionsData = {} ) {
+    const roll = await RollPrompt.waitPrompt(
+      DamageRollOptions.fromActor(
+        {
+          step:             {
+            base:      this.system.attributes.str.step,
+            modifiers: {},
+          },
+          extraDice:        {},
+          strain:           {
+            base:      0,
+            modifiers: {},
+          },
+          chatFlavor:       game.i18n.format( "TODO.ED.Chat.Flavor.rollUnarmedDamage", {} ),
+          testType:         "effect",
+          rollType:         "damage",
+          weaponUuid:       null,
+          damageAbilities:  new Set( [] ),
+          armorType:        "physical",
+          damageType:       "standard",
+        },
+        this,
+      ),
+      {
+        rollData: this,
+      }
+    );
+
+    return this.processRoll( roll );
+  }
+
+
+  /* -------------------------------------------- */
+  /*            Damage & Combat                   */
+  /* -------------------------------------------- */
 
   /**
    * @summary                       Take the given amount of strain as damage.

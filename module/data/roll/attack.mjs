@@ -1,10 +1,14 @@
 import AbilityRollOptions from "./ability.mjs";
+import ED4E from "../../config.mjs";
 
 export default class AttackRollOptions extends AbilityRollOptions {
 
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
+      weaponType:        new fields.StringField( {
+        choices: ED4E.weaponType,
+      } ),
       weaponUuid:        new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,
@@ -19,6 +23,12 @@ export default class AttackRollOptions extends AbilityRollOptions {
     newContext.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
     newContext.reactionsByTarget = await this._getDefendantReactions();
     newContext.maneuvers = await this._getManeuvers();
+
+    newContext.weaponType = this.weaponType;
+    newContext.combatIcons = {
+      "melee":   "systems/ed4e/assets/icons/broadsword.svg",
+      "unarmed": "systems/ed4e/assets/icons/fist-smashing.svg",
+    };
 
     return newContext;
   }

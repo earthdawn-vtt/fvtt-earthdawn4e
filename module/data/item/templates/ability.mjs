@@ -289,11 +289,14 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const whatToDo = this._checkEquippedWeapons( equippedWeapons );
     if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
 
-    let weapon = whatToDo.uuid ? whatToDo : null;
-    if ( !weapon ) weapon = this[whatToDo]();
-    if ( !weapon ) {
-      ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
-      return;
+    let weapon = null;
+    if ( whatToDo !== "_unarmed" ) {
+      weapon = whatToDo.uuid ? whatToDo : null;
+      weapon ??= this[whatToDo]();
+      if ( !weapon ) {
+        ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
+        return;
+      }
     }
 
     const rollOptions = this.baseRollOptions;
@@ -302,7 +305,8 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       rollingActorUuid: this.parentActor.uuid,
       target:           { tokens: game.user.targets.map( token => token.document.uuid ) },
       abilityUuid:      this.parent.uuid,
-      weaponUuid:       weapon.uuid,
+      weaponType:       this.rollTypeDetails.attack.weaponType,
+      weaponUuid:       weapon?.uuid ?? null,
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",
       rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
     };
@@ -337,6 +341,8 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
    * @protected
    */
   _checkEquippedWeapons( equippedWeapons ) {
+
+    if ( this.rollTypeDetails.attack.weaponType === "unarmed" ) return "_unarmed";
 
     const requiredWeaponStatus = this.rollTypeDetails.attack.weaponItemStatus;
     const requiredWeaponType = this.rollTypeDetails.attack.weaponType;

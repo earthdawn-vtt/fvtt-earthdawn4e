@@ -299,7 +299,7 @@ export default class EdRollOptions extends SparseDataModel {
     };
     data.rollingActorUuid = actor.uuid;
 
-    return new EdRollOptions( data, options );
+    return new this( data, options );
   }
 
   static initResourceStep( _ ) {
