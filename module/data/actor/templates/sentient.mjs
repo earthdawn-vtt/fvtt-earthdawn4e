@@ -2,12 +2,15 @@ import CommonTemplate from "./common.mjs";
 import MovementFields from "./movement.mjs";
 import ED4E from "../../../config.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
+import ThreadTemplate from "../../item/templates/threads.mjs";
 
 /**
  * A template for all actors that represent sentient beings and have such stats.
  * @mixin
  */
-export default class SentientTemplate extends CommonTemplate {
+export default class SentientTemplate extends CommonTemplate.mixin(
+  ThreadTemplate
+) {
 
   /** @inheritDoc */
   static defineSchema() {
