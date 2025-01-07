@@ -12,6 +12,7 @@ import { sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
+import AttackRollOptions from "../data/roll/attack.mjs";
 
 const futils = foundry.utils;
 
@@ -572,6 +573,63 @@ export default class ActorEd extends Actor {
     return {
       damageTaken:       finalAmount,
       knockdownTest,
+    };
+  }
+
+  async attack( attackType ) {
+    return this[`${attackType}Attack`]();
+  }
+
+  async weaponAttack() {
+    // TODO: Implement
+  }
+
+  async unarmedAttack() {
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: "unarmed",
+        weaponUuid: null,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.unarmedAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    return this.processRoll( roll );
+  }
+
+  async tailAttack() {
+    // TODO: Implement
+  }
+
+  async _getCommonAttackRollData() {
+    const targetTokens = game.user.targets;
+    const maxDifficulty = Math.max( ...[ ...targetTokens ].map(
+      token => token.actor.system.characteristics.defenses.physical.value )
+    );
+
+    return {
+      step:       {
+        base:      this.system.attributes.dex.step,
+        modifiers: {},
+      },
+      extraDice:  {},
+      target:     {
+        base:      maxDifficulty,
+        modifiers: {},
+        public:    false,
+        tokens:    targetTokens.map( token => token.document.uuid ),
+      },
+      strain:     {
+        base:      0,
+        modifiers: {},
+      },
+      testType:   "action",
+      rollType:   "attack",
     };
   }
 

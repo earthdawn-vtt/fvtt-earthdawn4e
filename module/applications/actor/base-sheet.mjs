@@ -28,6 +28,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       submitOnChange: true,
     },
     actions:  {
+      attack:           ActorSheetEd._onAttack,
       editImage:        ActorSheetEd._onEditImage,
       editItem:         ActorSheetEd._onItemEdit,
       deleteItem:       ActorSheetEd._onItemDelete,
@@ -71,6 +72,12 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     );
 
     return context;
+  }
+
+  static async _onAttack( event, target ) {
+    event.preventDefault();
+    const attackType = target.dataset.attackType;
+    return this.document.attack( attackType );
   }
 
   static async _onEditImage( event, target ) {
