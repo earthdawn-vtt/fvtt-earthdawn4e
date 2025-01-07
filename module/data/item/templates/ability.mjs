@@ -325,11 +325,13 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   _drawWeapon() {
     ui.notifications.info( "It's coming. Patience please!" );
+    this.parentActor.drawWeapon();
     return false;
   }
 
   _switchWeapon() {
     ui.notifications.info( "It's coming. Patience please!" );
+    this.parentActor.switchWeapon();
     return false;
   }
 

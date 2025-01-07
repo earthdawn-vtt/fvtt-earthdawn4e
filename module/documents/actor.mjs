@@ -581,7 +581,28 @@ export default class ActorEd extends Actor {
   }
 
   async weaponAttack() {
-    // TODO: Implement
+    let weapon = this.itemTypes.weapon.find( item => [ "mainHand", "offHand", "twoHands" ].includes( item.system.itemStatus ) );
+    if ( !weapon ) weapon = this.drawWeapon();
+    if ( !weapon ) {
+      ui.notifications.warn( "TODO.ED.Localize: No weapon available." );
+      return;
+    }
+
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: weapon.system.weaponType,
+        weaponUuid: weapon.uuid,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.weaponAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    return this.processRoll( roll );
   }
 
   async unarmedAttack() {
@@ -624,6 +645,16 @@ export default class ActorEd extends Actor {
     // TODO: apply the "-2 to all action tests this round" active effect
 
     return processedRoll;
+  }
+
+  drawWeapon() {
+    ui.notifications.info( "Function 'drawWeapon': it's coming. Bear with us please!" );
+    return undefined;
+  }
+
+  switchWeapon() {
+    ui.notifications.info( "Function 'switchWeapon': it's coming. Bear with us please!" );
+    return undefined;
   }
 
   async _getCommonAttackRollData() {
