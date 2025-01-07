@@ -603,7 +603,27 @@ export default class ActorEd extends Actor {
   }
 
   async tailAttack() {
-    // TODO: Implement
+    const weapon = this.itemTypes.weapon.find( item => item.system.itemStatus === "tail" );
+
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: weapon ? "melee" : "unarmed",
+        weaponUuid: weapon?.uuid ?? null,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.tailAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    const processedRoll = this.processRoll( roll );
+
+    // TODO: apply the "-2 to all action tests this round" active effect
+
+    return processedRoll;
   }
 
   async _getCommonAttackRollData() {
