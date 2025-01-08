@@ -658,9 +658,11 @@ export default class ActorEd extends Actor {
     return weapon;
   }
 
-  async switchWeapon() {
-    ui.notifications.info( "Function 'switchWeapon': it's coming. Bear with us please!" );
-    return undefined;
+  async switchWeapon( equippedWeapon ) {
+    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.switchWeapon" ) );
+    if ( equippedWeapon ) await this._updateItemStates( equippedWeapon, "carried" );
+    else this.itemTypes.weapon.forEach( weapon => this._updateItemStates( weapon, "carried" ) );
+    return this.drawWeapon();
   }
 
   async _getCommonAttackRollData() {

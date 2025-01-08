@@ -328,7 +328,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   }
 
   async _switchWeapon() {
-    ui.notifications.info( "It's coming. Patience please!" );
     return this.parentActor.switchWeapon();
   }
 
@@ -354,7 +353,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       weaponByStatus && weaponByType
       && ( weaponByStatus.uuid === weaponByType.uuid )
     ) return weaponByStatus;
-    if ( weaponByStatus && !weaponByType ) return "_switchWeapon";
+    if ( !weaponByStatus && weaponByType ) return "_switchWeapon";
     return "_drawWeapon";
   }
 

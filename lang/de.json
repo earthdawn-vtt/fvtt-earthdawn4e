@@ -1459,7 +1459,8 @@
       "Error": {},
       "Info": {
         "noMoreItemsOfThisType": "Diese Item kann kein weiteres Mal hinzugefügt werden.",
-        "notAddedforTheActor": "Diese Item ist nicht für diesen Actortyp gedacht."
+        "notAddedforTheActor": "Diese Item ist nicht für diesen Actortyp gedacht.",
+        "switchWeapon": "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
         "Legend": {
