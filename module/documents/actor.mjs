@@ -497,6 +497,7 @@ export default class ActorEd extends Actor {
           damageAbilities:  new Set( [] ),
           armorType:        "physical",
           damageType:       "standard",
+          ...rollOptionsData,
         },
         this,
       ),
