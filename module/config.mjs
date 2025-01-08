@@ -288,6 +288,18 @@ ED4E.weaponSubType = {
 };
 
 /**
+ * The way a weapon has to be equipped to wield it.
+ * @enum {string}
+ */
+ED4E.weaponWieldingType = {
+  mainHand:   "ED.Config.ItemStatus.mainHand",
+  offHand:    "ED.Config.ItemStatus.offHand",
+  twoHands:   "ED.Config.ItemStatus.twoHands",
+  tail:       "ED.Config.ItemStatus.tail",
+};
+preLocalize( "weaponWieldingType" );
+
+/**
  * Damage type
  * @enum {string}
  */

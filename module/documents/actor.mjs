@@ -647,12 +647,17 @@ export default class ActorEd extends Actor {
     return processedRoll;
   }
 
-  drawWeapon() {
-    ui.notifications.info( "Function 'drawWeapon': it's coming. Bear with us please!" );
-    return undefined;
+  /**
+   *
+   * @returns {ItemEd|undefined} The weapon that was drawn or undefined if no weapon was drawn.
+   */
+  async drawWeapon() {
+    const weapon = await fromUuid( await this._promptFactory.getPrompt( "drawWeapon" ) );
+    if ( weapon ) await weapon.update( { "system.itemStatus": weapon.system.wieldingType } );
+    return weapon;
   }
 
-  switchWeapon() {
+  async switchWeapon() {
     ui.notifications.info( "Function 'switchWeapon': it's coming. Bear with us please!" );
     return undefined;
   }
