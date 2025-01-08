@@ -304,7 +304,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       ...rollOptions.toObject(),
       rollingActorUuid: this.parentActor.uuid,
       target:           { tokens: game.user.targets.map( token => token.document.uuid ) },
-      abilityUuid:      this.parent.uuid,
       weaponType:       this.rollTypeDetails.attack.weaponType,
       weaponUuid:       weapon?.uuid ?? null,
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",
@@ -326,11 +325,13 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   _drawWeapon() {
     ui.notifications.info( "It's coming. Patience please!" );
+    this.parentActor.drawWeapon();
     return false;
   }
 
   _switchWeapon() {
     ui.notifications.info( "It's coming. Patience please!" );
+    this.parentActor.switchWeapon();
     return false;
   }
 

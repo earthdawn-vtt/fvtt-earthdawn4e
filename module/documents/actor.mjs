@@ -12,6 +12,7 @@ import { sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
+import AttackRollOptions from "../data/roll/attack.mjs";
 
 const futils = foundry.utils;
 
@@ -572,6 +573,114 @@ export default class ActorEd extends Actor {
     return {
       damageTaken:       finalAmount,
       knockdownTest,
+    };
+  }
+
+  async attack( attackType ) {
+    return this[`${attackType}Attack`]();
+  }
+
+  async weaponAttack() {
+    let weapon = this.itemTypes.weapon.find( item => [ "mainHand", "offHand", "twoHands" ].includes( item.system.itemStatus ) );
+    if ( !weapon ) weapon = this.drawWeapon();
+    if ( !weapon ) {
+      ui.notifications.warn( "TODO.ED.Localize: No weapon available." );
+      return;
+    }
+
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: weapon.system.weaponType,
+        weaponUuid: weapon.uuid,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.weaponAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    return this.processRoll( roll );
+  }
+
+  async unarmedAttack() {
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: "unarmed",
+        weaponUuid: null,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.unarmedAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    return this.processRoll( roll );
+  }
+
+  async tailAttack() {
+    const weapon = this.itemTypes.weapon.find( item => item.system.itemStatus === "tail" );
+
+    const rollOptions = AttackRollOptions.fromActor(
+      {
+        ...( await this._getCommonAttackRollData() ),
+        weaponType: weapon ? "melee" : "unarmed",
+        weaponUuid: weapon?.uuid ?? null,
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.tailAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    const processedRoll = this.processRoll( roll );
+
+    // TODO: apply the "-2 to all action tests this round" active effect
+
+    return processedRoll;
+  }
+
+  drawWeapon() {
+    ui.notifications.info( "Function 'drawWeapon': it's coming. Bear with us please!" );
+    return undefined;
+  }
+
+  switchWeapon() {
+    ui.notifications.info( "Function 'switchWeapon': it's coming. Bear with us please!" );
+    return undefined;
+  }
+
+  async _getCommonAttackRollData() {
+    const targetTokens = game.user.targets;
+    const maxDifficulty = Math.max( ...[ ...targetTokens ].map(
+      token => token.actor.system.characteristics.defenses.physical.value )
+    );
+
+    return {
+      step:       {
+        base:      this.system.attributes.dex.step,
+        modifiers: {},
+      },
+      extraDice:  {},
+      target:     {
+        base:      maxDifficulty,
+        modifiers: {},
+        public:    false,
+        tokens:    targetTokens.map( token => token.document.uuid ),
+      },
+      strain:     {
+        base:      0,
+        modifiers: {},
+      },
+      testType:   "action",
+      rollType:   "attack",
     };
   }
 

@@ -1,7 +1,7 @@
-import AbilityRollOptions from "./ability.mjs";
 import ED4E from "../../config.mjs";
+import EdRollOptions from "./common.mjs";
 
-export default class AttackRollOptions extends AbilityRollOptions {
+export default class AttackRollOptions extends EdRollOptions {
 
   static defineSchema() {
     const fields = foundry.data.fields;
