@@ -102,6 +102,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       options:                this.options,
       systemFields:           this.document.system.schema.fields,
       config:                 ED4E,
+      isGM:                   game.user.isGM,
     };
     
     context.tabs = this.#getTabs();

@@ -10,6 +10,7 @@ export default class ThreadBaseData extends SparseDataModel {
       isIdentified: new fields.BooleanField( {
         required: true,
         initial:  false,
+        gmOnly:   true,
         // label:    this.labelKey( "PhysicalItems.ThreadItem.isIdentified" ),
         // hint:     this.hintKey( "PhysicalItems.ThreadItem.isIdentified" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isIdentified",
@@ -53,6 +54,7 @@ export default class ThreadBaseData extends SparseDataModel {
       maxThreads:         new fields.NumberField( { 
         required: true,
         nullable: false,
+        gmOnly:   true,
         min:      1,
         step:     1,
         initial:  1,
@@ -65,6 +67,7 @@ export default class ThreadBaseData extends SparseDataModel {
       tier:               new fields.StringField( { 
         required: true,
         nullable: false,
+        gmOnly:   true,
         initial:  "novice",
         choices:  ED4E.tier,
         // label:    this.labelKey( "PhysicalItems.ThreadItem.tier" ),

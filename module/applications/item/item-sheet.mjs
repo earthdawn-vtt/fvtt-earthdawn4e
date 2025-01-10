@@ -118,6 +118,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       system:                 this.document.system,
       options:                this.options,
       systemFields:           this.document.system.schema.fields,
+      isGM:                   game.user.isGM,
       // enrichment:             await this.document._enableHTMLEnrichment(),
       // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
       config:                 ED4E,
