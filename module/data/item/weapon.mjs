@@ -46,6 +46,13 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         label:    this.labelKey( "Weapons.weaponSubType" ),
         hint:     this.hintKey( "Weapons.weaponSubType" ),
       } ),
+      wieldingType: new fields.StringField( {
+        required: true,
+        initial:  "mainHand",
+        choices:  ED4E.weaponWieldingType,
+        label:    this.labelKey( "Weapons.wieldingType" ),
+        hint:     this.hintKey( "Weapons.wieldingType" ),
+      } ),
       damage:        new fields.SchemaField( {
         attribute: new fields.StringField( {
           required: true,

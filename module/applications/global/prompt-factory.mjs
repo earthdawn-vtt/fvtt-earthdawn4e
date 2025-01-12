@@ -146,11 +146,12 @@ export default class PromptFactory {
 class ActorPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-    recovery:         this._recoveryPrompt.bind( this ),
-    takeDamage:       this._takeDamagePrompt.bind( this ),
+    chooseDiscipline: this._chooseDisciplinePrompt.bind( this ),
+    drawWeapon:       this._drawWeaponPrompt.bind( this ),
     jumpUp:           this._jumpUpPrompt.bind( this ),
     knockDown:        this._knockDownPrompt.bind( this ),
-    chooseDiscipline: this._chooseDisciplinePrompt.bind( this ),
+    recovery:         this._recoveryPrompt.bind( this ),
+    takeDamage:       this._takeDamagePrompt.bind( this ),
   };
 
   async _recoveryPrompt() {
@@ -327,6 +328,23 @@ class ActorPromptFactory extends PromptFactory {
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.chooseDiscipline",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: buttons
+    } );
+  }
+
+  async _drawWeaponPrompt() {
+    const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "draw-weapon-prompt",
+      uniqueId:    String( ++globalThis._appId ),
+      classes:     [ "earthdawn4e", "draw-weapon-prompt", "draw-weapon", "flexcol" ],
+      window:      {
+        title:       "ED.Dialogs.Title.drawWeapon",
         minimizable: false
       },
       modal:   false,

@@ -292,9 +292,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     let weapon = null;
     if ( whatToDo !== "_unarmed" ) {
       weapon = whatToDo.uuid ? whatToDo : null;
-      weapon ??= this[whatToDo]();
+      weapon ??= await this[whatToDo]();
       if ( !weapon ) {
-        ui.notifications.warn( "ED.Notifications.Warn.noWeaponToAttackWith" );
+        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noWeaponToAttackWith" ) );
         return;
       }
     }
@@ -319,20 +319,16 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return this.parentActor.processRoll( roll );
   }
 
-  _attack() {
+  async _attack() {
     return true;
   }
 
-  _drawWeapon() {
-    ui.notifications.info( "It's coming. Patience please!" );
-    this.parentActor.drawWeapon();
-    return false;
+  async _drawWeapon() {
+    return this.parentActor.drawWeapon();
   }
 
-  _switchWeapon() {
-    ui.notifications.info( "It's coming. Patience please!" );
-    this.parentActor.switchWeapon();
-    return false;
+  async _switchWeapon() {
+    return this.parentActor.switchWeapon();
   }
 
   /**
@@ -351,10 +347,14 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const weaponByStatus = equippedWeapons.find( weapon => requiredWeaponStatus.has( weapon.system.itemStatus ) );
     const weaponByType = equippedWeapons.find( weapon => weapon.system.weaponType === requiredWeaponType );
 
-    if ( weaponByStatus?.uuid === weaponByType?.uuid ) return weaponByStatus;
-    if ( !weaponByType ) return "_switchWeapon";
-    if ( !weaponByStatus ) return "_drawWeapon";
-    return "";
+    if (
+      // we need to check for the weapon  itself before comparing the uuids
+      // otherwise if both are null, the comparison will return true
+      weaponByStatus && weaponByType
+      && ( weaponByStatus.uuid === weaponByType.uuid )
+    ) return weaponByStatus;
+    if ( !weaponByStatus && weaponByType ) return "_switchWeapon";
+    return "_drawWeapon";
   }
 
 
