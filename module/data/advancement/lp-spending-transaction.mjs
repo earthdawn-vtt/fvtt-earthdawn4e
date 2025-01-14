@@ -60,17 +60,38 @@ export default class LpSpendingTransactionData extends LpTransactionData {
    *  The data necessary for creating the LpTransaction.
    */
   static dataFromLevelItem( item, amount, description ) {
-    return {
-      amount,
-      description,
-      entityType:  item.type,
-      name:       item.name,
-      value:      {
-        before: item.system.level,
-        after:  item.system.level + 1,
-      },
-      itemUuid:   item.uuid,
-    };
+    const physicalItems = [ "armor", "equipment", "weapon", "shield" ];
+    if ( physicalItems.includes( item.type ) ) {
+      let currentLevel = 0;
+      for ( const level of item.system.threadData.levels ) {
+        if ( level.isActive === true ) {
+          currentLevel ++;
+        }
+      }
+      return {
+        amount,
+        description,
+        entityType:  item.type,
+        name:       item.name,
+        value:      {
+          before: currentLevel,
+          after:  currentLevel + 1,
+        },
+        itemUuid:   item.uuid,
+      };
+    } else {
+      return {
+        amount,
+        description,
+        entityType:  item.type,
+        name:       item.name,
+        value:      {
+          before: item.system.level,
+          after:  item.system.level + 1,
+        },
+        itemUuid:   item.uuid,
+      };
+    }
   }
 
   /**

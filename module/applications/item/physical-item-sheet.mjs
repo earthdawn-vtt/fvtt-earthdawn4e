@@ -20,6 +20,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       tailorToNamegiver:  PhysicalItemSheetEd.tailorToNamegiver,
       addThreadLevel:     PhysicalItemSheetEd.addThreadLevel,
       deleteThreadLevel:  PhysicalItemSheetEd.deleteThreadLevel,
+      weaveThreadCheck:   PhysicalItemSheetEd.weaveThreadCheck,
     },
   };
 
@@ -132,6 +133,13 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
   static async tailorToNamegiver( event, target ) {
     this.document.tailorToNamegiver( this.document.parent.namegiver );
+  }
+
+  static async weaveThreadCheck( event, target ) {
+    event.preventDefault();
+    const item = this.document;
+    if ( typeof item.system.increase === "function" ) item.system.increase();
+    this.render();
   }
 }
 

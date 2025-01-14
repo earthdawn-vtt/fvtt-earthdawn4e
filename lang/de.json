@@ -1221,19 +1221,20 @@
           "resourceStepIncreased":                              "Ressourcenstufe erhöht"
         },
         "LearnSpell": {
-          "chatFlavorPatterncraft":         "{name} versucht den Zauber {spell} zu lernen.",
-          "chatFlavorTeacherTest":          "{name} versucht mit Hilfe der Lehrenden den Zauber {spell} zu lernen. Spruchzauberei der Lehrenden:",
-          "legendPatterncraft":             "Lernen durch Struktur Verstehen",
-          "legendRequirements":             "Voraussetzungen",
-          "legendTeacherTest":              "Unterstützung Lehrende",
-          "noPatterncraftTalentFound":      "Kein passendes Struktur Verstehen Talent gefunden",
-          "noSpellcastingTalentFound":      "Kein passendes Spruchzauberei Talent gefunden",
-          "teacherBonusModifier":           "Unterstützung Lehrende"
+          "chatFlavorPatterncraft":                             "{name} versucht den Zauber {spell} zu lernen.",
+          "chatFlavorTeacherTest":                              "{name} versucht mit Hilfe der Lehrenden den Zauber {spell} zu lernen. Spruchzauberei der Lehrenden:",
+          "legendPatterncraft":                                 "Lernen durch Struktur Verstehen",
+          "legendRequirements":                                 "Voraussetzungen",
+          "legendTeacherTest":                                  "Unterstützung Lehrende",
+          "noPatterncraftTalentFound":                          "Kein passendes Struktur Verstehen Talent gefunden",
+          "noSpellcastingTalentFound":                          "Kein passendes Spruchzauberei Talent gefunden",
+          "teacherBonusModifier":                               "Unterstützung Lehrende"
         },
         "Rules": {
-          "disciplineLearnShortRequirements": "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
-          "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
-          "talentIncreaseShortRequirements":                  "<ul>\n<li>Legendnepunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n"
+          "disciplineLearnShortRequirements":                   "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
+          "questorClassIncreaseShortRequirements":              "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
+          "talentIncreaseShortRequirements":                    "<ul>\n<li>Legendnepunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n",
+          "threadItemIncreaseShortRequirements":                "<ul>\n<li>Legendnepunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n"
         },
         "Validation": {
           "availableLp": "Genügend Legendenpunkte? Kostet: ",
@@ -1441,57 +1442,58 @@
         "tier": "Stufe"
       },
       "Title": {
-        "assignLp": "Legendenpunkte zuweisen",
-        "rollPrompt": "Würfelübersicht"
+        "assignLp":                                       "Legendenpunkte zuweisen",
+        "rollPrompt":                                     "Würfelübersicht"
       }
     },
     "Languages": {
-      "dwarf": "Zwergisch",
-      "elf": "Sperethiel",
-      "human": "Menschlich",
-      "obsidiman": "Obsidianisch",
-      "ork": "Or'zet",
-      "troll": "Trollisch",
-      "tskrang": "T'skrang",
-      "windling": "Windling"
+      "dwarf":                                            "Zwergisch",
+      "elf":                                              "Sperethiel",
+      "human":                                            "Menschlich",
+      "obsidiman":                                        "Obsidianisch",
+      "ork":                                              "Or'zet",
+      "troll":                                            "Trollisch",
+      "tskrang":                                          "T'skrang",
+      "windling":                                         "Windling"
     },
     "Notifications": {
       "Error": {},
       "Info": {
-        "noMoreItemsOfThisType": "Diese Item kann kein weiteres Mal hinzugefügt werden.",
-        "notAddedforTheActor": "Diese Item ist nicht für diesen Actortyp gedacht.",
-        "switchWeapon": "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
+        "noMoreItemsOfThisType":                          "Diese Item kann kein weiteres Mal hinzugefügt werden.",
+        "notAddedforTheActor":                            "Diese Item ist nicht für diesen Actortyp gedacht.",
+        "switchWeapon":                                   "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
         "Legend": {
-          "abilityIncreaseProblems": "Rang konnte nicht aktualisiert werden",
-          "classIncreaseProblems": "Rang/Kreis konnte nicht aktualisiert werden",
-          "cannotLearn" : "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
-          "firstDisciplineViaCharGen": "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
-          "noTalentCategorySelected": "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
-          "questorItemNotUpdated": "Questor-Item konnte nicht aktualisiert werden"
+          "abilityIncreaseProblems":                      "Rang konnte nicht aktualisiert werden",
+          "classIncreaseProblems":                        "Rang/Kreis konnte nicht aktualisiert werden",
+          "threadItemIncreaseProblems":                   "Der Fadengegenstand konnte nicht aktualisiert werden",
+          "cannotLearn" :                                 "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+          "firstDisciplineViaCharGen":                    "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+          "noTalentCategorySelected":                     "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
+          "questorItemNotUpdated":                        "Questor-Item konnte nicht aktualisiert werden"
         },
-        "livingArmorOnly":                                 "Es kann nur nur lebendige Rüstung getragen werden.",
-        "noWeaponToAttackWith":                            "Keine Waffe zum Angreifen verfügbar :(",
-        "piecemealArmorSizeExceeded": "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
+        "livingArmorOnly":                                "Es kann nur nur lebendige Rüstung getragen werden.",
+        "noWeaponToAttackWith":                           "Keine Waffe zum Angreifen verfügbar :(",
+        "piecemealArmorSizeExceeded":                     "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
       }
     },
     "Rolls": {
       "Labels": {
-        "abilityRoll": "Fähigkeitsprobe",
-        "actionTestRoll": "Aktionsprobe",
-        "arbitraryRoll": "Willkürlicher Test",
-        "arbitraryTestRoll": "Willkürlicher Test",
-        "attackRoll": "Angriffstprobe",
-        "attributeRoll": "Attributsprobe",
-        "damageRoll": "Schadensprobe",
-        "effectRoll": "Effektprobe",
-        "effectTestRoll": "Effektprobe",
-        "halfmagicRoll": "Halbmagieprobe",
-        "initiativeRoll": "Initiativeprobe",
-        "recoveryRoll": "Erholungsprobe",
-        "spellcastingRoll": "Spruchzaubereiprobe",
-        "threadWeavingRoll": "Fadenwebenprobe"
+        "abilityRoll":                                    "Fähigkeitsprobe",
+        "actionTestRoll":                                 "Aktionsprobe",
+        "arbitraryRoll":                                  "Willkürlicher Test",
+        "arbitraryTestRoll":                              "Willkürlicher Test",
+        "attackRoll":                                     "Angriffstprobe",
+        "attributeRoll":                                  "Attributsprobe",
+        "damageRoll":                                     "Schadensprobe",
+        "effectRoll":                                     "Effektprobe",
+        "effectTestRoll":                                 "Effektprobe",
+        "halfmagicRoll":                                  "Halbmagieprobe",
+        "initiativeRoll":                                 "Initiativeprobe",
+        "recoveryRoll":                                   "Erholungsprobe",
+        "spellcastingRoll":                               "Spruchzaubereiprobe",
+        "threadWeavingRoll":                              "Fadenwebenprobe"
       },
       "against": "gegen",
       "baseValue": "Basis Stufe",
