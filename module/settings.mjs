@@ -123,6 +123,16 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
+  // edid for unarmed combat
+  game.settings.register( "ed4e", "edidUnarmedCombat", {
+    name:    "ED.Settings.Edid.unarmedCombat",
+    hint:    "ED.Settings.Edid.unarmedCombatHint",
+    scope:   "world",
+    config:  true,
+    default: "unarmed-combat",
+    type:    new EdIdField(),
+  } );
+
   /* -------------------------------------------------------------------------------- */
   /*                                  STEP TABLES                                     */
   /* -------------------------------------------------------------------------------- */
