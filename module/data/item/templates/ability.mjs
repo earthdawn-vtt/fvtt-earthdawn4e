@@ -281,6 +281,29 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /*                    Rolling                   */
   /* -------------------------------------------- */
 
+  async rollAbility() {
+    if ( !this.isActorEmbedded ) return;
+
+    const rollOptions = this.baseRollOptions;
+    const rollOptionsUpdate = {
+      ...rollOptions.toObject(),
+      rollingActorUuid: this.parentActor.uuid,
+      target:           { 
+        tokens: game.user.targets.map( token => token.document.uuid ),
+        base:   this.getDifficulty(),
+      },
+      chatFlavor:       "AbilityTemplate: Ability ROLL",
+      rollType:         "ability", 
+    };
+
+    const roll = await RollPrompt.waitPrompt(
+      new AbilityRollOptions( rollOptionsUpdate ),
+      {
+        rollData: this.parentActor,
+      }
+    );
+    return this.parentActor.processRoll( roll );
+  }
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 
@@ -303,7 +326,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
       rollingActorUuid: this.parentActor.uuid,
-      target:           { tokens: game.user.targets.map( token => token.document.uuid ) },
+      target:           { 
+        tokens: game.user.targets.map( token => token.document.uuid ),
+        base:   this.getDifficulty(),
+      },
       weaponType:       this.rollTypeDetails.attack.weaponType,
       weaponUuid:       weapon?.uuid ?? null,
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",

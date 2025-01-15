@@ -179,10 +179,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
   static async rollable( event, target ) {
     event.preventDefault();
     const li = target.closest( ".item-id" );
-    const ability = this.document.items.get( li.dataset.itemId );
+    const ability = this.document.items.get( li?.dataset?.itemId );
 
     if ( ability?.system?.roll instanceof Function ) return ability.system.roll();
-
     const rollType = target.dataset.rolltype;
     if ( rollType === "attribute" ) {
       const attribute = target.dataset.attribute;
@@ -192,19 +191,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       const equipment = this.document.items.get( li.dataset.itemId );
       this.document.rollEquipment( equipment, { event: event } );
     }
-    /*
-    if ( rolltype === "attribute" ) {
-      const attribute = target.dataset.attribute;
-      this.document.rollAttribute( attribute, {}, { event: event } );
-    } else if ( rolltype === "ability" ) {
-      const li = target.closest( ".item-id" );
-      const ability = this.document.items.get( li.dataset.itemId );
-      this.document.rollAbility( ability, {}, { event: event } );
-    } else if ( rolltype === "equipment" ) {
-      const li = target.closest( ".item-id" );
-      const equipment = this.document.items.get( li.dataset.itemId );
-      this.document.rollEquipment( equipment, { event: event } );
-    } */
   }
 
   /**

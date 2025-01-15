@@ -12,14 +12,15 @@ export default class AbilityRollOptions extends EdRollOptions {
     } );
   }
 
+  /** @inheritDoc */
   async getFlavorTemplateData( context ) {
-    context = await super.getFlavorTemplateData( context );
+    const newContext = await super.getFlavorTemplateData( context );
 
-    context.ability = await fromUuid( this.abilityUuid );
-    context.rollingActor = await fromUuid( this.rollingActorUuid );
-    context.rollingActorTokenDocument = await context.rollingActor?.getTokenDocument();
+    newContext.ability = await fromUuid( this.abilityUuid );
+    newContext.rollingActor = await fromUuid( this.rollingActorUuid );
+    newContext.rollingActorTokenDocument = await context.rollingActor?.getTokenDocument();
 
-    return context;
+    return newContext;
   }
 
 }
