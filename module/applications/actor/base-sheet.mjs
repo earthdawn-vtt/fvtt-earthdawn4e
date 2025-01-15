@@ -179,10 +179,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
   static async rollable( event, target ) {
     event.preventDefault();
     const li = target.closest( ".item-id" );
-    let ability;
-    if ( li ) {
-      ability = this.document.items.get( li.dataset.itemId );
-    }
+    const ability = this.document.items.get( li?.dataset?.itemId );
 
     if ( ability?.system?.roll instanceof Function ) return ability.system.roll();
     const rollType = target.dataset.rolltype;
