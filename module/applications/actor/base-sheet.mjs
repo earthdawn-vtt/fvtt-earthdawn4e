@@ -230,19 +230,4 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     if ( deposit ) return item.system.deposit()?.then( _ => this.render() );
     return this;
   }
-
-
-
-
-  
-
-
-  /* -------------------------------------------- */
-
-
-  // region TODOS
-  // drag and drop einbauen
-  // enrichments oben in prepareContext einbauen -- roll data & enrichment funktioniert nicht richtig
-  // wechsel der tabs nicht richtig, nach #nderung kommt der general tab aber aktiv scheint noch der vorgänger...
-
 }

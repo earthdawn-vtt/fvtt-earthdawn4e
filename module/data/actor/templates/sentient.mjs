@@ -228,8 +228,8 @@ export default class SentientTemplate extends CommonTemplate {
       mobRules: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Data.Actor.Labels.mobRules",
-        hint:     "ED.Data.Actor.Hints.mobRules"
+        label:    "ED.Data.Actor.Labels.isMob",
+        hint:     "ED.Data.Actor.Hints.isMob"
       } ),
       challenge: new fields.SchemaField( {
         rate: new fields.NumberField( {
