@@ -1527,7 +1527,9 @@
         "spellCasting": "ED-ID für Spruchzauberei",
         "spellCastingHint": "Identifiziert die Fähigkeit die für Spruchzauberei verwendet wird",
         "threadWeaving": "ED-ID für Fadenweben",
-        "threadWeavingHint": "Identifiziert die Fähigkeit die für Fadenweben verwendet wird"
+        "threadWeavingHint": "Identifiziert die Fähigkeit die für Fadenweben verwendet wird",
+        "unarmedCombat": "ED-ID für Waffenlosen Kampf",
+        "unarmedCombatHint": "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
       },
       "Hint": {
           "enforceLivingArmor":                               "Prüft ob ausschließlich legendige Rüstung getragen werden kann."

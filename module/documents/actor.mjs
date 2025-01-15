@@ -13,6 +13,7 @@ import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackRollOptions from "../data/roll/attack.mjs";
+import { getSetting } from "../settings.mjs";
 
 const futils = foundry.utils;
 
@@ -625,11 +626,17 @@ export default class ActorEd extends Actor {
   }
 
   async tailAttack() {
+    let rollOptionsData = {};
+
+    const unarmed_ability = this.getSingleItemByEdid( getSetting( "edidUnarmedCombat" ) );
+    if ( unarmed_ability ) rollOptionsData = unarmed_ability.system.baseRollOptions;
+
     const weapon = this.itemTypes.weapon.find( item => item.system.itemStatus === "tail" );
 
+    rollOptionsData = foundry.utils.mergeObject( rollOptionsData, await this._getCommonAttackRollData() );
     const rollOptions = AttackRollOptions.fromActor(
       {
-        ...( await this._getCommonAttackRollData() ),
+        ...rollOptionsData,
         weaponType: weapon ? "melee" : "unarmed",
         weaponUuid: weapon?.uuid ?? null,
         chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.tailAttack", {} ),
