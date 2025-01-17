@@ -1,7 +1,7 @@
 <section class="actor-section__top">
     <div class="top">
         {{#if (eq this.actor.type "npc")}}
-            {{#if (eq this.actor.system.mobRules true)}}
+            {{#if (eq this.actor.system.isMob true)}}
             <div class="image-characteristics-mob__grid-container">
             {{else}}
             <div class="image-characteristics__grid-container">

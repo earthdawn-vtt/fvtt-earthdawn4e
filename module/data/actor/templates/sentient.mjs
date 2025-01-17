@@ -225,7 +225,7 @@ export default class SentientTemplate extends CommonTemplate {
         } ),
         ...MovementFields.movement
       } ),
-      mobRules: new fields.BooleanField( {
+      isMob: new fields.BooleanField( {
         required: true,
         initial:  false,
         label:    "ED.Data.Actor.Labels.isMob",
