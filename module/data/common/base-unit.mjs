@@ -1,5 +1,8 @@
 import FormulaField from "../fields/formula-field.mjs";
 import { SparseDataModel } from "../abstract.mjs";
+import AreaUnitData from "./area-unit.mjs";
+import DurationUnitData from "./duration-unit.mjs";
+import RangeUnitData from "./range-unit.mjs";
 
 const fields = foundry.data.fields;
 
@@ -19,7 +22,11 @@ export default class BaseUnitData extends SparseDataModel {
 
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
-    return BaseUnitData.#TYPES ??= Object.freeze( {} );
+    return BaseUnitData.#TYPES ??= Object.freeze( {
+      [AreaUnitData.TYPE]:     AreaUnitData,
+      [DurationUnitData.TYPE]: DurationUnitData,
+      [RangeUnitData.TYPE]:    RangeUnitData,
+    } );
   }
 
   static #TYPES;
