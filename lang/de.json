@@ -1027,6 +1027,9 @@
           "DurationUnit": {
             "unit":                                        "Die Zeiteinheit der Dauer"
           },
+          "RangeUnit": {
+            "unit":                                        "Die Maßeinheit der Reichweite"
+          },
           "learnSpell": {
             "lpCost":                             "Legendenpunkte für den Zauber Kosten",
             "patterncraftToLearnSpell":           "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
@@ -1059,6 +1062,9 @@
           },
           "DurationUnit": {
             "unit":                                        "Zeiteinheit"
+          },
+          "RangeUnit": {
+            "unit":                                        "Maßeinheit"
           },
           "learnSpell": {
             "lpCost":                             "Lp Kosten",
