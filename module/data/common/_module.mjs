@@ -1,7 +1,4 @@
-import AreaUnitData from "./area-unit.mjs";
-import BaseUnitData from "./base-unit.mjs";
-import DurationUnitData from "./duration-unit.mjs";
-import RangeUnitData from "./range-unit.mjs";
+import { AreaUnitData, BaseUnitData, DurationUnitData, RangeUnitData } from "./units.mjs";
 
 export {
   AreaUnitData,
