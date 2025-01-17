@@ -138,7 +138,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   static async weaveThreadCheck( event, target ) {
     event.preventDefault();
     const item = this.document;
-    if ( typeof item.system.increase === "function" ) item.system.increase();
+    if ( typeof item.system.threadData.increase === "function" ) item.system.threadData.increase();
     this.render();
   }
 }

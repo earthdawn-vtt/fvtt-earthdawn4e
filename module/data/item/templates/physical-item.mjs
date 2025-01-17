@@ -2,9 +2,6 @@ import { ItemDataModel } from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config.mjs";
 import ThreadTemplate from "./threads.mjs";
-import LpIncreaseTemplate from "./lp-increase.mjs";
-import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
-import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -23,7 +20,6 @@ import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   TargetTemplate,
   ThreadTemplate,
-  LpIncreaseTemplate
 ) {
 
   /**
@@ -229,66 +225,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return statusOrder[ ( prevIndex < 0 ? ( statusOrder.length - 1 ) : prevIndex ) % statusOrder.length ];
   }
 
-  /**
-   * @inheritDoc
-   */
-  get requiredLpForIncrease() {
-    if ( !this.isActorEmbedded ) return undefined;
-    const activeThreads = this.threadData.levels.filter( level => level.isActive ).length;
-    const currentLevel = activeThreads > 0 ? activeThreads : 0;
-    const tierModifier = ED4E.lpIndexModForTier[1][this.threadData.tier];
-    return ED4E.legendPointsCost[ currentLevel + 1 + tierModifier ];
-  }
-
-  /**
-   * @inheritDoc
-   */
-  get increaseData() {
-    if ( !this.isActorEmbedded ) return undefined;
-    const actor = this.parent.actor;
-
-    return {
-      hasDamage:  actor.hasDamage( "standard" ),
-      hasWounds:  actor.hasWounds( "standard" ),
-    };
-  }
-
-  /**
-   * @inheritDoc
-   */
-  get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.threadItemIncreaseShortRequirements" );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  get increaseValidationData() {
-    if ( !this.isActorEmbedded ) return undefined;
   
-    const increaseData = this.increaseData;
-    return {
-      [ED4E.validationCategories.resources]: [
-        {
-          name:      "ED.Dialogs.Legend.Validation.availableLp",
-          value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.parent.actor.currentLp,
-        },
-      ],
-      [ED4E.validationCategories.health]:    [
-        {
-          name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     increaseData.hasDamage,
-          fulfilled: !increaseData.hasDamage,
-        },
-        {
-          name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     increaseData.hasWounds,
-          fulfilled: !increaseData.hasWounds,
-        },
-      ],
-    };
-  }
 
   /* -------------------------------------------- */
   /*  Methods                                     */
@@ -315,51 +252,5 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return this.parent.update( {
       "system.itemStatus": "owned"
     } );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  async increase() {
-    for ( const level of this.threadData.levels ) {
-      if ( level.isActive === false ) {
-        const promptFactory = PromptFactory.fromDocument( this.parent );
-        const spendLp = await promptFactory.getPrompt( "lpIncrease" );
-
-        if ( !spendLp
-          || spendLp === "cancel"
-          || spendLp === "close" ) break;
-
-        const updateData = this.toObject().threadData.levels;
-        const currentLevelIndex = level.level-1;
-        updateData[currentLevelIndex].isActive = true;
-        const updatedItem = await this.parent.update( { "system.threadData.levels": updateData } );
-
-        if ( foundry.utils.isEmpty( updatedItem ) ) {
-          ui.notifications.warn(
-            game.i18n.localize( "ED.Notifications.Warn.Legend.threadItemIncreaseProblems" )
-          );
-          return;
-        }
-
-        const updatedActor = await this.parent.actor.addLpTransaction(
-          "spendings",
-          LpSpendingTransactionData.dataFromLevelItem(
-            this.parent,
-            spendLp === "spendLp" ? this.requiredLpForIncrease : 0,
-            this.lpSpendingDescription,
-          ),
-        );
-
-        if ( foundry.utils.isEmpty( updatedActor ) )
-          ui.notifications.warn(
-            game.i18n.localize( "ED.Notifications.Warn.Legend.threadItemIncreaseProblems" )
-          );
-
-        // this ends the loop and the function - only one thread per click  
-        break;
-      } 
-    }
-    return this.parent;
   }
 }

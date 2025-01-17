@@ -454,7 +454,7 @@ class ItemPromptFactory extends PromptFactory {
   }
 
   async _lpIncreasePrompt() {
-    if ( !this.document.system.hasMixin( LpIncreaseTemplate ) ) {
+    if ( !this.document.system.hasMixin( LpIncreaseTemplate ) && !this.document.system.threadData.levels.length === 0 ) {
       throw new Error( "Item must be a subclass of LpIncreaseTemplate to use this prompt." );
     }
 
@@ -463,8 +463,8 @@ class ItemPromptFactory extends PromptFactory {
       validationTemplate,
       {
         render:             { requirements: true },
-        writtenRules:       this.document?.system?.increaseRules,
-        requirementGroups: this.document?.system?.increaseValidationData ?? {},
+        writtenRules:       this.document.system.threadData?.increaseRules || this.document?.system?.increaseRules,
+        requirementGroups: ( this.document?.system?.threadData?.increaseValidationData || this.document?.system?.increaseValidationData ) ?? {},
       },
     );
 
