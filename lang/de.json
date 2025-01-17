@@ -511,46 +511,8 @@
       },
       "Fields": {
         "Hints": {
-          "Area": {
-            "count":                                        "Anzahl der Bereiche",
-            "height":                                       "Höhe des Bereichs",
-            "special":                                      "Beschreibung des speziellen Bereichs",
-            "type":                                         "Form des Bereichs",
-            "unit":                                         "Einheit der Größe des Bereichs",
-            "value":                                        "Größe des Bereichs an der Hauptachse",
-            "width":                                        "Breite des Bereichs"
-          },
-          "Duration": {
-            "special":                                      "Beschreibung der speziellen Dauer",
-            "unit":                                         "Die Einheit der Dauer",
-            "value":                                        "Der Wert der Dauer"
-          },
-          "Range": {
-            "special":                                      "Beschreibung der speziellen Reichweite",
-            "unit":                                         "Die Einheit der Reichweite",
-            "value":                                        "Der Wert der Reichweite"
-          }
         },
         "Labels": {
-          "Area": {
-            "count":                                        "Anzahl",
-            "height":                                       "Höhe",
-            "special":                                      "Spezial",
-            "type":                                         "Typ",
-            "unit":                                         "Einheit",
-            "value":                                        "Wert",
-            "width":                                        "Breite"
-          },
-          "Duration": {
-            "special":                                      "Spezial",
-            "unit":                                         "Einheit",
-            "value":                                        "Wert"
-          },
-          "Range": {
-            "special":                                      "Spezial",
-            "unit":                                         "Einheit",
-            "value":                                        "Wert"
-          },
           "SpellEnhancement": {
             "special":                                      "Spezial",
             "type":                                         "Typ",
@@ -1045,6 +1007,23 @@
       },
       "Other": {
         "Hints": {
+          "AreaUnit": {
+            "angle":                                        "Der Winkel des Bereichs",
+            "areaTyp":                                      "Die geometrische Form des Bereichs",
+            "count":                                        "Die Anzahl der Bereiche",
+            "height":                                       "Die Höhe des Bereichs",
+            "length":                                       "Die Länge des Bereichs",
+            "radius":                                       "Der Radius des Bereichs",
+            "thickness":                                    "Die Dicke des Bereichs",
+            "unit":                                         "Die Maßeinheit des Bereichs",
+            "width":                                        "Die Breite des Bereichs"
+          },
+          "BaseUnit": {
+            "special":                                     "Beschreibung des speziellen Wertes",
+            "type":                                        "Die Art von Maß die beschrieben wird",
+            "unit":                                        "Die Maßeinheit des Wertes",
+            "value":                                       "Der eigentliche Wert"
+          },
           "learnSpell": {
             "lpCost":                             "Legendenpunkte für den Zauber Kosten",
             "patterncraftToLearnSpell":           "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
@@ -1058,6 +1037,23 @@
           }
         },
         "Labels": {
+          "AreaUnit": {
+            "angle":                                        "Winkel",
+            "areaTyp":                                      "Typ",
+            "count":                                        "Anzahl",
+            "height":                                       "Höhe",
+            "length":                                       "Länge",
+            "radius":                                       "Radius",
+            "thickness":                                    "Dicke",
+            "unit":                                         "Maßeinheit",
+            "width":                                        "Breite"
+          },
+          "BaseUnit": {
+            "special":                                     "Spezial",
+            "type":                                        "Typ",
+            "unit":                                        "Einheit",
+            "value":                                       "Wert"
+          },
           "learnSpell": {
             "lpCost":                             "Lp Kosten",
             "patterncraftToLearnSpell":           "Struktur Verstehen",
