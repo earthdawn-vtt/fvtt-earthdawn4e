@@ -4,10 +4,8 @@ import ED4E from "../../config.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
-import DurationField from "../fields/duration-field.mjs";
-import RangeField from "../fields/range-field.mjs";
 import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
-import { AreaUnitData, RangeUnitData } from "../common/units.mjs";
+import { AreaUnitData, DurationUnitData, RangeUnitData } from "../common/units.mjs";
 
 
 
@@ -138,7 +136,7 @@ export default class SpellData extends ItemDataModel.mixin(
         label:    this.labelKey( "Spell.spellElement" ),
         hint:     this.hintKey( "Spell.spellElement" ),
       } ),
-      duration: new DurationField( {}, {
+      duration: new EmbeddedDataField( DurationUnitData, {
         label: this.labelKey( "Spell.duration" ),
         hint:  this.hintKey( "Spell.duration" ),
       } ),

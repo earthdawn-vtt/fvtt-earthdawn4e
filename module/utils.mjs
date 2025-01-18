@@ -629,7 +629,7 @@ export async function preloadHandlebarsTemplates() {
 
     // Form Inputs and Groups
     "systems/ed4e/templates/form/input/unit-area.hbs",
-    "systems/ed4e/templates/form/input/unit-range.hbs",
+    "systems/ed4e/templates/form/input/unit-base.hbs",
     "systems/ed4e/templates/form/group/general.hbs",
 
     // Character Generation
