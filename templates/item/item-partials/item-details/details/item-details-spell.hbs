@@ -20,7 +20,5 @@
 
   {{formGroup systemFields.extraSuccess name="system.extraSuccess" value=item.system.extraSuccess localize=true}}
 
-  {{formGroup systemFields.area name="system.area" value=item.system.area localize=true}}
-
-  {{!--> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"--}}
+  {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.area inputTemplate="systems/ed4e/templates/form/input/unit-area.hbs" data=item.system.area fields=item.system.area.schema.fields config=config}}
 </div>

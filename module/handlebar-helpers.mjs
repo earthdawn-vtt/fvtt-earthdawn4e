@@ -119,6 +119,18 @@ function includes( collection, element ) {
 }
 
 /**
+ * @description Creates an object that can be used in the {@link HandlebarsHelpers#formInput} helper as the
+ * {@link FormInputConfig#dataset} parameter to create a tooltip.
+ * @param {string} content - The content of the tooltip.
+ * @returns {object} - An object with a tooltip property of the form `{ tooltip: content }`.
+ */
+function makeTooltip( content ) {
+  return {
+    tooltip: content,
+  };
+}
+
+/**
  * @description Registers custom Handlebars helpers for the application.
  */
 export default function registerHandlebarHelpers() {
@@ -137,7 +149,8 @@ export default function registerHandlebarHelpers() {
     "ed-diceFormulaForStep":     getDice,
     "ed-getTalentCategory":      getTalentCategory,
     "ed-commaList":              commaList,
-    "ed-includes":               includes
+    "ed-includes":               includes,
+    "ed-makeTooltip":            makeTooltip,
   } );
 
 }

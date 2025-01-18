@@ -1,0 +1,22 @@
+{{!--
+Expects parameters:
+@param dataField - The data field that is rendered.
+@param inputTemplate - The filename of the input partial of this form group.
+@param data - The system data of this field.
+@param fields - The schema fields of the data field, if applicable.
+@param config - The global ED4E configuration object.
+--}}
+
+{{! The form group is a container for a form field. It contains a label, the form field, and a hint. }}
+{{! The form field is rendered by the lookup helper. }}
+{{! The lookup helper is used to render the correct form field based on the inputTemplate. }}
+{{! The inputTemplate is a partial that renders the form field. }}
+{{! The inputTemplate is passed as a parameter to the formGroup helper --}}
+
+<div class="form-group">
+  <label>{{localize dataField.label}}</label>
+  <div class="form-fields">
+    {{> (lookup . "inputTemplate") data=data fields=fields config=config}}
+  </div>
+  <p class="hint">{{localize dataField.hint}}</p>
+</div>

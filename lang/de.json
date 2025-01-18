@@ -1078,7 +1078,8 @@
             "learnDifficulty":                    "Schwierigkeit"
           }
         }
-      }
+      },
+      "placeholderBlankSelectOption":                   "---"
     },
     "Dialogs": {
       "AssignLp": {

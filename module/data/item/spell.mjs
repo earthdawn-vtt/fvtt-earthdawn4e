@@ -6,8 +6,8 @@ import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import DurationField from "../fields/duration-field.mjs";
 import RangeField from "../fields/range-field.mjs";
-import AreaField from "../fields/area-field.mjs";
 import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
+import { AreaUnitData } from "../common/units.mjs";
 
 
 
@@ -23,7 +23,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const { ArrayField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+    const { ArrayField, EmbeddedDataField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 
     return this.mergeSchema( super.defineSchema(), {
       spellcastingType: new StringField( {
@@ -146,7 +146,7 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.range" ),
         hint:  this.hintKey( "Spell.range" ),
       } ),
-      area: new AreaField( {}, {
+      area: new EmbeddedDataField( AreaUnitData, {
         label: this.labelKey( "Spell.area" ),
         hint:  this.hintKey( "Spell.area" ),
       } ),
