@@ -495,7 +495,7 @@
       },
       "Actor": {
         "Hints": {
-          "isMob":                                        "Mob Regeln",
+          "isMob":                                        "Dieser Akteur benutzt Wunden anstatt Schaden",
           "challengeRate":                                "Herausforderungsrate",
           "Characteristics":{
             "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
@@ -503,7 +503,7 @@
         },
         "Labels": {
           "challengeRate":                                "Herausforderungsrate des Akteurs",
-          "isMob":                                        "Dieser Acteur benutzt ausschließlich Wunden anstatt Schaden",
+          "isMob":                                        "Mob Regeln",
           "Characteristics":{
             "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
           }
@@ -1441,57 +1441,58 @@
         "tier": "Stufe"
       },
       "Title": {
-        "assignLp": "Legendenpunkte zuweisen",
-        "rollPrompt": "Würfelübersicht"
+        "assignLp":                                       "Legendenpunkte zuweisen",
+        "rollPrompt":                                     "Würfelübersicht"
       }
     },
     "Languages": {
-      "dwarf": "Zwergisch",
-      "elf": "Sperethiel",
-      "human": "Menschlich",
-      "obsidiman": "Obsidianisch",
-      "ork": "Or'zet",
-      "troll": "Trollisch",
-      "tskrang": "T'skrang",
-      "windling": "Windling"
+      "dwarf":                                            "Zwergisch",
+      "elf":                                              "Sperethiel",
+      "human":                                            "Menschlich",
+      "obsidiman":                                        "Obsidianisch",
+      "ork":                                              "Or'zet",
+      "troll":                                            "Trollisch",
+      "tskrang":                                          "T'skrang",
+      "windling":                                         "Windling"
     },
     "Notifications": {
       "Error": {},
       "Info": {
-        "noMoreItemsOfThisType": "Diese Item kann kein weiteres Mal hinzugefügt werden.",
-        "notAddedforTheActor": "Diese Item ist nicht für diesen Actortyp gedacht.",
-        "switchWeapon": "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
+        "noMoreItemsOfThisType":                          "Diese Item kann kein weiteres Mal hinzugefügt werden.",
+        "notAddedforTheActor":                            "Diese Item ist nicht für diesen Actortyp gedacht.",
+        "switchWeapon":                                   "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
+        "noWeaponAvailable":                              "Keine Waffe zum Anlegen vorhanden."
       },
       "Warn": {
         "Legend": {
-          "abilityIncreaseProblems": "Rang konnte nicht aktualisiert werden",
-          "classIncreaseProblems": "Rang/Kreis konnte nicht aktualisiert werden",
-          "cannotLearn" : "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
-          "firstDisciplineViaCharGen": "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
-          "noTalentCategorySelected": "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
-          "questorItemNotUpdated": "Questor-Item konnte nicht aktualisiert werden"
+          "abilityIncreaseProblems":                      "Rang konnte nicht aktualisiert werden",
+          "classIncreaseProblems":                        "Rang/Kreis konnte nicht aktualisiert werden",
+          "cannotLearn" :                                 "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+          "firstDisciplineViaCharGen":                    "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+          "noTalentCategorySelected":                     "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
+          "questorItemNotUpdated":                        "Questor-Item konnte nicht aktualisiert werden"
         },
-        "livingArmorOnly":                                 "Es kann nur nur lebendige Rüstung getragen werden.",
-        "noWeaponToAttackWith":                            "Keine Waffe zum Angreifen verfügbar :(",
-        "piecemealArmorSizeExceeded": "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
+        "livingArmorOnly":                                "Es kann nur nur lebendige Rüstung getragen werden.",
+        "noWeaponToAttackWith":                           "Keine Waffe zum Angreifen verfügbar :(",
+        "piecemealArmorSizeExceeded":                     "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
       }
     },
     "Rolls": {
       "Labels": {
-        "abilityRoll": "Fähigkeitsprobe",
-        "actionTestRoll": "Aktionsprobe",
-        "arbitraryRoll": "Willkürlicher Test",
-        "arbitraryTestRoll": "Willkürlicher Test",
-        "attackRoll": "Angriffstprobe",
-        "attributeRoll": "Attributsprobe",
-        "damageRoll": "Schadensprobe",
-        "effectRoll": "Effektprobe",
-        "effectTestRoll": "Effektprobe",
-        "halfmagicRoll": "Halbmagieprobe",
-        "initiativeRoll": "Initiativeprobe",
-        "recoveryRoll": "Erholungsprobe",
-        "spellcastingRoll": "Spruchzaubereiprobe",
-        "threadWeavingRoll": "Fadenwebenprobe"
+        "abilityRoll":                                    "Fähigkeitsprobe",
+        "actionTestRoll":                                 "Aktionsprobe",
+        "arbitraryRoll":                                  "Willkürlicher Test",
+        "arbitraryTestRoll":                              "Willkürlicher Test",
+        "attackRoll":                                     "Angriffstprobe",
+        "attributeRoll":                                  "Attributsprobe",
+        "damageRoll":                                     "Schadensprobe",
+        "effectRoll":                                     "Effektprobe",
+        "effectTestRoll":                                 "Effektprobe",
+        "halfmagicRoll":                                  "Halbmagieprobe",
+        "initiativeRoll":                                 "Initiativeprobe",
+        "recoveryRoll":                                   "Erholungsprobe",
+        "spellcastingRoll":                               "Spruchzaubereiprobe",
+        "threadWeavingRoll":                              "Fadenwebenprobe"
       },
       "against": "gegen",
       "baseValue": "Basis Stufe",

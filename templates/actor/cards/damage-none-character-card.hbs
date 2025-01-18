@@ -1,4 +1,4 @@
-{{#if (eq actor.system.mobRules false)}}
+{{#if (eq actor.system.isMob false)}}
 <div class="characteristics-damage-header__grid-item">
     <h4 class="header--centered">{{localize "ED.Actor.Header.damage"}}</h4>
 </div>
@@ -29,7 +29,6 @@
             name="system.characteristics.health.wounds" value="{{actor.system.characteristics.health.wounds}}" editable>
     </div>
 </div>
-
 <div class="characteristics-recovery-header__grid-item">
     <h4 class="header--centered">{{localize "ED.Actor.Header.recovery"}}</h4>
 </div>
@@ -47,9 +46,6 @@
 
 </div>
 {{else}}
-<div class="characteristics-damage-header__grid-item">
-    <h4 class="header--centered">{{localize "ED.Actor.Header.damage"}}</h4>
-</div>
 <div class="characteristics-damage-wounds__grid-item">
     <label class="">{{localize "ED.Actor.Characteristics.woundsDamage"}}</label>
     <div>
@@ -60,9 +56,6 @@
 <div class="characteristics-max-wounds__grid-item">
     <label class="">{{localize "ED.Actor.Characteristics.maxWounds"}}</label>
     <div>
-        {{!-- <input id="characteristic-maxWounds" class="input__circle-input--centered"
-            name="system.characteristics.health.maxWounds" value="{{actor.system.characteristics.health.maxWounds}}"
-            editable> --}}
             <input id="characteristic-maxWounds" class="input__circle-input--centered"
             name="system.characteristics.health.maxWounds" value="{{actor.system.characteristics.health.maxWounds}}"
             editable>

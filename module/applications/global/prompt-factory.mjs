@@ -337,7 +337,10 @@ class ActorPromptFactory extends PromptFactory {
 
   async _drawWeaponPrompt() {
     const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
-
+    if ( buttons.length === 0 ) {
+      ui.notifications.info( game.i18n.format( "ED.Notifications.Info.noWeaponAvailable" ) );
+      return;
+    }
     return DialogClass.wait( {
       rejectClose: false,
       id:          "draw-weapon-prompt",
