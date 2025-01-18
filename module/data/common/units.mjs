@@ -74,6 +74,14 @@ export class BaseUnitData extends SparseDataModel {
   /*  Properties                                  */
   /* -------------------------------------------- */
 
+  get isScalarUnit() {
+    return this.unit in this.scalarConfig;
+  }
+
+  get isSpecialUnit() {
+    return this.unit === this.specialUnitKey;
+  }
+
   get scalarConfig() {
     return {};
   }
@@ -86,26 +94,45 @@ export class BaseUnitData extends SparseDataModel {
     return {};
   }
 
+  /**
+   * Get the unit select input options for this field.
+   * @type {[]} - The choices of the unit field as select options.
+   * @protected
+   */
+  get unitOptions() {
+
+    const unitOptions = [];
+    for ( const [ group, options ] of Object.entries( this.unitGroupOptions ) ) {
+      unitOptions.push( ...( this._getSelectOptionsConfig(
+        options,
+        group
+      ) ) );
+    }
+
+    return unitOptions;
+  }
+
   /* -------------------------------------------- */
   /*  Helper                                      */
   /* -------------------------------------------- */
 
   /**
-   * Is the range a scalar value, that is, a distance unit?
-   * @param {string} value The unit value to check.
-   * @returns {boolean} True if the range is a scalar value, that is, in {@link ED4E.scalarTimePeriods}.
+   * Get select options for a given enum to be used in {@link createSelectInput}.
+   * @param {Record<string,string>} configEnum - The enum to get select options for as used in ED4E config.
+   * @param {string} [group] - The group to use for the select options, if any.
+   * @returns {FormSelectOption[]} - The select options for the given enum.
    */
-  isScalarUnit( value ) {
-    return value in this.scalarConfig;
-  }
-
-  /**
-   * Is the unit "special", needing a description?
-   * @param {string} value The unit value to check.
-   * @returns {boolean} True if the unit is "spec".
-   */
-  isSpecialUnit( value ) {
-    return value === this.specialUnitKey;
+  _getSelectOptionsConfig( configEnum, group = "" ) {
+    return Object.entries( configEnum ).map( ( [ label, value ] ) => {
+      return {
+        value:    label,
+        label:    game.i18n.localize( value ),
+        group:    group,
+        disabled: false,
+        selected: false,
+        rule:     false,
+      };
+    } );
   }
 
 }

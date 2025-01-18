@@ -19,7 +19,7 @@
   {{!-- duration --}}
   {{formGroup systemFields.duration name="system.duration" value=item.system.duration localize=true}}
   {{!-- range --}}
-  {{formGroup systemFields.range name="system.range" value=item.system.range localize=true}}
+  {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.range inputTemplate="systems/ed4e/templates/form/input/unit-range.hbs" data=item.system.range fields=item.system.range.schema.fields config=config}}
 </div>
 <div class="item__right--main sheet__editor">
   <h3>{{localize "ED.Item.Header.description"}}</h3>

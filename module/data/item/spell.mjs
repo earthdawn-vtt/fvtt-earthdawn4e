@@ -7,7 +7,7 @@ import TargetTemplate from "./templates/targeting.mjs";
 import DurationField from "../fields/duration-field.mjs";
 import RangeField from "../fields/range-field.mjs";
 import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
-import { AreaUnitData } from "../common/units.mjs";
+import { AreaUnitData, RangeUnitData } from "../common/units.mjs";
 
 
 
@@ -142,7 +142,7 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.duration" ),
         hint:  this.hintKey( "Spell.duration" ),
       } ),
-      range:    new RangeField( {}, {
+      range:    new EmbeddedDataField( RangeUnitData, {
         label: this.labelKey( "Spell.range" ),
         hint:  this.hintKey( "Spell.range" ),
       } ),

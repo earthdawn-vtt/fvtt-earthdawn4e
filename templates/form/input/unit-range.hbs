@@ -1,0 +1,16 @@
+{{!--
+Expects parameters:
+@param data - The data model from the system field.
+@param fields - The schema fields of the areaModel.
+@param config - The global ED4E configuration object.
+--}}
+
+{{#if data.isScalarUnit}}
+  {{formInput fields.value value=data.value localize=true placeholder=(localize fields.value.label) dataset=(ed-makeTooltip fields.value.hint)}}
+{{/if}}
+
+{{formInput fields.unit value=data.unit options=data.unitOptions localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+
+{{#if data.isSpecialUnit}}
+  {{formInput fields.special value=data.special localize=true placeholder=(localize fields.special.label) dataset=(ed-makeTooltip fields.special.hint)}}
+{{/if}}
