@@ -113,6 +113,15 @@ export class BaseUnitData extends SparseDataModel {
 
 /**
  * Data model for storing area unit data.
+ * @augments BaseUnitData
+ * @property {string} count     Number of areas.
+ * @property {keyof ED4E.areaTargetDefinition} areaType  Type of area.
+ * @property {string} angle     Angle of the area.
+ * @property {string} height    Height of the area.
+ * @property {string} length    Length of the area.
+ * @property {string} radius    Radius of the area.
+ * @property {string} thickness Thickness of the area.
+ * @property {string} width     Width of the area.
  */
 export class AreaUnitData extends BaseUnitData {
 
@@ -141,16 +150,14 @@ export class AreaUnitData extends BaseUnitData {
       } ),
       areaType: new fields.StringField( {
         required: true,
-        nullable: true,
-        blank:    false,
+        blank:    true,
         trim:     true,
         choices:  ED4E.areaTargetDefinition,
-        initial:  null,
+        initial:  "",
         label:    this.labelKey( "AreaUnit.areaType" ),
         hint:     this.hintKey( "AreaUnit.areaType" )
       } ),
-      angle: new FormulaField( {
-        deterministic: true,
+      angle: new fields.AngleField( {
         label:         this.labelKey( "AreaUnit.angle" ),
         hint:          this.hintKey( "AreaUnit.angle" )
       } ),
