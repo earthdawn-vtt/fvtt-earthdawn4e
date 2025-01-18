@@ -949,7 +949,7 @@ preLocalize( "distanceUnits" );
 
 /**
  * Types for effects that cover an area.
- * @type {AreaTargetDefinition}
+ * @enum {AreaTargetDefinition}
  */
 ED4E.areaTargetDefinition = {
   circle:   {

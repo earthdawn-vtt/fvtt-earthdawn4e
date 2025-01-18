@@ -627,6 +627,11 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/global/effect-card.hbs",
     "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
 
+    // Form Inputs and Groups
+    "systems/ed4e/templates/form/input/unit-area.hbs",
+    "systems/ed4e/templates/form/input/unit-base.hbs",
+    "systems/ed4e/templates/form/group/general.hbs",
+
     // Character Generation
     "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
     "systems/ed4e/templates/actor/generation/class-selection.hbs",
