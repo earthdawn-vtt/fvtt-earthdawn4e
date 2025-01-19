@@ -16,7 +16,7 @@ Expects parameters:
 <div class="form-group">
   <label>{{localize dataField.label}}</label>
   <div class="form-fields">
-    {{> (lookup . "inputTemplate") data=data fields=fields config=config}}
+    {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField config=config}}
   </div>
   <p class="hint">{{localize dataField.hint}}</p>
 </div>

@@ -1088,6 +1088,7 @@ ED4E.icons = {
   attribute:        "fa-dice-d20",
   cancel:           "fa-times",
   classAdvancement: "fa-arrow-trend-up",
+  configure:        "fa-cogs",
   damage:           "fa-skull-crossbones",
   dice:             "fa-dice",
   effect:           "fa-biohazard",

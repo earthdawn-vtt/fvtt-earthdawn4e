@@ -22,12 +22,25 @@
     </div>
 
     {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.area inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs" data=item.system.area fields=item.system.area.schema.fields config=config}}
+
   </fieldset>
 
   <fieldset>
     <legend>{{localize "ED.Item.Header.spellEnhancement"}}</legend>
 
-    {{formGroup systemFields.extraSuccess name="system.extraSuccess" value=item.system.extraSuccess localize=true}}
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.extraSuccess
+      inputTemplate="systems/ed4e/templates/form/input/spell-enhancement.hbs"
+      data=item.system.extraSuccess
+      config=config
+    }}
+
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.extraThreads
+      inputTemplate="systems/ed4e/templates/form/input/spell-enhancement.hbs"
+      data=item.system.extraThreads
+      config=config
+    }}
 
   </fieldset>
 </div>

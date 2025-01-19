@@ -1,0 +1,10 @@
+{{!--
+Expects parameters:
+@param config - The global ED4E configuration object.
+@param configType - The type of configuration to open.
+--}}
+
+<button type="button" data-action="config" data-config-type="{{configType}}">
+  <i class="fas {{config.icons.configure}}"></i>
+  <label inert="">{{localize "ED.Dialogs.Buttons.configure"}}</label>
+</button>

@@ -35,6 +35,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       submitOnChange: true,
     },
     actions:  {
+      config:           ItemSheetEd._onConfig,
       editImage:        ItemSheetEd._onEditImage,
       editEffect:       ItemSheetEd._onEffectEdit,
       deleteEffect:     ItemSheetEd._onEffectDelete,
@@ -137,6 +138,10 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
     );
 
     return context;
+  }
+
+  static async _onConfig( event, target ) {
+    ui.notifications.info( "Config not done yet" );
   }
 
   static async _onEditImage( event, target ) {

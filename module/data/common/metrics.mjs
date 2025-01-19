@@ -96,6 +96,12 @@ export class MetricData extends SparseDataModel {
     return "spec";
   }
 
+  get summaryString() {
+    if ( this.isScalarUnit ) return  `${this.value} ${this.unit}`;
+    if ( this.isSpecialUnit ) return this.special;
+    return `${this.value} ${this.unit}`;
+  }
+
   get unitGroupOptions() {
     return {};
   }
@@ -158,9 +164,40 @@ export class MetricData extends SparseDataModel {
  */
 export class AreaMetricData extends MetricData {
 
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
   static {
     Object.defineProperty( this, "TYPE", { value: "area" } );
   }
+
+  get summaryString() {
+    const areaType = ED4E.areaTargetDefinition[this.areaType];
+    switch ( this.areaType ) {
+      case "circle":
+      case "radius":
+      case "sphere":
+        return `${areaType}: ${this.radius} ${this.unit}`;
+      case "cone":
+        return `${this.angle}° ${areaType}: ${this.radius} ${this.unit}`;
+      case "cube":
+      case "square":
+        return `${areaType}: ${this.width} ${this.unit}`;
+      case "cylinder":
+        return `${areaType}: (r x h) ${this.radius} ${this.unit} x ${this.height} ${this.unit}`;
+      case "line":
+        return `${areaType}: (l x w) ${this.length} ${this.unit} x ${this.width} ${this.unit}`;
+      case "wall":
+        return `${areaType}: (l x w x t) ${this.length} ${this.unit} x ${this.width} ${this.unit} x ${this.thickness} ${this.unit}`;
+      default:
+        return areaType;
+    }
+  }
+
+  /* -------------------------------------------- */
+  /*      Schema                                  */
+  /* -------------------------------------------- */
 
   /** @inheritDoc */
   static defineSchema() {

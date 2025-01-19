@@ -1,0 +1,11 @@
+{{!--
+Expects parameters:
+@param dataField - The data field that is rendered.
+@param data - The data model from the system field.
+@param config - The global ED4E configuration object.
+--}}
+
+{{#each data}}
+  {{{this.summaryString}}}
+{{/each}}
+{{> "systems/ed4e/templates/configs/configure-button.hbs" config=config configType="spellEnhancement" }}

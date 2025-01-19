@@ -4,8 +4,7 @@ import ED4E from "../../config.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
-import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
-import { AreaMetricData, DurationMetricData, RangeMetricData } from "../common/metrics.mjs";
+import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
 
 
 
@@ -21,7 +20,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const { ArrayField, EmbeddedDataField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
+    const { ArrayField, EmbeddedDataField, NumberField, SchemaField, SetField, StringField, TypedSchemaField } = foundry.data.fields;
 
     return this.mergeSchema( super.defineSchema(), {
       spellcastingType: new StringField( {
@@ -148,11 +147,19 @@ export default class SpellData extends ItemDataModel.mixin(
         label: this.labelKey( "Spell.area" ),
         hint:  this.hintKey( "Spell.area" ),
       } ),
-      extraSuccess: new SpellEnhancementField( {}, {
-        label: this.labelKey( "Spell.extraSuccess" ),
-        hint:  this.hintKey( "Spell.extraSuccess" ),
+      extraSuccess: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
+        label:    this.labelKey( "Spell.extraSuccess" ),
+        hint:     this.hintKey( "Spell.extraSuccess" ),
       } ),
-      extraThreads: new ArrayField( new SpellEnhancementField( {}, {
+      {
+        required: true,
+        nullable: true,
+        initial:  [],
+        max:      1,
+        label:    this.labelKey( "Spell.extraSuccesses" ),
+        hint:     this.hintKey( "Spell.extraSuccesses" ),
+      } ),
+      extraThreads: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
         label: this.labelKey( "Spell.extraThreadOption" ),
         hint:  this.hintKey( "Spell.extraThreadOption" ),
       } ),
