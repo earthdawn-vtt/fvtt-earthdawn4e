@@ -1030,6 +1030,10 @@
           "RangeUnit": {
             "unit":                                        "Die Maßeinheit der Reichweite"
           },
+          "SpellEnhancement": {
+            "enhancementType":                              "Die Art der Verstärkung",
+            "unit":                                         "Die Maßeinheit der Verstärkung"
+          },
           "learnSpell": {
             "lpCost":                             "Legendenpunkte für den Zauber Kosten",
             "patterncraftToLearnSpell":           "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
@@ -1065,6 +1069,10 @@
           },
           "RangeUnit": {
             "unit":                                        "Maßeinheit"
+          },
+          "SpellEnhancement": {
+            "enhancementType":                              "Art",
+            "unit":                                         "Einheit"
           },
           "learnSpell": {
             "lpCost":                             "Lp Kosten",
@@ -1376,6 +1384,7 @@
         "inactiveUser": "Inaktive Spieler",
         "magic": "Magie",
         "navigator": "Navigator",
+        "spellEnhancement": "Zauber Verstärkung",
         "talentSource": "Talent Ursprung",
         "targetingDetails":   "Ziel Details",
         "type": "Typ"

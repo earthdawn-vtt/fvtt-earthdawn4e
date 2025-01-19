@@ -1,24 +1,33 @@
 <div>
 
-  {{!-- Spell Illusion --}}
-  {{#if item.system.isIllusion}}
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.details"}}</legend>
+
+    {{!-- Spell Illusion --}}
+    {{#if item.system.isIllusion}}
+      <div class="form-group label-top">
+        <label>
+          {{localize "ED4E.Data.Item.Fields.sensingDifficulty"}}
+        </label>
+        <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
+      </div>
+    {{/if}}
+
+    {{!-- Dispel Difficulty --}}
     <div class="form-group label-top">
       <label>
-        {{localize "ED4E.Data.Item.Fields.sensingDifficulty"}}
+        {{localize "ED4E.Data.Item.Fields.dispelDifficulty"}}
       </label>
-      <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
+      <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
     </div>
-  {{/if}}
 
-  {{!-- Dispel Difficulty --}}
-  <div class="form-group label-top">
-    <label>
-      {{localize "ED4E.Data.Item.Fields.dispelDifficulty"}}
-    </label>
-    <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
-  </div>
+    {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.area inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs" data=item.system.area fields=item.system.area.schema.fields config=config}}
+  </fieldset>
 
-  {{formGroup systemFields.extraSuccess name="system.extraSuccess" value=item.system.extraSuccess localize=true}}
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.spellEnhancement"}}</legend>
 
-  {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.area inputTemplate="systems/ed4e/templates/form/input/unit-area.hbs" data=item.system.area fields=item.system.area.schema.fields config=config}}
+    {{formGroup systemFields.extraSuccess name="system.extraSuccess" value=item.system.extraSuccess localize=true}}
+
+  </fieldset>
 </div>

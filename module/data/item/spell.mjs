@@ -5,7 +5,7 @@ import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import SpellEnhancementField from "../fields/spell-enhancement-field.mjs";
-import { AreaUnitData, DurationUnitData, RangeUnitData } from "../common/units.mjs";
+import { AreaMetricData, DurationMetricData, RangeMetricData } from "../common/metrics.mjs";
 
 
 
@@ -136,15 +136,15 @@ export default class SpellData extends ItemDataModel.mixin(
         label:    this.labelKey( "Spell.spellElement" ),
         hint:     this.hintKey( "Spell.spellElement" ),
       } ),
-      duration: new EmbeddedDataField( DurationUnitData, {
+      duration: new EmbeddedDataField( DurationMetricData, {
         label: this.labelKey( "Spell.duration" ),
         hint:  this.hintKey( "Spell.duration" ),
       } ),
-      range:    new EmbeddedDataField( RangeUnitData, {
+      range:    new EmbeddedDataField( RangeMetricData, {
         label: this.labelKey( "Spell.range" ),
         hint:  this.hintKey( "Spell.range" ),
       } ),
-      area: new EmbeddedDataField( AreaUnitData, {
+      area: new EmbeddedDataField( AreaMetricData, {
         label: this.labelKey( "Spell.area" ),
         hint:  this.hintKey( "Spell.area" ),
       } ),

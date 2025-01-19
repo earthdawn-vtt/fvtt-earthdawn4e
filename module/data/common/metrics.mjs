@@ -6,14 +6,16 @@ const fields = foundry.data.fields;
 
 
 /**
- * Base model for storing data that have units which are possibly scalar (like duration or range).
- * Intended to be used as an inner EmbeddedDataField.
+ * Base model for storing data that have a value which is possibly scalar (like duration or range).
+ * The value can be scalar or a formula and might have a unit.
+ * Intended to be used as an inner EmbeddedDataField. Main purpose is to provide a common interface for
+ * handling different types of spell/ability properties and their enhancements.
  * @property {string} value   Scalar value for the unit.
  * @property {string} unit    Unit that is used.
  * @property {string} special Description of any special unit details.
  * @abstract
  */
-export class BaseUnitData extends SparseDataModel {
+export class MetricData extends SparseDataModel {
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -21,10 +23,14 @@ export class BaseUnitData extends SparseDataModel {
 
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
-    return BaseUnitData.#TYPES ??= Object.freeze( {
-      [AreaUnitData.TYPE]:     AreaUnitData,
-      [DurationUnitData.TYPE]: DurationUnitData,
-      [RangeUnitData.TYPE]:    RangeUnitData,
+    return MetricData.#TYPES ??= Object.freeze( {
+      [AreaMetricData.TYPE]:     AreaMetricData,
+      [DurationMetricData.TYPE]: DurationMetricData,
+      [EffectMetricData.TYPE]:   EffectMetricData,
+      [RangeMetricData.TYPE]:    RangeMetricData,
+      [SectionMetricData.TYPE]:  SectionMetricData,
+      [SpecialMetricData.TYPE]:  SpecialMetricData,
+      [TargetMetricData.TYPE]:   TargetMetricData,
     } );
   }
 
@@ -140,7 +146,7 @@ export class BaseUnitData extends SparseDataModel {
 
 /**
  * Data model for storing area unit data.
- * @augments BaseUnitData
+ * @augments MetricData
  * @property {string} count     Number of areas.
  * @property {keyof ED4E.areaTargetDefinition} areaType  Type of area.
  * @property {string} angle     Angle of the area.
@@ -150,7 +156,7 @@ export class BaseUnitData extends SparseDataModel {
  * @property {string} thickness Thickness of the area.
  * @property {string} width     Width of the area.
  */
-export class AreaUnitData extends BaseUnitData {
+export class AreaMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "area" } );
@@ -221,8 +227,9 @@ export class AreaUnitData extends BaseUnitData {
 
 /**
  * Data model for storing duration unit data.
+ * @augments MetricData
  */
-export class DurationUnitData extends BaseUnitData {
+export class DurationMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "duration" } );
@@ -266,9 +273,23 @@ export class DurationUnitData extends BaseUnitData {
 
 
 /**
- * Data model for storing range unit data.
+ * Data model for storing effect metric data.
+ * @augments MetricData
  */
-export class RangeUnitData extends BaseUnitData {
+export class EffectMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "effect" } );
+  }
+
+}
+
+
+/**
+ * Data model for storing range unit data.
+ * @augments MetricData
+ */
+export class RangeMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "range" } );
@@ -304,6 +325,102 @@ export class RangeUnitData extends BaseUnitData {
     return {
       "":                                                ED4E.rangeTypes,
       "ED.Data.Fields.Options.Range.groupMovementUnits": ED4E.movementUnits
+    };
+  }
+
+}
+
+
+export class SectionMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "section" } );
+  }
+
+}
+
+
+/**
+ * Data model for storing special metric data. This is used for special enhancement effects that can only be described textually.
+ * @augments MetricData
+ */
+export class SpecialMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "special" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isSpecialUnit() {
+    return true;
+  }
+
+}
+
+
+/**
+ * Data model for storing target (of spells or abilities) metric data.
+ * @augments MetricData
+ */
+export class TargetMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "target" } );
+  }
+
+}
+
+
+export class SpellEnhancementData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "spellEnhancement" } );
+  }
+
+  /** @inheritDoc */
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return this.mergeSchema( super.defineSchema(), {
+      unit: new fields.StringField( {
+        required: true,
+        nullable: true,
+        blank:    false,
+        trim:     true,
+        choices:  ED4E.spellEnhancementUnits,
+        initial:  null,
+        label:    this.labelKey( "SpellEnhancement.unit" ),
+        hint:     this.hintKey( "SpellEnhancement.unit" )
+      } ),
+      enhancementType: new fields.StringField( {
+        required: true,
+        blank:    false,
+        trim:     true,
+        choices:  ED4E.spellEnhancements,
+        initial:  "special",
+        label:    this.labelKey( "SpellEnhancement.enhancementType" ),
+        hint:     this.hintKey( "SpellEnhancement.enhancementType" ),
+      } ),
+    } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get scalarConfig() {
+    return ED4E.spellEnhancementUnits;
+  }
+
+  get specialUnitKey() {
+    return "special";
+  }
+
+  get unitGroupOptions() {
+    return {
+      "": ED4E.spellEnhancementUnits,
     };
   }
 
