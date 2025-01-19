@@ -1,0 +1,22 @@
+{
+  "name": "Equipment",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "v6BJ76Or4h8VGX2U",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1737239391886,
+    "modifiedTime": 1737239391904,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!folders!v6BJ76Or4h8VGX2U"
+}

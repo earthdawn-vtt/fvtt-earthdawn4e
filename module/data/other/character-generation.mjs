@@ -7,7 +7,7 @@ import {
   mapObject,
   renameKeysWithPrefix,
   sum,
-  getEquipmentItemsFromCompendium
+  // getCompendiumItemByName 
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
@@ -177,14 +177,6 @@ export default class CharacterGenerationData extends SparseDataModel {
         readWrite: NamegiverTemplate.getLanguageDataField(),
       } ),
 
-      // Equipment
-      // equipment: new fields.SchemaField( {
-      //   armor:     new fields.ArrayField( new fields.DocumentUUIDField() ),
-      //   equipment: new fields.ArrayField( new fields.DocumentUUIDField() ),
-      //   shields:   new fields.ArrayField( new fields.DocumentUUIDField() ),
-      //   weapons:   new fields.ArrayField( new fields.DocumentUUIDField() ),
-      // } ),
-
       // equipment
       equipment: new fields.SetField( new fields.DocumentUUIDField() ),
     };
@@ -309,42 +301,59 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilities.filter( uuid => uuid !== null );
   }
 
-  async getEquipmentItems( type ) {
-    const compendiumName = "ed4e.core-items-deutsch";
-    const itemNames = {
-      armor:     [  ],
-      equipment: [
-        "Abenteuerpaket",
-        "Fackel",
-        "Feuerstein & Stahl",
-        "Grimoire",
-        "Großer Sack",
-        "Künstlerwerkzeug (Bildhauerei)",
-        "Künstlerwerkzeug (Malerei)",
-        "Künstlerwerkzeug (Schmieden)",
-        "Künstlerwerkzeug (Schnitzerei)",
-        "Künstlerwerkzeug (Sticken&Nähen)",
-        "Rucksack",
-        "Schlafsack",
-        "Wasser-oder Weinschlauch",
-        "Gürtel",
-        "Hemd",
-        "Hose",
-        "Reisekleidung (Gewand)",
-        "Reisekleidung (Hose)",
-        "Reiseumhang",
-        "Robe (Leinen)",
-        "Weiche Stiefel",
-        "Trockenproviant (1 Woche)"
-      ],
-      shields:   [  ],
-      weapons:   [ 
-        "Dolch",
-        "Messer"
-      ],
-    }[type];
+  // async getEquipmentItems( type ) {
+  //   const compendiumName = "ed4e.core-items-deutsch";
+  //   const itemNames = {
+  //     armor:     [  ],
+  //     equipment: [
+  //       "Abenteuerpaket",
+  //       "Fackel",
+  //       "Feuerstein & Stahl",
+  //       "Grimoire",
+  //       "Großer Sack",
+  //       "Künstlerwerkzeug (Bildhauerei)",
+  //       "Künstlerwerkzeug (Malerei)",
+  //       "Künstlerwerkzeug (Schmieden)",
+  //       "Künstlerwerkzeug (Schnitzerei)",
+  //       "Künstlerwerkzeug (Sticken&Nähen)",
+  //       "Rucksack",
+  //       "Schlafsack",
+  //       "Wasser-oder Weinschlauch",
+  //       "Gürtel",
+  //       "Hemd",
+  //       "Hose",
+  //       "Reisekleidung (Gewand)",
+  //       "Reisekleidung (Hose)",
+  //       "Reiseumhang",
+  //       "Robe (Leinen)",
+  //       "Weiche Stiefel",
+  //       "Trockenproviant (1 Woche)"
+  //     ],
+  //     shields:   [  ],
+  //     weapons:   [ 
+  //       "Dolch",
+  //       "Messer"
+  //     ],
+  //   }[type];
 
-    return await getEquipmentItemsFromCompendium( compendiumName, itemNames );
+  //   return await getCompendiumItemByName ( compendiumName, itemNames );
+  // }
+
+  async getEquipmentItems( type ) {
+    const lang = game.i18n.lang;
+    const items = [];
+    const equipmentList = ED4E.startingEquipment;
+
+    for ( const key in equipmentList ) {
+      if ( equipmentList.hasOwnProperty( key ) ) {
+        const item = equipmentList[key];
+        const equipmentItem = await fromUuid( item.uuid[lang] || item.uuid["en"] ); // Fallback to English if language not found
+        if ( equipmentItem?.type === type ) {
+          items.push( equipmentItem );
+        }
+      }
+    }
+    return items;
   }
 
   async getCharacteristicsPreview() {

@@ -1,0 +1,22 @@
+{
+  "name": "Rations",
+  "sorting": "a",
+  "folder": "v6BJ76Or4h8VGX2U",
+  "type": "Item",
+  "_id": "Qlxsue23cMezmeEm",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!Qlxsue23cMezmeEm"
+}

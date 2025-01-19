@@ -1,28 +1,43 @@
 {
-  "folder": "1NMzleHKLEAs7Gtn",
-  "type": "weapon",
-  "name": "Messer",
+  "folder": "FMdmcIL570N63KsM",
+  "type": "equipment",
+  "name": "Boots, soft",
   "system": {
     "difficulty": {
-      "target": "physical",
+      "target": "none",
       "group": "none",
       "fixed": null
     },
+    "threadData": {
+      "isIdentified": false,
+      "isAnalysed": false,
+      "characteristics": {
+        "defenses": {
+          "mystical": {
+            "baseValue": 0,
+            "value": 0
+          }
+        }
+      },
+      "maxThreads": 1,
+      "tier": "novice",
+      "enchantmentPattern": null,
+      "levels": []
+    },
     "description": {
-      "value": "<p>Ein Messer ist ein kleines Schneidwerkzeug mit einer scharfen Klinge von bis zu sechs Zoll Länge.</p>"
+      "value": ""
     },
     "edid": "undefined",
-    "rollType": "",
     "price": {
-      "value": 3,
-      "denomination": "copper"
+      "value": 0,
+      "denomination": "silver"
     },
     "weight": {
-      "value": 0.1,
+      "value": 0,
       "multiplier": 1,
       "calculated": false
     },
-    "availability": "everyday",
+    "availability": "average",
     "amount": 1,
     "bloodMagicDamage": 0,
     "usableItem": {
@@ -32,30 +47,16 @@
       "recoveryPropertyValue": 0
     },
     "itemStatus": "owned",
-    "weaponType": "melee",
-    "weaponSubType": "bow",
-    "damage": {
-      "attribute": "str",
-      "baseStep": 1
-    },
-    "size": 1,
-    "strengthMinimum": 3,
-    "dexterityMinimum": 1,
-    "range": {
-      "shortMin": 0,
-      "shortMax": 0,
-      "longMin": 0,
-      "longMax": 1
-    },
+    "consumable": false,
     "ammunition": {
       "type": ""
     },
-    "forgeBonus": 0
+    "bundleSize": 0
   },
-  "_id": "Nxc41za4gALuz1SL",
+  "_id": "YYcA7gxpr5SnMZgs",
   "img": "icons/svg/item-bag.svg",
   "effects": [],
-  "sort": 200000,
+  "sort": 0,
   "ownership": {
     "default": 0,
     "VaFQ07fDfsV4j1VL": 3
@@ -67,9 +68,9 @@
     "coreVersion": "12.331",
     "systemId": "ed4e",
     "systemVersion": "1.0.0",
-    "createdTime": 1735940953620,
-    "modifiedTime": 1736372138801,
+    "createdTime": 1737239391897,
+    "modifiedTime": 1737239391897,
     "lastModifiedBy": "VaFQ07fDfsV4j1VL"
   },
-  "_key": "!items!Nxc41za4gALuz1SL"
+  "_key": "!items!YYcA7gxpr5SnMZgs"
 }

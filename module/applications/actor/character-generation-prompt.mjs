@@ -286,8 +286,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     context.equipment = {
       armor:     await this.charGenData.getEquipmentItems( "armor" ),
       equipment: await this.charGenData.getEquipmentItems( "equipment" ),
-      shields:   await this.charGenData.getEquipmentItems( "shields" ),
-      weapons:   await this.charGenData.getEquipmentItems( "weapons" ),
+      shields:   await this.charGenData.getEquipmentItems( "shield" ),
+      weapons:   await this.charGenData.getEquipmentItems( "weapon" ),
     };
 
     context.selectedEquipment = this.charGenData.equipment;
@@ -579,16 +579,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       result = this.charGenData.removeSpell( target.dataset.spellUuid );
     }
     result.then( _ => this.render() );
-  }
-
-  static _selectEquipment( _, target ) {
-    const equipmentUuid = target.dataset.uuid;
-    if ( target.checked ) {
-      this.charGenData.addEquipment( equipmentUuid );
-    } else {
-      this.charGenData.removeEquipment( equipmentUuid );
-    }
-    this.render();
   }
   
   static _onReset( _, target ) {

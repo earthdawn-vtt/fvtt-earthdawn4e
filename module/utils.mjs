@@ -190,26 +190,26 @@ export async function getAllDocuments(
  * @param {string} itemNames      The names of the items to retrieve
  * @returns {Promise<Item[]>}      The items from the compendium
  */
-export async function getEquipmentItemsFromCompendium( compendiumName, itemNames ) {
-  const compendium = game.packs.get( compendiumName );
-  if ( !compendium ) {
-    console.error( `Compendium ${compendiumName} not found` );
-    return [];
-  }
+// export async function getCompendiumItemByName ( compendiumName, itemNames ) {
+//   const compendium = game.packs.get( compendiumName );
+//   if ( !compendium ) {
+//     console.error( `Compendium ${compendiumName} not found` );
+//     return [];
+//   }
 
-  const index = await compendium.getIndex();
-  const items = await Promise.all(
-    itemNames.map( async ( name ) => {
-      const entry = index.find( ( e ) => e.name === name );
-      if ( entry ) {
-        return await compendium.getDocument( entry._id );
-      }
-      return null;
-    } )
-  );
+//   const index = await compendium.getIndex();
+//   const items = await Promise.all(
+//     itemNames.map( async ( name ) => {
+//       const entry = index.find( ( e ) => e.name === name );
+//       if ( entry ) {
+//         return await compendium.getDocument( entry._id );
+//       }
+//       return null;
+//     } )
+//   );
 
-  return items.filter( ( item ) => item !== null );
-}
+//   return items.filter( ( item ) => item !== null );
+// }
 
 /**
  * Takes an array of documents and returns an object that can be used by Foundry's
