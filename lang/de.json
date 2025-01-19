@@ -713,7 +713,8 @@
             "action":                                       "Aktionsart",
             "strain":                                       "Überanstrengung",
             "powerStep":                                    "Aktionsstufe",
-            "damageStep":                                   "Schadensstufe"
+            "damageStep":                                   "Schadensstufe",
+            "isAttack":                                     "Angriff"
           },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
@@ -940,7 +941,8 @@
             "action":                                       "Aktionsart",
             "strain":                                       "Überanstrengung",
             "powerStep":                                    "Aktionsstufe",
-            "damageStep":                                   "Schadensstufe"
+            "damageStep":                                   "Schadensstufe",
+            "isAttack":                                     "Angriff"
           },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
@@ -1452,7 +1454,7 @@
         "general": "Allgemein"
       },
       "Placeholder": {
-        "lpDescription": "Trage hier eine Beschreibung ein"
+        "lpDescription":                                  "Trage hier eine Beschreibung ein"
       },
       "PhysicalItems": {
         "addThreadLevel":                                 "Füge einen Fadenrang hinzu.",
@@ -1461,8 +1463,9 @@
         "weaveThreadCheck":                               "Fadenweben ",
         "researchCheck":                                  "Forschen "
       },
+     
       "Talent": {
-        "action": "Aktion",
+        "action":                                         "Aktion",
         "attribute": "Attribut",
         "description": "Beschreibung",
         "difficultyFixed": "Feste Schwierigkeit",

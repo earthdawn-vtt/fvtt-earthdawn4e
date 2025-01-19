@@ -23,7 +23,6 @@
   "Item": {
     "types": [
       "armor",
-      "attack",
       "bindingSecret",
       "cursemark",
       "devotion",

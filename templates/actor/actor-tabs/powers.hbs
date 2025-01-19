@@ -9,8 +9,10 @@
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
 </div>
-{{#each actor.itemTypes.attack}}
-    {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
+{{#each actor.itemTypes.power}}
+    {{#if this.system.isAttack}}
+        {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
+    {{/if}}
 {{/each}}
 
 {{!-- Powers --}}

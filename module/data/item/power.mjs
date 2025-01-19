@@ -10,7 +10,15 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
+    const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
+      isAttack: new fields.BooleanField( {
+        required: true,
+        nullable: false,
+        default:  false,
+        label:    this.labelKey( "Powers.isAttack" ),
+        hint:     this.hintKey( "Powers.isAttack" )
+      } ),
             
     } );
   }
