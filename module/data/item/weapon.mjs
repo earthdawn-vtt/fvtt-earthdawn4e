@@ -166,7 +166,10 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         hint:     this.hintKey( "Weapons.forgeBonus" )
       } ),
       armorType: new fields.StringField( {
-        initial:  "physical",
+        required: true,
+        nullable: true,
+        blank:    true,
+        initial:  "",
         choices:  ED4E.armor,
         label:    this.labelKey( "Weapons.armorType" ),
         hint:     this.hintKey( "Weapons.armorType" )

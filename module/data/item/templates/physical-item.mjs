@@ -130,8 +130,11 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           hint:     this.hintKey( "PhysicalItems.UsableItem.arbitraryStep" )
         } ),
         action: new fields.StringField( {
-          initial:  "standard",
+          required: true,
+          nullable: true,
+          blank:    true,
           choices:  ED4E.action,
+          initial:  "standard",
           label:    this.labelKey( "PhysicalItems.UsableItem.action" ),
           hint:     this.hintKey( "PhysicalItems.UsableItem.action" )
         } ),

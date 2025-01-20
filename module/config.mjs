@@ -168,7 +168,6 @@ preLocalize( "availability" );
  * @enum {string}
  */
 ED4E.action = {
-  none:         "ED.Config.Action.none",
   free:         "ED.Config.Action.free",
   simple:       "ED.Config.Action.simple",
   standard:     "ED.Config.Action.standard",
@@ -195,7 +194,6 @@ preLocalize( "recoveryProperty" );
  * @enum {string}
  */
 ED4E.targetDifficulty = {
-  none:       "ED.Config.Defenses.none",
   mystical:   "ED.Config.Defenses.mystical",
   physical:   "ED.Config.Defenses.physical",
   social:     "ED.Config.Defenses.social",
@@ -233,7 +231,6 @@ preLocalize( "illusionType" );
  * @enum {string}
  */
 ED4E.groupDifficulty = {
-  none:             "ED.Config.Defenses.none",
   highestOfGroup:   "ED.Config.Defenses.highestOfGroup",
   lowestOfGroup:    "ED.Config.Defenses.lowestOfGroup",
   highestX:         "ED.Config.Defenses.highestX",
@@ -246,7 +243,6 @@ preLocalize( "groupDifficulty" );
  * @enum {string}
  */
 ED4E.armor = {
-  none:       "ED.General.none",
   physical:   "ED.Armor.physical",
   mystical:   "ED.Armor.mystical",
 };
