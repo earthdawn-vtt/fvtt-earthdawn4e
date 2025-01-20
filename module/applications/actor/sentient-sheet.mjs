@@ -1,12 +1,11 @@
 import ED4E from "../../config.mjs";
-
-const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import ActorSheetEd from "./common-sheet.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ActorSheet}
  */
-export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
+export default class ActorSheetEdSentient extends ActorSheetEd {
 
   constructor( options = {} ) {
     super( options );
@@ -28,22 +27,14 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       submitOnChange: true,
     },
     actions:  {
-      attack:           ActorSheetEd._onAttack,
-      editImage:        ActorSheetEd._onEditImage,
-      editItem:         ActorSheetEd._onItemEdit,
-      deleteItem:       ActorSheetEd._onItemDelete,
-      editEffect:       ActorSheetEd._onEffectEdit,
-      deleteEffect:     ActorSheetEd._onEffectDelete,
-      addEffect:        ActorSheetEd._onEffectAdd,
-      expandItem:       ActorSheetEd._onCardExpand,
-      displayItem:      ActorSheetEd._onDisplayItem,
-      takeDamage:       ActorSheetEd.takeDamage,
-      knockDown:        ActorSheetEd.knockdownTest,
-      recovery:         ActorSheetEd.rollRecovery,
-      jumpUp:           ActorSheetEd.jumpUp,
-      initiative:       ActorSheetEd.rollInitiative,
-      rollable:         ActorSheetEd.rollable,
-      changeItemStatus: ActorSheetEd.changeItemStatus,
+      attack:           ActorSheetEdSentient._onAttack,
+      takeDamage:       ActorSheetEdSentient.takeDamage,
+      knockDown:        ActorSheetEdSentient.knockdownTest,
+      recovery:         ActorSheetEdSentient.rollRecovery,
+      jumpUp:           ActorSheetEdSentient.jumpUp,
+      initiative:       ActorSheetEdSentient.rollInitiative,
+      rollable:         ActorSheetEdSentient.rollable,
+      changeItemStatus: ActorSheetEdSentient.changeItemStatus,
     },
   };
 
@@ -58,7 +49,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       // enrichment:             await this.document._enableHTMLEnrichment(),
       // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
       config:                 ED4E,
-      splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
     };
 
 
@@ -78,66 +68,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     event.preventDefault();
     const attackType = target.dataset.attackType;
     return this.document.attack( attackType );
-  }
-
-  static async _onEditImage( event, target ) {
-    const attr = target.dataset.edit;
-    const current = foundry.utils.getProperty( this.document, attr );
-    const { img } = this.document.constructor.getDefaultArtwork?.( this.document.toObject() ) ?? {};
-    // eslint-disable-next-line no-undef
-    const fp = new FilePicker( {
-      current,
-      type:           "image",
-      redirectToRoot: img ? [ img ] : [],
-      callback:       ( path ) => {
-        this.document.update( { [attr]: path } );
-      },
-      top:  this.position.top + 40,
-      left: this.position.left + 10,
-    } );
-    return fp.browse();
-  }
-
-  static async _onItemEdit( event, target ) {
-    event.preventDefault();
-    const itemId = target.parentElement.dataset.itemId;
-    const item = this.document.items.get( itemId );
-    return item.sheet?.render( true );
-  }
-
-  static async _onItemDelete( event, target ) {
-    event.preventDefault();
-    const itemId = target.parentElement.dataset.itemId;
-    const item = this.document.items.get( itemId );
-    if ( !item ) return;
-    return item.deleteDialog();
-  }
-
-  static async _onEffectEdit( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectDelete( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectAdd( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onCardExpand( event, target ) {
-    event.preventDefault();
-
-    const itemDescription = $( target )
-      .parent( ".item-id" )
-      .parent( ".card__ability" )
-      .children( ".card__description" );
-
-    itemDescription.toggleClass( "card__description--toggle" );
-  }
-
-  static async _onDisplayItem( event, target ) {
-    ui.notifications.info( "Display Item not done yet" );
   }
 
   static async takeDamage( event, target ) {

@@ -1,9 +1,9 @@
-import ActorSheetEd from "./base-sheet.mjs";
+import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
 
 /**
  * An Actor sheet for None-Player-Character type actors.
  */
-export default class ActorSheetEdNpc extends ActorSheetEd {
+export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
 
   constructor( options = {} ) {
     super( options );
