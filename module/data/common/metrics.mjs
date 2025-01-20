@@ -88,6 +88,10 @@ export class MetricData extends SparseDataModel {
     return this.unit === this.specialUnitKey;
   }
 
+  get hint() {
+    return this.constructor.hintKey( `MetricData.${this.constructor.TYPE}` );
+  }
+
   get scalarConfig() {
     return {};
   }
@@ -319,6 +323,14 @@ export class EffectMetricData extends MetricData {
     Object.defineProperty( this, "TYPE", { value: "effect" } );
   }
 
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
+  }
+
 }
 
 
@@ -368,10 +380,22 @@ export class RangeMetricData extends MetricData {
 }
 
 
+/**
+ * Data model for storing section metric data.
+ * @augments MetricData
+ */
 export class SectionMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "section" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
   }
 
 }
@@ -408,57 +432,12 @@ export class TargetMetricData extends MetricData {
     Object.defineProperty( this, "TYPE", { value: "target" } );
   }
 
-}
-
-
-export class SpellEnhancementData extends MetricData {
-
-  static {
-    Object.defineProperty( this, "TYPE", { value: "spellEnhancement" } );
-  }
-
-  /** @inheritDoc */
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    return this.mergeSchema( super.defineSchema(), {
-      unit: new fields.StringField( {
-        required: true,
-        nullable: true,
-        blank:    false,
-        trim:     true,
-        choices:  ED4E.spellEnhancementUnits,
-        initial:  null,
-        label:    this.labelKey( "SpellEnhancement.unit" ),
-        hint:     this.hintKey( "SpellEnhancement.unit" )
-      } ),
-      enhancementType: new fields.StringField( {
-        required: true,
-        blank:    false,
-        trim:     true,
-        choices:  ED4E.spellEnhancements,
-        initial:  "special",
-        label:    this.labelKey( "SpellEnhancement.enhancementType" ),
-        hint:     this.hintKey( "SpellEnhancement.enhancementType" ),
-      } ),
-    } );
-  }
-
   /* -------------------------------------------- */
   /*  Properties                                  */
   /* -------------------------------------------- */
 
-  get scalarConfig() {
-    return ED4E.spellEnhancementUnits;
-  }
-
-  get specialUnitKey() {
-    return "special";
-  }
-
-  get unitGroupOptions() {
-    return {
-      "": ED4E.spellEnhancementUnits,
-    };
+  get isScalarUnit() {
+    return true;
   }
 
 }

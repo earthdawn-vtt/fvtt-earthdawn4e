@@ -1029,6 +1029,15 @@
           "DurationUnit": {
             "unit":                                        "Die Zeiteinheit der Dauer"
           },
+          "MetricData": {
+            "area":                                       "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
+            "duration":                                   "Verändere die Dauer. Wenn sich nur die Einheit verändern soll (z.B. von Runden auf Minuten), dann lasse die anderen Felder leer.",
+            "effect":                                     "Verändere die Stufe des Effektwurfs. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
+            "range":                                      "Verändere die Reichweite. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
+            "section":                                    "Verändere die Anzahl an Abschnitten. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
+            "special":                                    "Eine textuelle Beschreibung der Veränderung. Das ist ein spezieller Wert, der nicht in die anderen Kategorien passt.",
+            "target":                                     "Verändere die Anzahl an möglichen Zielen. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann."
+          },
           "RangeUnit": {
             "unit":                                        "Die Maßeinheit der Reichweite"
           },

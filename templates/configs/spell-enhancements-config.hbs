@@ -2,16 +2,14 @@
   {{#each enhancements}}
     <fieldset>
       <legend>{{lookup (lookup ../config.spellEnhancements this.type) "label"}}</legend>
-      {{#if (eq this.type "area")}}
-        {{> "systems/ed4e/templates/form/group/general.hbs"
-          dataField=this.schema
-          inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs"
-          data=this
-          fields=this.schema.fields
-          fieldPath=(concat "system." @root.keyPath "." @index)
-          config=config
-        }}
-      {{/if}}
+      {{> "systems/ed4e/templates/form/group/general.hbs"
+        dataField=this.schema
+        inputTemplate=(lookup (lookup ../config.spellEnhancements this.type) "inputTemplate")
+        data=this
+        fields=this.schema.fields
+        fieldPath=(concat "system." @root.keyPath "." @index)
+        config=config
+      }}
     </fieldset>
   {{/each}}
 </section>

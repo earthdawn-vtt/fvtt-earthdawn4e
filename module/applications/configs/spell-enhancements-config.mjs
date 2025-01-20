@@ -11,6 +11,9 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     classes: [ "spell-enhancements-config" ],
+    form:    {
+      handler: this.#onSubmitForm,
+    },
     keyPath: null,
     type:    null,
   };
@@ -25,6 +28,22 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /* -------------------------------------------- */
   /*  Properties                                  */
   /* -------------------------------------------- */
+
+  /**
+   * The data for the enhancements field on the document's system property.
+   * @type {object}
+   */
+  get enhancements() {
+    return getProperty( this.document.system, this.keyPath );
+  }
+
+  /**
+   * The schema data field for the enhancements field on the document's system property.
+   * @type {DataField}
+   */
+  get enhancementsField() {
+    return this.document.system.schema.fields[ this.keyPath ];
+  }
 
   /**
    * Path to the extraThreads or extraSuccess data on the document's system property.
@@ -51,9 +70,34 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     newContext.config = ED4E;
 
     newContext.keyPath = this.keyPath;
-    newContext.enhancements = getProperty( this.document.system, this.keyPath );
-    newContext.enhancementsField = this.document.system.schema.fields[ this.keyPath ];
+    newContext.enhancements = this.enhancements;
+    newContext.enhancementsField = this.enhancementsField;
 
     return newContext;
+  }
+
+  /* -------------------------------------------- */
+  /*  Form Submission                             */
+  /* -------------------------------------------- */
+
+  /**
+   * Process form submission for the sheet
+   * @this {DocumentSheetV2}                      The handler is called with the application as its bound scope
+   * @param {SubmitEvent} event                   The originating form submission event
+   * @param {HTMLFormElement} form                The form element that was submitted
+   * @param {FormDataExtended} formData           Processed data for the submitted form
+   * @returns {Promise<void>}
+   */
+  static async #onSubmitForm( event, form, formData ) {
+    const data = foundry.utils.expandObject( formData.object );
+
+    const updates = Array.from(
+      Object.values( this.enhancements ),
+      ( element, index ) => new this.enhancements[ index ].constructor( data.system[ this.keyPath ][ index ] )
+    );
+
+    await this.document.update( {
+      [ `system.${this.keyPath}` ]: updates,
+    } );
   }
 }

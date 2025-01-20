@@ -14,10 +14,18 @@ Expects parameters:
 {{! The inputTemplate is a partial that renders the form field. }}
 {{! The inputTemplate is passed as a parameter to the formGroup helper --}}
 
+{{!--log "templates/form/group/general.hbs"}}
+{{log "*************************************************"}}
+{{log "dataField" dataField}}
+{{log "inputTemplate" inputTemplate}}
+{{log "data" data}}
+{{log "fields" fields}}
+{{log "fieldPath" fieldPath--}}
+
 <div class="form-group">
   <label>{{localize dataField.label}}</label>
   <div class="form-fields">
     {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField fieldPath=fieldPath config=config}}
   </div>
-  <p class="hint">{{localize dataField.hint}}</p>
+  <p class="hint">{{localize (ifThen dataField.hint dataField.hint data.hint)}}</p>
 </div>
