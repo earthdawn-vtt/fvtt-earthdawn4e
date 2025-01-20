@@ -21,7 +21,14 @@
       <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
     </div>
 
-    {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.area inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs" data=item.system.area fields=item.system.area.schema.fields config=config}}
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.area
+      inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs"
+      data=item.system.area
+      fields=item.system.area.schema.fields
+      fieldPath=systemFields.area.fieldPath
+      config=config
+    }}
 
   </fieldset>
 

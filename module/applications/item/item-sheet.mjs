@@ -1,4 +1,5 @@
 import ED4E from "../../config.mjs";
+import SpellEnhancementsConfig from "../configs/spell-enhancements-config.mjs";
 
 const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -141,7 +142,20 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
   }
 
   static async _onConfig( event, target ) {
-    ui.notifications.info( "Config not done yet" );
+    event.preventDefault();
+    event.stopPropagation();
+
+    let app;
+    switch ( target.dataset.configType ) {
+      case "extraSuccess":
+      case "extraThreads":
+        app = new SpellEnhancementsConfig( {
+          document: this.document,
+          type:     target.dataset.configType,
+        } );
+        break;
+    }
+    app?.render( { force: true } );
   }
 
   static async _onEditImage( event, target ) {

@@ -2,42 +2,44 @@
 Expects parameters:
 @param data - The data model from the system field.
 @param fields - The schema fields of the areaModel.
+@param fieldPath - The path to the field in the document, e.g. "system.extraThreads.0". If not provided, the path is generated automatically in the `toInput` method.
 @param config - The global ED4E configuration object.
 --}}
 
-{{formInput fields.areaType value=data.areaType blank=(localize "ED.Data.placeholderBlankSelectOption") localize=true}}
+
+{{formInput fields.areaType name=(concat fieldPath ".areaType") value=data.areaType blank=(localize "ED.Data.placeholderBlankSelectOption") localize=true}}
 
 {{#if (eq data.areaType "circle") }}
-  {{formInput fields.radius value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.radius name=(concat fieldPath ".radius") value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "cone") }}
-  {{formInput fields.angle value=data.angle localize=true placeholder=(localize fields.angle.label) dataset=(ed-makeTooltip fields.angle.hint)}}
+  {{formInput fields.angle name=(concat fieldPath ".angle") value=data.angle localize=true placeholder=(localize fields.angle.label) dataset=(ed-makeTooltip fields.angle.hint)}}
   <i>°</i>
-  {{formInput fields.radius value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.radius name=(concat fieldPath ".radius") value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "cube") }}
-  {{formInput fields.width value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.width name=(concat fieldPath ".width") value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "cylinder") }}
-  {{formInput fields.radius value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
-  {{formInput fields.height value=data.height localize=true placeholder=(localize fields.height.label) dataset=(ed-makeTooltip fields.height.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.radius name=(concat fieldPath ".radius") value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
+  {{formInput fields.height name=(concat fieldPath ".height") value=data.height localize=true placeholder=(localize fields.height.label) dataset=(ed-makeTooltip fields.height.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "line") }}
-  {{formInput fields.length value=data.length localize=true placeholder=(localize fields.length.label) dataset=(ed-makeTooltip fields.length.hint)}}
-  {{formInput fields.width value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.length name=(concat fieldPath ".length") value=data.length localize=true placeholder=(localize fields.length.label) dataset=(ed-makeTooltip fields.length.hint)}}
+  {{formInput fields.width name=(concat fieldPath ".width") value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "radius") }}
-  {{formInput fields.radius value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.radius name=(concat fieldPath ".radius") value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "sphere") }}
-  {{formInput fields.radius value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.radius name=(concat fieldPath ".radius") value=data.radius localize=true placeholder=(localize fields.radius.label) dataset=(ed-makeTooltip fields.radius.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "square") }}
-  {{formInput fields.width value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.width name=(concat fieldPath ".width") value=data.width localize=true placeholder=(localize fields.width.label) dataset=(ed-makeTooltip fields.width.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{else if (eq data.areaType "wall") }}
-  {{formInput fields.length value=data.length localize=true placeholder=(localize fields.length.label) dataset=(ed-makeTooltip fields.length.hint)}}
-  {{formInput fields.thickness value=data.thickness localize=true placeholder=(localize fields.thickness.label) dataset=(ed-makeTooltip fields.thickness.hint)}}
-  {{formInput fields.height value=data.height localize=true placeholder=(localize fields.height.label) dataset=(ed-makeTooltip fields.height.hint)}}
-  {{formInput fields.unit value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+  {{formInput fields.length name=(concat fieldPath ".length") value=data.length localize=true placeholder=(localize fields.length.label) dataset=(ed-makeTooltip fields.length.hint)}}
+  {{formInput fields.thickness name=(concat fieldPath ".thickness") value=data.thickness localize=true placeholder=(localize fields.thickness.label) dataset=(ed-makeTooltip fields.thickness.hint)}}
+  {{formInput fields.height name=(concat fieldPath ".height") value=data.height localize=true placeholder=(localize fields.height.label) dataset=(ed-makeTooltip fields.height.hint)}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
 {{/if}}

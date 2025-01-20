@@ -18,9 +18,23 @@
   {{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
   {{!-- duration --}}
   {{!--formGroup systemFields.duration name="system.duration" value=item.system.duration localize=true--}}
-  {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.duration inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs" data=item.system.duration fields=item.system.duration.schema.fields config=config}}
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.duration
+    inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+    data=item.system.duration
+    fields=item.system.duration.schema.fields
+    fieldPath=systemFields.duration.fieldPath
+    config=config
+  }}
   {{!-- range --}}
-  {{> "systems/ed4e/templates/form/group/general.hbs" dataField=systemFields.range inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs" data=item.system.range fields=item.system.range.schema.fields config=config}}
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.range
+    inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+    data=item.system.range
+    fields=item.system.range.schema.fields
+    fieldPath=systemFields.range.fieldPath
+    config=config
+  }}
 </div>
 <div class="item__right--main sheet__editor">
   <h3>{{localize "ED.Item.Header.description"}}</h3>
