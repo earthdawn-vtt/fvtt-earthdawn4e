@@ -1,11 +1,14 @@
 {{!--
 Expects parameters:
 @param dataField - The data field for which the button is rendered.
+@param withLabel - Whether to show the label of the button.
 @param config - The global ED4E configuration object.
 @param configType - The type of configuration to open.
 --}}
 
 <button type="button" data-action="config" data-config-type="{{dataField.name}}">
   <i class="fas {{config.icons.configure}}"></i>
-  <label inert="">{{localize "ED.Dialogs.Buttons.configure"}}</label>
+  {{#if withLabel}}
+    <label inert="">{{localize "ED.Dialogs.Buttons.configure"}}</label>
+  {{/if}}
 </button>

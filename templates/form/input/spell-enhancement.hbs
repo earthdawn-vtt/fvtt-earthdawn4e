@@ -5,7 +5,14 @@ Expects parameters:
 @param config - The global ED4E configuration object.
 --}}
 
-{{#each data}}
-  {{{this.summaryString}}}
-{{/each}}
-{{> "systems/ed4e/templates/configs/configure-button.hbs" dataField=dataField config=config configType="spellEnhancement" }}
+<span class="flexcol">
+  {{#each data}}
+    {{{this.summaryString}}}
+  {{/each}}
+</span>
+{{> "systems/ed4e/templates/configs/configure-button.hbs"
+  dataField=dataField
+  withLabel=false
+  config=config
+  configType="spellEnhancement"
+}}
