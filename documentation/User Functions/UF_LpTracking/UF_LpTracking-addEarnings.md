@@ -1,1 +1,1 @@
-this function will add a new legend point history entry of type earnings to the actor.
+This function will add a new legend point history entry of type earnings to the actor.

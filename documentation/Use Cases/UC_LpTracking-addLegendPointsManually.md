@@ -16,13 +16,13 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_LpTracking-addEarnings.md)
+[UF_LpTracking-addEarnings](../User%20Functions/UF_LpTracking/UF_LpTracking-addEarnings.md)
 
 ### Related Test Coverage
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
+| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
 
 
 
