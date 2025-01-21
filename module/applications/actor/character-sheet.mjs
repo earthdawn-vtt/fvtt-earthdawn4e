@@ -264,6 +264,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
     event.preventDefault();
     const li = target.closest( ".item-id" );
     const ability = this.document.items.get( li.dataset.itemId );
-    this.document.takeStrain( ability.system.strain );
+    const createChatMessage = ability.system.attribute !== "" ? false: ability.name;
+    this.document.takeStrain( ability.system.strain, createChatMessage );
   }
 }
