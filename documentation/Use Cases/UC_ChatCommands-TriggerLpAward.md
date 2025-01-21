@@ -37,12 +37,3 @@ stateDiagram-v2
 
 | Add Legend Points via chat command | [[Test] - Add Legend Points via chat command](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1318) |
 
-### Old tests
-
-[TC_AssignLpPrompt-assignLpPrompt](https://github.com/patrickmohrmann/earthdawn4eV2/issues/848) 
-
-[TC_ChatCommand-triggerLPAward](https://github.com/patrickmohrmann/earthdawn4eV2/) 
-
-[TC_LpTracking-addLpTransaction-1](https://github.com/patrickmohrmann/earthdawn4eV2/issues/831) 
-
-

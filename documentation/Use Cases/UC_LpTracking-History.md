@@ -1,4 +1,7 @@
-This use case covers the tracking of Legend points of an actor, every add, edit or deletion will be tracked. Two different overviews are available in the History prompt, showing an History of all earned legend Points and another history shows all spendings of legend points. Each of the tabs have a check to show deletions as well. if this is checked, the deleted history entries will be shown.
+This use case covers the functionalities of the LP History. Three different tabs are available in the History prompt, showing an History of all earned legend Points, an overview of all the spendings and the third will list both (earnings and spendings) in a chronological order. <br>
+- The first tab provides the option to assign additional legend poitns to the actor. 
+- Entries might be manually edited.
+<!-- - The chronological overview will provide an option to revert the legendpoints up to the selected point, with the option to only revert spendings, or earnings. -->
 
 ### Diagram
 ```mermaid
@@ -6,30 +9,23 @@ stateDiagram-v2
     classDef fromOutside font-style:italic,font-weight:bold,fill:lightyellow
 
     state1: Legend Point History
-    state2: spendings
-    state3: earnings
+
     state4: update spendings
     state5: update earnings
 
     interaction1: spend LP
-    interaction2: revert spending
+    # interaction2: revert spending
     interaction3: award LP
 
     interaction1:::fromOutside
-    interaction2:::fromOutside
+    # interaction2:::fromOutside
     interaction3:::fromOutside
 
-    [*] --> state1
-    state1 --> state2
     interaction3 --> state5: add Lp Transaction
-    state5 --> state3
-    state1 --> state3
+    state5 --> state1
     interaction1 --> state4: add Lp Transaction
-    state4 --> state2
-    interaction2 --> state4: add Lp Transaction
-    state2 --> [*]
-    state3 --> [*]
-    
+    state4 --> state1
+    # interaction2 --> state4: add Lp Transaction
 ```
 
 ### Related User Functions
@@ -40,16 +36,17 @@ stateDiagram-v2
 
 [UF_LpTracking-toggleTransactionDetails](../User%20Functions/UF_LpTracking/UF_LpTracking-toggleTransactionDetails.md)
 
-[UF_LpTracking-status](../User%20Functions/UF_LpTracking/UF_LpTracking-status.md)
+<!-- [UF_LpTracking-revertLp](../User%20Functions/UF_LpTracking/UF_LpTracking-revertLp.md) -->
 
 ### Related Test Coverage
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
 | Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
-| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
-| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
-| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
+| Add Legend Points via chat command | [[Test] - Add Legend Points via chat command](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1318) |
+| Edit and filter Legend Point entries | [[Test] - Edit and filter Legend Point entries](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1325) |
+<!-- | Revert Legend Points | [[Test] - revert Legend Points](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX) | -->
+
 
 
 
