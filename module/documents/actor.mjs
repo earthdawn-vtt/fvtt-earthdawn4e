@@ -517,12 +517,13 @@ export default class ActorEd extends Actor {
 
   /**
    * @summary                       Take the given amount of strain as damage.
+   * @param createChatMessage
    * @param {number} strain         The amount of strain damage take
    * @userFunction                  UF_Actor-takeStrain
    */
-  takeStrain( strain ) {
+  takeStrain( strain, createChatMessage ) {
     if ( !strain ) return;
-    this.takeDamage( strain, true, "standard", undefined, true );
+    this.takeDamage( strain, true, "standard", undefined, true, undefined, createChatMessage );
   }
 
   /**
@@ -535,13 +536,14 @@ export default class ActorEd extends Actor {
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
    * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
+   * @param createChatMessage
    * @returns {{damageTaken: number, knockdownTest: boolean}}
    *                                                            An object containing:
    *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                            - `knockdownTest`: whether a knockdown test should be made.
    */
   // eslint-disable-next-line max-params
-  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll ) {
+  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll, createChatMessage ) {
     const { armor, health } = this.system.characteristics;
     const finalAmount = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
     const newDamage = health.damage[damageType] + finalAmount;
@@ -561,12 +563,25 @@ export default class ActorEd extends Actor {
     }
 
     this.update( updates );
+    let chatFlavor;
+    if ( createChatMessage === undefined ) {
+      chatFlavor = game.i18n.format( "ED.Chat.Flavor.takeDamage", {
+        actor:   this.name,
+        amount:  finalAmount,
+      } );
+    } else {
+      chatFlavor = game.i18n.format( "ED.Chat.Flavor.takeStrainDamage", {
+        ability: createChatMessage ? createChatMessage : "",
+        actor:   this.name,
+        amount:  finalAmount,
+      } );
+    }
     let messageData = {
       user:    game.user._id,
       speaker: ChatMessage.getSpeaker( { actor: this.actor } ),
-      content: "THIS WILL BE FIXED LATER see #756"
+      content: chatFlavor
     };
-    if ( !damageRoll && isStrain === false ) {
+    if ( ( !damageRoll && isStrain === false ) || createChatMessage !== false ) {
       ChatMessage.create( messageData );
     }
 
