@@ -23,7 +23,9 @@ Expects parameters:
 {{log "fieldPath" fieldPath--}}
 
 <div class="form-group">
-  <label>{{localize dataField.label}}</label>
+  {{#if dataField.label}}
+    <label>{{localize dataField.label}}</label>
+  {{/if}}
   <div class="form-fields">
     {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField fieldPath=fieldPath config=config}}
   </div>
