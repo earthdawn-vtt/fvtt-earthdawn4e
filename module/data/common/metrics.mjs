@@ -101,9 +101,16 @@ export class MetricData extends SparseDataModel {
   }
 
   get summaryString() {
-    if ( this.isScalarUnit ) return  `${this.value} ${this.unit}`;
-    if ( this.isSpecialUnit ) return this.special;
-    return `${this.value} ${this.unit}`;
+    const summary = [
+      `<em>${ED4E.spellEnhancements[this.constructor.TYPE].label}</em>`,
+      "&emsp;",
+    ];
+    const localizedUnit = this.schema.fields.unit.options.choices?.[this.unit];
+    if ( this.isScalarUnit && localizedUnit ) summary.push( `${this.value} ${localizedUnit}` );
+    if ( this.isSpecialUnit && this.special ) summary.push( this.special );
+    if ( localizedUnit ) summary.push( localizedUnit );
+    if ( summary.length === 2 ) summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
+    return summary.join( " " );
   }
 
   get unitGroupOptions() {
@@ -177,26 +184,39 @@ export class AreaMetricData extends MetricData {
   }
 
   get summaryString() {
+    const summary = [
+      `<em>${ED4E.spellEnhancements[this.constructor.TYPE].label}</em>`,
+      "&emsp;",
+    ];
+
     const areaType = ED4E.areaTargetDefinition[this.areaType];
     switch ( this.areaType ) {
       case "circle":
       case "radius":
       case "sphere":
-        return `${areaType}: ${this.radius} ${this.unit}`;
+        summary.push( `${areaType}: ${this.radius} ${this.unit}` );
+        break;
       case "cone":
-        return `${this.angle}° ${areaType}: ${this.radius} ${this.unit}`;
+        summary.push( `${this.angle}° ${areaType}: ${this.radius} ${this.unit}` );
+        break;
       case "cube":
       case "square":
-        return `${areaType}: ${this.width} ${this.unit}`;
+        summary.push( `${areaType}: ${this.width} ${this.unit}` );
+        break;
       case "cylinder":
-        return `${areaType}: (r x h) ${this.radius} ${this.unit} x ${this.height} ${this.unit}`;
+        summary.push( `${areaType}: (r x h) ${this.radius} ${this.unit} x ${this.height} ${this.unit}` );
+        break;
       case "line":
-        return `${areaType}: (l x w) ${this.length} ${this.unit} x ${this.width} ${this.unit}`;
+        summary.push( `${areaType}: (l x w) ${this.length} ${this.unit} x ${this.width} ${this.unit}` );
+        break;
       case "wall":
-        return `${areaType}: (l x w x t) ${this.length} ${this.unit} x ${this.width} ${this.unit} x ${this.thickness} ${this.unit}`;
+        summary.push( `${areaType}: (l x w x t) ${this.length} ${this.unit} x ${this.width} ${this.unit} x ${this.thickness} ${this.unit}` );
+        break;
       default:
-        return areaType;
+        summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
     }
+
+    return summary.join( " " );
   }
 
   /* -------------------------------------------- */
