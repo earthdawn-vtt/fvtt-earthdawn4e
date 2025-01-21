@@ -53,6 +53,12 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     }
   };
 
+  /**
+   * Prepare the data to be used in the template
+   * @param {object} options - Options to be used in the template
+   * @returns {object} - The data to be used in the template
+   * @function UF_AssignLpPrompt-prepareContext
+   */
   async _prepareContext( options = {} ) {
     const context = {};
     context.object = this.object;
@@ -115,11 +121,16 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     return super.close( options );
   }
 
+  /**
+   * assigns Legend points to actors
+   * @param {Event} event - The event object from the form submission.
+   * @returns {Promise<void>} - A promise that resolves when the LP assignment is complete.
+   * @function UF_AssignLpPrompt-assignLp
+   */
   static async _assignLP( event ) {
     event.preventDefault();
     if ( !this.object.amount ) return ui.notifications.error( game.i18n.localize( "ED.Dialogs.Errors.noLp" ) );
     // await this.submit( { preventRender: true } );
-
 
     const { selectedActors, amount, description } = this.object;
     const transactionData = selectedActors.reduce( ( obj, actorId ) => {

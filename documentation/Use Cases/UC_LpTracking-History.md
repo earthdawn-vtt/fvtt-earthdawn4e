@@ -46,14 +46,10 @@ stateDiagram-v2
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-|  | [[Test] - assign lp to character](https://github.com/patrickmohrmann/earthdawn4eV2/issues/850)  |
-|  | [[Test] - add spells to character](https://github.com/patrickmohrmann/earthdawn4eV2/issues/841)  |
-|  | [[Test] - add knack to character](https://github.com/patrickmohrmann/earthdawn4eV2/issues/845)  |
-|  | [[Test] - upgrade talent](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX)  |
-|  | [[Test] - upgrade attribute](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX)  |
-|  | [[Test] - upgrade skill](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX)  |
-|  | [[Test] - upgrade devotion](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX)  |
-|  | [[Test] - upgrade thread](https://github.com/patrickmohrmann/earthdawn4eV2/issues/XXX)  |
+| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
+| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
+| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
+| Add Legend Points | [[Test] - add legend points manually](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1317) |
 
 
 

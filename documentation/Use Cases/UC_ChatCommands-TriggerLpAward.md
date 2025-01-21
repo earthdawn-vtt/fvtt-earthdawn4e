@@ -26,18 +26,18 @@ stateDiagram-v2
 
 [UF_ChatCommand-triggerLPAward](../User%20Functions/UF_ChatCommand/UF_ChatCommand-triggerLPAward.md)
 
-[UF_AssignLpPrompt-assignLp](../User%20Functions/UF_AssignLpPrompt-assignLp.md)
+[UF_AssignLpPrompt-assignLp](../User%20Functions/UF_AssignLpPrompt/UF_AssignLpPrompt-assignLp.md)
 
-[UF_AssignLpPrompt-prepareContext](../User%20Functions/UF_AssignLpPrompt-prepareContext.md)
-
-[UF_AssignLpPrompt-onFormSubmission](../User%20Functions/UF_AssignLpPrompt-onFormSubmission.md)
-
-[UF_AssignLpPrompt-assignLpPrompt](../User%20Functions/UF_AssignLpPrompt-assignLpPrompt.md)
+[UF_AssignLpPrompt-prepareContext](../User%20Functions/UF_AssignLpPrompt/UF_AssignLpPrompt-prepareContext.md)
 
 [UF_LpTracking-addLpTransaction](../User%20Functions/UF_LpTracking/UF_LpTracking-addLpTransaction.md)
 
 
 ### Related Test Coverage
+
+| Add Legend Points via chat command | [[Test] - Add Legend Points via chat command](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1318) |
+
+### Old tests
 
 [TC_AssignLpPrompt-assignLpPrompt](https://github.com/patrickmohrmann/earthdawn4eV2/issues/848) 
 
