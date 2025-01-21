@@ -1,5 +1,27 @@
 import ED4E from "./config.mjs";
-import { EdIdField } from "./data/fields.mjs";
+
+import EdIdField from "./data/fields/edid-field.mjs";
+
+/**
+ * Get an ed4e setting from the system settings.
+ * @param {string} settingKey   The key of the setting to get.
+ * @returns {*}                 The value of the setting.
+ */
+export function getSetting( settingKey ) {
+  return game.settings.get( "ed4e", settingKey );
+}
+
+/**
+ * Set an ed4e setting in the system settings
+ * @param {string} settingKey  The key of the setting to set.
+ * @param {*} value            The value to set the setting to.
+ * @param {object} [options]   Any additional options to pass to the setting.
+ *                             See {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#set}
+ * @returns {*}                The assigned value of the setting.
+ */
+export function setSetting( settingKey, value, options={} ) {
+  return game.settings.set( "ed4e", settingKey, value, options );
+}
 
 /**
  * Register all the system's settings.
@@ -98,6 +120,16 @@ export default function registerSystemSettings() {
     scope:   "world",
     config:  true,
     default: "questor-devotion",
+    type:    new EdIdField(),
+  } );
+
+  // edid for unarmed combat
+  game.settings.register( "ed4e", "edidUnarmedCombat", {
+    name:    "ED.Settings.Edid.unarmedCombat",
+    hint:    "ED.Settings.Edid.unarmedCombatHint",
+    scope:   "world",
+    config:  true,
+    default: "unarmed-combat",
     type:    new EdIdField(),
   } );
 
