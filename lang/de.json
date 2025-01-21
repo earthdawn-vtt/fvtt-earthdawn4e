@@ -1230,6 +1230,12 @@
         "chooseLanguagesRules":                   "Wähle die Sprachen aus die der Charakter spricht und liest/schreibt.<br>Es können maximal so viele Sprachen gewählt werden wie die Ränge in Lesen/Schreiben und Fremdsprachen entsprechen (redo this Text)",	
         "chooseAttributesRules":                  "Verteile die freien Attributspunkte auf die sechs Attribute. Nicht verteilte Attributespunkte werden 1:1 als zusätztliche Karmapunkte umgewandelt.<br>Unter Vorschau sind die Werteänderungen zu sehen wenn das jeweilige Attribut erhöht oder gesenkt wird."
       },
+      "Configs": {
+        "SpellEnhancement": {
+          "title":                                "Konfiguration: Zauber Verstärkung",
+          "hint":                          "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)"
+        }
+      },
       "Errors": {
         "noLp": "Keine Legendenpunkte angegeben!"
       },

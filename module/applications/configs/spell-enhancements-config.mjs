@@ -1,5 +1,6 @@
 import BaseConfigSheet from "./base-config-sheet.mjs";
 import ED4E from "../../config.mjs";
+import { MetricData } from "../../data/common/metrics.mjs";
 
 const { getProperty } = foundry.utils;
 
@@ -72,6 +73,10 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     newContext.keyPath = this.keyPath;
     newContext.enhancements = this.enhancements;
     newContext.enhancementsField = this.enhancementsField;
+
+    newContext.availableEnhancements = Object.values( MetricData.TYPES ).filter(
+      type => !this.enhancements.some( enhancement => enhancement.constructor === type )
+    );
 
     return newContext;
   }

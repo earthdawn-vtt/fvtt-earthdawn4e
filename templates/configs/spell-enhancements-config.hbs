@@ -1,4 +1,21 @@
 <section>
+  <!--TODO: ADD BUTTONS FOR ADDING NEW ENHANCEMENTS
+  TODO: ADD BUTTONS FOR REMOVING ENHANCEMENTS-->
+
+  <div class="hint">
+    {{localize "ED.Dialogs.Configs.SpellEnhancement.hint"}}
+  </div>
+
+  <div class="tags input-element-tags">
+    {{#each availableEnhancements}}
+      <div class="tag" data-key="{{this.TYPE}}">
+        <span>{{lookup (lookup ../config.spellEnhancements this.TYPE) "label"}}</span>
+      </div>
+    {{/each}}
+  </div>
+
+  <hr>
+
   {{#each enhancements}}
     <fieldset>
       <legend>{{lookup (lookup ../config.spellEnhancements this.type) "label"}}</legend>
