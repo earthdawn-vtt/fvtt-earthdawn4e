@@ -2,6 +2,8 @@ import LpTransactionData from "./lp-transaction.mjs";
 import SystemDataModel from "../abstract.mjs";
 import { dateToInputString } from "../../utils.mjs";
 
+// Affects User Functions:
+// UF_LpTracking-addLpTransaction
 export default class LpEarningTransactionData extends LpTransactionData {
 
   /** @inheritDoc */
