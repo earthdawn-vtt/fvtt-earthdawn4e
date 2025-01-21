@@ -4,7 +4,7 @@ This chapter covers the same chapter form the Players Guide but will not go into
 
 ## Earning Legend Points
 
-One of the Goals in Earthdawn is the collection of legend points. They are used for Character progress and define the might of a character. The following use case describes how legend points can be assigned to characters by using an build in dialog. [UC_ChatCommands-TriggerLpAward](../Use%20Cases/UC_ChatCommands-TriggerLpAward.md.md)
+One of the Goals in Earthdawn is the collection of legend points. They are used for Character progress and define the might of a character. The following use case describes how legend points can be assigned to characters by using an build in dialog. [UC_ChatCommands-TriggerLpAward](../Use%20Cases/UC_ChatCommands-TriggerLpAward.md)
 
 In addition to the above mentioned method of assigning legend points, it is although possible to assign legend points manually to individual characters. This process is described in the following use case in detail [UC_LpTracking-addLegendPointsManually](../Use%20Cases/UC_LpTracking-addLegendPointsManually.md).
 

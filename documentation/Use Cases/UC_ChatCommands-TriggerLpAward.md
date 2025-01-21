@@ -2,7 +2,8 @@ the chat command /lp triggers a dialog to assign legend points to actors. An inp
 
 * configured for an active player
 * configured for an inactive player
-* owned by a player
+* owned by a player 
+
 configured Actors for an active player are preselected. All selected actor will receive the legend points with the description on confirmation.
 
 ### Diagram
