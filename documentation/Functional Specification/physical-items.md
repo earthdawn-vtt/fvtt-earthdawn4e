@@ -114,13 +114,13 @@ This field is used to enter a fixed difficulty.
 
 for the explicit influence of this value please see [UC_PhysicalItems-difficultyCalculation](../Use%20Cases/UC_PhysicalItems-difficultyCalculation.md).
 
-#### item equip status  
+#### item equipment status  
 
-the item equip status of an equipment is responsible if an item will affect the actor data and abilities.
+the item equipment status of an item is required if an item shall affect the actor data and abilities.
 
-Characteristics will be changed according to the item value if equipments are equipped or hold in one or two hands.
+Characteristics will be changed only if the item is equipped or hold in one or two hands.
 
-Abilities like the melee weapons talent will use the damage value of the weapon equipped in the main or both hands.
+Abilities like the melee weapons talent will use the weapon equipped in the main or both hands.
 
 all these different options are descibed in the use case [UC_PhysicalItems-itemStatus](../Use%20Cases/UC_PhysicalItems-itemStatus.md)
 

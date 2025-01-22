@@ -1,1 +1,0 @@
-This function enables Journal entries to contain the option to trigger an arbitrary roll. This function checks for @Roll(/s <ANYSTEP>)(<DESCRIPTION>) and creates a clickalbe option in the journal which will trigger a simple roll.

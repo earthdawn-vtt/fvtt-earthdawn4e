@@ -4,15 +4,20 @@ This chapter covers the same chapter form the Players Guide but will not go into
 
 ## Earning Legend Points
 
-One of the Goals in Earthdawn is the collection of legend points. They are used for Character progress and define the might of a character. The following use case describes how legend points can be assigned to characters by using an build in dialog. [UC_ChatCommands-TriggerLpAward](../Use%20Cases/UC_ChatCommands-TriggerLpAward.md.md)
+One of the goals in Earthdawn is the collection of legend points. They are used for Character progress and define the might of a character. The following use case describes how legend points can be assigned to characters by using an build in dialog. [UC_ChatCommands-TriggerLpAward](../Use%20Cases/UC_ChatCommands-TriggerLpAward.md)
 
 In addition to the above mentioned method of assigning legend points, it is although possible to assign legend points manually to individual characters. This process is described in the following use case in detail [UC_LpTracking-addLegendPointsManually](../Use%20Cases/UC_LpTracking-addLegendPointsManually.md).
 
-all those legend point transactions will be visible in the legend point history, accessable from the legend tab of each character. there are two tabs in the legend point history dialog. One for all earnings and another one for all spendings. The earnings tab shows not only all earned legend points, but also has the option to manually add legend points. In addition, it is possible to adapt the fiels of the description and the amount after an entry was made. Those changes should be done with care since they overwrite the data and will not be revertable afterwards. 
+all those legend point transactions will be visible in the legend point history, accessable from the legend tab of each character. there are three tabs in the legend point history dialog. One for all earnings, another one for all spendings and the third shows a combined list of everything ordered chronologically. The earnings tab shows not only all earned legend points, but also has the option to manually add legend points. In addition, it is possible to adapt the fiels of the description and the amount after an entry was made. Those changes should be done with care since they overwrite the data and will not be revertable afterwards. <br>
+the second tab shows everything, legend points were spend for. For better overview/tracking it is possible to sort the entries either by date/time, by item Type or by each item itself. if it is not sorted by date/time, the overview will change slightly by folding every sorted group for a better navigation.
 Everything about the legend point history can be found in this use case [UC_LpTracking-history](../Use%20Cases/UC_LpTracking-history.md).
 
+# Open issue list 
 
-## Spending Legend Points
+Legend point tracking has an open issue list to be found here: [Chapter: legend Point Tracking](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1256) <br>
+This parent issue provides an overview of issues we want to do in the future, if anything seems to be missing, please provide a feature request.
+
+<!-- ## Spending Legend Points
 
 Legend points can be spend for different purposes, increasing abilities, adding knacks or forging group patterns. from a system point of view there is a differentiation between items which can be upgraded, like talents or threads and those which will const only once legend points when added.
 the upgradeable items are:
@@ -61,7 +66,10 @@ the last upgradable is... STILLLLL NOT IMPLEMENTED!
 
 [UC_LpTracking-status](../Use%20Cases/UC_LpTracking-status.md)
 
-## Adventuring Groups
+## Adventuring Groups-->
+
+
+
 
 
 

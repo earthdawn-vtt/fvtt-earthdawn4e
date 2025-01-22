@@ -157,19 +157,19 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls-explodingDice.md)
+[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls/UF_Rolls-explodingDice.md)
 
-[UF_Rolls-rollAttribute](../User%20Functions/UF_Rolls-rollAttribute.md)
+[UF_Rolls-rollAttribute](../User%20Functions/UF_Rolls/UF_Rolls-rollAttribute.md)
 
-[UF_Rolls-rollAbility](../User%20Functions/UF_Rolls-rollAbility.md)
+[UF_Rolls-rollAbility](../User%20Functions/UF_Rolls/UF_Rolls-rollAbility.md)
 
-[UF_Rolls-rollEquipment](../User%20Functions/UF_Rolls-rollEquipment.md)
+[UF_Rolls-rollEquipment](../User%20Functions/UF_Rolls/UF_Rolls-rollEquipment.md)
 
-[UF_Rolls-rollHalfMagic](../User%20Functions/UF_Rolls-rollHalfMagic.md)
+[UF_Rolls-rollHalfMagic](../User%20Functions/UF_Rolls/UF_Rolls-rollHalfMagic.md)
 
-[UF_Rolls-rollPower](../User%20Functions/UF_Rolls-rollPower.md)
+[UF_Rolls-rollPower](../User%20Functions/UF_Rolls/UF_Rolls-rollPower.md)
 
-[UF_Rolls-rollAttack](../User%20Functions/UF_Rolls-rollAttack.md)
+[UF_Rolls-rollAttack](../User%20Functions/UF_Rolls/UF_Rolls-rollAttack.md)
 
 
 

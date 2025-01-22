@@ -122,7 +122,7 @@ function triggerHelp( argString ) {
  * Triggers the legend point award process with /lp.
  * @param {string} argString - The argument string from the original chat message passed to the command.
  * @returns {boolean} Always returns false to prevent further processing.
- * @userFunction UF_LpTracking-triggerLpAward
+ * @userFunction UF_ChatCommand-triggerLPAward
  */
 function triggerLpAward( argString ) {
   LpTransactionData.assignLpPrompt();

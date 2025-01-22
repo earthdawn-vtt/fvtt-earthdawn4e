@@ -74,19 +74,19 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls-explodingDice.md)
+[UF_Rolls-explodingDice](../User%20Functions/UF_Rolls/UF_Rolls-explodingDice.md)
 
-[UF_Rolls-rollWeaponDamage](../User%20Functions/UF_Rolls-rollWeaponDamage.md) --> not yet implemented
+[UF_Rolls-rollWeaponDamage](../User%20Functions/UF_Rolls/UF_Rolls-rollWeaponDamage.md) --> not yet implemented
 
-[UF_Rolls-rollAttackDamage](../User%20Functions/UF_Rolls-rollAttackDamage.md) --> not yet implemented
+[UF_Rolls-rollAttackDamage](../User%20Functions/UF_Rolls/UF_Rolls-rollAttackDamage.md) --> not yet implemented
 
-[UF_Rolls-rollSpellEffect](../User%20Functions/UF_Rolls-rollSpellEffect.md) --> not yet implemented
+[UF_Rolls-rollSpellEffect](../User%20Functions/UF_Rolls/UF_Rolls-rollSpellEffect.md) --> not yet implemented
 
-[UF_Rolls-rollPowerEffect](../User%20Functions/UF_Rolls-rollPowerEffect.md) --> not yet implemented
+[UF_Rolls-rollPowerEffect](../User%20Functions/UF_Rolls/UF_Rolls-rollPowerEffect.md) --> not yet implemented
 
-[UF_Rolls-rollInitiative](../User%20Functions/UF_Rolls-rollInitiative.md) --> not yet implemented
+[UF_Rolls-rollInitiative](../User%20Functions/UF_Rolls/UF_Rolls-rollInitiative.md) --> not yet implemented
 
-[UF_Rolls-rollRecovery](../User%20Functions/UF_Rolls-rollRecovery.md)
+[UF_Rolls-rollRecovery](../User%20Functions/UF_Rolls/UF_Rolls-rollRecovery.md)
 
 
 ### Related Test Coverage

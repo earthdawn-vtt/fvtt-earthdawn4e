@@ -83,9 +83,9 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_PhysicalItems-getAggregatedDefense](../User%20Functions/UF_PhysicalItems-getAggregatedDefense.md)
+[UF_PhysicalItems-getAggregatedDefense](../User%20Functions/UF_Physicalitems/UF_Physicalitems-getAggregatedDefense.md)
 
-[UF_PhysicalItems-getDifficulty](../User%20Functions/UF_PhysicalItems-getDifficulty.md)
+[UF_PhysicalItems-getDifficulty](../User%20Functions/UF_Physicalitems/UF_Physicalitems-getDifficulty.md)
 
 ### Related Test Coverage
 
