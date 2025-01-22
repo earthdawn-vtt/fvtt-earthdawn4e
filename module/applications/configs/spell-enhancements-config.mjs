@@ -87,7 +87,8 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
 
   /**
    * Process form submission for the sheet
-   * @this {DocumentSheetV2}                      The handler is called with the application as its bound scope
+   * @this {DocumentSheetV2}
+   * The handler is called with the application as its bound scope
    * @param {SubmitEvent} event                   The originating form submission event
    * @param {HTMLFormElement} form                The form element that was submitted
    * @param {FormDataExtended} formData           Processed data for the submitted form
