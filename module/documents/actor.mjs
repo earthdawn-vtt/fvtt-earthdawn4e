@@ -14,6 +14,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackRollOptions from "../data/roll/attack.mjs";
 import { getSetting } from "../settings.mjs";
+import HalfMagicRollOptions from "../data/roll/halfmagic.mjs";
 
 const futils = foundry.utils;
 
@@ -193,6 +194,26 @@ export default class ActorEd extends Actor {
   karmaRitual() {
     this.update( { "system.karma.value": this.system.karma.max } );
   }
+
+  /**
+   * Perform a half magic roll
+   * @returns {Promise<EdRoll>} The processed Roll.
+   */
+  async rollHalfMagic() {
+    const rollOptions = HalfMagicRollOptions.fromActor(
+      {
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.weaponAttack", {} ),
+      },
+      this,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      { rollData: this },
+    );
+    return this.processRoll( roll );
+  }
+
 
   /**
    * @param {('standard'|'blood'|'any')} [type] The type of wounds that is to be checked.
