@@ -257,7 +257,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
 
   /**
    * manually adding legend points to an actor
-   * @UserFunction UF_LpTracking-addEarnings
+   * @userFunction UF_LpTracking-addEarnings
    */
 
   static async _addEarning( event, target ) {

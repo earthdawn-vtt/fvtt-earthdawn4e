@@ -347,7 +347,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the available recovery tests based on attribute values.
    * @private
-   * @UserFunction        UF_Pc-prepareBaseRecoveryTestsRecource
+   * @userFunction        UF_Pc-prepareBaseRecoveryTestsRecource
    */
   #prepareBaseRecoveryTestsRecource() {
     this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
@@ -384,7 +384,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived armor values based on items.
    * @private
-   * @UserFunction UF_Pc-prepareDerivedArmor
+   * @userFunction UF_Pc-prepareDerivedArmor
    */
   #prepareDerivedArmor() {
     const armorItems = this.parent.items.filter( item => item.type === "armor" && item.system.itemStatus === "equipped" );
@@ -401,7 +401,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived blood magic damage based on items.
    * @private
-   * @UserFunction UF_Pc-prepareDerivedBloodMagic
+   * @userFunction UF_Pc-prepareDerivedBloodMagic
    */
   #prepareDerivedBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
@@ -416,7 +416,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * prepare the derived defense values based on items.
    * @private
-   * @UserFunction UF_Pc-prepareDerivedDefenses
+   * @userFunction UF_Pc-prepareDerivedDefenses
    */
   #prepareDerivedDefenses() {
     const shieldItems = this.parent.items.filter(
@@ -434,7 +434,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the base health ratings based on items.
    * @private
-   * @UserFunction UF_Pc-prepareDerivedHealth
+   * @userFunction UF_Pc-prepareDerivedHealth
    */
   #prepareDerivedHealth() {
     const durabilityItems = this.parent.items.filter(
@@ -528,7 +528,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived movement values based on namegiver items.
    * @private
-   * @UserFunction UF_Pc-prepareDerivedMovement
+   * @userFunction UF_Pc-prepareDerivedMovement
    */
   #prepareDerivedMovement() {
     const namegiver = this.#getNamegiver();
