@@ -516,9 +516,9 @@ export default class ActorEd extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * @summary                       Take the given amount of strain as damage.
-   * @param createChatMessage
-   * @param {number} strain         The amount of strain damage take
+   * @summary                           Take the given amount of strain as damage.
+   * @param {number} strain             The amount of strain damage take
+   * @param {string} createChatMessage  contains the Ability name or undefined
    */
   takeStrain( strain, createChatMessage ) {
     if ( !strain ) return;
