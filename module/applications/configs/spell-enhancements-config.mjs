@@ -74,9 +74,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     newContext.enhancements = this.enhancements;
     newContext.enhancementsField = this.enhancementsField;
 
-    newContext.availableEnhancements = Object.values( MetricData.TYPES ).filter(
-      type => !this.enhancements.some( enhancement => enhancement.constructor === type )
-    );
+    newContext.availableEnhancements = Object.values( MetricData.TYPES );
 
     return newContext;
   }
