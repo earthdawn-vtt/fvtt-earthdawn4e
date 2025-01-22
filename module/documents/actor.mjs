@@ -536,7 +536,7 @@ export default class ActorEd extends Actor {
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
    * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
-   * @param createChatMessage
+   * @param {string} createChatMessage                          The ability name in case of a non rollable ability, or undefined
    * @returns {{damageTaken: number, knockdownTest: boolean}}
    *                                                            An object containing:
    *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
