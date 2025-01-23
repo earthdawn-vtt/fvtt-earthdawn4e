@@ -351,12 +351,12 @@ export default class EdRoll extends Roll {
 
   /**
    * @description                       Add a success or failure class to the dice total.
-   * @param {jQuery} jquery             The HTML element to which the class should be added.
+   * @param {HTMLElement} element       The HTML element to which the class should be added.
    * @userFunction                      UF_Rolls-addSuccessClass
    */
-  addSuccessClass( jquery ) {
+  addSuccessClass( element ) {
     if ( this.isSuccess || this.isFailure ) {
-      jquery.find( ".dice-total" ).addClass(
+      element.querySelector( ".dice-total" ).classList.add(
         this.isSuccess ? "roll-success" : "roll-failure"
       );
     }
