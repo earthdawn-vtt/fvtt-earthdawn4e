@@ -16,8 +16,8 @@ export default class ActionTemplate extends ItemDataModel.mixin(
     return this.mergeSchema( super.defineSchema(), {
       action: new foundry.data.fields.StringField( {
         required: true,
-        nullable: false,
-        blank:    false,
+        nullable: true,
+        blank:    true,
         choices:  ED4E.action,
         initial:  "standard",
         label:    this.labelKey( "Action.action" ),

@@ -256,7 +256,6 @@
     "Config": {
       "Action": {
         "free": "Frei",
-        "none": "Keine",
         "simple": "Einfach",
         "standard": "Standard",
         "sustained": "Anhaltend"
@@ -280,48 +279,47 @@
         "wound":                                                  "Verwundung"
       },
       "AmmunitionType": {
-        "arrow":                                              "Pfeil",
-        "bolt":                                               "Bolzen",
-        "needle":                                             "Nadel",
-        "stone":                                              "Stein"
+        "arrow":                                                    "Pfeil",
+        "bolt":                                                     "Bolzen",
+        "needle":                                                   "Nadel",
+        "stone":                                                    "Stein"
       },
       "Availability": {
-        "everyday":                                           "Alltäglich",
-        "average":                                            "Durchschnittlich",
-        "unusual":                                            "Ungewöhnlich",
-        "rare":                                               "Selten",
-        "veryRare":                                           "Sehr selten",
-        "unique":                                             "Einzigartig"
+        "everyday":                                                 "Alltäglich",
+        "average":                                                  "Durchschnittlich",
+        "unusual":                                                  "Ungewöhnlich",
+        "rare":                                                     "Selten",
+        "veryRare":                                                 "Sehr selten",
+        "unique":                                                   "Einzigartig"
       },
       "CombatTypes": {
-        "aerial": "Luftkampf",
-        "close": "Nahkampf",
-        "melee": "Bewaffneter Nahkampf",
-        "mounted": "Berittener Kampf",
-        "projectile": "Projektil Fernkampf",
-        "ranged": "Fernkampf",
-        "throwing": "Wurfwaffen Fernkampf",
-        "unarmed": "Unbewaffneter Nahkampf"
+        "aerial":                                                   "Luftkampf",
+        "close":                                                    "Nahkampf",
+        "melee":                                                    "Bewaffneter Nahkampf",
+        "mounted":                                                  "Berittener Kampf",
+        "projectile":                                               "Projektil Fernkampf",
+        "ranged":                                                   "Fernkampf",
+        "throwing":                                                 "Wurfwaffen Fernkampf",
+        "unarmed":                                                  "Unbewaffneter Nahkampf"
       },
       "curseType": {
-        "minor":                        "Kleiner Fluch",
-        "major":                        "Großer Fluch",
-        "horror":                       "Dämonenfluch"
+        "minor":                                                    "Kleiner Fluch",
+        "major":                                                    "Großer Fluch",
+        "horror":                                                   "Dämonenfluch"
       },
       "Defenses": {
-        "highestOfGroup": "Höchste der Gruppe",
-        "highestX": "Höchste der Gruppe + Ziele",
-        "lowestOfGroup": "Niedrigste der Gruppe",
-        "lowestX": "Niedrigste der Gruppe + Ziele",
-        "mystical": "Mystisch",
-        "none": "Keine",
-        "physical": "Körperlich",
-        "social": "Sozial"
+        "highestOfGroup":                                           "Höchste der Gruppe",
+        "highestX":                                                 "Höchste der Gruppe + Ziele",
+        "lowestOfGroup":                                            "Niedrigste der Gruppe",
+        "lowestX":                                                  "Niedrigste der Gruppe + Ziele",
+        "mystical":                                                 "Mystisch",
+        "physical":                                                 "Körperlich",
+        "social":                                                   "Sozial"
       },
       "Denomination": {
-        "copper":                                               "Kupfer",
-        "gold":                                                 "Gold",
-        "silver":                                               "Silber"
+        "copper":                                                   "Kupfer",
+        "gold":                                                     "Gold",
+        "silver":                                                   "Silber"
       },
       "Elements": {
         "air":                                                      "Luft",
@@ -335,11 +333,11 @@
         "wood":                                                     "Holz"
       },
       "FormulaValueTypes": {
-        "attribute":                                            "Attribut",
-        "circle":                                               "Kreis",
-        "numeric":                                              "Zahl",
-        "rank":                                                 "Rang",
-        "special":                                              "Spezial"
+        "attribute":                                                "Attribut",
+        "circle":                                                   "Kreis",
+        "numeric":                                                  "Zahl",
+        "rank":                                                     "Rang",
+        "special":                                                  "Spezial"
       },
       "ItemStatus": {
         "carried":                                              "Getragen",
