@@ -102,7 +102,7 @@ export default class BaseMessageData extends SystemDataModel {
   _attachListeners( element ) {
 
     const click = this.#onClick.bind( this );
-    element.addEventListener( "click", click );
+    element.addEventListener( "click", click, { passive: false } );
 
     return element;
   }
@@ -116,7 +116,6 @@ export default class BaseMessageData extends SystemDataModel {
     const target = event.target;
     const actionButton = target.closest( "[data-action]" );
     if ( actionButton ) {
-      event.preventDefault();
       this.#onClickAction( event, actionButton );
     }
   }
@@ -128,6 +127,10 @@ export default class BaseMessageData extends SystemDataModel {
    */
   #onClickAction ( event, target ) {
     const action = target.dataset.action;
+
+    if ( action in ui.chat.options.actions ) return;
+    event.preventDefault();
+
     let handler = this.options.actions[ action ];
 
     // No defined handler
