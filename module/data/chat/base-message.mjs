@@ -41,7 +41,7 @@ export default class BaseMessageData extends SystemDataModel {
    * @param {HTMLElement} baseHtml - The base HTML element which should be enhanced
    * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML
    */
-  async getHTML( baseHtml ) {
+  async renderHTML( baseHtml ) {
     return this._attachListeners( baseHtml );
   }
 
