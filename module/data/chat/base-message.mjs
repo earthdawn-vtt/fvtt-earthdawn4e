@@ -20,7 +20,7 @@ export default class BaseMessageData extends SystemDataModel {
    * Any DEFAULT_OPTIONS of super-classes further upstream of the BASE_DATA_MODEL are ignored.
    * Hook events for super-classes further upstream of the BASE_DATA_MODEL are not dispatched.
    * @type {typeof BaseMessageData}
-   * @see {foundry.applications.types.ApplicationV2#BASE_APPLICATION}
+   * @see {ApplicationV2#BASE_APPLICATION}
    */
   static BASE_DATA_MODEL = BaseMessageData;
 
@@ -46,7 +46,7 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   /**
-   * Iterate over the inheritance chain of this Application. Analogous to {@link foundry.applications.ApplicationV2#inheritanceChain}
+   * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
    * @see BaseMessageData.BASE_DATA_MODEL
    * @generator
    * @yields {typeof ApplicationV2}
@@ -61,7 +61,7 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   /**
-   * Initialize the default options for this. Analogous to {@link foundry.applications.ApplicationV2#_initializeApplicationOptions}
+   * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
    * @param {object} options Options provided directly to the constructor
    * @param {object} [options.actions] - Action handlers defined for this Application.
    * @returns {object} Configured options for the application instance
@@ -108,7 +108,7 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   /**
-   * Centralized handling of click events which occur on or within the Application frame. Taken from {@link foundry.applications.ApplicationV2}
+   * Centralized handling of click events which occur on or within the Application frame. Taken from {@link ApplicationV2}
    * @param { PointerEvent } event - The originating click event
    * @private
    */
@@ -122,7 +122,7 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   /**
-   * Handle a click event on an element which defines a [data-action] handler. Taken from {@link foundry.applications.ApplicationV2}.
+   * Handle a click event on an element which defines a [data-action] handler. Taken from {@link ApplicationV2}.
    * @param {PointerEvent} event      The originating click event
    * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
    */
