@@ -43,6 +43,7 @@ export default function () {
     // Hook up system data types
     CONFIG.Actor.dataModels = data.actor.config;
     CONFIG.ChatMessage.dataModels = data.chat.config;
+    CONFIG.ActiveEffect.dataModels = data.effects.config;
     CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes
