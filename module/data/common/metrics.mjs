@@ -6,14 +6,16 @@ const fields = foundry.data.fields;
 
 
 /**
- * Base model for storing data that have units which are possibly scalar (like duration or range).
- * Intended to be used as an inner EmbeddedDataField.
+ * Base model for storing data that have a value which is possibly scalar (like duration or range).
+ * The value can be scalar or a formula and might have a unit.
+ * Intended to be used as an inner EmbeddedDataField. Main purpose is to provide a common interface for
+ * handling different types of spell/ability properties and their enhancements.
  * @property {string} value   Scalar value for the unit.
  * @property {string} unit    Unit that is used.
  * @property {string} special Description of any special unit details.
  * @abstract
  */
-export class BaseUnitData extends SparseDataModel {
+export class MetricData extends SparseDataModel {
 
   /* -------------------------------------------- */
   /*  Properties                                  */
@@ -21,10 +23,14 @@ export class BaseUnitData extends SparseDataModel {
 
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
-    return BaseUnitData.#TYPES ??= Object.freeze( {
-      [AreaUnitData.TYPE]:     AreaUnitData,
-      [DurationUnitData.TYPE]: DurationUnitData,
-      [RangeUnitData.TYPE]:    RangeUnitData,
+    return MetricData.#TYPES ??= Object.freeze( {
+      [AreaMetricData.TYPE]:     AreaMetricData,
+      [DurationMetricData.TYPE]: DurationMetricData,
+      [EffectMetricData.TYPE]:   EffectMetricData,
+      [RangeMetricData.TYPE]:    RangeMetricData,
+      [SectionMetricData.TYPE]:  SectionMetricData,
+      [SpecialMetricData.TYPE]:  SpecialMetricData,
+      [TargetMetricData.TYPE]:   TargetMetricData,
     } );
   }
 
@@ -82,12 +88,29 @@ export class BaseUnitData extends SparseDataModel {
     return this.unit === this.specialUnitKey;
   }
 
+  get hint() {
+    return this.constructor.hintKey( `MetricData.${this.constructor.TYPE}` );
+  }
+
   get scalarConfig() {
     return {};
   }
 
   get specialUnitKey() {
     return "spec";
+  }
+
+  get summaryString() {
+    const summary = [
+      `<em>${ED4E.spellEnhancements[this.constructor.TYPE].label}</em>`,
+      "&emsp;",
+    ];
+    const localizedUnit = this.schema.fields.unit.options.choices?.[this.unit];
+    if ( this.isScalarUnit && localizedUnit ) summary.push( `${this.value} ${localizedUnit}` );
+    if ( this.isSpecialUnit && this.special ) summary.push( this.special );
+    if ( localizedUnit ) summary.push( localizedUnit );
+    if ( summary.length === 2 ) summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
+    return summary.join( " " );
   }
 
   get unitGroupOptions() {
@@ -140,7 +163,7 @@ export class BaseUnitData extends SparseDataModel {
 
 /**
  * Data model for storing area unit data.
- * @augments BaseUnitData
+ * @augments MetricData
  * @property {string} count     Number of areas.
  * @property {keyof ED4E.areaTargetDefinition} areaType  Type of area.
  * @property {string} angle     Angle of the area.
@@ -150,11 +173,55 @@ export class BaseUnitData extends SparseDataModel {
  * @property {string} thickness Thickness of the area.
  * @property {string} width     Width of the area.
  */
-export class AreaUnitData extends BaseUnitData {
+export class AreaMetricData extends MetricData {
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
 
   static {
     Object.defineProperty( this, "TYPE", { value: "area" } );
   }
+
+  get summaryString() {
+    const summary = [
+      `<em>${ED4E.spellEnhancements[this.constructor.TYPE].label}</em>`,
+      "&emsp;",
+    ];
+
+    const areaType = ED4E.areaTargetDefinition[this.areaType];
+    switch ( this.areaType ) {
+      case "circle":
+      case "radius":
+      case "sphere":
+        summary.push( `${areaType}: ${this.radius} ${this.unit}` );
+        break;
+      case "cone":
+        summary.push( `${this.angle}° ${areaType}: ${this.radius} ${this.unit}` );
+        break;
+      case "cube":
+      case "square":
+        summary.push( `${areaType}: ${this.width} ${this.unit}` );
+        break;
+      case "cylinder":
+        summary.push( `${areaType}: (r x h) ${this.radius} ${this.unit} x ${this.height} ${this.unit}` );
+        break;
+      case "line":
+        summary.push( `${areaType}: (l x w) ${this.length} ${this.unit} x ${this.width} ${this.unit}` );
+        break;
+      case "wall":
+        summary.push( `${areaType}: (l x w x t) ${this.length} ${this.unit} x ${this.width} ${this.unit} x ${this.thickness} ${this.unit}` );
+        break;
+      default:
+        summary.push( game.i18n.localize( "ED.Data.placeholderBlankSelectOption" ) );
+    }
+
+    return summary.join( " " );
+  }
+
+  /* -------------------------------------------- */
+  /*      Schema                                  */
+  /* -------------------------------------------- */
 
   /** @inheritDoc */
   static defineSchema() {
@@ -221,8 +288,9 @@ export class AreaUnitData extends BaseUnitData {
 
 /**
  * Data model for storing duration unit data.
+ * @augments MetricData
  */
-export class DurationUnitData extends BaseUnitData {
+export class DurationMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "duration" } );
@@ -266,9 +334,31 @@ export class DurationUnitData extends BaseUnitData {
 
 
 /**
- * Data model for storing range unit data.
+ * Data model for storing effect metric data.
+ * @augments MetricData
  */
-export class RangeUnitData extends BaseUnitData {
+export class EffectMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "effect" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
+  }
+
+}
+
+
+/**
+ * Data model for storing range unit data.
+ * @augments MetricData
+ */
+export class RangeMetricData extends MetricData {
 
   static {
     Object.defineProperty( this, "TYPE", { value: "range" } );
@@ -305,6 +395,69 @@ export class RangeUnitData extends BaseUnitData {
       "":                                                ED4E.rangeTypes,
       "ED.Data.Fields.Options.Range.groupMovementUnits": ED4E.movementUnits
     };
+  }
+
+}
+
+
+/**
+ * Data model for storing section metric data.
+ * @augments MetricData
+ */
+export class SectionMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "section" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
+  }
+
+}
+
+
+/**
+ * Data model for storing special metric data. This is used for special enhancement effects that can only be described textually.
+ * @augments MetricData
+ */
+export class SpecialMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "special" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isSpecialUnit() {
+    return true;
+  }
+
+}
+
+
+/**
+ * Data model for storing target (of spells or abilities) metric data.
+ * @augments MetricData
+ */
+export class TargetMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "target" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
   }
 
 }

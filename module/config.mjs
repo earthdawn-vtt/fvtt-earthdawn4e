@@ -401,32 +401,39 @@ preLocalize(
 
 ED4E.spellEnhancements = {
   area: {
-    label:      "ED.Config.SpellEnhancements.area",
-    unitConfig: "movementUnits",
+    label:         "ED.Config.SpellEnhancements.area",
+    inputTemplate: "systems/ed4e/templates/form/input/area-metric.hbs",
+    unitConfig:    "movementUnits",
   },
   duration: {
-    label:      "ED.Config.SpellEnhancements.duration",
-    unitConfig: "scalarTimePeriods",
+    label:         "ED.Config.SpellEnhancements.duration",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "scalarTimePeriods",
   },
   effect: {
-    label:      "ED.Config.SpellEnhancements.effect",
-    unitConfig: "",
+    label:         "ED.Config.SpellEnhancements.effect",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "",
   },
   range: {
-    label:      "ED.Config.SpellEnhancements.range",
-    unitConfig: "movementUnits",
+    label:         "ED.Config.SpellEnhancements.range",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "movementUnits",
   },
   section: {
-    label:      "ED.Config.SpellEnhancements.section",
-    unitConfig: "",
+    label:         "ED.Config.SpellEnhancements.section",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "",
   },
   special: {
-    label:      "ED.Config.SpellEnhancements.special",
-    unitConfig: "",
+    label:         "ED.Config.SpellEnhancements.special",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "",
   },
   target: {
-    label:      "ED.Config.SpellEnhancements.target",
-    unitConfig: "",
+    label:         "ED.Config.SpellEnhancements.target",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "",
   },
 };
 preLocalize( "spellEnhancements", { key: "label", sort: true } );
@@ -1084,6 +1091,7 @@ ED4E.icons = {
   attribute:        "fa-dice-d20",
   cancel:           "fa-times",
   classAdvancement: "fa-arrow-trend-up",
+  configure:        "fa-cogs",
   damage:           "fa-skull-crossbones",
   dice:             "fa-dice",
   effect:           "fa-biohazard",

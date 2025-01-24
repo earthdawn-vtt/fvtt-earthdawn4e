@@ -1,4 +1,5 @@
 import ED4E from "../../config.mjs";
+import SpellEnhancementsConfig from "../configs/spell-enhancements-config.mjs";
 
 const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -35,6 +36,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
       submitOnChange: true,
     },
     actions:  {
+      config:           ItemSheetEd._onConfig,
       editImage:        ItemSheetEd._onEditImage,
       editEffect:       ItemSheetEd._onEffectEdit,
       deleteEffect:     ItemSheetEd._onEffectDelete,
@@ -137,6 +139,23 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentShe
     );
 
     return context;
+  }
+
+  static async _onConfig( event, target ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    let app;
+    switch ( target.dataset.configType ) {
+      case "extraSuccess":
+      case "extraThreads":
+        app = new SpellEnhancementsConfig( {
+          document: this.document,
+          type:     target.dataset.configType,
+        } );
+        break;
+    }
+    app?.render( { force: true } );
   }
 
   static async _onEditImage( event, target ) {
