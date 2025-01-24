@@ -7,7 +7,6 @@ import {
   mapObject,
   renameKeysWithPrefix,
   sum,
-  // getCompendiumItemByName 
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
@@ -301,44 +300,6 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilities.filter( uuid => uuid !== null );
   }
 
-  // async getEquipmentItems( type ) {
-  //   const compendiumName = "ed4e.core-items-deutsch";
-  //   const itemNames = {
-  //     armor:     [  ],
-  //     equipment: [
-  //       "Abenteuerpaket",
-  //       "Fackel",
-  //       "Feuerstein & Stahl",
-  //       "Grimoire",
-  //       "Großer Sack",
-  //       "Künstlerwerkzeug (Bildhauerei)",
-  //       "Künstlerwerkzeug (Malerei)",
-  //       "Künstlerwerkzeug (Schmieden)",
-  //       "Künstlerwerkzeug (Schnitzerei)",
-  //       "Künstlerwerkzeug (Sticken&Nähen)",
-  //       "Rucksack",
-  //       "Schlafsack",
-  //       "Wasser-oder Weinschlauch",
-  //       "Gürtel",
-  //       "Hemd",
-  //       "Hose",
-  //       "Reisekleidung (Gewand)",
-  //       "Reisekleidung (Hose)",
-  //       "Reiseumhang",
-  //       "Robe (Leinen)",
-  //       "Weiche Stiefel",
-  //       "Trockenproviant (1 Woche)"
-  //     ],
-  //     shields:   [  ],
-  //     weapons:   [ 
-  //       "Dolch",
-  //       "Messer"
-  //     ],
-  //   }[type];
-
-  //   return await getCompendiumItemByName ( compendiumName, itemNames );
-  // }
-
   async getEquipmentItems( type ) {
     const lang = game.i18n.lang;
     const items = [];
@@ -598,12 +559,12 @@ export default class CharacterGenerationData extends SparseDataModel {
     return this.updateSource( { spells: newSpellSet } );
   }
 
-  async addEquipment( equipmentUuid ) {
-    if ( !equipmentUuid ) return {};
-    return this.updateSource( {
-      equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
-    } );
-  }
+  // async addEquipment( equipmentUuid ) {
+  //   if ( !equipmentUuid ) return {};
+  //   return this.updateSource( {
+  //     equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
+  //   } );
+  // }
 
   async removeEquipment( equipmentUuid ) {
     if ( !equipmentUuid ) return {};

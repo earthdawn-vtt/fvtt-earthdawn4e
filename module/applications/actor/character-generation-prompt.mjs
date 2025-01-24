@@ -79,7 +79,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       decrease:        this._onChangeAttributeModifier,
       changeSpell:     this._onClickSpell,
       reset:           this._onReset,
-      selectEquipment: this._selectEquipment,
     },
     form:    {
       handler:        CharacterGenerationPrompt.#onFormSubmission,
