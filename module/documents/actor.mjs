@@ -521,9 +521,9 @@ export default class ActorEd extends Actor {
    * @param {number} strain         The amount of strain damage take
    * @userFunction                  UF_Actor-takeStrain
    */
-  takeStrain( strain, createChatMessage ) {
+  takeStrain( strain, strainOrigin ) {
     if ( !strain ) return;
-    this.takeDamage( strain, true, "standard", undefined, true, undefined, createChatMessage );
+    this.takeDamage( strain, true, "standard", undefined, true, undefined, strainOrigin );
   }
 
   /**
@@ -536,14 +536,14 @@ export default class ActorEd extends Actor {
    *                                                            'physical', 'mystical', or 'none'.
    * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
    * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
-   * @param {string} createChatMessage                          The ability name in case of a non rollable ability, or undefined
+   * @param {string} strainOrigin                               The ability name in case of a non rollable ability, or undefined
    * @returns {{damageTaken: number, knockdownTest: boolean}}
    *                                                            An object containing:
    *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                            - `knockdownTest`: whether a knockdown test should be made.
    */
   // eslint-disable-next-line max-params
-  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll, createChatMessage ) {
+  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll, strainOrigin ) {
     const { armor, health } = this.system.characteristics;
     const finalAmount = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
     const newDamage = health.damage[damageType] + finalAmount;
@@ -563,25 +563,20 @@ export default class ActorEd extends Actor {
     }
 
     this.update( updates );
+
     let chatFlavor;
-    if ( createChatMessage === undefined ) {
-      chatFlavor = game.i18n.format( "ED.Chat.Flavor.takeDamage", {
-        actor:   this.name,
-        amount:  finalAmount,
-      } );
-    } else {
-      chatFlavor = game.i18n.format( "ED.Chat.Flavor.takeStrainDamage", {
-        ability: createChatMessage ? createChatMessage : "",
-        actor:   this.name,
-        amount:  finalAmount,
-      } );
-    }
+    chatFlavor = game.i18n.format( strainOrigin === undefined ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
+      ability: strainOrigin ? strainOrigin : "",
+      actor:   this.name,
+      amount:  finalAmount,
+    } );
+
     let messageData = {
       user:    game.user._id,
       speaker: ChatMessage.getSpeaker( { actor: this.actor } ),
       content: chatFlavor
     };
-    if ( ( !damageRoll && isStrain === false ) || createChatMessage !== false ) {
+    if ( ( !damageRoll && isStrain === false ) || strainOrigin !== undefined ) {
       ChatMessage.create( messageData );
     }
 
