@@ -52,8 +52,8 @@ export default class DamageMessageData extends BaseMessageData {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async getHTML( baseHtml ) {
-    const newHTML = await super.getHTML( baseHtml );
+  async renderHTML( baseHtml ) {
+    const newHTML = await super.renderHTML( baseHtml );
     const damageButtonsDiv = newHTML.querySelector( ".damage-roll-buttons" );
     damageButtonsDiv.parentNode.insertBefore( await this.getTransactionsHTML(), damageButtonsDiv.nextSibling );
     return newHTML;

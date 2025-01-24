@@ -257,11 +257,10 @@
     },
     "Config": {
       "Action": {
-        "free":                                                     "Frei",
-        "none":                                                     "Keine",
-        "simple":                                                   "Einfach",
-        "standard":                                                 "Standard",
-        "sustained":                                                "Anhaltend"
+        "free": "Frei",
+        "simple": "Einfach",
+        "standard": "Standard",
+        "sustained": "Anhaltend"
       },
       "AreaTargets": {
         "circle":                                                   "Kreis",
@@ -282,48 +281,47 @@
         "wound":                                                  "Verwundung"
       },
       "AmmunitionType": {
-        "arrow":                                              "Pfeil",
-        "bolt":                                               "Bolzen",
-        "needle":                                             "Nadel",
-        "stone":                                              "Stein"
+        "arrow":                                                    "Pfeil",
+        "bolt":                                                     "Bolzen",
+        "needle":                                                   "Nadel",
+        "stone":                                                    "Stein"
       },
       "Availability": {
-        "everyday":                                           "Alltäglich",
-        "average":                                            "Durchschnittlich",
-        "unusual":                                            "Ungewöhnlich",
-        "rare":                                               "Selten",
-        "veryRare":                                           "Sehr selten",
-        "unique":                                             "Einzigartig"
+        "everyday":                                                 "Alltäglich",
+        "average":                                                  "Durchschnittlich",
+        "unusual":                                                  "Ungewöhnlich",
+        "rare":                                                     "Selten",
+        "veryRare":                                                 "Sehr selten",
+        "unique":                                                   "Einzigartig"
       },
       "CombatTypes": {
-        "aerial": "Luftkampf",
-        "close": "Nahkampf",
-        "melee": "Bewaffneter Nahkampf",
-        "mounted": "Berittener Kampf",
-        "projectile": "Projektil Fernkampf",
-        "ranged": "Fernkampf",
-        "throwing": "Wurfwaffen Fernkampf",
-        "unarmed": "Unbewaffneter Nahkampf"
+        "aerial":                                                   "Luftkampf",
+        "close":                                                    "Nahkampf",
+        "melee":                                                    "Bewaffneter Nahkampf",
+        "mounted":                                                  "Berittener Kampf",
+        "projectile":                                               "Projektil Fernkampf",
+        "ranged":                                                   "Fernkampf",
+        "throwing":                                                 "Wurfwaffen Fernkampf",
+        "unarmed":                                                  "Unbewaffneter Nahkampf"
       },
       "curseType": {
-        "minor":                        "Kleiner Fluch",
-        "major":                        "Großer Fluch",
-        "horror":                       "Dämonenfluch"
+        "minor":                                                    "Kleiner Fluch",
+        "major":                                                    "Großer Fluch",
+        "horror":                                                   "Dämonenfluch"
       },
       "Defenses": {
-        "highestOfGroup": "Höchste der Gruppe",
-        "highestX": "Höchste der Gruppe + Ziele",
-        "lowestOfGroup": "Niedrigste der Gruppe",
-        "lowestX": "Niedrigste der Gruppe + Ziele",
-        "mystical": "Mystisch",
-        "none": "Keine",
-        "physical": "Körperlich",
-        "social": "Sozial"
+        "highestOfGroup":                                           "Höchste der Gruppe",
+        "highestX":                                                 "Höchste der Gruppe + Ziele",
+        "lowestOfGroup":                                            "Niedrigste der Gruppe",
+        "lowestX":                                                  "Niedrigste der Gruppe + Ziele",
+        "mystical":                                                 "Mystisch",
+        "physical":                                                 "Körperlich",
+        "social":                                                   "Sozial"
       },
       "Denomination": {
-        "copper":                                               "Kupfer",
-        "gold":                                                 "Gold",
-        "silver":                                               "Silber"
+        "copper":                                                   "Kupfer",
+        "gold":                                                     "Gold",
+        "silver":                                                   "Silber"
       },
       "Elements": {
         "air":                                                      "Luft",
@@ -337,11 +335,11 @@
         "wood":                                                     "Holz"
       },
       "FormulaValueTypes": {
-        "attribute":                                            "Attribut",
-        "circle":                                               "Kreis",
-        "numeric":                                              "Zahl",
-        "rank":                                                 "Rang",
-        "special":                                              "Spezial"
+        "attribute":                                                "Attribut",
+        "circle":                                                   "Kreis",
+        "numeric":                                                  "Zahl",
+        "rank":                                                     "Rang",
+        "special":                                                  "Spezial"
       },
       "ItemStatus": {
         "carried":                                              "Getragen",
@@ -740,8 +738,9 @@
             "area":                                         "Wirkungsbereich des Zaubers",
             "duration":                                     "Dauer des Effekts",
             "effect":                                       "Effekt des Zaubers",
+            "extraSuccesses":                               "Effekt des zusätzlichen Erfolgs",
             "extraSuccess":                                 "Effekt bei zusätzlichen Erfolgen",
-            "extraThreadOption":                            "Effekt des zusatzlichen Faden",
+            "extraThreadOption":                            "Effekt des zusätzlichen Fadens",
             "extraThreads":                                 "Mögliche Effekte bei zusätzlichen Fäden",
             "keyword":                                      "Besonderheit des Zaubers",
             "keywords":                                     "Besonderheiten des Zaubers",
@@ -966,7 +965,8 @@
             "area":                                         "Bereich",
             "duration":                                     "Dauer",
             "effect":                                       "Effekt",
-            "extraSuccess":                                 "Zusätzliche Erfolge",
+            "extraSuccess":                                 "Zusätzlicher Erfolg",
+            "extraSuccesses":                               "Zusätzliche Erfolge",
             "extraThreadOption":                            "Effekt",
             "extraThreads":                                 "Zusätzliche Fäden",
             "keyword":                                      "Schlüsselwort",
@@ -1029,8 +1029,21 @@
           "DurationUnit": {
             "unit":                                        "Die Zeiteinheit der Dauer"
           },
+          "MetricData": {
+            "area":                                       "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
+            "duration":                                   "Verändere die Dauer. Wenn sich nur die Einheit verändern soll (z.B. von Runden auf Minuten), dann lasse die anderen Felder leer.",
+            "effect":                                     "Verändere die Stufe des Effektwurfs. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
+            "range":                                      "Verändere die Reichweite. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
+            "section":                                    "Verändere die Anzahl an Abschnitten. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
+            "special":                                    "Eine textuelle Beschreibung der Veränderung. Das ist ein spezieller Wert, der nicht in die anderen Kategorien passt.",
+            "target":                                     "Verändere die Anzahl an möglichen Zielen. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann."
+          },
           "RangeUnit": {
             "unit":                                        "Die Maßeinheit der Reichweite"
+          },
+          "SpellEnhancement": {
+            "enhancementType":                              "Die Art der Verstärkung",
+            "unit":                                         "Die Maßeinheit der Verstärkung"
           },
           "learnSpell": {
             "lpCost":                             "Legendenpunkte für den Zauber Kosten",
@@ -1068,6 +1081,10 @@
           "RangeUnit": {
             "unit":                                        "Maßeinheit"
           },
+          "SpellEnhancement": {
+            "enhancementType":                              "Art",
+            "unit":                                         "Einheit"
+          },
           "learnSpell": {
             "lpCost":                             "Lp Kosten",
             "patterncraftToLearnSpell":           "Struktur Verstehen",
@@ -1093,6 +1110,7 @@
         "cancel":                                           "Abbrechen",
         "close":                                            "Schließen",
         "complete":                                         "Abschließen",
+        "configure":                                        "Konfigurieren",
         "continue":                                         "Weiter",
         "free":                                             "Umsonst",
         "goBack":                                           "Zurück",
@@ -1211,6 +1229,12 @@
         "chooseSkillsRules":                      "Wähle Fähigkeiten aus den unten aufgeführten Listen aus.<br>Es muss mindestens ein Kunsthandwerk und mindestens zwei Ränge in Wissensfertigkeiten gewählt werden.",
         "chooseLanguagesRules":                   "Wähle die Sprachen aus die der Charakter spricht und liest/schreibt.<br>Es können maximal so viele Sprachen gewählt werden wie die Ränge in Lesen/Schreiben und Fremdsprachen entsprechen (redo this Text)",	
         "chooseAttributesRules":                  "Verteile die freien Attributspunkte auf die sechs Attribute. Nicht verteilte Attributespunkte werden 1:1 als zusätztliche Karmapunkte umgewandelt.<br>Unter Vorschau sind die Werteänderungen zu sehen wenn das jeweilige Attribut erhöht oder gesenkt wird."
+      },
+      "Configs": {
+        "SpellEnhancement": {
+          "title":                                "Konfiguration: Zauber Verstärkung",
+          "hint":                          "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)"
+        }
       },
       "Errors": {
         "noLp": "Keine Legendenpunkte angegeben!"
@@ -1378,6 +1402,7 @@
         "inactiveUser": "Inaktive Spieler",
         "magic": "Magie",
         "navigator": "Navigator",
+        "spellEnhancement": "Zauber Verstärkung",
         "talentSource": "Talent Ursprung",
         "targetingDetails":   "Ziel Details",
         "type": "Typ"

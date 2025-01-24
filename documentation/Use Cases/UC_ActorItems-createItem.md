@@ -107,19 +107,19 @@ stateDiagram-v2
 
 ### Related User Functions
 
-[UF_ActorItems-ed4eDropItem](../User%20Functions/UF_ActorItems-ed4eDropItem.md)
+[UF_ActorItems-ed4eDropItem](../User%20Functions/UF_ActorItems/UF_ActorItems-ed4eDropItem.md)
 
-[UF_ActorItems-validateDropItem](../User%20Functions/UF_ActorItems-validateDropItem.md)
+[UF_ActorItems-validateDropItem](../User%20Functions/UF_ActorItems/UF_ActorItems-validateDropItem.md)
 
-[UF_LpTracking-showOptionsPrompt](../User%20Functions/UF_LpTracking-showOptionsPrompt.md)
+[UF_LpTracking-showOptionsPrompt](../User%20Functions/UF_LpTracking/UF_LpTracking-showOptionsPrompt.md)
 
-[UF_ActorItems-preCreate](../User%20Functions/UF_ActorItems-preCreate.md)
+[UF_ActorItems-preCreate](../User%20Functions/UF_ActorItems/UF_ActorItems-preCreate.md)
 
-[UF_ActorItems-createEmbeddedDocuments](../User%20Functions/UF_ActorItems-createEmbeddedDocuments.md)
+[UF_ActorItems-createEmbeddedDocuments](../User%20Functions/UF_ActorItems/UF_ActorItems-createEmbeddedDocuments.md)
 
-[UF_ActorItems-findSourceTalent](../User%20Functions/UF_ActorItems-findSourceTalent.md)
+[UF_ActorItems-findSourceTalent](../User%20Functions/UF_ActorItems/UF_ActorItems-findSourceTalent.md)
 
-[UF_ActorItems-countKnacksForTalent](../User%20Functions/UF_ActorItems-countKnacksForTalent.md)
+[UF_ActorItems-countKnacksForTalent](../User%20Functions/UF_ActorItems/UF_ActorItems-countKnacksForTalent.md)
 
 
 ### Related Test Coverage

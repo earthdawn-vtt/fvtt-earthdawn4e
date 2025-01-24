@@ -1,0 +1,2 @@
+This function listens on the foundry chat and will trigger the **assign LP award** dialog if **/lp** was entered. <br>
+A description and a number of legend points can be filled in this dialog. In addition, Actors can be selected which shall be granted with the legend points.

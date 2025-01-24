@@ -16,17 +16,17 @@ export default class TargetTemplate extends SystemDataModel {
     return this.mergeSchema( super.defineSchema(), {
       difficulty: new foundry.data.fields.SchemaField( {
         target: new foundry.data.fields.StringField( {
-          nullable: false,
-          blank:    false,
-          initial:  "none",
+          nullable: true,
+          blank:    true,
+          initial:  "",
           choices:  ED4E.targetDifficulty,
           label:    this.labelKey( "Target.target" ),
           hint:     this.hintKey( "Target.target" )
         } ),
         group: new foundry.data.fields.StringField( {
-          nullable: false,
-          blank:    false,
-          initial:  "none",
+          nullable: true,
+          blank:    true,
+          initial:  "",
           choices:  ED4E.groupDifficulty,
           label:    this.labelKey( "Target.group" ),
           hint:     this.hintKey( "Target.group" )

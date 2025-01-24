@@ -44,7 +44,7 @@ export default function () {
     return cmdMapping[commandMatches.groups.command.substring( 1 )]( commandMatches.groups.arguments.trim() );
   } );
 
-  Hooks.on( "renderChatMessage", ( msg, html, msgData ) => {
+  Hooks.on( "renderChatMessageHTML", ( msg, html, _ ) => {
     // Add character portrait to message
     addUserPortrait( msg, html );
 
@@ -122,7 +122,7 @@ function triggerHelp( argString ) {
  * Triggers the legend point award process with /lp.
  * @param {string} argString - The argument string from the original chat message passed to the command.
  * @returns {boolean} Always returns false to prevent further processing.
- * @userFunction UF_LpTracking-triggerLpAward
+ * @userFunction UF_ChatCommand-triggerLPAward
  */
 function triggerLpAward( argString ) {
   LpTransactionData.assignLpPrompt();
@@ -164,9 +164,9 @@ function triggerRollStep( argString ) {
 /**
  * Add the user's avatar to the chat message.
  * @param {ChatMessage} msg - The chat message object.
- * @param {jQuery} jquery - The jQuery object for the chat message.
+ * @param {HTMLElement} element - The jQuery object for the chat message.
  */
-function addUserPortrait( msg, jquery ) {
+function addUserPortrait( msg, element ) {
 
   const chatAvatarSetting = game.settings.get( "ed4e", "chatAvatar" );
   const isGM = msg.author.isGM;
@@ -180,9 +180,10 @@ function addUserPortrait( msg, jquery ) {
   avatar ??= isGM ? avatar_img : msg.author.character?.img;
 
   if ( avatar ) {
-    jquery.find( ".message-header" ).prepend(
-      `<img src="${avatar}" class="avatar">`
-    );
+    const img = document.createElement( "img" );
+    img.src = avatar;
+    img.classList.add( "avatar" );
+    element.querySelector( ".message-header" ).prepend( img );
   }
 }
 

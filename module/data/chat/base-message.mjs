@@ -20,7 +20,7 @@ export default class BaseMessageData extends SystemDataModel {
    * Any DEFAULT_OPTIONS of super-classes further upstream of the BASE_DATA_MODEL are ignored.
    * Hook events for super-classes further upstream of the BASE_DATA_MODEL are not dispatched.
    * @type {typeof BaseMessageData}
-   * @see {foundry.applications.types.ApplicationV2#BASE_APPLICATION}
+   * @see {ApplicationV2#BASE_APPLICATION}
    */
   static BASE_DATA_MODEL = BaseMessageData;
 
@@ -41,12 +41,12 @@ export default class BaseMessageData extends SystemDataModel {
    * @param {HTMLElement} baseHtml - The base HTML element which should be enhanced
    * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML
    */
-  async getHTML( baseHtml ) {
+  async renderHTML( baseHtml ) {
     return this._attachListeners( baseHtml );
   }
 
   /**
-   * Iterate over the inheritance chain of this Application. Analogous to {@link foundry.applications.ApplicationV2#inheritanceChain}
+   * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
    * @see BaseMessageData.BASE_DATA_MODEL
    * @generator
    * @yields {typeof ApplicationV2}
@@ -61,7 +61,7 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   /**
-   * Initialize the default options for this. Analogous to {@link foundry.applications.ApplicationV2#_initializeApplicationOptions}
+   * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
    * @param {object} options Options provided directly to the constructor
    * @param {object} [options.actions] - Action handlers defined for this Application.
    * @returns {object} Configured options for the application instance
@@ -102,13 +102,13 @@ export default class BaseMessageData extends SystemDataModel {
   _attachListeners( element ) {
 
     const click = this.#onClick.bind( this );
-    element.addEventListener( "click", click );
+    element.addEventListener( "click", click, { passive: false } );
 
     return element;
   }
 
   /**
-   * Centralized handling of click events which occur on or within the Application frame. Taken from {@link foundry.applications.ApplicationV2}
+   * Centralized handling of click events which occur on or within the Application frame. Taken from {@link ApplicationV2}
    * @param { PointerEvent } event - The originating click event
    * @private
    */
@@ -116,18 +116,21 @@ export default class BaseMessageData extends SystemDataModel {
     const target = event.target;
     const actionButton = target.closest( "[data-action]" );
     if ( actionButton ) {
-      event.preventDefault();
       this.#onClickAction( event, actionButton );
     }
   }
 
   /**
-   * Handle a click event on an element which defines a [data-action] handler. Taken from {@link foundry.applications.ApplicationV2}.
+   * Handle a click event on an element which defines a [data-action] handler. Taken from {@link ApplicationV2}.
    * @param {PointerEvent} event      The originating click event
    * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
    */
   #onClickAction ( event, target ) {
     const action = target.dataset.action;
+
+    if ( action in ui.chat.options.actions ) return;
+    event.preventDefault();
+
     let handler = this.options.actions[ action ];
 
     // No defined handler

@@ -1,0 +1,26 @@
+{{!--
+Expects parameters:
+@param data - The data model from the system field.
+@param fields - The schema fields of the areaModel.
+@param fieldPath - The path to the field in the document, e.g. "system.extraThreads.0". If not provided, the path is generated automatically in the `toInput` method.
+@param config - The global ED4E configuration object.
+--}}
+
+{{!--log "templates/form/input/base-metric.hbs"}}
+{{log "*************************************************"}}
+{{log "data" data}}
+{{log "fields" fields}}
+{{log "fieldPath" fieldPath--}}
+
+
+{{#if data.isScalarUnit}}
+  {{formInput fields.value name=(concat fieldPath ".value") value=data.value localize=true placeholder=(localize fields.value.label) dataset=(ed-makeTooltip fields.value.hint)}}
+{{/if}}
+
+{{#if data.unit}}
+  {{formInput fields.unit name=(concat fieldPath ".unit") value=data.unit options=data.unitOptions localize=true dataset=(ed-makeTooltip fields.unit.hint)}}
+{{/if}}
+
+{{#if data.isSpecialUnit}}
+  {{formInput fields.special name=(concat fieldPath ".special") value=data.special localize=true placeholder=(localize fields.special.label) dataset=(ed-makeTooltip fields.special.hint)}}
+{{/if}}

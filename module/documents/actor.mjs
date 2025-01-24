@@ -519,6 +519,7 @@ export default class ActorEd extends Actor {
    * @summary                           Take the given amount of strain as damage.
    * @param {number} strain             The amount of strain damage take
    * @param {string} strainOrigin  contains the Ability name or undefined
+   * @userFunction                  UF_Actor-takeStrain
    */
   takeStrain( strain, strainOrigin ) {
     if ( !strain ) return;

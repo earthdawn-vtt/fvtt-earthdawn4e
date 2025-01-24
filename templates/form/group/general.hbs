@@ -4,6 +4,7 @@ Expects parameters:
 @param inputTemplate - The filename of the input partial of this form group.
 @param data - The system data of this field.
 @param fields - The schema fields of the data field, if applicable.
+@param fieldPath - The path to the field in the document, e.g. "system.extraThreads.0". If not provided, the path is generated automatically in the `toInput` method.
 @param config - The global ED4E configuration object.
 --}}
 
@@ -13,10 +14,20 @@ Expects parameters:
 {{! The inputTemplate is a partial that renders the form field. }}
 {{! The inputTemplate is passed as a parameter to the formGroup helper --}}
 
+{{!--log "templates/form/group/general.hbs"}}
+{{log "*************************************************"}}
+{{log "dataField" dataField}}
+{{log "inputTemplate" inputTemplate}}
+{{log "data" data}}
+{{log "fields" fields}}
+{{log "fieldPath" fieldPath--}}
+
 <div class="form-group">
-  <label>{{localize dataField.label}}</label>
+  {{#if dataField.label}}
+    <label>{{localize dataField.label}}</label>
+  {{/if}}
   <div class="form-fields">
-    {{> (lookup . "inputTemplate") data=data fields=fields config=config}}
+    {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField fieldPath=fieldPath config=config}}
   </div>
-  <p class="hint">{{localize dataField.hint}}</p>
+  <p class="hint">{{localize (ifThen dataField.hint dataField.hint data.hint)}}</p>
 </div>

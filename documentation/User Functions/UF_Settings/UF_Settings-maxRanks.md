@@ -1,0 +1,1 @@
+This system setting sets the limit of Ranks (Talent, skills or Devotions) during the character generation.

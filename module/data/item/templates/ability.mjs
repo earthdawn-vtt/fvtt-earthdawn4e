@@ -111,8 +111,8 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         reaction:      new fields.SchemaField( {
           defenseType: new fields.StringField( {
             required: true,
-            nullable: false,
-            blank:    false,
+            nullable: true,
+            blank:    true,
             initial:  "physical",
             choices:  ED4E.targetDifficulty,
             label:    this.labelKey( "Ability.RollTypeDetails.Reaction.defenseType" ),

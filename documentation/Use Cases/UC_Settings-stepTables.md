@@ -6,7 +6,7 @@ Settings do not required a diagram
 
 ### Related User Functions
 
-[UF_Settings-chooseStepTable](../User%20Functions/UF_Settings-chooseStepTable.md)
+[UF_Settings-chooseStepTable](../User%20Functions/UF_Settings/UF_Settings-chooseStepTable.md)
 
 ### Related Test Coverage
 

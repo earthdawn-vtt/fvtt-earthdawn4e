@@ -18,7 +18,10 @@ export default class DamageRollOptions extends EdRollOptions {
         {}
       ),
       armorType:         new fields.StringField( {
-        initial:  "physical",
+        required: true,
+        nullable: true,
+        blank:    true,
+        initial:  "",
         choices:  ED4E.armor,
       } ),
       damageType: new fields.StringField( {

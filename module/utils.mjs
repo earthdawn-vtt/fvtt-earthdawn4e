@@ -66,6 +66,7 @@ export function slugify( input ) {
  * @param {string} edid           The SWID of the item(s) which you want to retrieve
  * @param {string} type           Optionally, a type name to restrict the search
  * @returns {Item[]|undefined}    An array containing the found items
+ * @userFunction                  UF_Utils_getGlobalItemsByEdid
  */
 export async function getGlobalItemsByEdid( edid, type ) {
   return getAllDocuments(
@@ -85,6 +86,7 @@ export async function getGlobalItemsByEdid( edid, type ) {
  * @param {string} edid         The EDID of the item(s) which you want to retrieve
  * @param {string} type         Optionally, a type name to restrict the search
  * @returns {Item|undefined}    The matching item, or undefined if none was found.
+ * @userFunction                UF_Utils_getSingleGlobalItemByEdid
  */
 export async function getSingleGlobalItemByEdid( edid, type ) {
   return getGlobalItemsByEdid( edid, type ).then( item => item[0] );
@@ -506,6 +508,7 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
  * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
  * @param { string }  value The string to be checked for validity
  * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
+ * @userFunction            UF_Utils_validateEdid
  */
 export function validateEdid( value ) {
   // `any` is a reserved word
@@ -627,9 +630,13 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/global/effect-card.hbs",
     "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
 
+    // configs
+    "systems/ed4e/templates/configs/configure-button.hbs",
+
     // Form Inputs and Groups
-    "systems/ed4e/templates/form/input/unit-area.hbs",
-    "systems/ed4e/templates/form/input/unit-base.hbs",
+    "systems/ed4e/templates/form/input/area-metric.hbs",
+    "systems/ed4e/templates/form/input/base-metric.hbs",
+    "systems/ed4e/templates/form/input/spell-enhancement.hbs",
     "systems/ed4e/templates/form/group/general.hbs",
 
     // Character Generation
