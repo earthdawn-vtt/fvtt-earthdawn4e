@@ -492,8 +492,12 @@
     },
     "Data": {
       "ActiveEffect": {
-        "Hints": {},
-        "Labels": {}
+        "Hints": {
+          "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
+        },
+        "Labels": {
+          "transferToTarget":                           "Übertrage auf Ziel"
+        }
       },
       "Actor": {
         "Hints": {
@@ -1036,7 +1040,6 @@
             "key":                                      "Die Eigenschaft die verändert wird",
             "mode":                                     "Die Operation die auf die Eigenschaft angewendet wird",
             "priority":                                 "Die Priorität für die Ausführungsreihenfolge der Veränderung",
-            "target":                                   "Bei Fähigkeiten: Wirkt sich die Veränderung auf die Quelle oder das Ziel der Fähigkeit aus",
             "value":                                    "Der Wert oder die Formel die auf die Eigenschaft angewendet wird"
           },
           "MetricData": {
@@ -1093,7 +1096,6 @@
             "key":                                      "Schlüssel",
             "mode":                                     "Modus",
             "priority":                                 "Priorität",
-            "target":                                   "Ziel",
             "value":                                    "Wert"
           },
           "RangeUnit": {

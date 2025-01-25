@@ -448,16 +448,6 @@ ED4E.singleBonuses = {
 };
 preLocalize( "singleBonuses" );
 
-/**
- * @enum {string}
- */
-ED4E.eaeTargetChoices = {
-  self:     "ED.Config.EaeTargetChoices.self",
-  target:   "ED.Config.EaeTargetChoices.target",
-};
-preLocalize( "eaeTargetChoices" );
-
-
 /* -------------------------------------------- */
 /*  Advancement & Char Gen                      */
 /* -------------------------------------------- */
