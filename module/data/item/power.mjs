@@ -10,16 +10,7 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      isAttack: new fields.BooleanField( {
-        required: true,
-        nullable: false,
-        default:  false,
-        label:    this.labelKey( "Powers.isAttack" ),
-        hint:     this.hintKey( "Powers.isAttack" )
-      } ),
-            
     } );
   }
 
@@ -31,5 +22,13 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
+  }
+
+  /* -------------------------------------------- */
+  /*  Getter                                      */
+  /* -------------------------------------------- */
+  get isCreatureAttack() {
+    const edidCreatureAttack = game.settings.get( "ed4e", "edidCreatureAttack" );
+    return edidCreatureAttack;
   }
 }
