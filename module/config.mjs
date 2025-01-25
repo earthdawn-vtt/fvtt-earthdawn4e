@@ -440,12 +440,22 @@ preLocalize( "spellEnhancements", { key: "label", sort: true } );
 
 
 /* -------------------------------------------- */
-/*  Active Effects Shortcuts                    */
+/*  Active Effects                              */
 /* -------------------------------------------- */
+
 ED4E.singleBonuses = {
   knockdownEffects: "ED.Config.Eae.allKnockDownEffects",
 };
 preLocalize( "singleBonuses" );
+
+/**
+ * @enum {string}
+ */
+ED4E.eaeTargetChoices = {
+  self:     "ED.Config.EaeTargetChoices.self",
+  target:   "ED.Config.EaeTargetChoices.target",
+};
+preLocalize( "eaeTargetChoices" );
 
 
 /* -------------------------------------------- */

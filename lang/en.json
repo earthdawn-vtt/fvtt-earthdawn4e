@@ -778,6 +778,24 @@
             "Journal": {
                 "Labels": {},
                 "Hints": {}
+            },
+          "Other": {
+                "Hints": {
+                  "EAEChangeData": {
+                    "key":                                      "The attribute path in the Actor or Item data which the change modifies",
+                    "mode":                                     "The modification mode with which the change is applied",
+                    "priority":                                 "The priority level with which this change is applied",
+                    "value":                                    "The value or formula of the change effect"
+                  }
+                },
+                "Labels": {
+                  "EAEChangeData": {
+                    "key":                                      "Key",
+                    "mode":                                     "Mode",
+                    "priority":                                 "Priority",
+                    "value":                                    "Value"
+                  }
+                }
             }
         },
         "Dialogs": {
