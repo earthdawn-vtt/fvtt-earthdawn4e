@@ -321,9 +321,12 @@
         "gold":                                                     "Gold",
         "silver":                                                   "Silber"
       },
-      "EaeTargetChoices": {
-        "self":                                                     "Selbst",
-        "target":                                                   "Ziel"
+      "Eae": {
+        "DurationTypes": {
+          "combat":                                                 "Kampf",
+        "time":                                                     "Zeit",
+          "uses":                                                   "Anwendungen"
+        }
       },
       "Elements": {
         "air":                                                      "Luft",
@@ -1049,7 +1052,9 @@
             "rounds":                                   "Die maximale Dauer des Effekts in Kampfrunden",
             "turns":                                    "Die maximale Dauer des Effekts in Kampfzügen",
             "startRound":                               "Die Runde des Kampfes in der der Effekt zuerst begonnen hat",
-            "startTurn":                                "Der Zug des Kampfes in dem der Effekt zuerst begonnen hat"
+            "startTurn":                                "Der Zug des Kampfes in dem der Effekt zuerst begonnen hat",
+            "type":                                     "In welcher Form wird die Dauer des Effekts gemessen",
+            "uses":                                     "Wie oft kann dieser Effekt angewendet werden bevor er endet"
           },
           "MetricData": {
             "area":                                       "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
@@ -1114,7 +1119,9 @@
             "rounds":                                   "Runden",
             "turns":                                    "Züge",
             "startRound":                               "Start Runde",
-            "startTurn":                                "Start Zug"
+            "startTurn":                                "Start Zug",
+            "type":                                     "Typ",
+            "uses":                                     "Anwendungen"
           },
           "RangeUnit": {
             "unit":                                        "Maßeinheit"

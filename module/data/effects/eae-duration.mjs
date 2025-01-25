@@ -1,5 +1,6 @@
 import { SparseDataModel } from "../abstract.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import ED4E from "../../config.mjs";
 
 /**
  * @implements {EffectDurationData}
@@ -10,6 +11,12 @@ export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
     const fields = foundry.data.fields;
 
     return {
+      type:      new fields.StringField( {
+        choices: ED4E.eaeDurationTypes,
+        initial: "combat",
+        label:   this.labelKey( "EAEDurationData.type" ),
+        hint:    this.hintKey( "EAEDurationData.type" ),
+      } ),
       startTime: new fields.NumberField( {
         label: this.labelKey( "EAEDurationData.startTime" ),
         hint:  this.hintKey( "EAEDurationData.startTime" ),
@@ -37,6 +44,10 @@ export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
       startTurn: new fields.NumberField( {
         label: this.labelKey( "EAEDurationData.startTurn" ),
         hint:  this.hintKey( "EAEDurationData.startTurn" ),
+      } ),
+      uses: new fields.NumberField( {
+        label: this.labelKey( "EAEDurationData.uses" ),
+        hint:  this.hintKey( "EAEDurationData.uses" ),
       } ),
     };
   }
