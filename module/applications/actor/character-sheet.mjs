@@ -1,10 +1,10 @@
-import ActorSheetEd from "./base-sheet.mjs";
 import ED4E from "../../config.mjs";
+import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
 
 /**
  * An Actor sheet for player character type actors.
  */
-export default class ActorSheetEdCharacter extends ActorSheetEd {
+export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   constructor( options = {} ) {
     super( options );
@@ -26,7 +26,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
       karmaRitual:        ActorSheetEdCharacter.karmaRitual,
       legendPointHistory: ActorSheetEdCharacter.legendPointHistory,
       takeStrain:         ActorSheetEdCharacter.takeStrain,
-      halfMagic:          ActorSheetEdCharacter.rollHalfMagic,
     },
     position: {
       top:    50, 
@@ -225,12 +224,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEd {
   }
 
   // region Actions
-  static async rollHalfMagic( event, target ) {
-    event.preventDefault();
-    ui.notifications.info( "Half magic not done yet" );
-    this.document.rollHalfMagic( {event: event} );
-  }
-
   static async upgradeItem( event, target ) {
     event.preventDefault();
     if ( target.dataset.attribute ) {

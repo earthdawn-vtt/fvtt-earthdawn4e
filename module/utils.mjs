@@ -662,6 +662,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/actor-tabs/legend.hbs",
     "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
     "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
+    "systems/ed4e/templates/actor/actor-tabs/description.hbs",
 
     // Actor partials
     "systems/ed4e/templates/actor/actor-partials/actor-section-navigator.hbs",

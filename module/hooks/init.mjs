@@ -57,6 +57,11 @@ export default function () {
       makeDefault: true,
       label:       "ED.Documents.ActorSheetEdNpc"
     } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdGroup, {
+      types:       [ "group" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdGroup"
+    } );
     Items.unregisterSheet( "core", ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true
