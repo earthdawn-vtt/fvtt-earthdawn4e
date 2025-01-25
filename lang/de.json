@@ -1042,6 +1042,15 @@
             "priority":                                 "Die Priorität für die Ausführungsreihenfolge der Veränderung",
             "value":                                    "Der Wert oder die Formel die auf die Eigenschaft angewendet wird"
           },
+          "EAEDurationData": {
+            "startTime":                                "Die Zeit in der Welt zu der der Effekt zuerst begonnen hat",
+            "seconds":                                  "Die maximale Dauer des Effekts in Sekunden",
+            "combat":                                   "Die _id des CombatEncounter in dem der Effekt zuerst begonnen hat",
+            "rounds":                                   "Die maximale Dauer des Effekts in Kampfrunden",
+            "turns":                                    "Die maximale Dauer des Effekts in Kampfzügen",
+            "startRound":                               "Die Runde des Kampfes in der der Effekt zuerst begonnen hat",
+            "startTurn":                                "Der Zug des Kampfes in dem der Effekt zuerst begonnen hat"
+          },
           "MetricData": {
             "area":                                       "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
             "duration":                                   "Verändere die Dauer. Wenn sich nur die Einheit verändern soll (z.B. von Runden auf Minuten), dann lasse die anderen Felder leer.",
@@ -1097,6 +1106,15 @@
             "mode":                                     "Modus",
             "priority":                                 "Priorität",
             "value":                                    "Wert"
+          },
+          "EAEDurationData": {
+            "startTime":                                "Startzeit",
+            "seconds":                                  "Sekunden",
+            "combat":                                   "Kampf-ID",
+            "rounds":                                   "Runden",
+            "turns":                                    "Züge",
+            "startRound":                               "Start Runde",
+            "startTurn":                                "Start Zug"
           },
           "RangeUnit": {
             "unit":                                        "Maßeinheit"
