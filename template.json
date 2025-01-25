@@ -1,4 +1,9 @@
 {
+  "ActiveEffect": {
+    "types": [
+      "eae"
+    ]
+  },
   "Actor": {
     "types": [
       "character",
