@@ -440,13 +440,24 @@ preLocalize( "spellEnhancements", { key: "label", sort: true } );
 
 
 /* -------------------------------------------- */
-/*  Active Effects Shortcuts                    */
+/*  Active Effects                              */
 /* -------------------------------------------- */
+
+/**
+ * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
+ * @enum {string}
+ */
+ED4E.eaeDurationTypes = {
+  combat:     "ED.Config.Eae.DurationTypes.combat",
+  time:       "ED.Config.Eae.DurationTypes.realTime",
+  uses:       "ED.Config.Eae.DurationTypes.uses",
+};
+preLocalize( "eaeDurationTypes" );
+
 ED4E.singleBonuses = {
   knockdownEffects: "ED.Config.Eae.allKnockDownEffects",
 };
 preLocalize( "singleBonuses" );
-
 
 /* -------------------------------------------- */
 /*  Advancement & Char Gen                      */

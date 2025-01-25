@@ -620,6 +620,47 @@ export class ItemDataModel extends SystemDataModel {
 /* -------------------------------------------- */
 
 /**
+ * Variant of the SystemDataModel with support for custom active effects.
+ */
+export class ActiveEffectDataModel extends SystemDataModel {
+
+  /** @inheritDoc */
+  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "ActiveEffect", false );
+
+  /** @inheritDoc */
+  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "ActiveEffect", true );
+
+  /**
+   * @typedef {SystemDataModelMetadata} ActiveEffectDataModelMetadata
+   * @property {boolean} foo    This is just a test property
+   */
+
+  /** @type {ActiveEffectDataModelMetadata} */
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
+    foo: false,
+  }, {
+    inplace: false,
+  } ) );
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+  
+  /** @inheritDoc */
+  prepareBaseData() {
+    if ( this.parent.isEmbedded ) {
+      const sourceId = this.parent.flags.ed4e?.sourceId
+        ?? this.parent._stats.compendiumSource
+        ?? this.parent.flags.core?.sourceId;
+      if ( sourceId ) this.parent.actor?.sourcedEffects?.set( sourceId, this.parent );
+    }
+  }
+
+}
+
+/* -------------------------------------------- */
+
+/**
  * Data Model variant that does not export fields with an `undefined` value during `toObject( true )`.
  */
 export class SparseDataModel extends foundry.abstract.DataModel {

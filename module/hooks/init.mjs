@@ -37,9 +37,13 @@ export default function () {
     // Register text editor enrichers
     enrichers.registerCustomEnrichers();
 
+    // Use active effects within Items
+    CONFIG.ActiveEffect.legacyTransferral = false;
+
     // Hook up system data types
     CONFIG.Actor.dataModels = data.actor.config;
     CONFIG.ChatMessage.dataModels = data.chat.config;
+    CONFIG.ActiveEffect.dataModels = data.effects.config;
     CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes

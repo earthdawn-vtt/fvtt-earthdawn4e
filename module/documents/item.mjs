@@ -11,6 +11,31 @@ export default class ItemEd extends Item {
     return DocumentCreateDialog.waitPrompt( data, { documentCls: Item, parent, pack, options } );
   }
 
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /**
+   * Extended to apply active effects to the item.
+   * @inheritDoc
+   */
+  prepareEmbeddedDocuments() {
+    super.prepareEmbeddedDocuments();
+    this.applyActiveEffects();
+  }
+
+  applyActiveEffects() {
+    const effects = this.effects.filter( e => !e.data.disabled );
+    console.log ( `Not disabled ActiveEffects on Item ${this.name}:`, effects );
+    // look in Actor#applyActiveEffects for how to apply effects
+
+    // effects.forEach( e => e.applyToItem( this ) );
+  }
+
+  /* -------------------------------------------- */
+  /*  Earthdawn Methods                           */
+  /* -------------------------------------------- */
+
   /**
    * Update this items weight and name based on the given namegiver item. Uses the namegiver weight multiplier to
    * recalculate this item's weight. If successful, set a flag to indicate it's been calculated. Has to be unset
