@@ -566,7 +566,7 @@ export default class ActorEd extends Actor {
 
     let chatFlavor;
     chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
-      ability: strainOrigin ? strainOrigin : "",
+      ability: strainOrigin ? strainOrigin.name : "",
       actor:   this.name,
       amount:  finalAmount,
     } );
@@ -576,7 +576,7 @@ export default class ActorEd extends Actor {
       speaker: ChatMessage.getSpeaker( { actor: this.actor } ),
       content: chatFlavor
     };
-    if ( ( !damageRoll && isStrain === false ) || strainOrigin !== undefined ) {
+    if ( ( !damageRoll && isStrain === false ) || ( isStrain && strainOrigin ) ) {
       ChatMessage.create( messageData );
     }
 
