@@ -1,5 +1,8 @@
 {
   "ED": {
+    "ActiveEffect": {
+      "newEffectName": "Neuer Earthdawn ActiveEffect"
+    },
     "Actor": {
       "Abilities": {
       },
@@ -335,7 +338,8 @@
       "Eae": {
         "DurationTypes": {
           "combat":                                                 "Kampf",
-        "time":                                                     "Zeit",
+          "permanent":                                              "Permanent",
+          "time":                                                   "Zeit",
           "uses":                                                   "Anwendungen"
         }
       },

@@ -39,6 +39,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     form: {
       submitOnChange: true,
     },
+    actions: {
+      createChild: ActorSheetEd._onCreateChild,
+    },
   };
 
   /* -------------------------------------------- */
@@ -136,4 +139,47 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   static async _onDisplayItem( event, target ) {
     ui.notifications.info( "Display Item not done yet" );
   }
+
+  /** @override */
+  static async _onCreateChild( event, target ) {
+    const type = target.dataset.type;
+
+    if ( type === "effect" ) return ActiveEffect.implementation.create( {
+      type:     "eae",
+      name:     game.i18n.localize( "ED.ActiveEffect.newEffectName" ),
+      icon:     "icons/svg/aura.svg",
+      changes:  [ {} ],
+      duration: {
+        permanent: !!target.dataset.effectPermanent,
+      },
+    }, {
+      parent:      this.document,
+      renderSheet: true,
+    } );
+
+    // this will make more sense when we have a common documentSheet mixin
+    /* if ( activeTab === "spells" ) return Item.implementation.create({
+      name: game.i18n.format("DOCUMENT.New", { type: game.i18n.format(CONFIG.Item.typeLabels.spell) }),
+      type: "spell",
+      img: Item.implementation.getDefaultArtwork({ type: "spell" })?.img ?? Item.implementation.DEFAULT_ICON
+    }, { parent: this.actor, renderSheet: true });
+
+    const features = ["feat", "race", "background", "class", "subclass"];
+    if ( this.actor.type === "npc" ) features.push("weapon");
+
+    let types = {
+      features,
+      inventory: ["weapon", "equipment", "consumable", "tool", "container", "loot"]
+    }[activeTab] ?? [];
+
+    types = types.filter(type => {
+      const model = CONFIG.Item.dataModels[type];
+      return !model.metadata?.singleton || !this.actor.itemTypes[type].length;
+    });
+
+    if ( types.length ) return Item.implementation.createDialog({}, {
+      parent: this.actor, pack: this.actor.pack, types
+    }); */
+  }
+
 }

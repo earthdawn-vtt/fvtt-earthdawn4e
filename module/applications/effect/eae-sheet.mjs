@@ -6,6 +6,6 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  */
 export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
-  // do stuff
+  // do some fancy stuff here
 
 }

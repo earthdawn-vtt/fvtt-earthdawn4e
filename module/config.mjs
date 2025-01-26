@@ -449,6 +449,7 @@ preLocalize( "spellEnhancements", { key: "label", sort: true } );
  */
 ED4E.eaeDurationTypes = {
   combat:     "ED.Config.Eae.DurationTypes.combat",
+  permanent:  "ED.Config.Eae.DurationTypes.Permanent",
   time:       "ED.Config.Eae.DurationTypes.realTime",
   uses:       "ED.Config.Eae.DurationTypes.uses",
 };
