@@ -144,13 +144,12 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
     const takeDamage = await this.document.getPrompt( "takeDamage" );
     if ( !takeDamage || takeDamage === "close" ) return;
 
-    this.document.takeDamage(
-      takeDamage.damage,
-      false,
-      takeDamage.damageType,
-      takeDamage.armorType,
-      takeDamage.ignoreArmor,
-    );
+    this.document.takeDamage( takeDamage.damage, {
+      isStrain:     false,
+      damageType:   takeDamage.damageType,
+      armorType:    takeDamage.armorType,
+      ignoreArmor:  takeDamage.ignoreArmor,
+    } );
   }
 
   static async knockdownTest( event, target ) {
