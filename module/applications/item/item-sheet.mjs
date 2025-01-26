@@ -1,14 +1,15 @@
 import ED4E from "../../config.mjs";
 import SpellEnhancementsConfig from "../configs/spell-enhancements-config.mjs";
 
-const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+const { ItemSheetV2 } = foundry.applications.sheets;
 
 // noinspection JSClosureCompilerSyntax
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ItemSheet}
+ * @augments {ItemSheetV2}
  */
-export default class ItemSheetEd extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
+export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2 ) {
   
   constructor( options = {} ) {
     super( options );
