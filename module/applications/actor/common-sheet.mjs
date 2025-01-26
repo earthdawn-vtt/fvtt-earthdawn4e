@@ -1,12 +1,14 @@
 import ED4E from "../../config.mjs";
 
-const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { HandlebarsApplicationMixin } = foundry.applications.api;
+const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ActorSheet}
+ * @augments {ActorSheetV2}
  */
-export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
+
+export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheetV2 ) {
 
   constructor( options = {} ) {
     super( options );
@@ -28,6 +30,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
       submitOnChange: true,
     },
   };
+
+  /* -------------------------------------------- */
+  /*  Rendering                                   */
+  /* -------------------------------------------- */
 
   async _prepareContext() {
     // TODO: überprüfen was davon benötigt wird
@@ -52,6 +58,14 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( DocumentSh
 
     return context;
   }
+
+  /* -------------------------------------------- */
+  /*  Drag and Drop                               */
+  /* -------------------------------------------- */
+
+  /* -------------------------------------------- */
+  /*  Event Handlers                              */
+  /* -------------------------------------------- */
 
   static async _onEditImage( event, target ) {
     const attr = target.dataset.edit;
