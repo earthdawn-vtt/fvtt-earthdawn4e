@@ -516,41 +516,49 @@ export default class ActorEd extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * @summary                       Take the given amount of strain as damage.
-   * @param createChatMessage
-   * @param {number} strain         The amount of strain damage take
-   * @userFunction                  UF_Actor-takeStrain
+   * @summary                           Take the given amount of strain as damage.
+   * @param {number} strain             The amount of strain damage to take
+   * @param {ItemEd} [strainOrigin]     The ability causing the strain
+   * @userFunction                      UF_Actor-takeStrain
    */
   takeStrain( strain, strainOrigin ) {
     if ( !strain ) return;
-    this.takeDamage( strain, true, "standard", undefined, true, undefined, strainOrigin );
+    this.takeDamage( strain, {
+      isStrain:     true,
+      damageType:   "standard",
+      ignoreArmor:  true,
+      strainOrigin: strainOrigin,
+    } );
   }
 
   /**
    * Only for actors of type Sentient (character, npc, creature, spirits, horror, dragon). Take the given amount of
    * damage according to the parameters.
    * @param {number} amount                                     The unaltered amount of damage this actor should take.
-   * @param {boolean} isStrain                                  Whether this damage is strain or not.
-   * @param {("standard"|"stun")} damageType                    The type of damage. One of either 'standard' or 'stun'.
-   * @param {("physical"|"mystical")} [armorType]               The type of armor that protects from this damage, one of either
+   * @param {object} [options]                                  The following options for taking damage:
+   * @param {boolean} [options.isStrain]                        Whether this damage is strain or not.
    *                                                            'physical', 'mystical', or 'none'.
-   * @param {boolean} [ignoreArmor]                             Whether armor should be ignored when applying this damage.
-   * @param {EdRoll|undefined} [damageRoll]                     The roll that caused this damage or undefined if not caused by one.
-   * @param {string} strainOrigin                               The ability name in case of a non rollable ability, or undefined
    * @returns {{damageTaken: number, knockdownTest: boolean}}
    *                                                            An object containing:
    *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                            - `knockdownTest`: whether a knockdown test should be made.
    */
-  // eslint-disable-next-line max-params
-  takeDamage( amount, isStrain, damageType = "standard", armorType, ignoreArmor, damageRoll, strainOrigin ) {
+  takeDamage( amount, options = {
+    isStrain:     false,
+    damageType:   "standard",
+    armorType:    "physical",
+    ignoreArmor:  false,
+    damageRoll:   undefined,
+    strainOrigin: undefined
+  } ) {
+    const { isStrain, damageType, armorType, ignoreArmor, damageRoll, strainOrigin } = options;
     const { armor, health } = this.system.characteristics;
-    const finalAmount = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
-    const newDamage = health.damage[damageType] + finalAmount;
+    const damageTaken = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
+    const newDamage = health.damage[damageType] + damageTaken;
 
     const updates = { [`system.characteristics.health.damage.${ damageType }`]: newDamage };
 
-    if ( finalAmount > health.woundThreshold ) {
+    if ( damageTaken > health.woundThreshold ) {
       switch ( damageType ) {
         case "standard":
           updates["system.characteristics.health.wounds"] = health.wounds + 1;
@@ -566,9 +574,9 @@ export default class ActorEd extends Actor {
 
     let chatFlavor;
     chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
-      ability: strainOrigin ? strainOrigin.name : "",
+      ability: strainOrigin?.name,
       actor:   this.name,
-      amount:  finalAmount,
+      amount:  damageTaken,
     } );
 
     let messageData = {
@@ -580,11 +588,11 @@ export default class ActorEd extends Actor {
       ChatMessage.create( messageData );
     }
 
-    const knockdownTest = !this.system.condition.knockedDown && finalAmount >= health.woundThreshold + 5;
-    if ( knockdownTest ) this.knockdownTest( finalAmount );
+    const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5;
+    if ( knockdownTest ) this.knockdownTest( damageTaken );
 
     return {
-      damageTaken:       finalAmount,
+      damageTaken,
       knockdownTest,
     };
   }
@@ -839,7 +847,11 @@ export default class ActorEd extends Actor {
     }
 
     // Check if this uses karma or strain at all
-    this.takeDamage( roll.totalStrain, true, "standard", undefined, true );
+    this.takeDamage( roll.totalStrain, {
+      isStrain:     true,
+      damageType:   "standard",
+      ignoreArmor:  true,
+    } );
 
     const { karma, devotion } = roll.options;
     const resourcesUsedSuccessfully = this.#useResource( "karma", karma.pointsUsed ) && this.#useResource( "devotion", devotion.pointsUsed );
