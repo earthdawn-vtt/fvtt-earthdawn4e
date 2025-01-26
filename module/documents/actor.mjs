@@ -565,7 +565,7 @@ export default class ActorEd extends Actor {
     this.update( updates );
 
     let chatFlavor;
-    chatFlavor = game.i18n.format( strainOrigin === undefined ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
+    chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
       ability: strainOrigin ? strainOrigin : "",
       actor:   this.name,
       amount:  finalAmount,
