@@ -1,4 +1,6 @@
 import { ActiveEffectDataModel } from "../abstract.mjs";
+import EarthdawnActiveEffectChangeData from "./eae-change-data.mjs";
+import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 
 
 /**
@@ -11,6 +13,14 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     const fields = foundry.data.fields;
 
     return this.mergeSchema( super.defineSchema(), {
+      changes: new fields.EmbeddedDataField( EarthdawnActiveEffectChangeData, {
+        label:  this.labelKey( "changes" ),
+        hint:   this.hintKey( "changes" ),
+      } ),
+      duration: new fields.EmbeddedDataField( EarthdawnActiveEffectDurationData, {
+        label:  this.labelKey( "duration" ),
+        hint:   this.hintKey( "duration" ),
+      } ),
       transferToTarget: new fields.BooleanField( {
         initial: false,
         label:   this.labelKey( "transferToTarget" ),

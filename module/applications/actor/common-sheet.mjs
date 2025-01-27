@@ -140,8 +140,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
       name:     game.i18n.localize( "ED.ActiveEffect.newEffectName" ),
       icon:     "icons/svg/aura.svg",
       changes:  [ {} ],
-      duration: {
-        permanent: !!target.dataset.effectPermanent,
+      system:  {
+        duration: {
+          type: target.dataset.effectPermanent ? "permanent" : "combat",
+        },
       },
     }, {
       parent:      this.document,

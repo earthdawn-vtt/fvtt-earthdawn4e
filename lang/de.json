@@ -511,9 +511,13 @@
     "Data": {
       "ActiveEffect": {
         "Hints": {
+          "changes":                                    "Die Änderungen die dieser Effekt anwendet",
+          "duration":                                   "Die Dauer des Effekts",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
         "Labels": {
+          "changes":                                    "Änderungen",
+          "duration":                                   "Dauer",
           "transferToTarget":                           "Übertrage auf Ziel"
         }
       },
