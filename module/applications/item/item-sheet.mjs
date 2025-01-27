@@ -37,12 +37,12 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
       submitOnChange: true,
     },
     actions:  {
-      config:           ItemSheetEd._onConfig,
-      editImage:        ItemSheetEd._onEditImage,
-      editEffect:       ItemSheetEd._onEffectEdit,
-      deleteEffect:     ItemSheetEd._onEffectDelete,
-      addEffect:        ItemSheetEd._onEffectAdd,
-      createChild:      ItemSheetEd._onCreateChild,
+      config:             ItemSheetEd._onConfig,
+      editImage:          ItemSheetEd._onEditImage,
+      createChild:        ItemSheetEd._onCreateChild,
+      deleteChild:        ItemSheetEd._onDeleteChild,
+      displayChildToChat: ItemSheetEd._onDisplayChildToChat,
+      editChild:          ItemSheetEd._onEditChild,
     },
     position: {
       top:    50, 
@@ -178,19 +178,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
     return fp.browse();
   }
 
-  static async _onEffectEdit( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectDelete( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectAdd( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  /** @override */
+  /** @inheritDoc */
   static async _onCreateChild( event, target ) {
     const type = target.dataset.type;
 
@@ -230,6 +218,21 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
     if ( types.length ) return Item.implementation.createDialog({}, {
       parent: this.actor, pack: this.actor.pack, types
     }); */
+  }
+
+  /** @inheritDoc */
+  static async _onDeleteChild( event, target ) {
+    ( await fromUuid( target.dataset.uuid ) ).delete();
+  }
+
+  /** @inheritDoc */
+  static async _onDisplayChildToChat( event, target ) {
+    ChatMessage.create( { content: "Coming up: a beautiful description of the Item you just clicked to be displayed here in chat!" } );
+  }
+
+  /** @inheritDoc */
+  static async _onEditChild( event, target ) {
+    ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
   }
 }
 

@@ -42,9 +42,9 @@
         "tailAttack":                                       "Schwanzangriff"
       },
       "Cards": {
-        "chat": "Zeige Item Informationan als Chat Nachricht",
+        "chat": "Zeige Item Informationen als Chat Nachricht",
         "delete": "Lösche Item",
-        "edit": "Editiere Item"
+        "edit": "Bearbeite Item"
       },
       "Characteristics": {
         "currentDamage": "Schaden",
