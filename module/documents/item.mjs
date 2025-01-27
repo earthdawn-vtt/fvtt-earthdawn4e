@@ -25,8 +25,7 @@ export default class ItemEd extends Item {
   }
 
   applyActiveEffects() {
-    const effects = this.effects.filter( e => !e.disabled );
-    console.log ( `Not disabled ActiveEffects on Item ${this.name}:`, effects );
+    // const effects = this.effects.filter( e => !e.disabled );
     // look in Actor#applyActiveEffects for how to apply effects
 
     // effects.forEach( e => e.applyToItem( this ) );
