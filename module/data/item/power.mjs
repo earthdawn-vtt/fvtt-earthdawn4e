@@ -27,8 +27,10 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
   /* -------------------------------------------- */
   /*  Getter                                      */
   /* -------------------------------------------- */
+  /**
+   *@type {boolean}
+   */
   get isCreatureAttack() {
-    const edidCreatureAttack = game.settings.get( "ed4e", "edidCreatureAttack" );
-    return edidCreatureAttack;
+    return this.edid === game.settings.get( "ed4e", "edidCreatureAttack" );
   }
 }
