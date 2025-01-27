@@ -257,6 +257,9 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     event.preventDefault();
     const li = target.closest( ".item-id" );
     const ability = this.document.items.get( li.dataset.itemId );
-    this.document.takeStrain( ability.system.strain );
+    this.document.takeStrain( 
+      ability.system.strain,
+      ability
+    );
   }
 }
