@@ -26,6 +26,16 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
       minimizable:    true,
       resizable:      true,
     },
+    actions:  {
+      editImage:        ActorSheetEd._onEditImage,
+      editItem:         ActorSheetEd._onItemEdit,
+      deleteItem:       ActorSheetEd._onItemDelete,
+      displayItem:      ActorSheetEd._onDisplayItem,
+      editEffect:       ActorSheetEd._onEffectEdit,
+      deleteEffect:     ActorSheetEd._onEffectDelete,
+      addEffect:        ActorSheetEd._onEffectAdd,
+      expandItem:       ActorSheetEd._onCardExpand, 
+    },
     form: {
       submitOnChange: true,
     },
