@@ -10,7 +10,7 @@
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
 </div>
 {{#each actor.itemTypes.power}}
-    {{#if (eq this.system.isCreatureAttack this.system.edid)}}
+    {{#if this.system.isCreatureAttack}}
         {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
     {{/if}}
 {{/each}}
