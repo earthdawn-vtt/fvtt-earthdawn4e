@@ -534,15 +534,23 @@ export default class ActorEd extends Actor {
   /**
    * Only for actors of type Sentient (character, npc, creature, spirits, horror, dragon). Take the given amount of
    * damage according to the parameters.
-   * @param {number} amount                                     The unaltered amount of damage this actor should take.
-   * @param {object} [options]                                  The following options for taking damage:
-   * @param {boolean} [options.isStrain]                        Whether this damage is strain or not.
-   *                                                            'physical', 'mystical', or 'none'.
+   * @param {number} amount                                             The unaltered amount of damage this actor should take.
+   * @param {object} [options]                                          The following options for taking damage:
+   * @param {boolean} [options.isStrain]                                Whether this damage is strain or not.
+   * @param {("standard"|"stun")} [options.damageType]                  The type of damage. One of either 'standard' or 'stun'.
+   * @param {("physical"|"mystical")} [options.armorType]               The type of armor that protects from this damage, one of either
+   *                                                                    'physical', 'mystical', or 'none'.
+   * @param {boolean} [options.ignoreArmor]                             Whether armor should be ignored when applying this damage.
+   * @param {EdRoll|undefined} [options.damageRoll]                     The roll that caused this damage or undefined if not caused by one.
+   * @param {ItemEd} [options.strainOrigin]                             The ability causing the strain
    * @returns {{damageTaken: number, knockdownTest: boolean}}
-   *                                                            An object containing:
-   *                                                            - `damageTaken`: the actual amount of damage this actor has taken after armor
-   *                                                            - `knockdownTest`: whether a knockdown test should be made.
+   *                                                                    An object containing:
+   *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
+   *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
+  // eslint-disable-next-line max-params
+
+
   takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
