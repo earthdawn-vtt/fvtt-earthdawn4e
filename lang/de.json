@@ -1501,7 +1501,7 @@
         "general": "Allgemein"
       },
       "Placeholder": {
-        "lpDescription": "Trage hier eine Beschreibung ein"
+        "lpDescription":                                  "Trage hier eine Beschreibung ein"
       },
       "PhysicalItems": {
         "addThreadLevel":                                 "Füge einen Fadenrang hinzu.",
@@ -1510,8 +1510,9 @@
         "weaveThreadCheck":                               "Fadenweben ",
         "researchCheck":                                  "Forschen "
       },
+     
       "Talent": {
-        "action": "Aktion",
+        "action":                                         "Aktion",
         "attribute": "Attribut",
         "description": "Beschreibung",
         "difficultyFixed": "Feste Schwierigkeit",
@@ -1600,20 +1601,22 @@
     },
     "Settings": {
       "Edid": {
-        "Versatility": "ED-ID für Vielseitigkeit",
-        "VersatilityHint": "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
-        "knockDown": "ED-ID für Niederschlag",
-        "knockDownHint": "Identifiziert die Fähigkeit Niederschlag zu verwenden",
-        "languageRW": "ED-ID für Lesen/Schreiben",
-        "languageRWHint": "Identifiziert die Fähigkeit Lesen/Schreiben",
-        "languageSpeak": "ED-ID für Fremdsprachen",
-        "languageSpeakHint": "Identifiziert die Fähigkeit Fremdsprachen",
-        "spellCasting": "ED-ID für Spruchzauberei",
-        "spellCastingHint": "Identifiziert die Fähigkeit die für Spruchzauberei verwendet wird",
-        "threadWeaving": "ED-ID für Fadenweben",
-        "threadWeavingHint": "Identifiziert die Fähigkeit die für Fadenweben verwendet wird",
-        "unarmedCombat": "ED-ID für Waffenlosen Kampf",
-        "unarmedCombatHint": "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
+        "creatureAttack":                                       "ED-ID für Kreaturenangriff",
+        "creatureAttackHint":                                   "Identifiziert die Fähigkeit als Kreaturenangriff",
+        "Versatility":                                          "ED-ID für Vielseitigkeit",
+        "VersatilityHint":                                      "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
+        "knockDown":                                            "ED-ID für Niederschlag",
+        "knockDownHint":                                        "Identifiziert die Fähigkeit Niederschlag zu verwenden",
+        "languageRW":                                           "ED-ID für Lesen/Schreiben",
+        "languageRWHint":                                       "Identifiziert die Fähigkeit Lesen/Schreiben",
+        "languageSpeak":                                        "ED-ID für Fremdsprachen",
+        "languageSpeakHint":                                    "Identifiziert die Fähigkeit Fremdsprachen",
+        "spellCasting":                                         "ED-ID für Spruchzauberei",
+        "spellCastingHint":                                     "Identifiziert die Fähigkeit die für Spruchzauberei verwendet wird",
+        "threadWeaving":                                        "ED-ID für Fadenweben",
+        "threadWeavingHint":                                    "Identifiziert die Fähigkeit die für Fadenweben verwendet wird",
+        "unarmedCombat":                                        "ED-ID für Waffenlosen Kampf",
+        "unarmedCombatHint":                                    "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
       },
       "Hint": {
           "enforceLivingArmor":                               "Prüft ob ausschließlich legendige Rüstung getragen werden kann."

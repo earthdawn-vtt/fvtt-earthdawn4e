@@ -706,7 +706,6 @@ export async function preloadHandlebarsTemplates() {
     // Item details
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-armor.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-attack.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-bindingSecret.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-cursemark.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-devotion.hbs",
@@ -736,7 +735,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs",
 
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-armor.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-attack.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-bindingSecret.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-cursemark.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-devotion.hbs",

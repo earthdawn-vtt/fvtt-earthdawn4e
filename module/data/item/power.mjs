@@ -11,7 +11,6 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-            
     } );
   }
 
@@ -23,5 +22,15 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
+  }
+
+  /* -------------------------------------------- */
+  /*  Getter                                      */
+  /* -------------------------------------------- */
+  /**
+   *@type {boolean}
+   */
+  get isCreatureAttack() {
+    return this.edid === game.settings.get( "ed4e", "edidCreatureAttack" );
   }
 }

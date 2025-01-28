@@ -1,5 +1,4 @@
 import ArmorData from "./armor.mjs";
-import AttackData from "./attack.mjs";
 import BindingSecretData from "./binding-secrets.mjs";
 import CurseHorrorMarkData from "./curse-horror-mark.mjs";
 import DevotionData from "./devotion.mjs";
@@ -28,7 +27,6 @@ import WeaponData from "./weapon.mjs";
 
 export {
   ArmorData,
-  AttackData,
   BindingSecretData,
   CurseHorrorMarkData,
   DevotionData,
@@ -68,7 +66,6 @@ export {default as ThreadTemplate} from "./templates/threads.mjs";
 
 export const config = {
   armor:          ArmorData,
-  attack:         AttackData,
   bindingSecret:  BindingSecretData,
   cursemark:      CurseHorrorMarkData,
   devotion:       DevotionData,

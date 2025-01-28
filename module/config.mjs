@@ -18,7 +18,7 @@ _______________________________`;
 ED4E.typeGroups = {
   Item: {
     Equipment:    [ "armor", "equipment", "shield", "weapon" ],
-    Powers:       [ "attack", "maneuver", "power" ],
+    Powers:       [ "maneuver", "power" ],
     Abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
     Conditions:   [ "cursemark", "effect", "poisonDisease" ],
     Magic:        [ "spell", "spellKnack", "bindingSecret", "matrix" ],

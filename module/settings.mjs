@@ -133,6 +133,16 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
+  // edid for creature power used as attack
+  game.settings.register( "ed4e", "edidCreatureAttack", {
+    name:    "ED.Settings.Edid.creatureAttack",
+    hint:    "ED.Settings.Edid.creatureAttackHint",
+    scope:   "world",
+    config:  true,
+    default: "creature-attack",
+    type:    new EdIdField(),
+  } );
+
   /* -------------------------------------------------------------------------------- */
   /*                                  STEP TABLES                                     */
   /* -------------------------------------------------------------------------------- */
