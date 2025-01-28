@@ -12,14 +12,16 @@ export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
 
     return {
       type:      new fields.StringField( {
-        choices: ED4E.eaeDurationTypes,
-        initial: "combat",
-        label:   this.labelKey( "EAEDurationData.type" ),
-        hint:    this.hintKey( "EAEDurationData.type" ),
+        required: true,
+        choices:  ED4E.eaeDurationTypes,
+        initial:  "combat",
+        label:    this.labelKey( "EAEDurationData.type" ),
+        hint:     this.hintKey( "EAEDurationData.type" ),
       } ),
       startTime: new fields.NumberField( {
-        label: this.labelKey( "EAEDurationData.startTime" ),
-        hint:  this.hintKey( "EAEDurationData.startTime" ),
+        initial: Date.now(),
+        label:   this.labelKey( "EAEDurationData.startTime" ),
+        hint:    this.hintKey( "EAEDurationData.startTime" ),
       } ),
       seconds: new FormulaField( {
         label: this.labelKey( "EAEDurationData.seconds" ),
@@ -46,8 +48,10 @@ export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
         hint:  this.hintKey( "EAEDurationData.startTurn" ),
       } ),
       uses: new fields.NumberField( {
-        label: this.labelKey( "EAEDurationData.uses" ),
-        hint:  this.hintKey( "EAEDurationData.uses" ),
+        integer:  true,
+        positive: true,
+        label:    this.labelKey( "EAEDurationData.uses" ),
+        hint:     this.hintKey( "EAEDurationData.uses" ),
       } ),
     };
   }

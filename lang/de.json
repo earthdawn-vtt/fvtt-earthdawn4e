@@ -339,7 +339,7 @@
         "DurationTypes": {
           "combat":                                                 "Kampf",
           "permanent":                                              "Permanent",
-          "time":                                                   "Zeit",
+          "realTime":                                               "Zeit",
           "uses":                                                   "Anwendungen"
         }
       },
@@ -511,11 +511,13 @@
     "Data": {
       "ActiveEffect": {
         "Hints": {
+          "begin":                                      "Wann beginnt der Effekt",
           "changes":                                    "Die Änderungen die dieser Effekt anwendet",
           "duration":                                   "Die Dauer des Effekts",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
         "Labels": {
+          "begin":                                      "Start",
           "changes":                                    "Änderungen",
           "duration":                                   "Dauer",
           "transferToTarget":                           "Übertrage auf Ziel"

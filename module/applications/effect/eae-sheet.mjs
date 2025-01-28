@@ -6,12 +6,19 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  */
 export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
-  // do some fancy stuff here
+  /** @inheritDoc */
+  static DEFAULT_OPTIONS = {
+    form: {
+      submitOnChange: true,
+      closeOnSubmit:  false,
+    },
+  };
 
   /** @inheritDoc */
   static PARTS = {
     ...ActiveEffectConfig.PARTS,
-    details: { template: "systems/ed4e/templates/effect/details.hbs" },
+    details:  { template: "systems/ed4e/templates/effect/details.hbs" },
+    duration: { template: "systems/ed4e/templates/effect/duration.hbs" },
   };
 
   /* -------------------------------------------- */
