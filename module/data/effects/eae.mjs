@@ -29,4 +29,16 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     } );
   }
 
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  /**
+   * Is this effect always active, that is, has no limited duration.
+   * @type {boolean}
+   */
+  get permanent() {
+    return this.duration.type === "permanent";
+  }
+
 }
