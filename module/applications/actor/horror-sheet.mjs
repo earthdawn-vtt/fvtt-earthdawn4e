@@ -1,10 +1,10 @@
-import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
+import ActorSheetEdSentient from "./sentient-sheet.mjs";
 
 /**
- * An actor sheet application designed for actors of type "NPC"
+ * Extend the basic ActorSheet with modifications
  * @augments {ActorSheet}
  */
-export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
+export default class ActorSheetEdHorror extends ActorSheetEdSentient {
 
   constructor( options = {} ) {
     super( options );
@@ -12,7 +12,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       sheet: "general-tab",
     };
   }
-    
+
   // region DEFAULT_OPTIONS
   /** 
    * @override 
@@ -20,7 +20,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++globalThis._appId ),
-    classes:  [ "NPC" ],
+    classes:  [ "horror" ],
     actions:  {
     },
     position: {
@@ -30,7 +30,6 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       height: 800,
     }
   };
-
 
   // region PARTS
   static PARTS = {

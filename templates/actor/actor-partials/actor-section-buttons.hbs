@@ -1,14 +1,34 @@
 <section class="section__button">
-    <div class="action--buttons">
-        <div class="buttons--left input--centered1">
-            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
-            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-            <button class="action-buttons" data-action="knockdownTest">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
-        </div>
-        <div class="buttons--right input--centered1">
-            <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
-            <button class="action-buttons" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
-            <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
-        </div>
-    </div>
+    {{log this}}
+    {{#if (eq actor.type "character" )}}
+    {{log "inside" this}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-namegiver.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "npc" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-namegiver.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "creature" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "dragon" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-sentient.hbs"}}
+    {{/if}} 
+    {{#if (eq actor.type "spirit" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "horror" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "loot" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-loot.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "group" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-group.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "trap" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-trap.hbs"}}
+    {{/if}}
+    {{#if (eq actor.type "vehicle" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-vehicle.hbs"}}
+    {{/if}}
 </section>

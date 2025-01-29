@@ -2,7 +2,7 @@ import ED4E from "../../config.mjs";
 import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
 
 /**
- * An Actor sheet for player character type actors.
+ * An actor sheet application designed for actors of type "PC"
  */
 export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 

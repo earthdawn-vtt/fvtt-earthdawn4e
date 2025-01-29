@@ -66,6 +66,41 @@ export default function () {
       makeDefault: true,
       label:       "ED.Documents.ActorSheetEdGroup"
     } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdVehicle, {
+      types:       [ "vehicle" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdVehicle"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdLoot, {
+      types:       [ "loot" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdLoot"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdTrap, {
+      types:       [ "trap" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdTrap"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCreature, {
+      types:       [ "creature" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdCreature"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdSpirit, {
+      types:       [ "spirit" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdSpirit"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdDragon, {
+      types:       [ "dragon" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdDragon"
+    } );
+    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdHorror, {
+      types:       [ "horror" ],
+      makeDefault: true,
+      label:       "ED.Documents.ActorSheetEdHorror"
+    } );
     Items.unregisterSheet( "core", ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true
