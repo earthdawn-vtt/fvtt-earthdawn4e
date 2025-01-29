@@ -22,6 +22,17 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   };
 
   /* -------------------------------------------- */
+  /*  Form Handling                               */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _prepareSubmitData( event, form, formData ) {
+    const submitData = super._prepareSubmitData( event, form, formData );
+    submitData.duration = submitData.system.duration;
+    return submitData;
+  }
+
+  /* -------------------------------------------- */
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
