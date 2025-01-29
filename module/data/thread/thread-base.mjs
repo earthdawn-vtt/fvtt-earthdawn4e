@@ -5,6 +5,9 @@ import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mj
 import LpIncreaseTemplate from "../item/templates/lp-increase.mjs";
 import ThreadLevelData from "./thread-level.mjs";
 
+/**
+ * @augments {LpIncreaseTemplate}
+ */
 export default class ThreadBaseData extends SparseDataModel {
   /** @inheritDoc */
   static defineSchema() {
