@@ -6,10 +6,11 @@ import {
   getSingleGlobalItemByEdid,
   mapObject,
   renameKeysWithPrefix,
-  sum
+  sum,
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+
 
 /**
 The application responsible for handling character generation
@@ -174,6 +175,9 @@ export default class CharacterGenerationData extends SparseDataModel {
         speak:     NamegiverTemplate.getLanguageDataField(),
         readWrite: NamegiverTemplate.getLanguageDataField(),
       } ),
+
+      // equipment
+      equipment: new fields.SetField( new fields.DocumentUUIDField() ),
     };
   }
 
@@ -226,6 +230,12 @@ export default class CharacterGenerationData extends SparseDataModel {
     const allSpells = this.spells.map( async ( spell ) => await fromUuid( spell ) );
 
     return Promise.all( allSpells );
+  }
+
+  get equipmentDocuments() {
+    const allEquipment = this.equipment.map( async ( equipment ) => await fromUuid( equipment ) );
+
+    return Promise.all( allEquipment );
   }
 
   get abilityOption() {
@@ -530,6 +540,20 @@ export default class CharacterGenerationData extends SparseDataModel {
     const newSpellSet = new Set( this.spells );
     newSpellSet.delete( spellUuid );
     return this.updateSource( { spells: newSpellSet } );
+  }
+
+  async addEquipment( equipmentUuid ) {
+    if ( !equipmentUuid ) return {};
+    return this.updateSource( {
+      equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
+    } );
+  }
+
+  async removeEquipment( equipmentUuid ) {
+    if ( !equipmentUuid ) return {};
+    const newEquipmentSet = new Set( this.equipment );
+    newEquipmentSet.delete( equipmentUuid );
+    return this.updateSource( { equipment: newEquipmentSet } );
   }
 
   async resetPoints( type ) {

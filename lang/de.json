@@ -1213,7 +1213,8 @@
           "languageSkills":                       "Sprachfertigkeiten",
           "generalSkills":                        "Allgemeine Fertigkeiten",
           "overview":                             "Übersicht",
-          "namegiverAbilities":                   "Namensgeber Fähigkeiten"
+          "namegiverAbilities":                   "Namensgeber Fähigkeiten",
+          "weapons":                              "Waffen"
         },
         "Errors":{
           "noNamegiver":                          "Du musst einen Namensgeber auswählen um fortzufahren.",

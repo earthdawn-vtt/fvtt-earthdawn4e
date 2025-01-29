@@ -1,0 +1,22 @@
+{
+  "name": "Shields",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "XhSbKFpVFCcIjCnz",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1737239406102,
+    "modifiedTime": 1737239406106,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!folders!XhSbKFpVFCcIjCnz"
+}

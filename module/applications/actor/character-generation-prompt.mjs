@@ -21,6 +21,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.questors = documentCollections.questors;
     this.skills = documentCollections.skills;
     this.spells = documentCollections.spells;
+    this.equipment = documentCollections.equipment;
 
     this.availableAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
 
@@ -42,7 +43,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       primary: "namegiver-tab",
     };
   }
-  
   // #region Error Messages
   static get errorMessages() {
     return {
@@ -80,6 +80,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       decrease:        this._onChangeAttributeModifier,
       changeSpell:     this._onClickSpell,
       reset:           this._onReset,
+      selectEquipment: this._onSelectEquipment,
     },
     form:    {
       handler:        CharacterGenerationPrompt.#onFormSubmission,
@@ -96,7 +97,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   /* --------------------------  Parts  ------------------------ */
   /* ----------------------------------------------------------- */
-  
   // #region PARTS
   static PARTS = {
     tabs: {
@@ -227,7 +227,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     context.config = ED4E;
-    context.object = this.charGenData;  
+    context.object = this.charGenData;
     context.options = options;
 
     // Rules
@@ -282,6 +282,10 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       return acc;
     }, {} );
 
+    context.equipment = this.equipment;
+
+    context.selectedEquipment = this.charGenData.equipment;
+
     // Dialog Config
     context.hasNextStep = this._hasNextStep();
     context.hasNoNextStep = !context.hasNextStep;
@@ -318,9 +322,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       action:   "finish",
       disabled: !this._validateCompletion( "" ),
     }, );
-  
-
-
     return context;
   }
 
@@ -330,7 +331,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region _preparePartContext
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
-    
     switch ( partId ) {
       case "tabs": return this._prepareTabsContext( context, options );
       case "namegiver-tab":
@@ -373,7 +373,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   async activateTab ( context, tabId ) {
     const tabGroup = "primary";
     for ( const tab of Object.values( this.constructor.TABS ) ) {
-      tab.active = tab.id === tabId;  
+      tab.active = tab.id === tabId;
     }
     this.tabGroups[tabGroup] = tabId;
     if ( context?.tabs ) context.tabs[tabId].cssClass = "active";
@@ -389,11 +389,11 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this._currentStep = this._steps.indexOf( tab );
     this.render( { parts: [ "footer" ] } );
   }
-  
+
   /* ----------------------------------------------------------- */
   /* --------------------------  Form  ------------------------- */
   /* ----------------------------------------------------------- */
-
+  // region FORMSUBMISSION
   static async #onFormSubmission( event, form, formData ) {
 
     const data = foundry.utils.expandObject( formData.object );
@@ -404,7 +404,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     if ( data.namegiver ) {
       this.charGenData.namegiverAbilities = await fromUuid( data.namegiver );
     }
-  
+
     // Reset selected class if class type changed
     if ( data.isAdept !== this.charGenData.isAdept ) data.selectedClass = null;
 
@@ -430,6 +430,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
     if ( foundry.utils.isEmpty( data.languages ) ) delete data.languages;
 
+    
+
     this.charGenData.updateSource( data );
 
     // wait for the update, so we can use the data models method
@@ -442,7 +444,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   /* ------------------------  Actions  ------------------------ */
   /* ----------------------------------------------------------- */
-
+  // #region ACTIONS
   static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
 
@@ -571,16 +573,30 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
     result.then( _ => this.render() );
   }
-
+  
   static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
+  static _onSelectEquipment( _, target ) {
+    const equipmentUuid = target.dataset.uuid;
+    let result;
+    if ( target.attr.checked ) {
+      // add the equipment
+      result = this.charGenData.addEquipment( equipmentUuid );
+    } else {
+      // unselect the equipment
+      result = this.charGenData.removeEquipment( equipmentUuid );
+    }
+    result.then( _ => this.render );
+  }
+
   /* ----------------------------------------------------------- */
-  /* -----------------------  weitPrompt  ---------------------- */
+  /* -----------------------  waitPrompt  ---------------------- */
   /* ----------------------------------------------------------- */
 
+  // #region WAIT PROMPT
   /**
    * Wait for dialog to be resolved.
    * @param {object} [charGenData]           Initial data to pass to the constructor.
@@ -609,8 +625,14 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
         [ "system.level" ],
         ( x ) => x.system.level <= game.settings.get( "ed4e", "charGenMaxSpellCircle" ),
       ),
+      equipment: {
+        armor:     await this.getEquipmentItems( "armor" ),
+        equipment: await this.getEquipmentItems( "equipment" ),
+        shields:   await this.getEquipmentItems( "shield" ),
+        weapons:   await this.getEquipmentItems( "weapon" ),
+      }
     };
-
+    
     // add the language skills manually, so we can localize them and assert the correct edid
     const edidLanguageSpeak = game.settings.get( "ed4e", "edidLanguageSpeak" );
     const edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
@@ -650,5 +672,23 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       options.resolve = resolve;
       new this( data, options, docCollections ).render( true, { focus: true } );
     } );
-  } 
+  }
+
+
+  static async getEquipmentItems( type ) {
+    const lang = game.i18n.lang;
+    const items = [];
+    const equipmentList = ED4E.startingEquipment;
+  
+    for ( const key in equipmentList ) {
+      if ( equipmentList.hasOwnProperty( key ) ) {
+        const item = equipmentList[key];
+        const equipmentItem = await fromUuid( item.uuid[lang] || item.uuid["en"] ); // Fallback to English if language not found
+        if ( equipmentItem?.type === type ) {
+          items.push( equipmentItem );
+        }
+      }
+    }
+    return items;
+  }
 }
