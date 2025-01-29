@@ -21,6 +21,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.questors = documentCollections.questors;
     this.skills = documentCollections.skills;
     this.spells = documentCollections.spells;
+    this.equipment = documentCollections.equipment;
 
     this.availableAttributePoints = game.settings.get( "ed4e", "charGenAttributePoints" );
 
@@ -79,6 +80,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       decrease:        this._onChangeAttributeModifier,
       changeSpell:     this._onClickSpell,
       reset:           this._onReset,
+      selectEquipment: this._onSelectEquipment,
     },
     form:    {
       handler:        CharacterGenerationPrompt.#onFormSubmission,
@@ -280,14 +282,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       return acc;
     }, {} );
 
-
-    // Add equipment to the context
-    context.equipment = {
-      armor:     await this.charGenData.getEquipmentItems( "armor" ),
-      equipment: await this.charGenData.getEquipmentItems( "equipment" ),
-      shields:   await this.charGenData.getEquipmentItems( "shield" ),
-      weapons:   await this.charGenData.getEquipmentItems( "weapon" ),
-    };
+    context.equipment = this.equipment;
 
     context.selectedEquipment = this.charGenData.equipment;
 
@@ -435,8 +430,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
     if ( foundry.utils.isEmpty( data.languages ) ) delete data.languages;
 
-    // Process selected equipment
-    this.equipment = data.equipment ?? [];
+    
 
     this.charGenData.updateSource( data );
 
@@ -585,10 +579,24 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
+  static _onSelectEquipment( _, target ) {
+    const equipmentUuid = target.dataset.uuid;
+    let result;
+    if ( target.attr.checked ) {
+      // add the equipment
+      result = this.charGenData.addEquipment( equipmentUuid );
+    } else {
+      // unselect the equipment
+      result = this.charGenData.removeEquipment( equipmentUuid );
+    }
+    result.then( _ => this.render );
+  }
+
   /* ----------------------------------------------------------- */
   /* -----------------------  waitPrompt  ---------------------- */
   /* ----------------------------------------------------------- */
 
+  // #region WAIT PROMPT
   /**
    * Wait for dialog to be resolved.
    * @param {object} [charGenData]           Initial data to pass to the constructor.
@@ -617,8 +625,14 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
         [ "system.level" ],
         ( x ) => x.system.level <= game.settings.get( "ed4e", "charGenMaxSpellCircle" ),
       ),
+      equipment: {
+        armor:     await this.getEquipmentItems( "armor" ),
+        equipment: await this.getEquipmentItems( "equipment" ),
+        shields:   await this.getEquipmentItems( "shield" ),
+        weapons:   await this.getEquipmentItems( "weapon" ),
+      }
     };
-
+    
     // add the language skills manually, so we can localize them and assert the correct edid
     const edidLanguageSpeak = game.settings.get( "ed4e", "edidLanguageSpeak" );
     const edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
@@ -658,5 +672,23 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       options.resolve = resolve;
       new this( data, options, docCollections ).render( true, { focus: true } );
     } );
+  }
+
+
+  static async getEquipmentItems( type ) {
+    const lang = game.i18n.lang;
+    const items = [];
+    const equipmentList = ED4E.startingEquipment;
+  
+    for ( const key in equipmentList ) {
+      if ( equipmentList.hasOwnProperty( key ) ) {
+        const item = equipmentList[key];
+        const equipmentItem = await fromUuid( item.uuid[lang] || item.uuid["en"] ); // Fallback to English if language not found
+        if ( equipmentItem?.type === type ) {
+          items.push( equipmentItem );
+        }
+      }
+    }
+    return items;
   }
 }

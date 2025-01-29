@@ -300,23 +300,6 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilities.filter( uuid => uuid !== null );
   }
 
-  async getEquipmentItems( type ) {
-    const lang = game.i18n.lang;
-    const items = [];
-    const equipmentList = ED4E.startingEquipment;
-
-    for ( const key in equipmentList ) {
-      if ( equipmentList.hasOwnProperty( key ) ) {
-        const item = equipmentList[key];
-        const equipmentItem = await fromUuid( item.uuid[lang] || item.uuid["en"] ); // Fallback to English if language not found
-        if ( equipmentItem?.type === type ) {
-          items.push( equipmentItem );
-        }
-      }
-    }
-    return items;
-  }
-
   async getCharacteristicsPreview() {
     const lookup = ED4E.characteristicsTable;
     const finalValues = await this.getFinalAttributeValues();
@@ -559,18 +542,18 @@ export default class CharacterGenerationData extends SparseDataModel {
     return this.updateSource( { spells: newSpellSet } );
   }
 
-  // async addEquipment( equipmentUuid ) {
-  //   if ( !equipmentUuid ) return {};
-  //   return this.updateSource( {
-  //     equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
-  //   } );
-  // }
+  async addEquipment( equipmentUuid ) {
+    if ( !equipmentUuid ) return {};
+    return this.updateSource( {
+      equipment: ( new Set( this.equipment ) ).add( equipmentUuid )
+    } );
+  }
 
   async removeEquipment( equipmentUuid ) {
     if ( !equipmentUuid ) return {};
     const newEquipmentSet = new Set( this.equipment );
     newEquipmentSet.delete( equipmentUuid );
-    return this.updateSource( { spells: newEquipmentSet } );
+    return this.updateSource( { equipment: newEquipmentSet } );
   }
 
   async resetPoints( type ) {
