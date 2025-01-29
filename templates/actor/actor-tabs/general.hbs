@@ -41,11 +41,13 @@
             <label>{{localize "ED.Actor.Header.karma"}}</label>
             <span class="icon__position--right one-line__vertical-align">
                 <input type="checkbox" name="system.karma.useAlways" {{checked actor.system.karma.useAlways}} title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
+                {{#if (eq this.actor.type "character")}}
                 <a class="karma__ritual">
                     <button class="button__Karma-refresh" data-action="karmaRitual" title="Karma-Ritual">
                         <i class="fa-solid fa-person-rays" title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
                     </button>
                 </a>
+                {{/if}}
             </span>
         </h3>
         <div class="karma-devotion__grid--container font__bold">

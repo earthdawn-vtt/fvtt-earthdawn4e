@@ -454,6 +454,7 @@ input.input__number-input {
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
   gap: 0.5rem;
+  line-height: 1.2rem;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs > [data-tab] {
   padding: 8px 4px;
