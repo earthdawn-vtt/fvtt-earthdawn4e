@@ -108,7 +108,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
       id:       "earned-tab",
       group:    "primary",
       icon:     "fa-light fa-hexagon-plus",
-      label:    "X-LocalizeLabel-Earned",
+      label:    "ED.Dialogs.Legend.LpHistory.tabEarned",
       active:   false,
       cssClass: ""
     },
@@ -116,7 +116,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
       id:       "spend-tab",
       group:    "primary",
       icon:     "fa-light fa-hexagon-minus",
-      label:    "X-LocalizeLabel-Spend",
+      label:    "ED.Dialogs.Legend.LpHistory.tabSpend",
       active:   false,
       cssClass: ""
     },
@@ -124,7 +124,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
       id:       "chronological-tab",
       group:    "primary",
       icon:     "fa-light fa-timeline-arrow",
-      label:    "X-LocalizeLabel-Chronological",
+      label:    "ED.Dialogs.Legend.LpHistory.tabChronological",
       active:   false,
       cssClass: ""
     },
