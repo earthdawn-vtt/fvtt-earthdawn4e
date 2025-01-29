@@ -27,10 +27,6 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
         label: this.labelKey( "EAEChangeData.priority" ),
         hint:  this.hintKey( "EAEChangeData.priority" ),
       } ),
-      abilityUuid: new fields.DocumentUUIDField( {
-        label: this.labelKey( "EAEChangeData.abilityUuid" ),
-        hint:  this.hintKey( "EAEChangeData.abilityUuid" ),
-      } )
     };
   }
 

@@ -1,6 +1,9 @@
 {
   "ED": {
     "ActiveEffect": {
+      "Header": {
+        "applyToAbility": "Auf Fähigkeit anwenden"
+      },
       "newEffectName": "Neuer Earthdawn ActiveEffect"
     },
     "Actor": {

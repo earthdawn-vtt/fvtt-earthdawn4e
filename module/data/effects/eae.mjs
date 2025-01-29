@@ -26,6 +26,10 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         label:   this.labelKey( "transferToTarget" ),
         hint:    this.hintKey( "transferToTarget" ),
       } ),
+      abilityUuid: new fields.DocumentUUIDField( {
+        label: this.labelKey( "EAEChangeData.abilityUuid" ),
+        hint:  this.hintKey( "EAEChangeData.abilityUuid" ),
+      } )
     } );
   }
 
