@@ -45,4 +45,12 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     return this.duration.type === "permanent";
   }
 
+  /**
+   * Is this effect applied to an Item, i.e., does it have an ability uuid.
+   * @type {boolean}
+   */
+  get applyToItem() {
+    return !!this.abilityUuid;
+  }
+
 }

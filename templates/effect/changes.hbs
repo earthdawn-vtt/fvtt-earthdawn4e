@@ -1,7 +1,5 @@
 <section class="tab changes{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-  <fieldset>
-    <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
-  </fieldset>
+
   <header>
     <div class="key">{{localize "EFFECT.ChangeKey"}}</div>
     <div class="mode">{{localize "EFFECT.ChangeMode"}}</div>
@@ -31,4 +29,11 @@
       {{/with}}
     {{/each}}
   </ol>
+
+  <hr>
+
+  <fieldset>
+    <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
+    {{formGroup systemFields.abilityUuid value=source.system.abilityUuid localize=true}}
+  </fieldset>
 </section>
