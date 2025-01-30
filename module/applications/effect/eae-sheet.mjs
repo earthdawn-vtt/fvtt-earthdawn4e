@@ -1,3 +1,5 @@
+import FormulaField from "../../data/fields/formula-field.mjs";
+
 const { ActiveEffectConfig } = foundry.applications.sheets;
 
 /**
@@ -11,6 +13,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     form: {
       submitOnChange: true,
       closeOnSubmit:  false,
+    },
+    actions: {
+      addChange:     this.#onAddChange,
+      deleteChange:  this.#onDeleteChange,
     },
   };
 
@@ -30,7 +36,17 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   _prepareSubmitData( event, form, formData ) {
     const submitData = super._prepareSubmitData( event, form, formData );
     submitData.duration = submitData.system.duration;
+    // submitData.changes = this._prepareChangesSubmitData( submitData.system.changes );
     return submitData;
+  }
+
+  _prepareChangesSubmitData( changes ) {
+    return changes.map( change => {
+      return {
+        ...change,
+        value: FormulaField.evaluate( change.value, this.document.system.formulaData, { warn: true } ),
+      };
+    } );
   }
 
   /* -------------------------------------------- */
@@ -42,5 +58,28 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     context.systemFields = this.document.system.schema.fields;
     return context;
   }
+
+  /* -------------------------------------------- */
+  /*  Handlers                                    */
+  /* -------------------------------------------- */
+
+  /**
+   * Add a new change to the effect's changes array.
+   * @this {ActiveEffectConfig}
+   * @type {ApplicationClickAction}
+   */
+  static async #onAddChange() {
+    const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
+    const systemChanges = Object.values( submitData.system.changes ) ?? [];
+    systemChanges.push( {} );
+    return this.submit( { updateData: { "system.changes": systemChanges } } );
+  }
+
+  /**
+   * Delete a change from the effect's changes array.
+   * @this {ActiveEffectConfig}
+   * @type {ApplicationClickAction}
+   */
+  static async #onDeleteChange( event ) {}
 
 }

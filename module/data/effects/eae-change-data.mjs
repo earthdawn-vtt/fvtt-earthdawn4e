@@ -16,8 +16,9 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
         hint:  this.hintKey( "EAEChangeData.key" ),
       } ),
       value:    new FormulaField( {
-        label:  this.labelKey( "EAEChangeData.value" ),
-        hint:   this.hintKey( "EAEChangeData.value" ),
+        required: false,
+        label:    this.labelKey( "EAEChangeData.value" ),
+        hint:     this.hintKey( "EAEChangeData.value" ),
       } ),
       mode:     new fields.NumberField( {
         label:  this.labelKey( "EAEChangeData.mode" ),

@@ -144,6 +144,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
         duration: {
           type: target.dataset.effectPermanent ? "permanent" : "combat",
         },
+        changes: [ {} ],
       },
     }, {
       parent:      this.document,

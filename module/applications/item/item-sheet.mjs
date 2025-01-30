@@ -190,6 +190,9 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
       duration: {
         permanent: !!target.dataset.effectPermanent,
       },
+      system:  {
+        changes: [ {} ],
+      },
     }, {
       parent:      this.document,
       renderSheet: true,
