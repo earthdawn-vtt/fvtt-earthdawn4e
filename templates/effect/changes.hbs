@@ -32,10 +32,11 @@
     {{/each}}
   </ol>
 
+  {{#if isItemEffect}}
   <hr>
-
-  <fieldset>
-    <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
-    {{formGroup systemFields.abilityUuid value=source.system.abilityUuid localize=true}}
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
+      {{formGroup systemFields.abilityUuid value=source.system.abilityUuid localize=true}}
+    </fieldset>
+  {{/if}}
 </section>
