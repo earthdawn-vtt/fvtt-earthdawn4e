@@ -18,7 +18,9 @@
             {{formInput changeFields.mode name=(concat "system.changes." i ".mode") value=change.mode choices=@root.modes}}
           </div>
           <div class="value">
-            {{formInput changeFields.value name=(concat "system.changes." i ".value") value=change.value data-tooltip=(lookup ../source.changes i)}}
+            {{formInput changeFields.value name=(concat "system.changes." i ".value") value=change.value
+                        dataset=(ed-makeTooltip (concat (localize "TODO.ED.finalValue: ") (lookup (lookup @root/source.changes i) "value")))
+            }}
           </div>
           <div class="priority">
             {{formInput changeFields.priority name=(concat "system.changes." i ".priority") value=change.priority
