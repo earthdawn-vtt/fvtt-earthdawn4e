@@ -1,5 +1,3 @@
-const { safeEval, replaceFormulaData } = Roll;
-
 /**
  * @typedef {StringFieldOptions} FormulaFieldOptions
  * @property {boolean} [deterministic=false]  Is this formula not allowed to have dice values?
@@ -63,7 +61,9 @@ export default class FormulaField extends foundry.data.fields.StringField {
    * @returns {number}        The evaluated result
    */
   static evaluate( formula, data= {}, options={ missing: "0", warn: false } ) {
-    return safeEval( replaceFormulaData( formula, data , options ) );
+    return Roll.safeEval(
+      Roll.replaceFormulaData( formula, data , options )
+    );
   }
 
 }

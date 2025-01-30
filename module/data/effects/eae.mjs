@@ -93,9 +93,9 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    * @protected
    */
   async _prepareChangesData( systemChanges ) {
-    const { key, value, mode, priority } = systemChanges;
     const evalData = await this._getFormulaData();
     return systemChanges.map( change => {
+      const { key, value, mode, priority } = change;
       return {
         key,
         value:    FormulaField.evaluate( value, evalData, { warn: true } ),
@@ -111,7 +111,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    * @protected
    */
   async _getFormulaData() {
-    if ( this.appliedToActor ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
+    if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
     return this.parent?.target?.getRollData() ?? {};
   }
 }
