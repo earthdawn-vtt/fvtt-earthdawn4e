@@ -13,7 +13,7 @@ export default class EarthdawnActiveEffect extends ActiveEffect {
 
     // if the two previous checks fail, we only have to check if this belongs to an item to be sure
     // that this is applied to the parent item
-    if ( this.isItemEffect ) return this.parent.parent ?? null;
+    if ( this.isItemEffect ) return this.parent ?? null;
 
     // if this is transferred to the target, this effect will be cloned to the target actor and applied there
     // as above, so we don't need to supply any data here, because we can't now it yet

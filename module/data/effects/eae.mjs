@@ -96,12 +96,17 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     const evalData = await this._getFormulaData();
     return systemChanges.map( change => {
       const { key, value, mode, priority } = change;
-      return {
-        key,
-        value:    FormulaField.evaluate( value, evalData, { warn: true } ),
-        mode,
-        priority,
-      };
+      try {
+        const finalValue = FormulaField.evaluate( value, evalData );
+        return {
+          key,
+          value: finalValue,
+          mode,
+          priority,
+        };
+      } catch {
+        return change;
+      }
     } );
   }
 
