@@ -55,7 +55,12 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
+
     context.systemFields = this.document.system.schema.fields;
+
+    // filter out submit button
+    context.buttons = context.buttons.filter( b => b.type !== "submit" );
+
     return context;
   }
 
