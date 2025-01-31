@@ -1,57 +1,106 @@
 import PcData from "../../data/actor/pc.mjs";
 
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
 /**
  * Derivate of Foundry's Item.createDialog() functionality.
  */
-export default class DocumentCreateDialog extends FormApplication {
+export default class DocumentCreateDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
+
   /** @inheritDoc */
-  constructor( data = {}, { resolve, documentCls, pack = null, parent = null, options = {} } = {} ) {
-    super( data, options );
+  constructor( data = {}, { resolve, documentCls, pack = null, parent = null, options = {}, } = {} ) {
+    const documentType = documentCls.name;
+    const documentTypeLocalized = game.i18n.localize( `DOCUMENT.${documentType}` );
+    const classes = options.classes || [];
+    classes.push( `create-${documentType.toLowerCase()}` );
+    const window = options.window || {};
+    window.title ??= game.i18n.format( "DOCUMENT.Create", { type: documentTypeLocalized } );
+
+    foundry.utils.mergeObject(
+      options,
+      {
+        classes,
+        window,
+      },
+    );
+
+    super( options );
 
     this.resolve = resolve;
     this.documentCls = documentCls;
-    this.documentType = documentCls.name;
+    this.documentType = documentType;
     this.pack = pack;
     this.parent = parent;
-    this.documentTypeLocalized = game.i18n.localize( `DOCUMENT.${this.documentType}` );
-    // since after super we are sure that default options already set the `classes` property
-    this.options.classes.push( `create-${this.documentType.toLowerCase()}` );
+    this.documentTypeLocalized = documentTypeLocalized;
+
+
 
     this._updateCreationData( data );
   }
 
-  documentTypeLocalized;
-
-  get title() {
-    return game.i18n.format( "DOCUMENT.Create", { type: this.documentTypeLocalized } );
-  }
-
-  get template() {
-    return "systems/ed4e/templates/global/document-creation.hbs";
-  }
-
-  static get defaultOptions() {
-    const options = super.defaultOptions;
-    return {
-      ...options,
-      closeOnSubmit:  false,
-      submitOnChange: true,
-      submitOnClose:  false,
+  static DEFAULT_OPTIONS = {
+    id:             "document-create-dialog",
+    classes:        [ "earthdawn4e", "create-document" ],
+    tag:            "form",
+    window:  {
+      frame:          true,
+      resizable:      true,
       height:         900,
       width:          800,
-      resizable:      true,
-      classes:        [ ...options.classes, "earthdawn4e", "create-document" ],
-    };
+    },
+    form: {
+      handler:        this.#onFormSubmission,
+      submitOnChange: true,
+      submitOnClose:  false,
+      closeOnSubmit:  false,
+    },
+    position: {
+      width: 1000,
+      top:   100,
+      left:  100,
+    },
+    actions: {
+      createDocument: this._createDocument,
+    },
+  };
+
+  static PARTS = {
+    form:   {
+      template:   "systems/ed4e/templates/global/document-creation.hbs",
+      id:         "-document-selection",
+      scrollable: [ "type-selection" ],
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs",
+      id:       "-footer",
+      classes:  [ "flexrow" ],
+    },
+  };
+
+  /**
+   * Wait for dialog to be resolved.
+   * @param {object} [data] Initial data to pass to the constructor.
+   * @param {object} [options] Options to pass to the constructor.
+   * @returns {Promise<Item|null>} Created item or null.
+   */
+  static waitPrompt( data, options = {} ) {
+    return new Promise( ( resolve ) => {
+      options.resolve = resolve;
+      new this( data, options ).render( { force: true, focus: true } );
+    } );
   }
 
-  get initialData() {
-    return this.object;
-  }
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
 
-  /** @type {object} */
   createData = {};
 
-  getData( options = {} ) {
+  /* -------------------------------------------- */
+  /*  Rendering                                   */
+  /* -------------------------------------------- */
+
+  async _prepareContext( options = {} ) {
     const folders = this.parent ? [] : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
     // add compendium folders
     game.packs.filter(
@@ -69,31 +118,35 @@ export default class DocumentCreateDialog extends FormApplication {
 
     const createData = this.createData;
 
+    const buttons = [
+      {
+        type:     "button",
+        label:    game.i18n.format( "DOCUMENT.Create", { type: this.documentTypeLocalized } ),
+        cssClass: "finish",
+        action:   "createDocument",
+      },
+    ];
+
     return {
       documentTypeLocalized: this.documentTypeLocalized,
       folders,
       name:                  createData.name,
-      defaultName:           this.documentCls.implementation.defaultName(),
+      defaultName:           this.documentCls.implementation.defaultName( { type: createData.type } ),
       folder:                createData.folder,
       hasFolders:            folders.length > 0,
       currentType:           createData.type,
       types,
       typesRadio,
+      buttons,
     };
   }
 
-  /**
-   * @param {jQuery} jq jQuery HTML instance
-   */
-  activateListeners( jq ) {
-    super.activateListeners( jq );
+  /* -------------------------------------------- */
+  /*  Form Handling                               */
+  /* -------------------------------------------- */
 
-    $( this.form.querySelector( "button.create-document" ) ).on( "click", this._createDocument.bind( this ) );
-    $( this.form.querySelectorAll( ".type-selection label" ) ).on( "dblclick", this._createDocument.bind( this ) );
-  }
-
-  _updateObject( event, formData ) {
-    const data = foundry.utils.expandObject( formData );
+  static async #onFormSubmission( event, form, formData ) {
+    const data = foundry.utils.expandObject( formData.object );
 
     this._updateCreationData( data );
 
@@ -104,30 +157,49 @@ export default class DocumentCreateDialog extends FormApplication {
     // Fill in default type if missing
     data.type ||= CONFIG[this.documentType].defaultType || game.documentTypes[this.documentType][1];
 
-    this.createData = foundry.utils.mergeObject( this.initialData, data, { inplace: false } );
+    foundry.utils.mergeObject(
+      this.createData,
+      data,
+      {
+        inplace: true,
+      }
+    );
     this.createData.system ??= {};
 
     // Clean up data
-    if ( !data.folder && !this.initialData.folder ) delete this.createData.folder;
+    // if ( !data.folder && !this.createData.folder ) delete this.createData.folder;
 
     return this.createData;
   }
 
+  /* -------------------------------------------- */
+  /*  Event Listeners and Handlers                */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _onRender( context, options ) {
+    this.element.querySelectorAll( ".type-selection label" ).forEach(
+      element => element.addEventListener(
+        "dblclick",
+        this.constructor._createDocument.bind( this )
+      )
+    );
+  }
+
   /**
    * Create the document.
+   * @this {DocumentCreateDialog}
    * @param {Event} event The originating click event.
    * @returns {Promise<Item|null>} Created item or null.
    */
-  async _createDocument( event ) {
+  static async _createDocument( event ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    await this.submit( { preventRender: true } );
-
     /* eslint-disable new-cap */
     let createData = this._updateCreationData( this.createData );
-    createData.name ||= this.documentCls.implementation.defaultName();
+    createData.name ||= this.documentCls.implementation.defaultName( { type: createData.type } );
     createData = new this.documentCls.implementation( createData ).toObject();
     /* eslint-enable new-cap */
 
@@ -155,16 +227,4 @@ export default class DocumentCreateDialog extends FormApplication {
     return super.close( options );
   }
 
-  /**
-   * Wait for dialog to the resolved.
-   * @param {object} [data] Initial data to pass to the constructor.
-   * @param {object} [options] Options to pass to the constructor.
-   * @returns {Promise<Item|null>} Created item or null.
-   */
-  static waitPrompt( data, options = {} ) {
-    return new Promise( ( resolve ) => {
-      options.resolve = resolve;
-      new this( data, options ).render( true, { focus: true } );
-    } );
-  }
 }

@@ -1,6 +1,6 @@
-<form id="document-create" autocomplete="off">
+<div id="document-create">
   <div class="form-group">
-    <label>{{localize "Name"}}</label>
+    <label>{{localize "TODO.Name"}}</label>
     <div class="form-fields">
       <input type="text" name="name" placeholder="{{defaultName}}" value="{{name}}" autofocus>
     </div>
@@ -18,8 +18,8 @@
     </div>
   {{/if}}
 
-  <div class="type-selection flexcol">
-    <header id='typeSelectionHeader'>{{localize "Type"}}</header>
+  <div class="type-selection scrollable flexcol">
+    <header id='typeSelectionHeader'>{{localize "TODO.Type"}}</header>
     {{#each typesRadio}}
       <header class='type-group-label'>{{@key}}</header>
       <div class='form-fields'>
@@ -27,11 +27,4 @@
       </div>
     {{/each}}
   </div>
-
-  <div class="buttons">
-    <button type="submit" class="create-document">
-      <i class="fas fa-check"></i>
-      {{localize "DOCUMENT.Create" type=documentTypeLocalized}}
-    </button>
-  </div>
-</form>
+</div>

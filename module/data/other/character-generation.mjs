@@ -11,15 +11,21 @@ import {
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 
-
 /**
-The application responsible for handling character generation
-@param {CharacterGenerationData} charGen         The data model which is the
-target data structure to be updated by the form.
-@param {FormApplicationOptions} [options={}]     Additional options which
-modify the rendering of the sheet.
-@param {{string:[Document]}} documentCollections An object mapping the
-document subtypes to arrays of the available documents of that type.
+ * The data model from which a new character is generated.
+ * @property {string} namegiver - The uuid of the chosen namegiver.
+ * @property {boolean} isAdept - True if a discipline is chosen, false for questor.
+ * @property {string} selectedClass - The uuid of the chosen class (discipline or questor).
+ * @property {{[key: string]: {[change: string]: number, [cost: string]: number}}} attributes - The changes to the attribute values
+ *                                                                          and their associated costs.
+ * @property {{string: {string: number}}} abilities - The levels of the abilities, divided by types
+ * ` "optional", "class", "free", "special", "artisan", "knowledge", "general", "language", "namegiver" `. Abilities
+ * are represented as a mapping of uuids to levels.
+ * @property {{string: number}} availableRanks - The available ranks to assign for free to abilities types.
+ * @property {Set<string>} spells - The uuids of the chosen spells.
+ * @property {{string: Set<string>}} languages - The chosen languages by read/write and speak. Keys are
+ * `"speak", "readWrite"` with values being sets of languages.
+ * @property {Set<string>} equipment - The uuids of the chosen equipment.
  */
 export default class CharacterGenerationData extends SparseDataModel {
 

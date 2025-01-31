@@ -134,7 +134,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * 5: offHand,
    * 6: twoHanded,
    * 7: tail
-   * @returns {Application}   The rendered item sheet.
+   * @returns {ApplicationV2}   The rendered item sheet.
    * @private
    * @userFunction              UF_PhysicalItems-onChangeItemStatus
    */
