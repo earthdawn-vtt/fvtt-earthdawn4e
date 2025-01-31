@@ -1529,12 +1529,6 @@
         "walk": "Zu Fuß",
         "willpowerValue": "Willenskraft Wert"
       },
-      "Navigator": {
-        "advancement": "Fortschritt",
-        "details": "Details",
-        "effects": "Effekte",
-        "general": "Allgemein"
-      },
       "Placeholder": {
         "lpDescription":                                  "Trage hier eine Beschreibung ein"
       },
@@ -1545,7 +1539,15 @@
         "weaveThreadCheck":                               "Fadenweben ",
         "researchCheck":                                  "Forschen "
       },
-     
+      "Tabs": {
+        "advancement": "Fortschritt",
+        "details": "Details",
+        "effects": "Effekte",
+        "general": "Allgemein",
+        "level": "Kreis {circle}",
+        "talentOptions": "Optionale Talente",
+        "thread": "Fäden"
+      },
       "Talent": {
         "action":                                         "Aktion",
         "attribute": "Attribut",

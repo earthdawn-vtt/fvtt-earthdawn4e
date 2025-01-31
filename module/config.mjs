@@ -1357,9 +1357,11 @@ ED4E.icons = {
   effect:           "fa-biohazard",
   halfmagic:        "fa-hat-wizard",
   initiative:       "fa-running",
+  itemHistory:      "fa-history",
   ok:               "fa-check",
   patterncraft:     "fa-thin fa-group-arrows-rotate",
   recovery:         "fa-heartbeat",
+  research:         "fa-thin fa-search",
   spellcasting:     "fa-thin fa-sparkles",
   threadWeaving:    "fa-thin fa-chart-network",
   finishCharGen:    "fa-thin fa-check-double",
@@ -1367,6 +1369,8 @@ ED4E.icons = {
   nextCharGen:      "fa-thin fa-arrow-right",
   resetPoints:      "fa-arrows-rotate",
   undo:             "fa-arrow-rotate-left",
+  Tabs:             {
+  },
 };
 
 

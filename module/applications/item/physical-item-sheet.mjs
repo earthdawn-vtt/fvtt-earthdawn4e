@@ -3,18 +3,10 @@ import ItemSheetEd from "./item-sheet.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ItemSheet}
  */
 export default class PhysicalItemSheetEd extends ItemSheetEd {
-  
-  constructor( options = {} ) {
-    super( options );
-  }
 
-  /**
-   * @override
-   */
-
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
       tailorToNamegiver:  PhysicalItemSheetEd.tailorToNamegiver,
@@ -41,40 +33,41 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       classes:    [ "tabs-navigation" ],
       scrollable: [ "" ],
     },
-    "general-tab": { 
+    "general": {
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
       classes:  [ "general" ] 
     },
-    "details-tab": { 
+    "details": {
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
       classes:  [ "details" ] 
     },
-    "effects-tab": { 
+    "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
       classes:  [ "effects" ] 
     },
-    "thread-tab": { 
+    "thread": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs", 
-      id:         "-thread-tab",
+      id:         "-thread",
       classes:    [ "thread" ],
       scrollable: [ "" ], 
     },
   };
-  
-  #getTabs() {
-    const tabs = {
-      "general-tab":     { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
-      "details-tab":     { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
-      "effects-tab":     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
-      "thread-tab":     { id: "thread-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "threads" },
-    };
-    for ( const v of Object.values( tabs ) ) {
-      v.active = this.tabGroups[v.group] === v.id;
-      v.cssClass = v.active ? "active" : "";
-    }
-    return tabs;
-  }
 
+  // region TABS
+  /** @inheritDoc */
+  static TABS = {
+    sheet: {
+      tabs:        [
+        { id:    "general", },
+        { id:    "details", },
+        { id:    "effects", },
+        { id:    "thread", },
+      ],
+      initial:     "general",
+      labelPrefix: "ED.Item.Tabs",
+    },
+  };
+  
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -82,31 +75,32 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       case "top":
       case "tabs": 
         break;
-      case "general-tab":
+      case "general":
         break;
-      case "details-tab":
+      case "details":
         break;
-      case "effects-tab":
+      case "effects":
         break;
-      case "thread-tab":
+      case "thread":
         break;
     }
-    context.tab = context.tabs[partId];
     return context;
   }
   
-  async _prepareContext() {
-    const context = {
-      item:                   this.document,
-      system:                 this.document.system,
-      options:                this.options,
-      systemFields:           this.document.system.schema.fields,
-      config:                 ED4E,
-      isGM:                   game.user.isGM,
-    };
+  async _prepareContext( options ) {
+    const context = super._prepareContext( options );
+    foundry.utils.mergeObject(
+      context,
+      {
+        item:                   this.document,
+        system:                 this.document.system,
+        options:                this.options,
+        systemFields:           this.document.system.schema.fields,
+        config:                 ED4E,
+        isGM:                   game.user.isGM,
+      },
+    );
     
-    context.tabs = this.#getTabs();
-  
     context.enrichedDescription = await TextEditor.enrichHTML(
       this.document.system.description.value,
       {

@@ -14,9 +14,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     super( options );
   }
 
-  /** 
-   * @override 
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {

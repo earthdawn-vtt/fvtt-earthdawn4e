@@ -104,8 +104,8 @@ export default class AdvancementData extends SparseDataModel {
    * Add a new level to this advancement.
    * @param {object} [data]    If provided, will initialize the new level with the given data.
    */
-  addLevel( data = {} ) {
-    this.parent.parent.update( {
+  async addLevel( data = {} ) {
+    await this.parent.parent.update( {
       "system.advancement.levels": this.levels.concat(
         new AdvancementLevelData(
           {
@@ -121,8 +121,8 @@ export default class AdvancementData extends SparseDataModel {
    * Remove the last {@link amount} levels added from this advancement.
    * @param {number} [amount]   The number of levels to remove.
    */
-  deleteLevel( amount = 1 ) {
-    this.parent.parent.update( {
+  async deleteLevel( amount = 1 ) {
+    await this.parent.parent.update( {
       "system.advancement.levels": this.levels.slice( 0, -( amount ?? 1 ) )
     } );
   }

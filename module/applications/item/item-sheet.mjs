@@ -11,16 +11,10 @@ const { ItemSheetV2 } = foundry.applications.sheets;
  */
 export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2 ) {
   
-  constructor( options = {} ) {
-    super( options );
-    this.tabGroups = {
-      "item-sheet": "general-tab",
-    };
-  }
-
-  /**
-   * @override
-   */
+  tabGroups = {
+    sheet:             "general",
+    classAdvancements: "options",
+  };
 
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
@@ -69,32 +63,32 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
       id:       "-tabs-navigation",
       classes:  [ "tabs-navigation" ],
     },
-    "general-tab": { 
+    "general": {
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
       classes:  [ "general" ] 
     },
-    "details-tab": { 
+    "details": {
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
       classes:  [ "details" ] 
     },
-    "effects-tab": { 
+    "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
       classes:  [ "effects" ] 
     },
   };
 
-  #getTabs() {
-    const tabs = {
-      "general-tab":    { id: "general-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "general" },
-      "details-tab":    { id: "details-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "details" },
-      "effects-tab":     { id: "effects-tab", group: "item-sheet", icon: "fa-solid fa-user", label: "effects" },
-    };
-    for ( const v of Object.values( tabs ) ) {
-      v.active = this.tabGroups[v.group] === v.id;
-      v.cssClass = v.active ? "active" : "";
-    }
-    return tabs;
-  }
+  /** @inheritDoc */
+  static TABS = {
+    sheet: {
+      tabs:        [
+        { id:    "general", },
+        { id:    "details", },
+        { id:    "effects", },
+      ],
+      initial:     "general",
+      labelPrefix: "ED.Item.Tabs",
+    },
+  };
 
   // region _prepare Part Context
   async _preparePartContext( partId, contextInput, options ) {
@@ -104,32 +98,29 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
       case "top":
       case "tabs": 
         break;
-      case "general-tab":
+      case "general":
         break;
-      case "details-tab":
+      case "details":
         break;
-      case "effects-tab":
+      case "effects":
         break;
     }
-    context.tab = context.tabs[partId];
     return context;
   }
 
-  async _prepareContext() {
-    
-    const context = {
-      item:                   this.document,
-      system:                 this.document.system,
-      options:                this.options,
-      systemFields:           this.document.system.schema.fields,
-      isGM:                   game.user.isGM,
-      // enrichment:             await this.document._enableHTMLEnrichment(),
-      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
-      config:                 ED4E,
-    };
-
-    // context = await super._prepareContext();
-    context.tabs = this.#getTabs();
+  async _prepareContext( options ) {
+    const context = await super._prepareContext( options );
+    foundry.utils.mergeObject(
+      context,
+      {
+        item:                   this.document,
+        system:                 this.document.system,
+        options:                this.options,
+        systemFields:           this.document.system.schema.fields,
+        isGM:                   game.user.isGM,
+        config:                 ED4E,
+      }
+    );
 
     context.enrichedDescription = await TextEditor.enrichHTML(
       this.document.system.description.value,

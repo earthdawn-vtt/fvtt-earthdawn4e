@@ -128,6 +128,9 @@ input.input__number-input {
   background-color: red;
   color: black;
 }
+.scrollable {
+  overflow: auto;
+}
 .itemControlGroup,
 .icon__position--right {
   float: right;
