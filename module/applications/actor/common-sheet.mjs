@@ -27,23 +27,18 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
       resizable:      true,
     },
     actions:  {
-      editImage:        ActorSheetEd._onEditImage,
-      editItem:         ActorSheetEd._onItemEdit,
-      deleteItem:       ActorSheetEd._onItemDelete,
-      displayItem:      ActorSheetEd._onDisplayItem,
-      editEffect:       ActorSheetEd._onEffectEdit,
-      deleteEffect:     ActorSheetEd._onEffectDelete,
-      addEffect:        ActorSheetEd._onEffectAdd,
-      expandItem:       ActorSheetEd._onCardExpand, 
-    },
-    form: {
-      submitOnChange: true,
-    },
-    actions: {
+      editImage:          ActorSheetEd._onEditImage,
+      editItem:           ActorSheetEd._onItemEdit,
+      deleteItem:         ActorSheetEd._onItemDelete,
+      displayItem:        ActorSheetEd._onDisplayItem,
+      expandItem:         ActorSheetEd._onCardExpand,
       createChild:        ActorSheetEd._onCreateChild,
       deleteChild:        ActorSheetEd._onDeleteChild,
       displayChildToChat: ActorSheetEd._onDisplayChildToChat,
       editChild:          ActorSheetEd._onEditChild,
+    },
+    form: {
+      submitOnChange: true,
     },
   };
 
@@ -178,7 +173,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
 
   /** @inheritDoc */
   static async _onDeleteChild( event, target ) {
-    ( await fromUuid( target.dataset.uuid ) ).delete();
+    ( await fromUuid( target.dataset.uuid ) ).deleteDialog();
   }
 
   /** @inheritDoc */
