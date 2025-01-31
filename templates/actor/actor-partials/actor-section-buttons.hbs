@@ -1,7 +1,5 @@
 <section class="section__button">
-    {{log this}}
     {{#if (eq actor.type "character" )}}
-    {{log "inside" this}}
         {{> "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-namegiver.hbs"}}
     {{/if}}
     {{#if (eq actor.type "npc" )}}

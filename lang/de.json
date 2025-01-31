@@ -1,5 +1,11 @@
 {
   "ED": {
+    "ActiveEffect": {
+      "Header": {
+        "applyToAbility": "Auf Fähigkeit anwenden"
+      },
+      "newEffectName": "Neuer Earthdawn ActiveEffect"
+    },
     "Actor": {
       "Abilities": {
       },
@@ -39,9 +45,9 @@
         "tailAttack":                                       "Schwanzangriff"
       },
       "Cards": {
-        "chat": "Zeige Item Informationan als Chat Nachricht",
+        "chat": "Zeige Item Informationen als Chat Nachricht",
         "delete": "Lösche Item",
-        "edit": "Editiere Item"
+        "edit": "Bearbeite Item"
       },
       "Characteristics": {
         "currentDamage": "Schaden",
@@ -335,7 +341,8 @@
       "Eae": {
         "DurationTypes": {
           "combat":                                                 "Kampf",
-        "time":                                                     "Zeit",
+          "permanent":                                              "Permanent",
+          "realTime":                                               "Zeit",
           "uses":                                                   "Anwendungen"
         }
       },
@@ -507,9 +514,21 @@
     "Data": {
       "ActiveEffect": {
         "Hints": {
+          "EAEChangeData": {
+            "abilityUuid":                              "Wenn angegeben wird dieser Effekt auf die Fertigkeit übertragen"
+          },
+          "begin":                                      "Wann beginnt der Effekt",
+          "changes":                                    "Die Änderungen die dieser Effekt anwendet",
+          "duration":                                   "Die Dauer des Effekts",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
         "Labels": {
+          "EAEChangeData": {
+            "abilityUuid":                              "Fähigkeit"
+          },
+          "begin":                                      "Start",
+          "changes":                                    "Änderungen",
+          "duration":                                   "Dauer",
           "transferToTarget":                           "Übertrage auf Ziel"
         }
       },

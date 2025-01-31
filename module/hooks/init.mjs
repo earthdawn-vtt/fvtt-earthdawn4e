@@ -12,7 +12,8 @@ import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
 import * as utils from "../utils.mjs";
 
-
+const { DocumentSheetConfig } = foundry.applications.apps;
+const { ActiveEffectConfig } = foundry.applications.sheets;
 
 /**
  *
@@ -24,6 +25,7 @@ export default function () {
 
     // record configuration values
     CONFIG.ED4E = ED4E;
+    CONFIG.ActiveEffect.documentClass = documents.EarthdawnActiveEffect;
     CONFIG.Actor.documentClass = documents.ActorEd;
     CONFIG.ChatMessage.documentClass = documents.ChatMessageEd;
     CONFIG.Item.documentClass = documents.ItemEd;
@@ -101,6 +103,15 @@ export default function () {
       makeDefault: true,
       label:       "ED.Documents.ActorSheetEdHorror"
     } );
+
+    DocumentSheetConfig.unregisterSheet( ActiveEffect, "core", ActiveEffectConfig );
+    DocumentSheetConfig.registerSheet(
+      ActiveEffect,
+      "earthdawn4e",
+      applications.effect.EarthdawnActiveEffectSheet,
+      { makeDefault: true },
+    );
+
     Items.unregisterSheet( "core", ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true

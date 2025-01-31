@@ -131,6 +131,15 @@ function makeTooltip( content ) {
 }
 
 /**
+ * Formats a javascript date to a locale string
+ * @param {number} date The date as an integer as returned by {@link Date#now}.
+ * @returns {string} The local formatted date string
+ */
+function formatDate( date ) {
+  return Date( date ).toLocaleString();
+}
+
+/**
  * @description Registers custom Handlebars helpers for the application.
  */
 export default function registerHandlebarHelpers() {
@@ -151,6 +160,7 @@ export default function registerHandlebarHelpers() {
     "ed-commaList":              commaList,
     "ed-includes":               includes,
     "ed-makeTooltip":            makeTooltip,
+    "ed-formatDate":             formatDate,
   } );
 
 }

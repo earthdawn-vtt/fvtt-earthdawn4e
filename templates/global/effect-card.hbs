@@ -4,7 +4,8 @@
         <div class="effect-card__grid--item card__name">{{name}}</div>
         <div class="effect-card__grid--item undefined">{{origin}}</div>
         <div class="effect-card__grid--item text__alignment--center undefined">
-            <input type="checkbox" class="link-checkbox-effect" name="disabled" id="effectCheckbox" data-dtype="Boolean" {{checked (not disabled)}}/>
+          {{formInput schema.fields.disabled name="effects" value=( not disabled ) classes="link-checkbox-effect" }}
+<!--          TODO: manual handling of value change-->
         </div>
         <div class="effect-card__grid--item text__alignment--center">{{duration.remaining}}/{{duration.rounds}}</div>
         <div class="effect-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-effect.hbs"}}</div>

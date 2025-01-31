@@ -6,13 +6,6 @@ Expects parameters:
 @param config - The global ED4E configuration object.
 --}}
 
-{{!--log "templates/form/input/base-metric.hbs"}}
-{{log "*************************************************"}}
-{{log "data" data}}
-{{log "fields" fields}}
-{{log "fieldPath" fieldPath--}}
-
-
 {{#if data.isScalarUnit}}
   {{formInput fields.value name=(concat fieldPath ".value") value=data.value localize=true placeholder=(localize fields.value.label) dataset=(ed-makeTooltip fields.value.hint)}}
 {{/if}}

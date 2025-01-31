@@ -27,14 +27,15 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
       resizable:      true,
     },
     actions:  {
-      editImage:        ActorSheetEd._onEditImage,
-      editItem:         ActorSheetEd._onItemEdit,
-      deleteItem:       ActorSheetEd._onItemDelete,
-      displayItem:      ActorSheetEd._onDisplayItem,
-      editEffect:       ActorSheetEd._onEffectEdit,
-      deleteEffect:     ActorSheetEd._onEffectDelete,
-      addEffect:        ActorSheetEd._onEffectAdd,
-      expandItem:       ActorSheetEd._onCardExpand, 
+      editImage:          ActorSheetEd._onEditImage,
+      editItem:           ActorSheetEd._onItemEdit,
+      deleteItem:         ActorSheetEd._onItemDelete,
+      displayItem:        ActorSheetEd._onDisplayItem,
+      expandItem:         ActorSheetEd._onCardExpand,
+      createChild:        ActorSheetEd._onCreateChild,
+      deleteChild:        ActorSheetEd._onDeleteChild,
+      displayChildToChat: ActorSheetEd._onDisplayChildToChat,
+      editChild:          ActorSheetEd._onEditChild,
     },
     form: {
       submitOnChange: true,
@@ -110,18 +111,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     return item.deleteDialog();
   }
 
-  static async _onEffectEdit( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectDelete( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
-  static async _onEffectAdd( event, target ) {
-    ui.notifications.info( "Effects not done yet" );
-  }
-
   static async _onCardExpand( event, target ) {
     event.preventDefault();
 
@@ -136,4 +125,65 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   static async _onDisplayItem( event, target ) {
     ui.notifications.info( "Display Item not done yet" );
   }
+
+  /** @inheritDoc */
+  static async _onCreateChild( event, target ) {
+    const type = target.dataset.type;
+
+    if ( type === "effect" ) return ActiveEffect.implementation.create( {
+      type:     "eae",
+      name:     game.i18n.localize( "ED.ActiveEffect.newEffectName" ),
+      icon:     "icons/svg/aura.svg",
+      changes:  [ {} ],
+      system:  {
+        duration: {
+          type: target.dataset.effectPermanent ? "permanent" : "combat",
+        },
+        changes: [ {} ],
+      },
+    }, {
+      parent:      this.document,
+      renderSheet: true,
+    } );
+
+    // this will make more sense when we have a common documentSheet mixin
+    /* if ( activeTab === "spells" ) return Item.implementation.create({
+      name: game.i18n.format("DOCUMENT.New", { type: game.i18n.format(CONFIG.Item.typeLabels.spell) }),
+      type: "spell",
+      img: Item.implementation.getDefaultArtwork({ type: "spell" })?.img ?? Item.implementation.DEFAULT_ICON
+    }, { parent: this.actor, renderSheet: true });
+
+    const features = ["feat", "race", "background", "class", "subclass"];
+    if ( this.actor.type === "npc" ) features.push("weapon");
+
+    let types = {
+      features,
+      inventory: ["weapon", "equipment", "consumable", "tool", "container", "loot"]
+    }[activeTab] ?? [];
+
+    types = types.filter(type => {
+      const model = CONFIG.Item.dataModels[type];
+      return !model.metadata?.singleton || !this.actor.itemTypes[type].length;
+    });
+
+    if ( types.length ) return Item.implementation.createDialog({}, {
+      parent: this.actor, pack: this.actor.pack, types
+    }); */
+  }
+
+  /** @inheritDoc */
+  static async _onDeleteChild( event, target ) {
+    ( await fromUuid( target.dataset.uuid ) ).deleteDialog();
+  }
+
+  /** @inheritDoc */
+  static async _onDisplayChildToChat( event, target ) {
+    ChatMessage.create( { content: "Coming up: a beautiful description of the Item you just clicked to be displayed here in chat!" } );
+  }
+
+  /** @inheritDoc */
+  static async _onEditChild( event, target ) {
+    ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
+  }
+
 }
