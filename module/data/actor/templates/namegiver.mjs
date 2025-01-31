@@ -1,5 +1,7 @@
 import SentientTemplate from "./sentient.mjs";
 
+// eslint-disable-next-line no-unused-vars
+const { SetField } = foundry.data.fields;
 const futils = foundry.utils;
 
 /**
@@ -19,6 +21,10 @@ export default class NamegiverTemplate extends SentientTemplate {
     } );
   }
 
+  /**
+   * Gets a data field for selected languages.
+   * @returns {SetField} A data field containing the set of chosen languages.
+   */
   static getLanguageDataField() {
     const fields = foundry.data.fields;
     return new fields.SetField(
