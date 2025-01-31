@@ -11,6 +11,8 @@ export default class ItemEd extends Item {
     return DocumentCreateDialog.waitPrompt( data, { documentCls: Item, parent, pack, options } );
   }
 
+
+
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */

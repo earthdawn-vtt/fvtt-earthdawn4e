@@ -1357,6 +1357,7 @@ ED4E.icons = {
   effect:           "fa-biohazard",
   halfmagic:        "fa-hat-wizard",
   initiative:       "fa-running",
+  ok:               "fa-check",
   patterncraft:     "fa-thin fa-group-arrows-rotate",
   recovery:         "fa-heartbeat",
   spellcasting:     "fa-thin fa-sparkles",
