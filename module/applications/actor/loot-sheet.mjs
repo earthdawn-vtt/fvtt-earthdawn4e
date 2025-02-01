@@ -5,17 +5,14 @@ import ActorSheetEd from "./common-sheet.mjs";
  */
 export default class ActorSheetEdLoot extends ActorSheetEd {
 
-  constructor( options = {} ) {
-    super( options );
-    this.tabGroups = {
-      sheet: "description-tab",
-    };
+  static {
+    this.addSheetTabs( [
+      { id: "description", },
+    ] );
   }
-    
+
   // region DEFAULT_OPTIONS
-  /** 
-   * @override 
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++globalThis._appId ),
@@ -30,24 +27,21 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
     }
   };
 
-
   // region PARTS
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
-      // id:       "header",
       classes:  [ "sheet-header" ],
     },
     characteristics: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
-      // id:       "characteristics",
       classes:  [ "characteristics" ],
     },
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
       classes:  [ "tabs-navigation" ],
     },
-    "description-tab": {
+    description: {
       template: "systems/ed4e/templates/actor/actor-tabs/description.hbs",
       classes:  [ "tab", "description" ]
     },
@@ -57,24 +51,9 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
     },
   };
 
-  // region getTabs 
-  #getTabs() {
-    const tabs = {
-      "description-tab":         { id: "description-tab", group: "sheet", icon: "fa-solid fa-user", label: "description" },
-    };
-    for ( const tab of Object.values( tabs ) ) {
-      tab.active = this.tabGroups[tab.group] === tab.id;
-      tab.cssClass = tab.active ? "active" : "";
-    }
-    return tabs;
-  }
-
   // region _prepareContext
   async _prepareContext() {
-    const context = await super._prepareContext();
-    context.tabs = this.#getTabs();
-
-    return context;
+    return await super._prepareContext();
   }
 
   // region _prepare Part Context
@@ -85,10 +64,9 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
       case "characteristics":
       case "tabs": 
         break;
-      case "description-tab":
+      case "description":
         break;
     }
-    context.tab = context.tabs[partId];  
     return context;
   }
 }

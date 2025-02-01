@@ -1,88 +1,64 @@
-<section class="tab {{tab.cssClass}}" data-group="sheet" data-tab="spells-tab">
-<div class="input--centered">
-    <div id="actor-navigation" class="navigator">
-        <nav class="actor-sheet-spell-tabs navigator__flex" data-group="spells">
-
-            <a class="navigator__tab" data-tab="spell-matrix-tab">{{localize "ED.Actor.Spellcasting.matrix"}}</a>
-            <a class="navigator__tab" data-tab="spell-elementalist-tab">{{localize
-                "ED.Actor.Spellcasting.elementalist"}}</a>
-            <a class="navigator__tab" data-tab="spell-illusionist-tab">{{localize
-                "ED.Actor.Spellcasting.illusionist"}}</a>
-            <a class="navigator__tab" data-tab="spell-nethermancer-tab">{{localize
-                "ED.Actor.Spellcasting.nethermancer"}}</a>
-            <a class="navigator__tab" data-tab="spell-shaman-tab">{{localize "ED.Actor.Spellcasting.shaman"}}</a>
-            <a class="navigator__tab" data-tab="spell-wizard-tab">{{localize "ED.Actor.Spellcasting.wizard"}}</a>
-        </nav>
-    </div>
+<section class="tab {{tabs.spells.cssClass}}" data-group="sheet" data-tab="spells">
+  <div class="input--centered">
+    <nav class="tabs navigator__flex" data-group="spellsContent">
+      {{#each tabsSpells as |tab|}}
+        <a class="navigator__tab {{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+           {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+          {{#if tab.icon}}<i class="{{tab.icon}}"></i>{{/if}}
+          {{#if tab.label}}<label>{{localize tab.label}}</label>{{/if}}
+        </a>
+      {{/each}}
+    </nav>
     <div class="main">
-        <div class="actor-sheet-spell-body">
-            <div class="tab tab__matrix" data-tab="spell-matrix-tab" data-group="spells">
-                <div class="undefined">
-                    <p>matrizen</p>
-                    <p>zeige alle Matrizen und Matrix items und funktionen für aktunement etc.</p>
-                </div>
-                {{#each actor.itemTypes.matrix}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
+      <!--spells tabs-->
+      <div class="actor-sheet-spell-body">
+
+        <!-- matrices -->
+        <div class="tab {{tabsSpells.matrix.cssClass}}" data-group="spellsContent" data-tab="matrix">
+          <div class="undefined">
+            <p>matrizen</p>
+            <p>zeige alle Matrizen und Matrix items und funktionen für aktunement etc.</p>
+          </div>
+          {{#each actor.itemTypes.matrix}}
+            <div class="item-id item-name__card" data-uuid="{{uuid}}">
+              {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
             </div>
-            <div class="tab tab__elementalist" data-tab="spell-elementalist-tab" data-group="spells">
-                <div class="undefined">
-                    <p>Elementalist Zauber</p>
-                    <p>zeige alle Elementaristen Zauber, spellKnacks und binding secrets</p>
-                </div>
-                {{#each actor.itemTypes.spell}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
-            </div>
-            <div class="tab tab__illusionist" data-tab="spell-illusionist-tab" data-group="spells">
-                <div class="undefined">
-                    <p>illusionist Zauber</p>
-                    <p>zeige alle illusionist Zauber, spellKnacks und binding secrets</p>
-                </div>
-                {{#each actor.itemTypes.spell}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
-            </div>
-            <div class="tab tab__nethermancer" data-tab="spell-nethermancer-tab" data-group="spells">
-                <div class="undefined">
-                    <p>nethermancer Zauber</p>
-                    <p>zeige alle nethermancer Zauber, spellKnacks und binding secrets</p>
-                </div>
-                {{#each actor.itemTypes.spell}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
-            </div>
-            <div class="tab tab__shaman" data-tab="spell-shaman-tab" data-group="spells">
-                <div class="undefined">
-                    <p>shaman Zauber</p>
-                    <p>zeige alle shaman Zauber, spellKnacks und binding secrets</p>
-                </div>
-                {{#each actor.itemTypes.spell}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
-            </div>
-            <div class="tab tab__wizard" data-tab="spell-wizard-tab" data-group="spells">
-                <div class="undefined">
-                    <p>wizard Zauber</p>
-                    <p>zeige alle wizard Zauber, spellKnacks und binding secrets</p>
-                </div>
-                {{#each actor.itemTypes.spell}}
-                <div class="item-id item-name__card" data-item-id="{{_id}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                </div>
-                {{/each}}
-            </div>
+          {{/each}}
         </div>
+
+        <!-- all spells -->
+        <div class="tab {{tabsSpells.all.cssClass}}" data-group="spellsContent" data-tab="all">
+          <div class="undefined">
+            <p>Alle Zauber</p>
+            <p>Zeige alle Zauber, spellKnacks und binding secrets</p>
+          </div>
+          {{#each actor.itemTypes.spell}}
+            <div class="item-id item-name__card" data-uuid="{{uuid}}">
+              {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
+            </div>
+          {{/each}}
+        </div>
+
+        <!-- spells by spellcasting discipline -->
+        {{#each tabsSpells as |tab|}}
+          {{#unless (or (eq tab.id "matrix") (eq tab.id "all"))}}
+            <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
+              <div class="undefined">
+                <p>{{tab.label}}</p>
+                <p>zeige alle {{tab.label}} Zauber, spellKnacks und binding secrets</p>
+              </div>
+              {{#each @root/actor.itemTypes.spell as |spell| }}
+                {{#if (eq spell.system.spellcastingType ../id)}}
+                  <div class="item-id item-name__card" data-uuid="{{spell.uuid}}">
+                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
+                  </div>
+                {{/if}}
+              {{/each}}
+            </div>
+          {{/unless}}
+        {{/each}}
+
+      </div>
     </div>
-</div>
+  </div>
 </section>

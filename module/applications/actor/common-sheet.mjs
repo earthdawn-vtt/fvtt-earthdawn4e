@@ -5,14 +5,9 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ActorSheetV2}
  */
 
 export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheetV2 ) {
-
-  constructor( options = {} ) {
-    super( options );
-  }
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
@@ -40,22 +35,55 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     },
   };
 
+  /** @inheritdoc */
+  static TABS = {
+    sheet: {
+      tabs:        [],
+      initial:     "general",
+      labelPrefix: "ED.Actor.Tabs",
+    },
+  };
+
+  static TAB_ORDER_SHEET = [
+    "general",
+    "talents",
+    "powers",
+    "skills",
+    "devotions",
+    "spells",
+    "equipment",
+    "description",
+    "notes",
+    "reputation",
+    "specials",
+    "legend",
+    "configuration",
+    "classes",
+  ];
+
+  static addSheetTabs( tabs ) {
+    this.TABS = foundry.utils.deepClone( this.TABS );
+    this.TABS.sheet.tabs.push( ...tabs );
+    this.TABS.sheet.tabs.sort(
+      ( a, b ) => this.TAB_ORDER_SHEET.indexOf( a.id ) - this.TAB_ORDER_SHEET.indexOf( b.id )
+    );
+  }
+
   /* -------------------------------------------- */
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
-  async _prepareContext() {
+  async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
-    const context = {
+    const context = await super._prepareContext( options );
+    foundry.utils.mergeObject( context, {
       actor:                  this.document,
       system:                 this.document.system,
       items:                  this.document.items,
       options:                this.options,
       systemFields:           this.document.system.schema.fields,
-      // enrichment:             await this.document._enableHTMLEnrichment(),
-      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
       config:                 ED4E,
-    };
+    } );
 
     context.enrichedDescription = await TextEditor.enrichHTML(
       this.document.system.description.value,

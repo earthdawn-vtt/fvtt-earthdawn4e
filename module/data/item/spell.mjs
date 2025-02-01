@@ -25,10 +25,11 @@ export default class SpellData extends ItemDataModel.mixin(
     return this.mergeSchema( super.defineSchema(), {
       spellcastingType: new StringField( {
         required: true,
-        nullable: true,
+        nullable: false,
         blank:    false,
         trim:     true,
         choices:  ED4E.spellcastingTypes,
+        initial:  "elementalism",
         label:    this.labelKey( "Spell.spellcastingType" ),
         hint:     this.hintKey( "Spell.spellcastingType" ),
       } ),

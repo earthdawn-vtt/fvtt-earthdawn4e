@@ -5,17 +5,16 @@ import ActorSheetEd from "./common-sheet.mjs";
  */
 export default class ActorSheetEdGroup extends ActorSheetEd {
 
-  constructor( options = {} ) {
-    super( options );
-    this.tabGroups = {
-      sheet: "description-tab",
-    };
+  static {
+    this.addSheetTabs( [
+      { id: "description", },
+      { id: "equipment", },
+      { id: "reputation", },
+    ] );
   }
-    
+
   // region DEFAULT_OPTIONS
-  /** 
-   * @override 
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++globalThis._appId ),
@@ -30,66 +29,41 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
     }
   };
 
-
   // region PARTS
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
-      // id:       "header",
       classes:  [ "sheet-header" ],
     },
     characteristics: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
-      // id:       "characteristics",
       classes:  [ "characteristics" ],
     },
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
-      // id:       "-tabs-navigation",
       classes:  [ "tabs-navigation" ],
     },
-    "description-tab": {
+    description: {
       template: "systems/ed4e/templates/actor/actor-tabs/description.hbs",
-      // id:       "description-tab",
       classes:  [ "tab", "description" ]
     },
-    "equipment-tab": {
+    equipment: {
       template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
-      // id:       "equipment-tab",
       classes:  [ "tab", "equipment" ]
     },
-    "reputation-tab": {
+    reputation: {
       template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      // id:       "reputation-tab",
       classes:  [ "tab", "reputation" ]
     },
     footer: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      // id:       "base-tab",
       classes:  [ "sheet-footer" ]
     },
   };
 
-  // region getTabs 
-  #getTabs() {
-    const tabs = {
-      "description-tab":         { id: "description-tab", group: "sheet", icon: "fa-solid fa-user", label: "description" },
-      "equipment-tab":     { id: "equipment-tab", group: "sheet", icon: "fa-solid fa-user", label: "equipment" },
-      "reputation-tab":    { id: "reputation-tab", group: "sheet", icon: "fa-solid fa-user", label: "reputation" },
-    };
-    for ( const tab of Object.values( tabs ) ) {
-      tab.active = this.tabGroups[tab.group] === tab.id;
-      tab.cssClass = tab.active ? "active" : "";
-    }
-    return tabs;
-  }
-
   // region _prepareContext
   async _prepareContext() {
-    const context = await super._prepareContext();
-    context.tabs = this.#getTabs();
-
-    return context;
+    return await super._prepareContext();
   }
 
   // region _prepare Part Context
@@ -100,14 +74,13 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
       case "characteristics":
       case "tabs": 
         break;
-      case "description-tab":
+      case "description":
         break;
-      case "equipment-tab":
+      case "equipment":
         break;  
-      case "reputation-tab":
+      case "reputation":
         break;
     }
-    context.tab = context.tabs[partId];  
     return context;
   }
 }

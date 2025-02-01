@@ -178,21 +178,6 @@
         },
         "attributeImprovement": "Attribut Erhöhung"
       },
-      "Navigator": {
-        "classes":                                          "Berufung",
-        "configuration":                                    "Konfiguration",
-        "devotions":                                        "Weihekräfte",
-        "equipment":                                        "Ausrüstung",
-        "general":                                          "Allgemein",
-        "information":                                      "Informationen",
-        "legend":                                           "Legende",
-        "power":                                            "Kräfte",
-        "reputation":                                       "Ruf",
-        "skills":                                           "Fertigkeiten",
-        "specials":                                         "Besonders",
-        "spells":                                           "Zauber",
-        "talents":                                          "Talente"
-      },
       "Spellcasting": {
         "elementalist": "Elementarist",
         "illusionist": "Illusionist",
@@ -200,6 +185,27 @@
         "nethermancer": "Geisterbeschwörer",
         "shaman": "Schamane",
         "wizard": "Magier"
+      },
+      "Tabs": {
+        "classes":                                          "Berufung",
+        "configuration":                                    "Konfiguration",
+        "description":                                      "Beschreibung",
+        "devotions":                                        "Weihekräfte",
+        "equipment":                                        "Ausrüstung",
+        "general":                                          "Allgemein",
+        "information":                                      "Informationen",
+        "legend":                                           "Legende",
+        "notes":                                            "Notizen",
+        "powers":                                            "Kräfte",
+        "reputation":                                       "Ruf",
+        "skills":                                           "Fertigkeiten",
+        "specials":                                         "Spezial",
+        "spells":                                           "Zauber",
+        "talents":                                          "Talente",
+        "Spells": {
+          "all":                                            "Alle",
+          "matrix":                                         "Matrix"
+        }
       },
       "Tooltips": {
         "carried": "Getragen",
