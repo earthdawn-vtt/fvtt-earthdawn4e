@@ -1,4 +1,4 @@
-<section class="tab {{tab.cssClass}} scrollable" data-group="item-sheet" data-tab="thread-tab">
+<section class="tab {{tabs.thread.cssClass}} scrollable" data-group="sheet" data-tab="thread">
   {{#if isGM}}
     <!-- Button controls -->
   <div class="item-controls flexrow">
@@ -17,7 +17,7 @@
   <!-- basic information -->
   <fieldset>
     <div>
-      <divc class="undefined">
+      <div class="undefined">
         is GM = {{isGM}}
       </div>
       
@@ -61,19 +61,19 @@
     <button data-action="itemHistoryCheck" title="{{localize "ED.ToolTips.itemHistoryCheck"}}">
       <span>
         <b>{{localize "ED.Item.PhysicalItems.itemHistoryCheck"}}</b>
-        <i class="fas fa-history"></i>
+        <i class="fas {{config.icons.itemHistory}}"></i>
       </span>
     </button>
     <button data-action="researchCheck" title="{{localize "ED.ToolTips.researchCheck"}}">
       <span>
         <b>{{localize "ED.Item.PhysicalItems.researchCheck"}}</b>
-        <i class="fas fa-search"></i>
+        <i class="fas {{config.icons.research}}"></i>
       </span>
     </button>
     <button data-action="weaveThreadCheck" title="{{localize "ED.ToolTips.weaveThreadCheck"}}">
       <span>
         <b>{{localize "ED.Item.PhysicalItems.weaveThreadCheck"}}</b>
-        <i class="fas fa-connectdevelop"></i>
+        <i class="fas {{config.icons.threadWeaving}}"></i>
       </span>
     </button>
   </div>

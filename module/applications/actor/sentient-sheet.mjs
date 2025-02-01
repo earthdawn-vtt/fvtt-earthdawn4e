@@ -1,19 +1,22 @@
-import ED4E from "../../config.mjs";
 import ActorSheetEd from "./common-sheet.mjs";
+import ED4E from "../../config.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ActorSheet}
  */
 export default class ActorSheetEdSentient extends ActorSheetEd {
 
-  constructor( options = {} ) {
-    super( options );
+  static {
+    this.addSheetTabs( [
+      { id: "general", },
+      { id: "spells", },
+      { id: "equipment", },
+      { id: "notes", },
+      { id: "specials", },
+    ] );
   }
 
-  /** 
-   * @override 
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -38,31 +41,66 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
   };
 
-  async _prepareContext() {
-    // TODO: überprüfen was davon benötigt wird
-    const context = {
-      actor:                  this.document,
-      system:                 this.document.system,
-      items:                  this.document.items,
-      options:                this.options,
-      systemFields:           this.document.system.schema.fields,
-      // enrichment:             await this.document._enableHTMLEnrichment(),
-      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
-      config:                 ED4E,
-    };
+  /** @inheritDoc */
+  async _prepareContext( options ) {
+    return await super._prepareContext( options );
+  }
 
+  /** @inheritDoc */
+  async _preparePartContext( partId, contextInput, options ) {
+    const context = await super._preparePartContext( partId, contextInput, options );
 
-    context.enrichedDescription = await TextEditor.enrichHTML(
-      this.document.system.description.value,
-      {
-        // Only show secret blocks to owner
-        secrets:    this.document.isOwner,
-        EdRollData: this.document.getRollData
-      }
-    );
+    switch ( partId ) {
+      case "general":
+        break;
+      case "spells":
+        foundry.utils.mergeObject( context, {
+          tabsSpells: this._getSpellTabs(),
+        } );
+        break;
+      case "equipment":
+        break;
+      case "notes":
+        break;
+      case "specials":
+        break;
+    }
 
     return context;
-  }
+  };
+
+  /**
+   * Get the sub-tabs for the spells section
+   * @returns {{}}   The tabs object
+   * @protected
+   */
+  _getSpellTabs() {
+    this.tabGroups["spellsContent"] ??= "matrix";
+    const labelPrefix = "ED.Actor.Tabs.Spells";
+
+    const spellTabs = {
+      matrix: { id: "matrix", group: "spellsContent", label: `${labelPrefix}.matrix` },
+      all:    { id: "all", group: "spellsContent", label: `${labelPrefix}.all` },
+    };
+
+    const spellcastingTypes = new Set(
+      this.document.itemTypes.spell.map( spell => spell.system.spellcastingType )
+    );
+    spellcastingTypes.forEach( type => {
+      spellTabs[ type ] = {
+        id:    type,
+        group: "spellsContent",
+        label: ED4E.spellcastingTypes[ type ],
+      };
+    } );
+
+    for ( const tab of Object.values( spellTabs ) ) {
+      tab.active = this.tabGroups[tab.group] === tab.id;
+      tab.cssClass = tab.active ? "active" : "";
+    }
+
+    return spellTabs;
+  };
 
   static async _onAttack( event, target ) {
     event.preventDefault();

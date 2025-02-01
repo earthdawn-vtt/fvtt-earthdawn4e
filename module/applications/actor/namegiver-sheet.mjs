@@ -1,19 +1,21 @@
-import ED4E from "../../config.mjs";
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
- * @augments {ActorSheet}
  */
 export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
 
-  constructor( options = {} ) {
-    super( options );
+  static {
+    this.addSheetTabs( [
+      { id: "talents", },
+      { id: "skills", },
+      { id: "devotions", },
+      { id: "reputation" },
+      { id: "classes" },
+    ] );
   }
 
-  /** 
-   * @override 
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -31,29 +33,12 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     },
   };
 
-  async _prepareContext() {
+  async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
-    const context = {
-      actor:                  this.document,
-      system:                 this.document.system,
-      items:                  this.document.items,
-      options:                this.options,
-      systemFields:           this.document.system.schema.fields,
-      // enrichment:             await this.document._enableHTMLEnrichment(),
-      // enrichmentEmbededItems: await this.document._enableHTMLEnrichmentEmbeddedItems(),
-      config:                 ED4E,
+    const context = await super._prepareContext( options );
+    foundry.utils.mergeObject( context, {
       splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
-    };
-
-
-    context.enrichedDescription = await TextEditor.enrichHTML(
-      this.document.system.description.value,
-      {
-        // Only show secret blocks to owner
-        secrets:    this.document.isOwner,
-        EdRollData: this.document.getRollData
-      }
-    );
+    } );
 
     return context;
   }
