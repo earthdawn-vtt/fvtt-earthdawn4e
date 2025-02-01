@@ -178,7 +178,7 @@ export default class SpellData extends ItemDataModel.mixin(
    * @inheritDoc
    */
   static _validateJoint( value ) {
-    if ( value.element.type ) {
+    if ( value?.element?.type ) {
       const elemType = value.element.type;
       const elemSubtype = value.element.subtype;
 
