@@ -66,7 +66,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   /** @inheritDoc */
   async _preparePartContext( partId, context ) {
-    const partContext = super._preparePartContext( partId, context );
+    const partContext = await super._preparePartContext( partId, context );
 
     switch ( partId ) {
       case "details":
@@ -74,9 +74,11 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
       case "duration":
         break;
       case "changes":
-        partContext.keyOptions = this.document.parent?.constructor.EAE_SELECT_OPTIONS;
+        partContext.keyOptions = this.document.parent?.system?.constructor.EAE_SELECT_OPTIONS;
         break;
     }
+
+    return partContext;
   }
 
   /* -------------------------------------------- */
