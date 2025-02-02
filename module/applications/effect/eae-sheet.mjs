@@ -64,6 +64,21 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     return context;
   }
 
+  /** @inheritDoc */
+  async _preparePartContext( partId, context ) {
+    const partContext = super._preparePartContext( partId, context );
+
+    switch ( partId ) {
+      case "details":
+        break;
+      case "duration":
+        break;
+      case "changes":
+        partContext.keyOptions = this.document.parent?.constructor.EAE_SELECT_OPTIONS;
+        break;
+    }
+  }
+
   /* -------------------------------------------- */
   /*  Handlers                                    */
   /* -------------------------------------------- */

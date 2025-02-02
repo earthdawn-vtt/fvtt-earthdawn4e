@@ -20,6 +20,14 @@ export default class PcData extends NamegiverTemplate {
   /** @inheritDoc */
   static _systemType = "character";
 
+  static {
+    /** @inheritdoc */
+    this._EAE_EXCLUDE_KEYS = [
+      ...this._EAE_EXCLUDE_KEYS ?? [],
+      "system.lp",
+    ];
+  }
+
   /* -------------------------------------------- */
 
   /** @inheritDoc */
