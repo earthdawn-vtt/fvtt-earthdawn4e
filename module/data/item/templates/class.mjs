@@ -100,6 +100,8 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   async increase() {
+    if ( !this.isActorEmbedded ) return;
+
     const nextLevel = this.level + 1;
     const nextLevelData = this.advancement.levels.find( l => l.level === nextLevel );
     if ( !nextLevelData ) {
@@ -136,7 +138,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       abilityChoiceItem,
       foundry.utils.mergeObject(
         systemSourceData,
-        { "system.talentCategory": "optional" },
+        {
+          "system.talentCategory": "optional",
+          "system.tier":           nextTier,
+        },
         { inplace: false },
       )
     );
@@ -184,11 +189,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     // increase resource step of the discipline
     const highestDiscipline = this.parentActor.highestDiscipline;
     
+    const resourceStep = nextLevelData.resourceStep;
     if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
-      const resourceStep = nextLevelData.resourceStep;
       await this.parentActor.update( { "system.karma.step": resourceStep } );
     } else if ( this.parent.type === "questor" ) {
-      const resourceStep = nextLevelData.resourceStep;
       await this.parentActor.update( { "system.devotion.step": resourceStep } );
     }
 
