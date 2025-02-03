@@ -155,7 +155,7 @@ export default class DevotionData extends AbilityTemplate.mixin(
 
   static async learn( actor, item, createData = {} ) {
     const learnedItem = await super.learn( actor, item, createData );
-    await learnedItem.system.chooseTier();
+    if ( !learnedItem.system.tier )await learnedItem.system.chooseTier();
     return learnedItem;
   }
 
