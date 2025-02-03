@@ -133,7 +133,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     };
 
     const abilityChoiceItem = await fromUuid( abilityChoice );
-    await abilityChoiceItem?.system?.constructor?.learn(
+    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
       this.parentActor,
       abilityChoiceItem,
       foundry.utils.mergeObject(
@@ -145,6 +145,8 @@ export default class ClassTemplate extends ItemDataModel.mixin(
         { inplace: false },
       )
     );
+    await learnedAbilityChoice?.system?.increase();
+
 
     for ( const spellUuid of spells ) {
       const spell = await fromUuid( spellUuid );
@@ -209,6 +211,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     for ( const ability of freeAbilities ) {
       await ability.update( { "system.level": nextLevel } );
     }
+
+    // we only land here if the class increase was successful
+    return this.parent;
   }
 
   /* -------------------------------------------- */
