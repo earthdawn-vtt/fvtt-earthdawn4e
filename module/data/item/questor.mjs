@@ -79,23 +79,21 @@ export default class QuestorData extends ClassTemplate.mixin(
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
+    const nextLevel = this.level + 1;
+    const updatedQuestor = await super.increase();
+    if ( updatedQuestor?.system.level !== nextLevel ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.Legend.classIncreaseProblems" )
+      );
+      return;
+    }
+
     const promptFactory = PromptFactory.fromDocument( this.parent );
     const spendLp = await promptFactory.getPrompt( "lpIncrease" );
 
     if ( !spendLp
       || spendLp === "cancel"
       || spendLp === "close" ) return;
-
-    const updatedItem = await this.parent.update( {
-      "system.level": this.level + 1,
-    } );
-
-    if ( foundry.utils.isEmpty( updatedItem ) ) {
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.classIncreaseProblems" )
-      );
-      return;
-    }
 
     const updatedActor = await this.parent.actor.addLpTransaction(
       "spendings",
@@ -128,14 +126,14 @@ export default class QuestorData extends ClassTemplate.mixin(
       content:     await TextEditor.enrichHTML( content ),
     } );
     if ( increaseDevotion && !(
-      await questorDevotion.update( { "system.level": updatedItem.system.level } )
+      await questorDevotion.update( { "system.level": nextLevel } )
     ) ) ui.notifications.warn( "ED.Notifications.Warn.Legend.questorItemNotUpdated" );
 
     return this.parent;
   }
 
   /** @inheritDoc */
-  static async learn( actor, item, createData ) {
+  static async learn( actor, item, _ ) {
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn(
         game.i18n.format( "ED.Notifications.Warn.Legend.cannotLearn", {itemType: item.type} )

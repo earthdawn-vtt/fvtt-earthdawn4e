@@ -15,12 +15,10 @@
   <div>
     {{#if (ed-hasItems selectedSpells)}}
       <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.SelectedSpells"}}</p>
-    {{else}}
-      <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsSelected"}}</p>
-    {{/if}}
-    <document-tags name="selectedSpells" placeholder="{{localize "ED.X-No spells added yet. You can do it by just dragging and dropping them onto this field"}}">
-    {{#each selectedSpells as |uuid|}}
-      <div class="tags input-element-tags">
+
+      <document-tags name="selectedSpells" placeholder="{{localize "ED.X-No spells added yet. You can do it by just dragging and dropping them onto this field"}}">
+        {{#each selectedSpells as |uuid|}}
+          <div class="tags input-element-tags">
             <div class="tag document-tag" data-key="Item.4CtXPK8Jp3WW6wRQ">
               {{{ed-linkForUuid uuid}}}
               <a class="remove fa-solid fa-times" data-tooltip="Remove Document" aria-label="Remove Document"></a>
@@ -29,8 +27,11 @@
           <input type="text" placeholder="Enter UUID or Drop Document">
           <button type="button" class="icon fa-solid fa-file-plus" data-tooltip="Add Document" aria-label="Add Document">
           </button>
-    {{/each}}
-    </document-tags>
+        {{/each}}
+      </document-tags>
+    {{else}}
+      <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsSelected"}}</p>
+    {{/if}}
   </div>
 
 </div>
