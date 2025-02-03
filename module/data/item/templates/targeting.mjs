@@ -53,7 +53,7 @@ export default class TargetTemplate extends SystemDataModel {
     let currentTarget = game.user.targets.first()?.actor;
     let currentTargets = [ ...game.user.targets.map( ( t ) => t.actor ) ];
     let numTargets = game.user.targets.size;
-    let targetDifficultySetting = this.difficulty.target;
+    let targetDifficultySetting = this.difficulty.target === "" ? 0 : this.difficulty.target;
     let groupDifficultySetting = this.difficulty.group;
     let fixedDifficultySetting = this.difficulty.fixed;
 
@@ -75,7 +75,7 @@ export default class TargetTemplate extends SystemDataModel {
           baseDifficulty = TargetTemplate._getAggregatedDefense( currentTargets, targetDifficultySetting, Math.min );
           break;
         default:
-          baseDifficulty = currentTarget?.system.characteristics.defenses[targetDifficultySetting].value ?? 0;
+          baseDifficulty = targetDifficultySetting === 0 ? 0 : currentTarget?.system.characteristics.defenses[targetDifficultySetting].value ?? 0;
       }
       difficulty = baseDifficulty + additionalTargetDifficulty;
     }
