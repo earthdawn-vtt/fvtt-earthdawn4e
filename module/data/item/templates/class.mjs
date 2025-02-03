@@ -81,12 +81,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const nextLevel = this.level + 1;
     const disciplineSortingFactor = this.order - 1;
     const nextLevelTier = nextLevel === 0 ? "novice" : this.advancement.levels.find( l => l.level === nextLevel )?.tier;
-    const lpCost = ED4E.legendPointsCost[
+    return ED4E.legendPointsCost[
       1 // new level
-      + disciplineSortingFactor
-      + ED4E.lpIndexModForTier[1][nextLevelTier]
+    + disciplineSortingFactor
+    + ED4E.lpIndexModForTier[1][nextLevelTier]
     ];
-    return lpCost;
   }
 
   /* -------------------------------------------- */
