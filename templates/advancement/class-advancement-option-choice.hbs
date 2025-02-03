@@ -8,7 +8,7 @@
         <legend>{{lookup ../config.tier @key}}</legend>
         {{#each this as |uuid|}}
           <label class="checkbox">
-            <input type="radio" name="selectedOption" value="{{uuid}}" {{checked (eq uuid selectedOption)}}>
+            <input type="radio" name="selectedOption" value="{{uuid}}" {{checked (eq uuid @root/selectedOption)}}>
             {{{ed-linkForUuid uuid}}}
           </label>
         {{/each}}
