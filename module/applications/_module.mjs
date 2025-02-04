@@ -23,10 +23,12 @@ export function buildSelectOptionsFromModel( fields ) {
     if( field.fields ) {
       options.push( ...buildSelectOptionsFromModel( field.fields ) );
     } else {
+      const groupName = field.parent?.label || field.parent?.name;
+      const group = groupName === "system" ? "" : game.i18n.localize( groupName ) || "";
       const option = {
         value:    field.fieldPath,
         label:    game.i18n.localize( field.label ),
-        group:    game.i18n.localize( field.parent?.label || field.parent?.name ) || "",
+        group:    group,
         disabled: false,
         selected: false,
         rule:     false,
