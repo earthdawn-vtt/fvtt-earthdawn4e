@@ -14,8 +14,12 @@ export default class ActorDescriptionTemplate extends SystemDataModel {
         value: new fields.HTMLField( {
           required: true, 
           nullable: true, 
-          label:    "ED.Description"
+          label:    "ED.Data.Actor.Labels.descriptionValue",
+          hint:     "ED.Data.Actor.Hints:descriptionValue",
         } ), 
+      }, {
+        label: "ED.Data.Actor.Labels.description",
+        hint:  "ED.Data.Actor.Hints:description",
       } )
     };
   }
