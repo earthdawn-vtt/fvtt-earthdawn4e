@@ -30,6 +30,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     this._EAE_EXCLUDE_KEYS = [];
   }
 
+  static initEAE() {
+    for ( const cls of foundry.utils.getParentClasses( this ) ) {
+      if ( cls._EAE_EXCLUDE_KEYS ) this._EAE_EXCLUDE_KEYS.push( ...cls._EAE_EXCLUDE_KEYS );
+    }
+  }
+
   constructor( data={}, options={} ) {
     super( data, options );
 

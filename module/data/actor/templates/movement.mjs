@@ -55,7 +55,8 @@ export default class MovementFields {
         } )
       },
       {
-        label: "ED.Item.Namegiver.movement"
+        label: "ED.Data.Other.Labels.movement",
+        hint:  "ED.Data.Other.Hints.movement"
       }
       )
     };

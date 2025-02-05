@@ -25,7 +25,8 @@ export default class CommonTemplate extends ActorDataModel.mixin(
       } ), {
         initialKeys:     CONFIG.ED4E.globalBonuses,
         initialKeysOnly: true,
-        label:           "ED.Attributes.globalBonuses"
+        label:           this.labelKey( "globalBonuses" ),
+        hint:            this.hintKey( "globalBonuses" ),
       } ),
       singleBonuses: new MappingField( new fields.SchemaField( {
         value: new fields.NumberField( {
@@ -38,7 +39,8 @@ export default class CommonTemplate extends ActorDataModel.mixin(
       } ), {
         initialKeys:     CONFIG.ED4E.singleBonuses,
         initialKeysOnly: true,
-        label:           "ED.Config.Eae"
+        label:           this.labelKey( "singleBonuses" ),
+        hint:            this.hintKey( "singleBonuses" ),
       } )
     } );
   }

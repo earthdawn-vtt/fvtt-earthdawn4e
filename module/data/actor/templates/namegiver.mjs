@@ -10,6 +10,13 @@ const futils = foundry.utils;
  */
 export default class NamegiverTemplate extends SentientTemplate {
 
+  static {
+    this._EAE_EXCLUDE_KEYS = [
+      "system.languages",
+    ];
+    this.initEAE();
+  }
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

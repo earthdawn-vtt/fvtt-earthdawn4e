@@ -247,7 +247,7 @@
         "takeDamageTitle":                                          "Nimm den Schaden für deinen Charakter"
       },
       "Flavor": {
-        "takeDamage":                                               "{actor} nimmt {amount} Schaden",  
+        "takeDamage":                                               "{actor} nimmt {amount} Schaden",
         "takeStrainDamage":                                         "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}",
         "jumpUp":                                                   "{sourceActor} springt auf mit Stufe {step}",
         "knockdownTest":                                            "{sourceActor} versucht dem Niederschlag zu widerstehen {step}",
@@ -436,13 +436,13 @@
         "threadWeaving": "Fadenweben"
       },
       "RecoveryProperty": {
-                "noRecovery":                                       "Keine Erholung",
-                "arbitrary":                                        "Willkürlich",
-                "arbitraryAndAttribute":                            "Willkürlich und Attribut",
-                "arbitraryOptionalAttribute":                       "Willkürlich und/oder Attribut",
-                "abilityStep":                                      "Fähigkeitsstufe",
-                "noHealing":                                        "Keine Heilung"
-            },
+        "noRecovery":                                       "Keine Erholung",
+        "arbitrary":                                        "Willkürlich",
+        "arbitraryAndAttribute":                            "Willkürlich und Attribut",
+        "arbitraryOptionalAttribute":                       "Willkürlich und/oder Attribut",
+        "abilityStep":                                      "Fähigkeitsstufe",
+        "noHealing":                                        "Keine Heilung"
+      },
       "ScalarTimePeriods": {
         "turn":                                                     "Zug",
         "round":                                                    "Runde",
@@ -540,17 +540,97 @@
       },
       "Actor": {
         "Hints": {
-          "isMob":                                        "Dieser Akteur benutzt Wunden anstatt Schaden",
-          "challengeRate":                                "Herausforderungsrate",
+          "attributes":                                   "Die Attribute des Charakters",
+          "attributeValue":                               "Der Wert des Attributs",
+          "challenge":                                    "Wie herausfordernd bin ich?",
+          "challengeRate":                                "Eine Beschreibung der Herausforderung als Berechnung",
+          "characteristics":                              "Werte die den Charakter beschreiben, wie Verteidung, Gesundheit oder Rüstung",
+          "description":                                  "Eine Beschreibung des Charakters",
+          "descriptionValue":                             "Der Text darüber wer ich bin",
+          "devotion":                                     "Die verfügbaren Weihpunkte die dazugehörige Stufe",
+          "devotionMax":                                  "Maximale Anzahl an insgesamt verfügbaren Weihepunkten",
+          "devotionStep":                                 "Die Stufe die verwendet wird wenn Weihpunkte ausgegeben werden",
+          "durabilityBonus":                              "Extra Bonus auf Unempfindlichkeit",
+          "encumbrance":                                  "Berechnung der Traglast und damit verbundene Effekte",
+          "encumbranceBonus":                             "Bonus auf den Stärkewert zur Bestimmung der Traglast",
+          "encumbranceMax":                               "Die maximale Last die getragen werden kann ohne negative Effekte",
+          "globalBonuses":                                "Allgemeine globale Wertänderungen",
+          "healthRate":                                   "Gesundheitswerte für Token Module, nicht system-relevant",
+          "initiative":                                   "Die Stufe die ich in der Initiative würfle",
+          "isMob":                                        "Hier werden Wunden anstatt Schaden verwendet",
+          "karma":                                        "Die verfügbaren Karmapunkte und die dazugehörige Stufe",
+          "karmaMax":                                     "Maximale Anzahl an verfügbaren Karmapunkten pro Tag",
+          "karmaStep":                                    "Die Stufe die verwendet wird wenn Karmapunkte ausgegeben werden",
+          "singleBonuses":                                "Einzelne Wertänderungen ",
           "Characteristics":{
-            "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
+            "armor":                                      "Werte die von erlittenem Schaden abgezogen werden",
+            "armorValue":                                 "Der Wert dieser Rüstung",
+            "bloodMagic":                                 "Einflüsse auf die Gesundheit die durch Blutmagie verursacht werden",
+            "bloodMagicDamage":                           "Permanenter Schaden durch Blutmagie",
+            "bloodMagicWounds":                           "Permanente Wunden durch Blutmagie",
+            "damage":                                     "Die Anzahl an Schadenspunkten",
+            "damageStandard":                             "Normaler Schaden",
+            "damageStun":                                 "Schaden der nicht zum Tod führen kann",
+            "damageTotal":                                "Gesamter Schaden aus Standard und Betäubung",
+            "defenses":                                   "Werte die bestimme wie schwer es ist zu treffen",
+            "defenseValue":                               "Der Wert dieser Verteidigung",
+            "deathRating":                                "Wie viel Schaden kann ich nehmen bevor ich sterbe?",
+            "health":                                     "Werte die die Gesundheit des Charakters beschreiben",
+            "maxWounds":                                  "Die Anzahl an Wunden um den Mob zu besiegen",
+            "recoveryTestsCurrent":                       "Die aktuelle Anzahl an Erholungsproben für diesen Tag",
+            "recoveryTestsMax":                           "Die maximale Anzahl an Erholungsproben pro Tag",
+            "recoveryTestsResource":                      "Die Ressource die unter anderem für Erholungsproben verwendet wird",
+            "unconsciousRate":                            "Wie viel Schaden kann ich nehmen bevor ich bewusstlos werde?",
+            "stunRecoveryAvailable":                      "Kann Betäubungsschaden aktuell geheilt werden?",
+            "wounds":                                     "Anzahl der Wunden",
+            "woundThreshold":                             "Der Schaden der erlitten werden muss um eine Wunde zu verursachen"
           }
         },
         "Labels": {
-          "challengeRate":                                "Herausforderungsrate des Akteurs",
-          "isMob":                                        "Mob Regeln",
-          "Characteristics":{
-            "recoveryTestsCurrent":                       "Aktuelle Erholungsproben"
+          "attributes":                                   "Attribute",
+          "attributeValue":                               "Attribut Wert",
+          "challenge":                                    "Herausforderung",
+          "challengeRate":                                "Herausforderungsrate",
+          "characteristics":                              "Charakteristiken",
+          "description":                                  "Beschreibung",
+          "descriptionValue":                             "Beschreibungstext",
+          "devotion":                                     "Weihe",
+          "devotionMax":                                  "Maximale Weihepunkte",
+          "devotionStep":                                 "Weihe Stufe",
+          "durabilityBonus":                              "Unempfindlichkeitsbonus",
+          "encumbrance":                                  "Traglast",
+          "encumbranceBonus":                             "Traglast - Bonus",
+          "encumbranceMax":                               "Maximale Traglast",
+          "globalBonuses":                                "Globale Boni",
+          "healthRate":                                   "Gesundheitswerte",
+          "initiative":                                   "Initiative",
+          "isMob":                                        "Mob-Regeln",
+          "karma":                                        "Karma",
+          "karmaMax":                                     "Maximale Karmapunkte",
+          "karmaStep":                                    "Karma Stufe",
+          "singleBonuses":                                "Einzelne Boni",
+          "Characteristics": {
+            "armor":                                      "Rüstung",
+            "armorValue":                                 "Rüstungswert",
+            "bloodMagic":                                 "Blutmagie",
+            "bloodMagicDamage":                           "Blutmagie Schaden",
+            "bloodMagicWounds":                           "Blutmagie Wunden",
+            "damage":                                     "Schaden",
+            "damageStandard":                             "Normaler Schaden",
+            "damageStun":                                 "Betäubungsschaden",
+            "damageTotal":                                "Gesamtschaden",
+            "defenses":                                   "Verteidigung",
+            "defenseValue":                               "Verteidigungswert",
+            "deathRating":                                "Todesschwelle",
+            "health":                                     "Gesundheit",
+            "maxWounds":                                  "Mob: Max. Wunden",
+            "recoveryTestsCurrent":                       "Aktuelle Erholungsproben",
+            "recoveryTestsMax":                           "Maximale Erholungsproben",
+            "recoveryTestsResource":                      "Ressource - Erholungsproben",
+            "stunRecoveryAvailable":                      "Betäubungserholung verfügbar",
+            "unconsciousRate":                            "Bewusstlosigkeitsschwelle",
+            "wounds":                                     "Wunden",
+            "woundThreshold":                             "Wundschwelle"
           }
         }
       },
@@ -665,10 +745,10 @@
           },
           "edid":                                           "Eine ID mit der ein Item unabhängig vom Namen identifziert werden kann",
           "Equipment": {
-              "consumable":                               "Wird dieser Gegenstand bei der benutzung verbraucht?",
-              "ammunition":                                "Welcher Munitionstyp ist dieser Gegenstand?",
-              "bundleSize":                               "Wie viele Gegenstände gehören zu einem Bündel?"
-            },
+            "consumable":                               "Wird dieser Gegenstand bei der benutzung verbraucht?",
+            "ammunition":                                "Welcher Munitionstyp ist dieser Gegenstand?",
+            "bundleSize":                               "Wie viele Gegenstände gehören zu einem Bündel?"
+          },
           "Knack":{
             "isPathKnack":                                  "Ist dieser Kniff ein Pfadkniff?",
             "standardEffect":                               "Wird der Effekt des Ursprungtalentes mit ausgelöst?",
@@ -741,7 +821,7 @@
               "calculated":                                 "Wurde dieser Gegenstand bereits mit dem Multipliktor des Namensgebers berechnet?",
               "multiplier":                                 "Der Multiplikator des Namensgebers"
             }
-            
+
           },
           "PoisonDisease": {
             "damageStep":                                   "Schadensstufe des Giftes/der Krankheit",
@@ -893,10 +973,10 @@
           },
           "edid":                                           "ED-ID",
           "Equipment": {
-              "consumable":                               "Verbrauchsgegenstand?",
-              "ammunition":                                "Munitionstyp",
-              "bundleSize":                               "Bündelgröße"
-            },
+            "consumable":                               "Verbrauchsgegenstand?",
+            "ammunition":                                "Munitionstyp",
+            "bundleSize":                               "Bündelgröße"
+          },
           "Knack":{
             "isPathKnack":                                  "Pfad Kniff",
             "standardEffect":                               "Standard Effekt",
@@ -1054,6 +1134,7 @@
       },
       "Other": {
         "Hints": {
+          "movement":                                    "Die Geschwindigkeiten der verschiedenen Fortbewegungsarten",
           "AreaUnit": {
             "angle":                                        "Der Winkel des Bereichs",
             "areaTyp":                                      "Die geometrische Form des Bereichs",
@@ -1121,6 +1202,7 @@
           }
         },
         "Labels": {
+          "movement":                                    "Bewegung",
           "AreaUnit": {
             "angle":                                        "Winkel",
             "areaTyp":                                      "Typ",
@@ -1298,7 +1380,7 @@
         "disciplineTalents":                      "Disziplin Talente",
         "questorDevotion":                        "Questor Weihekraft",
         "availableRanks":                         "Verfügbare Ränge",
-        "abilities":                              "Wähle deine Fähigkeiten",    
+        "abilities":                              "Wähle deine Fähigkeiten",
         "chooseNamegiver":                        "Wähle einen Namensgeber",
         "discipline":                             "Wähle eine Disziplin",
         "questor":                                "Wähle einen Questor",
@@ -1309,7 +1391,7 @@
         "chooseClassRules":                       "Wähle entweder eine Disziplin aus den Optionen oder schalte um auf Questoren um dort ein Questor zu werden.",
         "chooseSpellsRules":                      "Wähle Zauber aus den unten aufgeführten Listen aus.<br>Es können Zauber gleich der Wahrnehmungsstufe gewählt werden.<br> Kreis 1 Zauber kosten 1 Punkt, Kreis 2 Zauber kosten 2.",
         "chooseSkillsRules":                      "Wähle Fähigkeiten aus den unten aufgeführten Listen aus.<br>Es muss mindestens ein Kunsthandwerk und mindestens zwei Ränge in Wissensfertigkeiten gewählt werden.",
-        "chooseLanguagesRules":                   "Wähle die Sprachen aus die der Charakter spricht und liest/schreibt.<br>Es können maximal so viele Sprachen gewählt werden wie die Ränge in Lesen/Schreiben und Fremdsprachen entsprechen (redo this Text)",	
+        "chooseLanguagesRules":                   "Wähle die Sprachen aus die der Charakter spricht und liest/schreibt.<br>Es können maximal so viele Sprachen gewählt werden wie die Ränge in Lesen/Schreiben und Fremdsprachen entsprechen (redo this Text)",
         "chooseAttributesRules":                  "Verteile die freien Attributspunkte auf die sechs Attribute. Nicht verteilte Attributespunkte werden 1:1 als zusätztliche Karmapunkte umgewandelt.<br>Unter Vorschau sind die Werteänderungen zu sehen wenn das jeweilige Attribut erhöht oder gesenkt wird."
       },
       "Configs": {
@@ -1442,16 +1524,16 @@
       "physical":                                 "Körperlicher Schaden"
     },
     "Documents": {
-        "ActorSheetEdCharacter":                                "Charakterbogen",
-        "ActorSheetEdCreature":                                 "Kreaturen-Bogen",
-        "ActorSheetEdDragon":                                   "Drachen-Bogen",
-        "ActorSheetEdGroup":                                    "Gruppen-Bogen",
-        "ActorSheetEdHorror":                                   "Dämonen-Bogen",
-        "ActorSheetEdLoot":                                     "Schatz-Bogen",
-        "ActorSheetEdNpc":                                      "NSC-Bogen",
-        "ActorSheetEdSpirit":                                   "Geister-Bogen",
-        "ActorSheetEdTrap":                                     "Fallen-Bogen",
-        "ActorSheetEdVehicle":                                  "Transportmittel-Bogen"
+      "ActorSheetEdCharacter":                                "Charakterbogen",
+      "ActorSheetEdCreature":                                 "Kreaturen-Bogen",
+      "ActorSheetEdDragon":                                   "Drachen-Bogen",
+      "ActorSheetEdGroup":                                    "Gruppen-Bogen",
+      "ActorSheetEdHorror":                                   "Dämonen-Bogen",
+      "ActorSheetEdLoot":                                     "Schatz-Bogen",
+      "ActorSheetEdNpc":                                      "NSC-Bogen",
+      "ActorSheetEdSpirit":                                   "Geister-Bogen",
+      "ActorSheetEdTrap":                                     "Fallen-Bogen",
+      "ActorSheetEdVehicle":                                  "Transportmittel-Bogen"
     },
     "Item": {
       "Ability": {
@@ -1662,10 +1744,10 @@
         "unarmedCombatHint":                                    "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
       },
       "Hint": {
-          "enforceLivingArmor":                               "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
+        "enforceLivingArmor":                               "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
       },
       "Label": {
-          "enforceLivingArmor":                               "Lebendig Rüstungs Prüfung"
+        "enforceLivingArmor":                               "Lebendig Rüstungs Prüfung"
       },
       "LpTracking": {
         "allTalents": "Alle Talente für Kreisaufstieg",

@@ -21,11 +21,34 @@ export default class PcData extends NamegiverTemplate {
   static _systemType = "character";
 
   static {
-    /** @inheritdoc */
     this._EAE_EXCLUDE_KEYS = [
-      ...this._EAE_EXCLUDE_KEYS ?? [],
+      "system.attributes.dex.initialValue",
+      "system.attributes.str.initialValue",
+      "system.attributes.tou.initialValue",
+      "system.attributes.per.initialValue",
+      "system.attributes.wil.initialValue",
+      "system.attributes.cha.initialValue",
+      "system.attributes.dex.baseValue",
+      "system.attributes.str.baseValue",
+      "system.attributes.tou.baseValue",
+      "system.attributes.per.baseValue",
+      "system.attributes.wil.baseValue",
+      "system.attributes.cha.baseValue",
+      "system.attributes.dex.valueModifier",
+      "system.attributes.str.valueModifier",
+      "system.attributes.tou.valueModifier",
+      "system.attributes.per.valueModifier",
+      "system.attributes.wil.valueModifier",
+      "system.attributes.cha.valueModifier",
+      "system.attributes.dex.timesIncreased",
+      "system.attributes.str.timesIncreased",
+      "system.attributes.tou.timesIncreased",
+      "system.attributes.per.timesIncreased",
+      "system.attributes.wil.timesIncreased",
+      "system.attributes.cha.timesIncreased",
       "system.lp",
     ];
+    this.initEAE();
   }
 
   /* -------------------------------------------- */
@@ -65,7 +88,9 @@ export default class PcData extends NamegiverTemplate {
         step:     1,
         initial:  1,
         integer:  true,
-        positive: true
+        positive: true,
+        label:    this.labelKey( "attributeValue" ),
+        hint:     this.hintKey( "attributeValue" )
       } ),
       timesIncreased: new fields.NumberField( {
         required: true,
@@ -85,7 +110,8 @@ export default class PcData extends NamegiverTemplate {
         step:     1,
         initial:  0,
         integer:  true,
-        label:    "ED.General.durabilityBonus"
+        label:    this.labelKey( "durabilityBonus" ),
+        hint:     this.hintKey( "durabilityBonus" ),
       } ),
       lp: new foundry.data.fields.EmbeddedDataField(
         LpTrackingData,
