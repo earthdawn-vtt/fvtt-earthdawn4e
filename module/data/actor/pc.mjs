@@ -1,5 +1,5 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
-import { getArmorFromAttribute, getAttributeStep, getDefenseValue, mapObject, sum, sumProperty } from "../../utils.mjs";
+import { getArmorFromAttribute, getAttributeStep, getDefenseValue, getSingleGlobalItemByEdid, mapObject, sum, sumProperty } from "../../utils.mjs";
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
@@ -163,6 +163,16 @@ export default class PcData extends NamegiverTemplate {
         return documentData;
       }
     );
+    if ( classDocument.type === "questor" ) {
+      const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
+      const existingDevotion = abilities.find( item => item.system.edid === edidQuestorDevotion );
+    
+      if ( !existingDevotion ) {
+        const questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
+        const [ newQuestorDevotion ] = await newActor.createEmbeddedDocuments( "Item", [ questorDevotion ] );
+        await newQuestorDevotion.update( { "system.level": 1 } );
+      }
+    }
     const spellDocuments = await generation.spellDocuments;
 
     const equipmentUUIDs = await generation.equipment;
