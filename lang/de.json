@@ -1,10 +1,13 @@
 {
   "ED": {
     "ActiveEffect": {
+      "newEffectName": "Neuer Earthdawn ActiveEffect",
       "Header": {
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
-      "newEffectName": "Neuer Earthdawn ActiveEffect"
+      "Tooltips": {
+        "abilityEdidSelection": "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
+      }
     },
     "Actor": {
       "Abilities": {
@@ -520,18 +523,14 @@
     "Data": {
       "ActiveEffect": {
         "Hints": {
-          "EAEChangeData": {
-            "abilityUuid":                              "Wenn angegeben wird dieser Effekt auf die Fertigkeit übertragen"
-          },
+          "abilityEdid":                                "Wenn angegeben wird dieser Effekt auf die Fertigkeit übertragen",
           "begin":                                      "Wann beginnt der Effekt",
           "changes":                                    "Die Änderungen die dieser Effekt anwendet",
           "duration":                                   "Die Dauer des Effekts",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
         "Labels": {
-          "EAEChangeData": {
-            "abilityUuid":                              "Fähigkeit"
-          },
+          "abilityEdid":                                "Fähigkeit",
           "begin":                                      "Start",
           "changes":                                    "Änderungen",
           "duration":                                   "Dauer",

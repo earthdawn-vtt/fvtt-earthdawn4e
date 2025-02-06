@@ -1,3 +1,4 @@
+import { getEdIds } from "../../settings.mjs";
 import FormulaField from "../../data/fields/formula-field.mjs";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
@@ -75,6 +76,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
         break;
       case "changes":
         partContext.keyOptions = this.document.parent?.system?.constructor.EAE_SELECT_OPTIONS;
+        partContext.edids = getEdIds();
         break;
     }
 
