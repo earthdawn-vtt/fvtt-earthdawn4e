@@ -24,6 +24,26 @@ export function setSetting( settingKey, value, options={} ) {
 }
 
 /**
+ * Get all available ed-ids from the system settings.
+ * @returns {string[]} - A list of all available ed-ids.
+ */
+export function getEdIds() {
+  return [
+    "edidThreadWeaving",
+    "edidSpellcasting",
+    "edidPatterncraft",
+    "edidLanguageSpeak",
+    "edidLanguageRW",
+    // "edidKnockDown",
+    "edidVersatility",
+    // "edidJumpUp",
+    "edidQuestorDevotion",
+    "edidUnarmedCombat",
+    "edidCreatureAttack",
+  ].map( id => getSetting( id ) );
+}
+
+/**
  * Register all the system's settings.
  */
 export default function registerSystemSettings() {

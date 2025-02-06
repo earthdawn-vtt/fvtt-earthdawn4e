@@ -1,4 +1,5 @@
 import { ActiveEffectDataModel } from "../abstract.mjs";
+import EdIdField from "../fields/edid-field.mjs";
 import EarthdawnActiveEffectChangeData from "./eae-change-data.mjs";
 import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
@@ -29,9 +30,11 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         label:   this.labelKey( "transferToTarget" ),
         hint:    this.hintKey( "transferToTarget" ),
       } ),
-      abilityUuid: new fields.DocumentUUIDField( {
-        label: this.labelKey( "EAEChangeData.abilityUuid" ),
-        hint:  this.hintKey( "EAEChangeData.abilityUuid" ),
+      abilityEdid: new EdIdField( {
+        blank:    true,
+        initial:  "",
+        label:    this.labelKey( "abilityEdid" ),
+        hint:     this.hintKey( "abilityEdid" ),
       } )
     } );
   }
