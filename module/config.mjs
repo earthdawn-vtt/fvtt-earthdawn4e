@@ -1020,6 +1020,14 @@ ED4E.rollTypes = {
     label:            "ED.Config.rollTypes.threadWeaving",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/threadWeaving-roll-flavor.hbs",
   },
+  jumpUp: {
+    label:            "ED.Config.rollTypes.jumpUp",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
+  },
+  knockDown: {
+    label:            "ED.Config.rollTypes.knockDown",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
+  },
 };
 preLocalize( "testTypes", { key: "label" } );
 

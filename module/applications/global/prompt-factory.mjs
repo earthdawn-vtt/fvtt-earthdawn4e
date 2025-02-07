@@ -274,7 +274,7 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   async _jumpUpPrompt() {
-    const buttons = await this._getItemButtonsByEdid( "jump-up" );
+    const buttons = await this._getAbilityButtonByAction( "jumpUp" );
 
     const noAbilityButton = this.constructor.cancelButton;
     noAbilityButton.label = "ED.Dialogs.Buttons.noAbility";
@@ -295,7 +295,7 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   async _knockDownPrompt() {
-    const buttons = await this._getItemButtonsByEdid( "knock-down" );
+    const buttons = await this._getAbilityButtonByAction( "knockDown" );
 
     const noAbilityButton = this.constructor.cancelButton;
     noAbilityButton.label = "ED.Dialogs.Buttons.noAbility";
@@ -355,9 +355,9 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
-  async _getItemButtonsByEdid( edid ) {
-    const abilities = this.document.getItemsByEdid( edid );
-    return this._getItemButtons( abilities, "edid" );
+  async _getAbilityButtonByAction( action ) {
+    const abilities = this.document.getAbilityByAction( action );
+    return this._getItemButtons( abilities, "action" );
   }
 
   async _getItemButtons( items, buttonClass ) {
