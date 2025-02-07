@@ -18,6 +18,7 @@ export default class TargetTemplate extends SystemDataModel {
         target: new foundry.data.fields.StringField( {
           nullable: true,
           blank:    true,
+          required: false,
           initial:  "",
           choices:  ED4E.targetDifficulty,
           label:    this.labelKey( "Target.target" ),
@@ -53,11 +54,11 @@ export default class TargetTemplate extends SystemDataModel {
     let currentTarget = game.user.targets.first()?.actor;
     let currentTargets = [ ...game.user.targets.map( ( t ) => t.actor ) ];
     let numTargets = game.user.targets.size;
-    let targetDifficultySetting = this.difficulty.target === "" ? 0 : this.difficulty.target;
+    let targetDifficultySetting = this.difficulty.target;
     let groupDifficultySetting = this.difficulty.group;
     let fixedDifficultySetting = this.difficulty.fixed;
 
-    if ( numTargets <= 0 || targetDifficultySetting === "none" ) {
+    if ( numTargets <= 0 || targetDifficultySetting === "" ) {
       difficulty = ( fixedDifficultySetting > 0 ) ? fixedDifficultySetting : game.settings.get( "ed4e", "minimumDifficulty" );
     } else {
       let baseDifficulty;
