@@ -652,6 +652,9 @@
           "Range": {
             "groupMovementUnits":                           "Entfernung"
           }
+        },
+        "Tooltips": {
+          "edid": "Gib hier eine ID ein um das Item unabhängig vom Namen zu identifizieren. Mit Klick in das leere Feld werden dir eine Auswahl an IDs angezeigt die bereits existieren."
         }
       },
       "General": {

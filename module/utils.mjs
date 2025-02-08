@@ -37,6 +37,20 @@ export function getDefenseValue( attributeValue ) {
 /* -------------------------------------------- */
 
 /**
+ * Get all ED-IDs of all Items in the game world, optionally filtered by Item type.
+ * @param {string} [type] - The type of Item to narrow the search by.
+ * @returns {string[]} An array of all found ED-IDs.
+ */
+export function getAllEdIds( type ) {
+  return Array.from( new Set(
+    game.items.reduce( ( edids, item ) => {
+      if ( !type || item.type === type ) edids.push( item.system.edid );
+      return edids;
+    }, [] )
+  ) );
+}
+
+/**
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
  * Returns an array of items that match a given EDID and optionally an item type.
  * Searched documents are world and compendium items.

@@ -1,6 +1,7 @@
 import ED4E from "../../config.mjs";
 import { getLocalizeKey } from "../abstract.mjs";
-import { validateEdid } from "../../utils.mjs";
+import { getAllEdIds, validateEdid } from "../../utils.mjs";
+import { getEdIds } from "../../settings.mjs";
 
 /**
  * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
@@ -11,11 +12,12 @@ export default class EdIdField extends foundry.data.fields.StringField {
   /** @inheritdoc */
   static get _defaults() {
     return foundry.utils.mergeObject( super._defaults, {
-      initial:  ED4E.reserved_edid.DEFAULT,
-      blank:    false,
-      required: true,
-      label:    getLocalizeKey( "Item", false, "edid" ),
-      hints:    getLocalizeKey( "Item", true, "edid" )
+      initial:         ED4E.reserved_edid.DEFAULT,
+      blank:           false,
+      required:        true,
+      documentSubtype: "",
+      label:           getLocalizeKey( "Item", false, "edid" ),
+      hints:           getLocalizeKey( "Item", true, "edid" ),
     } );
   }
 
@@ -34,4 +36,31 @@ export default class EdIdField extends foundry.data.fields.StringField {
   _validateType( value, _ ) {
     return validateEdid( value );
   }
+
+  /** @inheritdoc */
+  _toInput( config ) {
+    config.choices ??= [
+      ...getAllEdIds( this.documentSubtype ),
+      ...getEdIds(),
+    ];
+    config.dataset ??= {};
+    config.dataset.tooltip ??= game.i18n.localize( "ED.Data.Fields.Tooltips.edid" );
+
+    const listId = `${config.id ?? ""}-edid.list`;
+    const textInput = foundry.applications.fields.createTextInput( config );
+    textInput.setAttribute( "list", listId );
+    const datalist = document.createElement( "datalist" );
+    datalist.id = listId;
+    datalist.append( ...config.choices.map( choice => {
+      const option = document.createElement( "option" );
+      option.value = choice;
+      option.text = choice;
+      return option;
+    } ) );
+
+    const result = document.createElement( "div" );
+    result.append( textInput, datalist );
+    return result;
+  }
+
 }
