@@ -160,7 +160,10 @@ export default class PcData extends NamegiverTemplate {
     const classDocument = await generation.classDocument;
     const abilities = ( await generation.abilityDocuments ).map(
       documentData => {
-        if ( documentData.type !== "specialAbility" ) documentData.system.source.class = classDocument.uuid;
+        if ( documentData.type !== "specialAbility" ) {
+          documentData.system.source ??= {};
+          documentData.system.source.class ??= classDocument.uuid;
+        }
         return documentData;
       }
     );

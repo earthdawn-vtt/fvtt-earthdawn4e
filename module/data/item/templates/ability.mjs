@@ -64,7 +64,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       },
       {
         required: false,
-        initial:  {},
         label:    this.labelKey( "Ability.Source.class" ),
         hint:     this.hintKey( "Ability.Source.class" )
       } ),
