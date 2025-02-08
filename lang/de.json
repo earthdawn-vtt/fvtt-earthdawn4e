@@ -656,6 +656,10 @@
       },
       "General": {
         "Hints": {
+          "Knacks": {
+            "restrictions":                               "Mindestens eine dieser Einschränkungen muss erfüllt sein um den Kniff zu lernen",
+            "requirements":                               "Alle Voraussetzungen müssen erfüllt sein, um den Kniff zu lernen. Fertigkeiten gelten hierfür nicht, nur Talente und Kniffe."
+          },
           "Rollable": {
             "type":                                         "Welche Aktionsart wird für diese Fähigkeit verwendet?"
           },
@@ -666,6 +670,10 @@
           }
         },
         "Labels": {
+          "Knack": {
+            "restrictions":                               "Einschränkungen",
+            "requirements":                               "Voraussetzungen"
+          },
           "Rollable": {
             "type":                                         "Aktionsart"
           },
@@ -1134,6 +1142,10 @@
       "Other": {
         "Hints": {
           "movement":                                    "Die Geschwindigkeiten der verschiedenen Fortbewegungsarten",
+          "AbilityConstraint": {
+            "ability":                                   "Die ED-ID der Fähigkeit die vorausgesetzt wird",
+            "rank":                                      "Optional: ein Mindestrang den die Fähigkeit haben muss"
+          },
           "AreaUnit": {
             "angle":                                        "Der Winkel des Bereichs",
             "areaTyp":                                      "Die geometrische Form des Bereichs",
@@ -1145,11 +1157,19 @@
             "unit":                                         "Die Maßeinheit des Bereichs",
             "width":                                        "Die Breite des Bereichs"
           },
+          "AttributeConstraint": {
+            "attribute":                                  "Das Attribute das vorausgesetzt wird",
+            "rank":                                       "Der Wert (nicht Stufe!) des Attributs der vorausgesetzt wird"
+          },
           "BaseUnit": {
             "special":                                     "Beschreibung des speziellen Wertes",
             "type":                                        "Die Art von Maß die beschrieben wird",
             "unit":                                        "Die Maßeinheit des Wertes",
             "value":                                       "Der eigentliche Wert"
+          },
+          "ClassConstraint": {
+            "class":                                      "Die ED-ID der Berufung die vorausgesetzt wird",
+            "rank":                                       "Optional: ein Mindestrang/-kreis den die Berufung haben muss"
           },
           "DurationUnit": {
             "unit":                                        "Die Zeiteinheit der Dauer"
@@ -1172,6 +1192,9 @@
             "type":                                     "In welcher Form wird die Dauer des Effekts gemessen",
             "uses":                                     "Wie oft kann dieser Effekt angewendet werden bevor er endet"
           },
+          "LanguageConstraint": {
+            "language":                                   "Die Sprache die vorausgesetzt wird, wie sie in den Einstellungen angegeben ist"
+          },
           "MetricData": {
             "area":                                       "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
             "duration":                                   "Verändere die Dauer. Wenn sich nur die Einheit verändern soll (z.B. von Runden auf Minuten), dann lasse die anderen Felder leer.",
@@ -1181,8 +1204,14 @@
             "special":                                    "Eine textuelle Beschreibung der Veränderung. Das ist ein spezieller Wert, der nicht in die anderen Kategorien passt.",
             "target":                                     "Verändere die Anzahl an möglichen Zielen. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann."
           },
+          "NamegiverConstraint": {
+            "namegiver":                                  "Der Namensgeber der vorausgesetzt wird"
+          },
           "RangeUnit": {
             "unit":                                        "Die Maßeinheit der Reichweite"
+          },
+          "RelationConstraint": {
+            "relation":                                   "Eine Form von Beziehung die vorausgesetzt wird, z.B. eine Mitgliedschaft in einer Vereinigung (tbd)"
           },
           "SpellEnhancement": {
             "enhancementType":                              "Die Art der Verstärkung",
@@ -1202,6 +1231,10 @@
         },
         "Labels": {
           "movement":                                    "Bewegung",
+          "AbilityConstraint": {
+            "ability":                                   "Fähigkeit",
+            "rank":                                      "Rang"
+          },
           "AreaUnit": {
             "angle":                                        "Winkel",
             "areaTyp":                                      "Typ",
@@ -1213,11 +1246,19 @@
             "unit":                                         "Maßeinheit",
             "width":                                        "Breite"
           },
+          "AttributeConstraint": {
+            "attribute":                                  "Attribut",
+            "value":                                      "Wert"
+          },
           "BaseUnit": {
             "special":                                     "Spezial",
             "type":                                        "Typ",
             "unit":                                        "Einheit",
             "value":                                       "Wert"
+          },
+          "ClassConstraint": {
+            "class":                                      "Disziplin / Questor / Pfad",
+            "level":                                      "Kreis / Rang"
           },
           "DurationUnit": {
             "unit":                                        "Zeiteinheit"
@@ -1240,8 +1281,17 @@
             "type":                                     "Typ",
             "uses":                                     "Anwendungen"
           },
+          "LanguageConstraint": {
+            "language":                                  "Sprache"
+          },
+          "NamegiverConstraint": {
+            "namegiver":                                  "Namensgeber"
+          },
           "RangeUnit": {
             "unit":                                        "Maßeinheit"
+          },
+          "RelationConstraint": {
+            "relation":                                   "Beziehungen"
           },
           "SpellEnhancement": {
             "enhancementType":                              "Art",
