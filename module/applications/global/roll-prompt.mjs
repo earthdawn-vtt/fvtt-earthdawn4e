@@ -57,7 +57,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     classes:  [ "earthdawn4e", "roll-prompt" ],
     tag:      "form",
     position: {
-      width:  "auto",
+      width:  500,
       height: "auto",
     },
     window:   {
