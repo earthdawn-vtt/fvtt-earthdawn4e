@@ -14,6 +14,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackRollOptions from "../data/roll/attack.mjs";
 import { getSetting } from "../settings.mjs";
+import HalfMagicRollOptions from "../data/roll/half-magic.mjs";
 
 const futils = foundry.utils;
 
@@ -381,7 +382,7 @@ export default class ActorEd extends Actor {
   }
 
   async rollHalfMagic( options = {} ) {
-    const edRollOptions = EdRollOptions.fromActor(
+    const edRollOptions = HalfMagicRollOptions.fromActor(
       {
         testType:         "action",
         rollType:         "halfMagic",
