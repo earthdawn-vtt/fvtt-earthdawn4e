@@ -1,18 +1,36 @@
 <div class="item__left--main">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
-    {{!-- Source --}}
-    <div class="knack-ability__source-min-level">
+
+  <h3>{{localize "ED.Item.Header.general"}}</h3>
+
+  {{!-- Source --}}
+  <div class="knack-ability__source-min-level">
     <div class="knack-ability__source">
-        {{formField systemFields.sourceTalent name="system.sourceTalent" value=item.system.sourceTalent label=(localize "ED.Data.Item.Labels.Knack.sourceTalent") localize=true}}
+      {{formField systemFields.sourceTalent name="system.sourceTalent" value=item.system.sourceTalent label=(localize "ED.Data.Item.Labels.Knack.sourceTalent") localize=true}}
     </div>
     <div class="knack-ability__min-level">
-        {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+      {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
     </div>
     {{!-- Required Extra Successes --}}
     {{formField systemFields.extraSuccesses name="system.extraSuccesses" value=item.system.extraSuccesses localize=true}}
+  </div>
+
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.requirements
+    inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+    data=item.system.requirements
+    config=config
+  }}
+
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.restrictions
+    inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+    data=item.system.restrictions
+    config=config
+  }}
+
 </div>
-</div>
+
 <div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+  <h3>{{localize "ED.Item.Header.description"}}</h3>
+  {{> "systems/ed4e/templates/global/editor.hbs"}}
 </div>
