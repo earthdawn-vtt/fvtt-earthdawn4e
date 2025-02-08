@@ -380,6 +380,18 @@ export default class ActorEd extends Actor {
     this.processRoll( roll );
   }
 
+  async rollHalfMagic( options = {} ) {
+    const edRollOptions = EdRollOptions.fromActor(
+      {
+        testType:         "action",
+        rollType:         "halfMagic",
+      },
+      this
+    );
+    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
+    this.processRoll( roll );
+  }
+
   /**
    * @description                     The sequence that is rotaded
    * @param {object}    itemId        Id of the item to rotate the status of
