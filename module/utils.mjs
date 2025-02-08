@@ -519,7 +519,7 @@ export function validateEdid( value ) {
       message:      "any is a reserved EDID!",
     } );
   }
-  // if the value matches the regex we have likely a valid swid
+  // if the value matches the regex we have likely a valid edid
   if ( !value.match( SLUG_REGEX ) ) {
     return new foundry.data.validation.DataModelValidationFailure( {
       unresolved:   true,
