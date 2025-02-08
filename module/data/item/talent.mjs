@@ -300,8 +300,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       "system.knacks.available": [ ...this.knacks.available, data.uuid ],
     } );
     fromUuid( data.uuid ).then( knack => {
-      if ( !knack.system.sourceTalentUuid ) knack.update( {
-        "system.sourceTalentUuid": item.uuid,
+      if ( !knack.system.sourceTalent ) knack.update( {
+        "system.sourceTalent": item.edid,
       } );
     } );
     return data;

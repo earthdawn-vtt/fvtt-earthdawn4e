@@ -1,6 +1,8 @@
 import SystemDataModel from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import LearnableTemplate from "./learnable.mjs";
+import { ConstraintData } from "../../common/restrict-require.mjs";
+import EdIdField from "../../fields/edid-field.mjs";
 
 /**
  * Data model template for Knacks
@@ -15,58 +17,40 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceTalentUuid: new fields.DocumentUUIDField( {
-        required: false,
-        nullable: true,
-        trim:     true,
-        blank:    false,
-        validate: ( value, options ) => {
-          if ( fromUuidSync( value, {strict: false} )?.type !== "talent" ) return false;
-          return undefined; // undefined means do further validation
-        },
-        validationError: "must be of type 'talent'",
-        label:           this.labelKey( "Knack.sourceTalentUuid" ),
-        hint:            this.hintKey( "Knack.sourceTalentUuid" ),
+      sourceTalent: new EdIdField( {
+        label:           this.labelKey( "Knack.sourceTalent" ),
+        hint:            this.hintKey( "Knack.sourceTalent" ),
       } ),
-      minLevel:      new fields.NumberField( {
-        required: false,
-        nullable: true,
+      minLevel:         new fields.NumberField( {
+        required: true,
         positive: true,
         integer:  true,
-        min:      1,
         initial:  1,
         label:    this.labelKey( "Knack.minLevel" ),
         hint:     this.hintKey( "Knack.minLevel" ),
       } ),
-      lpCost:      new fields.NumberField( {
+      lpCost:           new fields.NumberField( {
         required: false,
-        initial:  0,
+        positive: true,
+        integer:  true,
         label:    this.labelKey( "Knack.lpCost" ),
         hint:     this.hintKey( "Knack.lpCost" ),
       } ),
-      restrictions: new fields.NumberField(),
-      requirements: new fields.NumberField(),
-      // TODO @Chris how do we do this
-      // restrictions: [], // there will be several options possible see issue #212
-      // requirements: [], // there will be several options possible see issue #212 
+      restrictions:     new fields.ArrayField(
+        new fields.TypedSchemaField( ConstraintData.TYPES ),
+        {
+          label: this.labelKey( "Knack.restrictions" ),
+          hint:  this.hintKey( "Knack.restrictions" ),
+        }
+      ),
+      requirements:     new fields.ArrayField(
+        new fields.TypedSchemaField( ConstraintData.TYPES ),
+        {
+          label: this.labelKey( "Knack.requirements" ),
+          hint:  this.hintKey( "Knack.requirements" ),
+        }
+      ),
     } );
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  get increasable() {
-    return false;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static _cleanData( source, options ) {
-    if ( source?.sourceTalentUuid ) {
-      source.sourceTalentUuid = fromUuidSync( source.sourceTalentUuid ) ? source.sourceTalentUuid : null;
-      if ( options ) options.source = source;
-    }
   }
 
   /* -------------------------------------------- */

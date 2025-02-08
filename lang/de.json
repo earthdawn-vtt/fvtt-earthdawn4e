@@ -759,7 +759,7 @@
           "Knack":{
             "isPathKnack":                                  "Ist dieser Kniff ein Pfadkniff?",
             "standardEffect":                               "Wird der Effekt des Ursprungtalentes mit ausgelöst?",
-            "sourceTalentUuid":                             "Von welchem Talent stammt dieser Kniff?",
+            "sourceTalent":                             "Von welchem Talent stammt dieser Kniff?",
             "minLevel":                                     "welchen Rang muss das Ursprungstalent mindestens haben?",
             "lpCost":                                       "Hat dieser Kniff abweichende LP Kosten zum Ursprungstalentrang?"
           },
@@ -987,7 +987,7 @@
           "Knack":{
             "isPathKnack":                                  "Pfad Kniff",
             "standardEffect":                               "Standard Effekt",
-            "sourceTalentUuid":                             "Ursprungstalent",
+            "sourceTalent":                             "Ursprungstalent",
             "minLevel":                                     "Min. Rang",
             "lpCost":                                       "LP Kosten"
           },
