@@ -1,0 +1,19 @@
+{{!--
+Expects parameters:
+@param data - The data model from the system field.
+@param fields - The schema fields of the data model of this field.
+@param fieldPath - The path to the field in the document, e.g. "system.extraThreads.0". If not provided, the path is generated automatically in the `toInput` method.
+@param config - The global ED4E configuration object.
+--}}
+
+<!-- ability, attribute, class -->
+
+{{#each fields as | field |}}
+  {{#unless (eq field.name "type")}}
+    {{formGroup field value=(lookup data field.name) name=(concat fieldPath "." field.name) localize=true}}
+  {{/unless}}
+{{else}}
+  <div class="undefined-field">
+    NO FIELDS HERE
+  </div>
+{{/each}}

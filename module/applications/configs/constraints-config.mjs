@@ -1,18 +1,18 @@
 import BaseConfigSheet from "./base-config-sheet.mjs";
-import { MetricData } from "../../data/common/metrics.mjs";
+import { ConstraintData } from "../../data/common/restrict-require.mjs";
 
 const { getProperty } = foundry.utils;
 
 /**
- * Base application for configuring data fields that use {@link MetricData} and its subclasses.
+ * Base application for configuring data fields that use {@link ConstraintData} and its subclasses.
  */
-export default class SpellEnhancementsConfig extends BaseConfigSheet {
+export default class ConstraintsConfig extends BaseConfigSheet {
 
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
-    classes: [ "spell-enhancements-config" ],
+    classes: [ "constraints-config" ],
     window:  {
-      title: "ED.Dialogs.Configs.SpellEnhancement.title",
+      title: "ED.Dialogs.Configs.Constraints.title",
     },
     form:    {
       handler: this.#onSubmitForm,
@@ -24,7 +24,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /** @inheritDoc */
   static PARTS = {
     config: {
-      template: "systems/ed4e/templates/configs/spell-enhancements-config.hbs",
+      template: "systems/ed4e/templates/configs/constraints-config.hbs",
     },
   };
 
@@ -33,24 +33,24 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /* -------------------------------------------- */
 
   /**
-   * The data for the enhancements field on the document's system property.
+   * The data for the constraints field on the document's system property.
    * @type {object}
    */
-  get enhancements() {
+  get constraints() {
     return getProperty( this.document.system, this.keyPath );
   }
 
   /**
-   * The schema data field for the enhancements field on the document's system property.
+   * The schema data field for the constraints field on the document's system property.
    * @type {DataField}
    */
-  get enhancementsField() {
+  get constraintsField() {
     return this.document.system.schema.fields[ this.keyPath ];
   }
 
   /**
-   * Path to the extraThreads or extraSuccess data on the document's system property.
-   * E.g., "extraThreads" for the document type "spell" system.extraThreads field.
+   * Path to the requirements or restrictions data on the document's system property.
+   * E.g., "requirements" for the document type "knackAbility" system.requirements field.
    * @type {string}
    */
   get keyPath() {
@@ -69,10 +69,10 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     newContext.item = newContext.document;
 
     newContext.keyPath = this.keyPath;
-    newContext.enhancements = this.enhancements;
-    newContext.enhancementsField = this.enhancementsField;
+    newContext.constraints = this.constraints;
+    newContext.constraintsField = this.constraintsField;
 
-    newContext.availableEnhancements = Object.values( MetricData.TYPES );
+    newContext.availableConstraints = Object.values( ConstraintData.TYPES );
 
     return newContext;
   }
@@ -94,8 +94,8 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     const data = foundry.utils.expandObject( formData.object );
 
     const updates = Array.from(
-      Object.values( this.enhancements ),
-      ( element, index ) => new this.enhancements[ index ].constructor( data.system[ this.keyPath ][ index ] )
+      Object.values( this.constraints ),
+      ( element, index ) => new this.constraints[ index ].constructor( data.system[ this.keyPath ][ index ] )
     );
 
     await this.document.update( {

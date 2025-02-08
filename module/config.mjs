@@ -627,6 +627,34 @@ ED4E.attributeIncreaseRules = {
 };
 preLocalize( "attributeIncreaseRules" );
 
+ED4E.constraints = {
+  ability: {
+    label:         "ED.Config.Constraints.ability",
+    inputTemplate: "systems/ed4e/templates/form/input/base-constraint.hbs",
+  },
+  attribute: {
+    label:         "ED.Config.Constraints.attribute",
+    inputTemplate: "systems/ed4e/templates/form/input/base-constraint.hbs",
+  },
+  class: {
+    label:         "ED.Config.Constraints.class",
+    inputTemplate: "systems/ed4e/templates/form/input/base-constraint.hbs",
+  },
+  language: {
+    label:         "ED.Config.Constraints.language",
+    inputTemplate: "",
+  },
+  namegiver: {
+    label:         "ED.Config.Constraints.namegiver",
+    inputTemplate: "",
+  },
+  relation: {
+    label:         "ED.Config.Constraints.relation",
+    inputTemplate: "",
+  },
+};
+preLocalize( "constraints", { key: "label", sort: true } );
+
 
 /* -------------------------------------------- */
 /*  Character Generation                        */

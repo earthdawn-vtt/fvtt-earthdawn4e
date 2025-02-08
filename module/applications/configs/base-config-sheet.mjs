@@ -1,3 +1,5 @@
+import ED4E from "../../config.mjs";
+
 const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
@@ -13,5 +15,20 @@ export default class BaseConfigSheet extends HandlebarsApplicationMixin( Documen
       submitOnChange: true
     }
   };
+
+  /** @inheritDoc */
+  async _preparePartContext( partId, context, options ) {
+    const newContext = await super._preparePartContext( partId, context, options );
+
+    if ( this.document ) {
+      newContext.document = this.document;
+      newContext.system = this.document.system;
+      newContext.options = this.options;
+      newContext.systemFields = this.document.system.schema.fields;
+      newContext.config = ED4E;
+    }
+
+    return newContext;
+  }
 
 }

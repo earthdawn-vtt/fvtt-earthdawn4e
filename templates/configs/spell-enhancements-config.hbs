@@ -16,17 +16,19 @@
 
   <hr>
 
-  {{#each enhancements}}
-    <fieldset>
-      <legend>{{lookup (lookup ../config.spellEnhancements this.type) "label"}}</legend>
-      {{> "systems/ed4e/templates/form/group/general.hbs"
-        dataField=this.schema
-        inputTemplate=(lookup (lookup ../config.spellEnhancements this.type) "inputTemplate")
-        data=this
-        fields=this.schema.fields
-        fieldPath=(concat "system." @root.keyPath "." @index)
-        config=config
-      }}
-    </fieldset>
-  {{/each}}
+  <div class="scrollable">
+    {{#each enhancements}}
+      <fieldset>
+        <legend>{{lookup (lookup ../config.spellEnhancements this.type) "label"}}</legend>
+        {{> "systems/ed4e/templates/form/group/general.hbs"
+          dataField=this.schema
+          inputTemplate=(lookup (lookup ../config.spellEnhancements this.type) "inputTemplate")
+          data=this
+          fields=this.schema.fields
+          fieldPath=(concat "system." @root.keyPath "." @index)
+          config=config
+        }}
+      </fieldset>
+    {{/each}}
+  </div>
 </section>

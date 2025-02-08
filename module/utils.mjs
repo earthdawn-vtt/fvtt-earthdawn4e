@@ -636,7 +636,8 @@ export async function preloadHandlebarsTemplates() {
     // Form Inputs and Groups
     "systems/ed4e/templates/form/input/area-metric.hbs",
     "systems/ed4e/templates/form/input/base-metric.hbs",
-    "systems/ed4e/templates/form/input/spell-enhancement.hbs",
+    "systems/ed4e/templates/form/input/base-constraint.hbs",
+    "systems/ed4e/templates/form/input/configurable-array-summary.hbs",
     "systems/ed4e/templates/form/group/general.hbs",
 
     // Character Generation

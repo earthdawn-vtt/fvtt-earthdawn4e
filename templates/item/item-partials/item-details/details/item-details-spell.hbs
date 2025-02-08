@@ -37,16 +37,18 @@
 
     {{> "systems/ed4e/templates/form/group/general.hbs"
       dataField=systemFields.extraSuccess
-      inputTemplate="systems/ed4e/templates/form/input/spell-enhancement.hbs"
+      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
       data=item.system.extraSuccess
       config=config
+      configType="spellEnhancement"
     }}
 
     {{> "systems/ed4e/templates/form/group/general.hbs"
       dataField=systemFields.extraThreads
-      inputTemplate="systems/ed4e/templates/form/input/spell-enhancement.hbs"
+      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
       data=item.system.extraThreads
       config=config
+      configType="spellEnhancement"
     }}
 
   </fieldset>

@@ -50,6 +50,13 @@ export class ConstraintData extends SparseDataModel {
     };
   }
 
+  get summaryString() {
+    return [
+      `<em>${ ED4E.constraints[ this.constructor.TYPE ].label }</em>`,
+      "&emsp;",
+      ...Object.values( this )
+    ].join( " " );
+  }
 }
 
 export class AbilityConstraintData extends ConstraintData {
@@ -89,6 +96,7 @@ export class AttributeConstraintData extends ConstraintData {
       attribute: new fields.StringField( {
         required: true,
         choices:  ED4E.attributes,
+        initial:  "str",
         label:    this.labelKey( "AttributeConstraint.attribute" ),
         hint:     this.hintKey( "AttributeConstraint.attribute" ),
       } ),
@@ -113,16 +121,16 @@ export class ClassConstraintData extends ConstraintData {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      ability: new EdIdField( {
-        label:    this.labelKey( "ClassConstraint.ability" ),
-        hint:     this.hintKey( "ClassConstraint.ability" ),
+      class: new EdIdField( {
+        label:    this.labelKey( "ClassConstraint.class" ),
+        hint:     this.hintKey( "ClassConstraint.class" ),
       } ),
-      rank: new fields.NumberField( {
+      level: new fields.NumberField( {
         required: false,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "ClassConstraint.rank" ),
-        hint:     this.hintKey( "ClassConstraint.rank" ),
+        label:    this.labelKey( "ClassConstraint.level" ),
+        hint:     this.hintKey( "ClassConstraint.level" ),
       } ),
     } );
   }
@@ -139,10 +147,10 @@ export class LanguageConstraintData extends ConstraintData {
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
       language: new fields.StringField( {
-        required: true,
         // this needs to be adjusted? Or will be fine if the config <-> settings interaction is cleared up
         // or, prepare choices during rendering...
         choices:  ED4E.languages,
+        initial:  "dwarf",
         label:    this.labelKey( "LanguageConstraint.language" ),
         hint:     this.hintKey( "LanguageConstraint.language" ),
       } ),

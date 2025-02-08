@@ -328,6 +328,14 @@
         "throwing":                                                 "Wurfwaffen Fernkampf",
         "unarmed":                                                  "Unbewaffneter Nahkampf"
       },
+      "Constraints": {
+        "ability":                                                "Fähigkeit",
+        "attribute":                                              "Attribut",
+        "class":                                                  "Berufung",
+        "language":                                               "Sprache",
+        "namegiver":                                              "Namensgeber",
+        "relation":                                               "Beziehung"
+      },
       "curseType": {
         "minor":                                                    "Kleiner Fluch",
         "major":                                                    "Großer Fluch",
@@ -1159,7 +1167,7 @@
           },
           "AttributeConstraint": {
             "attribute":                                  "Das Attribute das vorausgesetzt wird",
-            "rank":                                       "Der Wert (nicht Stufe!) des Attributs der vorausgesetzt wird"
+            "value":                                      "Der Wert (nicht Stufe!) des Attributs der vorausgesetzt wird"
           },
           "BaseUnit": {
             "special":                                     "Beschreibung des speziellen Wertes",
@@ -1169,7 +1177,7 @@
           },
           "ClassConstraint": {
             "class":                                      "Die ED-ID der Berufung die vorausgesetzt wird",
-            "rank":                                       "Optional: ein Mindestrang/-kreis den die Berufung haben muss"
+            "level":                                       "Optional: ein Mindestrang/-kreis den die Berufung haben muss"
           },
           "DurationUnit": {
             "unit":                                        "Die Zeiteinheit der Dauer"
@@ -1447,6 +1455,10 @@
         "SpellEnhancement": {
           "title":                                "Konfiguration: Zauber Verstärkung",
           "hint":                          "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)"
+        },
+        "Constraints": {
+          "title":                                "Konfiguration: Einschränkungen",
+          "hint":                          "Um eine Einschränkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)"
         }
       },
       "Errors": {
