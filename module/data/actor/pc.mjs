@@ -1,10 +1,11 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
-import { getArmorFromAttribute, getAttributeStep, getDefenseValue, mapObject, sum, sumProperty } from "../../utils.mjs";
+import { getArmorFromAttribute, getAttributeStep, getDefenseValue, getSingleGlobalItemByEdid, mapObject, sum, sumProperty } from "../../utils.mjs";
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
 import ED4E from "../../config.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
+import { getSetting } from "../../settings.mjs";
 const { DialogV2 } = foundry.applications.api;
 
 /**
@@ -163,6 +164,25 @@ export default class PcData extends NamegiverTemplate {
         return documentData;
       }
     );
+
+    if ( classDocument.type === "questor" ) {
+      const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
+      
+      if ( !abilities.find( item => item.system.edid === edidQuestorDevotion ) ) {
+        
+        let questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
+        questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
+        
+        await questorDevotion.update( {
+          system: {
+            edid:  edidQuestorDevotion,
+            level: 1,
+          },
+        } );
+        
+        abilities.push( questorDevotion );
+      }
+    }
     const spellDocuments = await generation.spellDocuments;
 
     const equipmentUUIDs = await generation.equipment;

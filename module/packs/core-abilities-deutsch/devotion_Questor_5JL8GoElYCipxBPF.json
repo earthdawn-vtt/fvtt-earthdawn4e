@@ -1,0 +1,64 @@
+{
+  "folder": "sH5UmKPeJxj8nSb6",
+  "type": "devotion",
+  "system": {
+    "rollType": "ability",
+    "difficulty": {
+      "target": "",
+      "group": "",
+      "fixed": 10
+    },
+    "description": {
+      "value": "<p>Dieses erste Geschenk, das jemand erhält, wenn er zu einem Questor wird, erlaubt es ihm, einmal pro Tag eine Stunde lang mit seiner Passion zu kommunizieren. Dies kann benutzt werden, um entweder die Verbindung und Weihe des Questors zu bekräftigen oder um Führung durch die Passion zu ersuchen. Die Bekräftigung seiner Weihe gewährt dem Questor Weihepunkte, die seiner Kategorie entsprechen (einen für Anhänger, zwei für Jünger, drei für Vorbild). Wenn der Questor seine Verbindung bekräftigt, kann er auch den Rang einer Weihekraft erhöhen, wie unter Weihekräfte Steigern, S. 66, beschrieben.</p><p>Alternativ kann der Questor um eine allgemeine oder spezifische Führung bitten, z. B. was die Passion vom Questor verlangt oder wie er bei etwas, das mit den Idealen der Passion zusammenhängt, vorgehen soll. Der Questor legt eine Questor-Probe (10) ab, die von der Tabelle Astrales Spüren (Spielerhandbuch, S. 123f) modifiziert wird; der Mindestwurf für Questoren der Wahnsinnigen Passionen wird nicht verändert. Die Passion bietet eine Form der Einsicht für jeden Erfolg, ob dies nun das Ideal offenbart, das die Passion ausgelebt sehen möchte, die Richtung, in die der Questor reisen sollte, einen Hinweis, den die Passion benutzen wird, um die Art einer Queste zu identifizieren, usw.</p><p>Alternativ kann die Passion dem Questor erlauben, eine Frage pro Erfolg zu stellen (oder den verbleibenden Erfolg, wenn Einsicht gegeben wurde). Diese Fragen müssen in direktem Zusammenhang mit den Idealen der Passion stehen. Die Information sollte nützlich sein, ist aber oft kryptisch.</p><p>Die anderen Weihekräfte des Questors können nicht über seinen Questor-Rang hinausgehen. Die maximalen Weihepunkte des Questors sind gleich seinem Questor-Rang x 10.</p>"
+    },
+    "edid": "questor-devotion",
+    "action": "sustained",
+    "strain": 0,
+    "attribute": "cha",
+    "tier": "novice",
+    "source": {
+      "class": null,
+      "atLevel": null
+    },
+    "level": 0,
+    "rollTypeDetails": {
+      "ability": {},
+      "attack": {
+        "weaponItemStatus": [],
+        "weaponType": "melee"
+      },
+      "damage": {},
+      "effect": {},
+      "initiative": {},
+      "reaction": {
+        "defenseType": "physical"
+      },
+      "recovery": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "devotionRequired": false,
+    "durability": 0
+  },
+  "name": "Questor",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "rPFgd0diupqFkxKD": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.334",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1738882916117,
+    "modifiedTime": 1738882916117,
+    "lastModifiedBy": "rPFgd0diupqFkxKD"
+  },
+  "_id": "5JL8GoElYCipxBPF",
+  "sort": 0,
+  "_key": "!items!5JL8GoElYCipxBPF"
+}

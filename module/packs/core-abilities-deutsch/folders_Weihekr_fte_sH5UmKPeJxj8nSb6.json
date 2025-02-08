@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Weihekräfte",
+  "color": null,
+  "sorting": "a",
+  "_id": "sH5UmKPeJxj8nSb6",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.334",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1738882910437,
+    "modifiedTime": 1738882910437,
+    "lastModifiedBy": "rPFgd0diupqFkxKD"
+  },
+  "_key": "!folders!sH5UmKPeJxj8nSb6"
+}
