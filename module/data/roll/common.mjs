@@ -279,6 +279,13 @@ export default class EdRollOptions extends SparseDataModel {
     };
   }
 
+  /**
+   * @type { ActorEd }
+   */
+  get rollingActor() {
+    return fromUuidSync( this.rollingActorUuid );
+  }
+
   get totalTarget() {
     return Math.max(
       this.target.base + sum( Object.values( this.target.modifiers ) ),
