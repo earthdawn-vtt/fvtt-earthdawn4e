@@ -29,7 +29,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
       submitOnChange: true,
     },
     actions:  {
-      halfmagic:           ActorSheetEdNamegiver.rollHalfMagic,
+      halfMagic:           ActorSheetEdNamegiver.rollHalfMagic,
     },
   };
 
