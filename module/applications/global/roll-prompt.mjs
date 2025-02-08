@@ -143,7 +143,8 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     return {
       ...context,
       ...this.edRollOptions,
-      buttons: this.buttons,
+      rollOptions: this.edRollOptions,
+      buttons:     this.buttons,
       CONFIG,
     };
   }

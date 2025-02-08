@@ -6,9 +6,7 @@ export default class HalfMagicRollOptions extends EdRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      discipline: new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
+      discipline: new fields.StringField( {
         label:    this.labelKey( "HalfMagicRollOptions.discipline" ),
         hint:     this.hintKey( "HalfMagicRollOptions.discipline" ),
       } ),
@@ -32,5 +30,17 @@ export default class HalfMagicRollOptions extends EdRollOptions {
 
     return newContext;
   }
+
+  /**
+   * @type { FormSelectOption[] }
+   */
+  get disciplineOptions() {
+    const disciplines = {};
+    this.rollingActor.itemTypes.discipline.forEach( discipline => {
+      disciplines[discipline.uuid] = discipline.name;
+    } );
+    return disciplines;
+  }
+
 
 }
