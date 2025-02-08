@@ -997,8 +997,9 @@ ED4E.rollTypes = {
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
   },
   halfMagic: {
-    label:            "ED.Config.rollTypes.halfMagic",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfMagic-roll-flavor.hbs",
+    label:              "ED.Config.rollTypes.halfMagic",
+    flavorTemplate:     "systems/ed4e/templates/chat/chat-flavor/halfMagic-roll-flavor.hbs",
+    rollPromptTemplate: "systems/ed4e/templates/prompts/roll-prompts/half-magic-roll-prompt.hbs",  
   },
   initiative: {
     label:            "ED.Config.rollTypes.initiative",

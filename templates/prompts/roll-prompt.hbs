@@ -90,7 +90,7 @@
                                         name="devotion.step" data-type="number" />
                         </div>
                 </div>
-        <div class="undefined">
-                clickable options like "attack to stun"
+        <div class="specials">
+                {{> (lookup (lookup CONFIG.ED4E.rollTypes rollType ) "rollPromptTemplate")}}
         </div>
 </div>

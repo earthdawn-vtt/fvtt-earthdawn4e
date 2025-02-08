@@ -813,6 +813,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/legend-points/history-spend.hbs",
 
     // prompts
+    "systems/ed4e/templates/prompts/roll-prompts/half-magic-roll-prompt.hbs",
   ];
 
   const paths = {};
