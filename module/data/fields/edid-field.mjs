@@ -1,6 +1,6 @@
 import ED4E from "../../config.mjs";
 import { getLocalizeKey } from "../abstract.mjs";
-import { slugify, validateEdid } from "../../utils.mjs";
+import { validateEdid } from "../../utils.mjs";
 
 /**
  * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
@@ -23,7 +23,7 @@ export default class EdIdField extends foundry.data.fields.StringField {
    * @override
    */
   clean( value, options ) {
-    const slug = slugify( value );
+    const slug = value?.slugify( {strict: true,lowercase: true} );
     // only return slug if non-empty so empty slugs will be shown as errors
     return super.clean( slug ? slug : value, options );
   }

@@ -37,29 +37,6 @@ export function getDefenseValue( attributeValue ) {
 /* -------------------------------------------- */
 
 /**
- * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}). Takes an input
- * and returns the slugged string of it.
- * From {@link https://itnext.io/whats-a-slug-f7e74b6c23e0}:
- * A slug is a human-readable, unique identifier, used to identify a resource instead of a less human-readable
- * identifier like an id. You use a slug when you want to refer to an item while preserving the ability to
- * see, at a glance, what the item is.
- * @param { * }   input The input that will be converted to a string and slugified.
- * @returns { string }  The sluggified string.
- */
-export function slugify( input ) {
-  return String( input )
-    .normalize( "NFKD" ) // split accented characters into their base characters and diacritical marks
-    .replace( /[\u0300-\u036f]/g, "" ) // remove all the accents, which happen to be all in the \u03xx UNICODE block.
-    .toLowerCase() // convert to lowercase
-    .replace( /[^a-z0-9 -]/g, "" ) // remove non-alphanumeric characters
-    .replace( /\s+/g, "-" ) // replace spaces with hyphens
-    .replace( /-+/g, "-" ) // remove consecutive hyphens
-    .replace( /^-+/g, "" ) // remove leading hyphens
-    .replace( /-+$/g, "" ) // remove trailing hyphens
-    .trim();
-}
-
-/**
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
  * Returns an array of items that match a given EDID and optionally an item type.
  * Searched documents are world and compendium items.
