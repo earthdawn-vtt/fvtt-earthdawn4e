@@ -996,9 +996,9 @@ ED4E.rollTypes = {
     label:            "ED.Config.rollTypes.effect",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
   },
-  halfmagic: {
-    label:            "ED.Config.rollTypes.halfmagic",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfmagic-roll-flavor.hbs",
+  halfMagic: {
+    label:            "ED.Config.rollTypes.halfMagic",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfMagic-roll-flavor.hbs",
   },
   initiative: {
     label:            "ED.Config.rollTypes.initiative",
@@ -1355,7 +1355,7 @@ ED4E.icons = {
   damage:           "fa-skull-crossbones",
   dice:             "fa-dice",
   effect:           "fa-biohazard",
-  halfmagic:        "fa-hat-wizard",
+  halfMagic:        "fa-hat-wizard",
   initiative:       "fa-running",
   itemHistory:      "fa-history",
   ok:               "fa-check",
