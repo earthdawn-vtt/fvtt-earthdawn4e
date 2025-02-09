@@ -190,13 +190,12 @@ export default class QuestorData extends ClassTemplate.mixin(
   /*  Drop Events                                 */
   /* -------------------------------------------- */
 
-  _onDropDevotion( event, data ) {
+  async _onDropDevotion( event, document ) {
     const questorItem = this.parent;
-    questorItem.update( {
-      "system.questorDevotion": data.uuid,
+    await questorItem.update( {
+      "system.questorDevotion": document.uuid,
     } );
-
-    return data;
+    return true;
   }
 
   /* -------------------------------------------- */

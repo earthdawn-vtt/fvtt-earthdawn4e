@@ -555,17 +555,23 @@ export class ItemDataModel extends SystemDataModel {
   /*  Drop Events                                 */
   /* -------------------------------------------- */
 
-  drop( event, data ) {
-    const documentData = fromUuidSync( data.uuid );
+  /**
+   * Handle a dropped document on the ItemSheet belonging to this data models parent document.
+   * @param {DragEvent} event         The initiating drop event
+   * @param {Document} document       The resolved Document class
+   * @returns {Promise<boolean>}      True if drop handling should continue, false if it should be cancelled.
+   * @protected
+   */
+  _onDropDocument( event, document ) {
     const functionMapping = {
       devotion: "_onDropDevotion",
       knack:    "_onDropKnack",
     };
 
     return callIfExists(
-      this, functionMapping[documentData.type],
-      event, data
-    ) ?? data;
+      this, functionMapping[document.type],
+      event, document
+    ) ?? true;
   }
 
 
