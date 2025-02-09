@@ -1,5 +1,6 @@
 import ED4E from "../../config.mjs";
 import SpellEnhancementsConfig from "../configs/spell-enhancements-config.mjs";
+import ConstraintsConfig from "../configs/constraints-config.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -143,6 +144,13 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
       case "extraSuccess":
       case "extraThreads":
         app = new SpellEnhancementsConfig( {
+          document: this.document,
+          type:     target.dataset.configType,
+        } );
+        break;
+      case "requirements":
+      case "restrictions":
+        app = new ConstraintsConfig( {
           document: this.document,
           type:     target.dataset.configType,
         } );

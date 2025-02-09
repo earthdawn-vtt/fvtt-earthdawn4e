@@ -1,14 +1,14 @@
-import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
+import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 
 /**
  * Data model template with information on talent items.
  * @mixes ItemDescriptionTemplate
  */
-export default class TalentData extends AbilityTemplate.mixin(
+export default class TalentData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
@@ -300,8 +300,8 @@ export default class TalentData extends AbilityTemplate.mixin(
       "system.knacks.available": [ ...this.knacks.available, data.uuid ],
     } );
     fromUuid( data.uuid ).then( knack => {
-      if ( !knack.system.sourceTalentUuid ) knack.update( {
-        "system.sourceTalentUuid": item.uuid,
+      if ( !knack.system.sourceTalent ) knack.update( {
+        "system.sourceTalent": item.edid,
       } );
     } );
     return data;

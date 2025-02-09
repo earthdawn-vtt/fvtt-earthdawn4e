@@ -1,5 +1,7 @@
+{{#if systemFields.level}}
 {{!-- Rank --}}
-{{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+  {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+{{/if}}
 {{!-- Strain --}}
 {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
 {{!-- Attribute --}}

@@ -459,7 +459,7 @@
                     "Knack":{
                         "isPathKnack":                                  "Path Knack",
                         "standardEffect":                               "Standard Effect",
-                        "sourceTalentUuid":                             "Source Talent",
+                        "sourceTalent":                             "Source Talent",
                         "minLevel":                                     "Min. Rank",
                         "lpCost":                                       "LP cost"
                     },
@@ -648,7 +648,7 @@
                     "Knack":{
                         "isPathKnack":                                  "Path Knack",
                         "standardEffect":                               "Standard Effect",
-                        "sourceTalentUuid":                             "Source Talent",
+                        "sourceTalent":                             "Source Talent",
                         "minLevel":                                     "Min. Rank",
                         "lpCost":                                       "LP cost"  
                     },

@@ -1,12 +1,12 @@
-import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config.mjs";
+import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 
 /**
  * Data model template with information on Skill items.
  * @mixes ItemDescriptionTemplate
  */
-export default class SkillData extends AbilityTemplate.mixin(
+export default class SkillData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 

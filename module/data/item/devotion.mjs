@@ -1,13 +1,13 @@
-import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config.mjs";
 import { createContentLink } from "../../utils.mjs";
+import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 const { DialogV2 } = foundry.applications.api;
 
 /**
  * Data model template with information on Devotion items.
  */
-export default class DevotionData extends AbilityTemplate.mixin(
+export default class DevotionData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
