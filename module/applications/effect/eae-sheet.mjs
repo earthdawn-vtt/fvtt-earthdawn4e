@@ -29,9 +29,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     changes:  { template: "systems/ed4e/templates/effect/changes.hbs" },
   };
 
-  /* -------------------------------------------- */
-  /*  Form Handling                               */
-  /* -------------------------------------------- */
+  // region Form Handling
 
   /** @inheritDoc */
   _prepareSubmitData( event, form, formData ) {
@@ -39,6 +37,12 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     submitData.duration = submitData.system.duration;
     // submitData.changes = this._prepareChangesSubmitData( submitData.system.changes );
     return submitData;
+  }
+
+  /** @inheritDoc */
+  _processFormData( event, form, formData ) {
+    const data = super._processFormData( event, form, formData );
+    return this._toggleTransfer( event, data );
   }
 
   _prepareChangesSubmitData( changes ) {
@@ -50,9 +54,34 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Rendering                                   */
-  /* -------------------------------------------- */
+
+  /**
+   * Toggles the transfer property based on the changed property in the form.
+   * @param {Event} event - The event that triggered the change.
+   * @param {object} submitData - The data being submitted from the form.
+   * @returns {object} The modified submitData with the toggled transfer property.
+   */
+  _toggleTransfer( event, submitData ) {
+    const changedProperty = event?.target?.name;
+    if ( changedProperty === "system.transferToTarget" && submitData.system?.transferToTarget === true )
+      submitData.transfer = false;
+    if ( changedProperty === "transfer" && submitData.transfer === true )
+      submitData.system.transferToTarget = false;
+    return submitData;
+  }
+
+  // endregion
+
+
+  // region Rendering
+
+  /** @inheritDoc */
+  async _onRender( context, options ) {
+    super._onRender( context, options );
+
+    // ensure mutually exclusiveness for `system.transferToTarget` and `transfer` (to actor)
+    // this.element.querySelector( "[name='system.transferToTarget']" ).addEventListener( "change", this._onTransferChange.bind( this ) );
+  }
 
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
@@ -83,9 +112,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     return partContext;
   }
 
-  /* -------------------------------------------- */
-  /*  Handlers                                    */
-  /* -------------------------------------------- */
+  // endregion
+
+
+  // region Event Handlers
 
   /**
    * Add a new change to the effect's changes array.
@@ -105,5 +135,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @type {ApplicationClickAction}
    */
   static async #onDeleteChange( event ) {}
+
+  // endregion
 
 }
