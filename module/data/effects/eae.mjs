@@ -83,6 +83,8 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
   /** @inheritDoc */
   async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
     if ( changes.system?.changes && !changes.changes ) {
       changes.changes = await this._prepareChangesData( changes.system.changes );
     }
