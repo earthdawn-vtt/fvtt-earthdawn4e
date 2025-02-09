@@ -97,8 +97,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           }
         ),
       }, {
-        required: false,
         nullable: false,
+        initial:  { learned: [], available: [] },
         label:    this.labelKey( "Ability.talentKnacks" ),
         hint:     this.hintKey( "Ability.talentKnacks" )
       } )

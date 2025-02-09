@@ -564,8 +564,10 @@ export class ItemDataModel extends SystemDataModel {
    */
   _onDropDocument( event, document ) {
     const functionMapping = {
-      devotion: "_onDropDevotion",
-      knack:    "_onDropKnack",
+      devotion:      "_onDropDevotion",
+      knackAbility:  "_onDropKnack",
+      knackKarma:    "_onDropKnack",
+      knackManeuver: "_onDropKnack",
     };
 
     return callIfExists(

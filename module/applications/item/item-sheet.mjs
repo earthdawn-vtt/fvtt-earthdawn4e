@@ -319,6 +319,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
    * @protected
    */
   async _onDropDocument( event, document ) {
+    if ( !this.item.system._onDropDocument( event, document ) ) return;
     switch ( document.documentName ) {
       case "ActiveEffect":
         return this._onDropActiveEffect( event, /** @type { ActiveEffect } */ document );
