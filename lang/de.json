@@ -1644,6 +1644,9 @@
         "navigator": "Navigator",
         "spellEnhancement": "Zauber Verstärkung",
         "talentSource": "Talent Ursprung",
+        "talentKnacks": "Kniffe",
+        "talentKnacksAvailable": "Verfügbare Kniffe",
+        "talentKnacksLearned": "Gelernte Kniffe",
         "targetingDetails":   "Ziel Details",
         "type": "Typ"
       },
