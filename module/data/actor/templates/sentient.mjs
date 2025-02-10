@@ -9,25 +9,6 @@ import MappingField from "../../fields/mapping-field.mjs";
  */
 export default class SentientTemplate extends CommonTemplate {
 
-  static {
-    this._EAE_EXCLUDE_KEYS = [
-      "system.healthRate",
-      "system.isMob",
-      "system.condition",
-      "system.relations",
-      "system.characteristics.defenses.baseValue",
-      "system.characteristics.armor.baseValue",
-      "system.characteristics.recoveryTestsResource.stunRecoveryAvailable",
-      "system.health.damage.total",
-      "system.devotion.value",
-      "system.karma.value",
-      "system.karma.useAlways",
-      "system.karma.freeAttributePoints",
-      "system.encumbrance.value",
-      "system.encumbrance.status",
-    ];
-    this.initEAE();
-  }
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

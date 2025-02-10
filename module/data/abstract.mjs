@@ -1,5 +1,4 @@
 import { callIfExists } from "../utils.mjs";
-import { buildSelectOptionsFromModel } from "../applications/_module.mjs";
 
 /**
  * Taken from DnD5e ( https://github.com/foundryvtt/dnd5e )
@@ -21,38 +20,6 @@ import { buildSelectOptionsFromModel } from "../applications/_module.mjs";
  * via SystemDataModel.mixin.
  */
 export default class SystemDataModel extends foundry.abstract.TypeDataModel {
-
-  static {
-    /**
-     * The fields of the schema that should be excluded from the Earthdawn Active Effect keys. Given as field paths.
-     * @type {string[]}
-     */
-    this._EAE_EXCLUDE_KEYS = [];
-  }
-
-  static initEAE() {
-    for ( const cls of foundry.utils.getParentClasses( this ) ) {
-      if ( cls._EAE_EXCLUDE_KEYS ) this._EAE_EXCLUDE_KEYS.push( ...cls._EAE_EXCLUDE_KEYS );
-    }
-  }
-
-  constructor( data={}, options={} ) {
-    super( data, options );
-
-    // in constructor because I don't know how to do this in a static block/initializer, it always references this class, not the subclass
-    /**
-     * The select options for {@link EarthdawnActiveEffect}s, representing the fields of the schema.
-     * @type {FormSelectOption[]}
-     */
-    this.constructor.EAE_SELECT_OPTIONS = buildSelectOptionsFromModel(
-      this.schema.fields
-    ).filter(
-      field => !this.constructor._EAE_EXCLUDE_KEYS.some(
-        path => field.value.startsWith( path )
-      )
-    );
-
-  }
 
   /**
    * A bound version of {@link getLocalizeKey}. Used to automatically get the
