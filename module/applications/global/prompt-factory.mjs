@@ -147,6 +147,7 @@ class ActorPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
     chooseDiscipline: this._chooseDisciplinePrompt.bind( this ),
+    createConnection: this._createConnectionPrompt.bind( this ),
     drawWeapon:       this._drawWeaponPrompt.bind( this ),
     jumpUp:           this._jumpUpPrompt.bind( this ),
     knockDown:        this._knockDownPrompt.bind( this ),
@@ -267,6 +268,46 @@ class ActorPromptFactory extends PromptFactory {
       ],
       content: await renderTemplate(
         "systems/ed4e/templates/actor/prompts/take-damage-prompt.hbs",
+        formFields
+      ),
+      rejectClose: false
+    } );
+  }
+
+  async _createConnectionPrompt() {
+    const formFields = {
+      connectionUuid: new fields.DocumentUuidField( {
+        required: true,
+        label:    "ED.Dialogs.damage",
+        hint:     "localize: The amount of damage to take"
+      } ),
+    };
+    return DialogClass.wait( {
+      rjectClose: false,
+      id:         "create-connection-prompt",
+      uniqueId:   String( ++globalThis._appId ),
+      classes:    [ "earthdawn4e", "create-connection-prompt", "create-connection" ],
+      window:     {
+        title:       "ED.Dialogs.Title.createConnection",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: [
+        {
+          action:   "createConnection",
+          label:    "ED.Dialogs.Buttons.createConnection",
+          icon:     "fa-solid fa-link",
+          class:    "createConnection default button-createConnection",
+          default:  false,
+          callback: ( event, button, _ ) => {
+            const formData = new FormDataExtended( button.form );
+            return formData.object;
+          }
+        },
+        this.constructor.cancelButton
+      ],
+      content: await renderTemplate(
+        "systems/ed4e/templates/actor/prompts/add-connection-prompt.hbs",
         formFields
       ),
       rejectClose: false

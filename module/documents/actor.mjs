@@ -1159,7 +1159,6 @@ export default class ActorEd extends Actor {
     return this._promptFactory.getPrompt( promptType );
   }
 
-
   /* -------------------------------------------- */
   /*            Legend Point Tracking             */
   /* -------------------------------------------- */

@@ -29,6 +29,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
       deleteChild:        ActorSheetEd._onDeleteChild,
       displayChildToChat: ActorSheetEd._onDisplayChildToChat,
       editChild:          ActorSheetEd._onEditChild,
+      addConnection:      ActorSheetEd._onAddConnection,
     },
     form: {
       submitOnChange: true,
@@ -212,4 +213,8 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
   }
 
+  static async _onAddConnection( event, target ) {
+    const newConnection = await this.document.getPrompt( "createConnection" );
+    console.log( newConnection );
+  }
 }

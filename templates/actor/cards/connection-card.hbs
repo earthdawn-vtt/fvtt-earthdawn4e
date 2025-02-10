@@ -1,0 +1,18 @@
+<div class="card__connection">
+    {{log this}}
+    <div class="connection-card__grid--container item-id" data-item-id="{{_id}}">
+        <div class="connection-card__grid--item icons__connection">
+            <img class="connection-icon__visible" src="{{img}}" height="25" width="25" />
+        </div>
+        <div class="connection-card__grid--item text__alignment--center">{{name}}</div>
+        <div class="connection-card__grid--item text__alignment--center">{{attitude}}</div>
+        <div class="connection-card__grid--item text__alignment--center">
+            <button class="start-social-interaction" data-action="socialInteraction">{{localize "ED.Buttons.socialinteraction"}}</button>
+        </div>
+        <div class="connection-card__grid--item text__alignment--center">{{connectionUuid}}</div>
+        <div class="connection-card__grid--item text__alignment--center"></div>
+        <div class="connection-card__grid--item text__alignment--center">
+            {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
+        </div>
+    </div>
+</div>

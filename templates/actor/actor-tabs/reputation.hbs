@@ -1,5 +1,8 @@
 <section class="tab {{tabs.reputation.cssClass}}" data-group="sheet" data-tab="reputation">
-<div class="undefined">
-    tbd
-</div>
+  <button type="button" class="add-connection-button" data-action="addConnection">Add Connection</button>
+  {{log this}}
+  {{#each this.actor.system.connections}}
+    {{log this}}
+    {{> "systems/ed4e/templates/actor/cards/connection-card.hbs"}}
+  {{/each}}
 </section>
