@@ -32,25 +32,24 @@
     {{/each}}
   </ol>
 
-  {{#if isItemEffect}}
   <hr>
-    <fieldset>
-      <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
+  <fieldset>
+    <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
 
-      <div class="form-group">
-        <label>{{localize systemFields.abilityEdid.label}}</label>
-        <div class="form-fields">
-          <input type="text" name="system.abilityEdid" value="{{source.system.abilityEdid}}"
-                 list="{{concat @root/rootId "-abilityEdid.list"}}" data-tooltip="{{localize "ED.ActiveEffect.Tooltips.abilityEdidSelection"}}"/>
-          <datalist id="{{concat @root/rootId "-abilityEdid.list"}}">
-            {{#each @root/edids}}
-              <option value="{{this}}">{{this}}</option>
-            {{/each}}
-          </datalist>
-        </div>
-        <p class="hint">{{localize systemFields.abilityEdid.hint}}</p>
+    <div class="form-group">
+      <label>{{localize systemFields.abilityEdid.label}}</label>
+      <div class="form-fields">
+        <input type="text" name="system.abilityEdid" value="{{source.system.abilityEdid}}"
+               list="{{concat @root/rootId "-abilityEdid.list"}}" data-tooltip="{{localize "ED.ActiveEffect.Tooltips.abilityEdidSelection"}}"/>
+        <datalist id="{{concat @root/rootId "-abilityEdid.list"}}">
+          {{#each @root/edids}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </datalist>
       </div>
+      <p class="hint">{{localize systemFields.abilityEdid.hint}}</p>
+    </div>
 
-    </fieldset>
-  {{/if}}
+  </fieldset>
+
 </section>
