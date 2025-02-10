@@ -175,9 +175,10 @@ export default class ActorEd extends Actor {
     return itemTypes[type].filter( edidFilter );
   }
 
-  getAbilityByAction ( action ) {
-    const abilities = [ "talent", "skill", "devotion" ];
-    return this.items.filter( item => abilities.includes( item.type ) && item.system.rollType === action );
+  getItemsByAction( action ) {
+    return this.items.filter(
+      item => item.system.rollType === action
+    );
   }
 
   /**

@@ -356,7 +356,7 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   async _getAbilityButtonByAction( action ) {
-    const abilities = this.document.getAbilityByAction( action );
+    const abilities = this.document.getItemsByAction( action );
     return this._getItemButtons( abilities, "action" );
   }
 
