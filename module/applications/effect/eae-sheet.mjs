@@ -1,5 +1,6 @@
 import { getEdIds } from "../../settings.mjs";
 import FormulaField from "../../data/fields/formula-field.mjs";
+import ED4E from "../../config.mjs";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
 
@@ -28,6 +29,24 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     duration: { template: "systems/ed4e/templates/effect/duration.hbs" },
     changes:  { template: "systems/ed4e/templates/effect/changes.hbs" },
   };
+
+  // region Properties
+
+  /**
+   * @type {FormInputConfig[]}
+   */
+  get keyOptions() {
+    if ( !this.document ) return [];
+    if ( this.document.system.appliedToItem ) return ED4E.eaeChangeKeysItem;
+    if ( this.document.system.appliedToActor ) return ED4E.eaeChangeKeysActor;
+    return [ {
+      value:    "",
+      label:    game.i18n.localize( "ED4E.Data.placeholderBlankSelectOption" ),
+      selected: true,
+    } ];
+  }
+
+  // endregion
 
   // region Form Handling
 
@@ -104,7 +123,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
       case "duration":
         break;
       case "changes":
-        partContext.keyOptions = this.document.parent?.system?.constructor.EAE_SELECT_OPTIONS;
+        partContext.keyOptions = this.keyOptions;
         partContext.edids = getEdIds();
         break;
     }
