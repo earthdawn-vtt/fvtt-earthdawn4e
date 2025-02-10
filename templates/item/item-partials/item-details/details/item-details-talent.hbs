@@ -5,7 +5,7 @@
 
   {{!-- class Identifier --}}
   {{formField systemFields.source.fields.class label=(localize "ED.Data.Item.Labels.Ability.Source.class")
-  hint=(localize "ED.Data.Item.Hints.Ability.Source.class") name="system.source.class" value=item.system.source.class localize=true }}
+              hint=(localize "ED.Data.Item.Hints.Ability.Source.class") name="system.source.class" value=item.system.source.class localize=true }}
 
   {{!-- Added at Level --}}
   {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
@@ -20,3 +20,17 @@
   {{formField systemFields.magic.fields.magicType name="system.magic.magicType" value=item.system.magic.magicType required=false localize=true}}
 </fieldset>
 
+{{! -- Knacks -- }}
+{{#if (or (ed-hasItems item.system.knacks.learned) (ed-hasItems item.system.knacks.available))}}
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.talentKnacks"}}</legend>
+
+    {{#if (ed-hasItems item.system.knacks.available)}}
+      {{formField systemFields.knacks.fields.available name="system.knacks.available" value=item.system.knacks.available localize=true}}
+    {{/if}}
+
+    {{#if (ed-hasItems item.system.knacks.learned)}}
+      {{formField systemFields.knacks.fields.learned name="system.knacks.learned" value=item.system.knacks.learned localize=true}}
+    {{/if}}
+  </fieldset>
+{{/if}}

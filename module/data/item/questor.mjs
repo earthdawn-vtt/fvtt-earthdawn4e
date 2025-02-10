@@ -27,8 +27,8 @@ export default class QuestorData extends ClassTemplate.mixin(
           return undefined;
         },
         validationError: "must be a questor talent with the questor edId.",
-        label:           this.labelKey( "questorDevotion" ),
-        hint:            this.hintKey( "questorDevotion" ),
+        label:           this.labelKey( "Questor.questorDevotion" ),
+        hint:            this.hintKey( "Questor.questorDevotion" ),
       } ),
     } );
   }
@@ -190,13 +190,12 @@ export default class QuestorData extends ClassTemplate.mixin(
   /*  Drop Events                                 */
   /* -------------------------------------------- */
 
-  _onDropDevotion( event, data ) {
+  async _onDropDevotion( event, document ) {
     const questorItem = this.parent;
-    questorItem.update( {
-      "system.questorDevotion": data.uuid,
+    await questorItem.update( {
+      "system.questorDevotion": document.uuid,
     } );
-
-    return data;
+    return true;
   }
 
   /* -------------------------------------------- */

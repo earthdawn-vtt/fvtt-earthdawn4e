@@ -97,8 +97,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           }
         ),
       }, {
-        required: false,
         nullable: false,
+        initial:  { learned: [], available: [] },
         label:    this.labelKey( "Ability.talentKnacks" ),
         hint:     this.hintKey( "Ability.talentKnacks" )
       } )
@@ -294,17 +294,16 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /*  Drop Events                                 */
   /* -------------------------------------------- */
 
-  _onDropKnack( event, data ) {
+  async _onDropKnack( event, document ) {
     const item = this.parent;
-    item.update( {
-      "system.knacks.available": [ ...this.knacks.available, data.uuid ],
+    await item.update( {
+      "system.knacks.available": [ ...this.knacks.available, document.uuid ],
     } );
-    fromUuid( data.uuid ).then( knack => {
-      if ( !knack.system.sourceTalent ) knack.update( {
-        "system.sourceTalent": item.edid,
-      } );
+    const knack = await fromUuid( document.uuid );
+    if ( !knack.system?.sourceTalent ) knack.update( {
+      "system.sourceTalent": item.edid,
     } );
-    return data;
+    return true;
   }
 
   /* -------------------------------------------- */

@@ -860,6 +860,9 @@
             "powerStep":                                    "Aktionsstufe",
             "damageStep":                                   "Schadensstufe"
           },
+          "Questor": {
+            "questorDevotion":                             "Die 'Questor' Weihekraft die die Verbindung zu dieser Passion darstellt"
+          },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
             "defenseBonusMystical":                         "Mystischer Verteidigungsbonus",
@@ -1086,6 +1089,9 @@
             "strain":                                       "Überanstrengung",
             "powerStep":                                    "Aktionsstufe",
             "damageStep":                                   "Schadensstufe"
+          },
+          "Questor": {
+            "questorDevotion":                               "Questor-Weihekraft"
           },
           "Shields": {
             "defenseBonusPhysical":                         "Körperlicher Verteidigungsbonus",
@@ -1638,6 +1644,9 @@
         "navigator": "Navigator",
         "spellEnhancement": "Zauber Verstärkung",
         "talentSource": "Talent Ursprung",
+        "talentKnacks": "Kniffe",
+        "talentKnacksAvailable": "Verfügbare Kniffe",
+        "talentKnacksLearned": "Gelernte Kniffe",
         "targetingDetails":   "Ziel Details",
         "type": "Typ"
       },
@@ -1885,4 +1894,3 @@
     }
   }
 }
-
