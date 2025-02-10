@@ -42,22 +42,22 @@ export default class CommonTemplate extends ActorDataModel.mixin(
         label:           this.labelKey( "singleBonuses" ),
         hint:            this.hintKey( "singleBonuses" ),
       } ),
-      // connections: new fields.ArrayField( new fields.SchemaField( {
-      //   name: new fields.StringField( {
-      //     required: false,
-      //     nullable: false,
-      //     initial:  "name of the Connection",
-      //   } ),
-      //   attitude: new fields.StringField( {
-      //     required: false,
-      //     nullable: false,
-      //     initial:  "attitude",
-      //   } ),
-      //   connectionUuid: new fields.DocumentUUIDField( {
-      //     required: false,
-      //     nullable: true,
-      //   } ),
-      // } ) ),
+      connections: new fields.ArrayField( new fields.SchemaField( {
+        name: new fields.StringField( {
+          required: false,
+          nullable: false,
+          initial:  "name of the Connection",
+        } ),
+        attitude: new fields.StringField( {
+          required: false,
+          nullable: false,
+          initial:  "attitude",
+        } ),
+        connectionUuid: new fields.DocumentUUIDField( {
+          required: false,
+          nullable: true,
+        } ),
+      } ) ),
     } );
   }
 

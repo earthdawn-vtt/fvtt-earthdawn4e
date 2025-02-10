@@ -276,10 +276,9 @@ class ActorPromptFactory extends PromptFactory {
 
   async _createConnectionPrompt() {
     const formFields = {
-      connectionUuid: new fields.DocumentUuidField( {
-        required: true,
-        label:    "ED.Dialogs.damage",
-        hint:     "localize: The amount of damage to take"
+      connectionUuid: new fields.DocumentUUIDField( {
+        label:    "ED.Dialogs.connection",
+        hint:     "localize: new connection"
       } ),
     };
     return DialogClass.wait( {
