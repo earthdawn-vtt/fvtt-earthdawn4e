@@ -87,11 +87,32 @@
     .equipment-card__grid--item {
         .roll-icon__hover,
         .roll-icon__pointer {
-            display: none;
+            display: none; 
         }
 
         
     }
+
+    .itemControlGroup {
+        float:none;
+    }
+}
+
+.connection-card__grid--container {
+    align-items: center;
+    display: grid;
+    height: 30px;
+    grid-template-columns:
+        // 790 px available
+        40px // Icon
+        250px // Name
+        100px // Action
+        75px // Rank
+        75px // Step
+        75px // Strain
+        75px // Attribute
+        75px // Control Icons
+    ;
 
     .itemControlGroup {
         float:none;
@@ -177,7 +198,7 @@
 
 .ability-card__grid--container:hover,
 .attribute-card__grid--container:hover,
-power-card__grid--container:hover,
+.power-card__grid--container:hover,
 .equipment-card__grid--container:hover {
     .icons__dice img{
         box-shadow: 0 0 10px red;
