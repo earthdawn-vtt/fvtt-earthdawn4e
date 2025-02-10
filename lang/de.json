@@ -2,6 +2,12 @@
   "ED": {
     "ActiveEffect": {
       "newEffectName": "Neuer Earthdawn ActiveEffect",
+      "ChangeKeys": {
+        "Groups": {
+          "globalBonuses": "Globale Boni",
+          "singleBonuses": "Einzelne Boni"
+        }
+      },
       "Header": {
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
@@ -94,6 +100,11 @@
         "current": "Aktuell",
         "max": "Max",
         "step": "Stufe"
+      },
+      "GlobalBonus": {
+        "allEffects": "Alle Effekte",
+        "allActions": "Alle Aktionen",
+        "allRangedAttacks": "Alle Fernkampfangriffe"
       },
       "Header": {
         "action":                                           "Aktion",

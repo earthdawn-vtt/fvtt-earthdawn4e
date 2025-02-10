@@ -75,59 +75,6 @@ ED4E.attributes = {
 preLocalize( "attributes", {keys: [ "label", "abbreviation" ]} );
 
 /**
- * configuration data for Global Bonuses
- * @typedef {object} GlobalBonusConfiguration
- * @property {string} label                               Localized label.
- * @property {{[key: string]: number|string}} [defaults]  Default values for this Attribute based on actor type.
- */
-
-/**
- * @description the global bonus configurations
- * @enum { GlobalBonusConfiguration }
- */
-ED4E.globalBonuses = {
-  allAttacks: {
-    label:       "ED.Actor.GlobalBonus.allAttacks"
-  },
-  allEffects: {
-    label:       "ED.Actor.GlobalBonus.allEffects"
-  },
-  allActions: {
-    label:       "ED.Actor.GlobalBonus.allActions"
-  },
-  allRangedAttacks: {
-    label:       "ED.Actor.GlobalBonus.allRangedAttacks"
-  },
-  allCloseAttacks: {
-    label:       "ED.Actor.GlobalBonus.allCloseAttacks"
-  },
-  allSpellcasting: {
-    label:       "ED.Actor.GlobalBonus.allSpellcasting"
-  },
-  allDamage: {
-    label:       "ED.Actor.GlobalBonus.allDamage"
-  },
-  allMeleeDamage: {
-    label:       "ED.Actor.GlobalBonus.allMeleeDamage"
-  },
-  allRangedDamage: {
-    label:       "ED.Actor.GlobalBonus.allRangedDamage"
-  },
-  allRecoveryEffects: {
-    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
-  },
-  allKnockdownEffects: {
-    label:       "ED.Actor.GlobalBonus.allKnockDownEffects"
-  },
-  allSpellEffects: {
-    label:       "ED.Actor.GlobalBonus.allSpellEffects"
-  }
-};
-preLocalize( "globalBonuses", {key: "label"} );
-
-
-
-/**
  * Denomination options
  * @enum {string}
  */
@@ -439,9 +386,7 @@ ED4E.spellEnhancements = {
 preLocalize( "spellEnhancements", { key: "label", sort: true } );
 
 
-/* -------------------------------------------- */
-/*  Active Effects                              */
-/* -------------------------------------------- */
+// region Active Effects
 
 /**
  * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
@@ -455,10 +400,109 @@ ED4E.eaeDurationTypes = {
 };
 preLocalize( "eaeDurationTypes" );
 
-ED4E.singleBonuses = {
-  knockdownEffects: "ED.Config.Eae.allKnockDownEffects",
+/**
+ * configuration data for Global Bonuses
+ * @typedef {object} GlobalBonusConfiguration
+ * @property {string} label                               Localized label.
+ * @property {{[key: string]: number|string}} [defaults]  Default values for this Attribute based on actor type.
+ */
+
+/**
+ * @description the global bonus configurations
+ * @enum { GlobalBonusConfiguration }
+ */
+ED4E.globalBonuses = {
+  allAttacks: {
+    label:       "ED.Actor.GlobalBonus.allAttacks"
+  },
+  allEffects: {
+    label:       "ED.Actor.GlobalBonus.allEffects"
+  },
+  allActions: {
+    label:       "ED.Actor.GlobalBonus.allActions"
+  },
+  allRangedAttacks: {
+    label:       "ED.Actor.GlobalBonus.allRangedAttacks"
+  },
+  allCloseAttacks: {
+    label:       "ED.Actor.GlobalBonus.allCloseAttacks"
+  },
+  allSpellcasting: {
+    label:       "ED.Actor.GlobalBonus.allSpellcasting"
+  },
+  allDamage: {
+    label:       "ED.Actor.GlobalBonus.allDamage"
+  },
+  allMeleeDamage: {
+    label:       "ED.Actor.GlobalBonus.allMeleeDamage"
+  },
+  allRangedDamage: {
+    label:       "ED.Actor.GlobalBonus.allRangedDamage"
+  },
+  allRecoveryEffects: {
+    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
+  },
+  allKnockdownEffects: {
+    label:       "ED.Actor.GlobalBonus.allKnockDownEffects"
+  },
+  allSpellEffects: {
+    label:       "ED.Actor.GlobalBonus.allSpellEffects"
+  }
 };
-preLocalize( "singleBonuses" );
+preLocalize( "globalBonuses", { key: "label" } );
+
+ED4E.singleBonuses = {
+  knockdownEffects: {
+    label: "ED.Config.Eae.allKnockDownEffects",
+  },
+};
+preLocalize( "singleBonuses", { key: "label" } );
+
+/**
+ * A list of select input options that map a human-readable label to the field path for the change.
+ * @type {FormSelectOption[]}
+ */
+ED4E.eaeChangeKeysActor = [
+  ...Object.entries( ED4E.globalBonuses ).map( ( [ key, { label } ] ) => {
+    return {
+      value:    `system.globalBonuses.${key}`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.globalBonuses",
+      disabled: false,
+      selected: false,
+      rule:     false,
+    };
+  } ),
+  ...Object.entries( ED4E.singleBonuses ).map( ( [ key, { label } ] ) => {
+    return {
+      value:    `system.singleBonuses.${key}`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.singleBonuses",
+    };
+  } ),
+];
+preLocalize( "eaeChangeKeysActor", { key: "label" } );
+
+/**
+ * A list of select input options that map a human-readable label to the field path for the change.
+ * @type {FormSelectOption[]}
+ */
+ED4E.eaeChangeKeysItem = [
+  {
+    value:    "system.attribute",
+    label:    "ED.Data.Item.Ability.attribute",
+    group:    "",
+  },
+  {
+    value:    "system.level",
+    label:    "ED.Data.Item.Ability.rank",
+    group:    "",
+  },
+];
+preLocalize( "eaeChangeKeysItem", { key: "label" } );
+
+// endregion
+
 
 /* -------------------------------------------- */
 /*  Advancement & Char Gen                      */
