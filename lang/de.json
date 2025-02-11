@@ -4,6 +4,8 @@
       "newEffectName": "Neuer Earthdawn ActiveEffect",
       "ChangeKeys": {
         "Groups": {
+          "ability": "Fähigkeit",
+          "action": "Aktion",
           "armor": "Rüstung",
           "attribute": "Attribut",
           "attributeStep": "Attribut Stufe",
@@ -18,7 +20,12 @@
           "karma": "Karma",
           "movement": "Bewegung",
           "recoveryTestsResource": "Ressource - Erholungsproben",
-          "singleBonuses": "Einzelne Boni"
+          "rollable": "Würfeln",
+          "shield": "Schild",
+          "singleBonuses": "Einzelne Boni",
+          "targeting": "Ziel / Schwierigkeit",
+          "weapon": "Waffe",
+          "weaponRange": "Waffenreichweite"
         }
       },
       "Header": {

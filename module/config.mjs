@@ -859,23 +859,123 @@ preLocalize( "eaeChangeKeysActor", { keys: [ "label", "group" ] } );
  * @type {FormSelectOption[]}
  */
 ED4E.eaeChangeKeysItem = [
+  // Rollable
+  {
+    value:    "system.rollType",
+    label:    "ED.Data.General.Labels.Rollable.type",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.rollable",
+  },
+  // Action
+  {
+    value:    "system.action",
+    label:    "ED.Data.Item.Labels.Action.action",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.action",
+  },
+  {
+    value:    "system.strain",
+    label:    "ED.Data.Item.Labels.Action.strain",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.action",
+  },
+  // Targeting
+  {
+    value:    "system.difficulty.target",
+    label:    "ED.Data.General.Labels.Target.target",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  {
+    value:    "system.difficulty.group",
+    label:    "ED.Data.General.Labels.Target.group",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  {
+    value:    "system.difficulty.fixed",
+    label:    "ED.Data.General.Labels.Target.fixed",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  // Ability
   {
     value:    "system.attribute",
-    label:    "ED.Data.Item.Ability.attribute",
-    group:    "",
+    label:    "ED.Data.Item.Labels.Ability.attribute",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
+  },
+  {
+    value:    "system.tier",
+    label:    "ED.Data.Item.Labels.Ability.tier",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
   },
   {
     value:    "system.level",
-    label:    "ED.Data.Item.Ability.rank",
-    group:    "",
+    label:    "ED.Data.Item.Labels.Ability.rank",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
   },
-  ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] )  => {
-    return {
-      value:    `system.attribute.${key}`,
-      label:    label,
-      group:    "ED.ActiveEffect.ChangeKeys.Groups.attribute",
-    };
-  } ),
+  // Armor
+  {
+    value:    "system.physical",
+    label:    "ED.Data.Item.Labels.Armor.physicalArmor",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.mystical",
+    label:    "ED.Data.Item.Labels.Armor.mysticalArmor",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.initiativePenalty",
+    label:    "ED.Data.Item.Labels.Armor.initiativePenalty",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  // Shield
+  {
+    value:    "system.defenseBonus.physical",
+    label:    "ED.Data.Item.Labels.Shields.defenseBonusPhysical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.defenseBonus.mystical",
+    label:    "ED.Data.Item.Labels.Shields.defenseBonusMystical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.initiativePenalty",
+    label:    "ED.Data.Item.Labels.Shields.initiativePenalty",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.shatterThreshold",
+    label:    "ED.Data.Item.Labels.Shields.shatterThreshold",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  // Weapon
+  {
+    value:    "system.damage",
+    label:    "ED.Data.Item.Labels.Weapons.damageBaseStep",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.forgeBonus",
+    label:    "ED.Data.Item.Labels.Weapons.forgeBonus",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.range.shortMin",
+    label:    "ED.Data.Item.Labels.Weapons.rangeShortMin",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.shortMax",
+    label:    "ED.Data.Item.Labels.Weapons.rangeShortMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.longMin",
+    label:    "ED.Data.Item.Labels.Weapons.rangeLongMin",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.longMax",
+    label:    "ED.Data.Item.Labels.Weapons.rangeLongMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
 ];
 preLocalize( "eaeChangeKeysItem", { keys: [ "label", "group" ] } );
 
