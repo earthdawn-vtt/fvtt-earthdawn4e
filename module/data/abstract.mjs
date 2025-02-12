@@ -689,6 +689,7 @@ export class ActiveEffectDataModel extends SystemDataModel {
   
   /** @inheritDoc */
   prepareBaseData() {
+    super.prepareBaseData();
     if ( this.parent.isEmbedded ) {
       const sourceId = this.parent.flags.ed4e?.sourceId
         ?? this.parent._stats.compendiumSource
