@@ -2,6 +2,32 @@
   "ED": {
     "ActiveEffect": {
       "newEffectName": "Neuer Earthdawn ActiveEffect",
+      "ChangeKeys": {
+        "Groups": {
+          "ability": "Fähigkeit",
+          "action": "Aktion",
+          "armor": "Rüstung",
+          "attribute": "Attribut",
+          "attributeStep": "Attribut Stufe",
+          "attributeValue": "Attribut Wert",
+          "bloodMagic": "Blutmagie",
+          "defense": "Verteidigung",
+          "devotion": "Weihe",
+          "encumbrance": "Traglast",
+          "globalBonuses": "Globale Boni",
+          "health": "Gesundheitswerte",
+          "initiative": "Initiative",
+          "karma": "Karma",
+          "movement": "Bewegung",
+          "recoveryTestsResource": "Ressource - Erholungsproben",
+          "rollable": "Würfeln",
+          "shield": "Schild",
+          "singleBonuses": "Einzelne Boni",
+          "targeting": "Ziel / Schwierigkeit",
+          "weapon": "Waffe",
+          "weaponRange": "Waffenreichweite"
+        }
+      },
       "Header": {
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
@@ -94,6 +120,20 @@
         "current": "Aktuell",
         "max": "Max",
         "step": "Stufe"
+      },
+      "GlobalBonus": {
+        "allAttacks": "Alle Angriffe",
+        "allEffects": "Alle Effekte",
+        "allActions": "Alle Aktionen",
+        "allRangedAttacks": "Alle Fernkampfangriffe",
+        "allCloseAttacks": "Alle Nahkampfangriffe",
+        "allSpellcasting": "Alle Spruchzauberei",
+        "allDamage": "Jeder Schadenswurf",
+        "allMeleeDamage": "Jeder Nahkampfschaden",
+        "allRangedDamage": "Jeder Fernkampfschaden",
+        "allRecoveryEffects": "Alle Erholungseffekte",
+        "allKnockdownEffects": "Alle Niederschlageffekte",
+        "allSpellEffects": "Alle Spruchzauber-Effekte"
       },
       "Header": {
         "action":                                           "Aktion",
@@ -310,6 +350,10 @@
         "needle":                                                   "Nadel",
         "stone":                                                    "Stein"
       },
+      "Armor": {
+        "physical":                                                "Physische Rüstung",
+        "mystical":                                                "Mystische Rüstung"
+      },
       "Availability": {
         "everyday":                                                 "Alltäglich",
         "average":                                                  "Durchschnittlich",
@@ -346,9 +390,9 @@
         "highestX":                                                 "Höchste der Gruppe + Ziele",
         "lowestOfGroup":                                            "Niedrigste der Gruppe",
         "lowestX":                                                  "Niedrigste der Gruppe + Ziele",
-        "mystical":                                                 "Mystisch",
-        "physical":                                                 "Körperlich",
-        "social":                                                   "Sozial"
+        "mystical":                                                 "Mystische Verteidung",
+        "physical":                                                 "Körperliche Verteidigung",
+        "social":                                                   "Soziale Verteidigung"
       },
       "Denomination": {
         "copper":                                                   "Kupfer",
@@ -407,6 +451,13 @@
         "feet":                                                     "Fuß",
         "yard":                                                     "Schritt",
         "mile":                                                     "Meile"
+      },
+      "MovementTypes": {
+        "burrow":                                                  "Graben",
+        "climb":                                                   "Klettern",
+        "fly":                                                     "Fliegen",
+        "swim":                                                    "Schwimmen",
+        "walk":                                                    "Gehen"
       },
       "Skills": {
         "general":                                              "Allgemein",

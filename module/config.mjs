@@ -75,59 +75,6 @@ ED4E.attributes = {
 preLocalize( "attributes", {keys: [ "label", "abbreviation" ]} );
 
 /**
- * configuration data for Global Bonuses
- * @typedef {object} GlobalBonusConfiguration
- * @property {string} label                               Localized label.
- * @property {{[key: string]: number|string}} [defaults]  Default values for this Attribute based on actor type.
- */
-
-/**
- * @description the global bonus configurations
- * @enum { GlobalBonusConfiguration }
- */
-ED4E.globalBonuses = {
-  allAttacks: {
-    label:       "ED.Actor.GlobalBonus.allAttacks"
-  },
-  allEffects: {
-    label:       "ED.Actor.GlobalBonus.allEffects"
-  },
-  allActions: {
-    label:       "ED.Actor.GlobalBonus.allActions"
-  },
-  allRangedAttacks: {
-    label:       "ED.Actor.GlobalBonus.allRangedAttacks"
-  },
-  allCloseAttacks: {
-    label:       "ED.Actor.GlobalBonus.allCloseAttacks"
-  },
-  allSpellcasting: {
-    label:       "ED.Actor.GlobalBonus.allSpellcasting"
-  },
-  allDamage: {
-    label:       "ED.Actor.GlobalBonus.allDamage"
-  },
-  allMeleeDamage: {
-    label:       "ED.Actor.GlobalBonus.allMeleeDamage"
-  },
-  allRangedDamage: {
-    label:       "ED.Actor.GlobalBonus.allRangedDamage"
-  },
-  allRecoveryEffects: {
-    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
-  },
-  allKnockdownEffects: {
-    label:       "ED.Actor.GlobalBonus.allKnockDownEffects"
-  },
-  allSpellEffects: {
-    label:       "ED.Actor.GlobalBonus.allSpellEffects"
-  }
-};
-preLocalize( "globalBonuses", {key: "label"} );
-
-
-
-/**
  * Denomination options
  * @enum {string}
  */
@@ -239,12 +186,23 @@ ED4E.groupDifficulty = {
 preLocalize( "groupDifficulty" );
 
 /**
+ * Defense Types
+ * @enum {string}
+ */
+ED4E.defense = {
+  mystical:   "ED.Config.Defenses.mystical",
+  physical:   "ED.Config.Defenses.physical",
+  social:     "ED.Config.Defenses.social",
+};
+preLocalize( "defense" );
+
+/**
  * Armor
  * @enum {string}
  */
 ED4E.armor = {
-  physical:   "ED.Armor.physical",
-  mystical:   "ED.Armor.mystical",
+  physical:   "ED.Config.Armor.physical",
+  mystical:   "ED.Config.Armor.mystical",
 };
 preLocalize( "armor" );
 
@@ -439,9 +397,226 @@ ED4E.spellEnhancements = {
 preLocalize( "spellEnhancements", { key: "label", sort: true } );
 
 
+// region System
+
+/**
+ * Reserved earthdawn ids.
+ * @enum {string}
+ */
+ED4E.reserved_edid = {
+  DEFAULT:    "none",
+  ANY:        "any",
+};
+
+ED4E.formulaValueTypes = {
+  attribute:  "ED.Config.FormulaValueTypes.attribute",
+  circle:     "ED.Config.FormulaValueTypes.circle",
+  numeric:    "ED.Config.FormulaValueTypes.numeric",
+  rank:       "ED.Config.FormulaValueTypes.rank",
+  special:    "ED.Config.FormulaValueTypes.special",
+};
+
+/**
+ * Time periods that accept a numeric value.
+ * @enum {string}
+ */
+ED4E.scalarTimePeriods = {
+  turn:   "ED.Config.ScalarTimePeriods.turn",
+  round:  "ED.Config.ScalarTimePeriods.round",
+  minute: "ED.Config.ScalarTimePeriods.minute",
+  hour:   "ED.Config.ScalarTimePeriods.hour",
+  day:    "ED.Config.ScalarTimePeriods.day",
+  week:   "ED.Config.ScalarTimePeriods.week",
+  month:  "ED.Config.ScalarTimePeriods.month",
+  year:   "ED.Config.ScalarTimePeriods.year"
+};
+preLocalize( "scalarTimePeriods" );
+
+/**
+ * Time periods for spells that don't have a defined ending.
+ * @enum {string}
+ */
+ED4E.permanentTimePeriods = {
+  perm: "ED.Config.PermanentTimePeriods.perm"
+};
+preLocalize( "permanentTimePeriods" );
+
 /* -------------------------------------------- */
-/*  Active Effects                              */
+
+/**
+ * Time periods that don't accept a numeric value.
+ * @enum {string}
+ */
+ED4E.specialTimePeriods = {
+  inst: "ED.Config.SpecialTimePeriods.inst",
+  spec: "ED.Config.SpecialTimePeriods.special"
+};
+preLocalize( "specialTimePeriods" );
+
 /* -------------------------------------------- */
+
+/**
+ * The various lengths of time over which effects can occur.
+ * @enum {string}
+ */
+ED4E.timePeriods = {
+  ...ED4E.specialTimePeriods,
+  ...ED4E.permanentTimePeriods,
+  ...ED4E.scalarTimePeriods
+};
+preLocalize( "timePeriods" );
+
+/* -------------------------------------------- */
+
+/**
+ * The various types of movement of moving entities.
+ * @enum {string}
+ */
+ED4E.movementTypes = {
+  burrow: "ED.Config.MovementTypes.burrow",
+  climb:  "ED.Config.MovementTypes.climb",
+  fly:    "ED.Config.MovementTypes.fly",
+  swim:   "ED.Config.MovementTypes.swim",
+  walk:   "ED.Config.MovementTypes.walk"
+};
+preLocalize( "movementTypes", { sort: true } );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default, this uses the imperial units of feet and miles.
+ * @enum {string}
+ */
+ED4E.movementUnits = {
+  in: "ED.Config.MovementUnits.inch",
+  ft: "ED.Config.MovementUnits.feet",
+  yd: "ED.Config.MovementUnits.yard",
+  mi: "ED.Config.MovementUnits.mile",
+};
+preLocalize( "movementUnits" );
+
+/* -------------------------------------------- */
+
+/**
+ * The types of range that are used for measuring actions and effects.
+ * @enum {string}
+ */
+ED4E.rangeTypes = {
+  self:  "ED.Config.RangeTypes.self",
+  touch: "ED.Config.RangeTypes.touch",
+  spec:  "ED.Config.RangeTypes.special",
+  any:   "ED.Config.RangeTypes.any",
+};
+preLocalize( "rangeTypes" );
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for the range of an action or effect. A combination of {@link ED4E.movementUnits}
+ * and {@link ED4E.rangeTypes}.
+ * @enum {string}
+ */
+ED4E.distanceUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.rangeTypes,
+};
+preLocalize( "distanceUnits" );
+
+/* -------------------------------------------- */
+
+/**
+ * Information needed to represent different area of effect target types.
+ * @typedef {object} AreaTargetDefinition
+ * @property {string} label        Localize(d) label for this type.
+ * @property {string} template     Type of `MeasuredTemplate` create for this target type.
+ * @property {string} [reference]  Reference to a rule page describing this area of effect.
+ * @property {string[]} [sizes]    List of available sizes for this template. Options are chosen from the list: "angle",
+ *                                 "radius", "width", "height", "length", "thickness". No more than 3 dimensions may
+ *                                 be specified.
+ */
+
+/**
+ * Types for effects that cover an area.
+ * @enum {AreaTargetDefinition}
+ */
+ED4E.areaTargetDefinition = {
+  circle:   {
+    label:    "ED.Config.AreaTargets.circle",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  cone:     {
+    label:    "ED.Config.AreaTargets.cone",
+    template: "cone",
+    sizes:    [ "angle", "radius" ],
+  },
+  cube:     {
+    label:    "ED.Config.AreaTargets.cube",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  cylinder: {
+    label:    "ED.Config.AreaTargets.cylinder",
+    template: "circle",
+    sizes:    [ "radius", "height" ],
+  },
+  line:     {
+    label:    "ED.Config.AreaTargets.line",
+    template: "ray",
+    sizes:    [ "length", "width" ],
+  },
+  radius:   {
+    label:    "ED.Config.AreaTargets.radius",
+    template: "circle",
+  },
+  sphere:   {
+    label:    "ED.Config.AreaTargets.sphere",
+    template: "circle",
+    sizes:    [ "radius" ],
+  },
+  square:   {
+    label:    "ED.Config.AreaTargets.square",
+    template: "rect",
+    sizes:    [ "width" ],
+  },
+  wall:     {
+    label:    "ED.Config.AreaTargets.wall",
+    template: "ray",
+    sizes:    [ "length", "thickness", "height" ],
+  },
+};
+preLocalize( "areaTargetDefinition", { key: "label", sort: true } );
+
+ED4E.spellEnhancementUnits = {
+  ...ED4E.movementUnits,
+  ...ED4E.scalarTimePeriods,
+};
+preLocalize( "spellEnhancementUnits" );
+
+/* -------------------------------------------- */
+/*  Chat Commands                               */
+/* -------------------------------------------- */
+
+/**
+ * The available chat commands with their corresponding help text.
+ * @enum {string}
+ */
+ED4E.chatCommands = {
+  char:     "X.chatCommandCharHelp no parameters, trigger char gen",
+  coin:     "X.chatCommandCoinHelp number plus coinage, pass out coins",
+  group:    "X.chatCommandGroupHelp no parameters?, calc CR for group",
+  h:        "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
+  help:     "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
+  lp:       "X.chatCommandLpHelp number, award LP points",
+  s:        "X.chatCommandSHelp any number of steps separated by whitespace or +, roll the given steps",
+};
+preLocalize( "chatCommands" );
+
+// endregion
+
+
+// region Active Effects
 
 /**
  * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
@@ -455,10 +630,377 @@ ED4E.eaeDurationTypes = {
 };
 preLocalize( "eaeDurationTypes" );
 
-ED4E.singleBonuses = {
-  knockdownEffects: "ED.Config.Eae.allKnockDownEffects",
+/**
+ * configuration data for Global Bonuses
+ * @typedef {object} GlobalBonusConfiguration
+ * @property {string} label                               Localized label.
+ * @property {{[key: string]: number|string}} [defaults]  Default values for this Attribute based on actor type.
+ */
+
+/**
+ * @description the global bonus configurations
+ * @enum { GlobalBonusConfiguration }
+ */
+ED4E.globalBonuses = {
+  allAttacks: {
+    label:       "ED.Actor.GlobalBonus.allAttacks"
+  },
+  allEffects: {
+    label:       "ED.Actor.GlobalBonus.allEffects"
+  },
+  allActions: {
+    label:       "ED.Actor.GlobalBonus.allActions"
+  },
+  allRangedAttacks: {
+    label:       "ED.Actor.GlobalBonus.allRangedAttacks"
+  },
+  allCloseAttacks: {
+    label:       "ED.Actor.GlobalBonus.allCloseAttacks"
+  },
+  allSpellcasting: {
+    label:       "ED.Actor.GlobalBonus.allSpellcasting"
+  },
+  allDamage: {
+    label:       "ED.Actor.GlobalBonus.allDamage"
+  },
+  allMeleeDamage: {
+    label:       "ED.Actor.GlobalBonus.allMeleeDamage"
+  },
+  allRangedDamage: {
+    label:       "ED.Actor.GlobalBonus.allRangedDamage"
+  },
+  allRecoveryEffects: {
+    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
+  },
+  allKnockdownEffects: {
+    label:       "ED.Actor.GlobalBonus.allKnockdownEffects"
+  },
+  allSpellEffects: {
+    label:       "ED.Actor.GlobalBonus.allSpellEffects"
+  }
 };
-preLocalize( "singleBonuses" );
+preLocalize( "globalBonuses", { key: "label" } );
+
+ED4E.singleBonuses = {
+  knockdownEffects: {
+    label: "ED.Config.Eae.allKnockDownEffects",
+  },
+};
+preLocalize( "singleBonuses", { key: "label" } );
+
+/**
+ * A list of select input options that map a human-readable label to the field path for the change.
+ * @type {FormSelectOption[]}
+ */
+ED4E.eaeChangeKeysActor = [
+  ...Object.entries( ED4E.globalBonuses ).map( ( [ key, { label } ] ) => {
+    return {
+      value:    `system.globalBonuses.${key}.value`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.globalBonuses",
+      disabled: false,
+      selected: false,
+      rule:     false,
+    };
+  } ),
+  /* ...Object.entries( ED4E.singleBonuses ).map( ( [ key, { label } ] ) => {
+    return {
+      value:    `system.singleBonuses.${key}`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.singleBonuses",
+    };
+  } ), */
+  ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
+    return {
+      value:    `system.attributes.${key}.baseStep`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
+    };
+  } ),
+  ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
+    return {
+      value:     `system.attributes.${key}.baseValue`,
+      label:     label,
+      group:     "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
+    };
+  } ),
+  ...Object.entries( ED4E.movementTypes ).map( ( [ key, label ] ) => {
+    return {
+      value:    `system.characteristics.movement.${key}`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.movement",
+    };
+  } ),
+  ...Object.entries( ED4E.defense ).map( ( [ key, label ] ) => {
+    return {
+      value:    `system.characteristics.defenses.${key}.baseValue`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.defense",
+    };
+  } ),
+  ...Object.entries( ED4E.armor ).map( ( [ key, label ] ) => {
+    return {
+      value:    `system.characteristics.armor.${key}.baseValue`,
+      label:    label,
+      group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+    };
+  } ),
+  // initiative
+  {
+    value:    "system.initiative",
+    label:    "ED.Data.Actor.Labels.initiative",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.initiative",
+  },
+  // encumbrance
+  {
+    value:    "system.encumbrance.value",
+    label:    "ED.Data.Actor.Labels.encumbrance",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+  },
+  {
+    value:    "system.encumbrance.max",
+    label:    "ED.Data.Actor.Labels.encumbranceMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+  },
+  {
+    value:    "system.encumbrance.bonus",
+    label:    "ED.Data.Actor.Labels.encumbranceBonus",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+  },
+  // health
+  {
+    value:    "system.durabilityBonus",
+    label:    "ED.Data.Actor.Labels.durabilityBonus",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  {
+    value:    "system.characteristics.health.death",
+    label:    "ED.Data.Actor.Labels.Characteristics.deathRating",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  {
+    value:    "system.characteristics.health.unconscious",
+    label:    "ED.Data.Actor.Labels.Characteristics.unconsciousRate",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  {
+    value:    "system.characteristics.health.bloodMagic.damage",
+    label:    "ED.Data.Actor.Labels.Characteristics.bloodMagicDamage",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+  },
+  {
+    value:    "system.characteristics.health.bloodMagic.wounds",
+    label:    "ED.Data.Actor.Labels.Characteristics.bloodMagicWounds",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+  },
+  {
+    value:    "system.characteristics.health.woundThreshold",
+    label:    "ED.Data.Actor.Labels.Characteristics.woundThreshold",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  {
+    value:    "system.characteristics.health.wounds",
+    label:    "ED.Data.Actor.Labels.Characteristics.wounds",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  {
+    value:    "system.characteristics.health.maxWounds",
+    label:    "ED.Data.Actor.Labels.Characteristics.maxWounds",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.health",
+  },
+  // recovery
+  {
+    value:    "system.characteristics.recoveryTestsResource.value",
+    label:    "ED.Data.Actor.Labels.Characteristics.recoveryTestsCurrent",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+  },
+  {
+    value:    "system.characteristics.recoveryTestsResource.max",
+    label:    "ED.Data.Actor.Labels.Characteristics.recoveryTestsMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+  },
+  // karma
+  {
+    value:    "system.karma.value",
+    label:    "ED.Data.Actor.Labels.karma",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.karma",
+  },
+  {
+    value:    "system.karma.max",
+    label:    "ED.Data.Actor.Labels.karmaMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.karma",
+  },
+  {
+    value:    "system.karma.step",
+    label:    "ED.Data.Actor.Labels.karmaStep",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.karma",
+  },
+  // devotion
+  {
+    value:    "system.devotion.value",
+    label:    "ED.Data.Actor.Labels.devotion",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+  },
+  {
+    value:    "system.devotion.max",
+    label:    "ED.Data.Actor.Labels.devotionMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+  },
+  {
+    value:    "system.devotion.step",
+    label:    "ED.Data.Actor.Labels.devotionStep",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+  },
+];
+preLocalize( "eaeChangeKeysActor", { keys: [ "label", "group" ] } );
+
+/**
+ * A list of select input options that map a human-readable label to the field path for the change.
+ * @type {FormSelectOption[]}
+ */
+ED4E.eaeChangeKeysItem = [
+  // Rollable
+  {
+    value:    "system.rollType",
+    label:    "ED.Data.General.Labels.Rollable.type",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.rollable",
+  },
+  // Action
+  {
+    value:    "system.action",
+    label:    "ED.Data.Item.Labels.Action.action",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.action",
+  },
+  {
+    value:    "system.strain",
+    label:    "ED.Data.Item.Labels.Action.strain",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.action",
+  },
+  // Targeting
+  {
+    value:    "system.difficulty.target",
+    label:    "ED.Data.General.Labels.Target.target",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  {
+    value:    "system.difficulty.group",
+    label:    "ED.Data.General.Labels.Target.group",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  {
+    value:    "system.difficulty.fixed",
+    label:    "ED.Data.General.Labels.Target.fixed",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.targeting",
+  },
+  // Ability
+  {
+    value:    "system.attribute",
+    label:    "ED.Data.Item.Labels.Ability.attribute",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
+  },
+  {
+    value:    "system.tier",
+    label:    "ED.Data.Item.Labels.Ability.tier",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
+  },
+  {
+    value:    "system.level",
+    label:    "ED.Data.Item.Labels.Ability.rank",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.ability",
+  },
+  // Armor
+  {
+    value:    "system.physical.armor",
+    label:    "ED.Data.Item.Labels.Armor.physicalArmor",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.physical.forgeBonus",
+    label:    "ED.Data.Item.Labels.Armor.forgeBonusPhysical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.mystical.armor",
+    label:    "ED.Data.Item.Labels.Armor.mysticalArmor",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.mystical.forgeBonus",
+    label:    "ED.Data.Item.Labels.Armor.forgeBonusMystical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.initiativePenalty",
+    label:    "ED.Data.Item.Labels.Armor.initiativePenalty",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  // Shield
+  {
+    value:    "system.defenseBonus.physical",
+    label:    "ED.Data.Item.Labels.Shields.defenseBonusPhysical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.defenseBonus.mystical",
+    label:    "ED.Data.Item.Labels.Shields.defenseBonusMystical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.initiativePenalty",
+    label:    "ED.Data.Item.Labels.Shields.initiativePenalty",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  {
+    value:    "system.shatterThreshold",
+    label:    "ED.Data.Item.Labels.Shields.shatterThreshold",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.shield",
+  },
+  // Weapon
+  {
+    value:    "system.damage.attribute",
+    label:    "ED.Data.Item.Labels.Weapons.damageAttribute",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.damage.baseStep",
+    label:    "ED.Data.Item.Labels.Weapons.damageBaseStep",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.damage.type",
+    label:    "ED.Data.Item.Labels.Weapons.damageType",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.forgeBonus",
+    label:    "ED.Data.Item.Labels.Weapons.forgeBonus",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.range.shortMin",
+    label:    "ED.Data.Item.Labels.Weapons.rangeShortMin",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.shortMax",
+    label:    "ED.Data.Item.Labels.Weapons.rangeShortMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.longMin",
+    label:    "ED.Data.Item.Labels.Weapons.rangeLongMin",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+  {
+    value:    "system.range.longMax",
+    label:    "ED.Data.Item.Labels.Weapons.rangeLongMax",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
+  },
+];
+preLocalize( "eaeChangeKeysItem", { keys: [ "label", "group" ] } );
+
+// endregion
+
 
 /* -------------------------------------------- */
 /*  Advancement & Char Gen                      */
@@ -1103,225 +1645,6 @@ ED4E.resourceDefaultStep = {
   karma:    4,
   devotion: 3,
 };
-
-
-/* -------------------------------------------- */
-/*  System                                      */
-/* -------------------------------------------- */
-
-/**
- * Reserved earthdawn ids.
- * @enum {string}
- */
-ED4E.reserved_edid = {
-  DEFAULT:    "none",
-  ANY:        "any",
-};
-
-ED4E.formulaValueTypes = {
-  attribute:  "ED.Config.FormulaValueTypes.attribute",
-  circle:     "ED.Config.FormulaValueTypes.circle",
-  numeric:    "ED.Config.FormulaValueTypes.numeric",
-  rank:       "ED.Config.FormulaValueTypes.rank",
-  special:    "ED.Config.FormulaValueTypes.special",
-};
-
-/**
- * Time periods that accept a numeric value.
- * @enum {string}
- */
-ED4E.scalarTimePeriods = {
-  turn:   "ED.Config.ScalarTimePeriods.turn",
-  round:  "ED.Config.ScalarTimePeriods.round",
-  minute: "ED.Config.ScalarTimePeriods.minute",
-  hour:   "ED.Config.ScalarTimePeriods.hour",
-  day:    "ED.Config.ScalarTimePeriods.day",
-  week:   "ED.Config.ScalarTimePeriods.week",
-  month:  "ED.Config.ScalarTimePeriods.month",
-  year:   "ED.Config.ScalarTimePeriods.year"
-};
-preLocalize( "scalarTimePeriods" );
-
-/**
- * Time periods for spells that don't have a defined ending.
- * @enum {string}
- */
-ED4E.permanentTimePeriods = {
-  perm: "ED.Config.PermanentTimePeriods.perm"
-};
-preLocalize( "permanentTimePeriods" );
-
-/* -------------------------------------------- */
-
-/**
- * Time periods that don't accept a numeric value.
- * @enum {string}
- */
-ED4E.specialTimePeriods = {
-  inst: "ED.Config.SpecialTimePeriods.inst",
-  spec: "ED.Config.SpecialTimePeriods.special"
-};
-preLocalize( "specialTimePeriods" );
-
-/* -------------------------------------------- */
-
-/**
- * The various lengths of time over which effects can occur.
- * @enum {string}
- */
-ED4E.timePeriods = {
-  ...ED4E.specialTimePeriods,
-  ...ED4E.permanentTimePeriods,
-  ...ED4E.scalarTimePeriods
-};
-preLocalize( "timePeriods" );
-
-/* -------------------------------------------- */
-
-/**
- * The various types of movement of moving entities.
- * @enum {string}
- */
-ED4E.movementTypes = {
-  burrow: "ED.Config.MovementTypes.burrow",
-  climb:  "ED.Config.MovementTypes.Climb",
-  fly:    "ED.Config.MovementTypes.Fly",
-  swim:   "ED.Config.MovementTypes.Swim",
-  walk:   "ED.Config.MovementTypes.Walk"
-};
-preLocalize( "movementTypes", { sort: true } );
-
-/* -------------------------------------------- */
-
-/**
- * The valid units of measure for movement distances in the game system.
- * By default, this uses the imperial units of feet and miles.
- * @enum {string}
- */
-ED4E.movementUnits = {
-  in: "ED.Config.MovementUnits.inch",
-  ft: "ED.Config.MovementUnits.feet",
-  yd: "ED.Config.MovementUnits.yard",
-  mi: "ED.Config.MovementUnits.mile",
-};
-preLocalize( "movementUnits" );
-
-/* -------------------------------------------- */
-
-/**
- * The types of range that are used for measuring actions and effects.
- * @enum {string}
- */
-ED4E.rangeTypes = {
-  self:  "ED.Config.RangeTypes.self",
-  touch: "ED.Config.RangeTypes.touch",
-  spec:  "ED.Config.RangeTypes.special",
-  any:   "ED.Config.RangeTypes.any",
-};
-preLocalize( "rangeTypes" );
-
-/* -------------------------------------------- */
-
-/**
- * The valid units of measure for the range of an action or effect. A combination of {@link ED4E.movementUnits}
- * and {@link ED4E.rangeTypes}.
- * @enum {string}
- */
-ED4E.distanceUnits = {
-  ...ED4E.movementUnits,
-  ...ED4E.rangeTypes,
-};
-preLocalize( "distanceUnits" );
-
-/* -------------------------------------------- */
-
-/**
- * Information needed to represent different area of effect target types.
- * @typedef {object} AreaTargetDefinition
- * @property {string} label        Localize(d) label for this type.
- * @property {string} template     Type of `MeasuredTemplate` create for this target type.
- * @property {string} [reference]  Reference to a rule page describing this area of effect.
- * @property {string[]} [sizes]    List of available sizes for this template. Options are chosen from the list: "angle",
- *                                 "radius", "width", "height", "length", "thickness". No more than 3 dimensions may
- *                                 be specified.
- */
-
-/**
- * Types for effects that cover an area.
- * @enum {AreaTargetDefinition}
- */
-ED4E.areaTargetDefinition = {
-  circle:   {
-    label:    "ED.Config.AreaTargets.circle",
-    template: "circle",
-    sizes:    [ "radius" ],
-  },
-  cone:     {
-    label:    "ED.Config.AreaTargets.cone",
-    template: "cone",
-    sizes:    [ "angle", "radius" ],
-  },
-  cube:     {
-    label:    "ED.Config.AreaTargets.cube",
-    template: "rect",
-    sizes:    [ "width" ],
-  },
-  cylinder: {
-    label:    "ED.Config.AreaTargets.cylinder",
-    template: "circle",
-    sizes:    [ "radius", "height" ],
-  },
-  line:     {
-    label:    "ED.Config.AreaTargets.line",
-    template: "ray",
-    sizes:    [ "length", "width" ],
-  },
-  radius:   {
-    label:    "ED.Config.AreaTargets.radius",
-    template: "circle",
-  },
-  sphere:   {
-    label:    "ED.Config.AreaTargets.sphere",
-    template: "circle",
-    sizes:    [ "radius" ],
-  },
-  square:   {
-    label:    "ED.Config.AreaTargets.square",
-    template: "rect",
-    sizes:    [ "width" ],
-  },
-  wall:     {
-    label:    "ED.Config.AreaTargets.wall",
-    template: "ray",
-    sizes:    [ "length", "thickness", "height" ],
-  },
-};
-preLocalize( "areaTargetDefinition", { key: "label", sort: true } );
-
-ED4E.spellEnhancementUnits = {
-  ...ED4E.movementUnits,
-  ...ED4E.scalarTimePeriods,
-};
-preLocalize( "spellEnhancementUnits" );
-
-/* -------------------------------------------- */
-/*  Chat Commands                               */
-/* -------------------------------------------- */
-
-/**
- * The available chat commands with their corresponding help text.
- * @enum {string}
- */
-ED4E.chatCommands = {
-  char:     "X.chatCommandCharHelp no parameters, trigger char gen",
-  coin:     "X.chatCommandCoinHelp number plus coinage, pass out coins",
-  group:    "X.chatCommandGroupHelp no parameters?, calc CR for group",
-  h:        "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
-  help:     "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
-  lp:       "X.chatCommandLpHelp number, award LP points",
-  s:        "X.chatCommandSHelp any number of steps separated by whitespace or +, roll the given steps",
-};
-preLocalize( "chatCommands" );
 
 
 /* -------------------------------------------- */
