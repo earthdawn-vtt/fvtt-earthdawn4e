@@ -175,6 +175,12 @@ export default class ActorEd extends Actor {
     return itemTypes[type].filter( edidFilter );
   }
 
+  getItemsByAction( action ) {
+    return this.items.filter(
+      item => item.system.rollType === action
+    );
+  }
+
   /**
    * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
    * Fetch an item that matches a given EDID and optionally an item type.

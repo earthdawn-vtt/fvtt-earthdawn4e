@@ -34,9 +34,7 @@ export function getEdIds() {
     "edidPatterncraft",
     "edidLanguageSpeak",
     "edidLanguageRW",
-    // "edidKnockDown",
     "edidVersatility",
-    // "edidJumpUp",
     "edidQuestorDevotion",
     "edidUnarmedCombat",
     "edidCreatureAttack",
@@ -104,15 +102,6 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
-  // edid for knock down
-  game.settings.register( "ed4e", "edidKnockDown", {
-    name:    "ED.Settings.Edid.knockdown",
-    hint:    "ED.Settings.Edid.knockdownHint",
-    scope:   "world",
-    config:  true,
-    default: "knock-down",
-  } );
-
   // edid for versatility
   game.settings.register( "ed4e", "edidVersatility", {
     name:    "ED.Settings.Edid.versatility",
@@ -120,16 +109,6 @@ export default function registerSystemSettings() {
     scope:   "world",
     config:  true,
     default: "versatility",
-    type:    new EdIdField(),
-  } );
-
-  // edid for jumping up
-  game.settings.register( "ed4e", "edidJumpUp", {
-    name:    "ED.Settings.Edid.jumpUp",
-    hint:    "ED.Settings.Edid.jumpUpHint",
-    scope:   "world",
-    config:  true,
-    default: "jump-up",
     type:    new EdIdField(),
   } );
 
