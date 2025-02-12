@@ -42,6 +42,26 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     // assign the source talent
   }
 
+  /**
+   * The final rank of the ability (e.g. attribute + rank).
+   * @type {number}
+   */
+  get parentRank() {
+    const parentTalent = this.parentActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent );
+    return parentTalent?.system.level;
+  }
+  
+
+  /**
+   * The final rank of the ability (e.g. attribute + rank).
+   * @type {number}
+   */
+  get rankFinal() {
+    const parentTalent = this.parentActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent );
+    const attributeStep = ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 );
+    return attributeStep ? parentTalent?.system.level + attributeStep : 0;
+  }
+
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
