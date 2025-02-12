@@ -35,13 +35,27 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         initial:  "",
         label:    this.labelKey( "abilityEdid" ),
         hint:     this.hintKey( "abilityEdid" ),
-      } )
+      } ),
+      source: new fields.SchemaField(
+        {
+          documentOriginUuid: new fields.DocumentUUIDField( {
+            label: this.labelKey( "documentOriginUuid" ),
+            hint:  this.hintKey( "documentOriginUuid" ),
+          } ),
+          documentOriginType: new fields.StringField( {
+            label: this.labelKey( "documentOriginType" ),
+            hint:  this.hintKey( "documentOriginType" ),
+          } ),
+        },
+        {
+          label: this.labelKey( "source" ),
+          hint:  this.hintKey( "source" ),
+        }
+      ),
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+  // region Properties
 
   /**
    * Is this effect always active, that is, has no limited duration.
@@ -77,9 +91,39 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     return ( this.parent?.isItemEffect && !this.transferToTarget && !this.parent?.transfer ) || this.appliedToAbility;
   };
 
-  /* -------------------------------------------- */
-  /*  CRUD                                        */
-  /* -------------------------------------------- */
+  /**
+   * Is this effect created automatically by a document, such as an item or actor effect?
+   * @type {boolean}
+   */
+  get createdAutomatically() {
+    return !!this.document;
+  }
+
+  /**
+   * The document origin of this effect, if it was created by a document. If coming from a compendium pack, this will
+   * return the document's index entry.
+   * @type {Document | object | null | *}
+   */
+  get documentOrigin() {
+    return fromUuidSync( this.documentOriginUuid );
+  }
+
+  // endregion
+
+
+  // region Data Preparation
+
+
+  /** @inheritDoc */
+  prepareBaseData() {
+    super.prepareBaseData();
+    if ( this.documentOriginUuid ) this.documentOriginType = this.documentOrigin.type;
+  }
+
+  // endregion
+
+
+  //  region CRUD
 
   /** @inheritDoc */
   async _preUpdate( changes, options, user ) {
@@ -124,4 +168,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
     return this.parent?.target?.getRollData() ?? {};
   }
+
+  // endregion
+
 }

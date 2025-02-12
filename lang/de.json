@@ -585,14 +585,20 @@
           "abilityEdid":                                "Wenn angegeben wird dieser Effekt auf die Fertigkeit übertragen",
           "begin":                                      "Wann beginnt der Effekt",
           "changes":                                    "Die Änderungen die dieser Effekt anwendet",
+          "documentOriginType":                         "Der Typ des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
+          "documentOriginUuid":                         "Die UUID des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
           "duration":                                   "Die Dauer des Effekts",
+          "source":                                     "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
         "Labels": {
           "abilityEdid":                                "Fähigkeit",
           "begin":                                      "Start",
           "changes":                                    "Änderungen",
+          "documentOriginType":                         "Dokumenttyp Ursprung",
+          "documentOriginUuid":                         "Dokument Ursprung",
           "duration":                                   "Dauer",
+          "source":                                     "Ursprung",
           "transferToTarget":                           "Übertrage auf Ziel"
         }
       },
