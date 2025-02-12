@@ -614,6 +614,10 @@ input.input__number-input {
 .knack-card__grid--container .knack-card__grid--item .roll-icon__pointer {
   display: none;
 }
+.parent__rank {
+  font-style: italic;
+  opacity: 0.5;
+}
 .ability-icon,
 .equipment-icon,
 .power-icon,
