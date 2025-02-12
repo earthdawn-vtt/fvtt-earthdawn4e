@@ -695,7 +695,7 @@ preLocalize( "singleBonuses", { key: "label" } );
 ED4E.eaeChangeKeysActor = [
   ...Object.entries( ED4E.globalBonuses ).map( ( [ key, { label } ] ) => {
     return {
-      value:    `system.globalBonuses.${key}`,
+      value:    `system.globalBonuses.${key}.value`,
       label:    label,
       group:    "ED.ActiveEffect.ChangeKeys.Groups.globalBonuses",
       disabled: false,
@@ -712,14 +712,14 @@ ED4E.eaeChangeKeysActor = [
   } ), */
   ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
     return {
-      value:    `system.attribute.${key}.baseStep`,
+      value:    `system.attributes.${key}.baseStep`,
       label:    label,
       group:    "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
     };
   } ),
   ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
     return {
-      value:     `system.attribute.${key}.baseValue`,
+      value:     `system.attributes.${key}.baseValue`,
       label:     label,
       group:     "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
     };
@@ -753,17 +753,17 @@ ED4E.eaeChangeKeysActor = [
   },
   // encumbrance
   {
-    value:    "system.characteristics.encumbrance.value",
+    value:    "system.encumbrance.value",
     label:    "ED.Data.Actor.Labels.encumbrance",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   {
-    value:    "system.characteristics.encumbrance.max",
+    value:    "system.encumbrance.max",
     label:    "ED.Data.Actor.Labels.encumbranceMax",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   {
-    value:    "system.characteristics.encumbrance.bonus",
+    value:    "system.encumbrance.bonus",
     label:    "ED.Data.Actor.Labels.encumbranceBonus",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
@@ -910,13 +910,23 @@ ED4E.eaeChangeKeysItem = [
   },
   // Armor
   {
-    value:    "system.physical",
+    value:    "system.physical.armor",
     label:    "ED.Data.Item.Labels.Armor.physicalArmor",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
   },
   {
-    value:    "system.mystical",
+    value:    "system.physical.forgeBonus",
+    label:    "ED.Data.Item.Labels.Armor.forgeBonusPhysical",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.mystical.armor",
     label:    "ED.Data.Item.Labels.Armor.mysticalArmor",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
+  },
+  {
+    value:    "system.mystical.forgeBonus",
+    label:    "ED.Data.Item.Labels.Armor.forgeBonusMystical",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.armor",
   },
   {
@@ -947,8 +957,18 @@ ED4E.eaeChangeKeysItem = [
   },
   // Weapon
   {
-    value:    "system.damage",
+    value:    "system.damage.attribute",
+    label:    "ED.Data.Item.Labels.Weapons.damageAttribute",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.damage.baseStep",
     label:    "ED.Data.Item.Labels.Weapons.damageBaseStep",
+    group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
+  },
+  {
+    value:    "system.damage.type",
+    label:    "ED.Data.Item.Labels.Weapons.damageType",
     group:    "ED.ActiveEffect.ChangeKeys.Groups.weapon",
   },
   {
