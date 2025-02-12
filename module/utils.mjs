@@ -691,6 +691,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/health-none-character-card.hbs",
     "systems/ed4e/templates/actor/cards/damage-character-card.hbs",
     "systems/ed4e/templates/actor/cards/damage-none-character-card.hbs",
+    "systems/ed4e/templates/actor/cards/knack-card.hbs",
 
     // Item partials
     "systems/ed4e/templates/item/item-partials/item-section-name.hbs",

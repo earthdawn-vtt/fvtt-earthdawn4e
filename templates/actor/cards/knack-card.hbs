@@ -1,0 +1,40 @@
+
+<div class="card__knack">
+    <div class="knack-card__grid--container item-id" data-item-id="{{_id}}">
+        <div class="knack-card__grid--item icons__dice">
+            {{#if (ne this.system.attribute "")}}
+                <img class="ability-icon" src="{{img}}"/>
+                <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
+                <img class="roll-icon__pointer rollable" 
+                data-rolltype="ability"
+                data-action="rollable" src="icons/svg/d20-black.svg">
+            {{else}} 
+            {{#if (ne this.system.strain 0)}}
+                <img class="ability-icon" src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
+                <img class="roll-icon__hover-fixed blood" src="icons/svg/blood.svg">
+                <img class="roll-icon__pointer take-strain" data-action="takeStrain" src="systems/ed4e/assets/icons/red-blood.svg" data-attribute="{{@key}}">
+            {{else}}
+                    <img class="item__image--visible" src="{{img}}" title="{{name}}" height="25" width="25" />
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="knack-card__grid--item card__name" data-action="expandItem">{{name}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{#if system.standardEffect}} [S]{{/if}}</div>
+        <div class="knack-card__grid--item">{{system.action}}</div>
+        <div class="knack-card__grid--item text__alignment--center parent__rank" title="{{localize "ED.Actor.Tooltips.parentTalent"}}">{{#if system.attribute}}({{this.system.parentRank}}){{else}}-{{/if}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{#if system.attribute}}{{this.system.rankFinal}}{{else}}-{{/if}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{system.strain}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{#if system.attribute}}{{system.attribute}}{{else}}-{{/if}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-chat.hbs"}}</div>
+    </div>
+    <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+            {{{system.description.value}}}
+        </span>
+        <span>
+            {{#each this.effects as |effects id|}}
+            {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+            {{/each}}
+        </span>
+    </div>
+</div>
