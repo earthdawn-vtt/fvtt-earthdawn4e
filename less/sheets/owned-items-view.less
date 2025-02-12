@@ -24,6 +24,33 @@
     }
 }
 
+.knack-card__grid--container {
+    align-items: center;
+    display: grid;
+    height: 30px;
+    grid-template-columns:
+        // 790 px available
+        60px // Icon
+        190px // Name
+        40px // StanardEffect
+        100px // Action
+        70px // Rank
+        70px // Step
+        70px // Strain
+        70px // Attribute
+        100px // Control Icons
+    ;
+
+    .knack-card__grid--item {
+
+        .roll-icon__hover,
+        .roll-icon__hover-fixed,
+        .roll-icon__pointer {
+            display: none;
+        }
+    }
+}
+
 .ability-icon,
 .equipment-icon,
 .power-icon,
@@ -176,6 +203,7 @@
 
 
 .ability-card__grid--container:hover,
+.knack-card__grid--container:hover,
 .attribute-card__grid--container:hover,
 power-card__grid--container:hover,
 .equipment-card__grid--container:hover {
