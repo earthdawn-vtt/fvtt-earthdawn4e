@@ -23,7 +23,7 @@
         <div class="ability-card__grid--item text__alignment--center">{{system.level}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{this.system.rankFinal}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{system.strain}}</div>
-        <div class="ability-card__grid--item text__alignment--center">{{system.attribute}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{#if system.attribute}}{{system.attribute}}{{else}}-{{/if}}</div>
         <div class="ability-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}</div>
     </div>
     <div class="card__description card__description--toggle display__inline-block">
