@@ -58,7 +58,7 @@ export default class TargetTemplate extends SystemDataModel {
     let groupDifficultySetting = this.difficulty.group;
     let fixedDifficultySetting = this.difficulty.fixed;
 
-    if ( numTargets <= 0 || targetDifficultySetting === "" ) {
+    if ( numTargets <= 0 || !targetDifficultySetting ) {
       difficulty = ( fixedDifficultySetting > 0 ) ? fixedDifficultySetting : game.settings.get( "ed4e", "minimumDifficulty" );
     } else {
       let baseDifficulty;
@@ -76,7 +76,7 @@ export default class TargetTemplate extends SystemDataModel {
           baseDifficulty = TargetTemplate._getAggregatedDefense( currentTargets, targetDifficultySetting, Math.min );
           break;
         default:
-          baseDifficulty = targetDifficultySetting === 0 ? 0 : currentTarget?.system.characteristics.defenses[targetDifficultySetting].value ?? 0;
+          baseDifficulty = currentTarget?.system.characteristics.defenses[targetDifficultySetting]?.value ?? 0;
       }
       difficulty = baseDifficulty + additionalTargetDifficulty;
     }
