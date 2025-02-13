@@ -1,7 +1,8 @@
 <div class="card__power">
     <div class="power-card__grid--container item-id" data-item-id="{{_id}}">
         <div class="power-card__grid--item icons__dice">
-            {{#if (ne this.system.powerStep "")}}
+            {{#if (ne this.system.powerStep 0)}}
+            {{log "powerStep" this.system.powerStep}}
                 <img class="power-icon" src="{{img}}"/>
                 <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
                 <img class="roll-icon__pointer rollable" src="icons/svg/d20-black.svg">
