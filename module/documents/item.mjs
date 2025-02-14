@@ -156,6 +156,20 @@ export default class ItemEd extends Item {
   // region Earthdawn Methods
 
   /**
+   * @inheritDoc
+   * @userFunction            UF_Items-_preCreate
+   */
+  async _preCreate( data, options, userId ) {
+    await super._preCreate( data, options, userId );
+
+    // If this item is a namegiver, check if there is already a namegiver in the parent item.
+    if ( this.type === "namegiver" && this.parent?.itemTypes.namegiver.length > 0 ) {
+      ui.notifications.error( "ED.Notifications.Error.onlyOneNamegiver", {localize: true}  );
+      return false;
+    }
+  }
+
+  /**
    * Update this items weight and name based on the given namegiver item. Uses the namegiver weight multiplier to
    * recalculate this item's weight. If successful, set a flag to indicate it's been calculated. Has to be unset
    * manually, otherwise another call of this function will not execute and instead display a warning.

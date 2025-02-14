@@ -1795,7 +1795,9 @@
       "windling":                                         "Windling"
     },
     "Notifications": {
-      "Error": {},
+      "Error": {
+        "onlyOneNamegiver":                                "Es kann nur ein Namensgeber ausgewählt werden."
+      },
       "Info": {
         "noMoreItemsOfThisType":                          "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "notAddedforTheActor":                            "Diese Item ist nicht für diesen Actortyp gedacht.",
