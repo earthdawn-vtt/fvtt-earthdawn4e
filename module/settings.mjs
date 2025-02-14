@@ -6,6 +6,7 @@ import EdIdField from "./data/fields/edid-field.mjs";
  * Get an ed4e setting from the system settings.
  * @param {string} settingKey   The key of the setting to get.
  * @returns {*}                 The value of the setting.
+ * @UserFunction                UF_Settings-getSetting
  */
 export function getSetting( settingKey ) {
   return game.settings.get( "ed4e", settingKey );
@@ -18,6 +19,7 @@ export function getSetting( settingKey ) {
  * @param {object} [options]   Any additional options to pass to the setting.
  *                             See {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#set}
  * @returns {*}                The assigned value of the setting.
+ * @UserFunction               UF_Settings-setSetting
  */
 export function setSetting( settingKey, value, options={} ) {
   return game.settings.set( "ed4e", settingKey, value, options );
@@ -26,6 +28,7 @@ export function setSetting( settingKey, value, options={} ) {
 /**
  * Get all available ed-ids from the system settings.
  * @returns {string[]} - A list of all available ed-ids.
+ * @UserFunction               UF_Settings-getEdIds
  */
 export function getEdIds() {
   return [
@@ -53,6 +56,9 @@ export default function registerSystemSettings() {
   /* -------------------------------------------------------------------------------- */
 
   // edid for thread weaving
+  /**
+   * @UserFunction               UF_Settings-edidThreadWeaving
+   */
   game.settings.register( "ed4e", "edidThreadWeaving", {
     name:    "ED.Settings.Edid.threadWeaving",
     hint:    "ED.Settings.Edid.threadWeavingHint",
@@ -63,6 +69,9 @@ export default function registerSystemSettings() {
   } );
 
   // edid for spellcasting
+  /**
+   * @UserFunction               UF_Settings-edidSpellcasting
+   */
   game.settings.register( "ed4e", "edidSpellcasting", {
     name:    "ED.Settings.Edid.spellCasting",
     hint:    "ED.Settings.Edid.spellCastingHint",
@@ -73,6 +82,9 @@ export default function registerSystemSettings() {
   } );
 
   // edid for patterncraft
+  /**
+   * @UserFunction               UF_Settings-edidPatterncraft
+   */
   game.settings.register( "ed4e", "edidPatterncraft", {
     name:    "ED.Settings.Edid.patterncraft",
     hint:    "ED.Settings.Edid.patterncraftHint",
@@ -83,6 +95,9 @@ export default function registerSystemSettings() {
   } );
 
   // edid for speak language
+  /**
+   * @UserFunction               UF_Settings-edidLanguageSpeak       
+   */
   game.settings.register( "ed4e", "edidLanguageSpeak", {
     name:    "ED.Settings.Edid.languageSpeak",
     hint:    "ED.Settings.Edid.languageSpeakHint",
@@ -93,6 +108,9 @@ export default function registerSystemSettings() {
   } );
 
   // edid for read/write language
+  /**
+   * @UserFunction                UF_Settings-edidLanguageRW
+   */
   game.settings.register( "ed4e", "edidLanguageRW", {
     name:    "ED.Settings.Edid.languageRW",
     hint:    "ED.Settings.Edid.languageRWHint",
@@ -103,6 +121,9 @@ export default function registerSystemSettings() {
   } );
 
   // edid for versatility
+  /**
+   * @UserFunction                UF_Settings-edidVersatility
+   */
   game.settings.register( "ed4e", "edidVersatility", {
     name:    "ED.Settings.Edid.versatility",
     hint:    "ED.Settings.Edid.versatilityHint",
@@ -193,6 +214,9 @@ export default function registerSystemSettings() {
   // } );
 
   // Auto open char gen on PC document creation
+  /**
+   * @UserFunction                UF_Settings-languages
+   */
   game.settings.register( "ed4e", "autoOpenCharGen", {
     name:    "ED.Settings.CharGen.autoOpenCharGen",
     hint:    "ED.Settings.CharGen.hintAutoOpenCharGen",
@@ -203,6 +227,9 @@ export default function registerSystemSettings() {
   } );
 
   // Starting attribute points to spend
+  /**
+   * @UserFunction                UF_Settings-attributePoints
+   */
   game.settings.register( "ed4e", "charGenAttributePoints", {
     name:    "ED.Settings.CharGen.attributePoints",
     hint:    "ED.Settings.CharGen.hintAttributePoints",
@@ -213,6 +240,9 @@ export default function registerSystemSettings() {
   } );
 
   // Maximum rank that can be assigned to a talent or skill on character generation
+  /**
+   * @UserFunction                UF_Settings-maxRank
+   */
   game.settings.register( "ed4e", "charGenMaxRank", {
     name:    "ED.Settings.CharGen.maxRanks",
     hint:    "ED.Settings.CharGen.hintMaxRanks",
@@ -223,6 +253,9 @@ export default function registerSystemSettings() {
   } );
 
   // Maximum circle for learnable spells at character generation
+  /**
+   * @UserFunction                UF_Settings-maxSpellCircle
+   */
   game.settings.register( "ed4e", "charGenMaxSpellCircle", {
     name:   "ED.Settings.CharGen.maxSpellCircle",
     hint:   "ED.Settings.CharGen.hintMaxSpellCircle",
@@ -250,6 +283,9 @@ export default function registerSystemSettings() {
   // } );
 
   // LP Tracking On/Off
+  /**
+   * @UserFunction                UF_Settings-lpTrackingUsed
+   */
   game.settings.register( "ed4e", "lpTrackingUsed", {
     name:    "ED.Settings.LpTracking.lpTrackingUsed",
     hint:    "ED.Settings.LpTracking.hintLpTrackingUsed",
@@ -260,6 +296,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Attributes
+  /**
+   * @UserFunction                UF_Settings-lpTrackingAttributes
+   */
   game.settings.register( "ed4e", "lpTrackingAttributes", {
     name:    "ED.Settings.LpTracking.attributeOptions",
     hint:    "ED.Settings.LpTracking.hintAttributeOption",
@@ -274,6 +313,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Talents
+  /**
+   * @UserFunction                UF_Settings-lpTrackingTalents
+   */
   game.settings.register( "ed4e", "lpTrackingCircleTalentRequirements", {
     name:    "ED.Settings.LpTracking.circleTalentRequirements",
     hint:    "ED.Settings.LpTracking.hintCircleTalentRequirements",
@@ -285,6 +327,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Skill Training
+  /**
+   * @UserFunction                UF_Settings-lpTrackingSkillTraining
+   */
   game.settings.register( "ed4e", "lpTrackingRemoveSilver", {
     name:    "ED.Settings.LpTracking.removeSilver",
     hint:    "ED.Settings.LpTracking.hintRemoveSilver",
@@ -295,6 +340,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Talent
+  /**
+   * @UserFunction                UF_Settings-lpTrackingMaxRankTalent
+   */
   game.settings.register( "ed4e", "lpTrackingMaxRankTalent", {
     name:    "ED.Settings.LpTracking.maxRankTalent",
     hint:    "ED.Settings.LpTracking.hintMaxRankTalent",
@@ -309,6 +357,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Skill
+  /**
+   * @UserFunction                UF_Settings-lpTrackingMaxRankSkill
+   */
   game.settings.register( "ed4e", "lpTrackingMaxRankSkill", {
     name:    "ED.Settings.LpTracking.maxRankSkill",
     hint:    "ED.Settings.LpTracking.hintMaxRankSkill",
@@ -323,6 +374,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Devotion
+  /**
+   * @UserFunction                UF_Settings-lpTrackingMaxRankDevotion
+   */
   game.settings.register( "ed4e", "lpTrackingMaxRankDevotion", {
     name:    "ED.Settings.LpTracking.maxRankDevotion",
     hint:    "ED.Settings.LpTracking.hintMaxRankDevotion",
@@ -337,6 +391,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Spell Cost
+  /**
+   * @UserFunction                UF_Settings-lpTrackingSpellCost
+   */
   game.settings.register( "ed4e", "lpTrackingSpellCost", {
     name:    "ED.Settings.LpTracking.spellCost",
     hint:    "ED.Settings.LpTracking.hintSpellCost",
@@ -354,6 +411,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Use Patterncraft to Learn Spell
+  /**
+   * @UserFunction                UF_Settings-lpTrackingLearnSpellUsePatterncraft
+   */
   game.settings.register( "ed4e", "lpTrackingLearnSpellUsePatterncraft", {
     name:    "ED.Settings.LpTracking.learnSpellUsePatterncraft",
     hint:    "ED.Settings.LpTracking.hintLearnSpellUsePatterncraft",
@@ -369,6 +429,9 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Learn Spells on Circle Up
+  /**
+   * @UserFunction                UF_Settings-lpTrackingLearnSpellsOnCircleUp
+   */
   game.settings.register( "ed4e", "lpTrackingLearnSpellsOnCircleUp", {
     name:    "ED.Settings.LpTracking.learnSpellsOnCircleUp",
     hint:    "ED.Settings.LpTracking.hintLearnSpellsOnCircleUp",
@@ -395,6 +458,9 @@ export default function registerSystemSettings() {
   // } );
 
   // Encumbrance options
+  /**
+   * @UserFunction                UF_Settings-encumbrance
+   */
   game.settings.register( "ed4e", "encumbrance", {
     name:    "ED.Settings.Encumbrance.encumbrance",
     hint:    "ED.Settings.Encumbrance.encumbranceHint",
@@ -417,6 +483,9 @@ export default function registerSystemSettings() {
   */
 
   // Languages
+  /**
+   * @UserFunction                UF_Settings-languages
+   */
   game.settings.register( "ed4e", "languages", {
     name:   "ED.Settings.Mechanics.languages",
     hint:   "ED.Settings.Mechanics.languagesHint",
@@ -434,6 +503,9 @@ export default function registerSystemSettings() {
   } );
 
   // Spellcasting / Thread Weaving Types
+  /**
+   * @UserFunction                UF_Settings-spellcastingTypes
+   */
   game.settings.register( "ed4e", "spellcastingTypes", {
     name:    "ED.Settings.Mechanics.spellcastingTypes",
     hint:    "ED.Settings.Mechanics.spellcastingTypesHint",
@@ -452,6 +524,9 @@ export default function registerSystemSettings() {
   } );
 
   // Split Talents
+  /**
+   * @UserFunction                UF_Settings-talentsSplit
+   */
   game.settings.register( "ed4e", "talentsSplit", {
     name:    "ED.Settings.talentsSplit",
     hint:    "ED.Settings.talentsSplitHint",
@@ -462,6 +537,9 @@ export default function registerSystemSettings() {
   } );
 
   // Minimum difficulty for tests
+  /**
+   * @UserFunction                UF_Settings-minimumDifficulty
+   */
   game.settings.register( "ed4e", "minimumDifficulty", {
     name:    "ED.Settings.GameMechanics.minimumDifficulty",
     hint:    "ED.Settings.GameMechanics.minimumDifficultyHint",
@@ -491,6 +569,9 @@ export default function registerSystemSettings() {
   // } );
 
   // Chat Avater Options
+  /**
+   * @UserFunction                UF_Settings-chatAvatar
+   */
   game.settings.register( "ed4e", "chatAvatar", {
     name:    "ED.Settings.Chat.chatAvatar",
     hint:    "ED.Settings.Chat.chatAvatarHint",
