@@ -43,7 +43,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   }
 
   /**
-   * The final rank of the ability (e.g. attribute + rank).
+   * The final rank of the parent ability.
    * @type {number}
    */
   get parentRank() {
@@ -53,13 +53,12 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   
 
   /**
-   * The final rank of the ability (e.g. attribute + rank).
+   * The final rank of this ability (e.g. attribute + parent talent rank).
    * @type {number}
    */
   get rankFinal() {
-    const parentTalent = this.parentActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent );
     const attributeStep = ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 );
-    return attributeStep ? parentTalent?.system.level + attributeStep : 0;
+    return attributeStep ? this.parentRank + attributeStep : 0;
   }
 
   /* -------------------------------------------- */
