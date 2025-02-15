@@ -15,41 +15,31 @@ export default class MovementFields {
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
           label:    "ED.Item.Namegiver.walk"
         } ),
         fly: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
           label:    "ED.Item.Namegiver.fly"
         } ),
         swim: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
           label:    "ED.Item.Namegiver.swim"
         } ),
         burrow: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
           label:    "ED.Item.Namegiver.burrow"
         } ),
         climb: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
           label:    "ED.Item.Namegiver.climb"
         } )
