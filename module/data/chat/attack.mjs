@@ -104,11 +104,10 @@ export default class AttackMessageData extends BaseMessageData {
 
   static async _onUseReaction( event, button ) {
     event.preventDefault();
-    ui.notifications.info( "Reactions are not done yet. We're working on it :)" );
-    // potentially update the success of the roll in the DataModel, e.g. with avoid blow
-    /* console.log( "In _onUseReaction ChatMessage listener" );
-    const ability = await fromUuid( button.dataset.abilityUuid );
-    console.log( "Ability: ", ability ); */
+    const ability = await fromUuid( event.srcElement.dataset.abilityUuid );
+    // update the difficulty of the roll #654
+    // update the original chat message success result #908
+    return await ability.system.rollAbility();
   }
 
 }
