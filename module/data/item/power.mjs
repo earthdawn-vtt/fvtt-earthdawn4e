@@ -19,16 +19,46 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
         blank:    true,
         initial:  "",
         choices:  ED4E.armor,
-        label:    this.labelKey( "Weapons.armorType" ),
-        hint:     this.hintKey( "Weapons.armorType" )
+        label:    this.labelKey( "Power.armorType" ),
+        hint:     this.hintKey( "Power.armorType" )
       } ),
       damage:        new fields.SchemaField( {
         type: new fields.StringField( {
           initial:  "standard",
           choices:  ED4E.damageType,
-          label:    this.labelKey( "Weapons.damageType" ),
-          hint:     this.hintKey( "Weapons.damageType" )
+          label:    this.labelKey( "Power.damageType" ),
+          hint:     this.hintKey( "Power.damageType" )
         } ),
+      } ),
+      element: new fields.SchemaField( {
+        type: new fields.StringField( {
+          required: true,
+          nullable: true,
+          blank:    true,
+          trim:     true,
+          choices:  ED4E.elements,
+          label:    this.labelKey( "Power.powerElementType" ),
+          hint:     this.hintKey( "Power.powerElementType" ),
+        } ),
+        subtype: new fields.StringField( {
+          required: true,
+          nullable: true,
+          blank:    true,
+          trim:     true,
+          choices:  Object.values(
+            ED4E.elementSubtypes
+          ).map(
+            subtypes => Object.keys( subtypes )
+          ).flat(),
+          label:    this.labelKey( "Power.powerElementSubtype" ),
+          hint:     this.hintKey( "Power.powerElementSubtype" ),
+        } )
+      },
+      {
+        required: true,
+        nullable: true,
+        label:    this.labelKey( "Power.powerElement" ),
+        hint:     this.hintKey( "Power.powerElement" ),
       } ),
     } );
   }
