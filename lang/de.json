@@ -425,6 +425,10 @@
         "rank":                                                     "Rang",
         "special":                                                  "Spezial"
       },
+      "Health": {
+        "damageStandard":                                                "Standard",
+        "damageStun":                                                    "Betäubung"
+      },
       "ItemStatus": {
         "carried":                                              "Getragen",
         "equipped":                                             "Ausgerüstet",
@@ -911,9 +915,13 @@
             "activation":                                   "Aktivierungsart des Giftes/der Krankheit",
             "death":                                        "Ist das Gift/die Krankheit tödlich?"
           },
-          "Powers": {
+          "Power": {
             "action":                                       "Aktionsart",
+            "armorType":                                    "Rüstungstyp der gegen diese Kraft schützt.",
+            "damageType":                                   "Schadensart der durch diese Kraft verursacht wird.",
             "strain":                                       "Überanstrengung",
+            "powerElementType":                             "Wird diese Kraft durch ein Element beeinflusst?",
+            "powerElementSubtype":                          "Ist die Elementarart der Kraft eine Unterart des Elements?",
             "powerStep":                                    "Aktionsstufe",
             "damageStep":                                   "Schadensstufe"
           },
@@ -1141,9 +1149,13 @@
             "activation":                                   "Aktivierung",
             "death":                                        "Tod"
           },
-          "Powers": {
+          "Power": {
             "action":                                       "Aktionsart",
+            "armorType":                                    "Rüstungstyp",
+            "damageType":                                   "Schadensart",
             "strain":                                       "Überanstrengung",
+            "powerElementType":                             "Elementarart",
+            "powerElementSubtype":                          "Unterklasse",
             "powerStep":                                    "Aktionsstufe",
             "damageStep":                                   "Schadensstufe"
           },
@@ -1689,23 +1701,25 @@
         "talentOptionsForTier": "Talent Optionen für"
       },
       "Header": {
-        "activeUser": "Aktive Spieler",
-        "actionType": "Aktionstyp",
-        "actorsNoUserConfigured": "Nicht konfigurierte, zugewiesene Akteure",
-        "description": "Beschreibung",
-        "details": "Details",
-        "effects": "Effekte",
-        "general": "Allgemein",
-        "inactiveUser": "Inaktive Spieler",
-        "magic": "Magie",
-        "navigator": "Navigator",
-        "spellEnhancement": "Zauber Verstärkung",
-        "talentSource": "Talent Ursprung",
-        "talentKnacks": "Kniffe",
-        "talentKnacksAvailable": "Verfügbare Kniffe",
-        "talentKnacksLearned": "Gelernte Kniffe",
-        "targetingDetails":   "Ziel Details",
-        "type": "Typ"
+        "activeUser":                                       "Aktive Spieler",
+        "actionType":                                       "Aktionstyp",
+        "actorsNoUserConfigured":                           "Nicht konfigurierte, zugewiesene Akteure",
+        "damageSettings":                                   "Schadenseinstellungen",
+        "description":                                      "Beschreibung",
+        "details":                                          "Details",
+        "effects":                                          "Effekte",
+        "elementSettings":                                  "Elementeinstellungen",
+        "general":                                          "Allgemein",
+        "inactiveUser":                                     "Inaktive Spieler",
+        "magic":                                            "Magie",
+        "navigator":                                        "Navigator",
+        "spellEnhancement":                                 "Zauber Verstärkung",
+        "talentSource":                                     "Talent Ursprung",
+        "talentKnacks":                                     "Kniffe",
+        "talentKnacksAvailable":                            "Verfügbare Kniffe",
+        "talentKnacksLearned":                              "Gelernte Kniffe",
+        "targetingDetails":                                 "Ziel Details",
+        "type":                                             "Typ"
       },
       "Knack": {
         "Notification": {
