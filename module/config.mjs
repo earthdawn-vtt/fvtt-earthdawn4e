@@ -258,8 +258,8 @@ preLocalize( "weaponWieldingType" );
  * @enum {string}
  */
 ED4E.damageType = {
-  standard:   "ED.Health.Damage.standard",
-  stun:       "ED.Health.Damage.stun",
+  standard:   "ED.Config.Health.damageStandard",
+  stun:       "ED.Config.Health.damageStun",
 };
 preLocalize( "damageType" );
 
