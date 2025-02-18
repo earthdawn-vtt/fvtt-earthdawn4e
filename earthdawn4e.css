@@ -75,6 +75,9 @@ input.input__number-input {
   padding-top: 5px;
   height: 20px;
 }
+.no-footer .form-footer {
+  display: none;
+}
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
@@ -239,6 +242,23 @@ input.input__number-input {
   height: max-content;
   padding-top: 8px;
   padding-bottom: 4px;
+}
+#attribute-roll-prompt .window-content .attribute-action__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#attribute-roll-prompt .window-content .attribute-action__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .app.window-app.form.earthdawn4e.roll-prompt header,
 .app.window-app.form.earthdawn4e.assign-legend header {
