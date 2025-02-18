@@ -498,6 +498,42 @@ preLocalize( "movementUnits" );
 
 /* -------------------------------------------- */
 
+ED4E.substituteAbilities = {
+  dex: {
+    "avoidBlow":       "ED.Config.SubstituteAbilities.avoidBlow",
+    "climbing":        "ED.Config.SubstituteAbilities.climbing",
+    "meleeWeapons":    "ED.Config.SubstituteAbilities.meleeWeapons",
+    "missileWeapons":  "ED.Config.SubstituteAbilities.missleWeapons",
+    "throwingWeapons": "ED.Config.SubstituteAbilities.throwingWeapons",
+    "unarmedCombat":   "ED.Config.SubstituteAbilities.unarmedCombat",
+  },
+  str: {
+    "swimming":       "ED.Config.SubstituteAbilities.swimming",
+  },
+  tou: {
+
+  },
+  per: {
+    "awareness":          "ED.Config.SubstituteAbilities.awareness",
+    "research":           "ED.Config.SubstituteAbilities.research",
+    "tracking":           "ED.Config.SubstituteAbilities.tracking",
+    "wildernessSurvival": "ED.Config.SubstituteAbilities.wildernessSurvival",
+  },
+  wil: {
+    "resistTaunt":  "ED.Config.SubstituteAbilities.resistTaunt",
+  },
+  cha: {
+    "animalHandling": "ED.Config.SubstituteAbilities.animalHandling",
+    "bribery":        "ED.Config.SubstituteAbilities.bribery",
+    "conversation":   "ED.Config.SubstituteAbilities.conversation",
+    "distract":       "ED.Config.SubstituteAbilities.distract",
+    "etiquette":      "ED.Config.SubstituteAbilities.etiquette",
+    "flirting":       "ED.Config.SubstituteAbilities.flirting",
+    "haggle":         "ED.Config.SubstituteAbilities.haggle",
+    "seduction":      "ED.Config.SubstituteAbilities.seduction",
+    "sloughBlame":    "ED.Config.SubstituteAbilities.sloughBlame",
+  },
+};
 /**
  * The types of range that are used for measuring actions and effects.
  * @enum {string}
