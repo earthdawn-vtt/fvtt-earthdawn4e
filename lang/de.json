@@ -1387,6 +1387,11 @@
       "placeholderBlankSelectOption":                   "---"
     },
     "Dialogs": {
+      "AttributeRoll": {
+        "halfMagic":                              "Halbmagie",
+        "attributeRoll":                          "Attributsprobe",
+        "substituteAbility":                      "Attribut als Ersatz"
+      },
       "AssignLp": {
         "description":                            "Beschreibung",
         "legendPoints":                           "Legendenpunkte"
@@ -1625,6 +1630,7 @@
         }
       },
       "Title": {
+        "attributeRoll":                                      "Attributsprobe",
         "classAdvancement":                                   "Rang- und Kreisaufstieg",
         "characterGeneration":                                "Charaktererschaffung",
         "drawWeapon":                                         "Waffe ziehen",
