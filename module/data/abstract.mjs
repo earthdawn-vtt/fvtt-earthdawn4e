@@ -482,6 +482,20 @@ export class ActorDataModel extends SystemDataModel {
     return destinations;
   }
 
+
+  // region Rolling
+
+  /**
+   * See {@link Actor#getRollData}
+   * @returns {object} An object to evaluate rolls and {@link FormulaField}s against.
+   */
+  getRollData() {
+    return {};
+  }
+
+  // endregion
+
+
   /* -------------------------------------------- */
   /*  Helpers                                     */
   /* -------------------------------------------- */
@@ -580,6 +594,19 @@ export class ItemDataModel extends SystemDataModel {
       event, document
     ) ?? true;
   }
+
+
+  // region Rolling
+
+  /**
+   * See {@link Item#getRollData}
+   * @returns {object} An object to evaluate rolls and {@link FormulaField}s against.
+   */
+  getRollData() {
+    return this.parent?.getRollData() ?? {};
+  }
+
+  // endregion
 
 
   /* -------------------------------------------- */

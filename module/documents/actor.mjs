@@ -564,6 +564,18 @@ export default class ActorEd extends Actor {
     return this.processRoll( roll );
   }
 
+  /** @inheritDoc */
+  getRollData() {
+    let rollData;
+    rollData = { ...super.getRollData() };
+    if ( this.system.getRollData ) Object.assign( rollData, this.system.getRollData() );
+
+    rollData.flags = { ...this.flags };
+    rollData.name = this.name;
+
+    return rollData;
+  }
+
 
   /* -------------------------------------------- */
   /*            Damage & Combat                   */
