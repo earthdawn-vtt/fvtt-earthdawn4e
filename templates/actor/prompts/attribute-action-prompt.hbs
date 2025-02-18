@@ -1,0 +1,38 @@
+{{!-- filepath: /E:/FoundryVTT_DEV/foundrydata/Data/systems/ed4e/templates/actor/prompts/attribute-action-prompt.hbs --}}
+<form class="attribute-action flexcol" id="attribute-action-form" autocomplete="off">
+    <!-- Buttons -->
+    <div>
+        <div class="partial__three attribute-action__buttons">
+            <label>{{localize "ED.Dialogs.AttributeRoll.halfMagic"}}</label>
+            {{#each this.buttons}}
+                {{#if (eq this.class "discipline")}}
+                    <button class="{{this.class}}" type="button" name="{{this.label}}" data-action="{{this.label}}">
+                        {{this.action}}
+                    </button>
+                {{/if}}
+            {{/each}}
+        </div>
+        
+        <div class="partial__three attribute-action__buttons">
+            <label>{{localize "ED.Dialogs.AttributeRoll.attributeRoll"}}</label>
+            {{#each this.buttons}}
+                {{#if (eq this.class "attribute")}}
+                    <button class="{{this.class}}" type="button" name="{{this.label}}" data-action="{{this.class}}">
+                        {{this.action}}
+                    </button>
+                {{/if}}
+            {{/each}}
+        </div>
+
+        <div class="partial__three attribute-action__buttons">
+            <label>{{localize "ED.Dialogs.AttributeRoll.substituteAbility"}}</label>
+            {{#each this.buttons}}
+                {{#if (eq this.class "substitute")}}
+                    <button class="{{this.class}}" type="button" name="{{this.label}}" data-action="{{this.action}}">
+                        {{this.action}}
+                    </button>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</form>
