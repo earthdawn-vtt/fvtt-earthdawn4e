@@ -283,27 +283,47 @@ export default class ActorEd extends Actor {
    * @returns {Promise<EdRoll>}             The processed Roll.
    */
   async rollAttribute( attributeId, edRollOptionsData = {}, options = {} ) {
-    const attributeStep = this.system.attributes[attributeId].step;
-    const step = { base: attributeStep };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAttribute", {
-      sourceActor: this.name,
-      step:        attributeStep,
-      attribute:   `${ game.i18n.localize( ED4E.attributes[attributeId].label ) }`
-    } );
-    const edRollOptions = EdRollOptions.fromActor(
-      {
-        testType:         "action",
-        rollType:         "attribute",
-        strain:           0,
-        target:           undefined,
-        step:             step,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
-      },
-      this
-    );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll );
+
+    const substituteAbilityOptions = Object.keys( ED4E.substituteAbilities[attributeId] );
+    // const attributeRollOptions = await this.attributeRollOptions( attributeId );
+    const attributeRollOptions =await this._promptFactory.getPrompt( attributeId+"RollSubstitute" );
+
+    if ( attributeRollOptions === undefined ) {
+      ui.notifications.error( "something is wrong" );
+      return;
+    } else if ( attributeRollOptions === "attribute" ) {
+      const attributeStep = this.system.attributes[attributeId].step;
+      const step = { base: attributeStep };
+      const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAttribute", {
+        sourceActor: this.name,
+        step:        attributeStep,
+        attribute:   `${ game.i18n.localize( ED4E.attributes[attributeId].label ) }`
+      } );
+      const edRollOptions = EdRollOptions.fromActor(
+        {
+          testType:         "action",
+          rollType:         "attribute",
+          strain:           0,
+          target:           undefined,
+          step:             step,
+          devotionRequired: false,
+          chatFlavor:       chatFlavor
+        },
+        this
+      );
+      const roll = await RollPrompt.waitPrompt( edRollOptions, options );
+      return this.processRoll( roll );
+    } else if ( this.disciplines.some( discipline => discipline.name === attributeRollOptions ) ) {
+      ui.notifications.error( "Half Magic Not implemented yet" );
+    } else if ( substituteAbilityOptions.includes( attributeRollOptions ) ) {
+      ui.notifications.error( "Substitute Skills Not implemented yet" );
+    }
+  }
+
+  async attributeRollOptions( attributeId ) {
+    const substituteRollData = await this._promptFactory.getPrompt( attributeId+"RollSubstitute" );
+    return substituteRollData;
+
   }
 
   /**
