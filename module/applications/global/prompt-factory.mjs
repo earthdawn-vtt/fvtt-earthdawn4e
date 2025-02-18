@@ -146,13 +146,79 @@ export default class PromptFactory {
 class ActorPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-    chooseDiscipline: this._chooseDisciplinePrompt.bind( this ),
-    drawWeapon:       this._drawWeaponPrompt.bind( this ),
-    jumpUp:           this._jumpUpPrompt.bind( this ),
-    knockDown:        this._knockDownPrompt.bind( this ),
-    recovery:         this._recoveryPrompt.bind( this ),
-    takeDamage:       this._takeDamagePrompt.bind( this ),
+    dexRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "dex" ),
+    strRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "str" ),
+    touRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "tou" ),
+    perRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "per" ),
+    wilRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "wil" ),
+    chaRollSubstitute: this._attributeRollSubstitutePrompt.bind( this, "cha" ),
+    chooseDiscipline:        this._chooseDisciplinePrompt.bind( this ),
+    drawWeapon:              this._drawWeaponPrompt.bind( this ),
+    jumpUp:                  this._jumpUpPrompt.bind( this ),
+    knockDown:               this._knockDownPrompt.bind( this ),
+    recovery:                this._recoveryPrompt.bind( this ),
+    takeDamage:              this._takeDamagePrompt.bind( this ),
   };
+
+  async _attributeRollSubstitutePrompt( attributeId ) {
+    const buttons = [];
+    const substituteButtons = await this._getSubstituteButtons( attributeId );
+    const disciplineButtons = await this._getDisciplineButtons();
+    
+    buttons.push( ...substituteButtons );
+    buttons.push( ...disciplineButtons );
+
+    buttons.push( {
+      action:  "attribute",
+      label:   "ED.Dialogs.Buttons.attribute",
+      class:   "attribute",
+      default: true
+    } );
+
+    return DialogClass.wait( {
+      id:       "attribute-roll-prompt",
+      uniqueId: String( ++globalThis._appId ),
+      classes:  [ "earthdawn4e", "attribute-roll-prompt", "flexcol", "no-footer" ],
+      window:   {
+        title:       "ED.Dialogs.Title.attributeRoll",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: buttons,
+      content: await renderTemplate(
+        "systems/ed4e/templates/actor/prompts/attribute-action-prompt.hbs", { buttons: buttons }
+      ),
+    } );
+  }
+
+  async _getSubstituteButtons( attributeId ) {
+    const substituteAbilities = ED4E.substituteAbilities[attributeId];
+    const substituteButtons = [];
+    for ( const [ key, value ] of Object.entries( substituteAbilities ) ) {
+      substituteButtons.push( {
+        action:  key,
+        label:   value,
+        class:   "substitute",
+        default: false
+      } );
+    }
+    return substituteButtons;
+  }
+
+  async _getDisciplineButtons() {
+    const disciplineButtons = [];
+    const disciplines = this.document.disciplines;
+    for ( const discipline of disciplines ) {
+      disciplineButtons.push( {
+        action:  discipline.name,
+        label:   discipline.name,
+        class:   "discipline",
+        default: false
+      } );
+    }
+    return disciplineButtons;
+  }
+
 
   async _recoveryPrompt() {
     const buttons = [];
@@ -188,7 +254,7 @@ class ActorPromptFactory extends PromptFactory {
         minimizable: false
       },
       modal:   false,
-      buttons: buttons
+      buttons: buttons,
     } );
   }
 
