@@ -37,8 +37,8 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
           blank:    true,
           trim:     true,
           choices:  ED4E.elements,
-          label:    this.labelKey( "Power.powerElementType" ),
-          hint:     this.hintKey( "Power.powerElementType" ),
+          label:    this.labelKey( "Power.elementType" ),
+          hint:     this.hintKey( "Power.elementType" ),
         } ),
         subtype: new fields.StringField( {
           required: true,
@@ -50,15 +50,15 @@ export default class PowerData extends NoneNamegiverPowerData.mixin(
           ).map(
             subtypes => Object.keys( subtypes )
           ).flat(),
-          label:    this.labelKey( "Power.powerElementSubtype" ),
-          hint:     this.hintKey( "Power.powerElementSubtype" ),
+          label:    this.labelKey( "Power.elementSubtype" ),
+          hint:     this.hintKey( "Power.elementSubtype" ),
         } )
       },
       {
         required: true,
         nullable: true,
-        label:    this.labelKey( "Power.powerElement" ),
-        hint:     this.hintKey( "Power.powerElement" ),
+        label:    this.labelKey( "Power.element" ),
+        hint:     this.hintKey( "Power.element" ),
       } ),
     } );
   }

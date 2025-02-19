@@ -920,8 +920,8 @@
             "armorType":                                    "Rüstungstyp der gegen diese Kraft schützt.",
             "damageType":                                   "Schadensart der durch diese Kraft verursacht wird.",
             "strain":                                       "Überanstrengung",
-            "powerElementType":                             "Wird diese Kraft durch ein Element beeinflusst?",
-            "powerElementSubtype":                          "Ist die Elementarart der Kraft eine Unterart des Elements?",
+            "elementType":                                  "Wird diese Kraft durch ein Element beeinflusst?",
+            "elementSubtype":                               "Ist die Elementarart der Kraft eine Unterart des Elements?",
             "powerStep":                                    "Aktionsstufe",
             "damageStep":                                   "Schadensstufe"
           },
