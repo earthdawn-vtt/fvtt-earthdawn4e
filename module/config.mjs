@@ -759,126 +759,106 @@ ED4E.eaeChangeKeysActor = [
     value:           "system.initiative",
     label:           "ED.Data.Actor.Labels.initiative",
     group:           "ED.ActiveEffect.ChangeKeys.Groups.initiative",
-    applyIteration: 2,
   },
   // encumbrance
   {
     value:          "system.encumbrance.value",
     label:          "ED.Data.Actor.Labels.encumbrance",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
-    applyIteration: 0,
   },
   {
     value:          "system.encumbrance.max",
     label:          "ED.Data.Actor.Labels.encumbranceMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
-    applyIteration: 1,
   },
   {
     value:          "systems.encumbrance.bonus",
     label:          "ED.Data.Actor.Labels.encumbranceBonus",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
-    applyIteration: 0,
   },
   // health
   {
     value:          "system.durabilityBonus",
     label:          "ED.Data.Actor.Labels.durabilityBonus",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 0,
   },
   {
     value:          "system.characteristics.health.death",
     label:          "ED.Data.Actor.Labels.Characteristics.deathRating",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 2,
   },
   {
     value:          "system.characteristics.health.unconscious",
     label:          "ED.Data.Actor.Labels.Characteristics.unconsciousRate",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 1,
   },
   {
     value:          "system.characteristics.health.bloodMagic.damage",
     label:          "ED.Data.Actor.Labels.Characteristics.bloodMagicDamage",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
-    applyIteration: 0,
   },
   {
     value:          "system.characteristics.health.bloodMagic.wounds",
     label:          "ED.Data.Actor.Labels.Characteristics.bloodMagicWounds",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
-    applyIteration: 0,
   },
   {
     value:          "system.characteristics.health.woundThreshold",
     label:          "ED.Data.Actor.Labels.Characteristics.woundThreshold",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 1,
   },
   {
     value:          "system.characteristics.health.wounds",
     label:          "ED.Data.Actor.Labels.Characteristics.wounds",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 0,
   },
   {
     value:          "system.characteristics.health.maxWounds",
     label:          "ED.Data.Actor.Labels.Characteristics.maxWounds",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    applyIteration: 0,
   },
   // recovery
   {
     value:          "system.characteristics.recoveryTestsResource.value",
     label:          "ED.Data.Actor.Labels.Characteristics.recoveryTestsCurrent",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
-    applyIteration: 0,
   },
   {
     value:          "system.characteristics.recoveryTestsResource.max",
     label:          "ED.Data.Actor.Labels.Characteristics.recoveryTestsMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
-    applyIteration: 1,
   },
   // karma
   {
     value:          "system.karma.value",
     label:          "ED.Data.Actor.Labels.karma",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
-    applyIteration: 0,
   },
   {
     value:          "system.karma.max",
     label:          "ED.Data.Actor.Labels.karmaMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
-    applyIteration: 0,
   },
   {
     value:          "system.karma.step",
     label:          "ED.Data.Actor.Labels.karmaStep",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
-    applyIteration: 0,
   },
   // devotion
   {
     value:          "system.devotion.value",
     label:          "ED.Data.Actor.Labels.devotion",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
-    applyIteration: 0,
   },
   {
     value:          "system.devotion.max",
     label:          "ED.Data.Actor.Labels.devotionMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
-    applyIteration: 0,
   },
   {
     value:          "system.devotion.step",
     label:          "ED.Data.Actor.Labels.devotionStep",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
-    applyIteration: 0,
   },
 ];
 preLocalize( "eaeChangeKeysActor", { keys: [ "label", "group" ] } );
@@ -893,163 +873,137 @@ ED4E.eaeChangeKeysItem = [
     value:          "system.rollType",
     label:          "ED.Data.General.Labels.Rollable.type",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.rollable",
-    applyIteration: 0,
   },
   // Action
   {
     value:          "system.action",
     label:          "ED.Data.Item.Labels.Action.action",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.action",
-    applyIteration: 0,
   },
   {
     value:          "system.strain",
     label:          "ED.Data.Item.Labels.Action.strain",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.action",
-    applyIteration: 0,
   },
   // Targeting
   {
     value:          "system.difficulty.target",
     label:          "ED.Data.General.Labels.Target.target",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.targeting",
-    applyIteration: 0,
   },
   {
     value:          "system.difficulty.group",
     label:          "ED.Data.General.Labels.Target.group",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.targeting",
-    applyIteration: 0,
   },
   {
     value:          "system.difficulty.fixed",
     label:          "ED.Data.General.Labels.Target.fixed",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.targeting",
-    applyIteration: 0,
   },
   // Ability
   {
     value:          "system.attribute",
     label:          "ED.Data.Item.Labels.Ability.attribute",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.ability",
-    applyIteration: 0,
   },
   {
     value:          "system.tier",
     label:          "ED.Data.Item.Labels.Ability.tier",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.ability",
-    applyIteration: 0,
   },
   {
     value:          "system.level",
     label:          "ED.Data.Item.Labels.Ability.rank",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.ability",
-    applyIteration: 0,
   },
   // Armor
   {
     value:          "system.physical.armor",
     label:          "ED.Data.Item.Labels.Armor.physicalArmor",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-    applyIteration: 0,
   },
   {
     value:          "system.physical.forgeBonus",
     label:          "ED.Data.Item.Labels.Armor.forgeBonusPhysical",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-    applyIteration: 0,
   },
   {
     value:          "system.mystical.armor",
     label:          "ED.Data.Item.Labels.Armor.mysticalArmor",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-    applyIteration: 0,
   },
   {
     value:          "system.mystical.forgeBonus",
     label:          "ED.Data.Item.Labels.Armor.forgeBonusMystical",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-    applyIteration: 0,
   },
   {
     value:          "system.initiativePenalty",
     label:          "ED.Data.Item.Labels.Armor.initiativePenalty",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-    applyIteration: 0,
   },
   // Shield
   {
     value:          "system.defenseBonus.physical",
     label:          "ED.Data.Item.Labels.Shields.defenseBonusPhysical",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.shield",
-    applyIteration: 0,
   },
   {
     value:          "system.defenseBonus.mystical",
     label:          "ED.Data.Item.Labels.Shields.defenseBonusMystical",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.shield",
-    applyIteration: 0,
   },
   {
     value:          "system.initiativePenalty",
     label:          "ED.Data.Item.Labels.Shields.initiativePenalty",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.shield",
-    applyIteration: 0,
   },
   {
     value:          "system.shatterThreshold",
     label:          "ED.Data.Item.Labels.Shields.shatterThreshold",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.shield",
-    applyIteration: 0,
   },
   // Weapon
   {
     value:          "system.damage.attribute",
     label:          "ED.Data.Item.Labels.Weapons.damageAttribute",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weapon",
-    applyIteration: 0,
   },
   {
     value:          "system.damage.baseStep",
     label:          "ED.Data.Item.Labels.Weapons.damageBaseStep",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weapon",
-    applyIteration: 0,
   },
   {
     value:          "system.damage.type",
     label:          "ED.Data.Item.Labels.Weapons.damageType",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weapon",
-    applyIteration: 0,
   },
   {
     value:          "system.forgeBonus",
     label:          "ED.Data.Item.Labels.Weapons.forgeBonus",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weapon",
-    applyIteration: 0,
   },
   {
     value:          "system.range.shortMin",
     label:          "ED.Data.Item.Labels.Weapons.rangeShortMin",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
-    applyIteration: 0,
   },
   {
     value:          "system.range.shortMax",
     label:          "ED.Data.Item.Labels.Weapons.rangeShortMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
-    applyIteration: 0,
   },
   {
     value:          "system.range.longMin",
     label:          "ED.Data.Item.Labels.Weapons.rangeLongMin",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
-    applyIteration: 0,
   },
   {
     value:          "system.range.longMax",
     label:          "ED.Data.Item.Labels.Weapons.rangeLongMax",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.weaponRange",
-    applyIteration: 0,
   },
 ];
 preLocalize( "eaeChangeKeysItem", { keys: [ "label", "group" ] } );
