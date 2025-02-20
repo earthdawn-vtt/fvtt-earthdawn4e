@@ -256,6 +256,21 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
+
+  // region Data Preparation
+
+  /**
+   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
+   * but before active effects are applied.
+   * Meant for data/fields that depend on information of embedded documents.
+   * Apply transformations or derivations to the values of the source data object.
+   * Compute data fields whose values are not stored to the database.
+   */
+  prepareDocumentDerivedData() {}
+
+  // endregion
+
+
   /* -------------------------------------------- */
   /*  Data Migration                              */
   /* -------------------------------------------- */

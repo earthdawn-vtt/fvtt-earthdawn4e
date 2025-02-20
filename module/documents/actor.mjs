@@ -107,7 +107,7 @@ export default class ActorEd extends Actor {
    * @type {Item|undefined}
    */
   get namegiver() {
-    return this.items.filter( item => item.type === "namegiver" )[0];
+    return this.itemTypes.namegiver[0];
   }
 
   get reactions() {
@@ -185,6 +185,19 @@ export default class ActorEd extends Actor {
    */
   getAmmo ( type ) {
     return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
+  }
+
+  /**
+   * Finds and returns this PC's class of the given type with the highest circle.
+   * If multiple, only the first found will be returned.
+   * @param {string} type The type of class to be searched for. One of discipline, path, questor.
+   * @returns {Item} A discipline item with the highest circle.
+   * @private
+   */
+  getHighestClass( type ) {
+    return this.itemTypes[ type ].sort(     // sort descending by circle/rank
+      ( a, b ) => a.system.level > b.system.level ? -1 : 1
+    )[0];
   }
 
   /**

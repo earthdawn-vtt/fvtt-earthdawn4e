@@ -122,19 +122,19 @@ export default class PcData extends NamegiverTemplate {
 
     if ( classDocument.type === "questor" ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
-      
+
       if ( !abilities.find( item => item.system.edid === edidQuestorDevotion ) ) {
-        
+
         let questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
         questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
-        
+
         await questorDevotion.update( {
           system: {
             edid:  edidQuestorDevotion,
             level: 1,
           },
         } );
-        
+
         abilities.push( questorDevotion );
       }
     }
@@ -163,7 +163,7 @@ export default class PcData extends NamegiverTemplate {
     const disciplineAfterCreation = newActor.disciplines[0];
     if ( disciplineAfterCreation ) {
       for ( const talent of newActor.itemTypes.talent ) {
-        if ( talent.system.source.class === classDocument.uuid ) await talent.update( { 
+        if ( talent.system.source.class === classDocument.uuid ) await talent.update( {
           "system.source": {
             "class":   disciplineAfterCreation.uuid,
             "atLevel": 1
@@ -277,6 +277,8 @@ export default class PcData extends NamegiverTemplate {
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
+  // region Base Data Preparation
+
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
@@ -284,16 +286,6 @@ export default class PcData extends NamegiverTemplate {
     /* this.#prepareBaseCharacteristics();
     this.#prepareBaseInitiative();
     this.#prepareBaseCarryingCapacity(); */
-  }
-
-  /** @inheritDoc */
-  prepareDerivedData() {
-    super.prepareDerivedData();
-    /* this.#prepareDerivedCharacteristics();
-    this.#prepareDerivedInitiative();
-    this.#prepareDerivedEncumbrance();
-    this.#prepareDerivedKarma();
-    this.#prepareDerivedDevotion(); */
   }
 
   /**
@@ -304,7 +296,23 @@ export default class PcData extends NamegiverTemplate {
     for ( const attributeData of Object.values( this.attributes ) ) {
       attributeData.value = attributeData.initialValue + attributeData.timesIncreased;
     }
+  }
+
+  // endregion
+
+  // region Document Derived Data Preparation
+
+  /** @inheritDoc */
+  prepareDocumentDerivedData() {
+
+    // the order of operations here is crucial since the derived data depend on each other
+
+    // Attributes
     this.#applyAttributeEffects();
+
+    // Only Document dependent data
+    this.#prepareMovement();
+    this.#prepareRollResources();
   }
 
   /**
@@ -312,11 +320,68 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #applyAttributeEffects() {
-    this.parent?.effects.values().flatMap( effect =>
+    this.parent?.allApplicableEffects().flatMap( effect =>
       effect.changes.filter( change =>
         change.key.startsWith( "system.attributes" ) && change.key.endsWith( "value" )
       ).map( change => effect.apply( this, change ) )
     );
+  }
+
+  /**
+   * Prepare the derived movement values based on namegiver items.
+   * @private
+   * @userFunction UF_Pc-prepareMovement
+   */
+  #prepareMovement() {
+    const namegiver = this.parent?.namegiver;
+    if ( !namegiver ) return;
+
+    Object.entries( namegiver.system.movement ).forEach(
+      ( [ movementType, value ] ) => { this.characteristics.movement[movementType] = value; }
+    );
+  }
+
+  /**
+   * Prepare the derived karma and devotion values based on items.
+   * @private
+   */
+  #prepareRollResources() {
+    this.#prepareKarma();
+    this.#prepareDevotion();
+  }
+
+  /**
+   * Prepare the derived karma values based on namegiver items and free attribute points.
+   * @private
+   * @userFunction UF_Pc-prepareKarma
+   */
+  #prepareKarma() {
+    const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
+    const karmaModifier = this.parent?.namegiver?.system.karmaModifier ?? 0;
+
+    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
+  }
+
+  /**
+   * Prepare the derived devotion values based on questor items.
+   * @private
+   * @userFunction UF_Pc-prepareDevotion
+   */
+  #prepareDevotion() {
+    const questor = this.parent?.itemTypes.questor[0];
+    if ( questor ) this.devotion.max = questor.system.level * 10;
+  }
+
+  // endregion
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    /* this.#prepareDerivedCharacteristics();
+    this.#prepareDerivedInitiative();
+    this.#prepareDerivedEncumbrance();
+    this.#prepareDerivedKarma();
+    this.#prepareDerivedDevotion(); */
   }
 
 
@@ -569,73 +634,8 @@ export default class PcData extends NamegiverTemplate {
     }
   }
 
-  /!**
-   * Prepare the derived movement values based on namegiver items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedMovement
-   *!/
-  #prepareDerivedMovement() {
-    const namegiver = this.#getNamegiver();
-    if ( namegiver ) {
-      for ( const movementType of Object.keys( namegiver.system.movement ) ) {
-        this.characteristics.movement[movementType] = namegiver.system.movement[movementType];
-      }
-    }
-  }
+  */
 
-  /!**
-   * Prepare the derived karma values based on namegiver items and free attribute points.
-   * @private
-   *!/
-  #prepareDerivedKarma() {
-    const highestCircle = this.#getHighestClass( "discipline" )?.system.level ?? 0;
-    const karmaModifier = this.parent.items.filter( item => item.type === "namegiver" )[0]?.system.karmaModifier ?? 0;
-
-    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
-  }
-
-  /!**
-   * Prepare the derived devotion values based on questor items.
-   * @private
-   *!/
-  #prepareDerivedDevotion() {
-    const questor = this.parent.items.filter( item => item.type === "questor" )[0];
-    if ( questor ) {
-      this.devotion.max = questor.system.level * 10;
-    }
-  } */
-
-  /**
-   * Finds and returns this PC's class of the given type with the highest circle.
-   * If multiple, only the first found will be returned.
-   * @param {string} type The type of class to be searched for. One of discipline, path, questor.
-   * @returns {Item} A discipline item with the highest circle.
-   * @private
-   */
-  #getHighestClass( type ) {
-    return this.parent.items.filter(
-      item => item.type === type
-    ).sort(     // sort descending by circle/rank
-      ( a, b ) => a.system.level > b.system.level ? -1 : 1
-    )[0];
-  }
-
-  /**
-   * Returns the items of the given type on this PC.
-   * @param {string} type The item type.
-   * @returns {Item|undefined} The items of the given type, if available, `undefined` otherwise.
-   */
-  #getItemsByType( type ) {
-    return this.parent.items.filter( ( item ) => item.type === type );
-  }
-
-  /**
-   * Returns the namegiver of this PC, which should always be unique, i.e. only one namegiver item is available.
-   * @returns {Item|undefined} The namegiver item, if available, `undefined` otherwise.
-   */
-  #getNamegiver() {
-    return this.#getItemsByType( "namegiver" )[0];
-  }
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
