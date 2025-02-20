@@ -526,9 +526,7 @@ export default class PcData extends NamegiverTemplate {
   prepareDerivedData() {
     super.prepareDerivedData();
     this.#prepareEncumbrance();
-    /*
-    this.#prepareDerivedInitiative();
-     */
+    this.#prepareInitiative();
   }
 
   /**
@@ -593,6 +591,21 @@ export default class PcData extends NamegiverTemplate {
   #prepareEncumbrance() {
     this.#prepareCarryingCapacity();
     this.#prepareCarriedLoad();
+  }
+
+  /**
+   * Prepare the initiative value based on attribute values and items.
+   * @private
+   */
+  #prepareInitiative() {
+    // attribute based
+    this.initiative = this.attributes.dex.step;
+
+    // item based
+    const penaltyEquipment = this.parent.items.filter( item =>
+      [ "armor", "shield" ].includes( item.type ) && item.system.equipped
+    );
+    this.initiative -= sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
   }
 
   // endregion
