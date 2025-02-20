@@ -198,6 +198,22 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     ];
   }
 
+  /**
+   * Whether the is currently carried (not just owned).
+   * @type {boolean}
+   */
+  get carried() {
+    return this.itemStatus === "carried";
+  }
+
+  /**
+   * Whether the item is currently equipped (not just carried).
+   * @type {boolean}
+   */
+  get equipped() {
+    return this.itemStatus === "equipped";
+  }
+
   get statusIndex() {
     return this.constructor._itemStatusOrder.indexOf( this.itemStatus );
   }

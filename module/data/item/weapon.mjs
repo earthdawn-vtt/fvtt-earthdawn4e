@@ -227,6 +227,10 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     } else return this.damage.baseStep + this.forgeBonus;
   }
 
+  get equipped() {
+    return this.itemStatus === this.wieldingType;
+  }
+
   /** @override */
   get nextItemStatus() {
     const namegiver = this.parent.parent?.namegiver;
