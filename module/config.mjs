@@ -197,6 +197,16 @@ ED4E.defense = {
 preLocalize( "defense" );
 
 /**
+ * Map the defense type to its corresponding attribute (abbreviated).
+ * @enum {string}
+ */
+ED4E.defenseAttributeMapping = {
+  physical: "dex",
+  mystical: "per",
+  social:   "cha"
+};
+
+/**
  * Armor
  * @enum {string}
  */
