@@ -27,20 +27,20 @@ export default class NpcData extends NamegiverTemplate.mixin(
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
-    this.#prepareBaseAttributes();
+    // this.#prepareBaseAttributes();
   }
 
   /* -------------------------------------------- */
 
-  /**
-   * Prepare calculated attribute values and corresponding steps.
-   * @private
-   */
-  #prepareBaseAttributes() {
-    for ( const attributeData of Object.values( this.attributes ) ) {
-      attributeData.baseStep = attributeData.step;
-    }
-  }
+  /*   /!**
+     * Prepare calculated attribute values and corresponding steps.
+     * @private
+     *!/
+    #prepareBaseAttributes() {
+      for ( const attributeData of Object.values( this.attributes ) ) {
+        attributeData.baseStep = attributeData.step;
+      }
+    } */
 
   /* -------------------------------------------- */
   /*  Migrations                  */

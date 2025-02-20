@@ -530,27 +530,28 @@ export default class SentientTemplate extends CommonTemplate {
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
-    this._prepareDamage();
-    this._healthRating (); 
+    /* this._prepareDamage();
+    this._healthRating () */;
   }
 
   /** @inheritDoc */
   prepareDerivedData() {
+    super.prepareDerivedData();
   }
 
-  /**
-   * Prepare the current total damage.
-   * @protected
-   */
-  _prepareDamage() {
-    this.characteristics.health.damage.total =
-      this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
-  }
+  /*   /!**
+     * Prepare the current total damage.
+     * @protected
+     *!/
+    _prepareDamage() {
+      this.characteristics.health.damage.total =
+        this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
+    }
 
-  _healthRating () {
-    this.healthRate.max = this.characteristics.health.death;
-    this.healthRate.value = this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
-  }
+    _healthRating () {
+      this.healthRate.max = this.characteristics.health.death;
+      this.healthRate.value = this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
+    } */
   /* -------------------------------------------- */
   /*  Migrations                  */
   /* -------------------------------------------- */
