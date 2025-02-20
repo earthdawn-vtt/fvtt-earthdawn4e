@@ -273,9 +273,7 @@ export default class PcData extends NamegiverTemplate {
   }
 
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
+  // region Data Preparation
 
   // region Base Data Preparation
 
@@ -283,9 +281,6 @@ export default class PcData extends NamegiverTemplate {
   prepareBaseData() {
     super.prepareBaseData();
     this.#prepareBaseAttributes();
-    /* this.#prepareBaseCharacteristics();
-    this.#prepareBaseInitiative();
-    this.#prepareBaseCarryingCapacity(); */
   }
 
   /**
@@ -307,12 +302,15 @@ export default class PcData extends NamegiverTemplate {
 
     // the order of operations here is crucial since the derived data depend on each other
 
-    // Attributes
+    // attributes
     this.#applyAttributeEffects();
 
-    // Only Document dependent data
+    // only document dependent data
     this.#prepareMovement();
     this.#prepareRollResources();
+
+    // attribute dependent data
+    this.#prepareCharacteristics();
   }
 
   /**
@@ -325,6 +323,74 @@ export default class PcData extends NamegiverTemplate {
         change.key.startsWith( "system.attributes" ) && change.key.endsWith( "value" )
       ).map( change => effect.apply( this, change ) )
     );
+  }
+
+  /**
+   * Prepare characteristic values based on
+   *  - attributes:
+   *    - defenses
+   *    - armor
+   *    - some health ratings (without death threshold)
+   *    - recovery tests.
+   *  - items
+   *    - defenses
+   *    - armor
+   *    - health ratings
+   *    - recovery tests
+   * @private
+   */
+  #prepareCharacteristics() {
+    this.#prepareDefenses();
+    /* this.#prepareArmor();
+    this.#prepareHealth();
+    this.#prepareRecoveryTestResource(); */
+  }
+
+  /**
+   * Prepare the defense values based on attribute values and items.
+   * @private
+   */
+  #prepareDefenses() {
+
+    // attribute based
+    for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
+      this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
+        this.attributes[ED4E.defenseAttributeMapping[defenseType]].value
+      );
+    }
+
+    // item based
+    const shieldItems = this.parent.itemTypes[ "shield" ].filter( item => item.system.equipped );
+
+    // Calculate sum of defense bonuses, defaults to zero if no shields equipped
+    const physicalBonus = sumProperty( shieldItems, "system.defenseBonus.physical" );
+    const mysticalBonus = sumProperty( shieldItems, "system.defenseBonus.mystical" );
+
+    this.characteristics.defenses.physical.value = this.characteristics.defenses.physical.baseValue + physicalBonus;
+    this.characteristics.defenses.mystical.value = this.characteristics.defenses.mystical.baseValue + mysticalBonus;
+    this.characteristics.defenses.social.value = this.characteristics.defenses.social.baseValue;
+  }
+
+  /**
+   * Prepare the derived devotion values based on questor items.
+   * @private
+   * @userFunction UF_Pc-prepareDevotion
+   */
+  #prepareDevotion() {
+    const questor = this.parent?.itemTypes.questor[0];
+    if ( questor ) this.devotion.max = questor.system.level * 10;
+  }
+
+  /**
+   * Prepare the derived karma values based on namegiver items and free attribute points.
+   * @private
+   * @userFunction UF_Pc-prepareKarma
+   */
+  #prepareKarma() {
+    const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
+    const karmaModifier = this.parent?.namegiver?.system.karmaModifier ?? 0;
+
+    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
   }
 
   /**
@@ -350,53 +416,86 @@ export default class PcData extends NamegiverTemplate {
     this.#prepareDevotion();
   }
 
-  /**
-   * Prepare the derived karma values based on namegiver items and free attribute points.
-   * @private
-   * @userFunction UF_Pc-prepareKarma
-   */
-  #prepareKarma() {
-    const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
-    const karmaModifier = this.parent?.namegiver?.system.karmaModifier ?? 0;
-
-    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
-  }
-
-  /**
-   * Prepare the derived devotion values based on questor items.
-   * @private
-   * @userFunction UF_Pc-prepareDevotion
-   */
-  #prepareDevotion() {
-    const questor = this.parent?.itemTypes.questor[0];
-    if ( questor ) this.devotion.max = questor.system.level * 10;
-  }
-
   // endregion
+
+  // region Derived Data Preparation
 
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    /* this.#prepareDerivedCharacteristics();
+    this.#prepareEncumbrance();
+    /*
     this.#prepareDerivedInitiative();
-    this.#prepareDerivedEncumbrance();
-    this.#prepareDerivedKarma();
-    this.#prepareDerivedDevotion(); */
+     */
   }
 
-
-  /*   /!**
-   * Prepare calculated attribute values and corresponding steps.
+  /**
+   * Prepare the derived load carried based on relevant physical items on this actor. An item is relevant if it is
+   * either equipped or carried but not owned, i.e. on the person. In this case, the  namegiver size weight multiplier
+   * will be applied as well.
    * @private
-   *!/
-  #prepareBaseAttributes() {
-    for ( const attributeData of Object.values( this.attributes ) ) {
-      attributeData.baseValue = attributeData.initialValue + attributeData.timesIncreased;
-      attributeData.value = attributeData.baseValue + attributeData.valueModifier;
-      attributeData.baseStep = getAttributeStep( attributeData.value );
-      attributeData.step = attributeData.baseStep;
+   */
+  #prepareCarriedLoad() {
+
+    // relevant items are those with a weight property and are either equipped or carried
+    const relevantItems = this.parent.items.filter( item =>
+      item.system.hasOwnProperty( "weight" )
+      && ( item.system.itemStatus === "equipped" || item.system.itemStatus === "carried" )
+    );
+
+    const carriedWeight = relevantItems.reduce( ( accumulator, currentItem ) => {
+      return accumulator
+        + (
+          currentItem.system.weight.value
+          * (
+            ( currentItem.system.amount ?? 1 )
+            / ( currentItem.system.bundleSize > 1 ? currentItem.system.bundleSize : 1 )
+          )
+        );
+    }, 0 );
+
+    this.encumbrance.value = carriedWeight;
+
+    // calculate encumbrance status
+    const encumbrancePercentage = carriedWeight / this.encumbrance.max;
+    if ( encumbrancePercentage <= 1.0 ) {
+      this.encumbrance.status = "notEncumbered";
+    } else if ( encumbrancePercentage < 1.5 ) {
+      this.encumbrance.status = "light";
+    } else if ( encumbrancePercentage <= 2.0 ) {
+      this.encumbrance.status = "heavy";
+    } else if ( encumbrancePercentage > 2.0 ) {
+      this.encumbrance.status = "tooHeavy";
     }
   }
+
+  /**
+   * Prepare the carrying capacity based on the strength attribute and its possible bonus ( e.g.
+   * the dwarf namegiver ability ).
+   * @private
+   */
+  #prepareCarryingCapacity() {
+    const strengthValue = this.attributes.str.value + this.encumbrance.bonus;
+    const strengthFifth = Math.ceil( strengthValue / 5 );
+
+    this.encumbrance.max = -12.5 * strengthFifth ** 2
+      + 5 * strengthFifth * strengthValue
+      + 12.5 * strengthFifth
+      + 5;
+  }
+
+  /**
+   * Prepare the maximum carrying capacity and the current load carried.
+   * @private
+   */
+  #prepareEncumbrance() {
+    this.#prepareCarryingCapacity();
+    this.#prepareCarriedLoad();
+  }
+
+  // endregion
+
+  /*
 
   /!**
    * Prepare characteristic values based on attributes: defenses, armor, health ratings, recovery tests.
@@ -461,22 +560,6 @@ export default class PcData extends NamegiverTemplate {
   #prepareBaseRecoveryTestsRecource() {
     this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
   }
-
-  /!**
-   * Prepare the base carrying capacity based on attribute values.
-   * @private
-   *!/
-  #prepareBaseCarryingCapacity() {
-    const strengthValue = this.attributes.str.value + this.encumbrance.bonus;
-    const strengthFifth = Math.ceil( strengthValue / 5 );
-
-    this.encumbrance.max = -12.5 * strengthFifth ** 2
-      + 5 * strengthFifth * strengthValue
-      + 12.5 * strengthFifth
-      + 5;
-  }
-
-  /!* -------------------------------------------- *!/
 
   /!**
    * Prepare characteristic values based on items: defenses, armor, health ratings, recovery tests.
@@ -595,46 +678,9 @@ export default class PcData extends NamegiverTemplate {
     this.initiative -= sum( armors.map( item => item.system.initiativePenalty ) );
   }
 
-  /!**
-   * Prepare the derived load carried based on relevant physical items on this actor. An item is relevant if it is
-   * either equipped or carried but not owned, i.e. on the person. In this case, the  namegiver size weight multiplier
-   * will be applied as well.
-   * @private
-   *!/
-  #prepareDerivedEncumbrance() {
-    // relevant items are those with a weight property and are either equipped or carried
-    const relevantItems = this.parent.items.filter( item =>
-      item.system.hasOwnProperty( "weight" )
-      && ( item.system.itemStatus === "equipped" || item.system.itemStatus === "carried" )
-    );
-
-    const carriedWeight = relevantItems.reduce( ( accumulator, currentItem ) => {
-      return accumulator
-        + (
-          currentItem.system.weight.value
-          * (
-            ( currentItem.system.amount ?? 1 )
-            / ( currentItem.system.bundleSize > 1 ? currentItem.system.bundleSize : 1 )
-          )
-        );
-    }, 0 );
-
-    this.encumbrance.value = carriedWeight;
-
-    // calculate encumbrance status
-    const encumbrancePercentage = carriedWeight / this.encumbrance.max;
-    if ( encumbrancePercentage <= 1.0 ) {
-      this.encumbrance.status = "notEncumbered";
-    } else if ( encumbrancePercentage < 1.5 ) {
-      this.encumbrance.status = "light";
-    } else if ( encumbrancePercentage <= 2.0 ) {
-      this.encumbrance.status = "heavy";
-    } else if ( encumbrancePercentage > 2.0 ) {
-      this.encumbrance.status = "tooHeavy";
-    }
-  }
-
   */
+
+  // endregion
 
 
   /* -------------------------------------------- */
