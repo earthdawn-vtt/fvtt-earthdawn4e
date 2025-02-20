@@ -342,6 +342,7 @@ export default class PcData extends NamegiverTemplate {
   #prepareCharacteristics() {
     this.#prepareDefenses();
     this.#prepareArmor();
+    this.#prepareBloodMagic();
     this.#prepareHealth();
     this.#prepareRecoveryTestResource();
   }
@@ -364,6 +365,20 @@ export default class PcData extends NamegiverTemplate {
       this.characteristics.armor.physical.value += armor.system.physical.armor + armor.system.physical.forgeBonus;
       this.characteristics.armor.mystical.value += armor.system.mystical.armor + armor.system.mystical.forgeBonus;
     }
+  }
+
+  /**
+   * Prepare the blood magic damage based on items.
+   * @private
+   * @userFunction UF_Pc-prepareBloodMagic
+   */
+  #prepareBloodMagic() {
+    const bloodDamageItems = this.parent.items.filter(
+      item => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.equipped )
+        || ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
+    );
+    const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
+    this.characteristics.health.bloodMagic.damage += bloodDamage;
   }
 
   /**
@@ -597,36 +612,12 @@ export default class PcData extends NamegiverTemplate {
   }
 
   /!**
-   * Prepare the available recovery tests based on attribute values.
-   * @private
-   * @userFunction        UF_Pc-prepareBaseRecoveryTestsRecource
-   *!/
-  #prepareBaseRecoveryTestsRecource() {
-    this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
-  }
-
-  /!**
    * Prepare characteristic values based on items: defenses, armor, health ratings, recovery tests.
    * @private
    *!/
   #prepareDerivedCharacteristics() {
     this.#prepareDerivedBloodMagic();
     this.#prepareDerivedHealth();
-  }
-
-  /!**
-   * Prepare the derived blood magic damage based on items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedBloodMagic
-   *!/
-  #prepareDerivedBloodMagic() {
-    const bloodDamageItems = this.parent.items.filter(
-      ( item ) => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.itemStatus === "equipped" ) ||
-        ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
-    );
-    // Calculate sum of defense bonuses, defaults to zero if no shields equipped
-    const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
-    this.characteristics.health.bloodMagic.damage += bloodDamage;
   }
 
   /!**
