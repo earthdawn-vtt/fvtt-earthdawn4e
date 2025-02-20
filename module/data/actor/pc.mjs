@@ -343,7 +343,7 @@ export default class PcData extends NamegiverTemplate {
     this.#prepareDefenses();
     this.#prepareArmor();
     this.#prepareHealth();
-    // this.#prepareRecoveryTestResource();
+    this.#prepareRecoveryTestResource();
   }
 
   /**
@@ -476,6 +476,15 @@ export default class PcData extends NamegiverTemplate {
     Object.entries( namegiver.system.movement ).forEach(
       ( [ movementType, value ] ) => { this.characteristics.movement[movementType] = value; }
     );
+  }
+
+  /**
+   * Prepare the derived recovery test resource values based on attribute values.
+   * @private
+   * @userFunction UF_Pc-prepareRecoveryTestsResource
+   */
+  #prepareRecoveryTestResource() {
+    this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
   }
 
   /**
