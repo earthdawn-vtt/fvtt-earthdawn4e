@@ -44,11 +44,6 @@ export default class PcData extends NamegiverTemplate {
         integer:  true,
         positive: true
       } ),
-      valueModifier: new fields.NumberField( {
-        required: true,
-        step:     1,
-        initial:  0
-      } ),
       value: new fields.NumberField( {
         required: true,
         nullable: false,

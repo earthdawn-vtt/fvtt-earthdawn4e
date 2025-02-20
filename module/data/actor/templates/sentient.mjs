@@ -14,15 +14,6 @@ export default class SentientTemplate extends CommonTemplate {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       attributes: new MappingField( new fields.SchemaField( {
-        baseStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      1,
-          step:     1,
-          initial:  1,
-          integer:  true,
-          positive: true
-        } ),
         step: new fields.NumberField( {
           required: true,
           nullable: false,

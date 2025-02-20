@@ -703,23 +703,16 @@ ED4E.eaeChangeKeysActor = [
       rule:     false,
     };
   } ),
-  /* ...Object.entries( ED4E.singleBonuses ).map( ( [ key, { label } ] ) => {
-    return {
-      value:    `system.singleBonuses.${key}`,
-      label:    label,
-      group:    "ED.ActiveEffect.ChangeKeys.Groups.singleBonuses",
-    };
-  } ), */
   ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
     return {
-      value:    `system.attributes.${key}.baseStep`,
+      value:    `system.attributes.${key}.step`,
       label:    label,
       group:    "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
     };
   } ),
   ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
     return {
-      value:     `system.attributes.${key}.baseValue`,
+      value:     `system.attributes.${key}.value`,
       label:     label,
       group:     "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
     };
