@@ -303,7 +303,7 @@ export default class PcData extends NamegiverTemplate {
     // the order of operations here is crucial since the derived data depend on each other
 
     // attributes
-    this.#applyAttributeEffects();
+    this.#prepareAttributes();
 
     // only document dependent data
     this.#prepareMovement();
@@ -323,6 +323,13 @@ export default class PcData extends NamegiverTemplate {
         change.key.startsWith( "system.attributes" ) && change.key.endsWith( "value" )
       ).map( change => effect.apply( this, change ) )
     );
+  }
+
+  #prepareAttributes() {
+    this.#applyAttributeEffects();
+    for ( const attributeData of Object.values( this.attributes ) ) {
+      attributeData.step = getAttributeStep( attributeData.value );
+    }
   }
 
   /**
@@ -594,16 +601,6 @@ export default class PcData extends NamegiverTemplate {
 
 
   /!**
-   * Prepare the base health ratings based on attribute values.
-   * @private
-   *!/
-  #prepareBaseHealth() {
-    this.characteristics.health.unconscious = this.attributes.tou.value * 2;
-    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
-    this.characteristics.health.woundThreshold = Math.ceil( this.attributes.tou.value / 2 ) + 2;
-  }
-
-  /!**
    * Prepare the base initiative value based on attribute values.
    * @private
    *!/
@@ -616,7 +613,6 @@ export default class PcData extends NamegiverTemplate {
    * @private
    *!/
   #prepareDerivedCharacteristics() {
-    this.#prepareDerivedBloodMagic();
     this.#prepareDerivedHealth();
   }
 
