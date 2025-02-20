@@ -60,19 +60,15 @@ export default class ItemEd extends Item {
   // region Data Preparation
 
   /**
-   * Extended to apply active effects to the item.
-   * @inheritDoc
-   */
-  prepareEmbeddedDocuments() {
-    super.prepareEmbeddedDocuments();
-    this.applyActiveEffects();
-  }
-
-  /**
    * Apply any transformations to the Item data which are caused by ActiveEffects.
    * This is taken from Foundry's Actor class.
    */
   applyActiveEffects() {
+
+    // data preparation
+    this.prepareDocumentDerivedData();
+
+    // application
     const overrides = {};
 
     // Organize non-disabled effects by their application priority
@@ -97,6 +93,15 @@ export default class ItemEd extends Item {
 
     // Expand the set of final overrides
     this.overrides = foundry.utils.expandObject( overrides );
+  }
+
+  /**
+   * Only for data/fields that depend on information of embedded documents.
+   * Apply transformations or derivations to the values of the source data object.
+   * Compute data fields whose values are not stored to the database.
+   */
+  prepareDocumentDerivedData() {
+    if ( this.system.prepareDocumentDerivedData ) this.system.prepareDocumentDerivedData();
   }
 
   /**

@@ -25,22 +25,20 @@ export default class ActorEd extends Actor {
 
   _promptFactory = PromptFactory.fromDocument( this );
 
+  /** @inheritDoc */
+  static async createDialog( data = {}, { parent = null, pack = null, ...options } = {} ) {
+    return DocumentCreateDialog.waitPrompt( data, { documentCls: Actor, parent, pack, options } );
+  }
+
+
+  // region Properties
+
   /**
    * The class items if this actor has any (has to be of type "character" or "npc" for this).
    * @type {[ItemEd]}
    */
   get classes() {
     return this.items.filter( item => item.system instanceof ClassTemplate );
-  }
-
-  /**
-   * @description                       Returns all ammunitoin items of the given actor
-   * @param {string} type               The type of ammunition to get
-   * @returns {ItemEd[]}                An array of ammunition items
-   * @userFunction                      UF_PhysicalItems-getAmmo
-   */
-  getAmmo ( type ) {
-    return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
   }
 
   /**
@@ -116,11 +114,6 @@ export default class ActorEd extends Actor {
     return this.items.filter( item => item.system.rollType === "reaction" );
   }
 
-  /** @inheritDoc */
-  static async createDialog( data = {}, { parent = null, pack = null, ...options } = {} ) {
-    return DocumentCreateDialog.waitPrompt( data, { documentCls: Actor, parent, pack, options } );
-  }
-
   /**
    * @inheritDoc
    * @userFunction            UF_TokenResources-preCreate
@@ -156,6 +149,42 @@ export default class ActorEd extends Actor {
    */
   get wearsPiecemealArmor() {
     return this.itemTypes.armor.some( armor => armor.system.piecemeal.isPiecemeal );
+  }
+
+  // endregion
+
+
+  // region Data Preparation
+
+  /**
+   * Extended to apply active effects to the item.
+   * @inheritDoc
+   */
+  applyActiveEffects() {
+    this.prepareDocumentDerivedData();
+    super.applyActiveEffects();
+  }
+
+  /**
+   * Meant for data/fields that depend on information of embedded documents.
+   * Apply transformations or derivations to the values of the source data object.
+   * Compute data fields whose values are not stored to the database.
+   */
+  prepareDocumentDerivedData() {
+    if ( this.system.prepareDocumentDerivedData ) this.system.prepareDocumentDerivedData();
+  }
+
+  // endregion
+
+
+  /**
+   * @description                       Returns all ammunitoin items of the given actor
+   * @param {string} type               The type of ammunition to get
+   * @returns {ItemEd[]}                An array of ammunition items
+   * @userFunction                      UF_PhysicalItems-getAmmo
+   */
+  getAmmo ( type ) {
+    return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
   }
 
   /**
@@ -243,7 +272,6 @@ export default class ActorEd extends Actor {
         return undefined;
     }
   }
-
 
   /**
    * Expand Item Cards by clicking on the name span
@@ -980,41 +1008,6 @@ export default class ActorEd extends Actor {
     return roll.toMessage();
   }
 
-  _applyBaseEffects( baseCharacteristics ) {
-    let overrides = {};
-    // Organize non-disabled effects by their application priority
-    // baseCharacteristics is list of attributes that need to have Effects applied before Derived Characteristics are calculated
-    const changes = this.effects.reduce( ( changes, e ) => {
-      if ( e.changes.length < 1 ) {
-        return changes;
-      }
-      if ( e.disabled || e.isSuppressed || !baseCharacteristics.includes( e.changes[0].key ) ) {
-        return changes;
-      }
-
-      return changes.concat(
-        e.changes.map( ( c ) => {
-          // eslint-disable-next-line no-param-reassign
-          c = futils.duplicate( c );
-          c.effect = e;
-          c.priority = c.priority ?? c.mode * 10;
-          return c;
-        } )
-      );
-    }, [] );
-
-    changes.sort( ( a, b ) => a.priority - b.priority );
-
-    // Apply all changes
-    for ( let change of changes ) {
-      const result = change.effect.apply( this, change );
-      if ( result !== null ) overrides[change.key] = result[change.key];
-    }
-
-    // Expand the set of final overrides
-    this.overrides = futils.expandObject( { ...futils.flattenObject( this.overrides ), ...overrides } );
-  }
-
   async _enableHTMLEnrichment() {
     let enrichment = {};
     enrichment["system.description.value"] = await TextEditor.enrichHTML( this.system.description.value, {
@@ -1033,7 +1026,6 @@ export default class ActorEd extends Actor {
       );
     }
   }
-
 
   /**
    * 
