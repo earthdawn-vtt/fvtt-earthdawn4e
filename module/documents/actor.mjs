@@ -65,6 +65,12 @@ export default class ActorEd extends Actor {
     return this.itemTypes.discipline;
   }
 
+  get durabilityItems() {
+    return this.items.filter(
+      item => [ "discipline", "devotion" ].includes( item.type ) && item.system.durability > 0
+    );
+  }
+
   /**
    * Returns the equipped weapons of this actor, if any.
    * @type {ItemEd[]}

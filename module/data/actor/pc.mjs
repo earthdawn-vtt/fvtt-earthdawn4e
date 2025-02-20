@@ -179,6 +179,29 @@ export default class PcData extends NamegiverTemplate {
     return newActor;
   }
 
+
+  // region Properties
+
+  get #maxDurability(){
+    const durabilityItems = this.parent.durabilityItems;
+    const durabilityByCircle = {};
+    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
+
+    // Iterate through levels from 1 to the maximum level
+    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
+      // Find the maximum durability for the current level
+      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
+        return ( currentLevel <= item.system.level && item.system.durability > max )
+          ? item.system.durability
+          : max;
+      }, 0 );
+    }
+    return sum( Object.values( durabilityByCircle ) );
+  }
+
+  // endregion
+
+
   /* -------------------------------------------- */
   /*  Legend Building (LP)                        */
   /* -------------------------------------------- */
@@ -434,44 +457,9 @@ export default class PcData extends NamegiverTemplate {
 
     // item based
 
-    const durabilityItems = this.parent.items.filter(
-      item => [ "discipline", "devotion" ].includes( item.type ) && item.system.durability > 0
-    );
-    if ( !durabilityItems ) {
-      console.log(
-        `ED4E | Cannot calculate derived health data for actor "${this.parent.name}" (${this.parent.id}). No items with durability > 0.`
-      );
-      return;
-    }
-
-    const durabilityByCircle = {};
-    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
-
-    // Iterate through levels from 1 to the maximum level
-    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
-      // Find the maximum durability for the current level
-      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
-        return ( currentLevel <= item.system.level && item.system.durability > max )
-          ? item.system.durability
-          : max;
-      }, 0 );
-    }
-
-    const maxDurability = sum( Object.values( durabilityByCircle ) );
-
-    this.characteristics.health.unconscious += maxDurability - this.characteristics.health.bloodMagic.damage;
-    // death rating is calculated in derived data as it needs the durabilityBonus which is for active effects
-    /*
-    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
-    const maxCircle = Math.max(
-      ...durabilityItems.filter(
-        item => item.type === "discipline"
-      ).map(
-        item => item.system.level
-      ),
-      0
-    );
-    this.characteristics.health.death += maxDurability + maxCircle - this.characteristics.health.bloodMagic.damage; */
+    this.characteristics.health.unconscious += this.#maxDurability - this.characteristics.health.bloodMagic.damage;
+    // death rating is calculated in derived data as it needs the durabilityBonus which
+    // depends on active effects
   }
 
   /**
@@ -527,6 +515,7 @@ export default class PcData extends NamegiverTemplate {
     super.prepareDerivedData();
     this.#prepareEncumbrance();
     this.#prepareInitiative();
+    this.#prepareDeathRating();
   }
 
   /**
@@ -585,6 +574,22 @@ export default class PcData extends NamegiverTemplate {
   }
 
   /**
+   * Prepare the death rating based on the durability unconscious rating, toughness and the highest discipline circle.
+   */
+  #prepareDeathRating() {
+    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
+
+    const maxCircle = Math.max(
+      ...this.parent.itemTypes.discipline.map(
+        item => item.system.level
+      ),
+      0
+    );
+
+    this.characteristics.health.death += maxCircle + this.durabilityBonus - this.characteristics.health.bloodMagic.damage;
+  }
+
+  /**
    * Prepare the maximum carrying capacity and the current load carried.
    * @private
    */
@@ -609,38 +614,6 @@ export default class PcData extends NamegiverTemplate {
   }
 
   // endregion
-
-  /*
-
-
-  /!**
-   * Prepare the base initiative value based on attribute values.
-   * @private
-   *!/
-  #prepareBaseInitiative() {
-    this.initiative = this.attributes.dex.step;
-  }
-
-  /!**
-   * Prepare characteristic values based on items: defenses, armor, health ratings, recovery tests.
-   * @private
-   *!/
-  #prepareDerivedCharacteristics() {
-    this.#prepareDerivedHealth();
-  }
-
-  /!**
-   * Prepare the derived initiative value based on items.
-   * @private
-   *!/
-  #prepareDerivedInitiative() {
-    const armors = this.parent.items.filter( item =>
-      [ "armor", "shield" ].includes( item.type ) && item.system.itemStatus === "equipped"
-    );
-    this.initiative -= sum( armors.map( item => item.system.initiativePenalty ) );
-  }
-
-  */
 
   // endregion
 
