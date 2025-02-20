@@ -515,36 +515,41 @@ export default class SentientTemplate extends CommonTemplate {
   }
 
   /* -------------------------------------------- */
-  /*  Data Preparation              */
+  /*  Data Preparation                            */
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
-    /* this._prepareDamage();
-    this._healthRating () */;
+    this._prepareDamage();
   }
 
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
+    this._prepareHealthRating ();
   }
 
-  /*   /!**
-     * Prepare the current total damage.
-     * @protected
-     *!/
-    _prepareDamage() {
-      this.characteristics.health.damage.total =
-        this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
-    }
+  /**
+   * Prepare the current total damage.
+   * @protected
+   */
+  _prepareDamage() {
+    this.characteristics.health.damage.total =
+      this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
+  }
 
-    _healthRating () {
-      this.healthRate.max = this.characteristics.health.death;
-      this.healthRate.value = this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
-    } */
+  /**
+   * Prepare the current health rating that can be used by external modules.
+   * @private
+   */
+  _prepareHealthRating () {
+    this.healthRate.max = this.characteristics.health.death;
+    this.healthRate.value = this.characteristics.health.damage.total;
+  }
+
   /* -------------------------------------------- */
-  /*  Migrations                  */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritDoc */
