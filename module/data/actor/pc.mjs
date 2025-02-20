@@ -12,7 +12,6 @@ const { DialogV2 } = foundry.applications.api;
  * System data definition for PCs.
  * @mixin
  * @property {number} initialValue      initial Value will only be affected by charactergeneration
- * @property {number} baseValue         unmodified value calculated from times increased and initial value
  * @property {number} value             value is the one shown. baseValue + modifications
  * @property {number} timesIncreased    attribute increases
  */
@@ -35,14 +34,14 @@ export default class PcData extends NamegiverTemplate {
         integer:  true,
         positive: true
       } ),
-      baseValue: new fields.NumberField( {
+      timesIncreased: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      1,
+        min:      0,
+        max:      3,
         step:     1,
-        initial:  10,
-        integer:  true,
-        positive: true
+        initial:  0,
+        integer:  true
       } ),
       value: new fields.NumberField( {
         required: true,
@@ -55,15 +54,6 @@ export default class PcData extends NamegiverTemplate {
         label:    this.labelKey( "attributeValue" ),
         hint:     this.hintKey( "attributeValue" )
       } ),
-      timesIncreased: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        max:      3,
-        step:     1,
-        initial:  0,
-        integer:  true
-      } )
     } );
 
     this.mergeSchema( superSchema, {
@@ -289,24 +279,46 @@ export default class PcData extends NamegiverTemplate {
 
   /** @inheritDoc */
   prepareBaseData() {
-    /* super.prepareBaseData();
+    super.prepareBaseData();
     this.#prepareBaseAttributes();
-    this.#prepareBaseCharacteristics();
+    /* this.#prepareBaseCharacteristics();
     this.#prepareBaseInitiative();
     this.#prepareBaseCarryingCapacity(); */
   }
 
   /** @inheritDoc */
   prepareDerivedData() {
-    /* super.prepareDerivedData();
-    this.#prepareDerivedCharacteristics();
+    super.prepareDerivedData();
+    /* this.#prepareDerivedCharacteristics();
     this.#prepareDerivedInitiative();
     this.#prepareDerivedEncumbrance();
     this.#prepareDerivedKarma();
     this.#prepareDerivedDevotion(); */
   }
 
-  /* -------------------------------------------- */
+  /**
+   * Prepare the attribute values and apply their active effects.
+   * @private
+   */
+  #prepareBaseAttributes() {
+    for ( const attributeData of Object.values( this.attributes ) ) {
+      attributeData.value = attributeData.initialValue + attributeData.timesIncreased;
+    }
+    this.#applyAttributeEffects();
+  }
+
+  /**
+   * Apply all active effects that modify attribute values.
+   * @private
+   */
+  #applyAttributeEffects() {
+    this.parent?.effects.values().flatMap( effect =>
+      effect.changes.filter( change =>
+        change.key.startsWith( "system.attributes" ) && change.key.endsWith( "value" )
+      ).map( change => effect.apply( this, change ) )
+    );
+  }
+
 
   /*   /!**
    * Prepare calculated attribute values and corresponding steps.
@@ -592,8 +604,6 @@ export default class PcData extends NamegiverTemplate {
       this.devotion.max = questor.system.level * 10;
     }
   } */
-
-  /* -------------------------------------------- */
 
   /**
    * Finds and returns this PC's class of the given type with the highest circle.
