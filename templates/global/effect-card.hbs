@@ -4,7 +4,7 @@
         <div class="effect-card__grid--item card__name">{{name}}</div>
         <div class="effect-card__grid--item undefined">{{origin}}</div>
         <div class="effect-card__grid--item text__alignment--center undefined">
-          {{formInput schema.fields.disabled name="effects" value=( not disabled ) classes="link-checkbox-effect" }}
+          {{formInput schema.fields.disabled name="disabled" value=disabled classes="link-checkbox-effect" }}
 <!--          TODO: manual handling of value change-->
         </div>
         <div class="effect-card__grid--item text__alignment--center">{{duration.remaining}}/{{duration.rounds}}</div>
