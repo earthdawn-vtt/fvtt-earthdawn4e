@@ -716,18 +716,18 @@ ED4E.eaeChangeKeysActor = [
   } ),
   ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
     return {
-      value:          `system.attributes.${key}.step`,
-      label:          label,
-      group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
-      applyIteration: 1,
-    };
-  } ),
-  ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
-    return {
       value:          `system.attributes.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
       applyIteration: 0,
+    };
+  } ),
+  ...Object.entries( ED4E.attributes ).map( ( [ key, { label } ] ) => {
+    return {
+      value:          `system.attributes.${key}.step`,
+      label:          label,
+      group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
+      applyIteration: 1,
     };
   } ),
   ...Object.entries( ED4E.movementTypes ).map( ( [ key, label ] ) => {
@@ -740,7 +740,7 @@ ED4E.eaeChangeKeysActor = [
   } ),
   ...Object.entries( ED4E.defense ).map( ( [ key, label ] ) => {
     return {
-      value:          `system.characteristics.defenses.${key}.baseValue`,
+      value:          `system.characteristics.defenses.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.defense",
       applyIteration: 1,
@@ -748,7 +748,7 @@ ED4E.eaeChangeKeysActor = [
   } ),
   ...Object.entries( ED4E.armor ).map( ( [ key, label ] ) => {
     return {
-      value:          `system.characteristics.armor.${key}.baseValue`,
+      value:          `system.characteristics.armor.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
       applyIteration: 1,
