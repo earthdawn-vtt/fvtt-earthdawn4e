@@ -330,7 +330,7 @@ export default class PcData extends NamegiverTemplate {
    *  - attributes:
    *    - defenses
    *    - armor
-   *    - some health ratings (without death threshold)
+   *    - some health ratings (without death rating)
    *    - recovery tests.
    *  - items
    *    - defenses
@@ -341,9 +341,29 @@ export default class PcData extends NamegiverTemplate {
    */
   #prepareCharacteristics() {
     this.#prepareDefenses();
-    /* this.#prepareArmor();
+    this.#prepareArmor();
     this.#prepareHealth();
-    this.#prepareRecoveryTestResource(); */
+    // this.#prepareRecoveryTestResource();
+  }
+
+  /**
+   * Prepare the armor values based on attribute values and items.
+   * @private
+   * @userFunction UF_Pc-prepareArmor
+   */
+  #prepareArmor() {
+    // attribute based
+    this.characteristics.armor.physical.baseValue = 0;
+    this.characteristics.armor.mystical.baseValue = getArmorFromAttribute( this.attributes.wil.value );
+
+    // item based
+    const armorItems = this.parent.itemTypes.armor.filter( item => item.system.equipped );
+    this.characteristics.armor.physical.value = this.characteristics.armor.physical.baseValue;
+    this.characteristics.armor.mystical.value = this.characteristics.armor.mystical.baseValue;
+    for ( const armor of armorItems ) {
+      this.characteristics.armor.physical.value += armor.system.physical.armor + armor.system.physical.forgeBonus;
+      this.characteristics.armor.mystical.value += armor.system.mystical.armor + armor.system.mystical.forgeBonus;
+    }
   }
 
   /**
@@ -351,7 +371,6 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #prepareDefenses() {
-
     // attribute based
     for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
       this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
@@ -360,7 +379,7 @@ export default class PcData extends NamegiverTemplate {
     }
 
     // item based
-    const shieldItems = this.parent.itemTypes[ "shield" ].filter( item => item.system.equipped );
+    const shieldItems = this.parent.itemTypes.shield.filter( item => item.system.equipped );
 
     // Calculate sum of defense bonuses, defaults to zero if no shields equipped
     const physicalBonus = sumProperty( shieldItems, "system.defenseBonus.physical" );
@@ -379,6 +398,58 @@ export default class PcData extends NamegiverTemplate {
   #prepareDevotion() {
     const questor = this.parent?.itemTypes.questor[0];
     if ( questor ) this.devotion.max = questor.system.level * 10;
+  }
+
+  /**
+   * Prepare the derived health values based on attribute values and items.
+   * @private
+   * @userFunction UF_Pc-prepareHealth
+   */
+  #prepareHealth() {
+    // attribute based
+    this.characteristics.health.unconscious = this.attributes.tou.value * 2;
+    this.characteristics.health.woundThreshold = Math.ceil( this.attributes.tou.value / 2 ) + 2;
+
+    // item based
+
+    const durabilityItems = this.parent.items.filter(
+      item => [ "discipline", "devotion" ].includes( item.type ) && item.system.durability > 0
+    );
+    if ( !durabilityItems ) {
+      console.log(
+        `ED4E | Cannot calculate derived health data for actor "${this.parent.name}" (${this.parent.id}). No items with durability > 0.`
+      );
+      return;
+    }
+
+    const durabilityByCircle = {};
+    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
+
+    // Iterate through levels from 1 to the maximum level
+    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
+      // Find the maximum durability for the current level
+      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
+        return ( currentLevel <= item.system.level && item.system.durability > max )
+          ? item.system.durability
+          : max;
+      }, 0 );
+    }
+
+    const maxDurability = sum( Object.values( durabilityByCircle ) );
+
+    this.characteristics.health.unconscious += maxDurability - this.characteristics.health.bloodMagic.damage;
+    // death rating is calculated in derived data as it needs the durabilityBonus which is for active effects
+    /*
+    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
+    const maxCircle = Math.max(
+      ...durabilityItems.filter(
+        item => item.type === "discipline"
+      ).map(
+        item => item.system.level
+      ),
+      0
+    );
+    this.characteristics.health.death += maxDurability + maxCircle - this.characteristics.health.bloodMagic.damage; */
   }
 
   /**
@@ -497,42 +568,6 @@ export default class PcData extends NamegiverTemplate {
 
   /*
 
-  /!**
-   * Prepare characteristic values based on attributes: defenses, armor, health ratings, recovery tests.
-   * @private
-   *!/
-  #prepareBaseCharacteristics() {
-    this.#prepareBaseDefenses();
-    this.#prepareBaseArmor();
-    this.#prepareBaseHealth();
-    this.#prepareBaseRecoveryTestsRecource();
-  }
-
-  /!**
-   * Prepare the defense values based on attribute values.
-   * @private
-   *!/
-  #prepareBaseDefenses() {
-    const defenseAttributeMapping = {
-      physical: "dex",
-      mystical: "per",
-      social:   "cha"
-    };
-    for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
-      this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
-        this.attributes[defenseAttributeMapping[defenseType]].value
-      );
-    }
-  }
-
-  /!**
-   * Prepare the base armor values based on attributes values.
-   * @private
-   *!/
-  #prepareBaseArmor() {
-    this.characteristics.armor.physical.baseValue = 0;
-    this.characteristics.armor.mystical.baseValue = getArmorFromAttribute( this.attributes.wil.value );
-  }
 
   /!**
    * Prepare the base health ratings based on attribute values.
@@ -566,28 +601,8 @@ export default class PcData extends NamegiverTemplate {
    * @private
    *!/
   #prepareDerivedCharacteristics() {
-    this.#prepareDerivedArmor();
     this.#prepareDerivedBloodMagic();
-    this.#prepareDerivedDefenses();
     this.#prepareDerivedHealth();
-    this.#prepareDerivedMovement();
-  }
-
-  /!**
-   * Prepare the derived armor values based on items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedArmor
-   *!/
-  #prepareDerivedArmor() {
-    const armorItems = this.parent.items.filter( item => item.type === "armor" && item.system.itemStatus === "equipped" );
-    this.characteristics.armor.physical.value = this.characteristics.armor.physical.baseValue;
-    this.characteristics.armor.mystical.value = this.characteristics.armor.mystical.baseValue;
-    if ( armorItems ) {
-      for ( const armor of armorItems ) {
-        this.characteristics.armor.physical.value += armor.system.physical.armor + armor.system.physical.forgeBonus;
-        this.characteristics.armor.mystical.value += armor.system.mystical.armor + armor.system.mystical.forgeBonus;
-      }
-    }
   }
 
   /!**
@@ -603,68 +618,6 @@ export default class PcData extends NamegiverTemplate {
     // Calculate sum of defense bonuses, defaults to zero if no shields equipped
     const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
     this.characteristics.health.bloodMagic.damage += bloodDamage;
-  }
-
-  /!**
-   * prepare the derived defense values based on items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedDefenses
-   *!/
-  #prepareDerivedDefenses() {
-    const shieldItems = this.parent.items.filter(
-      item => item.type === "shield" && item.system.itemStatus === "equipped"
-    );
-    // Calculate sum of defense bonuses, defaults to zero if no shields equipped
-    const physicalBonus = sumProperty( shieldItems, "system.defenseBonus.physical" );
-    const mysticalBonus = sumProperty( shieldItems, "system.defenseBonus.mystical" );
-
-    this.characteristics.defenses.physical.value = this.characteristics.defenses.physical.baseValue + physicalBonus;
-    this.characteristics.defenses.mystical.value = this.characteristics.defenses.mystical.baseValue + mysticalBonus;
-    this.characteristics.defenses.social.value = this.characteristics.defenses.social.baseValue;
-  }
-
-  /!**
-   * Prepare the base health ratings based on items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedHealth
-   *!/
-  #prepareDerivedHealth() {
-    const durabilityItems = this.parent.items.filter(
-      item => [ "discipline", "devotion" ].includes( item.type ) && item.system.durability > 0
-    );
-    if ( !durabilityItems?.length ) {
-      console.log(
-        `ED4E | Cannot calculate derived health data for actor "${this.parent.name}" (${this.parent.id}). No items with durability > 0.`
-      );
-      return;
-    }
-
-    const durabilityByCircle = {};
-    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
-
-    // Iterate through levels from 1 to the maximum level
-    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
-      // Find the maximum durability for the current level
-      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
-        return ( currentLevel <= item.system.level && item.system.durability > max )
-          ? item.system.durability
-          : max;
-      }, 0 );
-    }
-
-    const maxCircle = Math.max(
-      ...durabilityItems.filter(
-        item => item.type === "discipline"
-      ).map(
-        item => item.system.level
-      ),
-      0
-    );
-
-    const maxDurability = sum( Object.values( durabilityByCircle ) );
-
-    this.characteristics.health.unconscious += maxDurability - this.characteristics.health.bloodMagic.damage;
-    this.characteristics.health.death += maxDurability + maxCircle - this.characteristics.health.bloodMagic.damage;
   }
 
   /!**
