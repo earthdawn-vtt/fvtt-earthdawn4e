@@ -346,6 +346,10 @@ export default class PcData extends NamegiverTemplate {
     );
   }
 
+  /**
+   * Prepare the attribute steps based on their values and the active effects.
+   * @private
+   */
   #prepareAttributes() {
     this.#applyAttributeEffects();
     for ( const attributeData of Object.values( this.attributes ) ) {
