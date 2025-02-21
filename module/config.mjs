@@ -772,7 +772,7 @@ ED4E.eaeChangeKeysActor = [
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   {
-    value:          "systems.encumbrance.bonus",
+    value:          "system.encumbrance.bonus",
     label:          "ED.Data.Actor.Labels.encumbranceBonus",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
