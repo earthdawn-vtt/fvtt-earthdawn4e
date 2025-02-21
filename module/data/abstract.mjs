@@ -259,7 +259,8 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // region Data Preparation
 
-  _applySelectedActiveEffects( keys ) {
+
+  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
     if ( !this.parent ) return;
 
     const changes = Array.from( this.parent.allApplicableEffects()
@@ -272,8 +273,8 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       .sort( ( a, b ) => a.priority - b.priority );
 
     const overrides = changes.reduce( ( acc, change ) => {
-      if ( keys.includes( change.key ) ) {
-        Object.assign( acc, change.effect.apply( this, change ) );
+      if ( keys.includes( change.key ) !== ignore ) {
+        Object.assign( acc, change.effect.apply( this.parent, change ) );
       }
       return acc;
     }, {} );
@@ -600,7 +601,7 @@ export class ItemDataModel extends SystemDataModel {
   }
 
   /* -------------------------------------------- */
-  
+
   /**
    * Prepare item card template data.
    * @param {EnrichmentOptions} enrichmentOptions Options for text enrichment.
@@ -690,7 +691,7 @@ export class ActiveEffectDataModel extends SystemDataModel {
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
-  
+
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();

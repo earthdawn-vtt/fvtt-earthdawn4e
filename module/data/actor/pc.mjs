@@ -182,6 +182,14 @@ export default class PcData extends NamegiverTemplate {
 
   // region Properties
 
+  /**
+   * Get the field paths for all attribute values.
+   * @type {string[]}
+   */
+  get _attributeValueKeys() {
+    return Object.keys( ED4E.attributes ).map( key => `system.attributes.${ key }.value` );
+  }
+
   get #maxDurability(){
     const durabilityItems = this.parent.durabilityItems;
     const durabilityByCircle = {};
@@ -298,6 +306,13 @@ export default class PcData extends NamegiverTemplate {
 
   // region Data Preparation
 
+  applyActiveEffects() {
+    this._applySelectedActiveEffects(
+      this._attributeValueKeys,
+      { ignore: true },
+    );
+  }
+
   // region Base Data Preparation
 
   /** @inheritDoc */
@@ -341,9 +356,7 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #applyAttributeEffects() {
-    this._applySelectedActiveEffects(
-      Object.keys( ED4E.attributes ).map( key => `system.attributes.${key}.value` )
-    );
+    this._applySelectedActiveEffects( this._attributeValueKeys );
   }
 
   /**
@@ -518,6 +531,17 @@ export default class PcData extends NamegiverTemplate {
     this.#prepareEncumbrance();
     this.#prepareInitiative();
     this.#prepareDeathRating();
+    this.#applyDerivedActiveEffects();
+  }
+
+  #applyDerivedActiveEffects() {
+    this._applySelectedActiveEffects( [
+      "system.encumbrance.value",
+      "system.encumbrance.max",
+      "system.encumbrance.bonus",
+      "system.initiative",
+      "system.characteristics.health.death",
+    ] );
   }
 
   /**

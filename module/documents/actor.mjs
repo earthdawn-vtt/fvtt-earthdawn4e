@@ -168,7 +168,8 @@ export default class ActorEd extends Actor {
    */
   applyActiveEffects() {
     this.prepareDocumentDerivedData();
-    super.applyActiveEffects();
+    if ( this.system.applyActiveEffects ) this.system.applyActiveEffects();
+    else super.applyActiveEffects();
   }
 
   /**
