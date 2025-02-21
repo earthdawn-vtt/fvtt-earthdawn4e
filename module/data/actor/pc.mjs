@@ -341,10 +341,8 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #applyAttributeEffects() {
-    this.parent?.allApplicableEffects().flatMap( effect =>
-      effect.changes.filter( change =>
-        change.key.startsWith( "system.attributes" ) && change.key.endsWith( "value" )
-      ).map( change => effect.apply( this, change ) )
+    this._applySelectedActiveEffects(
+      Object.keys( ED4E.attributes ).map( key => `system.attributes.${key}.value` )
     );
   }
 
