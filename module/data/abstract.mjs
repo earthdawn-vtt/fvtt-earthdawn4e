@@ -262,31 +262,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   _applySelectedActiveEffects( keys ) {
     if ( !this.parent ) return;
 
-    /* const overrides = {};
-
-    // Organize non-disabled effects by their application priority
-    const changes = [];
-    for ( const effect of this.parent.allApplicableEffects() ) {
-      if ( !effect.active ) continue;
-      changes.push( ...effect.changes.map( change => {
-        const c = foundry.utils.deepClone( change );
-        c.effect = effect;
-        c.priority = c.priority ?? ( c.mode * 10 );
-        return c;
-      } ) );
-    }
-    changes.sort( ( a, b ) => a.priority - b.priority );
-
-    // Apply all changes
-    for ( let change of changes ) {
-      if ( !keys.includes( change.key ) ) continue;
-      const changes = change.effect.apply( this, change );
-      Object.assign( overrides, changes );
-    }
-
-    // Expand the set of final overrides
-    this.overrides = foundry.utils.expandObject( overrides ); */
-
     const changes = Array.from( this.parent.allApplicableEffects()
       .filter( effect => effect.active )
       .flatMap( effect => effect.changes.map( change => ( {
