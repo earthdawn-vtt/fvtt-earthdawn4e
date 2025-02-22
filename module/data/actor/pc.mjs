@@ -12,7 +12,6 @@ const { DialogV2 } = foundry.applications.api;
  * System data definition for PCs.
  * @mixin
  * @property {number} initialValue      initial Value will only be affected by charactergeneration
- * @property {number} baseValue         unmodified value calculated from times increased and initial value
  * @property {number} value             value is the one shown. baseValue + modifications
  * @property {number} timesIncreased    attribute increases
  */
@@ -35,19 +34,14 @@ export default class PcData extends NamegiverTemplate {
         integer:  true,
         positive: true
       } ),
-      baseValue: new fields.NumberField( {
+      timesIncreased: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      1,
+        min:      0,
+        max:      3,
         step:     1,
-        initial:  10,
-        integer:  true,
-        positive: true
-      } ),
-      valueModifier: new fields.NumberField( {
-        required: true,
-        step:     1,
-        initial:  0
+        initial:  0,
+        integer:  true
       } ),
       value: new fields.NumberField( {
         required: true,
@@ -60,15 +54,6 @@ export default class PcData extends NamegiverTemplate {
         label:    this.labelKey( "attributeValue" ),
         hint:     this.hintKey( "attributeValue" )
       } ),
-      timesIncreased: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        max:      3,
-        step:     1,
-        initial:  0,
-        integer:  true
-      } )
     } );
 
     this.mergeSchema( superSchema, {
@@ -137,19 +122,19 @@ export default class PcData extends NamegiverTemplate {
 
     if ( classDocument.type === "questor" ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
-      
+
       if ( !abilities.find( item => item.system.edid === edidQuestorDevotion ) ) {
-        
+
         let questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
         questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
-        
+
         await questorDevotion.update( {
           system: {
             edid:  edidQuestorDevotion,
             level: 1,
           },
         } );
-        
+
         abilities.push( questorDevotion );
       }
     }
@@ -178,7 +163,7 @@ export default class PcData extends NamegiverTemplate {
     const disciplineAfterCreation = newActor.disciplines[0];
     if ( disciplineAfterCreation ) {
       for ( const talent of newActor.itemTypes.talent ) {
-        if ( talent.system.source.class === classDocument.uuid ) await talent.update( { 
+        if ( talent.system.source.class === classDocument.uuid ) await talent.update( {
           "system.source": {
             "class":   disciplineAfterCreation.uuid,
             "atLevel": 1
@@ -193,6 +178,37 @@ export default class PcData extends NamegiverTemplate {
 
     return newActor;
   }
+
+
+  // region Properties
+
+  /**
+   * Get the field paths for all attribute values.
+   * @type {string[]}
+   */
+  get _attributeValueKeys() {
+    return Object.keys( ED4E.attributes ).map( key => `system.attributes.${ key }.value` );
+  }
+
+  get #maxDurability(){
+    const durabilityItems = this.parent.durabilityItems;
+    const durabilityByCircle = {};
+    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
+
+    // Iterate through levels from 1 to the maximum level
+    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
+      // Find the maximum durability for the current level
+      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
+        return ( currentLevel <= item.system.level && item.system.durability > max )
+          ? item.system.durability
+          : max;
+      }, 0 );
+    }
+    return sum( Object.values( durabilityByCircle ) );
+  }
+
+  // endregion
+
 
   /* -------------------------------------------- */
   /*  Legend Building (LP)                        */
@@ -288,177 +304,143 @@ export default class PcData extends NamegiverTemplate {
   }
 
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
+  // region Data Preparation
+
+  applyActiveEffects() {
+    this._applySelectedActiveEffects(
+      this._attributeValueKeys,
+      { ignore: true },
+    );
+  }
+
+  // region Base Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
     this.#prepareBaseAttributes();
-    this.#prepareBaseCharacteristics();
-    this.#prepareBaseInitiative();
-    this.#prepareBaseCarryingCapacity();
   }
-
-  /** @inheritDoc */
-  prepareDerivedData() {
-    super.prepareDerivedData();
-    this.#prepareDerivedCharacteristics();
-    this.#prepareDerivedInitiative();
-    this.#prepareDerivedEncumbrance();
-    this.#prepareDerivedKarma();
-    this.#prepareDerivedDevotion();
-  }
-
-  /* -------------------------------------------- */
 
   /**
-   * Prepare calculated attribute values and corresponding steps.
+   * Prepare the attribute values and apply their active effects.
    * @private
    */
   #prepareBaseAttributes() {
     for ( const attributeData of Object.values( this.attributes ) ) {
-      attributeData.baseValue = attributeData.initialValue + attributeData.timesIncreased;
-      attributeData.value = attributeData.baseValue + attributeData.valueModifier;
-      attributeData.baseStep = getAttributeStep( attributeData.value );
-      attributeData.step = attributeData.baseStep;
+      attributeData.value = attributeData.initialValue + attributeData.timesIncreased;
+    }
+  }
+
+  // endregion
+
+  // region Document Derived Data Preparation
+
+  /** @inheritDoc */
+  prepareDocumentDerivedData() {
+
+    // the order of operations here is crucial since the derived data depend on each other
+
+    // attributes
+    this.#prepareAttributes();
+
+    // only document dependent data
+    this.#prepareMovement();
+    this.#prepareRollResources();
+
+    // attribute dependent data
+    this.#prepareCharacteristics();
+  }
+
+  /**
+   * Apply all active effects that modify attribute values.
+   * @private
+   */
+  #applyAttributeEffects() {
+    this._applySelectedActiveEffects( this._attributeValueKeys );
+  }
+
+  /**
+   * Prepare the attribute steps based on their values and the active effects.
+   * @private
+   */
+  #prepareAttributes() {
+    this.#applyAttributeEffects();
+    for ( const attributeData of Object.values( this.attributes ) ) {
+      attributeData.step = getAttributeStep( attributeData.value );
     }
   }
 
   /**
-   * Prepare characteristic values based on attributes: defenses, armor, health ratings, recovery tests.
+   * Prepare characteristic values based on
+   *  - attributes:
+   *    - defenses
+   *    - armor
+   *    - some health ratings (without death rating)
+   *    - recovery tests.
+   *  - items
+   *    - defenses
+   *    - armor
+   *    - health ratings
+   *    - recovery tests
    * @private
    */
-  #prepareBaseCharacteristics() {
-    this.#prepareBaseDefenses();
-    this.#prepareBaseArmor();
-    this.#prepareBaseHealth();
-    this.#prepareBaseRecoveryTestsRecource();
+  #prepareCharacteristics() {
+    this.#prepareDefenses();
+    this.#prepareArmor();
+    this.#prepareBloodMagic();
+    this.#prepareHealth();
+    this.#prepareRecoveryTestResource();
   }
 
   /**
-   * Prepare the defense values based on attribute values.
+   * Prepare the armor values based on attribute values and items.
    * @private
+   * @userFunction UF_Pc-prepareArmor
    */
-  #prepareBaseDefenses() {
-    const defenseAttributeMapping = {
-      physical: "dex",
-      mystical: "per",
-      social:   "cha"
-    };
-    for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
-      this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
-        this.attributes[defenseAttributeMapping[defenseType]].value
-      );
-    }
-  }
-
-  /**
-   * Prepare the base armor values based on attributes values.
-   * @private
-   */
-  #prepareBaseArmor() {
+  #prepareArmor() {
+    // attribute based
     this.characteristics.armor.physical.baseValue = 0;
     this.characteristics.armor.mystical.baseValue = getArmorFromAttribute( this.attributes.wil.value );
-  }
 
-  /**
-   * Prepare the base health ratings based on attribute values.
-   * @private
-   */
-  #prepareBaseHealth() {
-    this.characteristics.health.unconscious = this.attributes.tou.value * 2;
-    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
-    this.characteristics.health.woundThreshold = Math.ceil( this.attributes.tou.value / 2 ) + 2;
-  }
-
-  /**
-   * Prepare the base initiative value based on attribute values.
-   * @private
-   */
-  #prepareBaseInitiative() {
-    this.initiative = this.attributes.dex.step;
-  }
-
-  /**
-   * Prepare the available recovery tests based on attribute values.
-   * @private
-   * @userFunction        UF_Pc-prepareBaseRecoveryTestsRecource
-   */
-  #prepareBaseRecoveryTestsRecource() {
-    this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
-  }
-
-  /**
-   * Prepare the base carrying capacity based on attribute values.
-   * @private
-   */
-  #prepareBaseCarryingCapacity() {
-    const strengthValue = this.attributes.str.value + this.encumbrance.bonus;
-    const strengthFifth = Math.ceil( strengthValue / 5 );
-
-    this.encumbrance.max = -12.5 * strengthFifth ** 2
-      + 5 * strengthFifth * strengthValue
-      + 12.5 * strengthFifth
-      + 5;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare characteristic values based on items: defenses, armor, health ratings, recovery tests.
-   * @private
-   */
-  #prepareDerivedCharacteristics() {
-    this.#prepareDerivedArmor();
-    this.#prepareDerivedBloodMagic();
-    this.#prepareDerivedDefenses();
-    this.#prepareDerivedHealth();
-    this.#prepareDerivedMovement();
-  }
-
-  /**
-   * Prepare the derived armor values based on items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedArmor
-   */
-  #prepareDerivedArmor() {
-    const armorItems = this.parent.items.filter( item => item.type === "armor" && item.system.itemStatus === "equipped" );
+    // item based
+    const armorItems = this.parent.itemTypes.armor.filter( item => item.system.equipped );
     this.characteristics.armor.physical.value = this.characteristics.armor.physical.baseValue;
     this.characteristics.armor.mystical.value = this.characteristics.armor.mystical.baseValue;
-    if ( armorItems ) {
-      for ( const armor of armorItems ) {
-        this.characteristics.armor.physical.value += armor.system.physical.armor + armor.system.physical.forgeBonus;
-        this.characteristics.armor.mystical.value += armor.system.mystical.armor + armor.system.mystical.forgeBonus;
-      }
+    for ( const armor of armorItems ) {
+      this.characteristics.armor.physical.value += armor.system.physical.armor + armor.system.physical.forgeBonus;
+      this.characteristics.armor.mystical.value += armor.system.mystical.armor + armor.system.mystical.forgeBonus;
     }
   }
 
   /**
-   * Prepare the derived blood magic damage based on items.
+   * Prepare the blood magic damage based on items.
    * @private
-   * @userFunction UF_Pc-prepareDerivedBloodMagic
+   * @userFunction UF_Pc-prepareBloodMagic
    */
-  #prepareDerivedBloodMagic() {
+  #prepareBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
-      ( item ) => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.itemStatus === "equipped" ) ||
-        ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
+      item => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.equipped )
+        || ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
     );
-    // Calculate sum of defense bonuses, defaults to zero if no shields equipped
     const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
     this.characteristics.health.bloodMagic.damage += bloodDamage;
   }
 
   /**
-   * prepare the derived defense values based on items.
+   * Prepare the defense values based on attribute values and items.
    * @private
-   * @userFunction UF_Pc-prepareDerivedDefenses
    */
-  #prepareDerivedDefenses() {
-    const shieldItems = this.parent.items.filter(
-      item => item.type === "shield" && item.system.itemStatus === "equipped"
-    );
+  #prepareDefenses() {
+    // attribute based
+    for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
+      this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
+        this.attributes[ED4E.defenseAttributeMapping[defenseType]].value
+      );
+    }
+
+    // item based
+    const shieldItems = this.parent.itemTypes.shield.filter( item => item.system.equipped );
+
     // Calculate sum of defense bonuses, defaults to zero if no shields equipped
     const physicalBonus = sumProperty( shieldItems, "system.defenseBonus.physical" );
     const mysticalBonus = sumProperty( shieldItems, "system.defenseBonus.mystical" );
@@ -469,58 +451,97 @@ export default class PcData extends NamegiverTemplate {
   }
 
   /**
-   * Prepare the base health ratings based on items.
+   * Prepare the derived devotion values based on questor items.
    * @private
-   * @userFunction UF_Pc-prepareDerivedHealth
+   * @userFunction UF_Pc-prepareDevotion
    */
-  #prepareDerivedHealth() {
-    const durabilityItems = this.parent.items.filter(
-      item => [ "discipline", "devotion" ].includes( item.type ) && item.system.durability > 0
-    );
-    if ( !durabilityItems?.length ) {
-      console.log(
-        `ED4E | Cannot calculate derived health data for actor "${this.parent.name}" (${this.parent.id}). No items with durability > 0.`
-      );
-      return;
-    }
-
-    const durabilityByCircle = {};
-    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
-
-    // Iterate through levels from 1 to the maximum level
-    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
-      // Find the maximum durability for the current level
-      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
-        return ( currentLevel <= item.system.level && item.system.durability > max )
-          ? item.system.durability
-          : max;
-      }, 0 );
-    }
-
-    const maxCircle = Math.max(
-      ...durabilityItems.filter(
-        item => item.type === "discipline"
-      ).map(
-        item => item.system.level
-      ),
-      0
-    );
-
-    const maxDurability = sum( Object.values( durabilityByCircle ) );
-
-    this.characteristics.health.unconscious += maxDurability - this.characteristics.health.bloodMagic.damage;
-    this.characteristics.health.death += maxDurability + maxCircle - this.characteristics.health.bloodMagic.damage;
+  #prepareDevotion() {
+    const questor = this.parent?.itemTypes.questor[0];
+    if ( questor ) this.devotion.max = questor.system.level * 10;
   }
 
   /**
-   * Prepare the derived initiative value based on items.
+   * Prepare the derived health values based on attribute values and items.
+   * @private
+   * @userFunction UF_Pc-prepareHealth
+   */
+  #prepareHealth() {
+    // attribute based
+    this.characteristics.health.unconscious = this.attributes.tou.value * 2;
+    this.characteristics.health.woundThreshold = Math.ceil( this.attributes.tou.value / 2 ) + 2;
+
+    // item based
+
+    this.characteristics.health.unconscious += this.#maxDurability - this.characteristics.health.bloodMagic.damage;
+    // death rating is calculated in derived data as it needs the durabilityBonus which
+    // depends on active effects
+  }
+
+  /**
+   * Prepare the derived karma values based on namegiver items and free attribute points.
+   * @private
+   * @userFunction UF_Pc-prepareKarma
+   */
+  #prepareKarma() {
+    const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
+    const karmaModifier = this.parent?.namegiver?.system.karmaModifier ?? 0;
+
+    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
+  }
+
+  /**
+   * Prepare the derived movement values based on namegiver items.
+   * @private
+   * @userFunction UF_Pc-prepareMovement
+   */
+  #prepareMovement() {
+    const namegiver = this.parent?.namegiver;
+    if ( !namegiver ) return;
+
+    Object.entries( namegiver.system.movement ).forEach(
+      ( [ movementType, value ] ) => { this.characteristics.movement[movementType] = value; }
+    );
+  }
+
+  /**
+   * Prepare the derived recovery test resource values based on attribute values.
+   * @private
+   * @userFunction UF_Pc-prepareRecoveryTestsResource
+   */
+  #prepareRecoveryTestResource() {
+    this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );
+  }
+
+  /**
+   * Prepare the derived karma and devotion values based on items.
    * @private
    */
-  #prepareDerivedInitiative() {
-    const armors = this.parent.items.filter( item =>
-      [ "armor", "shield" ].includes( item.type ) && item.system.itemStatus === "equipped"
-    );
-    this.initiative -= sum( armors.map( item => item.system.initiativePenalty ) );
+  #prepareRollResources() {
+    this.#prepareKarma();
+    this.#prepareDevotion();
+  }
+
+  // endregion
+
+  // region Derived Data Preparation
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.#prepareEncumbrance();
+    this.#prepareInitiative();
+    this.#prepareDeathRating();
+    this.#applyDerivedActiveEffects();
+  }
+
+  #applyDerivedActiveEffects() {
+    this._applySelectedActiveEffects( [
+      "system.encumbrance.value",
+      "system.encumbrance.max",
+      "system.encumbrance.bonus",
+      "system.initiative",
+      "system.characteristics.health.death",
+    ] );
   }
 
   /**
@@ -529,7 +550,8 @@ export default class PcData extends NamegiverTemplate {
    * will be applied as well.
    * @private
    */
-  #prepareDerivedEncumbrance() {
+  #prepareCarriedLoad() {
+
     // relevant items are those with a weight property and are either equipped or carried
     const relevantItems = this.parent.items.filter( item =>
       item.system.hasOwnProperty( "weight" )
@@ -563,74 +585,64 @@ export default class PcData extends NamegiverTemplate {
   }
 
   /**
-   * Prepare the derived movement values based on namegiver items.
-   * @private
-   * @userFunction UF_Pc-prepareDerivedMovement
-   */
-  #prepareDerivedMovement() {
-    const namegiver = this.#getNamegiver();
-    if ( namegiver ) {
-      for ( const movementType of Object.keys( namegiver.system.movement ) ) {
-        this.characteristics.movement[movementType] = namegiver.system.movement[movementType];
-      }
-    }
-  }
-
-  /**
-   * Prepare the derived karma values based on namegiver items and free attribute points.
+   * Prepare the carrying capacity based on the strength attribute and its possible bonus ( e.g.
+   * the dwarf namegiver ability ).
    * @private
    */
-  #prepareDerivedKarma() {
-    const highestCircle = this.#getHighestClass( "discipline" )?.system.level ?? 0;
-    const karmaModifier = this.parent.items.filter( item => item.type === "namegiver" )[0]?.system.karmaModifier ?? 0;
+  #prepareCarryingCapacity() {
+    const strengthValue = this.attributes.str.value + this.encumbrance.bonus;
+    const strengthFifth = Math.ceil( strengthValue / 5 );
 
-    this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
+    this.encumbrance.max = -12.5 * strengthFifth ** 2
+      + 5 * strengthFifth * strengthValue
+      + 12.5 * strengthFifth
+      + 5;
   }
 
   /**
-   * Prepare the derived devotion values based on questor items.
+   * Prepare the death rating based on the durability unconscious rating, toughness and the highest discipline circle.
+   */
+  #prepareDeathRating() {
+    this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
+
+    const maxCircle = Math.max(
+      ...this.parent.itemTypes.discipline.map(
+        item => item.system.level
+      ),
+      0
+    );
+
+    this.characteristics.health.death += maxCircle + this.durabilityBonus - this.characteristics.health.bloodMagic.damage;
+  }
+
+  /**
+   * Prepare the maximum carrying capacity and the current load carried.
    * @private
    */
-  #prepareDerivedDevotion() {
-    const questor = this.parent.items.filter( item => item.type === "questor" )[0];
-    if ( questor ) {
-      this.devotion.max = questor.system.level * 10;
-    }
+  #prepareEncumbrance() {
+    this.#prepareCarryingCapacity();
+    this.#prepareCarriedLoad();
   }
 
-  /* -------------------------------------------- */
-
   /**
-   * Finds and returns this PC's class of the given type with the highest circle.
-   * If multiple, only the first found will be returned.
-   * @param {string} type The type of class to be searched for. One of discipline, path, questor.
-   * @returns {Item} A discipline item with the highest circle.
+   * Prepare the initiative value based on attribute values and items.
    * @private
    */
-  #getHighestClass( type ) {
-    return this.parent.items.filter(
-      item => item.type === type
-    ).sort(     // sort descending by circle/rank
-      ( a, b ) => a.system.level > b.system.level ? -1 : 1
-    )[0];
+  #prepareInitiative() {
+    // attribute based
+    this.initiative = this.attributes.dex.step;
+
+    // item based
+    const penaltyEquipment = this.parent.items.filter( item =>
+      [ "armor", "shield" ].includes( item.type ) && item.system.equipped
+    );
+    this.initiative -= sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
   }
 
-  /**
-   * Returns the items of the given type on this PC.
-   * @param {string} type The item type.
-   * @returns {Item|undefined} The items of the given type, if available, `undefined` otherwise.
-   */
-  #getItemsByType( type ) {
-    return this.parent.items.filter( ( item ) => item.type === type );
-  }
+  // endregion
 
-  /**
-   * Returns the namegiver of this PC, which should always be unique, i.e. only one namegiver item is available.
-   * @returns {Item|undefined} The namegiver item, if available, `undefined` otherwise.
-   */
-  #getNamegiver() {
-    return this.#getItemsByType( "namegiver" )[0];
-  }
+  // endregion
+
 
   /* -------------------------------------------- */
   /*  Migrations                                  */

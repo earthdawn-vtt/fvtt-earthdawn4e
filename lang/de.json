@@ -160,6 +160,7 @@
         "equippedStatus":                                   "Ausgerüstet",
         "extraSuccesses":                                   "Zusätzliche Erfolge",
         "healthRating":                                     "Gesundheit",
+        "inactive":                                         "Ausgeschaltet?",
         "information":                                      "Informationen",
         "initiativePenalty":                                "Initiative Malus",
         "karma":                                            "Karma",

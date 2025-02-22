@@ -14,15 +14,6 @@ export default class SentientTemplate extends CommonTemplate {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       attributes: new MappingField( new fields.SchemaField( {
-        baseStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      1,
-          step:     1,
-          initial:  1,
-          integer:  true,
-          positive: true
-        } ),
         step: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -524,18 +515,19 @@ export default class SentientTemplate extends CommonTemplate {
   }
 
   /* -------------------------------------------- */
-  /*  Data Preparation              */
+  /*  Data Preparation                            */
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
     this._prepareDamage();
-    this._healthRating (); 
   }
 
   /** @inheritDoc */
   prepareDerivedData() {
+    super.prepareDerivedData();
+    this._prepareHealthRating ();
   }
 
   /**
@@ -547,12 +539,17 @@ export default class SentientTemplate extends CommonTemplate {
       this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
   }
 
-  _healthRating () {
+  /**
+   * Prepare the current health rating that can be used by external modules.
+   * @private
+   */
+  _prepareHealthRating () {
     this.healthRate.max = this.characteristics.health.death;
-    this.healthRate.value = this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
+    this.healthRate.value = this.characteristics.health.damage.total;
   }
+
   /* -------------------------------------------- */
-  /*  Migrations                  */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritDoc */

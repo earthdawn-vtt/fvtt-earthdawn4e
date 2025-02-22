@@ -256,6 +256,44 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
+
+  // region Data Preparation
+
+
+  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
+    if ( !this.parent ) return;
+
+    const changes = Array.from( this.parent.allApplicableEffects()
+      .filter( effect => effect.active )
+      .flatMap( effect => effect.changes.map( change => ( {
+        ...foundry.utils.deepClone( change ),
+        effect,
+        priority: change.priority ?? ( change.mode * 10 )
+      } ) ) ) )
+      .sort( ( a, b ) => a.priority - b.priority );
+
+    const overrides = changes.reduce( ( acc, change ) => {
+      if ( keys.includes( change.key ) !== ignore ) {
+        Object.assign( acc, change.effect.apply( this.parent, change ) );
+      }
+      return acc;
+    }, {} );
+
+    this.overrides = foundry.utils.expandObject( overrides );
+  }
+
+  /**
+   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
+   * but before active effects are applied.
+   * Meant for data/fields that depend on information of embedded documents.
+   * Apply transformations or derivations to the values of the source data object.
+   * Compute data fields whose values are not stored to the database.
+   */
+  prepareDocumentDerivedData() {}
+
+  // endregion
+
+
   /* -------------------------------------------- */
   /*  Data Migration                              */
   /* -------------------------------------------- */
@@ -563,7 +601,7 @@ export class ItemDataModel extends SystemDataModel {
   }
 
   /* -------------------------------------------- */
-  
+
   /**
    * Prepare item card template data.
    * @param {EnrichmentOptions} enrichmentOptions Options for text enrichment.
@@ -653,7 +691,7 @@ export class ActiveEffectDataModel extends SystemDataModel {
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
-  
+
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
