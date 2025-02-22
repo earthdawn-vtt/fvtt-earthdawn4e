@@ -3,7 +3,7 @@
 /*  Earthdawn                                   */
 /* -------------------------------------------- */
 
-import ED4E from "./config.mjs";
+import ED4E from "./config/_module.mjs";
 
 /**
  * Calculate the armor value for the given attribute value.

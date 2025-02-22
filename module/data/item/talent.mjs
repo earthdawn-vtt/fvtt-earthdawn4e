@@ -1,5 +1,5 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";

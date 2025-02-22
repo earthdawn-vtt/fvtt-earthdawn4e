@@ -1,6 +1,6 @@
 import CommonTemplate from "./common.mjs";
 import MovementFields from "./movement.mjs";
-import ED4E from "../../../config.mjs";
+import ED4E from "../../../config/_module.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 
 /**

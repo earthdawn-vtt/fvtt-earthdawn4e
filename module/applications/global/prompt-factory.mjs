@@ -2,7 +2,7 @@ import LpIncreaseTemplate from "../../data/item/templates/lp-increase.mjs";
 import ActorEd from "../../documents/actor.mjs";
 import ItemEd from "../../documents/item.mjs";
 import LearnableTemplate from "../../data/item/templates/learnable.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 const DialogClass = foundry.applications.api.DialogV2;
 const fields = foundry.data.fields;

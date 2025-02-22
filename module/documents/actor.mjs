@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import EdRollOptions from "../data/roll/common.mjs";
-import ED4E from "../config.mjs";
+import ED4E from "../config/_module.mjs";
 import RollPrompt from "../applications/global/roll-prompt.mjs";
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 

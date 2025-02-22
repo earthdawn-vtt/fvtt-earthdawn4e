@@ -1,5 +1,5 @@
 import EdRollOptions from "./common.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 export default class DamageRollOptions extends EdRollOptions {
 

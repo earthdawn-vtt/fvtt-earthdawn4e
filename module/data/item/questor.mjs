@@ -1,7 +1,7 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 const { DialogV2 } = foundry.applications.api;

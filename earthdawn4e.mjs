@@ -9,7 +9,7 @@
  */
 
 // Import configuration
-import ED4E from "./module/config.mjs";
+import ED4E from "./module/config/_module.mjs";
 
 // Import submodules
 import * as applications from "./module/applications/_module.mjs";

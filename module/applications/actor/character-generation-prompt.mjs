@@ -1,5 +1,5 @@
 import { documentsToSelectChoices, filterObject, getAllDocuments } from "../../utils.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
 

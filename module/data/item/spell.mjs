@@ -1,6 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import LearnableTemplate from "./templates/learnable.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";

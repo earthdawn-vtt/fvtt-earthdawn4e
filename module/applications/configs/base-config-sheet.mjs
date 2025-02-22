@@ -1,4 +1,4 @@
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
