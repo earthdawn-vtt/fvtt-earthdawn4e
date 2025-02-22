@@ -191,5 +191,55 @@
           "type": "module"
         }
       ]
+  },
+  "documentTypes": {
+    "ActiveEffect": {
+      "eae": {}
+    },
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "creature": {},
+      "spirit": {},
+      "horror": {},
+      "dragon": {},
+      "group": {},
+      "vehicle": {},
+      "trap": {},
+      "loot": {}
+    },
+    "ChatMessage": {
+      "attack": {},
+      "common": {},
+      "damage": {}
+    },
+    "Item": {
+      "armor": {},
+      "bindingSecret": {},
+      "cursemark": {},
+      "devotion": {},
+      "discipline": {},
+      "effect": {},
+      "equipment": {},
+      "knackAbility": {},
+      "knackKarma": {},
+      "knackManeuver": {},
+      "maneuver": {},
+      "mask": {},
+      "matrix": {},
+      "namegiver": {},
+      "path": {},
+      "poisonDisease": {},
+      "power": {},
+      "questor": {},
+      "shield": {},
+      "skill": {},
+      "specialAbility": {},
+      "spell": {},
+      "spellKnack": {},
+      "talent": {},
+      "weapon": {},
+      "shipWeapon": {}
+    }
   }
 }
