@@ -556,6 +556,63 @@ export default class SentientTemplate extends CommonTemplate {
 
   // endregion
 
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData() ?? {};
+
+    return Object.assign( rollData,
+      // attribute steps
+      // dex, str, tou, per, wil, cha
+      Object.fromEntries(
+        Object.entries( this.attributes ).map( ( [ key, value ] ) => [ key, value.step ] )
+      ),
+      // armor values
+      // pa, ma
+      {
+        pa: this.characteristics.armor.physical.value,
+        ma: this.characteristics.armor.mystical.value,
+      },
+      // defense values
+      // pd, md, sd
+      {
+        pd: this.characteristics.defenses.physical.value,
+        md: this.characteristics.defenses.mystical.value,
+        sd: this.characteristics.defenses.social.value,
+      },
+      // health values
+      // damage, wounds, woundThresh, unconscious, death
+      {
+        damage:      this.characteristics.health.damage.total,
+        wounds:      this.characteristics.health.wounds,
+        woundThresh: this.characteristics.health.woundThreshold,
+        unconscious: this.characteristics.health.unconscious,
+        death:       this.characteristics.health.death,
+      },
+      // movement values
+      // burrow, climb, fly, swim, walk
+      Object.fromEntries(
+        Object.entries( this.characteristics.movement )
+          .filter( ( [ _, value ] ) => value !== null )
+          .map( ( [ key, value ] ) => [ key, value.value ] )
+      ),
+      // resource steps
+      // karma, devotion, recovery
+      {
+        karma:    this.karma.step,
+        devotion: this.devotion.step,
+        recovery: this.characteristics.recoveryTestsResource.step,
+      },
+      // initiative step
+      // ini
+      {
+        ini: this.initiative,
+      },
+    );
+  }
+
+  // endregion
 
   // region Migrations
 
