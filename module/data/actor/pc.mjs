@@ -531,6 +531,7 @@ export default class PcData extends NamegiverTemplate {
     this.#prepareEncumbrance();
     this.#prepareInitiative();
     this.#prepareDeathRating();
+    this.#prepareRecovery();
     this.#applyDerivedActiveEffects();
   }
 
@@ -541,6 +542,7 @@ export default class PcData extends NamegiverTemplate {
       "system.encumbrance.bonus",
       "system.initiative",
       "system.characteristics.health.death",
+      "this.characteristics.recoveryTestsResource.step",
     ] );
   }
 
@@ -637,6 +639,14 @@ export default class PcData extends NamegiverTemplate {
       [ "armor", "shield" ].includes( item.type ) && item.system.equipped
     );
     this.initiative -= sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
+  }
+
+  /**
+   * Prepare the recovery test resource based on the toughness step.
+   * @private
+   */
+  #prepareRecovery() {
+    this.characteristics.recoveryTestsResource.step = this.attributes.tou.step;
   }
 
   // endregion

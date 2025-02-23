@@ -214,16 +214,6 @@ export default class SentientTemplate extends CommonTemplate {
           hint:  this.hintKey( "Characteristics.health" ),
         } ),
         recoveryTestsResource: new fields.SchemaField( {
-          max: new fields.NumberField( {
-            required: true,
-            nullable: false,
-            min:      0,
-            step:     1,
-            initial:  0,
-            integer:  true,
-            label:    this.labelKey( "Characteristics.recoveryTestsMax" ),
-            hint:     this.hintKey( "Characteristics.recoveryTestsMax" )
-          } ),
           value: new fields.NumberField( {
             required: true,
             nullable: false,
@@ -234,6 +224,24 @@ export default class SentientTemplate extends CommonTemplate {
             label:    this.labelKey( "Characteristics.recoveryTestsCurrent" ),
             hint:     this.hintKey( "Characteristics.recoveryTestsCurrent" )
 
+          } ),
+          max: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            min:      0,
+            step:     1,
+            initial:  0,
+            integer:  true,
+            label:    this.labelKey( "Characteristics.recoveryTestsMax" ),
+            hint:     this.hintKey( "Characteristics.recoveryTestsMax" )
+          } ),
+          step: new fields.NumberField( {
+            nullable: false,
+            min:      0,
+            step:     1,
+            integer:  true,
+            label:    this.labelKey( "recoveryTestStep" ),
+            hint:     this.hintKey( "recoveryTestStep" ),
           } ),
           stunRecoveryAvailable: new fields.BooleanField( {
             required: true,
@@ -514,9 +522,7 @@ export default class SentientTemplate extends CommonTemplate {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
+  // region  Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
@@ -548,14 +554,18 @@ export default class SentientTemplate extends CommonTemplate {
     this.healthRate.value = this.characteristics.health.damage.total;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+
+  // region Migrations
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }
 

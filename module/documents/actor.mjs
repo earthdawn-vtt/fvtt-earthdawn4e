@@ -449,9 +449,9 @@ export default class ActorEd extends Actor {
 
   async rollRecovery( recoveryMode, options = {} ) {
 
-    const { attributes, characteristics, globalBonuses } = this.system;
+    const { characteristics, globalBonuses } = this.system;
 
-    let recoveryStep = attributes.tou.step;
+    let recoveryStep = characteristics.recoveryTestsResource.step;
     const recoveryFinalStep = {
       base:      recoveryStep,
       modifiers: {},
