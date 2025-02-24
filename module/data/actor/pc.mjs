@@ -3,7 +3,7 @@ import { getArmorFromAttribute, getAttributeStep, getDefenseValue, getSingleGlob
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
 const { DialogV2 } = foundry.applications.api;

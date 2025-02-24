@@ -1,6 +1,6 @@
 import { ItemDataModel } from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
-import ED4E from "../../../config.mjs";
+import ED4E from "../../../config/_module.mjs";
 import ThreadTemplate from "./threads.mjs";
 
 /**

@@ -1,4 +1,4 @@
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
 
 export default class AttackRollOptions extends EdRollOptions {

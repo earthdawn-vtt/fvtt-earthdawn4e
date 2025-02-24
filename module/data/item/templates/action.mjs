@@ -1,5 +1,5 @@
 import { ItemDataModel } from "../../abstract.mjs";
-import ED4E from "../../../config.mjs";
+import ED4E from "../../../config/_module.mjs";
 import RollableTemplate from "./rollable.mjs";
 
 /**

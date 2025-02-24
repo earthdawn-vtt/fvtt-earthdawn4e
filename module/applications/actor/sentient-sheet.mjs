@@ -1,5 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications

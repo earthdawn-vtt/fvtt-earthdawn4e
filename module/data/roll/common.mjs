@@ -1,6 +1,6 @@
 import { sum } from "../../utils.mjs";
 import getDice from "../../dice/step-tables.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import { SparseDataModel } from "../abstract.mjs";

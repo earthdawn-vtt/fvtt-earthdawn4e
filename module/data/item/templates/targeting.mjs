@@ -1,5 +1,5 @@
 import SystemDataModel from "../../abstract.mjs";
-import ED4E from "../../../config.mjs";
+import ED4E from "../../../config/_module.mjs";
 
 /**
  * Data model template with information on Ability items.

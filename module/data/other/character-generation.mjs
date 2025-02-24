@@ -1,5 +1,5 @@
 import { SparseDataModel } from "../abstract.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import {
   filterObject,
   getAttributeStep,

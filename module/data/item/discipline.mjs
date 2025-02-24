@@ -1,6 +1,6 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 import { linkForUuidSync } from "../../utils.mjs";
 
 const { expandObject, isEmpty, mergeObject } = foundry.utils;

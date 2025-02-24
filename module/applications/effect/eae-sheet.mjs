@@ -1,6 +1,6 @@
 import { getEdIds } from "../../settings.mjs";
 import FormulaField from "../../data/fields/formula-field.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
 

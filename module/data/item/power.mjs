@@ -1,6 +1,6 @@
 import NoneNamegiverPowerData from "./templates/none-namegiver-power.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config.mjs";
+import ED4E from "../../config/_module.mjs";
 
 /**
  * Data model template with information on Power items.

@@ -420,13 +420,6 @@
         "waterCold":                                                "Kälte",
         "wood":                                                     "Holz"
       },
-      "FormulaValueTypes": {
-        "attribute":                                                "Attribut",
-        "circle":                                                   "Kreis",
-        "numeric":                                                  "Zahl",
-        "rank":                                                     "Rang",
-        "special":                                                  "Spezial"
-      },
       "Health": {
         "damageStandard":                                                "Standard",
         "damageStun":                                                    "Betäubung"

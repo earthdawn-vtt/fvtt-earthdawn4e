@@ -1,6 +1,6 @@
 import getDice from "./step-tables.mjs";
 import { sum } from "../utils.mjs";
-import ED4E from "../config.mjs";
+import ED4E from "../config/_module.mjs";
 
 /**
  * EdRollOptions for creating an EdRoll instance.
