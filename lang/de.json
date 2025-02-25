@@ -31,6 +31,23 @@
       "Header": {
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
+      "Status": {
+        "aggressive":   "Aggressiver Angriff",
+        "blindness":    "Blindheit",
+        "blindsided":   "Im Toten Winkel",
+        "cover":        "Deckung",
+        "darkness":     "Dunkelheit",
+        "dazzled":      "Geblendet",
+        "dead":         "Tot",
+        "defensive":    "Abwehrhaltung",
+        "grappled":     "Umklammert",
+        "harried":      "Bedrängt",
+        "impaired":     "Eingeschränkte Bewegung",
+        "knockedDown":  "Niedergeschlagen",
+        "overwhelmed":  "Überwältigt",
+        "surprised":    "Überrascht",
+        "unconscious":  "Bewusstlos"
+      },
       "Tooltips": {
         "abilityEdidSelection": "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       }
