@@ -162,6 +162,15 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       }
     );
 
+    
+    context.enrichedBriefDescription = await TextEditor.enrichHTML(
+      this.document.system.briefDescription.value,
+      {
+        // Only show secret blocks to owner
+        secrets:    this.document.isOwner,
+      }
+    );
+
     return context;
   }
 

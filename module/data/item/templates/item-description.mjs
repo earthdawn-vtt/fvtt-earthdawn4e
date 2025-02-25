@@ -19,6 +19,14 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
           hint:     this.hintKey( "description" ),
         } ), 
       } ),
+      briefDescription: new fields.SchemaField( {
+        value: new fields.HTMLField( {
+          required: true, 
+          nullable: true, 
+          label:    this.labelKey( "description" ),
+          hint:     this.hintKey( "description" ),
+        } ),
+      } ),
       edid: new EdIdField(),
     };
   }

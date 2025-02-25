@@ -109,6 +109,14 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         // rollData: this.document.getRollData
       }
     );
+
+    context.enrichedBriefDescription = await TextEditor.enrichHTML(
+      this.document.system.briefDescription.value,
+      {
+        // Only show secret blocks to owner
+        secrets:    this.document.isOwner,
+      }
+    );
   
     return context;
   }
