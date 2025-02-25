@@ -53,6 +53,32 @@
     }
 }
 
+.knack-maneuver-card__grid--container {
+    align-items: center;
+    display: grid;
+    height: 30px;
+    grid-template-columns:
+        // 790 px available
+        60px // Icon
+        190px // Name
+        40px // StanardEffect
+        100px // Type
+        280px // Brief Description
+        100px // Control Icons
+    ;
+
+    .knack-card__grid--item {
+
+        
+
+        .roll-icon__hover,
+        .roll-icon__hover-fixed,
+        .roll-icon__pointer {
+            display: none;
+        }
+    }
+}
+
 .parent__rank {
     font-style: italic;
     opacity: 0.5;
@@ -279,4 +305,43 @@ power-card__grid--container:hover,
 
 .card__description--toggle {
     display: none;
+}
+
+.brief-description {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block; /* Ensure it stays inline */
+    vertical-align: top; /* Aligns with other inline elements */
+}
+
+
+.knack-card__single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+    display: flex; /* Use flexbox to keep spans inline */
+    align-items: center; /* Align items vertically */
+}
+
+.knack-card__single-line.display__inline-block {
+    flex-shrink: 0; /* Prevent spans from shrinking */
+    white-space: nowrap; /* Ensure no line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 100%; /* Ensure the span does not exceed the container's width */
+    display: inline-block; /* Ensure it stays inline */
+    vertical-align: top; /* Aligns with other inline elements */
+}
+
+.knack-card__single-line.display__inline-block p {
+    display: inline; /* Display paragraphs inline */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    white-space: nowrap; /* Ensure no line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
 }

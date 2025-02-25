@@ -112,11 +112,11 @@ input.input__number-input {
   color: inherit;
   padding-top: 5px;
 }
-.application p {
-  font-size: large;
-}
 .application .font__no-underline {
   border-bottom: none;
+}
+.application .font__italic {
+  font-style: italic;
 }
 .display__inline-block {
   display: inline-block;
@@ -614,6 +614,17 @@ input.input__number-input {
 .knack-card__grid--container .knack-card__grid--item .roll-icon__pointer {
   display: none;
 }
+.knack-maneuver-card__grid--container {
+  align-items: center;
+  display: grid;
+  height: 30px;
+  grid-template-columns: 60px 190px 40px 100px 280px 100px;
+}
+.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__hover,
+.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__hover-fixed,
+.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__pointer {
+  display: none;
+}
 .parent__rank {
   font-style: italic;
   opacity: 0.5;
@@ -960,6 +971,58 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
 .card__description--toggle {
   display: none;
 }
+.brief-description {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  /* Ensure it stays inline */
+  vertical-align: top;
+  /* Aligns with other inline elements */
+}
+.knack-card__single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  display: flex;
+  /* Use flexbox to keep spans inline */
+  align-items: center;
+  /* Align items vertically */
+}
+.knack-card__single-line.display__inline-block {
+  flex-shrink: 0;
+  /* Prevent spans from shrinking */
+  white-space: nowrap;
+  /* Ensure no line breaks */
+  overflow: hidden;
+  /* Hide overflow */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+  max-width: 100%;
+  /* Ensure the span does not exceed the container's width */
+  display: inline-block;
+  /* Ensure it stays inline */
+  vertical-align: top;
+  /* Aligns with other inline elements */
+}
+.knack-card__single-line.display__inline-block p {
+  display: inline;
+  /* Display paragraphs inline */
+  margin: 0;
+  /* Remove default margin */
+  padding: 0;
+  /* Remove default padding */
+  white-space: nowrap;
+  /* Ensure no line breaks */
+  overflow: hidden;
+  /* Hide overflow */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+  max-width: 100%;
+  /* Ensure the paragraph does not exceed the container's width */
+}
 .body .actor-section__top {
   height: 158px;
 }
@@ -1080,6 +1143,9 @@ power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hove
 .application.sheet.earthdawn4e.item .window-content .item-name .sheet-header__indent--right {
   width: 45%;
   float: right;
+}
+.application.sheet.earthdawn4e.item .window-content .top .sheet__editor {
+  min-height: 160px;
 }
 .application.sheet.earthdawn4e.item .tab.general,
 .application.sheet.earthdawn4e.item .tab.details,
