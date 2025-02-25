@@ -76,7 +76,9 @@
       "Cards": {
         "chat": "Zeige Item Informationen als Chat Nachricht",
         "delete": "Lösche Item",
-        "edit": "Bearbeite Item"
+        "edit": "Bearbeite Item",
+        "knackManeuver":                                  "[Spezialmanöver]",
+        "knackKarma":                                     "[Karma]"
       },
       "Characteristics": {
         "currentDamage": "Schaden",
@@ -257,6 +259,7 @@
         "equipped":                                         "Ausgerüstet",
         "equippedArmor":                                    "Rüstung Ausgerüstet",
         "equippedShield":                                   "Schild Ausgerüstet",
+        "extraSuccesses":                                   "Benötigte extra Erfolge",
         "karmaAlways":                                      "Benutze immer Karma",
         "karmaRitualTooltip":                               "Karmaritual",
         "loaded":                                           "Belastet",
@@ -266,6 +269,7 @@
         "notEquipped":                                      "Nicht Ausgerüstet",
         "offHand":                                          "Nebenhand",
         "parentTalent":                                     "Rang des Talents",  
+        "standardEffect":                                   "Standard Effekt",
         "tail":                                             "Schwanz",
         "twoHanded":                                        "Zweihändig"
       }
