@@ -214,16 +214,6 @@ export default class SentientTemplate extends CommonTemplate {
           hint:  this.hintKey( "Characteristics.health" ),
         } ),
         recoveryTestsResource: new fields.SchemaField( {
-          max: new fields.NumberField( {
-            required: true,
-            nullable: false,
-            min:      0,
-            step:     1,
-            initial:  0,
-            integer:  true,
-            label:    this.labelKey( "Characteristics.recoveryTestsMax" ),
-            hint:     this.hintKey( "Characteristics.recoveryTestsMax" )
-          } ),
           value: new fields.NumberField( {
             required: true,
             nullable: false,
@@ -234,6 +224,24 @@ export default class SentientTemplate extends CommonTemplate {
             label:    this.labelKey( "Characteristics.recoveryTestsCurrent" ),
             hint:     this.hintKey( "Characteristics.recoveryTestsCurrent" )
 
+          } ),
+          max: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            min:      0,
+            step:     1,
+            initial:  0,
+            integer:  true,
+            label:    this.labelKey( "Characteristics.recoveryTestsMax" ),
+            hint:     this.hintKey( "Characteristics.recoveryTestsMax" )
+          } ),
+          step: new fields.NumberField( {
+            nullable: false,
+            min:      0,
+            step:     1,
+            integer:  true,
+            label:    this.labelKey( "recoveryTestStep" ),
+            hint:     this.hintKey( "recoveryTestStep" ),
           } ),
           stunRecoveryAvailable: new fields.BooleanField( {
             required: true,
@@ -514,9 +522,7 @@ export default class SentientTemplate extends CommonTemplate {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
+  // region  Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
@@ -548,14 +554,118 @@ export default class SentientTemplate extends CommonTemplate {
     this.healthRate.value = this.characteristics.health.damage.total;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData() ?? {};
+
+    return Object.assign( rollData,
+      // attribute steps
+      // dex, str, tou, per, wil, cha
+      Object.fromEntries(
+        Object.entries( this.attributes ).map( ( [ key, value ] ) => [ key, value.step ] )
+      ),
+      // dexterity, strength, toughness, perception, willpower, charisma
+      Object.fromEntries(
+        Object.entries( this.attributes ).map( ( [ key, value ] ) => [ ED4E.attributes[ key ].fullKey, value.step ] )
+      ),
+      // armor values
+      // pa, ma
+      // physicalarmor, mysticarmor
+      {
+        pa:            this.characteristics.armor.physical.value,
+        physicalarmor: this.characteristics.armor.physical.value,
+        ma:            this.characteristics.armor.mystical.value,
+        mysticarmor:   this.characteristics.armor.mystical.value,
+      },
+      // defense values
+      // pd, md, sd
+      // physicaldefense, mysticdefense, socialdefense
+      {
+        pd:              this.characteristics.defenses.physical.value,
+        physicaldefense: this.characteristics.defenses.physical.value,
+        md:              this.characteristics.defenses.mystical.value,
+        mysticdefense:   this.characteristics.defenses.mystical.value,
+        sd:              this.characteristics.defenses.social.value,
+        socialdefense:   this.characteristics.defenses.social.value,
+      },
+      // health values
+      // damage/da/currentdamage, wounds/currentwounds, woundthreshold/wt/woundThresh,
+      // unconscious/uncon/unconsciousnessrating, death/deathrating
+      // stundam/stundamage/currentstundamage
+      // blooddamage/currentblooddamage, bloodwounds/currentbloodwounds
+      {
+        damage:                 this.characteristics.health.damage.total,
+        da:                     this.characteristics.health.damage.total,
+        currentdamage:          this.characteristics.health.damage.total,
+        wounds:                 this.characteristics.health.wounds,
+        currentwounds:          this.characteristics.health.wounds,
+        woundthreshold:         this.characteristics.health.woundThreshold,
+        wt:                     this.characteristics.health.woundThreshold,
+        woundthresh:            this.characteristics.health.woundThreshold,
+        unconscious:            this.characteristics.health.unconscious,
+        uncon:                  this.characteristics.health.unconscious,
+        unconsciousnessrating:  this.characteristics.health.unconscious,
+        death:                  this.characteristics.health.death,
+        deathrating:            this.characteristics.health.death,
+        stundam:                this.characteristics.health.damage.stun,
+        stundamage:             this.characteristics.health.damage.stun,
+        currentstundamage:      this.characteristics.health.damage.stun,
+        blooddamage:            this.characteristics.health.bloodMagic.damage,
+        currentblooddamage:     this.characteristics.health.bloodMagic.damage,
+        bloodwounds:            this.characteristics.health.bloodMagic.wounds,
+        currentbloodwounds:     this.characteristics.health.bloodMagic.wounds,
+      },
+      // movement values
+      // burrow, climb, fly, swim, walk
+      Object.fromEntries(
+        Object.entries( this.characteristics.movement )
+          .filter( ( [ _, value ] ) => value !== null )
+          .map( ( [ key, value ] ) => [ key, value.value ] )
+      ),
+      // resources
+      // karma/currentkarma, maxkarma/maximumkarma,
+      // devotion/currentdevotion, maxdevotion/maximumdevotion,
+      // recovery/recoverystep, currentrecovery, maxrecovery/maximumrecovery
+      {
+        karma:           this.karma.step,
+        currentkarma:    this.karma.step,
+        maxkarma:        this.karma.max,
+        maximumkarma:    this.karma.max,
+        devotion:        this.devotion.step,
+        currentdevotion: this.devotion.step,
+        maxdevotion:     this.devotion.max,
+        maximumdevotion: this.devotion.max,
+        recovery:        this.characteristics.recoveryTestsResource.step,
+        recoverystep:    this.characteristics.recoveryTestsResource.step,
+        currentrecovery: this.characteristics.recoveryTestsResource.value,
+        maxrecovery:     this.characteristics.recoveryTestsResource.max,
+        maximumrecovery: this.characteristics.recoveryTestsResource.max
+      },
+      // initiative step
+      // ini/initiative/initiativestep
+      {
+        ini:            this.initiative,
+        initiative:     this.initiative,
+        initiativestep: this.initiative,
+      },
+    );
+  }
+
+  // endregion
+
+  // region Migrations
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }
 

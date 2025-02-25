@@ -449,9 +449,9 @@ export default class ActorEd extends Actor {
 
   async rollRecovery( recoveryMode, options = {} ) {
 
-    const { attributes, characteristics, globalBonuses } = this.system;
+    const { characteristics, globalBonuses } = this.system;
 
-    let recoveryStep = attributes.tou.step;
+    let recoveryStep = characteristics.recoveryTestsResource.step;
     const recoveryFinalStep = {
       base:      recoveryStep,
       modifiers: {},
@@ -562,6 +562,18 @@ export default class ActorEd extends Actor {
     );
 
     return this.processRoll( roll );
+  }
+
+  /** @inheritDoc */
+  getRollData() {
+    let rollData;
+    rollData = { ...super.getRollData() };
+    if ( this.system.getRollData ) Object.assign( rollData, this.system.getRollData() );
+
+    rollData.flags = { ...this.flags };
+    rollData.name = this.name;
+
+    return rollData;
   }
 
 
