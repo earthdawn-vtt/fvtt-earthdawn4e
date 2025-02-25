@@ -28,27 +28,33 @@ preLocalize( "armor" );
 export const attributes = {
   dex: {
     label:          "ED.Actor.Attributes.dexterity",
-    abbreviation:   "ED.Actor.Attributes.dexterityAbbr"
+    abbreviation:   "ED.Actor.Attributes.dexterityAbbr",
+    fullKey:        "dexterity",
   },
   str: {
     label:          "ED.Actor.Attributes.strength",
-    abbreviation:   "ED.Actor.Attributes.strengthAbbr"
+    abbreviation:   "ED.Actor.Attributes.strengthAbbr",
+    fullKey:        "strength",
   },
   tou: {
     label:          "ED.Actor.Attributes.toughness",
-    abbreviation:   "ED.Actor.Attributes.toughnessAbbr"
+    abbreviation:   "ED.Actor.Attributes.toughnessAbbr",
+    fullKey:        "toughness",
   },
   per: {
     label:          "ED.Actor.Attributes.perception",
-    abbreviation:   "ED.Actor.Attributes.perceptionAbbr"
+    abbreviation:   "ED.Actor.Attributes.perceptionAbbr",
+    fullKey:        "perception",
   },
   wil: {
     label:          "ED.Actor.Attributes.willpower",
-    abbreviation:   "ED.Actor.Attributes.willpowerAbbr"
+    abbreviation:   "ED.Actor.Attributes.willpowerAbbr",
+    fullKey:        "willpower",
   },
   cha: {
     label:          "ED.Actor.Attributes.charisma",
-    abbreviation:   "ED.Actor.Attributes.charismaAbbr"
+    abbreviation:   "ED.Actor.Attributes.charismaAbbr",
+    fullKey:        "charisma",
   }
 };
 preLocalize( "attributes", {keys: [ "label", "abbreviation" ]} );
