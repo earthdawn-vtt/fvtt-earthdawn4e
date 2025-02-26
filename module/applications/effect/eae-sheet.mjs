@@ -153,7 +153,14 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @this {ActiveEffectConfig}
    * @type {ApplicationClickAction}
    */
-  static async #onDeleteChange( event ) {}
+  static async #onDeleteChange( event ) {
+    const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
+    const changes = Object.values( submitData.system.changes );
+    const row = event.target.closest( "li" );
+    const index = Number( row.dataset.index ) || 0;
+    changes.splice( index, 1 );
+    return this.submit( { updateData: { system: { changes } } } );
+  }
 
   // endregion
 
