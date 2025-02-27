@@ -96,7 +96,10 @@ export const globalBonuses = {
   },
   allSpellEffects: {
     label:       "ED.Actor.GlobalBonus.allSpellEffects"
-  }
+  },
+  allTests: {
+    label:       "ED.Actor.GlobalBonus.allTests",
+  },
 };
 preLocalize( "globalBonuses", { key: "label" } );
 

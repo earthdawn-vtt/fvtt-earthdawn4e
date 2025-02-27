@@ -1,21 +1,158 @@
+const STATUS_CHANGES = {
+  aggressive: [
+    {
+      key:   "system.globalBonuses.allCloseAttacks.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +3,
+    },
+    {
+      key:   "system.globalBonuses.allMeleeDamage.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +3,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+  ],
+  blindness:  [
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -4,
+    },
+  ],
+  blindsided: [
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+  ],
+  dazzled:  [
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+  ],
+  defensive: [
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +3,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +3,
+    },
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      // defensive stance gives penalty to _all_ tests except knockdown tests
+      // add an explicit bonus to knockdown effects to neutralize the penalty from `globalBonuses.allTests`
+      key:   "system.globalBonuses.allKnockdownEffects.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +3,
+    },
+  ],
+  knockedDown: [
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.movement.walk",
+      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+      value: 2,
+    },
+  ],
+  surprised: [
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+  ],
+};
+
+const STATUS_DURATIONS = {
+  surprised: {
+    type:   "combat",
+    rounds: 1,
+  },
+};
+
 export const statusEffects = [
   {
     id:   "aggressive",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.aggressive",
     img:  "systems/ed4e/assets/icons/confrontation.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.aggressive,
+    system:  {
+      changes: STATUS_CHANGES.aggressive,
+    },
   },
   {
     id:    "blindness",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.blindness",
     img:  "icons/svg/blind.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.blindness,
+    system:  {
+      // only for sight based tests
+      // different effects on low-light vision or heat sight
+      changes: STATUS_CHANGES.blindness,
+    },
   },
   {
     id:    "blindsided",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.blindsided",
     img:  "systems/ed4e/assets/icons/backstab.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.blindsided,
+    system:  {
+      // only against the attack that caused the blindsided effect
+      changes: STATUS_CHANGES.blindsided,
+    },
   },
   {
     id:    "cover",
@@ -34,6 +171,13 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.dazzled",
     img:  "systems/ed4e/assets/icons/laser-sparks.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.dazzled,
+    system:  {
+      // only for sight based tests
+      changes: STATUS_CHANGES.dazzled,
+    },
   },
   {
     id:    "dead",
@@ -46,6 +190,12 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.defensive",
     img:  "systems/ed4e/assets/icons/surrounded-shield.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.defensive,
+    system:  {
+      changes: STATUS_CHANGES.defensive,
+    },
   },
   {
     id:   "fury",
@@ -76,6 +226,13 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.knockedDown",
     img:  "icons/svg/falling.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.knockedDown,
+    system:  {
+      // unset other combat options, can't be used
+      changes: STATUS_CHANGES.knockedDown,
+    },
   },
   {
     id:    "overwhelmed",
@@ -88,6 +245,15 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.surprised",
     img:  "systems/ed4e/assets/icons/surprised.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.surprised,
+    duration: STATUS_DURATIONS.surprised,
+    system:   {
+      // can't take actions
+      changes:  STATUS_CHANGES.surprised,
+      duration: STATUS_DURATIONS.surprised,
+    },
   },
   {
     id:    "unconscious",
