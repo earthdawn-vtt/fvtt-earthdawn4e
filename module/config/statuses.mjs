@@ -71,6 +71,14 @@ const STATUS_CHANGES = {
       value: +3,
     },
   ],
+  fury: [
+    {
+      key:   "system.globalBonuses.allTests",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      // ignore existing wounds and add them as bonus
+      value: "2 * @wounds",
+    },
+  ],
   knockedDown: [
     {
       key:   "system.globalBonuses.allTests.value",
@@ -202,6 +210,13 @@ export const statusEffects = [
     hud:  { actorTypes: [ "creature" ] },
     name: "ED.ActiveEffect.Status.fury",
     img:  "systems/ed4e/assets/icons/enraged.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.fury,
+    system:  {
+      // add custom handling: only up to level of fury
+      changes: STATUS_CHANGES.fury,
+    },
   },
   {
     id:    "grappled",
