@@ -88,8 +88,8 @@ export const globalBonuses = {
   allRangedDamage: {
     label:       "ED.Actor.GlobalBonus.allRangedDamage"
   },
-  allRecoveryEffects: {
-    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
+  allRecoveryTests: {
+    label:       "ED.Actor.GlobalBonus.allRecoveryTests"
   },
   allKnockdownEffects: {
     label:       "ED.Actor.GlobalBonus.allKnockdownEffects"
