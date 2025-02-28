@@ -94,8 +94,8 @@ export const globalBonuses = {
   allKnockdownTests: {
     label:       "ED.Actor.GlobalBonus.allKnockdownTests"
   },
-  allSpellEffects: {
-    label:       "ED.Actor.GlobalBonus.allSpellEffects"
+  allSpellTests: {
+    label:       "ED.Actor.GlobalBonus.allSpellTests"
   },
   allTests: {
     label:       "ED.Actor.GlobalBonus.allTests",

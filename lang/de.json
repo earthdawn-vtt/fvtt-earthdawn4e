@@ -153,7 +153,7 @@
         "allRangedDamage": "Jeder Fernkampfschaden",
         "allRecoveryTests": "Alle Erholungsproben",
         "allKnockdownTests": "Alle Niederschlagsproben",
-        "allSpellEffects": "Alle Spruchzauber-Effekte",
+        "allSpellTests": "Alle Spruchzaubereiproben",
         "allTests": "Alle Proben"
       },
       "Header": {
