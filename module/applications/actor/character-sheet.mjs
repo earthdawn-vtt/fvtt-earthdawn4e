@@ -235,7 +235,11 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   // region Drag and Drop
 
-
+  /** @inheritdoc */
+  async _onDropItem( event, item ) {
+    if ( item.system.learnable ) item.system.constructor.learn( this.actor, item );
+    await super._onDropItem( event, item );
+  }
 
   // endregion
 }
