@@ -91,8 +91,8 @@ export const globalBonuses = {
   allRecoveryTests: {
     label:       "ED.Actor.GlobalBonus.allRecoveryTests"
   },
-  allKnockdownEffects: {
-    label:       "ED.Actor.GlobalBonus.allKnockdownEffects"
+  allKnockdownTests: {
+    label:       "ED.Actor.GlobalBonus.allKnockdownTests"
   },
   allSpellEffects: {
     label:       "ED.Actor.GlobalBonus.allSpellEffects"
@@ -105,7 +105,7 @@ preLocalize( "globalBonuses", { key: "label" } );
 
 export const singleBonuses = {
   knockdownEffects: {
-    label: "ED.Config.Eae.allKnockDownEffects",
+    label: "ED.Config.Eae.allKnockdownTests",
   },
 };
 preLocalize( "singleBonuses", { key: "label" } );

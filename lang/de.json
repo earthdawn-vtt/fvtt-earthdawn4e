@@ -151,8 +151,8 @@
         "allDamage": "Jeder Schadenswurf",
         "allMeleeDamage": "Jeder Nahkampfschaden",
         "allRangedDamage": "Jeder Fernkampfschaden",
-        "allRecoveryTests": "Alle Erholungstests",
-        "allKnockdownEffects": "Alle Niederschlageffekte",
+        "allRecoveryTests": "Alle Erholungsproben",
+        "allKnockdownTests": "Alle Niederschlagsproben",
         "allSpellEffects": "Alle Spruchzauber-Effekte",
         "allTests": "Alle Proben"
       },

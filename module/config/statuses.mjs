@@ -66,7 +66,7 @@ const STATUS_CHANGES = {
     {
       // defensive stance gives penalty to _all_ tests except knockdown tests
       // add an explicit bonus to knockdown effects to neutralize the penalty from `globalBonuses.allTests`
-      key:   "system.globalBonuses.allKnockdownEffects.value",
+      key:   "system.globalBonuses.allKnockdownTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: +3,
     },
