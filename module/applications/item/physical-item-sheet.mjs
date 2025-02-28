@@ -17,15 +17,15 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
   // region PARTS
   static PARTS = {
-    header: { 
-      template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs", 
+    header: {
+      template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
       id:       "item-name",
-      classes:  [ "item-name" ] 
+      classes:  [ "item-name" ]
     },
-    top: { 
-      template: "systems/ed4e/templates/item/item-partials/item-section-top.hbs", 
+    top: {
+      template: "systems/ed4e/templates/item/item-partials/item-section-top.hbs",
       id:       "top",
-      classes:  [ "top" ] 
+      classes:  [ "top" ]
     },
     tabs: {
       template:   "templates/generic/tab-navigation.hbs",
@@ -34,22 +34,22 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "general": {
-      template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
-      classes:  [ "general" ] 
+      template: "systems/ed4e/templates/item/item-partials/item-description.hbs",
+      classes:  [ "general" ]
     },
     "details": {
-      template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
-      classes:  [ "details" ] 
+      template: "systems/ed4e/templates/item/item-partials/item-details.hbs",
+      classes:  [ "details" ]
     },
     "effects": {
-      template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
-      classes:  [ "effects" ] 
+      template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
+      classes:  [ "effects" ]
     },
     "thread": {
-      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs", 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs",
       id:         "-thread",
       classes:    [ "thread" ],
-      scrollable: [ "" ], 
+      scrollable: [ "" ],
     },
   };
 
@@ -67,13 +67,13 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       labelPrefix: "ED.Item.Tabs",
     },
   };
-  
+
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
       case "header":
       case "top":
-      case "tabs": 
+      case "tabs":
         break;
       case "general":
         break;
@@ -86,7 +86,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     }
     return context;
   }
-  
+
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -100,7 +100,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         isGM:                   game.user.isGM,
       },
     );
-    
+
     context.enrichedDescription = await TextEditor.enrichHTML(
       this.document.system.description.value,
       {
@@ -109,16 +109,18 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         // rollData: this.document.getRollData
       }
     );
-  
+
+
+
     return context;
   }
-  
+
   static async addThreadLevel( event, target ) {
     event.preventDefault();
     this.document.system.threadData.addLevel();
     this.render();
   }
-  
+
   static async deleteThreadLevel( event, target ) {
     event.preventDefault();
     this.document.system.threadData.deleteLevel();

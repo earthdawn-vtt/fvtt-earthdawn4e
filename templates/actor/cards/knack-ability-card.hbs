@@ -1,5 +1,5 @@
 
-<div class="card__knack">
+<div class="card__ability">
     <div class="knack-card__grid--container item-id" data-item-id="{{_id}}">
         <div class="knack-card__grid--item icons__dice">
             {{#if (ne this.system.attribute "")}}
@@ -18,8 +18,11 @@
                 {{/if}}
             {{/if}}
         </div>
-        <div class="knack-card__grid--item card__name" data-action="expandItem">{{name}}</div>
-        <div class="knack-card__grid--item text__alignment--center">{{#if system.standardEffect}} [S]{{/if}}</div>
+        <div class="knack-card__grid--item card__name" data-action="expandItem">
+            <i class="fas fa-thin fa-bolt"> </i>
+            {{name}}
+            </div>
+        <div class="knack-card__grid--item text__alignment--center"{{#if system.standardEffect}} title="{{localize "ED.Actor.Tooltips.standardEffect"}}"{{/if}}>{{#if system.standardEffect}} [S]{{/if}}</div>
         <div class="knack-card__grid--item">{{system.action}}</div>
         <div class="knack-card__grid--item text__alignment--center parent__rank" title="{{localize "ED.Actor.Tooltips.parentTalent"}}">{{#if system.attribute}}({{this.system.parentRank}}){{else}}-{{/if}}</div>
         <div class="knack-card__grid--item text__alignment--center">{{#if system.attribute}}{{this.system.rankFinal}}{{else}}-{{/if}}</div>

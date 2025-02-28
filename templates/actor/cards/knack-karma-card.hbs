@@ -1,0 +1,26 @@
+
+<div class="card__ability">
+    <div class="knack-maneuver-card__grid--container item-id" data-item-id="{{_id}}">
+        <div class="knack-card__grid--item icons__dice">
+            <img class="item__image--visible" src="{{img}}" title="{{name}}" height="25" width="25" />
+        </div>
+        <div class="knack-card__grid--item card__name" data-action="expandItem">
+            <i class="fas fa-thin fa-sparkles"> </i>
+            {{name}}
+        </div>
+        <div class="knack-card__grid--item text__alignment--center"></div>
+        <div class="knack-card__grid--item font__italic">{{localize "ED.Actor.Cards.knackKarma"}}</div>
+        <div class="knack-card__grid--item font__italic knack-card__single-line display__inline-block">{{{system.summary.value}}}</div>
+        <div class="knack-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-chat.hbs"}}</div>
+    </div>
+    <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+            {{{system.description.value}}}
+        </span>
+        <span>
+            {{#each this.effects as |effects id|}}
+            {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+            {{/each}}
+        </span>
+    </div>
+</div>

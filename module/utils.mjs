@@ -615,6 +615,7 @@ export async function preloadHandlebarsTemplates() {
   const partials = [
     // Global Templates
     "systems/ed4e/templates/global/editor.hbs",
+    "systems/ed4e/templates/global/editor-brief.hbs",
     "systems/ed4e/templates/global/card-options-chat.hbs",
     "systems/ed4e/templates/global/card-options-effect.hbs",
     "systems/ed4e/templates/global/card-options-enhance.hbs",
@@ -691,7 +692,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/health-none-character-card.hbs",
     "systems/ed4e/templates/actor/cards/damage-character-card.hbs",
     "systems/ed4e/templates/actor/cards/damage-none-character-card.hbs",
-    "systems/ed4e/templates/actor/cards/knack-card.hbs",
+    "systems/ed4e/templates/actor/cards/knack-ability-card.hbs",
+    "systems/ed4e/templates/actor/cards/knack-karma-card.hbs",
+    "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs",
+
 
     // Item partials
     "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
