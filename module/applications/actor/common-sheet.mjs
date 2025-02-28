@@ -5,8 +5,9 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * Extend the basic ActorSheet with modifications
+ * @augments {ActorSheetV2}
+ * @mixes HandlebarsApplicationMixin
  */
-
 export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheetV2 ) {
 
   /** @inheritdoc */
@@ -73,6 +74,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
     const context = await super._prepareContext( options );
@@ -94,6 +96,11 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     );
 
     return context;
+  }
+
+  /** @inheritdoc */
+  async _renderHTML( context, options ) {
+    return super._renderHTML( context, options );
   }
 
   /* -------------------------------------------- */
