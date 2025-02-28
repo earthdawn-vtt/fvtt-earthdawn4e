@@ -283,9 +283,17 @@ export const statusEffects = [
   },
   {
     id:    "unconscious",
+    _id:    "unconscious00000",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.unconscious",
     img:  "systems/ed4e/assets/icons/dead-head.svg",
+
+    type:     "eae",
+    changes: [ {} ],
+    system:  {
+      changes: [ {} ],
+    },
+    statuses: new Set( [ "blindsided", "knockedDown" ] ),
   },
 ];
 
