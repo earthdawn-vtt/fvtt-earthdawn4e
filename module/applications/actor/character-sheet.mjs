@@ -12,8 +12,9 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     ] );
   }
 
-  // region DEFAULT_OPTIONS
-  /** 
+  // region Static Properties
+
+  /**
    * @override 
    */
   static DEFAULT_OPTIONS = {
@@ -34,7 +35,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     }
   };
 
-  // region PARTS
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -100,7 +100,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     },
   };
 
-  // region _prepareContext
+  // endregion
+
+  // region Rendering
+
   async _prepareContext() {
     const context = await super._prepareContext();
 
@@ -152,7 +155,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     return context;
   }
 
-  // region _prepare Part Context
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -186,7 +188,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     return context;
   }
 
+  // endregion
+
   // region Actions
+
   static async upgradeItem( event, target ) {
     event.preventDefault();
     if ( target.dataset.attribute ) {
@@ -225,4 +230,12 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       ability
     );
   }
+
+  // endregion
+
+  // region Drag and Drop
+
+
+
+  // endregion
 }
