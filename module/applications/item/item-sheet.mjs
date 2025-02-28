@@ -134,7 +134,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
     );
 
     context.enrichedBriefDescription = await TextEditor.enrichHTML(
-      this.document.system.briefDescription.value,
+      this.document.system.summary.value,
       {
         // Only show secret blocks to owner
         secrets:    this.document.isOwner,

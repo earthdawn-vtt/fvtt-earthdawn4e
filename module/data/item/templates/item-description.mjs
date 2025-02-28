@@ -19,7 +19,7 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
           hint:     this.hintKey( "description" ),
         } ), 
       } ),
-      briefDescription: new fields.SchemaField( {
+      summary: new fields.SchemaField( {
         value: new fields.HTMLField( {
           required: true, 
           nullable: true, 
