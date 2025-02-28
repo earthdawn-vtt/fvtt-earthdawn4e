@@ -22,8 +22,9 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
         hint:     this.hintKey( "EAEChangeData.value" ),
       } ),
       mode:     new fields.NumberField( {
-        label:  this.labelKey( "EAEChangeData.mode" ),
-        hint:   this.hintKey( "EAEChangeData.mode" ),
+        initial: CONST.ACTIVE_EFFECT_MODES.ADD,
+        label:   this.labelKey( "EAEChangeData.mode" ),
+        hint:    this.hintKey( "EAEChangeData.mode" ),
       } ),
       priority: new fields.NumberField( {
         label: this.labelKey( "EAEChangeData.priority" ),

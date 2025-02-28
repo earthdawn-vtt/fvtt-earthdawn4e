@@ -190,10 +190,22 @@ export default class PcData extends NamegiverTemplate {
     return Object.keys( ED4E.attributes ).map( key => `system.attributes.${ key }.value` );
   }
 
-  get #maxDurability(){
+  /**
+   * Get the durability bonus based on the highest durability item. Includes the durability bonus from active effects,
+   * e.g. from group threads.
+   * @type {number}
+   */
+  get #durabilityUnconsciousness(){
     const durabilityItems = this.parent.durabilityItems;
     const durabilityByCircle = {};
-    const maxLevel = Math.max( ...durabilityItems.map( item => item.system.level ) );
+    const maxLevelDurabilityItem = durabilityItems.reduce(
+      ( max, item ) => (
+        item.system.level > max.system.level
+        || ( item.system.level === max.system.level && item.system.durability > max.system.durability )
+      ) ? item : max,
+      { system: { level: 0 } }
+    );
+    const maxLevel = maxLevelDurabilityItem?.system?.level ?? 0;
 
     // Iterate through levels from 1 to the maximum level
     for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
@@ -204,7 +216,7 @@ export default class PcData extends NamegiverTemplate {
           : max;
       }, 0 );
     }
-    return sum( Object.values( durabilityByCircle ) );
+    return sum( Object.values( durabilityByCircle ) ) + ( this.durabilityBonus * maxLevelDurabilityItem.system.durability );
   }
 
   // endregion
@@ -340,6 +352,9 @@ export default class PcData extends NamegiverTemplate {
 
     // the order of operations here is crucial since the derived data depend on each other
 
+    // base effects for attribute values and durability bonus
+    this.#applyBaseEffects();
+
     // attributes
     this.#prepareAttributes();
 
@@ -353,10 +368,14 @@ export default class PcData extends NamegiverTemplate {
 
   /**
    * Apply all active effects that modify attribute values.
+   * Apply durability bonus effect to use for unconsciousness rating.
    * @private
    */
-  #applyAttributeEffects() {
-    this._applySelectedActiveEffects( this._attributeValueKeys );
+  #applyBaseEffects() {
+    this._applySelectedActiveEffects( [
+      ...this._attributeValueKeys,
+      "system.durabilityBonus"
+    ] );
   }
 
   /**
@@ -364,7 +383,6 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #prepareAttributes() {
-    this.#applyAttributeEffects();
     for ( const attributeData of Object.values( this.attributes ) ) {
       attributeData.step = getAttributeStep( attributeData.value );
     }
@@ -472,7 +490,7 @@ export default class PcData extends NamegiverTemplate {
 
     // item based
 
-    this.characteristics.health.unconscious += this.#maxDurability - this.characteristics.health.bloodMagic.damage;
+    this.characteristics.health.unconscious += this.#durabilityUnconsciousness - this.characteristics.health.bloodMagic.damage;
     // death rating is calculated in derived data as it needs the durabilityBonus which
     // depends on active effects
   }
@@ -530,7 +548,7 @@ export default class PcData extends NamegiverTemplate {
     super.prepareDerivedData();
     this.#prepareEncumbrance();
     this.#prepareInitiative();
-    this.#prepareDeathRating();
+    this.#prepareDerivedHealth();
     this.#prepareRecovery();
     this.#applyDerivedActiveEffects();
   }
@@ -602,9 +620,10 @@ export default class PcData extends NamegiverTemplate {
   }
 
   /**
-   * Prepare the death rating based on the durability unconscious rating, toughness and the highest discipline circle.
+   * Prepare the unconsciousness and death rating based on the durability unconscious rating,
+   * toughness and the highest discipline circle.
    */
-  #prepareDeathRating() {
+  #prepareDerivedHealth() {
     this.characteristics.health.death = this.characteristics.health.unconscious + this.attributes.tou.step;
 
     const maxCircle = Math.max(
@@ -614,7 +633,7 @@ export default class PcData extends NamegiverTemplate {
       0
     );
 
-    this.characteristics.health.death += maxCircle + this.durabilityBonus - this.characteristics.health.bloodMagic.damage;
+    this.characteristics.health.death += maxCircle - this.characteristics.health.bloodMagic.damage;
   }
 
   /**

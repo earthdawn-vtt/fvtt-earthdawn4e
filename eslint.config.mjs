@@ -35,6 +35,7 @@ export default [ ...compat.extends( "eslint:recommended", "plugin:jsdoc/recommen
       ChatMessage:            false,
       Color:                  false,
       CONFIG:                 false,
+      CONST:                  false,
       DataField:              false,
       DataModel:              false,
       delay:                  false,
