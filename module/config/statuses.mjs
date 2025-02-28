@@ -1,3 +1,5 @@
+import { COMMON_EAE_CHANGES } from "./effects.mjs";
+
 const STATUS_CHANGES = {
   aggressive: [
     {
@@ -79,6 +81,7 @@ const STATUS_CHANGES = {
       value: "2 * @wounds",
     },
   ],
+  grappled:    COMMON_EAE_CHANGES.noMovement,
   knockedDown: [
     {
       key:   "system.globalBonuses.allTests.value",
@@ -223,6 +226,14 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.grappled",
     img:  "systems/ed4e/assets/icons/grab.svg",
+
+    type:     "eae",
+    changes:  STATUS_CHANGES.grappled,
+    system:  {
+      // can't move, can take no actions without beating the unarmed combat test
+      // of the grappling attack
+      changes: STATUS_CHANGES.grappled,
+    },
   },
   {
     id:    "harried",
