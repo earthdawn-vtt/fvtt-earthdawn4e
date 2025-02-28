@@ -3,6 +3,18 @@ import { armor, attributes, defense } from "./actors.mjs";
 import { movementTypes } from "./quantities.mjs";
 
 
+export const COMMON_EAE_CHANGES = {
+  noMovement: Object.entries(
+    movementTypes
+  ).map( ( [ key, label ] ) => {
+    return {
+      key:   `system.characteristics.movement.${key}`,
+      value: 0,
+      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+    };
+  } ),
+};
+
 /**
  * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
  * @enum {string}
