@@ -1,18 +1,40 @@
-import NoneNamegiverPowerData from "./templates/none-namegiver-power.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
+import ActionTemplate from "./templates/action.mjs";
+import TargetTemplate from "./templates/targeting.mjs";
 
 /**
  * Data model template with information on Power items.
+ * @property {number} powerStep    attack step
+ * @property {number} damageStep    damage step
  */
-export default class PowerData extends NoneNamegiverPowerData.mixin(
+export default class PowerData extends ActionTemplate.mixin(
   ItemDescriptionTemplate,
+  TargetTemplate,
 )  {
 
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
+      powerStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+        label:    this.labelKey( "Powers.powerStep" ),
+        hint:     this.hintKey( "Powers.powerStep" )
+      } ),
+      damageStep: new fields.NumberField( {
+        required: false,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+        label:    this.labelKey( "Powers.damageStep" ),
+        hint:     this.hintKey( "Powers.damageStep" )
+      } ),
       armorType: new fields.StringField( {
         required: true,
         nullable: true,
