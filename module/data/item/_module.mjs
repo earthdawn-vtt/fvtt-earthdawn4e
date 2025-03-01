@@ -60,7 +60,6 @@ export {default as IncreasableAbilityTemplate} from "./templates/increasable-abi
 export {default as ItemDescriptionTemplate} from "./templates/item-description.mjs";
 export {default as KnackTemplate} from "./templates/knack-item.mjs";
 export {default as LpIncreaseTemplate} from "./templates/lp-increase.mjs";
-export {default as NoneNamegiverPowerData} from "./templates/none-namegiver-power.mjs";
 export {default as PhysicalItemTemplate} from "./templates/physical-item.mjs";
 export {default as TargetTemplate} from "./templates/targeting.mjs";
 export {default as ThreadTemplate} from "./templates/threads.mjs";
