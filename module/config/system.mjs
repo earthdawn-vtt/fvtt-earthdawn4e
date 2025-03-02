@@ -48,6 +48,7 @@ export const icons = {
   damage:           "fa-skull-crossbones",
   dice:             "fa-dice",
   effect:           "fa-biohazard",
+  effectExecution:  "fa-light fa-arrow-progress",
   halfmagic:        "fa-hat-wizard",
   initiative:       "fa-running",
   itemHistory:      "fa-history",

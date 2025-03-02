@@ -15,6 +15,40 @@ export const eaeDurationTypes = {
 };
 preLocalize( "eaeDurationTypes" );
 
+export const eaeExecutionTime = {
+  combatStart: {
+    value: "combatStart",
+    label: "ED.Config.Eae.ExecutionTime.combatStart",
+    group: "ED.Config.Eae.ExecutionTime.Groups.combat",
+  },
+  combatEnd: {
+    value: "combatEnd",
+    label: "ED.Config.Eae.ExecutionTime.combatEnd",
+    group: "ED.Config.Eae.ExecutionTime.Groups.combat",
+  },
+  roundStart: {
+    value: "roundStart",
+    label: "ED.Config.Eae.ExecutionTime.roundStart",
+    group: "ED.Config.Eae.ExecutionTime.Groups.round",
+  },
+  roundEnd: {
+    value: "roundEnd",
+    label: "ED.Config.Eae.ExecutionTime.roundEnd",
+    group: "ED.Config.Eae.ExecutionTime.Groups.round",
+  },
+  turnStart: {
+    value: "turnStart",
+    label: "ED.Config.Eae.ExecutionTime.turnStart",
+    group: "ED.Config.Eae.ExecutionTime.Groups.turn",
+  },
+  turnEnd: {
+    value: "turnEnd",
+    label: "ED.Config.Eae.ExecutionTime.turnEnd",
+    group: "ED.Config.Eae.ExecutionTime.Groups.turn",
+  },
+};
+preLocalize( "eaeExecutionTime", { keys: [ "label", "group" ] } );
+
 /**
  * Configuration data for Global Bonuses
  * @typedef {object} GlobalBonusConfiguration

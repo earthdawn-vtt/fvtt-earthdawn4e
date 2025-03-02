@@ -19,7 +19,7 @@ import * as SYSTEM from "./system.mjs";
 
 /* eslint-disable */
 // Since Foundry does not support hot reloading object notation templates...
-/* Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path } = {}) => {
+Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path } = {}) => {
   if (extension === 'hbs') {
     const key = Object.entries(flattenObject(templates)).find(([_, tpath]) => tpath == path)?.[0];
     if (!key) throw new Error(`Unrecognized template: ${path}`);
@@ -34,7 +34,7 @@ import * as SYSTEM from "./system.mjs";
     });
     Object.values(ui.windows).forEach(app => app.render(true));
   }
-}); */
+});
 /* eslint-enable */
 
 // Namespace Configuration Values
