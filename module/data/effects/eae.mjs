@@ -3,6 +3,7 @@ import EdIdField from "../fields/edid-field.mjs";
 import EarthdawnActiveEffectChangeData from "./eae-change-data.mjs";
 import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import ED4E from "../../config/_module.mjs";
 
 
 /**
@@ -29,8 +30,15 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         label:   this.labelKey( "executable" ),
         hint:    this.hintKey( "executable" )
       } ),
+      executeOn:        new fields.StringField( {
+        required: false,
+        choices:  ED4E.eaeExecutionTime,
+        label:    this.labelKey( "executeOn" ),
+        hint:     this.hintKey( "executeOn" ),
+      } ),
       executionScript:  new fields.JavaScriptField( {
         required: false,
+        initial:  "/**\n* This scope has the following variables available:\n* - effect: The \`EarthdawnActiveEffect\` document instance this script lives on\n* - parent: The parent document of this effect, either an \`ActorEd\` or an \`ItemEd\`\n*/\n\n",
         label:    this.labelKey( "executionScript" ),
         hint:     this.hintKey( "executionScript" )
       } ),

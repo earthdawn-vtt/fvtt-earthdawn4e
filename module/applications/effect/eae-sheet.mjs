@@ -19,6 +19,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     actions: {
       addChange:     this.#onAddChange,
       deleteChange:  this.#onDeleteChange,
+      execute:       this.#onExecute,
     },
   };
 
@@ -189,6 +190,15 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     const index = Number( row.dataset.index ) || 0;
     changes.splice( index, 1 );
     return this.submit( { updateData: { system: { changes } } } );
+  }
+
+  /**
+   * Execute the effect script, if available.
+   * @this {ActiveEffectConfig}
+   * @type {ApplicationClickAction}
+   */
+  static async #onExecute() {
+    return this.document.system.execute();
   }
 
   // endregion
