@@ -105,7 +105,6 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   // endregion
 
-
   // region Rendering
 
   /** @inheritDoc */
@@ -133,6 +132,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
     switch ( partId ) {
       case "details":
+        if ( context.statuses ) context.statuses.sort( ( a, b ) => a.label.localeCompare( b.label ) );
         break;
       case "duration":
         break;
@@ -162,7 +162,6 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   }
 
   // endregion
-
 
   // region Event Handlers
 
