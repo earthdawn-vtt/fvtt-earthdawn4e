@@ -25,9 +25,22 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   /** @inheritDoc */
   static PARTS = {
     ...ActiveEffectConfig.PARTS,
-    details:  { template: "systems/ed4e/templates/effect/details.hbs" },
-    duration: { template: "systems/ed4e/templates/effect/duration.hbs" },
-    changes:  { template: "systems/ed4e/templates/effect/changes.hbs" },
+    details:   { template: "systems/ed4e/templates/effect/details.hbs" },
+    duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
+    changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
+    execution: { template: "systems/ed4e/templates/effect/execution.hbs" },
+  };
+
+  /** @inheritDoc */
+  static TABS = {
+    ...ActiveEffectConfig.TABS,
+    sheet: {
+      ...ActiveEffectConfig.TABS.sheet,
+      tabs: [
+        ...ActiveEffectConfig.TABS.sheet.tabs,
+        { id: "execution", icon: ED4E.icons.effectExecution },
+      ],
+    },
   };
 
   // region Properties
@@ -126,9 +139,25 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
         partContext.keyOptions = this.keyOptions;
         partContext.edids = getEdIds();
         break;
+      case "execution":
+        break;
     }
 
     return partContext;
+  }
+
+  /** @inheritDoc */
+  _prepareTabs( group ) {
+    // returns a new object, so can be modified without changing TABS
+    const tabs = super._prepareTabs( group );
+    const execInTabs = "execution" in tabs;
+    const executable = this.document.system.executable;
+
+    // remove execution tab if not executable
+    // no need to check opposite, as the tab is always added in ApplicationV2
+    if ( !executable && execInTabs ) delete tabs.execution;
+
+    return tabs;
   }
 
   // endregion

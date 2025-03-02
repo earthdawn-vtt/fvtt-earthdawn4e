@@ -1,5 +1,12 @@
 <!-- from Foundry core's "templates/sheets/active-effect-config/details.hbs"-->
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  {{#if isActorEffect}}
+    {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
+  {{/if}}
+
+  {{formGroup systemFields.executable value=source.system.executable rootId=rootId localize=true}}
+
   <fieldset>
     {{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff"}}
     {{formGroup fields.disabled value=source.disabled rootId=rootId}}
@@ -14,8 +21,5 @@
 
   </fieldset>
 
-  {{#if isActorEffect}}
-    {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
-  {{/if}}
   {{formGroup fields.description value=source.description rootId=rootId}}
 </section>

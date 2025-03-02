@@ -591,6 +591,8 @@
           "documentOriginType":                         "Der Typ des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
           "documentOriginUuid":                         "Die UUID des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
           "duration":                                   "Die Dauer des Effekts",
+          "executable":                                 "Hat dieser EAE einen eigens implementierten Effekt?",
+          "executionScript":                            "Das Script das ausgeführt wird wenn dieser Effekt aktiviert wird",
           "source":                                     "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
           "transferToTarget":                           "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
@@ -601,6 +603,8 @@
           "documentOriginType":                         "Dokumenttyp Ursprung",
           "documentOriginUuid":                         "Dokument Ursprung",
           "duration":                                   "Dauer",
+          "executable":                                 "Ausführbar",
+          "executionScript":                            "Script",
           "source":                                     "Ursprung",
           "transferToTarget":                           "Übertrage auf Ziel"
         }
@@ -1921,7 +1925,18 @@
       "researchCheck":                                    "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen."
     }
   },
+  "EFFECT": {
+    "TABS": {
+      "changes": "Änderungen",
+      "details": "Details",
+      "duration": "Dauer",
+      "execution": "Ausführung"
+    }
+  },
   "TYPES": {
+    "ActiveEffect": {
+      "eae": "EAE"
+    },
     "Actor": {
       "character": "Charakter",
       "creature": "Kreatur",

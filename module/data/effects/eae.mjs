@@ -16,44 +16,103 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
     return this.mergeSchema( super.defineSchema(), {
       changes: new fields.ArrayField( new fields.EmbeddedDataField(
-        EarthdawnActiveEffectChangeData,
+        EarthdawnActiveEffectChangeData
       ), {
-        label:  this.labelKey( "changes" ),
-        hint:   this.hintKey( "changes" ),
+        label: this.labelKey( "changes" ),
+        hint:  this.hintKey( "changes" )
       } ),
       duration: new fields.EmbeddedDataField( EarthdawnActiveEffectDurationData, {
-        label:  this.labelKey( "duration" ),
-        hint:   this.hintKey( "duration" ),
+        label: this.labelKey( "duration" ),
+        hint:  this.hintKey( "duration" )
+      } ),
+      executable:       new fields.BooleanField( {
+        label:   this.labelKey( "executable" ),
+        hint:    this.hintKey( "executable" )
+      } ),
+      executionScript:  new fields.JavaScriptField( {
+        required: false,
+        label:    this.labelKey( "executionScript" ),
+        hint:     this.hintKey( "executionScript" )
       } ),
       transferToTarget: new fields.BooleanField( {
         initial: false,
         label:   this.labelKey( "transferToTarget" ),
-        hint:    this.hintKey( "transferToTarget" ),
+        hint:    this.hintKey( "transferToTarget" )
       } ),
       abilityEdid: new EdIdField( {
-        blank:    true,
-        initial:  "",
-        label:    this.labelKey( "abilityEdid" ),
-        hint:     this.hintKey( "abilityEdid" ),
+        blank:   true,
+        initial: "",
+        label:   this.labelKey( "abilityEdid" ),
+        hint:    this.hintKey( "abilityEdid" )
       } ),
       source: new fields.SchemaField(
         {
           documentOriginUuid: new fields.DocumentUUIDField( {
             label: this.labelKey( "documentOriginUuid" ),
-            hint:  this.hintKey( "documentOriginUuid" ),
+            hint:  this.hintKey( "documentOriginUuid" )
           } ),
           documentOriginType: new fields.StringField( {
             label: this.labelKey( "documentOriginType" ),
-            hint:  this.hintKey( "documentOriginType" ),
-          } ),
+            hint:  this.hintKey( "documentOriginType" )
+          } )
         },
         {
           label: this.labelKey( "source" ),
-          hint:  this.hintKey( "source" ),
+          hint:  this.hintKey( "source" )
         }
-      ),
+      )
     } );
   }
+
+
+  //  region CRUD
+
+  /** @inheritDoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    if ( changes.system?.changes && !changes.changes ) {
+      changes.changes = await this._prepareChangesData( changes.system.changes );
+    }
+  }
+
+  /**
+   * Transform the system changes data into the expected format of the base data model. This includes evaluating
+   * formula fields.
+   * @param {[EarthdawnActiveEffectChangeData]} systemChanges - The system changes data
+   * @returns {Promise<EffectChangeData[]>} The prepared changes data
+   * @protected
+   */
+  async _prepareChangesData( systemChanges ) {
+    const evalData = await this._getFormulaData();
+    return systemChanges.map( change => {
+      const { key, value, mode, priority } = change;
+      try {
+        const finalValue = FormulaField.evaluate( value, evalData );
+        return {
+          key,
+          value: finalValue,
+          mode,
+          priority
+        };
+      } catch {
+        return change;
+      }
+    } );
+  }
+
+  /**
+   * Retrieve the formula data for the formula fields within this effect.
+   * @returns {Promise<object>} A promise that resolves to the roll data object of this effect's target.
+   * @protected
+   */
+  async _getFormulaData() {
+    if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
+    return this.parent?.target?.getRollData() ?? {};
+  }
+
+  // endregion
+
 
   // region Properties
 
@@ -123,51 +182,9 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   // endregion
 
 
-  //  region CRUD
+  // region Executable
 
-  /** @inheritDoc */
-  async _preUpdate( changes, options, user ) {
-    if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    if ( changes.system?.changes && !changes.changes ) {
-      changes.changes = await this._prepareChangesData( changes.system.changes );
-    }
-  }
-
-  /**
-   * Transform the system changes data into the expected format of the base data model. This includes evaluating
-   * formula fields.
-   * @param {[EarthdawnActiveEffectChangeData]} systemChanges - The system changes data
-   * @returns {Promise<EffectChangeData[]>} The prepared changes data
-   * @protected
-   */
-  async _prepareChangesData( systemChanges ) {
-    const evalData = await this._getFormulaData();
-    return systemChanges.map( change => {
-      const { key, value, mode, priority } = change;
-      try {
-        const finalValue = FormulaField.evaluate( value, evalData );
-        return {
-          key,
-          value: finalValue,
-          mode,
-          priority,
-        };
-      } catch {
-        return change;
-      }
-    } );
-  }
-
-  /**
-   * Retrieve the formula data for the formula fields within this effect.
-   * @returns {Promise<object>} A promise that resolves to the roll data object of this effect's target.
-   * @protected
-   */
-  async _getFormulaData() {
-    if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
-    return this.parent?.target?.getRollData() ?? {};
-  }
 
   // endregion
 
