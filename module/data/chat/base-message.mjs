@@ -29,23 +29,6 @@ export default class BaseMessageData extends SystemDataModel {
   };
 
   /**
-   * The roll that generated this message. If multiple, only returns the first.
-   * @type {EdRoll|undefined}
-   */
-  get roll() {
-    return this.parent?.rolls[0];
-  }
-
-  /**
-   * Render the HTML for the ChatMessage which should be added to the log. Analogous to {@link ChatMessage#getHTML}
-   * @param {HTMLElement} baseHtml - The base HTML element which should be enhanced
-   * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML
-   */
-  async renderHTML( baseHtml ) {
-    return this._attachListeners( baseHtml );
-  }
-
-  /**
    * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
    * @see BaseMessageData.BASE_DATA_MODEL
    * @generator
@@ -93,13 +76,27 @@ export default class BaseMessageData extends SystemDataModel {
     return applicationOptions;
   }
 
+  // region Properties
+
+  /**
+   * The roll that generated this message. If multiple, only returns the first.
+   * @type {EdRoll|undefined}
+   */
+  get roll() {
+    return this.parent?.rolls[0];
+  }
+
+  // endregion
+
+  // region Event Handlers
+
   /**
    * Attach event listeners to the message HTML
    * @param {HTMLElement} element - The message HTML element
    * @returns {HTMLElement} The element to which listeners were attached
    * @protected
    */
-  _attachListeners( element ) {
+  attachListeners( element ) {
 
     const click = this.#onClick.bind( this );
     element.addEventListener( "click", click, { passive: false } );
@@ -156,5 +153,52 @@ export default class BaseMessageData extends SystemDataModel {
   _onClickAction( event, target ) {
     console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
   }
+
+  // endregion
+
+  // region Rendering
+
+  /**
+   * Render the HTML for the ChatMessage which should be added to the log. Analogous to {@link ChatMessage#getHTML}
+   * @param {HTMLElement} html - The base HTML element which should be enhanced
+   * @param {{}} context - The rendering context
+   * @returns {Promise<HTMLElement>} A Promise which resolves to the rendered HTML
+   */
+  async alterMessageHTML( html, context ) {
+    // Add character portrait to message
+    this._addUserPortrait( html );
+
+    // Add class for highlighting success/failure on roll messages
+    if ( this.roll ) this.roll.addSuccessClass( html );
+
+    return html;
+  }
+
+  /**
+   * Add the user's avatar to the chat message.
+   * @param {HTMLElement} element - The jQuery object for the chat message.
+   */
+  _addUserPortrait( element ) {
+
+    const chatAvatarSetting = game.settings.get( "ed4e", "chatAvatar" );
+    const isGM = this.parent.author.isGM;
+    const avatar_img = this.parent.author.avatar;
+    const token = canvas.tokens?.controlled[0];
+    const token_img =  ( isGM || token?.document.isOwner ) ? token?.document.texture.src : undefined;
+    const is_config_setting = chatAvatarSetting === "configuration";
+
+    let avatar = is_config_setting ? avatar_img : undefined;
+    avatar ??= token_img;
+    avatar ??= isGM ? avatar_img : this.parent.author.character?.img;
+
+    if ( avatar ) {
+      const img = document.createElement( "img" );
+      img.src = avatar;
+      img.classList.add( "avatar" );
+      element.querySelector( ".message-header" ).prepend( img );
+    }
+  }
+
+  // endregion
   
 }
