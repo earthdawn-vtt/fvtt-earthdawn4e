@@ -42,6 +42,10 @@ export default function () {
     // Use active effects within Items
     CONFIG.ActiveEffect.legacyTransferral = false;
 
+    // Set Status Effects
+    CONFIG.statusEffects = ED4E.statusEffects;
+    Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
+
     // Hook up system data types
     CONFIG.Actor.dataModels = data.actor.config;
     CONFIG.ChatMessage.dataModels = data.chat.config;

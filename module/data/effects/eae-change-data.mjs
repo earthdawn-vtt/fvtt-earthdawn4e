@@ -33,4 +33,17 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
     };
   }
 
+  /**
+   * Get a {@link EarthdawnActiveEffectChangeData} that sets the given key to 0.
+   * @param {string} key The fieldPath for the property to set to 0.
+   * @returns {EarthdawnActiveEffectChangeData} The change data.
+   */
+  static _getZeroChange( key ) {
+    return {
+      key:   key,
+      value: 0,
+      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+    };
+  }
+
 }

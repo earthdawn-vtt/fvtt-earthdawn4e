@@ -31,6 +31,24 @@
       "Header": {
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
+      "Status": {
+        "aggressive":   "Aggressiver Angriff",
+        "blindness":    "Blindheit",
+        "blindsided":   "Im Toten Winkel",
+        "cover":        "Deckung",
+        "darkness":     "Dunkelheit",
+        "dazzled":      "Geblendet",
+        "dead":         "Tot",
+        "defensive":    "Abwehrhaltung",
+        "fury":         "Zorn",
+        "grappled":     "Umklammert",
+        "harried":      "Bedrängt",
+        "impaired":     "Eingeschränkte Bewegung",
+        "knockedDown":  "Niedergeschlagen",
+        "overwhelmed":  "Überwältigt",
+        "surprised":    "Überrascht",
+        "unconscious":  "Bewusstlos"
+      },
       "Tooltips": {
         "abilityEdidSelection": "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       }
@@ -133,9 +151,10 @@
         "allDamage": "Jeder Schadenswurf",
         "allMeleeDamage": "Jeder Nahkampfschaden",
         "allRangedDamage": "Jeder Fernkampfschaden",
-        "allRecoveryEffects": "Alle Erholungseffekte",
-        "allKnockdownEffects": "Alle Niederschlageffekte",
-        "allSpellEffects": "Alle Spruchzauber-Effekte"
+        "allRecoveryTests": "Alle Erholungsproben",
+        "allKnockdownTests": "Alle Niederschlagsproben",
+        "allSpellTests": "Alle Spruchzaubereiproben",
+        "allTests": "Alle Proben"
       },
       "Header": {
         "action":                                           "Aktion",

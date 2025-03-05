@@ -456,7 +456,7 @@ export default class ActorEd extends Actor {
       base:      recoveryStep,
       modifiers: {},
     };
-    if ( globalBonuses.allRecoveryEffects.value > 0 ) recoveryFinalStep.modifiers["localize: Global Recovery Bonus"] = globalBonuses.allRecoveryEffects.value;
+    if ( globalBonuses.allRecoveryTests.value > 0 ) recoveryFinalStep.modifiers["localize: Global Recovery Bonus"] = globalBonuses.allRecoveryTests.value;
 
     const { stun: stunDamage, total: totalDamage } = characteristics.health.damage;
     const currentWounds = characteristics.health.wounds;

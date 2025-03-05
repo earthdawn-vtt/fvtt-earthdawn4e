@@ -3,6 +3,18 @@ import { armor, attributes, defense } from "./actors.mjs";
 import { movementTypes } from "./quantities.mjs";
 
 
+export const COMMON_EAE_CHANGES = {
+  noMovement: Object.entries(
+    movementTypes
+  ).map( ( [ key, label ] ) => {
+    return {
+      key:   `system.characteristics.movement.${key}`,
+      value: 0,
+      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+    };
+  } ),
+};
+
 /**
  * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
  * @enum {string}
@@ -88,21 +100,24 @@ export const globalBonuses = {
   allRangedDamage: {
     label:       "ED.Actor.GlobalBonus.allRangedDamage"
   },
-  allRecoveryEffects: {
-    label:       "ED.Actor.GlobalBonus.allRecoveryEffects"
+  allRecoveryTests: {
+    label:       "ED.Actor.GlobalBonus.allRecoveryTests"
   },
-  allKnockdownEffects: {
-    label:       "ED.Actor.GlobalBonus.allKnockdownEffects"
+  allKnockdownTests: {
+    label:       "ED.Actor.GlobalBonus.allKnockdownTests"
   },
-  allSpellEffects: {
-    label:       "ED.Actor.GlobalBonus.allSpellEffects"
-  }
+  allSpellTests: {
+    label:       "ED.Actor.GlobalBonus.allSpellTests"
+  },
+  allTests: {
+    label:       "ED.Actor.GlobalBonus.allTests",
+  },
 };
 preLocalize( "globalBonuses", { key: "label" } );
 
 export const singleBonuses = {
   knockdownEffects: {
-    label: "ED.Config.Eae.allKnockDownEffects",
+    label: "ED.Config.Eae.allKnockdownTests",
   },
 };
 preLocalize( "singleBonuses", { key: "label" } );
