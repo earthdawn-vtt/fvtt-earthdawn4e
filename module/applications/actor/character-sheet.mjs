@@ -237,9 +237,8 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   /** @inheritdoc */
   async _onDropItem( event, item ) {
-    if ( item.system.learnable ) item.system.constructor.learn( this.actor, item );
+    if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item );
     await super._onDropItem( event, item );
   }
-
   // endregion
 }
