@@ -28,7 +28,7 @@ export default class TokenEd extends Token {
     const percentage = Math.clamp( value, 0, data.max ) / data.max;
 
     // Determine sizing
-    const { width } = this.getSize();
+    const { width } = this.document.getSize();
     const barWidth = width;
     const barHeight = Math.max( canvas.dimensions.size / 12, 8 ) * ( this.document.height >= 2 ? 1.6 : 1 );
     const strokeWidth = Math.clamp( barHeight / 8, 1, 2 );
@@ -65,7 +65,7 @@ export default class TokenEd extends Token {
     const value = Number( data.value );
     const max = Number( data.max );
     const spacing = 1; // Spacing between each small bar
-    const barWidth = ( this.getSize().width / max ) - spacing; // Length of each small bar based on max value
+    const barWidth = ( this.document.getSize().width / max ) - spacing; // Length of each small bar based on max value
     const barHeight = 5; // Fixed height for each small bar
 
     if ( barWidth < spacing ) return super._drawBar( number, bar, data );
