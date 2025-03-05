@@ -47,13 +47,11 @@ export default class DamageMessageData extends BaseMessageData {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Rendering                                  */
-  /* -------------------------------------------- */
+  // region Rendering
 
   /** @inheritdoc */
-  async renderHTML( baseHtml ) {
-    const newHTML = await super.renderHTML( baseHtml );
+  async alterMessageHTML( html, context ) {
+    const newHTML = await super.alterMessageHTML( html, context );
     const damageButtonsDiv = newHTML.querySelector( ".damage-roll-buttons" );
     damageButtonsDiv.parentNode.insertBefore( await this.getTransactionsHTML(), damageButtonsDiv.nextSibling );
     return newHTML;
@@ -87,9 +85,9 @@ export default class DamageMessageData extends BaseMessageData {
     return div;
   }
 
-  /* -------------------------------------------- */
-  /*  Listeners                                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Event Handlers
 
   static async _onApplyDamage( event, _ ) {
     event.preventDefault();
@@ -138,9 +136,9 @@ export default class DamageMessageData extends BaseMessageData {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Methods                                     */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Methods
 
   /**
    * Apply damage to a target Actor and record the transaction.
@@ -168,4 +166,5 @@ export default class DamageMessageData extends BaseMessageData {
     } );
   }
 
+  // endregion
 }

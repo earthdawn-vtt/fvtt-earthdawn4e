@@ -44,18 +44,16 @@ export default function () {
     return cmdMapping[commandMatches.groups.command.substring( 1 )]( commandMatches.groups.arguments.trim() );
   } );
 
-  Hooks.on( "renderChatMessageHTML", ( msg, html, _ ) => {
-    // Add character portrait to message
-    addUserPortrait( msg, html );
+  Hooks.on( "renderChatMessageHTML", async ( message, html, context ) => {
+    if ( message.system.alterMessageHTML instanceof Function )
+      await message.system.alterMessageHTML( html, context );
 
-    // Add class for highlighting success/failure on roll messages
-    if ( msg.rolls[0] ) msg.rolls[0].addSuccessClass( html );
+    if ( message.system.attachListeners instanceof Function )
+      await message.system.attachListeners( html );
   } );
 }
 
-/* -------------------------------------------- */
-/*  Chat Commands                               */
-/* -------------------------------------------- */
+// region Chat Commands
 
 /**
  * Triggers the character generation process.
@@ -157,33 +155,4 @@ function triggerRollStep( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
-/*  Message Styling                             */
-/* -------------------------------------------- */
-
-/**
- * Add the user's avatar to the chat message.
- * @param {ChatMessage} msg - The chat message object.
- * @param {HTMLElement} element - The jQuery object for the chat message.
- */
-function addUserPortrait( msg, element ) {
-
-  const chatAvatarSetting = game.settings.get( "ed4e", "chatAvatar" );
-  const isGM = msg.author.isGM;
-  const avatar_img = msg.author.avatar;
-  const token = canvas.tokens?.controlled[0];
-  const token_img =  ( isGM || token?.document.isOwner ) ? token?.document.texture.src : undefined;
-  const is_config_setting = chatAvatarSetting === "configuration";
-
-  let avatar = is_config_setting ? avatar_img : undefined;
-  avatar ??= token_img;
-  avatar ??= isGM ? avatar_img : msg.author.character?.img;
-
-  if ( avatar ) {
-    const img = document.createElement( "img" );
-    img.src = avatar;
-    img.classList.add( "avatar" );
-    element.querySelector( ".message-header" ).prepend( img );
-  }
-}
-
+// endregion
