@@ -330,15 +330,18 @@ export default class EdRollOptions extends SparseDataModel {
 
   /** @inheritDoc */
   updateSource( changes = {}, options = {} ) {
-    return super.updateSource(
+    const updates = super.updateSource(
       foundry.utils.mergeObject( changes, {
-        "step.total":    this.totalStep,
-        "target.total":  this.totalTarget,
         "karma.dice":    getDice( this.karma.step ),
         "devotion.dice": getDice( this.devotion.step ),
       } ),
       options
     );
+    updates.step ??= {};
+    updates.target ??= {};
+    updates.step.total = this.step.total = this.totalStep;
+    updates.target.total = this.target.total = this.totalTarget;
+    return updates;
   }
 
   static initDiceForStep( parent ) {
