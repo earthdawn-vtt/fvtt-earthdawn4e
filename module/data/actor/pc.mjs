@@ -197,6 +197,8 @@ export default class PcData extends NamegiverTemplate {
    */
   get #durabilityUnconsciousness(){
     const durabilityItems = this.parent.durabilityItems;
+    if ( !durabilityItems.length ) return 0;
+
     const durabilityByCircle = {};
     const maxLevelDurabilityItem = durabilityItems.reduce(
       ( max, item ) => (
