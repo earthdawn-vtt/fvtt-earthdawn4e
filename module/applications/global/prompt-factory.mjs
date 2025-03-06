@@ -379,6 +379,7 @@ class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
     chooseTier:     this._chooseTierPrompt.bind( this ),
+    learnKnack:     this._learnKnackPrompt.bind( this ),
     lpIncrease:     this._lpIncreasePrompt.bind( this ),
     learnAbility:   this._learnAbilityPrompt.bind( this ),
     talentCategory: this._talentCategoryPrompt.bind( this ),
@@ -426,6 +427,36 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  async _learnKnackPrompt() {
+    const validationTemplate = "systems/ed4e/templates/advancement/learn-knack-requirements.hbs";
+    const content = await renderTemplate(
+      validationTemplate,
+      {
+        render:            { requirements: true },
+        requirementGroups: this.document?.system?.knackRequirementRules ?? {},
+      },
+    );
+
+    return DialogClass.wait( {
+      id:       "lp-learn-knack-prompt",
+      uniqueId: String( ++globalThis._appId ),
+      classes:  [ "earthdawn4e", "lp-learn-knack-prompt" ],
+      window:   {
+        title:       game.i18n.format( "ED.Dialogs.Title.lpLearnKnack", {
+          abilityName: this.document.name,
+        } ),
+        minimizable: false
+      },
+      modal:   false,
+      content,
+      buttons: [
+        this.constructor.freeButton,
+        this.constructor.spendLpButton,
+        this.constructor.cancelButton
+      ],
+      rejectClose: false,
+    } );
+  }
   async _chooseTierPrompt( ) {
 
     const buttons = Object.entries( ED4E.tier ).map(

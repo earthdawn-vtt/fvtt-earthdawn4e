@@ -1,0 +1,19 @@
+<div {{#unless render.requirements}}style="display:none;"{{/unless}}>
+  {{#each requirementGroups}}
+    <fieldset>
+      <legend>{{localize @key}}</legend>
+      {{#each this as |requirement|}}
+        <div class="flexrow advancement-requirement {{ifThen fulfilled "requirement-fulfilled" ""}}">
+          <span class="advancement-requirement-name">
+            {{{localize requirement.name}}}
+          </span>
+          <span class="advancement-requirement-value">
+            {{{requirement.value}}}
+          </span>
+        </div>
+      {{/each}}
+    </fieldset>
+  {{else}}
+    No requirements????
+  {{/each}}
+</div>
