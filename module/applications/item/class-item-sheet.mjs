@@ -48,25 +48,30 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       classes:  [ "top" ] 
     },
     tabs: {
-      template: "templates/generic/tab-navigation.hbs",
-      id:       "-tabs-navigation",
-      classes:  [ "tabs-navigation" ],
+      template:   "templates/generic/tab-navigation.hbs",
+      id:         "-tabs-navigation",
+      classes:    [ "tabs-navigation" ],
+      scrollable: [ "" ],
     },
     "general": {
-      template: "systems/ed4e/templates/item/item-partials/item-description.hbs", 
-      classes:  [ "general" ] 
+      template:   "systems/ed4e/templates/item/item-partials/item-description.hbs", 
+      classes:    [ "general" ],
+      scrollable: [ "" ], 
     },
     "details": {
-      template: "systems/ed4e/templates/item/item-partials/item-details.hbs", 
-      classes:  [ "details" ] 
+      template:   "systems/ed4e/templates/item/item-partials/item-details.hbs", 
+      classes:    [ "details" ],
+      scrollable: [ "" ], 
     },
     "effects": {
-      template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
-      classes:  [ "effects" ] 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
+      classes:    [ "effects" ],
+      scrollable: [ "" ],
     },
     "advancement": {
-      template: "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
-      classes:  [ "advancement" ] 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
+      classes:    [ "advancement" ],
+      scrollable: [ "" ],
     },
   };
 
