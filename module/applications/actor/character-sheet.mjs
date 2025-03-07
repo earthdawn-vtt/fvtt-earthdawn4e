@@ -240,5 +240,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item );
     return super._onDropItem( event, item );
   }
+
   // endregion
 }
