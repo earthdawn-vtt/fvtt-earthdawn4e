@@ -10,7 +10,7 @@
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
 </div>
 {{#each actor.itemTypes.power}}
-    {{#if this.system.isCreatureAttack}}
+    {{#if (eq this.system.rollType "attack")}}
         {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
     {{/if}}
 {{/each}}
@@ -26,9 +26,9 @@
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
 </div>
 {{#each actor.itemTypes.power}}
-    {{#unless this.system.isCreatureAttack}}
+    {{#if (ne this.system.rollType "attack")}}
     {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
-    {{/unless}}
+    {{/if}}
 {{/each}}
 
 {{!-- Maneuvers --}}
