@@ -1,24 +1,29 @@
 <section class="tab {{tabs.equipment.cssClass}}" data-group="sheet" data-tab="equipment">
-{{localize "ED.Actor.Header.carryingCapacity"}}
+    {{log this}}
+    {{#unless (ne this.actor.type "character")}}
+    <div>
+        {{localize "ED.Actor.Header.carryingCapacity"}}
 
-<div>
-    <input class="input__number-input" type="number" name="system.encumbrance.max"
-        value="{{actor.system.encumbrance.max}}">
-</div>
-{{localize "ED.Actor.Header.encumbrance"}}
-<div>
-    <input class="input__number-input" type="number" name="system.encumbrance.value"
-        value="{{actor.system.encumbrance.value}}">
-</div>
-<p class="undefined">DIe Bar soll anhand der encumbrance verfärbt werden.</p>
-<div id="encumbrance-bar">
-    <div class="encumbrance-bar"></div>
-    <div class="encumbrance-circle__loaded"></div>
-    <div class="encumbrance-circle__heavy"></div>
-    <div class="encumbrance-circle__overloaded"></div>
-</div>
+        <div>
+            <input class="input__number-input" type="number" name="system.encumbrance.max"
+                value="{{actor.system.encumbrance.max}}">
+        </div>
+        {{localize "ED.Actor.Header.encumbrance"}}
+        <div>
+            <input class="input__number-input" type="number" name="system.encumbrance.value"
+                value="{{actor.system.encumbrance.value}}">
+        </div>
+        <p class="undefined">DIe Bar soll anhand der encumbrance verfärbt werden.</p>
+        <div id="encumbrance-bar">
+            <div class="encumbrance-bar"></div>
+            <div class="encumbrance-circle__loaded"></div>
+            <div class="encumbrance-circle__heavy"></div>
+            <div class="encumbrance-circle__overloaded"></div>
+        </div>
 
-das Grit muss am ende noch angepasst werden.
+        das Grit muss am ende noch angepasst werden.
+    </div>
+    {{/unless}}
 {{!-- Armor --}}
 <div class="equipment-card__grid--container font__bold text-break__auto">
     <div class="equipment-card__grid--item text__alignment--center"></div>
