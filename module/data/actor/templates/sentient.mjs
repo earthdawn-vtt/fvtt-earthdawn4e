@@ -279,6 +279,16 @@ export default class SentientTemplate extends CommonTemplate {
         label: this.labelKey( "challenge" ),
         hint:  this.hintKey( "challenge" ),
       } ),
+      actions: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      1,
+        step:     1,
+        initial:  1,
+        integer:  true,
+        label:    this.labelKey( "actions" ),
+        hint:     this.hintKey( "actions" ),
+      } ),
       condition: new fields.SchemaField( {
         aggressiveAttack: new fields.BooleanField( {
           required: true,
