@@ -208,54 +208,26 @@
 
   <!-- Attacks -->
   <div class="partial__two">
-    <div>
-      <h3>{{localize "ED.Actor.Header.defaultAttacks"}}</h3>
-      <div>
-
-
-        {{#if this.actor.namegiver.system.tailAttack}}
-          <div class="partial__three">
-            <button class="attack-substitute__weapon-attack" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
-          </div>
-          <div class="partial__three">
-            <button class="attack-substitute__unarmed-attack" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
-          </div>
-          <div class="partial__three">
-            <button class="attack-substitute__tail-attack" data-action="attack" data-attack-type="tail">{{localize "ED.Actor.Buttons.tailAttack"}}</button>
-          </div>
-        {{else}}
-          <div class="partial__two">
-            <button class="attack-substitute__weapon-attack" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
-          </div>
-          <div class="partial__two">
-            <button class="attack-substitute__unarmed-attack" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
-          </div>
-        {{/if}}
-      </div>
-    </div>
-    {{!-- tobe removed --}}
-    <br>
-    <br>
-
-
-
-    <div>
-      <h3 class="undefined">{{localize "ED.Actor.Header.specialAbility"}}</h3>
-      <div class="undefined">
-        wie soll diese ansicht aussehen, wie Rollable items oder nicht?
-        {{#each actor.itemTypes.specialAbility}}
-          <div class="item-id one-line__vertical-align" data-item-id="{{_id}}">
-            <div class="partial__two one-line__vertical-align">
-              <img src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
-              {{name}}
-            </div>
-            <div class="partial__two one-line__vertical-align">
-              {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
-            </div>
-          </div>
-        {{/each}}
-      </div>
-    </div>
+    {{#if (eq this.actor.type "character")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "npc")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "creature")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "spirit")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "horror")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "dragon")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+    {{/if}}
+    
+    
   </div>
 
 </div>
