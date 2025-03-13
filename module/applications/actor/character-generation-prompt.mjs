@@ -410,7 +410,15 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Set class specifics
     if ( data.selectedClass ) {
-      this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+      if ( this.charGenData.selectedClass ) {
+        if ( data.selectedClass !== this.charGenData.selectedClass ) {
+          // Call the _onReset function
+          await CharacterGenerationPrompt._onReset( this.charGenData, { dataset: { resetType: "classAbilities" } }, this );     
+          this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+        } 
+      } else {
+        this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+      }
     }
 
     // process selected class option ability
@@ -574,9 +582,15 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     result.then( _ => this.render() );
   }
   
-  static _onReset( _, target ) {
+  static async _onReset( charGenData, target, instance ) {
     const resetType = target.dataset.resetType;
-    this.charGenData.resetPoints( resetType ).then( _ => this.render() );
+    if ( this.charGenData === undefined ) {
+      await charGenData.resetPoints( resetType );
+      instance.render();
+    } else {
+      this.charGenData.resetPoints( resetType );
+      this.render();
+    }
   }
 
   static _onSelectEquipment( _, target ) {
