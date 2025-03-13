@@ -422,7 +422,11 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
 
     // process selected class option ability
-    if ( data.abilityOption ) this.charGenData.abilityOption = data.abilityOption;
+    if ( data.abilityOption ) {
+      const oldOptionLevel = Object.values( this.charGenData.abilities.optional )[0];
+      await CharacterGenerationPrompt.resetOptionalPoints( this.charGenData, oldOptionLevel );
+      this.charGenData.abilityOption = data.abilityOption;
+    }
 
     // Check the maximum selectable number of languages by comparing the array length
     // of the selected languages with the rank of the corresponding language skill
@@ -438,8 +442,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
     if ( foundry.utils.isEmpty( data.languages ) ) delete data.languages;
 
-    
-
     this.charGenData.updateSource( data );
 
     // wait for the update, so we can use the data models method
@@ -447,6 +449,12 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Re-render sheet with updated values
     this.render( true );
+  }
+
+  // reset points spend on optional talents if the optional talent is changed.
+  static async resetOptionalPoints( instance, oldOptionLevel ) {
+    if ( !oldOptionLevel ) return;
+    instance.updateSource( { availableRanks: { talent: instance.availableRanks.talent + oldOptionLevel } } );
   }
 
   /* ----------------------------------------------------------- */
