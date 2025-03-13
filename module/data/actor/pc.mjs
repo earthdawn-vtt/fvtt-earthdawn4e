@@ -170,9 +170,6 @@ export default class PcData extends NamegiverTemplate {
           }
         } );
       }
-      await disciplineAfterCreation.update( {
-        "system.level": 1
-      } );
     }
 
     const actorApp = newActor.sheet.render( true, {focus: true} );
