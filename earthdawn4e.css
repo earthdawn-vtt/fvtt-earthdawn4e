@@ -304,43 +304,8 @@ input.input__number-input {
 .app.window-app.form.earthdawn4e.assign-legend .window-resizable-handle {
   z-index: 5;
 }
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .assing-lp__input-area {
-  margin-top: 10px;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .assing-lp__input {
-  position: relative;
-  z-index: 5;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .assing-lp__input .assign-lp__amount {
-  z-index: 5;
-  width: 75px;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .assing-lp__input .assign-lp__description {
-  z-index: 5;
-  width: 480px;
-  height: var(--form-field-height);
-  background: rgba(0, 0, 0, 0.05);
-  padding: 1px 3px;
-  margin: 0;
-  color: var(--color-text-dark-primary);
-  font-family: inherit;
-  font-size: inherit;
-  text-align: inherit;
-  line-height: inherit;
-  border: 1px solid var(--color-border-light-tertiary);
-  border-radius: 3px;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .actor-area {
-  display: block;
-  margin-top: 25px;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .actor-area multi-checkbox {
-  display: flex;
-  flex-direction: column;
-}
-.app.window-app.form.earthdawn4e.assign-legend .assign-legend-point__body .actor-area .checkbox::after {
-  content: "\a";
-  white-space: pre;
+.assign-lp__description {
+  width: 100%;
 }
 .app.window-app.form.earthdawn4e.legend-point__history .window-content {
   position: relative;

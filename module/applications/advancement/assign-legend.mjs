@@ -25,10 +25,9 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     id:       "assign-legend-prompt-{id}",
     uniqueId: String( ++globalThis._appId ),
     classes:  [ "earthdawn4e", "assign-legend" ],
-    tag:      "form",
     window:   {
       frame: true,
-      title: "LOCALIZE!!! Assign LP"
+      title: "ED.Dialogs.Title.assignLp",
     },
     actions: {
       assignLP: AssignLpPrompt._assignLP,
@@ -39,8 +38,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
       closeOnSubmit:  false,
     },
     position: {
-      width:  500,
-      height: 800,
+      width:  350,
     },
   };
 
@@ -50,6 +48,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     },
     footer: {
       template: "templates/generic/form-footer.hbs",
+      classes:  [ "flexrow" ],
     }
   };
 
