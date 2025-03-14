@@ -632,7 +632,7 @@ export default class ActorEd extends Actor {
 
     const updates = { [`system.characteristics.health.damage.${ damageType }`]: newDamage };
 
-    if ( damageTaken > health.woundThreshold ) {
+    if ( damageTaken >= health.woundThreshold && options.isStrain !== true ) {
       switch ( damageType ) {
         case "standard":
           updates["system.characteristics.health.wounds"] = health.wounds + 1;
@@ -662,7 +662,7 @@ export default class ActorEd extends Actor {
       ChatMessage.create( messageData );
     }
 
-    const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5;
+    const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5 && options.isStrain !== true;
     if ( knockdownTest ) this.knockdownTest( damageTaken );
 
     return {
