@@ -1,6 +1,7 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
+import TargetingMigration from "./migration/targeting-migration.mjs";
 
 /**
  * Data model template with information on equipment items.
@@ -50,7 +51,57 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    const oldAvialabilities = [ "availabilityEveryday", "availabilityAverage", "availabilityUnusual", "availabilityRare", "availabilityVeryRare", "Everyday", "Average", "Unusual", "Rare", "VeryRare" ];
+    const newAvialabilities = [ "everyday", "average", "unusual", "rare", "veryRare", "everyday", "average", "unusual", "rare", "veryRare" ];
+    if ( oldAvialabilities.includes( source.availability ) ) {
+      source.availability = newAvialabilities[oldAvialabilities.indexOf( source.availability )];
+    }
+    
+    // migrated old Cost value to price
+    if ( source.price?.value === undefined ) {
+      if ( source.cost.startsWith( "0" ) ) {
+        const sanitizedCost = source.cost.replace( /^0+/, "" ).replace( /[.,]/g, "" );
+        source.price = {
+          ...source.price,
+          value:        Number( sanitizedCost ) || 0,
+          denomination: "copper",
+        };
+      } else {
+        source.price = {
+          ...source.price,
+          value:         Number( source.cost.replace( ",", "." ) ) ? Number( source.cost.replace( ",", "." ) ) : 0,
+          denomination: "silver",
+        };
+      }
+    }
+
+    // migrated old Weight value to weight
+    if ( source.weight?.value === undefined ) {
+      source.weight = {
+        ...source.weight,
+        value:         Number( source.weight.replace( ",", "." ) ) ? Number( source.weight.replace( ",", "." ) ) : 0,
+      };
+    }
+
+    if ( source.usableItem?.isUsableItem === undefined ) {
+      source.usableItem = {
+        ...source.usableItem,
+        isUsableItem:  source.rollableItem,
+        arbitraryStep: source.arbitraryStep,
+      };
+    }
+
+    // migrate old RecoveryProperty to new recoveryProptertyValue
+    if ( source.recoveryProptertyValue === undefined && source.healing > 0 ) {
+      source.usableItem = {
+        ...source.usableItem,
+        recoveryProptertyValue: source.healing
+      };
+      TargetingMigration.migrateData( source );
+    }
+
+    
+
+
   }
 }
