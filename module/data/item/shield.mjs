@@ -80,7 +80,10 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    const oldAvialabilities = [ "availabilityEveryday", "availabilityAverage", "availabilityUnusual", "availabilityRare", "availabilityVeryRare", "Everyday", "Average", "Unusual", "Rare", "VeryRare" ];
+    const newAvialabilities = [ "everyday", "average", "unusual", "rare", "veryRare", "everyday", "average", "unusual", "rare", "veryRare" ];
+    if ( oldAvialabilities.includes( source.availability ) ) {
+      source.availability = newAvialabilities[oldAvialabilities.indexOf( source.availability )];
+    }
   }
 }
