@@ -101,7 +101,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         nullable: false,
         min:      0,
         initial:  1,
-        integer:  true,
         label:    this.labelKey( "PhysicalItems.amount" ),
         hint:     this.hintKey( "PhysicalItems.amount" )
       } ),
