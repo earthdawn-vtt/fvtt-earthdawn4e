@@ -165,7 +165,66 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    const oldTargetDefense = [ "", "physicaldefense", "mysticaldefense", "socialdefense" ];
+    const newTargetDefense = [ "", "physical", "mystical", "social" ];
+    const oldGroupDifficulty = [ "", "defenseLow", "defenseLowPlus", "defenseHigh", "defenseHighPlus" ];
+    const newGroupDifficulty = [ "", "lowestOfGroup", "lowestX", "highestOfGroup", "highestX" ];
+    const oldAttributes = [ "", "dexterityStep", "strengthStep", "toughnessStep", "perceptionStep", "willpowerStep", "charismaStep", "initiativeStep" ];
+    const newAttributes = [ "", "dex", "str", "tou", "per", "wil", "cha", "" ];
+    const oldActions = [ "", "Standard", "Simple", "Free", "Sustained" ];
+    const newActions = [ "", "standard", "simple", "free", "sustained" ];
+    const oldTiers = [ "", "Novice", "Journeyman", "Warden", "Master" ];
+    const newTiers = [ "", "novice", "journeyman", "warden", "master" ];
+    
+    // Migrate action (ok)
+    if ( oldActions.includes( source.action ) ) {
+      source.action = newActions[oldActions.indexOf( source.action )];
+    }
+  
+    // Migrate tier (to be checked with actors)
+    if ( oldTiers.includes( source.tier ) ) {
+      source.tier = newTiers[oldTiers.indexOf( source.tier )];
+    }
+  
+    // Migrate defense target (ok)
+    if ( oldTargetDefense.includes( source.defenseTarget ) && source.defenseTarget !== "" && source.difficulty?.target === undefined ) {
+      if ( oldGroupDifficulty.includes( source.defenseGroup ) && source.difficulty?.group === undefined ) {
+        source.difficulty = {
+          ...source.difficulty,
+          target: newTargetDefense[oldTargetDefense.indexOf( source.defenseTarget )],
+          group:  newGroupDifficulty[oldGroupDifficulty.indexOf( source.defenseGroup )]
+        };
+      } else {
+        source.difficulty = {
+          ...source.difficulty, // Spread the existing properties of source.difficulty
+          target: newTargetDefense[oldTargetDefense.indexOf( source.defenseTarget )], // Update the target property
+        };
+      }
+    }
+
+    // set rollType for recovery (ok)
+    if ( source.healing > 0 ) {
+      if ( source.rollType === undefined ) {
+        source.rollType = "recovery";
+      }
+    } 
+  
+    // Migrate attribute (ok)
+    if ( oldAttributes.includes( source.attribute ) ) {
+      if ( source.attribute === "initiativeStep" ) {
+        source.rollType = "initiative";
+      } 
+      source.attribute = newAttributes[oldAttributes.indexOf( source.attribute )];
+    }
+  
+    // Migrate rank to level (it only works in an if statement not as a one line ?: statement)
+    if ( source.ranks > 0 && source.level === undefined ) {
+      source.level = source.ranks;
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
   }
 }
