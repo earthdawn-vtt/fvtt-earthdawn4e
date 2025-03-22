@@ -23,7 +23,11 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+
+    // Migrate restrictions
+    // restrictions and requirements are currently not done
+    source.restrictions = [];
+    source.requirements = [];
+
   }
 }
