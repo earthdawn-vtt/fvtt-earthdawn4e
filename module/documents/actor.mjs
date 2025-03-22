@@ -14,6 +14,8 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackRollOptions from "../data/roll/attack.mjs";
 import { getSetting } from "../settings.mjs";
+import CharacterMigration from "./migration-old-system/actor-migration/character-migration.mjs";
+import NoneCharacterMigration from "./migration-old-system/actor-migration/none-character-migration.mjs";
 
 const futils = foundry.utils;
 
@@ -1210,6 +1212,19 @@ export default class ActorEd extends Actor {
     return this.update( {
       [`system.lp.${type}`]: oldTransactions.concat( [ transaction ] )
     } );
+  }
+
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
+  
+  static migrateData( source ) {
+    source = super.migrateData( source );
+  
+    if ( source.type === "pc" ) CharacterMigration.migrateData( source );
+    else if ( source.type === "npc" || source.type === "Creature" ) NoneCharacterMigration.migrateData( source );
+    return source;
   }
 
 }
