@@ -3,6 +3,7 @@ import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
+import TargetingMigration from "./migration/targeting-migration.mjs";
 
 /**
  * Data model template with information on talent items.
@@ -311,8 +312,58 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+  // eslint-disable-next-line complexity
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    const oldAttributes = [ "", "dexterityStep", "strengthStep", "toughnessStep", "perceptionStep", "willpowerStep", "charismaStep", "initiativeStep" ];
+    const newAttributes = [ "", "dex", "str", "tou", "per", "wil", "cha", "" ];
+    const oldActions = [ "", "Standard", "Simple", "Free", "Sustained" ];
+    const newActions = [ "", "standard", "simple", "free", "sustained" ];
+    const oldTiers = [ "", "Novice", "Journeyman", "Warden", "Master" ];
+    const newTiers = [ "", "novice", "journeyman", "warden", "master" ];
+    const oldTalentCategories = [ "Discipline", "Free", "Optional", "Versatility", "Racial" ];
+    const newTalentCategories = [ "discipline", "free", "optional", "versatility", "free" ];
+    
+    // Migrate action (ok)
+    if ( oldActions.includes( source.action ) ) {
+      source.action = newActions[oldActions.indexOf( source.action )];
+    }
+  
+    // Migrate tier (to be checked with actors)
+    if ( oldTiers.includes( source.tier ) ) {
+      source.tier = newTiers[oldTiers.indexOf( source.tier )];
+    }
+  
+    // Migrate talent category (ok)
+    if ( oldTalentCategories.includes( source.source ) ) {
+      source.talentCategory = newTalentCategories[oldTalentCategories.indexOf( source.source )];
+    }
+
+    TargetingMigration.migrateData( source );
+
+
+    // set rollType for recovery (ok)
+    if ( source.healing > 0 ) {
+      if ( source.rollType === undefined ) {
+        source.rollType = "recovery";
+      }
+    } 
+  
+    // Migrate attribute (ok)
+    if ( oldAttributes.includes( source.attribute ) ) {
+      if ( source.attribute === "initiativeStep" ) {
+        source.rollType = "initiative";
+      } 
+      source.attribute = newAttributes[oldAttributes.indexOf( source.attribute )];
+    }
+  
+    // Migrate rank to level (it only works in an if statement not as a one line ?: statement)
+    if ( source.ranks > 0 && source.level === undefined ) {
+      source.level = source.ranks;
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
   }
 }
