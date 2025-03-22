@@ -29,7 +29,7 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           integer:  true,
           label:    this.labelKey( "Armor.physicalArmor" ),
           hint:     this.hintKey( "Armor.physicalArmor" )
-        } ), 
+        } ),
         forgeBonus: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -111,7 +111,71 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    const oldAvialabilities = [ "availabilityEveryday", "availabilityAverage", "availabilityUnusual", "availabilityRare", "availabilityVeryRare", "Everyday", "Average", "Unusual", "Rare", "VeryRare" ];
+    const newAvialabilities = [ "everyday", "average", "unusual", "rare", "veryRare", "everyday", "average", "unusual", "rare", "veryRare" ];
+    if ( oldAvialabilities.includes( source.availability ) ) {
+      source.availability = newAvialabilities[oldAvialabilities.indexOf( source.availability )];
+    }
+
+    // Migrate Armor values
+    // let physicalArmor = 0;
+    // let mysticalArmor = 0;
+    // let forgeBonusPhysical = 0;
+    // let forgeBonusMystical = 0;
+
+    // if ( source.Aphysicalarmor ) physicalArmor = source.Aphysicalarmor;
+    // if ( source.Amysticalarmor ) mysticalArmor = source.Amysticalarmor;
+    // if ( source.timesForgedPhysical ) forgeBonusPhysical = source.timesForgedPhysical;
+    // if ( source.timesForgedMystical ) forgeBonusMystical = source.timesForgedMystical;
+
+    if ( source.Aphysicalarmor ) {
+      if ( source.timesForgedPhysical ) {
+        source.physical = {
+          armor:      source.Aphysicalarmor,
+          forgeBonus: source.timesForgedPhysical
+        };
+      } else {
+        source.physical = {
+          armor:      source.Aphysicalarmor,
+        };
+      }
+    }
+
+    if ( source.Amysticarmor ) {
+      if ( source.timesForgedMystical ) {
+        source.mystical = {
+          armor:      source.Amysticarmor,
+          forgeBonus: source.timesForgedMystical
+        };
+      } else {
+        source.mystical = {
+          armor:      source.Amysticarmor,
+        };
+      }
+    }
+    
+    // Migrate Initiative Penalty
+    if ( source.armorPenalty ) {
+      source.initiativePenalty = source.armorPenalty;
+    }
+
+    // Migrate Weight
+    if ( source.weight && source.weight > 0 ) {
+      let weightMultiplier = 1;
+      let calculatedWeight = false;
+      if ( source.weight.multiplier ) weightMultiplier = source.weight.multiplier;
+      if ( source.weight.calculated ) calculatedWeight = source.weight.calculated;
+      source.weight= {
+        value:      source.weight,
+        multiplier: weightMultiplier,
+        calculated: calculatedWeight,
+      };
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
+
   }
 }
