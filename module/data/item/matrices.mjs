@@ -21,7 +21,9 @@ export default class MatrixData extends SystemDataModel.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
   }
 }
