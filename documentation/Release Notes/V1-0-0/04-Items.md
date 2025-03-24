@@ -33,12 +33,9 @@ The Earthdawn system supports the following items types:
 - poison / diseases
 - ship weapons
 - special abilities
-- threads
 - creature powers
   - Powers
   - Maneuvers
-
-**Note:** Matrices are not a separate item type like they where in the previous system, but are either a talent or a physical item.
 
 all Items will be described below in a separate chapter.
 
@@ -161,7 +158,15 @@ Bows and crossbows always count as two handed weapons, therefore they are handle
 
 ### karma knacks
 
+Karma Knacks are currently not supported by any workflow. The item itself exists as a preparation for future versions. Karma Knack items show up in the talent tab under the related talent.
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
+
 ### special maneuver knacks
+
+Maneuver Knacks are currently not supported by any workflow. The item itself exists as a preparation for future versions. Maneuver Knack items show up in the talent tab under the related talent.
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
 
 ## Vocations
 
@@ -185,11 +190,25 @@ Paths are the third vocation which relys heavy on the roleplaying aspect. From t
 
 ### spell knacks
 
+Spell Knacks are currently not supported by any workflow. The item itself exists as a preparation for future versions. Spell Knack items show up in the spell tab under the related spell.
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
+
 ### binding secrets
+
+Binding Secrets are currently not supported by any workflow. The item itself exists as a preparation for future versions. Binding Secrets items show up in the specials tab under "Items without workflows".
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
 
 ## effects
 
+--- not working so far
+
 ## curses / Horror marks
+
+Curses and Horror marks are currently not supported by any workflow. The item itself exists as a preparation for future versions. Curses and Horror marks items show up in the specials tab under "Items without workflows".
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
 
 ## Abilities
 
@@ -229,13 +248,29 @@ the details tab offers the following information which are more game mechanic re
 
 ## poison / diseases
 
+Poison and Diseases are currently not supported by any workflow. The item itself exists as a preparation for future versions. Poison and Disease items show up in the specials tab under "Items without workflows".
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
+
 ## ship weapons
+
+Only for Vehicles
+
+Not supported yet.
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
 
 ## special abilities
 
-## threads
+only for ???
+
+Special Abilities are currently not supported by any workflow. The item itself exists as a preparation for future versions. Special Ability items show up in the general tab under special abilities.
+
+Every relevant data field should already be implemented, so that it is already possible to create these even though their support will come later.
 
 ## creature powers
+
+Creature Powers are available to all actors except characters
 
   ### Powers
 
