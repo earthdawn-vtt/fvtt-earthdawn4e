@@ -163,7 +163,8 @@ class ActorPromptFactory extends PromptFactory {
       class:   "recovery default button-recovery",
       default: false
     } );
-    if ( this.document.system.characteristics.recoveryTestsResource.stunRecoveryAvailable && this.document.system.characteristics.health.damage.stun > 0 ) buttons.push( {
+    if ( this.document.system.characteristics.recoveryTestsResource.stunRecoveryAvailable 
+      && this.document.system.characteristics.health.damage.stun > 0 ) buttons.push( {
       action:  "recoverStun",
       label:   "ED.Dialogs.Buttons.recoverStun",
       icon:    "fa-light fa-head-side-medical",
