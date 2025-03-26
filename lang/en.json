@@ -3,6 +3,8 @@
         "ActiveEffect": {
             "ChangeKeys": {
                 "Groups": {
+                    "ability":                                      "Ability",
+                    "action":                                       "Action",          
                     "armor":                                        "Armor",
                     "attributeValue":                               "Attribute Values",
                     "attributeStep":                                "Attribute Steps",
@@ -15,7 +17,12 @@
                     "initiative":                                   "Initiative",
                     "karma":                                        "Karma",
                     "movement":                                     "Movement",
-                    "recoveryTestsResource":                        "Recovery Tests"
+                    "recoveryTestsResource":                        "Recovery Tests",
+                    "rollable":                                     "Rollable",
+                    "shield":                                       "Shield",
+                    "targeting":                                   "Targeting",
+                    "weapon":                                       "Weapon",
+                    "weaponRange":                                  "Weapon Range"
                 }
             },
             "newEffectName":                                        "New Effect Name",
