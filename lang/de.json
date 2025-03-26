@@ -1457,6 +1457,7 @@
         "noAbilityDex":                                     "Geschicklichkeit",
         "noAbilityStr":                                     "Stärke",
         "noDiscipline":                                     "Ohne Disziplin/Pfad",
+        "ok":                                               "Ok",
         "recoverStun":                                      "Betäubungsschaden Erholungsprobe",
         "recovery":                                         "Erholungsprobe",
         "roll":                                             "Würfeln",
@@ -1676,6 +1677,7 @@
         }
       },
       "Title": {
+        "assignLp":                                           "Legendenpunkte zuweisen",
         "classAdvancement":                                   "Rang- und Kreisaufstieg",
         "characterGeneration":                                "Charaktererschaffung",
         "drawWeapon":                                         "Waffe ziehen",
