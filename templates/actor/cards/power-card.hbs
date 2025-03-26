@@ -1,10 +1,10 @@
-<div class="card__power">
+<div class="card__power card__ability">
     <div class="power-card__grid--container item-id" data-item-id="{{_id}}">
         <div class="power-card__grid--item icons__dice">
             {{#if (ne this.system.powerStep 0)}}
                 <img class="power-icon" src="{{img}}"/>
                 <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
-                <img class="roll-icon__pointer rollable" src="icons/svg/d20-black.svg">
+                <img class="roll-icon__pointer rollable" data-action="rollable" src="icons/svg/d20-black.svg">
             {{else}} 
             {{#if (ne this.system.strain 0)}}
                 <img class="power-icon" src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
@@ -15,12 +15,12 @@
                 {{/if}}
             {{/if}}
         </div>
-        <div class="power-card__grid--item card__name">{{name}}</div>
+        <div class="power-card__grid--item card__name" data-action="expandItem">{{name}}</div>
         <div class="power-card__grid--item text__alignment--center">{{system.action}}</div>
         <div class="power-card__grid--item text__alignment--center">{{system.powerStep}}</div>
         <div class="power-card__grid--item text__alignment--center">{{system.damageStep}}</div>
         <div class="power-card__grid--item text__alignment--center">{{system.strain}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-chat.hbs"}}</div>
     </div>
     <div class="card__description card__description--toggle display__inline-block">
         <span class="card__description--content">

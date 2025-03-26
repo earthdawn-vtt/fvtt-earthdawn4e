@@ -53,6 +53,33 @@
     }
 }
 
+.maneuver-card__grid--container {
+    align-items: center;
+    display: grid;
+    height: 30px;
+    grid-template-columns:
+        // 790 px available
+        40px // Icon
+        280px // Name
+        100px // Extra Successes 
+        250px // Summary
+        100px // Control Icons
+    ;
+
+    .maneuver-card__grid--item {
+        .roll-icon__hover,
+        .roll-icon__hover-fixed,
+        .roll-icon__pointer {
+            display: none;
+        }
+    }
+
+    
+    .itemControlGroup {
+        float:none;
+    }
+}
+
 .knack-maneuver-card__grid--container {
     align-items: center;
     display: grid;
@@ -63,7 +90,7 @@
         190px // Name
         40px // StanardEffect
         100px // Type
-        280px // Brief Description
+        280px // Summary
         100px // Control Icons
     ;
 
@@ -148,9 +175,7 @@
         .roll-icon__hover,
         .roll-icon__pointer {
             display: none;
-        }
-
-        
+        }  
     }
 
     .itemControlGroup {
@@ -180,8 +205,6 @@
         .roll-icon__pointer {
             display: none;
         }
-
-
     }
 
     .itemControlGroup {

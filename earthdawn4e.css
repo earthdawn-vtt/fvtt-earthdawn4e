@@ -614,6 +614,20 @@ input.input__number-input {
 .knack-card__grid--container .knack-card__grid--item .roll-icon__pointer {
   display: none;
 }
+.maneuver-card__grid--container {
+  align-items: center;
+  display: grid;
+  height: 30px;
+  grid-template-columns: 40px 280px 100px 250px 100px;
+}
+.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__hover,
+.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__hover-fixed,
+.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__pointer {
+  display: none;
+}
+.maneuver-card__grid--container .itemControlGroup {
+  float: none;
+}
 .knack-maneuver-card__grid--container {
   align-items: center;
   display: grid;

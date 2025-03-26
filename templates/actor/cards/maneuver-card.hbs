@@ -1,14 +1,13 @@
-<div class="card__power">
-    <div class="power-card__grid--container item-id" data-item-id="{{_id}}">
+<div class="card__power card__ability">
+    <div class="maneuver-card__grid--container item-id" data-item-id="{{_id}}">
         <div class="maneuver-card-grid-item icons__dice">
             <img class="item__image--visible" src="{{img}}" title="{{name}}" height="25" width="25" />
         </div>
-        <div class="maneuver-card-grid-item card__name">{{name}}</div>
+        <div class="maneuver-card-grid-item card__name" data-action="expandItem">{{name}}</div>
         <div class="maneuver-card-grid-item text__alignment--center">{{system.extraSuccesses}}</div>
-        <div class="maneuver-card-grid-item text__alignment--center">{{system.powerStep}}</div>
-        <div class="maneuver-card-grid-item text__alignment--center">{{system.damageStep}}</div>
-        <div class="maneuver-card-grid-item text__alignment--center">{{system.strain}}</div>
-        <div class="maneuver-card-grid-item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}</div>
+        <div class="maneuver-card-grid-item font__italic knack-card__single-line display__inline-block">{{{system.summary.value}}}</div>
+
+        <div class="maneuver-card-grid-item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-chat.hbs"}}</div>
     </div>
     <div class="card__description card__description--toggle display__inline-block">
         <span class="card__description--content">
@@ -20,4 +19,4 @@
             {{/each}}
         </span>
     </div>
-</div>
+</div> 
