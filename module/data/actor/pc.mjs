@@ -172,6 +172,14 @@ export default class PcData extends NamegiverTemplate {
       }
     }
 
+    // set the class level to 1 no matter of the compendium items level
+    const classAfterCreation = newActor.classes[0];
+    await classAfterCreation.update( {
+      system: {
+        level: 1,
+      },
+    } );
+
     const actorApp = newActor.sheet.render( true, {focus: true} );
     // we have to wait until the app is rendered to activate a tab
     requestAnimationFrame( () => actorApp.activateTab( "actor-notes-tab" ) );
