@@ -108,7 +108,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   }
 
   /** @inheritdoc */
-  get knackRequirementRules () {
+  get increaseValidationData () {
 
     const learnData = this.learnData;
     return {

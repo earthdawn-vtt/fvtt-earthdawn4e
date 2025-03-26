@@ -427,13 +427,14 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  // Knacks do not have increase, thats why it makes sense to separate the learn method from the abilities.
   async _learnKnackPrompt() {
     const validationTemplate = "systems/ed4e/templates/advancement/learn-knack-requirements.hbs";
     const content = await renderTemplate(
       validationTemplate,
       {
         render:            { requirements: true },
-        requirementGroups: this.document?.system?.knackRequirementRules ?? {},
+        requirementGroups: this.document?.system?.increaseValidationData ?? {},
       },
     );
 
