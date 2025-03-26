@@ -233,24 +233,10 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   }
 
   static async _showCharGenPrompt() {
-    return new Promise( ( resolve ) => {
-      new Dialog( {
-        title:   "Character Generation",
-        content: "<p>Do you want to use the character generation?</p>",
-        buttons: {
-          yes: {
-            icon:     "<i class=\"fas fa-check\"></i>",
-            label:    "Yes",
-            callback: () => resolve( true )
-          },
-          no: {
-            icon:     "<i class=\"fas fa-times\"></i>",
-            label:    "No",
-            callback: () => resolve( false )
-          }
-        },
-        default: "yes"
-      } ).render( true );
+    return foundry.applications.api.DialogV2.confirm( {
+      content:     "X-Do you want to use the character generation?",
+      rejectClose: false,
+      modal:       true
     } );
   }
 
