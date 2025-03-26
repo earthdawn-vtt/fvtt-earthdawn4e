@@ -411,9 +411,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // Set class specifics
     if ( data.selectedClass ) {
       if ( this.charGenData.selectedClass ) {
-        if ( data.selectedClass !== this.charGenData.selectedClass ) {
-          // Call the _onReset function
-          await CharacterGenerationPrompt._onReset( this.charGenData, { dataset: { resetType: "classAbilities" } }, this );     
+        if ( data.selectedClass !== this.charGenData.selectedClass ) {   
+          this.element.querySelector( "button#char-gen-clear-talent-ranks-button" ).click(); 
           this.charGenData.classAbilities = await fromUuid( data.selectedClass );
         } 
       } else {
@@ -424,7 +423,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     // process selected class option ability
     if ( data.abilityOption ) {
       const oldOptionLevel = Object.values( this.charGenData.abilities.optional )[0];
-      await CharacterGenerationPrompt.resetOptionalPoints( this.charGenData, oldOptionLevel );
+      this.resetOptionalPoints( oldOptionLevel );
       this.charGenData.abilityOption = data.abilityOption;
     }
 
@@ -452,9 +451,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   // reset points spend on optional talents if the optional talent is changed.
-  static async resetOptionalPoints( instance, oldOptionLevel ) {
+  resetOptionalPoints( oldOptionLevel ) {
     if ( !oldOptionLevel ) return;
-    instance.updateSource( { availableRanks: { talent: instance.availableRanks.talent + oldOptionLevel } } );
+    this.charGenData.updateSource( { availableRanks: { talent: this.charGenData.availableRanks.talent + oldOptionLevel } } );
   }
 
   /* ----------------------------------------------------------- */
@@ -590,15 +589,16 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     result.then( _ => this.render() );
   }
   
-  static async _onReset( charGenData, target, instance ) {
+  static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
-    if ( this.charGenData === undefined ) {
-      await charGenData.resetPoints( resetType );
-      instance.render();
-    } else {
-      this.charGenData.resetPoints( resetType );
-      this.render();
-    }
+    // if ( this.charGenData === undefined ) {
+    //   await charGenData.resetPoints( resetType );
+    //   instance.render();
+    // } else {
+    //   this.charGenData.resetPoints( resetType );
+    //   this.render();
+    // }
+    this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
   static _onSelectEquipment( _, target ) {
