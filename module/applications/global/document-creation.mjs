@@ -208,7 +208,17 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
     if ( createData.type === "character"
       && game.settings.get( "ed4e", "autoOpenCharGen" )
     ) {
-      promise = PcData.characterGeneration();
+      const useCharGen = await DocumentCreateDialog._showCharGenPrompt();
+      if ( useCharGen ) {
+        promise = PcData.characterGeneration();
+      } else {
+        const options = {};
+        if ( this.pack ) options.pack = this.pack;
+        if ( this.parent ) options.parent = this.parent;
+        options.renderSheet = true;
+
+        promise = this.documentCls.implementation.create( createData, options );
+      }
     } else {
       const options = {};
       if ( this.pack ) options.pack = this.pack;
@@ -220,6 +230,14 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
 
     this.resolve?.( promise );
     return this.close();
+  }
+
+  static async _showCharGenPrompt() {
+    return foundry.applications.api.DialogV2.confirm( {
+      content:     "X-Do you want to use the character generation?",
+      rejectClose: false,
+      modal:       true
+    } );
   }
 
   close( options = {} ) {

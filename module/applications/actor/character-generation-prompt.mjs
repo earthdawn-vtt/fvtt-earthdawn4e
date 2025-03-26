@@ -410,11 +410,22 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Set class specifics
     if ( data.selectedClass ) {
-      this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+      if ( this.charGenData.selectedClass ) {
+        if ( data.selectedClass !== this.charGenData.selectedClass ) {   
+          this.element.querySelector( "button#char-gen-clear-talent-ranks-button" ).click(); 
+          this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+        } 
+      } else {
+        this.charGenData.classAbilities = await fromUuid( data.selectedClass );
+      }
     }
 
     // process selected class option ability
-    if ( data.abilityOption ) this.charGenData.abilityOption = data.abilityOption;
+    if ( data.abilityOption ) {
+      const oldOptionLevel = Object.values( this.charGenData.abilities.optional )[0];
+      this.resetOptionalPoints( oldOptionLevel );
+      this.charGenData.abilityOption = data.abilityOption;
+    }
 
     // Check the maximum selectable number of languages by comparing the array length
     // of the selected languages with the rank of the corresponding language skill
@@ -430,8 +441,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     }
     if ( foundry.utils.isEmpty( data.languages ) ) delete data.languages;
 
-    
-
     this.charGenData.updateSource( data );
 
     // wait for the update, so we can use the data models method
@@ -439,6 +448,12 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
     // Re-render sheet with updated values
     this.render( true );
+  }
+
+  // reset points spend on optional talents if the optional talent is changed.
+  resetOptionalPoints( oldOptionLevel ) {
+    if ( !oldOptionLevel ) return;
+    this.charGenData.updateSource( { availableRanks: { talent: this.charGenData.availableRanks.talent + oldOptionLevel } } );
   }
 
   /* ----------------------------------------------------------- */
