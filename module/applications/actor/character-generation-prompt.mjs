@@ -591,13 +591,6 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   
   static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
-    // if ( this.charGenData === undefined ) {
-    //   await charGenData.resetPoints( resetType );
-    //   instance.render();
-    // } else {
-    //   this.charGenData.resetPoints( resetType );
-    //   this.render();
-    // }
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
