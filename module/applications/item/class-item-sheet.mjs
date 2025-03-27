@@ -10,7 +10,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
-    uniqueId: String( ++globalThis._appId ),
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "earthdawn4e", "sheet", "item" ],
     window:   {
       frame:          true,

@@ -23,7 +23,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
 
   static DEFAULT_OPTIONS = {
     id:       "assign-legend-prompt-{id}",
-    uniqueId: String( ++globalThis._appId ),
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "earthdawn4e", "assign-legend" ],
     window:   {
       frame: true,

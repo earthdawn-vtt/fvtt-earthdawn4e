@@ -1,3 +1,3 @@
-export default class JournalSheetEd extends JournalSheet {
+export default class JournalSheetEd extends foundry.applications.sheets.journal.JournalEntrySheet {
 
 }

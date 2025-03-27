@@ -182,7 +182,7 @@ class ActorPromptFactory extends PromptFactory {
 
     return DialogClass.wait( {
       id:       "recovery-mode-prompt",
-      uniqueId: String( ++globalThis._appId ),
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "recovery-prompt" ],
       window:   {
         title:       "ED.Dialogs.Title.recovery",
@@ -240,7 +240,7 @@ class ActorPromptFactory extends PromptFactory {
     };
     return DialogClass.wait( {
       id:       "take-damage-prompt",
-      uniqueId: String( ++globalThis._appId ),
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "take-damage-prompt", "take-damage__dialog" ],
       // tag: "form",
       window:   {
@@ -284,7 +284,7 @@ class ActorPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "jump-up-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "jump-up-prompt jump-up flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.jumpUp",
@@ -305,7 +305,7 @@ class ActorPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "knock-down-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "knock-down-prompt knockdown flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.knockDown",
@@ -325,7 +325,7 @@ class ActorPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "choose-discipline-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.chooseDiscipline",
@@ -345,7 +345,7 @@ class ActorPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "draw-weapon-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "draw-weapon-prompt", "draw-weapon", "flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.drawWeapon",
@@ -397,7 +397,7 @@ class ItemPromptFactory extends PromptFactory {
 
     return DialogClass.wait( {
       id:       "learn-ability-prompt",
-      uniqueId: String( ++globalThis._appId ),
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "learn-ability-prompt" ],
       window:   {
         title:       game.i18n.format( "ED.Dialogs.Title.learnAbility", {
@@ -441,7 +441,7 @@ class ItemPromptFactory extends PromptFactory {
 
     return DialogClass.wait( {
       id:       "lp-learn-knack-prompt",
-      uniqueId: String( ++globalThis._appId ),
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "lp-learn-knack-prompt" ],
       window:   {
         title:       game.i18n.format( "ED.Dialogs.Title.lpLearnKnack", {
@@ -476,7 +476,7 @@ class ItemPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "choose-tier-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "choose-tier-prompt", "flexcol" ],
       window:      {
         title:       game.i18n.format( "ED.Dialogs.Title.chooseTier", {
@@ -506,7 +506,7 @@ class ItemPromptFactory extends PromptFactory {
 
     return DialogClass.wait( {
       id:       "lp-increase-prompt",
-      uniqueId: String( ++globalThis._appId ),
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:  [ "earthdawn4e", "lp-increase-prompt" ],
       window:   {
         title:       game.i18n.format( "ED.Dialogs.Title.lpIncrease", {
@@ -546,7 +546,7 @@ class ItemPromptFactory extends PromptFactory {
     return DialogClass.wait( {
       rejectClose: false,
       id:          "talent-category-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "talent-category-prompt", "flexcol" ],
       window:      {
         title:       game.i18n.format( "ED.Dialogs.Title.talentCategory", {

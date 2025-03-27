@@ -2,6 +2,9 @@ import getDice from "./step-tables.mjs";
 import { sum } from "../utils.mjs";
 import ED4E from "../config/_module.mjs";
 
+const { renderTemplate } = foundry.applications.handlebars;
+
+
 /**
  * EdRollOptions for creating an EdRoll instance.
  * @property { object } step Ever information related to the step of the action, Mods, Boni, Mali etc.
