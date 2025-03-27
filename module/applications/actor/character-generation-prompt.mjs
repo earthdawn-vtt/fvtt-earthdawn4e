@@ -10,6 +10,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   magicType;
 
   // #region CONSTRUCTOR
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-constructor
+   */
   constructor( charGen, options = {}, documentCollections ) {
     const charGenData = charGen ?? new CharacterGenerationData();
     super( options );
@@ -44,6 +47,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     };
   }
   // #region Error Messages
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-errorMessages
+   */
   static get errorMessages() {
     return {
       noNamegiver:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.noNamegiver" ),
@@ -58,6 +64,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   // #region DEFAULT_OPTIONS
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     id:      "character-generation-prompt",
     classes: [ "earthdawn4e", "character-generation" ],
@@ -98,6 +107,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* --------------------------  Parts  ------------------------ */
   /* ----------------------------------------------------------- */
   // #region PARTS
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-parts
+   */
   static PARTS = {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
@@ -159,6 +171,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * @type {Record<string, ApplicationTab>}
+   * @userFunction UF_CharacterGenerationPrompt-TABS
    */
   static TABS = {
     "namegiver-tab": {
@@ -224,6 +237,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
 
   // #region PREPARE CONTENT
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-prepareContext
+   */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     context.config = ED4E;
@@ -329,6 +345,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* -------------------  preparePartContext  ------------------ */
   /* ----------------------------------------------------------- */
   // #region _preparePartContext
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-preparePartContext
+   */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
     switch ( partId ) {
@@ -357,6 +376,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return context;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-prepareTabsContext
+   */
   async _prepareTabsContext( context, _ ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
@@ -370,6 +392,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   /* -------------------  Tab Handling  ------------------------ */
   /* ----------------------------------------------------------- */
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-activateTab
+   */
   async activateTab ( context, tabId ) {
     const tabGroup = "primary";
     for ( const tab of Object.values( this.constructor.TABS ) ) {
@@ -380,6 +405,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /** @inheritDoc */
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-changeTab
+   */ 
   changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
     super.changeTab( tab, group, {event, navElement, force, updatePosition} );
 
@@ -394,6 +422,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* --------------------------  Form  ------------------------- */
   /* ----------------------------------------------------------- */
   // region FORMSUBMISSION
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onFormSubmission
+   */
   static async #onFormSubmission( event, form, formData ) {
 
     const data = foundry.utils.expandObject( formData.object );
@@ -451,6 +482,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   // reset points spend on optional talents if the optional talent is changed.
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-resetOptionalPoints
+   */
   resetOptionalPoints( oldOptionLevel ) {
     if ( !oldOptionLevel ) return;
     this.charGenData.updateSource( { availableRanks: { talent: this.charGenData.availableRanks.talent + oldOptionLevel } } );
@@ -460,6 +494,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ------------------------  Actions  ------------------------ */
   /* ----------------------------------------------------------- */
   // #region ACTIONS
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-nextTab
+   */
   static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
 
@@ -469,6 +506,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-previousTab
+   */
   static _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
 
@@ -478,14 +518,23 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-finishGeneration
+   */
   _hasNextStep() {
     return this._currentStep < this._steps.length - 1;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-previousTab
+   */
   _hasPreviousStep() {
     return this._currentStep > 0;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-finishGeneration
+   */
   static _finishGeneration( event ) {
     event.preventDefault();
     event.stopPropagation();
@@ -500,6 +549,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return this.close();
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateCompletion
+   */
   _validateCompletion( errorLevel = "error" ) {
     return this._validateNamegiver( errorLevel, true )
       && this._validateClass( errorLevel, true )
@@ -508,6 +560,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       && this._validateSkills( errorLevel, true );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateNamegiver
+   */
   _validateNamegiver( errorLevel = "warn", displayNotification = false ) {
     const hasNamegiver = !!this.charGenData.namegiver;
     if ( displayNotification ) {
@@ -516,6 +571,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return hasNamegiver;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateClass
+   */
   _validateClass( errorLevel = "warn", displayNotification = false ) {
     const hasClass = !!this.charGenData.selectedClass;
     if ( displayNotification ) {
@@ -524,6 +582,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return hasClass;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateClassRanks
+   */
   _validateClassRanks( errorLevel = "warn", displayNotification = false ) {
     const hasRanks = this.charGenData.availableRanks[this.charGenData.isAdept ? "talent" : "devotion"] > 0;
     if ( displayNotification ) {
@@ -532,6 +593,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return !hasRanks;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateAttributes
+   */
   _validateAttributes( errorLevel = "info", displayNotification = false ) {
     const hasAttributePoints = this.charGenData.availableAttributePoints > 0;
     if ( displayNotification ) {
@@ -540,6 +604,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return !hasAttributePoints;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-validateSkills
+   */
   _validateSkills( errorLevel = "warn", displayNotification = false ) {
     const availableRanks = filterObject(
       this.charGenData.availableRanks,
@@ -555,14 +622,23 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     return !hasRanks;
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-displayValidationError
+   */
   _displayValidationError( level, type ) {
     if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onSelectTalentOption
+   */
   static _onSelectTalentOption( _, target ) {
     target.querySelector( "input[type=\"radio\"]" ).click();
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onChangeRank
+   */
   static _onChangeRank( _, target ) {
     const abilityUuid = target.dataset.abilityUuid;
     const abilityType = target.dataset.abilityType;
@@ -570,12 +646,18 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     this.charGenData.changeAbilityRank( abilityUuid, abilityType, changeType ).then( _ => this.render() );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onChangeAttributeModifier
+   */
   static _onChangeAttributeModifier( _, target ) {
     const attribute = target.dataset.attribute;
     const changeType = target.dataset.changeType;
     this.charGenData.changeAttributeModifier( attribute, changeType ).then( _ => this.render() );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onClickSpell
+   */
   static _onClickSpell( _, target ) {
     const spellSelected = target.dataset.spellSelected;
     let result;
@@ -589,11 +671,17 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     result.then( _ => this.render() );
   }
   
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onReset
+   */
   static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-onSelectEquipment
+   */
   static _onSelectEquipment( _, target ) {
     const equipmentUuid = target.dataset.uuid;
     let result;
@@ -616,6 +704,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * Wait for dialog to be resolved.
    * @param {object} [charGenData]           Initial data to pass to the constructor.
    * @param {object} [options]        Options to pass to the constructor.
+   * @userFunction UF_CharacterGenerationPrompt-waitPrompt
    */
   static async waitPrompt( charGenData, options = {} ) {
     const data = charGenData ?? new CharacterGenerationData();
@@ -689,7 +778,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
     } );
   }
 
-
+  /**
+   * @userFunction UF_CharacterGenerationPrompt-getEquipmentItems
+   */
   static async getEquipmentItems( type ) {
     const lang = game.i18n.lang;
     const items = [];
