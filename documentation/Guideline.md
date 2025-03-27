@@ -88,7 +88,9 @@ The Functional Specification holds the content of the system Manuals and extents
 
 ### Use Cases
 
+
 A use case is a specific function or workflow. it contains a diagram (sometimes it does not if the use case does not require one), a list of connected user functions and a list of test cases.
+everytime a code change is made, the user function attached to the changed function leads to one or more Use cases. The touched use case itself provides a list of potential tests to cover that the functionality of the use case is still provided by the changes. 
 
 #### User Functions
 
@@ -96,4 +98,31 @@ Every user function contains a brief description about its functionality. This d
 
 #### Test Cases
 
+
 Every test case is a - as of now - a github issue with a description how to execute the test manually in the system together with a description of prerequisites and the goal to archive by this test.
+
+## Coding and Documentation
+
+the following chapter is about the responsibility of developers to document the code and make sure validation is triggered.
+
+### Labels
+
+every use case and every user function has its own label in github with the same name. <br>
+Use Cases shall usually be assigned to a Story, Bug or Refactoring during creation (it is not final but provides a good starting point).
+During the development process every changed code function requires the developer to add the user function of that function or method to the issue they are working on. <br>
+This allows the developer and/or tester to easily find the tests related to that functionality by checking for the use cases the user function is linked to and set the milestone (or other tag) on the test itself. This ensures, that every functionality which is touched will be tested before the release.
+
+### Tests
+
+With every release it is mandatory to create and update tests according to the created or changed use cases. Every test is a separate GitHub issue of type Test (a template is provided). <br>
+
+## Testing
+
+Testing is a crucial part of software development and this is no exception to it. 
+
+### GitHub usage
+
+Every Release version has its own Project in the repository with the identical version numbering as the released version.<br>
+
+This will be done by the GitHub API (WIP).<br>
+
