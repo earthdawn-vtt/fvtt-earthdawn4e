@@ -22,7 +22,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
-    uniqueId: String( ++globalThis._appId ),
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "dragon" ],
     actions:  {
     },

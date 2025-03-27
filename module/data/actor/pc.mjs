@@ -281,7 +281,7 @@ export default class PcData extends NamegiverTemplate {
     let spendLp = useLp;
     spendLp ??= await DialogV2.wait( {
       id:          "attribute-increase-prompt",
-      uniqueId:    String( ++globalThis._appId ),
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "ed4e", "attribute-increase-prompt" ],
       window:      {
         title:       "ED.Dialogs.Title.attributeIncrease",

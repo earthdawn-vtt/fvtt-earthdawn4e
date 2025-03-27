@@ -19,7 +19,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
    */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
-    uniqueId: String( ++globalThis._appId ),
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "character" ],
     actions:  {
       upgradeItem:        ActorSheetEdCharacter.upgradeItem,
