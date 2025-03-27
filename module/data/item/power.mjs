@@ -2,6 +2,9 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
+import RollPrompt from "../../applications/global/roll-prompt.mjs";
+import AbilityRollOptions from "../roll/ability.mjs";
+import AttackRollOptions from "../roll/attack.mjs";
 
 /**
  * Data model template with information on Power items.
@@ -104,4 +107,96 @@ export default class PowerData extends ActionTemplate.mixin(
   get isCreatureAttack() {
     return this.edid === game.settings.get( "ed4e", "edidCreatureAttack" );
   }
+
+  get baseRollOptions() {
+    const rollOptions = super.baseRollOptions;
+    const abilityRollOptions = {
+      rollingActorUuid: this.parentActor.uuid,
+      abilityUuid:      this.parent.uuid,
+      step:             {
+        base:      this.powerStep,
+        modifiers: {},
+      },
+      karma:           rollOptions.karma,
+      devotion:        rollOptions.devotion,
+      extraDice:       {
+        // this should be the place for things like flame weapon, etc. but still needs to be implemented
+      },
+      target:          {
+        base:      this.getDifficulty(),
+        modifiers: {},
+        public:    false,
+      },
+      strain:          {
+        base:      this.strain,
+        modifiers: {},
+      },
+      chatFlavor:      "AbilityTemplate: ABILITY ROLL",
+      testType:        "action",
+      rollType:        "",
+    };
+  
+    return new AbilityRollOptions( abilityRollOptions );
+  }
+
+  /* -------------------------------------------- */
+  /*                    Rolling                   */
+  /* -------------------------------------------- */
+
+  async rollAbility() {
+    if ( !this.isActorEmbedded ) return;
+  
+    const rollOptions = this.baseRollOptions;
+    const rollOptionsUpdate = {
+      ...rollOptions.toObject(),
+      rollingActorUuid: this.parentActor.uuid,
+      target:           { 
+        tokens: game.user.targets.map( token => token.document.uuid ),
+        base:   this.getDifficulty(),
+      },
+      chatFlavor:       "AbilityTemplate: Ability ROLL",
+      rollType:         "ability", 
+    };
+  
+    const roll = await RollPrompt.waitPrompt(
+      new AbilityRollOptions( rollOptionsUpdate ),
+      {
+        rollData: this.parentActor,
+      }
+    );
+    return this.parentActor.processRoll( roll );
+  }
+
+  async rollAttack() {
+    if ( !this.isActorEmbedded ) return;
+  
+    const rollOptions = this.baseRollOptions;
+    const rollOptionsUpdate = {
+      ...rollOptions.toObject(),
+      rollingActorUuid: this.parentActor.uuid,
+      target:           { 
+        tokens: game.user.targets.map( token => token.document.uuid ),
+        base:   this.getDifficulty(),
+      },
+      chatFlavor:       "AbilityTemplate: ATTACK ROLL",
+      rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+    };
+  
+    const roll = await RollPrompt.waitPrompt(
+      new AttackRollOptions( rollOptionsUpdate ),
+      {
+        rollData: this.parentActor,
+      }
+    );
+    return this.parentActor.processRoll( roll );
+  }
+
+  async rollDamage() {
+    ui.notifications.info( "Damage not done yet" );
+  }
+
+  async rollEffect() {
+    ui.notifications.info( "Effect not done yet" );
+  }
+
 }
