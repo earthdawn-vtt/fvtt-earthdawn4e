@@ -102,26 +102,48 @@ flowchart TD
 
 ### Related User Functions
 
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
-[UF_YYYYYY-XXXXX](../User%20Functions/UF_YYYYYY-XXXXX.md)
-
+[UF_CharacterGeneration-characterGeneration](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-characterGeneration.md) <br>
+[UF_CharacterGeneration-activateTab](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-activateTab.md) <br>
+[UF_CharacterGeneration-changeTab](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-changeTab.md) <br> 
+[UF_CharacterGeneration-constructor](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-constructor.md) <br>
+[UF_CharacterGeneration-defaultOptions](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-defaultOptions.md) <br>
+[UF_CharacterGeneration-displayValidationError](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-displayValidationError.md) <br>
+[UF_CharacterGeneration-errorMessages](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-errorMessages.md) <br>
+[UF_CharacterGeneration-finishGeneration](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-finishGeneration.md) <br>
+[UF_CharacterGeneration-getEquipmentItems](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-getEquipmentItems.md) <br>
+[UF_CharacterGeneration-nextTab](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-nextTab.md) <br>
+[UF_CharacterGeneration-onChangeAttributeModifier](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onChangeAttributeModifier.md) <br>
+[UF_CharacterGeneration-onChangeRank](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onChangeRank.md) <br>
+[UF_CharacterGeneration-onClickSpell](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onClickSpell.md) <br>
+[UF_CharacterGeneration-onFormSubmission](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onFormSubmission.md) <br>
+[UF_CharacterGeneration-onReset](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onReset.md) <br>
+[UF_CharacterGeneration-onSelectEquipment](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onSelectEquipment.md) <br>
+[UF_CharacterGeneration-onSelectTalentOption](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-onSelectTalentOption.md) <br>
+[UF_CharacterGeneration-parts](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-parts.md) <br>
+[UF_CharacterGeneration-prepareContext](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-prepareContext.md) <br>
+[UF_CharacterGeneration-preparePartContext](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-preparePartContext.md) <br>
+[UF_CharacterGeneration-prepareTabsContext](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-prepareTabsContext.md) <br>
+[UF_CharacterGeneration-previousTab](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-previousTab.md) <br>
+[UF_CharacterGeneration-resetOptionalPoints](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-resetOptionalPoints.md) <br>
+[UF_CharacterGeneration-tabs](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-tabs.md) <br>
+[UF_CharacterGeneration-validateAttributes](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateAttributes.md) <br>
+[UF_CharacterGeneration-validateClass](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateClass.md) <br>
+[UF_CharacterGeneration-validateClassRanks](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateClassRanks.md) <br>
+[UF_CharacterGeneration-validateCompletion](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateCompletion.md) <br>
+[UF_CharacterGeneration-validateNamegiver](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateNamegiver.md) <br>
+[UF_CharacterGeneration-validateSkills](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateSkills.md) <br>
+[UF_CharacterGeneration-waitPrompt](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-waitPrompt.md)<br>
 
 ### Related Test Coverage
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
-| Test case | [TC_YYYYYY-XXXXX](https://github.com/patrickmohrmann/earthdawn4eV2/issues/) |
+| Character Generation 1 - none Caster | [[Test] - Character Generation 1 - none Caster ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1549) |
+| Character Generation 2 - Caster | [[Test] - Character Generation 2 - Caster](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1550) |
+| Character Generation 3 - Questor | [[Test] - Character Generation 3 - Questor](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1551) |
+| Character Generation 4 - Namegiver Talents | [[Test] - Character Generation 4 - Namegiver Talents](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1552) |
+| Character Generation 5 - Reset Options | [[Test] - Character Generation 5 - Reset Options ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1553) |
+| Character Generation 6 - only minimum options | [[Test] - Character Generation 6 - only minimum options](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1554) |
+
 
 

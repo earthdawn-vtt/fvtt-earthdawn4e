@@ -11,6 +11,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   // #region CONSTRUCTOR
   /**
+   * @param {object} charGen {CharacterGenerationData}
+   * @param {object} options {object}
+   * @param {object} documentCollections {object}
    * @userFunction UF_CharacterGenerationPrompt-constructor
    */
   constructor( charGen, options = {}, documentCollections ) {
@@ -238,6 +241,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   // #region PREPARE CONTENT
   /**
+   * @param options
    * @userFunction UF_CharacterGenerationPrompt-prepareContext
    */
   async _prepareContext( options = {} ) {
@@ -346,6 +350,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   // #region _preparePartContext
   /**
+   * @param partId
+   * @param context
+   * @param options
    * @userFunction UF_CharacterGenerationPrompt-preparePartContext
    */
   async _preparePartContext( partId, context, options ) {
@@ -377,6 +384,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param context
+   * @param _
    * @userFunction UF_CharacterGenerationPrompt-prepareTabsContext
    */
   async _prepareTabsContext( context, _ ) {
@@ -393,6 +402,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* -------------------  Tab Handling  ------------------------ */
   /* ----------------------------------------------------------- */
   /**
+   * @param context
+   * @param tabId
    * @userFunction UF_CharacterGenerationPrompt-activateTab
    */
   async activateTab ( context, tabId ) {
@@ -406,6 +417,13 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /** @inheritDoc */
   /**
+   * @param tab
+   * @param group
+   * @param root0
+   * @param root0.event
+   * @param root0.navElement
+   * @param root0.force
+   * @param root0.updatePosition
    * @userFunction UF_CharacterGenerationPrompt-changeTab
    */ 
   changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
@@ -423,6 +441,9 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   // region FORMSUBMISSION
   /**
+   * @param event
+   * @param form
+   * @param formData
    * @userFunction UF_CharacterGenerationPrompt-onFormSubmission
    */
   static async #onFormSubmission( event, form, formData ) {
@@ -483,6 +504,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   // reset points spend on optional talents if the optional talent is changed.
   /**
+   * @param oldOptionLevel
    * @userFunction UF_CharacterGenerationPrompt-resetOptionalPoints
    */
   resetOptionalPoints( oldOptionLevel ) {
@@ -495,6 +517,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   // #region ACTIONS
   /**
+   * @param _
    * @userFunction UF_CharacterGenerationPrompt-nextTab
    */
   static _nextTab( _ ) {
@@ -507,6 +530,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
    * @userFunction UF_CharacterGenerationPrompt-previousTab
    */
   static _previousTab( _ ) {
@@ -533,6 +557,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param event
    * @userFunction UF_CharacterGenerationPrompt-finishGeneration
    */
   static _finishGeneration( event ) {
@@ -550,6 +575,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
    * @userFunction UF_CharacterGenerationPrompt-validateCompletion
    */
   _validateCompletion( errorLevel = "error" ) {
@@ -561,6 +587,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
+   * @param displayNotification
    * @userFunction UF_CharacterGenerationPrompt-validateNamegiver
    */
   _validateNamegiver( errorLevel = "warn", displayNotification = false ) {
@@ -572,6 +600,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
+   * @param displayNotification
    * @userFunction UF_CharacterGenerationPrompt-validateClass
    */
   _validateClass( errorLevel = "warn", displayNotification = false ) {
@@ -583,6 +613,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
+   * @param displayNotification
    * @userFunction UF_CharacterGenerationPrompt-validateClassRanks
    */
   _validateClassRanks( errorLevel = "warn", displayNotification = false ) {
@@ -594,6 +626,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
+   * @param displayNotification
    * @userFunction UF_CharacterGenerationPrompt-validateAttributes
    */
   _validateAttributes( errorLevel = "info", displayNotification = false ) {
@@ -605,6 +639,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param errorLevel
+   * @param displayNotification
    * @userFunction UF_CharacterGenerationPrompt-validateSkills
    */
   _validateSkills( errorLevel = "warn", displayNotification = false ) {
@@ -623,6 +659,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param level
+   * @param type
    * @userFunction UF_CharacterGenerationPrompt-displayValidationError
    */
   _displayValidationError( level, type ) {
@@ -630,6 +668,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onSelectTalentOption
    */
   static _onSelectTalentOption( _, target ) {
@@ -637,6 +677,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onChangeRank
    */
   static _onChangeRank( _, target ) {
@@ -647,6 +689,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onChangeAttributeModifier
    */
   static _onChangeAttributeModifier( _, target ) {
@@ -656,6 +700,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onClickSpell
    */
   static _onClickSpell( _, target ) {
@@ -672,6 +718,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
   
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onReset
    */
   static _onReset( _, target ) {
@@ -680,6 +728,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param _
+   * @param target
    * @userFunction UF_CharacterGenerationPrompt-onSelectEquipment
    */
   static _onSelectEquipment( _, target ) {
@@ -779,6 +829,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
+   * @param type
    * @userFunction UF_CharacterGenerationPrompt-getEquipmentItems
    */
   static async getEquipmentItems( type ) {
