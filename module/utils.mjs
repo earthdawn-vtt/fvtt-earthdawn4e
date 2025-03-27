@@ -820,5 +820,5 @@ export async function preloadHandlebarsTemplates() {
     paths[path] = path;
   }
 
-  return loadTemplates( paths );
+  return foundry.applications.handlebars.loadTemplates( paths );
 }
