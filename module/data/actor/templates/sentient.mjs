@@ -522,6 +522,21 @@ export default class SentientTemplate extends CommonTemplate {
     } );
   }
 
+  // region Properties
+
+  get isDead() {
+    return this.characteristics.health.death > 0
+      && this.characteristics.health.damage.total >= this.characteristics.health.death;
+  }
+
+  get isUnconscious() {
+    return !this.isDead
+      && this.characteristics.health.unconscious > 0
+      && this.characteristics.health.damage.total >= this.characteristics.health.unconscious;
+  }
+
+  // endregion
+
   // region  Data Preparation
 
   /** @inheritDoc */
@@ -552,6 +567,20 @@ export default class SentientTemplate extends CommonTemplate {
   _prepareHealthRating () {
     this.healthRate.max = this.characteristics.health.death;
     this.healthRate.value = this.characteristics.health.damage.total;
+  }
+
+  // endregion
+
+  // region CRUD
+
+  /** @inheritDoc */
+  _onUpdate( changed, options, userId ) {
+    super._onUpdate( changed, options, userId );
+
+    if ( game.user.id === userId ) {
+      this.parent?.toggleStatusEffect( CONFIG.specialStatusEffects.DEFEATED, { active: this.isDead, overlay: true } );
+      this.parent?.toggleStatusEffect( "unconscious", { active: this.isUnconscious && !this.isDead, overlay: true } );
+    }
   }
 
   // endregion
