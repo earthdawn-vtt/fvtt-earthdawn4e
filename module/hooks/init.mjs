@@ -14,6 +14,7 @@ import * as utils from "../utils.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig } = foundry.applications.sheets;
+const { Actors, Items, Journal } = foundry.documents.collections;
 
 /**
  *
@@ -53,7 +54,7 @@ export default function () {
     CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes
-    Actors.unregisterSheet( "core", ActorSheet );
+    Actors.unregisterSheet( "core", foundry.appv1.sheets.ActorSheet );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEd, {
       makeDefault: true
     } );
@@ -116,7 +117,7 @@ export default function () {
       { makeDefault: true },
     );
 
-    Items.unregisterSheet( "core", ItemSheet );
+    Items.unregisterSheet( "core", foundry.appv1.sheets.ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true
     } );
@@ -128,7 +129,7 @@ export default function () {
       types:       [ "armor", "equipment", "shield", "weapon" ],
       makeDefault: true 
     } );
-    Journal.unregisterSheet( "core", JournalSheet );
+    Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
       makeDefault: true
     } );
