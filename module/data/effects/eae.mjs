@@ -200,6 +200,8 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
+    this.maxLevel = CONFIG.ED4E.statusEffects[ this.statuses[0] ]?.levels || null;
+    if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
   }
 
   // endregion
