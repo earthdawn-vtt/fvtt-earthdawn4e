@@ -1,8 +1,8 @@
-export default class EarthdawnActiveEffect extends ActiveEffect {
+export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+
+
+  // region Properties
 
   /** @inheritDoc */
   get target() {
@@ -35,5 +35,7 @@ export default class EarthdawnActiveEffect extends ActiveEffect {
   get isItemEffect() {
     return this.parent?.documentName === "Item";
   }
+
+  // endregion
 
 }
