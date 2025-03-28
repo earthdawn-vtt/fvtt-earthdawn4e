@@ -89,6 +89,11 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( changes.system?.changes && !changes.changes ) {
       changes.changes = await this._prepareChangesData( changes.system.changes );
     }
+    if ( changes.system?.source?.documentOriginUuid ) {
+      changes.system.source.documentOriginType = (
+        await fromUuid( changes.system.source.documentOriginUuid )
+      )?.type;
+    }
   }
 
   /**
@@ -191,7 +196,6 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
-    if ( this.documentOriginUuid ) this.documentOriginType = this.documentOrigin.type;
   }
 
   // endregion
