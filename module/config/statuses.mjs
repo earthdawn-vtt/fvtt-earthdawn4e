@@ -170,12 +170,16 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.cover",
     img:  "systems/ed4e/assets/icons/broken-wall.svg",
+
+    levels:  2, // partial and full
   },
   {
     id:    "darkness",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.darkness",
     img:  "systems/ed4e/assets/icons/fog.svg",
+
+    levels:  2, // partial and full
   },
   {
     id:    "dazzled",
@@ -246,6 +250,8 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.impaired",
     img:  "systems/ed4e/assets/icons/achilles-heel.svg",
+
+    levels:  2, // light and heavy
   },
   {
     id:    "knockedDown",
