@@ -341,7 +341,7 @@ export default class EdRollOptions extends SparseDataModel {
     updates.target ??= {};
     updates.step.total = this.step.total = this.totalStep;
     updates.target.total = this.target.total = this.totalTarget;
-    return updates;
+    return super.updateSource( updates, options );
   }
 
   static initDiceForStep( parent ) {
