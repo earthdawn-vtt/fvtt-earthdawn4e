@@ -41,7 +41,7 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     super.prepareDerivedData();
     this.parent.transfer = false;
     this.parent.statuses.add( this.primary );
-    this.maxLevel = CONFIG.ED4E.statusEffects[ this.primary ]?.levels || null;
+    this.maxLevel = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
   }
 
@@ -55,7 +55,7 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
    * @returns {Promise<EarthdawnActiveEffect|undefined>} The updated effect or undefined if the level could not be increased.
    */
   async increase( levels = 1 ) {
-    const maxLevel = this.maxLevel ?? CONFIG.ED4E.statusEffects[ this.primary ]?.levels;
+    const maxLevel = this.maxLevel ?? CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels;
     if ( !maxLevel || !( maxLevel > 1 ) || ( this.level === maxLevel ) ) return;
 
     const disabled = this.parent?.isDisabled;

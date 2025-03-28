@@ -132,6 +132,8 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.aggressive",
     img:  "systems/ed4e/assets/icons/confrontation.svg",
 
+    reference: "TODO: Compendium UUID to explanation",
+
     type:     "eae",
     changes:  STATUS_CHANGES.aggressive,
     system:  {
@@ -143,6 +145,8 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.blindness",
     img:  "icons/svg/blind.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.blindness,
@@ -158,6 +162,8 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.blindsided",
     img:  "systems/ed4e/assets/icons/backstab.svg",
 
+    reference: "TODO: Compendium UUID to explanation",
+
     type:     "eae",
     changes:  STATUS_CHANGES.blindsided,
     system:  {
@@ -171,7 +177,8 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.cover",
     img:  "systems/ed4e/assets/icons/broken-wall.svg",
 
-    levels:  2, // partial and full
+    levels:    2, // partial and full
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "darkness",
@@ -179,13 +186,16 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.darkness",
     img:  "systems/ed4e/assets/icons/fog.svg",
 
-    levels:  2, // partial and full
+    levels:    2, // partial and full
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "dazzled",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.dazzled",
     img:  "systems/ed4e/assets/icons/laser-sparks.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.dazzled,
@@ -199,12 +209,16 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.dead",
     img:  "icons/svg/skull.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "defensive",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.defensive",
     img:  "systems/ed4e/assets/icons/surrounded-shield.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.defensive,
@@ -217,6 +231,8 @@ export const statusEffects = [
     hud:  { actorTypes: [ "creature" ] },
     name: "ED.ActiveEffect.Status.fury",
     img:  "systems/ed4e/assets/icons/enraged.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.fury,
@@ -231,6 +247,8 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.grappled",
     img:  "systems/ed4e/assets/icons/grab.svg",
 
+    reference: "TODO: Compendium UUID to explanation",
+
     type:     "eae",
     changes:  STATUS_CHANGES.grappled,
     system:  {
@@ -244,6 +262,8 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.harried",
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "impaired",
@@ -251,13 +271,16 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.impaired",
     img:  "systems/ed4e/assets/icons/achilles-heel.svg",
 
-    levels:  2, // light and heavy
+    levels:    2, // light and heavy
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "knockedDown",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.knockedDown",
     img:  "icons/svg/falling.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.knockedDown,
@@ -271,12 +294,16 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.overwhelmed",
     img:  "systems/ed4e/assets/icons/dozen.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "surprised",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.surprised",
     img:  "systems/ed4e/assets/icons/surprised.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
     changes:  STATUS_CHANGES.surprised,
@@ -294,6 +321,8 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.unconscious",
     img:  "systems/ed4e/assets/icons/dead-head.svg",
 
+    reference: "TODO: Compendium UUID to explanation",
+
     type:     "eae",
     changes: [ {} ],
     system:  {
@@ -302,6 +331,11 @@ export const statusEffects = [
     statuses: new Set( [ "blindsided", "knockedDown" ] ),
   },
 ];
+
+export const STATUS_CONDITIONS = statusEffects.reduce( ( acc, effect ) => {
+  acc[ effect.id ] = effect;
+  return acc;
+}, {} ) ;
 
 export const specialStatusEffects = {
   BLIND:     "blindness",
