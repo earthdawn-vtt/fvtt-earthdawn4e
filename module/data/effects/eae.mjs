@@ -46,6 +46,10 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         nullable: true,
         initial:  null,
         integer:  true,
+        validate: ( value, options ) => {
+          if ( options.source ) return;
+          if ( options.source.statuses.length !== 1 ) throw new Error( "Level can only be set for a single status." );
+        },
         label:    this.labelKey( "level" ),
         hint:     this.hintKey( "level" ),
       } ),
@@ -194,8 +198,8 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
 
   /** @inheritDoc */
-  prepareBaseData() {
-    super.prepareBaseData();
+  prepareDerivedData() {
+    super.prepareDerivedData();
   }
 
   // endregion
