@@ -416,6 +416,7 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .legend,
 .application.sheet.earthdawn4e.actor .window-content .classes {
   height: 450px;
+  margin-top: 10px;
   /* Set the desired fixed height */
   overflow-y: auto;
   /* Enable vertical scrolling */
@@ -560,7 +561,6 @@ input.input__number-input {
 .ability-card__grid--container {
   align-items: center;
   display: grid;
-  height: 30px;
   grid-template-columns: 40px 250px 100px 70px 70px 70px 70px 100px;
 }
 .ability-card__grid--container .ability-card__grid--item .roll-icon__hover,
@@ -1222,3 +1222,190 @@ input.input__number-input {
   width: 24%;
   float: right;
 }
+
+/* Alex's Alterations --------------------------------------------------------- */
+
+/* Styles Sheets -------------------------------------------------------------- */
+:root {
+  --color-transparent: rgb(0, 0, 0, 0);
+  --color-npc-dark: rgb(3, 4, 10);
+  --color-npc-dark-35: rgb(3, 4, 10, 0.35);
+  --color-npc-mid: rgb(21, 18, 54);
+  --color-npc-mid-35: rgb(21, 18, 54, 0.35);
+  --color-npc-light: rgb(55, 61, 117);
+  --color-npc-light-35: rgb(55, 61, 117, 0.35);
+  --color-pc-dark: rgb(2, 3, 0);
+  --color-pc-dark-35: rgb(2, 3, 0), 0.35;
+  --color-pc-mid: rgb(22, 46, 28);
+  --color-pc-mid-35: rgb(22, 46, 28, 0.35);
+  --color-pc-light: rgb(58, 118, 62);
+  --color-pc-light-35: rgb(58, 118, 62, 0.35);
+  --color-grey-dark: rgb(16, 16, 16);
+  --color-gold-text: rgb(230, 210, 200);
+  --color-gold-1: rgb(50, 40, 30);
+  --color-gold-2: rgb(70, 55, 20);
+  --color-gold-3: rgb(120, 90, 40);
+  --color-gold-4: rgb(300, 155, 60);
+  --color-gold-5: rgb(200, 170, 110);
+}
+/* Corrections ---------------------------------------------------------------- */
+.application {
+  color: var(--color-gold-text)
+}
+.application #chat-log,
+.application .window-content,
+.application input,
+.application .body {
+  font: revert;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.application .h1,
+.application h2,
+.application h3,
+.application h4,
+.application h5,
+.application h6 {
+  padding: 0;
+}
+/* Windows -------------------------------------------------------------------- */
+.sheet.earthdawn4e.actor {
+  min-width: 800px;
+  min-height: 800px;
+}
+.window-app.sheet.earthdawn4e.actor .window-content {
+  overflow-y: auto;
+  max-height: 100%;
+}
+/* Sheet --------------------------------------------------------------------- */
+.application.sheet.earthdawn4e header,
+.app.window-app.form.earthdawn4e header {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  transform: scale(0.8);
+  transform-origin: right;
+}
+.application.sheet.earthdawn4e header .window-title,
+.app.window-app.form.earthdawn4e header .window-title {
+  display: none;
+}
+.application.sheet.earthdawn4e.actor .window-content {
+  background-color: var(--color-npc-dark); 
+  background-image: url(assets/sheet/background-npc.png);
+  background-size: 600px auto;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.application.sheet.earthdawn4e.actor.character .window-content {
+  background-color: var(--color-pc-dark); 
+  background-image: url(assets/sheet/background-pc.png);
+}
+.application.sheet.earthdawn4e.item .window-content {
+  background: var(--color-grey-dark)
+}
+.application.sheet.earthdawn4e.actor .window-content,
+.application.sheet.earthdawn4e.item .window-content {
+  margin-top: -36px;
+  padding-top: 36px;
+}
+/* Cards ----------------------------------------------------------------------- */
+.general .right-part .conditions__grid--header,
+.ability-card__grid--header,
+.ability-card__grid--subheader {
+  grid-column: 1 / -1;
+  height: 35px;
+  padding: 8px;
+  margin-bottom: 1px;
+  background-color: var(--color-npc-mid);
+  border: 2px solid var(--color-gold-3);
+  box-shadow: inset 0 0 15px black;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  text-transform: uppercase;
+}
+.ability-card__grid--subheader {
+  border-radius:0;
+  margin: 0;
+  font: 0.9rem;
+}
+.general .right-part .conditions__grid--header {
+  display: grid;
+  justify-content: center;
+}
+.application.sheet.earthdawn4e.actor.character .general .right-part .conditions__grid--header,
+.application.sheet.earthdawn4e.actor.character .ability-card__grid--header {
+  background-color: var(--color-pc-mid);
+  border: 2px solid var(--color-gold-3);
+}
+.ability-card__grid--container:not(.ability-card__grid--header .ability-card__grid--container) {
+  padding: 2px 8px;
+}
+.ability-card__grid--container p {
+  margin: 0;
+}
+.card__description {
+  padding: 0 0 0 49px;
+}
+.ability-card__grid--container i.fas {
+  font-size: 0.8rem;
+}
+
+/* Conditions ------------------------------------------------------------------ */
+.general .right-part .conditions__grid--wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0.5rem 0;
+  align-items: stretch;
+}
+.general .right-part .conditions__grid--container {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+}
+.general .right-part .condition-toggle__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.em 0.6em 0.4em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border: 1px solid var(--color-npc-light-35);
+  background-color: var(--color-npc-mid-35);
+}
+.general .right-part .condition-toggle__label:has(input:checked) {
+  background-color: var(--color-npc-mid);
+  font-weight: bold;
+}
+.application.sheet.earthdawn4e.actor.character .general .right-part .conditions__grid--header {
+  background-color: var(--color-pc-mid);
+  border: 2px solid var(--color-gold-3);
+}
+.application.sheet.earthdawn4e.actor.character .general .right-part .condition-toggle__label,
+.application.sheet.earthdawn4e.actor.character .ability-card__grid--subheader {
+  border: 1px solid var(--color-pc-light-35);
+  background-color: var(--color-pc-mid-35);
+}
+.application.sheet.earthdawn4e.actor.character .general .right-part .condition-toggle__label:has(input:checked) {
+  background-color: var(--color-pc-mid);
+}
+.general .right-part .condition-toggle__input {
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+  width: 0;
+  height: 0;
+}
+/* Cards ------------------------------------------------------------------------ */
+
+

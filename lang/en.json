@@ -99,8 +99,8 @@
                 },
                 "fury":                                             "Fury",
                 "harried":                                          "Harried",
-                "impairedMovementPartial":                          "Partial Impaired Movement",
-                "impairedMovementFull":                             "Fully Impaired Movement",
+                "impairedMovementPartial":                          "Partially Impaired Move",
+                "impairedMovementFull":                             "Fully Impaired Move",
                 "knockedDown":                                      "Knocked Down",
                 "overwhelmed":                                      "overwhelmed",
                 "surprised":                                        "Surprised"
@@ -1132,7 +1132,22 @@
             "AssignLp": {
                 "description":                                      "Description",
                 "legendPoints":                                     "Legend Points"
+            },            "Buttons": {
+                "cancel":                                           "Cancel",
+                "close":                                            "Close",
+                "nightRest":                                        "Nightly Rest",
+                "noAbilityDex":                                     "Dexterity",
+                "noAbilityStr":                                     "Strength",
+                "recoverStun":                                      "Stun Damage Recovery",
+                "recovery":                                         "Recovey Test",
+                "roll":                                             "Roll",
+                "save":                                             "Save",
+                "takeDamage":                                       "Take Damage"
             },
+            "damage":                                               "Damage",
+            "damageStandard":                                       "Deadly Damage",
+            "damageStun":                                           "Stun Damage",
+            "damageType":                                           "Damage Type",
             "Errors": {
                 "noLp":                                             "No Legend Points entered!"
             },
@@ -1141,13 +1156,9 @@
                 "actorsNoUserConfigured":                           "Not Configured, Owned Actors",
                 "inactiveUser":                                     "Inactive User"
             },
-            "Navigator":{
-                "baseInput":                                        "Base Options",
-                "options":                                          "Other Options"
-            },
-            "Placeholder": {
-                "lpDescription":                                    "Enter your description here"
-            },
+            "ignoreArmor":                                          "Ignore Armor",
+            "jumpUpChoice":                                         "Chose the Ability to jump up",
+            "knockDownChoice":                                      "Chose the Ability to withstand the Knock Down",
             "Legend": {
                 "LearnSpell": {
                     "chatFlavorPatterncraft":                       "{name} tries to lern the {spell} spell.",
@@ -1193,32 +1204,35 @@
                 "spendLp":                                          "Spend Legend points",
                 "writtenRules":                                     "Rules"
             },
+            "mystical":                                             "Mystical Damage",
+            "Navigator":{
+                "baseInput":                                        "Base Options",
+                "options":                                          "Other Options"
+            },
+            "physical":                                             "Physical Damage",
+            "Placeholder": {
+                "lpDescription":                                    "Enter your description here"
+            },
+            "RollPrompt": {
+                "devotion":                                             "Devotion",
+                "devotionStep":                                         "Devotion Step",  
+                "difficulty":                                           "Difficulty",
+                "karma":                                                "Karma",
+                "karmaStep":                                            "Karma Step",
+                "modifier":                                             "Modifier",
+                "step":                                                 "Step",
+                "strain":                                               "Strain"
+            },
+            "Tabs": {
+                "rollPromptOtherTab":                                "Roll Prompt Other",
+                "rollPromptBaseTab":                                "Roll Prompt Base"
+            },
             "Title": {
                 "assignLp":                                         "Assign Legend Points",
                 "rollPrompt":                                       "Roll Options",
                 "recovery":                                         "Recovery Test",
                 "takeDamage":                                       "Take Damage"
-            },
-            "Buttons": {
-                "cancel":                                           "Cancel",
-                "close":                                            "Close",
-                "nightRest":                                        "Nightly Rest",
-                "noAbilityDex":                                     "Dexterity",
-                "noAbilityStr":                                     "Strength",
-                "recoverStun":                                      "Stun Damage Recovery",
-                "recovery":                                         "Recovey Test",
-                "save":                                             "Save",
-                "takeDamage":                                       "Take Damage"
-                },
-            "damage":                                               "Damage",
-            "damageStandard":                                       "Deadly Damage",
-            "damageStun":                                           "Stun Damage",
-            "damageType":                                           "Damage Type",
-            "ignoreArmor":                                          "Ignore Armor",
-            "jumpUpChoice":                                         "Chose the Ability to jump up",
-            "knockDownChoice":                                      "Chose the Ability to withstand the Knock Down",
-            "mystical":                                             "Mystical Damage",
-            "physical":                                             "Physical Damage"
+            }
         },
         "Documents": {
             "ActorSheetEdCharacter":                                "Character-sheet",

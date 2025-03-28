@@ -98,113 +98,113 @@
 </div>
 {{!-- Conditions --}}
 <div class="right-part">
-    <div class="partial__two">
-        <h3 class="margin__right">{{localize "ED.Actor.Header.conditions"}}</h3>
+    <div class="conditions__grid--wrapper">
+        <div class="conditions__grid--header">
+            <h3>{{localize "ED.Actor.Header.conditions"}}</h3>
+        </div>
         {{!-- aggressiveAttack --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.aggressiveAttack" {{checked
-                        actor.system.condition.aggressiveAttack}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.aggressiveAttack"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.aggressiveAttack" {{checked actor.system.condition.aggressiveAttack}}>
+            {{localize "ED.Actor.Conditions.aggressiveAttack"}}
+        </label>
         </div>
         {{!-- coverPartial --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.cover.partial" {{checked
-                        actor.system.condition.cover.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.coverPartial"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.cover.partial" {{checked actor.system.condition.cover.partial}}>
+            {{localize "ED.Actor.Conditions.coverPartial"}}
+        </label>
         </div>
         {{!-- coverFull --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.cover.full" {{checked
-                        actor.system.condition.cover.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.coverFull"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.cover.full" {{checked actor.system.condition.cover.full}}>
+            {{localize "ED.Actor.Conditions.coverFull"}}
+        </label>
         </div>
         {{!-- darknessPartial --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.darkness.partial" {{checked
-                        actor.system.condition.darkness.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.darknessPartial"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.darkness.partial" {{checked actor.system.condition.darkness.partial}}>
+            {{localize "ED.Actor.Conditions.darknessPartial"}}
+        </label>
         </div>
         {{!-- darknessFull --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.darkness.full" {{checked
-                        actor.system.condition.darkness.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.darknessFull"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.darkness.full" {{checked actor.system.condition.darkness.full}}>
+            {{localize "ED.Actor.Conditions.darknessFull"}}
+        </label>
         </div>
         {{!-- defensiveStance --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.defensiveStance" {{checked
-                        actor.system.condition.defensiveStance}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.defensiveStance"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.defensiveStance" {{checked actor.system.condition.defensiveStance}}>
+            {{localize "ED.Actor.Conditions.defensiveStance"}}
+        </label>
         </div>
         {{!-- fury --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.fury" {{checked
-                        actor.system.condition.fury}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.fury"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.fury" {{checked actor.system.condition.fury}}>
+            {{localize "ED.Actor.Conditions.fury"}}
+        </label>
         </div>
         {{!-- harried --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.harried" {{checked
-                        actor.system.condition.harried}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.harried"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.harried" {{checked actor.system.condition.harried}}>
+            {{localize "ED.Actor.Conditions.harried"}}
+        </label>
         </div>
         {{!-- impairedMovementPartial --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.partial" {{checked
-                        actor.system.condition.impairedMovement.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.impairedMovementPartial"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.impairedMovement.partial" {{checked actor.system.condition.impairedMovement.partial}}>
+            {{localize "ED.Actor.Conditions.impairedMovementPartial"}}
+        </label>
         </div>
         {{!-- impairedMovementFull --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.full" {{checked
-                        actor.system.condition.impairedMovement.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.impairedMovementFull"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.impairedMovement.full" {{checked actor.system.condition.impairedMovement.full}}>
+            {{localize "ED.Actor.Conditions.impairedMovementFull"}}
+        </label>
         </div>
         {{!-- knockedDown --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.knockedDown" {{checked
-                        actor.system.condition.knockedDown}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.knockedDown"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.knockedDown" {{checked actor.system.condition.knockedDown}}>
+            {{localize "ED.Actor.Conditions.knockedDown"}}
+        </label>
         </div>
         {{!-- surprised --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.surprised" {{checked
-                        actor.system.condition.surprised}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.surprised"}}</div>
+        <label class="condition-toggle__label">
+            <input type="checkbox" class="condition-toggle__input" name="system.condition.surprised" {{checked actor.system.condition.surprised}}>
+            {{localize "ED.Actor.Conditions.surprised"}}
+        </label>
         </div>
         {{!-- overwhelmed --}}
         <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input class="input__number-input input__circle-input--centered" name="system.condition.overwhelmed"
-                        value="{{actor.system.condition.overwhelmed}}">
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.overwhelmed"}}</div>
+        <label class="condition-toggle__label">
+            {{localize "ED.Actor.Conditions.overwhelmed"}}:
+            <input type="number"
+                name="system.condition.overwhelmed"
+                value="{{actor.system.condition.overwhelmed}}"
+                class="overwhelmed__input" />
+        </label>
         </div>
+</div>
+
     </div>
+  </div>
+</div>
+
+
+
+
 
   <!-- Attacks -->
   <div class="partial__two">
