@@ -540,6 +540,7 @@
           "executable":       "Executable",
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
+          "level":            "For status with multiple levels, like Harried or Darkness",
           "transferToTarget": "Transfer to target"
         },
         "Labels": {
@@ -549,6 +550,7 @@
           "executable":       "Executable",
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
+          "level":            "Level",
           "transferToTarget": "Transfer to target"
         }
       },
@@ -1425,10 +1427,6 @@
       },
       "Label":                  {
         "enforceLivingArmor": "Enforce Living Armor"
-      },
-      "LpTracking":             {
-        "hintQuickDeleteEmbeddedOnShiftClick": "RISKY: When enabled, you can delete embedded Items (like talents, effects, etc.) without a confirmation dialog by clicking the delete button (trash can) while holding the shift-key",
-        "quickDeleteEmbeddedOnShiftClick":     "Quick delete items with shift+click"
       },
       "SpecificSettingOptions": {
         "changelog":       "Changelog",

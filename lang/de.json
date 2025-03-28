@@ -624,6 +624,7 @@
           "executable":         "Hat dieser EAE einen eigens implementierten Effekt?",
           "executeOn":          "Wann wird dieses Effekt-Script ausgeführt?",
           "executionScript":    "Das Script das ausgeführt wird wenn dieser Effekt aktiviert wird",
+          "level":              "Für Status mit mehreren Stufen, wie Bedrängt oder Dunkelheit",
           "source":             "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
           "transferToTarget":   "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
@@ -637,6 +638,7 @@
           "executable":         "Ausführbar",
           "executeOn":          "Ausführungszeitpunkt",
           "executionScript":    "Script",
+          "level":              "Stufe",
           "source":             "Ursprung",
           "transferToTarget":   "Übertrage auf Ziel"
         }
@@ -1936,17 +1938,15 @@
         "enforceLivingArmor": "Lebendig Rüstungs Prüfung"
       },
       "LpTracking":             {
-        "allTalents":                          "Alle Talente für Kreisaufstieg",
-        "allTalentsHouseRule":                 "Alle Talente für Kreisaufstieg (Hausregel)",
-        "attributeOptions":                    "Kosten Attributesteigerung",
-        "circleTalentRequirements":            "Mindestanforderungen Talente bei Kreisaufstieg",
-        "disciplineTalents":                   "Disziplintalente auf nächstem Kreis",
-        "hintAttributeOptions":                "Regeln zum steigern von Attributen",
-        "hintCircleTalentRequirements":        "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
-        "hintLpTrackingUsed":                  "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
-        "hintQuickDeleteEmbeddedOnShiftClick": "VORSICHT: Wenn eingeschaltet können Items in Actors (z.B. Talente, Effekte, etc.) ohne Bestätigungsdialog gelöscht werden indem der Lösch-Button (Papierkorb) mit gehaltener Shift-Taste gedrückt wird",
-        "lpTrackingUsed":                      "Tracke Legendenpunkte",
-        "quickDeleteEmbeddedOnShiftClick":     "Lösche Items direkt mit Shift+Klick"
+        "allTalents":                   "Alle Talente für Kreisaufstieg",
+        "allTalentsHouseRule":          "Alle Talente für Kreisaufstieg (Hausregel)",
+        "attributeOptions":             "Kosten Attributesteigerung",
+        "circleTalentRequirements":     "Mindestanforderungen Talente bei Kreisaufstieg",
+        "disciplineTalents":            "Disziplintalente auf nächstem Kreis",
+        "hintAttributeOptions":         "Regeln zum steigern von Attributen",
+        "hintCircleTalentRequirements": "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
+        "hintLpTrackingUsed":           "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
+        "lpTrackingUsed":               "Tracke Legendenpunkte"
       },
       "SpecificSettingOptions": {
         "changelog":       "Änderungsprotokoll",

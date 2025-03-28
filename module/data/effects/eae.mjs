@@ -42,6 +42,13 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         label:    this.labelKey( "executionScript" ),
         hint:     this.hintKey( "executionScript" )
       } ),
+      level:            new fields.NumberField( {
+        nullable: true,
+        initial:  null,
+        integer:  true,
+        label:    this.labelKey( "level" ),
+        hint:     this.hintKey( "level" ),
+      } ),
       transferToTarget: new fields.BooleanField( {
         initial: false,
         label:   this.labelKey( "transferToTarget" ),

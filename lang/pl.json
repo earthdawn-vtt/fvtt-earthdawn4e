@@ -1,9 +1,13 @@
 {
   "ED":    {
-    "Settings": {
-      "LpTracking": {
-        "hintQuickDeleteEmbeddedOnShiftClick": "",
-        "quickDeleteEmbeddedOnShiftClick":     ""
+    "Data": {
+      "ActiveEffect": {
+        "Hints":  {
+          "level": ""
+        },
+        "Labels": {
+          "level": ""
+        }
       }
     }
   },
