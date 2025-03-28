@@ -48,7 +48,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         integer:  true,
         validate: ( value, options ) => {
           if ( options.source ) return;
-          if ( options.source.statuses.length !== 1 ) throw new Error( "Level can only be set for a single status." );
+          if ( options.source.statuses.size !== 1 ) throw new Error( "Level can only be set for a single status." );
         },
         label:    this.labelKey( "level" ),
         hint:     this.hintKey( "level" ),
@@ -200,7 +200,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.maxLevel = CONFIG.ED4E.statusEffects[ this.statuses[0] ]?.levels || null;
+    this.maxLevel = CONFIG.ED4E.statusEffects[ this.parent.statuses.first() ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
   }
 
@@ -214,7 +214,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    * @returns {Promise<EarthdawnActiveEffect|undefined>} The updated effect or undefined if the level could not be increased.
    */
   async increase( levels = 1 ) {
-    const maxLevel = this.maxLevel ?? CONFIG.ED4E.statusEffects[ this.statuses[0] ]?.levels;
+    const maxLevel = this.maxLevel ?? CONFIG.ED4E.statusEffects[ this.parent.statuses.first() ]?.levels;
     if ( !maxLevel || !( maxLevel > 1 ) || ( this.level === maxLevel ) ) return;
 
     const disabled = this.parent?.isDisabled;
