@@ -1,0 +1,1 @@
+This function finishes the Character Generation.

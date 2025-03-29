@@ -1,0 +1,1 @@
+This function validates whether a namegiver has been selected during character generation.

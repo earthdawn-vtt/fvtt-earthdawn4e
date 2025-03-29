@@ -1,0 +1,1 @@
+This function is basically a listener which reacts if a certain set of data is changed or clicked (e.g. pressing the reset button will reste the talent ranks etc.)

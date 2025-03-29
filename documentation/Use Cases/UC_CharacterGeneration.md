@@ -133,6 +133,8 @@ flowchart TD
 [UF_CharacterGeneration-validateNamegiver](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateNamegiver.md) <br>
 [UF_CharacterGeneration-validateSkills](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-validateSkills.md) <br>
 [UF_CharacterGeneration-waitPrompt](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-waitPrompt.md)<br>
+[UF_CharacterGeneration-hasNextStep](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-hasNextStep.md)<br>
+[UF_CharacterGeneration-hasPreviousTab](../User%20Functions/UF_CharacterGeneration/UF_CharacterGeneration-hasPreviousTab.md)<br>
 
 ### Related Test Coverage
 

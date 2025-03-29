@@ -1,0 +1,1 @@
+This Function is responsible for the set up of the Tabs
