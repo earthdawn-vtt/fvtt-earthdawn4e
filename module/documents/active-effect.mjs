@@ -1,6 +1,18 @@
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
+  /** @inheritDoc */
+  static async _fromStatusEffect( statusId, effectData, options ) {
+    foundry.utils.mergeObject( effectData, {
+      type:             "condition",
+      "system.primary": statusId,
+    } );
 
+    const { reference, levels } = CONFIG.ED4E.STATUS_CONDITIONS[ statusId ];
+    if ( reference ) effectData.description = `@Embed[${reference} caption=false cite=false inline]`;
+    if ( levels > 0 ) effectData.system.level = 1;
+
+    return new this( effectData, options );
+  }
 
   // region Properties
 
