@@ -194,7 +194,8 @@
   },
   "documentTypes": {
     "ActiveEffect": {
-      "eae": {}
+      "eae": {},
+      "condition": {}
     },
     "Actor": {
       "character": {},
