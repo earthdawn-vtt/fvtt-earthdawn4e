@@ -1,6 +1,7 @@
 import EarthdawnActiveEffectData from "./eae.mjs";
 
 const { NumberField, StringField } = foundry.data.fields;
+const { createFormGroup, createSelectInput } = foundry.applications.fields;
 
 /**
  * System data for 'Conditions'.
@@ -24,11 +25,15 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
       primary: new StringField( {
         required: true,
         blank:    false,
+        label:    this.labelKey( "primary" ),
+        hint:     this.hintKey( "primary" ),
       } ),
       level: new NumberField( {
         nullable: true,
         initial:  null,
         integer:  true,
+        label:    this.labelKey( "level" ),
+        hint:     this.hintKey( "level" ),
       } ),
     } );
   }
@@ -43,6 +48,46 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     this.parent.statuses.add( this.primary );
     this.maxLevel = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
+  }
+
+  // endregion
+
+  // region Rendering
+
+  levelsToFormGroup() {
+    const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
+    if ( !status || !this.level ) return;
+
+    let input;
+
+    if ( !status.levelNames ) {
+      input = this.schema.fields.level.toFormGroup( {
+        localize: true,
+        hint:     "",
+      }, {
+        value:    this.level,
+      } );
+    } else {
+      const groupConfig = {};
+      groupConfig.label = this.schema.fields.level.label;
+      groupConfig.classes = [ "status-level" ];
+      groupConfig.input = createSelectInput( {
+        type:    "single",
+        name:    "system.level",
+        options: status.levelNames.reduce( ( acc, value, index ) => {
+          if ( index !== 0 ) acc.push( {
+            value:    index,
+            label:    value,
+            selected: index === this.level
+          } );
+          return acc;
+        }, [] ),
+        sort: true
+      } );
+      input = createFormGroup( groupConfig );
+    }
+
+    return new Handlebars.SafeString( input.outerHTML ?? "" );
   }
 
   // endregion

@@ -13,10 +13,12 @@
     "Data":         {
       "ActiveEffect": {
         "Hints":  {
-          "level": ""
+          "level":   "",
+          "primary": ""
         },
         "Labels": {
-          "level": ""
+          "level":   "",
+          "primary": ""
         }
       }
     }

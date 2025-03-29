@@ -631,6 +631,7 @@
           "executeOn":          "Wann wird dieses Effekt-Script ausgeführt?",
           "executionScript":    "Das Script das ausgeführt wird wenn dieser Effekt aktiviert wird",
           "level":              "Für Status mit mehreren Stufen, wie Bedrängt oder Dunkelheit",
+          "primary":            "Der Statuseffekt auf den sich dieser Zustand und eine mögliche Stufe bezieht",
           "source":             "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
           "transferToTarget":   "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
@@ -645,6 +646,7 @@
           "executeOn":          "Ausführungszeitpunkt",
           "executionScript":    "Script",
           "level":              "Stufe",
+          "primary":            "Primärer Statuseffekt",
           "source":             "Ursprung",
           "transferToTarget":   "Übertrage auf Ziel"
         }

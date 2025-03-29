@@ -549,6 +549,7 @@
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
           "level":            "For status with multiple levels, like Harried or Darkness",
+          "primary":          "The status which this condition and its possible level refer to ",
           "transferToTarget": "Transfer to target"
         },
         "Labels": {
@@ -559,6 +560,7 @@
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
           "level":            "Level",
+          "primary":          "Primary Status",
           "transferToTarget": "Transfer to target"
         }
       },
