@@ -232,6 +232,7 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.fury",
     img:  "systems/ed4e/assets/icons/enraged.svg",
 
+    levels:    Number.POSITIVE_INFINITY, // no limit theoretically? or like an ability up to 15?
     reference: "TODO: Compendium UUID to explanation",
 
     type:     "eae",
