@@ -11,6 +11,7 @@ import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
 import * as utils from "../utils.mjs";
+import { staticStatusId } from "../utils.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig } = foundry.applications.sheets;
@@ -47,7 +48,12 @@ export default function () {
     CONFIG.ActiveEffect.legacyTransferral = false;
 
     // Set Status Effects
-    CONFIG.statusEffects = ED4E.statusEffects;
+    CONFIG.statusEffects = ED4E.statusEffects.map( ( status ) => {
+      return {
+        _id: staticStatusId( status.id ),
+        ...status,
+      };
+    } );
     Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
 
     // Hook up system data types
