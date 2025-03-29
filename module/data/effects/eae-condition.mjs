@@ -1,6 +1,6 @@
 import EarthdawnActiveEffectData from "./eae.mjs";
 
-const { NumberField, StringField } = foundry.data.fields.StringField;
+const { NumberField, StringField } = foundry.data.fields;
 
 /**
  * System data for 'Conditions'.
@@ -19,7 +19,7 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
   );
 
   /** @inheritDoc */
-  static defindeSchema() {
+  static defineSchema() {
     return foundry.utils.mergeObject( super.defineSchema(), {
       primary: new StringField( {
         required: true,
