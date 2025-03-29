@@ -263,6 +263,7 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.harried",
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
 
+    levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
   },
   {
@@ -295,6 +296,7 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.overwhelmed",
     img:  "systems/ed4e/assets/icons/dozen.svg",
 
+    levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
   },
   {
@@ -316,7 +318,6 @@ export const statusEffects = [
   },
   {
     id:    "unconscious",
-    _id:    "unconscious00000",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.unconscious",
     img:  "systems/ed4e/assets/icons/dead-head.svg",
