@@ -1,4 +1,5 @@
 import { COMMON_EAE_CHANGES } from "./effects.mjs";
+import { preLocalize } from "../utils.mjs";
 
 const STATUS_CHANGES = {
   aggressive: [
@@ -177,8 +178,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.cover",
     img:  "systems/ed4e/assets/icons/broken-wall.svg",
 
-    levels:    2, // partial and full
-    reference: "TODO: Compendium UUID to explanation",
+    levelNames: [ "", "ED.ActiveEffect.Status.coverPartial", "ED.ActiveEffect.Status.coverFull" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
   },
   {
     id:    "darkness",
@@ -186,8 +188,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.darkness",
     img:  "systems/ed4e/assets/icons/fog.svg",
 
-    levels:    2, // partial and full
-    reference: "TODO: Compendium UUID to explanation",
+    levelNames: [ "", "ED.ActiveEffect.Status.darknessPartial", "ED.ActiveEffect.Status.darknessFull" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
   },
   {
     id:    "dazzled",
@@ -273,8 +276,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.impaired",
     img:  "systems/ed4e/assets/icons/achilles-heel.svg",
 
-    levels:    2, // light and heavy
-    reference: "TODO: Compendium UUID to explanation",
+    levelNames: [ "", "ED.ActiveEffect.Status.impairedLight", "ED.ActiveEffect.Status.impairedHeavy" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
   },
   {
     id:    "knockedDown",
@@ -333,6 +337,9 @@ export const statusEffects = [
     statuses: new Set( [ "blindsided", "knockedDown" ] ),
   },
 ];
+statusEffects.forEach( ( status, index ) => {
+  if ( status.levelNames?.length > 0 ) preLocalize( `statusEffects.${index}.levelNames` );
+} );
 
 export const STATUS_CONDITIONS = statusEffects.reduce( ( acc, effect ) => {
   acc[ effect.id ] = effect;

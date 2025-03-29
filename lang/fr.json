@@ -1,6 +1,16 @@
 {
   "ED":    {
-    "Data": {
+    "ActiveEffect": {
+      "Status": {
+        "coverFull":       "",
+        "coverPartial":    "",
+        "darknessFull":    "",
+        "darknessPartial": "",
+        "impairedHeavy":   "",
+        "impairedLight":   ""
+      }
+    },
+    "Data":         {
       "ActiveEffect": {
         "Hints":  {
           "level": ""

@@ -28,6 +28,14 @@
       "Header":        {
         "applyToAbility": "Apply to Ability"
       },
+      "Status":        {
+        "coverFull":       "full",
+        "coverPartial":    "partial",
+        "darknessFull":    "full",
+        "darknessPartial": "partial",
+        "impairedHeavy":   "heavy",
+        "impairedLight":   "light"
+      },
       "newEffectName": "New Effect Name"
     },
     "Actor":         {
