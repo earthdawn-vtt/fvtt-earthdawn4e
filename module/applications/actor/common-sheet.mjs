@@ -141,7 +141,8 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     const itemId = target.parentElement.dataset.itemId;
     const item = this.document.items.get( itemId );
     if ( !item ) return;
-    return item.deleteDialog();
+    if ( event.shiftKey ) return item.delete();
+    else item.deleteDialog();
   }
 
   static async _onCardExpand( event, target ) {
@@ -206,7 +207,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
 
   /** @inheritDoc */
   static async _onDeleteChild( event, target ) {
-    ( await fromUuid( target.dataset.uuid ) ).deleteDialog();
+    const document = await fromUuid( target.dataset.uuid );
+    if ( event.shiftKey ) return document.delete();
+    else document.deleteDialog();
   }
 
   /** @inheritDoc */
