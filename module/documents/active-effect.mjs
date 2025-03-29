@@ -50,4 +50,48 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   // endregion
 
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  _onUpdate( changed, options, userId ) {
+    super._onUpdate( changed, options, userId );
+    if ( options.statusLevelDifference ) {
+      // When a status condition has its level changed, display scrolling status text.
+      this._displayScrollingStatus( options.statusLevelDifference > 0 );
+    }
+  }
+
+  // endregion
+
+  // region Rendering
+
+  /** @inheritdoc */
+  _displayScrollingStatus( enabled ) {
+    if ( !( this.statuses.size || this.changes.length ) ) return;
+
+    const actor = this.target;
+    const tokens = actor.getActiveTokens( true );
+    const text = ( this.parent.effects.has( this.id ) && Number.isInteger( this.system.level ) ) ?
+      `${this.name} (${this.system.level})` :
+      `${enabled ? "+" : "-"} ${this.name}`;
+    for ( let token of tokens ) {
+      if ( !token.visible || token.document.isSecret ) continue;
+      canvas.interface.createScrollingText(
+        token.center,
+        text,
+        {
+          anchor:          CONST.TEXT_ANCHOR_POINTS.CENTER,
+          direction:       enabled ? CONST.TEXT_ANCHOR_POINTS.TOP : CONST.TEXT_ANCHOR_POINTS.BOTTOM,
+          distance:        ( 2 * token.h ),
+          fontSize:        28,
+          stroke:          0x000000,
+          strokeThickness: 4,
+          jitter:          0.25,
+        },
+      );
+    }
+  }
+
+  // endregion
+
 }
