@@ -83,6 +83,23 @@ const STATUS_CHANGES = {
     },
   ],
   grappled:    COMMON_EAE_CHANGES.noMovement,
+  harried:     [
+    {
+      key:   "system.globalBonuses.allActions.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+  ],
   knockedDown: [
     {
       key:   "system.globalBonuses.allTests.value",
@@ -105,7 +122,24 @@ const STATUS_CHANGES = {
       value: 2,
     },
   ],
-  surprised: [
+  overwhelmed: [
+    {
+      key:   "system.globalBonuses.allActions.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+  ],
+  surprised:   [
     {
       key:   "system.characteristics.defenses.physical.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
@@ -267,7 +301,6 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.harried",
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
 
-    levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
   },
   {
