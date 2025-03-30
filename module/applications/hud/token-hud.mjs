@@ -1,10 +1,10 @@
-export default class TokenHUDED extends foundry.applications.hud.TokenHUD {
+export default class TokenHUDEd extends foundry.applications.hud.TokenHUD {
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     actions: {
       effect: {
-        handler: TokenHUDED.#onToggleEffect,
+        handler: TokenHUDEd.#onToggleEffect,
         buttons: [ 0, 2 ],
       },
     },

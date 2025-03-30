@@ -36,7 +36,7 @@ export default function () {
     CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
 
     CONFIG.Token.objectClass = canvas.TokenEd;
-    CONFIG.Token.hudClass = applications.hud.TokenHUDED;
+    CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
 
     // Register Roll Extensions
     CONFIG.Dice.rolls.splice( 0, 0, dice.EdRoll );
