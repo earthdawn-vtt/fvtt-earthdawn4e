@@ -451,14 +451,16 @@ export function resolvePath( object, path, defaultValue ){
 
 /**
  * Creates a new array by repeating the provided array a specified number of times.
- * @param {Array} arr   The array to be repeated.
+ * @param {Array} arr    The array to be repeated.
  * @param {number} times The number of times to repeat the array.
- * @returns {Array}     A new array with the repeated elements.
+ * @returns {Array}      A new array with the repeated elements.
+ * @throws {Error}       See `strict` option at {@link foundry.utils.deepClone} for details.
  * @example
  * multiplyArray( [1, 2, 3], 3 ) => [1, 2, 3, 1, 2, 3, 1, 2, 3]
  */
 export function multiplyArray( arr, times ) {
-  return Array.from( { length: times }, () => arr ).flat();
+  const clonedArray = foundry.utils.deepClone( arr, { strict: true } );
+  return Array.from( { length: times }, () => clonedArray ).flat();
 }
 
 /* -------------------------------------------- */
