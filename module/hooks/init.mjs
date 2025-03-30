@@ -29,6 +29,8 @@ export default function () {
     CONFIG.ActiveEffect.documentClass = documents.EarthdawnActiveEffect;
     CONFIG.Actor.documentClass = documents.ActorEd;
     CONFIG.ChatMessage.documentClass = documents.ChatMessageEd;
+    CONFIG.Combat.documentClass = documents.CombatEd;
+    CONFIG.Combatant.documentClass = documents.CombatantEd;
     CONFIG.Item.documentClass = documents.ItemEd;
     CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
 
