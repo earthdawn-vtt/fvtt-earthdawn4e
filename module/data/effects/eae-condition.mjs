@@ -52,12 +52,32 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
+
+    // For Item status
     this.parent.transfer = false;
+
+    // Add the primary status to the effect
     this.parent.statuses.add( this.primary );
+
+    // Set the level of the effect to its max if it is exceeded
     this.maxLevel = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
 
+    // Set the name of the effect to include the level if it is a status condition
     this.parent.name = this.getNameWithLevel( this.level );
+
+    // Apply the level by multiplying the value of each change by the level
+    this.parent.changes.forEach( ( change ) => {
+      if ( Number.isNumeric( change.value ) && this.level > 1 ) {
+        change.value = Number( change.value ) * this.level;
+      }
+    } );
+    this.changes.forEach( ( change ) => {
+      if ( Number.isNumeric( change.value ) && this.level > 1 ) {
+        change.value = Number( change.value ) * this.level;
+      }
+    } );
+
   }
 
   // endregion
