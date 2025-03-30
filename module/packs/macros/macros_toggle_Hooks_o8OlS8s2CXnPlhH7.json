@@ -16,12 +16,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.338",
     "systemId": "ed4e",
     "systemVersion": "1.0.0",
     "createdTime": 1735426520089,
     "modifiedTime": 1735426520089,
-    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys",
+    "exportSource": null
   },
   "_id": "o8OlS8s2CXnPlhH7",
   "sort": 0,

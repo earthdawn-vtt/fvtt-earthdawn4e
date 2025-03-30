@@ -1,0 +1,618 @@
+{
+  "name": "Character Generation",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Character generation",
+      "type": "text",
+      "_id": "pM6BmnwJU0AtXPwg",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The character generation is a small addition to the system, helping users to get started and helping them through that process without them having to know all relevant rules.</p><p>The character generation is separated into 7 different parts.</p><ol><li><p>Choose a namegiver</p></li><li><p>Choose a Vocation and assign Ability Ranks</p></li><li><p>Assign Attribute values</p></li><li><p>Choose Spells (optional)</p></li><li><p>Assign Skill Ranks</p></li><li><p>Choose Languages</p></li><li><p>Choose Equipment</p></li></ol><p>all of these steps will be explained in the following pages, but before there are a few pages with some information about necessary system settings which are required for the character generation to work smoothly.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.pM6BmnwJU0AtXPwg"
+    },
+    {
+      "sort": 200000,
+      "name": "System Settings (Earthdawn - Fourth Edition System)",
+      "type": "text",
+      "_id": "kFpt9c6sQTp9elsp",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>There are a few system settings which are used by the character generation and it is important to know them if, changes to those values are intended:</p><ul><li><p>Automatically start the Character generation (<strong>yes</strong>/no)</p></li><li><p>number of available attribute Points (<strong>25</strong>)</p></li><li><p>Maximum number of any Rank an ability can have (<strong>3</strong>)</p></li><li><p>Maximum circle a caster can choose spells from (<strong>2</strong>)</p><p></p></li></ul>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.kFpt9c6sQTp9elsp"
+    },
+    {
+      "sort": 300000,
+      "name": "Note for Homebrew",
+      "type": "text",
+      "_id": "R6k7KaB5rupajKJC",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>If the premium content for Earthdawn is not used, we would like to hint that several functions are only working if the settings are done correctly for a few items.</p><ul><li><p>A spellcasting discipline requires the magic setting of at least one talent to be set to one of the options in that setting and the \"thread-weaving\" option has to be set.</p></li></ul>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.R6k7KaB5rupajKJC"
+    },
+    {
+      "sort": 400000,
+      "name": "System Settings (Core)",
+      "type": "text",
+      "_id": "HwgHqsQwqjqkMELe",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The character generation requires some setting in the core settings as well. For it to work, the user requires the right to create new actors.</p><p>Configure Permissions/Player/Create Actors</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.HwgHqsQwqjqkMELe"
+    },
+    {
+      "sort": 500000,
+      "name": "Compendium Settings (and world)",
+      "type": "text",
+      "_id": "iSemNT5YzsUaT2jW",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The character generation does not provide all the data itself, it rather relies on the compendium and world data. For every specific item type (e.g. Disciplines) the character generation searches through all items of that type in the world and all compendiums which are made available to the user. The user has to have at least the <strong>Observer</strong> right for the character generation to use that item.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.iSemNT5YzsUaT2jW"
+    },
+    {
+      "sort": 600000,
+      "name": "Step 1: Choose a Namegiver",
+      "type": "text",
+      "_id": "2r6Ieqdrqffu9dME",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The first step is fairly easy. There is only one option.</p><p></p><p>Choose a namegiver.</p><p></p><p>some Namegiver provide special abilities (effects or even extra Talents). Those will be added to the actor, or show up in the further process (like talents or skills)</p><p></p><p>This step is <strong>mandatory</strong> for a successful character generation.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.2r6Ieqdrqffu9dME"
+    },
+    {
+      "sort": 700000,
+      "name": "Step 2: Choose a Vocation",
+      "type": "text",
+      "_id": "5tnZXWrfAVbX7so6",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The second step of the character generation is to choose a vocation. By default the available disciplines are listed as options, but it is also possible not to play an adept but a questor (this is an optional rule and should be discussed with the game master).</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.5tnZXWrfAVbX7so6"
+    },
+    {
+      "sort": 800000,
+      "name": "Step 2.1: Choose a Discipline",
+      "type": "text",
+      "_id": "6XVnmpsFpt9mZY6f",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>If a discipline is chosen, the lower part of the dialog will show all discipline- and free talents from the first circle on the right side. The left side will show all talents from the Novice Pool of that discipline.</p><p>If the Namegiver items has some talents available as well (humans or windlings e.g.), those will show up at the very bottom.</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.6XVnmpsFpt9mZY6f"
+    },
+    {
+      "sort": 900000,
+      "name": "Step 2.1.1: Assign Talent Ranks",
+      "type": "text",
+      "_id": "Ijuvo2dFbiVZ6FKw",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Each character has the option to choose one optional Talent and assign the available Ranks to the Talents available to him.</p><p>A reset all ranks button will reset those points, otherwise, it is also possible to switch an optional talent, which will reset all assigned talent ranks to that previous optional talent. Changing the discipline will of course reset the ranks as well.</p><p>It is <strong>mandatory</strong> to spend all talent ranks to successfully finish the character generation.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.Ijuvo2dFbiVZ6FKw"
+    },
+    {
+      "sort": 1000000,
+      "name": "Step 2.2: Choose a Questor",
+      "type": "text",
+      "_id": "ZRtBZTv1W7Ooocl9",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>An alternative to playing an Adept, is to play a questor.  Namegiver Talents can not be changed by a questor, they still require a certain amount of Magic to work.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.ZRtBZTv1W7Ooocl9"
+    },
+    {
+      "sort": 1100000,
+      "name": "Step 2.2.1: Assign Devotion Rank",
+      "type": "text",
+      "_id": "UlhkUQ5Ia6ddgBfI",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The Rules for questors as starting characters are pretty thin, so we decided to allow each questor to start with the questor devotion and on devotion from the Follower Pool. Choosing to become a questor will show all optional devotions on the left side to be able to assign one rank to one of them.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.UlhkUQ5Ia6ddgBfI"
+    },
+    {
+      "sort": 1200000,
+      "name": "Step 3: Assign Attribute values",
+      "type": "text",
+      "_id": "O4r1l1rHqeUIZRYY",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>the Attribute Tab enables the user to distribute attribute points (the number is fixed by a system setting, default is 25) to each of the six attributes.</p><p>The base value of the attributes are based on the chosen namegiver.</p><p>the cost for increase and decrease are shown in the dialog as well as the preview on characteristics and health values an increase or decrease would have.</p><p>Health values are affected by the toughness attribute.</p><p>Physical Defense and Initiative are affected by the dexterity attribute.</p><p>Mystical Defense is affected by the perception attribute.</p><p>Social Defense is affected by the charisma attribute.</p><p>Mystical Armor is affected by the willpower attribute.</p><p>Carrying capacity is affected by the strength attribute.</p><p></p><p>Unspent points will be added to the Karma maximum by an one to one rate.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.O4r1l1rHqeUIZRYY"
+    },
+    {
+      "sort": 1300000,
+      "name": "Step 4: Choose Spells (Optional)",
+      "type": "text",
+      "_id": "mmkc8WvLyuUmGZ6r",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>If the chosen vocation is a spellcaster (containing a thread weaving talent with a chosen magic type) this step will contain all available spells (this choice are set up in the system settings, by default circle 1 and circle 2). by clicking on a spell it will be added and to the known spells. The Available spell points are equal to the perception step. A spell costs as many spell points as its circle.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.mmkc8WvLyuUmGZ6r"
+    },
+    {
+      "sort": 1400000,
+      "name": "Step 5: Assign Skill Ranks",
+      "type": "text",
+      "_id": "9pyTRw3216FrAbox",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This step contains possible a high number of skills a user can choose from. The Character generation will guide the user through the process by showing a minimum of Ranks the user has to distribute to each skill type (artisan, knowledge, languages and general). </p><p>By default each Actor has 2 Ranks in Speak language and 1 Rank in read and write language. In addition the user can choose 2 ranks in any knowledge skill and one in any artisan skill. At last, the user can distribute 8 points freely on any available skill.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.9pyTRw3216FrAbox"
+    },
+    {
+      "sort": 1500000,
+      "name": "Step 6: Choose Languages",
+      "type": "text",
+      "_id": "bsB2LDFr1eCiyFdj",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This step provides two options, where the user can choose as many languages (spoken and or written) based on the related skill ranks from the skill assignment (see @UUID[Compendium.ed4e.manual-english.JournalEntry.BwhzcnWAlqsngJdm.JournalEntryPage.9pyTRw3216FrAbox]{Step 5: Assign Skill Ranks}) </p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.bsB2LDFr1eCiyFdj"
+    },
+    {
+      "sort": 1600000,
+      "name": "Step 7: Choose Equipment",
+      "type": "text",
+      "_id": "Nc963LnjLTmiQxFx",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The last part of the Character Generation is, for the user to choose equipment items for the actor. </p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "8Bui55zHy6pkFEEc": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_key": "!journal.pages!UhlmXRya0GmbL30o.Nc963LnjLTmiQxFx"
+    }
+  ],
+  "folder": null,
+  "categories": [],
+  "ownership": {
+    "default": 0,
+    "8Bui55zHy6pkFEEc": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1743367795689,
+    "modifiedTime": 1743367805811,
+    "lastModifiedBy": "8Bui55zHy6pkFEEc"
+  },
+  "_id": "UhlmXRya0GmbL30o",
+  "sort": 100000,
+  "_key": "!journal!UhlmXRya0GmbL30o"
+}
