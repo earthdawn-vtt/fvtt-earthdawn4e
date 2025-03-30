@@ -90,8 +90,7 @@ The Functional Specification holds the content of the system Manuals and extents
 
 
 A use case is a specific function or workflow. it contains a diagram (sometimes it does not if the use case does not require one), a list of connected user functions and a list of test cases.
-everytime a code change is made, the user function attached to the changed function leads to one or more Use cases. The touched use case itself provides a list of potential tests to cover that the functionality of the use case is still provided by the changes. 
-
+every time a code change is made, the user function attached to the changed function leads to one or more Use cases. The touched use case itself provides a list of potential tests to cover that the functionality of the use case is still provided by the changes.
 #### User Functions
 
 Every user function contains a brief description about its functionality. This description is - if necessary - separated into a description and a technical part.
