@@ -449,6 +449,18 @@ export function resolvePath( object, path, defaultValue ){
   return path.split( "." ).reduce( ( o, p ) => o ? o[p] : defaultValue, object );
 }
 
+/**
+ * Creates a new array by repeating the provided array a specified number of times.
+ * @param {Array} arr   The array to be repeated.
+ * @param {number} times The number of times to repeat the array.
+ * @returns {Array}     A new array with the repeated elements.
+ * @example
+ * multiplyArray( [1, 2, 3], 3 ) => [1, 2, 3, 1, 2, 3, 1, 2, 3]
+ */
+export function multiplyArray( arr, times ) {
+  return Array.from( { length: times }, () => arr ).flat();
+}
+
 /* -------------------------------------------- */
 
 /**
