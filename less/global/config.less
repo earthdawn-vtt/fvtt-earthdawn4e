@@ -3,61 +3,92 @@
     src: url('fonts/ArnoPro-Bold.otf');
     font-weight: bold;
   }
-  @font-face {
-    font-family: 'ArnoPro BoldItalic';
-    src: url('fonts/ArnoPro-BoldItalic.otf');
-    font-weight: bold;
-    font-style: italic;
-  }
+
+@font-face {
+  font-family: 'ArnoPro BoldItalic';
+  src: url('fonts/ArnoPro-BoldItalic.otf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ArnoPro Italic';
+  src: url('fonts/ArnoPro-Italic.otf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ArnoPro Regular';
+  src: url('fonts/ArnoPro-Regular.otf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WarhorseDIY';
+  src: url('fonts/Warhorse Deco BB diy Regular.otf');
+  font-style: normal;
+}
+
+//starting letter
+@font-face {
+  font-family: 'OldLondon';
+  src: url('fonts/Olondon_.otf');
+  font-style: normal;
+}
+
+.ArnoProRegular () {
+  font-family: 'ArnoPro Regular', serif;
+  // font-size: large;
+  font-size: 1.05em;
+}
+
+.ArnoProBold () {
+  font-family: 'ArnoPro Bold', serif;
+}
+
+.ArnoProItalic () {
+  font-family: 'ArnoPro Italic', serif;
+}
+
+.ArnoProBoldItalic () {
+  font-family: 'ArnoPro BoldItalic', serif;
+}
+
+.WarhorseDIY () {
+  font-family: 'WarhorseDIY', serif;
+}
+
+.OldLondon () {
+  font-family: 'OldLondon', serif;
+}
   
-  @font-face {
-    font-family: 'ArnoPro Italic';
-    src: url('fonts/ArnoPro-Italic.otf');
-    font-style: italic;
+:root {
+  --color-transparent: rgba(0, 0, 0, 0);
+  --color-gold-1: rgba(50, 40, 30);
+  --color-gold-2: rgba(70, 55, 20);
+  --color-gold-3: rgba(120, 90, 40);
+  --color-gold-4: rgba(200, 155, 60);
+  --color-gold-5: rgba(200, 170, 110);
+  .theme-dark {
+    --color-gold-text: rgba(230, 210, 200);
+    --color-npc-blue-1: rgba(3, 4, 10);
+    --color-npc-blue-1-35: rgb(3, 4, 10, 0.35);
+    --color-npc-blue-2: rgba(21, 18, 54);
+    --color-npc-blue-2-35: rgba(21, 18, 54, 0.35);
+    --color-npc-blue-3: rgba(55, 61, 117);
+    --color-npc-blue-3-35: rgba(55, 61, 117, 0.35);
+    --color-pc-green-1: rgba(2, 3, 0);
+    --color-pc-green-1-35: rgba(2, 3, 0, 0.35);
+    --color-pc-green-2: rgba(22, 46, 28);
+    --color-pc-green-2-35: rgba(22, 46, 28, 0.35);
+    --color-pc-green-3: rgba(58, 118, 62);
+    --color-pc-green-3-35: rgba(58, 118, 62, 0.35);
+    --color-grey-dark: rgba(16, 16, 16);
+    --color-gold-text: rgba(230, 210, 200);
   }
+  .theme-light {
+    --color-gold-text: black;
+  }
+}
   
-  @font-face {
-    font-family: 'ArnoPro Regular';
-    src: url('fonts/ArnoPro-Regular.otf');
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'WarhorseDIY';
-    src: url('fonts/Warhorse Deco BB diy Regular.otf');
-    font-style: normal;
-  }
-  
-  //starting letter
-  @font-face {
-    font-family: 'OldLondon';
-    src: url('fonts/Olondon_.otf');
-    font-style: normal;
-  }
-  
-  .ArnoProRegular () {
-    font-family: 'ArnoPro Regular', serif;
-    // font-size: large;
-    font-size: 1.05em;
-  }
-  
-  .ArnoProBold () {
-    font-family: 'ArnoPro Bold', serif;
-  }
-  
-  .ArnoProItalic () {
-    font-family: 'ArnoPro Italic', serif;
-  }
-  
-  .ArnoProBoldItalic () {
-    font-family: 'ArnoPro BoldItalic', serif;
-  }
-  
-  .WarhorseDIY () {
-    font-family: 'WarhorseDIY', serif;
-  }
-  
-  .OldLondon () {
-    font-family: 'OldLondon', serif;
-  }
   

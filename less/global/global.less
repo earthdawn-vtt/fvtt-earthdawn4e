@@ -5,27 +5,39 @@
     float: left;
     width: 50%;
 }
-
 .partial__three {
     float: left;
     width: 33.3%;
 }
-
 .partial__four {
     float: left;
     width: 25%;
 }
-
 .partial__five {
     float: left;
     width: 20%;
 }
-
 .partial__six {
     float: left;
     width: 16.6%;
 }
-
+//###########################################################
+//                       window header
+//###########################################################
+.window-header {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 4px;
+    .window-title {
+        display: none;
+    }
+    .header-button {
+        margin-left: 4px;
+    }
+}  
 //###########################################################
 //                       header
 //###########################################################
@@ -85,6 +97,7 @@ input.input__number-input {
     text-align: center;
 }
 
+
 //###########################################################
 //                       Fonts
 //###########################################################
@@ -124,7 +137,9 @@ input.input__number-input {
 .display__inline-block {
     display: inline-block;
 }
-
+.application .window-content {
+    backdrop-filter: none;
+}
 //###########################################################
 //                       spaces
 //###########################################################
