@@ -24,13 +24,7 @@ const STATUS_CHANGES = {
       value: -3,
     },
   ],
-  blindness:  [
-    {
-      key:   "system.globalBonuses.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
-      value: -4,
-    },
-  ],
+  blindness:  COMMON_EAE_CHANGES.darknessFull,
   blindsided: [
     {
       key:   "system.characteristics.defenses.physical.value",
@@ -43,13 +37,7 @@ const STATUS_CHANGES = {
       value: -3,
     },
   ],
-  dazzled:  [
-    {
-      key:   "system.globalBonuses.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
-      value: -2,
-    },
-  ],
+  dazzled:   COMMON_EAE_CHANGES.darknessPartial,
   defensive: [
     {
       key:   "system.characteristics.defenses.physical.value",
@@ -169,7 +157,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.aggressive,
     system:  {
       changes: STATUS_CHANGES.aggressive,
@@ -183,7 +171,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.blindness,
     system:  {
       // only for sight based tests
@@ -199,7 +187,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.blindsided,
     system:  {
       // only against the attack that caused the blindsided effect
@@ -215,6 +203,12 @@ export const statusEffects = [
     levelNames: [ "", "ED.ActiveEffect.Status.coverPartial", "ED.ActiveEffect.Status.coverFull" ],
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.coverPartial,
+    system:  {
+      changes: COMMON_EAE_CHANGES.coverPartial,
+    },
   },
   {
     id:    "darkness",
@@ -225,6 +219,12 @@ export const statusEffects = [
     levelNames: [ "", "ED.ActiveEffect.Status.darknessPartial", "ED.ActiveEffect.Status.darknessFull" ],
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.darknessPartial,
+    system:  {
+      changes: COMMON_EAE_CHANGES.darknessPartial,
+    },
   },
   {
     id:    "dazzled",
@@ -234,7 +234,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.dazzled,
     system:  {
       // only for sight based tests
@@ -257,7 +257,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.defensive,
     system:  {
       changes: STATUS_CHANGES.defensive,
@@ -272,7 +272,7 @@ export const statusEffects = [
     levels:    Number.POSITIVE_INFINITY, // no limit theoretically? or like an ability up to 15?
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.fury,
     system:  {
       // add custom handling: only up to level of fury
@@ -287,7 +287,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.grappled,
     system:  {
       // can't move, can take no actions without beating the unarmed combat test
@@ -302,6 +302,12 @@ export const statusEffects = [
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
 
     reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  STATUS_CHANGES.harried,
+    system:  {
+      changes: STATUS_CHANGES.harried,
+    },
   },
   {
     id:    "impaired",
@@ -312,6 +318,12 @@ export const statusEffects = [
     levelNames: [ "", "ED.ActiveEffect.Status.impairedLight", "ED.ActiveEffect.Status.impairedHeavy" ],
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.impairedLight,
+    system:  {
+      changes: COMMON_EAE_CHANGES.impairedLight,
+    },
   },
   {
     id:    "knockedDown",
@@ -321,7 +333,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.knockedDown,
     system:  {
       // unset other combat options, can't be used
@@ -336,6 +348,12 @@ export const statusEffects = [
 
     levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  STATUS_CHANGES.overwhelmed,
+    system:  {
+      changes: STATUS_CHANGES.overwhelmed,
+    },
   },
   {
     id:    "surprised",
@@ -345,7 +363,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes:  STATUS_CHANGES.surprised,
     duration: STATUS_DURATIONS.surprised,
     system:   {
@@ -362,7 +380,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "eae",
+    type:     "condition",
     changes: [ {} ],
     system:  {
       changes: [ {} ],
