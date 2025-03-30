@@ -12,7 +12,7 @@ In addition to those directly related system settings, there are a few more whic
 - Languages (the list of languages available in the game will be shown as configured during the character generation)
 - Spells will only be visible if the spellcasting type of the thread weaving talent (with ID of the talent equal to *thread-weaving* - if the config was not changed.)
 
-It is important to mention that the character generation itself does not provide enough items (namegiver, Disciplines, talents, etc.) to run the character generation. For the character generation to work properly, the user needs have access to the items they shall be able to choose from (The user needs at least Observer rights):
+It is important to mention that the character generation itself does not provide enough items (namegiver, Disciplines, talents, etc.) to run the character generation. For the character generation to work properly, the user needs to have access to the items they shall be able to choose from (The user needs at least Observer rights):
 - Namegiver
 - Disciplines
 - Questors
