@@ -82,8 +82,7 @@ Talent ranks in speak or read and write language are not available at this point
 
 ## Equipment
 
-In this last tab, the user can choose the equipment for the actor simply by selecting the relevant items. The available equipments are provided by the system itself and can be found in the "Core Equipment - English" compendium in "Earthdawn Content". Further shopping has to be done after character generation is done.
-
+In this last tab, the user can choose the equipment for the actor simply by selecting the relevant items. The available equipment is provided by the system itself and can be found in the "Core Equipment - English" compendium in "Earthdawn Content". Further shopping has to be done after character generation is done.
 ## Finish Character Generation
 
 After all steps of the character generation have been completed, the finish button will create a new actor ready to play.
