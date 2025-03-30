@@ -71,9 +71,8 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
     const actor = this.target;
     const tokens = actor.getActiveTokens( true );
-    const levelName = CONFIG.ED4E.statusEffects.find( status => status.id === this.system.primary )?.levelNames?.[ this.system.level ];
     const text = ( this.parent.effects.has( this.id ) && Number.isInteger( this.system.level ) ) ?
-      `${this.name} (${levelName ?? this.system.level})` :
+      this.name :
       `${enabled ? "+" : "-"} ${this.name}`;
 
     for ( let token of tokens ) {

@@ -38,6 +38,14 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     } );
   }
 
+  // region Properties
+
+  get hasLevelNames() {
+    return CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levelNames?.length > 0;
+  }
+
+  // endregion
+
   // region Data Preparation
 
 
@@ -48,6 +56,8 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     this.parent.statuses.add( this.primary );
     this.maxLevel = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
+
+    this.parent.name = this.getNameWithLevel( this.level );
   }
 
   // endregion
@@ -103,10 +113,11 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     const maxLevel = this.maxLevel ?? CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels;
     if ( !maxLevel || !( maxLevel > 1 ) || ( this.level === maxLevel ) ) return;
 
+    const newLevel = Math.min( maxLevel, this.level + levels );
     const disabled = this.parent?.isDisabled;
-    const diff = Math.min( maxLevel, this.level + levels ) - this.level;
+    const diff = newLevel - this.level;
     return this.parent.update( {
-      "system.level": Math.min( maxLevel, this.level + levels ),
+      "system.level": newLevel,
       disabled:       false,
     }, {
       statusLevelDifference: disabled ? undefined : diff
@@ -120,9 +131,11 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
    */
   async decrease() {
     const disabled = this.parent?.isDisabled;
-    const diff = ( this.level - 1 ) - this.level;
+    const newLevel = this.level - 1;
+    const diff = newLevel - this.level;
+
     return this.parent.update( {
-      "system.level": this.level - 1,
+      "system.level": newLevel,
       disabled:       false,
     }, {
       statusLevelDifference: disabled ? undefined : diff
@@ -130,4 +143,19 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
   }
 
   // endregion
+
+  getNameWithLevel( level ) {
+    const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
+    const baseName = this.parent._source.name;
+    if ( !status || !status?.levels ) return baseName;
+
+    if ( status.levelNames ) {
+      const levelName = status.levelNames[ level ] ?? "";
+      return `${baseName} (${levelName})`;
+    }
+
+    if ( level === 1 ) return baseName;
+
+    return `${baseName} (${level})`;
+  }
 }
