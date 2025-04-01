@@ -11,6 +11,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   // #region CONSTRUCTOR
   /**
+   * @inheritdoc
    * @param {object} charGen {CharacterGenerationData}
    * @param {object} options {object}
    * @param {object} documentCollections {object}
@@ -69,6 +70,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   // #region DEFAULT_OPTIONS
   /**
+   * @inheritdoc
    * @userFunction UF_CharacterGeneration-defaultOptions
    */
   static DEFAULT_OPTIONS = {
@@ -243,6 +245,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region PREPARE CONTENT
   /**
    * Prepare the context for rendering the character generation prompt.
+   * @inheritdoc
    * @param {object} [options] - Options to customize the context preparation. Defaults to an empty object.
    * @returns {Promise<object>} The prepared context object.
    * @userFunction UF_CharacterGeneration-prepareContext
@@ -354,6 +357,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region _preparePartContext
   /**
    * Prepares the context for a specific part of the character generation prompt.
+   * @inheritdoc
    * @param {string} partId - The ID of the part to prepare context for.
    * @param {object} context - The context object to be prepared.
    * @param {object} options - Additional options for context preparation.
@@ -390,6 +394,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * Prepares the context for the tabs in the character generation prompt.
+   * @inheritdoc
    * @param {object} context - The context object to be prepared.
    * @param {object} _ - Unused parameter.
    * @returns {Promise<object>} The prepared context object with updated tabs.
