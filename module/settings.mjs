@@ -2,6 +2,9 @@ import ED4E from "./config/_module.mjs";
 
 import EdIdField from "./data/fields/edid-field.mjs";
 
+const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
+
+
 /**
  * Get an ed4e setting from the system settings.
  * @param {string} settingKey   The key of the setting to get.
@@ -48,8 +51,6 @@ export function getEdIds() {
  * Register all the system's settings.
  */
 export default function registerSystemSettings() {
-
-  const fields = foundry.data.fields;
 
   /* -------------------------------------------------------------------------------- */
   /*                                      ED-IDs                                      */
@@ -163,6 +164,19 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
+  // region CONTROLS
+
+  game.settings.register( "ed4e", "quickDeleteEmbeddedOnShiftClick", {
+    config:  true,
+    type:    new BooleanField( {
+      initial:  false,
+      label:    "ED.Settings.LpTracking.quickDeleteEmbeddedOnShiftClick",
+      hint:     "ED.Settings.LpTracking.hintQuickDeleteEmbeddedOnShiftClick",
+    } ),
+  } );
+
+  // endregion
+
   /* -------------------------------------------------------------------------------- */
   /*                                  STEP TABLES                                     */
   /* -------------------------------------------------------------------------------- */
@@ -261,7 +275,7 @@ export default function registerSystemSettings() {
     hint:   "ED.Settings.CharGen.hintMaxSpellCircle",
     scope:  "world",
     config: true,
-    type:   new fields.NumberField( {
+    type:   new NumberField( {
       required: true,
       nullable: false,
       min:      1,
@@ -304,7 +318,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintAttributeOption",
     scope:   "world",
     config:  true,
-    type:    new fields.StringField( {
+    type:    new StringField( {
       initial:  "spendLp",
       choices:  ED4E.attributeIncreaseRules,
       label:    "ED.Settings.LpTracking.attributeOptions",
@@ -348,7 +362,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintMaxRankTalent",
     scope:   "world",
     config:  true,
-    type:    new fields.NumberField( {
+    type:    new NumberField( {
       min:     0,
       step:    1,
       integer: true,
@@ -365,7 +379,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintMaxRankSkill",
     scope:   "world",
     config:  true,
-    type:    new fields.NumberField( {
+    type:    new NumberField( {
       min:     0,
       step:    1,
       integer: true,
@@ -382,7 +396,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintMaxRankDevotion",
     scope:   "world",
     config:  true,
-    type:    new fields.NumberField( {
+    type:    new NumberField( {
       min:     0,
       step:    1,
       integer: true,
@@ -399,7 +413,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintSpellCost",
     scope:   "world",
     config:  true,
-    type:    new fields.StringField( {
+    type:    new StringField( {
       required: true,
       nullable: false,
       blank:    false,
@@ -419,7 +433,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintLearnSpellUsePatterncraft",
     scope:   "world",
     config:  true,
-    type:    new fields.BooleanField( {
+    type:    new BooleanField( {
       required: true,
       nullable: false,
       initial:  true,
@@ -437,7 +451,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.LpTracking.hintLearnSpellsOnCircleUp",
     scope:   "world",
     config:  true,
-    type:    new fields.BooleanField( {
+    type:    new BooleanField( {
       required: true,
       nullable: false,
       initial:  true,
@@ -491,8 +505,8 @@ export default function registerSystemSettings() {
     hint:   "ED.Settings.Mechanics.languagesHint",
     scope:  "world",
     config: true,
-    type:   new fields.SetField(
-      new fields.StringField( {
+    type:   new SetField(
+      new StringField( {
         blank: false,
       } ),
       {
@@ -512,8 +526,8 @@ export default function registerSystemSettings() {
     scope:   "world",
     config:  true,
     default:  Object.values( ED4E.spellcastingTypes ),
-    type:    new fields.SetField(
-      new fields.StringField( {
+    type:    new SetField(
+      new StringField( {
         blank: false,
       } ),
       {
@@ -546,7 +560,7 @@ export default function registerSystemSettings() {
     scope:   "world",
     config:  true,
     default: 2,
-    type:    new fields.NumberField( {
+    type:    new NumberField( {
       required: true,
       nullable: false,
       min:      0,

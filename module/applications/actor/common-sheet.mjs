@@ -1,4 +1,5 @@
 import ED4E from "../../config/_module.mjs";
+import { getSetting } from "../../settings.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -141,7 +142,8 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     const itemId = target.parentElement.dataset.itemId;
     const item = this.document.items.get( itemId );
     if ( !item ) return;
-    return item.deleteDialog();
+    if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) return item.delete();
+    else item.deleteDialog();
   }
 
   static async _onCardExpand( event, target ) {
@@ -206,7 +208,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
 
   /** @inheritDoc */
   static async _onDeleteChild( event, target ) {
-    ( await fromUuid( target.dataset.uuid ) ).deleteDialog();
+    const document = await fromUuid( target.dataset.uuid );
+    if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) return document.delete();
+    else document.deleteDialog();
   }
 
   /** @inheritDoc */

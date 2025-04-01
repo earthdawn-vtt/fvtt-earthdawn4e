@@ -1,45 +1,52 @@
 {
-    "TYPES": {
-        "Actor": {
-            "character":                                       "Character",
-            "creature":                                        "Creature",
-            "dragon":                                          "Dragon",
-            "group":                                           "Group",
-            "horror":                                          "Horror",
-            "loot":                                            "Loot",
-            "npc":                                             "NPC",
-            "spirit":                                          "Spirit",
-            "trap":                                            "Trap",
-            "vehicle":                                         "Vehicle"
-        },
-        "Item": {
-            "armor":                                            "Armor",
-            "attack":                                           "Attack",
-            "bindingSecret":                                    "Binding Secret",
-            "cursemark":                                        "Curse / Horror mark",
-            "devotion":                                         "Devotion",
-            "discipline":                                       "Discipline",
-            "effect":                                           "Effect",
-            "equipment":                                        "Equipment",
-            "knack":                                            "Knack",
-            "maneuver":                                         "Maneuver",
-            "mask":                                             "Mask",
-            "matrix":                                           "Matrix",
-            "namegiver":                                        "Namegiver",
-            "path":                                             "Path",
-            "poisonDisease":                                    "Poison / Disease",
-            "power":                                            "Power",
-            "questor":                                          "Questor",
-            "shield":                                           "Shield",
-            "skill":                                            "Skill",
-            "specialAbility":                                   "Special Ability",
-            "spell":                                            "Spell",
-            "spellKnack":                                       "Spell Knack",
-            "talent":                                           "Talent",
-            "thread":                                           "Permanent Thread",
-            "weapon":                                           "Weapon",
-            "shipWeapon":                                       "Ship Weapon"
-        }
+  "ED":    {
+    "Settings": {
+      "LpTracking": {
+        "hintQuickDeleteEmbeddedOnShiftClick": "",
+        "quickDeleteEmbeddedOnShiftClick":     ""
+      }
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "creature":  "Creature",
+      "dragon":    "Dragon",
+      "group":     "Group",
+      "horror":    "Horror",
+      "loot":      "Loot",
+      "npc":       "NPC",
+      "spirit":    "Spirit",
+      "trap":      "Trap",
+      "vehicle":   "Vehicle"
     },
-    "ED": {}
+    "Item":  {
+      "armor":          "Armor",
+      "attack":         "Attack",
+      "bindingSecret":  "Binding Secret",
+      "cursemark":      "Curse / Horror mark",
+      "devotion":       "Devotion",
+      "discipline":     "Discipline",
+      "effect":         "Effect",
+      "equipment":      "Equipment",
+      "knack":          "Knack",
+      "maneuver":       "Maneuver",
+      "mask":           "Mask",
+      "matrix":         "Matrix",
+      "namegiver":      "Namegiver",
+      "path":           "Path",
+      "poisonDisease":  "Poison / Disease",
+      "power":          "Power",
+      "questor":        "Questor",
+      "shield":         "Shield",
+      "shipWeapon":     "Ship Weapon",
+      "skill":          "Skill",
+      "specialAbility": "Special Ability",
+      "spell":          "Spell",
+      "spellKnack":     "Spell Knack",
+      "talent":         "Talent",
+      "thread":         "Permanent Thread",
+      "weapon":         "Weapon"
+    }
+  }
 }
