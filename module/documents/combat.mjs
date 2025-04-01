@@ -18,9 +18,33 @@ export default class CombatEd extends foundry.documents.Combat {
   }
 
   /** @inheritdoc */
-  _onStartRound( context ) {
+  async startCombat() {
+    // maybe execute effects?
+    return super.startCombat();
+  }
+
+  /** @inheritdoc */
+  async endCombat() {
+    // maybe execute effects?
+    return super.endCombat();
+  }
+
+  /** @inheritdoc */
+  async _onStartRound( context ) {
     // ask for changing stances
     // maybe execute effects?
+    return super._onStartRound( context );
+  }
+
+  /** @inheritdoc */
+  async _onEndRound( context ) {
+    // maybe execute effects?
+    return super._onEndRound( context );
+  }
+
+  /** @inheritdoc */
+  async _onStartTurn( combatant, context ) {
+    return super._onStartTurn( combatant, context );
   }
 
   /** @inheritdoc */
