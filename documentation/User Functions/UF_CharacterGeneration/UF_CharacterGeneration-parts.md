@@ -1,0 +1,1 @@
+This function sets the parameter of eath tab of the dialog and defines the html file which contains the data of the tab.

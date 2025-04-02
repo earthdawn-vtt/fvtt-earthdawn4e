@@ -1,0 +1,1 @@
+This function resets spend points of a certain type (attributes, talent ranks, skill ranks etc.)

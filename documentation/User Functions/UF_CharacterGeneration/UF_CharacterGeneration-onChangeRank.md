@@ -1,0 +1,1 @@
+This function listens on a rank change of skills or talents.

@@ -12,11 +12,11 @@ In addition to those directly related system settings, there are a few more whic
 - Languages (the list of languages available in the game will be shown as configured during the character generation)
 - Spells will only be visible if the spellcasting type of the thread weaving talent (with ID of the talent equal to *thread-weaving* - if the config was not changed.)
 
-It is important to mention that the character generation itself does not provide enough items (namegiver, Disciplines, talents, etc.) to run the character generation. For the character generation to work properly, the user needs access to the items they shall be able to choose from:
+It is important to mention that the character generation itself does not provide enough items (namegiver, Disciplines, talents, etc.) to run the character generation. For the character generation to work properly, the user needs to have access to the items they shall be able to choose from (The user needs at least Observer rights):
 - Namegiver
 - Disciplines
 - Questors
-- Talents (in case of the versatility talent is made use of additional talents from the start)
+- Talents
 - Skills
 - Spells
 
@@ -82,8 +82,7 @@ Talent ranks in speak or read and write language are not available at this point
 
 ## Equipment
 
-In this last tab, the user can choose the equipment for the actor simply by selecting the relevant items.
-
+In this last tab, the user can choose the equipment for the actor simply by selecting the relevant items. The available equipment is provided by the system itself and can be found in the "Core Equipment - English" compendium in "Earthdawn Content". Further shopping has to be done after character generation is done.
 ## Finish Character Generation
 
 After all steps of the character generation have been completed, the finish button will create a new actor ready to play.

@@ -1,0 +1,1 @@
+This function validates whether a class has been selected during character generation.

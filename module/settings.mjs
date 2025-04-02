@@ -229,7 +229,7 @@ export default function registerSystemSettings() {
 
   // Auto open char gen on PC document creation
   /**
-   * @userFunction                UF_Settings-languages
+   * @userFunction                UF_Settings-autoOpenCharGen
    */
   game.settings.register( "ed4e", "autoOpenCharGen", {
     name:    "ED.Settings.CharGen.autoOpenCharGen",

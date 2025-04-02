@@ -1,0 +1,1 @@
+This function validates whether all attribute points have been assigned during character generation.

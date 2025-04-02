@@ -64,12 +64,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.338",
     "systemId": "ed4e",
     "systemVersion": "1.0.0",
     "createdTime": 1735940941987,
     "modifiedTime": 1736372138801,
-    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
   },
   "_key": "!items!9sTzuUGNIgIJaVEu"
 }

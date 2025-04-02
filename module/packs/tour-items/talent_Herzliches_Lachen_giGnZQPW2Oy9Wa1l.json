@@ -59,12 +59,13 @@
   "_stats": {
     "compendiumSource": "Compendium.ed4e.tour-items.Item.68QE77pXrHcjCvw4",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.338",
     "systemId": "ed4e",
     "systemVersion": "1.0.0",
     "createdTime": 1735426502289,
     "modifiedTime": 1735426502289,
-    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys",
+    "exportSource": null
   },
   "_id": "giGnZQPW2Oy9Wa1l",
   "sort": 0,

@@ -51,12 +51,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "13.334",
+    "coreVersion": "13.338",
     "systemId": "ed4e",
     "systemVersion": "1.0.0",
     "createdTime": 1738882916117,
     "modifiedTime": 1738882916117,
-    "lastModifiedBy": "rPFgd0diupqFkxKD"
+    "lastModifiedBy": "rPFgd0diupqFkxKD",
+    "exportSource": null
   },
   "_id": "5JL8GoElYCipxBPF",
   "sort": 0,
