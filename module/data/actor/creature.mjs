@@ -1,10 +1,13 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
 
 /**
  * System data definition for creatures.
  * @mixin
  */
-export default class CreatureData extends SentientTemplate {
+export default class CreatureData extends SentientTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
   /** @inheritDoc */
   static _systemType = "creature";

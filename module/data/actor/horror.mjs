@@ -1,10 +1,13 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
 
 /**
  * System data definition for dragons.
  * @mixin
  */
-export default class HorrorData extends SentientTemplate {
+export default class HorrorData extends SentientTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
   /** @inheritDoc */
   static _systemType = "horror";

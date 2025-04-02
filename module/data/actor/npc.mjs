@@ -1,4 +1,4 @@
-import ActorDescriptionTemplate from "./templates/description.mjs";
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import NamegiverTemplate from "./templates/namegiver.mjs";
 
 /**
@@ -6,7 +6,7 @@ import NamegiverTemplate from "./templates/namegiver.mjs";
  * @mixin
  */
 export default class NpcData extends NamegiverTemplate.mixin(
-  ActorDescriptionTemplate
+  NoneCharacterTemplate
 ) {
 
   /** @inheritDoc */
