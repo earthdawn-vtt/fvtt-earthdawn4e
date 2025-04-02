@@ -1,6 +1,20 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
 import * as game from "../hooks/_module.mjs";
+import ArmorMigration from "./migration/item/old-system/armor.mjs";
+import DevotionMigration from "./migration/item/old-system/devotion.mjs";
+import DisciplineMigration from "./migration/item/old-system/discipline.mjs";
+import EquipmentnMigration from "./migration/item/old-system/equipment.mjs";
+import KnackMigration from "./migration/item/old-system/knack.mjs";
+import MaskMigration from "./migration/item/old-system/mask.mjs";
+import MatrixMigration from "./migration/item/old-system/matrix.mjs";
+import NamegiverMigration from "./migration/item/old-system/namegiver.mjs";
+import PowerMigration from "./migration/item/old-system/power.mjs";
+import ShieldMigration from "./migration/item/old-system/shield.mjs";
+import SkillMigration from "./migration/item/old-system/skill.mjs";
+import SpellMigration from "./migration/item/old-system/spell.mjs";
+import TalentMigration from "./migration/item/old-system/talent.mjs";
+import WeaponMigration from "./migration/item/old-system/weapon.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.
@@ -251,5 +265,29 @@ export default class ItemEd extends Item {
   }
 
   // endregion
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
+
+  static migrateData( source ) {
+    source = super.migrateData( source );
+
+    if ( source.type === "armor" )            ArmorMigration.migrateData( source );
+    else if ( source.type === "devotion" )    DevotionMigration.migrateData( source );
+    else if ( source.type === "discipline" )  DisciplineMigration.migrateData( source );
+    else if ( source.type === "equipment" )   EquipmentnMigration.migrateData( source );
+    else if ( source.type === "knack" )       KnackMigration.migrateData( source );
+    else if ( source.type === "mask" )        MaskMigration.migrateData( source );
+    else if ( source.type === "spellmatrix" ) MatrixMigration.migrateData( source );
+    else if ( source.type === "namegiver" )   NamegiverMigration.migrateData( source );
+    else if ( source.type === "attack" )      PowerMigration.migrateData( source );
+    else if ( source.type === "shield" )      ShieldMigration.migrateData( source );
+    else if ( source.type === "skill" )       SkillMigration.migrateData( source );
+    else if ( source.type === "spell" )       SpellMigration.migrateData( source );
+    else if ( source.type === "talent" )      TalentMigration.migrateData( source );
+    else if ( source.type === "weapon" )      WeaponMigration.migrateData( source );
+    return source;
+  }
 
 }
