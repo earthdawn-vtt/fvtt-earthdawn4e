@@ -1,6 +1,6 @@
 <section class="tab {{tabs.equipment.cssClass}}" data-group="sheet" data-tab="equipment">
-    {{log this}}
-    {{#unless (ne this.actor.type "character")}}
+    {{!-- {{#unless (ne this.actor.type "character")}} --}}
+    {{#if (eq this.actor.type "character")}}
     <div>
         {{localize "ED.Actor.Header.carryingCapacity"}}
 
@@ -23,7 +23,8 @@
 
         das Grit muss am ende noch angepasst werden.
     </div>
-    {{/unless}}
+    {{/if}}
+    {{!-- {{/unless}} --}}
 {{!-- Armor --}}
 <div class="equipment-card__grid--container font__bold text-break__auto">
     <div class="equipment-card__grid--item text__alignment--center"></div>
