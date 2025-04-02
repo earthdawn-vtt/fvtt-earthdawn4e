@@ -261,6 +261,16 @@ export function replaceFormulaData( formula, data, { actor, item, missing="0", p
   return newFormula;
 }
 
+/**
+ * Create a unique id for a status condition.
+ * @param {string} status     The primary status.
+ * @returns {string}          A unique 16-character id.
+ */
+export function staticStatusId( status ) {
+  if ( status.length >= 16 ) return status.substring( 0, 16 );
+  return status.padEnd( 16, "0" );
+}
+
 /* -------------------------------------------- */
 /*  View Helper                                 */
 /* -------------------------------------------- */
@@ -437,6 +447,20 @@ export function renameKeysWithPrefix( obj ) {
  */
 export function resolvePath( object, path, defaultValue ){
   return path.split( "." ).reduce( ( o, p ) => o ? o[p] : defaultValue, object );
+}
+
+/**
+ * Creates a new array by repeating the provided array a specified number of times.
+ * @param {Array} arr    The array to be repeated.
+ * @param {number} times The number of times to repeat the array.
+ * @returns {Array}      A new array with the repeated elements.
+ * @throws {Error}       See `strict` option at {@link foundry.utils.deepClone} for details.
+ * @example
+ * multiplyArray( [1, 2, 3], 3 ) => [1, 2, 3, 1, 2, 3, 1, 2, 3]
+ */
+export function multiplyArray( arr, times ) {
+  const clonedArray = foundry.utils.deepClone( arr, { strict: true } );
+  return Array.from( { length: times }, () => clonedArray ).flat();
 }
 
 /* -------------------------------------------- */

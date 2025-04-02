@@ -2,7 +2,12 @@
 <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
 
   {{#if isActorEffect}}
+    <fieldset>
     {{formGroup fields.statuses value=source.statuses options=statuses rootId=rootId classes="statuses"}}
+    {{#if hasLevels}}
+      {{{levelInput}}}
+    {{/if}}
+    </fieldset>
   {{/if}}
 
   {{formGroup systemFields.executable value=source.system.executable rootId=rootId localize=true}}

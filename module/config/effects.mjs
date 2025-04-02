@@ -4,6 +4,50 @@ import { movementTypes } from "./quantities.mjs";
 
 
 export const COMMON_EAE_CHANGES = {
+  coverPartial: [
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +2,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: +2,
+    },
+  ],
+  darknessPartial: [
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+  ],
+  darknessFull: [
+    {
+      key:   "system.globalBonuses.allTests.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -4,
+    },
+  ],
+  impairedLight: Object.entries(
+    movementTypes
+  ).map( ( [ key, label ] ) => {
+    return {
+      key:   `system.characteristics.movement.${key}`,
+      value: -5,
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+    };
+  } ),
+  impairedHeavy: Object.entries(
+    movementTypes
+  ).map( ( [ key, label ] ) => {
+    return {
+      key:   `system.characteristics.movement.${key}`,
+      value: -10,
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+    };
+  } ),
   noMovement: Object.entries(
     movementTypes
   ).map( ( [ key, label ] ) => {

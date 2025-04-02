@@ -28,6 +28,14 @@
       "Header":        {
         "applyToAbility": "Apply to Ability"
       },
+      "Status":        {
+        "coverFull":       "full",
+        "coverPartial":    "partial",
+        "darknessFull":    "full",
+        "darknessPartial": "partial",
+        "impairedHeavy":   "heavy",
+        "impairedLight":   "light"
+      },
       "newEffectName": "New Effect Name"
     },
     "Actor":         {
@@ -540,6 +548,8 @@
           "executable":       "Executable",
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
+          "level":            "For status with multiple levels, like Harried or Darkness",
+          "primary":          "The status which this condition and its possible level refer to ",
           "transferToTarget": "Transfer to target"
         },
         "Labels": {
@@ -549,6 +559,8 @@
           "executable":       "Executable",
           "executeOn":        "Execute On",
           "executionScript":  "Execution Script",
+          "level":            "Level",
+          "primary":          "Primary Status",
           "transferToTarget": "Transfer to target"
         }
       },
@@ -1425,10 +1437,6 @@
       },
       "Label":                  {
         "enforceLivingArmor": "Enforce Living Armor"
-      },
-      "LpTracking":             {
-        "hintQuickDeleteEmbeddedOnShiftClick": "RISKY: When enabled, you can delete embedded Items (like talents, effects, etc.) without a confirmation dialog by clicking the delete button (trash can) while holding the shift-key",
-        "quickDeleteEmbeddedOnShiftClick":     "Quick delete items with shift+click"
       },
       "SpecificSettingOptions": {
         "changelog":       "Changelog",

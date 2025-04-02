@@ -1,9 +1,25 @@
 {
   "ED":    {
-    "Settings": {
-      "LpTracking": {
-        "hintQuickDeleteEmbeddedOnShiftClick": "",
-        "quickDeleteEmbeddedOnShiftClick":     ""
+    "ActiveEffect": {
+      "Status": {
+        "coverFull":       "",
+        "coverPartial":    "",
+        "darknessFull":    "",
+        "darknessPartial": "",
+        "impairedHeavy":   "",
+        "impairedLight":   ""
+      }
+    },
+    "Data":         {
+      "ActiveEffect": {
+        "Hints":  {
+          "level":   "",
+          "primary": ""
+        },
+        "Labels": {
+          "level":   "",
+          "primary": ""
+        }
       }
     }
   },

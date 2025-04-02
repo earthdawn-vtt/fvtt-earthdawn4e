@@ -8,7 +8,7 @@ import LegendPointHistory from "../applications/advancement/lp-history.mjs";
 import LpEarningTransactionData from "../data/advancement/lp-earning-transaction.mjs";
 import LpSpendingTransactionData from "../data/advancement/lp-spending-transaction.mjs";
 import LpTrackingData from "../data/advancement/lp-tracking.mjs";
-import { sum } from "../utils.mjs";
+import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
@@ -183,6 +183,41 @@ export default class ActorEd extends Actor {
 
   // endregion
 
+  // region Active Effects
+
+  /**
+   * @inheritDoc
+   * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
+   * @param {object} [options]          Additional options which modify how the effect is created
+   * @param {boolean} [options.active]  Force the effect to be active or inactive regardless of its current state
+   * @param {boolean} [options.overlay] Display the toggled effect as an overlay
+   * @param {number} [options.levels]   A potential level increase.
+   */
+  async toggleStatusEffect( statusId, { active, overlay = false, levels = 1 } ) {
+    const staticId = staticStatusId( statusId );
+    const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
+    const effect = this.effects.get( staticId );
+    active ??= !effect || ( effect && hasLevels );
+
+    if ( active ) {
+      if ( effect && hasLevels ) return effect.system.increase( levels );
+      else if ( hasLevels && ( levels > 1 ) ) {
+        const ActiveEffectCls = futils.getDocumentClass( "ActiveEffect" );
+        const effect = await ActiveEffectCls.fromStatusEffect( statusId );
+        const data = futils.mergeObject( effect.toObject(), {
+          _id:             staticId,
+          "system.levels": levels,
+        } );
+        return ActiveEffectCls.create( data, { keepId: true } );
+      }
+    } else {
+      const decrease = effect && hasLevels && ( effect.system.level > 1 );
+      if ( decrease ) return effect.system.decrease();
+    }
+    return super.toggleStatusEffect( statusId, { active, overlay } );
+  }
+
+  // endregion
 
   /**
    * @description                       Returns all ammunitoin items of the given actor

@@ -31,22 +31,28 @@
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
       "Status":        {
-        "aggressive":  "Aggressiver Angriff",
-        "blindness":   "Blindheit",
-        "blindsided":  "Im Toten Winkel",
-        "cover":       "Deckung",
-        "darkness":    "Dunkelheit",
-        "dazzled":     "Geblendet",
-        "dead":        "Tot",
-        "defensive":   "Abwehrhaltung",
-        "fury":        "Zorn",
-        "grappled":    "Umklammert",
-        "harried":     "Bedrängt",
-        "impaired":    "Eingeschränkte Bewegung",
-        "knockedDown": "Niedergeschlagen",
-        "overwhelmed": "Überwältigt",
-        "surprised":   "Überrascht",
-        "unconscious": "Bewusstlos"
+        "aggressive":      "Aggressiver Angriff",
+        "blindness":       "Blindheit",
+        "blindsided":      "Im Toten Winkel",
+        "cover":           "Deckung",
+        "coverFull":       "voll",
+        "coverPartial":    "teilweise",
+        "darkness":        "Dunkelheit",
+        "darknessFull":    "voll",
+        "darknessPartial": "teilweise",
+        "dazzled":         "Geblendet",
+        "dead":            "Tot",
+        "defensive":       "Abwehrhaltung",
+        "fury":            "Zorn",
+        "grappled":        "Umklammert",
+        "harried":         "Bedrängt",
+        "impaired":        "Eingeschränkte Bewegung",
+        "impairedHeavy":   "stark",
+        "impairedLight":   "leicht",
+        "knockedDown":     "Niedergeschlagen",
+        "overwhelmed":     "Überwältigt",
+        "surprised":       "Überrascht",
+        "unconscious":     "Bewusstlos"
       },
       "Tooltips":      {
         "abilityEdidSelection": "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
@@ -624,6 +630,8 @@
           "executable":         "Hat dieser EAE einen eigens implementierten Effekt?",
           "executeOn":          "Wann wird dieses Effekt-Script ausgeführt?",
           "executionScript":    "Das Script das ausgeführt wird wenn dieser Effekt aktiviert wird",
+          "level":              "Für Status mit mehreren Stufen, wie Bedrängt oder Dunkelheit",
+          "primary":            "Der Statuseffekt auf den sich dieser Zustand und eine mögliche Stufe bezieht",
           "source":             "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
           "transferToTarget":   "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
         },
@@ -637,6 +645,8 @@
           "executable":         "Ausführbar",
           "executeOn":          "Ausführungszeitpunkt",
           "executionScript":    "Script",
+          "level":              "Stufe",
+          "primary":            "Primärer Statuseffekt",
           "source":             "Ursprung",
           "transferToTarget":   "Übertrage auf Ziel"
         }
@@ -1936,17 +1946,15 @@
         "enforceLivingArmor": "Lebendig Rüstungs Prüfung"
       },
       "LpTracking":             {
-        "allTalents":                          "Alle Talente für Kreisaufstieg",
-        "allTalentsHouseRule":                 "Alle Talente für Kreisaufstieg (Hausregel)",
-        "attributeOptions":                    "Kosten Attributesteigerung",
-        "circleTalentRequirements":            "Mindestanforderungen Talente bei Kreisaufstieg",
-        "disciplineTalents":                   "Disziplintalente auf nächstem Kreis",
-        "hintAttributeOptions":                "Regeln zum steigern von Attributen",
-        "hintCircleTalentRequirements":        "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
-        "hintLpTrackingUsed":                  "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
-        "hintQuickDeleteEmbeddedOnShiftClick": "VORSICHT: Wenn eingeschaltet können Items in Actors (z.B. Talente, Effekte, etc.) ohne Bestätigungsdialog gelöscht werden indem der Lösch-Button (Papierkorb) mit gehaltener Shift-Taste gedrückt wird",
-        "lpTrackingUsed":                      "Tracke Legendenpunkte",
-        "quickDeleteEmbeddedOnShiftClick":     "Lösche Items direkt mit Shift+Klick"
+        "allTalents":                   "Alle Talente für Kreisaufstieg",
+        "allTalentsHouseRule":          "Alle Talente für Kreisaufstieg (Hausregel)",
+        "attributeOptions":             "Kosten Attributesteigerung",
+        "circleTalentRequirements":     "Mindestanforderungen Talente bei Kreisaufstieg",
+        "disciplineTalents":            "Disziplintalente auf nächstem Kreis",
+        "hintAttributeOptions":         "Regeln zum steigern von Attributen",
+        "hintCircleTalentRequirements": "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
+        "hintLpTrackingUsed":           "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
+        "lpTrackingUsed":               "Tracke Legendenpunkte"
       },
       "SpecificSettingOptions": {
         "changelog":       "Änderungsprotokoll",

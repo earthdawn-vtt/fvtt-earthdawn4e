@@ -1,4 +1,5 @@
 import { COMMON_EAE_CHANGES } from "./effects.mjs";
+import { preLocalize } from "../utils.mjs";
 
 const STATUS_CHANGES = {
   aggressive: [
@@ -23,13 +24,7 @@ const STATUS_CHANGES = {
       value: -3,
     },
   ],
-  blindness:  [
-    {
-      key:   "system.globalBonuses.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
-      value: -4,
-    },
-  ],
+  blindness:  COMMON_EAE_CHANGES.darknessFull,
   blindsided: [
     {
       key:   "system.characteristics.defenses.physical.value",
@@ -42,13 +37,7 @@ const STATUS_CHANGES = {
       value: -3,
     },
   ],
-  dazzled:  [
-    {
-      key:   "system.globalBonuses.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
-      value: -2,
-    },
-  ],
+  dazzled:   COMMON_EAE_CHANGES.darknessPartial,
   defensive: [
     {
       key:   "system.characteristics.defenses.physical.value",
@@ -82,6 +71,23 @@ const STATUS_CHANGES = {
     },
   ],
   grappled:    COMMON_EAE_CHANGES.noMovement,
+  harried:     [
+    {
+      key:   "system.globalBonuses.allActions.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -2,
+    },
+  ],
   knockedDown: [
     {
       key:   "system.globalBonuses.allTests.value",
@@ -104,7 +110,24 @@ const STATUS_CHANGES = {
       value: 2,
     },
   ],
-  surprised: [
+  overwhelmed: [
+    {
+      key:   "system.globalBonuses.allActions.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+    {
+      key:   "system.characteristics.defenses.physical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+    {
+      key:   "system.characteristics.defenses.mystical.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -1,
+    },
+  ],
+  surprised:   [
     {
       key:   "system.characteristics.defenses.physical.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
@@ -132,7 +155,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.aggressive",
     img:  "systems/ed4e/assets/icons/confrontation.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.aggressive,
     system:  {
       changes: STATUS_CHANGES.aggressive,
@@ -144,7 +169,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.blindness",
     img:  "icons/svg/blind.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.blindness,
     system:  {
       // only for sight based tests
@@ -158,7 +185,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.blindsided",
     img:  "systems/ed4e/assets/icons/backstab.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.blindsided,
     system:  {
       // only against the attack that caused the blindsided effect
@@ -170,12 +199,32 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.cover",
     img:  "systems/ed4e/assets/icons/broken-wall.svg",
+
+    levelNames: [ "", "ED.ActiveEffect.Status.coverPartial", "ED.ActiveEffect.Status.coverFull" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.coverPartial,
+    system:  {
+      changes: COMMON_EAE_CHANGES.coverPartial,
+    },
   },
   {
     id:    "darkness",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.darkness",
     img:  "systems/ed4e/assets/icons/fog.svg",
+
+    levelNames: [ "", "ED.ActiveEffect.Status.darknessPartial", "ED.ActiveEffect.Status.darknessFull" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.darknessPartial,
+    system:  {
+      changes: COMMON_EAE_CHANGES.darknessPartial,
+    },
   },
   {
     id:    "dazzled",
@@ -183,7 +232,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.dazzled",
     img:  "systems/ed4e/assets/icons/laser-sparks.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.dazzled,
     system:  {
       // only for sight based tests
@@ -195,6 +246,8 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.dead",
     img:  "icons/svg/skull.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
   },
   {
     id:    "defensive",
@@ -202,7 +255,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.defensive",
     img:  "systems/ed4e/assets/icons/surrounded-shield.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.defensive,
     system:  {
       changes: STATUS_CHANGES.defensive,
@@ -214,7 +269,10 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.fury",
     img:  "systems/ed4e/assets/icons/enraged.svg",
 
-    type:     "eae",
+    levels:    Number.POSITIVE_INFINITY, // no limit theoretically? or like an ability up to 15?
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.fury,
     system:  {
       // add custom handling: only up to level of fury
@@ -227,7 +285,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.grappled",
     img:  "systems/ed4e/assets/icons/grab.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.grappled,
     system:  {
       // can't move, can take no actions without beating the unarmed combat test
@@ -240,12 +300,30 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.harried",
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  STATUS_CHANGES.harried,
+    system:  {
+      changes: STATUS_CHANGES.harried,
+    },
   },
   {
     id:    "impaired",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.impaired",
     img:  "systems/ed4e/assets/icons/achilles-heel.svg",
+
+    levelNames: [ "", "ED.ActiveEffect.Status.impairedLight", "ED.ActiveEffect.Status.impairedHeavy" ],
+    levels:     2,
+    reference:  "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  COMMON_EAE_CHANGES.impairedLight,
+    system:  {
+      changes: COMMON_EAE_CHANGES.impairedLight,
+    },
   },
   {
     id:    "knockedDown",
@@ -253,7 +331,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.knockedDown",
     img:  "icons/svg/falling.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.knockedDown,
     system:  {
       // unset other combat options, can't be used
@@ -265,6 +345,15 @@ export const statusEffects = [
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.overwhelmed",
     img:  "systems/ed4e/assets/icons/dozen.svg",
+
+    levels:    Number.POSITIVE_INFINITY, // no limit
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  STATUS_CHANGES.overwhelmed,
+    system:  {
+      changes: STATUS_CHANGES.overwhelmed,
+    },
   },
   {
     id:    "surprised",
@@ -272,7 +361,9 @@ export const statusEffects = [
     name: "ED.ActiveEffect.Status.surprised",
     img:  "systems/ed4e/assets/icons/surprised.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes:  STATUS_CHANGES.surprised,
     duration: STATUS_DURATIONS.surprised,
     system:   {
@@ -283,12 +374,13 @@ export const statusEffects = [
   },
   {
     id:    "unconscious",
-    _id:    "unconscious00000",
     hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
     name: "ED.ActiveEffect.Status.unconscious",
     img:  "systems/ed4e/assets/icons/dead-head.svg",
 
-    type:     "eae",
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
     changes: [ {} ],
     system:  {
       changes: [ {} ],
@@ -296,6 +388,14 @@ export const statusEffects = [
     statuses: new Set( [ "blindsided", "knockedDown" ] ),
   },
 ];
+statusEffects.forEach( ( status, index ) => {
+  if ( status.levelNames?.length > 0 ) preLocalize( `statusEffects.${index}.levelNames` );
+} );
+
+export const STATUS_CONDITIONS = statusEffects.reduce( ( acc, effect ) => {
+  acc[ effect.id ] = effect;
+  return acc;
+}, {} ) ;
 
 export const specialStatusEffects = {
   BLIND:     "blindness",
