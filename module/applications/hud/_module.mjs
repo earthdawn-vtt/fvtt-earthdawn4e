@@ -1,1 +1,1 @@
-export { default as TokenHUDED } from "./token-hud.mjs";
+export { default as TokenHUDEd } from "./token-hud.mjs";
