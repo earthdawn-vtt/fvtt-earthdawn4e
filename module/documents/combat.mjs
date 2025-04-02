@@ -67,7 +67,7 @@ export default class CombatEd extends foundry.documents.Combat {
     const effects = combatant.effects.filter( effect => effect.system?.executeOn === executionTime );
 
     for ( const effect of effects ) {
-      if ( !effect.disabled ) await effect.execute();
+      if ( !effect.disabled ) await effect.system.execute();
     }
   }
 
