@@ -8,10 +8,10 @@ export default class KnackMigration {
   static async migrateData( source ) {
 
     // change the document type of knack to the new, more differentiated type by name or knackType
-    if ( source.name.includes( "[Karma]" ) || source.knackType === "karma" ) {
+    if ( source.name.includes( "[Karma]" ) || source.system.knackType === "karma" ) {
       source.type = "knackKarma";
       KnackKarmaData.migrateData( source.system );
-    } else if ( source.name.includes( "[Spezialmanöver]" ) || source.knackType === "maneuver" ) {
+    } else if ( source.name.includes( "[Spezialmanöver]" ) || source.system.knackType === "maneuver" ) {
       source.type = "knackManeuver";
       KnackManeuverData.migrateData( source.system );
     } else if ( source.knackType === "spell" ) {
