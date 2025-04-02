@@ -12,6 +12,10 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
+import AttackRollOptions from "../data/roll/attack.mjs";
+import { getSetting } from "../settings.mjs";
+import CharacterMigration from "./migration/actor/old-system/character.mjs";
+import NoneCharacterMigration from "./migration/actor/old-system/none-character.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 
 const futils = foundry.utils;
@@ -669,9 +673,7 @@ export default class ActorEd extends Actor {
    *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
-   
-
-
+  // eslint-disable-next-line max-params
   takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
@@ -1174,6 +1176,18 @@ export default class ActorEd extends Actor {
     return this.update( {
       [`system.lp.${type}`]: oldTransactions.concat( [ transaction ] )
     } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
+
+  static migrateData( source ) {
+    source = super.migrateData( source );
+
+    if ( source.type === "pc" ) CharacterMigration.migrateData( source );
+    else if ( source.type === "npc" || source.type === "Creature" ) NoneCharacterMigration.migrateData( source );
+    return source;
   }
 
 }
