@@ -25,6 +25,21 @@
           "level":   "",
           "primary": ""
         }
+      },
+      "General":      {
+        "Hints":  {
+          "Combatant": {
+            "increaseAbilities":      "",
+            "replacementEffect":      "",
+            "showStartOfRoundPrompt": ""
+          }
+        },
+        "Labels": {
+          "Combatant": {
+            "increaseAbilities": "",
+            "replacementEffect": ""
+          }
+        }
       }
     }
   },

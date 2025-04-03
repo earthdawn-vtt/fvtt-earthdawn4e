@@ -397,249 +397,43 @@
               "applyToAbility":                                   "Apply to Ability"
           }
       },
-      "Actor": {
-          "Abilities": {
+      "General":                      {
+        "Hints":  {
+          "Combatant": {
+            "increaseAbilities":      "Abilities that augment the normal initiative step",
+            "replacementEffect":      "An ability that replaces the normal initiative step",
+            "showStartOfRoundPrompt": "Turn off this dialog"
           },
-          "Attributes": {
-              "attributeName":                                    "Attribute",
-              "attribueStep":                                     "Step",
-              "attributeValue":                                   "Value",
-              "charisma":                                         "Charisma",
-              "charismaAbbr":                                     "Cha",
-              "dexterity":                                        "Dexterity",
-              "dexterityAbbr":                                    "Dex",
-              "increase":                                         "Inc.",
-              "perception":                                       "Perception",
-              "perceptionAbbr":                                   "Per",
-              "strength":                                         "Strength",
-              "strengthAbbr":                                     "Str",
-              "toughness":                                        "Toughness",
-              "toughnessAbbr":                                    "Tou",
-              "willpower":                                        "Willpower",
-              "willpowerAbbr":                                    "Wil"
+          "Knack":     {
+            "lpCost": "Legend Point Cost"
           },
-          "Buttons": {
-              "halfMagic":                                        "Half Magic",
-              "initiative":                                       "Initiative",
-              "jumpUp":                                           "Jump Up",
-              "knockDownTest":                                    "Knock down",
-              "legendHistory":                                    "LP History",
-              "recovery":                                         "Recovery",
-              "takeDamage":                                       "Take Damage",
-              "unarmedAttack":                                    "Unarmed Attack",
-              "weaponAttack":                                     "Weapon Attack"
+          "Rollable":  {
+            "type": "Roll Type"
           },
-          "Cards": {
-              "chat":                                             "show information in as Chat message",
-              "delete":                                           "Delete Item",
-              "edit":                                             "Edit Item"
-          },
-          "Characteristics": {
-              "currentDamage":                                    "Damage",
-              "currentRecoveryTestsRecource":                     "Current",
-              "dailyrecoveryTestsResource":                       "Daily",
-              "deathThesholdShort":                               "Death Rating",
-              "maxWounds":                                        "Max Wounds",
-              "mysticalArmor":                                    "Mystical",
-              "mysticalDefense":                                  "Mystical",
-              "physicalArmor":                                    "Physical",
-              "physicalDefense":                                  "Physical",
-              "socialDefense":                                    "Social",
-              "unconsciousThresholdShort":                        "Unconsciousness",
-              "walkMovement":                                     "On Foot",
-              "woundsDamage":                                     "Wounds",
-              "woundsThreshold":                                  "Wound Threshold"
-          },
-          "Conditions": {
-              "aggressiveAttack":                                 "Aggressive Attack",
-              "blindsided":                                       "Blindsided",
-              "coverPartial":                                     "Partial Cover",
-              "coverFull":                                        "Full Cover",
-              "darknessPartial":                                  "Partial Darkness",
-              "darknessFull":                                     "Full Darkness",
-              "defensiveStance":                                  "Defensive Stance",
-              "Encumbrance": {
-                  "notEncumbered":                                "Not Encumbered",
-                  "light":                                        "Lightly Encumbered",
-                  "heavy":                                        "HEavily Encumbered",
-                  "tooHeavy":                                     "Too Heavy, you can't move"
-              },
-              "fury":                                             "Fury",
-              "harried":                                          "Harried",
-              "impairedMovementPartial":                          "Partial Impaired Movement",
-              "impairedMovementFull":                             "Fully Impaired Movement",
-              "knockedDown":                                      "Knocked Down",
-              "overwhelmed":                                      "overwhelmed",
-              "surprised":                                        "Surprised"
-          },
-          "Devotion": {
-              "current":                                          "Current",
-              "max":                                              "Max",
-              "step":                                             "Step"   
-          },
-          "GlobalBonus": {
-              "allActions":                                       "Actions",
-              "allAttacks":                                       "Attacks",
-              "allCloseAttacks":                                  "Melee Attacks",
-              "allDamage":                                        "Damage",
-              "allEffects":                                       "Effects",
-              "allKnockdownTests":                                "Knockdown Tests",
-              "allMeleeDamage":                                   "Melee Damage",
-              "allRangedAttacks":                                 "Ranged Attacks",
-              "allRangedDamage":                                  "Ranged Damage",
-              "allRecoveryTests":                                 "Recovery Tests",
-              "allSpellcasting":                                  "Spellcasting",
-              "allSpellTests":                                    "Spell Tests",
-              "allTests":                                         "All Tests"
-          },
-          "Header": {
-              "action":                                           "Action",
-              "active":                                           "Active",
-              "amount":                                           "Amount",
-              "ammunition":                                       "Ammunition",             
-              "armor":                                            "Armor",
-              "attacks":                                          "Attacks",
-              "attribute":                                        "Attribute",
-              "attributes":                                       "Attributes",
-              "carryingCapacity":                                 "Carrying Capacity",
-              "conditions":                                       "Conditions",
-              "controlIcons":                                     "Controls",
-              "damage":                                           "Damage",
-              "defaultAttacks":                                   "Default Attacks",
-              "defenses":                                         "Defenses",
-              "devotion":                                         "Devotion", 
-              "disciplines":                                      "Disciplines",
-              "duration":                                         "Duration",
-              "effectsPermanent":                                 "Permanent Effects",
-              "effectsTemporary":                                 "Temporary Effects",  
-              "encumbrance":                                      "Encumbrance",
-              "equipment":                                        "Equipment",
-              "equippedStatus":                                   "Equipped",
-              "extraSuccesses":                                   "Extra Successes",
-              "healthRating":                                     "Health Rating",
-              "inactive":                                         "Inactive",
-              "information":                                      "Informationen",
-              "initiativePenalty":                                "Initiative Penalty",
-              "karma":                                            "Karma",
-              "languages":                                        "Languages",
-              "languagesSpoken":                                  "Languages Spoken",
-              "languagesWritten":                                 "Languages Written",
-              "legendCurrent":                                    "LP Current",
-              "legendHistory":                                    "LP History",
-              "legendSpend":                                      "LP Spend",
-              "legendStatus":                                     "Legend Status",
-              "legendTotal":                                      "LP Total",
-              "maneuvers":                                        "Maneuver",
-              "movement":                                         "Movement",
-              "mysticalArmor":                                    "Mystical Armor",     
-              "mysticalDefense":                                  "Mystical Defense",
-              "name":                                             "Name",
-              "navigator":                                        "Navigator", 
-              "origin":                                           "Origin",
-              "paths":                                            "Path",
-              "physicalArmor":                                    "Physical Armor",
-              "physicalDefense":                                  "Physical Defense", 
-              "powers":                                           "Power",
-              "questor":                                          "Questor",                    
-              "range":                                            "Range",                         
-              "rank":                                             "Rank",
-              "recovery":                                         "Recovery",
-              "shields":                                          "Shields",
-              "specialAbility":                                   "Special Abilities",
-              "step":                                             "Step",
-              "strain":                                           "Strain",
-              "talentsDiscipline":                                "Discipline Talents",
-              "talentsFreeRacial":                                "Free and other Talents",
-              "talentsOptional":                                  "Optional Talents",
-              "talentsVersatility":                               "Versatility Talents",
-              "weapons":                                          "Weapons"
-          },
-          "Karma": {
-              "current":                                          "Current",
-              "max":                                              "Max",
-              "step":                                             "Step"   
-          },
-          "LpTracking": {
-              "attributeImprovement":                             "Attribute increase",
-              "Header": {
-                  "advancement":                                  "Advancement",
-                  "date":                                         "Date",
-                  "description":                                  "Description",
-                  "legendPoints":                                 "Legend Points",
-                  "name":                                         "Name",
-                  "type":                                         "Type"
-              },
-              "Spendings": {
-                  "description":                                  "Enhancement from {previousLevel} to {newLevel}",
-                  "descriptionAttribute":                         "Enhanced {attributeName} from {previousLevel} to {newLevel}",
-                  "descriptionAbility":                           "Enhanced {abilityName} from {previousLevel} to {newLevel}",
-                  "descriptionNewlyAdded":                        "Newly added item",
-                  "knackSourceNotFound":                          "The Knack is not referenced in any Talent of the Actor",
-                  "knackSourceNotHighEnough":                     "The Rank of the Talent is not high enough",
-                  "maxIncreaseReached":                           "Maximum increase reached"
-              }
-          },
-          "Navigator": {
-              "classes":                                          "Vocation",
-              "configuration":                                    "Configuration",
-              "devotions":                                        "Devotions",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "information":                                      "Information",
-              "legend":                                           "Legend",
-              "reputation":                                       "Reputation",
-              "power":                                            "Powers",
-              "skills":                                           "skills",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells",
-              "talents":                                          "Talents"
-          },
-          "Spellcasting": {
-              "elementalist":                                     "Elemetnatalist",
-              "illusionist":                                     "Illusionist",
-              "matrix":                                           "Matrix",
-              "nethermancer":                                     "Nethermancer",   
-              "shaman":                                           "Shaman",
-              "wizard":                                           "Wizard"
-          },
-          "Tabs": {
-              "classes":                                          "Classes",
-              "configuration":                                    "Configuration",
-              "description":                                      "Description",
-              "devotions":                                        "Devotions",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "legend":                                           "Legend",
-              "notes":                                            "Notes",
-              "powers":                                           "Power",
-              "reputation":                                       "Reputation",
-              "skills":                                           "Skills",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells",
-              "Spells": {
-                  "matrix":                                       "Matrix",
-                  "all":                                          "All"
-              },
-              "talents":                                          "Talents"
-          },
-          "Tooltips": {
-              "carried":                                          "Carried",
-              "equipped":                                         "Equipped",
-              "equippedArmor":                                    "Equipped Armor",
-              "equippedShield":                                   "Equipped Shield",
-              "damageSubdual":                                    "Subdual",
-              "damagePhysical":                                   "Physical",
-              "karmaAlways":                                      "Use Karma always",
-              "karmaRitualTooltip":                               "Karma Ritual",
-              "loaded":                                           "Loaded",
-              "loadedHeavy":                                      "Heavyly Loaded",
-              "loadedOver":                                       "Overloaded",
-              "mainHand":                                         "Main Hand",
-              "notEquipped":                                      "Not equipped",
-              "offHand":                                          "Off Hand",
-              "tail":                                             "Tail",
-              "twoHanded":                                        "Two Handed"
+          "Target":    {
+            "fixed":  "Fixed Difficulty",
+            "group":  "Group parameter",
+            "target": "Difficulty"
           }
+        },
+        "Labels": {
+          "Combatant": {
+            "increaseAbilities": "Improvement Effects",
+            "replacementEffect": "Replacement Effect"
+          },
+          "Knack":     {
+            "requirements": "Knack Requirements",
+            "restrictions": "Knack Restrictions"
+          },
+          "Rollable":  {
+            "type": "Roll Type"
+          },
+          "Target":    {
+            "fixed":  "Fixed Difficulty",
+            "group":  "Group parameter",
+            "target": "Difficulty"
+          }
+        }
       },
       "Chat": {
           "Button": {

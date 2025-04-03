@@ -5,7 +5,7 @@ export default class InitiativeRollOptions extends EdRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      substitutionAbility: new fields.DocumentUUIDField( {
+      replacementEffect: new fields.DocumentUUIDField( {
         nullable: true,
         initial:  null,
         type:     "Item",

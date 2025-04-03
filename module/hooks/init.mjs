@@ -57,9 +57,10 @@ export default function () {
     Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
 
     // Hook up system data types
+    CONFIG.ActiveEffect.dataModels = data.effects.config;
     CONFIG.Actor.dataModels = data.actor.config;
     CONFIG.ChatMessage.dataModels = data.chat.config;
-    CONFIG.ActiveEffect.dataModels = data.effects.config;
+    CONFIG.Combatant.dataModels = data.combatant.config;
     CONFIG.Item.dataModels = data.item.config;
 
     // Register sheet application classes
