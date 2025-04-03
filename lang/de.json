@@ -334,6 +334,7 @@
         "rollEquipmentMultipleTargets": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen mehrere Ziele",
         "rollEquipmentSingleTarget":    "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
         "rollEquipmentWithoutTarget":   "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
+        "rollInitiative":               "{sourceActor} würfelt Initiative",
         "rollRecovery":                 "{sourceActor} erholt sich mit Stufe {step}",
         "takeDamage":                   "{actor} nimmt {amount} Schaden",
         "takeStrainDamage":             "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}",

@@ -1,12 +1,31 @@
+import InitiativeRollOptions from "../data/roll/initiative.mjs";
+import EdRoll from "../dice/ed-roll.mjs";
+
 export default class CombatantEd extends foundry.documents.Combatant {
 
-
-  // TODO: add initiative formula for combatant
-  // see foundry.documents.Combatant line 182
   /** @inheritdoc */
-  getInitiativeRoll( formula ) {
+  getInitiativeRoll( _ ) {
     // do stuff, how best to ask for initiative talents?
-    return super.getInitiativeRoll( formula );
+    if ( !this.actor ) throw new Error( "Can't roll initiative: combatant has no actor" );
+
+    const data = {
+      testType:   "effect",
+      rollType:   "initiative",
+      chatFlavor: game.i18n.format( "ED.Chat.Flavor.rollInitiative", { sourceActor: this.actor.name } ),
+      step:       {
+        base:     this.actor.system.initiative,
+        modifier: {},
+      },
+      target: null,
+      strain: {
+        // TODO: fill from used abilities,
+        base:      0,
+        modifiers: {},
+      },
+    };
+
+    const rollOptions = InitiativeRollOptions.fromActor( data, this.actor, {} );
+    return new EdRoll( "", this.actor.getRollData(), rollOptions );
   }
 
 }
