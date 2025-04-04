@@ -1,0 +1,15 @@
+<div>
+  <ul class="combat-options-grid">
+    {{log this}}
+    {{#each combatOptions}}
+      <li class="combat-option" data-tooltip="{{this.name}}" aria-label="{{localize this.name}}">
+        <input type="checkbox" id="start-round-combat-option-checkbox-{{@index}}" name={{this.id}} />
+        <label for="start-round-combat-option-checkbox-{{@index}}">
+          <img src="{{this.img}}" alt="{{this.name}}" />
+        </label>
+      </li>
+    {{/each}}
+  </ul>
+
+
+</div>

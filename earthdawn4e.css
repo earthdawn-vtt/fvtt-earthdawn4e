@@ -178,6 +178,9 @@ input.input__number-input {
 .scrollable {
   overflow: auto;
 }
+body {
+  --color-hover-highlight: var(--color-warm-2);
+}
 .itemControlGroup,
 .icon__position--right {
   float: right;
@@ -396,6 +399,70 @@ input.input__number-input {
 }
 .app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__amount {
   width: 20%;
+}
+.start-round-combatant-prompt .combat-options-grid {
+  --effect-columns: 5;
+  --effect-size: 64px;
+  --gap-size: 1px;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(var(--effect-columns), var(--effect-size));
+  padding: 0;
+  border-radius: 4px;
+  pointer-events: all;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option {
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: var(--gap-size) solid rgba(207, 160, 42, 0.48);
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-child(5n + 1) {
+  border-left-width: calc(2 * var(--gap-size));
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-child(5n) {
+  border-right-width: calc(2 * var(--gap-size));
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-child(-n + 5) {
+  border-top-width: calc(2 * var(--gap-size));
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-last-child(-n + 5) {
+  border-bottom-width: calc(2 * var(--gap-size));
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-child(1) {
+  border-top-left-radius: 4px;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-child(5) {
+  border-top-right-radius: 4px;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-last-child(1) {
+  border-bottom-right-radius: 4px;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option:nth-last-child(5) {
+  border-bottom-left-radius: 4px;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option input[type="checkbox"][id^="start-round-combat-option-checkbox-"] {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option label img {
+  width: var(--effect-size);
+  height: var(--effect-size);
+  margin: 0;
+  padding: 0;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option label img:hover {
+  box-shadow: 0 0 5px var(--color-hover-highlight);
+}
+.start-round-combatant-prompt .combat-options-grid .combat-option :checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+  filter: invert(100%);
 }
 .application.sheet.earthdawn4e.actor {
   background-size: cover;
