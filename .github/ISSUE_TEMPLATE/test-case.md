@@ -9,6 +9,8 @@ assignees: ''
 
 ## Test description:
 
+## Test prerequisites:
+
 ## Test instructions:
 
 | Test Instruction  | Expected Result  |
@@ -19,5 +21,3 @@ assignees: ''
 |   | <ul><li>- [ ] </li> <li>- [ ] </li></ul> |
 |   | <ul><li>- [ ] </li> <li>- [ ] </li></ul> |
 |   | <ul><li>- [ ] </li> <li>- [ ] </li></ul> |
-
-## Expected Result:
