@@ -2,12 +2,20 @@
   "ED":    {
     "ActiveEffect": {
       "Status": {
-        "coverFull":       "",
-        "coverPartial":    "",
-        "darknessFull":    "",
-        "darknessPartial": "",
-        "impairedHeavy":   "",
-        "impairedLight":   ""
+        "attackKnockdown":  "",
+        "attackStun":       "",
+        "calledShot":       "",
+        "coverFull":        "",
+        "coverPartial":     "",
+        "darknessFull":     "",
+        "darknessPartial":  "",
+        "impairedHeavy":    "",
+        "impairedLight":    "",
+        "jumpUp":           "",
+        "setAgainstCharge": "",
+        "shatterShield":    "",
+        "splitMovement":    "",
+        "tailAttack":       ""
       }
     },
     "Chat":         {

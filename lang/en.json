@@ -29,12 +29,20 @@
         "applyToAbility": "Apply to Ability"
       },
       "Status":        {
-        "coverFull":       "full",
-        "coverPartial":    "partial",
-        "darknessFull":    "full",
-        "darknessPartial": "partial",
-        "impairedHeavy":   "heavy",
-        "impairedLight":   "light"
+        "attackKnockdown":  "Attacking to Knockdown",
+        "attackStun":       "Attacking to Stun",
+        "calledShot":       "Called Shot",
+        "coverFull":        "full",
+        "coverPartial":     "partial",
+        "darknessFull":     "full",
+        "darknessPartial":  "partial",
+        "impairedHeavy":    "heavy",
+        "impairedLight":    "light",
+        "jumpUp":           "Jump Up",
+        "setAgainstCharge": "Setting Against a Charge",
+        "shatterShield":    "Shattering a Shield",
+        "splitMovement":    "Splitting Movement",
+        "tailAttack":       "Tail Attack"
       },
       "newEffectName": "New Effect Name"
     },
