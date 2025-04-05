@@ -1,3 +1,5 @@
+import StartRoundCombatantPrompt from "../applications/combat/start-round-combatant-prompt.mjs";
+
 export default class CombatEd extends foundry.documents.Combat {
 
   /** @inheritdoc */
@@ -32,30 +34,54 @@ export default class CombatEd extends foundry.documents.Combat {
   /** @inheritdoc */
   async _onStartRound( context ) {
     // ask for changing stances
+    await super._onStartRound( context );
     await this.#executeEffectsForAll( "roundStart" );
-    return super._onStartRound( context );
+
+    await this.resetInitiatives();
+    for ( const combatant of this.combatants ) {
+      if (
+        !combatant.system.savePromptSettings
+        && ( ( combatant.isNPC && game.user.isGM )
+        || ( !combatant.isNPC && combatant.actor === game.user.character ) )
+      ) await StartRoundCombatantPrompt.waitPrompt( {}, combatant );
+    }
+    this.rollAll();
   }
 
   /** @inheritdoc */
   async _onEndRound( context ) {
+    await super._onEndRound( context );
     await this.#executeEffectsForAll( "roundEnd" );
-    return super._onEndRound( context );
   }
 
   /** @inheritdoc */
   async _onStartTurn( combatant, context ) {
+    super._onStartTurn( combatant, context );
     await this.#executeEffectsForAll( "turnStart" );
-    return super._onStartTurn( combatant, context );
   }
 
   /** @inheritdoc */
   async _onEndTurn( combatant, context ) {
     // add expire measured templates
+    super._onEndTurn( combatant, context );
     await this.#executeEffectsForAll( "turnEnd" );
-    return super._onEndTurn( combatant, context );
   }
 
   // endregion
+
+  /**
+   * Reset the initiative of all combatants in this combat.
+   * @param {object} options          Options for the reset.
+   * @param {boolean} options.force   Force the reset even if the Combatant#system.keepInitiative is `true`.
+   * @returns {Promise<void>}
+   */
+  async resetInitiatives( options = { force: false } ) {
+    for ( const combatant of this.combatants ) {
+      if ( options.force || !combatant.system.keepInitiative ) {
+        await combatant.resetInitiative();
+      }
+    }
+  }
 
   /**
    * Execute ActiveEffects that are triggered by the given execution time.
@@ -64,6 +90,7 @@ export default class CombatEd extends foundry.documents.Combat {
    * @returns {Promise<void>}
    */
   async #executeEffects( executionTime, combatant ) {
+    if ( !combatant ) return;
     const effects = combatant.effects.filter( effect => effect.system?.executeOn === executionTime );
 
     for ( const effect of effects ) {
