@@ -23,7 +23,7 @@ export default class InitiativeRollOptions extends EdRollOptions {
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
-    newContext.substitutionAbility = this.substitutionAbility;
+    newContext.replacementEffect = this.replacementEffect;
     newContext.increaseAbilities = this.increaseAbilities;
     return newContext;
   }
