@@ -38,6 +38,7 @@
         "Hints":  {
           "Combatant": {
             "increaseAbilities":  "",
+            "keepInitiative":     "",
             "replacementEffect":  "",
             "savePromptSettings": ""
           }
@@ -45,6 +46,7 @@
         "Labels": {
           "Combatant": {
             "increaseAbilities":  "",
+            "keepInitiative":     "",
             "replacementEffect":  "",
             "savePromptSettings": ""
           }
@@ -54,6 +56,10 @@
     "Dialogs":      {
       "Buttons": {
         "roundStartRollInitiative": ""
+      },
+      "Legend":  {
+        "configuration":       "",
+        "initiativeAbilities": ""
       },
       "Title":   {
         "startRoundCombatantPrompt": ""

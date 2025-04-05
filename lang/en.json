@@ -409,6 +409,7 @@
         "Hints":  {
           "Combatant": {
             "increaseAbilities":  "Abilities that augment the normal initiative step",
+            "keepInitiative":     "Keep current initiative and don't reroll",
             "replacementEffect":  "An ability that replaces the normal initiative step",
             "savePromptSettings": "Turn off this dialog and use the current settings"
           },
@@ -427,6 +428,7 @@
         "Labels": {
           "Combatant": {
             "increaseAbilities":  "Improvement Effects",
+            "keepInitiative":     "Keep Initiative",
             "replacementEffect":  "Replacement Effect",
             "savePromptSettings": "Save these settings?"
           },
@@ -1677,7 +1679,9 @@
           "talentsRequirementFailed":            "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}---WIP",
           "talentsRequirementFulfilled":         "Alle Disziplintalente sind auf dem erforderlichen Rang---WIP"
         },
+        "configuration":                 "Configuration",
         "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)---WIP",
+        "initiativeAbilities":           "Initiative Abilities",
         "learnOnZeroOrOne":              "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?---WIP",
         "learnQuestorPrompt":            "Soll die Questor Weihekraft erlernt werden?---WIP",
         "questorDevotionNotFound":       "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})---WIP",

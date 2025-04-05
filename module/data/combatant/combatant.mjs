@@ -27,6 +27,11 @@ export default class CombatantData extends SystemDataModel {
         label:   this.labelKey( "Combatant.savePromptSettings" ),
         hint:    this.hintKey( "Combatant.savePromptSettings" ),
       } ),
+      keepInitiative: new fields.BooleanField( {
+        initial: false,
+        label:   this.labelKey( "Combatant.keepInitiative" ),
+        hint:    this.hintKey( "Combatant.keepInitiative" ),
+      } ),
     } );
   }
 

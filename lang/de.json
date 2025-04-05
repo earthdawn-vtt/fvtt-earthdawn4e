@@ -784,6 +784,7 @@
         "Hints":  {
           "Combatant": {
             "increaseAbilities":  "Fähigkeiten die die Initiative-Stufe ergänzen",
+            "keepInitiative":     "Behalte Initiative und würfle nicht neu",
             "replacementEffect":  "Eine Fähigkeit die die normale Initiative-Stufe ersetzt",
             "savePromptSettings": "Zeigt diesen Dialog nicht mehr an und verwendet die aktuellen Einstellungen"
           },
@@ -803,6 +804,7 @@
         "Labels": {
           "Combatant": {
             "increaseAbilities":  "Verbesserungseffekte",
+            "keepInitiative":     "Initiative beibehalten",
             "replacementEffect":  "Ersetzungseffekt",
             "savePromptSettings": "Speicher diese Einstellungen?"
           },
@@ -1675,9 +1677,11 @@
           "talentsRequirementFulfilled":         "Alle Disziplintalente sind auf dem erforderlichen Rang"
         },
         "chooseAbilityOption":           "Wähle ein optionales Talent",
+        "configuration":                 "Konfiguration",
         "increaseClassTo":               "Erhöhe die Disziplin auf Kreis ",
         "increasePathTalentPrompt":      "Das Pfad Talent hat noch nicht den erforderlichen Rang. Soll es ebenfalls erhöht werden?",
         "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)",
+        "initiativeAbilities":           "Initiativefähigkeiten",
         "learnOnZeroOrOne":              "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?",
         "learnPathKnackPrompt":          "Soll der Pfad-Kniff erlernt werden?",
         "learnPathTalentPrompt":         "Soll das Pfad-Talent erlernt werden?",
