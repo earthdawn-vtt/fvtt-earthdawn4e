@@ -1,0 +1,2 @@
+   This function contains the sequence in which tabs are displayed in the actor sheet.
+   The order is important for maintaining a consistent user experience and ensuring that tabs are rendered in the intended order.

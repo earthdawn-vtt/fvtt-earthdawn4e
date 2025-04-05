@@ -1,0 +1,1 @@
+This function allows the user to edit the actor image.
