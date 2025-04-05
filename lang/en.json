@@ -1152,8 +1152,7 @@
                       "weight":                                   "Weight",
                       "Weight": {
                           "calculated":                           "Calculated",
-                          "multiplier":                           "Multiplier",
-                          "value":                                "Weight"
+                          "multiplier":                           "Multiplier"
                       }
                   },
                   "PoisonDisease": {
@@ -1304,18 +1303,6 @@
               "description":                                      "Description",
               "legendPoints":                                     "Legend Points"
           },
-          "Buttons": {
-              "cancel":                                           "Cancel",
-              "close":                                            "Close",
-              "nightRest":                                        "Nightly Rest",
-              "noAbilityDex":                                     "Dexterity",
-              "noAbilityStr":                                     "Strength",
-              "recoverStun":                                      "Stun Damage Recovery",
-              "recovery":                                         "Recovey Test",
-              "roll":                                             "Roll",
-              "save":                                             "Save",
-              "takeDamage":                                       "Take Damage"
-          },
           "Errors": {
               "noLp":                                             "No Legend Points entered!"
           },
@@ -1376,26 +1363,23 @@
               "spendLp":                                          "Spend Legend points",
               "writtenRules":                                     "Rules"
           },
-          "RollPrompt": {
-            "devotion":                                           "Devotion",
-            "devotionStep":                                       "Devotion Step",
-            "difficulty":                                         "Difficulty",
-            "karma":                                              "Karma",
-            "karmaStep":                                          "Karma Step",
-            "modifier":                                           "Modifier",
-            "step":                                               "Step",
-            "strain":                                             "Strain"
-          },
-          "Tabs": {
-            "rollPromptBaseTab":                                  "Base",
-            "rollPromptOtherTab":                                 "Other"
-          },
           "Title": {
               "assignLp":                                         "Assign Legend Points",
               "rollPrompt":                                       "Roll Options",
               "recovery":                                         "Recovery Test",
               "takeDamage":                                       "Take Damage"
           },
+          "Buttons": {
+              "cancel":                                           "Cancel",
+              "close":                                            "Close",
+              "nightRest":                                        "Nightly Rest",
+              "noAbilityDex":                                     "Dexterity",
+              "noAbilityStr":                                     "Strength",
+              "recoverStun":                                      "Stun Damage Recovery",
+              "recovery":                                         "Recovey Test",
+              "save":                                             "Save",
+              "takeDamage":                                       "Take Damage"
+              },
           "damage":                                               "Damage",
           "damageStandard":                                       "Deadly Damage",
           "damageStun":                                           "Stun Damage",
@@ -1626,25 +1610,239 @@
               "help":                                             "help",
               "troubleshooting":                                  "troubleshooting"
           }
+        }
       },
-      "Sheet": {
-          "Tabs": {
-              "advancement":                                      "Advancement",
-              "classes":                                          "Classes",
-              "devotions":                                        "Devotions",
-              "details":                                          "Details",
-              "effects":                                          "Effects",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "legend":                                           "Legend",
-              "notes":                                            "Notes",
-              "skills":                                           "Skills",
-              "talents":                                          "Talents",
-              "thread":                                           "Threads",
-              "reputation":                                       "Reputation",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells"
-          }
+      "placeholderBlankSelectOption": "---"
+    },
+    "Dialogs":       {
+      "AssignLp":        {
+        "description":  "Description",
+        "legendPoints": "Legend Points"
+      },
+      "Buttons":         {
+        "cancel":                   "Cancel",
+        "close":                    "Close",
+        "nightRest":                "Nightly Rest",
+        "noAbilityDex":             "Dexterity",
+        "noAbilityStr":             "Strength",
+        "recoverStun":              "Stun Damage Recovery",
+        "recovery":                 "Recovey Test",
+        "roundStartRollInitiative": "Roll Initiative",
+        "save":                     "Save",
+        "takeDamage":               "Take Damage"
+      },
+      "Errors":          {
+        "noLp": "No Legend Points entered!"
+      },
+      "Header":          {
+        "activeUser":             "Active User",
+        "actorsNoUserConfigured": "Not Configured, Owned Actors",
+        "inactiveUser":           "Inactive User"
+      },
+      "Legend":          {
+        "LearnSpell":                    {
+          "chatFlavorPatterncraft":    "{name} tries to lern the {spell} spell.",
+          "chatFlavorTeacherTest":     "{name} tries to lern the {spell} spell, with the help of a mentor. Spellcasting of the Mentor:",
+          "legendPatterncraft":        "Patterncraft options to learn the spell",
+          "legendRequirements":        "Voraussetzungen",
+          "legendTeacherTest":         "Supporting Mentor",
+          "noPatterncraftTalentFound": "No fitting Patterncraft talent found (see ed-ids)",
+          "noSpellcastingTalentFound": "No fitting Spellcasting talent found (see ed-ids)",
+          "teacherBonusModifier":      "Supporting Mentor"
+        },
+        "Rules":                         {
+          "disciplineLearnShortRequirements":      "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
+          "questorClassIncreaseShortRequirements": "<ul>\n<li>Commune with the Passion by using the Questor Devotion</li>\n<li>no Test required</li>\n<li>Only one Devotion can be learned or increased per day, and no more than one rank can be increased at a time</li>\n<li>There are no limitations to increasing the rank of the Questor Devotion within the same category, other than the legend point cost and the time required for the Devotion</li>\n<li>Change from one category to another (e. g. from follower to adherent) requires taking on and fulfilling a Quest in the name of the Passion</li>\n<li>A devotion can also be learned from a precious tier</li>\n<li>Legend point cost for increasing a devotion is based on when it becomes available, even if it is learned later</li>\n</ul>\n"
+        },
+        "Validation":                    {
+          "availableLp":                         "Enough Legendpoints? Cost: ",
+          "availableMoney":                      "Enough Silver? Cost: ",
+          "enoughTalentsOfTier":                 "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel}). ---WIP",
+          "enoughTalentsOnMinRank":              "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel})---WIP",
+          "hasDamage":                           "Current Damage?",
+          "hasRequiredJourneymanTalents":        "Erforderliche Anzahl Gesellen-Talente auf neuem Rang?---WIP",
+          "hasRequiredMasterTalents":            "Erforderliche Anzahl Meister-Talente auf neuem Rang?---WIP",
+          "hasRequiredNoviceTalents":            "Erforderliche Anzahl Novizen-Talente auf neuem Rang?---WIP",
+          "hasRequiredWardenTalents":            "Erforderliche Anzahl Wächter-Talente auf neuem Rang?---WIP",
+          "hasTalentFromCurrentCircle":          "Talent aus aktuellem Kreis auf erforderlichem Rang?---WIP",
+          "hasTalentsOnMinRank":                 "Alle Talente auf dem erforderlichen Rang?---WIP",
+          "hasWounds":                           "Current Wounds?",
+          "maxLevel":                            "Maximaler Rang erreicht? Aktuell: ---WIP",
+          "noTalentFromCurrentCircleOnNewLevel": "Mindestens ein Talent aus dem aktuellen Kreis ist nicht auf dem erforderlichen Rang {nextLevel}.---WIP",
+          "notEnoughTalentsOfTier":              "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+          "notEnoughTalentsOnMinRank":           "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+          "talentFromCurrentCircleOnNewLevel":   "Mindestens ein Talent aus aktuellem Kreis ist auf erforderlichem Rang. Sehr gut gemacht!---WIP",
+          "talentOptionLp":                      "Genügend Legendenpunkte für Talentoption? Kostet: ---WIP",
+          "talentsRequirement":                  "Alle Bedingungen für vorherige Talente erfüllt?---WIP",
+          "talentsRequirementFailed":            "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}---WIP",
+          "talentsRequirementFulfilled":         "Alle Disziplintalente sind auf dem erforderlichen Rang---WIP"
+        },
+        "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)---WIP",
+        "learnOnZeroOrOne":              "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?---WIP",
+        "learnQuestorPrompt":            "Soll die Questor Weihekraft erlernt werden?---WIP",
+        "questorDevotionNotFound":       "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})---WIP",
+        "spendLp":                       "Spend Legend points",
+        "writtenRules":                  "Rules"
+      },
+      "Navigator":       {
+        "baseInput": "Base Options",
+        "options":   "Other Options"
+      },
+      "Placeholder":     {
+        "lpDescription": "Enter your description here"
+      },
+      "Title":           {
+        "assignLp":   "Assign Legend Points",
+        "recovery":   "Recovery Test",
+        "rollPrompt": "Roll Options",
+        "takeDamage": "Take Damage"
+      },
+      "armor":           "Armor",
+      "armorType":       "Armor Type",
+      "damage":          "Damage",
+      "damageStandard":  "Deadly Damage",
+      "damageStun":      "Stun Damage",
+      "damageType":      "Damage Type",
+      "ignoreArmor":     "Ignore Armor",
+      "jumpUpChoice":    "Chose the Ability to jump up",
+      "knockDownChoice": "Chose the Ability to withstand the Knock Down",
+      "mystical":        "Mystical Damage",
+      "physical":        "Physical Damage"
+    },
+    "Documents":     {
+      "ActorSheetEdCharacter": "Character-sheet",
+      "ActorSheetEdCreature":  "Creature-sheet",
+      "ActorSheetEdDragon":    "Dragon-sheet",
+      "ActorSheetEdGroup":     "Group-sheet",
+      "ActorSheetEdHorror":    "Horror-sheet",
+      "ActorSheetEdLoot":      "Loot-sheet",
+      "ActorSheetEdNpc":       "NPC-sheet",
+      "ActorSheetEdSpirit":    "Spirit-sheet",
+      "ActorSheetEdTrap":      "Trap-sheet",
+      "ActorSheetEdVehicle":   "Vehicle-sheet"
+    },
+    "Item":          {
+      "Ability":       {
+        "damage":          "Damage",
+        "difficulty":      {
+          "fixed":            "Fixed Difficulty",
+          "groupDifficulty":  "Difficult Adjusted by Groups",
+          "targetDifficulty": "Difficulty Type"
+        },
+        "relatedRollType": "counts for Roll Type",
+        "rollType":        "Roll Type",
+        "substitute":      "Replaces Strength"
+      },
+      "Discipline":    {
+        "addLevel":             "Add Circle",
+        "circle":               "Circle {circle}",
+        "deleteLevel":          "Delete Circle",
+        "disciplineTalents":    "Discipline Talents",
+        "durability":           "Durability",
+        "optionalAbilities":    "Optional Abilities",
+        "talentOptionsForTier": "Talent Options for"
+      },
+      "Header":        {
+        "actionType":             "Action Type",
+        "activeUser":             "Active User",
+        "actorsNoUserConfigured": "Not Configured, Owned Actors",
+        "damageSettings":         "Damage Settings",
+        "description":            "Description",
+        "details":                "Details",
+        "effects":                "Effects",
+        "elementSettings":        "Element Settings",
+        "general":                "General",
+        "inactiveUser":           "Inactive User",
+        "magic":                  "Magic",
+        "navigator":              "Navigator",
+        "spellEnhancement":       "Spell Enhancement",
+        "summary":                "Summary",
+        "targetingDetails":       "Targeting Details",
+        "type":                   "Type"
+      },
+      "Knack":         {
+        "Notification":     {
+          "knackSourceMultipleTalents": "The Knack is referenced in multiple Talents of the Actor",
+          "knackSourceNotFound":        "The Knack is not referenced in any Talent of the Actor",
+          "knackSourceNotHighEnough":   "The Rank of the Talent is not high enough",
+          "maxKnacksReached":           "Maximum amount of Knacks reached"
+        },
+        "action":           "Action",
+        "attribute":        "Attribute",
+        "description":      "Description",
+        "difficultyFixed":  "Fixed Difficulty",
+        "difficultyGroup":  "Group Difficulty",
+        "difficultyTarget": "Target Difficulty",
+        "lpCost":           "LP Cost",
+        "minLevel":         "Min. Rank",
+        "rank":             "Rank",
+        "sourceTalent":     "Source Talent",
+        "standardEffect":   "Standard Effect",
+        "strain":           "Strain"
+      },
+      "Namegiver":     {
+        "WeaponSize":      {
+          "OneHanded.max": "Maximum One hand Weapon Size",
+          "OneHanded.min": "Minimal One hand Weapon Size",
+          "TwoHanded.max": "Maximum two hand Weapon Size",
+          "TwoHanded.min": "Minimal two hand Weapon Size"
+        },
+        "burrow":          "burrow",
+        "charismaValue":   "Charisma Value",
+        "climb":           "climb",
+        "dexterityValue":  "Dexterity Value",
+        "fly":             "fly",
+        "karmaModifier":   "Karma Modifier",
+        "perceptionValue": "Perception Value",
+        "strengthValue":   "Strength Value",
+        "swim":            "swim",
+        "toughnessValue":  "Toughness Value",
+        "walk":            "walk",
+        "willpowerValue":  "Willpower Value"
+      },
+      "Navigator":     {
+        "advancement": "advancement",
+        "details":     "Details",
+        "effects":     "Effects",
+        "general":     "General"
+      },
+      "Path":          {
+        "sourceDiscipline": "Source Discipline"
+      },
+      "PhysicalItems": {
+        "addThreadLevel":    "Add Thread Rank",
+        "deleteThreadLevel": "Delete Thread Rank",
+        "itemHistoryCheck":  "Item History Check",
+        "researchCheck":     "Research Check",
+        "weaveThreadCheck":  "Weave Thread Check"
+      },
+      "Spell":         {
+        "binding":           "Binding",
+        "concentration":     "Concentration",
+        "resist":            "Resist",
+        "sensingDifficulty": "Sensing Difficulty",
+        "spirit":            "Spirit",
+        "summoning":         "Summoning"
+      },
+      "Tabs":          {
+        "advancement": "Advancement",
+        "details":     "Details",
+        "effects":     "Effects",
+        "general":     "General",
+        "thread":      "Thread"
+      },
+      "Talent":        {
+        "action":           "Action",
+        "attribute":        "Attribute",
+        "description":      "Description",
+        "difficultyFixed":  "Fixed Difficulty",
+        "difficultyGroup":  "Group Difficulty",
+        "difficultyTarget": "Target Difficulty",
+        "rank":             "Rank",
+        "strain":           "Strain",
+        "talentCategory":   "Talent Category",
+        "talentIdentifier": "Source Talent Identifier",
+        "tier":             "Tier"
       }
   },
   "TYPES": {

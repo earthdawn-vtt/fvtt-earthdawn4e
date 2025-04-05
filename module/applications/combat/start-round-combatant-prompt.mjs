@@ -67,6 +67,7 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
     },
     footer: {
       template: "templates/generic/form-footer.hbs",
+      classes:  [ "flexrow" ],
     },
   };
 
@@ -123,7 +124,7 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
             classes: "roll flex-row",
             default: true,
             icon:    `fa-solid ${ CONFIG.ED4E.icons.dice }`,
-            label:   "ED.Dialogs.Buttons.roll"
+            label:   "ED.Dialogs.Buttons.roundStartRollInitiative"
           }
         ];
         break;

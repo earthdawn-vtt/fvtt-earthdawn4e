@@ -1491,6 +1491,7 @@
         "recovery":                   "Erholungsprobe",
         "resetRanks":                 "Ränge zurücksetzen",
         "roll":                       "Würfeln",
+        "roundStartRollInitiative":   "Würfle Initiative",
         "save":                       "Speichern",
         "spendLp":                    "Legendenpunkte ausgeben",
         "takeDamage":                 "Schaden nehmen",

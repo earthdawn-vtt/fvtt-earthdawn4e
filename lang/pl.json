@@ -50,6 +50,11 @@
           }
         }
       }
+    },
+    "Dialogs":      {
+      "Buttons": {
+        "roundStartRollInitiative": ""
+      }
     }
   },
   "TYPES": {
