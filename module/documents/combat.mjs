@@ -33,7 +33,6 @@ export default class CombatEd extends foundry.documents.Combat {
 
   /** @inheritdoc */
   async _onStartRound( context ) {
-    // ask for changing stances
     await super._onStartRound( context );
     await this.#executeEffectsForAll( "roundStart" );
 
