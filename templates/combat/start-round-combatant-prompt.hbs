@@ -13,7 +13,7 @@
     <div class="form-fields">
       <select name="system.replacementEffect">
         <option value=""></option>
-        {{selectOptions initiativeReplacementEffects valueAttr="key" labelAttr="label"}}
+        {{selectOptions initiativeReplacementEffects selected=combatant.system.replacementEffect valueAttr="key" labelAttr="label"}}
       </select>
     </div>
     <p class="hint">{{localize combatantSystemFields.replacementEffect.hint}}</p>
@@ -22,9 +22,9 @@
   <div class="form-group initiative-replacement-conditions">
     <label>{{localize combatantSystemFields.increaseAbilities.label}}</label>
     <div class="form-fields">
-      <multi-select name="system.replacementConditions">
+      <multi-select name="system.increaseAbilities">
         <option value=""></option>
-        {{selectOptions initiativeIncreaseAbilities valueAttr="key" labelAttr="label"}}
+        {{selectOptions initiativeIncreaseAbilities selected=combatant.system.initiativeIncreaseAbilities valueAttr="key" labelAttr="label"}}
       </multi-select>
     </div>
     <p class="hint">{{localize combatantSystemFields.increaseAbilities.hint}}</p>

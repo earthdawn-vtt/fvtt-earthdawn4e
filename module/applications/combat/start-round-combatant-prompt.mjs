@@ -75,12 +75,8 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
   static async _onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
-    // update combatant.actor statuses
-    /* Object.entries( data.statuses ).forEach( ( [ statusId, active ] ) => {
-      this.combatant.actor.toggleStatusEffect( statusId, { active } );
-    } ); */
-
     // update combatant initiative abilities and show prompt option
+    return this.combatant.update( data );
   }
 
   // endregion
