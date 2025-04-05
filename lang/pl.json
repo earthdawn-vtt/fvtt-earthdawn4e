@@ -1,5 +1,8 @@
 {
-  "ED":    {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt": ""
+  },
+  "ED":     {
     "ActiveEffect": {
       "Status": {
         "attackKnockdown":  "",
@@ -66,7 +69,7 @@
       }
     }
   },
-  "TYPES": {
+  "TYPES":  {
     "Actor": {
       "character": "Character",
       "creature":  "Creature",

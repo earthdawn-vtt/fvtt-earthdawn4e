@@ -1,5 +1,8 @@
 {
-  "ED":    {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt": "Start of Round Prompt"
+  },
+  "ED":     {
     "ActiveEffect":  {
       "ChangeKeys":    {
         "Groups": {
@@ -1850,51 +1853,51 @@
         "tier":             "Tier"
       }
   },
-  "TYPES": {
-      "ActiveEffect": {
-          "eae":                                                  "Active Effect"
-      },        
-      "Actor": {
-          "character":                                            "Character",
-          "creature":                                             "Creature",
-          "dragon":                                               "Dragon",
-          "group":                                                "Group",
-          "horror":                                               "Horror",
-          "loot":                                                 "Loot",
-          "npc":                                                  "NPC",
-          "spirit":                                               "Spirit",
-          "trap":                                                 "Trap",
-          "vehicle":                                              "Vehicle"
-      },
-      "Item": {
-          "armor":                                                "Armor",
-          "attack":                                               "Attack",
-          "bindingSecret":                                        "Binding Secrets",
-          "cursemark":                                            "Curse / Horror Mark",
-          "devotion":                                             "Devptopm",
-          "discipline":                                           "Disciplin",
-          "effect":                                               "Effect",
-          "equipment":                                            "Equipment",
-          "knackAbility":                                         "Knack",
-          "knackKarma":                                           "Karma Knack",
-          "knackManeuver":                                        "Maneuver Knack",
-          "maneuver":                                             "Maneuver",
-          "mask":                                                 "Mask",
-          "matrix":                                               "Matrix",
-          "namegiver":                                            "Namegiver",
-          "path":                                                 "Path",
-          "poisonDisease":                                        "Poison/Disease",
-          "power":                                                "Power",
-          "questor":                                              "Questor",
-          "shield":                                               "Shield",
-          "skill":                                                "Skill",
-          "specialAbility":                                       "Special Abilities",
-          "spell":                                                "Spell",
-          "spellKnack":                                           "Spell Knack",
-          "talent":                                               "Talent",
-          "thread":                                               "Permanent Thread",
-          "weapon":                                               "Weapon",
-          "shipWeapon":                                           "Ship Weapon"
-      }
+  "TYPES":  {
+    "ActiveEffect": {
+      "eae": "Active Effect"
+    },
+    "Actor":        {
+      "character": "Character",
+      "creature":  "Creature",
+      "dragon":    "Dragon",
+      "group":     "Group",
+      "horror":    "Horror",
+      "loot":      "Loot",
+      "npc":       "NPC",
+      "spirit":    "Spirit",
+      "trap":      "Trap",
+      "vehicle":   "Vehicle"
+    },
+    "Item":         {
+      "armor":          "Armor",
+      "attack":         "Attack",
+      "bindingSecret":  "Binding Secrets",
+      "cursemark":      "Curse / Horror Mark",
+      "devotion":       "Devptopm",
+      "discipline":     "Disciplin",
+      "effect":         "Effect",
+      "equipment":      "Equipment",
+      "knackAbility":   "Knack",
+      "knackKarma":     "Karma Knack",
+      "knackManeuver":  "Maneuver Knack",
+      "maneuver":       "Maneuver",
+      "mask":           "Mask",
+      "matrix":         "Matrix",
+      "namegiver":      "Namegiver",
+      "path":           "Path",
+      "poisonDisease":  "Poison/Disease",
+      "power":          "Power",
+      "questor":        "Questor",
+      "shield":         "Shield",
+      "shipWeapon":     "Ship Weapon",
+      "skill":          "Skill",
+      "specialAbility": "Special Abilities",
+      "spell":          "Spell",
+      "spellKnack":     "Spell Knack",
+      "talent":         "Talent",
+      "thread":         "Permanent Thread",
+      "weapon":         "Weapon"
+    }
   }
 }

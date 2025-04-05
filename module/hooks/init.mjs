@@ -38,6 +38,8 @@ export default function () {
     CONFIG.Token.objectClass = canvas.TokenEd;
     CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
 
+    CONFIG.ui.combat = applications.combat.CombatTrackerEd;
+
     // Register Roll Extensions
     CONFIG.Dice.rolls.splice( 0, 0, dice.EdRoll );
 

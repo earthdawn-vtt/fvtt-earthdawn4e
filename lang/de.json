@@ -1,4 +1,7 @@
 {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt": "Prompt zu Rundenbeginn"
+  },
   "ED":     {
     "ActiveEffect":  {
       "ChangeKeys":    {
