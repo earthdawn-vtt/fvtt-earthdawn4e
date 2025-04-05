@@ -22,10 +22,10 @@ export default class CombatantData extends SystemDataModel {
         label: this.labelKey( "Combatant.increaseAbilities" ),
         hint:  this.hintKey( "Combatant.increaseAbilities" ),
       } ),
-      showStartOfRoundPrompt: new fields.BooleanField( {
-        initial: true,
-        label:   this.labelKey( "Combatant.showStartOfRoundPrompt" ),
-        hint:    this.hintKey( "Combatant.showStartOfRoundPrompt" ),
+      savePromptSettings: new fields.BooleanField( {
+        initial: false,
+        label:   this.labelKey( "Combatant.savePromptSettings" ),
+        hint:    this.hintKey( "Combatant.savePromptSettings" ),
       } ),
     } );
   }
