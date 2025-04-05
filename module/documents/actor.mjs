@@ -977,9 +977,10 @@ export default class ActorEd extends Actor {
     }
 
     const rollTypeProcessors = {
-      "recovery":  () => this.#processRecoveryResult( roll ),
-      "knockdown": () => this.#processKnockdownResult( roll ),
-      "jumpUp":    () => this.#processJumpUpResult( roll )
+      "initiative": () => { return roll; },
+      "jumpUp":     () => this.#processJumpUpResult( roll ),
+      "knockdown":  () => this.#processKnockdownResult( roll ),
+      "recovery":   () => this.#processRecoveryResult( roll ),
     };
 
     const processRollType = rollTypeProcessors[roll.options.rollType];

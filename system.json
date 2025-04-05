@@ -212,7 +212,8 @@
     "ChatMessage": {
       "attack": {},
       "common": {},
-      "damage": {}
+      "damage": {},
+      "initiative": {}
     },
     "Item": {
       "armor": {},
