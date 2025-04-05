@@ -28,4 +28,13 @@ export default class CombatantEd extends foundry.documents.Combatant {
     return new EdRoll( "", this.actor.getRollData(), rollOptions );
   }
 
+  /**
+   * Reset the initiative of this combatant.
+   * @returns {Promise<undefined|CombatantEd>} The updated combatant.
+   */
+  async resetInitiative() {
+    if ( this.initiative === null ) return;
+    return this.update( { initiative: null } );
+  }
+
 }
