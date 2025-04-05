@@ -802,8 +802,9 @@
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities": "Verbesserungseffekte",
-            "replacementEffect": "Ersetzungseffekt"
+            "increaseAbilities":      "Verbesserungseffekte",
+            "replacementEffect":      "Ersetzungseffekt",
+            "showStartOfRoundPrompt": "Speicher diese Einstellungen?"
           },
           "Knack":     {
             "requirements": "Voraussetzungen",

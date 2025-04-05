@@ -44,8 +44,9 @@
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities": "",
-            "replacementEffect": ""
+            "increaseAbilities":      "",
+            "replacementEffect":      "",
+            "showStartOfRoundPrompt": ""
           }
         }
       }

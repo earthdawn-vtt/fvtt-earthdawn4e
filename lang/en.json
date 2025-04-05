@@ -426,8 +426,9 @@
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities": "Improvement Effects",
-            "replacementEffect": "Replacement Effect"
+            "increaseAbilities":      "Improvement Effects",
+            "replacementEffect":      "Replacement Effect",
+            "showStartOfRoundPrompt": "Save these settings?"
           },
           "Knack":     {
             "requirements": "Knack Requirements",

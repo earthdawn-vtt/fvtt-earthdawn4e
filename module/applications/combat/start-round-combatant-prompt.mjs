@@ -46,11 +46,13 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
       minimizable:    false,
       resizable:      true,
     },
-    actions: {},
+    actions: {
+      toggleCombatOption: StartRoundCombatantPrompt._toggleCombatOptionCheckbox,
+    },
     form:    {
       handler:        StartRoundCombatantPrompt._onFormSubmission,
-      submitOnChange: false,
-      closeOnSubmit:  true,
+      submitOnChange: true,
+      closeOnSubmit:  false,
     },
     position: {
       width:  "auto",
@@ -71,8 +73,14 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
   // region Form Handling
 
   static async _onFormSubmission( event, form, formData ) {
-    // do stuff
-    console.debug( "ED4E | StartRoundCombatantPrompt._onFormSubmission", event, form, formData );
+    const data = foundry.utils.expandObject( formData.object );
+
+    // update combatant.actor statuses
+    /* Object.entries( data.statuses ).forEach( ( [ statusId, active ] ) => {
+      this.combatant.actor.toggleStatusEffect( statusId, { active } );
+    } ); */
+
+    // update combatant initiative abilities and show prompt option
   }
 
   // endregion
@@ -81,7 +89,11 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
 
   /** @inheritdoc */
   async _prepareContext( options = {} ) {
-    return super._prepareContext( options );
+    const context = await super._prepareContext( options );
+
+    context.combatantSystemFields = this.combatant.system.schema.fields;
+
+    return context;
   }
 
   /** @inheritdoc */
@@ -89,26 +101,60 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
     const partContext = await super._preparePartContext( partId, context, options );
 
     switch ( partId ) {
-      case "main":
+      case "main": {
         partContext.combatant = this.combatant;
         partContext.combatOptions = CONFIG.ED4E.statusEffects.filter( status => status.combatOption );
+        partContext.combatOptions.forEach( status => {
+          status.active = this.combatant.actor.statuses.has( status.id );
+        } );
+
+        [ partContext.initiativeReplacementEffects, partContext.initiativeIncreaseAbilities ] =
+          this.combatant.actor.items.filter(
+            item => item.system.rollType === "initiative"
+          ).map( item => {
+            return {
+              key:           item.uuid,
+              label:         item.name,
+              isReplacement: !!item.system.attribute,
+            };
+          } ).partition( item => !item.isReplacement );
         break;
-      case "footer":
+      }
+      case "footer": {
         partContext.buttons = [
           {
-            action:   "submit",
-            classes:  "roll",
-            default:  true,
-            icon:     `fa-solid ${CONFIG.ED4E.icons.dice}`,
-            label:    "ED.Dialogs.Buttons.roll",
-          },
+            action:  "submit",
+            classes: "roll flex-row",
+            default: true,
+            icon:    `fa-solid ${ CONFIG.ED4E.icons.dice }`,
+            label:   "ED.Dialogs.Buttons.roll"
+          }
         ];
         break;
+      }
       default:
         break;
     }
 
     return partContext;
+  }
+
+  // endregion
+
+  // region Event Handlers
+
+  static async _toggleCombatOptionCheckbox( event, target ) {
+    // this feels really hacky and probably could be done nicely?
+
+    const combatOption = target.dataset.combatOption;
+    if ( !combatOption ) return;
+
+    const active = this.combatant.actor.statuses.has( combatOption );
+    await this.combatant.actor.toggleStatusEffect( combatOption, { active: !active } );
+
+    target.dataset.activated = !active;
+
+    this.render();
   }
 
   // endregion
