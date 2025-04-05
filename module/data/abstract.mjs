@@ -268,13 +268,18 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
     if ( !this.parent ) return;
 
+    this.parent.statuses.clear();
+
     const changes = Array.from( this.parent.allApplicableEffects()
       .filter( effect => effect.active )
-      .flatMap( effect => effect.changes.map( change => ( {
-        ...foundry.utils.deepClone( change ),
-        effect,
-        priority: change.priority ?? ( change.mode * 10 )
-      } ) ) ) )
+      .flatMap( effect => {
+        effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
+        return effect.changes.map( change => ( {
+          ...foundry.utils.deepClone( change ),
+          effect,
+          priority: change.priority ?? ( change.mode * 10 )
+        } ) );
+      } ) )
       .sort( ( a, b ) => a.priority - b.priority );
 
     const overrides = changes.reduce( ( acc, change ) => {
