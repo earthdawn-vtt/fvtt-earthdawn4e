@@ -194,6 +194,13 @@ export default class ActorEd extends Actor {
    * @param {number} [options.levels]   A potential level increase.
    */
   async toggleStatusEffect( statusId, { active, overlay = false, levels = 1 } ) {
+    // aggressive and defensive stance are mutually exclusive
+    if ( statusId === "aggressive" || statusId === "defensive" ) {
+      const other = statusId === "aggressive" ? "defensive" : "aggressive";
+      if ( this.statuses.has( other ) ) await super.toggleStatusEffect( other, { active: false } );
+    }
+
+    // check for effects with levels
     const staticId = staticStatusId( statusId );
     const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
     const effect = this.effects.get( staticId );
