@@ -37,16 +37,16 @@
       "General":      {
         "Hints":  {
           "Combatant": {
-            "increaseAbilities":      "",
-            "replacementEffect":      "",
-            "showStartOfRoundPrompt": ""
+            "increaseAbilities":  "",
+            "replacementEffect":  "",
+            "savePromptSettings": ""
           }
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities":      "",
-            "replacementEffect":      "",
-            "showStartOfRoundPrompt": ""
+            "increaseAbilities":  "",
+            "replacementEffect":  "",
+            "savePromptSettings": ""
           }
         }
       }
@@ -54,6 +54,9 @@
     "Dialogs":      {
       "Buttons": {
         "roundStartRollInitiative": ""
+      },
+      "Title":   {
+        "startRoundCombatantPrompt": ""
       }
     }
   },

@@ -43,7 +43,6 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
     window:   {
       frame:          true,
       positioned:     true,
-      title:          "",
       icon:           "",
       minimizable:    false,
       resizable:      true,
@@ -73,6 +72,16 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
       classes:  [ "flexrow" ],
     },
   };
+
+  // region Properties
+
+  get title() {
+    return game.i18n.format( "ED.Dialogs.Title.startRoundCombatantPrompt", {
+      name: this.combatant.name
+    } );
+  }
+
+  // endregion
 
   // region Form Handling
 
@@ -144,6 +153,8 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
   // region Event Handlers
 
   async close( options = {} ) {
+    if ( options?.continue ) return super.close( options );
+
     await this.combatant.update( { system: this.initialCombatantSystemData.toObject() } );
     for ( const status of CONFIG.ED4E.statusEffects.filter( status => status.combatOption ) ) {
       await this.combatant.actor.toggleStatusEffect( status.id, { active: this.initialStatuses.includes( status.id ) } );
@@ -153,17 +164,11 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
     return super.close( options );
   }
 
-  static async _continue( event, target ) {
+  static async _continue( event, _ ) {
     event.preventDefault();
 
-    const combatant = this.combatant;
-    if ( !combatant ) return;
-
-    const roll = combatant.getInitiativeRoll( { testType: "effect" } );
-    await combatant.rollInitiative( { roll, testType: "effect" } );
-
     this.resolve?.( true );
-    return super.close();
+    this.close( { continue: true, } );
   }
 
   static async _toggleCombatOptionCheckbox( event, target ) {

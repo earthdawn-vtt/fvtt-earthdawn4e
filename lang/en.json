@@ -408,9 +408,9 @@
       "General":                      {
         "Hints":  {
           "Combatant": {
-            "increaseAbilities":      "Abilities that augment the normal initiative step",
-            "replacementEffect":      "An ability that replaces the normal initiative step",
-            "showStartOfRoundPrompt": "Turn off this dialog"
+            "increaseAbilities":  "Abilities that augment the normal initiative step",
+            "replacementEffect":  "An ability that replaces the normal initiative step",
+            "savePromptSettings": "Turn off this dialog and use the current settings"
           },
           "Knack":     {
             "lpCost": "Legend Point Cost"
@@ -426,9 +426,9 @@
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities":      "Improvement Effects",
-            "replacementEffect":      "Replacement Effect",
-            "showStartOfRoundPrompt": "Save these settings?"
+            "increaseAbilities":  "Improvement Effects",
+            "replacementEffect":  "Replacement Effect",
+            "savePromptSettings": "Save these settings?"
           },
           "Knack":     {
             "requirements": "Knack Requirements",
@@ -1692,10 +1692,11 @@
         "lpDescription": "Enter your description here"
       },
       "Title":           {
-        "assignLp":   "Assign Legend Points",
-        "recovery":   "Recovery Test",
-        "rollPrompt": "Roll Options",
-        "takeDamage": "Take Damage"
+        "assignLp":                  "Assign Legend Points",
+        "recovery":                  "Recovery Test",
+        "rollPrompt":                "Roll Options",
+        "startRoundCombatantPrompt": "Initiative and Combat Options: {name}",
+        "takeDamage":                "Take Damage"
       },
       "armor":           "Armor",
       "armorType":       "Armor Type",

@@ -783,9 +783,9 @@
       "General":                      {
         "Hints":  {
           "Combatant": {
-            "increaseAbilities":      "Fähigkeiten die die Initiative-Stufe ergänzen",
-            "replacementEffect":      "Eine Fähigkeit die die normale Initiative-Stufe ersetzt",
-            "showStartOfRoundPrompt": "Diesen Dialog abschalten"
+            "increaseAbilities":  "Fähigkeiten die die Initiative-Stufe ergänzen",
+            "replacementEffect":  "Eine Fähigkeit die die normale Initiative-Stufe ersetzt",
+            "savePromptSettings": "Zeigt diesen Dialog nicht mehr an und verwendet die aktuellen Einstellungen"
           },
           "Knacks":    {
             "requirements": "Alle Voraussetzungen müssen erfüllt sein, um den Kniff zu lernen. Fertigkeiten gelten hierfür nicht, nur Talente und Kniffe.",
@@ -802,9 +802,9 @@
         },
         "Labels": {
           "Combatant": {
-            "increaseAbilities":      "Verbesserungseffekte",
-            "replacementEffect":      "Ersetzungseffekt",
-            "showStartOfRoundPrompt": "Speicher diese Einstellungen?"
+            "increaseAbilities":  "Verbesserungseffekte",
+            "replacementEffect":  "Ersetzungseffekt",
+            "savePromptSettings": "Speicher diese Einstellungen?"
           },
           "Knack":     {
             "requirements": "Voraussetzungen",
@@ -1712,18 +1712,19 @@
         "rollPromptOtherTab": "Weitere Einstellungen"
       },
       "Title":           {
-        "assignLp":            "Legendenpunkte zuweisen",
-        "attributeIncrease":   "Attribut erhöhen",
-        "characterGeneration": "Charaktererschaffung",
-        "classAdvancement":    "Rang- und Kreisaufstieg",
-        "drawWeapon":          "Waffe ziehen",
-        "learnAbility":        "Erlernen von {abilityName}",
-        "learnSpell":          "Zauber lernen",
-        "lpIncrease":          "Steigerung von {abilityName}",
-        "lpLearnKnack":        "Kniff lernen: {abilityName}",
-        "recovery":            "Erholungsprobe",
-        "takeDamage":          "Schaden nehmen",
-        "talentCategory":      "Talentkategorie von {abilityName}"
+        "assignLp":                  "Legendenpunkte zuweisen",
+        "attributeIncrease":         "Attribut erhöhen",
+        "characterGeneration":       "Charaktererschaffung",
+        "classAdvancement":          "Rang- und Kreisaufstieg",
+        "drawWeapon":                "Waffe ziehen",
+        "learnAbility":              "Erlernen von {abilityName}",
+        "learnSpell":                "Zauber lernen",
+        "lpIncrease":                "Steigerung von {abilityName}",
+        "lpLearnKnack":              "Kniff lernen: {abilityName}",
+        "recovery":                  "Erholungsprobe",
+        "startRoundCombatantPrompt": "Initiative und Kampfoptionen: {name}",
+        "takeDamage":                "Schaden nehmen",
+        "talentCategory":            "Talentkategorie von {abilityName}"
       },
       "ToolTips":        {
         "resetAbilityRanks": "Setzt alle Ränge auf 0 zurück"
