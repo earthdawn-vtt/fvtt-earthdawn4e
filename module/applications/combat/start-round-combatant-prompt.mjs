@@ -17,6 +17,8 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
     super( options );
     this.resolve = options.resolve;
     this.combatant = combatant;
+    this.initialCombatantSystemData = combatant.clone().system;
+    this.initialStatuses = [ ...combatant.actor.statuses ];
   }
 
   /**
@@ -47,6 +49,7 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
       resizable:      true,
     },
     actions: {
+      rollInitiative:     StartRoundCombatantPrompt._continue,
       toggleCombatOption: StartRoundCombatantPrompt._toggleCombatOptionCheckbox,
     },
     form:    {
@@ -120,7 +123,7 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
       case "footer": {
         partContext.buttons = [
           {
-            action:  "submit",
+            action:  "rollInitiative",
             classes: "roll flex-row",
             default: true,
             icon:    `fa-solid ${ CONFIG.ED4E.icons.dice }`,
@@ -139,6 +142,29 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
   // endregion
 
   // region Event Handlers
+
+  async close( options = {} ) {
+    await this.combatant.update( { system: this.initialCombatantSystemData.toObject() } );
+    for ( const status of CONFIG.ED4E.statusEffects.filter( status => status.combatOption ) ) {
+      await this.combatant.actor.toggleStatusEffect( status.id, { active: this.initialStatuses.includes( status.id ) } );
+    }
+
+    this.resolve?.( null );
+    return super.close( options );
+  }
+
+  static async _continue( event, target ) {
+    event.preventDefault();
+
+    const combatant = this.combatant;
+    if ( !combatant ) return;
+
+    const roll = combatant.getInitiativeRoll( { testType: "effect" } );
+    await combatant.rollInitiative( { roll, testType: "effect" } );
+
+    this.resolve?.( true );
+    return super.close();
+  }
 
   static async _toggleCombatOptionCheckbox( event, target ) {
     // this feels really hacky and probably could be done nicely?
