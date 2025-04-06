@@ -1,0 +1,1 @@
+this function triggers the manual workflow to take damage.

@@ -52,10 +52,10 @@ flowchart TD
 
 | Test Coverage | Related Documentation |
 |---------------|-----------------------|
-| Common Actor Sheet 1 - Active Effects Controls | [[Test] - Common Actor Sheet 1 - ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1593) |
-| Common Actor Sheet 2 - Item Controls | [[Test] - Common Actor Sheet 2 - ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1594) |
-| Common Actor Sheet 3 - edit Image | [[Test] - Common Actor Sheet 3 - ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1595) |
-| Common Actor Sheet 4 - expand Item | [[Test] - Common Actor Sheet 4 - ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1596) |
+| Common Actor Sheet 1 - Active Effects Controls | [[Test] - Common Actor Sheet 1 -  Active Effects Controls ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1593) |
+| Common Actor Sheet 2 - Item Controls | [[Test] - Common Actor Sheet 2 - Item Controls ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1594) |
+| Common Actor Sheet 3 - edit Image | [[Test] - Common Actor Sheet 3 - edit Image ](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1595) |
+| Common Actor Sheet 4 - expand Item | [[Test] - Common Actor Sheet 4 - expand Item](https://github.com/patrickmohrmann/earthdawn4eV2/issues/1596) |
 
 
 

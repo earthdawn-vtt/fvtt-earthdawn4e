@@ -16,7 +16,10 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     ] );
   }
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEdSentient-defaultOptions
+  */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -41,12 +44,18 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
   };
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ActorSheetEdSentient-prepareContext
+  */
   async _prepareContext( options ) {
     return await super._prepareContext( options );
   }
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ActorSheetEdSentient-preparePartContext
+  */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
 
@@ -73,6 +82,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * Get the sub-tabs for the spells section
    * @returns {{}}   The tabs object
    * @protected
+   * @userFunction UF_ActorSheetEdSentient-getSpellTabs
    */
   _getSpellTabs() {
     this.tabGroups["spellsContent"] ??= "matrix";
@@ -102,12 +112,27 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     return spellTabs;
   };
 
+  // Refactor together with the option to roll substitude abilities. dexterity should house all attack options and also tail attack if the namegiver has that set to true
+  /**
+   * Handle special attack button available to actors
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the attack roll result document.
+   * @userFunction UF_ActorSheetEdSentient-onAttack
+   */
   static async _onAttack( event, target ) {
     event.preventDefault();
     const attackType = target.dataset.attackType;
     return this.document.attack( attackType );
   }
 
+  /**
+   * Handle take damage action button on the actor sheet
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the damage roll result document.
+   * @userFunction UF_ActorSheetEdSentient-takeDamage
+   */
   static async takeDamage( event, target ) {
     const takeDamage = await this.document.getPrompt( "takeDamage" );
     if ( !takeDamage || takeDamage === "close" ) return;
@@ -120,29 +145,64 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     } );
   }
 
+  /**
+   * Handle knockdown Button on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the knockdown test result document.
+   * @userFunction UF_ActorSheetEdSentient-knockdownTest
+  */
   static async knockdownTest( event, target ) {
     event.preventDefault();
     const damageTaken = 0;
     this.document.knockdownTest( damageTaken );
   }
 
+  /**
+   * Handle recovery roll button on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the recovery roll result document.
+   * @userFunction UF_ActorSheetEdSentient-rollRecovery
+  */
   static async rollRecovery( event, target ) {
     event.preventDefault();
     const recoveryMode = await this.document.getPrompt( "recovery" );
     this.document.rollRecovery( recoveryMode, {event: event} );
   }
 
+  /**
+   * Handle jump up button on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the jump up result document.
+   * @userFunction UF_ActorSheetEdSentient-jumpUp
+  */
   static async jumpUp( event, target ) {
     event.preventDefault();
     this.document.jumpUp( {event: event} );
   }
 
+  /**
+   * Handle initiative roll button on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the initiative roll result document.
+   * @userFunction UF_ActorSheetEdSentient-rollInitiative
+  */
   static async rollInitiative( event, target ) {
     event.preventDefault();
     ui.notifications.info( "Initiative not done yet" );
     this.document.rollInitiative( {event: event} );
   }
 
+  /**
+   * Handle roll trigger on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<Document>} - A promise that resolves to the roll result document.
+   * @userFunction UF_ActorSheetEdSentient-rollable
+  */
   static async rollable( event, target ) {
     event.preventDefault();
     const li = target.closest( ".item-id" );
@@ -174,7 +234,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * 7: tail
    * @returns {ApplicationV2}   The rendered item sheet.
    * @private
-   * @userFunction              UF_PhysicalItems-onChangeItemStatus
+   * @userFunction              UF_ActorSheetEdSentient-changeItemStatus
    */
   // eslint-disable-next-line complexity
   static async changeItemStatus( event, target ) {

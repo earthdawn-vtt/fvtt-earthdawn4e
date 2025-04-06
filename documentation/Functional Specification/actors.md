@@ -101,7 +101,8 @@ As shown in the diagram the actors have some things in common and others differ.
 the Base to all actor types is the Actor itself (CommonTemplate) this one extends the foundry core functionality of actors to the needs of the Earthdawn System.<br>
 The CommonTemplate holds:
 * global Bonuses (see {LINK})
-* single Bonuses (see {LINK})
+
+in addition to the data the Actor sheet has several actions shown under the use case [UC_ActorSheetEd](../Use%20Cases/UC_ActorSheetEd.md)
 
 #### Sentient 
 
