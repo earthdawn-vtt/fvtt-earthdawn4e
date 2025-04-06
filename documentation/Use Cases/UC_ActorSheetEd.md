@@ -1,5 +1,7 @@
 <Description>
 
+{% include content from https://github.com/patrickmohrmann/earthdawn4eV2/blob/documentation-2/documentation/Functional%20Specification/actors.md#actor-commontemplate }
+
 ### Diagram
 ```mermaid
 flowchart TD
@@ -31,20 +33,20 @@ flowchart TD
 ### Related User Functions
 
 [UF_ActorSheetEd-addSheetTabs](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-addSheetTabs.md) <br>
-*[UF_ActorSheetEd-defaultOptions](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-defaultOptions.md) <br>
+[UF_ActorSheetEd-defaultOptions](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-defaultOptions.md) <br>
 [UF_ActorSheetEd-onCardExpand](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onCardExpand.md) <br>
-?[UF_ActorSheetEd-onCreateChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onCreateChild.md) <br>
-?[UF_ActorSheetEd-onDeleteChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onDeleteChild.md) <br>
-?[UF_ActorSheetEd-onEditChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onEditChild.md) <br>
+[UF_ActorSheetEd-onCreateChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onCreateChild.md) <br>
+[UF_ActorSheetEd-onDeleteChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onDeleteChild.md) <br>
+[UF_ActorSheetEd-onEditChild](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onEditChild.md) <br>
 [UF_ActorSheetEd-onDisplayChildToChat](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onDisplayChildToChat.md) <br>
 [UF_ActorSheetEd-onEditImage](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onEditImage.md) <br>
 [UF_ActorSheetEd-onitemEdit](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onitemEdit.md) <br>
 [UF_ActorSheetEd-onItemDelete](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onItemDelete.md) <br>
 [UF_ActorSheetEd-onDisplayItem](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-onDisplayItem.md) <br>
-*[UF_ActorSheetEd-prepareContext](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-prepareContext.md) <br>
-*[UF_ActorSheetEd-renderHTML](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-renderHTML.md) <br>
+[UF_ActorSheetEd-prepareContext](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-prepareContext.md) <br>
+[UF_ActorSheetEd-renderHTML](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-renderHTML.md) <br>
 [UF_ActorSheetEd-tabOrderSheet](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-tabOrderSheet.md) <br>
-*[UF_ActorSheetEd-tabs](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-tabs.md) <br>
+[UF_ActorSheetEd-tabs](../User%20Functions/UF_ActorSheetEd/UF_ActorSheetEd-tabs.md) <br>
 
 ### Related Test Coverage
 
