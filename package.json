@@ -19,7 +19,7 @@
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@stylistic/eslint-plugin": "^2.3.0",
     "@stylistic/eslint-plugin-migrate": "^2.3.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.6.0",
     "eslint-plugin-jsdoc": "^46.8.2",
     "globals": "^15.10.0",
     "gulp": "^5.0.0",
