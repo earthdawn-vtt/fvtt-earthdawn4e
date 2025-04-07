@@ -19,7 +19,8 @@
     "lint": "gulp lint",
     "lint:fix": "gulp lint --fix",
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
-    "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs"
+    "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
@@ -38,6 +39,8 @@
     "gulp-eslint-new": "^1.8.3",
     "gulp-if": "^3.0.0",
     "gulp-less": "^5.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "merge-stream": "^2.0.0",
     "yargs": "^17.7.2"
   },

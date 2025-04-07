@@ -1,0 +1,3 @@
+{
+  "module/**/*.mjs": "eslint --fix --config eslint.config.mjs"
+}
