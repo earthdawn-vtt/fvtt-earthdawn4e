@@ -1,1 +1,1 @@
-This function triggers the recovery rolls for an actor.
+This function is triggered by the "recovery" button and will start the recovery process for an actor.

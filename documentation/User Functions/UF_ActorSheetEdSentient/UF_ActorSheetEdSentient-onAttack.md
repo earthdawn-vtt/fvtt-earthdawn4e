@@ -1,1 +1,1 @@
-This function triggers attack actions triggered from the actor sheet.
+This function handles special attack button available to actors

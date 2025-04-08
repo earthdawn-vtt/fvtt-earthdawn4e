@@ -1,1 +1,1 @@
-This function triggers the change of the holding type (how a physical item is carried)
+This function is triggered by clicking on the holding type icon of an equipment to toggle through the different holding types.

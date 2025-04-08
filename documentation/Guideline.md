@@ -82,21 +82,26 @@ Every chapter in the Game Master Manual is dedicated to one general Topic ( Acto
 
 Every chapter in the Player Manual is dedicated to one general Topic ( Actor Sheet, Rolls, Token interaction etc. ). each Journal/page describes one specific Topic and how it is used. It is mandatory to note down every open Bug which is in the version directly at the related point in the manual
 
+
 ## Functional Specification
 
 The Functional Specification holds the content of the system Manuals and extents them by adding flow diagrams if necessary. The Functionality is further cut down into use cases (see below). Every use case has a connection to a set of user functions, and test cases (see also below). 
 
 ### Use Cases
 
-
+Use cases are named using the following schema:<br>
+UC_`<FEATURE>`-`<WORKFLOW>` <br>
 A use case is a specific function or workflow. it contains a diagram (sometimes it does not if the use case does not require one), a list of connected user functions and a list of test cases.
 every time a code change is made, the user function attached to the changed function leads to one or more Use cases. The touched use case itself provides a list of potential tests to cover that the functionality of the use case is still provided by the changes.
+
 #### User Functions
 
-Every user function contains a brief description about its functionality. This description is - if necessary - separated into a description and a technical part.
+User Functions are named using this schema:<br>
+UF_`<FUNCTION>`-`<OPERATION>` <br>
+User Functions are not linked by default to any use case by name or similar, only by adding the user function to the link list in the use case itself.
+Every user function contains a brief description about its functionality. This description is - if necessary - separated into a description and a technical part. 
 
 #### Test Cases
-
 
 Every test case is a - as of now - a github issue with a description how to execute the test manually in the system together with a description of prerequisites and the goal to archive by this test.
 

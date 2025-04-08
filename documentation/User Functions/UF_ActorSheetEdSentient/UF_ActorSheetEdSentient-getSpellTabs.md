@@ -1,1 +1,1 @@
-This function adds spell tabs to the actor based on the available spellcasting types (e.g. elementalism, illusionism etc.).
+This function creates the sub-tabs for the spell lists based on the spellcasting type.

@@ -6,6 +6,10 @@ import ED4E from "../../config/_module.mjs";
  */
 export default class ActorSheetEdSentient extends ActorSheetEd {
 
+  /**
+   * this is a very specific user function which is not following the pattern of the naming convention.
+   * @userFunction UF_ActorSheetEdSentient-addSheetTab
+  */
   static {
     this.addSheetTabs( [
       { id: "general", },

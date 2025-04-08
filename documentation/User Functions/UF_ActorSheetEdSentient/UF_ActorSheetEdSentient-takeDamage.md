@@ -1,1 +1,1 @@
-this function triggers the manual workflow to take damage.
+This function is triggered by the "take damage" button to add damage to the actor.

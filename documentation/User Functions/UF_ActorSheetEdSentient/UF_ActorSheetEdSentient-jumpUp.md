@@ -1,1 +1,1 @@
-this button triggers the jump up action.
+This function is triggered by the "jump up" button to fulfill the jump up action.

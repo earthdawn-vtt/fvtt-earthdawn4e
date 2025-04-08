@@ -5,6 +5,10 @@ import ActorSheetEd from "./common-sheet.mjs";
  */
 export default class ActorSheetEdLoot extends ActorSheetEd {
 
+  /**
+   * this is a very specific user function which is not following the pattern of the naming convention.
+   * @userFunction UF_ActorSheetEdLoot-addSheetTab
+  */
   static {
     this.addSheetTabs( [
       { id: "description", },
@@ -12,7 +16,10 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
   }
 
   // region DEFAULT_OPTIONS
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * userFunction UF_ActorSheetEdLoot-defaultOptions
+  */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -28,6 +35,10 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
   };
 
   // region PARTS
+  /**
+   * @inheritdoc
+   * userFunction UF_ActorSheetEdLoot-parts
+   */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -52,11 +63,19 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
   };
 
   // region _prepareContext
+  /**
+   * @inheritdoc
+   * userFunction UF_ActorSheetEdLoot-prepareContext
+   */
   async _prepareContext() {
     return await super._prepareContext();
   }
 
   // region _prepare Part Context
+  /**
+   * @inheritdoc
+   * userFunction UF_ActorSheetEdLoot-preparePartContext
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

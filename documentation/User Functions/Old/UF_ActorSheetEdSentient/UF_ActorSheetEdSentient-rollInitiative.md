@@ -1,0 +1,1 @@
+This button triggers the manual initiative roll from the actor sheet.

@@ -6,6 +6,10 @@ import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
  */
 export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
+  /**
+   * this is a very specific user function which is not following the pattern of the naming convention.
+   * @userFunction UF_ActorSheetEdCharacter-addSheetTab
+   */
   static {
     this.addSheetTabs( [
       { id: "legend", },
@@ -16,6 +20,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   /**
    * @override 
+   * @userFunction UF_ActorSheetEdCharacter-defaultOptions
    */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
@@ -35,6 +40,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     }
   };
 
+  /**
+   * @override
+   * @userFunction UF_ActorSheetEdCharacter-parts
+  */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -104,6 +113,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   // region Rendering
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_ActorSheetEdCharacter-prepareContext
+   */
   async _prepareContext() {
     const context = await super._prepareContext();
 
@@ -155,6 +168,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     return context;
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_ActorSheetEdCharacter-preparePartContext
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -192,6 +209,12 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   // region Actions
 
+  /**
+   * increase attributes, abilities or clases
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @userFunction UF_ActorSheetEdCharacter-upgradeItem
+   */
   static async upgradeItem( event, target ) {
     event.preventDefault();
     if ( target.dataset.attribute ) {
@@ -212,15 +235,33 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     }  
   }
 
+  /**
+   * trigger the karma ritual of an adapt
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @userFunction UF_ActorSheetEdCharacter-karmaRitual
+   */
   static async karmaRitual( event, target ) {
     this.document.karmaRitual();
   }
 
+  /**
+   * open the legend point history
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @userFunction UF_ActorSheetEdCharacter-legendPointHistory
+   */
   static async legendPointHistory( event, target ) {
     event.preventDefault();
     this.document.legendPointHistory( this.document );
   }
 
+  /**
+   * take strain damage from actions
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @userFunction UF_ActorSheetEdCharacter-takeStrain
+   */
   static async takeStrain( event, target ) {
     event.preventDefault();
     const li = target.closest( ".item-id" );
@@ -235,7 +276,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   // region Drag and Drop
 
-  /** @inheritdoc */
+  /**
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEdCharacter-onDropItem
+  */
   async _onDropItem( event, item ) {
     if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item );
     return super._onDropItem( event, item );

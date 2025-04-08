@@ -1,1 +1,1 @@
-This function triggers the manual knockdown tests for an actor.
+This function is triggerd by the "knock down test" button to avoid being knocked down.

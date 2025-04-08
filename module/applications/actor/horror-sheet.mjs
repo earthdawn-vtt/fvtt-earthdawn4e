@@ -5,6 +5,10 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
  */
 export default class ActorSheetEdHorror extends ActorSheetEdSentient {
 
+  /**
+   * this is a very specific user function which is not following the pattern of the naming convention.
+   * @userFunction UF_ActorSheetEdHorror-addSheetTab
+  */
   static {
     this.addSheetTabs( [
       { id: "talents", },
@@ -19,7 +23,8 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
 
   // region DEFAULT_OPTIONS
   /** 
-   * @override 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEdHorror-defaultOptions
    */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
@@ -36,6 +41,10 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   };
 
   // region PARTS
+  /** 
+   * @inheritdoc
+   * @userFunction UF_ActorSheetEdHorror-parts
+   */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -104,11 +113,19 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   };
 
   // region _prepareContext
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEdHorror-prepareContext
+   */
   async _prepareContext() {
     return await super._prepareContext();
   }
 
   // region _prepare Part Context
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEdHorror-preparePartContext
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
