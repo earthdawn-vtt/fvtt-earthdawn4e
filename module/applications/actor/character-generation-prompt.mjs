@@ -12,7 +12,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region CONSTRUCTOR
   /**
    * @inheritdoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-constructor   
+   * @userFunction UF_CharacterGenerationPrompt-constructor   
   */
   constructor( charGen, options = {}, documentCollections ) {
     const charGenData = charGen ?? new CharacterGenerationData();
@@ -50,7 +50,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region Error Messages
   /**
    * @returns {object} An object containing localized error messages.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-errorMessages
+   * @userFunction UF_CharacterGenerationPrompt-errorMessages
    */
   static get errorMessages() {
     return {
@@ -68,7 +68,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region DEFAULT_OPTIONS
   /**
    * @inheritdoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-defaultOptions
+   * @userFunction UF_CharacterGenerationPrompt-defaultOptions
    */
   static DEFAULT_OPTIONS = {
     id:      "character-generation-prompt",
@@ -111,7 +111,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
   // #region PARTS
   /**
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-parts
+   * @userFunction UF_CharacterGenerationPrompt-parts
    */
   static PARTS = {
     tabs: {
@@ -174,7 +174,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * @type {Record<string, ApplicationTab>}
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-tabs
+   * @userFunction UF_CharacterGenerationPrompt-tabs
    */
   static TABS = {
     "namegiver-tab": {
@@ -243,7 +243,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * Prepare the context for rendering the character generation prompt.
    * @inheritdoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-prepareContext
+   * @userFunction UF_CharacterGenerationPrompt-prepareContext
    */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
@@ -353,7 +353,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * Prepares the context for a specific part of the character generation prompt.
    * @inheritdoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-preparePartContext
+   * @userFunction UF_CharacterGenerationPrompt-preparePartContext
    */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
@@ -386,7 +386,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * Prepares the context for the tabs in the character generation prompt.
    * @inheritdoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-prepareTabsContext
+   * @userFunction UF_CharacterGenerationPrompt-prepareTabsContext
    */
   async _prepareTabsContext( context, _ ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
@@ -404,7 +404,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {object} context - The context object to be updated.
    * @param {string} tabId - The ID of the tab to activate.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-activateTab
+   * @userFunction UF_CharacterGenerationPrompt-activateTab
    */
   async activateTab ( context, tabId ) {
     const tabGroup = "primary";
@@ -417,7 +417,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /** 
    * @inheritDoc
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-changeTab
+   * @userFunction UF_CharacterGenerationPrompt-changeTab
    */ 
   changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
     super.changeTab( tab, group, {event, navElement, force, updatePosition} );
@@ -437,7 +437,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLFormElement} form - The HTML form element being submitted.
    * @param {object} formData - The data object containing form input values.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onFormSubmission
+   * @userFunction UF_CharacterGenerationPrompt-onFormSubmission
    */
   static async #onFormSubmission( event, form, formData ) {
 
@@ -498,7 +498,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // reset points spend on optional talents if the optional talent is changed.
   /**
    * @param {number} oldOptionLevel - The previous level of the optional talent to reset points for.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-resetOptionalPoints
+   * @userFunction UF_CharacterGenerationPrompt-resetOptionalPoints
    */
   resetOptionalPoints( oldOptionLevel ) {
     if ( !oldOptionLevel ) return;
@@ -511,7 +511,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   // #region ACTIONS
   /**
    * @param {*} _ - Unused parameter.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-nextTab
+   * @userFunction UF_CharacterGenerationPrompt-nextTab
    */
   static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
@@ -524,7 +524,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * @param {*} _ - Unused parameter.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-previousTab
+   * @userFunction UF_CharacterGenerationPrompt-previousTab
    */
   static _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
@@ -537,7 +537,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * @returns {number} This function returns the number of the next step.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-hasNextStep
+   * @userFunction UF_CharacterGenerationPrompt-hasNextStep
    */
   _hasNextStep() {
     return this._currentStep < this._steps.length - 1;
@@ -545,7 +545,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
 
   /**
    * @returns {void} This function returns the number of the previous step.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-hasPreviousStep
+   * @userFunction UF_CharacterGenerationPrompt-hasPreviousStep
    */
   _hasPreviousStep() {
     return this._currentStep > 0;
@@ -555,7 +555,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * Handles the finish generation event.
    * @param {Event} event - The event that triggered the finish generation process.
    * @returns {void} This function does not return a value.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-finishGeneration
+   * @userFunction UF_CharacterGenerationPrompt-finishGeneration
    */
   static _finishGeneration( event ) {
     event.preventDefault();
@@ -575,7 +575,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * Validates the completion of the character generation process.
    * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
    * @returns {boolean} True if the character generation is complete, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-validateCompletion
+   * @userFunction UF_CharacterGenerationPrompt-validateCompletion
    */
   _validateCompletion( errorLevel = "error" ) {
     return this._validateNamegiver( errorLevel, true )
@@ -590,7 +590,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
    * @param {boolean} displayNotification - Whether to display a notification if validation fails.
    * @returns {boolean} True if a namegiver is selected, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-validateNamegiver
+   * @userFunction UF_CharacterGenerationPrompt-validateNamegiver
    */
   _validateNamegiver( errorLevel = "warn", displayNotification = false ) {
     const hasNamegiver = !!this.charGenData.namegiver;
@@ -605,7 +605,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
    * @param {boolean} displayNotification - Whether to display a notification if validation fails.
    * @returns {boolean} True if a class is selected, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-validateClass
+   * @userFunction UF_CharacterGenerationPrompt-validateClass
    */
   _validateClass( errorLevel = "warn", displayNotification = false ) {
     const hasClass = !!this.charGenData.selectedClass;
@@ -620,7 +620,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
    * @param {boolean} displayNotification - Whether to display a notification if validation fails.
    * @returns {boolean} True if class ranks are valid, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-validateClassRanks
+   * @userFunction UF_CharacterGenerationPrompt-validateClassRanks
    */
   _validateClassRanks( errorLevel = "warn", displayNotification = false ) {
     const hasRanks = this.charGenData.availableRanks[this.charGenData.isAdept ? "talent" : "devotion"] > 0;
@@ -635,7 +635,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {string} errorLevel - The level of error to display (e.g., "info", "warn").
    * @param {boolean} displayNotification - Whether to display a notification if validation fails.
    * @returns {boolean} True if all attribute points are assigned, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-validateAttriubtes
+   * @userFunction UF_CharacterGenerationPrompt-validateAttriubtes
    */
   _validateAttributes( errorLevel = "info", displayNotification = false ) {
     const hasAttributePoints = this.charGenData.availableAttributePoints > 0;
@@ -650,7 +650,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
    * @param {boolean} displayNotification - Whether to display a notification if validation fails.
    * @returns {boolean} True if all skill ranks are valid, otherwise false.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-valdiateSkills
+   * @userFunction UF_CharacterGenerationPrompt-valdiateSkills
    */
   _validateSkills( errorLevel = "warn", displayNotification = false ) {
     const availableRanks = filterObject(
@@ -670,7 +670,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {string} level - The severity level of the validation error (e.g., "warn", "error").
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-displayValidationError
+   * @userFunction UF_CharacterGenerationPrompt-displayValidationError
    */
   _displayValidationError( level, type ) {
     if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
@@ -679,7 +679,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onSelectTalentOption
+   * @userFunction UF_CharacterGenerationPrompt-onSelectTalentOption
    */
   static _onSelectTalentOption( _, target ) {
     target.querySelector( "input[type=\"radio\"]" ).click();
@@ -688,7 +688,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onChangeRank
+   * @userFunction UF_CharacterGenerationPrompt-onChangeRank
    */
   static _onChangeRank( _, target ) {
     const abilityUuid = target.dataset.abilityUuid;
@@ -700,7 +700,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onChangeAttriubteModifier
+   * @userFunction UF_CharacterGenerationPrompt-onChangeAttriubteModifier
    */
   static _onChangeAttributeModifier( _, target ) {
     const attribute = target.dataset.attribute;
@@ -711,7 +711,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onClickSpell
+   * @userFunction UF_CharacterGenerationPrompt-onClickSpell
    */
   static _onClickSpell( _, target ) {
     const spellSelected = target.dataset.spellSelected;
@@ -729,7 +729,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onReset
+   * @userFunction UF_CharacterGenerationPrompt-onReset
    */
   static _onReset( _, target ) {
     const resetType = target.dataset.resetType;
@@ -739,7 +739,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @param {*} _ - Unused parameter.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-onSelectEquipment
+   * @userFunction UF_CharacterGenerationPrompt-onSelectEquipment
    */
   static _onSelectEquipment( _, target ) {
     const equipmentUuid = target.dataset.uuid;
@@ -763,7 +763,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * Wait for dialog to be resolved.
    * @param {object} [charGenData]           Initial data to pass to the constructor.
    * @param {object} [options]        Options to pass to the constructor.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-waitPrompt
+   * @userFunction UF_CharacterGenerationPrompt-waitPrompt
    */
   static async waitPrompt( charGenData, options = {} ) {
     const data = charGenData ?? new CharacterGenerationData();
@@ -841,7 +841,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * Retrieves a list of equipment items of the specified type.
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
    * @returns {Promise<Array>} A promise that resolves to an array of equipment items.
-   * @userFunction UF_CharacterGenerationPrompt-Prompt-getEquipmentItems
+   * @userFunction UF_CharacterGenerationPrompt-getEquipmentItems
    */
   static async getEquipmentItems( type ) {
     const lang = game.i18n.lang;
