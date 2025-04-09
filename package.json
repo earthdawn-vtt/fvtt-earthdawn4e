@@ -16,6 +16,7 @@
     "build": "gulp buildAll",
     "build:css": "gulp buildCSS",
     "build:watch": "gulp",
+    "format:lang": "node ./utils/format-lang-json.mjs",
     "lint": "gulp lint",
     "lint:fix": "gulp lint --fix",
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
