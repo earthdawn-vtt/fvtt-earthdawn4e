@@ -1,0 +1,1 @@
+This function handles the learning of the spell and closing of the dialog.

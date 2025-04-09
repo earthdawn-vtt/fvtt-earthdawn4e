@@ -1,1 +1,0 @@
-This function collects all the dice tooltips, and sorts the dice by their size.

@@ -1,0 +1,1 @@
+This function will show or hide (toggle) the details of a history entry group.

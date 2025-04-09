@@ -1,1 +1,0 @@
-This function triggers the manual knockdown tests for an actor.

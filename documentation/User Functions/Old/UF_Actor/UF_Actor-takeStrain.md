@@ -1,1 +1,0 @@
-this function is called by abilities which do not trigger a roll but cost strain.

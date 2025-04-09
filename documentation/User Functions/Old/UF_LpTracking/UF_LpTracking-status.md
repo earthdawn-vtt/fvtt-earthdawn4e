@@ -1,1 +1,0 @@
-the renown status of an actor is calculated by this function.

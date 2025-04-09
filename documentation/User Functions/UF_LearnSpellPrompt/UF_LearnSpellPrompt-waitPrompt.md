@@ -1,0 +1,1 @@
+This function displays a prompt and waits for user input.

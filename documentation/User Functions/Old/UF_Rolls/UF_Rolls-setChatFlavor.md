@@ -1,1 +1,0 @@
-This function sets the flavor text of this roll's chat message.

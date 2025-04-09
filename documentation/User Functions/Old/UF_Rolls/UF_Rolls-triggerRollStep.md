@@ -1,1 +1,0 @@
-This function is triggered if /s is entered into the chat together with a number representing a step. This will then roll an arbitrary roll with the entered step.

@@ -1,1 +1,0 @@
-This function is responsible provide a readable output of all steps rolled in the test. The output of this function will show all dice inline (e.g. roll step 8 + 1 karma results in: **Step 8 + 1x Karma (st 4)**)

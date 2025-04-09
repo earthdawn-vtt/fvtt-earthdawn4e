@@ -1,1 +1,0 @@
-Action tests roll against a difficulty number. if the rolled result is equal or higher than the difficulty number, it is a success.

@@ -1,1 +1,0 @@
-Every dice in Earthdawn has the potential to explode, Foundry VTT has a core functionality, which supports this feature, by adding an x at the end of the dice (e.g. 2d6x or 1d8x or 1d12x + 1d10x).

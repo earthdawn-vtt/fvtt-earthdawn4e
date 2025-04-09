@@ -11,6 +11,7 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Function} options.resolve          The function to call when the dialog is resolved.
    * @param {ActorEd} options.actor             The actor that is learning the spell.
    * @param {ItemEd} options.spell              The spell that is being learned.
+   * @userFunction                              UF_LearnSpellPrompt-constructor
    */
   constructor( options ) {
     super( options );
@@ -82,7 +83,10 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     };
   }
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction                             UF_LearnSpellPrompt-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     id:      "learn-spell-prompt",
     classes: [ "earthdawn4e", "learn-spell" ],
@@ -105,7 +109,10 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     },
   };
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction                              UF_LearnSpellPrompt-parts
+   */
   static PARTS = {
     form: {
       template: "systems/ed4e/templates/actor/legend-points/learn-spell.hbs",
@@ -120,6 +127,7 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
    * @param {object} [options.actor]            The actor to which the lpHistory belongs.
    * @param {object} [options.resolve]          The function to call when the dialog is resolved.
+   * @UserFunction                              UF_LearnSpellPrompt-waitPrompt
    */
   static async waitPrompt( options = {} ) {
     return new Promise( ( resolve ) => {
@@ -128,12 +136,25 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     } );
   }
 
+  /**
+   * Handles form submission for the learn spell dialog.
+   * @param {Event} event The event object triggered by the form submission.
+   * @param {HTMLElement} form The form element.
+   * @param {object} formData The form data.
+   * @userFunction UF_LearnSpellPrompt-onFormSubmission
+   */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
     this.dataModel.updateSource( data );
     this.render();
   }
 
+  /**
+   * Handles the action getting teacher support.
+   * @param {Event} _ - The event object triggered by the action.
+   * @returns {Promise<void>} A promise that resolves when the dialog is closed.
+   * @userFunction UF_LearnSpellPrompt-spellcastingTest
+   */
   static async _spellcastingTest( _ ) {
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
@@ -157,6 +178,12 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     return roll;
   }
 
+  /**
+   * Handles the action of copying the spell using a patterncraft test.
+   * @param {Event} _ - The event object triggered by the action.
+   * @returns {Promise<void>} A promise that resolves when the dialog is closed.
+   * @userFunction UF_LearnSpellPrompt-patterncraftTest
+   */
   static async _patterncraftTest( _ ) {
     const modifiers = {};
     if ( this.dataModel.teacherTestSuccessful ) modifiers[ game.i18n.localize( "ED.Dialogs.Legend.LearnSpell.teacherBonusModifier" ) ] = this.dataModel.teacherRank;
@@ -191,11 +218,22 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     return roll;
   }
 
+  /**
+   * Handles the action of learning the spell and closing the dialog.
+   * @param {Event} event The event object triggered by the action.
+   * @param {HTMLElement} target The target element that triggered the action.
+   * @returns {Promise<void>} A promise that resolves when the dialog is closed.
+   * @userFunction UF_LearnSpellPrompt-learnAndClose
+   */
   static async _learnAndClose( event, target ) {
     this.resolve?.( target.dataset.action );
     return this.close();
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction                              UF_LearnSpellPrompt-prepareContext
+   */
   async _prepareContext( _ ) {
     const context = {};
     context.source = this.dataModel;

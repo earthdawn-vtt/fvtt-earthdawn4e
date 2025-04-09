@@ -1,1 +1,0 @@
-The number of dice must be evaluated since dice can explode and add more dice. This is a functionality required for the Foundry Core functionalities.

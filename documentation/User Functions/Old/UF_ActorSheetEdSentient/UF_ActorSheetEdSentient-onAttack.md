@@ -1,1 +1,0 @@
-This function triggers attack actions triggered from the actor sheet.

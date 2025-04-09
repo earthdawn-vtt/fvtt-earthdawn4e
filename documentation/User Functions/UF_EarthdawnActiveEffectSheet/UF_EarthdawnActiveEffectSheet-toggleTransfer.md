@@ -1,0 +1,1 @@
+This function handles toggles the transfer property based on the changed property in the form.

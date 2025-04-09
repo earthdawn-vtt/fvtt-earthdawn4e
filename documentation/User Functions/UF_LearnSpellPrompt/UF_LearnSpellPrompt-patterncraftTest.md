@@ -1,0 +1,2 @@
+This function triggers a roll prompt for the user with the patterncraft talent (see ed ids). The difficulty is set to 5 spell circle.
+this function also checks if the test was successful and offers one additional test for the sacrifice of a recovery test for this day.

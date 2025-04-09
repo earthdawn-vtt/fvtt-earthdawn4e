@@ -1,1 +1,0 @@
-This functionaly is responsible for collecting all rolldata and sending it to the foundry core function [toMessage](https://foundryvtt.com/api/classes/foundry.dice.Roll.html#toMessage) which will create a chat message out of these data.

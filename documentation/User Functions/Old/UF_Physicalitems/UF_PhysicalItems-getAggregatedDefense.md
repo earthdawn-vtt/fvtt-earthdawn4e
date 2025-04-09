@@ -1,1 +1,0 @@
-this function evaluates how many targets are selected and adds searches for the highest or lowest defense of a specific type.

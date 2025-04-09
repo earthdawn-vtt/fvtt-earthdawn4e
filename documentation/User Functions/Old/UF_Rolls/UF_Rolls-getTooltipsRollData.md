@@ -1,1 +1,0 @@
-This function will indicate the rolled result of each dice on the dice symbol in the chat message.

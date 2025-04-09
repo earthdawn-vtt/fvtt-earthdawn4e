@@ -1,1 +1,0 @@
-this function makes sure, that free talents of a discipline stay at a rank equal to the discipline cirle.

@@ -1,1 +1,0 @@
-This function triggers most of the rolls from the actor sheet like attribute or ability rolls.(except buttons which have separate trigger functions)

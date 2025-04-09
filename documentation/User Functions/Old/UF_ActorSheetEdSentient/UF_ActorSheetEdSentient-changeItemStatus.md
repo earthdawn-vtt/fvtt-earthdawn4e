@@ -1,1 +1,0 @@
-This function triggers the change of the holding type (how a physical item is carried)

@@ -1,3 +1,0 @@
-upgrading a discipline will check if all class items have at least a rank of the new discipline circle. If this is the case, it will add all items from the advancement tab (discipline talents, free talents, effects and special abilities) to the actor.
-in addition, a prompt will appear to provide an option for one optional talent to be chosen from the current and all below tier list of the optional pools of the advancement section in the discipline item. 
-Talentranks for optional or discipline talents will be set to 0 (free talents of course have the rank = to the circle). All talents will get the same tier as the the discipline circle has.

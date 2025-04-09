@@ -1,0 +1,1 @@
+this function prepares the context for the tabs part.

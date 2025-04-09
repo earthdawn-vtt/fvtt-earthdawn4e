@@ -1,1 +1,0 @@
-This function sums up all strain from every source related to the specific roll. This result will later one handled by the UF_XXXXXXX-takeDamage function.

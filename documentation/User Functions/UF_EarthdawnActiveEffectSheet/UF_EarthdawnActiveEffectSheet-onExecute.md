@@ -1,0 +1,1 @@
+This function executes the effect script, if available.

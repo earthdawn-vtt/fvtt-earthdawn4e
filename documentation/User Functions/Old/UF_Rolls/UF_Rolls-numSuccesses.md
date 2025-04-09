@@ -1,4 +1,0 @@
-A test is successful if the result is equal or higher than the difficulty number. The number of successes is increased for every 5 points of the result above the difficulty number. 
-
-**Note:** Difference between Number of Successes and Number of Extra Successes.
-Earthdawn differentiates between extra successes and successes. Extra Successes are usually one point lower than successes. Successes as well as extra successes can have an impact on the effectiveness of Abilities (e.g. taunt grants a malus for every success). Extra successes can be used to trigger special maneuvers, while successes can't.

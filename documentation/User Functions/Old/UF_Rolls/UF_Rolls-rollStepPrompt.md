@@ -1,1 +1,0 @@
-This function is triggerd by clicking on the dice symbol at the chat sidebar (above the entry field).
