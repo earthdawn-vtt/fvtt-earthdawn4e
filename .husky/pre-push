@@ -1,1 +1,0 @@
-eslint --config eslint.config.mjs ".\earthdawn4e.mjs" "module/**/*.mjs"
