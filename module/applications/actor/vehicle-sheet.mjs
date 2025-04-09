@@ -8,7 +8,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   /**
    * this is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdVehicle-addSheetTab
-  */
+   */
   static {
     this.addSheetTabs( [
       { id: "description", },
@@ -19,7 +19,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdVehicle-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -39,7 +39,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdVehicle-parts
-  */
+   */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -67,7 +67,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdVehicle-prepareContext
-  */
+   */
   async _prepareContext() {
     return await super._prepareContext();
   }
@@ -76,7 +76,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdVehicle-preparePartContext
-  */
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

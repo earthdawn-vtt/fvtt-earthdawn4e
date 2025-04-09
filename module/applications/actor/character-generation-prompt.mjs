@@ -13,7 +13,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /**
    * @inheritdoc
    * @userFunction UF_CharacterGenerationPrompt-constructor   
-  */
+   */
   constructor( charGen, options = {}, documentCollections ) {
     const charGenData = charGen ?? new CharacterGenerationData();
     super( options );

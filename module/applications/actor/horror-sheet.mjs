@@ -8,7 +8,7 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   /**
    * this is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdHorror-addSheetTab
-  */
+   */
   static {
     this.addSheetTabs( [
       { id: "talents", },

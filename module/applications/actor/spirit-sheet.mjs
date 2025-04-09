@@ -8,7 +8,7 @@ export default class ActorSheetEdSpirit extends ActorSheetEdSentient {
   /**
    * this is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdSpirit-addSheetTab
-  */
+   */
   static {
     this.addSheetTabs( [
       { id: "talents", },

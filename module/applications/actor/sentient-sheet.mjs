@@ -9,7 +9,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   /**
    * this is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdSentient-addSheetTab
-  */
+   */
   static {
     this.addSheetTabs( [
       { id: "general", },
@@ -23,7 +23,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   /** 
    * @inheritdoc 
    * @userFunction UF_ActorSheetEdSentient-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -51,7 +51,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdSentient-prepareContext
-  */
+   */
   async _prepareContext( options ) {
     return await super._prepareContext( options );
   }
@@ -59,7 +59,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdSentient-preparePartContext
-  */
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
 
@@ -155,7 +155,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the knockdown test result document.
    * @userFunction UF_ActorSheetEdSentient-knockdownTest
-  */
+   */
   static async knockdownTest( event, target ) {
     event.preventDefault();
     const damageTaken = 0;
@@ -168,7 +168,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the recovery roll result document.
    * @userFunction UF_ActorSheetEdSentient-rollRecovery
-  */
+   */
   static async rollRecovery( event, target ) {
     event.preventDefault();
     const recoveryMode = await this.document.getPrompt( "recovery" );
@@ -181,7 +181,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the jump up result document.
    * @userFunction UF_ActorSheetEdSentient-jumpUp
-  */
+   */
   static async jumpUp( event, target ) {
     event.preventDefault();
     this.document.jumpUp( {event: event} );
@@ -193,7 +193,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the initiative roll result document.
    * @userFunction UF_ActorSheetEdSentient-rollInitiative
-  */
+   */
   static async rollInitiative( event, target ) {
     event.preventDefault();
     ui.notifications.info( "Initiative not done yet" );
@@ -206,7 +206,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the roll result document.
    * @userFunction UF_ActorSheetEdSentient-rollable
-  */
+   */
   static async rollable( event, target ) {
     event.preventDefault();
     const li = target.closest( ".item-id" );

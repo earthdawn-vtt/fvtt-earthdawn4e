@@ -26,7 +26,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   /** 
    * @inheritDoc 
    * @userFunction ActorSheetEdDragon-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -45,7 +45,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   /** 
    * @inheritDoc 
    * @userFunction ActorSheetEdDragon-parts
-  */
+   */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -117,7 +117,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   /** 
    * @inheritDoc 
    * @userFunction ActorSheetEdDragon-prepareContext
-  */
+   */
   async _prepareContext() {
     return await super._prepareContext();
   }
@@ -126,7 +126,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   /** 
    * @inheritDoc 
    * @userFunction ActorSheetEdDragon-preparePartContext
-  */
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

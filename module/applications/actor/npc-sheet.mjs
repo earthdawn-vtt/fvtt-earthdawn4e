@@ -8,7 +8,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   /**
    * this is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdNpc-addSheetTab
-  */
+   */
   static {
     this.addSheetTabs( [
       { id: "powers" },
@@ -20,7 +20,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   /** 
    * @inheritDoc 
    * @userFunction UF_ActorSheetEdNpc-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),

@@ -43,7 +43,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   /**
    * @override
    * @userFunction UF_ActorSheetEdCharacter-parts
-  */
+   */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -279,7 +279,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   /**
    * @inheritdoc 
    * @userFunction UF_ActorSheetEdCharacter-onDropItem
-  */
+   */
   async _onDropItem( event, item ) {
     if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item );
     return super._onDropItem( event, item );

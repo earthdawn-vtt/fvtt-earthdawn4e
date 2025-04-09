@@ -14,7 +14,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @inheritdoc 
    * @userFunction UF_ActorSheetEd-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -40,9 +40,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     },
   };
 
-    /** 
+  /** 
    * Configuration for the tabs available in the actor sheet.
-   * @property {Object} sheet - Configuration for the main sheet tabs.
+   * @property {object} sheet - Configuration for the main sheet tabs.
    * @property {Array} sheet.tabs - An array of available tabs.
    * @property {string} sheet.initial - The ID of the initial tab to display.
    * @property {string} sheet.labelPrefix - The prefix for tab labels used for localization.
@@ -56,7 +56,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     },
   };
 
-    /**
+  /**
    * Defines the order of tabs in the actor sheet.
    * @type {Array<string>}
    * @property {string} general - The general tab.
@@ -73,7 +73,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @property {string} legend - The legend tab.
    * @property {string} configuration - The configuration tab.
    * @property {string} classes - The classes tab.
-   * 
    * @userFunction UF_ActorSheetEd-tabOrderSheet
    */
   static TAB_ORDER_SHEET = [
@@ -93,13 +92,12 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     "classes",
   ];
 
-    /**
+  /**
    * Adds custom tabs to the actor sheet.
-   * @param {Object[]} tabs - An array of tab configurations to add. Each tab should include:
+   * @param {object[]} tabs - An array of tab configurations to add. Each tab should include:
    *   - **id**: The unique identifier for the tab.
    *   - **label**: The label for the tab (used for localization).
    *   - **template**: The path to the Handlebars template for the tab's content.
-   * 
    * @userFunction UF_ActorSheetEd-addSheetTabs
    */
   static addSheetTabs( tabs ) {
@@ -117,7 +115,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @inheritdoc 
    * @userFunction UF_ActorSheetEd-prepareContext
-  */
+   */
   async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
     const context = await super._prepareContext( options );
@@ -144,7 +142,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @inheritdoc 
    * @userFunction UF_ActorSheetEd-renderHTML
-  */
+   */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
   }
@@ -202,7 +200,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @returns {Promise<void>} - A promise that resolves when the item is deleted.
    * @userFunction UF_ActorSheetEd-onItemDelete
-  */
+   */
   static async _onItemDelete( event, target ) {
     event.preventDefault();
     const itemId = target.parentElement.dataset.itemId;
@@ -218,7 +216,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @returns {Promise<void>} - A promise that resolves when the item description is expanded or collapsed.
    * @userFunction UF_ActorSheetEd-onCardExpand
-  */
+   */
   static async _onCardExpand( event, target ) {
     event.preventDefault();
 
@@ -236,7 +234,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @returns {Promise<void>} - A promise that resolves when the item is displayed in the chat.
    * @userFunction UF_ActorSheetEd-onDisplayItem
-  */
+   */
   static async _onDisplayItem( event, target ) {
     ui.notifications.info( "Display Item not done yet" );
   }
@@ -245,7 +243,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEd-onCreateChild
-  */
+   */
   static async _onCreateChild( event, target ) {
     const type = target.dataset.type;
 
@@ -294,7 +292,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEd-onDeleteChild
-  */
+   */
   static async _onDeleteChild( event, target ) {
     const document = await fromUuid( target.dataset.uuid );
     if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) return document.delete();
@@ -305,7 +303,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEd-onDisplayChildToChat
-  */
+   */
   static async _onDisplayChildToChat( event, target ) {
     ChatMessage.create( { content: "Coming up: a beautiful description of the Item you just clicked to be displayed here in chat!" } );
   }
@@ -314,7 +312,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEd-onEditChild
-  */
+   */
   static async _onEditChild( event, target ) {
     ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
   }
