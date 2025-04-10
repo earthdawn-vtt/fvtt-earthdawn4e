@@ -1,10 +1,13 @@
-<div class="class-advancement-spell-selection" {{#unless render.spellSelection}}style="display:none;"{{/unless}}>
+<div class="class-advancement-spell-selection scrollable" {{#unless render.spellSelection}}style="display:none;"{{/unless}}>
 
   <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.YouCanChooseSpells"}}</p>
 
-  <div>
+  <div class="available-spells">
     {{#each availableSpells as |uuid|}}
-        {{{ed-linkForUuid uuid}}}
+        <div class="spell">
+          <input type="checkbox" id="spell-{{uuid}}" name="selectedSpells" value="{{uuid}}">
+          <label for="spell-{{uuid}}">{{{ed-linkForUuid uuid}}}</label>
+        </div>
     {{else}}
       <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsAvailable"}}</p>
     {{/each}}
@@ -12,7 +15,7 @@
 
   <hr>
 
-  <div>
+  <div class="selected-spells">
     {{#if (ed-hasItems selectedSpells)}}
       <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.SelectedSpells"}}</p>
 
@@ -24,9 +27,6 @@
               <a class="remove fa-solid fa-times" data-tooltip="Remove Document" aria-label="Remove Document"></a>
             </div>
           </div>
-          <input type="text" placeholder="Enter UUID or Drop Document">
-          <button type="button" class="icon fa-solid fa-file-plus" data-tooltip="Add Document" aria-label="Add Document">
-          </button>
         {{/each}}
       </document-tags>
     {{else}}

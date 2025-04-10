@@ -50,6 +50,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     this.effectsGained = this.classItem.system.advancement.levels[ this.nextLevel - 1 ].effects;
   }
 
+
   /**
    * Wait for dialog to be resolved.
    * @param {ItemEd} classItem                  The class item for which to display advancement options.
@@ -129,7 +130,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
   static async _continue( event, target ) {
     if ( this.currentStep === 0 ) this.currentStep++;
     else if (
-      this.classItem.system.spellcasting
+      await ClassAdvancementDialog.getClassCastingType( this.classItem ) !== ""
       && game.settings.get( "ed4e", "lpTrackingLearnSpellsOnCircleUp" )
     ) this.currentStep++;
     else this.currentStep = this.STEPS.length - 1;
@@ -155,6 +156,37 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     return this.close();
   }
 
+  /**
+   * Get the class casting type for the given class item.
+   * @param {ItemEd} classItem - The class item to get the casting type for.
+   * @returns {Promise<string|null>} - The class casting type, or null if not found.
+   * @userFunction UF_ClassAdvancementDialog_getClassCastingType
+   */
+  static async getClassCastingType( classItem ) {
+    // Combine abilityOptions and abilities into a single array of UUIDs
+    const abilityOptionsUuids = Object.values( classItem.system.advancement.abilityOptions )
+      .flatMap( set => Array.from( set ) ); // Flatten abilityOptions UUIDs
+  
+    const abilitiesUuids = classItem.system.advancement.levels
+      .flatMap( level => [
+        ...Array.from( level.abilities.class || [] ),
+        ...Array.from( level.abilities.free || [] ),
+        ...Array.from( level.abilities.special || [] )
+      ] ); // Flatten abilities UUIDs
+  
+    const allUuids = [ ...abilityOptionsUuids, ...abilitiesUuids ]; // Combine both arrays
+  
+    // Iterate through all UUIDs and check for magic items
+    for ( const uuid of allUuids ) {
+      const item = await fromUuid( uuid ); // Fetch the item using its UUID
+      if ( item?.system?.magic?.magicType !== "" ) {
+        return item.system.magic.magicType; // Return the first matching item
+      }
+    }
+  
+    return null; // Return null if no matching item is found
+  }
+
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
@@ -176,7 +208,9 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     context.abilityOptionsByTier = this.classItem.system.advancement.availableAbilityOptions;
     context.selectedOption = this.selectedOption;
 
-    context.availableSpells = this.classItem.system.spellcasting ? ( await getAllDocuments(
+    context.spellcastingClass = await ClassAdvancementDialog.getClassCastingType( this.classItem );
+
+    context.availableSpells = context.spellcastingClass ? ( await getAllDocuments(
       "Item",
       "spell",
       true,
