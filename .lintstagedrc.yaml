@@ -1,0 +1,9 @@
+# lint and fix modules
+"module/**/*.mjs": "eslint --fix --config eslint.config.mjs"
+
+# format and check language files
+"lang/**/*.json": "npm run format:lang"
+
+# activate when clear what the *.md format is
+# if Github docs, there is an extra module for it: https://github.com/github/markdownlint-github
+# "documentation/**/*.md": "markdownlint --fix --config .markdownlint.jsonc --ignore node_modules"

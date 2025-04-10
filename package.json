@@ -1,13 +1,27 @@
 {
+  "name": "ed4e",
+  "version": "0.0.0",
+  "description": "An implementation of the ED4E game system for Foundry Virtual Tabletop (https://foundryvtt.com).",
+  "author": "Patrick & Qrizzl & alegionofone",
+  "homepage": "https://github.com/patrickmohrmann/earthdawn4eV2",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickmohrmann/earthdawn4eV2"
+  },
+  "bugs": {
+    "url": "https://github.com/patrickmohrmann/earthdawn4eV2/issues"
+  },
   "scripts": {
     "build": "gulp buildAll",
     "build:css": "gulp buildCSS",
     "build:watch": "gulp",
+    "format:lang": "node ./utils/format-lang-json.mjs",
     "lint": "gulp lint",
     "lint:fix": "gulp lint --fix",
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
-    "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs"
+    "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
@@ -17,13 +31,16 @@
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@stylistic/eslint-plugin": "^2.3.0",
     "@stylistic/eslint-plugin-migrate": "^2.3.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.6.0",
     "eslint-plugin-jsdoc": "^46.8.2",
     "globals": "^15.10.0",
     "gulp": "^5.0.0",
     "gulp-eslint-new": "^1.8.3",
     "gulp-if": "^3.0.0",
     "gulp-less": "^5.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "markdownlint-cli": "^0.44.0",
     "merge-stream": "^2.0.0",
     "yargs": "^17.7.2"
   },
