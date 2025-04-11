@@ -21,6 +21,11 @@ import { callIfExists } from "../utils.mjs";
  */
 export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    "ED.Data.General",
+  ];
+
   /**
    * A bound version of {@link getLocalizeKey}. Used to automatically get the
    * localization key of a data field label for this instances document type.
@@ -441,6 +446,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
  */
 export class ActorDataModel extends SystemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor",
+  ];
+
   /** @inheritDoc */
   static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Actor", false );
 
@@ -508,6 +519,12 @@ export class ActorDataModel extends SystemDataModel {
  * Variant of the SystemDataModel with support for rich item tooltips.
  */
 export class ItemDataModel extends SystemDataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item",
+  ];
 
   /** @inheritDoc */
   static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Item", false );
@@ -697,6 +714,12 @@ export class ItemDataModel extends SystemDataModel {
  */
 export class ActiveEffectDataModel extends SystemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect",
+  ];
+
   /** @inheritDoc */
   static labelKey = SystemDataModel.getLocalizeKey.bind( this, "ActiveEffect", false );
 
@@ -738,6 +761,11 @@ export class ActiveEffectDataModel extends SystemDataModel {
  * Data Model variant that does not export fields with an `undefined` value during `toObject( true )`.
  */
 export class SparseDataModel extends foundry.abstract.DataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    "ED.Data.Other",
+  ];
 
   /**
    * A bound version of {@link getLocalizeKey}. Used to automatically get the

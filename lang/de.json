@@ -802,6 +802,14 @@
         }
       },
       "Item":                         {
+        "Spell": {
+          "FIELDS": {
+            "spellcastingType": {
+              "hint": "Art der Spruchzauberei die für diesen Zauber benötigt wird",
+              "label": "Spruchzauberei Typ"
+            }
+          }
+        },
         "Hints":  {
           "Ability":       {
             "Magic":                 {

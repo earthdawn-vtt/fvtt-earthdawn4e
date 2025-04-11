@@ -18,6 +18,12 @@ export default class SpellData extends ItemDataModel.mixin(
   TargetTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Spell",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const { ArrayField, EmbeddedDataField, NumberField, SchemaField, SetField, StringField, TypedSchemaField } = foundry.data.fields;
@@ -30,8 +36,6 @@ export default class SpellData extends ItemDataModel.mixin(
         trim:     true,
         choices:  ED4E.spellcastingTypes,
         initial:  "elementalism",
-        label:    this.labelKey( "Spell.spellcastingType" ),
-        hint:     this.hintKey( "Spell.spellcastingType" ),
       } ),
       level: new NumberField( {
         required: true,
@@ -40,8 +44,6 @@ export default class SpellData extends ItemDataModel.mixin(
         initial:  1,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "Spell.level" ),
-        hint:     this.hintKey( "Spell.level" ),
       } ),
       spellDifficulty:    new SchemaField( {
         reattune: new NumberField( {
@@ -50,8 +52,6 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      ED4E.minDifficulty,
           initial:  ( data ) => { return data.weaving + 5 || ED4E.minDifficulty; },
           integer:  true,
-          label:    this.labelKey( "Spell.reattuneDifficulty" ),
-          hint:     this.hintKey( "Spell.reattuneDifficulty" ),
         } ),
         weaving: new NumberField( {
           required: true,
@@ -59,8 +59,6 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      ED4E.minDifficulty,
           initial:  ( _ ) => { return this.parent?.parent?.fields?.level?.initial + 4 || ED4E.minDifficulty; },
           integer:  true,
-          label:    this.labelKey( "Spell.weavingDifficulty" ),
-          hint:     this.hintKey( "Spell.weavingDifficulty" ),
         } ),
       } ),
       threads: new SchemaField( {
@@ -70,8 +68,6 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Spell.spellThreadsRequired" ),
-          hint:     this.hintKey( "Spell.spellThreadsRequired" ),
         } ),
         woven: new NumberField( {
           required: true,
@@ -79,8 +75,6 @@ export default class SpellData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Spell.spellThreadsWoven" ),
-          hint:     this.hintKey( "Spell.spellThreadsWoven" ),
         } ),
         extra: new NumberField( {} ),
       } ),
@@ -88,8 +82,6 @@ export default class SpellData extends ItemDataModel.mixin(
         required: true,
         blank:    true,
         initial:  "",
-        label:    this.labelKey( "Spell.effect" ),
-        hint:     this.hintKey( "Spell.effect" ),
       } ),
       keywords: new SetField( new StringField( {
         required: true,
@@ -97,14 +89,10 @@ export default class SpellData extends ItemDataModel.mixin(
         blank:    false,
         trim:     true,
         choices:  ED4E.spellKeywords,
-        label:    this.labelKey( "Spell.keyword" ),
-        hint:     this.hintKey( "Spell.keyword" ),
       } ), {
         required: true,
         nullable: false,
         initial:  [],
-        label:    this.labelKey( "Spell.keywords" ),
-        hint:     this.hintKey( "Spell.keywords" ),
       } ),
       element: new SchemaField( {
         type: new StringField( {
@@ -113,8 +101,6 @@ export default class SpellData extends ItemDataModel.mixin(
           blank:    false,
           trim:     true,
           choices:  ED4E.elements,
-          label:    this.labelKey( "Spell.spellElementType" ),
-          hint:     this.hintKey( "Spell.spellElementType" ),
         } ),
         subtype: new StringField( {
           required: true,
@@ -126,50 +112,32 @@ export default class SpellData extends ItemDataModel.mixin(
           ).map(
             subtypes => Object.keys( subtypes )
           ).flat(),
-          label:    this.labelKey( "Spell.spellElementSubtype" ),
-          hint:     this.hintKey( "Spell.spellElementSubtype" ),
         } )
       },
       {
         required: true,
         nullable: true,
-        label:    this.labelKey( "Spell.spellElement" ),
-        hint:     this.hintKey( "Spell.spellElement" ),
       } ),
       duration: new EmbeddedDataField( DurationMetricData, {
-        label: this.labelKey( "Spell.duration" ),
-        hint:  this.hintKey( "Spell.duration" ),
       } ),
       range:    new EmbeddedDataField( RangeMetricData, {
-        label: this.labelKey( "Spell.range" ),
-        hint:  this.hintKey( "Spell.range" ),
       } ),
       area: new EmbeddedDataField( AreaMetricData, {
-        label: this.labelKey( "Spell.area" ),
-        hint:  this.hintKey( "Spell.area" ),
       } ),
       extraSuccess: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
-        label:    this.labelKey( "Spell.extraSuccess" ),
-        hint:     this.hintKey( "Spell.extraSuccess" ),
       } ),
       {
         required: true,
         nullable: true,
         initial:  [],
         max:      1,
-        label:    this.labelKey( "Spell.extraSuccesses" ),
-        hint:     this.hintKey( "Spell.extraSuccesses" ),
       } ),
       extraThreads: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
-        label: this.labelKey( "Spell.extraThreadOption" ),
-        hint:  this.hintKey( "Spell.extraThreadOption" ),
       } ),
       {
         required: true,
         nullable: true,
         initial:  [],
-        label:    this.labelKey( "Spell.extraThreads" ),
-        hint:     this.hintKey( "Spell.extraThreads" ),
       } ),
     } );
   }

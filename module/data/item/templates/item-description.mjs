@@ -8,6 +8,12 @@ import EdIdField from "../../fields/edid-field.mjs";
 export default class ItemDescriptionTemplate extends SystemDataModel {
 
   /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Description",
+  ];
+
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
