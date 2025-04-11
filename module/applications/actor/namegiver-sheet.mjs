@@ -6,7 +6,7 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
 export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdNamegiver-addSheetTab
    */
   static {
@@ -56,7 +56,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
 
   // region Actions
   /**
-   * this function triggers the half magic roll of an adapt.
+   * This function triggers the half magic roll of an adept.
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEdNamegiver-rollHalfMagic

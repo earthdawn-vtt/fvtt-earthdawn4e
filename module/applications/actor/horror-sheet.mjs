@@ -6,7 +6,7 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
 export default class ActorSheetEdHorror extends ActorSheetEdSentient {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdHorror-addSheetTab
    */
   static {

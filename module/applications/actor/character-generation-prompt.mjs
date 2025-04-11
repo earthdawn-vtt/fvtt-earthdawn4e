@@ -173,7 +173,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   /* ----------------------------------------------------------- */
 
   /**
-   * @type {Record<string, ApplicationTab>}
+   * @inheritdoc
    * @userFunction UF_CharacterGenerationPrompt-tabs
    */
   static TABS = {

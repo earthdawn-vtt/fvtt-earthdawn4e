@@ -41,7 +41,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   };
 
   /**
-   * @override
+   * @inheritdoc
    * @userFunction UF_ActorSheetEdCharacter-parts
    */
   static PARTS = {
@@ -210,7 +210,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   // region Actions
 
   /**
-   * increase attributes, abilities or clases
+   * Increase attributes, abilities or classes
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEdCharacter-upgradeItem
@@ -236,7 +236,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   }
 
   /**
-   * trigger the karma ritual of an adapt
+   * Trigger the karma ritual of an adapt
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEdCharacter-karmaRitual
@@ -246,7 +246,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   }
 
   /**
-   * open the legend point history
+   * Open the legend point history
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEdCharacter-legendPointHistory
@@ -257,7 +257,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   }
 
   /**
-   * take strain damage from actions
+   * Take strain damage from actions
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @userFunction UF_ActorSheetEdCharacter-takeStrain

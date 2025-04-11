@@ -127,7 +127,7 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
    * @param {object} [options.actor]            The actor to which the lpHistory belongs.
    * @param {object} [options.resolve]          The function to call when the dialog is resolved.
-   * @UserFunction                              UF_LearnSpellPrompt-waitPrompt
+   * @userFunction                              UF_LearnSpellPrompt-waitPrompt
    */
   static async waitPrompt( options = {} ) {
     return new Promise( ( resolve ) => {

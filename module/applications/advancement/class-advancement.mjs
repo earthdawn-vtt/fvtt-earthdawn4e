@@ -9,7 +9,7 @@ const { isEmpty } = foundry.utils;
 export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ClassAdvancementDialog-steps
    */
   STEPS = [
@@ -21,7 +21,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
 
   /**
    * Button to navigate to the previous step in the dialog.
-   * Sourced from `PromptFactory.goBackButton`.
+   * Sourced from {@link PromptFactory.goBackButton}.
    * Used in steps where the user can go back to review or modify their choices.
    * @userFunction UF_ClassAdvancementDialog-buttonGoBack
    */
@@ -29,7 +29,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
 
   /**
    * Button to proceed to the next step in the dialog.
-   * Sourced from `PromptFactory.continueButton`.
+   * Sourced from {@link PromptFactory.continueButton}.
    * Marked as the default action for steps where the user can continue.
    * @userFunction UF_ClassAdvancementDialog-buttonContinue
    */
@@ -37,7 +37,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
 
   /**
    * Button to finalize the dialog and complete the process.
-   * Sourced from `PromptFactory.completeButton`.
+   * Sourced from {@link PromptFactory.completeButton}.
    * Marked as the default action for the final step of the dialog.
    * @userFunction UF_ClassAdvancementDialog-buttonComplete
    */

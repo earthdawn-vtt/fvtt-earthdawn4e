@@ -6,7 +6,7 @@ import ActorSheetEd from "./common-sheet.mjs";
 export default class ActorSheetEdVehicle extends ActorSheetEd {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdVehicle-addSheetTab
    */
   static {

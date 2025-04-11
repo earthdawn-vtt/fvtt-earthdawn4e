@@ -105,7 +105,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
   };
 
   /**
-   * @type {Record<string, ApplicationTab>}
+   * @inheritdoc
    * @userFunction UF_LegendPointHistory-tabs
    */
   static TABS = {
@@ -311,7 +311,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
   }
 
   /**
-   * Reverts transactions in the lp history dialog.
+   * Handles the revert button for transactions.
    * @param {Event} event The event object triggered by the revert transactions action.
    * @param {HTMLElement} target The target element that triggered the action.
    * @userFunction UF_LegendPointHistory-revertTransactions

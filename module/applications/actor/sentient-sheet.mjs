@@ -7,7 +7,7 @@ import ED4E from "../../config/_module.mjs";
 export default class ActorSheetEdSentient extends ActorSheetEd {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdSentient-addSheetTab
    */
   static {
@@ -240,7 +240,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @private
    * @userFunction              UF_ActorSheetEdSentient-changeItemStatus
    */
-  // eslint-disable-next-line complexity
+   
   static async changeItemStatus( event, target ) {
     event.preventDefault();
 

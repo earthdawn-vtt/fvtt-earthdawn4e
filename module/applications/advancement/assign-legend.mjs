@@ -21,7 +21,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
 
   
   /** 
-   * Displays a prompt and waits for user input.
+   * Displays this application and waits for user input.
    * @param {object} options - Options to configure the prompt.
    * @returns {Promise<any>} - A promise that resolves with the user input.
    * @userFunction UF_AssignLpPrompt-waitPrompt

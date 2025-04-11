@@ -41,11 +41,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   };
 
   /** 
-   * Configuration for the tabs available in the actor sheet.
-   * @property {object} sheet - Configuration for the main sheet tabs.
-   * @property {Array} sheet.tabs - An array of available tabs.
-   * @property {string} sheet.initial - The ID of the initial tab to display.
-   * @property {string} sheet.labelPrefix - The prefix for tab labels used for localization.
+   * @inheritdoc
    * @userFunction UF_ActorSheetEd-tabs
    */
   static TABS = {
@@ -59,20 +55,6 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /**
    * Defines the order of tabs in the actor sheet.
    * @type {Array<string>}
-   * @property {string} general - The general tab.
-   * @property {string} talents - The talents tab.
-   * @property {string} powers - The powers tab.
-   * @property {string} skills - The skills tab.
-   * @property {string} devotions - The devotions tab.
-   * @property {string} spells - The spells tab.
-   * @property {string} equipment - The equipment tab.
-   * @property {string} description - The description tab.
-   * @property {string} notes - The notes tab.
-   * @property {string} reputation - The reputation tab.
-   * @property {string} specials - The specials tab.
-   * @property {string} legend - The legend tab.
-   * @property {string} configuration - The configuration tab.
-   * @property {string} classes - The classes tab.
    * @userFunction UF_ActorSheetEd-tabOrderSheet
    */
   static TAB_ORDER_SHEET = [
@@ -95,9 +77,9 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /**
    * Adds custom tabs to the actor sheet.
    * @param {object[]} tabs - An array of tab configurations to add. Each tab should include:
-   *   - **id**: The unique identifier for the tab.
-   *   - **label**: The label for the tab (used for localization).
-   *   - **template**: The path to the Handlebars template for the tab's content.
+   * @param {string} tabs.id  The unique identifier for the tab.
+   * @param {string} tabs.label The label for the tab (used for localization).
+   * @param {string} tabs.template The path to the Handlebars template for the tab's content.
    * @userFunction UF_ActorSheetEd-addSheetTabs
    */
   static addSheetTabs( tabs ) {
@@ -156,10 +138,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /* -------------------------------------------- */
 
   /**
-   * changing the actor image
+   * Changing the actor image
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns 
+   * @returns {Promise<foundry.FilePicker>} - A promise that resolves when the image is changed.
    * @userFunction UF_ActorSheetEd-onEditImage
    */
   static async _onEditImage( event, target ) {
@@ -184,7 +166,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
    * Editing an item
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the item is edited.
+   * @returns {Promise<any>} - A promise that resolves when the item is edited.
    * @userFunction UF_ActorSheetEd-onItemEdit
    */
   static async _onItemEdit( event, target ) {
@@ -242,6 +224,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the child is created.
    * @userFunction UF_ActorSheetEd-onCreateChild
    */
   static async _onCreateChild( event, target ) {
@@ -291,6 +274,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the child is deleted.
    * @userFunction UF_ActorSheetEd-onDeleteChild
    */
   static async _onDeleteChild( event, target ) {
@@ -302,6 +286,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the child is displayed in chat.
    * @userFunction UF_ActorSheetEd-onDisplayChildToChat
    */
   static async _onDisplayChildToChat( event, target ) {
@@ -311,6 +296,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /** 
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the child is edited.
    * @userFunction UF_ActorSheetEd-onEditChild
    */
   static async _onEditChild( event, target ) {
