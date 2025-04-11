@@ -26,7 +26,7 @@
       <div class="form-fields">
         <multi-select name="system.increaseAbilities">
           <option value=""></option>
-          {{selectOptions initiativeIncreaseAbilities selected=combatant.system.initiativeIncreaseAbilities valueAttr="key" labelAttr="label"}}
+          {{selectOptions initiativeIncreaseAbilities selected=(ed-toArray combatant.system.increaseAbilities) valueAttr="key" labelAttr="label"}}
         </multi-select>
       </div>
       <p class="hint">{{localize combatantSystemFields.increaseAbilities.hint}}</p>
