@@ -119,7 +119,7 @@ function includes( collection, element ) {
 }
 
 /**
- * @description Creates an object that can be used in the {@link HandlebarsHelpers#formInput} helper as the
+ * @description Creates an object that can be used in the {@link foundry.applications.handlebars#formInput} helper as the
  * {@link FormInputConfig#dataset} parameter to create a tooltip.
  * @param {string} content - The content of the tooltip.
  * @returns {object} - An object with a tooltip property of the form `{ tooltip: content }`.
