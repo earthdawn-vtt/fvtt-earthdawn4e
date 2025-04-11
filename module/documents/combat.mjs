@@ -37,13 +37,19 @@ export default class CombatEd extends foundry.documents.Combat {
     await this.#executeEffectsForAll( "roundStart" );
 
     await this.resetInitiatives();
-    for ( const combatant of this.combatants ) {
-      if (
-        !combatant.system.savePromptSettings
-        && ( ( combatant.isNPC && game.user.isGM )
-        || ( !combatant.isNPC && combatant.actor === game.user.character ) )
-      ) await StartRoundCombatantPrompt.waitPrompt( {}, combatant );
-    }
+    await Promise.all( this.combatants.map( combatant => {
+      const decidingUser = game.users.getDesignatedUser( user =>
+        ( user.character === combatant.actor )
+        || ( !user.isGM
+          && !combatant.isNPC // means has actor and player owner
+          && combatant.testUserPermission( user, "OWNER" ) )
+      ) ;
+      if ( !decidingUser ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
+      else return decidingUser.query(
+        "ed4e.startCombatRoundPrompt",
+        { combatantUuid: combatant.uuid, },
+      );
+    } ) );
     this.rollAll();
   }
 

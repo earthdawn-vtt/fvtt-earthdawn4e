@@ -1,7 +1,17 @@
 import InitiativeRollOptions from "../data/roll/initiative.mjs";
 import EdRoll from "../dice/ed-roll.mjs";
+import StartRoundCombatantPrompt from "../applications/combat/start-round-combatant-prompt.mjs";
 
 export default class CombatantEd extends foundry.documents.Combatant {
+
+  // region Static Properties
+
+  static startRoundQuery = async ( { combatantUuid, options = {} } ) => {
+    const combatant = await fromUuid( combatantUuid );
+    return StartRoundCombatantPrompt.waitPrompt( options, combatant );
+  };
+
+  // endregion
 
   /** @inheritdoc */
   getInitiativeRoll( _ ) {

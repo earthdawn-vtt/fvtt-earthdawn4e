@@ -35,6 +35,8 @@ export default function () {
     CONFIG.Item.documentClass = documents.ItemEd;
     CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
 
+    Object.assign( CONFIG.queries, ED4E.queries );
+
     CONFIG.Token.objectClass = canvas.TokenEd;
     CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
 
@@ -45,9 +47,6 @@ export default function () {
 
     // Register text editor enrichers
     enrichers.registerCustomEnrichers();
-
-    // Use active effects within Items
-    CONFIG.ActiveEffect.legacyTransferral = false;
 
     // Set Status Effects
     CONFIG.statusEffects = ED4E.statusEffects.map( ( status ) => {
