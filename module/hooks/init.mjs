@@ -12,6 +12,7 @@ import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
 import * as utils from "../utils.mjs";
 import { staticStatusId } from "../utils.mjs";
+import { UsersEd } from "../documents/collections/_module.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig } = foundry.applications.sheets;
@@ -25,7 +26,9 @@ export default function () {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
     console.log( "ED4e | Initializing the ED4e Game System" );
 
-    // record configuration values
+    // region Record Configuration Values
+
+    // Hook up document classes and collections
     CONFIG.ED4E = ED4E;
     CONFIG.ActiveEffect.documentClass = documents.EarthdawnActiveEffect;
     CONFIG.Actor.documentClass = documents.ActorEd;
@@ -34,13 +37,13 @@ export default function () {
     CONFIG.Combatant.documentClass = documents.CombatantEd;
     CONFIG.Item.documentClass = documents.ItemEd;
     CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
+    CONFIG.Token.objectClass = canvas.TokenEd;
+    CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
+    CONFIG.ui.combat = applications.combat.CombatTrackerEd;
+    CONFIG.User.collection = documents.collections.UsersEd;
 
     Object.assign( CONFIG.queries, ED4E.queries );
 
-    CONFIG.Token.objectClass = canvas.TokenEd;
-    CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
-
-    CONFIG.ui.combat = applications.combat.CombatTrackerEd;
 
     // Register Roll Extensions
     CONFIG.Dice.rolls.splice( 0, 0, dice.EdRoll );
@@ -64,7 +67,10 @@ export default function () {
     CONFIG.Combatant.dataModels = data.combatant.config;
     CONFIG.Item.dataModels = data.item.config;
 
-    // Register sheet application classes
+    // endregion
+
+    // region Register Sheet Application Classes
+
     Actors.unregisterSheet( "core", foundry.appv1.sheets.ActorSheet );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEd, {
       makeDefault: true
@@ -145,19 +151,16 @@ export default function () {
       makeDefault: true
     } );
 
+    // endregion
+
+    // region Handlebars
+
     // Register Handlebars Helper
     registerHandlebarHelpers();
     // Preload Handlebars partials.
     utils.preloadHandlebarsTemplates();
 
-    /* -------------------------------------------- */
-    /*  System Setting Initialization               */
-    /* -------------------------------------------- */
+    // endregion
 
-    // registerSystemSettings()
-
-    /* -------------------------------------------- */
-    /*  Bundled Module Exports                      */
-    /* -------------------------------------------- */
   } );
 }

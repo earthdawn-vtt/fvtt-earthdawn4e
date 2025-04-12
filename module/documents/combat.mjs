@@ -4,8 +4,10 @@ export default class CombatEd extends foundry.documents.Combat {
 
   /** @inheritdoc */
   _sortCombatants( a, b ) {
-    // add that player characters always go first on a tie with NPCs
-    return super._sortCombatants( a, b );
+    // player characters always go first on a tie with NPCs
+    const initiativeA = Number.isNumeric( a.initiative ) ? a.initiative : -Infinity;
+    const initiativeB = Number.isNumeric( b.initiative ) ? b.initiative : -Infinity;
+    return ( initiativeB - initiativeA ) || ( a.isPC ? 1 : -1 );
   }
 
   // region Lifecycle Events
@@ -106,10 +108,7 @@ export default class CombatEd extends foundry.documents.Combat {
   async #promptAllInitiatives() {
     return Promise.all( this.combatants.map( combatant => {
       const decidingUser = game.users.getDesignatedUser( user =>
-        ( user.character === combatant.actor )
-        || ( !user.isGM
-          && !combatant.isNPC // means has actor and player owner
-          && combatant.testUserPermission( user, "OWNER" ) )
+        combatant.isUsersPC( user )
       );
       if ( !decidingUser || !decidingUser.active ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
       else return decidingUser.query(

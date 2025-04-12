@@ -13,6 +13,34 @@ export default class CombatantEd extends foundry.documents.Combatant {
 
   // endregion
 
+  // region Properties
+
+  /**
+   * Check if the combatant is a player character. Defined as: the actor of this
+   * combatant is an assigned character of any user or the combatant is not an NPC.
+   * @type {boolean}
+   */
+  get isPC() {
+    return game.users.assignedCharacters.includes( this.actor )
+      || !this.isNPC;
+  }
+
+  // endregion
+
+  /**
+   * Check if the combatant is a player character of the given user.
+   * @param {foundry.documents.User} user The user to check.
+   * @returns {boolean} `True` if the combatant is a player character of the user. This means, the actor of this combatant
+   * is the assigned character of the user. Or: the user is not a GM, this combatant is not an NPC, and the user is the
+   * owner of the combatant.
+   */
+  isUsersPC( user ) {
+    return ( user.character === this.actor )
+      || ( !user.isGM
+        && !this.isNPC // means has actor and player owner
+        && this.testUserPermission( user, "OWNER" ) );
+  }
+
   /** @inheritdoc */
   getInitiativeRoll( _ ) {
     // do stuff, how best to ask for initiative talents?
