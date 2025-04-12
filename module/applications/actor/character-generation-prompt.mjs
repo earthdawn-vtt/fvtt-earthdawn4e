@@ -233,6 +233,8 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
       active:   false,
       cssClass: ""
     },
+    initial:     "namegiver-tab",
+    labelPrefix: "ED.Sheet.Tabs",
   };
 
   /* ----------------------------------------------------------- */

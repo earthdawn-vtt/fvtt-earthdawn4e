@@ -42,7 +42,7 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     sheet: {
       tabs:        [],
       initial:     "general",
-      labelPrefix: "ED.Actor.Tabs",
+      labelPrefix: "ED.Sheet.Tabs",
     },
   };
 

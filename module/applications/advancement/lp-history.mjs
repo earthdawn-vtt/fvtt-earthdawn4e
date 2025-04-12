@@ -128,6 +128,8 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
       active:   false,
       cssClass: ""
     },
+    initial:     "chronological-tab",
+    labelPrefix: "ED.Sheets.Tabs",
   };
 
   // put _configureRenderOptions here if needed

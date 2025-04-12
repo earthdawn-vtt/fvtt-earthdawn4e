@@ -64,7 +64,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         { id:    "thread", },
       ],
       initial:     "general",
-      labelPrefix: "ED.Item.Tabs",
+      labelPrefix: "ED.Sheet.Tabs",
     },
   };
 
