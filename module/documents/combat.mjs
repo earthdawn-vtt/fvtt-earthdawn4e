@@ -44,7 +44,7 @@ export default class CombatEd extends foundry.documents.Combat {
           && !combatant.isNPC // means has actor and player owner
           && combatant.testUserPermission( user, "OWNER" ) )
       ) ;
-      if ( !decidingUser ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
+      if ( !decidingUser || !decidingUser.active ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
       else return decidingUser.query(
         "ed4e.startCombatRoundPrompt",
         { combatantUuid: combatant.uuid, },
