@@ -40,7 +40,8 @@ export default class CombatEd extends foundry.documents.Combat {
 
     await this.resetInitiatives();
     await this.#promptAllInitiatives();
-    this.rollAll();
+    await this.rollAll();
+    await this.update( { turn: 0 } );
   }
 
   /** @inheritdoc */
