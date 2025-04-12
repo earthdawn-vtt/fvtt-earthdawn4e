@@ -37,19 +37,7 @@ export default class CombatEd extends foundry.documents.Combat {
     await this.#executeEffectsForAll( "roundStart" );
 
     await this.resetInitiatives();
-    await Promise.all( this.combatants.map( combatant => {
-      const decidingUser = game.users.getDesignatedUser( user =>
-        ( user.character === combatant.actor )
-        || ( !user.isGM
-          && !combatant.isNPC // means has actor and player owner
-          && combatant.testUserPermission( user, "OWNER" ) )
-      ) ;
-      if ( !decidingUser || !decidingUser.active ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
-      else return decidingUser.query(
-        "ed4e.startCombatRoundPrompt",
-        { combatantUuid: combatant.uuid, },
-      );
-    } ) );
+    await this.#promptAllInitiatives();
     this.rollAll();
   }
 
@@ -109,6 +97,26 @@ export default class CombatEd extends foundry.documents.Combat {
     for ( const combatant of combatants ) {
       await this.#executeEffects( executionTime, combatant );
     }
+  }
+
+  /**
+   * Prompt all combatants to roll initiative.
+   * @returns {Promise<Awaited<unknown>[]>} The results of the prompts.
+   */
+  async #promptAllInitiatives() {
+    return Promise.all( this.combatants.map( combatant => {
+      const decidingUser = game.users.getDesignatedUser( user =>
+        ( user.character === combatant.actor )
+        || ( !user.isGM
+          && !combatant.isNPC // means has actor and player owner
+          && combatant.testUserPermission( user, "OWNER" ) )
+      );
+      if ( !decidingUser || !decidingUser.active ) return StartRoundCombatantPrompt.waitPrompt( {}, combatant );
+      else return decidingUser.query(
+        "ed4e.startCombatRoundPrompt",
+        { combatantUuid: combatant.uuid }
+      );
+    } ) );
   }
 
 }
