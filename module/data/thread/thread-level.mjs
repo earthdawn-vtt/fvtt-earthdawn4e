@@ -1,7 +1,13 @@
 import { SparseDataModel } from "../abstract.mjs";
 
 export default class ThreadLevelData extends SparseDataModel {
-  /** @inheritDoc */
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.ThreadLevel",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

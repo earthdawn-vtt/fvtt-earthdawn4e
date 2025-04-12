@@ -6,6 +6,12 @@ import SentientTemplate from "./templates/sentient.mjs";
  */
 export default class DragonData extends SentientTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Dragon",
+  ];
+
   /** @inheritDoc */
   static _systemType = "dragon";
 

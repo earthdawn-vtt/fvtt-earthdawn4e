@@ -9,6 +9,12 @@ import MappingField from "../fields/mapping-field.mjs";
 
 export default class AdvancementData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.Advancement",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

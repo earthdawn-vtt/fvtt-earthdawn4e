@@ -17,6 +17,12 @@ const { DialogV2 } = foundry.applications.api;
  */
 export default class PcData extends NamegiverTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Pc",
+  ];
+
   /** @inheritDoc */
   static _systemType = "character";
 

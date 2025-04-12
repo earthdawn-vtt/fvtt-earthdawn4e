@@ -16,6 +16,12 @@ export default class PowerData extends ActionTemplate.mixin(
   TargetTemplate,
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Power",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

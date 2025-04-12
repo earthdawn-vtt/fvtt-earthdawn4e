@@ -10,6 +10,12 @@ const futils = foundry.utils;
  */
 export default class NamegiverTemplate extends SentientTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Namegiver",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

@@ -11,6 +11,12 @@ import ED4E from "../../config/_module.mjs";
  */
 export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.Eae",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

@@ -6,6 +6,12 @@ import SentientTemplate from "./templates/sentient.mjs";
  */
 export default class SpiritData extends SentientTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Spirit",
+  ];
+
   /** @inheritDoc */
   static _systemType = "spirit";
 

@@ -10,6 +10,12 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Skill",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

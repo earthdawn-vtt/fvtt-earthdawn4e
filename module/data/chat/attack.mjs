@@ -2,6 +2,11 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class AttackMessageData extends BaseMessageData {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.AttackMessage",
+  ];
 
   static DEFAULT_OPTIONS = {
     actions: {

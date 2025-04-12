@@ -2,6 +2,12 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class DamageMessageData extends BaseMessageData {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.DamageMessage",
+  ];
+
   static DEFAULT_OPTIONS = {
     actions: {
       "apply-damage":  this._onApplyDamage,

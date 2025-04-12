@@ -60,6 +60,13 @@ import { SparseDataModel } from "../abstract.mjs";
  *                               etc. TODO: complete list
  */
 export default class EdRollOptions extends SparseDataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.RollOptions",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

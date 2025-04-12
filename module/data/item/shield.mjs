@@ -12,6 +12,13 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 export default class ShieldData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate
 ) {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Shield",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

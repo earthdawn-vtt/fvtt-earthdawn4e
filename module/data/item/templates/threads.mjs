@@ -9,6 +9,12 @@ import ThreadBaseData from "../../thread/thread-base.mjs";
  */
 export default class ThreadTemplate extends ItemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Thread",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

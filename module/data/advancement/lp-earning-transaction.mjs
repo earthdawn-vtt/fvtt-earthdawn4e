@@ -6,6 +6,12 @@ import { dateToInputString } from "../../utils.mjs";
 // UF_LpTracking-addLpTransaction
 export default class LpEarningTransactionData extends LpTransactionData {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpEarningTransaction",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

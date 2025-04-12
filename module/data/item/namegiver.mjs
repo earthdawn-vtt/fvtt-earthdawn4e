@@ -23,6 +23,13 @@ import MappingField from "../fields/mapping-field.mjs";
 export default class NamegiverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Namegiver",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

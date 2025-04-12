@@ -29,6 +29,12 @@ import MappingField from "../fields/mapping-field.mjs";
  */
 export default class CharacterGenerationData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.CharacterGeneration",
+  ];
+
   static minAttributeModifier = -2;
   static maxAttributeModifier = 8;
 

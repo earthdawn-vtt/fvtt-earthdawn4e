@@ -8,6 +8,12 @@ export default class EffectData extends SystemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Effect",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {

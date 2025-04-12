@@ -34,7 +34,13 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 export default class MaskData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
-  // TODO to check when mask function will be done.
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Mask",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

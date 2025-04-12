@@ -2,6 +2,12 @@ import AssignLpPrompt from "../../applications/advancement/assign-legend.mjs";
 
 export default class LpTransactionData extends foundry.abstract.DataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpTransaction",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

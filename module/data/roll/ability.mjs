@@ -2,6 +2,12 @@ import EdRollOptions from "./common.mjs";
 
 export default class AbilityRollOptions extends EdRollOptions {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.AbilityRollOptions",
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {

@@ -16,6 +16,12 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.KnackAbility",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

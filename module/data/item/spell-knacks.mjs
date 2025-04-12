@@ -8,6 +8,12 @@ export default class SpellKnackData extends KnackTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.SpellKnack",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {

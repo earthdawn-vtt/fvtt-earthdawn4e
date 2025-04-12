@@ -12,6 +12,13 @@ const isEmpty = foundry.utils.isEmpty;
 export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
   LpIncreaseTemplate,
 ) {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.IncreasableAbility",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

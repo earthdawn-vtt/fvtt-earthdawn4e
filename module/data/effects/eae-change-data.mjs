@@ -6,6 +6,12 @@ import FormulaField from "../fields/formula-field.mjs";
  */
 export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.Change",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

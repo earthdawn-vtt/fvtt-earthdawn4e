@@ -9,6 +9,12 @@ import MappingField from "../../fields/mapping-field.mjs";
  */
 export default class SentientTemplate extends CommonTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Sentient",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

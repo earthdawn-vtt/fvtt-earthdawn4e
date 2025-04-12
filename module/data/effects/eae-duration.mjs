@@ -7,6 +7,12 @@ import ED4E from "../../config/_module.mjs";
  */
 export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.EaeDuration",
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
 

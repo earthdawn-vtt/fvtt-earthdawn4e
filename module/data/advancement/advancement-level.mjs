@@ -9,6 +9,12 @@ import IdentifierField from "../fields/identifier-field.mjs";
  */
 export default class AdvancementLevelData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.AdvancementLevel",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
