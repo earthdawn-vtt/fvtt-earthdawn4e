@@ -107,6 +107,7 @@ export default class CombatEd extends foundry.documents.Combat {
    */
   async #promptAllInitiatives() {
     return Promise.all( this.combatants.map( combatant => {
+      if ( combatant.system.savePromptSettings ) return undefined;
       const decidingUser = game.users.getDesignatedUser( user =>
         combatant.isUsersPC( user )
       );
