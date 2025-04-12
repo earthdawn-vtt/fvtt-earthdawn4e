@@ -98,10 +98,16 @@
           {{localize "TODO.dontShowPrompt"}}
         </label>
         <label class="checkbox">
-          <input type="checkbox" name="defeated" {{checked system.keepInitiative}} />
+          <input type="checkbox" name="system.keepInitiative" {{checked system.keepInitiative}} />
           {{localize "TODO.keepInitiative"}}
         </label>
       </div>
     </div>
   </fieldset>
+
+  <footer class="form-footer">
+    <button type="submit">
+      <i class="fa-solid fa-floppy-disk"></i> {{title}}
+    </button>
+  </footer>
 </div>
