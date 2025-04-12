@@ -12,10 +12,9 @@ import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
 import * as utils from "../utils.mjs";
 import { staticStatusId } from "../utils.mjs";
-import { UsersEd } from "../documents/collections/_module.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
-const { ActiveEffectConfig } = foundry.applications.sheets;
+const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
 const { Actors, Items, Journal } = foundry.documents.collections;
 
 /**
@@ -134,6 +133,14 @@ export default function () {
       { makeDefault: true },
     );
 
+    DocumentSheetConfig.unregisterSheet( Combatant, "core", CombatantConfig );
+    DocumentSheetConfig.registerSheet(
+      Combatant,
+      "earthdawn4e",
+      applications.combat.CombatantConfigEd,
+      { makeDefault: true },
+    );
+
     Items.unregisterSheet( "core", foundry.appv1.sheets.ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true
@@ -146,6 +153,7 @@ export default function () {
       types:       [ "armor", "equipment", "shield", "weapon" ],
       makeDefault: true 
     } );
+
     Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
       makeDefault: true
