@@ -21,6 +21,13 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   LearnableTemplate,
   TargetTemplate
 ) {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Ability",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

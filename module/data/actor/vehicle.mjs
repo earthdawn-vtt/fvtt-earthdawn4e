@@ -5,6 +5,12 @@ import CommonTemplate from "./templates/common.mjs";
  */
 export default class VehicleData extends CommonTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Vehicle",
+  ];
+
   /** @inheritDoc */
   static _systemType = "Vehicle";
 

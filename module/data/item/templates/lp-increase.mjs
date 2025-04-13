@@ -9,6 +9,12 @@ import SystemDataModel from "../../abstract.mjs";
  */
 export default class LpIncreaseTemplate extends SystemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.LpIncrease",
+  ];
+
   /**
    * @description Whether the entity fulfills all requirements to be increased.
    * @type {boolean}

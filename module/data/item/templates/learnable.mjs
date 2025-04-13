@@ -7,6 +7,12 @@ import SystemDataModel from "../../abstract.mjs";
  */
 export default class LearnableTemplate extends SystemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Learnable",
+  ];
+
   /**
    * @description Whether the entity fulfills all requirements to be learned.
    * @type {boolean}

@@ -3,6 +3,12 @@ import EdRollOptions from "./common.mjs";
 
 export default class AttackRollOptions extends EdRollOptions {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.AttackRollOptions",
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {

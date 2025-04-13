@@ -4,6 +4,12 @@ import { dateToInputString } from "../../utils.mjs";
 
 export default class LpSpendingTransactionData extends LpTransactionData {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpSpendingTransaction",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

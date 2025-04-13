@@ -20,6 +20,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   LpIncreaseTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Class",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

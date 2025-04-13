@@ -11,6 +11,12 @@ const { createFormGroup, createSelectInput } = foundry.applications.fields;
  */
 export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectData {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.EaeCondition",
+  ];
+
   static metadata = Object.freeze(
     foundry.utils.mergeObject( super.metadata, {
       type: "condition",

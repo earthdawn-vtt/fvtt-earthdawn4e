@@ -11,6 +11,12 @@ const { fields } = foundry.data;
  */
 export class ConstraintData extends SparseDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Constraint",
+  ];
+
   /* -------------------------------------------- */
   /* Properties                                   */
   /* -------------------------------------------- */

@@ -22,6 +22,12 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   ThreadTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.PhysicalItem",
+  ];
+
   /**
    * The order in which this items status is cycled. Represents the default order.
    * Should be defined in the extending class, if different.

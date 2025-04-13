@@ -82,7 +82,7 @@ export default class ItemSheetEd extends HandlebarsApplicationMixin( ItemSheetV2
         { id:    "effects", },
       ],
       initial:     "general",
-      labelPrefix: "ED.Item.Tabs",
+      labelPrefix: "ED.Sheet.Tabs",
     },
   };
   // endregion

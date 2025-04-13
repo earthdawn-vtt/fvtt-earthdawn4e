@@ -20,6 +20,12 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.PoisonDisease",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

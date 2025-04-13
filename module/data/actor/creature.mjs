@@ -6,6 +6,12 @@ import SentientTemplate from "./templates/sentient.mjs";
  */
 export default class CreatureData extends SentientTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Creature",
+  ];
+
   /** @inheritDoc */
   static _systemType = "creature";
 

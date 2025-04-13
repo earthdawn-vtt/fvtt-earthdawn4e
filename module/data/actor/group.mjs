@@ -5,6 +5,12 @@ import CommonTemplate from "./templates/common.mjs";
  */
 export default class GroupData extends CommonTemplate {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Group",
+  ];
+
   /** @inheritDoc */
   static _systemType = "group";
 

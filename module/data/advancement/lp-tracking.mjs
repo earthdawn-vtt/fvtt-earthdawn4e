@@ -4,6 +4,12 @@ import { sum } from "../../utils.mjs";
 
 export default class LpTrackingData extends foundry.abstract.DataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpTracking",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

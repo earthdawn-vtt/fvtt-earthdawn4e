@@ -9,6 +9,12 @@ export default class NpcData extends NamegiverTemplate.mixin(
   ActorDescriptionTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Npc",
+  ];
+
   /** @inheritDoc */
   static _systemType = "npc";
 

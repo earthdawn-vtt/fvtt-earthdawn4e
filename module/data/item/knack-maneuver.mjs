@@ -10,6 +10,12 @@ export default class KnackManeuverData extends ManeuverData.mixin(
   ItemDescriptionTemplate,
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.KnackManeuver",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {

@@ -11,6 +11,12 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Equipment",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

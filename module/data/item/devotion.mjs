@@ -11,6 +11,12 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Devotion",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

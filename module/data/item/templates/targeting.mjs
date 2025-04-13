@@ -11,6 +11,13 @@ import ED4E from "../../../config/_module.mjs";
  * @mixin
  */
 export default class TargetTemplate extends SystemDataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Target",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {

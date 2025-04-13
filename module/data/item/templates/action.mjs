@@ -11,6 +11,12 @@ export default class ActionTemplate extends ItemDataModel.mixin(
   RollableTemplate,
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Action",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {

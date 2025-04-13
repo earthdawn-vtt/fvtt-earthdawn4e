@@ -25,6 +25,12 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   RollableTemplate,
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Weapon",
+  ];
+
   static _itemStatusOrder = [ "owned", "carried", "mainHand", "offHand", "twoHands", "tail" ];
 
   /** @inheritDoc */

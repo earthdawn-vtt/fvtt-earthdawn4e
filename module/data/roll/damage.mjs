@@ -3,6 +3,12 @@ import ED4E from "../../config/_module.mjs";
 
 export default class DamageRollOptions extends EdRollOptions {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.DamageRollOptions",
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {

@@ -13,6 +13,12 @@ export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Questor",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

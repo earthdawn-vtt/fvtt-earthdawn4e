@@ -103,7 +103,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
    */
   static TABS = {
     "base-tab": {
-      id:       "earned-tab",
+      id:       "base-tab",
       group:    "primary",
       icon:     "",
       label:    "ED.Dialogs.Tabs.rollPromptBaseTab",
@@ -118,6 +118,8 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
       active:   false,
       cssClass: "",
     },
+    initial:     "base-tab",
+    labelPrefix: "ED.Sheet.Tabs",
   };
 
   buttons = [

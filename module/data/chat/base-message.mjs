@@ -2,6 +2,12 @@ import SystemDataModel from "../abstract.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.BaseMessage",
+  ];
+
   constructor( data, options ) {
     super( data, options );
 
