@@ -7,7 +7,7 @@ import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
 export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
   /**
-   * this is a very specific user function which is not following the pattern of the naming convention.
+   * This is a very specific user function which is not following the pattern of the naming convention.
    * @userFunction UF_ActorSheetEdCharacter-addSheetTab
    */
   static {

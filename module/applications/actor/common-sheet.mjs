@@ -222,9 +222,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   }
 
   /** 
+   * Creates a new child active effect
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the child is created.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is created.
    * @userFunction UF_ActorSheetEd-onCreateChild
    */
   static async _onCreateChild( event, target ) {
@@ -272,9 +273,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   }
 
   /** 
+   * Deletes a child active effect
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the child is deleted.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
    * @userFunction UF_ActorSheetEd-onDeleteChild
    */
   static async _onDeleteChild( event, target ) {
@@ -284,9 +286,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   }
 
   /** 
+   * Displays a child active effect in the chat
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the child is displayed in chat.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is displayed in chat.
    * @userFunction UF_ActorSheetEd-onDisplayChildToChat
    */
   static async _onDisplayChildToChat( event, target ) {
@@ -294,9 +297,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   }
 
   /** 
+   * Edits a child active effect
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the child is edited.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is edited.
    * @userFunction UF_ActorSheetEd-onEditChild
    */
   static async _onEditChild( event, target ) {
