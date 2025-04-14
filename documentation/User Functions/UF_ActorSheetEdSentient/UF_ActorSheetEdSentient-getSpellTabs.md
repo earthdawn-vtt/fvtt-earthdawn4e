@@ -1,0 +1,1 @@
+This function creates the sub-tabs for the spell lists based on the spellcasting type.

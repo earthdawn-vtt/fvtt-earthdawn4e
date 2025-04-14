@@ -1,0 +1,1 @@
+This function opens the item sheet of the selection for editing.

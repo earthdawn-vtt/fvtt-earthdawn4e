@@ -1,0 +1,1 @@
+This function is triggered by the "take damage" button to add damage to the actor.

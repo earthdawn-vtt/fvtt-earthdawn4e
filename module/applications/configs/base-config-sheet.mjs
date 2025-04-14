@@ -7,7 +7,10 @@ const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api
  */
 export default class BaseConfigSheet extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_BaseConfigSheet-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     classes:     [ "config-sheet" ],
     sheetConfig: false,
@@ -16,7 +19,10 @@ export default class BaseConfigSheet extends HandlebarsApplicationMixin( Documen
     }
   };
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_BaseConfigSheet-preparePartContext
+   */
   async _preparePartContext( partId, context, options ) {
     const newContext = await super._preparePartContext( partId, context, options );
 

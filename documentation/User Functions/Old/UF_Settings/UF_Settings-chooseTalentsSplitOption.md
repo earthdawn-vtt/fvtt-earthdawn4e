@@ -1,1 +1,0 @@
-if the setting is active, all talents will be divided on the actor sheet by the talent category.

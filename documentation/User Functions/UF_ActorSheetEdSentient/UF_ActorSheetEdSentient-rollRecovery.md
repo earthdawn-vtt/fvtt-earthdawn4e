@@ -1,0 +1,1 @@
+This function is triggered by the "recovery" button and will start the recovery process for an actor.

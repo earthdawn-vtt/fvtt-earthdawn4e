@@ -3,6 +3,11 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class AssignLpPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
 
+
+  /** 
+   * @inheritdoc
+   * @userFunction UF_AssignLpPrompt-constructor
+   */
   constructor( options = {} ) {
     super( options );
     const object = options.object || {};
@@ -14,6 +19,13 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     };
   }
 
+  
+  /** 
+   * Displays this application and waits for user input.
+   * @param {object} options - Options to configure the prompt.
+   * @returns {Promise<any>} - A promise that resolves with the user input.
+   * @userFunction UF_AssignLpPrompt-waitPrompt
+   */
   static async waitPrompt( options = {} ) {
     return new Promise( ( resolve ) => {
       options.resolve = resolve;
@@ -21,6 +33,10 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     } );
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_AssignLpPrompt-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     id:       "assign-legend-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -42,6 +58,10 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     },
   };
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_AssignLpPrompt-parts
+   */
   static PARTS = {
     form: {
       template: "systems/ed4e/templates/prompts/assign-legend.hbs",
@@ -56,7 +76,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
    * Prepare the data to be used in the template
    * @param {object} options - Options to be used in the template
    * @returns {object} - The data to be used in the template
-   * @function UF_AssignLpPrompt-prepareContext
+   * @userFunction UF_AssignLpPrompt-prepareContext
    */
   async _prepareContext( options = {} ) {
     const context = {};
@@ -106,6 +126,14 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     return context;
   }
 
+  /**
+   * Handles form submission and updates the object with the form data.
+   * @param {Event} event - The form submission event.
+   * @param {HTMLElement} form - The form element.
+   * @param {object} formData - The form data.
+   * @returns {Promise<object>} - The updated object.
+   * @userFunction UF_AssignLpPrompt-onFormSubmission
+   */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
     // make array if only one actor is selected
@@ -115,6 +143,10 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     return this.object;
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_AssignLpPrompt-close
+   */
   static async close( options = {} ) {
     this.resolve?.( null );
     return super.close( options );
@@ -124,7 +156,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
    * assigns Legend points to actors
    * @param {Event} event - The event object from the form submission.
    * @returns {Promise<void>} - A promise that resolves when the LP assignment is complete.
-   * @function UF_AssignLpPrompt-assignLp
+   * @userFunction UF_AssignLpPrompt-assignLp
    */
   static async _assignLP( event ) {
     event.preventDefault();

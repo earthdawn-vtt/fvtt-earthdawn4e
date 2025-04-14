@@ -1,0 +1,1 @@
+This function deletes a change from the effect's changes array.

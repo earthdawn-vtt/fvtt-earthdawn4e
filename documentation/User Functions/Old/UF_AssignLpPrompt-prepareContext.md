@@ -1,1 +1,0 @@
-this is an extention to the foundry core function [Foundry Core _prepareContext](https://foundryvtt.com/api/classes/foundry.applications.api.ApplicationV2.html#_prepareContext) 

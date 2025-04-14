@@ -1,1 +1,0 @@
-this user function is called if an item dropped to an actor is relevant for Legend Point Tracking or not. In addition it checks if the dropped Item is actually being able to be dropped to the actor, of if prerequisites might not yet be fulfilled (see knacks). 

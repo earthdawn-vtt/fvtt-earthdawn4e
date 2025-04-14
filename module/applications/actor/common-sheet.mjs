@@ -11,7 +11,10 @@ const { ActorSheetV2 } = foundry.applications.sheets;
  */
 export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheetV2 ) {
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEd-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -37,7 +40,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     },
   };
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc
+   * @userFunction UF_ActorSheetEd-tabs
+   */
   static TABS = {
     sheet: {
       tabs:        [],
@@ -46,6 +52,11 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     },
   };
 
+  /**
+   * Defines the order of tabs in the actor sheet.
+   * @type {Array<string>}
+   * @userFunction UF_ActorSheetEd-tabOrderSheet
+   */
   static TAB_ORDER_SHEET = [
     "general",
     "talents",
@@ -63,6 +74,14 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     "classes",
   ];
 
+  /**
+   * Adds custom tabs to the actor sheet.
+   * @param {object[]} tabs - An array of tab configurations to add. Each tab should include:
+   * @param {string} tabs.id  The unique identifier for the tab.
+   * @param {string} tabs.label The label for the tab (used for localization).
+   * @param {string} tabs.template The path to the Handlebars template for the tab's content.
+   * @userFunction UF_ActorSheetEd-addSheetTabs
+   */
   static addSheetTabs( tabs ) {
     this.TABS = foundry.utils.deepClone( this.TABS );
     this.TABS.sheet.tabs.push( ...tabs );
@@ -75,7 +94,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEd-prepareContext
+   */
   async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
     const context = await super._prepareContext( options );
@@ -99,7 +121,10 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     return context;
   }
 
-  /** @inheritdoc */
+  /** 
+   * @inheritdoc 
+   * @userFunction UF_ActorSheetEd-renderHTML
+   */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
   }
@@ -112,6 +137,13 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
   /*  Event Handlers                              */
   /* -------------------------------------------- */
 
+  /**
+   * Changing the actor image
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.FilePicker>} - A promise that resolves when the image is changed.
+   * @userFunction UF_ActorSheetEd-onEditImage
+   */
   static async _onEditImage( event, target ) {
     const attr = target.dataset.edit;
     const current = foundry.utils.getProperty( this.document, attr );
@@ -130,6 +162,13 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     return fp.browse();
   }
 
+  /**
+   * Editing an item
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<any>} - A promise that resolves when the item is edited.
+   * @userFunction UF_ActorSheetEd-onItemEdit
+   */
   static async _onItemEdit( event, target ) {
     event.preventDefault();
     const itemId = target.parentElement.dataset.itemId;
@@ -137,6 +176,13 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     return item.sheet?.render( true );
   }
 
+  /**
+   * Deleting an item
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the item is deleted.
+   * @userFunction UF_ActorSheetEd-onItemDelete
+   */
   static async _onItemDelete( event, target ) {
     event.preventDefault();
     const itemId = target.parentElement.dataset.itemId;
@@ -146,6 +192,13 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     else item.deleteDialog();
   }
 
+  /**
+   * Expanding or collapsing the item description
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the item description is expanded or collapsed.
+   * @userFunction UF_ActorSheetEd-onCardExpand
+   */
   static async _onCardExpand( event, target ) {
     event.preventDefault();
 
@@ -157,11 +210,24 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     itemDescription.toggleClass( "card__description--toggle" );
   }
 
+  /**
+   * Display an item in the chat
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the item is displayed in the chat.
+   * @userFunction UF_ActorSheetEd-onDisplayItem
+   */
   static async _onDisplayItem( event, target ) {
     ui.notifications.info( "Display Item not done yet" );
   }
 
-  /** @inheritDoc */
+  /** 
+   * Creates a new child active effect
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is created.
+   * @userFunction UF_ActorSheetEd-onCreateChild
+   */
   static async _onCreateChild( event, target ) {
     const type = target.dataset.type;
 
@@ -206,19 +272,37 @@ export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheet
     }); */
   }
 
-  /** @inheritDoc */
+  /** 
+   * Deletes a child active effect
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
+   * @userFunction UF_ActorSheetEd-onDeleteChild
+   */
   static async _onDeleteChild( event, target ) {
     const document = await fromUuid( target.dataset.uuid );
     if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) return document.delete();
     else document.deleteDialog();
   }
 
-  /** @inheritDoc */
+  /** 
+   * Displays a child active effect in the chat
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is displayed in chat.
+   * @userFunction UF_ActorSheetEd-onDisplayChildToChat
+   */
   static async _onDisplayChildToChat( event, target ) {
     ChatMessage.create( { content: "Coming up: a beautiful description of the Item you just clicked to be displayed here in chat!" } );
   }
 
-  /** @inheritDoc */
+  /** 
+   * Edits a child active effect
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is edited.
+   * @userFunction UF_ActorSheetEd-onEditChild
+   */
   static async _onEditChild( event, target ) {
     ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
   }

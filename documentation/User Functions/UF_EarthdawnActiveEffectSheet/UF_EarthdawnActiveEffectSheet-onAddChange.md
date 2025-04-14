@@ -1,0 +1,1 @@
+This function adds a new change to the effect's changes array.

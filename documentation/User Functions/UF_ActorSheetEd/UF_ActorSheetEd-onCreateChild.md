@@ -1,0 +1,1 @@
+This function creates a new Active Effect for the actor.

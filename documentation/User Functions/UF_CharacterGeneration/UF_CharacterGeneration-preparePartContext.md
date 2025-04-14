@@ -1,1 +1,0 @@
-This function prepares the context for a specific part of the character generation prompt.

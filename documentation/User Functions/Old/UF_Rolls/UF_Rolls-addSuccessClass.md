@@ -1,1 +1,0 @@
-Add a success or failure class to the dice total. The total will then either be shown in green background for success or red for failure.

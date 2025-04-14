@@ -1,1 +1,0 @@
-This functionality renders the Roll to an HTML format

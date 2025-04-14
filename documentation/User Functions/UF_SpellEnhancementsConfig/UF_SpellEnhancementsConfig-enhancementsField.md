@@ -1,0 +1,1 @@
+This function handles the schema data field for the enhancements field on the document's system property.

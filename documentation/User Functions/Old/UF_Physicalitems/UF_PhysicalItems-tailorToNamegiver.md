@@ -1,1 +1,0 @@
-this function multiplies the item weight with the weight multiplier of the namegiver. In addition to the weight update, it checks a mark which prohibits the use of the **tailor to Namegiver** button more than once (only GMs can remove that check). And it extends the item Name so that it is clear for which Namegiver Race this item is meant to be.

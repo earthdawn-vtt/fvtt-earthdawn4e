@@ -1,1 +1,0 @@
-this function seaches all actor talents for one with a fitting identifier

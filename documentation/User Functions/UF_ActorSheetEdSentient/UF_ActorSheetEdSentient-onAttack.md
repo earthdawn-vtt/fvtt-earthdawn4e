@@ -1,0 +1,1 @@
+This function handles special attack button available to actors

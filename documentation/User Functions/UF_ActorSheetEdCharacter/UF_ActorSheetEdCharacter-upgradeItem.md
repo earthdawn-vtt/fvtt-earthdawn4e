@@ -1,0 +1,1 @@
+This function upgrades items with the increase function (talents, Disciplines and attributes e.g.).

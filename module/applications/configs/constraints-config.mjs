@@ -8,7 +8,10 @@ const { getProperty } = foundry.utils;
  */
 export default class ConstraintsConfig extends BaseConfigSheet {
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ConstraintsConfig-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     classes: [ "constraints-config" ],
     window:  {
@@ -21,7 +24,10 @@ export default class ConstraintsConfig extends BaseConfigSheet {
     type:    null,
   };
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ConstraintsConfig-parts
+   */
   static PARTS = {
     config: {
       template: "systems/ed4e/templates/configs/constraints-config.hbs",
@@ -35,6 +41,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
   /**
    * The data for the constraints field on the document's system property.
    * @type {object}
+   * @userFunction UF_ConstraintsConfig-constraints
    */
   get constraints() {
     return getProperty( this.document.system, this.keyPath );
@@ -43,6 +50,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
   /**
    * The schema data field for the constraints field on the document's system property.
    * @type {DataField}
+   * @userFunction UF_ConstraintsConfig-constraintsField
    */
   get constraintsField() {
     return this.document.system.schema.fields[ this.keyPath ];
@@ -52,6 +60,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
    * Path to the requirements or restrictions data on the document's system property.
    * E.g., "requirements" for the document type "knackAbility" system.requirements field.
    * @type {string}
+   * @userFunction UF_ConstraintsConfig-keyPath
    */
   get keyPath() {
     return  this.options.keyPath ?? this.options.type;
@@ -62,7 +71,10 @@ export default class ConstraintsConfig extends BaseConfigSheet {
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ConstraintsConfig-preparePartContext
+   */
   async _preparePartContext( partId, context, options ) {
     const newContext = await super._preparePartContext( partId, context, options );
 
@@ -89,6 +101,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
    * @param {HTMLFormElement} form                The form element that was submitted
    * @param {FormDataExtended} formData           Processed data for the submitted form
    * @returns {Promise<void>}
+   * @userFunction UF_ConstraintsConfig-onSubmitForm
    */
   static async #onSubmitForm( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );

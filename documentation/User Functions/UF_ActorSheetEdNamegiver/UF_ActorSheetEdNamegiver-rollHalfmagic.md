@@ -1,0 +1,1 @@
+This function triggers the half magic roll of an adapt.

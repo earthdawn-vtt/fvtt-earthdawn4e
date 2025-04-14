@@ -1,1 +1,0 @@
-this system setting enables the game master to add languages to the world by entering free text in the respective field. These languages are available on each actor sheet in the language section.

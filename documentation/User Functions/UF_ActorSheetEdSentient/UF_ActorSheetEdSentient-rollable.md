@@ -1,0 +1,1 @@
+This function is triggered by every html object with the rollabel data-action and will trigger the respective roll type.

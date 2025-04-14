@@ -1,1 +1,0 @@
-This user function renders the chat message of any roll.

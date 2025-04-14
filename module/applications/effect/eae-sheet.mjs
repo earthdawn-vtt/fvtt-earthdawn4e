@@ -10,7 +10,10 @@ const { ActiveEffectConfig } = foundry.applications.sheets;
  */
 export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     form: {
       submitOnChange: true,
@@ -23,7 +26,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     },
   };
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-parts
+   */
   static PARTS = {
     ...ActiveEffectConfig.PARTS,
     details:   { template: "systems/ed4e/templates/effect/details.hbs" },
@@ -32,7 +38,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     execution: { template: "systems/ed4e/templates/effect/execution.hbs" },
   };
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-tabs
+   */
   static TABS = {
     ...ActiveEffectConfig.TABS,
     sheet: {
@@ -49,6 +58,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   /**
    * @type {FormInputConfig[]}
+   * @userFunction UF_EarthdawnActiveEffectSheet-keyOptions
    */
   get keyOptions() {
     if ( !this.document ) return [];
@@ -65,7 +75,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   // region Form Handling
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-prepareSubmitData
+   */
   _prepareSubmitData( event, form, formData ) {
     const submitData = super._prepareSubmitData( event, form, formData );
     submitData.duration = submitData.system.duration;
@@ -73,12 +86,21 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     return submitData;
   }
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-processFormData
+   */
   _processFormData( event, form, formData ) {
     const data = super._processFormData( event, form, formData );
     return this._toggleTransfer( event, data );
   }
 
+  /**
+   * Prepares the changes data for submission by evaluating the formula fields.
+   * @param {object[]} changes - The changes data to be prepared.
+   * @returns {object[]} The prepared changes data with evaluated formulas.
+   * @userFunction UF_EarthdawnActiveEffectSheet-prepareChangesSubmitData
+   */
   _prepareChangesSubmitData( changes ) {
     return changes.map( change => {
       return {
@@ -94,6 +116,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @param {Event} event - The event that triggered the change.
    * @param {object} submitData - The data being submitted from the form.
    * @returns {object} The modified submitData with the toggled transfer property.
+   * @userFunction UF_EarthdawnActiveEffectSheet-toggleTransfer
    */
   _toggleTransfer( event, submitData ) {
     const changedProperty = event?.target?.name;
@@ -108,7 +131,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   // region Rendering
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-onRender
+   */
   async _onRender( context, options ) {
     super._onRender( context, options );
 
@@ -116,6 +142,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     // this.element.querySelector( "[name='system.transferToTarget']" ).addEventListener( "change", this._onTransferChange.bind( this ) );
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_EarthdawnActiveEffectSheet-prepareContext
+   */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
 
@@ -127,7 +157,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     return context;
   }
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_EarthdawnActiveEffectSheet-preparePartContext
+   */
   async _preparePartContext( partId, context ) {
     const partContext = await super._preparePartContext( partId, context );
 
@@ -155,7 +188,12 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     return partContext;
   }
 
-  /** @inheritDoc */
+  /**
+   * Prepares the tabs for the effect sheet.
+   * @param {string} group - The group name for the tabs.
+   * @returns {object} The prepared tabs for the effect sheet. 
+   * @userFunction UF_EarthdawnActiveEffectSheet-prepareTabs
+   */
   _prepareTabs( group ) {
     // returns a new object, so can be modified without changing TABS
     const tabs = super._prepareTabs( group );
@@ -177,6 +215,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * Add a new change to the effect's changes array.
    * @this {ActiveEffectConfig}
    * @type {ApplicationClickAction}
+   * @userFunction UF_EarthdawnActiveEffectSheet-onAddChange
    */
   static async #onAddChange() {
     const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
@@ -189,6 +228,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * Delete a change from the effect's changes array.
    * @this {ActiveEffectConfig}
    * @type {ApplicationClickAction}
+   * @userFunction UF_EarthdawnActiveEffectSheet-onDeleteChange
    */
   static async #onDeleteChange( event ) {
     const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
@@ -203,6 +243,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * Execute the effect script, if available.
    * @this {ActiveEffectConfig}
    * @type {ApplicationClickAction}
+   * @userFunction UF_EarthdawnActiveEffectSheet-onExecute
    */
   static async #onExecute() {
     return this.document.system.execute();

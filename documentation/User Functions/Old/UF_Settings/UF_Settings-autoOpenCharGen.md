@@ -1,1 +1,0 @@
-This system setting is responsible for triggering the character generation automatically, if a new actor is created. if it is turned off only **/char** starts the character generation

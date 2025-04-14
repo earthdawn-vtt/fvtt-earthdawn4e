@@ -91,7 +91,7 @@ export default class PcData extends NamegiverTemplate {
   /**
    *
    * @returns {Promise<ActorEd|void>} The newly created actor or `undefined` if the generation was canceled.
-   * @userFunction UF_CharacterGeneration-characterGeneration
+   * @userFunction UF_CharacterGenerationPrompt--characterGeneration
    */
   static async characterGeneration () {
     const generation = await CharacterGenerationPrompt.waitPrompt();

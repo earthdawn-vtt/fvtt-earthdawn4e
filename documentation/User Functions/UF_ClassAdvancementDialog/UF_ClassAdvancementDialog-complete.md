@@ -1,0 +1,1 @@
+This function handles the click event from the complete button.

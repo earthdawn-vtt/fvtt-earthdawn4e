@@ -1,0 +1,1 @@
+This function handles some key options on active effects.

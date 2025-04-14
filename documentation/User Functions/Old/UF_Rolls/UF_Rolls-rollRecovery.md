@@ -1,1 +1,0 @@
-This function triggers recovery rolls.

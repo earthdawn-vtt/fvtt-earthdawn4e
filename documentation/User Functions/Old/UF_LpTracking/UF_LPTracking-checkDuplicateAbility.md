@@ -1,1 +1,0 @@
-this function is checking if items are already availabel on the actor, if a discipline is upgrade or the choice of optional talents is created to not create duplicates.

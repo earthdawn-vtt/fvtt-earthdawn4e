@@ -1,1 +1,0 @@
-Return the total result of the Roll expression if it has been evaluated. The minimum result of any roll is 1.

@@ -1,1 +1,0 @@
-Add the dice from extra steps (like "Flame Weapon" or "Night's Edge").

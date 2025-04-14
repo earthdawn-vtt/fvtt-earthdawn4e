@@ -1,1 +1,0 @@
-This system setting is responsible for all the spells, spellcaster have available during character generation to choose from. The number represents the circle of the spells.
