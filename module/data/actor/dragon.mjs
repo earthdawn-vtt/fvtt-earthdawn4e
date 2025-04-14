@@ -1,10 +1,13 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
 
 /**
  * System data definition for dragons.
  * @mixin
  */
-export default class DragonData extends SentientTemplate {
+export default class DragonData extends SentientTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [

@@ -264,27 +264,6 @@ export default class SentientTemplate extends CommonTemplate {
         label: this.labelKey( "characteristics" ),
         hint:  this.hintKey( "characteristics" ),
       } ),
-      isMob: new fields.BooleanField( {
-        required: true,
-        initial:  false,
-        label:    this.labelKey( "isMob" ),
-        hint:     this.hintKey( "isMob" ),
-      } ),
-      challenge: new fields.SchemaField( {
-        rate: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
-          label:    this.labelKey( "challengeRate" ),
-          hint:     this.hintKey( "challengeRate" )
-        } ),
-      }, {
-        label: this.labelKey( "challenge" ),
-        hint:  this.hintKey( "challenge" ),
-      } ),
       condition: new fields.SchemaField( {
         aggressiveAttack: new fields.BooleanField( {
           required: true,

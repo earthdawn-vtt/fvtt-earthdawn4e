@@ -24,6 +24,7 @@ export {
 export {default as CommonTemplate} from "./templates/common.mjs";
 export {default as SentientTemplate} from "./templates/sentient.mjs";
 export {default as NamegiverTemplate} from "./templates/namegiver.mjs";
+export {default as NoneCharacterTemplate} from "./templates/none-character.mjs";
 
 export const config = {
   creature:  CreatureData,

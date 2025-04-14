@@ -427,6 +427,9 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs > [data-tab] {
   padding: 8px 4px;
 }
+.application.sheet.earthdawn4e.actor .window-content .hint {
+  display: none;
+}
 .application.sheet.earthdawn4e.actor .window-content .top {
   grid-area: empty;
 }
