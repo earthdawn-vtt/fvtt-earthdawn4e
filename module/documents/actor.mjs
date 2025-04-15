@@ -230,6 +230,21 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Returns an attack ability that matches the combat type and item status of the given weapon, if any.
+   * @param {ItemEd} weapon The weapon to get the attack ability for.
+   * @returns {ItemEd|undefined} The attack ability item, or undefined if none was found.
+   */
+  getAttackAbilityForWeapon( weapon ) {
+    const { wieldingType, weaponType, armorType } = weapon.system;
+    return this.itemTypes.ability.find(
+      item => item.system.rollType === "attack"
+        && item.system.rollTypeDetails?.attack?.weaponType === weaponType
+        && item.system.rollTypeDetails?.attack?.weaponItemStatus.includes( wieldingType )
+        && item.system.difficulty?.target === armorType
+    );
+  }
+
+  /**
    * Finds and returns this PC's class of the given type with the highest circle.
    * If multiple, only the first found will be returned.
    * @param {string} type The type of class to be searched for. One of discipline, path, questor.
@@ -649,7 +664,7 @@ export default class ActorEd extends Actor {
    *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
-  // eslint-disable-next-line max-params
+   
 
 
   takeDamage( amount, options = {
