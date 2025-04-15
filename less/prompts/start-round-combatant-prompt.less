@@ -1,0 +1,97 @@
+// set the size of the effect icon
+
+
+.start-round-combatant-prompt {
+  .combat-options-grid {
+    --effect-columns: 5;
+    --effect-size: 64px;
+    --gap-size: 1px;
+
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(var(--effect-columns), var(--effect-size));
+
+    cursor: pointer;
+
+    padding: 0;
+
+    border-radius: 4px;
+
+    .combat-option {
+      text-align: center;
+
+      margin: 0;
+      padding: 0;
+
+      cursor: pointer;
+
+      border: var(--gap-size) solid rgba(207, 160, 42, 0.48);
+      // first item in each row
+      &:nth-child(5n + 1) {
+        border-left-width: calc(2 * var(--gap-size));
+      }
+      // last item in each row
+      &:nth-child(5n) {
+        border-right-width: calc(2 * var(--gap-size));
+      }
+      // items in the first row
+      &:nth-child(-n + 5) {
+        border-top-width: calc(2 * var(--gap-size));
+      }
+      // items in the last row
+      &:nth-last-child(-n + 5) {
+        border-bottom-width: calc(2 * var(--gap-size));
+      }
+      // first item in first row
+      &:nth-child(1) {
+        border-top-left-radius: 4px;
+      }
+      // last item in first row
+      &:nth-child(5) {
+        border-top-right-radius: 4px;
+      }
+      // first item in last row
+      &:nth-last-child(1) {
+        border-bottom-right-radius: 4px;
+      }
+      // last item in last row
+      &:nth-last-child(5) {
+        border-bottom-left-radius: 4px;
+      }
+
+      input[type="checkbox"][id^="start-round-combat-option-checkbox-"] {
+        display: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: var(--effect-size);
+        height: var(--effect-size);
+
+        cursor: pointer;
+
+        margin: 0;
+        padding: 0;
+
+        transition-duration: 0.2s;
+        transform-origin: 50% 50%;
+
+        &:hover {
+          box-shadow: 0 0 5px var(--color-hover-highlight);
+        }
+
+        &[data-activated="true"] {
+          transform: scale(0.9);
+          box-shadow: 0 0 5px #333;
+          // z-index: -1;
+
+          filter: invert(100%);
+        }
+
+      }
+    }
+  }
+
+  button: {}
+}

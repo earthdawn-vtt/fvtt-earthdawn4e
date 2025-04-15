@@ -1,4 +1,7 @@
 {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt": "Prompt zu Rundenbeginn"
+  },
   "ED":     {
     "ActiveEffect":  {
       "ChangeKeys":    {
@@ -31,28 +34,36 @@
         "applyToAbility": "Auf Fähigkeit anwenden"
       },
       "Status":        {
-        "aggressive":      "Aggressiver Angriff",
-        "blindness":       "Blindheit",
-        "blindsided":      "Im Toten Winkel",
-        "cover":           "Deckung",
-        "coverFull":       "voll",
-        "coverPartial":    "teilweise",
-        "darkness":        "Dunkelheit",
-        "darknessFull":    "voll",
-        "darknessPartial": "teilweise",
-        "dazzled":         "Geblendet",
-        "dead":            "Tot",
-        "defensive":       "Abwehrhaltung",
-        "fury":            "Zorn",
-        "grappled":        "Umklammert",
-        "harried":         "Bedrängt",
-        "impaired":        "Eingeschränkte Bewegung",
-        "impairedHeavy":   "stark",
-        "impairedLight":   "leicht",
-        "knockedDown":     "Niedergeschlagen",
-        "overwhelmed":     "Überwältigt",
-        "surprised":       "Überrascht",
-        "unconscious":     "Bewusstlos"
+        "aggressive":       "Aggressiver Angriff",
+        "attackKnockdown":  "Angriff zum Niederschlag",
+        "attackStun":       "Angriff zum Betäuben",
+        "blindness":        "Blindheit",
+        "blindsided":       "Im Toten Winkel",
+        "calledShot":       "Gezielter Angriff",
+        "cover":            "Deckung",
+        "coverFull":        "voll",
+        "coverPartial":     "teilweise",
+        "darkness":         "Dunkelheit",
+        "darknessFull":     "voll",
+        "darknessPartial":  "teilweise",
+        "dazzled":          "Geblendet",
+        "dead":             "Tot",
+        "defensive":        "Abwehrhaltung",
+        "fury":             "Zorn",
+        "grappled":         "Umklammert",
+        "harried":          "Bedrängt",
+        "impaired":         "Eingeschränkte Bewegung",
+        "impairedHeavy":    "stark",
+        "impairedLight":    "leicht",
+        "jumpUp":           "Aufspringen",
+        "knockedDown":      "Niedergeschlagen",
+        "overwhelmed":      "Überwältigt",
+        "setAgainstCharge": "Erwartung eines Sturmangriffs",
+        "shatterShield":    "Zerschmettern eines Schildes",
+        "splitMovement":    "Aufteilen der Bewegung",
+        "surprised":        "Überrascht",
+        "tailAttack":       "Schwanzangriff",
+        "unconscious":      "Bewusstlos"
       },
       "Tooltips":      {
         "abilityEdidSelection": "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
@@ -334,6 +345,7 @@
         "rollEquipmentMultipleTargets": "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen mehrere Ziele",
         "rollEquipmentSingleTarget":    "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
         "rollEquipmentWithoutTarget":   "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
+        "rollInitiative":               "{sourceActor} würfelt Initiative",
         "rollRecovery":                 "{sourceActor} erholt sich mit Stufe {step}",
         "takeDamage":                   "{actor} nimmt {amount} Schaden",
         "takeStrainDamage":             "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}",
@@ -773,28 +785,40 @@
       },
       "General":                      {
         "Hints":  {
-          "Knacks":   {
+          "Combatant": {
+            "increaseAbilities":  "Fähigkeiten die die Initiative-Stufe ergänzen",
+            "keepInitiative":     "Behalte Initiative und würfle nicht neu",
+            "replacementEffect":  "Eine Fähigkeit die die normale Initiative-Stufe ersetzt",
+            "savePromptSettings": "Zeigt diesen Dialog nicht mehr an und verwendet die aktuellen Einstellungen"
+          },
+          "Knacks":    {
             "requirements": "Alle Voraussetzungen müssen erfüllt sein, um den Kniff zu lernen. Fertigkeiten gelten hierfür nicht, nur Talente und Kniffe.",
             "restrictions": "Mindestens eine dieser Einschränkungen muss erfüllt sein um den Kniff zu lernen"
           },
-          "Rollable": {
+          "Rollable":  {
             "type": "Welche Aktionsart wird für diese Fähigkeit verwendet?"
           },
-          "Target":   {
+          "Target":    {
             "fixed":  "Unabhängig von ausgewählten Zielen wird dieser Wert als Schwierigkeit verwendet.",
             "group":  "Welche Gruppen Parameter werden für mehrere Ziele verwendet?",
             "target": "Welcher Widerstandstyp des Ziels wird für diese Fähigkeit verwendet?"
           }
         },
         "Labels": {
-          "Knack":    {
+          "Combatant": {
+            "increaseAbilities":  "Verbesserungseffekte",
+            "keepInitiative":     "Initiative beibehalten",
+            "replacementEffect":  "Ersetzungseffekt",
+            "savePromptSettings": "Speicher diese Einstellungen?"
+          },
+          "Knack":     {
             "requirements": "Voraussetzungen",
             "restrictions": "Einschränkungen"
           },
-          "Rollable": {
+          "Rollable":  {
             "type": "Aktionsart"
           },
-          "Target":   {
+          "Target":    {
             "fixed":  "Fester Schwierigkeitsgrad",
             "group":  "Gruppen Parameter",
             "target": "Widerstandstyp"
@@ -1472,6 +1496,7 @@
         "recovery":                   "Erholungsprobe",
         "resetRanks":                 "Ränge zurücksetzen",
         "roll":                       "Würfeln",
+        "roundStartRollInitiative":   "Würfle Initiative",
         "save":                       "Speichern",
         "spendLp":                    "Legendenpunkte ausgeben",
         "takeDamage":                 "Schaden nehmen",
@@ -1655,9 +1680,11 @@
           "talentsRequirementFulfilled":         "Alle Disziplintalente sind auf dem erforderlichen Rang"
         },
         "chooseAbilityOption":           "Wähle ein optionales Talent",
+        "configuration":                 "Konfiguration",
         "increaseClassTo":               "Erhöhe die Disziplin auf Kreis ",
         "increasePathTalentPrompt":      "Das Pfad Talent hat noch nicht den erforderlichen Rang. Soll es ebenfalls erhöht werden?",
         "increaseQuestorDevotionPrompt": "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)",
+        "initiativeAbilities":           "Initiativefähigkeiten",
         "learnOnZeroOrOne":              "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?",
         "learnPathKnackPrompt":          "Soll der Pfad-Kniff erlernt werden?",
         "learnPathTalentPrompt":         "Soll das Pfad-Talent erlernt werden?",
@@ -1692,18 +1719,19 @@
         "rollPromptOtherTab": "Weitere Einstellungen"
       },
       "Title":           {
-        "assignLp":            "Legendenpunkte zuweisen",
-        "attributeIncrease":   "Attribut erhöhen",
-        "characterGeneration": "Charaktererschaffung",
-        "classAdvancement":    "Rang- und Kreisaufstieg",
-        "drawWeapon":          "Waffe ziehen",
-        "learnAbility":        "Erlernen von {abilityName}",
-        "learnSpell":          "Zauber lernen",
-        "lpIncrease":          "Steigerung von {abilityName}",
-        "lpLearnKnack":        "Kniff lernen: {abilityName}",
-        "recovery":            "Erholungsprobe",
-        "takeDamage":          "Schaden nehmen",
-        "talentCategory":      "Talentkategorie von {abilityName}"
+        "assignLp":                  "Legendenpunkte zuweisen",
+        "attributeIncrease":         "Attribut erhöhen",
+        "characterGeneration":       "Charaktererschaffung",
+        "classAdvancement":          "Rang- und Kreisaufstieg",
+        "drawWeapon":                "Waffe ziehen",
+        "learnAbility":              "Erlernen von {abilityName}",
+        "learnSpell":                "Zauber lernen",
+        "lpIncrease":                "Steigerung von {abilityName}",
+        "lpLearnKnack":              "Kniff lernen: {abilityName}",
+        "recovery":                  "Erholungsprobe",
+        "startRoundCombatantPrompt": "Initiative und Kampfoptionen: {name}",
+        "takeDamage":                "Schaden nehmen",
+        "talentCategory":            "Talentkategorie von {abilityName}"
       },
       "ToolTips":        {
         "resetAbilityRanks": "Setzt alle Ränge auf 0 zurück"

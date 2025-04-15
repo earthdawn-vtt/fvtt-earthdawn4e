@@ -6,3 +6,5 @@ export {default as CombatantEd} from "./combatant.mjs";
 export {default as EarthdawnActiveEffect} from "./active-effect.mjs";
 export {default as ItemEd} from "./item.mjs";
 export {default as JournalEntryEd} from "./journal.mjs";
+
+export * as collections from "./collections/_module.mjs";

@@ -36,6 +36,7 @@ export default [
         Actors:                 false,
         ChatMessage:            false,
         Color:                  false,
+        Combatant:              false,
         CONFIG:                 false,
         CONST:                  false,
         DataField:              false,

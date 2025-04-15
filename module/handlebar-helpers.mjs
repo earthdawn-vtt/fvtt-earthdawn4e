@@ -119,7 +119,7 @@ function includes( collection, element ) {
 }
 
 /**
- * @description Creates an object that can be used in the {@link HandlebarsHelpers#formInput} helper as the
+ * @description Creates an object that can be used in the {@link foundry.applications.handlebars#formInput} helper as the
  * {@link FormInputConfig#dataset} parameter to create a tooltip.
  * @param {string} content - The content of the tooltip.
  * @returns {object} - An object with a tooltip property of the form `{ tooltip: content }`.
@@ -145,22 +145,23 @@ function formatDate( date ) {
 export default function registerHandlebarHelpers() {
 
   Handlebars.registerHelper( {
-    "ed-hasItems":               hasItems,
     "ed-add":                    add,
-    "ed-subtract":               subtract,
-    "ed-signedNumber":           signedNumber,
-    "ed-selected":               selected,
-    "ed-getProperty":            foundry.utils.getProperty,
-    "ed-hasOwnProperty":         hasOwnProperty,
-    "ed-nameFromUuid":           nameFromUuid,
-    "ed-stepFromAttributeValue": stepFromAttributeValue,
-    "ed-linkForUuid":            linkForUuidSync,
-    "ed-diceFormulaForStep":     getDice,
-    "ed-getTalentCategory":      getTalentCategory,
     "ed-commaList":              commaList,
-    "ed-includes":               includes,
-    "ed-makeTooltip":            makeTooltip,
+    "ed-diceFormulaForStep":     getDice,
     "ed-formatDate":             formatDate,
+    "ed-getProperty":            foundry.utils.getProperty,
+    "ed-getTalentCategory":      getTalentCategory,
+    "ed-hasItems":               hasItems,
+    "ed-hasOwnProperty":         hasOwnProperty,
+    "ed-includes":               includes,
+    "ed-linkForUuid":            linkForUuidSync,
+    "ed-makeTooltip":            makeTooltip,
+    "ed-nameFromUuid":           nameFromUuid,
+    "ed-selected":               selected,
+    "ed-signedNumber":           signedNumber,
+    "ed-stepFromAttributeValue": stepFromAttributeValue,
+    "ed-subtract":               subtract,
+    "ed-toArray":                ( value ) => Array.from( value ),
   } );
 
 }

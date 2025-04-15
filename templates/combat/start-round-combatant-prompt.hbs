@@ -1,0 +1,42 @@
+<div>
+  <ul class="combat-options-grid">
+    {{#each combatOptions}}
+      <li class="combat-option" data-tooltip="{{this.name}}" aria-label="{{localize this.name}}" >
+        <img src="{{this.img}}" alt="{{this.name}}"
+             data-combat-option="{{this.id}}" data-action="toggleCombatOption" data-activated="{{this.active}}"/>
+      </li>
+    {{/each}}
+  </ul>
+
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.Legend.initiativeAbilities"}}</legend>
+    <div class="form-group initiative-replacement-effects">
+      <label>{{localize combatantSystemFields.replacementEffect.label}}</label>
+      <div class="form-fields">
+        <select name="system.replacementEffect">
+          <option value=""></option>
+          {{selectOptions initiativeReplacementEffects selected=combatant.system.replacementEffect valueAttr="key" labelAttr="label"}}
+        </select>
+      </div>
+      <p class="hint">{{localize combatantSystemFields.replacementEffect.hint}}</p>
+    </div>
+
+    <div class="form-group initiative-replacement-conditions">
+      <label>{{localize combatantSystemFields.increaseAbilities.label}}</label>
+      <div class="form-fields">
+        <multi-select name="system.increaseAbilities">
+          <option value=""></option>
+          {{selectOptions initiativeIncreaseAbilities selected=(ed-toArray combatant.system.increaseAbilities) valueAttr="key" labelAttr="label"}}
+        </multi-select>
+      </div>
+      <p class="hint">{{localize combatantSystemFields.increaseAbilities.hint}}</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.Legend.configuration"}}</legend>
+    {{formGroup combatantSystemFields.savePromptSettings value=combatant.system.savePromptSettings localize=true}}
+
+    {{formGroup combatantSystemFields.keepInitiative value=combatant.system.keepInitiative localize=true}}
+  </fieldset>
+</div>

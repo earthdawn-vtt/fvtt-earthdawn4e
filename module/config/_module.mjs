@@ -9,6 +9,7 @@ import * as LEGEND from "./legend.mjs";
 import * as MAGIC from "./magic.mjs";
 import * as QUANTITIES from "./quantities.mjs";
 import * as ROLLS from "./rolls.mjs";
+import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
 
@@ -50,6 +51,7 @@ const ED4E = {
   ...MAGIC,
   ...QUANTITIES,
   ...ROLLS,
+  ...SOCKETS,
   ...STATUSES,
   ...SYSTEM,
 };

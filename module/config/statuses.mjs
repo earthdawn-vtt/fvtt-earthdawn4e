@@ -1,5 +1,6 @@
 import { COMMON_EAE_CHANGES } from "./effects.mjs";
 import { preLocalize } from "../utils.mjs";
+import SentientTemplate from "../data/actor/templates/sentient.mjs";
 
 const STATUS_CHANGES = {
   aggressive: [
@@ -37,8 +38,15 @@ const STATUS_CHANGES = {
       value: -3,
     },
   ],
-  dazzled:   COMMON_EAE_CHANGES.darknessPartial,
-  defensive: [
+  calledShot: [
+    {
+      key:   "system.globalBonuses.allAttacks.value",
+      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: -3,
+    },
+  ],
+  dazzled:    COMMON_EAE_CHANGES.darknessPartial,
+  defensive:  [
     {
       key:   "system.characteristics.defenses.physical.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
@@ -151,11 +159,12 @@ const STATUS_DURATIONS = {
 export const statusEffects = [
   {
     id:   "aggressive",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.aggressive",
     img:  "systems/ed4e/assets/icons/confrontation.svg",
 
-    reference: "TODO: Compendium UUID to explanation",
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
 
     type:     "condition",
     changes:  STATUS_CHANGES.aggressive,
@@ -164,8 +173,30 @@ export const statusEffects = [
     },
   },
   {
+    id:   "attackKnockdown",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.attackKnockdown",
+    img:  "systems/ed4e/assets/icons/foot-trip.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
+    id:   "attackStun",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.attackStun",
+    img:  "systems/ed4e/assets/icons/knockout.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
     id:    "blindness",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.blindness",
     img:  "icons/svg/blind.svg",
 
@@ -181,7 +212,7 @@ export const statusEffects = [
   },
   {
     id:    "blindsided",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.blindsided",
     img:  "systems/ed4e/assets/icons/backstab.svg",
 
@@ -195,8 +226,23 @@ export const statusEffects = [
     },
   },
   {
+    id:   "calledShot",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.calledShot",
+    img:  "systems/ed4e/assets/icons/target-dummy.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+    changes:  STATUS_CHANGES.calledShot,
+    system:  {
+      changes: STATUS_CHANGES.calledShot,
+    },
+  },
+  {
     id:    "cover",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.cover",
     img:  "systems/ed4e/assets/icons/broken-wall.svg",
 
@@ -212,7 +258,7 @@ export const statusEffects = [
   },
   {
     id:    "darkness",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.darkness",
     img:  "systems/ed4e/assets/icons/fog.svg",
 
@@ -228,7 +274,7 @@ export const statusEffects = [
   },
   {
     id:    "dazzled",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.dazzled",
     img:  "systems/ed4e/assets/icons/laser-sparks.svg",
 
@@ -243,7 +289,7 @@ export const statusEffects = [
   },
   {
     id:    "dead",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.dead",
     img:  "icons/svg/skull.svg",
 
@@ -251,11 +297,12 @@ export const statusEffects = [
   },
   {
     id:    "defensive",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.defensive",
     img:  "systems/ed4e/assets/icons/surrounded-shield.svg",
 
-    reference: "TODO: Compendium UUID to explanation",
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
 
     type:     "condition",
     changes:  STATUS_CHANGES.defensive,
@@ -281,7 +328,7 @@ export const statusEffects = [
   },
   {
     id:    "grappled",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.grappled",
     img:  "systems/ed4e/assets/icons/grab.svg",
 
@@ -297,7 +344,7 @@ export const statusEffects = [
   },
   {
     id:    "harried",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.harried",
     img:  "systems/ed4e/assets/icons/meeple-army.svg",
 
@@ -311,7 +358,7 @@ export const statusEffects = [
   },
   {
     id:    "impaired",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.impaired",
     img:  "systems/ed4e/assets/icons/achilles-heel.svg",
 
@@ -326,8 +373,19 @@ export const statusEffects = [
     },
   },
   {
+    id:   "jumpUp",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.jumpUp",
+    img:  "systems/ed4e/assets/icons/acrobatic.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
     id:    "knockedDown",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.knockedDown",
     img:  "icons/svg/falling.svg",
 
@@ -342,7 +400,7 @@ export const statusEffects = [
   },
   {
     id:    "overwhelmed",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.overwhelmed",
     img:  "systems/ed4e/assets/icons/dozen.svg",
 
@@ -356,8 +414,41 @@ export const statusEffects = [
     },
   },
   {
+    id:   "setAgainstCharge",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.setAgainstCharge",
+    img:  "systems/ed4e/assets/icons/set-against-charge.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
+    id:   "shatterShield",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.shatterShield",
+    img:  "systems/ed4e/assets/icons/shield-impact.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
+    id:   "splitMovement",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.splitMovement",
+    img:  "systems/ed4e/assets/icons/back-forth.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
     id:    "surprised",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.surprised",
     img:  "systems/ed4e/assets/icons/surprised.svg",
 
@@ -373,8 +464,19 @@ export const statusEffects = [
     },
   },
   {
+    id:   "tailAttack",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.tailAttack",
+    img:  "systems/ed4e/assets/icons/tail-attack.svg",
+
+    combatOption: true,
+    reference:    "TODO: Compendium UUID to explanation",
+
+    type:     "condition",
+  },
+  {
     id:    "unconscious",
-    hud:  { actorTypes: [ "character", "npc", "creature", "spirit", "horror", "dragon" ] },
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.unconscious",
     img:  "systems/ed4e/assets/icons/dead-head.svg",
 

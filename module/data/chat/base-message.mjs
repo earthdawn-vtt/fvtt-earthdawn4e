@@ -92,6 +92,14 @@ export default class BaseMessageData extends SystemDataModel {
     return this.parent?.rolls[0];
   }
 
+  /**
+   * The actor who rolled the roll that generated this message, if any.
+   * @type {Document | object | null}
+   */
+  get rollingActor() {
+    return fromUuidSync( this.roll?.options.rollingActorUuid );
+  }
+
   // endregion
 
   // region Event Handlers

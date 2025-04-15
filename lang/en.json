@@ -1,1527 +1,1558 @@
 {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt":               "Start of Round Prompt"
+  },
   "ED": {
-      "ActiveEffect": {
-          "ChangeKeys": {
-              "Groups": {
-                  "ability":                                      "Ability",
-                  "action":                                       "Action",          
-                  "armor":                                        "Armor",
-                  "attributeValue":                               "Attribute Values",
-                  "attributeStep":                                "Attribute Steps",
-                  "bloodMagic":                                   "Blood Magic",
-                  "defense":                                      "Defenses",
-                  "devotion":                                     "Devotions",
-                  "encumbrance":                                  "Encumbrance",
-                  "globalBonuses":                                "Global Bonuses",
-                  "health":                                       "Health",
-                  "initiative":                                   "Initiative",
-                  "karma":                                        "Karma",
-                  "movement":                                     "Movement",
-                  "recoveryTestsResource":                        "Recovery Tests",
-                  "rollable":                                     "Rollable",
-                  "shield":                                       "Shield",
-                  "targeting":                                   "Targeting",
-                  "weapon":                                       "Weapon",
-                  "weaponRange":                                  "Weapon Range"
-              }
+    "ActiveEffect": {
+      "ChangeKeys": {
+        "Groups": {
+          "ability":                               "Ability",
+          "action":                                "Action",
+          "armor":                                 "Armor",
+          "attributeStep":                         "Attribute Steps",
+          "attributeValue":                        "Attribute Values",
+          "bloodMagic":                            "Blood Magic",
+          "defense":                               "Defenses",
+          "devotion":                              "Devotions",
+          "encumbrance":                           "Encumbrance",
+          "globalBonuses":                         "Global Bonuses",
+          "health":                                "Health",
+          "initiative":                            "Initiative",
+          "karma":                                 "Karma",
+          "movement":                              "Movement",
+          "recoveryTestsResource":                 "Recovery Tests",
+          "rollable":                              "Rollable",
+          "shield":                                "Shield",
+          "targeting":                             "Targeting",
+          "weapon":                                "Weapon",
+          "weaponRange":                           "Weapon Range"
+        }
+      },
+      "Header": {
+        "applyToAbility":                          "Apply to Ability"
+      },
+      "Status": {
+        "attackKnockdown":                         "Attacking to Knockdown",
+        "attackStun":                              "Attacking to Stun",
+        "calledShot":                              "Called Shot",
+        "coverFull":                               "full",
+        "coverPartial":                            "partial",
+        "darknessFull":                            "full",
+        "darknessPartial":                         "partial",
+        "impairedHeavy":                           "heavy",
+        "impairedLight":                           "light",
+        "jumpUp":                                  "Jump Up",
+        "setAgainstCharge":                        "Setting Against a Charge",
+        "shatterShield":                           "Shattering a Shield",
+        "splitMovement":                           "Splitting Movement",
+        "tailAttack":                              "Tail Attack"
+      },
+      "newEffectName":                             "New Effect Name"
+    },
+    "Actor": {
+      "Abilities": {
+      },
+      "Attributes": {
+        "attribueStep":                            "Step",
+        "attributeName":                           "Attribute",
+        "attributeValue":                          "Value",
+        "charisma":                                "Charisma",
+        "charismaAbbr":                            "Cha",
+        "dexterity":                               "Dexterity",
+        "dexterityAbbr":                           "Dex",
+        "increase":                                "Inc.",
+        "perception":                              "Perception",
+        "perceptionAbbr":                          "Per",
+        "strength":                                "Strength",
+        "strengthAbbr":                            "Str",
+        "toughness":                               "Toughness",
+        "toughnessAbbr":                           "Tou",
+        "willpower":                               "Willpower",
+        "willpowerAbbr":                           "Wil"
+      },
+      "Buttons": {
+        "halfMagic":                               "Half Magic",
+        "initiative":                              "Initiative",
+        "jumpUp":                                  "Jump Up",
+        "knockDownTest":                           "Knock down",
+        "legendHistory":                           "LP History",
+        "recovery":                                "Recovery",
+        "takeDamage":                              "Take Damage",
+        "unarmedAttack":                           "Unarmed Attack",
+        "weaponAttack":                            "Weapon Attack"
+      },
+      "Cards": {
+        "chat":                                    "show information in as Chat message",
+        "delete":                                  "Delete Item",
+        "edit":                                    "Edit Item"
+      },
+      "Characteristics": {
+        "currentDamage":                           "Damage",
+        "currentRecoveryTestsRecource":            "Current",
+        "dailyrecoveryTestsResource":              "Daily",
+        "deathThesholdShort":                      "Death Rating",
+        "maxWounds":                               "Max Wounds",
+        "mysticalArmor":                           "Mystical",
+        "mysticalDefense":                         "Mystical",
+        "physicalArmor":                           "Physical",
+        "physicalDefense":                         "Physical",
+        "socialDefense":                           "Social",
+        "unconsciousThresholdShort":               "Unconsciousness",
+        "walkMovement":                            "On Foot",
+        "woundsDamage":                            "Wounds",
+        "woundsThreshold":                         "Wound Threshold"
+      },
+      "Conditions": {
+        "Encumbrance": {
+          "heavy":                                 "HEavily Encumbered",
+          "light":                                 "Lightly Encumbered",
+          "notEncumbered":                         "Not Encumbered",
+          "tooHeavy":                              "Too Heavy, you can't move"
+        },
+        "aggressiveAttack":                        "Aggressive Attack",
+        "blindsided":                              "Blindsided",
+        "coverFull":                               "Full Cover",
+        "coverPartial":                            "Partial Cover",
+        "darknessFull":                            "Full Darkness",
+        "darknessPartial":                         "Partial Darkness",
+        "defensiveStance":                         "Defensive Stance",
+        "fury":                                    "Fury",
+        "harried":                                 "Harried",
+        "impairedMovementFull":                    "Fully Impaired Movement",
+        "impairedMovementPartial":                 "Partial Impaired Movement",
+        "knockedDown":                             "Knocked Down",
+        "overwhelmed":                             "overwhelmed",
+        "surprised":                               "Surprised"
+      },
+      "Devotion": {
+        "current":                                 "Current",
+        "max":                                     "Max",
+        "step":                                    "Step"
+      },
+      "GlobalBonus": {
+        "allActions":                              "Actions",
+        "allAttacks":                              "Attacks",
+        "allCloseAttacks":                         "Melee Attacks",
+        "allDamage":                               "Damage",
+        "allEffects":                              "Effects",
+        "allKnockdownTests":                       "Knockdown Tests",
+        "allMeleeDamage":                          "Melee Damage",
+        "allRangedAttacks":                        "Ranged Attacks",
+        "allRangedDamage":                         "Ranged Damage",
+        "allRecoveryTests":                        "Recovery Tests",
+        "allSpellTests":                           "Spell Tests",
+        "allSpellcasting":                         "Spellcasting",
+        "allTests":                                "All Tests"
+      },
+      "Header": {
+        "action":                                  "Action",
+        "active":                                  "Active",
+        "ammunition":                              "Ammunition",
+        "amount":                                  "Amount",
+        "armor":                                   "Armor",
+        "attacks":                                 "Attacks",
+        "attribute":                               "Attribute",
+        "attributes":                              "Attributes",
+        "carryingCapacity":                        "Carrying Capacity",
+        "conditions":                              "Conditions",
+        "controlIcons":                            "Controls",
+        "damage":                                  "Damage",
+        "defaultAttacks":                          "Default Attacks",
+        "defenses":                                "Defenses",
+        "devotion":                                "Devotion",
+        "disciplines":                             "Disciplines",
+        "duration":                                "Duration",
+        "effectsPermanent":                        "Permanent Effects",
+        "effectsTemporary":                        "Temporary Effects",
+        "encumbrance":                             "Encumbrance",
+        "equipment":                               "Equipment",
+        "equippedStatus":                          "Equipped",
+        "extraSuccesses":                          "Extra Successes",
+        "healthRating":                            "Health Rating",
+        "inactive":                                "Inactive",
+        "information":                             "Informationen",
+        "initiativePenalty":                       "Initiative Penalty",
+        "karma":                                   "Karma",
+        "languages":                               "Languages",
+        "languagesSpoken":                         "Languages Spoken",
+        "languagesWritten":                        "Languages Written",
+        "legendCurrent":                           "LP Current",
+        "legendHistory":                           "LP History",
+        "legendSpend":                             "LP Spend",
+        "legendStatus":                            "Legend Status",
+        "legendTotal":                             "LP Total",
+        "maneuvers":                               "Maneuver",
+        "movement":                                "Movement",
+        "mysticalArmor":                           "Mystical Armor",
+        "mysticalDefense":                         "Mystical Defense",
+        "name":                                    "Name",
+        "navigator":                               "Navigator",
+        "origin":                                  "Origin",
+        "paths":                                   "Path",
+        "physicalArmor":                           "Physical Armor",
+        "physicalDefense":                         "Physical Defense",
+        "powers":                                  "Power",
+        "questor":                                 "Questor",
+        "range":                                   "Range",
+        "rank":                                    "Rank",
+        "recovery":                                "Recovery",
+        "shields":                                 "Shields",
+        "specialAbility":                          "Special Abilities",
+        "step":                                    "Step",
+        "strain":                                  "Strain",
+        "talentsDiscipline":                       "Discipline Talents",
+        "talentsFreeRacial":                       "Free and other Talents",
+        "talentsOptional":                         "Optional Talents",
+        "talentsVersatility":                      "Versatility Talents",
+        "weapons":                                 "Weapons"
+      },
+      "Karma": {
+        "current":                                 "Current",
+        "max":                                     "Max",
+        "step":                                    "Step"
+      },
+      "LpTracking": {
+        "Header": {
+          "advancement":                           "Advancement",
+          "date":                                  "Date",
+          "description":                           "Description",
+          "legendPoints":                          "Legend Points",
+          "name":                                  "Name",
+          "type":                                  "Type"
+        },
+        "Spendings": {
+          "description":                           "Enhancement from {previousLevel} to {newLevel}",
+          "descriptionAbility":                    "Enhanced {abilityName} from {previousLevel} to {newLevel}",
+          "descriptionAttribute":                  "Enhanced {attributeName} from {previousLevel} to {newLevel}",
+          "descriptionNewlyAdded":                 "Newly added item",
+          "knackSourceNotFound":                   "The Knack is not referenced in any Talent of the Actor",
+          "knackSourceNotHighEnough":              "The Rank of the Talent is not high enough",
+          "maxIncreaseReached":                    "Maximum increase reached"
+        },
+        "attributeImprovement":                    "Attribute increase"
+      },
+      "Navigator": {
+        "classes":                                 "Vocation",
+        "configuration":                           "Configuration",
+        "devotions":                               "Devotions",
+        "equipment":                               "Equipment",
+        "general":                                 "General",
+        "information":                             "Information",
+        "legend":                                  "Legend",
+        "power":                                   "Powers",
+        "reputation":                              "Reputation",
+        "skills":                                  "skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents"
+      },
+      "Spellcasting": {
+        "elementalist":                            "Elemetnatalist",
+        "illusionist":                             "Illusionist",
+        "matrix":                                  "Matrix",
+        "nethermancer":                            "Nethermancer",
+        "shaman":                                  "Shaman",
+        "wizard":                                  "Wizard"
+      },
+      "Tabs": {
+        "Spells": {
+          "all":                                   "All",
+          "matrix":                                "Matrix"
+        },
+        "classes":                                 "Classes",
+        "configuration":                           "Configuration",
+        "description":                             "Description",
+        "devotions":                               "Devotions",
+        "equipment":                               "Equipment",
+        "general":                                 "General",
+        "legend":                                  "Legend",
+        "notes":                                   "Notes",
+        "powers":                                  "Power",
+        "reputation":                              "Reputation",
+        "skills":                                  "Skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents"
+      },
+      "Tooltips": {
+        "carried":                                 "Carried",
+        "damagePhysical":                          "Physical",
+        "damageSubdual":                           "Subdual",
+        "equipped":                                "Equipped",
+        "equippedArmor":                           "Equipped Armor",
+        "equippedShield":                          "Equipped Shield",
+        "karmaAlways":                             "Use Karma always",
+        "karmaRitualTooltip":                      "Karma Ritual",
+        "loaded":                                  "Loaded",
+        "loadedHeavy":                             "Heavyly Loaded",
+        "loadedOver":                              "Overloaded",
+        "mainHand":                                "Main Hand",
+        "notEquipped":                             "Not equipped",
+        "offHand":                                 "Off Hand",
+        "tail":                                    "Tail",
+        "twoHanded":                               "Two Handed"
+      }
+    },
+    "Chat": {
+      "Button": {
+        "applyDamage":                             "Assign Damage",
+        "applyDamageTitle":                        "Assign the Damage to the Targets!",
+        "applyEffect":                             "Assign Effect",
+        "applyEffectTitle":                        "Assign the Effect to the Targets!",
+        "rollDamage":                              "Roll Damage",
+        "rollDamageTitle":                         "Roll for Damage",
+        "rollEffect":                              "Roll Effect",
+        "rollEffectTitle":                         "Roll the Effect",
+        "takeDamage":                              "Take Damage",
+        "takeDamageTitle":                         "Take the damage for your Actor"
+      },
+      "Flavor": {
+        "jumpUp":                                  "{sourceActor} tries to jump up with Step {step}",
+        "knockdownTest":                           "{sourceActor} tries to avoid being knocked down with Step {step}",
+        "rollAbility":                             "{sourceActor} rolls {ability} with Step {step}",
+        "rollAbilityMultipleTargets":              "{sourceActor} uses {Ability} with step {abilityFinalStep} against many Targets",
+        "rollAbilitySingleTarget":                 "{sourceActor} uses {Ability} with step {abilityFinalStep} against {singleTarget}",
+        "rollAbilityWithoutTarget":                "{sourceActor} uses {Ability} with step {abilityFinalStep}",
+        "rollAttackMultipleTargets":               "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep} against many Targets",
+        "rollAttackSingleTarget":                  "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep} against {singleTarget}",
+        "rollAttackWithoutTarget":                 "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep}",
+        "rollAttribute":                           "{sourceActor} rolls {attribute} with Step {step}",
+        "rollEquipment":                           "{sourceActor} rolls {equipment} with Step {step}",
+        "rollEquipmentMultipleTargets":            "{sourceActor} uses {equipment} with step {arbitraryStep} against many Targets",
+        "rollEquipmentSingleTarget":               "{sourceActor} uses {equipment} with step {arbitraryStep} against {singleTarget}",
+        "rollEquipmentWithoutTarget":              "{sourceActor} uses {equipment} with step {arbitraryStep}",
+        "rollInitiative":                          "{sourceActor} rolls for initiative",
+        "rollRecovery":                            "{sourceActor} recovers from Damage with Step {step}"
+      },
+      "Header": {
+        "actionTest":                              "Action Test",
+        "arbitraryTest":                           "arbitrary Test",
+        "effectTest":                              "Effect Test"
+      }
+    },
+    "Config": {
+      "Action": {
+        "free":                                    "Free",
+        "none":                                    "None",
+        "simple":                                  "Simple",
+        "standard":                                "Standard",
+        "sustained":                               "Sustained"
+      },
+      "AmmunitionType": {
+        "arrow":                                   "Arrow",
+        "bolt":                                    "Bolt",
+        "needle":                                  "Needle",
+        "stone":                                   "Stone"
+      },
+      "AreaTargets": {
+        "circle":                                  "Circle",
+        "cone":                                    "Cone",
+        "cube":                                    "Cube",
+        "cylinder":                                "Cylinder",
+        "line":                                    "Line",
+        "radius":                                  "Radius",
+        "sphere":                                  "Sphere",
+        "square":                                  "Square",
+        "wall":                                    "Wall"
+      },
+      "Armor": {
+        "mystical":                                "Mystical Armor",
+        "physical":                                "Physical Armor"
+      },
+      "Availability": {
+        "average":                                 "Average",
+        "everyday":                                "Everyday",
+        "rare":                                    "Rare",
+        "unique":                                  "Unique",
+        "unusual":                                 "Unusual",
+        "veryRare":                                "Very Rare"
+      },
+      "CombatTypes": {
+        "aerial":                                  "Aerial Combat",
+        "close":                                   "Close Combat",
+        "melee":                                   "Melee Combat",
+        "mounted":                                 "Mounted Combat",
+        "projectile":                              "Projectil Combat",
+        "ranged":                                  "Ranged Combat",
+        "throwing":                                "Throwing Combat",
+        "unarmed":                                 "unarmed Combat"
+      },
+      "Defenses": {
+        "highestOfGroup":                          "Highest of Group",
+        "highestX":                                "Highest of Group + Targets",
+        "lowestOfGroup":                           "Lowest of Group",
+        "lowestX":                                 "Lowest of Group + Targets",
+        "mystical":                                "Mystical Defense",
+        "none":                                    "None",
+        "physical":                                "Physical Defense",
+        "social":                                  "Social Defense"
+      },
+      "Denomination": {
+        "copper":                                  "Copper",
+        "gold":                                    "Gold",
+        "silver":                                  "Silver"
+      },
+      "Eae": {
+        "DurationTypes": {
+          "combat":                                "Combat",
+          "permanent":                             "Permanent",
+          "realTime":                              "Real Time",
+          "uses":                                  "Uses"
+        },
+        "ExecutionTime": {
+          "Groups": {
+            "combat":                              "Combat",
+            "round":                               "Round",
+            "turn":                                "Turn"
           },
-          "newEffectName":                                        "New Effect Name",
-          "Header": {
-              "applyToAbility":                                   "Apply to Ability"
-          }
+          "combatEnd":                             "End of Combat",
+          "combatStart":                           "Start of Combat",
+          "roundEnd":                              "End of Round",
+          "roundStart":                            "Start of Round",
+          "turnEnd":                               "End of Turn",
+          "turnStart":                             "Start of Turn"
+        }
+      },
+      "Elements": {
+        "air":                                     "Air",
+        "earth":                                   "Earth",
+        "fire":                                    "Fire",
+        "water":                                   "Water",
+        "wood":                                    "Wood"
+      },
+      "Health": {
+        "damageStandard":                          "Deadly Damage",
+        "damageStun":                              "Stun Damage"
+      },
+      "ItemStatus": {
+        "carried":                                 "Carried",
+        "equipped":                                "Equipped",
+        "mainHand":                                "Main Hand",
+        "offHand":                                 "Off Hand",
+        "owned":                                   "Owned",
+        "tail":                                    "Tail",
+        "twoHands":                                "Two Hands"
+      },
+      "MovementTypes": {
+        "burrow":                                  "Burrow",
+        "climb":                                   "Climb",
+        "fly":                                     "Fly",
+        "swim":                                    "Swim",
+        "walk":                                    "Walk"
+      },
+      "MovementUnits": {
+        "feet":                                    "Feet",
+        "inch":                                    "Inch",
+        "mile":                                    "Mile",
+        "yard":                                    "yard"
+      },
+      "PermanentTimePeriods": {
+        "perm":                                    "Permanent"
+      },
+      "PoisonActivation": {
+        "contact":                                 "Contact",
+        "ingested":                                "Ingested",
+        "inhaled":                                 "Inhaled",
+        "injury":                                  "Injury",
+        "wound":                                   "Wound"
+      },
+      "RangeTypes": {
+        "any":                                     "Any",
+        "self":                                    "Self",
+        "special":                                 "Special",
+        "touch":                                   "Touch"
+      },
+      "RecoveryProperty": {
+        "abilityStep":                             "Ability Step",
+        "arbitrary":                               "Arbitrary",
+        "arbitraryAndAttribute":                   "Arbitrary and Attribute",
+        "arbitraryOptionalAttribute":              "Arbitrary and/or Attribute",
+        "noHealing":                               "No Recovery",
+        "noRecovery":                              "No Recovery"
+      },
+      "ScalarTimePeriods": {
+        "day":                                     "Day",
+        "hour":                                    "Hour",
+        "minute":                                  "Minute",
+        "month":                                   "Month",
+        "round":                                   "Round",
+        "turn":                                    "Turn",
+        "week":                                    "Week",
+        "year":                                    "Year"
+      },
+      "Skills": {
+        "artisan":                                 "Artisan",
+        "general":                                 "General",
+        "knowledge":                               "Knowledge"
+      },
+      "SpecialTimePeriods": {
+        "inst":                                    "Instantaneous",
+        "special":                                 "Special"
+      },
+      "SpellKeywords": {
+        "binding":                                 "Binding",
+        "concentration":                           "Concentration",
+        "fate":                                    "Fate",
+        "figment":                                 "Figment",
+        "illusion":                                "Illusion",
+        "pack":                                    "Pack",
+        "spirit":                                  "Spirit",
+        "summon":                                  "Summon"
+      },
+      "Tier": {
+        "journeyman":                              "Journeyman",
+        "master":                                  "Master",
+        "novice":                                  "Novice",
+        "warden":                                  "Warden"
+      },
+      "WeaponType": {
+        "melee":                                   "Melee",
+        "missile":                                 "Missile",
+        "thrown":                                  "Thrown",
+        "unarmed":                                 "Unarmed"
+      },
+      "curseType": {
+        "horror":                                  "Horror Mark",
+        "major":                                   "Major Curse",
+        "minor":                                   "Minor Curse"
+      },
+      "groupDifficulty": {
+        "highestOfGroup":                          "Highest of Group",
+        "highestX":                                "Highest + Targets",
+        "lowestOfGroup":                           "Lowest of Group",
+        "lowestX":                                 "Lowest + Targets"
+      },
+      "rollTypes": {
+        "ability":                                 "Ability",
+        "attack":                                  "Attack",
+        "attribute":                               "Attribute",
+        "effect":                                  "Effect",
+        "halfmagic":                               "Half Magic",
+        "initiative":                              "Initiative",
+        "jumpUp":                                  "Jump Up",
+        "knockDown":                               "Knock Down",
+        "reaction":                                "Reaction",
+        "recovery":                                "Recovery",
+        "spellcasting":                            "Spell Casting",
+        "threadWeaving":                           "Thread Weaving"
+      },
+      "spellcastingTypes": {
+        "elementalism":                            "Elementalist",
+        "illusionism":                             "Illusionist",
+        "nethermancy":                             "Nethermancer",
+        "shamanism":                               "Shaman",
+        "wizardry":                                "Wizard"
+      },
+      "talentCategory": {
+        "discipline":                              "Discipline",
+        "free":                                    "Free",
+        "optional":                                "Optional",
+        "versatility":                             "Versatility"
+      },
+      "targetDifficulty": {
+        "mystical":                                "Mystical",
+        "physical":                                "Physical",
+        "social":                                  "Social"
+      }
+    },
+    "Data": {
+      "ActiveEffect": {
+        "Hints": {
+          "abilityEdid":                           "Ability Edid",
+          "executable":                            "Executable",
+          "executeOn":                             "Execute On",
+          "executionScript":                       "Execution Script",
+          "level":                                 "Level",
+          "primary":                               "Primary Status",
+          "transferToTarget":                      "Transfer to target"
+        },
+        "Labels": {
+          "abilityEdid":                           "Ability Edid",
+          "begin":                                 "Begin",
+          "duration":                              "Duration",
+          "executable":                            "Executable",
+          "executeOn":                             "Execute On",
+          "executionScript":                       "Execution Script",
+          "level":                                 "For status with multiple levels, like Harried or Darkness",
+          "primary":                               "The status which this condition and its possible level refer to ",
+          "transferToTarget":                      "Transfer to target"
+        }
       },
       "Actor": {
-          "Abilities": {
-          },
-          "Attributes": {
-              "attributeName":                                    "Attribute",
-              "attribueStep":                                     "Step",
-              "attributeValue":                                   "Value",
-              "charisma":                                         "Charisma",
-              "charismaAbbr":                                     "Cha",
-              "dexterity":                                        "Dexterity",
-              "dexterityAbbr":                                    "Dex",
-              "increase":                                         "Inc.",
-              "perception":                                       "Perception",
-              "perceptionAbbr":                                   "Per",
-              "strength":                                         "Strength",
-              "strengthAbbr":                                     "Str",
-              "toughness":                                        "Toughness",
-              "toughnessAbbr":                                    "Tou",
-              "willpower":                                        "Willpower",
-              "willpowerAbbr":                                    "Wil"
-          },
-          "Buttons": {
-              "halfMagic":                                        "Half Magic",
-              "initiative":                                       "Initiative",
-              "jumpUp":                                           "Jump Up",
-              "knockDownTest":                                    "Knock down",
-              "legendHistory":                                    "LP History",
-              "recovery":                                         "Recovery",
-              "takeDamage":                                       "Take Damage",
-              "unarmedAttack":                                    "Unarmed Attack",
-              "weaponAttack":                                     "Weapon Attack"
-          },
-          "Cards": {
-              "chat":                                             "show information in as Chat message",
-              "delete":                                           "Delete Item",
-              "edit":                                             "Edit Item"
-          },
+        "Hints": {
+          "challengeRate":                         "Challenging Rate",
+          "isMob":                                 "Mob Rules"
+        },
+        "Labels": {
           "Characteristics": {
-              "currentDamage":                                    "Damage",
-              "currentRecoveryTestsRecource":                     "Current",
-              "dailyrecoveryTestsResource":                       "Daily",
-              "deathThesholdShort":                               "Death Rating",
-              "maxWounds":                                        "Max Wounds",
-              "mysticalArmor":                                    "Mystical",
-              "mysticalDefense":                                  "Mystical",
-              "physicalArmor":                                    "Physical",
-              "physicalDefense":                                  "Physical",
-              "socialDefense":                                    "Social",
-              "unconsciousThresholdShort":                        "Unconsciousness",
-              "walkMovement":                                     "On Foot",
-              "woundsDamage":                                     "Wounds",
-              "woundsThreshold":                                  "Wound Threshold"
+            "bloodMagicDamage":                    "Blood Magic Damage",
+            "bloodMagicWounds":                    "Blood Magic Wounds",
+            "deathRating":                         "Death Rating",
+            "maxWounds":                           "Maximum Wounds",
+            "recoveryTestsCurrent":                "Current Recovery Tests",
+            "recoveryTestsMax":                    "Maximum Recovery Tests",
+            "unconsciousRate":                     "Unconciousness Rating",
+            "woundThreshold":                      "Wound Threshold",
+            "wounds":                              "Wounds"
           },
-          "Conditions": {
-              "aggressiveAttack":                                 "Aggressive Attack",
-              "blindsided":                                       "Blindsided",
-              "coverPartial":                                     "Partial Cover",
-              "coverFull":                                        "Full Cover",
-              "darknessPartial":                                  "Partial Darkness",
-              "darknessFull":                                     "Full Darkness",
-              "defensiveStance":                                  "Defensive Stance",
-              "Encumbrance": {
-                  "notEncumbered":                                "Not Encumbered",
-                  "light":                                        "Lightly Encumbered",
-                  "heavy":                                        "HEavily Encumbered",
-                  "tooHeavy":                                     "Too Heavy, you can't move"
-              },
-              "fury":                                             "Fury",
-              "harried":                                          "Harried",
-              "impairedMovementPartial":                          "Partial Impaired Movement",
-              "impairedMovementFull":                             "Fully Impaired Movement",
-              "knockedDown":                                      "Knocked Down",
-              "overwhelmed":                                      "overwhelmed",
-              "surprised":                                        "Surprised"
+          "challengeRate":                         "Challenging Rate of the Actor",
+          "devotion":                              "Devotion",
+          "devotionMax":                           "Maximum Devotion",
+          "devotionStep":                          "Devotion Step",
+          "durabilityBonus":                       "Durability Bonus",
+          "encumbrance":                           "Encumbrance",
+          "encumbranceBonus":                      "Encumbrance Bonus",
+          "encumbranceMax":                        "Maximum Encumbrance",
+          "initiative":                            "Initiative",
+          "isMob":                                 "This Actor uses only Wounds instead of Damage",
+          "karma":                                 "Karma",
+          "karmaMax":                              "Maximum Karma",
+          "karmaStep":                             "Karma Step"
+        }
+      },
+      "Fields": {
+        "Options": {
+          "Duration": {
+            "groupPermanentTime":                  "Permanent Duration",
+            "groupScalarTime":                     "Timed Duration"
           },
-          "Devotion": {
-              "current":                                          "Current",
-              "max":                                              "Max",
-              "step":                                             "Step"   
-          },
-          "GlobalBonus": {
-              "allActions":                                       "Actions",
-              "allAttacks":                                       "Attacks",
-              "allCloseAttacks":                                  "Melee Attacks",
-              "allDamage":                                        "Damage",
-              "allEffects":                                       "Effects",
-              "allKnockdownTests":                                "Knockdown Tests",
-              "allMeleeDamage":                                   "Melee Damage",
-              "allRangedAttacks":                                 "Ranged Attacks",
-              "allRangedDamage":                                  "Ranged Damage",
-              "allRecoveryTests":                                 "Recovery Tests",
-              "allSpellcasting":                                  "Spellcasting",
-              "allSpellTests":                                    "Spell Tests",
-              "allTests":                                         "All Tests"
-          },
-          "Header": {
-              "action":                                           "Action",
-              "active":                                           "Active",
-              "amount":                                           "Amount",
-              "ammunition":                                       "Ammunition",             
-              "armor":                                            "Armor",
-              "attacks":                                          "Attacks",
-              "attribute":                                        "Attribute",
-              "attributes":                                       "Attributes",
-              "carryingCapacity":                                 "Carrying Capacity",
-              "conditions":                                       "Conditions",
-              "controlIcons":                                     "Controls",
-              "damage":                                           "Damage",
-              "defaultAttacks":                                   "Default Attacks",
-              "defenses":                                         "Defenses",
-              "devotion":                                         "Devotion", 
-              "disciplines":                                      "Disciplines",
-              "duration":                                         "Duration",
-              "effectsPermanent":                                 "Permanent Effects",
-              "effectsTemporary":                                 "Temporary Effects",  
-              "encumbrance":                                      "Encumbrance",
-              "equipment":                                        "Equipment",
-              "equippedStatus":                                   "Equipped",
-              "extraSuccesses":                                   "Extra Successes",
-              "healthRating":                                     "Health Rating",
-              "inactive":                                         "Inactive",
-              "information":                                      "Informationen",
-              "initiativePenalty":                                "Initiative Penalty",
-              "karma":                                            "Karma",
-              "languages":                                        "Languages",
-              "languagesSpoken":                                  "Languages Spoken",
-              "languagesWritten":                                 "Languages Written",
-              "legendCurrent":                                    "LP Current",
-              "legendHistory":                                    "LP History",
-              "legendSpend":                                      "LP Spend",
-              "legendStatus":                                     "Legend Status",
-              "legendTotal":                                      "LP Total",
-              "maneuvers":                                        "Maneuver",
-              "movement":                                         "Movement",
-              "mysticalArmor":                                    "Mystical Armor",     
-              "mysticalDefense":                                  "Mystical Defense",
-              "name":                                             "Name",
-              "navigator":                                        "Navigator", 
-              "origin":                                           "Origin",
-              "paths":                                            "Path",
-              "physicalArmor":                                    "Physical Armor",
-              "physicalDefense":                                  "Physical Defense", 
-              "powers":                                           "Power",
-              "questor":                                          "Questor",                    
-              "range":                                            "Range",                         
-              "rank":                                             "Rank",
-              "recovery":                                         "Recovery",
-              "shields":                                          "Shields",
-              "specialAbility":                                   "Special Abilities",
-              "step":                                             "Step",
-              "strain":                                           "Strain",
-              "talentsDiscipline":                                "Discipline Talents",
-              "talentsFreeRacial":                                "Free and other Talents",
-              "talentsOptional":                                  "Optional Talents",
-              "talentsVersatility":                               "Versatility Talents",
-              "weapons":                                          "Weapons"
-          },
-          "Karma": {
-              "current":                                          "Current",
-              "max":                                              "Max",
-              "step":                                             "Step"   
-          },
-          "LpTracking": {
-              "attributeImprovement":                             "Attribute increase",
-              "Header": {
-                  "advancement":                                  "Advancement",
-                  "date":                                         "Date",
-                  "description":                                  "Description",
-                  "legendPoints":                                 "Legend Points",
-                  "name":                                         "Name",
-                  "type":                                         "Type"
-              },
-              "Spendings": {
-                  "description":                                  "Enhancement from {previousLevel} to {newLevel}",
-                  "descriptionAttribute":                         "Enhanced {attributeName} from {previousLevel} to {newLevel}",
-                  "descriptionAbility":                           "Enhanced {abilityName} from {previousLevel} to {newLevel}",
-                  "descriptionNewlyAdded":                        "Newly added item",
-                  "knackSourceNotFound":                          "The Knack is not referenced in any Talent of the Actor",
-                  "knackSourceNotHighEnough":                     "The Rank of the Talent is not high enough",
-                  "maxIncreaseReached":                           "Maximum increase reached"
-              }
-          },
-          "Navigator": {
-              "classes":                                          "Vocation",
-              "configuration":                                    "Configuration",
-              "devotions":                                        "Devotions",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "information":                                      "Information",
-              "legend":                                           "Legend",
-              "reputation":                                       "Reputation",
-              "power":                                            "Powers",
-              "skills":                                           "skills",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells",
-              "talents":                                          "Talents"
-          },
-          "Spellcasting": {
-              "elementalist":                                     "Elemetnatalist",
-              "illusionist":                                     "Illusionist",
-              "matrix":                                           "Matrix",
-              "nethermancer":                                     "Nethermancer",   
-              "shaman":                                           "Shaman",
-              "wizard":                                           "Wizard"
-          },
-          "Tabs": {
-              "classes":                                          "Classes",
-              "configuration":                                    "Configuration",
-              "description":                                      "Description",
-              "devotions":                                        "Devotions",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "legend":                                           "Legend",
-              "notes":                                            "Notes",
-              "powers":                                           "Power",
-              "reputation":                                       "Reputation",
-              "skills":                                           "Skills",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells",
-              "Spells": {
-                  "matrix":                                       "Matrix",
-                  "all":                                          "All"
-              },
-              "talents":                                          "Talents"
-          },
-          "Tooltips": {
-              "carried":                                          "Carried",
-              "equipped":                                         "Equipped",
-              "equippedArmor":                                    "Equipped Armor",
-              "equippedShield":                                   "Equipped Shield",
-              "damageSubdual":                                    "Subdual",
-              "damagePhysical":                                   "Physical",
-              "karmaAlways":                                      "Use Karma always",
-              "karmaRitualTooltip":                               "Karma Ritual",
-              "loaded":                                           "Loaded",
-              "loadedHeavy":                                      "Heavyly Loaded",
-              "loadedOver":                                       "Overloaded",
-              "mainHand":                                         "Main Hand",
-              "notEquipped":                                      "Not equipped",
-              "offHand":                                          "Off Hand",
-              "tail":                                             "Tail",
-              "twoHanded":                                        "Two Handed"
+          "Range": {
+            "groupMovementUnits":                  "Movement Units"
           }
+        }
       },
-      "Chat": {
-          "Button": {
-              "applyDamage":                                      "Assign Damage",
-              "applyDamageTitle":                                 "Assign the Damage to the Targets!",
-              "applyEffect":                                      "Assign Effect",
-              "applyEffectTitle":                                 "Assign the Effect to the Targets!",
-              "rollEffect":                                       "Roll Effect",
-              "rollEffectTitle":                                  "Roll the Effect",
-              "rollDamage":                                       "Roll Damage",
-              "rollDamageTitle":                                  "Roll for Damage",
-              "takeDamage":                                       "Take Damage",
-              "takeDamageTitle":                                  "Take the damage for your Actor"
-          },
-          "Flavor": {
-              "jumpUp":                                           "{sourceActor} tries to jump up with Step {step}",
-              "knockdownTest":                                    "{sourceActor} tries to avoid being knocked down with Step {step}",
-              "rollAbility":                                      "{sourceActor} rolls {ability} with Step {step}",
-              "rollAbilityMultipleTargets":                       "{sourceActor} uses {Ability} with step {abilityFinalStep} against many Targets",
-              "rollAbilitySingleTarget":                          "{sourceActor} uses {Ability} with step {abilityFinalStep} against {singleTarget}",
-              "rollAbilityWithoutTarget":                         "{sourceActor} uses {Ability} with step {abilityFinalStep}",
-              "rollAttackMultipleTargets":                        "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep} against many Targets",
-              "rollAttackSingleTarget":                           "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep} against {singleTarget}",
-              "rollAttackWithoutTarget":                          "{sourceActor} uses {Ability} ({weapon}) with step {abilityFinalStep}",
-              "rollAttribute":                                    "{sourceActor} rolls {attribute} with Step {step}",
-              "rollEquipment":                                    "{sourceActor} rolls {equipment} with Step {step}",
-              "rollEquipmentSingleTarget":                        "{sourceActor} uses {equipment} with step {arbitraryStep} against {singleTarget}",
-              "rollEquipmentMultipleTargets":                     "{sourceActor} uses {equipment} with step {arbitraryStep} against many Targets",
-              "rollEquipmentWithoutTarget":                       "{sourceActor} uses {equipment} with step {arbitraryStep}",
-              "rollRecovery":                                     "{sourceActor} recovers from Damage with Step {step}"
-          },
-          "Header": {
-              "actionTest":                                       "Action Test",
-              "arbitraryTest":                                    "arbitrary Test",
-              "effectTest":                                       "Effect Test"
-          }
-      },
-      "Config": {
-          "Action": {
-              "free":                                             "Free",
-              "none":                                             "None",
-              "simple":                                           "Simple",   
-              "standard":                                         "Standard",
-              "sustained":                                        "Sustained"
-          },
-          "AmmunitionType": {
-              "arrow":                                            "Arrow",
-              "bolt":                                             "Bolt",
-              "needle":                                           "Needle",
-              "stone":                                            "Stone"
-          },
-          "AreaTargets": {
-              "circle":                                           "Circle",
-              "cone":                                             "Cone",
-              "cube":                                             "Cube",
-              "cylinder":                                         "Cylinder",
-              "line":                                             "Line",
-              "radius":                                           "Radius",
-              "sphere":                                           "Sphere",
-              "square":                                           "Square",
-              "wall":                                             "Wall"
-          },
-          "Armor":{
-              "physical":                                         "Physical Armor",
-              "mystical":                                         "Mystical Armor"                    
-          },
-          "Availability": {
-              "everyday":                                         "Everyday",
-              "average":                                          "Average",
-              "unusual":                                          "Unusual",
-              "rare":                                             "Rare",
-              "veryRare":                                         "Very Rare",
-              "unique":                                           "Unique"
-          },
-          "CombatTypes": {
-              "aerial":                                           "Aerial Combat",
-              "close":                                            "Close Combat",
-              "melee":                                            "Melee Combat",
-              "mounted":                                          "Mounted Combat",
-              "projectile":                                       "Projectil Combat",
-              "ranged":                                           "Ranged Combat",
-              "throwing":                                         "Throwing Combat",
-              "unarmed":                                          "unarmed Combat"
-          },
-          "curseType": {
-              "horror":                                           "Horror Mark",
-              "major":                                            "Major Curse",
-              "minor":                                            "Minor Curse"
-          },
-          "Defenses": {
-              "highestOfGroup":                                   "Highest of Group",
-              "highestX":                                         "Highest of Group + Targets",
-              "lowestOfGroup":                                    "Lowest of Group",
-              "lowestX":                                          "Lowest of Group + Targets",
-              "mystical":                                         "Mystical Defense",
-              "none":                                             "None",
-              "physical":                                         "Physical Defense",
-              "social":                                           "Social Defense"
-          },
-          "Denomination": {
-              "copper":                                           "Copper",
-              "gold":                                             "Gold",
-              "silver":                                           "Silver"
-          },
-          "Eae": {
-              "DurationTypes": {
-                  "combat":                                       "Combat",
-                  "permanent":                                    "Permanent",
-                  "realTime":                                     "Real Time",
-                  "uses":                                         "Uses"
-              },
-              "ExecutionTime": {
-                  "combatStart":                                  "Start of Combat",
-                  "combatEnd":                                    "End of Combat",
-                  "Groups": {
-                      "combat":                                   "Combat",
-                      "round":                                    "Round",
-                      "turn":                                     "Turn"
-                  },
-                  "roundStart":                                   "Start of Round",
-                  "roundEnd":                                     "End of Round",
-                  "turnStart":                                    "Start of Turn",
-                  "turnEnd":                                      "End of Turn"
-              }
-          },
-          "Elements": {
-              "air":                                              "Air",
-              "earth":                                            "Earth",
-              "fire":                                             "Fire",
-              "water":                                            "Water",
-              "wood":                                             "Wood"
-          },
-          "groupDifficulty": {
-              "highestOfGroup":                                   "Highest of Group",
-              "highestX":                                         "Highest + Targets",
-              "lowestOfGroup":                                    "Lowest of Group",
-              "lowestX":                                          "Lowest + Targets"
-          },
-          "Health": {
-              "damageStandard":                                   "Deadly Damage",
-              "damageStun":                                       "Stun Damage"
-          },
-          "ItemStatus": {
-              "carried":                                          "Carried",
-              "equipped":                                         "Equipped",
-              "mainHand":                                         "Main Hand",
-              "offHand":                                          "Off Hand",
-              "owned":                                            "Owned",
-              "tail":                                             "Tail",
-              "twoHands":                                         "Two Hands"
-          },
-          "MovementTypes": {
-              "burrow":                                           "Burrow",
-              "climb":                                            "Climb",
-              "fly":                                              "Fly",
-              "swim":                                             "Swim",
-              "walk":                                             "Walk"
-          },
-          "MovementUnits": {
-              "feet":                                             "Feet",
-              "inch":                                             "Inch",
-              "mile":                                             "Mile",
-              "yard":                                             "yard"
-          },
-          "PermanentTimePeriods": {
-              "perm":                                             "Permanent"
-          },
-          "PoisonActivation": {
-              "contact":                                          "Contact",
-              "ingested":                                         "Ingested",
-              "inhaled":                                          "Inhaled",
-              "injury":                                           "Injury",
-              "wound":                                            "Wound"
-          },
-          "RangeTypes": {
-              "any":                                              "Any",
-              "self":                                             "Self",
-              "special":                                          "Special",
-              "touch":                                            "Touch"
-          },
-          "RecoveryProperty": {
-              "noRecovery":                                       "No Recovery",
-              "arbitrary":                                        "Arbitrary",
-              "arbitraryAndAttribute":                            "Arbitrary and Attribute",
-              "arbitraryOptionalAttribute":                       "Arbitrary and/or Attribute",
-              "abilityStep":                                      "Ability Step",
-              "noHealing":                                        "No Recovery"
-          },
-          "rollTypes": {
-              "ability":                                          "Ability",
-              "attack":                                           "Attack",
-              "attribute":                                        "Attribute",
-              "effect":                                           "Effect",
-              "halfmagic":                                        "Half Magic",
-              "initiative":                                       "Initiative",
-              "jumpUp":                                           "Jump Up",
-              "knockDown":                                        "Knock Down",            
-              "reaction":                                         "Reaction",
-              "recovery":                                         "Recovery",
-              "spellcasting":                                     "Spell Casting",
-              "threadWeaving":                                    "Thread Weaving"
-          },
-          "ScalarTimePeriods": {
-              "day":                                              "Day",
-              "hour":                                             "Hour",
-              "minute":                                           "Minute",
-              "month":                                            "Month",
-              "round":                                            "Round",
-              "turn":                                             "Turn",
-              "week":                                             "Week",
-              "year":                                             "Year"
-          },
-          "Skills": {
-              "artisan":                                          "Artisan",
-              "general":                                          "General",
-              "knowledge":                                        "Knowledge"
-          },
-          "SpecialTimePeriods": {
-              "inst":                                             "Instantaneous",
-              "special":                                          "Special"
-          },
-          "spellcastingTypes": {
-              "elementalism":                                     "Elementalist",
-              "illusionism":                                      "Illusionist",
-              "nethermancy":                                      "Nethermancer",
-              "shamanism":                                        "Shaman",
-              "wizardry":                                         "Wizard"
-          },
-          "SpellKeywords": {
-              "binding":                                          "Binding",
-              "concentration":                                    "Concentration",
-              "fate":                                             "Fate",
-              "figment":                                          "Figment",
-              "illusion":                                         "Illusion",
-              "pack":                                             "Pack",
-              "spirit":                                           "Spirit",
-              "summon":                                           "Summon"
-          },
-          "talentCategory": {
-              "discipline":                                       "Discipline",
-              "free":                                             "Free",
-              "optional":                                         "Optional",
-              "versatility":                                      "Versatility"
-          },
-          "targetDifficulty": {
-              "mystical":                                         "Mystical",
-              "physical":                                         "Physical",
-              "social":                                           "Social"
-          },
-          "Tier": {
-              "journeyman":                                       "Journeyman",
-              "master":                                           "Master",  
-              "novice":                                           "Novice",
-              "warden":                                           "Warden"
-          },
-          "WeaponType": {
-              "melee":                                            "Melee",
-              "missile":                                          "Missile",
-              "thrown":                                           "Thrown",
-              "unarmed":                                          "Unarmed"
-          }
-      },
-      "Data": {
-          "ActiveEffect": {
-              "Labels": {
-                  "abilityEdid":                                  "Ability Edid",
-                  "begin":                                        "Begin",
-                  "duration":                                     "Duration",
-                  "executable":                                   "Executable",
-                  "executeOn":                                    "Execute On",
-                  "executionScript":                              "Execution Script",
-                  "transferToTarget":                             "Transfer to target"
-              },
-              "Hints": {
-                  "abilityEdid":                                  "Ability Edid",
-                  "executable":                                   "Executable",
-                  "executeOn":                                    "Execute On",
-                  "executionScript":                              "Execution Script",
-                  "transferToTarget":                             "Transfer to target"
-              }
-          },
-          "Actor": {
-              "Hints": {
-                  "challengeRate":                                "Challenging Rate",
-                  "isMob":                                        "Mob Rules"
-              },
-              "Labels": {
-                  "Characteristics": {
-                      "bloodMagicDamage":                         "Blood Magic Damage",
-                      "bloodMagicWounds":                         "Blood Magic Wounds",
-                      "deathRating":                              "Death Rating",
-                      "maxWounds":                                "Maximum Wounds",
-                      "recoveryTestsCurrent":                     "Current Recovery Tests",
-                      "recoveryTestsMax":                         "Maximum Recovery Tests",
-                      "unconsciousRate":                          "Unconciousness Rating",
-                      "woundThreshold":                           "Wound Threshold",
-                      "wounds":                                   "Wounds"
-                  },
-                  "challengeRate":                                "Challenging Rate of the Actor",
-                  "devotion":                                     "Devotion",
-                  "devotionMax":                                  "Maximum Devotion",
-                  "devotionStep":                                 "Devotion Step",
-                  "durabilityBonus":                              "Durability Bonus",
-                  "encumbrance":                                  "Encumbrance",
-                  "encumbranceMax":                               "Maximum Encumbrance",
-                  "encumbranceBonus":                             "Encumbrance Bonus",
-                  "initiative":                                   "Initiative",
-                  "isMob":                                        "This Actor uses only Wounds instead of Damage",
-                  "karma":                                        "Karma",
-                  "karmaMax":                                     "Maximum Karma",
-                  "karmaStep":                                    "Karma Step"
-              }
-          },
-          "General": {
-              "Hints": {
-                  "Knack": {
-                      "lpCost":                                   "Legend Point Cost"
-                  },
-                  "Rollable": {
-                      "type":                                     "Roll Type"
-                  },
-                  "Target": {
-                      "target":                                   "Difficulty",
-                      "group":                                    "Group parameter",
-                      "fixed":                                    "Fixed Difficulty"
-                  }    
-              },
-              "Labels": {
-                  "Knack": {
-                      "requirements":                             "Knack Requirements",
-                      "restrictions":                             "Knack Restrictions"
-                  },
-                  "Rollable": {
-                      "type":                                     "Roll Type"
-                  },
-                  "Target": {
-                      "target":                                   "Difficulty",
-                      "fixed":                                    "Fixed Difficulty",
-                      "group":                                    "Group parameter"
-                  }
-              }  
-          },
-          "Fields": {
-              "Options": {
-                  "Duration": {
-                      "groupPermanentTime":                       "Permanent Duration",
-                  "groupScalarTime":                              "Timed Duration"
-                  },
-                  "Range": {
-                      "groupMovementUnits":                       "Movement Units"
-                  }
-              }
-          },
-          "Item": {
-              "Fields": {
-                  "dispelDifficulty":                             "Dispel Difficulty"
-              },
-              "Hints": {
-                  "Ability": {
-                      "attribute":                                "Attribute",
-                      "devotionRequired":                         "Devotion required",
-                      "durability":                               "Durability",
-                      "class":                                    "Source",
-                      "Magic": {
-                          "magicType":                            "Magic Type",
-                          "spellcasting":                         "Spellcasting",
-                          "talentThreadWeaving":                  "Thread Weaving",
-                          "talentSpellcasting":                   "Spellcasting",
-                          "talentMagicType":                      "Magic Type",
-                          "talentMagic":                          "Magic",
-                          "threadWeaving":                        "Thread Weaving"
-                          },
-                      "rank":                                     "Rank",
-                      "skillType":                                "Skill type",
-                      "Source": {
-                          "atLevel":                              "At Circle/Rank"
-                      },
-                      "talentCategory":                           "Talent Category",
-                      "talentAvailableKnacks":                    "Available Knacks",
-                      "talentKnacksAvailable":                    "Knacks available",
-                      "talentLearnedKnacks":                      "Learned Knacks",
-                      "talentKnacksLearned":                      "Knacks learned",
-                      "talentKnacks":                             "Knacks",
-                      "tier":                                     "Tier",
-                      "type":                                     "Type"
-                  },
-                  "Action": {
-                      "action":                                   "Action",
-                      "strain":                                   "Strain"
-                  },
-                  "Armor": {
-                      "forgeBonusMystical":                       "Forge Bonus Mystical",
-                      "forgeBonusPhysical":                       "Forge Bonus Physical",
-                      "initiativePenalty":                        "Initiative Penalty",
-                      "living":                                   "This item counts as living Armor.",
-                      "mysticalArmor":                            "Mystical Armor",
-                      "physicalArmor":                            "Physical Armor",
-                      "piecemealArmor":                           "Piecemeal Armor",
-                      "piecemealArmorSize":                       "Piecemeal Armor Size"
-                  },
-                  "Class": {
-                      "bloodMagicDamage":                         "Blood Magic Damage",
-                      "durability":                               "Durability",
-                      "level":                                    "Circle/Rank",
-                      "order":                                    "Order",
-                      "spellcasting":                             "Spellcasting",
-                      "sourceDiscipline":                         "Source Discipline"
-                  },
-                  "Curse": {
-                      "curseActive":                              "Is Curse Active?",
-                      "curseDetected":                            "Is Curse Detected?",
-                      "curseType":                                "Curse Type",
-                      "step":                                     "Curse Step"
-                  },
-                  "edid":                                         "An ID to identify an item without considering its name",
-                  "Equipment": {
-                      "consumable":                               "The quantity of this item will be reduced by one after each use.",
-                      "ammunition":                               "Which type of ammunition is this item?",
-                      "bundleSize":                               "How many items are in this bundle?"
-                  },
-                  "Knack":{
-                      "isPathKnack":                              "Path Knack",
-                      "lpCost":                                   "Legend Point cost",
-                      "minLevel":                                 "Min. Rank",
-                      "standardEffect":                           "Standard Effect",
-                      "sourceTalent":                             "Source Talent"
-                  },
-                  "Maneuver": {
-                      "extraSuccesses":                           "Extra Successes"
-                  },
-                  "Namegiver":{
-                      "livingArmorOnly":                          "This item is considered as living armor.",
-                      "WeaponSize": {
-                          "twoHandedmax":                         "TwoHanded max.",
-                          "twoHandedmin":                         "TwoHanded min.",
-                          "oneHandedmax":                         "OneHanded max.",
-                          "oneHandedmin":                         "OneHanded min."
-                      },
-                      "tail":                                     "Tail",
-                      "weightMultiplier":                         "Weight Multiplier",
-                      "karmaModifier":                            "Karma Modifier"
-                  },
-                  "PhysicalItems": {
-                      "action":                                     "Action",
-                      "amount":                                   "Amount",
-                      "arbitraryStep":                            "Arbitrary Step",
-                      "availability":                             "Availability",
-                      "bloodMagicDamage":                         "Blood Magic Damage",
-                      "itemStatus":                               "Status",
-                      "price":                                    "Price",
-                      "Price": {
-                          "value":                                "Value",
-                          "denomination":                         "Denomination"
-                      },
-                      "ThreadItem": {
-                          "activeEffect":                         "Active Effect",                          
-                          "Deed": {
-                              "isRequired":                       "Is Required"
-                          },
-                          "effect":                               "Effect",
-                          "enchantmentPattern":                   "Echantment Pattern",
-                          "isActive":                             "Is Active",
-                          "isAnalysed":                           "Is Analysed",
-                          "isIdentified":                         "Is Identified",
-                          "isLevelAnalysed":                      "Is Rank Analysed",
-                          "KeyKnowledge": {
-                              "isRequired":                       "Is Required"
-                          },
-                          "level":                                "Circle/Rank",
-                          "maxThreads":                           "Max Threads",
-                          "mysticalDefense":                      "Mystical Defense",
-                          "tier":                                 "Tier"
-                      },
-                      "usableItem":                               "Usable Item",
-                      "UsableItem": {
-                          "selector":                             "Usable",
-                          "recoveryPropertyValue":                "Recovery test relevance"
-                      },
-                      "value":                                    "Value",
-                      "weight":                                   "Weight",
-                      "Weight": {
-                          "calculated":                           "Calculated",
-                          "multiplier":                           "Multiplier"
-                      }
-                  },
-                  "PoisonDisease": {
-                      "activation":                               "Activation",
-                      "damageStep":                               "Damage Step",
-                      "death":                                    "Death",
-                      "debilitationStep":                         "Debilitation Step",
-                      "duration":                                 "Duration",
-                      "effect":                                   "Effect",
-                      "interval":                                 "Interval",
-                      "onsetTime":                                "Onset Time",                       
-                      "paralysisStep":                            "Paralysis Step",
-                      "totalEffects":                             "Total Effects",
-                      "timeInBetween":                            "Time in between"
-                  },
-                  "Power": {
-                      "armorType":                                "Armor Type",
-                      "damageType":                               "Damage Type",
-                      "elementType":                              "Element Type",
-                      "elementSubtype":                           "Element Subtype"
-                  },
-                  "Powers": {
-                      "action":                                   "Action",
-                      "damageStep":                               "Damage Step",
-                      "powerStep":                                "Power Step",
-                      "strain":                                   "Strain"
-                  },
-                  "Questor": {
-                      "questorDevotion":                          "Questor Devotion"
-                  },
-                  "Shields": {
-                      "bowUsage":                                 "Bow Usage",
-                      "broken":                                   "Broken?",
-                      "defenseBonusMystical":                     "Mystical Defense Bonus",
-                      "defenseBonusPhysical":                     "Physical Defense Bonus",
-                      "initiativePenalty":                        "Initiative Penalty",
-                      "livingArmor":                              "Living Armor",
-                      "shatterThreshold":                         "Shatter Threshold"
-                  },
-                  "ShipWeapon":{
-                      "firePowerPoints":                          "Fire Power Points",
-                      "crewWeapon":                               "Crew",
-                      "rangeShort":                               "Short Range",
-                      "rangeLong":                                "Long Range",
-                      "salvoCost":                                "Salvo Cost",
-                      "characterDamage":                          "Character Damage"
-                  },
-                  "Spell": {
-                      "area":                                     "Area",
-                      "binding":                                  "Binding",
-                      "circle":                                   "Circle",
-                      "concentration":                            "Concentration",
-                      "duration": {
-                          "value":                                "Duration",
-                          "uom":                                  "Unit"
-                          },
-                      "effect":                                   "Effect",
-                      "elementSubtype":                           "Element Subtype",
-                      "elementType":                              "Element Type",
-                      "extraSuccesses":                           "Extra Successes",
-                      "extraThreads":                             "Extra Threads",
-                      "illusionType":                             "Illusion Type",
-                      "magicType":                                "Magic Type",
-                      "range": {
-                          "value":                                "Range",
-                          "uom":                                  "Unit"
-                          },
-                      "reattunedifficulty":                       "Reattune Difficulty",
-                      "resist":                                   "Resist",
-                      "sensingDifficulty":                        "Sensing Difficulty",
-                      "spellArea": {
-                          "value":                                "Area",
-                          "uom":                                  "Unit",
-                          "shape":                                "Shape"
-                          },
-                      "spellElement":                             "Element",
-                      "spellIllustion":                           "Illusion",
-                      "spirit":                                   "Spirit",
-                      "summoning":                                "Summoning",
-                      "threadsrequired":                          "Threads required",
-                      "weavingdifficulty":                        "Weaving Difficulty"
-                  },
-                  "Weapons": {
-                      "ammunitionType":                           "Ammunition Type",
-                      "armorType":                                "Armor Type",
-                      "damageAttribute":                          "Damage Attribute",
-                      "damageBaseStep":                           "Base Damage Step",
-                      "damageType":                               "Damage Type",
-                      "dexterityMinimum":                         "Dexterity Minimum",
-                      "forgeBonus":                               "Forge Bonus",
-                      "rangeShortMax":                            "Range Short Maximum",
-                      "rangeShortMin":                            "Range Short Minimum",
-                      "rangeLongMax":                             "Range Long Maximum",
-                      "rangeLongMin":                             "Range Long Minimum",
-                      "size":                                     "Size",
-                      "strengthMinimum":                          "Strength Minimum",
-                      "weaponType":                               "Weapon Type",
-                      "wieldingType":                             "Wielding Type"
-                  }
-              },
-              "Labels": {
-                  "Ability": {
-                      "attribute":                                "Attribute",
-                      "devotionRequired":                         "Devotion required",
-                      "durability":                               "Durability",
-                      "Magic": {
-                          "magicType":                            "Magic Type",
-                          "spellcasting":                         "Spellcasting",
-                          "talentThreadWeaving":                  "Thread Weaving",
-                          "talentSpellcasting":                   "Spellcasting",
-                          "talentMagicType":                      "Magic Type",
-                          "talentMagic":                          "Magic",
-                          "threadWeaving":                        "Thread Weaving"      
-                      },
-                      "Source": {
-                          "class":                                "Source",
-                          "atLevel":                              "At Circle/Rank"
-                      },
-                      "rank":                                     "Rank",
-                      "skillType":                                "Skill type",
-                      "talentAvailableKnacks":                    "Available Knacks",
-                      "talentCategory":                           "Talent Category",
-                      "talentKnacksAvailable":                    "Knacks available",
-                      "talentLearnedKnacks":                      "Learned Knacks",
-                      "talentKnacksLearned":                      "Knacks learned",
-                      "talentKnacks":                             "Knacks",
-                      "tier":                                     "Tier",
-                      "type":                                     "Type"
-                  },
-                  "Action": {
-                      "action":                                   "Action",
-                      "strain":                                   "Strain"
-                  },
-                  "Armor": {
-                      "forgeBonusMystical":                       "Forge Bonus Mystical",
-                      "forgeBonusPhysical":                       "Forge Bonus Physical",
-                      "initiativePenalty":                        "Initiative Penalty",
-                      "living":                                   "Living Armor",
-                      "mysticalArmor":                            "Mystical Armor",
-                      "physicalArmor":                            "Physical Armor",
-                      "piecemealArmor":                           "Piecemeal Armor",
-                      "piecemealArmorSize":                       "Piecemeal Armor Size"
-                  },
-                  "Class": {
-                      "level":                                    "Circle/Rank",
-                      "order":                                    "Order",
-                      "spellcasting":                             "Spellcasting",
-                      "durability":                               "Durability",
-                      "bloodMagicDamage":                         "Blood Magic Damage",
-                      "sourceDiscipline":                         "Source Discipline"
-                  },
-                  "Curse": {
-                      "step":                                     "Curse Step",
-                      "curseType":                                "Curse Type",
-                      "curseActive":                              "Is Curse Active?",
-                      "curseDetected":                            "Is Curse Detected?"
-                  },
-                  "edid":                                         "ED-ID",
-                  "Equipment": {
-                      "consumable":                               "Consumable?",
-                      "ammunition":                               "Ammunition type",
-                      "bundleSize":                               "Bundle size"
-                  },
-                  "Knack":{
-                      "isPathKnack":                              "Path Knack",
-                      "standardEffect":                           "Standard Effect",
-                      "sourceTalent":                             "Source Talent",
-                      "minLevel":                                 "Min. Rank",
-                      "lpCost":                                   "LP cost"  
-                  },
-                  "Maneuver": {
-                      "extraSuccesses":                           "Extra Successes"
-                  },
-                  "Namegiver":{
-                      "abilities":                                "Namegiver Abilities",
-                      "tail":                                     "Tail",
-                      "karmaModifier":                            "Karma Modifier",
-                      "livingArmorOnly":                          "Living Armor Only",
-                      "WeaponSize": {
-                          "oneHandedmax":                         "OneHanded max.",
-                          "oneHandedmin":                         "OneHanded min.",
-                          "twoHandedmax":                         "TwoHanded max.",
-                          "twoHandedmin":                         "TwoHanded min."
-                      },
-                      "weightMultiplier":                         "Weight Multiplier"
-                  },
-                  "PhysicalItems": {
-                      "amount":                                   "Amount",
-                      "availability":                             "Availability",
-                      "bloodMagicDamage":                         "Blood Magic Damage",
-                      "itemStatus":                               "Status",
-                      "price":                                    "Price",
-                      "Price": {
-                          "value":                                "Value",
-                          "denomination":                         "Denomination"
-                      },
-                      "ThreadItem": {
-                          "activeEffect":                         "Active Effect",                          
-                          "Deed": {
-                              "isRequired":                       "Is Required"
-                          },
-                          "effect":                               "Effect",
-                          "enchantmentPattern":                   "Echantment Pattern",
-                          "isActive":                             "Is Active",
-                          "isAnalysed":                           "Is Analysed",
-                          "isIdentified":                         "Is Identified",
-                          "isLevelAnalysed":                      "Is Rank Analysed",
-                          "KeyKnowledge": {
-                              "isRequired":                       "Is Required"
-                          },
-                          "level":                                "Circle/Rank",
-                          "maxThreads":                           "Max Threads",
-                          "mysticalDefense":                      "Mystical Defense",
-                          "tier":                                 "Tier"
-                      },
-                      "usableItem":                               "Usable Item",
-                      "UsableItem": {
-                          "action":                               "Action",
-                          "arbitraryStep":                        "Arbitrary Step",
-                          "recoveryPropertyValue":                "Recovery test relevance",
-                          "selector":                             "Usable"
-                      },
-                      "value":                                    "Value",
-                      "weight":                                   "Weight",
-                      "Weight": {
-                          "calculated":                           "Calculated",
-                          "multiplier":                           "Multiplier",
-                          "value":                                "Weight"
-                      }
-                  },
-                  "PoisonDisease": {
-                      "activation":                               "Activation",
-                      "damageStep":                               "Damage Step",
-                      "death":                                    "Death",
-                      "debilitationStep":                         "Debilitation Step",
-                      "duration":                                 "Duration",
-                      "effect":                                   "Effect",
-                      "interval":                                 "Interval",
-                      "onsetTime":                                "Onset Time",
-                      "paralysisStep":                            "Paralysis Step",
-                      "timeInBetween":                            "Time in between",
-                      "totalEffects":                             "Total Effects"
-                  },
-                  "Power": {
-                      "armorType":                                "Armor Type",
-                      "damageType":                               "Damage Type",
-                      "elementSubtype":                           "Element Subtype",
-                      "elementType":                              "Element Type"
-                  },
-                  "Powers": {
-                      "action":                                   "Action",
-                      "damageStep":                               "Damage Step",
-                      "powerStep":                                "Power Step",
-                      "strain":                                   "Strain"
-                  },
-                  "Questor": {
-                      "questorDevotion":                          "Questor Devotion"
-                  },
-                  "Shields": {
-                      "bowUsage":                                 "Bow Usage",                        
-                      "broken":                                   "Broken?",
-                      "defenseBonusMystical":                     "Mystical Defense Bonus",
-                      "defenseBonusPhysical":                     "Physical Defense Bonus",
-                      "initiativePenalty":                        "Initiative Penalty",
-                      "livingArmor":                              "Living Armor",
-                      "shatterThreshold":                         "Shatter Threshold"
-                  },
-                  "ShipWeapon":{
-                      "characterDamage":                          "Character Damage",
-                      "crewWeapon":                               "Crew",
-                      "firePowerPoints":                          "Fire Power Points",
-                      "rangeShort":                               "Short Range",
-                      "rangeLong":                                "Long Range",
-                      "salvoCost":                                "Salvo Cost"
-                  },
-                  "Spell": {
-                      "area":                                     "Spell Area",      
-                      "binding":                                  "Binding",
-                      "circle":                                   "Circle",
-                      "concentration":                            "Concentration",
-                      "duration":                                 "Spell Duration",          
-                      "Duration": {
-                          "value":                                "Duration",
-                          "uom":                                  "Unit"
-                      },
-                      "effect":                                   "Effect",
-                      "elementSubtype":                           "Element Subtype",
-                      "elementType":                              "Element Type",
-                      "extraSuccesses":                           "Extra Successes",
-                      "extraThreads":                             "Extra Threads",
-                      "illusionType":                             "Illusion Type",
-                      "keywords":                                 "Spell Keywords",
-                      "level":                                    "Circle",      
-                      "magicType":                                "Magic Type",
-                      "range":                                    "Spell Range",
-                      "Range": {
-                          "value":                                "Range",
-                          "uom":                                  "Unit"
-                      },
-                      "reattuneDifficulty":                       "Reattune Difficulty",
-                      "resist":                                   "Resist",
-                      "sensingDifficulty":                        "Sensing Difficulty",
-                      "spellArea": {
-                          "value":                                "Area",
-                          "uom":                                  "Unit",
-                          "shape":                                "Shape"
-                      },
-                      "spellcastingType":                         "Spellcasting Type",
-                      "spellElement":                             "Element",
-                      "spellIllustion":                           "Illusion",
-                      "spellThreadsRequired":                     "Number of Spell Threads Required",
-                      "spirit":                                   "Spirit",
-                      "summoning":                                "Summoning",
-                      "threadsrequired":                          "Threads required",
-                      "weavingDifficulty":                        "Weaving Difficulty"
-                  },
-                  "Weapons": {
-                      "ammunitionType":                           "Ammunition Type",
-                      "armorType":                                "Armor Type",
-                      "damageType":                               "Damage Type",
-                      "dexterityMinimum":                         "Dexterity Minimum",
-                      "damageAttribute":                          "Damage Attribute",
-                      "damageBaseStep":                           "Base Damage Step",
-                      "forgeBonus":                               "Forge Bonus",
-                      "rangeShortMin":                            "Range Short Minimum",
-                      "rangeShortMax":                            "Range Short Maximum",
-                      "rangeLongMin":                             "Range Long Minimum",
-                      "rangeLongMax":                             "Range Long Maximum",
-                      "size":                                     "Size",
-                      "strengthMinimum":                          "Strength Minimum",
-                      "weaponType":                               "Weapon Type",
-                      "wieldingType":                             "Wielding Type"
-                  }
-              }
-          },
-          "Journal": {
-              "Labels": {},
-              "Hints": {}
-          },
-        "Other": {
-              "Hints": {
-                "EAEChangeData": {
-                  "key":                                          "The attribute path in the Actor or Item data which the change modifies",
-                  "mode":                                         "The modification mode with which the change is applied",
-                  "priority":                                     "The priority level with which this change is applied",
-                  "value":                                        "The value or formula of the change effect"
-                },
-                "EAEDurationData": {
-                  "rounds":                                       "Rounds",
-                  "turns":                                        "Turns",
-                  "type":                                         "Duration Length"
-                }
-              },
-              "Labels": {
-                "EAEChangeData": {
-                  "key":                                          "Key",
-                  "mode":                                         "Mode",
-                  "priority":                                     "Priority",
-                  "value":                                        "Value"
-                },
-                "EAEDurationData": {
-                  "rounds":                                       "Rounds",
-                  "startRound":                                   "Start Round",
-                  "startTurn":                                    "Start Turn",
-                  "turns":                                        "Turns",
-                  "type":                                         "Duration Length"
-                }
-              }
-          },
-          "placeholderBlankSelectOption":                         "---"
-      },
-      "Dialogs": {
-          "armor":                                                "Armor",
-          "armorType":                                            "Armor Type",
-          "AssignLp": {
-              "description":                                      "Description",
-              "legendPoints":                                     "Legend Points"
-          },
-          "Buttons": {
-              "cancel":                                           "Cancel",
-              "close":                                            "Close",
-              "nightRest":                                        "Nightly Rest",
-              "noAbilityDex":                                     "Dexterity",
-              "noAbilityStr":                                     "Strength",
-              "recoverStun":                                      "Stun Damage Recovery",
-              "recovery":                                         "Recovey Test",
-              "roll":                                             "Roll",
-              "save":                                             "Save",
-              "takeDamage":                                       "Take Damage"
-          },
-          "Errors": {
-              "noLp":                                             "No Legend Points entered!"
-          },
-          "Header": {
-              "activeUser":                                       "Active User",
-              "actorsNoUserConfigured":                           "Not Configured, Owned Actors",
-              "inactiveUser":                                     "Inactive User"
-          },
-          "Navigator":{
-              "baseInput":                                        "Base Options",
-              "options":                                          "Other Options"
-          },
-          "Placeholder": {
-              "lpDescription":                                    "Enter your description here"
-          },
-          "Legend": {
-              "LearnSpell": {
-                  "chatFlavorPatterncraft":                       "{name} tries to lern the {spell} spell.",
-                  "chatFlavorTeacherTest":                        "{name} tries to lern the {spell} spell, with the help of a mentor. Spellcasting of the Mentor:",
-                  "legendPatterncraft":                           "Patterncraft options to learn the spell",
-                  "legendRequirements":                           "Voraussetzungen",
-                  "legendTeacherTest":                            "Supporting Mentor",
-                  "noPatterncraftTalentFound":                    "No fitting Patterncraft talent found (see ed-ids)",
-                  "noSpellcastingTalentFound":                    "No fitting Spellcasting talent found (see ed-ids)",
-                  "teacherBonusModifier":                         "Supporting Mentor"
-              },
-              "Rules": {
-                  "disciplineLearnShortRequirements":             "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
-                  "questorClassIncreaseShortRequirements":        "<ul>\n<li>Commune with the Passion by using the Questor Devotion</li>\n<li>no Test required</li>\n<li>Only one Devotion can be learned or increased per day, and no more than one rank can be increased at a time</li>\n<li>There are no limitations to increasing the rank of the Questor Devotion within the same category, other than the legend point cost and the time required for the Devotion</li>\n<li>Change from one category to another (e. g. from follower to adherent) requires taking on and fulfilling a Quest in the name of the Passion</li>\n<li>A devotion can also be learned from a precious tier</li>\n<li>Legend point cost for increasing a devotion is based on when it becomes available, even if it is learned later</li>\n</ul>\n"
-              },
-              "Validation": {
-                  "availableLp":                                  "Enough Legendpoints? Cost: ",
-                  "availableMoney":                               "Enough Silver? Cost: ",
-                  "enoughTalentsOfTier":                          "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel}). ---WIP",
-                  "enoughTalentsOnMinRank":                       "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel})---WIP",
-                  "hasDamage":                                    "Current Damage?",
-                  "hasRequiredJourneymanTalents":                 "Erforderliche Anzahl Gesellen-Talente auf neuem Rang?---WIP",
-                  "hasRequiredMasterTalents":                     "Erforderliche Anzahl Meister-Talente auf neuem Rang?---WIP",
-                  "hasRequiredNoviceTalents":                     "Erforderliche Anzahl Novizen-Talente auf neuem Rang?---WIP",
-                  "hasRequiredWardenTalents":                     "Erforderliche Anzahl Wächter-Talente auf neuem Rang?---WIP",
-                  "hasTalentFromCurrentCircle":                   "Talent aus aktuellem Kreis auf erforderlichem Rang?---WIP",
-                  "hasTalentsOnMinRank":                          "Alle Talente auf dem erforderlichen Rang?---WIP",
-                  "hasWounds":                                    "Current Wounds?",
-                  "maxLevel":                                     "Maximaler Rang erreicht? Aktuell: ---WIP",
-                  "notEnoughTalentsOfTier":                       "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
-                  "notEnoughTalentsOnMinRank":                    "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
-                  "noTalentFromCurrentCircleOnNewLevel":          "Mindestens ein Talent aus dem aktuellen Kreis ist nicht auf dem erforderlichen Rang {nextLevel}.---WIP",
-                  "talentFromCurrentCircleOnNewLevel":            "Mindestens ein Talent aus aktuellem Kreis ist auf erforderlichem Rang. Sehr gut gemacht!---WIP",
-                  "talentOptionLp":                               "Genügend Legendenpunkte für Talentoption? Kostet: ---WIP",
-                  "talentsRequirement":                           "Alle Bedingungen für vorherige Talente erfüllt?---WIP",
-                  "talentsRequirementFailed":                     "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}---WIP",
-                  "talentsRequirementFulfilled":                  "Alle Disziplintalente sind auf dem erforderlichen Rang---WIP"
-              },
-              "increaseQuestorDevotionPrompt":                    "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)---WIP",
-              "learnOnZeroOrOne":                                 "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?---WIP",
-              "learnQuestorPrompt":                               "Soll die Questor Weihekraft erlernt werden?---WIP",
-              "questorDevotionNotFound":                          "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})---WIP",
-              "spendLp":                                          "Spend Legend points",
-              "writtenRules":                                     "Rules"
-          },
-          "RollPrompt": {
-            "devotion":                                           "Devotion",
-            "devotionStep":                                       "Devotion Step",
-            "difficulty":                                         "Difficulty",
-            "karma":                                              "Karma",
-            "karmaStep":                                          "Karma Step",
-            "modifier":                                           "Modifier",
-            "step":                                               "Step",
-            "strain":                                             "Strain"
-          },
-          "Tabs": {
-            "rollPromptBaseTab":                                  "Base",
-            "rollPromptOtherTab":                                 "Other"
-          },
-          "Title": {
-              "assignLp":                                         "Assign Legend Points",
-              "rollPrompt":                                       "Roll Options",
-              "recovery":                                         "Recovery Test",
-              "takeDamage":                                       "Take Damage"
-          },
-          "damage":                                               "Damage",
-          "damageStandard":                                       "Deadly Damage",
-          "damageStun":                                           "Stun Damage",
-          "damageType":                                           "Damage Type",
-          "ignoreArmor":                                          "Ignore Armor",
-          "jumpUpChoice":                                         "Chose the Ability to jump up",
-          "knockDownChoice":                                      "Chose the Ability to withstand the Knock Down",
-          "mystical":                                             "Mystical Damage",
-          "physical":                                             "Physical Damage"
-      },
-      "Documents": {
-          "ActorSheetEdCharacter":                                "Character-sheet",
-          "ActorSheetEdCreature":                                 "Creature-sheet",
-          "ActorSheetEdDragon":                                   "Dragon-sheet",
-          "ActorSheetEdGroup":                                    "Group-sheet",
-          "ActorSheetEdHorror":                                   "Horror-sheet",
-          "ActorSheetEdLoot":                                     "Loot-sheet",
-          "ActorSheetEdNpc":                                      "NPC-sheet",
-          "ActorSheetEdSpirit":                                   "Spirit-sheet",
-          "ActorSheetEdTrap":                                     "Trap-sheet",
-          "ActorSheetEdVehicle":                                  "Vehicle-sheet"
-      },
-      "Item": {
-          "Ability": {
-              "damage":                                           "Damage",
-              "difficulty": {
-                  "fixed":                                        "Fixed Difficulty",
-                  "groupDifficulty":                              "Difficult Adjusted by Groups",
-                  "targetDifficulty":                             "Difficulty Type"
-              },
-              "rollType":                                         "Roll Type",
-              "substitute":                                       "Replaces Strength",
-              "relatedRollType":                                  "counts for Roll Type"
-          },
-          "Discipline": {
-              "addLevel":                                         "Add Circle",
-              "circle":                                           "Circle {circle}",
-              "deleteLevel":                                      "Delete Circle",
-              "disciplineTalents":                                "Discipline Talents",
-              "durability":                                       "Durability",
-              "optionalAbilities":                                "Optional Abilities",
-              "talentOptionsForTier":                             "Talent Options for"
-          },
-          "Header": {
-              "actionType":                                       "Action Type",
-              "activeUser":                                       "Active User",
-              "actorsNoUserConfigured":                           "Not Configured, Owned Actors",
-              "damageSettings":                                   "Damage Settings",
-              "details":                                          "Details",                                     
-              "description":                                      "Description",
-              "elementSettings":                                  "Element Settings",
-              "effects":                                          "Effects",
-              "general":                                          "General",
-              "inactiveUser":                                     "Inactive User",
-              "navigator":                                        "Navigator",
-              "magic":                                            "Magic",
-              "spellEnhancement":                                "Spell Enhancement",
-              "summary":                                          "Summary",
-              "targetingDetails":                                 "Targeting Details",
-              "type":                                             "Type"
+      "General": {
+        "Hints": {
+          "Combatant": {
+            "increaseAbilities":                   "Abilities that augment the normal initiative step",
+            "keepInitiative":                      "Keep current initiative and don't reroll",
+            "replacementEffect":                   "An ability that replaces the normal initiative step",
+            "savePromptSettings":                  "Turn off this dialog and use the current settings"
           },
           "Knack": {
-              "action":                                           "Action",
-              "attribute":                                        "Attribute",
-              "description":                                      "Description",
-              "difficultyFixed":                                  "Fixed Difficulty",
-              "difficultyGroup":                                  "Group Difficulty",
-              "difficultyTarget":                                 "Target Difficulty",
-              "lpCost":                                           "LP Cost",
-              "minLevel":                                         "Min. Rank",
-              "Notification": {
-                  "knackSourceNotFound":                          "The Knack is not referenced in any Talent of the Actor",
-                  "knackSourceNotHighEnough":                     "The Rank of the Talent is not high enough",
-                  "knackSourceMultipleTalents":                   "The Knack is referenced in multiple Talents of the Actor",
-                  "maxKnacksReached":                             "Maximum amount of Knacks reached"
-              },
-              "rank":                                             "Rank",
-              "sourceTalent":                                     "Source Talent",
-              "standardEffect":                                   "Standard Effect",
-              "strain":                                           "Strain"
+            "lpCost":                              "Legend Point Cost"
           },
-          "Namegiver":{
-              "burrow":                                           "burrow",
-              "charismaValue":                                    "Charisma Value",
-              "climb":                                            "climb",
-              "dexterityValue":                                   "Dexterity Value",
-              "fly":                                              "fly",
-              "karmaModifier":                                    "Karma Modifier",
-              "perceptionValue":                                  "Perception Value",
-              "strengthValue":                                    "Strength Value",
-              "swim":                                             "swim",
-              "toughnessValue":                                   "Toughness Value",
-              "walk":                                             "walk",
-              "WeaponSize": {
-                  "OneHanded.min":                                "Minimal One hand Weapon Size",
-                  "OneHanded.max":                                "Maximum One hand Weapon Size",
-                  "TwoHanded.min":                                "Minimal two hand Weapon Size",
-                  "TwoHanded.max":                                "Maximum two hand Weapon Size"
-              },
-              "willpowerValue":                                   "Willpower Value"
+          "Rollable": {
+            "type":                                "Roll Type"
           },
-          "Path": {
-              "sourceDiscipline":                                 "Source Discipline"      
-          },
-          "PhysicalItems": {
-              "addThreadLevel":                                   "Add Thread Rank",
-              "deleteThreadLevel":                                "Delete Thread Rank",
-              "itemHistoryCheck":                                 "Item History Check",
-              "researchCheck":                                    "Research Check",
-              "weaveThreadCheck":                                 "Weave Thread Check"
-          },
-          "Navigator": {
-              "advancement":                                      "advancement",
-              "details":                                          "Details",
-              "effects":                                          "Effects",
-              "general":                                          "General"
-          },
-          "Spell": {
-              "binding":                                          "Binding",
-              "concentration":                                    "Concentration",
-              "resist":                                           "Resist",
-              "sensingDifficulty":                                "Sensing Difficulty",
-              "spirit":                                           "Spirit",
-              "summoning":                                        "Summoning"
-          },
-          "Tabs":{
-              "advancement":                                      "Advancement",        
-              "details":                                          "Details",
-              "effects":                                          "Effects",
-              "general":                                          "General",
-              "thread":                                           "Thread"
-          },      
-          "Talent": {
-              "action":                                           "Action",
-              "attribute":                                        "Attribute",
-              "talentCategory":                                   "Talent Category",
-              "description":                                      "Description",
-              "difficultyFixed":                                  "Fixed Difficulty",
-              "difficultyGroup":                                  "Group Difficulty",
-              "difficultyTarget":                                 "Target Difficulty",
-              "rank":                                             "Rank",
-              "strain":                                           "Strain",
-              "talentIdentifier":                                 "Source Talent Identifier",
-              "tier":                                             "Tier"
+          "Target": {
+            "fixed":                               "Fixed Difficulty",
+            "group":                               "Group parameter",
+            "target":                              "Difficulty"
           }
-      },
-      "Languages": {
-          "dwarf":                                                "Dwarven",
-          "elf":                                                  "Sperethiel",
-          "human":                                                "Human",
-          "obsidiman":                                            "Obsidimen",
-          "ork":                                                  "Or'zet",
-          "troll":                                                "Troll",
-          "tskrang":                                              "T'skrang",
-          "windling":                                             "Windling"
-      },
-      "Rolls": {
-          "against":                                              "against",
-          "baseValue":                                            "Base Step",
-          "devotion":                                             "Devotion",
-          "formulaDevotion":                                      "{amount}x Devotion (St {step})",
-          "formulaExtraStep":                                     "{label} (St {step})",
-          "formulaKarma":                                         "{amount}x Karma (St {step})",
-          "formulaStep":                                          "Step {step}",
-          "karma":                                                "Karma",
-          "Labels": {
-              "arbitraryTestRoll":                                "Arbitrary Test",
-              "actionTestRoll":                                   "Action Test",
-              "effectTestRoll":                                   "Effect Test",
-              "abilityRoll":                                      "Ability Test",
-              "arbitraryRoll":                                    "Arbitrary Test",
-              "attackRoll":                                       "Attack Test",
-              "attributeRoll":                                    "Attribute Test",
-              "damageRoll":                                       "Damage Test",
-              "effectRoll":                                       "Effect Test",
-              "halfmagicRoll":                                    "Half-magic Test",
-              "initiativeRoll":                                   "Initiative Test",
-              "recoveryRoll":                                     "Recovery Test",
-              "spellcastingRoll":                                 "Spellcasting Test",
-              "threadWeavingRoll":                                "Thread weaving Test"
+        },
+        "Labels": {
+          "Combatant": {
+            "increaseAbilities":                   "Improvement Effects",
+            "keepInitiative":                      "Keep Initiative",
+            "replacementEffect":                   "Replacement Effect",
+            "savePromptSettings":                  "Save these settings?"
           },
-          "moreTargets":                                          "and other targets",
-          "rolls":                                                "rolls",
-          "rollResult":                                           "Roll Result",
-          "ruleOfOne":                                            "Failue, Rule of One",
-          "step":                                                 "Step",
-          "stepModifiers":                                        "Step Modifier",
-          "successesAchieved":                                    "Total Successes",
-          "targetDifficulty":                                     "Difficulty",
-          "targetModifiers":                                      "Target Modifier"
-      },
-      "Notifications": {
-          "Info": {
-              "noMoreItemsOfThisType":                            "This Item cannot be added again to this Actor.",
-              "notAddedforTheActor":                              "This Item is not meant for this Actor."
+          "Knack": {
+            "requirements":                        "Knack Requirements",
+            "restrictions":                        "Knack Restrictions"
           },
-          "Warn": {
-              "livingArmorOnly":                                  "This namegiver can only wear living armor.",
-              "piecemealArmorSizeExceeded":                       "Maximum amount of piecemeal armor reached. Unequip other parts to equip the new piece."
+          "Rollable": {
+            "type":                                "Roll Type"
           },
-          "Error": {}
-      },
-      "Settings": {
-          "Edid": {
-              "knockDown":                                        "ED-ID for Knock Down Test",
-              "knockDownHint":                                    "ED-ID for the Knock Down Test ability",
-              "languageRW":                                       "ED-ID for Read/Write Language",
-              "languageRWHint":                                   "ED-ID for the Read/Write Language ability",
-              "languageSpeak":                                    "ED-ID for Speak Language",
-              "languageSpeakHint":                                "ED-ID for the Speak Language ability",
-              "spellCasting":                                     "ED-ID for Spellcasting",
-              "spellCastingHint":                                 "Identifies a talent that is used for spellcasting",
-              "threadWeaving":                                    "ED-ID for Thread Weaving",
-              "threadWeavingHint":                                "Identifies a talent that is used for thread weaving",
-              "Versatility":                                      "ED-ID for Versatility",
-              "VersatilityHint":                                  "Identifies a talent that is used for versatility"
-          },
-          "talentsSplit":                                         "Sort Talents by Kategory",
-          "talentsSplitHint":                                     "Sort Talents",
-          "Label": {
-              "enforceLivingArmor":                               "Enforce Living Armor"
-          },
-          "Hint": {
-              "enforceLivingArmor":                               "Enforce that only living armor can be equipped"
-          },
-          "SpecificSettingOptions":{
-              "changelog":                                        "Changelog",
-              "help":                                             "help",
-              "troubleshooting":                                  "troubleshooting"
+          "Target": {
+            "fixed":                               "Fixed Difficulty",
+            "group":                               "Group parameter",
+            "target":                              "Difficulty"
           }
-      },
-      "Sheet": {
-          "Tabs": {
-              "advancement":                                      "Advancement",
-              "classes":                                          "Classes",
-              "devotions":                                        "Devotions",
-              "details":                                          "Details",
-              "effects":                                          "Effects",
-              "equipment":                                        "Equipment",
-              "general":                                          "General",
-              "legend":                                           "Legend",
-              "notes":                                            "Notes",
-              "skills":                                           "Skills",
-              "talents":                                          "Talents",
-              "thread":                                           "Threads",
-              "reputation":                                       "Reputation",
-              "specials":                                         "Specials",
-              "spells":                                           "Spells"
-          }
-      }
-  },
-  "TYPES": {
-      "ActiveEffect": {
-          "eae":                                                  "Active Effect"
-      },        
-      "Actor": {
-          "character":                                            "Character",
-          "creature":                                             "Creature",
-          "dragon":                                               "Dragon",
-          "group":                                                "Group",
-          "horror":                                               "Horror",
-          "loot":                                                 "Loot",
-          "npc":                                                  "NPC",
-          "spirit":                                               "Spirit",
-          "trap":                                                 "Trap",
-          "vehicle":                                              "Vehicle"
+        }
       },
       "Item": {
-          "armor":                                                "Armor",
-          "attack":                                               "Attack",
-          "bindingSecret":                                        "Binding Secrets",
-          "cursemark":                                            "Curse / Horror Mark",
-          "devotion":                                             "Devptopm",
-          "discipline":                                           "Disciplin",
-          "effect":                                               "Effect",
-          "equipment":                                            "Equipment",
-          "knackAbility":                                         "Knack",
-          "knackKarma":                                           "Karma Knack",
-          "knackManeuver":                                        "Maneuver Knack",
-          "maneuver":                                             "Maneuver",
-          "mask":                                                 "Mask",
-          "matrix":                                               "Matrix",
-          "namegiver":                                            "Namegiver",
-          "path":                                                 "Path",
-          "poisonDisease":                                        "Poison/Disease",
-          "power":                                                "Power",
-          "questor":                                              "Questor",
-          "shield":                                               "Shield",
-          "skill":                                                "Skill",
-          "specialAbility":                                       "Special Abilities",
-          "spell":                                                "Spell",
-          "spellKnack":                                           "Spell Knack",
-          "talent":                                               "Talent",
-          "thread":                                               "Permanent Thread",
-          "weapon":                                               "Weapon",
-          "shipWeapon":                                           "Ship Weapon"
+        "Fields": {
+          "dispelDifficulty":                      "Dispel Difficulty"
+        },
+        "Hints": {
+          "Ability": {
+            "Magic": {
+              "magicType":                         "Magic Type",
+              "spellcasting":                      "Spellcasting",
+              "talentMagic":                       "Magic",
+              "talentMagicType":                   "Magic Type",
+              "talentSpellcasting":                "Spellcasting",
+              "talentThreadWeaving":               "Thread Weaving",
+              "threadWeaving":                     "Thread Weaving"
+            },
+            "Source": {
+              "atLevel":                           "At Circle/Rank"
+            },
+            "attribute":                           "Attribute",
+            "class":                               "Source",
+            "devotionRequired":                    "Devotion required",
+            "durability":                          "Durability",
+            "rank":                                "Rank",
+            "skillType":                           "Skill type",
+            "talentAvailableKnacks":               "Available Knacks",
+            "talentCategory":                      "Talent Category",
+            "talentKnacks":                        "Knacks",
+            "talentKnacksAvailable":               "Knacks available",
+            "talentKnacksLearned":                 "Knacks learned",
+            "talentLearnedKnacks":                 "Learned Knacks",
+            "tier":                                "Tier",
+            "type":                                "Type"
+          },
+          "Action": {
+            "action":                              "Action",
+            "strain":                              "Strain"
+          },
+          "Armor": {
+            "forgeBonusMystical":                  "Forge Bonus Mystical",
+            "forgeBonusPhysical":                  "Forge Bonus Physical",
+            "initiativePenalty":                   "Initiative Penalty",
+            "living":                              "This item counts as living Armor.",
+            "mysticalArmor":                       "Mystical Armor",
+            "physicalArmor":                       "Physical Armor",
+            "piecemealArmor":                      "Piecemeal Armor",
+            "piecemealArmorSize":                  "Piecemeal Armor Size"
+          },
+          "Class": {
+            "bloodMagicDamage":                    "Blood Magic Damage",
+            "durability":                          "Durability",
+            "level":                               "Circle/Rank",
+            "order":                               "Order",
+            "sourceDiscipline":                    "Source Discipline",
+            "spellcasting":                        "Spellcasting"
+          },
+          "Curse": {
+            "curseActive":                         "Is Curse Active?",
+            "curseDetected":                       "Is Curse Detected?",
+            "curseType":                           "Curse Type",
+            "step":                                "Curse Step"
+          },
+          "Equipment": {
+            "ammunition":                          "Which type of ammunition is this item?",
+            "bundleSize":                          "How many items are in this bundle?",
+            "consumable":                          "The quantity of this item will be reduced by one after each use."
+          },
+          "Knack": {
+            "isPathKnack":                         "Path Knack",
+            "lpCost":                              "Legend Point cost",
+            "minLevel":                            "Min. Rank",
+            "sourceTalent":                        "Source Talent",
+            "standardEffect":                      "Standard Effect"
+          },
+          "Maneuver": {
+            "extraSuccesses":                      "Extra Successes"
+          },
+          "Namegiver": {
+            "WeaponSize": {
+              "oneHandedmax":                      "OneHanded max.",
+              "oneHandedmin":                      "OneHanded min.",
+              "twoHandedmax":                      "TwoHanded max.",
+              "twoHandedmin":                      "TwoHanded min."
+            },
+            "karmaModifier":                       "Karma Modifier",
+            "livingArmorOnly":                     "This item is considered as living armor.",
+            "tail":                                "Tail",
+            "weightMultiplier":                    "Weight Multiplier"
+          },
+          "PhysicalItems": {
+            "Price": {
+              "denomination":                      "Denomination",
+              "value":                             "Value"
+            },
+            "ThreadItem": {
+              "Deed": {
+                "isRequired":                      "Is Required"
+              },
+              "KeyKnowledge": {
+                "isRequired":                      "Is Required"
+              },
+              "activeEffect":                      "Active Effect",
+              "effect":                            "Effect",
+              "enchantmentPattern":                "Echantment Pattern",
+              "isActive":                          "Is Active",
+              "isAnalysed":                        "Is Analysed",
+              "isIdentified":                      "Is Identified",
+              "isLevelAnalysed":                   "Is Rank Analysed",
+              "level":                             "Circle/Rank",
+              "maxThreads":                        "Max Threads",
+              "mysticalDefense":                   "Mystical Defense",
+              "tier":                              "Tier"
+            },
+            "UsableItem": {
+              "recoveryPropertyValue":             "Recovery test relevance",
+              "selector":                          "Usable"
+            },
+            "Weight": {
+              "calculated":                        "Calculated",
+              "multiplier":                        "Multiplier",
+              "value":                             "Weight"
+            },
+            "action":                              "Action",
+            "amount":                              "Amount",
+            "arbitraryStep":                       "Arbitrary Step",
+            "availability":                        "Availability",
+            "bloodMagicDamage":                    "Blood Magic Damage",
+            "itemStatus":                          "Status",
+            "price":                               "Price",
+            "usableItem":                          "Usable Item",
+            "value":                               "Value",
+            "weight":                              "Weight"
+          },
+          "PoisonDisease": {
+            "activation":                          "Activation",
+            "damageStep":                          "Damage Step",
+            "death":                               "Death",
+            "debilitationStep":                    "Debilitation Step",
+            "duration":                            "Duration",
+            "effect":                              "Effect",
+            "interval":                            "Interval",
+            "onsetTime":                           "Onset Time",
+            "paralysisStep":                       "Paralysis Step",
+            "timeInBetween":                       "Time in between",
+            "totalEffects":                        "Total Effects"
+          },
+          "Power": {
+            "armorType":                           "Armor Type",
+            "damageType":                          "Damage Type",
+            "elementSubtype":                      "Element Subtype",
+            "elementType":                         "Element Type"
+          },
+          "Powers": {
+            "action":                              "Action",
+            "damageStep":                          "Damage Step",
+            "powerStep":                           "Power Step",
+            "strain":                              "Strain"
+          },
+          "Questor": {
+            "questorDevotion":                     "Questor Devotion"
+          },
+          "Shields": {
+            "bowUsage":                            "Bow Usage",
+            "broken":                              "Broken?",
+            "defenseBonusMystical":                "Mystical Defense Bonus",
+            "defenseBonusPhysical":                "Physical Defense Bonus",
+            "initiativePenalty":                   "Initiative Penalty",
+            "livingArmor":                         "Living Armor",
+            "shatterThreshold":                    "Shatter Threshold"
+          },
+          "ShipWeapon": {
+            "characterDamage":                     "Character Damage",
+            "crewWeapon":                          "Crew",
+            "firePowerPoints":                     "Fire Power Points",
+            "rangeLong":                           "Long Range",
+            "rangeShort":                          "Short Range",
+            "salvoCost":                           "Salvo Cost"
+          },
+          "Spell": {
+            "area":                                "Area",
+            "binding":                             "Binding",
+            "circle":                              "Circle",
+            "concentration":                       "Concentration",
+            "duration": {
+              "uom":                               "Unit",
+              "value":                             "Duration"
+            },
+            "effect":                              "Effect",
+            "elementSubtype":                      "Element Subtype",
+            "elementType":                         "Element Type",
+            "extraSuccesses":                      "Extra Successes",
+            "extraThreads":                        "Extra Threads",
+            "illusionType":                        "Illusion Type",
+            "magicType":                           "Magic Type",
+            "range": {
+              "uom":                               "Unit",
+              "value":                             "Range"
+            },
+            "reattunedifficulty":                  "Reattune Difficulty",
+            "resist":                              "Resist",
+            "sensingDifficulty":                   "Sensing Difficulty",
+            "spellArea": {
+              "shape":                             "Shape",
+              "uom":                               "Unit",
+              "value":                             "Area"
+            },
+            "spellElement":                        "Element",
+            "spellIllustion":                      "Illusion",
+            "spirit":                              "Spirit",
+            "summoning":                           "Summoning",
+            "threadsrequired":                     "Threads required",
+            "weavingdifficulty":                   "Weaving Difficulty"
+          },
+          "Weapons": {
+            "ammunitionType":                      "Ammunition Type",
+            "armorType":                           "Armor Type",
+            "damageAttribute":                     "Damage Attribute",
+            "damageBaseStep":                      "Base Damage Step",
+            "damageType":                          "Damage Type",
+            "dexterityMinimum":                    "Dexterity Minimum",
+            "forgeBonus":                          "Forge Bonus",
+            "rangeLongMax":                        "Range Long Maximum",
+            "rangeLongMin":                        "Range Long Minimum",
+            "rangeShortMax":                       "Range Short Maximum",
+            "rangeShortMin":                       "Range Short Minimum",
+            "size":                                "Size",
+            "strengthMinimum":                     "Strength Minimum",
+            "weaponType":                          "Weapon Type",
+            "wieldingType":                        "Wielding Type"
+          },
+          "edid":                                  "An ID to identify an item without considering its name"
+        },
+        "Labels": {
+          "Ability": {
+            "Magic": {
+              "magicType":                         "Magic Type",
+              "spellcasting":                      "Spellcasting",
+              "talentMagic":                       "Magic",
+              "talentMagicType":                   "Magic Type",
+              "talentSpellcasting":                "Spellcasting",
+              "talentThreadWeaving":               "Thread Weaving",
+              "threadWeaving":                     "Thread Weaving"
+            },
+            "Source": {
+              "atLevel":                           "At Circle/Rank",
+              "class":                             "Source"
+            },
+            "attribute":                           "Attribute",
+            "devotionRequired":                    "Devotion required",
+            "durability":                          "Durability",
+            "rank":                                "Rank",
+            "skillType":                           "Skill type",
+            "talentAvailableKnacks":               "Available Knacks",
+            "talentCategory":                      "Talent Category",
+            "talentKnacks":                        "Knacks",
+            "talentKnacksAvailable":               "Knacks available",
+            "talentKnacksLearned":                 "Knacks learned",
+            "talentLearnedKnacks":                 "Learned Knacks",
+            "tier":                                "Tier",
+            "type":                                "Type"
+          },
+          "Action": {
+            "action":                              "Action",
+            "strain":                              "Strain"
+          },
+          "Armor": {
+            "forgeBonusMystical":                  "Forge Bonus Mystical",
+            "forgeBonusPhysical":                  "Forge Bonus Physical",
+            "initiativePenalty":                   "Initiative Penalty",
+            "living":                              "Living Armor",
+            "mysticalArmor":                       "Mystical Armor",
+            "physicalArmor":                       "Physical Armor",
+            "piecemealArmor":                      "Piecemeal Armor",
+            "piecemealArmorSize":                  "Piecemeal Armor Size"
+          },
+          "Class": {
+            "bloodMagicDamage":                    "Blood Magic Damage",
+            "durability":                          "Durability",
+            "level":                               "Circle/Rank",
+            "order":                               "Order",
+            "sourceDiscipline":                    "Source Discipline",
+            "spellcasting":                        "Spellcasting"
+          },
+          "Curse": {
+            "curseActive":                         "Is Curse Active?",
+            "curseDetected":                       "Is Curse Detected?",
+            "curseType":                           "Curse Type",
+            "step":                                "Curse Step"
+          },
+          "Equipment": {
+            "ammunition":                          "Ammunition type",
+            "bundleSize":                          "Bundle size",
+            "consumable":                          "Consumable?"
+          },
+          "Knack": {
+            "isPathKnack":                         "Path Knack",
+            "lpCost":                              "LP cost",
+            "minLevel":                            "Min. Rank",
+            "sourceTalent":                        "Source Talent",
+            "standardEffect":                      "Standard Effect"
+          },
+          "Maneuver": {
+            "extraSuccesses":                      "Extra Successes"
+          },
+          "Namegiver": {
+            "WeaponSize": {
+              "oneHandedmax":                      "OneHanded max.",
+              "oneHandedmin":                      "OneHanded min.",
+              "twoHandedmax":                      "TwoHanded max.",
+              "twoHandedmin":                      "TwoHanded min."
+            },
+            "abilities":                           "Namegiver Abilities",
+            "karmaModifier":                       "Karma Modifier",
+            "livingArmorOnly":                     "Living Armor Only",
+            "tail":                                "Tail",
+            "weightMultiplier":                    "Weight Multiplier"
+          },
+          "PhysicalItems": {
+            "Price": {
+              "denomination":                      "Denomination",
+              "value":                             "Value"
+            },
+            "ThreadItem": {
+              "Deed": {
+                "isRequired":                      "Is Required"
+              },
+              "KeyKnowledge": {
+                "isRequired":                      "Is Required"
+              },
+              "activeEffect":                      "Active Effect",
+              "effect":                            "Effect",
+              "enchantmentPattern":                "Echantment Pattern",
+              "isActive":                          "Is Active",
+              "isAnalysed":                        "Is Analysed",
+              "isIdentified":                      "Is Identified",
+              "isLevelAnalysed":                   "Is Rank Analysed",
+              "level":                             "Circle/Rank",
+              "maxThreads":                        "Max Threads",
+              "mysticalDefense":                   "Mystical Defense",
+              "tier":                              "Tier"
+            },
+            "UsableItem": {
+              "action":                            "Action",
+              "arbitraryStep":                     "Arbitrary Step",
+              "recoveryPropertyValue":             "Recovery test relevance",
+              "selector":                          "Usable"
+            },
+            "Weight": {
+              "calculated":                        "Calculated",
+              "multiplier":                        "Multiplier"
+            },
+            "amount":                              "Amount",
+            "availability":                        "Availability",
+            "bloodMagicDamage":                    "Blood Magic Damage",
+            "itemStatus":                          "Status",
+            "price":                               "Price",
+            "usableItem":                          "Usable Item",
+            "value":                               "Value",
+            "weight":                              "Weight"
+          },
+          "PoisonDisease": {
+            "activation":                          "Activation",
+            "damageStep":                          "Damage Step",
+            "death":                               "Death",
+            "debilitationStep":                    "Debilitation Step",
+            "duration":                            "Duration",
+            "effect":                              "Effect",
+            "interval":                            "Interval",
+            "onsetTime":                           "Onset Time",
+            "paralysisStep":                       "Paralysis Step",
+            "timeInBetween":                       "Time in between",
+            "totalEffects":                        "Total Effects"
+          },
+          "Power": {
+            "armorType":                           "Armor Type",
+            "damageType":                          "Damage Type",
+            "elementSubtype":                      "Element Subtype",
+            "elementType":                         "Element Type"
+          },
+          "Powers": {
+            "action":                              "Action",
+            "damageStep":                          "Damage Step",
+            "powerStep":                           "Power Step",
+            "strain":                              "Strain"
+          },
+          "Questor": {
+            "questorDevotion":                     "Questor Devotion"
+          },
+          "Shields": {
+            "bowUsage":                            "Bow Usage",
+            "broken":                              "Broken?",
+            "defenseBonusMystical":                "Mystical Defense Bonus",
+            "defenseBonusPhysical":                "Physical Defense Bonus",
+            "initiativePenalty":                   "Initiative Penalty",
+            "livingArmor":                         "Living Armor",
+            "shatterThreshold":                    "Shatter Threshold"
+          },
+          "ShipWeapon": {
+            "characterDamage":                     "Character Damage",
+            "crewWeapon":                          "Crew",
+            "firePowerPoints":                     "Fire Power Points",
+            "rangeLong":                           "Long Range",
+            "rangeShort":                          "Short Range",
+            "salvoCost":                           "Salvo Cost"
+          },
+          "Spell": {
+            "Duration": {
+              "uom":                               "Unit",
+              "value":                             "Duration"
+            },
+            "Range": {
+              "uom":                               "Unit",
+              "value":                             "Range"
+            },
+            "area":                                "Spell Area",
+            "binding":                             "Binding",
+            "circle":                              "Circle",
+            "concentration":                       "Concentration",
+            "duration":                            "Spell Duration",
+            "effect":                              "Effect",
+            "elementSubtype":                      "Element Subtype",
+            "elementType":                         "Element Type",
+            "extraSuccesses":                      "Extra Successes",
+            "extraThreads":                        "Extra Threads",
+            "illusionType":                        "Illusion Type",
+            "keywords":                            "Spell Keywords",
+            "level":                               "Circle",
+            "magicType":                           "Magic Type",
+            "range":                               "Spell Range",
+            "reattuneDifficulty":                  "Reattune Difficulty",
+            "resist":                              "Resist",
+            "sensingDifficulty":                   "Sensing Difficulty",
+            "spellArea": {
+              "shape":                             "Shape",
+              "uom":                               "Unit",
+              "value":                             "Area"
+            },
+            "spellElement":                        "Element",
+            "spellIllustion":                      "Illusion",
+            "spellThreadsRequired":                "Number of Spell Threads Required",
+            "spellcastingType":                    "Spellcasting Type",
+            "spirit":                              "Spirit",
+            "summoning":                           "Summoning",
+            "threadsrequired":                     "Threads required",
+            "weavingDifficulty":                   "Weaving Difficulty"
+          },
+          "Weapons": {
+            "ammunitionType":                      "Ammunition Type",
+            "armorType":                           "Armor Type",
+            "damageAttribute":                     "Damage Attribute",
+            "damageBaseStep":                      "Base Damage Step",
+            "damageType":                          "Damage Type",
+            "dexterityMinimum":                    "Dexterity Minimum",
+            "forgeBonus":                          "Forge Bonus",
+            "rangeLongMax":                        "Range Long Maximum",
+            "rangeLongMin":                        "Range Long Minimum",
+            "rangeShortMax":                       "Range Short Maximum",
+            "rangeShortMin":                       "Range Short Minimum",
+            "size":                                "Size",
+            "strengthMinimum":                     "Strength Minimum",
+            "weaponType":                          "Weapon Type",
+            "wieldingType":                        "Wielding Type"
+          },
+          "edid":                                  "ED-ID"
+        }
+      },
+      "Journal": {
+        "Hints": {
+        },
+        "Labels": {
+        }
+      },
+      "Other": {
+        "Hints": {
+          "EAEChangeData": {
+            "key":                                 "The attribute path in the Actor or Item data which the change modifies",
+            "mode":                                "The modification mode with which the change is applied",
+            "priority":                            "The priority level with which this change is applied",
+            "value":                               "The value or formula of the change effect"
+          },
+          "EAEDurationData": {
+            "rounds":                              "Rounds",
+            "turns":                               "Turns",
+            "type":                                "Duration Length"
+          }
+        },
+        "Labels": {
+          "EAEChangeData": {
+            "key":                                 "Key",
+            "mode":                                "Mode",
+            "priority":                            "Priority",
+            "value":                               "Value"
+          },
+          "EAEDurationData": {
+            "rounds":                              "Rounds",
+            "startRound":                          "Start Round",
+            "startTurn":                           "Start Turn",
+            "turns":                               "Turns",
+            "type":                                "Duration Length"
+          }
+        }
+      },
+      "placeholderBlankSelectOption":              "---"
+    },
+    "Dialogs": {
+      "AssignLp": {
+        "description":                             "Description",
+        "legendPoints":                            "Legend Points"
+      },
+      "Buttons": {
+        "cancel":                                  "Cancel",
+        "close":                                   "Close",
+        "nightRest":                               "Nightly Rest",
+        "noAbilityDex":                            "Dexterity",
+        "noAbilityStr":                            "Strength",
+        "recoverStun":                             "Stun Damage Recovery",
+        "recovery":                                "Recovery Test",
+        "roundStartRollInitiative":                "Roll Initiative",
+        "save":                                    "Save",
+        "takeDamage":                              "Take Damage"
+      },
+      "Errors": {
+        "noLp":                                    "No Legend Points entered!"
+      },
+      "Header": {
+        "activeUser":                              "Active User",
+        "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
+        "inactiveUser":                            "Inactive User"
+      },
+      "Legend": {
+        "LearnSpell": {
+          "chatFlavorPatterncraft":                "{name} tries to lern the {spell} spell.",
+          "chatFlavorTeacherTest":                 "{name} tries to lern the {spell} spell, with the help of a mentor. Spellcasting of the Mentor:",
+          "legendPatterncraft":                    "Patterncraft options to learn the spell",
+          "legendRequirements":                    "Voraussetzungen",
+          "legendTeacherTest":                     "Supporting Mentor",
+          "noPatterncraftTalentFound":             "No fitting Patterncraft talent found (see ed-ids)",
+          "noSpellcastingTalentFound":             "No fitting Spellcasting talent found (see ed-ids)",
+          "teacherBonusModifier":                  "Supporting Mentor"
+        },
+        "Rules": {
+          "disciplineLearnShortRequirements":      "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
+          "questorClassIncreaseShortRequirements": "<ul>\n<li>Commune with the Passion by using the Questor Devotion</li>\n<li>no Test required</li>\n<li>Only one Devotion can be learned or increased per day, and no more than one rank can be increased at a time</li>\n<li>There are no limitations to increasing the rank of the Questor Devotion within the same category, other than the legend point cost and the time required for the Devotion</li>\n<li>Change from one category to another (e. g. from follower to adherent) requires taking on and fulfilling a Quest in the name of the Passion</li>\n<li>A devotion can also be learned from a precious tier</li>\n<li>Legend point cost for increasing a devotion is based on when it becomes available, even if it is learned later</li>\n</ul>\n"
+        },
+        "Validation": {
+          "availableLp":                           "Enough Legendpoints? Cost: ",
+          "availableMoney":                        "Enough Silver? Cost: ",
+          "enoughTalentsOfTier":                   "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel}). ---WIP",
+          "enoughTalentsOnMinRank":                "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel})---WIP",
+          "hasDamage":                             "Current Damage?",
+          "hasRequiredJourneymanTalents":          "Erforderliche Anzahl Gesellen-Talente auf neuem Rang?---WIP",
+          "hasRequiredMasterTalents":              "Erforderliche Anzahl Meister-Talente auf neuem Rang?---WIP",
+          "hasRequiredNoviceTalents":              "Erforderliche Anzahl Novizen-Talente auf neuem Rang?---WIP",
+          "hasRequiredWardenTalents":              "Erforderliche Anzahl Wächter-Talente auf neuem Rang?---WIP",
+          "hasTalentFromCurrentCircle":            "Talent aus aktuellem Kreis auf erforderlichem Rang?---WIP",
+          "hasTalentsOnMinRank":                   "Alle Talente auf dem erforderlichen Rang?---WIP",
+          "hasWounds":                             "Current Wounds?",
+          "maxLevel":                              "Maximaler Rang erreicht? Aktuell: ---WIP",
+          "noTalentFromCurrentCircleOnNewLevel":   "Mindestens ein Talent aus dem aktuellen Kreis ist nicht auf dem erforderlichen Rang {nextLevel}.---WIP",
+          "notEnoughTalentsOfTier":                "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+          "notEnoughTalentsOnMinRank":             "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}---WIP",
+          "talentFromCurrentCircleOnNewLevel":     "Mindestens ein Talent aus aktuellem Kreis ist auf erforderlichem Rang. Sehr gut gemacht!---WIP",
+          "talentOptionLp":                        "Genügend Legendenpunkte für Talentoption? Kostet: ---WIP",
+          "talentsRequirement":                    "Alle Bedingungen für vorherige Talente erfüllt?---WIP",
+          "talentsRequirementFailed":              "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}---WIP",
+          "talentsRequirementFulfilled":           "Alle Disziplintalente sind auf dem erforderlichen Rang---WIP"
+        },
+        "increaseQuestorDevotionPrompt":           "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)---WIP",
+        "learnOnZeroOrOne":                        "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?---WIP",
+        "learnQuestorPrompt":                      "Soll die Questor Weihekraft erlernt werden?---WIP",
+        "questorDevotionNotFound":                 "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})---WIP",
+        "spendLp":                                 "Spend Legend points",
+        "writtenRules":                            "Rules"
+      },
+      "Navigator": {
+        "baseInput":                               "Base Options",
+        "options":                                 "Other Options"
+      },
+      "Placeholder": {
+        "lpDescription":                           "Enter your description here"
+      },
+      "RollPrompt": {
+        "devotion":                                "Devotion",
+        "devotionStep":                            "Devotion Step",
+        "difficulty":                              "Difficulty",
+        "karma":                                   "Karma",
+        "karmaStep":                               "Karma Step",
+        "modifier":                                "Modifier",
+        "step":                                    "Step",
+        "strain":                                  "Strain"
+      },
+      "Tabs": {
+        "rollPromptBaseTab":                       "Base",
+        "rollPromptOtherTab":                      "Other"
+      },
+      "Title": {
+        "assignLp":                                "Assign Legend Points",
+        "recovery":                                "Recovery Test",
+        "rollPrompt":                              "Roll Options",
+        "startRoundCombatantPrompt":               "Initiative and Combat Options: {name}",
+        "takeDamage":                              "Take Damage"
+      },
+      "armor":                                     "Armor",
+      "armorType":                                 "Armor Type",
+      "damage":                                    "Damage",
+      "damageStandard":                            "Deadly Damage",
+      "damageStun":                                "Stun Damage",
+      "damageType":                                "Damage Type",
+      "ignoreArmor":                               "Ignore Armor",
+      "jumpUpChoice":                              "Chose the Ability to jump up",
+      "knockDownChoice":                           "Chose the Ability to withstand the Knock Down",
+      "mystical":                                  "Mystical Damage",
+      "physical":                                  "Physical Damage"
+    },
+    "Documents": {
+      "ActorSheetEdCharacter":                     "Character-sheet",
+      "ActorSheetEdCreature":                      "Creature-sheet",
+      "ActorSheetEdDragon":                        "Dragon-sheet",
+      "ActorSheetEdGroup":                         "Group-sheet",
+      "ActorSheetEdHorror":                        "Horror-sheet",
+      "ActorSheetEdLoot":                          "Loot-sheet",
+      "ActorSheetEdNpc":                           "NPC-sheet",
+      "ActorSheetEdSpirit":                        "Spirit-sheet",
+      "ActorSheetEdTrap":                          "Trap-sheet",
+      "ActorSheetEdVehicle":                       "Vehicle-sheet"
+    },
+    "Item": {
+      "Ability": {
+        "damage":                                  "Damage",
+        "difficulty": {
+          "fixed":                                 "Fixed Difficulty",
+          "groupDifficulty":                       "Difficult Adjusted by Groups",
+          "targetDifficulty":                      "Difficulty Type"
+        },
+        "relatedRollType":                         "counts for Roll Type",
+        "rollType":                                "Roll Type",
+        "substitute":                              "Replaces Strength"
+      },
+      "Discipline": {
+        "addLevel":                                "Add Circle",
+        "circle":                                  "Circle {circle}",
+        "deleteLevel":                             "Delete Circle",
+        "disciplineTalents":                       "Discipline Talents",
+        "durability":                              "Durability",
+        "optionalAbilities":                       "Optional Abilities",
+        "talentOptionsForTier":                    "Talent Options for"
+      },
+      "Header": {
+        "actionType":                              "Action Type",
+        "activeUser":                              "Active User",
+        "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
+        "damageSettings":                          "Damage Settings",
+        "description":                             "Description",
+        "details":                                 "Details",
+        "effects":                                 "Effects",
+        "elementSettings":                         "Element Settings",
+        "general":                                 "General",
+        "inactiveUser":                            "Inactive User",
+        "magic":                                   "Magic",
+        "navigator":                               "Navigator",
+        "spellEnhancement":                        "Spell Enhancement",
+        "summary":                                 "Summary",
+        "targetingDetails":                        "Targeting Details",
+        "type":                                    "Type"
+      },
+      "Knack": {
+        "Notification": {
+          "knackSourceMultipleTalents":            "The Knack is referenced in multiple Talents of the Actor",
+          "knackSourceNotFound":                   "The Knack is not referenced in any Talent of the Actor",
+          "knackSourceNotHighEnough":              "The Rank of the Talent is not high enough",
+          "maxKnacksReached":                      "Maximum amount of Knacks reached"
+        },
+        "action":                                  "Action",
+        "attribute":                               "Attribute",
+        "description":                             "Description",
+        "difficultyFixed":                         "Fixed Difficulty",
+        "difficultyGroup":                         "Group Difficulty",
+        "difficultyTarget":                        "Target Difficulty",
+        "lpCost":                                  "LP Cost",
+        "minLevel":                                "Min. Rank",
+        "rank":                                    "Rank",
+        "sourceTalent":                            "Source Talent",
+        "standardEffect":                          "Standard Effect",
+        "strain":                                  "Strain"
+      },
+      "Namegiver": {
+        "WeaponSize": {
+          "OneHanded.max":                         "Maximum One hand Weapon Size",
+          "OneHanded.min":                         "Minimal One hand Weapon Size",
+          "TwoHanded.max":                         "Maximum two hand Weapon Size",
+          "TwoHanded.min":                         "Minimal two hand Weapon Size"
+        },
+        "burrow":                                  "burrow",
+        "charismaValue":                           "Charisma Value",
+        "climb":                                   "climb",
+        "dexterityValue":                          "Dexterity Value",
+        "fly":                                     "fly",
+        "karmaModifier":                           "Karma Modifier",
+        "perceptionValue":                         "Perception Value",
+        "strengthValue":                           "Strength Value",
+        "swim":                                    "swim",
+        "toughnessValue":                          "Toughness Value",
+        "walk":                                    "walk",
+        "willpowerValue":                          "Willpower Value"
+      },
+      "Navigator": {
+        "advancement":                             "advancement",
+        "details":                                 "Details",
+        "effects":                                 "Effects",
+        "general":                                 "General"
+      },
+      "Path": {
+        "sourceDiscipline":                        "Source Discipline"
+      },
+      "PhysicalItems": {
+        "addThreadLevel":                          "Add Thread Rank",
+        "deleteThreadLevel":                       "Delete Thread Rank",
+        "itemHistoryCheck":                        "Item History Check",
+        "researchCheck":                           "Research Check",
+        "weaveThreadCheck":                        "Weave Thread Check"
+      },
+      "Spell": {
+        "binding":                                 "Binding",
+        "concentration":                           "Concentration",
+        "resist":                                  "Resist",
+        "sensingDifficulty":                       "Sensing Difficulty",
+        "spirit":                                  "Spirit",
+        "summoning":                               "Summoning"
+      },
+      "Tabs": {
+        "advancement":                             "Advancement",
+        "classes":                                 "Classes",
+        "details":                                 "Details",
+        "devotions":                               "Devotions",
+        "effects":                                 "Effects",
+        "equipment":                               "Equipment",
+        "general":                                 "General",
+        "legend":                                  "Legend",
+        "notes":                                   "Notes",
+        "reputation":                              "Reputation",
+        "skills":                                  "Skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents",
+        "thread":                                  "Threads"
+      },
+      "Talent": {
+        "action":                                  "Action",
+        "attribute":                               "Attribute",
+        "description":                             "Description",
+        "difficultyFixed":                         "Fixed Difficulty",
+        "difficultyGroup":                         "Group Difficulty",
+        "difficultyTarget":                        "Target Difficulty",
+        "rank":                                    "Rank",
+        "strain":                                  "Strain",
+        "talentCategory":                          "Talent Category",
+        "talentIdentifier":                        "Source Talent Identifier",
+        "tier":                                    "Tier"
       }
+    },
+    "Languages": {
+      "dwarf":                                     "Dwarven",
+      "elf":                                       "Sperethiel",
+      "human":                                     "Human",
+      "obsidiman":                                 "Obsidimen",
+      "ork":                                       "Or'zet",
+      "troll":                                     "Troll",
+      "tskrang":                                   "T'skrang",
+      "windling":                                  "Windling"
+    },
+    "Notifications": {
+      "Error": {
+      },
+      "Info": {
+        "noMoreItemsOfThisType":                   "This Item cannot be added again to this Actor.",
+        "notAddedforTheActor":                     "This Item is not meant for this Actor."
+      },
+      "Warn": {
+        "livingArmorOnly":                         "This namegiver can only wear living armor.",
+        "piecemealArmorSizeExceeded":              "Maximum amount of piecemeal armor reached. Unequip other parts to equip the new piece."
+      }
+    },
+    "Rolls": {
+      "Labels": {
+        "abilityRoll":                             "Ability Test",
+        "actionTestRoll":                          "Action Test",
+        "arbitraryRoll":                           "Arbitrary Test",
+        "arbitraryTestRoll":                       "Arbitrary Test",
+        "attackRoll":                              "Attack Test",
+        "attributeRoll":                           "Attribute Test",
+        "damageRoll":                              "Damage Test",
+        "effectRoll":                              "Effect Test",
+        "effectTestRoll":                          "Effect Test",
+        "halfmagicRoll":                           "Half-magic Test",
+        "initiativeRoll":                          "Initiative Test",
+        "recoveryRoll":                            "Recovery Test",
+        "spellcastingRoll":                        "Spellcasting Test",
+        "threadWeavingRoll":                       "Thread weaving Test"
+      },
+      "against":                                   "against",
+      "baseValue":                                 "Base Step",
+      "devotion":                                  "Devotion",
+      "formulaDevotion":                           "{amount}x Devotion (St {step})",
+      "formulaExtraStep":                          "{label} (St {step})",
+      "formulaKarma":                              "{amount}x Karma (St {step})",
+      "formulaStep":                               "Step {step}",
+      "karma":                                     "Karma",
+      "moreTargets":                               "and other targets",
+      "rollResult":                                "Roll Result",
+      "rolls":                                     "rolls",
+      "ruleOfOne":                                 "Failue, Rule of One",
+      "step":                                      "Step",
+      "stepModifiers":                             "Step Modifier",
+      "successesAchieved":                         "Total Successes",
+      "targetDifficulty":                          "Difficulty",
+      "targetModifiers":                           "Target Modifier"
+    },
+    "Settings": {
+      "Edid": {
+        "Versatility":                             "ED-ID for Versatility",
+        "VersatilityHint":                         "Identifies a talent that is used for versatility",
+        "knockDown":                               "ED-ID for Knock Down Test",
+        "knockDownHint":                           "ED-ID for the Knock Down Test ability",
+        "languageRW":                              "ED-ID for Read/Write Language",
+        "languageRWHint":                          "ED-ID for the Read/Write Language ability",
+        "languageSpeak":                           "ED-ID for Speak Language",
+        "languageSpeakHint":                       "ED-ID for the Speak Language ability",
+        "spellCasting":                            "ED-ID for Spellcasting",
+        "spellCastingHint":                        "Identifies a talent that is used for spellcasting",
+        "threadWeaving":                           "ED-ID for Thread Weaving",
+        "threadWeavingHint":                       "Identifies a talent that is used for thread weaving"
+      },
+      "Hint": {
+        "enforceLivingArmor":                      "Enforce that only living armor can be equipped"
+      },
+      "Label": {
+        "enforceLivingArmor":                      "Enforce Living Armor"
+      },
+      "SpecificSettingOptions": {
+        "changelog":                               "Changelog",
+        "help":                                    "help",
+        "troubleshooting":                         "troubleshooting"
+      },
+      "talentsSplit":                              "Sort Talents by Kategory",
+      "talentsSplitHint":                          "Sort Talents"
+    }
+  },
+  "TYPES": {
+    "ActiveEffect": {
+      "eae":                                       "Active Effect"
+    },
+    "Actor": {
+      "character":                                 "Character",
+      "creature":                                  "Creature",
+      "dragon":                                    "Dragon",
+      "group":                                     "Group",
+      "horror":                                    "Horror",
+      "loot":                                      "Loot",
+      "npc":                                       "NPC",
+      "spirit":                                    "Spirit",
+      "trap":                                      "Trap",
+      "vehicle":                                   "Vehicle"
+    },
+    "Item": {
+      "armor":                                     "Armor",
+      "attack":                                    "Attack",
+      "bindingSecret":                             "Binding Secrets",
+      "cursemark":                                 "Curse / Horror Mark",
+      "devotion":                                  "Devptopm",
+      "discipline":                                "Disciplin",
+      "effect":                                    "Effect",
+      "equipment":                                 "Equipment",
+      "knackAbility":                              "Knack",
+      "knackKarma":                                "Karma Knack",
+      "knackManeuver":                             "Maneuver Knack",
+      "maneuver":                                  "Maneuver",
+      "mask":                                      "Mask",
+      "matrix":                                    "Matrix",
+      "namegiver":                                 "Namegiver",
+      "path":                                      "Path",
+      "poisonDisease":                             "Poison/Disease",
+      "power":                                     "Power",
+      "questor":                                   "Questor",
+      "shield":                                    "Shield",
+      "shipWeapon":                                "Ship Weapon",
+      "skill":                                     "Skill",
+      "specialAbility":                            "Special Abilities",
+      "spell":                                     "Spell",
+      "spellKnack":                                "Spell Knack",
+      "talent":                                    "Talent",
+      "thread":                                    "Permanent Thread",
+      "weapon":                                    "Weapon"
+    }
   }
 }

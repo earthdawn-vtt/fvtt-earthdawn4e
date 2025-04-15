@@ -1,8 +1,14 @@
 <div class="custom-flavor">{{ customFlavor }}</div>
+
+<div class="roll-used-abilities flexcol">
+  {{#if replacementEffect}}{{{ed-linkForUuid replacementEffect}}}{{/if}}
+  {{#each increaseAbilities}}{{{ed-linkForUuid this}}}{{/each}}
+</div>
+
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
 {{else}}
-<div class="modifier-lists flexrow">
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-</div>
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+  </div>
 {{/if}}

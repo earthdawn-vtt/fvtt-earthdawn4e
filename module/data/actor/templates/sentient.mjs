@@ -509,6 +509,8 @@ export default class SentientTemplate extends CommonTemplate {
 
   // region Properties
 
+  static SENTIENT_ACTOR_TYPES = [ "character", "npc", "creature", "spirit", "horror", "dragon" ];
+
   get isDead() {
     return this.characteristics.health.death > 0
       && this.characteristics.health.damage.total >= this.characteristics.health.death;

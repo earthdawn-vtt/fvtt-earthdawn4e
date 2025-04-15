@@ -1,13 +1,29 @@
 {
-  "ED":    {
+  "COMBAT": {
+    "CombatantShowStartRoundPrompt": ""
+  },
+  "ED":     {
     "ActiveEffect": {
       "Status": {
-        "coverFull":       "",
-        "coverPartial":    "",
-        "darknessFull":    "",
-        "darknessPartial": "",
-        "impairedHeavy":   "",
-        "impairedLight":   ""
+        "attackKnockdown":  "",
+        "attackStun":       "",
+        "calledShot":       "",
+        "coverFull":        "",
+        "coverPartial":     "",
+        "darknessFull":     "",
+        "darknessPartial":  "",
+        "impairedHeavy":    "",
+        "impairedLight":    "",
+        "jumpUp":           "",
+        "setAgainstCharge": "",
+        "shatterShield":    "",
+        "splitMovement":    "",
+        "tailAttack":       ""
+      }
+    },
+    "Chat":         {
+      "Flavor": {
+        "rollInitiative": ""
       }
     },
     "Data":         {
@@ -20,10 +36,40 @@
           "level":   "",
           "primary": ""
         }
+      },
+      "General":      {
+        "Hints":  {
+          "Combatant": {
+            "increaseAbilities":  "",
+            "keepInitiative":     "",
+            "replacementEffect":  "",
+            "savePromptSettings": ""
+          }
+        },
+        "Labels": {
+          "Combatant": {
+            "increaseAbilities":  "",
+            "keepInitiative":     "",
+            "replacementEffect":  "",
+            "savePromptSettings": ""
+          }
+        }
+      }
+    },
+    "Dialogs":      {
+      "Buttons": {
+        "roundStartRollInitiative": ""
+      },
+      "Legend":  {
+        "configuration":       "",
+        "initiativeAbilities": ""
+      },
+      "Title":   {
+        "startRoundCombatantPrompt": ""
       }
     }
   },
-  "TYPES": {
+  "TYPES":  {
     "Actor": {
       "character": "Character",
       "creature":  "Creature",
