@@ -982,7 +982,8 @@
                       "weight":                                   "Weight",
                       "Weight": {
                           "calculated":                           "Calculated",
-                          "multiplier":                           "Multiplier"
+                          "multiplier":                           "Multiplier",
+                          "value":                                "Weight"
                       }
                   },
                   "PoisonDisease": {
@@ -1133,6 +1134,18 @@
               "description":                                      "Description",
               "legendPoints":                                     "Legend Points"
           },
+          "Buttons": {
+              "cancel":                                           "Cancel",
+              "close":                                            "Close",
+              "nightRest":                                        "Nightly Rest",
+              "noAbilityDex":                                     "Dexterity",
+              "noAbilityStr":                                     "Strength",
+              "recoverStun":                                      "Stun Damage Recovery",
+              "recovery":                                         "Recovey Test",
+              "roll":                                             "Roll",
+              "save":                                             "Save",
+              "takeDamage":                                       "Take Damage"
+          },
           "Errors": {
               "noLp":                                             "No Legend Points entered!"
           },
@@ -1193,23 +1206,26 @@
               "spendLp":                                          "Spend Legend points",
               "writtenRules":                                     "Rules"
           },
+          "RollPrompt": {
+            "devotion":                                           "Devotion",
+            "devotionStep":                                       "Devotion Step",
+            "difficulty":                                         "Difficulty",
+            "karma":                                              "Karma",
+            "karmaStep":                                          "Karma Step",
+            "modifier":                                           "Modifier",
+            "step":                                               "Step",
+            "strain":                                             "Strain"
+          },
+          "Tabs": {
+            "rollPromptBaseTab":                                  "Base",
+            "rollPromptOtherTab":                                 "Other"
+          },
           "Title": {
               "assignLp":                                         "Assign Legend Points",
               "rollPrompt":                                       "Roll Options",
               "recovery":                                         "Recovery Test",
               "takeDamage":                                       "Take Damage"
           },
-          "Buttons": {
-              "cancel":                                           "Cancel",
-              "close":                                            "Close",
-              "nightRest":                                        "Nightly Rest",
-              "noAbilityDex":                                     "Dexterity",
-              "noAbilityStr":                                     "Strength",
-              "recoverStun":                                      "Stun Damage Recovery",
-              "recovery":                                         "Recovey Test",
-              "save":                                             "Save",
-              "takeDamage":                                       "Take Damage"
-              },
           "damage":                                               "Damage",
           "damageStandard":                                       "Deadly Damage",
           "damageStun":                                           "Stun Damage",
@@ -1439,6 +1455,25 @@
               "changelog":                                        "Changelog",
               "help":                                             "help",
               "troubleshooting":                                  "troubleshooting"
+          }
+      },
+      "Sheet": {
+          "Tabs": {
+              "advancement":                                      "Advancement",
+              "classes":                                          "Classes",
+              "devotions":                                        "Devotions",
+              "details":                                          "Details",
+              "effects":                                          "Effects",
+              "equipment":                                        "Equipment",
+              "general":                                          "General",
+              "legend":                                           "Legend",
+              "notes":                                            "Notes",
+              "skills":                                           "Skills",
+              "talents":                                          "Talents",
+              "thread":                                           "Threads",
+              "reputation":                                       "Reputation",
+              "specials":                                         "Specials",
+              "spells":                                           "Spells"
           }
       }
   },
