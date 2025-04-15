@@ -29,6 +29,7 @@
 //###########################################################
 //                       header
 //###########################################################
+
 .header__no-border {
     border: none;
     input {
@@ -39,6 +40,31 @@
 
 .header--centered {
     text-align: center;
+}
+
+//###########################################################
+//                       Window header
+//###########################################################
+
+.window-header {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 4px;
+    transform: scale(0.8);
+    transform-origin: top right;
+}
+.window-header .window-title {
+    display: none;
+}
+.window-header .header-button {
+    margin-left: 4px;
+}
+.application .window-content {
+    backdrop-filter: none;
+    padding: 0 1rem;
 }
 
 //###########################################################

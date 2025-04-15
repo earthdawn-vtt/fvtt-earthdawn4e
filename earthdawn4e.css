@@ -29,6 +29,33 @@
   src: url('fonts/Olondon_.otf');
   font-style: normal;
 }
+:root {
+  --color-transparent: rgba(0, 0, 0, 0);
+  --color-gold-1: rgba(50, 40, 30);
+  --color-gold-2: rgba(70, 55, 20);
+  --color-gold-3: rgba(120, 90, 40);
+  --color-gold-4: rgba(200, 155, 60);
+  --color-gold-5: rgba(200, 170, 110);
+}
+:root .theme-dark {
+  --color-npc-blue-1: rgba(3, 4, 10);
+  --color-npc-blue-1-35: rgba(3, 4, 10, 0.35);
+  --color-npc-blue-2: rgba(21, 18, 54);
+  --color-npc-blue-2-35: rgba(21, 18, 54, 0.35);
+  --color-npc-blue-3: rgba(55, 61, 117);
+  --color-npc-blue-3-35: rgba(55, 61, 117, 0.35);
+  --color-pc-green-1: rgba(2, 3, 0);
+  --color-pc-green-1-35: rgba(2, 3, 0, 0.35);
+  --color-pc-green-2: rgba(22, 46, 28);
+  --color-pc-green-2-35: rgba(22, 46, 28, 0.35);
+  --color-pc-green-3: rgba(58, 118, 62);
+  --color-pc-green-3-35: rgba(58, 118, 62, 0.35);
+  --color-grey-dark: rgba(16, 16, 16);
+  --color-gold-text: rgba(230, 210, 200);
+}
+:root .theme-light {
+  --color-gold-text: black;
+}
 .partial__two {
   float: left;
   width: 50%;
@@ -58,6 +85,26 @@
 }
 .header--centered {
   text-align: center;
+}
+.window-header {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 4px;
+  transform: scale(0.8);
+  transform-origin: top right;
+}
+.window-header .window-title {
+  display: none;
+}
+.window-header .header-button {
+  margin-left: 4px;
+}
+.application .window-content {
+  backdrop-filter: none;
+  padding: 0 1rem;
 }
 .input__circle-input--centered {
   border: 1px solid;
