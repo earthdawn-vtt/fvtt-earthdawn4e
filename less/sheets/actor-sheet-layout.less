@@ -3,309 +3,309 @@
 // basic sheet layout for all actor- and item-sheets
 // individual settings will be found in the respective sheet.less files
 // .app.window-app.earthdawn4e.sheet{
-.application.sheet.earthdawn4e.actor {
-    // background-image: url('assets/sheet/background.png');
-    background-size: cover;
-    header {
-        position: relative;
-        z-index: 3;
-        border: none;
-        .window-title {
-            padding-left: 80px;
-            margin-top: -4px;
-            
+    .application.sheet.earthdawn4e.actor {
+        background: var(--sheet-npc-background);
+        .character& {
+            background: var(--sheet-pc-background);
         }
-        .header-button {
-            margin-top: -4px;
-        }
-        .close {
-            padding-right: 80px;
-        }
-    }
-    .window-content {
-        .tab.notes {
-            .sheet__editor {
-                .editor {
-                    min-height: 200px;
-                    max-height: 100%;
-                }
-            }
-        }
-        // background-image: url('assets/sheet/background.png');
-        background-size: cover;
-        padding: 0; 
-        .header__frame {
-            position:absolute;
-            margin-top: -70px;
-            z-index: 2;
-            img {
-                border: none;  
-            }
-        }
-        .section__name {
+        header {
             position: relative;
-            z-index: 4;
-            // hängt mit dem Frame zusammen. im alten sheet war der Frame im main html das jetzt nicht mehr benutzt wird.
-            // margin-top: -22px;
-            .header-section__name {
-                .sheet-header__indent--left {
-                    width: 45%;
-                    float: left;
-                    padding-left: 5px;
-                }
-
-                .sheet-header__indent--right {
-                    width: 45%;
-                    float: right;
-                    padding-top: 10px;
-                    padding-right: 10px;
-                }
+            z-index: 3;
+            border: none;
+            .window-title {
+                padding-left: 80px;
+                margin-top: -4px;
+            }
+            .header-button {
+                margin-top: -4px;
+            }
+            .close {
+                padding-right: 80px;
             }
         }
-
-        .tab.general, 
-        .talents, 
-        .skills, 
-        .devotions, 
-        .spells, 
-        .equipment, 
-        .notes,
-        .reputation,
-        .specials,
-        .legend,
-        .classes {
-            height: 450px; /* Set the desired fixed height */
-            overflow-y: auto; /* Enable vertical scrolling */
-          }
-
-        .sheet-tabs.tabs.tabs-navigation  {
-            gap: 0.5rem;
-            line-height: 1.2rem;
-        }
-
-
-        .sheet-tabs >[data-tab]  {
-            padding: 8px 4px;
-        }
-
-        .hint {
-            display: none;
-        }
-        
-        // .body {
-        //     position: relative;
-        //     z-index: 4;
-        //     margin-top: 30px;
-        //     .navigator__flex {
-        //         .navigator__tab {
-        //             padding-left: 5px;
-        //         }
-        //     }
-            .top {
-                .image__grid-item { 
-                    grid-area: image; 
-                }
-                .characteristics-defenses-header__grid-item { 
-                    grid-area: defensesHeader; 
-                }
-                .characteristics-defenses-physical__grid-item { 
-                    grid-area: defensePhyscial; 
-                }
-                .characteristics-defenses-mystical__grid-item { 
-                    grid-area: defenseMystical; 
-                }
-                .characteristics-defenses-social__grid-item { 
-                    grid-area: defenseSocial; 
-                }
-                .characteristics-health-header__grid-item { 
-                    grid-area: healthHeader; 
-                }
-                .characteristics-health-1__grid-item { 
-                    grid-area: healthWound; 
-                }
-                .characteristics-health-2__grid-item { 
-                    grid-area: healthUnconscious; 
-                }
-                .characteristics-health-3__grid-item {
-                    grid-area: healthDeath; 
-                }
-                .characteristics-armor-header__grid-item { 
-                    grid-area: armorHeader; 
-                }
-                .characteristics-armor-physical__grid-item { 
-                    grid-area: armorPhysical; 
-                }
-                .characteristics-armor-mystical__grid-item { 
-                    grid-area: armorMystical; 
-                }
-                .characteristics-movement-header__grid-item { 
-                    grid-area: movementHeader; 
-                }
-                .characteristics-movement__grid-item { 
-                    grid-area: movement; 
-                }
-                .characteristics-damage-header__grid-item { 
-                    grid-area: damageHeader; 
-                }
-                .characteristics-damage-damage__grid-item { 
-                    grid-area: damageDamage;
-                }
-                .characteristics-damage-wounds__grid-item { 
-                    grid-area: damageWounds;
-
-                }
-                .characteristics-recovery-header__grid-item { 
-                    grid-area: recoveryHeader; 
-                }
-                .characteristics-recovery__grid-item { 
-                    grid-area: recovery; 
-                }
-
-                .characteristics-max-wounds__grid-item { 
-                    grid-area: maxWounds; 
-                }
-
-                grid-area: empty;
-
-                .image-characteristics__grid-container {
-                    display: grid;
-                    grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-                    grid-column-gap: 4px;
-                    margin-left: 4px;
-                    grid-template-areas: 
-                    'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
-                    'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
-                    'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
-                    'image armorHeader armorHeader movementHeader damageHeader damageHeader recoveryHeader'
-                    'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
-                    'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
-                    ;
-                }
-
-                .image-characteristics-mob__grid-container {
-                    display: grid;
-                    grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-                    grid-column-gap: 4px;
-                    margin-left: 4px;
-                    grid-template-areas: 
-                    'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
-                    'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
-                    'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
-                    'image armorHeader armorHeader movementHeader empty empty empty'
-                    'image armorPhysical armorMystical movement damageDamage healthWound recovery'
-                    'image armorPhysical armorMystical movement damageDamage healthWound recovery'
-                    ;
-                }
-
-                .image-characteristics__grid-container > div,
-                .image-characteristics-mob__grid-container > div {
-                    text-align: center;
-                  }
-
-
-                .actor-image {
-                    width: 160px;
-                    border: none;
-                }
-
-            }
-            // .main {
-            //     padding-top: 1px;
-            //     height: 440px;
-            //     overflow-y: auto;
-            //     padding-left: 5px;
-            //     padding-right: 5px;
-                
-            //     .sheet__editor {
-            //         min-height: 400px;
-            //         max-height: 100%;
-            //         display: flex;
-            //         flex-direction: column;
-                
-            //         .editor,
-            //         .prosemirror,
-            //         .editor-container,
-            //         .editor-content {
-            //             min-height: 350px;
-            //             max-height: 100%;
-            //         }
-            //     }
-
-            //     .form-group {
-            //         label {
-            //             float: left;
-            //             width: 40%;
-            //         }
-            //         .form-fields {
-            //             float: right;
-            //             width: 60%;
-            //         }
-            //         .hint {
-            //             font-size:smaller;
-            //         }
-            //     }
-                
-            // }
-            
-                padding-top: 1px;
-                height: 440px;
-                overflow-y: auto;
-                padding-left: 5px;
-                padding-right: 5px;
-                
-                .sheet__editor,
-                .editor {
-                    min-height: 400px;
-                    max-height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                
-                    .editor,
-                    .prosemirror,
-                    .editor-container,
-                    .editor-content
+        .window-content {
+            .tab.notes {
+                .sheet__editor {
                     .editor {
-                        min-height: 350px;
+                        min-height: 200px;
                         max-height: 100%;
                     }
                 }
-
-                .form-group {
-                    label {
+            }
+            // background-image: url('assets/sheet/background.png');
+            background-size: cover;
+            padding: 0; 
+            .header__frame {
+                position:absolute;
+                margin-top: -70px;
+                z-index: 2;
+                img {
+                    border: none;  
+                }
+            }
+            .section__name {
+                position: relative;
+                z-index: 4;
+                // hängt mit dem Frame zusammen. im alten sheet war der Frame im main html das jetzt nicht mehr benutzt wird.
+                // margin-top: -22px;
+                .header-section__name {
+                    .sheet-header__indent--left {
+                        width: 45%;
                         float: left;
-                        width: 40%;
+                        padding-left: 5px;
                     }
-                    .form-fields {
+    
+                    .sheet-header__indent--right {
+                        width: 45%;
                         float: right;
-                        width: 60%;
-                    }
-                    .hint {
-                        font-size:smaller;
+                        padding-top: 10px;
+                        padding-right: 10px;
                     }
                 }
-                .tab.notes {
-                    .sheet__editor {
+            }
+    
+            .tab.general, 
+            .talents, 
+            .skills, 
+            .devotions, 
+            .spells, 
+            .equipment, 
+            .notes,
+            .reputation,
+            .specials,
+            .legend,
+            .classes {
+                height: 450px; /* Set the desired fixed height */
+                overflow-y: auto; /* Enable vertical scrolling */
+              }
+    
+            .sheet-tabs.tabs.tabs-navigation  {
+                gap: 0.5rem;
+                line-height: 1.2rem;
+            }
+    
+    
+            .sheet-tabs >[data-tab]  {
+                padding: 8px 4px;
+            }
+    
+            .hint {
+                display: none;
+            }
+            
+            // .body {
+            //     position: relative;
+            //     z-index: 4;
+            //     margin-top: 30px;
+            //     .navigator__flex {
+            //         .navigator__tab {
+            //             padding-left: 5px;
+            //         }
+            //     }
+                .top {
+                    .image__grid-item { 
+                        grid-area: image; 
+                    }
+                    .characteristics-defenses-header__grid-item { 
+                        grid-area: defensesHeader; 
+                    }
+                    .characteristics-defenses-physical__grid-item { 
+                        grid-area: defensePhyscial; 
+                    }
+                    .characteristics-defenses-mystical__grid-item { 
+                        grid-area: defenseMystical; 
+                    }
+                    .characteristics-defenses-social__grid-item { 
+                        grid-area: defenseSocial; 
+                    }
+                    .characteristics-health-header__grid-item { 
+                        grid-area: healthHeader; 
+                    }
+                    .characteristics-health-1__grid-item { 
+                        grid-area: healthWound; 
+                    }
+                    .characteristics-health-2__grid-item { 
+                        grid-area: healthUnconscious; 
+                    }
+                    .characteristics-health-3__grid-item {
+                        grid-area: healthDeath; 
+                    }
+                    .characteristics-armor-header__grid-item { 
+                        grid-area: armorHeader; 
+                    }
+                    .characteristics-armor-physical__grid-item { 
+                        grid-area: armorPhysical; 
+                    }
+                    .characteristics-armor-mystical__grid-item { 
+                        grid-area: armorMystical; 
+                    }
+                    .characteristics-movement-header__grid-item { 
+                        grid-area: movementHeader; 
+                    }
+                    .characteristics-movement__grid-item { 
+                        grid-area: movement; 
+                    }
+                    .characteristics-damage-header__grid-item { 
+                        grid-area: damageHeader; 
+                    }
+                    .characteristics-damage-damage__grid-item { 
+                        grid-area: damageDamage;
+                    }
+                    .characteristics-damage-wounds__grid-item { 
+                        grid-area: damageWounds;
+    
+                    }
+                    .characteristics-recovery-header__grid-item { 
+                        grid-area: recoveryHeader; 
+                    }
+                    .characteristics-recovery__grid-item { 
+                        grid-area: recovery; 
+                    }
+    
+                    .characteristics-max-wounds__grid-item { 
+                        grid-area: maxWounds; 
+                    }
+    
+                    grid-area: empty;
+    
+                    .image-characteristics__grid-container {
+                        display: grid;
+                        grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+                        grid-column-gap: 4px;
+                        margin-left: 4px;
+                        grid-template-areas: 
+                        'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
+                        'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
+                        'image defensePhyscial defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
+                        'image armorHeader armorHeader movementHeader damageHeader damageHeader recoveryHeader'
+                        'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
+                        'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
+                        ;
+                    }
+    
+                    .image-characteristics-mob__grid-container {
+                        display: grid;
+                        grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+                        grid-column-gap: 4px;
+                        margin-left: 4px;
+                        grid-template-areas: 
+                        'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
+                        'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
+                        'image defensePhyscial defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
+                        'image armorHeader armorHeader movementHeader empty empty empty'
+                        'image armorPhysical armorMystical movement damageDamage healthWound recovery'
+                        'image armorPhysical armorMystical movement damageDamage healthWound recovery'
+                        ;
+                    }
+    
+                    .image-characteristics__grid-container > div,
+                    .image-characteristics-mob__grid-container > div {
+                        text-align: center;
+                      }
+    
+    
+                    .actor-image {
+                        width: 160px;
+                        border: none;
+                    }
+    
+                }
+                // .main {
+                //     padding-top: 1px;
+                //     height: 440px;
+                //     overflow-y: auto;
+                //     padding-left: 5px;
+                //     padding-right: 5px;
+                    
+                //     .sheet__editor {
+                //         min-height: 400px;
+                //         max-height: 100%;
+                //         display: flex;
+                //         flex-direction: column;
+                    
+                //         .editor,
+                //         .prosemirror,
+                //         .editor-container,
+                //         .editor-content {
+                //             min-height: 350px;
+                //             max-height: 100%;
+                //         }
+                //     }
+    
+                //     .form-group {
+                //         label {
+                //             float: left;
+                //             width: 40%;
+                //         }
+                //         .form-fields {
+                //             float: right;
+                //             width: 60%;
+                //         }
+                //         .hint {
+                //             font-size:smaller;
+                //         }
+                //     }
+                    
+                // }
+                
+                    padding-top: 1px;
+                    height: 440px;
+                    overflow-y: auto;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    
+                    .sheet__editor,
+                    .editor {
+                        min-height: 400px;
+                        max-height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                    
+                        .editor,
+                        .prosemirror,
+                        .editor-container,
+                        .editor-content
                         .editor {
-                            min-height: 200px;
+                            min-height: 350px;
                             max-height: 100%;
                         }
                     }
-                }
+    
+                    .form-group {
+                        label {
+                            float: left;
+                            width: 40%;
+                        }
+                        .form-fields {
+                            float: right;
+                            width: 60%;
+                        }
+                        .hint {
+                            font-size:smaller;
+                        }
+                    }
+                    .tab.notes {
+                        .sheet__editor {
+                            .editor {
+                                min-height: 200px;
+                                max-height: 100%;
+                            }
+                        }
+                    }
+                
+            // }
             
-        // }
-        
-        .footer__frame {
-            position: absolute;
-            transform: rotate(180deg);
-            bottom: -45px;
-            z-index: 2;
-            img {
-                border: none;  
+            .footer__frame {
+                position: absolute;
+                transform: rotate(180deg);
+                bottom: -45px;
+                z-index: 2;
+                img {
+                    border: none;  
+                }
             }
         }
+        .window-resizable-handle {
+            z-index: 5;
+        }
     }
-    .window-resizable-handle {
-        z-index: 5;
-    }
-}
-

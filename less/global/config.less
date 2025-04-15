@@ -1,84 +1,91 @@
+
 @font-face {
-    font-family: 'ArnoPro Bold';
-    src: url('fonts/ArnoPro-Bold.otf');
-    font-weight: bold;
-}
-@font-face {
-  font-family: 'ArnoPro BoldItalic';
-  src: url('fonts/ArnoPro-BoldItalic.otf');
+  font-family: 'ArnoPro Bold';
+  src: url('fonts/ArnoPro-Bold.otf');
   font-weight: bold;
-  font-style: italic;
 }
 @font-face {
-  font-family: 'ArnoPro Italic';
-  src: url('fonts/ArnoPro-Italic.otf');
-  font-style: italic;
+font-family: 'ArnoPro BoldItalic';
+src: url('fonts/ArnoPro-BoldItalic.otf');
+font-weight: bold;
+font-style: italic;
 }
 @font-face {
-  font-family: 'ArnoPro Regular';
-  src: url('fonts/ArnoPro-Regular.otf');
-  font-style: normal;
+font-family: 'ArnoPro Italic';
+src: url('fonts/ArnoPro-Italic.otf');
+font-style: italic;
 }
 @font-face {
-  font-family: 'WarhorseDIY';
-  src: url('fonts/Warhorse Deco BB diy Regular.otf');
-  font-style: normal;
+font-family: 'ArnoPro Regular';
+src: url('fonts/ArnoPro-Regular.otf');
+font-style: normal;
 }
 @font-face {
-  font-family: 'OldLondon';
-  src: url('fonts/Olondon_.otf');
-  font-style: normal;
+font-family: 'WarhorseDIY';
+src: url('fonts/Warhorse Deco BB diy Regular.otf');
+font-style: normal;
 }
-  
+@font-face {
+font-family: 'OldLondon';
+src: url('fonts/Olondon_.otf');
+font-style: normal;
+}
+
 .ArnoProRegular () {
-  font-family: 'ArnoPro Regular', serif;
-  font-size: 1.05em;
+font-family: 'ArnoPro Regular', serif;
+font-size: 1.05em;
 }
 
 .ArnoProBold () {
-  font-family: 'ArnoPro Bold', serif;
+font-family: 'ArnoPro Bold', serif;
 }
 
 .ArnoProItalic () {
-  font-family: 'ArnoPro Italic', serif;
+font-family: 'ArnoPro Italic', serif;
 }
 
 .ArnoProBoldItalic () {
-  font-family: 'ArnoPro BoldItalic', serif;
+font-family: 'ArnoPro BoldItalic', serif;
 }
 
 .WarhorseDIY () {
-  font-family: 'WarhorseDIY', serif;
+font-family: 'WarhorseDIY', serif;
 }
 
 .OldLondon () {
-  font-family: 'OldLondon', serif;
+font-family: 'OldLondon', serif;
 }
 
 :root {
-  --color-transparent: rgba(0, 0, 0, 0);
-  --color-gold-1: rgba(50, 40, 30);
-  --color-gold-2: rgba(70, 55, 20);
-  --color-gold-3: rgba(120, 90, 40);
-  --color-gold-4: rgba(200, 155, 60);
-  --color-gold-5: rgba(200, 170, 110);
+--color-transparent: rgba(0, 0, 0, 0);
+--color-gold-1: rgba(50, 40, 30);
+--color-gold-2: rgba(70, 55, 20);
+--color-gold-3: rgba(120, 90, 40);
+--color-gold-4: rgba(200, 155, 60);
+--color-gold-5: rgba(200, 170, 110);
 }
 :root .theme-dark {
-  --color-npc-blue-1: rgba(3, 4, 10);
-  --color-npc-blue-1-35: rgba(3, 4, 10, 0.35);
-  --color-npc-blue-2: rgba(21, 18, 54);
-  --color-npc-blue-2-35: rgba(21, 18, 54, 0.35);
-  --color-npc-blue-3: rgba(55, 61, 117);
-  --color-npc-blue-3-35: rgba(55, 61, 117, 0.35);
-  --color-pc-green-1: rgba(2, 3, 0);
-  --color-pc-green-1-35: rgba(2, 3, 0, 0.35);
-  --color-pc-green-2: rgba(22, 46, 28);
-  --color-pc-green-2-35: rgba(22, 46, 28, 0.35);
-  --color-pc-green-3: rgba(58, 118, 62);
-  --color-pc-green-3-35: rgba(58, 118, 62, 0.35);
-  --color-grey-dark: rgba(16, 16, 16);
-  --color-gold-text: rgba(230, 210, 200);
+--color-text-primary: rgba(230, 210, 200);
+--color-npc-primary: rgba(3, 4, 10);
+--color-npc-primary-35: rgba(3, 4, 10, 0.35);
+--color-npc-secondary: rgba(21, 18, 54);
+--color-npc-secondary-35: rgba(21, 18, 54, 0.35);
+--color-npc-tertiary-3: rgba(55, 61, 117);
+--color-npc-tertiary-35: rgba(55, 61, 117, 0.35);
+--color-pc-primary: rgba(2, 3, 0);
+--color-pc-primary-35: rgba(2, 3, 0, 0.35);
+--color-pc-secondary: rgba(22, 46, 28);
+--color-pc-secondary-35: rgba(22, 46, 28, 0.35);
+--color-pc-tertiary: rgba(58, 118, 62);
+--color-pc-tertiary-35: rgba(58, 118, 62, 0.35);
+--color-grey-dark: rgba(16, 16, 16);
+--color-gold-text: rgba(230, 210, 200);
+--sheet-npc-background: var(--color-npc-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
+--sheet-pc-background: var(--color-pc-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
+
 }
 :root .theme-light {
-  --color-gold-text: black;
+--color-text-primary: rgb(46, 39, 48);
+--sheet-npc-background: url(assets/sheet/parchment.webp) repeat;
+--sheet-pc-background: url(assets/sheet/parchment.webp) repeat;
 }

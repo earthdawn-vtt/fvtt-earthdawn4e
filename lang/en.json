@@ -1508,6 +1508,16 @@
       "talentsSplitHint":                          "Sort Talents"
     }
   },
+  "SETTINGS": {
+      "UI": {
+        "FIELDS": {
+            "colorScheme": {
+                "dark":                                           "Dark",
+                "light":                                          "Light"
+            }
+        }
+      }
+  },
   "TYPES": {
     "ActiveEffect": {
       "eae":                                       "Active Effect"
