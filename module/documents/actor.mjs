@@ -12,8 +12,7 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
-import AttackRollOptions from "../data/roll/attack.mjs";
-import { getSetting } from "../settings.mjs";
+import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 
 const futils = foundry.utils;
 
@@ -29,7 +28,6 @@ export default class ActorEd extends Actor {
   static async createDialog( data = {}, { parent = null, pack = null, ...options } = {} ) {
     return DocumentCreateDialog.waitPrompt( data, { documentCls: Actor, parent, pack, options } );
   }
-
 
   // region Properties
 
@@ -159,7 +157,6 @@ export default class ActorEd extends Actor {
 
   // endregion
 
-
   // region Data Preparation
 
   /**
@@ -197,6 +194,7 @@ export default class ActorEd extends Actor {
     const staticId = staticStatusId( statusId );
     const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
     const effect = this.effects.get( staticId );
+    // eslint-disable-next-line no-param-reassign
     active ??= !effect || ( effect && hasLevels );
 
     if ( active ) {
@@ -236,10 +234,10 @@ export default class ActorEd extends Actor {
    */
   getAttackAbilityForWeapon( weapon ) {
     const { wieldingType, weaponType, armorType } = weapon.system;
-    return this.itemTypes.ability.find(
+    return this.items.find(
       item => item.system.rollType === "attack"
         && item.system.rollTypeDetails?.attack?.weaponType === weaponType
-        && item.system.rollTypeDetails?.attack?.weaponItemStatus.includes( wieldingType )
+        && item.system.rollTypeDetails?.attack?.weaponItemStatus.has( wieldingType )
         && item.system.difficulty?.target === armorType
     );
   }
@@ -722,80 +720,15 @@ export default class ActorEd extends Actor {
   }
 
   async attack( attackType ) {
-    return this[`${attackType}Attack`]();
-  }
-
-  async weaponAttack() {
-    let weapon = this.itemTypes.weapon.find( item => [ "mainHand", "offHand", "twoHands" ].includes( item.system.itemStatus ) );
-    if ( !weapon ) weapon = this.drawWeapon();
-    if ( !weapon ) {
-      ui.notifications.warn( "TODO.ED.Localize: No weapon available." );
-      return;
-    }
-
-    const rollOptions = AttackRollOptions.fromActor(
-      {
-        ...( await this._getCommonAttackRollData() ),
-        weaponType: weapon.system.weaponType,
-        weaponUuid: weapon.uuid,
-        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.weaponAttack", {} ),
-      },
+    const attackWorkflow = new AttackWorkflow(
       this,
-    );
-
-    const roll = await RollPrompt.waitPrompt(
-      rollOptions,
-      { rollData: this },
-    );
-    return this.processRoll( roll );
-  }
-
-  async unarmedAttack() {
-    const rollOptions = AttackRollOptions.fromActor(
       {
-        ...( await this._getCommonAttackRollData() ),
-        weaponType: "unarmed",
-        weaponUuid: null,
-        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.unarmedAttack", {} ),
+        attackType,
       },
-      this,
     );
-
-    const roll = await RollPrompt.waitPrompt(
-      rollOptions,
-      { rollData: this },
+    return this.processRoll(
+      await attackWorkflow.execute()
     );
-    return this.processRoll( roll );
-  }
-
-  async tailAttack() {
-    let rollOptionsData = {};
-
-    const unarmed_ability = this.getSingleItemByEdid( getSetting( "edidUnarmedCombat" ) );
-    if ( unarmed_ability ) rollOptionsData = unarmed_ability.system.baseRollOptions;
-
-    const weapon = this.itemTypes.weapon.find( item => item.system.itemStatus === "tail" );
-
-    rollOptionsData = foundry.utils.mergeObject( rollOptionsData, await this._getCommonAttackRollData() );
-    const rollOptions = AttackRollOptions.fromActor(
-      {
-        ...rollOptionsData,
-        weaponType: weapon ? "melee" : "unarmed",
-        weaponUuid: weapon?.uuid ?? null,
-        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.tailAttack", {} ),
-      },
-      this,
-    );
-
-    const roll = await RollPrompt.waitPrompt(
-      rollOptions,
-      { rollData: this },
-    );
-    const processedRoll = this.processRoll( roll );
-
-    // TODO: apply the "-2 to all action tests this round" active effect
-
-    return processedRoll;
   }
 
   /**
@@ -813,33 +746,6 @@ export default class ActorEd extends Actor {
     if ( equippedWeapon ) await this._updateItemStates( equippedWeapon, "carried" );
     else this.itemTypes.weapon.forEach( weapon => this._updateItemStates( weapon, "carried" ) );
     return this.drawWeapon();
-  }
-
-  async _getCommonAttackRollData() {
-    const targetTokens = game.user.targets;
-    const maxDifficulty = Math.max( ...[ ...targetTokens ].map(
-      token => token.actor.system.characteristics.defenses.physical.value )
-    );
-
-    return {
-      step:       {
-        base:      this.system.attributes.dex.step,
-        modifiers: {},
-      },
-      extraDice:  {},
-      target:     {
-        base:      maxDifficulty,
-        modifiers: {},
-        public:    false,
-        tokens:    targetTokens.map( token => token.document.uuid ),
-      },
-      strain:     {
-        base:      0,
-        modifiers: {},
-      },
-      testType:   "action",
-      rollType:   "attack",
-    };
   }
 
   async knockdownTest( damageTaken, options = {} ) {
