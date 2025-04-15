@@ -32,7 +32,7 @@ export default class Workflow {
   _options;
 
   /**
-   * The result of the workflow. Each subclass defines what this means.
+   * The result of the workflow. Must be set in the subclass during execution.
    * @type {any}
    */
   _result;
@@ -71,7 +71,7 @@ export default class Workflow {
     try {
       while ( this._currentStep < this._steps.length ) {
         const step = this._steps[this._currentStep];
-        this._result = await step();
+        await step();
         this._currentStep++;
       }
     } catch ( e ) {
