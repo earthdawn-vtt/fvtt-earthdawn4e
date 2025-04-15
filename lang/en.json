@@ -780,7 +780,8 @@
             },
             "Weight": {
               "calculated":                        "Calculated",
-              "multiplier":                        "Multiplier"
+              "multiplier":                        "Multiplier",
+              "value":                             "Weight"
             },
             "action":                              "Action",
             "amount":                              "Amount",
@@ -1176,7 +1177,7 @@
         "noAbilityDex":                            "Dexterity",
         "noAbilityStr":                            "Strength",
         "recoverStun":                             "Stun Damage Recovery",
-        "recovery":                                "Recovey Test",
+        "recovery":                                "Recovery Test",
         "roundStartRollInitiative":                "Roll Initiative",
         "save":                                    "Save",
         "takeDamage":                              "Take Damage"
@@ -1240,6 +1241,20 @@
       },
       "Placeholder": {
         "lpDescription":                           "Enter your description here"
+      },
+      "RollPrompt": {
+        "devotion":                                "Devotion",
+        "devotionStep":                            "Devotion Step",
+        "difficulty":                              "Difficulty",
+        "karma":                                   "Karma",
+        "karmaStep":                               "Karma Step",
+        "modifier":                                "Modifier",
+        "step":                                    "Step",
+        "strain":                                  "Strain"
+      },
+      "Tabs": {
+        "rollPromptBaseTab":                       "Base",
+        "rollPromptOtherTab":                      "Other"
       },
       "Title": {
         "assignLp":                                "Assign Legend Points",
@@ -1377,10 +1392,20 @@
       },
       "Tabs": {
         "advancement":                             "Advancement",
+        "classes":                                 "Classes",
         "details":                                 "Details",
+        "devotions":                               "Devotions",
         "effects":                                 "Effects",
+        "equipment":                               "Equipment",
         "general":                                 "General",
-        "thread":                                  "Thread"
+        "legend":                                  "Legend",
+        "notes":                                   "Notes",
+        "reputation":                              "Reputation",
+        "skills":                                  "Skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents",
+        "thread":                                  "Threads"
       },
       "Talent": {
         "action":                                  "Action",
