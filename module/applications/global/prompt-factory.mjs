@@ -243,7 +243,7 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the take damage dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the take damage prompt dialog.
    * @userFunction UF_ActorPromptFactory-takeDamagePrompt
-  */
+   */
   async _takeDamagePrompt() {
     const formFields = {
       damage: new fields.NumberField( {
@@ -329,7 +329,7 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the jump up dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the jump up prompt dialog.
    * @userFunction UF_ActorPromptFactory-jumpUpPrompt
-  */
+   */
   async _jumpUpPrompt() {
     const buttons = await this._getAbilityButtonByAction( "jumpUp" );
 
@@ -355,7 +355,7 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the knock down dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the knock down prompt dialog.
    * @userFunction UF_ActorPromptFactory-knockDownPrompt
-  */
+   */
   async _knockDownPrompt() {
     const buttons = await this._getAbilityButtonByAction( "knockDown" );
 
@@ -381,7 +381,7 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the choose discipline dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
    * @userFunction UF_ActorPromptFactory-chooseDisciplinePrompt
-  */
+   */
   async _chooseDisciplinePrompt() {
     
     const noDisciplineButton = this.constructor.noDisciplineButton;
@@ -406,7 +406,7 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the draw weapon dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the draw weapon prompt dialog.
    * @userFunction UF_ActorPromptFactory-drawWeaponPrompt
-  */
+   */
   async _drawWeaponPrompt() {
     const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
     if ( buttons.length === 0 ) {
@@ -429,9 +429,10 @@ class ActorPromptFactory extends PromptFactory {
 
   /**
    * Creates the choose discipline dialog.
+   * @param action
    * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
    * @userFunction UF_ActorPromptFactory-chooseDisciplinePrompt
-  */
+   */
   async _getAbilityButtonByAction( action ) {
     const abilities = this.document.getItemsByAction( action );
     return this._getItemButtons( abilities, "action" );
@@ -557,7 +558,7 @@ class ItemPromptFactory extends PromptFactory {
    * Creates the choose tier dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the choose tier prompt dialog.
    * @userFunction UF_ItemPromptFactory-chooseTierPrompt
-  */
+   */
   async _chooseTierPrompt( ) {
 
     const buttons = Object.entries( ED4E.tier ).map(
@@ -592,7 +593,7 @@ class ItemPromptFactory extends PromptFactory {
    * Creates the LP increase dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the LP increase prompt dialog.
    * @userFunction UF_ItemPromptFactory-lpIncreasePrompt
-  */
+   */
   async _lpIncreasePrompt() {
     if ( !this.document.system.hasMixin( LpIncreaseTemplate ) ) {
       throw new Error( "Item must be a subclass of LpIncreaseTemplate to use this prompt." );
@@ -633,7 +634,7 @@ class ItemPromptFactory extends PromptFactory {
    * Creates the talent category dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the talent category prompt dialog.
    * @userFunction UF_ItemPromptFactory-talentCategoryPrompt
-  */
+   */
   async _talentCategoryPrompt() {
 
     const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );

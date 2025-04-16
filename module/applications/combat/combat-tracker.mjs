@@ -5,7 +5,7 @@ export default class CombatTrackerEd extends foundry.applications.sidebar.tabs.C
   /** 
    * @inheritDoc 
    * @userFunction UF_CombatTrackerEd-getEntryContextOptions
-  */
+   */
   _getEntryContextOptions() {
     const getCombatant = li => this.viewed.combatants.get( li.dataset.combatantId );
     return [
