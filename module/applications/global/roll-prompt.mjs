@@ -256,7 +256,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
   }
 
   /**
-   * @description                 Roll the step prompt.
+   * @description                Roll the step prompt.
    * @param {Event} event        The event that triggered the roll.
    * @param {HTMLElement} target The target element of the event.
    * @returns {Promise}          The promise of the roll.

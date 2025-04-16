@@ -1,0 +1,1 @@
+This is the constructor of the "learn spell prompt" application.
