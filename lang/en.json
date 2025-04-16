@@ -1506,6 +1506,25 @@
       },
       "talentsSplit":                              "Sort Talents by Kategory",
       "talentsSplitHint":                          "Sort Talents"
+    },
+    "Sheet": {
+      "Tabs": {
+        "advancement":                               "Advancement",
+        "details":                                   "Details",
+        "effects":                                   "Effects",
+        "general":                                   "General",
+        "talents":                                   "Talents",
+        "skills":                                    "Skills",
+        "devotions":                                 "Devotions",
+        "spells":                                    "Spells",
+        "equipment":                                 "Equipment",
+        "notes":                                     "Notes",
+        "reputation":                                "Reputation",
+        "specials":                                  "Specials",
+        "thread":                                    "Threads",
+        "legend":                                    "Legend",
+        "classes":                                   "Classes"
+      }
     }
   },
   "SETTINGS": {
