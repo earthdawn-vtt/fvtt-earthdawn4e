@@ -132,6 +132,12 @@ export default class NamegiverData extends ItemDataModel.mixin(
         } ),
     } );
   }
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
+    singleton: true
+  }, {inplace: false} ) );
+  
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */

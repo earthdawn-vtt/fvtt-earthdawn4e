@@ -1,0 +1,1 @@
+This function evaluates if the actor already has another item of a unique type.
