@@ -8,7 +8,9 @@ import ApplicationEd from "../api/application.mjs";
  */
 export default class DocumentCreateDialog extends ApplicationEd {
 
-  /** @inheritDoc */
+  /** @inheritDoc 
+   * @userFunction UF_DocumentCreateDialog-constructor
+   */
   constructor( data = {}, { resolve, documentCls, pack = null, parent = null, options = {}, } = {} ) {
     const documentType = documentCls.name;
     const documentTypeLocalized = game.i18n.localize( `DOCUMENT.${documentType}` );
@@ -39,6 +41,10 @@ export default class DocumentCreateDialog extends ApplicationEd {
     this._updateCreationData( data );
   }
 
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_DocumentCreateDialog-defaultOptions
+  */
   static DEFAULT_OPTIONS = {
     id:             "document-create-dialog-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -63,6 +69,10 @@ export default class DocumentCreateDialog extends ApplicationEd {
     },
   };
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_DocumentCreateDialog-parts
+   */
   static PARTS = {
     form:   {
       template:   "systems/ed4e/templates/global/document-creation.hbs",
@@ -81,6 +91,7 @@ export default class DocumentCreateDialog extends ApplicationEd {
    * @param {object} [data] Initial data to pass to the constructor.
    * @param {object} [options] Options to pass to the constructor.
    * @returns {Promise<Item|null>} Created item or null.
+   * @userFunction UF_DocumentCreateDialog-waitPrompt
    */
   static waitPrompt( data, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -99,6 +110,10 @@ export default class DocumentCreateDialog extends ApplicationEd {
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_DocumentCreateDialog-prepareContext
+   */
   async _prepareContext( options = {} ) {
     const folders = this.parent ? [] : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
     // add compendium folders
@@ -144,6 +159,10 @@ export default class DocumentCreateDialog extends ApplicationEd {
   /*  Form Handling                               */
   /* -------------------------------------------- */
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_DocumentCreateDialog-onFormSubmission
+   */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
@@ -152,6 +171,12 @@ export default class DocumentCreateDialog extends ApplicationEd {
     this.render();
   }
 
+  /**
+   * Update the creation data object with the provided data.
+   * @param {object} data The data to update the creation data with.
+   * @returns {object} The updated creation data object.
+   * @userFunction UF_DocumentCreateDialog-updateCreationData
+   */
   _updateCreationData( data = {} ) {
     // Fill in default type if missing
     data.type ||= CONFIG[this.documentType].defaultType || game.documentTypes[this.documentType][1];
@@ -175,7 +200,9 @@ export default class DocumentCreateDialog extends ApplicationEd {
   /*  Event Listeners and Handlers                */
   /* -------------------------------------------- */
 
-  /** @inheritDoc */
+  /** @inheritDoc 
+   * @userFunction UF_DocumentCreateDialog-onRender
+   */
   _onRender( context, options ) {
     this.element.querySelectorAll( ".type-selection label" ).forEach(
       element => element.addEventListener(
@@ -190,6 +217,7 @@ export default class DocumentCreateDialog extends ApplicationEd {
    * @this {DocumentCreateDialog}
    * @param {Event} event The originating click event.
    * @returns {Promise<Item|null>} Created item or null.
+   * @userFunction UF_DocumentCreateDialog-createDocument
    */
   static async _createDocument( event ) {
     event.preventDefault();
@@ -231,6 +259,11 @@ export default class DocumentCreateDialog extends ApplicationEd {
     return this.close();
   }
 
+  /**
+   * A small prompt asking the user if they want to use the character generation.
+   * @returns {Promise<boolean>} True if the user wants to use the character generation, false otherwise.
+   * @userFunction UF_DocumentCreateDialog-showCharGenPrompt
+   */
   static async _showCharGenPrompt() {
     return DialogEd.confirm( {
       content:     "X-Do you want to use the character generation?",
@@ -239,6 +272,11 @@ export default class DocumentCreateDialog extends ApplicationEd {
     } );
   }
 
+  /**
+   * Handle the close event for the document creation dialog.
+   * @param {object} options The options to pass to the close method.
+   * @userFunction UF_DocumentCreateDialog-close
+   */
   close( options = {} ) {
     this.resolve?.( null );
     return super.close( options );

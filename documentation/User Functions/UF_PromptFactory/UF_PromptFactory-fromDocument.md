@@ -1,0 +1,1 @@
+This function creates an instance of the appropriate factory class based on the document type.
