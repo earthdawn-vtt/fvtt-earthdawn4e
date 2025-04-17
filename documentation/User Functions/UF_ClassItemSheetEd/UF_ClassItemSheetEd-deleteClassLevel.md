@@ -1,0 +1,1 @@
+This function will delete the last (highest) level in a class item.
