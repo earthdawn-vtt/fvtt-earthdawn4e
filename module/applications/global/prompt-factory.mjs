@@ -429,7 +429,7 @@ class ActorPromptFactory extends PromptFactory {
 
   /**
    * Creates the choose discipline dialog.
-   * @param action
+   * @param {String} action - The action to get the ability buttons for.
    * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
    * @userFunction UF_ActorPromptFactory-chooseDisciplinePrompt
    */

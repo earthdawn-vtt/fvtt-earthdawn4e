@@ -288,6 +288,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   /**
    * Handle the close event for the document creation dialog.
    * @param {object} options The options to pass to the close method.
+   * @returns {Promise} The promise to resolve when the dialog is closed.
    * @userFunction UF_DocumentCreateDialog-close
    */
   close( options = {} ) {
