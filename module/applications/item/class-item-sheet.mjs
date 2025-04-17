@@ -5,7 +5,7 @@ import ItemSheetEd from "./item-sheet.mjs";
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ItemSheet}
-*/
+ */
 export default class ClassItemSheetEd extends ItemSheetEd {
   
   /**
@@ -198,7 +198,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   /**
    * Add additinal level to the class advancement tab group.
    * @param {Event} event The form submission event.
-   * @param {HTMLElement} form The form element.
+   * @param {HTMLElement} target The form element.
    * @userFunction UF_ClassItemSheetEd-addClassLevel 
    */
   static async addClassLevel( event, target ) {
@@ -210,7 +210,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   /**
    * Delete the current level from the class advancement tab group.
    * @param {Event} event The form submission event.
-   * @param {HTMLElement} form The form element.
+   * @param {HTMLElement} target The form element.
    * @userFunction UF_ClassItemSheetEd-deleteClassLevel
    */
   static async deleteClassLevel( event, target ) {
