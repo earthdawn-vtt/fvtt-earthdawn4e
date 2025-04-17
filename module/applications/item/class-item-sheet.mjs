@@ -5,13 +5,13 @@ import ItemSheetEd from "./item-sheet.mjs";
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ItemSheet}
- */
+*/
 export default class ClassItemSheetEd extends ItemSheetEd {
   
-  /** 
+  /**
    * @inheritDoc 
    * @userFunction UF_ClassItemSheetEd-defaultOptions
-  */
+   */
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -43,7 +43,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ClassItemSheetEd-parts
-  */
+   */
   static PARTS = {
     header: { 
       template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs", 
@@ -87,7 +87,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ClassItemSheetEd-tabs
-  */
+   */
   static TABS = {
     sheet: {
       tabs: [
@@ -138,7 +138,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   /** 
    * @inheritDoc 
    * @userFunction UF_ClassItemSheetEd-preparePartContext
-  */
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
