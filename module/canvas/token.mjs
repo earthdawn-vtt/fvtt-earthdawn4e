@@ -21,8 +21,9 @@ export default class TokenEd extends Token {
   /**
    * Draw a health bar for the Token representing a rate of damage points.
    * @param {number} number   Index of the Bar being drawn
-   * @param {object} bar      PIXI.Graphics instance for the Bar
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the Bar
    * @param {object} data     Data object for the Bar
+   * @returns {undefined}     returns undefined
    * @userFunction            UF_TokenEd-drawHealthBar
    */
   _drawHealthBar( number, bar, data ) {
@@ -58,8 +59,9 @@ export default class TokenEd extends Token {
   /**
    * Draw a karma bar for the Token representing a rate of karma points.
    * @param {number} number   Index of the bar being drawn
-   * @param {object} bar      PIXI.Graphics instance for the bar 
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the bar 
    * @param {object} data     Data object for the Bar
+   * @returns {undefined}     returns undefined
    * @userFunction            UF_TokenEd-drawKarmaBar
    */
   _drawKarmaBar( number, bar, data ) {
