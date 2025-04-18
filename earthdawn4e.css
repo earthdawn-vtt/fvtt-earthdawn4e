@@ -31,11 +31,10 @@
 }
 :root {
   --color-transparent: rgba(0, 0, 0, 0);
-  --color-gold-1: rgba(50, 40, 30);
-  --color-gold-2: rgba(70, 55, 20);
-  --color-gold-3: rgba(120, 90, 40);
-  --color-gold-4: rgba(200, 155, 60);
-  --color-gold-5: rgba(200, 170, 110);
+  --font-container-header: 0.8rem;
+  --font-icon-small: 0.6rem;
+  --font-icon-medium: 0.8rem;
+  --grid-col-gap: 0.5rem;
 }
 :root .theme-dark {
   --color-text-primary: rgba(230, 210, 200);
@@ -52,34 +51,48 @@
   --color-pc-tertiary: rgba(58, 118, 62);
   --color-pc-tertiary-35: rgba(58, 118, 62, 0.35);
   --color-grey-dark: rgba(16, 16, 16);
-  --color-gold-text: rgba(230, 210, 200);
+  --color-border-1: rgba(50, 40, 30);
+  --color-border-2: rgba(70, 55, 20);
+  --color-border-3: #6d4f1a;
+  --color-border-4: #a17619;
+  --color-border-5: rgba(200, 170, 110);
   --sheet-npc-background: var(--color-npc-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
   --sheet-pc-background: var(--color-pc-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
 }
 :root .theme-light {
   --color-text-primary: #2e2730;
+  --color-npc-primary: rgba(255, 255, 255);
+  --color-npc-primary-35: rgba(255, 255, 255, 0.35);
+  --color-npc-secondary: #b3b3b3;
+  --color-npc-secondary-35: rgba(179, 179, 179, 0.35);
+  --color-npc-tertiary: #464646;
+  --color-npc-tertiary-35: rgba(70, 70, 70, 0.35);
+  --color-pc-primary: rgba(255, 255, 255);
+  --color-pc-primary-35: rgba(255, 255, 255, 0.35);
+  --color-pc-secondary: #b3b3b3;
+  --color-pc-secondary-35: rgba(179, 179, 179, 0.35);
+  --color-pc-tertiary: #464646;
+  --color-pc-tertiary-35: rgba(70, 70, 70, 0.35);
+  --color-border-1: rgba(50, 40, 30);
+  --color-border-2: rgba(70, 55, 20);
+  --color-border-3: rgba(120, 90, 40);
+  --color-border-4: #2c2c2c;
+  --color-border-5: #000000;
   --sheet-npc-background: url(assets/sheet/parchment.webp) repeat;
   --sheet-pc-background: url(assets/sheet/parchment.webp) repeat;
 }
-.partial__two {
-  float: left;
-  width: 50%;
+.layout__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.partial__three {
-  float: left;
-  width: 33.3%;
-}
-.partial__four {
-  float: left;
-  width: 25%;
-}
-.partial__five {
-  float: left;
-  width: 20%;
-}
-.partial__six {
-  float: left;
-  width: 16.6%;
+.layout__col--2,
+.layout__col--3,
+.layout__col--4,
+.layout__col--5,
+.layout__col--6 {
+  flex: 1 1 0;
+  box-sizing: border-box;
 }
 .header__no-border {
   border: none;
@@ -94,22 +107,12 @@
 .window-header {
   background: none;
   border: none;
-  display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding-right: 4px;
   transform: scale(0.8);
   transform-origin: top right;
 }
 .window-header .window-title {
   display: none;
-}
-.window-header .header-button {
-  margin-left: 4px;
-}
-.application .window-content {
-  backdrop-filter: none;
-  padding: 0 1rem 1rem 1rem;
 }
 .application .window-header button.header-control {
   color: var(--color-text-primary);
@@ -117,21 +120,16 @@
 .application .controls-dropdown {
   z-index: 9;
 }
-.input__circle-input--centered {
-  border: 1px solid;
+input {
+  height: 35px;
+  width: 35px;
   text-align: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  padding-top: 5px;
+  background: var(--color-pc-primary);
+  border: 2px solid var(--color-border-1);
+  border-radius: 5px;
 }
-.input--centered {
-  text-align: center;
-}
-input.input__number-input {
-  width: 30px;
-  padding-top: 5px;
-  height: 20px;
+input[type="checkbox"] {
+  border: 0;
 }
 .one-line__vertical-align > * {
   line-height: 35px;
@@ -152,23 +150,22 @@ input.input__number-input {
 .application .text-break__auto {
   word-break: normal;
 }
-.application #chat-log,
-.application .window-content,
-.application input,
-.application .body {
-  font-family: 'ArnoPro Regular', serif;
-  font-size: 1.05em;
-}
 .application .h1,
-.application h2,
+.application h2 {
+  font-family: 'WarhorseDIY', serif;
+}
 .application h3,
-.application h4,
 .application h5,
 .application h6 {
   font-family: 'WarhorseDIY', serif;
-  font-size: 1em;
-  color: inherit;
-  padding-top: 5px;
+  font-size: 1rem;
+  margin: 0;
+}
+.application h4 {
+  padding: 10px 0 0 0;
+  font-family: revert;
+  font-size: 0.9rem;
+  margin: 0;
 }
 .application .font__no-underline {
   border-bottom: none;
@@ -176,11 +173,15 @@ input.input__number-input {
 .application .font__italic {
   font-style: italic;
 }
+.application .editor {
+  font-family: 'ArnoPro Regular', serif;
+  font-size: 1.05em;
+}
 .display__inline-block {
   display: inline-block;
 }
 .space__small {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .undefined {
   background-color: red;
@@ -189,12 +190,35 @@ input.input__number-input {
 .scrollable {
   overflow: auto;
 }
+.header-bar-pc,
+.header-bar-npc {
+  color: var(--color-text-primary);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid var(--color-border-4);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px #000000;
+  margin: 0 0 5px 0;
+}
 .itemControlGroup,
 .icon__position--right {
   float: right;
 }
-.icons__small {
+.icons__small svg,
+.icons__small i,
+.icons__small img {
   font-size: small;
+  width: 16px;
+  height: 16px;
+}
+.icons__xsmall svg,
+.icons__xsmall i,
+.icons__xsmall img {
+  font-size: x-small;
+  width: 11px;
+  height: 11px;
 }
 .roll-icon__hover,
 .roll-icon__pointer,
@@ -478,41 +502,139 @@ input.input__number-input {
 .character.application.sheet.earthdawn4e.actor {
   background: var(--sheet-pc-background);
 }
-.application.sheet.earthdawn4e.actor header {
-  position: relative;
-  z-index: 3;
-  border: none;
-}
-.application.sheet.earthdawn4e.actor header .window-title {
-  padding-left: 80px;
-  margin-top: -4px;
-}
-.application.sheet.earthdawn4e.actor header .header-button {
-  margin-top: -4px;
-}
-.application.sheet.earthdawn4e.actor header .close {
-  padding-right: 80px;
-}
 .application.sheet.earthdawn4e.actor .window-content {
-  background-size: cover;
-  padding: 0;
+  backdrop-filter: none;
   padding-top: 1px;
   height: 440px;
   overflow-y: auto;
   padding-left: 5px;
   padding-right: 5px;
 }
-.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
-  min-height: 200px;
-  max-height: 100%;
+.application.sheet.earthdawn4e.actor .window-content .tab h3 {
+  background-color: var(--color-npc-secondary);
+  color: var(--color-text-primary);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid var(--color-border-4);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px #000000;
+  margin: 0 0 5px 0;
 }
-.application.sheet.earthdawn4e.actor .window-content .header__frame {
-  position: absolute;
-  margin-top: -70px;
-  z-index: 2;
+.character.application.sheet.earthdawn4e.actor .window-content .tab h3 {
+  background-color: var(--color-pc-secondary);
+  color: var(--color-text-primary);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid var(--color-border-4);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px #000000;
+  margin: 0 0 5px 0;
 }
-.application.sheet.earthdawn4e.actor .window-content .header__frame img {
-  border: none;
+.application.sheet.earthdawn4e.actor .window-content .item__image {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+.application.sheet.earthdawn4e.actor .window-content .container__block .container__header {
+  background: var(--color-npc-secondary-35);
+}
+.character.application.sheet.earthdawn4e.actor .window-content .container__block .container__header {
+  background: var(--color-pc-secondary-35);
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
+  display: grid;
+  column-gap: var(--grid-col-gap);
+  height: 25px;
+  margin: 5px;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: normal;
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header {
+  text-transform: uppercase;
+  font-size: var(--font-container-header);
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4n),
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(8n),
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(9n),
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(7n),
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(7n),
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5n) {
+  font-size: var(--font-icon-small);
+  padding: 0 4px 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6n) {
+  font-size: var(--font-icon-medium);
+  padding: 0 4px 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(3n),
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(4n) {
+  justify-self: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .notes .container__block,
+.application.sheet.earthdawn4e.actor .window-content .general .container__block {
+  margin: -6px 0 10px 0;
+  border: 1px solid var(--color-border-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute__roll {
+  margin: 0 5px 15px 5px;
+}
+.application.sheet.earthdawn4e.actor .window-content .general .layout__col--fixed {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
+  grid-template-columns: minmax(40px, 50px) minmax(200px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(110px, 110px) minmax(75px, 75px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: var(--grid-col-gap);
+  justify-items: center;
+  padding: 4px 0 10px 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .section__name {
   position: relative;
@@ -546,7 +668,7 @@ input.input__number-input {
   /* Enable vertical scrolling */
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
-  gap: 0.5rem;
+  gap: var(--grid-col-gap);
   line-height: 1.2rem;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs > [data-tab] {
@@ -794,16 +916,6 @@ input.input__number-input {
 }
 .power-card__grid--container .itemControlGroup {
   float: none;
-}
-.effect-card__grid--container {
-  align-items: center;
-  height: 30px;
-  display: grid;
-  grid-template-columns: 40px 250px 200px 100px 100px 100px;
-}
-.effect-card__grid--container .effect {
-  padding-left: 2px;
-  text-align: left;
 }
 .roll-icon__hover,
 .roll-icon__hover-fixed,

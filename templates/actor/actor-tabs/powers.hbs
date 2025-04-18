@@ -1,47 +1,49 @@
 <section class="tab {{tabs.powers.cssClass}}" data-group="sheet" data-tab="powers">
-{{!-- Attacks --}}
-<div class="power-card__grid--container font__bold text-break__auto">
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item"><h3 class="font__bold font__no-underline">{{localize "ED.Actor.Header.attacks"}}</h3></div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
-</div>
-{{#each actor.itemTypes.power}}
-    {{#if (eq this.system.rollType "attack")}}
+<h3>{{localize "ED.Actor.Header.powers"}}</h3>  
+  <div class="container__block">
+
+    {{!-- Attacks --}}
+    <div class="power-card__grid--container container__header text-break__auto">
+        <div class="power-card__grid--item"></div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.attacks"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
+        <div class="power-card__grid--item text__alignment--center"></div>
+    </div>
+    {{#each actor.itemTypes.power}}
+        {{#if (eq this.system.rollType "attack")}}
+            {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
+        {{/if}}
+    {{/each}}
+
+    {{!-- Powers --}}
+    <div class="power-card__grid--container container__header text-break__auto">
+        <div class="power-card__grid--item"></div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.powers"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
+        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
+        <div class="power-card__grid--item text__alignment--center"></div>
+    </div>
+    {{#each actor.itemTypes.power}}
+        {{#if (ne this.system.rollType "attack")}}
         {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
-    {{/if}}
-{{/each}}
+        {{/if}}
+    {{/each}}
 
-{{!-- Powers --}}
-<div class="power-card__grid--container font__bold text-break__auto">
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item"><h3 class="font__bold font__no-underline">{{localize "ED.Actor.Header.powers"}}</h3></div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
-</div>
-{{#each actor.itemTypes.power}}
-    {{#if (ne this.system.rollType "attack")}}
-    {{> "systems/ed4e/templates/actor/cards/power-card.hbs"}}
-    {{/if}}
-{{/each}}
-
-{{!-- Maneuvers --}}
-<div class="power-card__grid--container font__bold text-break__auto">
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item"><h3 class="font__bold font__no-underline">{{localize "ED.Actor.Header.maneuvers"}}</h3></div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.extraSuccesses"}}</div>
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
-</div>
-{{#each actor.itemTypes.maneuver}}
-    {{> "systems/ed4e/templates/actor/cards/maneuver-card.hbs"}}
-{{/each}}
+    {{!-- Maneuvers --}}
+    <div class="maneuver-card__grid--container container__header text-break__auto">
+        <div class="maneuver-card__grid--item"></div>
+        <div class="maneuver-card__grid--item">{{localize "ED.Actor.Header.maneuvers"}}</div>
+        <div class="maneuver-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.extraSuccesses"}}</div>
+        <div class="maneuver-card__grid--item"></div>
+        <div class="maneuver-card__grid--item"></div>
+    </div>
+    {{#each actor.itemTypes.maneuver}}
+        {{> "systems/ed4e/templates/actor/cards/maneuver-card.hbs"}}
+    {{/each}}
+  </div>
 </section>

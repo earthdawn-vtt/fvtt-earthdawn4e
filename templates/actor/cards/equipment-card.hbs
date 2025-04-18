@@ -18,7 +18,6 @@
         <div class="equipment-card__grid--item text__alignment--center">{{ed-add system.mystical.armor
             system.mystical.forgeBonus}}</div>
         <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
@@ -38,7 +37,6 @@
         <div class="equipment-card__grid--item text__alignment--center">{{system.amount}}</div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
@@ -52,14 +50,12 @@
             {{!-- equipped --}}
             <img class="item__status" src="systems/ed4e/assets/icons/equipped.svg" title="{{localize "ED.Actor.Tooltips.equipped"}}">
             {{/if}}
-            
         </div>
         {{/if}}
         {{#if (eq this.type "shield")}}
         <div class="equipment-card__grid--item text__alignment--center">{{system.defenseBonus.physical}}</div>
         <div class="equipment-card__grid--item text__alignment--center">{{system.defenseBonus.mystical}}</div>
         <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
         <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
         
             {{#if (eq this.system.itemStatus "carried" )}}
@@ -79,7 +75,6 @@
         {{/if}}
         {{#if (eq this.type "weapon")}}
         <div class="equipment-card__grid--item text__alignment--center">{{this.system.damageTotal}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
         {{#if system.isRanged}}
             <div class="equipment-card__grid--item text__alignment--center">{{system.range.shortMin}}-{{system.range.shortMax}}/{{system.range.longMin}}-{{system.range.longMax}}</div>
             {{#if (eq system.weaponType "thrown")}}

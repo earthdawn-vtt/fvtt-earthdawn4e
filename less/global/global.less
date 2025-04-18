@@ -1,29 +1,18 @@
 //###########################################################
 //                       Partials
 //###########################################################
-.partial__two {
-    float: left;
-    width: 50%;
-}
-
-.partial__three {
-    float: left;
-    width: 33.3%;
-}
-
-.partial__four {
-    float: left;
-    width: 25%;
-}
-
-.partial__five {
-    float: left;
-    width: 20%;
-}
-
-.partial__six {
-    float: left;
-    width: 16.6%;
+.layout__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+.layout__col--2,
+.layout__col--3,
+.layout__col--4,
+.layout__col--5,
+.layout__col--6 {
+    flex: 1 1 0;
+    box-sizing: border-box;
 }
 
 //###########################################################
@@ -49,22 +38,12 @@
 .window-header {
     background: none;
     border: none;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
-    padding-right: 4px;
     transform: scale(0.8);
     transform-origin: top right;
 }
 .window-header .window-title {
     display: none;
-}
-.window-header .header-button {
-    margin-left: 4px;
-}
-.application .window-content {
-    backdrop-filter: none;
-    padding: 0 1rem 1rem 1rem;
 }
 .application .window-header button.header-control {
     color: var(--color-text-primary)
@@ -76,25 +55,41 @@
 //###########################################################
 //                       Input
 //###########################################################
-.input__circle-input--centered {
-    border: 1px solid;
+
+input {
+    height: 35px;
+    width: 35px;
     text-align: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding-top: 5px;
+    background: var(--color-pc-primary;);
+    border: 2px solid var(--color-border-1);
+    border-radius: 5px;
+}
+input[type="checkbox"] {
+    border: 0;
+}
+
+
+
+
+//.input__circle-input--centered {
+//    border: 1px solid;
+//    text-align: center;
+//    width: 30px;
+//    height: 30px;
+//    border-radius: 50%;
+//    padding-top: 5px;
     // background: rgba(0, 0, 0, 0.1);
-}
+//}
 
-.input--centered {
-    text-align: center;
-}
+//.input--centered {
+//    text-align: center;
+//}
 
-input.input__number-input {
-    width: 30px;
-    padding-top: 5px;
-    height: 20px;
-}
+//input.input__number-input {
+//    width: 30px;
+//    padding-top: 5px;
+//    height: 20px;
+//}
 
 
 //###########################################################
@@ -130,16 +125,21 @@ input.input__number-input {
         word-break: normal;
     }
 
-    #chat-log, .window-content, input, .body {
-        .ArnoProRegular;
+    .h1, h2 {
+        .WarhorseDIY;
+    }
+    h3, h5, h6 {
+        .WarhorseDIY;
+        font-size: 1rem;
+        margin: 0;
+    }
+    h4 {
+        padding: 10px 0 0 0;
+        font-family: revert;
+        font-size: 0.9rem;
+        margin: 0;
     }
 
-    .h1, h2, h3, h4, h5, h6 {
-        .WarhorseDIY;
-        font-size: 1em;
-        color:inherit;
-        padding-top: 5px;
-    }
 
     .font__no-underline {
         border-bottom: none;
@@ -147,6 +147,10 @@ input.input__number-input {
 
     .font__italic {
         font-style: italic;
+    }
+
+    .editor {
+        .ArnoProRegular()
     }
 }
 
@@ -161,7 +165,7 @@ input.input__number-input {
 //                       spaces
 //###########################################################
 .space__small {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 //###########################################################
@@ -177,4 +181,27 @@ input.input__number-input {
 //###########################################################
 .scrollable {
   overflow: auto;
+}
+
+//###########################################################
+//                       Section Header Bar
+//###########################################################
+
+.header-bar-npc() {
+    background-color: var(--color-npc-secondary);
+}
+.header-bar-pc() {
+    background-color: var(--color-pc-secondary);
+}
+.header-bar-pc,
+.header-bar-npc {
+    color: var(--color-text-primary);
+    width: 100%;
+    line-height: 26px;
+    text-align: center;
+    border: 1px solid var(--color-border-4);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 1);
+    margin: 0 0 5px 0; 
 }
