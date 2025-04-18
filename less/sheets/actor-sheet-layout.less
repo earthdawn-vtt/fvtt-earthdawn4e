@@ -71,23 +71,25 @@
             .container__block {
                 margin: -6px 0 10px 0;
                 border: 1px solid var(--color-border-4);
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
             }    
         }
         // General Tab
         .attribute-card__grid--container {
             grid-template-columns:
-                minmax(25px, 25px)
-                minmax(40px, 1fr)
-                minmax(35px, 35px)
-                minmax(35px, 35px)
-                minmax(35px, 35px);
-        }
-        .attribute__roll {
-            margin: 0 5px 15px 5px;
+              minmax(25px, 25px)
+              minmax(40px, 1fr)
+              minmax(35px, 35px)
+              minmax(35px, 35px)
+              minmax(35px, 35px);
         }
         .general .layout__col--fixed {
             flex: 0 0 300px;
             max-width: 300px;
+        }
+        .attribute__roll {
+            margin: 0 5px 15px 5px;
         }
         // Notes Tab
         .class-card__grid--container {
@@ -156,11 +158,56 @@
         .conditions__grid--container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, auto);
-            gap: var(--grid-col-gap);
-            justify-items: center;
-            padding: 4px 0 10px 0;
+            gap: 0.5rem;
+            margin: 0 0 10px 0;
+          }
+          
+        .conditions__grid--item {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: var(--grid-col-gap) 0;
+            border: 1px solid var(--color-border-2);
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+            background-color: var(--color-npc-primary);
+            .character& {
+                background-color: var(--color-pc-primary);
+            }
+            &:nth-child(13) {
+                gap: var(--grid-col-gap);
+                flex-direction: row; 
+                height: 35px;
+                border: none;
+                background-color: var(--color-npc-primary);
+                .character& {
+                    background-color: var(--color-pc-primary);
+                }
+            }
+            input[type="checkbox"] {
+                display: none;
+            }
+            input[type="number"] {
+                width: 3rem;
+                margin-bottom: 0.25rem;
+            }
+            &:has(input:checked),
+            &.active {
+                background-color: var(--color-npc-tertiary);
+                border-color: var(--color-npc-tertiary);
+                .character& {
+                    background-color: var(--color-pc-secondary);
+                    border-color: var(--color-pc-tertiary);
+                }
+            }
         }
+          
+          
+          
+          
         .effect-card__grid--container {
             grid-template-columns:
                 minmax(25px, 25px)

@@ -42,7 +42,7 @@
   --color-npc-primary-35: rgba(3, 4, 10, 0.35);
   --color-npc-secondary: rgba(21, 18, 54);
   --color-npc-secondary-35: rgba(21, 18, 54, 0.35);
-  --color-npc-tertiary-3: rgba(55, 61, 117);
+  --color-npc-tertiary: rgba(55, 61, 117);
   --color-npc-tertiary-35: rgba(55, 61, 117, 0.35);
   --color-pc-primary: rgba(2, 3, 0);
   --color-pc-primary-35: rgba(2, 3, 0, 0.35);
@@ -120,16 +120,27 @@
 .application .controls-dropdown {
   z-index: 9;
 }
-input {
-  height: 35px;
-  width: 35px;
-  text-align: center;
+.input__square-input--centered {
   background: var(--color-pc-primary);
   border: 2px solid var(--color-border-1);
-  border-radius: 5px;
+  border-radius: 3px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
 }
-input[type="checkbox"] {
-  border: 0;
+input.input__number-input {
+  width: 35px;
+  padding-top: 5px;
+  height: 20px;
+}
+.input__circle-input--centered {
+  border: 1px solid;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding-top: 5px;
+  background: rgba(0, 0, 0, 0.1);
 }
 .one-line__vertical-align > * {
   line-height: 35px;
@@ -595,16 +606,18 @@ input[type="checkbox"] {
 .application.sheet.earthdawn4e.actor .window-content .general .container__block {
   margin: -6px 0 10px 0;
   border: 1px solid var(--color-border-4);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
 }
-.application.sheet.earthdawn4e.actor .window-content .attribute__roll {
-  margin: 0 5px 15px 5px;
-}
 .application.sheet.earthdawn4e.actor .window-content .general .layout__col--fixed {
   flex: 0 0 300px;
   max-width: 300px;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute__roll {
+  margin: 0 5px 15px 5px;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
@@ -628,10 +641,51 @@ input[type="checkbox"] {
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, auto);
+  gap: 0.5rem;
+  margin: 0 0 10px 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--grid-col-gap) 0;
+  border: 1px solid var(--color-border-2);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  background-color: var(--color-npc-primary);
+}
+.character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
+  background-color: var(--color-pc-primary);
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
   gap: var(--grid-col-gap);
-  justify-items: center;
-  padding: 4px 0 10px 0;
+  flex-direction: row;
+  height: 35px;
+  border: none;
+  background-color: var(--color-npc-primary);
+}
+.character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
+  background-color: var(--color-pc-primary);
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type="checkbox"] {
+  display: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type="number"] {
+  width: 3rem;
+  margin-bottom: 0.25rem;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
+  background-color: var(--color-npc-tertiary);
+  border-color: var(--color-npc-tertiary);
+}
+.character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
+.character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
+  background-color: var(--color-pc-secondary);
+  border-color: var(--color-pc-tertiary);
 }
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
