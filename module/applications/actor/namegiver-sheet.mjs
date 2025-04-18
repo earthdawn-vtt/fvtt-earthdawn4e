@@ -54,6 +54,23 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     return context;
   }
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_ActorSheetEdNamegiver-onDropItem
+   */
+  async _onDropItem( event, item ) {
+    const dataModel = CONFIG.Item.dataModels[item.type];
+    const singleton = dataModel?.metadata?.singleton ?? false;
+    if ( singleton && this.actor.itemTypes[item.type].length ) {
+      ui.notifications.error( game.i18n.format( "ED.Notifications.Error.singleton", {
+        itemType:  game.i18n.localize( CONFIG.Item.typeLabels[item.type] ),
+        actorType: game.i18n.localize( CONFIG.Actor.typeLabels[this.actor.type] )
+      } ) );
+      return false;
+    }
+    return super._onDropItem( event, item );
+  }
+
   // region Actions
   /**
    * This function triggers the half magic roll of an adept.
