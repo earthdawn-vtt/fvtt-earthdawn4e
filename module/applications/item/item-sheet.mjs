@@ -9,6 +9,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ItemSheetV2}
+ * @mixes DocumentSheetMixinEd
  */
 export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
 

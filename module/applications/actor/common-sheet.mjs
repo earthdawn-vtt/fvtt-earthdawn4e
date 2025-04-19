@@ -7,7 +7,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 /**
  * Extend the basic ActorSheet with modifications
  * @augments {ActorSheetV2}
- * @mixes HandlebarsApplicationMixin
+ * @mixes DocumentSheetMixinEd
  */
 export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
