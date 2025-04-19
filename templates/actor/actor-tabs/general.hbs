@@ -9,7 +9,7 @@
       <h3 class="margin__none">
         <label>{{localize "ED.Actor.Header.attributes"}}</label>
       </h3>
-        <div class="container__block">
+        <div class="container__block container__custom">
           <div class="attribute-card__grid--container container__header">
             <div class="attribute-card__grid--item"></div>
             <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
@@ -30,57 +30,77 @@
 
 
       <!-- Karma -->
-      <h3 class="one-line__vertical-align karma-devotion__header margin__none">
-          <label>{{localize "ED.Actor.Header.karma"}}</label>
-          <span class="icon__position--right one-line__vertical-align">
-              <input type="checkbox" name="system.karma.useAlways" {{checked actor.system.karma.useAlways}} title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
-              {{#if (eq this.actor.type "character")}}
-              <a class="karma__ritual">
-                  <button class="button__Karma-refresh" data-action="karmaRitual" title="Karma-Ritual">
-                  <i class="fa-solid fa-person-rays" title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
-                  </button>
-              </a>
-              {{/if}}
-          </span>
+      <h3 class="karma-devotion__header margin__none one-line__vertical-align">
+        <span class="karma-devotion__header-label">
+          {{localize "ED.Actor.Header.karma"}}
+        </span>
+        <span class="karma-devotion__header-icons">
+          <input type="checkbox"
+                name="system.karma.useAlways"
+                {{checked actor.system.karma.useAlways}}
+                title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
+          {{#if (eq this.actor.type "character")}}
+            <a class="karma__ritual">
+              <button class="button__Karma-refresh"
+                      data-action="karmaRitual"
+                      title="Karma-Ritual">
+                <i class="fa-solid fa-person-rays"
+                  title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
+              </button>
+            </a>
+          {{/if}}
+        </span>
       </h3>
-      <div class="karma-devotion__grid--container">
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
+    <div class="container__block container__custom">
+      <div class="karma-devotion__grid--container container__header">
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
       </div>
       <div class="karma-devotion__grid--container">
-          <div class="karma-devotion__grid--item">
-              <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
-          </div>
-          <div class="karma-devotion__grid--item">
-              <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-          </div>
-          <div class="karma-devotion__grid--item">
-              <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
-          </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
+        </div>
       </div>
+    </div>
 
-      <!-- Devotion -->
-        <h3 class="one-line__vertical-align karma-devotion__header margin__none">
-          <label>{{localize "ED.Actor.Header.devotion"}}</label>
-        </h3>
-        <div class="karma-devotion__grid--container">
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
-          <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
-        </div>
-        <div class="karma-devotion__grid--container">
-          <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.devotion.value" value="{{actor.system.devotion.value}}">
-          </div>
-          <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.devotion.max" value="{{actor.system.devotion.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-          </div>
-          <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.devotion.step" value="{{actor.system.devotion.step}}">
-          </div>
-        </div>
+    <!-- Devotion -->
+    <h3 class="karma-devotion__header one-line__vertical-align margin__none">
+      <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
+    </h3>
+    <div class="container__block container__custom">
+    <div class="karma-devotion__grid--container container__header">
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
+    </div>
+    <div class="karma-devotion__grid--container">
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.value"
+              value="{{actor.system.devotion.value}}">
       </div>
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.max"
+              value="{{actor.system.devotion.max}}"
+              {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+      </div>
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.step"
+              value="{{actor.system.devotion.step}}">
+      </div>
+    </div>
+  </div>
+
+</div>
 
     <!-- Right Column -->
     <div class="layout__col--2">
