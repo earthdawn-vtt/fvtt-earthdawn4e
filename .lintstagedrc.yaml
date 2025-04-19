@@ -1,8 +1,14 @@
 # lint and fix modules
-"module/**/*.mjs": "eslint --fix --config eslint.config.mjs"
 
-# format and check language files
-"lang/**/*.json": "npm run format:lang"
+"{module,utils}/**/*.mjs":
+  # fixable rules
+  - "eslint --fix --config eslint.config.mjs"
+  ## non-fixable checks
+  - "eslint --config eslint.config.mjs --max-warnings 0"
+
+
+# consolidate, format and check language files
+"lang/**/*.json": "npm run lint:lang"
 
 # activate when clear what the *.md format is
 # if Github docs, there is an extra module for it: https://github.com/github/markdownlint-github

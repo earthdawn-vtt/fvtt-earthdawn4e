@@ -43,10 +43,9 @@ function formatAligned( obj, indentSize = 2 ) {
   /**
    * Format entries into aligned JSON.
    * @param { [[str][str]][]} entries The entries of an object to format.
-   * @param {number} level The current indentation level.
    * @returns {string} The formatted JSON string.
    */
-  function formatEntries( entries, level = 0 ) {
+  function formatEntries( entries ) {
     const output = [];
 
     entries.forEach( ( entry, idx ) => {
@@ -97,30 +96,31 @@ function formatLangFile( filePath ) {
 }
 
 
-// Main function
-if ( process.argv.length < 3 ) {
-  console.error( "Usage: node format-json.js <file1.json> <file2.json> ..." );
-  process.exit( 1 );
-}
 
-const files = process.argv.slice( 2 );
 
-if ( files.length === 0 ) {
-  console.error( "No files provided." );
-  process.exit( 1 );
-}
-files.forEach( ( file ) => {
-  const filePath = path.resolve( file );
 
-  if ( !file.endsWith( ".json" ) ) {
-    console.error( `Invalid file type: ${ filePath }` );
-    return;
+/**
+ * Align the keys and values in JSON files.
+ * @param {string[]} files The paths to the JSON files to format.
+ */
+export default function alignLangJson( files ) {
+  if ( files.length === 0 ) {
+    console.error( "No files provided." );
+    process.exit( 1 );
   }
+  files.forEach( ( file ) => {
+    const filePath = path.resolve( file );
 
-  if ( !fs.existsSync( filePath ) ) {
-    console.error( `File not found: ${ filePath }` );
-  }
+    if ( !file.endsWith( ".json" ) ) {
+      console.error( `Invalid file type: ${ filePath }` );
+      return;
+    }
 
-  formatLangFile( filePath );
-  console.log( `Formatted ${ filePath }` );
-} );
+    if ( !fs.existsSync( filePath ) ) {
+      console.error( `File not found: ${ filePath }` );
+    }
+
+    formatLangFile( filePath );
+    console.log( `Formatted ${ filePath }` );
+  } );
+}
