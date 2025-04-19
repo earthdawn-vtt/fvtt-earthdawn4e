@@ -5,7 +5,6 @@
         background: var(--background-sheet-pc);
     }
     .tab {
-        height: 450px;
         overflow-y: auto;
     }                    
     .window-content {
@@ -50,6 +49,7 @@
         &.container__header {
             text-transform: uppercase;
             font-size: var(--font-container-header);
+            font-weight: bold;
         }
     }
     .class-card__grid--item:nth-child(4n),
@@ -91,12 +91,13 @@
         align-items: center;
         gap: var(--grid-col-gap);    
         input[type="checkbox"] {
-          margin: 0;
-          margin: 6px 0 0 0;
+            margin: 0;
+            margin: 6px 0 0 0;
         }
         .button__Karma-refresh {
-          height: 20px;
-          width: 20px;
+            height: 20px;
+            width: 20px;
+            color: var(--color-text-inverse)
         }
     }
     .karma-devotion__grid--container {
@@ -113,8 +114,8 @@
         }
     }
     .general .layout__col--fixed {
-        flex: 0 0 300px;
-        max-width: 300px;
+        flex: 0 0 250px;
+        max-width: 250px;
     }
     // Notes Tab
     .class-card__grid--container {
@@ -167,7 +168,7 @@
             minmax(100px, 1fr)
             minmax(120px, 120px)
             minmax(120px, 120px)
-            minmax(110px, 110px)
+            minmax(115px, 115px)
             minmax(75px, 75px)
             minmax(60px, 60px)
     }

@@ -529,7 +529,6 @@ input.input__number-input {
   background: var(--background-sheet-pc);
 }
 .application.sheet.earthdawn4e.actor .tab {
-  height: 450px;
   overflow-y: auto;
 }
 .application.sheet.earthdawn4e.actor .window-content {
@@ -605,6 +604,7 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header {
   text-transform: uppercase;
   font-size: var(--font-container-header);
+  font-weight: bold;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4n),
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(8n),
@@ -646,6 +646,7 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons .button__Karma-refresh {
   height: 20px;
   width: 20px;
+  color: var(--color-text-inverse);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container {
   display: grid;
@@ -658,8 +659,8 @@ input.input__number-input {
   justify-content: center;
 }
 .application.sheet.earthdawn4e.actor .window-content .general .layout__col--fixed {
-  flex: 0 0 300px;
-  max-width: 300px;
+  flex: 0 0 250px;
+  max-width: 250px;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
@@ -675,7 +676,7 @@ input.input__number-input {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
-  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(110px, 110px) minmax(75px, 75px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(115px, 115px) minmax(75px, 75px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
