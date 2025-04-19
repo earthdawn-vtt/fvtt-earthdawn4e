@@ -1,7 +1,7 @@
 import ED4E from "../../config/_module.mjs";
 import { getSetting } from "../../settings.mjs";
+import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 
-const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
@@ -9,7 +9,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
  * @augments {ActorSheetV2}
  * @mixes HandlebarsApplicationMixin
  */
-export default class ActorSheetEd extends HandlebarsApplicationMixin( ActorSheetV2 ) {
+export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
   /** 
    * @inheritdoc 
