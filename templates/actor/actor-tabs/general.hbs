@@ -10,7 +10,7 @@
         <label>{{localize "ED.Actor.Header.attributes"}}</label>
       </h3>
         <div class="container__block">
-          <div class="attribute-card__grid--container container__header font__bold">
+          <div class="attribute-card__grid--container container__header">
             <div class="attribute-card__grid--item"></div>
             <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
             {{#if (eq this.actor.type "character")}}
@@ -43,12 +43,12 @@
               {{/if}}
           </span>
       </h3>
-      <div class="karma-devotion__grid--container font__bold">
+      <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
       </div>
-      <div class="karma-devotion__grid--container font__bold">
+      <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">
               <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
           </div>
@@ -64,12 +64,12 @@
         <h3 class="one-line__vertical-align karma-devotion__header margin__none">
           <label>{{localize "ED.Actor.Header.devotion"}}</label>
         </h3>
-        <div class="karma-devotion__grid--container font__bold">
+        <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
           <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
         </div>
-        <div class="karma-devotion__grid--container font__bold">
+        <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">
             <input class="input__square-input--centered" name="system.devotion.value" value="{{actor.system.devotion.value}}">
           </div>

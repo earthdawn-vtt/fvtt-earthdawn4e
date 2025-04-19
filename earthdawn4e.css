@@ -35,51 +35,57 @@
   --font-icon-small: 0.6rem;
   --font-icon-medium: 0.8rem;
   --grid-col-gap: 0.5rem;
+  --color-gold-1: rgba(50, 40, 30);
+  --color-gold-2: rgba(70, 55, 20);
+  --color-gold-3: #6d4f1a;
+  --color-gold-4: #a17619;
+  --color-gold-5: rgba(200, 170, 110);
+  --color-grey-dark: rgba(16, 16, 16);
 }
 :root .theme-dark {
+  --color-primary-npc: rgba(3, 4, 10);
+  --color-primary-npc-35: rgba(3, 4, 10, 0.35);
+  --color-secondary-npc: rgba(21, 18, 54);
+  --color-secondary-npc-35: rgba(21, 18, 54, 0.35);
+  --color-tertiary-npc: rgba(55, 61, 117);
+  --color-tertiary-35-npc: rgba(55, 61, 117, 0.35);
+  --color-primary-pc: rgba(2, 3, 0);
+  --color-primary-pc-35: rgba(2, 3, 0, 0.35);
+  --color-secondary-pc: rgba(22, 46, 28);
+  --color-secondary-pc-35: rgba(22, 46, 28, 0.35);
+  --color-tertiary-pc: rgba(58, 118, 62);
+  --color-tertiary-pc-35: rgba(58, 118, 62, 0.35);
   --color-text-primary: rgba(230, 210, 200);
-  --color-npc-primary: rgba(3, 4, 10);
-  --color-npc-primary-35: rgba(3, 4, 10, 0.35);
-  --color-npc-secondary: rgba(21, 18, 54);
-  --color-npc-secondary-35: rgba(21, 18, 54, 0.35);
-  --color-npc-tertiary: rgba(55, 61, 117);
-  --color-npc-tertiary-35: rgba(55, 61, 117, 0.35);
-  --color-pc-primary: rgba(2, 3, 0);
-  --color-pc-primary-35: rgba(2, 3, 0, 0.35);
-  --color-pc-secondary: rgba(22, 46, 28);
-  --color-pc-secondary-35: rgba(22, 46, 28, 0.35);
-  --color-pc-tertiary: rgba(58, 118, 62);
-  --color-pc-tertiary-35: rgba(58, 118, 62, 0.35);
-  --color-grey-dark: rgba(16, 16, 16);
-  --color-border-1: rgba(50, 40, 30);
-  --color-border-2: rgba(70, 55, 20);
-  --color-border-3: #6d4f1a;
-  --color-border-4: #a17619;
-  --color-border-5: rgba(200, 170, 110);
-  --sheet-npc-background: var(--color-npc-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
-  --sheet-pc-background: var(--color-pc-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
+  --color-text-inverse: rgba(245, 229, 222);
+  --color-text-banner: rgba(230, 210, 200);
+  --border-main: 2px solid var(--color-gold-3);
+  --border-button: 1px solid var(--color-gold-2);
+  --background-sheet-npc: var(--color-primary-npc) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
+  --background-sheet-pc: var(--color-primary-pc) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
+  --background-banner-npc: var(--color-secondary-npc) url(assets/sheet/mottle.png) center center repeat;
+  --background-banner-pc: var(--color-secondary-pc) url(assets/sheet/mottle.png) center center repeat;
 }
 :root .theme-light {
   --color-text-primary: #2e2730;
-  --color-npc-primary: rgba(255, 255, 255);
-  --color-npc-primary-35: rgba(255, 255, 255, 0.35);
-  --color-npc-secondary: #b3b3b3;
-  --color-npc-secondary-35: rgba(179, 179, 179, 0.35);
-  --color-npc-tertiary: #464646;
-  --color-npc-tertiary-35: rgba(70, 70, 70, 0.35);
-  --color-pc-primary: rgba(255, 255, 255);
-  --color-pc-primary-35: rgba(255, 255, 255, 0.35);
-  --color-pc-secondary: #b3b3b3;
-  --color-pc-secondary-35: rgba(179, 179, 179, 0.35);
-  --color-pc-tertiary: #464646;
-  --color-pc-tertiary-35: rgba(70, 70, 70, 0.35);
-  --color-border-1: rgba(50, 40, 30);
-  --color-border-2: rgba(70, 55, 20);
-  --color-border-3: rgba(120, 90, 40);
-  --color-border-4: #2c2c2c;
-  --color-border-5: #000000;
-  --sheet-npc-background: url(assets/sheet/parchment.webp) repeat;
-  --sheet-pc-background: url(assets/sheet/parchment.webp) repeat;
+  --color-text-banner: rgba(245, 229, 222);
+  --color-primary-npc: rgba(255, 255, 255);
+  --color-primary-npc-35: rgba(255, 255, 255, 0.35);
+  --color-secondary-npc: #b3b3b3;
+  --color-secondary-npc-35: rgba(179, 179, 179, 0.35);
+  --color-tertiary-npc: #464646;
+  --color-tertiary-npc-35: rgba(70, 70, 70, 0.35);
+  --color-primary-pc: rgba(255, 255, 255);
+  --color-primary-pc-35: rgba(255, 255, 255, 0.35);
+  --color-secondary-pc: rgba(46, 54, 128);
+  --color-secondary-pc-35: rgba(46, 54, 128, 0.35);
+  --color-tertiary-pc: #464646;
+  --color-tertiary-pc-35: rgba(70, 70, 70, 0.35);
+  --border-main: 2px solid var(--color-gold-3);
+  --border-button: 2px solid var(--color-gold-4);
+  --background-sheet-npc: url(assets/sheet/parchment.webp) repeat;
+  --background-sheet-pc: url(assets/sheet/parchment.webp) repeat;
+  --background-banner-npc: var(--color-secondary-npc) url(assets/sheet/mottle.png) center center repeat;
+  --background-banner-pc: var(--color-secondary-pc) url(assets/sheet/mottle.png) center center repeat;
 }
 .layout__row {
   display: flex;
@@ -121,8 +127,8 @@
   z-index: 9;
 }
 .input__square-input--centered {
-  background: var(--color-pc-primary);
-  border: 2px solid var(--color-border-1);
+  background: var(--color-primary-pc);
+  border: var(--border-button);
   border-radius: 3px;
   text-align: center;
   width: 35px;
@@ -203,11 +209,12 @@ input.input__number-input {
 }
 .header-bar-pc,
 .header-bar-npc {
-  color: var(--color-text-primary);
+  color: var(--color-text-banner);
+  background-image: url(assets/sheet/mottle.png);
   width: 100%;
   line-height: 26px;
   text-align: center;
-  border: 1px solid var(--color-border-4);
+  border: var(--border-main);
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   box-shadow: inset 0 0 18px #000000;
@@ -508,10 +515,14 @@ input.input__number-input {
   filter: invert(100%);
 }
 .application.sheet.earthdawn4e.actor {
-  background: var(--sheet-npc-background);
+  background: var(--background-sheet-npc);
 }
 .character.application.sheet.earthdawn4e.actor {
-  background: var(--sheet-pc-background);
+  background: var(--background-sheet-pc);
+}
+.application.sheet.earthdawn4e.actor .tab {
+  height: 450px;
+  overflow-y: auto;
 }
 .application.sheet.earthdawn4e.actor .window-content {
   backdrop-filter: none;
@@ -522,24 +533,26 @@ input.input__number-input {
   padding-right: 5px;
 }
 .application.sheet.earthdawn4e.actor .window-content .tab h3 {
-  background-color: var(--color-npc-secondary);
-  color: var(--color-text-primary);
+  background: var(--background-banner-npc);
+  color: var(--color-text-banner);
+  background-image: url(assets/sheet/mottle.png);
   width: 100%;
   line-height: 26px;
   text-align: center;
-  border: 1px solid var(--color-border-4);
+  border: var(--border-main);
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   box-shadow: inset 0 0 18px #000000;
   margin: 0 0 5px 0;
 }
 .character.application.sheet.earthdawn4e.actor .window-content .tab h3 {
-  background-color: var(--color-pc-secondary);
-  color: var(--color-text-primary);
+  background: var(--background-banner-pc);
+  color: var(--color-text-banner);
+  background-image: url(assets/sheet/mottle.png);
   width: 100%;
   line-height: 26px;
   text-align: center;
-  border: 1px solid var(--color-border-4);
+  border: var(--border-main);
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   box-shadow: inset 0 0 18px #000000;
@@ -551,10 +564,10 @@ input.input__number-input {
   object-fit: cover;
 }
 .application.sheet.earthdawn4e.actor .window-content .container__block .container__header {
-  background: var(--color-npc-secondary-35);
+  background: var(--color-secondary-npc-35);
 }
 .character.application.sheet.earthdawn4e.actor .window-content .container__block .container__header {
-  background: var(--color-pc-secondary-35);
+  background: var(--color-secondary-pc-35);
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container,
@@ -604,8 +617,8 @@ input.input__number-input {
 }
 .application.sheet.earthdawn4e.actor .window-content .notes .container__block,
 .application.sheet.earthdawn4e.actor .window-content .general .container__block {
-  margin: -6px 0 10px 0;
-  border: 1px solid var(--color-border-4);
+  margin: -7px 0 10px 0;
+  border: var(--border-main);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -633,7 +646,7 @@ input.input__number-input {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
-  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(110px, 110px) minmax(75px, 75px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(110px, 110px) minmax(75px, 75px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
@@ -649,26 +662,26 @@ input.input__number-input {
   align-items: center;
   flex-direction: column;
   padding: var(--grid-col-gap) 0;
-  border: 1px solid var(--color-border-2);
+  border: var(--border-main);
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
-  background-color: var(--color-npc-primary);
+  background-color: var(--color-primary-npc);
 }
 .character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
-  background-color: var(--color-pc-primary);
+  background-color: var(--color-primary-pc-);
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
   gap: var(--grid-col-gap);
   flex-direction: row;
   height: 35px;
   border: none;
-  background-color: var(--color-npc-primary);
+  background-color: none;
 }
 .character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
-  background-color: var(--color-pc-primary);
+  background-color: none;
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type="checkbox"] {
   display: none;
@@ -679,13 +692,14 @@ input.input__number-input {
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
-  background-color: var(--color-npc-tertiary);
-  border-color: var(--color-npc-tertiary);
+  background-color: var(--color-tertiary-npc);
+  border-color: var(--color-tertiary-npc);
+  color: var(--color-text-inverse);
 }
 .character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
 .character.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
-  background-color: var(--color-pc-secondary);
-  border-color: var(--color-pc-tertiary);
+  background-color: var(--color-secondary-pc);
+  border-color: var(--color-tertiary-pc);
 }
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
@@ -704,22 +718,6 @@ input.input__number-input {
   float: right;
   padding-top: 10px;
   padding-right: 10px;
-}
-.application.sheet.earthdawn4e.actor .window-content .tab.general,
-.application.sheet.earthdawn4e.actor .window-content .talents,
-.application.sheet.earthdawn4e.actor .window-content .skills,
-.application.sheet.earthdawn4e.actor .window-content .devotions,
-.application.sheet.earthdawn4e.actor .window-content .spells,
-.application.sheet.earthdawn4e.actor .window-content .equipment,
-.application.sheet.earthdawn4e.actor .window-content .notes,
-.application.sheet.earthdawn4e.actor .window-content .reputation,
-.application.sheet.earthdawn4e.actor .window-content .specials,
-.application.sheet.earthdawn4e.actor .window-content .legend,
-.application.sheet.earthdawn4e.actor .window-content .classes {
-  height: 450px;
-  /* Set the desired fixed height */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
   gap: var(--grid-col-gap);
