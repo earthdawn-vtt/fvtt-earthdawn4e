@@ -38,7 +38,8 @@
     .attribute-card__grid--container,
     .power-card__grid--container,
     .maneuver-card__grid--container,
-    .karma-devotion__grid--container {
+    .karma-devotion__grid--container,
+    .recovery__grid--container {
         display: grid;
         column-gap: var(--grid-col-gap);
         height: 25px;
@@ -78,35 +79,41 @@
             minmax(35px, 35px)
             minmax(35px, 35px);
         height: 35px;
+
     }
-    .karma-devotion__header {
+    .karma-devotion__header,
+    .recovery__header {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--grid-col-gap);
         height: 30px;
+        gap: var(--grid-col-gap);
     }
-    .karma-devotion__header-icons {
+    .karma-devotion__header-icons,
+    .recovery__header-icons {
         display: flex;
         align-items: center;
-        gap: var(--grid-col-gap);    
         input[type="checkbox"] {
             margin: 0;
             margin: 6px 0 0 0;
         }
-        .button__Karma-refresh {
+        button {
+            background: none;
+            border: none;
             height: 20px;
             width: 20px;
-            color: var(--color-text-inverse)
+            color: var(--color-text-inverse);
         }
     }
-    .karma-devotion__grid--container {
+    .karma-devotion__grid--container,
+    .recovery__grid--container {
         display: grid;
         grid-template-columns:
             minmax(25px, 1fr)
             minmax(25px, 1fr)
             minmax(25px, 1fr);      
-        .karma-devotion__grid--item {
+        .karma-devotion__grid--item,
+        .recovery__grid--item {
             text-align: center;
             display: flex;
             align-items: center;

@@ -98,6 +98,47 @@
               value="{{actor.system.devotion.step}}">
       </div>
     </div>
+    </div>
+  
+    <h3 class="recovery__header margin__none one-line__vertical-align">
+      <span class="recovery__header-label">
+        {{localize "ED.Actor.Header.recovery"}}
+      </span>
+      <span class="recovery__header-icons">
+        {{#if (eq this.actor.type "character")}}
+          <a class="button__recovery-test">
+            <button class="button__recovery-rest"
+                    data-action="recovery"
+                    title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}">
+              <i class="fa-solid fa-bed"
+                title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
+            </button>
+          </a>
+        {{/if}}
+      </span>
+    </h3>
+
+
+    <div class="container__block container__custom">
+    <div class="recovery__grid--container container__header">
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.current"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.daily"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.step"}}</div>
+    </div>
+    <div class="recovery__grid--container">
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+            value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+      </div>
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+            value="{{actor.system.characteristics.recoveryTestsResource.max}}">
+      </div>
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+              value="">
+      </div>
+    </div>
   </div>
 
 </div>
@@ -111,6 +152,20 @@
       {{else if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
         {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
       {{/if}}
+
+    <div class="action--buttons">
+        <div class="buttons--left input--centered1">
+            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
+            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+            <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+        </div>
+        <div class="buttons--right input--centered1">
+            <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+            <button class="action-buttons" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
+            <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
+        </div>
+    </div>
+
 
     </div>
   </div>

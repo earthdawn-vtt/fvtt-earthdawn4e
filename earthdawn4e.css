@@ -583,7 +583,8 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
   display: grid;
   column-gap: var(--grid-col-gap);
   height: 25px;
@@ -601,7 +602,8 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header {
   text-transform: uppercase;
   font-size: var(--font-container-header);
   font-weight: bold;
@@ -627,32 +629,41 @@ input.input__number-input {
   grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
   height: 35px;
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--grid-col-gap);
   height: 30px;
+  gap: var(--grid-col-gap);
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons {
   display: flex;
   align-items: center;
-  gap: var(--grid-col-gap);
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons input[type="checkbox"] {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons input[type="checkbox"],
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons input[type="checkbox"] {
   margin: 0;
   margin: 6px 0 0 0;
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons .button__Karma-refresh {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons button,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button {
+  background: none;
+  border: none;
   height: 20px;
   width: 20px;
   color: var(--color-text-inverse);
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 1fr) minmax(25px, 1fr) minmax(25px, 1fr);
 }
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item {
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .karma-devotion__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item {
   text-align: center;
   display: flex;
   align-items: center;
