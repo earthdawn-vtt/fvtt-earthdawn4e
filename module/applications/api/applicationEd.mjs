@@ -6,7 +6,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  * @augments ApplicationV2
  * @mixes HandlebarsApplicationMixin
  */
-export default class Application extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class ApplicationEd extends HandlebarsApplicationMixin( ApplicationV2 ) {
 
   // region Properties
 
@@ -28,7 +28,7 @@ export default class Application extends HandlebarsApplicationMixin( Application
   static DEFAULT_OPTIONS = {
     classes: [ "ed4e" ],
     form:    {
-      handler:       Application.#onFormSubmission,
+      handler:       ApplicationEd.#onFormSubmission,
       closeOnSubmit: false,
     },
     position: {
@@ -58,14 +58,14 @@ export default class Application extends HandlebarsApplicationMixin( Application
 
   /**
    * Handle form submission.
-   * @this {Application}
+   * @this {ApplicationEd}
    * @param {Event} event                  The submit event.
    * @param {HTMLFormElement} form         The form element.
    * @param {FormDataExtended} formData     The form data.
    * @param {object} submitOptions         The submit options.
    */
   static #onFormSubmission( event, form, formData, submitOptions ) {
-    this.#config = this.processSubmitData( event, form, formData, submitOptions );
+    this.#config = this._processSubmitData( event, form, formData, submitOptions );
   }
 
   /**

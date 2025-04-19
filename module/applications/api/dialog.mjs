@@ -1,7 +1,7 @@
 /**
  * @augments DialogV2
  */
-export default class Dialog extends foundry.applications.api.DialogV2 {
+export default class DialogEd extends foundry.applications.api.DialogV2 {
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
