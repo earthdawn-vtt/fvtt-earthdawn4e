@@ -131,8 +131,8 @@
   border: var(--border-button);
   border-radius: 3px;
   text-align: center;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 input.input__number-input {
   width: 35px;
@@ -225,8 +225,9 @@ input.input__number-input {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-.container__custom {
-  padding: 0 0 10px 0;
+.container__header {
+  padding: 5px 0;
+  margin: 5px 0 0 0;
 }
 .itemControlGroup,
 .icon__position--right {
@@ -587,11 +588,11 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
   display: grid;
   column-gap: var(--grid-col-gap);
-  height: 25px;
   margin: 5px;
-  align-items: center;
   text-transform: capitalize;
   font-weight: normal;
+  align-items: center;
+  justify-content: center;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container.container__header,
@@ -627,7 +628,6 @@ input.input__number-input {
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
-  height: 35px;
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header {
