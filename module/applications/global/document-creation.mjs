@@ -1,9 +1,10 @@
 import PcData from "../../data/actor/pc.mjs";
+import DialogEd from "../api/dialog.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
- * Derivate of Foundry's Item.createDialog() functionality.
+ * Taken from Foundry's Item.createDialog() functionality.
  */
 export default class DocumentCreateDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
 
@@ -233,7 +234,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   }
 
   static async _showCharGenPrompt() {
-    return foundry.applications.api.DialogV2.confirm( {
+    return DialogEd.confirm( {
       content:     "X-Do you want to use the character generation?",
       rejectClose: false,
       modal:       true

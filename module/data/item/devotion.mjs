@@ -2,7 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink } from "../../utils.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on Devotion items.
@@ -148,7 +148,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
           ${createContentLink( questorItem.uuid, questorItem.name )}
         </p>
       `;
-    const increaseQuestor = await DialogV2.confirm( {
+    const increaseQuestor = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );
