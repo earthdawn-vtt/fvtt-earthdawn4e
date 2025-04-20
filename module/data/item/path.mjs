@@ -62,7 +62,7 @@ export default class PathData extends ClassTemplate.mixin(
   get increaseData() {
     const nextLevel = this.level + 1;
 
-    const actor = this.parentActor;
+    const actor = this.containingActor;
     if ( !actor ) return null;
     const pathTalent = actor.items.find( item => item.type === "talent" && item.system.edid === this.edid );
 

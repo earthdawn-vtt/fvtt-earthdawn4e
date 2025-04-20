@@ -117,7 +117,7 @@ export default class PowerData extends ActionTemplate.mixin(
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       abilityUuid:      this.parent.uuid,
       step:             {
         base:      this.powerStep,
@@ -155,7 +155,7 @@ export default class PowerData extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -167,10 +167,10 @@ export default class PowerData extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AbilityRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
 
   async rollAttack() {
@@ -179,7 +179,7 @@ export default class PowerData extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -191,10 +191,10 @@ export default class PowerData extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
 
   async rollDamage() {

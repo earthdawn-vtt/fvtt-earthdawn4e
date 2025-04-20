@@ -37,7 +37,7 @@ export default class RollableTemplate extends SystemDataModel {
   get baseRollOptions() {
     if ( !this.isActorEmbedded ) return new EdRollOptions();
 
-    return EdRollOptions.fromActor( { devotionRequired: !!this.devotionRequired }, this.parentActor );
+    return EdRollOptions.fromActor( { devotionRequired: !!this.devotionRequired }, this.containingActor );
   }
 
   async roll() {

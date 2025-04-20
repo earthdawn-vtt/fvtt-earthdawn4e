@@ -70,7 +70,7 @@ export default class QuestorData extends ClassTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.parentActor.currentLp,
+          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
         },
       ],
     };

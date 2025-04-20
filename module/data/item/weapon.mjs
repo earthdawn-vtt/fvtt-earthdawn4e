@@ -191,7 +191,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   get ammoAmount() {
     if ( !this.isRanged ) return null;
     if ( this.isActorEmbedded ) {
-      const ammunitionItems = this.parentActor.getAmmo( this.ammunition.type );
+      const ammunitionItems = this.containingActor.getAmmo( this.ammunition.type );
       return sum( ammunitionItems.map( item => ( item.system.amount ?? 0 ) * ( item.system.bundleSize ?? 0 ) ) );
     } else return 0;
   }
@@ -219,7 +219,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         armorType:       this.armorType,
         damageType:      this.damage.type,
       },
-      this.parentActor
+      this.containingActor
     );
 
   }
@@ -228,7 +228,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   get damageTotal() {
     if ( this.isActorEmbedded ) {
       const damageAttribute = this.damage.attribute;
-      const actorAttribute = this.parentActor.system.attributes[damageAttribute];
+      const actorAttribute = this.containingActor.system.attributes[damageAttribute];
       return this.damage.baseStep + this.forgeBonus + actorAttribute.step;
     } else return this.damage.baseStep + this.forgeBonus;
   }
@@ -364,11 +364,11 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new DamageRollOptions( rollData ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
 
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
 
   /**
