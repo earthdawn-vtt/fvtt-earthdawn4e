@@ -110,7 +110,7 @@ export default class DocumentCreateDialog extends ApplicationEd {
 
     const types = CONFIG.ED4E.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
-      Object.entries( types ).map( ( [ k, v ], i ) => {
+      Object.entries( types ).map( ( [ k, v ], _ ) => {
         return [ k, v.reduce( ( a, v ) => ( { ...a, [v]: v } ), {} ) ];
       } ),
     );

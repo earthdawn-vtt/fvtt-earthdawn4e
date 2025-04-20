@@ -545,7 +545,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
-   * @returns {void} This function returns the number of the previous step.
+   * @returns {boolean} This function returns true if there is a previous step.
    * @userFunction UF_CharacterGenerationPrompt-hasPreviousStep
    */
   _hasPreviousStep() {

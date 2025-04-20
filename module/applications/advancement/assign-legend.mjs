@@ -125,7 +125,7 @@ export default class AssignLpPrompt extends ApplicationEd {
 
   /** @inheritDoc */
   static async _processSubmitData( event, form, formData, submitOptions ) {
-    const data = super._processSubmitData( event, form, formData );
+    const data = super._processSubmitData( event, form, formData, submitOptions );
     // make array if only one actor is selected
     data.selectedActors = [].concat( data.selectedActors || [] );
     data.amount = data.amount || 0;

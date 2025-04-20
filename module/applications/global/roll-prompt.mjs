@@ -198,7 +198,7 @@ export default class RollPrompt extends ApplicationEd {
     return this.render( true );
   }
 
-  static async _roll( event, target ) {
+  static async _roll( event, _ ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
