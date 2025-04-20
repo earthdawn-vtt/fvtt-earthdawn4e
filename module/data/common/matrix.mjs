@@ -77,6 +77,15 @@ export default class MatrixData extends SystemDataModel {
     };
   }
 
+  static asEmbeddedDataField() {
+    return new foundry.data.fields.EmbeddedDataField(
+      this,
+      {
+        required:        false,
+      }
+    );
+  }
+
   // region Properties
 
   /**

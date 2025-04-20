@@ -3,6 +3,7 @@ import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
+import MatrixData from "../common/matrix.mjs";
 
 /**
  * Data model template with information on talent items.
@@ -31,7 +32,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         label:    this.labelKey( "Ability.talentCategory" ),
         hint:     this.hintKey( "Ability.talentCategory" )
       } ),
-      magic: new fields.SchemaField( {
+      matrix: MatrixData.asEmbeddedDataField(),
+      magic:  new fields.SchemaField( {
         threadWeaving: new fields.BooleanField( {
           required: true,
           nullable: false,
@@ -155,7 +157,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
    */
   get increaseData() {
     if ( !this.isActorEmbedded ) return undefined;
-    const actor = this.parent.actor;
+    const actor = this.containingActor;
 
     return {
       newLevel:   this.level + 1,
