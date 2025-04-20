@@ -4,7 +4,7 @@ import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on the questor path items.
@@ -127,7 +127,7 @@ export default class QuestorData extends ClassTemplate.mixin(
           ${createContentLink( questorDevotion.uuid, questorDevotion.name )}
         </p>
       `;
-    const increaseDevotion = await DialogV2.confirm( {
+    const increaseDevotion = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );
@@ -168,7 +168,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       <p>${ questorDevotionLink }</p>
       `;
 
-    const learn = await DialogV2.confirm( {
+    const learn = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );

@@ -1,13 +1,13 @@
 import LpTrackingData from "../../data/advancement/lp-tracking.mjs";
 import LpEarningTransactionData from "../../data/advancement/lp-earning-transaction.mjs";
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import ApplicationEd from "../api/application.mjs";
 
 /**
  * The application responsible for handling Legend Point related interactions and data.
  * @augments ApplicationV2
  * @mixes HandlebarsApplicationMixin
  */
-export default class LegendPointHistory extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class LegendPointHistory extends ApplicationEd {
 
   /**
    * @inheritDoc
@@ -53,11 +53,10 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @userFunction UF_LegendPointHistory-prepareOptions
    */
   static DEFAULT_OPTIONS = {
-    id:      "legend-point-history-prompt", 
-    classes: [ "earthdawn4e", "legend-point__history" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "legend-point-history-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "legend-point__history", ],
+    window:   {
       icon:  "fa-thin fa-list-timeline",
       title: "X-Localize Legend Point History",
     },
@@ -70,7 +69,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     form: {
       handler:        LegendPointHistory.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
     position: {
       width:  1000,

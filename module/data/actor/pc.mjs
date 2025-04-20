@@ -6,7 +6,7 @@ import ActorEd from "../../documents/actor.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * System data definition for PCs.
@@ -286,7 +286,7 @@ export default class PcData extends NamegiverTemplate {
     `;
 
     let spendLp = useLp;
-    spendLp ??= await DialogV2.wait( {
+    spendLp ??= await DialogEd.wait( {
       id:          "attribute-increase-prompt",
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "ed4e", "attribute-increase-prompt" ],

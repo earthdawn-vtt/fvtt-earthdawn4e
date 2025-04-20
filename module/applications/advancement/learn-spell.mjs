@@ -1,9 +1,9 @@
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class LearnSpellPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class LearnSpellPrompt extends ApplicationEd {
 
   /**
    * @inheritDoc
@@ -88,11 +88,10 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @userFunction                             UF_LearnSpellPrompt-defaultOptions
    */
   static DEFAULT_OPTIONS = {
-    id:      "learn-spell-prompt",
-    classes: [ "earthdawn4e", "learn-spell" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "learn-spell-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "learn-spell", ],
+    window:   {
       icon:  "fa-thin fa-scroll",
       title: "ED.Dialogs.Title.learnSpell",
     },
@@ -105,7 +104,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     form:    {
       handler:        LearnSpellPrompt.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
   };
 

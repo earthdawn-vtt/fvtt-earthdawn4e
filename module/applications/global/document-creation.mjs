@@ -1,11 +1,12 @@
 import PcData from "../../data/actor/pc.mjs";
+import DialogEd from "../api/dialog.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
- * Derivate of Foundry's Item.createDialog() functionality.
+ * Taken from Foundry's Item.createDialog() functionality.
  */
-export default class DocumentCreateDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class DocumentCreateDialog extends ApplicationEd {
 
   /** @inheritDoc */
   constructor( data = {}, { resolve, documentCls, pack = null, parent = null, options = {}, } = {} ) {
@@ -39,11 +40,10 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   }
 
   static DEFAULT_OPTIONS = {
-    id:             "document-create-dialog",
-    classes:        [ "earthdawn4e", "create-document" ],
-    tag:            "form",
-    window:  {
-      frame:          true,
+    id:             "document-create-dialog-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:        [ "create-document", ],
+    window:   {
       resizable:      true,
       height:         900,
       width:          800,
@@ -52,7 +52,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
       handler:        this.#onFormSubmission,
       submitOnChange: true,
       submitOnClose:  false,
-      closeOnSubmit:  false,
     },
     position: {
       width: 1000,
@@ -111,7 +110,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
 
     const types = CONFIG.ED4E.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
-      Object.entries( types ).map( ( [ k, v ], i ) => {
+      Object.entries( types ).map( ( [ k, v ], _ ) => {
         return [ k, v.reduce( ( a, v ) => ( { ...a, [v]: v } ), {} ) ];
       } ),
     );
@@ -233,7 +232,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   }
 
   static async _showCharGenPrompt() {
-    return foundry.applications.api.DialogV2.confirm( {
+    return DialogEd.confirm( {
       content:     "X-Do you want to use the character generation?",
       rejectClose: false,
       modal:       true

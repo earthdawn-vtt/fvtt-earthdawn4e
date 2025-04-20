@@ -1,10 +1,10 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class RollPrompt extends ApplicationEd {
 
   constructor( edRollOptions = {}, { resolve, rollData = {}, options = {} } = {} ) {
     if ( !( edRollOptions instanceof EdRollOptions ) ) {
@@ -54,14 +54,12 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
   static DEFAULT_OPTIONS = {
     id:       "roll-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "earthdawn4e", "roll-prompt" ],
-    tag:      "form",
+    classes:  [ "roll-prompt", ],
     position: {
       width:  "auto",
       height: "auto",
     },
     window:   {
-      frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
       icon:  `fa-regular ${ED4E.icons.dice}`,
     },
@@ -71,7 +69,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     form:    {
       handler:        RollPrompt.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
   };
 
@@ -201,7 +198,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     return this.render( true );
   }
 
-  static async _roll( event, target ) {
+  static async _roll( event, _ ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();

@@ -2,10 +2,10 @@ import { documentsToSelectChoices, filterObject, getAllDocuments } from "../../u
 import ED4E from "../../config/_module.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class CharacterGenerationPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class CharacterGenerationPrompt extends ApplicationEd {
 
   magicType;
 
@@ -71,11 +71,10 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
    * @userFunction UF_CharacterGenerationPrompt-defaultOptions
    */
   static DEFAULT_OPTIONS = {
-    id:      "character-generation-prompt",
-    classes: [ "earthdawn4e", "character-generation" ],
-    tag:     "form",
-    window:  {
-      frame:       true,
+    id:       "character-generation-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "character-generation", ],
+    window:   {
       icon:        "fa-thin fa-user",
       title:       "ED.Dialogs.Title.characterGeneration",
       resizable:   true,
@@ -546,7 +545,7 @@ export default class CharacterGenerationPrompt extends HandlebarsApplicationMixi
   }
 
   /**
-   * @returns {void} This function returns the number of the previous step.
+   * @returns {boolean} This function returns true if there is a previous step.
    * @userFunction UF_CharacterGenerationPrompt-hasPreviousStep
    */
   _hasPreviousStep() {

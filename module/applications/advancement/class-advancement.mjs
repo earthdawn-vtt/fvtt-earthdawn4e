@@ -2,11 +2,11 @@ import ClassTemplate from "../../data/item/templates/class.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { getAllDocuments } from "../../utils.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const { isEmpty } = foundry.utils;
 
-export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class ClassAdvancementDialog extends ApplicationEd {
 
   /**
    * This is a very specific user function which is not following the pattern of the naming convention.
@@ -97,11 +97,10 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * @userFunction UF_ClassAdvancementDialog-defaultOptions
    */
   static DEFAULT_OPTIONS = {
-    id:      "class-advancement-dialog",
-    classes: [ "earthdawn4e", "class-advancement-dialog" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "class-advancement-dialog-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "class-advancement-dialog" ],
+    window:   {
       icon:  `fa-thin ${ED4E.icons.classAdvancement}`,
       title: "ED.Dialogs.Title.classAdvancement",
     },
@@ -113,7 +112,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     form:    {
       handler:        ClassAdvancementDialog.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
   };
 

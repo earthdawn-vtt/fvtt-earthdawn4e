@@ -1,22 +1,20 @@
 import ED4E from "../../config/_module.mjs";
+import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 
-const { DocumentSheetV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { DocumentSheetV2, } = foundry.applications.api;
 
 /**
  * Base document sheet on which all document configuration sheets should be based.
  */
-export default class BaseConfigSheet extends HandlebarsApplicationMixin( DocumentSheetV2 ) {
+export default class BaseConfigSheet extends DocumentSheetMixinEd( DocumentSheetV2 ) {
 
   /** 
    * @inheritDoc 
    * @userFunction UF_BaseConfigSheet-defaultOptions
    */
   static DEFAULT_OPTIONS = {
-    classes:     [ "config-sheet" ],
+    classes:     [ "config-sheet", ],
     sheetConfig: false,
-    form:        {
-      submitOnChange: true
-    }
   };
 
   /** 
