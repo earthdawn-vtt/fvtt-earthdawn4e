@@ -132,8 +132,23 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /* -------------------------------------------- */
 
+  /**
+   * Get the actor that contains this data model or undefined if it is not embedded.
+   * @type {*|undefined}
+   */
+  get containingActor() {
+    if ( !this.parent ) return undefined;
+    return this.parent.actor ?? this.parent.containingActor;
+  }
+
+  /**
+   * Check if this data model is a descendent of an actor.
+   * @type {boolean}
+   */
   get isActorEmbedded() {
-    return !!this.parent?.actor;
+    if ( !this.parent ) return false;
+    if ( this.parent.actor ) return true;
+    return this.parent.isActorEmbedded ?? false;
   }
 
   /* -------------------------------------------- */
@@ -573,10 +588,6 @@ export class ItemDataModel extends SystemDataModel {
     return game.user.isGM || ( this.identified !== false ) ? "description.value" : "unidentified.description";
   }
 
-  get parentActor() {
-    return this.parent?.actor;
-  }
-
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
@@ -656,6 +667,7 @@ export class ItemDataModel extends SystemDataModel {
    * @param {EnrichmentOptions} enrichmentOptions Options for text enrichment.
    * @returns {Promise<object>}                   The template context data.
    */
+  // eslint-disable-next-line complexity
   async getCardData( enrichmentOptions={} ) {
     const { name, type, img } = this.parent;
     let {
@@ -813,6 +825,29 @@ export class SparseDataModel extends foundry.abstract.DataModel {
     Object.assign( a, b );
     return a;
   }
+
+  // region Properties
+
+  /**
+   * Get the actor that contains this data model or undefined if it is not embedded.
+   * @type {*|undefined}
+   */
+  get containingActor() {
+    if ( !this.parent ) return undefined;
+    return this.parent.actor ?? this.parent.containingActor;
+  }
+
+  /**
+   * Check if this data model is a descendent of an actor.
+   * @type {boolean}
+   */
+  get isActorEmbedded() {
+    if ( !this.parent ) return false;
+    if ( this.parent.actor ) return true;
+    return this.parent.isActorEmbedded ?? false;
+  }
+
+  // endregion
 
 }
 
