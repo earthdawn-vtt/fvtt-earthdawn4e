@@ -6,7 +6,8 @@
       <div class="layout__col--2">
 
         <!-- Namegiver -->
-          <h3>{{localize "ED.Actor.Header.namegiver"}}</h3>
+      {{#unless (or (eq actor.type "dragon") (eq actor.type "horror") (eq actor.type "spirit") (eq actor.type "creature"))}}
+        <h3>{{localize "ED.Actor.Header.namegiver"}}</h3>
 
         <div class="container__block">
           {{#each actor.itemTypes.namegiver}}
@@ -20,6 +21,7 @@
             </div>
           {{/each}}
         </div>
+      {{/unless}}
 
         <!-- Circles -->
         <h3>{{localize "ED.Actor.Header.circles"}}</h3>
