@@ -14,19 +14,20 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
    * Stored form data.
    * @type {object|null}
    */
-  #config = null;
+  _data = null;
 
   /**
    * Stored form data.
    * @type {object|null}
    */
-  get config() {
-    return this.#config;
+  get data() {
+    return this._data;
   }
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: [ "ed4e" ],
+    tag:     "form",
     form:    {
       handler:       ApplicationEd.#onFormSubmission,
       closeOnSubmit: false,
@@ -35,8 +36,8 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
       width:  400,
       height: "auto",
     },
-    tag:    "form",
     window: {
+      frame:          true,
       contentClasses: [ "standard-form" ],
     },
   };
@@ -51,10 +52,12 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
   static async create( options ) {
     const { promise, resolve } = Promise.withResolvers();
     const application = new this( options );
-    application.addEventListener( "close", () => resolve( application.config ), { once: true } );
+    application.addEventListener( "close", () => resolve( application.data ), { once: true } );
     application.render( { force: true } );
     return promise;
   }
+
+  // region Event Handlers
 
   /**
    * Handle form submission.
@@ -64,8 +67,8 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
    * @param {FormDataExtended} formData     The form data.
    * @param {object} submitOptions         The submit options.
    */
-  static #onFormSubmission( event, form, formData, submitOptions ) {
-    this.#config = this._processSubmitData( event, form, formData, submitOptions );
+  static async #onFormSubmission( event, form, formData, submitOptions ) {
+    this._data = this._processSubmitData( event, form, formData, submitOptions );
   }
 
   /**
@@ -80,10 +83,16 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
     return foundry.utils.expandObject( formData.object );
   }
 
+  // endregion
+
+  // region Rendering
+
   /**
    * @inheritDoc
    */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
   }
+
+  // endregion
 }

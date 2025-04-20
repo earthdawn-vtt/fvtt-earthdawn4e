@@ -1,7 +1,7 @@
 import LpTransactionData from "../../data/advancement/lp-transaction.mjs";
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import ApplicationEd from "../api/application.mjs";
 
-export default class AssignLpPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class AssignLpPrompt extends ApplicationEd {
 
 
   /** 
@@ -10,12 +10,12 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
    */
   constructor( options = {} ) {
     super( options );
-    const object = options.object || {};
+    const data = options.data || {};
     this.resolve = options.resolve;
-    this.object = {
-      selectedActors: object.selectedActors || [],
-      amount:         object.amount || "",
-      description:    object.description || ""
+    this._data = {
+      selectedActors: data.selectedActors || [],
+      amount:         data.amount || "",
+      description:    data.description || ""
     };
   }
 
@@ -40,18 +40,15 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
   static DEFAULT_OPTIONS = {
     id:       "assign-legend-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "earthdawn4e", "assign-legend" ],
+    classes:  [ "assign-legend", ],
     window:   {
-      frame: true,
       title: "ED.Dialogs.Title.assignLp",
     },
     actions: {
       assignLP: AssignLpPrompt._assignLP,
     },
     form: {
-      handler:        AssignLpPrompt.#onFormSubmission,
-      submitOnChange: true, 
-      closeOnSubmit:  false,
+      submitOnChange: true,
     },
     position: {
       width:  350,
@@ -80,7 +77,7 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
    */
   async _prepareContext( options = {} ) {
     const context = {};
-    context.object = this.object;
+    context.object = this._data;
     context.user = game.users.filter( u => u.active );
 
     const actorUserActive = game.users.filter(
@@ -126,21 +123,14 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
     return context;
   }
 
-  /**
-   * Handles form submission and updates the object with the form data.
-   * @param {Event} event - The form submission event.
-   * @param {HTMLElement} form - The form element.
-   * @param {object} formData - The form data.
-   * @returns {Promise<object>} - The updated object.
-   * @userFunction UF_AssignLpPrompt-onFormSubmission
-   */
-  static async #onFormSubmission( event, form, formData ) {
-    const data = foundry.utils.expandObject( formData.object );
+  /** @inheritDoc */
+  static async _processSubmitData( event, form, formData, submitOptions ) {
+    const data = super._processSubmitData( event, form, formData );
     // make array if only one actor is selected
-    this.object.selectedActors = [].concat( data.selectedActors || [] );
-    this.object.amount = data.amount || 0;
-    this.object.description = data.description || "No description provided";
-    return this.object;
+    data.selectedActors = [].concat( data.selectedActors || [] );
+    data.amount = data.amount || 0;
+    data.description = data.description || "No description provided";
+    return data;
   }
 
   /**
@@ -160,10 +150,10 @@ export default class AssignLpPrompt extends HandlebarsApplicationMixin( Applicat
    */
   static async _assignLP( event ) {
     event.preventDefault();
-    if ( !this.object.amount ) return ui.notifications.error( game.i18n.localize( "ED.Dialogs.Errors.noLp" ) );
+    if ( !this._data.amount ) return ui.notifications.error( game.i18n.localize( "ED.Dialogs.Errors.noLp" ) );
     // await this.submit( { preventRender: true } );
 
-    const { selectedActors, amount, description } = this.object;
+    const { selectedActors, amount, description } = this._data;
     const transactionData = selectedActors.reduce( ( obj, actorId ) => {
       if ( !actorId ) return obj; // Skip if actorId is null
       const actor = game.actors.get( actorId );

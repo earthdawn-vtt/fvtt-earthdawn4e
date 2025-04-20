@@ -1,10 +1,7 @@
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import ApplicationEd from "../api/application.mjs";
 
-/**
- * @augments ApplicationV2
- * @mixes HandlebarsApplicationMixin
- */
-export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+
+export default class StartRoundCombatantPrompt extends ApplicationEd {
 
   /**
    * @inheritDoc
@@ -38,10 +35,8 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
   static DEFAULT_OPTIONS = {
     id:       "start-round-combatant-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "earthdawn4e", "start-round-combatant-prompt" ],
-    tag:      "form",
+    classes:  [ "start-round-combatant-prompt", ],
     window:   {
-      frame:          true,
       positioned:     true,
       icon:           "",
       minimizable:    false,
@@ -52,9 +47,8 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
       toggleCombatOption: StartRoundCombatantPrompt._toggleCombatOptionCheckbox,
     },
     form:    {
-      handler:        StartRoundCombatantPrompt._onFormSubmission,
+      handler:        StartRoundCombatantPrompt.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
     position: {
       width:  "auto",
@@ -85,7 +79,7 @@ export default class StartRoundCombatantPrompt extends HandlebarsApplicationMixi
 
   // region Form Handling
 
-  static async _onFormSubmission( event, form, formData ) {
+  static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
     // update combatant initiative abilities and show prompt option
