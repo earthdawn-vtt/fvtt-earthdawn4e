@@ -25,7 +25,7 @@ export const typeGroups = {
     Powers:       [ "maneuver", "power" ],
     Abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
     Conditions:   [ "cursemark", "effect", "poisonDisease" ],
-    Magic:        [ "spell", "spellKnack", "bindingSecret", "matrix" ],
+    Magic:        [ "spell", "spellKnack", "bindingSecret", ],
     Classes:      [ "discipline", "path", "questor" ],
     Other:        [ "mask", "namegiver", "shipWeapon" ]
   },
