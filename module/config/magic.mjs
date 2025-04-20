@@ -42,6 +42,30 @@ preLocalize(
   { keys: [ "air", "earth", "fire", "water", "wood" ] }
 );
 
+export const matrixTypes = {
+  "standard": {
+    label:         "ED.Config.MatrixTypes.standard",
+    deathRating:   10,
+    maxHoldThread: 0,
+  },
+  "enhanced": {
+    label:         "ED.Config.MatrixTypes.enhanced",
+    deathRating:   15,
+    maxHoldThread: 1,
+  },
+  "armored":  {
+    label:         "ED.Config.MatrixTypes.armored",
+    deathRating:   25,
+    maxHoldThread: 1,
+  },
+  "shared":   {
+    label:         "ED.Config.MatrixTypes.shared",
+    deathRating:   20,
+    maxHoldThread: 0,
+  },
+};
+preLocalize( "matrixTypes", { key: "label" } );
+
 export const spellcastingTypes = {
   elementalism:   "ED.Config.spellcastingTypes.elementalism",
   illusionism:    "ED.Config.spellcastingTypes.illusionism",
