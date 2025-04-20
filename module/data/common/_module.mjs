@@ -1,3 +1,4 @@
+import { default as MatrixData } from "./matrix.mjs";
 import {
   AreaMetricData,
   DurationMetricData,
@@ -27,6 +28,7 @@ export {
   DurationMetricData,
   EffectMetricData,
   LanguageConstraintData,
+  MatrixData,
   MetricData,
   NamegiverConstraintData,
   RangeMetricData,

@@ -46,6 +46,8 @@ preLocalize( "denomination" );
 
 /**
  * The possible states for a physical item that describe in which way they connect to an actor.
+ * All equipped and carried items count as owned as well.
+ * All equipped items count as carried as well.
  * @enum {string}
  */
 export const itemStatus = {

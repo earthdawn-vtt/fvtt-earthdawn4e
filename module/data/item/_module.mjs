@@ -10,7 +10,6 @@ import KnackKarmaData from "./knack-karma.mjs";
 import KnackManeuverData from "./knack-maneuver.mjs";
 import ManeuverData from "./maneuver.mjs";
 import MaskData from "./mask.mjs";
-import MatrixData from "./matrices.mjs";
 import NamegiverData from "./namegiver.mjs";
 import PathData from "./path.mjs";
 import PoisonDiseaseData from "./poison-disease.mjs";
@@ -38,7 +37,6 @@ export {
   KnackManeuverData,
   ManeuverData,
   MaskData,
-  MatrixData,
   NamegiverData,
   PathData,
   PoisonDiseaseData,
@@ -77,7 +75,6 @@ export const config = {
   knackManeuver:  KnackManeuverData,
   maneuver:       ManeuverData,
   mask:           MaskData,
-  matrix:         MatrixData,
   namegiver:      NamegiverData,
   path:           PathData,
   poisonDisease:  PoisonDiseaseData,

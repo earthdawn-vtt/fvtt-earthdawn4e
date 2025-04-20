@@ -116,12 +116,12 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
         {
           name:      "ED.Legend.Validation.availableLp",
           value:     increaseData.requiredLp,
-          fulfilled: this.parentActor.currentLp >= increaseData.requiredLp,
+          fulfilled: this.containingActor.currentLp >= increaseData.requiredLp,
         },
         {
           name:      "ED.Legend.Validation.availableMoney",
           value:     this.requiredMoneyForIncrease,
-          fulfilled: this.parentActor.currentSilver >= this.requiredMoneyForIncrease,
+          fulfilled: this.containingActor.currentSilver >= this.requiredMoneyForIncrease,
         },
       ],
     };
@@ -135,7 +135,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     if ( !updatedDevotion || !this.isActorEmbedded ) return undefined;
 
     // update the corresponding questor item
-    const questorItem = this.parentActor.itemTypes.questor.find(
+    const questorItem = this.containingActor.itemTypes.questor.find(
       ( item ) => item.system.questorDevotion === this.parent.uuid
     );
     if ( !questorItem ) return updatedDevotion;

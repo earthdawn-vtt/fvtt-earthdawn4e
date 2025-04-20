@@ -133,7 +133,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       abilityUuid:      this.parent.uuid,
       step:             {
         base:      this.rankFinal,
@@ -166,7 +166,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
    * @type {number}
    */
   get rankFinal() {
-    return ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 );
+    return ( this.containingActor?.system.attributes[this.attribute]?.step ?? 0 );
   }
 
   /** @inheritDoc */
@@ -223,7 +223,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -235,15 +235,15 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AbilityRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 
-    const equippedWeapons = this.parentActor.equippedWeapons;
+    const equippedWeapons = this.containingActor.equippedWeapons;
 
     const whatToDo = this._checkEquippedWeapons( equippedWeapons );
     if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
@@ -261,7 +261,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -275,10 +275,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
 
   async _attack() {
@@ -286,11 +286,11 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   }
 
   async _drawWeapon() {
-    return this.parentActor.drawWeapon();
+    return this.containingActor.drawWeapon();
   }
 
   async _switchWeapon() {
-    return this.parentActor.switchWeapon();
+    return this.containingActor.switchWeapon();
   }
 
   /**
