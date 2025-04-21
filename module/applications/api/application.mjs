@@ -87,9 +87,15 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // region Rendering
 
-  /**
-   * @inheritDoc
-   */
+  /** @inheritDoc */
+  async _prepareContext( options ) {
+    const context = await super._prepareContext( options );
+    context.data = this._data;
+
+    return context;
+  }
+
+  /** @inheritDoc */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
   }
