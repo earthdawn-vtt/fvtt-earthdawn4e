@@ -50,8 +50,9 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
         ...ActiveEffectConfig.TABS.sheet.tabs,
         { id: "execution", icon: ED4E.icons.effectExecution },
       ],
+      labelPrefix: "ED.Sheet.Tabs",
     },
-    labelPrefix: "ED.Sheet.Tabs",
+    
   };
 
   // region Properties
