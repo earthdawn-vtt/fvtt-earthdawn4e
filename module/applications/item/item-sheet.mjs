@@ -17,7 +17,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "item", ],
+    classes:  [ "item" ],
     actions:  {
       config:             ItemSheetEd._onConfig,
     },
@@ -47,15 +47,15 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     },
     "general": {
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs",
-      classes:  [ "general" ]
+      classes:  [ "general", "scrollable" ]
     },
     "details": {
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs",
-      classes:  [ "details" ]
+      classes:  [ "details", "scrollable" ]
     },
     "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
-      classes:  [ "effects" ]
+      classes:  [ "effects", "scrollable" ]
     },
   };
 
