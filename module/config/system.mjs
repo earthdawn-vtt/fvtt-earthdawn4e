@@ -63,6 +63,7 @@ export const icons = {
   nextCharGen:      "fa-thin fa-arrow-right",
   resetPoints:      "fa-arrows-rotate",
   undo:             "fa-arrow-rotate-left",
+  unknown:          "fa-question",
   Tabs:             {
   },
 };
