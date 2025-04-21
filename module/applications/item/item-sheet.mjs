@@ -17,7 +17,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "item", "scrollable" ],
+    classes:  [ "item" ],
     actions:  {
       config:             ItemSheetEd._onConfig,
     },
