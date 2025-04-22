@@ -125,7 +125,7 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "versatilityButton".
+   * A {@link DialogV2Button} object for a button with data action "versatility".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
    * @userFunction UF_PromptFactory-versatilityButton
@@ -556,7 +556,7 @@ class ItemPromptFactory extends PromptFactory {
 
   /**
    * Creates the choose tier dialog.
-   * @returns {Promise<Dialog>} A promise that resolves to the choose tier prompt dialog.
+   * @returns {Promise<any>} A promise that resolves to the choose tier prompt dialog.
    * @userFunction UF_ItemPromptFactory-chooseTierPrompt
    */
   async _chooseTierPrompt( ) {
@@ -591,7 +591,7 @@ class ItemPromptFactory extends PromptFactory {
 
   /**
    * Creates the LP increase dialog.
-   * @returns {Promise<Dialog>} A promise that resolves to the LP increase prompt dialog.
+   * @returns {Promise<any>} A promise that resolves to the LP increase prompt dialog.
    * @userFunction UF_ItemPromptFactory-lpIncreasePrompt
    */
   async _lpIncreasePrompt() {
@@ -632,7 +632,7 @@ class ItemPromptFactory extends PromptFactory {
 
   /**
    * Creates the talent category dialog.
-   * @returns {Promise<Dialog>} A promise that resolves to the talent category prompt dialog.
+   * @returns {Promise<any>} A promise that resolves to the talent category prompt dialog.
    * @userFunction UF_ItemPromptFactory-talentCategoryPrompt
    */
   async _talentCategoryPrompt() {
