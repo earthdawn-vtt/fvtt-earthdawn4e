@@ -1,0 +1,1 @@
+This function sets the token bar for karma rating.

@@ -1,0 +1,1 @@
+This function reset the bar graphics to a default state.

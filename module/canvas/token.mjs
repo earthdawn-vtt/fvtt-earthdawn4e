@@ -4,7 +4,9 @@ export default class TokenEd extends Token {
 
   #black = 0x000000;
 
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   */
   _drawBar( number, bar, data ) {
     if ( data?.attribute === "healthRate" ) {
       return this._drawHealthBar( number, bar, data );
@@ -16,12 +18,11 @@ export default class TokenEd extends Token {
   }
 
   /**
-   * @description             Draw a health bar for the Token representing a rate of damage points.
+   * Draw a health bar for the Token representing a rate of damage points.
    * @param {number} number   Index of the Bar being drawn
-   * @param {object} bar      PIXI.Graphics instance for the Bar
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the Bar
    * @param {object} data     Data object for the Bar
-   * @returns {undefined}     Returns undefined.
-   * @userFunction            UF_TokenResources-drawHealthBar
+   * @returns {undefined}     returns undefined
    */
   _drawHealthBar( number, bar, data ) {
     const value = Number( data.value );
@@ -54,12 +55,11 @@ export default class TokenEd extends Token {
   }
 
   /**
-   * @description             Draw a karma bar for the Token representing a rate of karma points.
+   * Draw a karma bar for the Token representing a rate of karma points.
    * @param {number} number   Index of the bar being drawn
-   * @param {object} bar      PIXI.Graphics instance for the bar 
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the bar 
    * @param {object} data     Data object for the Bar
-   * @returns {undefined}     Returns undefined.
-   * @userFunction            UF_TokenResources-drawKarmaBar
+   * @returns {undefined}     returns undefined
    */
   _drawKarmaBar( number, bar, data ) {
     const value = Number( data.value );
@@ -89,6 +89,13 @@ export default class TokenEd extends Token {
     this._setBarPosition( bar, number, barHeight );
   }
 
+  /**
+   * Reset the bar graphics to a default state.
+   * @param {PIXI.Graphics} bar     PIXI.Graphics instance for the bar
+   * @param {number} width   Width of the bar
+   * @param {number} height  Height of the bar
+   * @param {number} stroke  Stroke width for the bar
+   */
   _resetBar( bar, width, height, stroke ) {
     bar
       .clear()
@@ -97,6 +104,12 @@ export default class TokenEd extends Token {
       .drawRoundedRect( 0, 0, width, height, 3 );
   }
 
+  /**
+   * Set the position of the bar based on its order.
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the bar
+   * @param {number} order   Order of the bar (0 for top, 1 for bottom)
+   * @param {number} height  Height of the bar
+   */
   _setBarPosition( bar, order, height ) {
     // Set position
     const posY = order === 0 ? this.h - height : 0;
