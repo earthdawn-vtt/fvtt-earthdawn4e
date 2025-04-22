@@ -104,7 +104,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   
   /** 
    * Creating the tabs for the class advancement tab group.
-   * @returns {Object} tabs for the class advancement tab group
+   * @returns {object} tabs for the class advancement tab group
    * @userFunction UF_ClassItemSheetEd-getClassTabs
    */
   #getClassTabs() {
@@ -196,7 +196,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   }
 
   /**
-   * Add additinal level to the class advancement tab group.
+   * Add level to the class advancement.
    * @param {Event} event The form submission event.
    * @param {HTMLElement} target The form element.
    * @userFunction UF_ClassItemSheetEd-addClassLevel 
@@ -208,7 +208,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   }
 
   /**
-   * Delete the current level from the class advancement tab group.
+   * Delete the highest level of the class advencement.
    * @param {Event} event The form submission event.
    * @param {HTMLElement} target The form element.
    * @userFunction UF_ClassItemSheetEd-deleteClassLevel
