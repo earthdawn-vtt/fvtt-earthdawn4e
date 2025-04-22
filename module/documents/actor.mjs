@@ -15,6 +15,7 @@ import DamageRollOptions from "../data/roll/damage.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
+import DamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 
 const futils = foundry.utils;
 
@@ -698,7 +699,7 @@ export default class ActorEd extends Actor {
    *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
-   
+
   takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
@@ -751,6 +752,21 @@ export default class ActorEd extends Actor {
       damageTaken,
       knockdownTest,
     };
+  }
+
+  async damage ( damageOptions ) {
+    const damageWorkflow = new DamageWorkflow(
+      this,
+      {
+        armorType:      damageOptions.armorType,
+        damageItem:     damageOptions.weapon ?? null,
+        damageItemType: damageOptions.weaponType ?? null,
+        successes:      damageOptions.successes ?? 0,
+      },
+    );
+    return this.processRoll(
+      await damageWorkflow.execute()
+    );
   }
 
   async attack( attackType ) {

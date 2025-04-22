@@ -11,7 +11,7 @@ export default class AttackMessageData extends BaseMessageData {
   static DEFAULT_OPTIONS = {
     actions: {
       "apply-effect":  this._onApplyEffect,
-      "roll-damage":   this._onRollDamage,
+      "roll-damage":   this._onRolldamage,
       "maneuver":      this._onUseManeuver,
       "reaction":      this._onUseReaction,
     },
@@ -84,14 +84,29 @@ export default class AttackMessageData extends BaseMessageData {
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
-  static async _onRollDamage( event, button ) {
+  // static async _onRollDamage( event, button ) {
+  //   event.preventDefault();
+
+  //   const weapon = await fromUuid( this.roll.options.weaponUuid );
+  //   if ( weapon?.system.roll instanceof Function ) return await weapon.system.rollDamage();
+
+  //   if ( this.roll.options.weaponType === "unarmed" ) return this.attacker.rollUnarmedDamage();
+  // }
+  static async _onRolldamage( event, button ) {
     event.preventDefault();
-
-    const weapon = await fromUuid( this.roll.options.weaponUuid );
-    if ( weapon?.system.roll instanceof Function ) return await weapon.system.rollDamage();
-
-    if ( this.roll.options.weaponType === "unarmed" ) return this.attacker.rollUnarmedDamage();
+    let attackParameters = {
+      weapon:     await fromUuid( this.roll.options.weaponUuid ) ?? null,
+      weaponType: this.roll.options.weaponType ?? null,
+      // powerType:  this.roll.options.powerType ?? null,
+      // spellType:  this.roll.options.spellType ?? null,
+      // armorType:  this...
+      successes:  this.successes.value,
+      armorType:  this.roll.options.armorType ?? null,
+      
+    };
+    return this.attacker.damage( attackParameters );
   }
+
 
   static async _onApplyEffect( event, button ) {
     event.preventDefault();
