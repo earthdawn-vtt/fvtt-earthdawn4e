@@ -6,7 +6,6 @@ export default class TokenEd extends Token {
 
   /** 
    * @inheritDoc 
-   * @userFunction            UF_TokenEd-drawBar
    */
   _drawBar( number, bar, data ) {
     if ( data?.attribute === "healthRate" ) {
@@ -24,7 +23,6 @@ export default class TokenEd extends Token {
    * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the Bar
    * @param {object} data     Data object for the Bar
    * @returns {undefined}     returns undefined
-   * @userFunction            UF_TokenEd-drawHealthBar
    */
   _drawHealthBar( number, bar, data ) {
     const value = Number( data.value );
@@ -62,7 +60,6 @@ export default class TokenEd extends Token {
    * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the bar 
    * @param {object} data     Data object for the Bar
    * @returns {undefined}     returns undefined
-   * @userFunction            UF_TokenEd-drawKarmaBar
    */
   _drawKarmaBar( number, bar, data ) {
     const value = Number( data.value );
@@ -94,11 +91,10 @@ export default class TokenEd extends Token {
 
   /**
    * Reset the bar graphics to a default state.
-   * @param {object} bar     PIXI.Graphics instance for the bar
+   * @param {PIXI.Graphics} bar     PIXI.Graphics instance for the bar
    * @param {number} width   Width of the bar
    * @param {number} height  Height of the bar
    * @param {number} stroke  Stroke width for the bar
-   * @userFunction           UF_TokenEd-resetBar
    */
   _resetBar( bar, width, height, stroke ) {
     bar
@@ -110,10 +106,9 @@ export default class TokenEd extends Token {
 
   /**
    * Set the position of the bar based on its order.
-   * @param {object} bar      PIXI.Graphics instance for the bar
+   * @param {PIXI.Graphics} bar      PIXI.Graphics instance for the bar
    * @param {number} order   Order of the bar (0 for top, 1 for bottom)
    * @param {number} height  Height of the bar
-   * @userFunction            UF_TokenEd-setBarPosition
    */
   _setBarPosition( bar, order, height ) {
     // Set position
