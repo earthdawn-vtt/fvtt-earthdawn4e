@@ -1,0 +1,1 @@
+This function is a simple getter, retrieving the combatants name to show the name in the dialog header.

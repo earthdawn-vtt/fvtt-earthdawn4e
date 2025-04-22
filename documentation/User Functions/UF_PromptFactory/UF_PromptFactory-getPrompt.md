@@ -1,0 +1,1 @@
+This function retrieves a prompt based on the specified type.

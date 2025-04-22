@@ -1,0 +1,1 @@
+This function triggers a continue action to step to the next function.

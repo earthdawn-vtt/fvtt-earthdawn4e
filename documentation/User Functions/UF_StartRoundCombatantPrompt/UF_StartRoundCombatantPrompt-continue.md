@@ -1,0 +1,1 @@
+This function finally triggers the initiative roll with all the input made to the initiative prompt.

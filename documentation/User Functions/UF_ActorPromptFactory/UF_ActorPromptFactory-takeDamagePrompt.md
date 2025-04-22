@@ -1,0 +1,1 @@
+This function creates a Dialog to manually assign damage to the actor.

@@ -1,0 +1,1 @@
+This function handles the closing of the **Document Creation Dialog**.

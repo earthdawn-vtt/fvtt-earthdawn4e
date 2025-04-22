@@ -1,0 +1,1 @@
+This function is triggered during the learning process to choose the tier of the learned item.

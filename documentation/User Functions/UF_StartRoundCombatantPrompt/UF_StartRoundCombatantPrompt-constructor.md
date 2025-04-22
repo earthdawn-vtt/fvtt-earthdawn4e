@@ -1,0 +1,1 @@
+This is the constructor of the **Start Round Combatant Prompt** application.

@@ -1,14 +1,24 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
-import ApplicationEd from "../api/application.mjs";
 
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class RollPrompt extends ApplicationEd {
-
-  constructor( edRollOptions = {}, { resolve, rollData = {}, options = {} } = {} ) {
+export default class RollPrompt extends HandlebarsApplicationMixin(
+  ApplicationV2,
+) {
+  /**
+   * @inheritDoc
+   * @userFunction        UF_RollPrompt-constructor
+   */
+  constructor(
+    edRollOptions = {},
+    { resolve, rollData = {}, options = {} } = {},
+  ) {
     if ( !( edRollOptions instanceof EdRollOptions ) ) {
-      throw new TypeError( "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`." );
+      throw new TypeError(
+        "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`.",
+      );
     }
     super( options );
 
@@ -28,6 +38,7 @@ export default class RollPrompt extends ApplicationEd {
    * @param {object} edRollOptions             The roll options that are updated by the prompt.
    * @param {object} [options]        Options to pass to the constructor.
    * @returns {Promise<EdRoll|null>}  Created roll instance or `null`.
+   * @userFunction UF_RollPrompt-waitPrompt
    */
   static waitPrompt( edRollOptions, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -38,40 +49,49 @@ export default class RollPrompt extends ApplicationEd {
 
   /**
    * @description                 Roll a step prompt.
-   * @userFunction                UF_Rolls-rollStepPrompt
+   * @userFunction                UF_RollPrompt-rollArbitraryPrompt
    */
   static rollArbitraryPrompt() {
     RollPrompt.waitPrompt(
       new EdRollOptions( {
         testType:   "arbitrary",
         chatFlavor: game.i18n.localize( "ED.Chat.Header.arbitraryTest" ),
-      } )
-    ).then(
-      ( roll ) => roll?.toMessage()
-    );
+      } ),
+    ).then( ( roll ) => roll?.toMessage() );
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_RollPrompt-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     id:       "roll-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "roll-prompt", ],
+    classes:  [ "earthdawn4e", "roll-prompt" ],
+    tag:      "form",
     position: {
       width:  "auto",
       height: "auto",
     },
-    window:   {
+    window: {
+      frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
       icon:  `fa-regular ${ED4E.icons.dice}`,
     },
     actions: {
       roll: this._roll,
     },
-    form:    {
+    form: {
       handler:        RollPrompt.#onFormSubmission,
       submitOnChange: true,
+      closeOnSubmit:  false,
     },
   };
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-parts
+   */
   static PARTS = {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
@@ -96,7 +116,8 @@ export default class RollPrompt extends ApplicationEd {
   };
 
   /**
-   * @type {Record<string, ApplicationTab>}
+   * @inheritdoc
+   * @userFunction UF_RollPrompt-tabs
    */
   static TABS = {
     "base-tab": {
@@ -119,6 +140,10 @@ export default class RollPrompt extends ApplicationEd {
     labelPrefix: "ED.Sheet.Tabs",
   };
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-buttons
+   */
   buttons = [
     {
       type:     "button",
@@ -133,10 +158,13 @@ export default class RollPrompt extends ApplicationEd {
       cssClass: "roll",
       icon:     `fa-regular ${ED4E.icons.dice}`,
       action:   "roll",
-    }
+    },
   ];
 
-  /** @inheritDoc */
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-prepareContext
+   */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     return {
@@ -147,11 +175,16 @@ export default class RollPrompt extends ApplicationEd {
     };
   }
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-preparePartContext
+   */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
 
     switch ( partId ) {
-      case "tabs": return this._prepareTabsContext( context, options );
+      case "tabs":
+        return this._prepareTabsContext( context, options );
       case "base-tab":
         break;
       case "other-tab":
@@ -161,11 +194,16 @@ export default class RollPrompt extends ApplicationEd {
     // We only reach it if we're in a tab part
     const tabGroup = "primary";
     context.tab = foundry.utils.deepClone( this.constructor.TABS[partId] );
-    if ( this.tabGroups[tabGroup] === context.tab?.id ) context.tab.cssClass = "active";
+    if ( this.tabGroups[tabGroup] === context.tab?.id )
+      context.tab.cssClass = "active";
 
     return context;
   }
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-prepareTabsContext
+   */
   async _prepareTabsContext( context, options ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
@@ -175,30 +213,56 @@ export default class RollPrompt extends ApplicationEd {
     return context;
   }
 
-  /** @inheritDoc */
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-onRender
+   */
   _onRender( context, options ) {
-    this.element.querySelectorAll( "#karma-input,#devotion-input" ).forEach( element => {
-      element.addEventListener( "change", this._validateAvailableRessource.bind( this ) );
-    } );
+    this.element
+      .querySelectorAll( "#karma-input,#devotion-input" )
+      .forEach( ( element ) => {
+        element.addEventListener(
+          "change",
+          this._validateAvailableRessource.bind( this ),
+        );
+      } );
   }
 
+  /**
+   * @description                 Validate the available resources.
+   * @param {Event} event        The event that triggered the validation.
+   * @userFunction UF_RollPrompt-validateAvailableRessource
+   */
   _validateAvailableRessource( event ) {
     const newValue = event.currentTarget.value;
     const resource = event.currentTarget.dataset.resource;
     if (
-      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary
-      && newValue > this.edRollOptions[resource].available
+      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary &&
+      newValue > this.edRollOptions[resource].available
     ) {
-      ui.notifications.warn( `Localize: Not enough ${resource}. You can use it, but only max available will be deducted from current.` );
+      ui.notifications.warn(
+        `Localize: Not enough ${resource}. You can use it, but only max available will be deducted from current.`,
+      );
     }
   }
 
+  /**
+   * @inheritDoc
+   * @userFunction UF_RollPrompt-onFormSubmission
+   */
   static async #onFormSubmission( event, form, formData ) {
     this.edRollOptions.updateSource( formData.object );
     return this.render( true );
   }
 
-  static async _roll( event, _ ) {
+  /**
+   * @description                Roll the step.
+   * @param {Event} event        The event that triggered the roll.
+   * @param {HTMLElement} target The target element of the event.
+   * @returns {Promise}          The promise of the roll.
+   * @userFunction UF_RollPrompt-roll
+   */
+  static async _roll( event, target ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();

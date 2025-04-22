@@ -1,0 +1,1 @@
+This function is responsible for the dialog to wait until all calculations are resolved.

@@ -1,0 +1,1 @@
+This button triggers the assignment of a talent ot be assigned without a linked discipline.

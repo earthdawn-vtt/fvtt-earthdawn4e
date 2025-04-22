@@ -1,0 +1,1 @@
+This function is responsible for toggling the combat options and triggering the event which sets the related status for the combatant.
