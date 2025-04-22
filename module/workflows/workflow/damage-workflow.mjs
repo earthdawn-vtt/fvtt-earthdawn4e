@@ -109,12 +109,28 @@ export default class DamageWorkflow extends ActorWorkflow {
     this._damageItem = this._options.damageItem ?? this._actor.attributes.str.step;
   }
 
+  // async #createRollOptions() {
+  //   this._rollOptions = DamageRollOptions.fromActor(
+  //     {
+  //       ...this.getCommonDamageRollData(),
+  //       damageItem: this._damageItem?.uuid ?? null,
+  //       chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.Damage", {} )
+  //     },
+  //     this._actor,
+  //   );
+  // }
+
   async #createRollOptions() {
+    const commonRollData = await this.getCommonDamageRollData();
     this._rollOptions = DamageRollOptions.fromActor(
       {
-        ...this.getCommonDamageRollData(),
+        ...commonRollData,
+        step: {
+          ...commonRollData.step,
+          base: await this.calculateDamageStep(), 
+        },
         damageItem: this._damageItem?.uuid ?? null,
-        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.Damage", {} )
+        chatFlavor: game.i18n.format( "TODO.ED.Chat.Flavor.Damage", {} ),
       },
       this._actor,
     );
@@ -160,7 +176,7 @@ export default class DamageWorkflow extends ActorWorkflow {
     const damageStep = await this.calculateDamageStep();
     return {
       step:       {
-        total:      damageStep ?? 0,
+        base:      damageStep ?? 0,
         modifiers: {},
       },
       target:     {
