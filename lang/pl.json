@@ -1,114 +1,2002 @@
 {
   "COMBAT": {
-    "CombatantShowStartRoundPrompt": ""
   },
-  "ED":     {
+  "ED": {
     "ActiveEffect": {
+      "ChangeKeys": {
+        "Groups": {
+          "ability":                           "TODO: Add translation",
+          "action":                            "TODO: Add translation",
+          "armor":                             "TODO: Add translation",
+          "attribute":                         "TODO: Add translation",
+          "attributeStep":                     "TODO: Add translation",
+          "attributeValue":                    "TODO: Add translation",
+          "bloodMagic":                        "TODO: Add translation",
+          "defense":                           "TODO: Add translation",
+          "devotion":                          "TODO: Add translation",
+          "encumbrance":                       "TODO: Add translation",
+          "globalBonuses":                     "TODO: Add translation",
+          "health":                            "TODO: Add translation",
+          "initiative":                        "TODO: Add translation",
+          "karma":                             "TODO: Add translation",
+          "movement":                          "TODO: Add translation",
+          "recoveryTestsResource":             "TODO: Add translation",
+          "rollable":                          "TODO: Add translation",
+          "shield":                            "TODO: Add translation",
+          "singleBonuses":                     "TODO: Add translation",
+          "targeting":                         "TODO: Add translation",
+          "weapon":                            "TODO: Add translation",
+          "weaponRange":                       "TODO: Add translation"
+        }
+      },
+      "Header": {
+        "applyToAbility":                      "TODO: Add translation"
+      },
       "Status": {
-        "attackKnockdown":  "",
-        "attackStun":       "",
-        "calledShot":       "",
-        "coverFull":        "",
-        "coverPartial":     "",
-        "darknessFull":     "",
-        "darknessPartial":  "",
-        "impairedHeavy":    "",
-        "impairedLight":    "",
-        "jumpUp":           "",
-        "setAgainstCharge": "",
-        "shatterShield":    "",
-        "splitMovement":    "",
-        "tailAttack":       ""
-      }
-    },
-    "Chat":         {
-      "Flavor": {
-        "rollInitiative": ""
-      }
-    },
-    "Data":         {
-      "ActiveEffect": {
-        "Hints":  {
-          "level":   "",
-          "primary": ""
-        },
-        "Labels": {
-          "level":   "",
-          "primary": ""
-        }
       },
-      "General":      {
-        "Hints":  {
-          "Combatant": {
-            "increaseAbilities":  "",
-            "keepInitiative":     "",
-            "replacementEffect":  "",
-            "savePromptSettings": ""
-          }
-        },
-        "Labels": {
-          "Combatant": {
-            "increaseAbilities":  "",
-            "keepInitiative":     "",
-            "replacementEffect":  "",
-            "savePromptSettings": ""
-          }
-        }
-      }
+      "Tooltips": {
+        "abilityEdidSelection":                "TODO: Add translation"
+      },
+      "newEffectName":                         "TODO: Add translation"
     },
-    "Dialogs":      {
+    "Actor": {
+      "Abilities":                             "TODO: Add translation",
+      "Attributes": {
+        "attribueStep":                        "TODO: Add translation",
+        "attributeName":                       "TODO: Add translation",
+        "attributeValue":                      "TODO: Add translation",
+        "charisma":                            "TODO: Add translation",
+        "charismaAbbr":                        "TODO: Add translation",
+        "dexterity":                           "TODO: Add translation",
+        "dexterityAbbr":                       "TODO: Add translation",
+        "increase":                            "TODO: Add translation",
+        "perception":                          "TODO: Add translation",
+        "perceptionAbbr":                      "TODO: Add translation",
+        "strength":                            "TODO: Add translation",
+        "strengthAbbr":                        "TODO: Add translation",
+        "toughness":                           "TODO: Add translation",
+        "toughnessAbbr":                       "TODO: Add translation",
+        "willpower":                           "TODO: Add translation",
+        "willpowerAbbr":                       "TODO: Add translation"
+      },
       "Buttons": {
-        "roundStartRollInitiative": ""
+        "deleteItem":                          "TODO: Add translation",
+        "displayItem":                         "TODO: Add translation",
+        "editItem":                            "TODO: Add translation",
+        "halfMagic":                           "TODO: Add translation",
+        "initiative":                          "TODO: Add translation",
+        "jumpUp":                              "TODO: Add translation",
+        "karmaRitual":                         "TODO: Add translation",
+        "knockDownTest":                       "TODO: Add translation",
+        "legendHistory":                       "TODO: Add translation",
+        "recovery":                            "TODO: Add translation",
+        "tailAttack":                          "TODO: Add translation",
+        "takeDamage":                          "TODO: Add translation",
+        "unarmedAttack":                       "TODO: Add translation",
+        "upgrade":                             "TODO: Add translation",
+        "weaponAttack":                        "TODO: Add translation"
       },
-      "Legend":  {
-        "configuration":       "",
-        "initiativeAbilities": ""
+      "Cards": {
+        "chat":                                "TODO: Add translation",
+        "delete":                              "TODO: Add translation",
+        "edit":                                "TODO: Add translation",
+        "knackKarma":                          "TODO: Add translation",
+        "knackManeuver":                       "TODO: Add translation"
       },
-      "Title":   {
-        "startRoundCombatantPrompt": ""
+      "Characteristics": {
+        "currentDamage":                       "TODO: Add translation",
+        "currentRecoveryTestsRecource":        "TODO: Add translation",
+        "dailyrecoveryTestsResource":          "TODO: Add translation",
+        "deathThesholdShort":                  "TODO: Add translation",
+        "maxWounds":                           "TODO: Add translation",
+        "mysticalArmor":                       "TODO: Add translation",
+        "mysticalDefense":                     "TODO: Add translation",
+        "physicalArmor":                       "TODO: Add translation",
+        "physicalDefense":                     "TODO: Add translation",
+        "socialDefense":                       "TODO: Add translation",
+        "unconsciousThresholdShort":           "TODO: Add translation",
+        "walkMovement":                        "TODO: Add translation",
+        "woundsDamage":                        "TODO: Add translation",
+        "woundsThreshold":                     "TODO: Add translation"
+      },
+      "Conditions": {
+        "Encumbrance": {
+          "heavy":                             "TODO: Add translation",
+          "light":                             "TODO: Add translation",
+          "notEncumbered":                     "TODO: Add translation",
+          "tooHeavy":                          "TODO: Add translation"
+        },
+        "aggressiveAttack":                    "TODO: Add translation",
+        "blindsided":                          "TODO: Add translation",
+        "coverFull":                           "TODO: Add translation",
+        "coverPartial":                        "TODO: Add translation",
+        "darknessFull":                        "TODO: Add translation",
+        "darknessPartial":                     "TODO: Add translation",
+        "defensiveStance":                     "TODO: Add translation",
+        "fury":                                "TODO: Add translation",
+        "harried":                             "TODO: Add translation",
+        "impairedMovementFull":                "TODO: Add translation",
+        "impairedMovementPartial":             "TODO: Add translation",
+        "knockedDown":                         "TODO: Add translation",
+        "overwhelmed":                         "TODO: Add translation",
+        "surprised":                           "TODO: Add translation"
+      },
+      "Devotion": {
+        "current":                             "TODO: Add translation",
+        "max":                                 "TODO: Add translation",
+        "step":                                "TODO: Add translation"
+      },
+      "GlobalBonus": {
+        "allActions":                          "TODO: Add translation",
+        "allAttacks":                          "TODO: Add translation",
+        "allCloseAttacks":                     "TODO: Add translation",
+        "allDamage":                           "TODO: Add translation",
+        "allEffects":                          "TODO: Add translation",
+        "allKnockdownTests":                   "TODO: Add translation",
+        "allMeleeDamage":                      "TODO: Add translation",
+        "allRangedAttacks":                    "TODO: Add translation",
+        "allRangedDamage":                     "TODO: Add translation",
+        "allRecoveryTests":                    "TODO: Add translation",
+        "allSpellTests":                       "TODO: Add translation",
+        "allSpellcasting":                     "TODO: Add translation",
+        "allTests":                            "TODO: Add translation"
+      },
+      "Header": {
+        "action":                              "TODO: Add translation",
+        "active":                              "TODO: Add translation",
+        "ammunition":                          "TODO: Add translation",
+        "amount":                              "TODO: Add translation",
+        "armor":                               "TODO: Add translation",
+        "attacks":                             "TODO: Add translation",
+        "attribute":                           "TODO: Add translation",
+        "attributes":                          "TODO: Add translation",
+        "carryingCapacity":                    "TODO: Add translation",
+        "conditions":                          "TODO: Add translation",
+        "controlIcons":                        "TODO: Add translation",
+        "damage":                              "TODO: Add translation",
+        "defaultAttacks":                      "TODO: Add translation",
+        "defenses":                            "TODO: Add translation",
+        "devotion":                            "TODO: Add translation",
+        "disciplines":                         "TODO: Add translation",
+        "duration":                            "TODO: Add translation",
+        "effectsPermanent":                    "TODO: Add translation",
+        "effectsTemporary":                    "TODO: Add translation",
+        "encumbrance":                         "TODO: Add translation",
+        "equipment":                           "TODO: Add translation",
+        "equippedStatus":                      "TODO: Add translation",
+        "extraSuccesses":                      "TODO: Add translation",
+        "healthRating":                        "TODO: Add translation",
+        "inactive":                            "TODO: Add translation",
+        "information":                         "TODO: Add translation",
+        "initiativePenalty":                   "TODO: Add translation",
+        "karma":                               "TODO: Add translation",
+        "languages":                           "TODO: Add translation",
+        "languagesSpoken":                     "TODO: Add translation",
+        "languagesWritten":                    "TODO: Add translation",
+        "legendCurrent":                       "TODO: Add translation",
+        "legendHistory":                       "TODO: Add translation",
+        "legendSpend":                         "TODO: Add translation",
+        "legendStatus":                        "TODO: Add translation",
+        "legendTotal":                         "TODO: Add translation",
+        "maneuvers":                           "TODO: Add translation",
+        "movement":                            "TODO: Add translation",
+        "mysticalArmor":                       "TODO: Add translation",
+        "mysticalDefense":                     "TODO: Add translation",
+        "name":                                "TODO: Add translation",
+        "navigator":                           "TODO: Add translation",
+        "origin":                              "TODO: Add translation",
+        "paths":                               "TODO: Add translation",
+        "physicalArmor":                       "TODO: Add translation",
+        "physicalDefense":                     "TODO: Add translation",
+        "powers":                              "TODO: Add translation",
+        "questor":                             "TODO: Add translation",
+        "range":                               "TODO: Add translation",
+        "rank":                                "TODO: Add translation",
+        "recovery":                            "TODO: Add translation",
+        "shields":                             "TODO: Add translation",
+        "specialAbility":                      "TODO: Add translation",
+        "step":                                "TODO: Add translation",
+        "strain":                              "TODO: Add translation",
+        "talentsDiscipline":                   "TODO: Add translation",
+        "talentsFreeRacial":                   "TODO: Add translation",
+        "talentsOptional":                     "TODO: Add translation",
+        "talentsVersatility":                  "TODO: Add translation",
+        "weapons":                             "TODO: Add translation"
+      },
+      "Karma": {
+        "current":                             "TODO: Add translation",
+        "max":                                 "TODO: Add translation",
+        "step":                                "TODO: Add translation"
+      },
+      "LpTracking": {
+        "Header": {
+          "advancement":                       "TODO: Add translation",
+          "date":                              "TODO: Add translation",
+          "description":                       "TODO: Add translation",
+          "legendPoints":                      "TODO: Add translation",
+          "name":                              "TODO: Add translation",
+          "type":                              "TODO: Add translation"
+        },
+        "Spendings": {
+          "description":                       "TODO: Add translation",
+          "descriptionAbility":                "TODO: Add translation",
+          "descriptionAttribute":              "TODO: Add translation",
+          "descriptionNewlyAdded":             "TODO: Add translation",
+          "knackSourceNotFound":               "TODO: Add translation",
+          "knackSourceNotHighEnough":          "TODO: Add translation",
+          "maxIncreaseReached":                "TODO: Add translation"
+        },
+        "attributeImprovement":                "TODO: Add translation"
+      },
+      "Navigator": {
+        "classes":                             "TODO: Add translation",
+        "configuration":                       "TODO: Add translation",
+        "devotions":                           "TODO: Add translation",
+        "equipment":                           "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "information":                         "TODO: Add translation",
+        "legend":                              "TODO: Add translation",
+        "power":                               "TODO: Add translation",
+        "reputation":                          "TODO: Add translation",
+        "skills":                              "TODO: Add translation",
+        "specials":                            "TODO: Add translation",
+        "spells":                              "TODO: Add translation",
+        "talents":                             "TODO: Add translation"
+      },
+      "Spellcasting": {
+        "elementalist":                        "TODO: Add translation",
+        "illusionist":                         "TODO: Add translation",
+        "matrix":                              "TODO: Add translation",
+        "nethermancer":                        "TODO: Add translation",
+        "shaman":                              "TODO: Add translation",
+        "wizard":                              "TODO: Add translation"
+      },
+      "Tabs": {
+        "Spells": {
+          "all":                               "TODO: Add translation",
+          "matrix":                            "TODO: Add translation"
+        },
+        "classes":                             "TODO: Add translation",
+        "configuration":                       "TODO: Add translation",
+        "description":                         "TODO: Add translation",
+        "devotions":                           "TODO: Add translation",
+        "equipment":                           "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "information":                         "TODO: Add translation",
+        "legend":                              "TODO: Add translation",
+        "notes":                               "TODO: Add translation",
+        "powers":                              "TODO: Add translation",
+        "reputation":                          "TODO: Add translation",
+        "skills":                              "TODO: Add translation",
+        "specials":                            "TODO: Add translation",
+        "spells":                              "TODO: Add translation",
+        "talents":                             "TODO: Add translation"
+      },
+      "Tooltips": {
+        "carried":                             "TODO: Add translation",
+        "damagePhysical":                      "TODO: Add translation",
+        "damageSubdual":                       "TODO: Add translation",
+        "equipped":                            "TODO: Add translation",
+        "equippedArmor":                       "TODO: Add translation",
+        "equippedShield":                      "TODO: Add translation",
+        "extraSuccesses":                      "TODO: Add translation",
+        "karmaAlways":                         "TODO: Add translation",
+        "karmaRitualTooltip":                  "TODO: Add translation",
+        "loaded":                              "TODO: Add translation",
+        "loadedHeavy":                         "TODO: Add translation",
+        "loadedOver":                          "TODO: Add translation",
+        "mainHand":                            "TODO: Add translation",
+        "notEquipped":                         "TODO: Add translation",
+        "offHand":                             "TODO: Add translation",
+        "parentTalent":                        "TODO: Add translation",
+        "standardEffect":                      "TODO: Add translation",
+        "tail":                                "TODO: Add translation",
+        "twoHanded":                           "TODO: Add translation"
+      }
+    },
+    "Advancement": {
+      "Pools": {
+        "class":                               "TODO: Add translation",
+        "free":                                "TODO: Add translation",
+        "namegiver":                           "TODO: Add translation"
+      }
+    },
+    "Chat": {
+      "Button": {
+        "applyDamage":                         "TODO: Add translation",
+        "applyDamageTitle":                    "TODO: Add translation",
+        "applyEffect":                         "TODO: Add translation",
+        "applyEffectTitle":                    "TODO: Add translation",
+        "rollDamage":                          "TODO: Add translation",
+        "rollDamageTitle":                     "TODO: Add translation",
+        "rollEffect":                          "TODO: Add translation",
+        "rollEffectTitle":                     "TODO: Add translation",
+        "takeDamage":                          "TODO: Add translation",
+        "takeDamageTitle":                     "TODO: Add translation"
+      },
+      "Flavor": {
+      },
+      "Header": {
+        "actionTest":                          "TODO: Add translation",
+        "arbitraryTest":                       "TODO: Add translation",
+        "attackManeuvers":                     "TODO: Add translation",
+        "attackReactions":                     "TODO: Add translation",
+        "attackTargets":                       "TODO: Add translation",
+        "effectTest":                          "TODO: Add translation"
+      }
+    },
+    "Config": {
+      "Action": {
+        "free":                                "TODO: Add translation",
+        "none":                                "TODO: Add translation",
+        "simple":                              "TODO: Add translation",
+        "standard":                            "TODO: Add translation",
+        "sustained":                           "TODO: Add translation"
+      },
+      "AmmunitionType": {
+        "arrow":                               "TODO: Add translation",
+        "bolt":                                "TODO: Add translation",
+        "needle":                              "TODO: Add translation",
+        "stone":                               "TODO: Add translation"
+      },
+      "AreaTargets": {
+        "circle":                              "TODO: Add translation",
+        "cone":                                "TODO: Add translation",
+        "cube":                                "TODO: Add translation",
+        "cylinder":                            "TODO: Add translation",
+        "line":                                "TODO: Add translation",
+        "radius":                              "TODO: Add translation",
+        "sphere":                              "TODO: Add translation",
+        "square":                              "TODO: Add translation",
+        "wall":                                "TODO: Add translation"
+      },
+      "Armor": {
+        "mystical":                            "TODO: Add translation",
+        "physical":                            "TODO: Add translation"
+      },
+      "Availability": {
+        "average":                             "TODO: Add translation",
+        "everyday":                            "TODO: Add translation",
+        "rare":                                "TODO: Add translation",
+        "unique":                              "TODO: Add translation",
+        "unusual":                             "TODO: Add translation",
+        "veryRare":                            "TODO: Add translation"
+      },
+      "CombatTypes": {
+        "aerial":                              "TODO: Add translation",
+        "close":                               "TODO: Add translation",
+        "melee":                               "TODO: Add translation",
+        "mounted":                             "TODO: Add translation",
+        "projectile":                          "TODO: Add translation",
+        "ranged":                              "TODO: Add translation",
+        "throwing":                            "TODO: Add translation",
+        "unarmed":                             "TODO: Add translation"
+      },
+      "Constraints": {
+        "ability":                             "TODO: Add translation",
+        "attribute":                           "TODO: Add translation",
+        "class":                               "TODO: Add translation",
+        "language":                            "TODO: Add translation",
+        "namegiver":                           "TODO: Add translation",
+        "relation":                            "TODO: Add translation"
+      },
+      "Defenses": {
+        "highestOfGroup":                      "TODO: Add translation",
+        "highestX":                            "TODO: Add translation",
+        "lowestOfGroup":                       "TODO: Add translation",
+        "lowestX":                             "TODO: Add translation",
+        "mystical":                            "TODO: Add translation",
+        "none":                                "TODO: Add translation",
+        "physical":                            "TODO: Add translation",
+        "social":                              "TODO: Add translation"
+      },
+      "Denomination": {
+        "copper":                              "TODO: Add translation",
+        "gold":                                "TODO: Add translation",
+        "silver":                              "TODO: Add translation"
+      },
+      "Eae": {
+        "DurationTypes": {
+          "combat":                            "TODO: Add translation",
+          "permanent":                         "TODO: Add translation",
+          "realTime":                          "TODO: Add translation",
+          "uses":                              "TODO: Add translation"
+        },
+        "ExecutionTime": {
+          "Groups": {
+            "combat":                          "TODO: Add translation",
+            "round":                           "TODO: Add translation",
+            "turn":                            "TODO: Add translation"
+          },
+          "combatEnd":                         "TODO: Add translation",
+          "combatStart":                       "TODO: Add translation",
+          "roundEnd":                          "TODO: Add translation",
+          "roundStart":                        "TODO: Add translation",
+          "turnEnd":                           "TODO: Add translation",
+          "turnStart":                         "TODO: Add translation"
+        }
+      },
+      "Elements": {
+        "air":                                 "TODO: Add translation",
+        "airElectricity":                      "TODO: Add translation",
+        "earth":                               "TODO: Add translation",
+        "earthMetal":                          "TODO: Add translation",
+        "fire":                                "TODO: Add translation",
+        "water":                               "TODO: Add translation",
+        "waterAcid":                           "TODO: Add translation",
+        "waterCold":                           "TODO: Add translation",
+        "wood":                                "TODO: Add translation"
+      },
+      "Health": {
+        "damageStandard":                      "TODO: Add translation",
+        "damageStun":                          "TODO: Add translation"
+      },
+      "ItemStatus": {
+        "carried":                             "TODO: Add translation",
+        "equipped":                            "TODO: Add translation",
+        "mainHand":                            "TODO: Add translation",
+        "offHand":                             "TODO: Add translation",
+        "owned":                               "TODO: Add translation",
+        "tail":                                "TODO: Add translation",
+        "twoHands":                            "TODO: Add translation"
+      },
+      "LpTracking": {
+        "Validation": {
+          "titleBase":                         "TODO: Add translation",
+          "titleHealth":                       "TODO: Add translation",
+          "titleNewAbilityLp":                 "TODO: Add translation",
+          "titleResources":                    "TODO: Add translation",
+          "titleTalentsRequirement":           "TODO: Add translation"
+        },
+        "freePerCircle":                       "TODO: Add translation",
+        "spendLp":                             "TODO: Add translation",
+        "spendLpPerCircle":                    "TODO: Add translation"
+      },
+      "MovementTypes": {
+        "burrow":                              "TODO: Add translation",
+        "climb":                               "TODO: Add translation",
+        "fly":                                 "TODO: Add translation",
+        "swim":                                "TODO: Add translation",
+        "walk":                                "TODO: Add translation"
+      },
+      "MovementUnits": {
+        "feet":                                "TODO: Add translation",
+        "inch":                                "TODO: Add translation",
+        "mile":                                "TODO: Add translation",
+        "yard":                                "TODO: Add translation"
+      },
+      "PermanentTimePeriods": {
+        "perm":                                "TODO: Add translation"
+      },
+      "PoisonActivation": {
+        "contact":                             "TODO: Add translation",
+        "ingested":                            "TODO: Add translation",
+        "inhaled":                             "TODO: Add translation",
+        "injury":                              "TODO: Add translation",
+        "wound":                               "TODO: Add translation"
+      },
+      "RangeTypes": {
+        "any":                                 "TODO: Add translation",
+        "self":                                "TODO: Add translation",
+        "special":                             "TODO: Add translation",
+        "touch":                               "TODO: Add translation"
+      },
+      "RecoveryProperty": {
+        "abilityStep":                         "TODO: Add translation",
+        "arbitrary":                           "TODO: Add translation",
+        "arbitraryAndAttribute":               "TODO: Add translation",
+        "arbitraryOptionalAttribute":          "TODO: Add translation",
+        "noHealing":                           "TODO: Add translation",
+        "noRecovery":                          "TODO: Add translation"
+      },
+      "ScalarTimePeriods": {
+        "day":                                 "TODO: Add translation",
+        "hour":                                "TODO: Add translation",
+        "minute":                              "TODO: Add translation",
+        "month":                               "TODO: Add translation",
+        "round":                               "TODO: Add translation",
+        "turn":                                "TODO: Add translation",
+        "week":                                "TODO: Add translation",
+        "year":                                "TODO: Add translation"
+      },
+      "Skills": {
+        "artisan":                             "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "knowledge":                           "TODO: Add translation"
+      },
+      "SpecialTimePeriods": {
+        "inst":                                "TODO: Add translation",
+        "special":                             "TODO: Add translation"
+      },
+      "SpellEnhancements": {
+        "area":                                "TODO: Add translation",
+        "duration":                            "TODO: Add translation",
+        "effect":                              "TODO: Add translation",
+        "range":                               "TODO: Add translation",
+        "section":                             "TODO: Add translation",
+        "special":                             "TODO: Add translation",
+        "target":                              "TODO: Add translation"
+      },
+      "SpellKeywords": {
+        "binding":                             "TODO: Add translation",
+        "concentration":                       "TODO: Add translation",
+        "fate":                                "TODO: Add translation",
+        "figment":                             "TODO: Add translation",
+        "illusion":                            "TODO: Add translation",
+        "pack":                                "TODO: Add translation",
+        "spirit":                              "TODO: Add translation",
+        "summon":                              "TODO: Add translation"
+      },
+      "Tier": {
+        "journeyman":                          "TODO: Add translation",
+        "master":                              "TODO: Add translation",
+        "novice":                              "TODO: Add translation",
+        "warden":                              "TODO: Add translation"
+      },
+      "WeaponSubType": {
+        "axe":                                 "TODO: Add translation",
+        "blade":                               "TODO: Add translation",
+        "bola":                                "TODO: Add translation",
+        "bow":                                 "TODO: Add translation",
+        "club":                                "TODO: Add translation",
+        "crossbow":                            "TODO: Add translation",
+        "dagger":                              "TODO: Add translation",
+        "dart":                                "TODO: Add translation",
+        "hawkHatchet":                         "TODO: Add translation",
+        "net":                                 "TODO: Add translation",
+        "polearm":                             "TODO: Add translation",
+        "spear":                               "TODO: Add translation",
+        "staff":                               "TODO: Add translation",
+        "sword":                               "TODO: Add translation"
+      },
+      "WeaponType": {
+        "melee":                               "TODO: Add translation",
+        "missile":                             "TODO: Add translation",
+        "thrown":                              "TODO: Add translation",
+        "unarmed":                             "TODO: Add translation"
+      },
+      "curseType": {
+        "horror":                              "TODO: Add translation",
+        "major":                               "TODO: Add translation",
+        "minor":                               "TODO: Add translation"
+      },
+      "groupDifficulty": {
+        "highestOfGroup":                      "TODO: Add translation",
+        "highestX":                            "TODO: Add translation",
+        "lowestOfGroup":                       "TODO: Add translation",
+        "lowestX":                             "TODO: Add translation"
+      },
+      "rollTypes": {
+        "ability":                             "TODO: Add translation",
+        "attack":                              "TODO: Add translation",
+        "attribute":                           "TODO: Add translation",
+        "effect":                              "TODO: Add translation",
+        "halfmagic":                           "TODO: Add translation",
+        "initiative":                          "TODO: Add translation",
+        "jumpUp":                              "TODO: Add translation",
+        "knockDown":                           "TODO: Add translation",
+        "reaction":                            "TODO: Add translation",
+        "recovery":                            "TODO: Add translation",
+        "spellcasting":                        "TODO: Add translation",
+        "threadWeaving":                       "TODO: Add translation"
+      },
+      "spellcastingTypes": {
+        "elementalism":                        "TODO: Add translation",
+        "illusionism":                         "TODO: Add translation",
+        "nethermancy":                         "TODO: Add translation",
+        "shamanism":                           "TODO: Add translation",
+        "wizardry":                            "TODO: Add translation"
+      },
+      "talentCategory": {
+        "discipline":                          "TODO: Add translation",
+        "free":                                "TODO: Add translation",
+        "optional":                            "TODO: Add translation",
+        "versatility":                         "TODO: Add translation"
+      },
+      "targetDifficulty": {
+        "mystical":                            "TODO: Add translation",
+        "physical":                            "TODO: Add translation",
+        "social":                              "TODO: Add translation"
+      }
+    },
+    "Data": {
+      "ActiveEffect": {
+        "Hints": {
+        },
+        "Labels": {
+        }
+      },
+      "Actor": {
+        "Hints": {
+          "Characteristics": {
+            "armor":                           "TODO: Add translation",
+            "armorValue":                      "TODO: Add translation",
+            "bloodMagic":                      "TODO: Add translation",
+            "bloodMagicDamage":                "TODO: Add translation",
+            "bloodMagicWounds":                "TODO: Add translation",
+            "damage":                          "TODO: Add translation",
+            "damageStandard":                  "TODO: Add translation",
+            "damageStun":                      "TODO: Add translation",
+            "damageTotal":                     "TODO: Add translation",
+            "deathRating":                     "TODO: Add translation",
+            "defenseValue":                    "TODO: Add translation",
+            "defenses":                        "TODO: Add translation",
+            "health":                          "TODO: Add translation",
+            "maxWounds":                       "TODO: Add translation",
+            "recoveryTestStep":                "TODO: Add translation",
+            "recoveryTestsCurrent":            "TODO: Add translation",
+            "recoveryTestsMax":                "TODO: Add translation",
+            "recoveryTestsResource":           "TODO: Add translation",
+            "stunRecoveryAvailable":           "TODO: Add translation",
+            "unconsciousRate":                 "TODO: Add translation",
+            "woundThreshold":                  "TODO: Add translation",
+            "wounds":                          "TODO: Add translation"
+          },
+          "attributeValue":                    "TODO: Add translation",
+          "attributes":                        "TODO: Add translation",
+          "challenge":                         "TODO: Add translation",
+          "challengeRate":                     "TODO: Add translation",
+          "characteristics":                   "TODO: Add translation",
+          "description":                       "TODO: Add translation",
+          "descriptionValue":                  "TODO: Add translation",
+          "devotion":                          "TODO: Add translation",
+          "devotionMax":                       "TODO: Add translation",
+          "devotionStep":                      "TODO: Add translation",
+          "durabilityBonus":                   "TODO: Add translation",
+          "encumbrance":                       "TODO: Add translation",
+          "encumbranceBonus":                  "TODO: Add translation",
+          "encumbranceMax":                    "TODO: Add translation",
+          "globalBonuses":                     "TODO: Add translation",
+          "healthRate":                        "TODO: Add translation",
+          "initiative":                        "TODO: Add translation",
+          "isMob":                             "TODO: Add translation",
+          "karma":                             "TODO: Add translation",
+          "karmaMax":                          "TODO: Add translation",
+          "karmaStep":                         "TODO: Add translation",
+          "singleBonuses":                     "TODO: Add translation"
+        },
+        "Labels": {
+          "Characteristics": {
+            "armor":                           "TODO: Add translation",
+            "armorValue":                      "TODO: Add translation",
+            "bloodMagic":                      "TODO: Add translation",
+            "bloodMagicDamage":                "TODO: Add translation",
+            "bloodMagicWounds":                "TODO: Add translation",
+            "damage":                          "TODO: Add translation",
+            "damageStandard":                  "TODO: Add translation",
+            "damageStun":                      "TODO: Add translation",
+            "damageTotal":                     "TODO: Add translation",
+            "deathRating":                     "TODO: Add translation",
+            "defenseValue":                    "TODO: Add translation",
+            "defenses":                        "TODO: Add translation",
+            "health":                          "TODO: Add translation",
+            "maxWounds":                       "TODO: Add translation",
+            "recoveryTestStep":                "TODO: Add translation",
+            "recoveryTestsCurrent":            "TODO: Add translation",
+            "recoveryTestsMax":                "TODO: Add translation",
+            "recoveryTestsResource":           "TODO: Add translation",
+            "stunRecoveryAvailable":           "TODO: Add translation",
+            "unconsciousRate":                 "TODO: Add translation",
+            "woundThreshold":                  "TODO: Add translation",
+            "wounds":                          "TODO: Add translation"
+          },
+          "attributeValue":                    "TODO: Add translation",
+          "attributes":                        "TODO: Add translation",
+          "challenge":                         "TODO: Add translation",
+          "challengeRate":                     "TODO: Add translation",
+          "characteristics":                   "TODO: Add translation",
+          "description":                       "TODO: Add translation",
+          "descriptionValue":                  "TODO: Add translation",
+          "devotion":                          "TODO: Add translation",
+          "devotionMax":                       "TODO: Add translation",
+          "devotionStep":                      "TODO: Add translation",
+          "durabilityBonus":                   "TODO: Add translation",
+          "encumbrance":                       "TODO: Add translation",
+          "encumbranceBonus":                  "TODO: Add translation",
+          "encumbranceMax":                    "TODO: Add translation",
+          "globalBonuses":                     "TODO: Add translation",
+          "healthRate":                        "TODO: Add translation",
+          "initiative":                        "TODO: Add translation",
+          "isMob":                             "TODO: Add translation",
+          "karma":                             "TODO: Add translation",
+          "karmaMax":                          "TODO: Add translation",
+          "karmaStep":                         "TODO: Add translation",
+          "singleBonuses":                     "TODO: Add translation"
+        }
+      },
+      "Fields": {
+        "Labels": {
+          "SpellEnhancement": {
+            "special":                         "TODO: Add translation",
+            "type":                            "TODO: Add translation",
+            "unit":                            "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          }
+        },
+        "Options": {
+          "Duration": {
+            "groupPermanentTime":              "TODO: Add translation",
+            "groupScalarTime":                 "TODO: Add translation"
+          },
+          "Range": {
+            "groupMovementUnits":              "TODO: Add translation"
+          }
+        },
+        "Tooltips": {
+          "edid":                              "TODO: Add translation"
+        }
+      },
+      "General": {
+        "Hints": {
+          "Combatant": {
+          },
+          "Knack": {
+            "lpCost":                          "TODO: Add translation"
+          },
+          "Knacks": {
+            "requirements":                    "TODO: Add translation",
+            "restrictions":                    "TODO: Add translation"
+          },
+          "Rollable": {
+            "type":                            "TODO: Add translation"
+          },
+          "Target": {
+            "fixed":                           "TODO: Add translation",
+            "group":                           "TODO: Add translation",
+            "target":                          "TODO: Add translation"
+          }
+        },
+        "Labels": {
+          "Combatant": {
+          },
+          "Knack": {
+            "requirements":                    "TODO: Add translation",
+            "restrictions":                    "TODO: Add translation"
+          },
+          "Rollable": {
+            "type":                            "TODO: Add translation"
+          },
+          "Target": {
+            "fixed":                           "TODO: Add translation",
+            "group":                           "TODO: Add translation",
+            "target":                          "TODO: Add translation"
+          }
+        }
+      },
+      "Item": {
+        "Fields": {
+          "dispelDifficulty":                  "TODO: Add translation"
+        },
+        "Hints": {
+          "Ability": {
+            "Magic": {
+              "magic":                         "TODO: Add translation",
+              "magicType":                     "TODO: Add translation",
+              "spellcasting":                  "TODO: Add translation",
+              "talentMagic":                   "TODO: Add translation",
+              "talentMagicType":               "TODO: Add translation",
+              "talentSpellcasting":            "TODO: Add translation",
+              "talentThreadWeaving":           "TODO: Add translation",
+              "threadWeaving":                 "TODO: Add translation"
+            },
+            "RollTypeDetails": {
+              "Attack": {
+                "weaponItemStatus":            "TODO: Add translation",
+                "weaponType":                  "TODO: Add translation"
+              },
+              "Reaction": {
+                "defenseType":                 "TODO: Add translation"
+              },
+              "attack":                        "TODO: Add translation",
+              "reaction":                      "TODO: Add translation"
+            },
+            "Source": {
+              "atLevel":                       "TODO: Add translation",
+              "class":                         "TODO: Add translation"
+            },
+            "attribute":                       "TODO: Add translation",
+            "class":                           "TODO: Add translation",
+            "devotionRequired":                "TODO: Add translation",
+            "durability":                      "TODO: Add translation",
+            "rank":                            "TODO: Add translation",
+            "rollTypeDetails":                 "TODO: Add translation",
+            "skillType":                       "TODO: Add translation",
+            "talentAvailableKnacks":           "TODO: Add translation",
+            "talentCategory":                  "TODO: Add translation",
+            "talentKnacks":                    "TODO: Add translation",
+            "talentKnacksAvailable":           "TODO: Add translation",
+            "talentKnacksLearned":             "TODO: Add translation",
+            "talentLearnedKnacks":             "TODO: Add translation",
+            "tier":                            "TODO: Add translation",
+            "type":                            "TODO: Add translation"
+          },
+          "Action": {
+            "action":                          "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Armor": {
+            "forgeBonusMystical":              "TODO: Add translation",
+            "forgeBonusPhysical":              "TODO: Add translation",
+            "initiativePenalty":               "TODO: Add translation",
+            "living":                          "TODO: Add translation",
+            "mysticalArmor":                   "TODO: Add translation",
+            "physicalArmor":                   "TODO: Add translation",
+            "piecemealArmor":                  "TODO: Add translation",
+            "piecemealArmorSize":              "TODO: Add translation"
+          },
+          "Class": {
+            "bloodMagicDamage":                "TODO: Add translation",
+            "durability":                      "TODO: Add translation",
+            "level":                           "TODO: Add translation",
+            "order":                           "TODO: Add translation",
+            "sourceDiscipline":                "TODO: Add translation",
+            "spellcasting":                    "TODO: Add translation"
+          },
+          "Curse": {
+            "curseActive":                     "TODO: Add translation",
+            "curseDetected":                   "TODO: Add translation",
+            "curseType":                       "TODO: Add translation",
+            "step":                            "TODO: Add translation"
+          },
+          "Equipment": {
+            "ammunition":                      "TODO: Add translation",
+            "bundleSize":                      "TODO: Add translation",
+            "consumable":                      "TODO: Add translation"
+          },
+          "Knack": {
+            "isPathKnack":                     "TODO: Add translation",
+            "lpCost":                          "TODO: Add translation",
+            "minLevel":                        "TODO: Add translation",
+            "sourceTalent":                    "TODO: Add translation",
+            "standardEffect":                  "TODO: Add translation"
+          },
+          "Maneuver": {
+            "extraSuccesses":                  "TODO: Add translation"
+          },
+          "Namegiver": {
+            "WeaponSize": {
+              "oneHandedmax":                  "TODO: Add translation",
+              "oneHandedmin":                  "TODO: Add translation",
+              "twoHandedmax":                  "TODO: Add translation",
+              "twoHandedmin":                  "TODO: Add translation"
+            },
+            "karmaModifier":                   "TODO: Add translation",
+            "livingArmorOnly":                 "TODO: Add translation",
+            "tail":                            "TODO: Add translation",
+            "weightMultiplier":                "TODO: Add translation"
+          },
+          "PhysicalItems": {
+            "Price": {
+              "denomination":                  "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "ThreadItem": {
+              "Deed": {
+                "description":                 "TODO: Add translation",
+                "isCompleted":                 "TODO: Add translation",
+                "isRequired":                  "TODO: Add translation"
+              },
+              "KeyKnowledge": {
+                "answer":                      "TODO: Add translation",
+                "isRequired":                  "TODO: Add translation",
+                "isknown":                     "TODO: Add translation",
+                "question":                    "TODO: Add translation"
+              },
+              "activeEffect":                  "TODO: Add translation",
+              "effect":                        "TODO: Add translation",
+              "enchantmentPattern":            "TODO: Add translation",
+              "identifier":                    "TODO: Add translation",
+              "isActive":                      "TODO: Add translation",
+              "isAnalysed":                    "TODO: Add translation",
+              "isIdentified":                  "TODO: Add translation",
+              "isLevelAnalysed":               "TODO: Add translation",
+              "level":                         "TODO: Add translation",
+              "maxThreads":                    "TODO: Add translation",
+              "mysticalDefense":               "TODO: Add translation",
+              "tier":                          "TODO: Add translation"
+            },
+            "UsableItem": {
+              "action":                        "TODO: Add translation",
+              "arbitraryStep":                 "TODO: Add translation",
+              "recoveryPropertyValue":         "TODO: Add translation",
+              "selector":                      "TODO: Add translation"
+            },
+            "Weight": {
+              "calculated":                    "TODO: Add translation",
+              "multiplier":                    "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "action":                          "TODO: Add translation",
+            "amount":                          "TODO: Add translation",
+            "arbitraryStep":                   "TODO: Add translation",
+            "availability":                    "TODO: Add translation",
+            "bloodMagicDamage":                "TODO: Add translation",
+            "itemStatus":                      "TODO: Add translation",
+            "price":                           "TODO: Add translation",
+            "usableItem":                      "TODO: Add translation",
+            "value":                           "TODO: Add translation",
+            "weight":                          "TODO: Add translation"
+          },
+          "PoisonDisease": {
+            "activation":                      "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "death":                           "TODO: Add translation",
+            "debilitationStep":                "TODO: Add translation",
+            "duration":                        "TODO: Add translation",
+            "effect":                          "TODO: Add translation",
+            "interval":                        "TODO: Add translation",
+            "onsetTime":                       "TODO: Add translation",
+            "paralysisStep":                   "TODO: Add translation",
+            "timeInBetween":                   "TODO: Add translation",
+            "totalEffects":                    "TODO: Add translation"
+          },
+          "Power": {
+            "action":                          "TODO: Add translation",
+            "armorType":                       "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "damageType":                      "TODO: Add translation",
+            "elementSubtype":                  "TODO: Add translation",
+            "elementType":                     "TODO: Add translation",
+            "powerStep":                       "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Powers": {
+            "action":                          "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "powerStep":                       "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Questor": {
+            "questorDevotion":                 "TODO: Add translation"
+          },
+          "Shields": {
+            "bowUsage":                        "TODO: Add translation",
+            "broken":                          "TODO: Add translation",
+            "defenseBonusMystical":            "TODO: Add translation",
+            "defenseBonusPhysical":            "TODO: Add translation",
+            "initiativePenalty":               "TODO: Add translation",
+            "livingArmor":                     "TODO: Add translation",
+            "shatterThreshold":                "TODO: Add translation"
+          },
+          "ShipWeapon": {
+            "characterDamage":                 "TODO: Add translation",
+            "crewWeapon":                      "TODO: Add translation",
+            "firePowerPoints":                 "TODO: Add translation",
+            "rangeLong":                       "TODO: Add translation",
+            "rangeShort":                      "TODO: Add translation",
+            "salvoCost":                       "TODO: Add translation"
+          },
+          "Spell": {
+            "area":                            "TODO: Add translation",
+            "binding":                         "TODO: Add translation",
+            "circle":                          "TODO: Add translation",
+            "concentration":                   "TODO: Add translation",
+            "duration": {
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "effect":                          "TODO: Add translation",
+            "elementSubtype":                  "TODO: Add translation",
+            "elementType":                     "TODO: Add translation",
+            "extraSuccess":                    "TODO: Add translation",
+            "extraSuccesses":                  "TODO: Add translation",
+            "extraThreadOption":               "TODO: Add translation",
+            "extraThreads":                    "TODO: Add translation",
+            "illusionType":                    "TODO: Add translation",
+            "keyword":                         "TODO: Add translation",
+            "keywords":                        "TODO: Add translation",
+            "level":                           "TODO: Add translation",
+            "magicType":                       "TODO: Add translation",
+            "range": {
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "reattuneDifficulty":              "TODO: Add translation",
+            "reattunedifficulty":              "TODO: Add translation",
+            "resist":                          "TODO: Add translation",
+            "sensingDifficulty":               "TODO: Add translation",
+            "spellArea": {
+              "shape":                         "TODO: Add translation",
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "spellElement":                    "TODO: Add translation",
+            "spellElementSubtype":             "TODO: Add translation",
+            "spellElementType":                "TODO: Add translation",
+            "spellIllustion":                  "TODO: Add translation",
+            "spellThreadsRequired":            "TODO: Add translation",
+            "spellThreadsWoven":               "TODO: Add translation",
+            "spellcastingType":                "TODO: Add translation",
+            "spirit":                          "TODO: Add translation",
+            "summoning":                       "TODO: Add translation",
+            "threadsrequired":                 "TODO: Add translation",
+            "weavingDifficulty":               "TODO: Add translation",
+            "weavingdifficulty":               "TODO: Add translation"
+          },
+          "Weapons": {
+            "ammunitionType":                  "TODO: Add translation",
+            "armorType":                       "TODO: Add translation",
+            "damageAttribute":                 "TODO: Add translation",
+            "damageBaseStep":                  "TODO: Add translation",
+            "damageType":                      "TODO: Add translation",
+            "dexterityMinimum":                "TODO: Add translation",
+            "forgeBonus":                      "TODO: Add translation",
+            "rangeLongMax":                    "TODO: Add translation",
+            "rangeLongMin":                    "TODO: Add translation",
+            "rangeShortMax":                   "TODO: Add translation",
+            "rangeShortMin":                   "TODO: Add translation",
+            "size":                            "TODO: Add translation",
+            "strengthMinimum":                 "TODO: Add translation",
+            "weaponSubType":                   "TODO: Add translation",
+            "weaponType":                      "TODO: Add translation",
+            "wieldingType":                    "TODO: Add translation"
+          },
+          "edid":                              "TODO: Add translation"
+        },
+        "Labels": {
+          "Ability": {
+            "Magic": {
+              "magic":                         "TODO: Add translation",
+              "magicType":                     "TODO: Add translation",
+              "spellcasting":                  "TODO: Add translation",
+              "talentMagic":                   "TODO: Add translation",
+              "talentMagicType":               "TODO: Add translation",
+              "talentSpellcasting":            "TODO: Add translation",
+              "talentThreadWeaving":           "TODO: Add translation",
+              "threadWeaving":                 "TODO: Add translation"
+            },
+            "RollTypeDetails": {
+              "Attack": {
+                "weaponItemStatus":            "TODO: Add translation",
+                "weaponType":                  "TODO: Add translation"
+              },
+              "Reaction": {
+                "defenseType":                 "TODO: Add translation"
+              },
+              "ability":                       "TODO: Add translation",
+              "attack":                        "TODO: Add translation",
+              "damage":                        "TODO: Add translation",
+              "effect":                        "TODO: Add translation",
+              "initiative":                    "TODO: Add translation",
+              "reaction":                      "TODO: Add translation",
+              "recovery":                      "TODO: Add translation",
+              "spellcasting":                  "TODO: Add translation",
+              "threadWeaving":                 "TODO: Add translation"
+            },
+            "Source": {
+              "atLevel":                       "TODO: Add translation",
+              "class":                         "TODO: Add translation"
+            },
+            "attribute":                       "TODO: Add translation",
+            "devotionRequired":                "TODO: Add translation",
+            "durability":                      "TODO: Add translation",
+            "rank":                            "TODO: Add translation",
+            "rollTypeDetails":                 "TODO: Add translation",
+            "skillType":                       "TODO: Add translation",
+            "talentAvailableKnacks":           "TODO: Add translation",
+            "talentCategory":                  "TODO: Add translation",
+            "talentKnacks":                    "TODO: Add translation",
+            "talentKnacksAvailable":           "TODO: Add translation",
+            "talentKnacksLearned":             "TODO: Add translation",
+            "talentLearnedKnacks":             "TODO: Add translation",
+            "tier":                            "TODO: Add translation",
+            "type":                            "TODO: Add translation"
+          },
+          "Action": {
+            "action":                          "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Armor": {
+            "forgeBonusMystical":              "TODO: Add translation",
+            "forgeBonusPhysical":              "TODO: Add translation",
+            "initiativePenalty":               "TODO: Add translation",
+            "living":                          "TODO: Add translation",
+            "mysticalArmor":                   "TODO: Add translation",
+            "physicalArmor":                   "TODO: Add translation",
+            "piecemealArmor":                  "TODO: Add translation",
+            "piecemealArmorSize":              "TODO: Add translation"
+          },
+          "Class": {
+            "bloodMagicDamage":                "TODO: Add translation",
+            "durability":                      "TODO: Add translation",
+            "level":                           "TODO: Add translation",
+            "order":                           "TODO: Add translation",
+            "sourceDiscipline":                "TODO: Add translation",
+            "spellcasting":                    "TODO: Add translation"
+          },
+          "Curse": {
+            "curseActive":                     "TODO: Add translation",
+            "curseDetected":                   "TODO: Add translation",
+            "curseType":                       "TODO: Add translation",
+            "step":                            "TODO: Add translation"
+          },
+          "Equipment": {
+            "ammunition":                      "TODO: Add translation",
+            "bundleSize":                      "TODO: Add translation",
+            "consumable":                      "TODO: Add translation"
+          },
+          "Knack": {
+            "isPathKnack":                     "TODO: Add translation",
+            "lpCost":                          "TODO: Add translation",
+            "minLevel":                        "TODO: Add translation",
+            "sourceTalent":                    "TODO: Add translation",
+            "standardEffect":                  "TODO: Add translation"
+          },
+          "Maneuver": {
+            "extraSuccesses":                  "TODO: Add translation"
+          },
+          "Namegiver": {
+            "WeaponSize": {
+              "oneHandedmax":                  "TODO: Add translation",
+              "oneHandedmin":                  "TODO: Add translation",
+              "twoHandedmax":                  "TODO: Add translation",
+              "twoHandedmin":                  "TODO: Add translation"
+            },
+            "abilities":                       "TODO: Add translation",
+            "karmaModifier":                   "TODO: Add translation",
+            "livingArmorOnly":                 "TODO: Add translation",
+            "tail":                            "TODO: Add translation",
+            "weightMultiplier":                "TODO: Add translation"
+          },
+          "PhysicalItems": {
+            "Price": {
+              "denomination":                  "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "ThreadItem": {
+              "Deed": {
+                "description":                 "TODO: Add translation",
+                "isCompleted":                 "TODO: Add translation",
+                "isRequired":                  "TODO: Add translation"
+              },
+              "KeyKnowledge": {
+                "answer":                      "TODO: Add translation",
+                "isRequired":                  "TODO: Add translation",
+                "isknown":                     "TODO: Add translation",
+                "question":                    "TODO: Add translation"
+              },
+              "activeEffect":                  "TODO: Add translation",
+              "effect":                        "TODO: Add translation",
+              "enchantmentPattern":            "TODO: Add translation",
+              "identifier":                    "TODO: Add translation",
+              "isActive":                      "TODO: Add translation",
+              "isAnalysed":                    "TODO: Add translation",
+              "isIdentified":                  "TODO: Add translation",
+              "isLevelAnalysed":               "TODO: Add translation",
+              "level":                         "TODO: Add translation",
+              "maxThreads":                    "TODO: Add translation",
+              "mysticalDefense":               "TODO: Add translation",
+              "tier":                          "TODO: Add translation"
+            },
+            "UsableItem": {
+              "action":                        "TODO: Add translation",
+              "arbitraryStep":                 "TODO: Add translation",
+              "recoveryPropertyValue":         "TODO: Add translation",
+              "selector":                      "TODO: Add translation"
+            },
+            "Weight": {
+              "calculated":                    "TODO: Add translation",
+              "multiplier":                    "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "amount":                          "TODO: Add translation",
+            "availability":                    "TODO: Add translation",
+            "bloodMagicDamage":                "TODO: Add translation",
+            "itemStatus":                      "TODO: Add translation",
+            "price":                           "TODO: Add translation",
+            "usableItem":                      "TODO: Add translation",
+            "value":                           "TODO: Add translation",
+            "weight":                          "TODO: Add translation"
+          },
+          "PoisonDisease": {
+            "activation":                      "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "death":                           "TODO: Add translation",
+            "debilitationStep":                "TODO: Add translation",
+            "duration":                        "TODO: Add translation",
+            "effect":                          "TODO: Add translation",
+            "interval":                        "TODO: Add translation",
+            "onsetTime":                       "TODO: Add translation",
+            "paralysisStep":                   "TODO: Add translation",
+            "timeInBetween":                   "TODO: Add translation",
+            "totalEffects":                    "TODO: Add translation"
+          },
+          "Power": {
+            "action":                          "TODO: Add translation",
+            "armorType":                       "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "damageType":                      "TODO: Add translation",
+            "elementSubtype":                  "TODO: Add translation",
+            "elementType":                     "TODO: Add translation",
+            "powerElementSubtype":             "TODO: Add translation",
+            "powerElementType":                "TODO: Add translation",
+            "powerStep":                       "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Powers": {
+            "action":                          "TODO: Add translation",
+            "damageStep":                      "TODO: Add translation",
+            "powerStep":                       "TODO: Add translation",
+            "strain":                          "TODO: Add translation"
+          },
+          "Questor": {
+            "questorDevotion":                 "TODO: Add translation"
+          },
+          "Shields": {
+            "bowUsage":                        "TODO: Add translation",
+            "broken":                          "TODO: Add translation",
+            "defenseBonusMystical":            "TODO: Add translation",
+            "defenseBonusPhysical":            "TODO: Add translation",
+            "initiativePenalty":               "TODO: Add translation",
+            "livingArmor":                     "TODO: Add translation",
+            "shatterThreshold":                "TODO: Add translation"
+          },
+          "ShipWeapon": {
+            "characterDamage":                 "TODO: Add translation",
+            "crewWeapon":                      "TODO: Add translation",
+            "firePowerPoints":                 "TODO: Add translation",
+            "rangeLong":                       "TODO: Add translation",
+            "rangeShort":                      "TODO: Add translation",
+            "salvoCost":                       "TODO: Add translation"
+          },
+          "Spell": {
+            "Duration": {
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "Range": {
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "area":                            "TODO: Add translation",
+            "binding":                         "TODO: Add translation",
+            "circle":                          "TODO: Add translation",
+            "concentration":                   "TODO: Add translation",
+            "duration":                        "TODO: Add translation",
+            "effect":                          "TODO: Add translation",
+            "elementSubtype":                  "TODO: Add translation",
+            "elementType":                     "TODO: Add translation",
+            "extraSuccess":                    "TODO: Add translation",
+            "extraSuccesses":                  "TODO: Add translation",
+            "extraThreadOption":               "TODO: Add translation",
+            "extraThreads":                    "TODO: Add translation",
+            "illusionType":                    "TODO: Add translation",
+            "keyword":                         "TODO: Add translation",
+            "keywords":                        "TODO: Add translation",
+            "level":                           "TODO: Add translation",
+            "magicType":                       "TODO: Add translation",
+            "range":                           "TODO: Add translation",
+            "reattuneDifficulty":              "TODO: Add translation",
+            "resist":                          "TODO: Add translation",
+            "sensingDifficulty":               "TODO: Add translation",
+            "spellArea": {
+              "shape":                         "TODO: Add translation",
+              "uom":                           "TODO: Add translation",
+              "value":                         "TODO: Add translation"
+            },
+            "spellElement":                    "TODO: Add translation",
+            "spellElementSubtype":             "TODO: Add translation",
+            "spellElementType":                "TODO: Add translation",
+            "spellIllustion":                  "TODO: Add translation",
+            "spellThreadsRequired":            "TODO: Add translation",
+            "spellThreadsWoven":               "TODO: Add translation",
+            "spellcastingType":                "TODO: Add translation",
+            "spirit":                          "TODO: Add translation",
+            "summoning":                       "TODO: Add translation",
+            "threadsrequired":                 "TODO: Add translation",
+            "weavingDifficulty":               "TODO: Add translation"
+          },
+          "Weapons": {
+            "ammunitionType":                  "TODO: Add translation",
+            "armorType":                       "TODO: Add translation",
+            "damageAttribute":                 "TODO: Add translation",
+            "damageBaseStep":                  "TODO: Add translation",
+            "damageType":                      "TODO: Add translation",
+            "dexterityMinimum":                "TODO: Add translation",
+            "forgeBonus":                      "TODO: Add translation",
+            "rangeLongMax":                    "TODO: Add translation",
+            "rangeLongMin":                    "TODO: Add translation",
+            "rangeShortMax":                   "TODO: Add translation",
+            "rangeShortMin":                   "TODO: Add translation",
+            "size":                            "TODO: Add translation",
+            "strengthMinimum":                 "TODO: Add translation",
+            "weaponSubType":                   "TODO: Add translation",
+            "weaponType":                      "TODO: Add translation",
+            "wieldingType":                    "TODO: Add translation"
+          },
+          "edid":                              "TODO: Add translation"
+        },
+        "Spell": {
+          "FIELDS": {
+            "spellcastingType": {
+              "hint":                          "TODO: Add translation",
+              "label":                         "TODO: Add translation"
+            }
+          }
+        }
+      },
+      "Journal": {
+        "Hints":                               "TODO: Add translation",
+        "Labels":                              "TODO: Add translation"
+      },
+      "Other": {
+        "Hints": {
+          "AbilityConstraint": {
+            "ability":                         "TODO: Add translation",
+            "rank":                            "TODO: Add translation"
+          },
+          "AreaUnit": {
+            "angle":                           "TODO: Add translation",
+            "areaTyp":                         "TODO: Add translation",
+            "count":                           "TODO: Add translation",
+            "height":                          "TODO: Add translation",
+            "length":                          "TODO: Add translation",
+            "radius":                          "TODO: Add translation",
+            "thickness":                       "TODO: Add translation",
+            "unit":                            "TODO: Add translation",
+            "width":                           "TODO: Add translation"
+          },
+          "AttributeConstraint": {
+            "attribute":                       "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "BaseUnit": {
+            "special":                         "TODO: Add translation",
+            "type":                            "TODO: Add translation",
+            "unit":                            "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "ClassConstraint": {
+            "class":                           "TODO: Add translation",
+            "level":                           "TODO: Add translation"
+          },
+          "DurationUnit": {
+            "unit":                            "TODO: Add translation"
+          },
+          "EAEChangeData": {
+            "abilityUuid":                     "TODO: Add translation",
+            "key":                             "TODO: Add translation",
+            "mode":                            "TODO: Add translation",
+            "priority":                        "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "EAEDurationData": {
+            "combat":                          "TODO: Add translation",
+            "rounds":                          "TODO: Add translation",
+            "seconds":                         "TODO: Add translation",
+            "startRound":                      "TODO: Add translation",
+            "startTime":                       "TODO: Add translation",
+            "startTurn":                       "TODO: Add translation",
+            "turns":                           "TODO: Add translation",
+            "type":                            "TODO: Add translation",
+            "uses":                            "TODO: Add translation"
+          },
+          "LanguageConstraint": {
+            "language":                        "TODO: Add translation"
+          },
+          "MetricData": {
+            "area":                            "TODO: Add translation",
+            "duration":                        "TODO: Add translation",
+            "effect":                          "TODO: Add translation",
+            "range":                           "TODO: Add translation",
+            "section":                         "TODO: Add translation",
+            "special":                         "TODO: Add translation",
+            "target":                          "TODO: Add translation"
+          },
+          "NamegiverConstraint": {
+            "namegiver":                       "TODO: Add translation"
+          },
+          "RangeUnit": {
+            "unit":                            "TODO: Add translation"
+          },
+          "RelationConstraint": {
+            "relation":                        "TODO: Add translation"
+          },
+          "SpellEnhancement": {
+            "enhancementType":                 "TODO: Add translation",
+            "unit":                            "TODO: Add translation"
+          },
+          "learnSpell": {
+            "freePatterncraftToLearnSpell":    "TODO: Add translation",
+            "learnDifficulty":                 "TODO: Add translation",
+            "lpCost":                          "TODO: Add translation",
+            "patterncraftSuccessful":          "TODO: Add translation",
+            "patterncraftToLearnSpell":        "TODO: Add translation",
+            "teacherRank":                     "TODO: Add translation",
+            "teacherTestSuccessful":           "TODO: Add translation",
+            "teacherToLearnSpell":             "TODO: Add translation",
+            "useRecoveryTestToLearnSpell":     "TODO: Add translation"
+          },
+          "movement":                          "TODO: Add translation"
+        },
+        "Labels": {
+          "AbilityConstraint": {
+            "ability":                         "TODO: Add translation",
+            "rank":                            "TODO: Add translation"
+          },
+          "AreaUnit": {
+            "angle":                           "TODO: Add translation",
+            "areaTyp":                         "TODO: Add translation",
+            "count":                           "TODO: Add translation",
+            "height":                          "TODO: Add translation",
+            "length":                          "TODO: Add translation",
+            "radius":                          "TODO: Add translation",
+            "thickness":                       "TODO: Add translation",
+            "unit":                            "TODO: Add translation",
+            "width":                           "TODO: Add translation"
+          },
+          "AttributeConstraint": {
+            "attribute":                       "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "BaseUnit": {
+            "special":                         "TODO: Add translation",
+            "type":                            "TODO: Add translation",
+            "unit":                            "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "ClassConstraint": {
+            "class":                           "TODO: Add translation",
+            "level":                           "TODO: Add translation"
+          },
+          "DurationUnit": {
+            "unit":                            "TODO: Add translation"
+          },
+          "EAEChangeData": {
+            "abilityUuid":                     "TODO: Add translation",
+            "key":                             "TODO: Add translation",
+            "mode":                            "TODO: Add translation",
+            "priority":                        "TODO: Add translation",
+            "value":                           "TODO: Add translation"
+          },
+          "EAEDurationData": {
+            "combat":                          "TODO: Add translation",
+            "rounds":                          "TODO: Add translation",
+            "seconds":                         "TODO: Add translation",
+            "startRound":                      "TODO: Add translation",
+            "startTime":                       "TODO: Add translation",
+            "startTurn":                       "TODO: Add translation",
+            "turns":                           "TODO: Add translation",
+            "type":                            "TODO: Add translation",
+            "uses":                            "TODO: Add translation"
+          },
+          "LanguageConstraint": {
+            "language":                        "TODO: Add translation"
+          },
+          "NamegiverConstraint": {
+            "namegiver":                       "TODO: Add translation"
+          },
+          "RangeUnit": {
+            "unit":                            "TODO: Add translation"
+          },
+          "RelationConstraint": {
+            "relation":                        "TODO: Add translation"
+          },
+          "SpellEnhancement": {
+            "enhancementType":                 "TODO: Add translation",
+            "unit":                            "TODO: Add translation"
+          },
+          "learnSpell": {
+            "freePatterncraftToLearnSpell":    "TODO: Add translation",
+            "learnDifficulty":                 "TODO: Add translation",
+            "lpCost":                          "TODO: Add translation",
+            "patterncraftSuccessful":          "TODO: Add translation",
+            "patterncraftToLearnSpell":        "TODO: Add translation",
+            "teacherRank":                     "TODO: Add translation",
+            "teacherTestSuccessful":           "TODO: Add translation",
+            "teacherToLearnSpell":             "TODO: Add translation",
+            "useRecoveryTestToLearnSpell":     "TODO: Add translation"
+          },
+          "movement":                          "TODO: Add translation"
+        }
+      },
+      "placeholderBlankSelectOption":          "TODO: Add translation"
+    },
+    "Dialogs": {
+      "AssignLp": {
+        "description":                         "TODO: Add translation",
+        "legendPoints":                        "TODO: Add translation"
+      },
+      "Buttons": {
+      },
+      "CharGen": {
+        "Buttons": {
+          "resetAttributes":                   "TODO: Add translation",
+          "resetRanks":                        "TODO: Add translation",
+          "resetSkills":                       "TODO: Add translation",
+          "resetSpells":                       "TODO: Add translation"
+        },
+        "Errors": {
+          "attributes":                        "TODO: Add translation",
+          "maxLanguagesToRead":                "TODO: Add translation",
+          "maxLanguagesToSpeak":               "TODO: Add translation",
+          "noClass":                           "TODO: Add translation",
+          "noMoreAttributeChange":             "TODO: Add translation",
+          "noMoreSkillRanks":                  "TODO: Add translation",
+          "noMoreSpellPoints":                 "TODO: Add translation",
+          "noNamegiver":                       "TODO: Add translation",
+          "notFinished":                       "TODO: Add translation",
+          "skillRanksLeft":                    "TODO: Add translation",
+          "talentRanksLeft":                   "TODO: Add translation"
+        },
+        "Title": {
+          "armor":                             "TODO: Add translation",
+          "artisanSkills":                     "TODO: Add translation",
+          "attribute":                         "TODO: Add translation",
+          "baseValue":                         "TODO: Add translation",
+          "change":                            "TODO: Add translation",
+          "characteristics":                   "TODO: Add translation",
+          "chosenSpells":                      "TODO: Add translation",
+          "cost":                              "TODO: Add translation",
+          "defenses":                          "TODO: Add translation",
+          "equipment":                         "TODO: Add translation",
+          "generalSkills":                     "TODO: Add translation",
+          "health":                            "TODO: Add translation",
+          "knowledgeSkills":                   "TODO: Add translation",
+          "languageSkills":                    "TODO: Add translation",
+          "languages":                         "TODO: Add translation",
+          "namegiverAbilities":                "TODO: Add translation",
+          "other":                             "TODO: Add translation",
+          "overview":                          "TODO: Add translation",
+          "preview":                           "TODO: Add translation",
+          "readWrite":                         "TODO: Add translation",
+          "speak":                             "TODO: Add translation",
+          "spellOptions":                      "TODO: Add translation",
+          "step":                              "TODO: Add translation",
+          "value":                             "TODO: Add translation",
+          "weapons":                           "TODO: Add translation"
+        },
+        "ToolTips": {
+          "addSpell":                          "TODO: Add translation",
+          "decreaseAttributeValue":            "TODO: Add translation",
+          "decreaseRankValue":                 "TODO: Add translation",
+          "increaseAttributeValue":            "TODO: Add translation",
+          "increaseRankValue":                 "TODO: Add translation",
+          "removeSpell":                       "TODO: Add translation"
+        },
+        "abilities":                           "TODO: Add translation",
+        "availabelSkillPoints":                "TODO: Add translation",
+        "availableAttributePoints":            "TODO: Add translation",
+        "availableRanks":                      "TODO: Add translation",
+        "availableSpellPoints":                "TODO: Add translation",
+        "carryCapacity":                       "TODO: Add translation",
+        "charGenRules":                        "TODO: Add translation",
+        "chooseAttributes":                    "TODO: Add translation",
+        "chooseAttributesRules":               "TODO: Add translation",
+        "chooseClass":                         "TODO: Add translation",
+        "chooseClassRules":                    "TODO: Add translation",
+        "chooseDevotionRules":                 "TODO: Add translation",
+        "chooseEquipmentRules":                "TODO: Add translation",
+        "chooseLanguagesRules":                "TODO: Add translation",
+        "chooseNamegiver":                     "TODO: Add translation",
+        "chooseSkills":                        "TODO: Add translation",
+        "chooseSkillsRules":                   "TODO: Add translation",
+        "chooseSpells":                        "TODO: Add translation",
+        "chooseSpellsRules":                   "TODO: Add translation",
+        "chooseTalentsRules":                  "TODO: Add translation",
+        "discipline":                          "TODO: Add translation",
+        "disciplineTalents":                   "TODO: Add translation",
+        "initiative":                          "TODO: Add translation",
+        "minimumLanguageSkillPoints":          "TODO: Add translation",
+        "mysticArmor":                         "TODO: Add translation",
+        "mysticDefense":                       "TODO: Add translation",
+        "noArtisanSkillsAvailable":            "TODO: Add translation",
+        "noGeneralSkillsAvailable":            "TODO: Add translation",
+        "noKnowledgeSkillsAvailable":          "TODO: Add translation",
+        "noLanguageSkillsAvailable":           "TODO: Add translation",
+        "optionalDevotions":                   "TODO: Add translation",
+        "optionalTalents":                     "TODO: Add translation",
+        "physicalArmor":                       "TODO: Add translation",
+        "physicalDefense":                     "TODO: Add translation",
+        "questor":                             "TODO: Add translation",
+        "questorDevotion":                     "TODO: Add translation",
+        "recoveryDice":                        "TODO: Add translation",
+        "recoveryPerDay":                      "TODO: Add translation",
+        "requiredArtisanSkillPoints":          "TODO: Add translation",
+        "requiredKnowledgeSkillPoints":        "TODO: Add translation",
+        "socialDefense":                       "TODO: Add translation",
+        "unconciousDeathRate":                 "TODO: Add translation",
+        "woundThreshold":                      "TODO: Add translation"
+      },
+      "Configs": {
+        "Constraints": {
+          "hint":                              "TODO: Add translation",
+          "title":                             "TODO: Add translation"
+        },
+        "SpellEnhancement": {
+          "hint":                              "TODO: Add translation",
+          "title":                             "TODO: Add translation"
+        }
+      },
+      "Errors": {
+        "noLp":                                "TODO: Add translation"
+      },
+      "Header": {
+        "activeUser":                          "TODO: Add translation",
+        "actorsNoUserConfigured":              "TODO: Add translation",
+        "inactiveUser":                        "TODO: Add translation"
+      },
+      "Legend": {
+      },
+      "Navigator": {
+        "baseInput":                           "TODO: Add translation",
+        "options":                             "TODO: Add translation"
+      },
+      "Placeholder": {
+        "lpDescription":                       "TODO: Add translation"
+      },
+      "RollPrompt": {
+        "devotion":                            "TODO: Add translation",
+        "devotionDice":                        "TODO: Add translation",
+        "devotionStep":                        "TODO: Add translation",
+        "difficulty":                          "TODO: Add translation",
+        "karma":                               "TODO: Add translation",
+        "karmaDice":                           "TODO: Add translation",
+        "karmaStep":                           "TODO: Add translation",
+        "modifier":                            "TODO: Add translation",
+        "step":                                "TODO: Add translation",
+        "strain":                              "TODO: Add translation"
+      },
+      "Tabs": {
+        "CharGen": {
+          "attribute":                         "TODO: Add translation",
+          "class":                             "TODO: Add translation",
+          "equipment":                         "TODO: Add translation",
+          "language":                          "TODO: Add translation",
+          "namegiver":                         "TODO: Add translation",
+          "skill":                             "TODO: Add translation",
+          "spell":                             "TODO: Add translation"
+        },
+        "rollPromptBaseTab":                   "TODO: Add translation",
+        "rollPromptOtherTab":                  "TODO: Add translation"
+      },
+      "Title":                                 "TODO: Add translation",
+      "ToolTips": {
+        "resetAbilityRanks":                   "TODO: Add translation"
+      },
+      "armor":                                 "TODO: Add translation",
+      "armorType":                             "TODO: Add translation",
+      "damage":                                "TODO: Add translation",
+      "damageStandard":                        "TODO: Add translation",
+      "damageStun":                            "TODO: Add translation",
+      "damageType":                            "TODO: Add translation",
+      "ignoreArmor":                           "TODO: Add translation",
+      "jumpUpChoice":                          "TODO: Add translation",
+      "knockDownChoice":                       "TODO: Add translation",
+      "mystical":                              "TODO: Add translation",
+      "physical":                              "TODO: Add translation"
+    },
+    "Documents": {
+      "ActorSheetEdCharacter":                 "TODO: Add translation",
+      "ActorSheetEdCreature":                  "TODO: Add translation",
+      "ActorSheetEdDragon":                    "TODO: Add translation",
+      "ActorSheetEdGroup":                     "TODO: Add translation",
+      "ActorSheetEdHorror":                    "TODO: Add translation",
+      "ActorSheetEdLoot":                      "TODO: Add translation",
+      "ActorSheetEdNpc":                       "TODO: Add translation",
+      "ActorSheetEdSpirit":                    "TODO: Add translation",
+      "ActorSheetEdTrap":                      "TODO: Add translation",
+      "ActorSheetEdVehicle":                   "TODO: Add translation"
+    },
+    "Item": {
+      "Ability": {
+        "damage":                              "TODO: Add translation",
+        "difficulty": {
+          "fixed":                             "TODO: Add translation",
+          "groupDifficulty":                   "TODO: Add translation",
+          "targetDifficulty":                  "TODO: Add translation"
+        },
+        "relatedRollType":                     "TODO: Add translation",
+        "rollType":                            "TODO: Add translation",
+        "substitute":                          "TODO: Add translation"
+      },
+      "CreateData": {
+        "nameQuestorDevotion":                 "TODO: Add translation",
+        "nameReadWriteLanguage":               "TODO: Add translation",
+        "nameSpeakLanguage":                   "TODO: Add translation"
+      },
+      "Discipline": {
+        "addLevel":                            "TODO: Add translation",
+        "circle":                              "TODO: Add translation",
+        "deleteLevel":                         "TODO: Add translation",
+        "disciplineTalents":                   "TODO: Add translation",
+        "durability":                          "TODO: Add translation",
+        "optionalAbilities":                   "TODO: Add translation",
+        "talentOptionsForTier":                "TODO: Add translation"
+      },
+      "Header": {
+        "actionType":                          "TODO: Add translation",
+        "activeUser":                          "TODO: Add translation",
+        "actorsNoUserConfigured":              "TODO: Add translation",
+        "damageSettings":                      "TODO: Add translation",
+        "description":                         "TODO: Add translation",
+        "details":                             "TODO: Add translation",
+        "effects":                             "TODO: Add translation",
+        "elementSettings":                     "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "inactiveUser":                        "TODO: Add translation",
+        "magic":                               "TODO: Add translation",
+        "navigator":                           "TODO: Add translation",
+        "spellEnhancement":                    "TODO: Add translation",
+        "summary":                             "TODO: Add translation",
+        "talentKnacks":                        "TODO: Add translation",
+        "talentKnacksAvailable":               "TODO: Add translation",
+        "talentKnacksLearned":                 "TODO: Add translation",
+        "talentSource":                        "TODO: Add translation",
+        "targetingDetails":                    "TODO: Add translation",
+        "type":                                "TODO: Add translation"
+      },
+      "Knack": {
+        "Notification": {
+          "knackSourceMultipleTalents":        "TODO: Add translation",
+          "knackSourceNotFound":               "TODO: Add translation",
+          "knackSourceNotHighEnough":          "TODO: Add translation",
+          "maxKnacksReached":                  "TODO: Add translation"
+        },
+        "action":                              "TODO: Add translation",
+        "attribute":                           "TODO: Add translation",
+        "description":                         "TODO: Add translation",
+        "difficultyFixed":                     "TODO: Add translation",
+        "difficultyGroup":                     "TODO: Add translation",
+        "difficultyTarget":                    "TODO: Add translation",
+        "lpCost":                              "TODO: Add translation",
+        "minLevel":                            "TODO: Add translation",
+        "rank":                                "TODO: Add translation",
+        "sourceTalent":                        "TODO: Add translation",
+        "standardEffect":                      "TODO: Add translation",
+        "strain":                              "TODO: Add translation"
+      },
+      "Namegiver": {
+        "WeaponSize": {
+          "OneHanded": {
+            "max":                             "TODO: Add translation",
+            "min":                             "TODO: Add translation"
+          },
+          "TwoHanded": {
+            "max":                             "TODO: Add translation",
+            "min":                             "TODO: Add translation"
+          }
+        },
+        "burrow":                              "TODO: Add translation",
+        "charismaValue":                       "TODO: Add translation",
+        "climb":                               "TODO: Add translation",
+        "dexterityValue":                      "TODO: Add translation",
+        "fly":                                 "TODO: Add translation",
+        "karmaModifier":                       "TODO: Add translation",
+        "perceptionValue":                     "TODO: Add translation",
+        "strengthValue":                       "TODO: Add translation",
+        "swim":                                "TODO: Add translation",
+        "toughnessValue":                      "TODO: Add translation",
+        "walk":                                "TODO: Add translation",
+        "willpowerValue":                      "TODO: Add translation"
+      },
+      "Navigator": {
+        "advancement":                         "TODO: Add translation",
+        "details":                             "TODO: Add translation",
+        "effects":                             "TODO: Add translation",
+        "general":                             "TODO: Add translation"
+      },
+      "Path": {
+        "sourceDiscipline":                    "TODO: Add translation"
+      },
+      "PhysicalItems": {
+        "addThreadLevel":                      "TODO: Add translation",
+        "deleteThreadLevel":                   "TODO: Add translation",
+        "itemHistoryCheck":                    "TODO: Add translation",
+        "researchCheck":                       "TODO: Add translation",
+        "weaveThreadCheck":                    "TODO: Add translation"
+      },
+      "Placeholder": {
+        "lpDescription":                       "TODO: Add translation"
+      },
+      "Spell": {
+        "binding":                             "TODO: Add translation",
+        "concentration":                       "TODO: Add translation",
+        "resist":                              "TODO: Add translation",
+        "sensingDifficulty":                   "TODO: Add translation",
+        "spirit":                              "TODO: Add translation",
+        "summoning":                           "TODO: Add translation"
+      },
+      "Tabs": {
+        "advancement":                         "TODO: Add translation",
+        "classes":                             "TODO: Add translation",
+        "details":                             "TODO: Add translation",
+        "devotions":                           "TODO: Add translation",
+        "effects":                             "TODO: Add translation",
+        "equipment":                           "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "legend":                              "TODO: Add translation",
+        "level":                               "TODO: Add translation",
+        "notes":                               "TODO: Add translation",
+        "reputation":                          "TODO: Add translation",
+        "skills":                              "TODO: Add translation",
+        "specials":                            "TODO: Add translation",
+        "spells":                              "TODO: Add translation",
+        "talentOptions":                       "TODO: Add translation",
+        "talents":                             "TODO: Add translation",
+        "thread":                              "TODO: Add translation"
+      },
+      "Talent": {
+        "action":                              "TODO: Add translation",
+        "attribute":                           "TODO: Add translation",
+        "description":                         "TODO: Add translation",
+        "difficultyFixed":                     "TODO: Add translation",
+        "difficultyGroup":                     "TODO: Add translation",
+        "difficultyTarget":                    "TODO: Add translation",
+        "rank":                                "TODO: Add translation",
+        "strain":                              "TODO: Add translation",
+        "talentCategory":                      "TODO: Add translation",
+        "talentIdentifier":                    "TODO: Add translation",
+        "tier":                                "TODO: Add translation"
+      },
+      "Title": {
+        "assignLp":                            "TODO: Add translation",
+        "rollPrompt":                          "TODO: Add translation"
+      }
+    },
+    "Languages": {
+      "dwarf":                                 "TODO: Add translation",
+      "elf":                                   "TODO: Add translation",
+      "human":                                 "TODO: Add translation",
+      "obsidiman":                             "TODO: Add translation",
+      "ork":                                   "TODO: Add translation",
+      "troll":                                 "TODO: Add translation",
+      "tskrang":                               "TODO: Add translation",
+      "windling":                              "TODO: Add translation"
+    },
+    "Notifications": {
+      "Error":                                 "TODO: Add translation",
+      "Info": {
+        "noMoreItemsOfThisType":               "TODO: Add translation",
+        "noWeaponAvailable":                   "TODO: Add translation",
+        "notAddedforTheActor":                 "TODO: Add translation",
+        "switchWeapon":                        "TODO: Add translation"
+      },
+      "Warn": {
+        "Legend": {
+          "abilityIncreaseProblems":           "TODO: Add translation",
+          "cannotLearn":                       "TODO: Add translation",
+          "classIncreaseProblems":             "TODO: Add translation",
+          "firstDisciplineViaCharGen":         "TODO: Add translation",
+          "noTalentCategorySelected":          "TODO: Add translation",
+          "questorItemNotUpdated":             "TODO: Add translation"
+        },
+        "livingArmorOnly":                     "TODO: Add translation",
+        "noSourceTalent":                      "TODO: Add translation",
+        "noWeaponToAttackWith":                "TODO: Add translation",
+        "piecemealArmorSizeExceeded":          "TODO: Add translation"
+      }
+    },
+    "Rolls": {
+      "Labels": {
+        "abilityRoll":                         "TODO: Add translation",
+        "actionTestRoll":                      "TODO: Add translation",
+        "arbitraryRoll":                       "TODO: Add translation",
+        "arbitraryTestRoll":                   "TODO: Add translation",
+        "attackRoll":                          "TODO: Add translation",
+        "attributeRoll":                       "TODO: Add translation",
+        "damageRoll":                          "TODO: Add translation",
+        "effectRoll":                          "TODO: Add translation",
+        "effectTestRoll":                      "TODO: Add translation",
+        "halfmagicRoll":                       "TODO: Add translation",
+        "initiativeRoll":                      "TODO: Add translation",
+        "recoveryRoll":                        "TODO: Add translation",
+        "spellcastingRoll":                    "TODO: Add translation",
+        "threadWeavingRoll":                   "TODO: Add translation"
+      },
+      "against":                               "TODO: Add translation",
+      "baseValue":                             "TODO: Add translation",
+      "devotion":                              "TODO: Add translation",
+      "formulaDevotion":                       "TODO: Add translation",
+      "formulaExtraStep":                      "TODO: Add translation",
+      "formulaKarma":                          "TODO: Add translation",
+      "formulaStep":                           "TODO: Add translation",
+      "karma":                                 "TODO: Add translation",
+      "moreTargets":                           "TODO: Add translation",
+      "rollResult":                            "TODO: Add translation",
+      "rolls":                                 "TODO: Add translation",
+      "ruleOfOne":                             "TODO: Add translation",
+      "step":                                  "TODO: Add translation",
+      "stepModifiers":                         "TODO: Add translation",
+      "successesAchieved":                     "TODO: Add translation",
+      "targetDifficulty":                      "TODO: Add translation",
+      "targetModifiers":                       "TODO: Add translation"
+    },
+    "Rules": {
+      "attributeIncreaseShortRequirements":    "TODO: Add translation",
+      "disciplineIncreaseShortRequirements":   "TODO: Add translation",
+      "pathIncreaseShortRequirements":         "TODO: Add translation",
+      "questorClassIncreaseShortRequirements": "TODO: Add translation"
+    },
+    "Settings": {
+      "Edid": {
+        "Versatility":                         "TODO: Add translation",
+        "VersatilityHint":                     "TODO: Add translation",
+        "creatureAttack":                      "TODO: Add translation",
+        "creatureAttackHint":                  "TODO: Add translation",
+        "knockDown":                           "TODO: Add translation",
+        "knockDownHint":                       "TODO: Add translation",
+        "languageRW":                          "TODO: Add translation",
+        "languageRWHint":                      "TODO: Add translation",
+        "languageSpeak":                       "TODO: Add translation",
+        "languageSpeakHint":                   "TODO: Add translation",
+        "spellCasting":                        "TODO: Add translation",
+        "spellCastingHint":                    "TODO: Add translation",
+        "threadWeaving":                       "TODO: Add translation",
+        "threadWeavingHint":                   "TODO: Add translation",
+        "unarmedCombat":                       "TODO: Add translation",
+        "unarmedCombatHint":                   "TODO: Add translation"
+      },
+      "Hint": {
+        "enforceLivingArmor":                  "TODO: Add translation"
+      },
+      "Label": {
+        "enforceLivingArmor":                  "TODO: Add translation"
+      },
+      "LpTracking": {
+        "allTalents":                          "TODO: Add translation",
+        "allTalentsHouseRule":                 "TODO: Add translation",
+        "attributeOptions":                    "TODO: Add translation",
+        "circleTalentRequirements":            "TODO: Add translation",
+        "disciplineTalents":                   "TODO: Add translation",
+        "hintAttributeOptions":                "TODO: Add translation",
+        "hintCircleTalentRequirements":        "TODO: Add translation",
+        "hintLpTrackingUsed":                  "TODO: Add translation",
+        "lpTrackingUsed":                      "TODO: Add translation"
+      },
+      "SpecificSettingOptions": {
+        "changelog":                           "TODO: Add translation",
+        "help":                                "TODO: Add translation",
+        "troubleshooting":                     "TODO: Add translation"
+      },
+      "talentsSplit":                          "TODO: Add translation",
+      "talentsSplitHint":                      "TODO: Add translation"
+    },
+    "Sheet": {
+      "Tabs": {
+        "advancement":                         "TODO: Add translation",
+        "classes":                             "TODO: Add translation",
+        "details":                             "TODO: Add translation",
+        "devotions":                           "TODO: Add translation",
+        "effects":                             "TODO: Add translation",
+        "equipment":                           "TODO: Add translation",
+        "general":                             "TODO: Add translation",
+        "legend":                              "TODO: Add translation",
+        "notes":                               "TODO: Add translation",
+        "reputation":                          "TODO: Add translation",
+        "skills":                              "TODO: Add translation",
+        "specials":                            "TODO: Add translation",
+        "spells":                              "TODO: Add translation",
+        "talents":                             "TODO: Add translation",
+        "thread":                              "TODO: Add translation"
+      }
+    },
+    "ToolTips": {
+      "addThreadLevel":                        "TODO: Add translation",
+      "deleteThreadLevel":                     "TODO: Add translation",
+      "itemHistoryCheck":                      "TODO: Add translation",
+      "researchCheck":                         "TODO: Add translation",
+      "weaveThreadCheck":                      "TODO: Add translation"
+    }
+  },
+  "EFFECT": {
+    "TABS": {
+      "changes":                               "TODO: Add translation",
+      "details":                               "TODO: Add translation",
+      "duration":                              "TODO: Add translation",
+      "execution":                             "TODO: Add translation"
+    }
+  },
+  "SETTINGS": {
+    "UI": {
+      "FIELDS": {
+        "colorScheme": {
+          "dark":                              "TODO: Add translation",
+          "light":                             "TODO: Add translation"
+        }
       }
     }
   },
-  "TYPES":  {
-    "Actor": {
-      "character": "Character",
-      "creature":  "Creature",
-      "dragon":    "Dragon",
-      "group":     "Group",
-      "horror":    "Horror",
-      "loot":      "Loot",
-      "npc":       "NPC",
-      "spirit":    "Spirit",
-      "trap":      "Trap",
-      "vehicle":   "Vehicle"
-    },
-    "Item":  {
-      "armor":          "Armor",
-      "attack":         "Attack",
-      "bindingSecret":  "Binding Secret",
-      "cursemark":      "Curse / Horror mark",
-      "devotion":       "Devotion",
-      "discipline":     "Discipline",
-      "effect":         "Effect",
-      "equipment":      "Equipment",
-      "knack":          "Knack",
-      "maneuver":       "Maneuver",
-      "mask":           "Mask",
-      "matrix":         "Matrix",
-      "namegiver":      "Namegiver",
-      "path":           "Path",
-      "poisonDisease":  "Poison / Disease",
-      "power":          "Power",
-      "questor":        "Questor",
-      "shield":         "Shield",
-      "shipWeapon":     "Ship Weapon",
-      "skill":          "Skill",
-      "specialAbility": "Special Ability",
-      "spell":          "Spell",
-      "spellKnack":     "Spell Knack",
-      "talent":         "Talent",
-      "thread":         "Permanent Thread",
-      "weapon":         "Weapon"
-    }
+  "TYPES": {
   }
 }
