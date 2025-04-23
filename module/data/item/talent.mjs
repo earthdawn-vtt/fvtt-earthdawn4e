@@ -25,8 +25,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return this.mergeSchema( super.defineSchema(), {
       talentCategory: new fields.StringField( {
         required: true,
-        blank:    false,
-        initial:  "free",
+        blank:    true,
+        initial:  "",
         trim:     true,
         choices:  ED4E.talentCategory,
         label:    this.labelKey( "Ability.talentCategory" ),
@@ -238,24 +238,18 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // class defines category, tier, source discipline and the level it was learned at.
     const learnedItem = await super.learn( actor, item, createData );
 
-    let category = null;
-    let discipline = null;
-    let learnedAt = null;
-    let tier = null;
+    let category;
+    let discipline;
+    let learnedAt;
 
     // assign the category of the talent
-    if ( createData?.system?.talentCategory ) {
-      category = createData.system.talentCategory;
-    } else {
+    if ( !learnedItem.system.talentCategory ) {
       const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
       category = await promptFactoryItem.getPrompt( "talentCategory" );
     }
 
     // assign the level at which the talent was learned and the source discipline
-    if ( createData?.system?.source?.class ) {
-      discipline = await fromUuid( createData.system.source.class );
-      learnedAt = createData.system.source.atLevel;
-    } else {
+    if ( !learnedItem.system.source?.class ) {
       const promptFactoryActor = PromptFactory.fromDocument( actor );
       const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
       discipline = await fromUuid( disciplineUuid );
@@ -263,18 +257,16 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     }
 
     // assign the tier of the talent
-    if ( createData?.system?.tier ) {
-      tier = createData.system.tier;
-    } else {
+    if ( !learnedItem.system.tier ) {
       await learnedItem.system.chooseTier();
     }
 
     // update the learned talent with the new data
     await learnedItem.update( {
-      "system.tier":                  tier,
-      "system.talentCategory":        category,
-      "system.source.class":          discipline ? discipline.uuid : null,
-      "system.source.atLevel":        learnedAt ? learnedAt : null,
+      // "system.tier":                  learnedItem.system.tier ?? tier,
+      "system.talentCategory":        learnedItem.system.talentCategory ?? category,
+      "system.source.class":          learnedItem.system.source.class ?? discipline,
+      "system.source.atLevel":        learnedItem.system.source.atLevel ?? learnedAt,
     } );
     
     return learnedItem;
