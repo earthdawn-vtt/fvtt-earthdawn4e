@@ -14,15 +14,13 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackRollOptions from "../data/roll/attack.mjs";
 import { getSetting } from "../settings.mjs";
-import CharacterMigration from "./migration/actor/old-system/character.mjs";
-import NoneCharacterMigration from "./migration/actor/old-system/none-character.mjs";
+import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 
 const futils = foundry.utils;
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
- * @augments {Actor}
  */
 export default class ActorEd extends Actor {
 
@@ -1183,11 +1181,11 @@ export default class ActorEd extends Actor {
   /* -------------------------------------------- */
 
   static migrateData( source ) {
-    source = super.migrateData( source );
+    const newSource = super.migrateData( source );
 
-    if ( source.type === "pc" ) CharacterMigration.migrateData( source );
-    else if ( source.type === "npc" || source.type === "Creature" ) NoneCharacterMigration.migrateData( source );
-    return source;
+    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( newSource );
+
+    return newSource;
   }
 
 }

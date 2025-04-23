@@ -1,27 +1,24 @@
-import KnackAbilityData from "../../../../data/item/knack-ability.mjs";
-import KnackKarmaData from "../../../../data/item/knack-karma.mjs";
-import KnackManeuverData from "../../../../data/item/knack-maneuver.mjs";
-import SpellKnackData from "../../../../data/item/spell-knacks.mjs";
+import { config } from "../../../../data/item/_module.mjs";
+
 
 export default class KnackMigration {
 
   static async migrateData( source ) {
 
-    // change the document type of knack to the new, more differentiated type by name or knackType
-    if ( source.name.includes( "[Karma]" ) || source.system.knackType === "karma" ) {
+    const slugifiedName = source.name.slugify( { strict: true, } );
+    const knackType = source.system?.knackType?.slugify( { strict: true, } );
+
+    if ( slugifiedName.includes( "karma" ) || knackType === "karma" )
       source.type = "knackKarma";
-      KnackKarmaData.migrateData( source.system );
-    } else if ( source.name.includes( "[Spezialmanöver]" ) || source.system.knackType === "maneuver" ) {
+    else if ( slugifiedName.includes( "spezialmanover" ) || knackType === "maneuver" )
       source.type = "knackManeuver";
-      KnackManeuverData.migrateData( source.system );
-    } else if ( source.knackType === "spell" ) {
-      source.type = "knackSpell";
-      SpellKnackData.migrateData( source.system );
-    } else {
+    else if ( knackType === "spell" )
+      source.type = "spellKnack";
+    else
       source.type = "knackAbility";
-      KnackAbilityData.migrateData( source.system );
-    }
+
+    config[ source.type ].migrateData( source.system );
   
-    return source; // Return the modified data
+    return source;
   }
 }

@@ -1,18 +1,26 @@
-import ManeuverData from "../../../../data/item/maneuver.mjs";
-import PowerData from "../../../../data/item/power.mjs";
+import { config } from "../../../../data/item/_module.mjs";
 
 export default class PowerMigration {
 
   static async migrateData( source ) {
 
-    if ( source.system.powerType === "Power" || source.system.powerType === "Attack" ) {
-      source.type = "power";
-      PowerData.migrateData( source.system );
-    } else if ( source.system.powerType === "Maneuver" ) {
-      source.type = "maneuver";
-      ManeuverData.migrateData( source.system );
+    switch ( source.system?.powerType.slugify( { strict: true } ) ) {
+      case "power":
+      case "attack": {
+        source.type = "power";
+        break;
+      }
+      case "maneuver": {
+        source.type = "maneuver";
+        break;
+      }
+      default: {
+        throw new Error( `Unknown power type: ${ source.system.powerType }` );
+      }
     }
-  
-    return source; // Return the modified data
+
+    config[ source.type ].migrateData( source.system );
+
+    return source;
   }
 }

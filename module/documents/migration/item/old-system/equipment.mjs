@@ -1,7 +1,7 @@
-export default class EquipmentnMigration {
+export default class EquipmentMigration {
 
   static async migrateData( source ) {
   
-    return source; // Return the modified data
+    return source;
   }
 }
