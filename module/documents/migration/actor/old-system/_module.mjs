@@ -6,6 +6,7 @@ export {
   NoneCharacterMigration,
 };
 
+
 export const typeMigrationConfig = {
   pc:       CharacterMigration,
   npc:      NoneCharacterMigration,
