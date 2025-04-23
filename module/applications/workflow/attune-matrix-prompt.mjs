@@ -82,12 +82,18 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
         break;
       }
       case "footer": {
-        const buttonContinue = this.constructor.BUTTONS.continue;
-        buttonContinue.icon = ED4E.icons.attune;
-        buttonContinue.label = "ED.Dialogs.Buttons.attuneMatrix";
-        newContext.buttons = [
-          buttonContinue,
-        ];
+        if ( this.#matrices.length > 0 ) {
+          const buttonContinue = this.constructor.BUTTONS.continue;
+          buttonContinue.icon = ED4E.icons.attune;
+          buttonContinue.label = "ED.Dialogs.Buttons.attuneMatrix";
+          newContext.buttons = [
+            buttonContinue
+          ];
+        } else {
+          newContext.buttons = [
+            this.constructor.BUTTONS.cancel,
+          ];
+        }
         break;
       }
       default: {
