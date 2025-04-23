@@ -41,8 +41,9 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
     classes: [ "ed4e" ],
     tag:     "form",
     form:    {
-      handler:       ApplicationEd.#onFormSubmission,
-      closeOnSubmit: false,
+      handler:        ApplicationEd.#onFormSubmission,
+      submitOnChange: false,
+      closeOnSubmit:  false,
     },
     actions: {
       cancel:   ApplicationEd._cancel,
