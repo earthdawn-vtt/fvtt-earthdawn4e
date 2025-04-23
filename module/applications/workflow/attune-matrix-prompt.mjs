@@ -3,6 +3,8 @@ import { ED4E } from "../../../earthdawn4e.mjs";
 
 export default class AttuneMatrixPrompt extends ApplicationEd {
 
+  // region Properties
+  
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "attune-matrix-prompt-{id}",
@@ -35,10 +37,37 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
    */
   #spells;
 
+  /**
+   * A list of data fields to be used with {@link DataField#toFormGroup} as input for the spell selection.
+   * @type {DataField[]}
+   */
+  #spellSelectionFields;
+
+  /**
+   * The UUIDs of available spells.
+   * @type {string[]}
+   */
+  get #spellsUuids() {
+    return this.#spells.map( ( spell ) => spell.uuid );
+  }
+
+  // endregion
+
   constructor( { matrices = [], spells = [], options = {} } = {} ) {
     super( options );
     this.#matrices = matrices;
     this.#spells = spells;
+    this.#spellSelectionFields = Array.from( this.#matrices.map( matrix => {
+      return {
+        matrix: matrix,
+        field:  matrix.shared
+          ? this.#getMultipleSpellField( matrix )
+          : this.#getSingleSpellField( matrix ),
+        selected: matrix.shared
+          ? matrix.spells
+          : matrix.spell,
+      };
+    } ) );
   }
 
   // region Rendering
@@ -49,8 +78,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
     switch ( partId ) {
       case "main": {
-        newContext.matrices = this.#matrices;
-        newContext.spells = this.#spells;
+        newContext.spellSelectionFields = this.#spellSelectionFields;
         break;
       }
       case "footer": {
@@ -71,5 +99,21 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   }
 
   // endregion
+
+  #getMultipleSpellField( matrix ) {
+    return new foundry.data.fields.SetField( new foundry.data.fields.DocumentUUIDField( {
+      type:     "Item",
+      embedded: true,
+    } ), {
+      label:     matrix.name,
+      choices:   this.#spellsUuids,
+    } );
+  }
+
+  #getSingleSpellField( matrix ) {
+    return new foundry.data.fields.DocumentUUIDField( {
+      label:     matrix.name,
+    } );
+  }
 
 }
