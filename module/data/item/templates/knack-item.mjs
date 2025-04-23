@@ -60,6 +60,29 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  LP Tracking                                 */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  get canBeLearned() {
+    return true;
+  }
+
+  /** @inheritDoc */
+  static async learn( actor, item, createData = {} ) {
+    if ( !item.system.canBeLearned ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
+      return;
+    }
+
+    const itemData = foundry.utils.mergeObject(
+      item.toObject(),
+      foundry.utils.expandObject( createData ),
+    );
+    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+  }
+
+  /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
