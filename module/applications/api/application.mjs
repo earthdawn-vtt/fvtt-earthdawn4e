@@ -2,6 +2,18 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 
 /**
+ * @typedef {object} ApplicationButtonFoundry
+ * @property {string} type The type of button.
+ * @property {string} name The name that will be applied to the button element's `name` attribute.
+ * @property {string} cssClass The CSS class to apply to the button.
+ * @property {string} action The action to perform when the button is clicked, as defined in {@link ApplicationV2#DEFAULT_OPTIONS}`.
+ * @property {boolean} disabled Whether the button is disabled and add the `disabled` attribute to the button.
+ * @property {string} icon The icon to display on the button. Must be a valid Font Awesome icon class.
+ * @property {string} label The label to display on the button. Will be localized.
+ */
+
+
+/**
  * A stock application meant for async behavior using templates.
  * @augments ApplicationV2
  * @mixes HandlebarsApplicationMixin
@@ -32,6 +44,10 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
       handler:       ApplicationEd.#onFormSubmission,
       closeOnSubmit: false,
     },
+    actions: {
+      cancel:   ApplicationEd._cancel,
+      continue: ApplicationEd._continue,
+    },
     position: {
       width:  400,
       height: "auto",
@@ -42,22 +58,74 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
     },
   };
 
+  /**
+   *
+   * @type {{[action: string]: ApplicationButtonFoundry}}
+   */
+  static BUTTONS = {
+    cancel: {
+      type:     "button",
+      action:   "cancel",
+      cssClass: "cancel",
+      icon:     "fas fa-times",
+      label:    "ED.Dialogs.Buttons.cancel",
+    },
+    continue: {
+      type:     "button",
+      action:   "continue",
+      cssClass: "continue",
+      icon:     "fa-solid fa-check",
+      label:    "ED.Dialogs.Buttons.continue",
+    },
+  };
+
   // endregion
 
+  constructor( options ) {
+    super( options );
+    this.resolve = options.resolve;
+    this._data = options.data;
+  }
+
   /**
-   * Factory method for asynchronous behavior.
-   * @param {object} options              Application rendering options.
-   * @returns {Promise<object|null>}      A promise that resolves to the form data.
+   * Factory method for asynchronous behavior. Displays this application and waits for user input.
+   * @param {object} options  Options to configure the prompt.
+   * @returns {Promise<*>}  A promise whose resolution depends on the specific implementation of the prompt.
+   *                            Defaults to the `undefined`.
    */
-  static async create( options ) {
-    const { promise, resolve } = Promise.withResolvers();
-    const application = new this( options );
-    application.addEventListener( "close", () => resolve( application.data ), { once: true } );
-    application.render( { force: true } );
-    return promise;
+  static async waitPrompt( options = {} ) {
+    return new Promise( ( resolve ) => {
+      options.resolve = resolve;
+      new this( options ).render(
+        {
+          force: true,
+        },
+      );
+    } );
   }
 
   // region Event Handlers
+
+  /**
+   * A basic handler for the cancel action. This is meant to be overridden by subclasses.
+   * In this case, it simply closes the application.
+   * @type {ApplicationClickAction}
+   */
+  static async _cancel( event, target ) {
+    this.resolve?.( undefined );
+    return this.close();
+  }
+
+  /**
+   * A basic handler for the continue action. This should be overridden by subclasses.
+   * In this case, it resolves the promise with the current data and closes the application.
+   * @type {ApplicationClickAction}
+   */
+  static async _continue( event, target ) {
+    this.submit();
+    this.resolve?.( this.data );
+    return this.close();
+  }
 
   /**
    * Handle form submission.
