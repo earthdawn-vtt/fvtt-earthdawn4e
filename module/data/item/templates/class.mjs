@@ -165,8 +165,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       foundry.utils.mergeObject(
         systemSourceData,
         {
-          "system.talentCategory": "optional",
-          "system.tier":           nextTier,
+          "system.source.class":    this.parent.uuid,
+          "system.source.atLevel":  nextLevel,
+          "system.talentCategory":  "optional",
+          "system.tier":            nextTier,
         },
         { inplace: false },
       )

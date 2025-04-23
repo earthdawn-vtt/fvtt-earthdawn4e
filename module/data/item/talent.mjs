@@ -233,26 +233,49 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
+    // dropping an item on the actor has no createData. This is only used when learning a
+    // talent from the class increasement. If talents are learned from the class, the
+    // class defines category, tier, source discipline and the level it was learned at.
     const learnedItem = await super.learn( actor, item, createData );
 
-    let category;
+    let category = null;
+    let discipline = null;
+    let learnedAt = null;
+    let tier = null;
 
-    // assign the talent category
-    const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-    category = await promptFactoryItem.getPrompt( "talentCategory" );
+    // assign the category of the talent
+    if ( createData?.system?.talentCategory ) {
+      category = createData.system.talentCategory;
+    } else {
+      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+      category = await promptFactoryItem.getPrompt( "talentCategory" );
+    }
 
-    // assign the level at which the talent was learned
-    const promptFactoryActor = PromptFactory.fromDocument( actor );
-    const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-    const discipline = await fromUuid( disciplineUuid );
-    const learnedAt = discipline?.system.level;
+    // assign the level at which the talent was learned and the source discipline
+    if ( createData?.system?.source?.class ) {
+      discipline = await fromUuid( createData.system.source.class );
+      learnedAt = createData.system.source.atLevel;
+    } else {
+      const promptFactoryActor = PromptFactory.fromDocument( actor );
+      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
+      discipline = await fromUuid( disciplineUuid );
+      learnedAt = discipline?.system.level;
+    }
 
+    // assign the tier of the talent
+    if ( createData?.system?.tier ) {
+      tier = createData.system.tier;
+    } else {
+      await learnedItem.system.chooseTier();
+    }
+
+    // update the learned talent with the new data
     await learnedItem.update( {
+      "system.tier":                  tier,
       "system.talentCategory":        category,
       "system.source.class":          discipline ? discipline.uuid : null,
       "system.source.atLevel":        learnedAt ? learnedAt : null,
     } );
-    await learnedItem.system.chooseTier();
     
     return learnedItem;
   }
