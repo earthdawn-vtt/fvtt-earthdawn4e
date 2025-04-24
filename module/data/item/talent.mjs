@@ -263,7 +263,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
     // update the learned talent with the new data
     await learnedItem.update( {
-      // "system.tier":                  learnedItem.system.tier ?? tier,
       "system.talentCategory":        learnedItem.system.talentCategory ?? category,
       "system.source.class":          learnedItem.system.source.class ?? discipline,
       "system.source.atLevel":        learnedItem.system.source.atLevel ?? learnedAt,
