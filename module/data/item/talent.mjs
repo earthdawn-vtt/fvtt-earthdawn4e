@@ -38,7 +38,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -58,7 +58,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -235,7 +235,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   static async learn( actor, item, createData = {} ) {
     const learnedItem = await super.learn( actor, item, createData );
 
-    let category = null;
+    let category;
 
     // assign the talent category
     const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
