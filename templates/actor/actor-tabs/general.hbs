@@ -2,11 +2,11 @@
   <div class="layout__row">
 
     <!-- Left Column -->
-    <div class="layout__col--2 layout__col--fixed">
+    <div class="layout__col--2">
 
       <!-- Attributes -->
       
-      <h3 class="margin__none">
+      <h3>
         <label>{{localize "ED.Actor.Header.attributes"}}</label>
       </h3>
         <div class="container__block container__custom">
@@ -14,12 +14,12 @@
             <div class="attribute-card__grid--item"></div>
             <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
             {{#if (eq this.actor.type "character")}}
-              <div class="attribute-card__grid--item text__alignment--center">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
-              <div class="attribute-card__grid--item text__alignment--center">{{localize "ED.Actor.Attributes.increase"}}</div>
+              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
+              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increase"}}</div>
               {{else}}
               <div class="attribute-card__grid--item"></div>
             {{/if}}
-            <div class="attribute-card__grid--item text__alignment--center">{{localize "ED.Actor.Attributes.attribueStep"}}</div>
+            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attribueStep"}}</div>
           </div>
           {{#if (eq this.actor.type "character")}}
             {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}

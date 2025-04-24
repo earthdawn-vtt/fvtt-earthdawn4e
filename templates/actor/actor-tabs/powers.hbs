@@ -6,11 +6,11 @@
     <div class="power-card__grid--container container__header text-break__auto">
         <div class="power-card__grid--item"></div>
         <div class="power-card__grid--item">{{localize "ED.Actor.Header.attacks"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-        <div class="power-card__grid--item text__alignment--center"></div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.damage"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+        <div class="power-card__grid--item"></div>
     </div>
     {{#each actor.itemTypes.power}}
         {{#if (eq this.system.rollType "attack")}}
@@ -22,11 +22,11 @@
     <div class="power-card__grid--container container__header text-break__auto">
         <div class="power-card__grid--item"></div>
         <div class="power-card__grid--item">{{localize "ED.Actor.Header.powers"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
-        <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-        <div class="power-card__grid--item text__alignment--center"></div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.damage"}}</div>
+        <div class="power-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+        <div class="power-card__grid--item"></div>
     </div>
     {{#each actor.itemTypes.power}}
         {{#if (ne this.system.rollType "attack")}}
@@ -38,7 +38,7 @@
     <div class="maneuver-card__grid--container container__header text-break__auto">
         <div class="maneuver-card__grid--item"></div>
         <div class="maneuver-card__grid--item">{{localize "ED.Actor.Header.maneuvers"}}</div>
-        <div class="maneuver-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.extraSuccesses"}}</div>
+        <div class="maneuver-card__grid--item">{{localize "ED.Actor.Header.extraSuccesses"}}</div>
         <div class="maneuver-card__grid--item"></div>
         <div class="maneuver-card__grid--item"></div>
     </div>

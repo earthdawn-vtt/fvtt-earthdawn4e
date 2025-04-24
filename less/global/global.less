@@ -1,38 +1,40 @@
 //###########################################################
-//                       Partials
+// Layout
 //###########################################################
+
 .layout__row {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-  }
-.layout__col--2,
-.layout__col--3,
-.layout__col--4,
-.layout__col--5,
-.layout__col--6 {
+}
+.layout__col {
     flex: 1 1 0;
     box-sizing: border-box;
+    min-width: 0;
 }
+.layout__col--2 { flex: 0 0 calc(98% / 2); }
+.layout__col--3 { flex: 0 0 calc(98% / 3); }
+.layout__col--4 { flex: 0 0 calc(98% / 4); }
+.layout__col--5 { flex: 0 0 calc(98% / 5); }
+.layout__col--6 { flex: 0 0 calc(98% / 6); }
 
 //###########################################################
-//                       header
+// Text alignment
 //###########################################################
 
-.header__no-border {
-    border: none;
-    input {
-        border: none;
-        background: transparent;
-    }
+.one-line__vertical-align > *{
+    line-height: 35px;
+    vertical-align: middle;
 }
+  
+//###########################################################
+// scrolling
+//###########################################################
 
-.header--centered {
-    text-align: center;
-}
+
 
 //###########################################################
-//                       Window header
+// Window header
 //###########################################################
 
 .window-header {
@@ -49,20 +51,29 @@
     color: var(--color-text-primary)
 }
 .application .controls-dropdown {
-    z-index: 9;
+    z-index: 99;
 }
 
 //###########################################################
-//                       Input
+// Input
 //###########################################################
 
+.header__no-border {
+    border: none;
+    input {
+        border: none;
+        background: transparent;
+    }
+}
+
+
 .input__square-input--centered {
-    background: var(--color-primary-pc;);
+    background: var(--color-primary;);
     border: var(--border-button);
     border-radius: 3px;
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 input.input__number-input {
     width: 35px;
@@ -91,43 +102,26 @@ input.input__number-input {
 
 
 //###########################################################
-//                       Text alignment
-//###########################################################
-.one-line__vertical-align > *{
-    line-height: 35px;
-    vertical-align: middle;
-}
-
-.text__alignment--left {
-    text-align: left;
-}
-
-.text__alignment--right{
-    text-align: right;
-}
-
-.text__alignment--center{
-    text-align: center;
-}
-
-//###########################################################
 //                       Fonts
 //###########################################################
 .application {
-
     .font__bold {
         font-weight: bold;
     }
-
+    .font__no-underline {
+        border-bottom: none;
+    }
+    .font__italic {
+        font-style: italic;
+    }
     .text-break__auto {
         word-break: normal;
     }
-
     .h1, h2 {
         .WarhorseDIY;
     }
     h3, h5, h6 {
-        .WarhorseDIY;
+        .WarhorseDIY();
         font-size: 1rem;
         margin: 0;
     }
@@ -137,17 +131,7 @@ input.input__number-input {
         font-size: 0.9rem;
         margin: 0;
     }
-
-
-    .font__no-underline {
-        border-bottom: none;
-    }
-
-    .font__italic {
-        font-style: italic;
-    }
-
-    .editor {
+    .editor p {
         .ArnoProRegular()
     }
 }
@@ -175,25 +159,13 @@ input.input__number-input {
 }
 
 //###########################################################
-//                       scrolling
-//###########################################################
-.scrollable {
-  overflow: auto;
-}
-
-//###########################################################
 //                       Section Header Bar
 //###########################################################
 
-.header-bar-npc() {
-    background: var(--background-banner-npc);
-
+.header-bar {
+    background: var(--background-banner-actor);
 }
-.header-bar-pc() {
-    background: var(--background-banner-pc);
-}
-.header-bar-pc,
-.header-bar-npc {
+.header-bar {
     color: var(--color-text-banner);    
     width: 100%;
     line-height: 26px;
@@ -216,7 +188,5 @@ input.input__number-input {
     border-bottom-right-radius: 10px;
 }
 .container__header {
-    padding: 5px 0;
-    margin: 5px 0 0 0;
-
+    margin: 5px 0;
 }

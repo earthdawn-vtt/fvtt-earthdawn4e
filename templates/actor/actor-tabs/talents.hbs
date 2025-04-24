@@ -8,11 +8,11 @@
         <div class="ability-card__grid--container container__header text-break__auto">
             <div class="ability-card__grid--item"></div>
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsDiscipline"}}</div>
-            <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-            <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-            <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-            <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-            <div class="ability-card__grid--item ZZ">{{localize "ED.Actor.Header.attribute"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
             <div class="ability-card__grid--item"></div>
         </div>
         {{#each (ed-getTalentCategory actor.itemTypes.talent "discipline") as |talent i|}}
@@ -35,15 +35,14 @@
         {{/each}}
 
         <!-- Optional Talents -->
-        {{#if (ed-getTalentCategory actor.itemTypes.talent "optional.length")}}
           <div class="ability-card__grid--container container__header text-break__auto">
               <div class="ability-card__grid--item"></div>
               <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsOptional"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.attribute"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
               <div class="ability-card__grid--item"></div>
           </div>
           {{#each (ed-getTalentCategory actor.itemTypes.talent "optional") as |talent i|}}
@@ -64,18 +63,16 @@
               {{/if}}
             {{/each}}
           {{/each}}
-        {{/if}}
 
       <!-- Free/Racial Talents -->
-        {{#if (ed-getTalentCategory actor.itemTypes.talent "free.length")}}
           <div class="ability-card__grid--container container__header text-break__auto">
               <div class="ability-card__grid--item"></div>
               <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsFreeRacial"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.attribute"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
               <div class="ability-card__grid--item"></div>
           </div>
           {{#each (ed-getTalentCategory actor.itemTypes.talent "free") as |talent i|}}
@@ -96,18 +93,16 @@
               {{/if}}
             {{/each}}
           {{/each}}
-        {{/if}}
 
           <!-- Versatility Talents -->
-        {{#if (ed-getTalentCategory actor.itemTypes.talent "versatility.length")}}
           <div class="ability-card__grid--container container__header text-break__auto">
               <div class="ability-card__grid--item"></div>
               <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsVersatility"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.attribute"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
               <div class="ability-card__grid--item"></div>
           </div>
           {{#each (ed-getTalentCategory actor.itemTypes.talent "versatility") as |talent i|}}
@@ -128,7 +123,6 @@
               {{/if}}
             {{/each}}
           {{/each}}
-        {{/if}}
 
       {{else}}
         {{#each actor.itemTypes.talent}}

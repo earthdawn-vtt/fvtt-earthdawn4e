@@ -4,84 +4,71 @@
 
 <h3 class="margin__right">{{localize "ED.Actor.Header.conditions"}}</h3>
 <div class="conditions__grid--container">
-  {{!-- aggressiveAttack --}}
+
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.aggressiveAttack" {{checked actor.system.condition.aggressiveAttack}}>
     <span>{{localize "ED.Actor.Conditions.aggressiveAttack"}}</span>
   </label>
 
-  {{!-- coverPartial --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.cover.partial" {{checked actor.system.condition.cover.partial}}>
     <span>{{localize "ED.Actor.Conditions.coverPartial"}}</span>
   </label>
 
-  {{!-- coverFull --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.cover.full" {{checked actor.system.condition.cover.full}}>
     <span>{{localize "ED.Actor.Conditions.coverFull"}}</span>
   </label>
 
-  {{!-- darknessPartial --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.darkness.partial" {{checked actor.system.condition.darkness.partial}}>
     <span>{{localize "ED.Actor.Conditions.darknessPartial"}}</span>
   </label>
 
-  {{!-- darknessFull --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.darkness.full" {{checked actor.system.condition.darkness.full}}>
     <span>{{localize "ED.Actor.Conditions.darknessFull"}}</span>
   </label>
 
-  {{!-- defensiveStance --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.defensiveStance" {{checked actor.system.condition.defensiveStance}}>
     <span>{{localize "ED.Actor.Conditions.defensiveStance"}}</span>
   </label>
 
-  {{!-- fury --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.fury" {{checked actor.system.condition.fury}}>
     <span>{{localize "ED.Actor.Conditions.fury"}}</span>
   </label>
 
-  {{!-- harried --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.harried" {{checked actor.system.condition.harried}}>
     <span>{{localize "ED.Actor.Conditions.harried"}}</span>
   </label>
 
-  {{!-- impairedMovementPartial --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.partial" {{checked actor.system.condition.impairedMovement.partial}}>
     <span>{{localize "ED.Actor.Conditions.impairedMovementPartial"}}</span>
   </label>
 
-  {{!-- impairedMovementFull --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.full" {{checked actor.system.condition.impairedMovement.full}}>
     <span>{{localize "ED.Actor.Conditions.impairedMovementFull"}}</span>
   </label>
 
-  {{!-- knockedDown --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.knockedDown" {{checked actor.system.condition.knockedDown}}>
     <span>{{localize "ED.Actor.Conditions.knockedDown"}}</span>
   </label>
 
-  {{!-- surprised --}}
   <label class="conditions__grid--item">
     <input type="checkbox" class="input__checkbox" name="system.condition.surprised" {{checked actor.system.condition.surprised}}>
     <span>{{localize "ED.Actor.Conditions.surprised"}}</span>
   </label>
 
-  {{!-- overwhelmed --}}
   <label class="conditions__grid--item">
     <input type="number" class="input__square-input--centered" name="system.condition.overwhelmed" value="{{actor.system.condition.overwhelmed}}">    <span>{{localize "ED.Actor.Conditions.overwhelmed"}}</span>
   </label>
 </div>
-
   
   <h3>{{localize "ED.Actor.Header.effectsTemporary"}}
     <a class="effect-add align-right-button" data-action="createChild" data-type="effect" data-effect-permanent="" title="{{localize " earthdawn.n.newItem" }}">
