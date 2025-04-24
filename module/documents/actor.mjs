@@ -12,13 +12,13 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
+import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 
 const futils = foundry.utils;
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
- * @augments {Actor}
  */
 export default class ActorEd extends Actor {
 
@@ -670,8 +670,6 @@ export default class ActorEd extends Actor {
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
    
-
-
   takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
@@ -1174,6 +1172,18 @@ export default class ActorEd extends Actor {
     return this.update( {
       [`system.lp.${type}`]: oldTransactions.concat( [ transaction ] )
     } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
+
+  static migrateData( source ) {
+    const newSource = super.migrateData( source );
+
+    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( newSource );
+
+    return newSource;
   }
 
 }
