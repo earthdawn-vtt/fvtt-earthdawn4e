@@ -1,0 +1,28 @@
+<fieldset>
+  <legend>{{localize "ED.TODO.X.Matrix"}}</legend>
+  {{#each systemFields.matrix.fields}}
+    {{#unless (eq @key "threads")}}
+      {{formGroup
+        this
+        name=(concat "system.matrix." @key)
+        value=(lookup ../system.matrix @key)
+        localize=true
+        label=this.fieldPath
+      }}
+    {{/unless}}
+  {{/each}}
+  {{formGroup
+    systemFields.matrix.fields.threads.fields.hold.fields.value
+    name=(concat "system.matrix.threads.hold.value")
+    value=system.matrix.threads.hold.value
+    localize=true
+    label=systemFields.matrix.fields.threads.fields.hold.fields.value.fieldPath
+  }}
+  {{formGroup
+    systemFields.matrix.fields.threads.fields.woven
+    name=(concat "system.matrix.threads.woven")
+    value=system.matrix.threads.woven
+    localize=true
+    label=systemFields.matrix.fields.threads.fields.woven.fieldPath
+  }}
+</fieldset>

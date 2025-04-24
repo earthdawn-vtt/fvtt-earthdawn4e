@@ -124,6 +124,7 @@ export async function getSingleGlobalItemByEdid( edid, type ) {
  *                                        strings of the found documents. Empty
  *                                        if no documents are found.
  */
+// eslint-disable-next-line max-params
 export async function getAllDocuments(
   documentName,
   documentType,
@@ -232,7 +233,7 @@ export function prepareFormulaValue( model, keyPath, label, rollData ) {
  * If the attribute is not found in the provided data, display a warning on the actor.
  * @param {string} formula           The original formula within which to replace.
  * @param {object} data              The data object which provides replacements.
- * @param {object} [options]
+ * @param {object} [options]         Options for the replacement process.
  * @param {ActorEd} [options.actor]            Actor for which the value is being prepared.
  * @param {ItemEd} [options.item]              Item for which the value is being prepared.
  * @param {string|null} [options.missing]  Value to use when replacing missing references, or `null` to not replace.
@@ -738,6 +739,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
 
     // Item details
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
