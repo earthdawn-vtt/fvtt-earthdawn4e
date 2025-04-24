@@ -44,6 +44,7 @@ export function getEdIds() {
     "edidQuestorDevotion",
     "edidUnarmedCombat",
     "edidCreatureAttack",
+    "edidSpellMatrix",
   ].map( id => getSetting( id ) );
 }
 
@@ -163,6 +164,17 @@ export default function registerSystemSettings() {
     default: "creature-attack",
     type:    new EdIdField(),
   } );
+
+  // edid for items that house a spell matrix (talents or physical items)
+  game.settings.register( "ed4e", "edidSpellMatrix", {
+    name:    "ED.Settings.Edid.spellMatrix",
+    hint:    "ED.Settings.Edid.spellMatrixHint",
+    scope:   "world",
+    config:  true,
+    default: "matrix",
+    type:    new EdIdField(),
+  } );
+
 
   // region CONTROLS
 
