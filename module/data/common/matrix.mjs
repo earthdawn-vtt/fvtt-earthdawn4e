@@ -1,10 +1,10 @@
-import SystemDataModel from "../abstract.mjs";
+import { SparseDataModel } from "../abstract.mjs";
 import { ED4E } from "../../../earthdawn4e.mjs";
 
 
 const { fields } = foundry.data;
 
-export default class MatrixData extends SystemDataModel {
+export default class MatrixData extends SparseDataModel {
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
@@ -26,7 +26,6 @@ export default class MatrixData extends SystemDataModel {
         initial:         1,
         integer:         true,
         positive:        true,
-        max:             10,
       } ),
       damage: new fields.NumberField( {
         required:        true,
@@ -81,7 +80,8 @@ export default class MatrixData extends SystemDataModel {
     return new foundry.data.fields.EmbeddedDataField(
       this,
       {
-        required:        false,
+        nullable:        true,
+        initial:         null,
       }
     );
   }
