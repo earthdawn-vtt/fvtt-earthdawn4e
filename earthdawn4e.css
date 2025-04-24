@@ -114,7 +114,7 @@
 .layout__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.95rem;
 }
 .layout__col {
   flex: 1 1 0;
@@ -172,9 +172,10 @@
   height: 25px;
 }
 input.input__number-input {
-  width: 35px;
-  padding-top: 5px;
+  width: 40px;
   height: 20px;
+  text-align: center;
+  padding-top: 2px;
 }
 .input__circle-input--centered {
   border: 1px solid;
@@ -745,6 +746,56 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container .item__status.flipped {
   transform: scaleX(-1);
 }
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0.6rem 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-label {
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-bar {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: 12px;
+  background: var(--color-primary-grey);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill {
+  height: 100%;
+  width: var(--fill-width, 0%);
+  transition: width 0.3s ease, background-color 0.3s ease;
+  background-color: grey;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.low {
+  background-color: var(--color-meter-1);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.medium {
+  background-color: var(--color-meter-2);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.high {
+  background-color: var(--color-meter-3);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.over {
+  background-color: var(--color-meter-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance-marker {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-primary);
+  pointer-events: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .marker-x {
+  left: 50%;
+}
+.application.sheet.earthdawn4e.actor .window-content .marker-x15 {
+  left: 75%;
+}
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -786,57 +837,6 @@ input.input__number-input {
 }
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0.6rem 0 0.6rem 0;
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-label {
-  white-space: nowrap;
-  text-transform: uppercase;
-  padding: 3px 0 0 0;
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-bar {
-  position: relative;
-  overflow: hidden;
-  flex: 1;
-  height: 20px;
-  background: var(--color-primary-grey);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill {
-  height: 100%;
-  width: var(--fill-width, 0%);
-  transition: width 0.3s ease, background-color 0.3s ease;
-  background-color: grey;
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.low {
-  background-color: var(--color-meter-1);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.medium {
-  background-color: var(--color-meter-2);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.high {
-  background-color: var(--color-meter-3);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-fill.over {
-  background-color: var(--color-meter-4);
-}
-.application.sheet.earthdawn4e.actor .window-content .encumbrance-marker {
-  position: absolute;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background-color: var(--color-primary);
-  opacity: 0.7;
-  pointer-events: none;
-}
-.application.sheet.earthdawn4e.actor .window-content .marker-x {
-  left: 50%;
-}
-.application.sheet.earthdawn4e.actor .window-content .marker-x15 {
-  left: 75%;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
   gap: var(--grid-col-gap);
