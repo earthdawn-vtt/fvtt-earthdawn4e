@@ -12,8 +12,6 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
-import AttackRollOptions from "../data/roll/attack.mjs";
-import { getSetting } from "../settings.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 
@@ -671,7 +669,7 @@ export default class ActorEd extends Actor {
    *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
-  // eslint-disable-next-line max-params
+   
   takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
