@@ -122,8 +122,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             blank:    false,
             trim:     true,
             choices:  ED4E.spellcastingTypes,
-            label:    this.labelKey( "Ability.Magic.magicType" ),
-            hint:     this.hintKey( "Ability.Magic.magicType" )
           } ),
         }, {} ),
       }, {

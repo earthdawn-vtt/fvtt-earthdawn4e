@@ -33,36 +33,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         hint:     this.hintKey( "Ability.talentCategory" )
       } ),
       matrix: MatrixData.asEmbeddedDataField(),
-      magic:  new fields.SchemaField( {
-        threadWeaving: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.threadWeaving" ),
-          hint:     this.hintKey( "Ability.Magic.threadWeaving" )
-        } ),
-        spellcasting: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.spellcasting" ),
-          hint:     this.hintKey( "Ability.Magic.spellcasting" )
-        } ),
-        magicType: new fields.StringField( {
-          required: true,
-          nullable: true,
-          blank:    true,
-          trim:     true,
-          choices:  ED4E.spellcastingTypes,
-          label:    this.labelKey( "Ability.Magic.magicType" ),
-          hint:     this.hintKey( "Ability.Magic.magicType" )
-        } ),
-      }, {
-        required: true,
-        nullable: false,
-        label:    this.labelKey( "Ability.Magic.magic" ),
-        hint:     this.hintKey( "Ability.Magic.magic" )
-      } ),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {

@@ -7,7 +7,7 @@ import ApplicationEd from "../api/application.mjs";
 
 export default class CharacterGenerationPrompt extends ApplicationEd {
 
-  magicType;
+  castingType;
 
   // #region CONSTRUCTOR
   /**
@@ -293,7 +293,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     // Spells
     context.availableSpellPoints = await this.charGenData.getAvailableSpellPoints();
     context.maxSpellPoints = await this.charGenData.getMaxSpellPoints();
-    context.spells = this.spells.filter( spell => spell.system.spellcastingType === this.magicType );
+    context.spells = this.spells.filter( spell => spell.system.spellcastingType === this.castingType );
     context.spellsBifurcated = context.spells.map(
       spell => this.charGenData.spells.has( spell.uuid ) ? [ null, spell ] : [ spell, null ]
     );
@@ -490,7 +490,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     this.charGenData.updateSource( data );
 
     // wait for the update, so we can use the data models method
-    this.magicType = await this.charGenData.getMagicType();
+    this.castingType = await this.charGenData.getCastingType();
 
     // Re-render sheet with updated values
     this.render( true );
