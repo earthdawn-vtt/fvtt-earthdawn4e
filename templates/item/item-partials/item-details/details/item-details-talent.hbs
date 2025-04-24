@@ -11,15 +11,6 @@
   {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
 </fieldset>
 
-{{! -- Magic Type -- }}
-<fieldset>
-  <legend>{{localize "ED.Item.Header.magic"}}</legend>
-
-  {{formField systemFields.magic.fields.spellcasting name="system.magic.spellcasting" value=item.system.magic.spellcasting localize=true}}
-  {{formField systemFields.magic.fields.threadWeaving name="system.magic.threadWeaving" value=item.system.magic.threadWeaving localize=true}}
-  {{formField systemFields.magic.fields.magicType name="system.magic.magicType" value=item.system.magic.magicType required=false localize=true}}
-</fieldset>
-
 {{! -- Knacks -- }}
 {{#if (or (ed-hasItems item.system.knacks.learned) (ed-hasItems item.system.knacks.available))}}
   <fieldset>

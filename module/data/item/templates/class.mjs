@@ -103,6 +103,26 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /* -------------------------------------------- */
 
+  getAllAbilityUuids() {
+    return this.advancement.levels
+      .flatMap( level => Array.from( level.abilities.class ) )
+      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.free ) ) )
+      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.special ) ) )
+      .concat( Object.values( this.advancement.abilityOptions ).flatMap( pool => Array.from( pool ) ) );
+  }
+
+  /**
+   * Get the casting type of the class, if it has a thread weaving ability for spellcasting.
+   * @returns {typeof AbilityTemplate.castingType} The casting type of the class, see {@link AbilityTemplate.castingType}.
+   */
+  getCastingType() {
+    return this
+      .getAllAbilityUuids()
+      .map( uuid => fromUuidSync( uuid ) )
+      .find( ability => ability?.system?.castingType )
+      ?.system?.castingType;
+  }
+
   /** @inheritDoc */
   // eslint-disable-next-line complexity
   async increase() {

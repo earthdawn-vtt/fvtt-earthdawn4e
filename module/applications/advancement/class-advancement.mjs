@@ -240,8 +240,8 @@ export default class ClassAdvancementDialog extends ApplicationEd {
       "spell",
       true,
       "OBSERVER",
-      [ "system.magicType" ],
-      _ => true // x.system.magicType === this.classItem
+      [ "system.spellcastingType" ],
+      spell => spell.system?.spellcastingType === this.classItem.system.getCastingType()
     ) ).filter(
       spell => !this.actor.itemTypes.spell.map( s => s.uuid ).includes( spell )
     ) : [];
