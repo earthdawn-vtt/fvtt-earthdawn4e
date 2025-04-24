@@ -106,7 +106,8 @@
         .attribute-icon {
             height: 20px;
             width: 20px;
-            padding: 0 0 0 5px;
+            margin: 0 0 0 5px;
+            padding: 1px;
         }
     }
     .karma-devotion__header,
@@ -207,7 +208,7 @@
     .equipment-card__grid--container {
         grid-template-columns:
             minmax(25px, 25px)
-            minmax(100px, 1fr)
+            minmax(50px, 1fr)
             minmax(120px, 120px)
             minmax(120px, 120px)
             minmax(115px, 115px)
@@ -272,7 +273,74 @@
             minmax(60px, 60px)
     }
 
+    .encumbrance-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.6rem 0 0.6rem 0;
+    }
+    .encumbrance-label {
+        white-space: nowrap;
+        text-transform: uppercase;
+        padding: 3px 0 0 0;
+    }
+    .encumbrance-bar {
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+        height: 20px;
+        background: var(--color-primary-grey);
+    }
+      .encumbrance-fill {
+        height: 100%;
+        width: var(--fill-width, 0%);
+        transition: width 0.3s ease, background-color 0.3s ease;
+        background-color: grey;
+    }
+    .encumbrance-fill.low {
+        background-color: var(--color-meter-1);
+    }
+    .encumbrance-fill.medium {
+        background-color: var(--color-meter-2);
+    }
+    .encumbrance-fill.high {
+        background-color: var(--color-meter-3);
+    }
+    .encumbrance-fill.over {
+        background-color: var(--color-meter-4);
+    }
+    .encumbrance-marker {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background-color: var(--color-primary);
+        opacity: 0.7;
+        pointer-events: none;
+      }
+    .marker-x {
+        left: 50%;
+    }
+    .marker-x15 {
+        left: 75%;
+    }
 
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
         // Navigation tab formatting
         .sheet-tabs.tabs.tabs-navigation  {

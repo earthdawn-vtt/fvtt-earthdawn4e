@@ -50,7 +50,7 @@
 .icons__dice img {
     box-shadow: 0 0 10px var(--color-gold-1);
     border-radius: 50%;
-    background-image: radial-gradient(var(--color-gold-1), var(--color-gold-3), var(--color-gold-5));
+    background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
 }
 .roll-icon__hover,
 .attribute-icon,
@@ -66,13 +66,13 @@
 .roll-icon__hover-fixed {
     display: block;
     width: 20px;
+    height: 20px;
 }
 .ability-icon,
 .equipment-icon,
 .power-icon {
     display: none;
 }
-
 .ability-card__grid--item:hover,
 .attribute-card__grid--item:hover,
 .equipment-card__grid--item:hover,
@@ -94,14 +94,7 @@
 }
 }
 
-@keyframes example {
-from {
-    transform: rotate(0deg);
-}
-to {
-    transform: rotate(360deg);
-}
-}
+
 
 
 .card__description--toggle {
