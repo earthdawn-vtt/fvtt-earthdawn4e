@@ -1,0 +1,1 @@
+This function collects all sub tabs for the advancement navigation in the class advancement Tab

@@ -8,6 +8,10 @@ import ItemSheetEd from "./item-sheet.mjs";
  */
 export default class ClassItemSheetEd extends ItemSheetEd {
   
+  /**
+   * @inheritDoc 
+   * @userFunction UF_ClassItemSheetEd-defaultOptions
+   */
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -36,6 +40,10 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   };
 
   // region PARTS
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ClassItemSheetEd-parts
+   */
   static PARTS = {
     header: { 
       template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs", 
@@ -76,7 +84,10 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   };
 
   // region TABS
-  /** @inheritDoc */
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ClassItemSheetEd-tabs
+   */
   static TABS = {
     sheet: {
       tabs: [
@@ -90,6 +101,12 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     },
   };
 
+  
+  /** 
+   * Creating the tabs for the class advancement tab group.
+   * @returns {object} tabs for the class advancement tab group
+   * @userFunction UF_ClassItemSheetEd-getClassTabs
+   */
   #getClassTabs() {
     const labelPrefix = "ED.Item.Tabs";
     
@@ -118,6 +135,10 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   }
 
   // region _prepare Part Context
+  /** 
+   * @inheritDoc 
+   * @userFunction UF_ClassItemSheetEd-preparePartContext
+   */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -145,6 +166,10 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /**
+   * @inheritdoc
+   * @userFunction UF_ClassItemSheetEd-prepareContext
+   */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -170,12 +195,24 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /**
+   * Add level to the class advancement.
+   * @param {Event} event The form submission event.
+   * @param {HTMLElement} target The form element.
+   * @userFunction UF_ClassItemSheetEd-addClassLevel 
+   */
   static async addClassLevel( event, target ) {
     event.preventDefault();
     await this.document.system.advancement.addLevel();
     this.render();
   }
 
+  /**
+   * Delete the highest level of the class advencement.
+   * @param {Event} event The form submission event.
+   * @param {HTMLElement} target The form element.
+   * @userFunction UF_ClassItemSheetEd-deleteClassLevel
+   */
   static async deleteClassLevel( event, target ) {
     event.preventDefault();
     const oldMaxLevel = this.document.system.advancement.levels.length;
