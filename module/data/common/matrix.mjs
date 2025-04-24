@@ -26,7 +26,6 @@ export default class MatrixData extends SparseDataModel {
         initial:         1,
         integer:         true,
         positive:        true,
-        max:             10,
       } ),
       damage: new fields.NumberField( {
         required:        true,
