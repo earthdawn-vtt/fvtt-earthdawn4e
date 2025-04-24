@@ -1,4 +1,8 @@
 import { callIfExists } from "../utils.mjs";
+import { getSetting } from "../settings.mjs";
+
+
+const { TextEditor } = foundry.applications.ux;
 
 /**
  * Taken from DnD5e ( https://github.com/foundryvtt/dnd5e )
@@ -628,6 +632,23 @@ export class ItemDataModel extends SystemDataModel {
     ) ?? true;
   }
 
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    this.#prepareMatrixData( data );
+  }
+
+  /** @inheritdoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    this.#prepareMatrixData( changes );
+  }
+
+  // endregion
 
   // region Rolling
 
@@ -721,6 +742,20 @@ export class ItemDataModel extends SystemDataModel {
    * @returns {Promise<void>}
    */
   async getSheetData( context ) {}
+
+  #prepareMatrixData( data ) {
+    const edidMatrix = getSetting( "edidSpellMatrix" );
+    // if this turns into an item with a matrix, set the default matrix data
+    if ( data.system?.edid === edidMatrix && this.edid !== edidMatrix ) {
+      data.system.matrix ??= { "matrixType": "standard" };
+    } else if (
+      this.edid === edidMatrix
+      && typeof data.system?.edid === "string"
+      && data.system?.edid !== edidMatrix
+    ) {
+      data.system.matrix = null;
+    }
+  }
 
 }
 

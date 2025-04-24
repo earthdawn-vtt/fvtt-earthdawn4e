@@ -81,7 +81,8 @@ export default class MatrixData extends SparseDataModel {
     return new foundry.data.fields.EmbeddedDataField(
       this,
       {
-        required:        false,
+        nullable:        true,
+        initial:         null,
       }
     );
   }
