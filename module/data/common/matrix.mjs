@@ -1,10 +1,10 @@
-import SystemDataModel from "../abstract.mjs";
+import { SparseDataModel } from "../abstract.mjs";
 import { ED4E } from "../../../earthdawn4e.mjs";
 
 
 const { fields } = foundry.data;
 
-export default class MatrixData extends SystemDataModel {
+export default class MatrixData extends SparseDataModel {
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
