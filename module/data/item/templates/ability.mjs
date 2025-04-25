@@ -43,9 +43,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       } ),
       tier: new fields.StringField( {
         nullable: false,
-        blank:    false,
+        blank:    true,
         choices:  ED4E.tier,
-        initial:  "novice",
+        initial:  "",
         label:    this.labelKey( "Ability.tier" ),
         hint:     this.hintKey( "Ability.tier" )
       } ),
