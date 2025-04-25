@@ -1,0 +1,249 @@
+import SystemDataModel from "../../abstract.mjs";
+import { ED4E } from "../../../../earthdawn4e.mjs";
+import { getSetting } from "../../../settings.mjs";
+
+
+const { fields } = foundry.data;
+
+export default class MatrixTemplate extends SystemDataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Matrix",
+  ];
+
+  /** @inheritdoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+      matrix: new fields.SchemaField( {
+        matrixType: new fields.StringField( {
+          required:        true,
+          blank:           false,
+          initial:         "standard",
+          choices:         ED4E.matrixTypes,
+        } ),
+        level: new fields.NumberField( {
+          required:        true,
+          initial:         1,
+          integer:         true,
+          positive:        true,
+        } ),
+        damage: new fields.NumberField( {
+          required:        true,
+          initial:         0,
+          integer:         true,
+          min:             0,
+        } ),
+        deathRating: new fields.NumberField( {
+          required:        true,
+          initial:         1,
+          integer:         true,
+          positive:        true,
+        } ),
+        spells:   new fields.SetField(
+          new fields.DocumentUUIDField( {
+            type:     "Item",
+            embedded: true,
+          } ), {
+            required:        true,
+            initial:         [],
+          } ),
+        threads: new fields.SchemaField( {
+          hold:  new fields.SchemaField( {
+            value: new fields.NumberField( {
+              required:        true,
+              initial:         0,
+              integer:         true,
+              min:             0,
+            } ),
+            max:   new fields.NumberField( {
+              required:        true,
+              initial:         0,
+              integer:         true,
+              min:             0,
+            } ),
+          }, {
+            required:        true,
+          } ),
+          woven: new fields.NumberField( {
+            required:        true,
+            initial:         0,
+            integer:         true,
+            min:             0,
+          } ),
+        }, {
+          required:        true,
+        } ),
+      }, {
+        nullable:        true,
+        initial:         null,
+      } ),
+    } );
+  }
+
+  // region Properties
+
+  /**
+   * Is this matrix broken and therefore cannot be used?
+   * @type {boolean}
+   */
+  get broken() {
+    return this.damage >= this.deathRating;
+  }
+
+  /**
+   * Can the matrix hold threads?
+   * @type {boolean}
+   */
+  get canHoldThread() {
+    return this.threads.maxHold > 0;
+  }
+
+  /**
+   * The amount of damage that is prevented when attacked.
+   * @type {number}
+   */
+  get mysticArmor() {
+    let armorValue = this.containingActor?.system.characteristics.armor.mystical.value || 0;
+    if ( this.matrixType === "armored" ) armorValue += this.level;
+    return armorValue;
+  }
+
+  /**
+   * The currently attuned spell, or the first one if there are multiple. Undefined if none are attuned.
+   * @type {undefined | Document | object | null}
+   */
+  get spell() {
+    const spellUuid = this.spells.first();
+    if ( !spellUuid ) return undefined;
+    return fromUuidSync( spellUuid );
+  }
+
+  // endregion
+
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    this._prepareMatrixData( data );
+  }
+
+  /** @inheritdoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    this._prepareMatrixData( changes );
+  }
+
+  /**
+   * Prepares the matrix data for creation or update.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _prepareMatrixData( data ) {
+    const edidMatrix = getSetting( "edidSpellMatrix" );
+
+    if ( this._isBecomingMatrix( data, edidMatrix ) ) {
+      this._setDefaultMatrixData( data );
+    } else if ( this._isLosingMatrix( data, edidMatrix ) ) {
+      this._clearMatrixData( data );
+    } else if ( this._isMatrixTypeChanging( data ) ) {
+      this._updateMatrixTypeData( data );
+    }
+  }
+
+  /**
+   * Checks if the item is becoming a matrix with creation or update.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @param {string} edidMatrix The EDID that defines a matrix.
+   * @returns {boolean} True if the item is becoming a matrix, false otherwise.
+   */
+  _isBecomingMatrix( data, edidMatrix ) {
+    return data.system?.edid === edidMatrix && this.edid !== edidMatrix;
+  }
+
+  /**
+   * Sets the default matrix data for a new matrix.
+   * @param {object} data The data to set, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _setDefaultMatrixData( data ) {
+    data.system.matrix ??= {
+      matrixType:  "standard",
+      deathRating: this._lookupDeathRating(),
+      threads:     {
+        hold: {
+          value: this._lookupMaxHoldThread(),
+          max:   this._lookupMaxHoldThread(),
+        },
+      },
+    };
+  }
+
+  /**
+   * Checks if the item is losing its matrix status with creation or update.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @param {string} edidMatrix The EDID that defines a matrix.
+   * @returns {boolean} True if the item is losing its matrix status, false otherwise.
+   */
+  _isLosingMatrix( data, edidMatrix ) {
+    return (
+      this.edid === edidMatrix
+      && typeof data.system?.edid === "string"
+      && data.system?.edid !== edidMatrix
+    );
+  }
+
+  /**
+   * Prepares the change data to clear the matrix data from the item.
+   * @param {object} data The data to clear, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _clearMatrixData( data ) {
+    data.system.matrix = null;
+  }
+
+  /**
+   * Checks if the matrix type is changing.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @returns {boolean} True if the matrix type is changing, false otherwise.
+   */
+  _isMatrixTypeChanging( data ) {
+    return (
+      String( data.system?.matrix?.matrixType ) !== String( this.matrixType ) &&
+      data.system?.matrix?.matrixType in ED4E.matrixTypes
+    );
+  }
+
+  /**
+   * Updates the change data to reflect the new matrix type.
+   * @param {object} data The data to update, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _updateMatrixTypeData( data ) {
+    const matrixType = data.system?.matrix?.matrixType;
+    data.system.matrix.deathRating = this._lookupDeathRating( matrixType );
+    data.system.matrix.threads.hold.value = this._lookupMaxHoldThread( matrixType );
+    data.system.matrix.threads.hold.max = this._lookupMaxHoldThread( matrixType );
+  }
+
+  // endregion
+
+  /**
+   * Looks up the death rating of the matrix based on its type.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
+   * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
+   */
+  _lookupDeathRating( matrixType = "standard" ) {
+    return ED4E.matrixTypes[ matrixType ].deathRating;
+  }
+
+  /**
+   * Looks up the maximum thread hold of the matrix based on its type.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
+   * @returns {number|undefined} The maximum thread hold of the matrix, or undefined if not found.
+   */
+  _lookupMaxHoldThread( matrixType = "standard" ) {
+    return ED4E.matrixTypes[ matrixType ].maxHoldThread;
+  }
+
+}
