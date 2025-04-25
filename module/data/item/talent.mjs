@@ -303,8 +303,71 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+  // eslint-disable-next-line complexity
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+
+    // Migrate action
+    if ( source.action && /^[A-Z]/.test( source.action ) ) {
+      source.action = source.action.toLowerCase();
+      console.log( "New Talent action ", source.action );
+    }
+
+    // Migrate Attributes
+    if ( ED4E.oldAttributes.includes( source.attribute ) ) {
+      if ( source.attribute === "initiativeStep" ) {
+        source.rollType = "initiative";
+      } 
+      source.attribute = ED4E.newAttributes[ED4E.oldAttributes.indexOf( source.attribute )];
+      console.log( "new Talent attribute ", source.attribute );
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+      console.log( "new Talent description ", source.description.value );
+    }
+
+    // Migrate minDifficulty
+    if ( ED4E.oldTargetDefense.includes( source.defenseTarget ) && source.defenseTarget !== "" && source.difficulty?.target === undefined ) {
+      if ( ED4E.oldGroupDifficulty.includes( source.defenseGroup ) && source.difficulty?.group === undefined ) {
+        source.difficulty = {
+          ...source.difficulty,
+          target: ED4E.newTargetDefense[ED4E.oldTargetDefense.indexOf( source.defenseTarget )],
+          group:  ED4E.newGroupDifficulty[ED4E.oldGroupDifficulty.indexOf( source.defenseGroup )]
+        };
+      } else {
+        source.difficulty = {
+          ...source.difficulty, // Spread the existing properties of source.difficulty
+          target: ED4E.newTargetDefense[ED4E.oldTargetDefense.indexOf( source.defenseTarget )], // Update the target property
+        };
+      }
+      console.log( "new Talent difficulty target Setting ", source.difficulty.target );
+      console.log( "new Talent difficulty Group setting ", source.difficulty.group );
+    }
+
+    // Migrate level
+    if ( source.ranks > 0 && source.level === undefined ) {
+      source.level = source.ranks;
+    }
+
+    // Migrate rollTypes
+    if ( source.healing > 0 ) {
+      if ( source.rollType === undefined ) {
+        source.rollType = "recovery";
+      }
+    }
+
+    // Migrate Talent category
+    if ( source.talentCategory && /^[A-Z]/.test( source.talentCategory ) ) {
+      if ( source.talentCategory === "Racial" ) source.talentCategory = "free";
+      source.talentCategory = source.titalentCategoryer.toLowerCase();
+      console.log( "new Talent Category ", source.talentCategory );
+    }
+
+    // Migrate tier
+    if ( source.tier && /^[A-Z]/.test( source.tier ) ) {
+      source.tier = source.tier.toLowerCase();
+      console.log( "new Talent tier ", source.tier );
+    }
   }
 }
