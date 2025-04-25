@@ -3,14 +3,15 @@ import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
-import MatrixData from "../common/matrix.mjs";
+import MatrixTemplate from "./templates/matrix.mjs";
 
 /**
  * Data model template with information on talent items.
  * @mixes ItemDescriptionTemplate
  */
 export default class TalentData extends IncreasableAbilityTemplate.mixin(
-  ItemDescriptionTemplate
+  ItemDescriptionTemplate,
+  MatrixTemplate,
 ) {
 
   /** @inheritdoc */
@@ -32,7 +33,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         label:    this.labelKey( "Ability.talentCategory" ),
         hint:     this.hintKey( "Ability.talentCategory" )
       } ),
-      matrix: MatrixData.asEmbeddedDataField(),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {
