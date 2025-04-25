@@ -69,6 +69,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       case "spells":
         foundry.utils.mergeObject( context, {
           tabsSpells: this._getSpellTabs(),
+          matrices:   this.document.getMatrices(),
         } );
         break;
       case "equipment":
