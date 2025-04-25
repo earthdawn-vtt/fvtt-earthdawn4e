@@ -101,6 +101,14 @@ export default class MatrixTemplate extends SystemDataModel {
   }
 
   /**
+   * Whether this item has a matrix.
+   * @type {boolean}
+   */
+  get hasMatrix() {
+    return this.edid === getSetting( "edidSpellMatrix" );
+  }
+
+  /**
    * The amount of damage that is prevented when attacked.
    * @type {number}
    */
