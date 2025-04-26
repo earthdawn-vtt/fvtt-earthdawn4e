@@ -134,6 +134,14 @@ export default class MatrixTemplate extends SystemDataModel {
     return fromUuidSync( this.matrix?.spells?.first() );
   }
 
+  /**
+   * The UUID of the currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * @type {string | null}
+   */
+  get matrixSpellUuid() {
+    return this.matrix?.spells?.first() || null;
+  }
+
   // endregion
 
   // region Life Cycle Events
