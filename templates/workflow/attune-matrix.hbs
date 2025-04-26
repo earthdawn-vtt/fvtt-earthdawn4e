@@ -1,5 +1,7 @@
+<div>
 {{#each spellSelectionFields }}
-  {{formGroup this.field name=(this.matrix.uuid) value=(this.selected)}}
+  {{formGroup this.field name=this.matrix.uuid value=this.selected}}
 {{else}}
   <em>{{localize "ED.Dialogs.TODO.X.No matrices available"}}</em>
 {{/each}}
+</div>
