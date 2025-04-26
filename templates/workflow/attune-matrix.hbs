@@ -1,6 +1,7 @@
+<!--TODO: Put it in summary tag if particular Matrix was selected-->
 <div>
 {{#each spellSelectionFields }}
-  {{formGroup this.field name=this.matrix.uuid value=this.selected}}
+  {{formGroup this.field name=this.matrix.id value=this.selected options=this.field.choices valueAttr="value"}}
 {{else}}
   <em>{{localize "ED.Dialogs.TODO.X.No matrices available"}}</em>
 {{/each}}

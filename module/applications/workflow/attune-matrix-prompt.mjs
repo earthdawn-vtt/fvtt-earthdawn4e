@@ -43,29 +43,26 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
    */
   #spellSelectionFields;
 
-  /**
-   * The UUIDs of available spells.
-   * @type {string[]}
-   */
-  get #spellsUuids() {
-    return this.#spells.map( ( spell ) => spell.uuid );
-  }
-
   // endregion
 
-  constructor( { matrices = [], spells = [], options = {} } = {} ) {
+  constructor( { matrices = [], spells = [], ...options } ) {
     super( options );
     this.#matrices = matrices;
-    this.#spells = spells;
+    // sort spells: first by spellcasting type, then by name
+    this.#spells = spells.toSorted( ( a, b ) => {
+      const typeComparison = a.system.spellcastingType.localeCompare( b.system.spellcastingType );
+      return typeComparison !== 0 ? typeComparison : a.name.localeCompare( b.name );
+    } );
+
     this.#spellSelectionFields = Array.from( this.#matrices.map( matrix => {
       return {
         matrix: matrix,
-        field:  matrix.shared
+        field:  matrix.system.matrixShared
           ? this.#getMultipleSpellField( matrix )
           : this.#getSingleSpellField( matrix ),
-        selected: matrix.shared
-          ? matrix.spells
-          : matrix.spell,
+        selected: matrix.matrixShared
+          ? matrix.system.matrix.spells ?? []
+          : matrix.system.matrixSpellUuid,
       };
     } ) );
   }
@@ -107,18 +104,32 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   // endregion
 
   #getMultipleSpellField( matrix ) {
-    return new foundry.data.fields.SetField( new foundry.data.fields.DocumentUUIDField( {
-      type:     "Item",
-      embedded: true,
+    return new foundry.data.fields.SetField( new foundry.data.fields.StringField( {
+      choices:  this.#getSpellChoicesConfig( matrix ),
     } ), {
-      label:     matrix.name,
-      choices:   this.#spellsUuids,
+      name:     matrix.name,
+      label:    matrix.name,
     } );
   }
 
   #getSingleSpellField( matrix ) {
-    return new foundry.data.fields.DocumentUUIDField( {
-      label:     matrix.name,
+    return new foundry.data.fields.StringField( {
+      name:     matrix.name,
+      label:    matrix.name,
+      choices:  this.#getSpellChoicesConfig( matrix ),
+    } );
+  }
+
+  #getSpellChoicesConfig( matrix ) {
+    return this.#spells.map( spell => {
+      return {
+        valueAttr: "value",
+        value:     spell.uuid,
+        label:     spell.name,
+        group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
+        disabled:  matrix.system.isSpellAttuned( spell.uuid ),
+        selected:  matrix.system.isSpellAttuned( spell.uuid ),
+      };
     } );
   }
 
