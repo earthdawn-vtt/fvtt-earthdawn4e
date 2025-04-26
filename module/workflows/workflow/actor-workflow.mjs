@@ -1,4 +1,5 @@
 import Workflow from "./workflow.mjs";
+import ActorEd from "../../documents/actor.mjs";
 
 /**
  * Base class for all workflows that are associated with an Actor.
@@ -8,17 +9,17 @@ export default class ActorWorkflow extends Workflow {
 
   /**
    * The actor that this workflow is associated with.
-   * @type {foundry.documents.Actor}
+   * @type {ActorEd}
    */
   _actor = null;
 
   /**
    * @override
-   * @param {foundry.documents.Actor} actor The actor that this workflow is associated with.
+   * @param {ActorEd} actor The actor that this workflow is associated with.
    * @param {WorkflowOptions} [options] See {@link Workflow#constructor}.
    */
   constructor( actor, options = {} ) {
-    if ( ! ( actor instanceof foundry.documents.Actor ) )
+    if ( ! ( actor instanceof ActorEd ) )
       throw new TypeError( "ActorWorkflow constructor expects an Actor instance." );
 
     super( options );

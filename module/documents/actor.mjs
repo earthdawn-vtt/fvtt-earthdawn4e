@@ -286,6 +286,14 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Find all items that have a matrix.
+   * @returns {ItemEd[]} An array of items that have a matrix.
+   */
+  getMatrices() {
+    return this.items.filter( item => item.system?.hasMatrix );
+  }
+
+  /**
    * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
    * Fetch an item that matches a given EDID and optionally an item type.
    * @param {string} edid         The EDID of the item(s) which you want to retrieve

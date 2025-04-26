@@ -1,5 +1,7 @@
 import ActorSheetEd from "./common-sheet.mjs";
 import ED4E from "../../config/_module.mjs";
+import AttuneMatrixPrompt from "../workflow/attune-matrix-prompt.mjs";
+
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -38,6 +40,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
     actions:  {
       attack:           ActorSheetEdSentient._onAttack,
+      attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
       takeDamage:       ActorSheetEdSentient.takeDamage,
       knockDown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
@@ -69,6 +72,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       case "spells":
         foundry.utils.mergeObject( context, {
           tabsSpells: this._getSpellTabs(),
+          matrices:   this.document.getMatrices(),
         } );
         break;
       case "equipment":
@@ -128,6 +132,42 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     event.preventDefault();
     const attackType = target.dataset.attackType;
     return this.document.attack( attackType );
+  }
+
+  /**
+   * Handle attune matrix events on the actor sheet
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>}
+   */
+  static async _onAttuneMatrix( event, target ) {
+    event.preventDefault();
+    const matrices = this.document.getMatrices();
+    const spells = this.document.itemTypes.spell;
+
+    const li = target.closest( ".item-id" );
+    const firstMatrix = matrices.findSplice( matrix => matrix.uuid === li?.dataset?.uuid );
+
+    const attuneData = await AttuneMatrixPrompt.waitPrompt( {
+      matrices,
+      spells,
+      firstMatrix,
+    } );
+
+    if ( !attuneData ) return;
+
+    const updates = Object.entries( attuneData ).map( ( [ matrixId, toAttune ] ) => {
+      const spells = (
+        Array.isArray( toAttune ) ? toAttune : [ toAttune ]
+      ).filter( spellUuid => !!spellUuid );
+      return {
+        _id:                    matrixId,
+        "system.matrix.spells": spells,
+      };
+    } );
+    await this.document.updateEmbeddedDocuments( "Item", updates );
+
+    this.render();
   }
 
   /**

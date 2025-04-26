@@ -42,6 +42,7 @@ export const icons = {
   ability:          "fa-bolt",
   attack:           "fa-crosshairs",
   attribute:        "fa-dice-d20",
+  attune:           "fa-thin fa-chart-network",
   cancel:           "fa-times",
   classAdvancement: "fa-arrow-trend-up",
   configure:        "fa-cogs",
@@ -63,6 +64,7 @@ export const icons = {
   nextCharGen:      "fa-thin fa-arrow-right",
   resetPoints:      "fa-arrows-rotate",
   undo:             "fa-arrow-rotate-left",
+  unknown:          "fa-question",
   Tabs:             {
   },
 };

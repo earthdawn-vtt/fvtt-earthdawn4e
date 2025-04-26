@@ -88,36 +88,58 @@ export default class MatrixTemplate extends SystemDataModel {
    * Is this matrix broken and therefore cannot be used?
    * @type {boolean}
    */
-  get broken() {
-    return this.damage >= this.deathRating;
+  get matrixBroken() {
+    return this.matrix?.damage >= this.matrix?.deathRating;
   }
 
   /**
    * Can the matrix hold threads?
    * @type {boolean}
    */
-  get canHoldThread() {
-    return this.threads.maxHold > 0;
+  get matrixCanHoldThread() {
+    return this.matrix?.threads?.hold?.max > 0;
+  }
+
+  /**
+   * Whether this item has a matrix.
+   * @type {boolean}
+   */
+  get hasMatrix() {
+    return this.edid === getSetting( "edidSpellMatrix" );
   }
 
   /**
    * The amount of damage that is prevented when attacked.
    * @type {number}
    */
-  get mysticArmor() {
+  get matrixMysticArmor() {
     let armorValue = this.containingActor?.system.characteristics.armor.mystical.value || 0;
-    if ( this.matrixType === "armored" ) armorValue += this.level;
+    if ( this.matrix?.matrixType === "armored" ) armorValue += this.matrix?.level;
     return armorValue;
   }
 
   /**
-   * The currently attuned spell, or the first one if there are multiple. Undefined if none are attuned.
-   * @type {undefined | Document | object | null}
+   * Is this matrix a shared matrix?
+   * @type {boolean}
    */
-  get spell() {
-    const spellUuid = this.spells.first();
-    if ( !spellUuid ) return undefined;
-    return fromUuidSync( spellUuid );
+  get matrixShared() {
+    return this.matrix?.matrixType === "shared";
+  }
+
+  /**
+   * The currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * @type { ItemEd | null }
+   */
+  get matrixSpell() {
+    return fromUuidSync( this.matrix?.spells?.first() );
+  }
+
+  /**
+   * The UUID of the currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * @type {string | null}
+   */
+  get matrixSpellUuid() {
+    return this.matrix?.spells?.first() || null;
   }
 
   // endregion
@@ -171,11 +193,11 @@ export default class MatrixTemplate extends SystemDataModel {
   _setDefaultMatrixData( data ) {
     data.system.matrix ??= {
       matrixType:  "standard",
-      deathRating: this._lookupDeathRating(),
+      deathRating: this._lookupMatrixDeathRating(),
       threads:     {
         hold: {
-          value: this._lookupMaxHoldThread(),
-          max:   this._lookupMaxHoldThread(),
+          value: this._lookupMatrixMaxHoldThread(),
+          max:   this._lookupMatrixMaxHoldThread(),
         },
       },
     };
@@ -210,7 +232,7 @@ export default class MatrixTemplate extends SystemDataModel {
    */
   _isMatrixTypeChanging( data ) {
     return (
-      String( data.system?.matrix?.matrixType ) !== String( this.matrixType ) &&
+      String( data.system?.matrix?.matrixType ) !== String( this.matrix?.matrixType ) &&
       data.system?.matrix?.matrixType in ED4E.matrixTypes
     );
   }
@@ -221,19 +243,32 @@ export default class MatrixTemplate extends SystemDataModel {
    */
   _updateMatrixTypeData( data ) {
     const matrixType = data.system?.matrix?.matrixType;
-    data.system.matrix.deathRating = this._lookupDeathRating( matrixType );
-    data.system.matrix.threads.hold.value = this._lookupMaxHoldThread( matrixType );
-    data.system.matrix.threads.hold.max = this._lookupMaxHoldThread( matrixType );
+    data.system.matrix.deathRating = this._lookupMatrixDeathRating( matrixType );
+    data.system.matrix.threads.hold.value = this._lookupMatrixMaxHoldThread( matrixType );
+    data.system.matrix.threads.hold.max = this._lookupMatrixMaxHoldThread( matrixType );
   }
 
   // endregion
+
+  /**
+   * Checks if the matrix is attuned to a specific spell.
+   * @param {string} spellUuid The UUID of the spell to check.
+   * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
+   */
+  isSpellAttuned( spellUuid ) {
+    if ( this.matrixShared ) {
+      return this.matrix?.spells?.has( spellUuid );
+    } else {
+      return this.matrixSpellUuid === spellUuid;
+    }
+  }
 
   /**
    * Looks up the death rating of the matrix based on its type.
    * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
    * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
    */
-  _lookupDeathRating( matrixType = "standard" ) {
+  _lookupMatrixDeathRating( matrixType = "standard" ) {
     return ED4E.matrixTypes[ matrixType ].deathRating;
   }
 
@@ -242,7 +277,7 @@ export default class MatrixTemplate extends SystemDataModel {
    * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
    * @returns {number|undefined} The maximum thread hold of the matrix, or undefined if not found.
    */
-  _lookupMaxHoldThread( matrixType = "standard" ) {
+  _lookupMatrixMaxHoldThread( matrixType = "standard" ) {
     return ED4E.matrixTypes[ matrixType ].maxHoldThread;
   }
 
