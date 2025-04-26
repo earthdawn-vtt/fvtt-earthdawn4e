@@ -3,6 +3,13 @@ import { ED4E } from "../../../earthdawn4e.mjs";
 
 export default class AttuneMatrixPrompt extends ApplicationEd {
 
+  /**
+   * @typedef {object} SpellSelectionFieldConfig
+   * @property {ItemEd} matrix The matrix item.
+   * @property {DataField} field The field to be used for the spell selection.
+   * @property {string[]|string} selected The selected spell(s).
+   */
+
   // region Properties
   
   /** @inheritdoc */
@@ -38,14 +45,20 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   #spells;
 
   /**
-   * A list of data fields to be used with {@link DataField#toFormGroup} as input for the spell selection.
-   * @type {DataField[]}
+   * A matrix that should be shown first in the list, with others collapsed.
+   * @type {SpellSelectionFieldConfig}
+   */
+  #firstSpellSelectionField;
+
+  /**
+   * A list of configurations to be used with {@link DataField#toFormGroup} as input for the spell selection.
+   * @type {SpellSelectionFieldConfig[]}
    */
   #spellSelectionFields;
 
   // endregion
 
-  constructor( { matrices = [], spells = [], ...options } ) {
+  constructor( { matrices = [], spells = [], firstMatrix, ...options } ) {
     super( options );
     this.#matrices = matrices;
     // sort spells: first by spellcasting type, then by name
@@ -53,18 +66,23 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       const typeComparison = a.system.spellcastingType.localeCompare( b.system.spellcastingType );
       return typeComparison !== 0 ? typeComparison : a.name.localeCompare( b.name );
     } );
+    if ( firstMatrix )this.#firstSpellSelectionField = this._getSpellSelectionField( firstMatrix );
 
     this.#spellSelectionFields = Array.from( this.#matrices.map( matrix => {
-      return {
-        matrix: matrix,
-        field:  matrix.system.matrixShared
-          ? this.#getMultipleSpellField( matrix )
-          : this.#getSingleSpellField( matrix ),
-        selected: matrix.matrixShared
-          ? matrix.system.matrix.spells ?? []
-          : matrix.system.matrixSpellUuid,
-      };
+      return this._getSpellSelectionField( matrix );
     } ) );
+  }
+
+  _getSpellSelectionField( matrix ) {
+    return {
+      matrix: matrix,
+      field:  matrix.system.matrixShared
+        ? this.#getMultipleSpellField( matrix )
+        : this.#getSingleSpellField( matrix ),
+      selected: matrix.system.matrixShared
+        ? matrix.system.matrix.spells
+        : matrix.system.matrixSpellUuid
+    };
   }
 
   // region Rendering
@@ -75,6 +93,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
     switch ( partId ) {
       case "main": {
+        newContext.firstField = this.#firstSpellSelectionField;
         newContext.spellSelectionFields = this.#spellSelectionFields;
         break;
       }

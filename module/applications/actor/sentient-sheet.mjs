@@ -142,12 +142,16 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    */
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
-    // const li = target.closest( ".item-id" );
-    // const matrix = await fromUuid( li.dataset.uuid );
+    const matrices = this.document.getMatrices();
+    const spells = this.document.itemTypes.spell;
+
+    const li = target.closest( ".item-id" );
+    const firstMatrix = matrices.findSplice( matrix => matrix.uuid === li?.dataset?.uuid );
 
     const attuneData = await AttuneMatrixPrompt.waitPrompt( {
-      matrices: this.document.getMatrices(),
-      spells:   this.document.itemTypes.spell,
+      matrices,
+      spells,
+      firstMatrix,
     } );
 
     if ( !attuneData ) return;
