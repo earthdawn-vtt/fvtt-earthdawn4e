@@ -21,22 +21,24 @@
               {{localize "ED.TODO.X.Dialogs.SpellMatrix.attune"}}
             </button>
           </div>
-          <div class="flexrow" style="flex-wrap: wrap;">
-          {{#each matrices}}
-            <div class="item-id item-name__card flexrow" data-uuid="{{this.uuid}}" data-action="attuneMatrix">
-              <img src="{{this.img}}" alt="{{this.name}}" class="item-id item-name__card" data-uuid="{{this.uuid}}"
-                      data-action="attuneMatrix" width="52" />
-              <figcaption class="item-id item-name__card" data-uuid="{{this.uuid}}"
-                          data-action="attuneMatrix" >
-                {{this.name}}
-              </figcaption>
-              <span>
-                {{#each this.system.matrix.spells}}
-                  {{{ed-linkForUuid this}}}
-                {{/each}}
-              </span>
-            </div>
-          {{/each}}
+          <div class="flexrow" style="flex-wrap: wrap;gap: 1rem;justify-content: space-around;">
+            {{#each matrices}}
+              <div class="item-id item-name__card" style="flex: 1 1 calc(25% - 1rem);max-width: 200px;box-sizing: border-box;" data-uuid="{{this.uuid}}" data-action="attuneMatrix">
+                <div class="flexrow">
+                  <img src="{{this.img}}" alt="{{this.name}}" class="item-id item-name__card" data-uuid="{{this.uuid}}"
+                       data-action="attuneMatrix" height="52" width="52" />
+                  <figcaption class="item-id item-name__card" data-uuid="{{this.uuid}}"
+                              data-action="attuneMatrix" >
+                    {{this.name}}
+                  </figcaption>
+                </div>
+                <span>
+                  {{#each this.system.matrix.spells}}
+                    {{{ed-linkForUuid this}}}
+                  {{/each}}
+                </span>
+              </div>
+            {{/each}}
           </div>
         </div>
 
