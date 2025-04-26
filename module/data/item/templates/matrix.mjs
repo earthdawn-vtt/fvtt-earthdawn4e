@@ -251,6 +251,19 @@ export default class MatrixTemplate extends SystemDataModel {
   // endregion
 
   /**
+   * Checks if the matrix is attuned to a specific spell.
+   * @param {string} spellUuid The UUID of the spell to check.
+   * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
+   */
+  isSpellAttuned( spellUuid ) {
+    if ( this.matrixShared ) {
+      return this.matrix?.spells?.has( spellUuid );
+    } else {
+      return this.matrixSpellUuid === spellUuid;
+    }
+  }
+
+  /**
    * Looks up the death rating of the matrix based on its type.
    * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
    * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
