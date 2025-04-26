@@ -121,16 +121,18 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   }
 
   #getSpellChoicesConfig( matrix ) {
-    return this.#spells.map( spell => {
-      return {
+    return this.#spells.reduce( ( choices, spell ) => {
+      if ( spell.system.level > matrix.system.level ) return choices;
+      choices.push( {
         valueAttr: "value",
         value:     spell.uuid,
         label:     spell.name,
         group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
         disabled:  matrix.system.isSpellAttuned( spell.uuid ),
         selected:  matrix.system.isSpellAttuned( spell.uuid ),
-      };
-    } );
+      } );
+      return choices;
+    }, [] );
   }
 
 }
