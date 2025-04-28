@@ -69,6 +69,10 @@ export const rollTypes = {
     label:            "ED.Config.rollTypes.attribute",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attribute-roll-flavor.hbs",
   },
+  attuning: {
+    label:            "ED.Config.rollTypes.attuning",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attuning-roll-flavor.hbs",
+  },
   damage: {
     label:            "ED.Rolls.Labels.damageRoll",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/damage-roll-flavor.hbs",

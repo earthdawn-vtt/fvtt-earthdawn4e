@@ -2,6 +2,17 @@ import { preLocalize } from "../utils.mjs";
 
 
 /**
+ * The different ways of attuning spells.
+ * @enum {string}
+ */
+export const attuningType = {
+  matrixStandard: "ED.Config.AttuningType.matrixStandard",
+  matrixOnTheFly: "ED.Config.AttuningType.matrixOnTheFly",
+  grimoire:       "ED.Config.AttuningType.grimoire",
+};
+preLocalize( "attuningType" );
+
+/**
  * Different types of Illusions
  * @enum {string}
  */
