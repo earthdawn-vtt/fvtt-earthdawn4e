@@ -26,10 +26,6 @@ export default class AttuningRollOptions extends EdRollOptions {
           min:      1,
         },
       ),
-      matrix: new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
-      } ),
     } );
   }
 
@@ -49,7 +45,6 @@ export default class AttuningRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.spellsToAttune = await Promise.all( this.spellsToAttune.map( async spell => await fromUuid( spell ) ) );
-    newContext.matrix = await fromUuid( this.matrix );
 
     return newContext;
   }
