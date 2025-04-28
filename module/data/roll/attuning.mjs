@@ -33,6 +33,17 @@ export default class AttuningRollOptions extends EdRollOptions {
     } );
   }
 
+  static fromActor( data, actor, options = {} ) {
+    const modifiedData = {
+      ...data,
+      testType: "action",
+      rollType: "attuning",
+    };
+    return super.fromActor( modifiedData, actor, options );
+  }
+
+  // region Rendering
+
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
@@ -42,5 +53,7 @@ export default class AttuningRollOptions extends EdRollOptions {
 
     return newContext;
   }
+
+  // endregion
 
 }
