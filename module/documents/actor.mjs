@@ -481,13 +481,15 @@ export default class ActorEd extends Actor {
       equipment:   equipment.name,
       step:        arbitraryStep
     } );
+
+    const arbitraryFinalstep = { base: arbitraryStep };
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
         rollType:         "equipment",
         strain:           0,
         target:           difficultyFinal,
-        step:             arbitraryStep,
+        step:             arbitraryFinalstep,
         devotionRequired: false,
         chatFlavor:       chatFlavor
       },
