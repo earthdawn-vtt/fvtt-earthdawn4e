@@ -4,6 +4,29 @@ import ED4E from "../config/_module.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
+/**
+ * Data structure returned by getFlavorTemplateData() to populate roll flavor templates.
+ * EdRollOptions subclasses may extend this with additional properties for specific roll types.
+ * @typedef {object} RollFlavorTemplateData
+ * @property {string} roller Name of the actor or user who made the roll
+ * @property {string} [customFlavor] Optional custom flavor text for the roll
+ * @property {number} result The total result of the roll
+ * @property {object} step Information about the step used for the roll
+ * @property {number} step.base The base step value
+ * @property {{[key: string]: number}} step.modifiers Modifiers applied to the step
+ * @property {number} step.total The final calculated step value
+ * @property {object} target Information about the target difficulty
+ * @property {number} target.base The base target difficulty value
+ * @property {{[key: string]: number}} target.modifiers Modifiers applied to the target difficulty
+ * @property {number} target.total The final calculated target difficulty value
+ * @property {string} testType The localized label of the test type (action, effect, etc.)
+ * @property {boolean} [ruleOfOne] Whether the roll triggered the Rule of One
+ * @property {boolean} [success] Whether the roll was a success
+ * @property {boolean} [failure] Whether the roll was a failure
+ * @property {number} numSuccesses The number of successes achieved in the roll
+ * @property {number} numExtraSuccesses The number of extra successes achieved in the roll
+ */
+
 
 /**
  * EdRollOptions for creating an EdRoll instance.
@@ -321,8 +344,8 @@ export default class EdRoll extends Roll {
   /* -------------------------------------------- */
 
   /**
-   * @description                       Prepare the roll data for rendering the flavor template.
-   * @returns {object}                  The context data object used to render the flavor template.
+   * Prepare the roll data for rendering the flavor template.
+   * @returns {RollFlavorTemplateData}  The rendering context.
    * @userFunction                      UF_Rolls-getFlavorTemplateData
    */
   async getFlavorTemplateData() {
