@@ -19,7 +19,6 @@ export default class AttuningRollOptions extends EdRollOptions {
       spellsToAttune: new fields.SetField(
         new fields.DocumentUUIDField( {
           type:     "Item",
-          embedded: false, // when casting raw or from grimoire, the spell doesn't necessarily exist in the actor
         } ),
         {
           required: true,
@@ -29,6 +28,7 @@ export default class AttuningRollOptions extends EdRollOptions {
     } );
   }
 
+  /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
     const modifiedData = {
       ...data,
@@ -36,6 +36,29 @@ export default class AttuningRollOptions extends EdRollOptions {
       rollType: "attuning",
     };
     return super.fromActor( modifiedData, actor, options );
+  }
+
+  /** @inheritDoc */
+  _initializeSource( data, options={} ) {
+    data.target ??= this._getTargetDifficulty( data );
+    return super._initializeSource( data, options );
+  }
+
+  /**
+   * Calculates the target difficulty for an attuning roll.
+   * @param {object} data - The data object containing spell information.
+   * @param {Array<string>} data.spells - Array of spell UUIDs to be attuned.
+   * @returns {object} The target difficulty containing base and modifiers.
+   */
+  _getTargetDifficulty( data ) {
+    return  {
+      base:      0,
+      modifiers: data.spellsToAttune?.reduce( ( acc, spellUuid ) => {
+        const spell = fromUuidSync( spellUuid );
+        acc[spell.name] = spell.system?.spellDifficulty?.reattune;
+        return acc;
+      }, {} ),
+    };
   }
 
   // region Rendering
