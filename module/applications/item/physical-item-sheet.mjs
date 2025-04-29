@@ -35,20 +35,20 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     },
     "general": {
       template: "systems/ed4e/templates/item/item-partials/item-description.hbs",
-      classes:  [ "general" ]
+      classes:  [ "general", "scrollable" ]
     },
     "details": {
       template: "systems/ed4e/templates/item/item-partials/item-details.hbs",
-      classes:  [ "details" ]
+      classes:  [ "details", "scrollable" ]
     },
     "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
-      classes:  [ "effects" ]
+      classes:  [ "effects", "scrollable" ]
     },
     "thread": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs",
       id:         "-thread",
-      classes:    [ "thread" ],
+      classes:    [ "thread", "scrollable" ],
       scrollable: [ "" ],
     },
   };
