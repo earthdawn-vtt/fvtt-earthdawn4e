@@ -1,1 +1,0 @@
-This function handles the data for the enhancements field on the document's system property.

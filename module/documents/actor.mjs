@@ -118,10 +118,7 @@ export default class ActorEd extends Actor {
     return this.items.filter( item => item.system.rollType === "reaction" );
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction            UF_TokenResources-preCreate
-   */
+  /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
 
@@ -228,7 +225,6 @@ export default class ActorEd extends Actor {
    * @description                       Returns all ammunitoin items of the given actor
    * @param {string} type               The type of ammunition to get
    * @returns {ItemEd[]}                An array of ammunition items
-   * @userFunction                      UF_PhysicalItems-getAmmo
    */
   getAmmo ( type ) {
     return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
@@ -369,7 +365,6 @@ export default class ActorEd extends Actor {
    * Triggers a prompt for updating the Legend Point (LP) history of the actor.
    * Updates the LPTrackingData of the actor based on the input from the prompt.
    * @returns {Promise<Actor>} A Promise that resolves to the updated Actor instance.
-   * @userFunction            UF_LpTracking-legendPointHistory
    * @see ../../documentation/User Functions/UF_LpTracking-legendPointHistory.md
    */
   async legendPointHistory() {
@@ -464,7 +459,6 @@ export default class ActorEd extends Actor {
    * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
    * @param {object} options      Any additional options for the {@link EdRoll}.
-   * @userFunction                UF_PhysicalItems-rollEquipment
    */
   async rollEquipment( equipment, options = {} ) {
     const arbitraryStep = equipment.system.usableItem.arbitraryStep;
@@ -502,7 +496,6 @@ export default class ActorEd extends Actor {
    * @param {object}    itemId        Id of the item to rotate the status of
    * @param {boolean}   backwards     Whether to rotate the status backwards
    * @returns {Promise<ItemEd[]>}       The updated items
-   * @userFunction                    UF_PhysicalItems-rotateItemStatus
    */
   async rotateItemStatus( itemId, backwards = false ) {
     const item = this.items.get( itemId );
@@ -648,7 +641,6 @@ export default class ActorEd extends Actor {
    * @summary                           Take the given amount of strain as damage.
    * @param {number} strain             The amount of strain damage to take
    * @param {ItemEd} [strainOrigin]     The ability causing the strain
-   * @userFunction                      UF_Actor-takeStrain
    */
   takeStrain( strain, strainOrigin ) {
     if ( !strain ) return;
@@ -1034,7 +1026,6 @@ export default class ActorEd extends Actor {
    * @param {object}    itemToUpdate    The item to update
    * @param {string}    nextStatus      The next status of the item
    * @returns {Promise<ItemEd[]>}       The updated items
-   * @userFunction                      UF_PhysicalItems-updateItemStates
    */
   async _updateItemStates( itemToUpdate, nextStatus ) {
     const updates = [];
@@ -1169,7 +1160,6 @@ export default class ActorEd extends Actor {
    * @param {('earnings'|'spendings')} type       Type of the transaction
    * @param {object} transactionData   Data of the transaction
    * @returns {ActorEd}                           The updated actor data
-   * @userFunction                                UF_LPTracking-addLpTransaction
    * @see                             ../../documentation/User Functions/UF_LpTracking-addLpTransaction.md
    */
   async addLpTransaction( type, transactionData ) {

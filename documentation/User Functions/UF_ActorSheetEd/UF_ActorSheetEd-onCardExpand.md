@@ -1,1 +1,0 @@
-This function is a toggle, triggered by clicking on the objects name. If the toggle is active, the description of the item will be shown beneath the list view of the item. 

@@ -1,1 +1,0 @@
-This is the constructor of the "class advancement" application.

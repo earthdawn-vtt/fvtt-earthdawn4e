@@ -57,7 +57,6 @@ export function getAllEdIds( type ) {
  * @param {string} edid           The SWID of the item(s) which you want to retrieve
  * @param {string} type           Optionally, a type name to restrict the search
  * @returns {Item[]|undefined}    An array containing the found items
- * @userFunction                  UF_Utils_getGlobalItemsByEdid
  */
 export async function getGlobalItemsByEdid( edid, type ) {
   return getAllDocuments(
@@ -77,7 +76,6 @@ export async function getGlobalItemsByEdid( edid, type ) {
  * @param {string} edid         The EDID of the item(s) which you want to retrieve
  * @param {string} type         Optionally, a type name to restrict the search
  * @returns {Item|undefined}    The matching item, or undefined if none was found.
- * @userFunction                UF_Utils_getSingleGlobalItemByEdid
  */
 export async function getSingleGlobalItemByEdid( edid, type ) {
   return getGlobalItemsByEdid( edid, type ).then( item => item[0] );
@@ -524,7 +522,6 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
  * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
  * @param { string }  value The string to be checked for validity
  * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
- * @userFunction            UF_Utils_validateEdid
  */
 export function validateEdid( value ) {
   // `any` is a reserved word

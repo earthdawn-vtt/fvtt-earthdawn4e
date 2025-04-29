@@ -1,1 +1,0 @@
-This function reacts on a changed attribute value to set the according attriube modifier.

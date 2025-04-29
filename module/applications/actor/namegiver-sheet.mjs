@@ -5,10 +5,6 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
  */
 export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ActorSheetEdNamegiver-addSheetTab
-   */
   static {
     this.addSheetTabs( [
       { id: "talents", },
@@ -19,10 +15,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     ] );
   }
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdNamegiver-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -40,10 +33,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     },
   };
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_ActorSheetEdNamegiver-perpareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
     const context = await super._prepareContext( options );
@@ -54,10 +44,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     return context;
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_ActorSheetEdNamegiver-onDropItem
-   */
+  /** @inheritdoc */
   async _onDropItem( event, item ) {
     const dataModel = CONFIG.Item.dataModels[item.type];
     const singleton = dataModel?.metadata?.singleton ?? false;
@@ -76,7 +63,6 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
    * This function triggers the half magic roll of an adept.
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_ActorSheetEdNamegiver-rollHalfMagic
    */
   static async rollHalfMagic( event, target ) {
     event.preventDefault();

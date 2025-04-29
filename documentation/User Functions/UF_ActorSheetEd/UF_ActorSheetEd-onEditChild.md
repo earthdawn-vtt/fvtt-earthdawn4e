@@ -1,1 +1,0 @@
-This function opens up the effect sheet for the selected Active Effect.

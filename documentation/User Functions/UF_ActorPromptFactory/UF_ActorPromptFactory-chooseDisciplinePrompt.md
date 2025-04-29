@@ -1,1 +1,0 @@
-This function provides a list of disciplines to choose from during the adding process of a talent.

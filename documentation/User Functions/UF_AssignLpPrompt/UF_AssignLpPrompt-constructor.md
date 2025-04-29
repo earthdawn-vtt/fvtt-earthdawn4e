@@ -1,1 +1,0 @@
-This is the constructor of the "assign legend points" application.

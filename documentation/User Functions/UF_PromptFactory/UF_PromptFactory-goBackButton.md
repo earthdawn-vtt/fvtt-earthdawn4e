@@ -1,1 +1,0 @@
-this function triggers the previous dialog to reappear.

@@ -5,10 +5,6 @@ import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
  */
 export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ActorSheetEdNpc-addSheetTab
-   */
   static {
     this.addSheetTabs( [
       { id: "powers" },
@@ -17,10 +13,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   }
 
   // region DEFAULT_OPTIONS
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ActorSheetEdNpc-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -36,10 +29,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   };
 
   // region PARTS
-  /**
-   * @inheritDoc
-   * @userFunction UF_ActorSheetEdNpc-parts
-   */
+  /** @inheritdoc */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -108,19 +98,13 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   };
 
   // region _prepareContext
-  /**
-   * @inheritDoc
-   * @userFunction UF_ActorSheetEdNpc-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options ) {
     return await super._prepareContext( options );
   }
 
   // region _prepare Part Context
-  /**
-   * @inheritDoc
-   * @userFunction UF_ActorSheetEdNpc-preparePartContext
-   */
+  /** @inheritdoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

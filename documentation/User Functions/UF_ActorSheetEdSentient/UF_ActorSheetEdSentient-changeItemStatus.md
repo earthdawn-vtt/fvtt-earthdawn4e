@@ -1,1 +1,0 @@
-This function is triggered by clicking on the holding type icon of an equipment to toggle through the different holding types.

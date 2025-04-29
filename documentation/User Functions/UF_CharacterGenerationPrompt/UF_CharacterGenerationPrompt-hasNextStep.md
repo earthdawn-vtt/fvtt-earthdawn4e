@@ -1,1 +1,0 @@
-this function returns the number of the next step (tab).

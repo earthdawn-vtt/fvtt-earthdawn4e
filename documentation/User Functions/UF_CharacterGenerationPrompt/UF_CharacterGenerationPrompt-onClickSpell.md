@@ -1,1 +1,0 @@
-This function either adds or removes a spell from the selection.

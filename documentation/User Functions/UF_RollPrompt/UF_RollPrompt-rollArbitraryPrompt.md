@@ -1,1 +1,0 @@
-This function triggers an arbitrary roll prompt.

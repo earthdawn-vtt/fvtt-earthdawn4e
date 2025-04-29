@@ -1,1 +1,0 @@
-this function activates the next tab.

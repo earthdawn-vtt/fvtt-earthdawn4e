@@ -1,1 +1,0 @@
-This function assignes health or karma rating to the related token bar.
