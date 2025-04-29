@@ -43,7 +43,6 @@ export function getEdIds() {
     "edidVersatility",
     "edidQuestorDevotion",
     "edidUnarmedCombat",
-    "edidCreatureAttack",
     "edidSpellMatrix",
   ].map( id => getSetting( id ) );
 }
@@ -152,16 +151,6 @@ export default function registerSystemSettings() {
     scope:   "world",
     config:  true,
     default: "unarmed-combat",
-    type:    new EdIdField(),
-  } );
-
-  // edid for creature power used as attack
-  game.settings.register( "ed4e", "edidCreatureAttack", {
-    name:    "ED.Settings.Edid.creatureAttack",
-    hint:    "ED.Settings.Edid.creatureAttackHint",
-    scope:   "world",
-    config:  true,
-    default: "creature-attack",
     type:    new EdIdField(),
   } );
 
