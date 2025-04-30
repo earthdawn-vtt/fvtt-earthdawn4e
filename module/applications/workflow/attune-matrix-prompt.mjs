@@ -18,7 +18,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "attune-matrix-prompt", ],
     form:     {
+      closeOnSubmit:  false,
       submitOnChange: true,
+    },
+    actions:  {
+      emptyAll: AttuneMatrixPrompt._onEmptyAllMatrices,
     },
     window:   {
       title: "ED.Dialogs.Title.attuneMatrix",
@@ -34,6 +38,12 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       template: "templates/generic/form-footer.hbs",
     },
   };
+
+  /**
+   * The actor who is trying to attune.
+   * @type {ActorEd}
+   */
+  #actor;
 
   /**
    * The list of available matrices.
@@ -53,10 +63,25 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
    */
   #firstMatrix;
 
+  /**
+   * The data field to select the thread weaving talent to use if reattuning on the fly.
+   * @type {ItemEd}
+   */
+  #threadWeavingTalentField;
+
+  /**
+   * Whether the matrices should be reattuned on the fly. `True` if a thread weaving talent is selected, false otherwise.
+   * @type {boolean}
+   */
+  get #onTheFly() {
+    return foundry.data.validators.isValidId( this._data.threadWeavingUuid );
+  }
+
   // endregion
 
-  constructor( { actor, firstMatrixUuid, ...options } ) {
+  constructor( { actor, firstMatrixUuid, onTheFly = false, ...options } ) {
     super( options );
+    this.#actor = actor;
     this.#matrices = actor.getMatrices();
     // sort spells: first by spellcasting type, then by name
     this.#spells = actor.itemTypes.spell.toSorted( ( a, b ) => {
@@ -64,6 +89,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       return typeComparison !== 0 ? typeComparison : a.name.localeCompare( b.name );
     } );
     this.#firstMatrix = this.#matrices.findSplice( matrix => matrix.uuid === firstMatrixUuid );
+    this.#threadWeavingTalentField = this.#getThreadWeavingTalentField();
+
+    if ( onTheFly ) {
+      this._data.threadWeavingUuid = Object.keys( this.#threadWeavingTalentField.choices )[0];
+    }
   }
 
   _getSpellSelectionField( matrix ) {
@@ -79,6 +109,58 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     };
   }
 
+  #getMultipleSpellField( matrix ) {
+    return new foundry.data.fields.SetField( new foundry.data.fields.StringField( {
+      choices:  this.#getSpellChoicesConfig( matrix ),
+    } ), {
+      label:    matrix.name,
+    }, {
+      name:     `toAttune.${matrix.id}`,
+    } );
+  }
+
+  #getSingleSpellField( matrix ) {
+    return new foundry.data.fields.StringField( {
+      label:    matrix.name,
+      choices:  this.#getSpellChoicesConfig( matrix ),
+    }, {
+      name:     `toAttune.${matrix.id}`,
+    } );
+  }
+
+  #getSpellChoicesConfig( matrix ) {
+    return this.#spells.reduce( ( choices, spell ) => {
+      if ( spell.system.level > matrix.system.level ) return choices;
+      choices.push( {
+        valueAttr: "value",
+        value:     spell.uuid,
+        label:     spell.name,
+        group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
+        disabled:  matrix.system.isSpellAttuned( spell.uuid ),
+        selected:  matrix.system.isSpellAttuned( spell.uuid ),
+      } );
+      return choices;
+    }, [] );
+  }
+
+  #getThreadWeavingTalentField() {
+    const threadWeavingTalents = this.#actor.items.filter(
+      item => item.system?.rollTypeDetails?.threadWeaving?.castingType in ED4E.spellcastingTypes,
+    );
+    const choices = threadWeavingTalents.reduce( ( acc, talent ) => {
+      acc[talent.id] = talent.name;
+      return acc;
+    }, {} );
+
+    return new foundry.data.fields.StringField( {
+      choices,
+      label:    "",
+      hint:     "ED.X.TODO.Choose a thread weaving talent to attune on the fly",
+    }, {
+      name: "threadWeavingUuid",
+    } );
+  }
+
   // region Rendering
 
   /** @inheritdoc */
@@ -91,15 +173,17 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
         newContext.spellSelectionFields = Array.from( this.#matrices.map( matrix => {
           return this._getSpellSelectionField( matrix );
         } ) );
+        newContext.threadWeavingField = this.#threadWeavingTalentField;
+        newContext.threadWeavingUuid = this._data.threadWeavingUuid;
         break;
       }
       case "footer": {
         if ( this.#matrices.length > 0 ) {
           const buttonContinue = this.constructor.BUTTONS.continue;
-          buttonContinue.icon = ED4E.icons.attune;
-          buttonContinue.label = "ED.Dialogs.Buttons.attuneMatrix";
+          buttonContinue.icon = this.#onTheFly ? ED4E.icons.onTheFly :ED4E.icons.attune;
+          buttonContinue.label = this.#onTheFly ? "ED.Dialogs.Buttons.reattuneOnTheFly" : "ED.Dialogs.Buttons.attuneMatrix";
           newContext.buttons = [
-            buttonContinue
+            buttonContinue,
           ];
         } else {
           newContext.buttons = [
@@ -118,38 +202,22 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   // endregion
 
-  #getMultipleSpellField( matrix ) {
-    return new foundry.data.fields.SetField( new foundry.data.fields.StringField( {
-      choices:  this.#getSpellChoicesConfig( matrix ),
-    } ), {
-      label:    matrix.name,
-    }, {
-      name:     matrix.id,
-    } );
+  // region Form Handling
+
+  _processSubmitData ( event, form, formData, submitOptions ) {
+    const { toAttune, threadWeavingUuid} = super._processSubmitData( event, form, formData, submitOptions );
+    return {
+      toAttune,
+      threadWeavingUuid,
+    };
   }
 
-  #getSingleSpellField( matrix ) {
-    return new foundry.data.fields.StringField( {
-      label:    matrix.name,
-      choices:  this.#getSpellChoicesConfig( matrix ),
-    }, {
-      name:     matrix.id,
-    } );
-  }
+  // endregion
 
-  #getSpellChoicesConfig( matrix ) {
-    return this.#spells.reduce( ( choices, spell ) => {
-      if ( spell.system.level > matrix.system.level ) return choices;
-      choices.push( {
-        valueAttr: "value",
-        value:     spell.uuid,
-        label:     spell.name,
-        group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
-        disabled:  matrix.system.isSpellAttuned( spell.uuid ),
-        selected:  matrix.system.isSpellAttuned( spell.uuid ),
-      } );
-      return choices;
-    }, [] );
-  }
+  // region Event Handlers
+
+  static async _onEmptyAllMatrices( event, target ) {}
+
+  // endregion
 
 }

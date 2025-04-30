@@ -1,11 +1,25 @@
 <div>
   {{#if firstField}}
     {{#with firstField }}
-      {{formGroup this.field name=this.matrix.id value=this.selected options=this.field.choices valueAttr="value"}}
+      {{formGroup this.field value=this.selected options=this.field.choices valueAttr="value"}}
     {{/with}}
     <details>
+    <div>
+      <button type="button" class="emptyAll" data-action="emptyAll">
+        <i class="fa-solid fa-empty-set" inert></i>
+        <span>{{localize "ED.X.TODO.EmptyAllMatrices"}}</span>
+      </button>
+    </div>
     <summary>{{localize "ED.X.TODO.otherMatrices"}}</summary>
   {{/if}}
+  {{#unless firstField}}
+    <div>
+      <button type="button" class="emptyAll" data-action="emptyAll">
+        <i class="fa-solid fa-empty-set" inert></i>
+        <span>{{localize "ED.X.TODO.EmptyAllMatrices"}}</span>
+      </button>
+    </div>
+  {{/unless}}
   {{#each spellSelectionFields }}
     {{formGroup this.field value=this.selected options=this.field.choices valueAttr="value"}}
   {{else}}
@@ -14,4 +28,9 @@
   {{#if firstField}}
     </details>
   {{/if}}
+
+  <fieldset class="reattuneOnTheFly">
+    <legend>{{localize "ED.TODO.X.OnTheFly"}}</legend>
+    {{formGroup threadWeavingField value=data.threadWeavingUuid localize=true}}
+  </fieldset>
 </div>

@@ -154,7 +154,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     if ( !attuneData ) return;
 
-    const updates = Object.entries( attuneData ).map( ( [ matrixId, toAttune ] ) => {
+    const updates = Object.entries( attuneData.toAttune ).map( ( [ matrixId, toAttune ] ) => {
       const spells = (
         Array.isArray( toAttune ) ? toAttune : [ toAttune ]
       ).filter( spellUuid => !!spellUuid );
