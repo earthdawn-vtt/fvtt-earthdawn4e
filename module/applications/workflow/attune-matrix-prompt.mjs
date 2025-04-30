@@ -49,13 +49,13 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   /**
    * A matrix that should be shown first in the list, with others collapsed.
-   * @type {SpellSelectionFieldConfig}
+   * @type {ItemEd}
    */
-  #firstSpellSelectionField;
+  #firstMatrix;
 
   // endregion
 
-  constructor( { actor, firstMatrix: firstMatrixUuid, ...options } ) {
+  constructor( { actor, firstMatrixUuid, ...options } ) {
     super( options );
     this.#matrices = actor.getMatrices();
     // sort spells: first by spellcasting type, then by name
@@ -63,15 +63,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       const typeComparison = a.system.spellcastingType.localeCompare( b.system.spellcastingType );
       return typeComparison !== 0 ? typeComparison : a.name.localeCompare( b.name );
     } );
-
-    if ( firstMatrixUuid ) {
-      this.#firstSpellSelectionField = this._getSpellSelectionField(
-        this.#spells.findSplice( matrix => matrix.uuid === firstMatrixUuid )
-      );
-    }
+    this.#firstMatrix = this.#matrices.findSplice( matrix => matrix.uuid === firstMatrixUuid );
   }
 
   _getSpellSelectionField( matrix ) {
+    if ( !matrix ) return;
     return {
       matrix: matrix,
       field:  matrix.system.matrixShared
@@ -91,7 +87,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
     switch ( partId ) {
       case "main": {
-        newContext.firstField = this.#firstSpellSelectionField;
+        newContext.firstField = this._getSpellSelectionField( this.#firstMatrix );
         newContext.spellSelectionFields = Array.from( this.#matrices.map( matrix => {
           return this._getSpellSelectionField( matrix );
         } ) );
