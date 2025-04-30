@@ -65,16 +65,30 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   /**
    * The data field to select the thread weaving talent to use if reattuning on the fly.
-   * @type {ItemEd}
+   * @type {StringField}
    */
   #threadWeavingTalentField;
+
+  /**
+   * The currently selected thread weaving talent to use if reattuning on the fly.
+   * @type {ItemEd}
+   */
+  #threadWeavingTalent;
 
   /**
    * Whether the matrices should be reattuned on the fly. `True` if a thread weaving talent is selected, false otherwise.
    * @type {boolean}
    */
   get #onTheFly() {
-    return foundry.data.validators.isValidId( this._data.threadWeavingUuid );
+    return foundry.data.validators.isValidId( this._data.threadWeavingId );
+  }
+
+  /**
+   * If a thread weaving talent for reattuning on the fly is selected, return its casting type. Null otherwise.
+   * @type {string|null}
+   */
+  get #castingType() {
+    return this.#threadWeavingTalent?.system?.rollTypeDetails?.threadWeaving?.castingType ?? null;
   }
 
   // endregion
@@ -92,8 +106,14 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     this.#threadWeavingTalentField = this.#getThreadWeavingTalentField();
 
     if ( onTheFly ) {
-      this._data.threadWeavingUuid = Object.keys( this.#threadWeavingTalentField.choices )[0];
+      this._data.threadWeavingId = Object.keys( this.#threadWeavingTalentField.choices )[0];
+      this.#threadWeavingTalent = fromUuidSync( this._data.threadWeavingId );
     }
+
+    this._data.toAttune = this.#matrices.reduce( ( acc, matrix ) => {
+      acc[ matrix.id ] = matrix.system.matrix.spells?.toObject() ?? [];
+      return acc;
+    }, {} );
   }
 
   _getSpellSelectionField( matrix ) {
@@ -103,9 +123,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       field:  matrix.system.matrixShared
         ? this.#getMultipleSpellField( matrix )
         : this.#getSingleSpellField( matrix ),
-      selected: matrix.system.matrixShared
-        ? matrix.system.matrix.spells
-        : matrix.system.matrixSpellUuid
+      selected: this._data.toAttune[ matrix.id ],
     };
   }
 
@@ -130,14 +148,20 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
   #getSpellChoicesConfig( matrix ) {
     return this.#spells.reduce( ( choices, spell ) => {
-      if ( spell.system.level > matrix.system.level ) return choices;
+      const sameCastingTypes = this.#castingType === spell.system?.spellcastingType;
+      const spellInMatrix = matrix.system.isSpellAttuned( spell.uuid );
+      const spellSelected = this._data.toAttune[ matrix.id ]?.includes( spell.uuid );
+      if (
+        ( spell.system.level > matrix.system.level )
+        || ( this.#onTheFly && !spellInMatrix && !sameCastingTypes )
+      ) return choices;
       choices.push( {
         valueAttr: "value",
         value:     spell.uuid,
         label:     spell.name,
         group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
-        disabled:  matrix.system.isSpellAttuned( spell.uuid ),
-        selected:  matrix.system.isSpellAttuned( spell.uuid ),
+        disabled:  spellSelected && spellInMatrix,
+        selected:  spellSelected,
       } );
       return choices;
     }, [] );
@@ -157,7 +181,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       label:    "",
       hint:     "ED.X.TODO.Choose a thread weaving talent to attune on the fly",
     }, {
-      name: "threadWeavingUuid",
+      name: "threadWeavingId",
     } );
   }
 
@@ -174,7 +198,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
           return this._getSpellSelectionField( matrix );
         } ) );
         newContext.threadWeavingField = this.#threadWeavingTalentField;
-        newContext.threadWeavingUuid = this._data.threadWeavingUuid;
+        newContext.threadWeavingId = this._data.threadWeavingId;
         break;
       }
       case "footer": {
@@ -205,10 +229,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   // region Form Handling
 
   _processSubmitData ( event, form, formData, submitOptions ) {
-    const { toAttune, threadWeavingUuid} = super._processSubmitData( event, form, formData, submitOptions );
+    const { toAttune, threadWeavingId} = super._processSubmitData( event, form, formData, submitOptions );
+    this.#threadWeavingTalent = this.#actor.items.get( threadWeavingId );
     return {
       toAttune,
-      threadWeavingUuid,
+      threadWeavingId,
     };
   }
 
