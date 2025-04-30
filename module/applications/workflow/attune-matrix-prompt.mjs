@@ -17,6 +17,9 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     id:       "attune-matrix-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "attune-matrix-prompt", ],
+    form:     {
+      submitOnChange: true,
+    },
     window:   {
       title: "ED.Dialogs.Title.attuneMatrix",
     },
@@ -50,27 +53,22 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
    */
   #firstSpellSelectionField;
 
-  /**
-   * A list of configurations to be used with {@link DataField#toFormGroup} as input for the spell selection.
-   * @type {SpellSelectionFieldConfig[]}
-   */
-  #spellSelectionFields;
-
   // endregion
 
-  constructor( { matrices = [], spells = [], firstMatrix, ...options } ) {
+  constructor( { actor, firstMatrix: firstMatrixUuid, ...options } ) {
     super( options );
-    this.#matrices = matrices;
+    this.#matrices = actor.getMatrices();
     // sort spells: first by spellcasting type, then by name
-    this.#spells = spells.toSorted( ( a, b ) => {
+    this.#spells = actor.itemTypes.spell.toSorted( ( a, b ) => {
       const typeComparison = a.system.spellcastingType.localeCompare( b.system.spellcastingType );
       return typeComparison !== 0 ? typeComparison : a.name.localeCompare( b.name );
     } );
-    if ( firstMatrix )this.#firstSpellSelectionField = this._getSpellSelectionField( firstMatrix );
 
-    this.#spellSelectionFields = Array.from( this.#matrices.map( matrix => {
-      return this._getSpellSelectionField( matrix );
-    } ) );
+    if ( firstMatrixUuid ) {
+      this.#firstSpellSelectionField = this._getSpellSelectionField(
+        this.#spells.findSplice( matrix => matrix.uuid === firstMatrixUuid )
+      );
+    }
   }
 
   _getSpellSelectionField( matrix ) {
@@ -94,7 +92,9 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     switch ( partId ) {
       case "main": {
         newContext.firstField = this.#firstSpellSelectionField;
-        newContext.spellSelectionFields = this.#spellSelectionFields;
+        newContext.spellSelectionFields = Array.from( this.#matrices.map( matrix => {
+          return this._getSpellSelectionField( matrix );
+        } ) );
         break;
       }
       case "footer": {
@@ -126,16 +126,18 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     return new foundry.data.fields.SetField( new foundry.data.fields.StringField( {
       choices:  this.#getSpellChoicesConfig( matrix ),
     } ), {
-      name:     matrix.name,
       label:    matrix.name,
+    }, {
+      name:     matrix.id,
     } );
   }
 
   #getSingleSpellField( matrix ) {
     return new foundry.data.fields.StringField( {
-      name:     matrix.name,
       label:    matrix.name,
       choices:  this.#getSpellChoicesConfig( matrix ),
+    }, {
+      name:     matrix.id,
     } );
   }
 

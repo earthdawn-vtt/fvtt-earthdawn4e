@@ -136,22 +136,20 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
   /**
    * Handle attune matrix events on the actor sheet
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEdSentient}
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<void>}
    */
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
-    const matrices = this.document.getMatrices();
-    const spells = this.document.itemTypes.spell;
 
-    const li = target.closest( ".item-id" );
-    const firstMatrix = matrices.findSplice( matrix => matrix.uuid === li?.dataset?.uuid );
+    const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
 
     const attuneData = await AttuneMatrixPrompt.waitPrompt( {
-      matrices,
-      spells,
-      firstMatrix,
+      actor: this.document,
+      firstMatrixUuid,
     } );
 
     if ( !attuneData ) return;
