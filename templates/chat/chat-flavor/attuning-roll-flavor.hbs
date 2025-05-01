@@ -1,14 +1,24 @@
-<div class="custom-flavor">{{ customFlavor }}</div>
+<div class="custom-flavor">{{{ customFlavor }}}</div>
+
+<ul>
+  {{#each spellsToAttune}}
+    <li>{{{ed-linkForUuid this.uuid}}}</li>
+  {{/each}}
+</ul>
+
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
 {{else}}
-  {{#if (ne target.total 0)}}
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-  {{/if}}
+
+  <!-- Roll Successes -->
+  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
+
+  <!-- Modifier Lists -->
   <div class="modifier-lists flexrow">
     {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
     {{#if target.public}}
       {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
     {{/if}}
   </div>
+
 {{/if}}
