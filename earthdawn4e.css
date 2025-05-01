@@ -189,6 +189,9 @@ input.input__number-input {
 .scrollable {
   overflow: auto;
 }
+.item-image {
+  width: 150px;
+}
 .itemControlGroup,
 .icon__position--right {
   float: right;
