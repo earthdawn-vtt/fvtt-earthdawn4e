@@ -511,9 +511,17 @@ export default class SentientTemplate extends CommonTemplate {
 
   static SENTIENT_ACTOR_TYPES = [ "character", "npc", "creature", "spirit", "horror", "dragon" ];
 
+  get hasSpellsAttuned() {
+    return this.parent.getMatrices().some(
+      matrix => {
+        return foundry.utils.isEmpty( matrix.system?.matrix.spells ) === false;
+      }
+    );
+  }
+
   get isDead() {
     return this.characteristics.health.death > 0
-      && this.characteristics.health.damage.total >= this.characteristics.health.death;
+      && this.characteristics.health.damage.standard >= this.characteristics.health.death;
   }
 
   get isUnconscious() {
@@ -558,7 +566,26 @@ export default class SentientTemplate extends CommonTemplate {
 
   // endregion
 
-  // region CRUD
+  // region Life Cycle Events
+
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    if ( this.isAboutToDie( changes.system?.characteristics?.health?.damage?.standard ) ) {
+      if ( this.hasSpellsAttuned ) {
+        ui.notifications.info(
+          "ED.X.TODO.{actorName} dies. All spells are dislodged from their matrices.",
+          {
+            localize: true,
+            format:   {
+              actorName: this.parent.name
+            }
+          }
+        );
+        this.parent.emptyAllMatrices();
+      }
+    }
+  }
 
   /** @inheritDoc */
   _onUpdate( changed, options, userId ) {
@@ -672,6 +699,11 @@ export default class SentientTemplate extends CommonTemplate {
   }
 
   // endregion
+
+  isAboutToDie( newDamageTotal ) {
+    return !this.isDead
+      && newDamageTotal >= this.characteristics.health.death;
+  }
 
   // region Migrations
 
