@@ -381,6 +381,15 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+  /**
+   * Remove all spells from all matrices of this actor.
+   * @returns {Promise<Document|undefined>} The array of changed matrix items, or undefined if nothing changed.
+   */
+  async emptyAllMatrices() {
+    return Promise.all(
+      this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
 
   /* -------------------------------------------- */
   /*                   Rolls                      */
