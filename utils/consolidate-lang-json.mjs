@@ -72,9 +72,9 @@ export default function consolidateLangJson( langFile, langDir ) {
   const allLangFiles = fs.readdirSync( langDir ).filter(
     file => file.endsWith( ".json" )
   );
-
+  
   const langData = {};
-
+  
   // Load all language files
   allLangFiles.forEach( file => {
     const fullPath = path.join( langDir, file );
@@ -91,34 +91,45 @@ export default function consolidateLangJson( langFile, langDir ) {
     flattenedLangs[file] = flattenObject( content );
   }
 
-  const allKeys = new Set(
-    Object.values(
-      flattenedLangs
-    ).map(
-      langObject => Object.keys( langObject )
-    ).flat()
-  );
-
+  // Create resolved languages object
   const resolvedLangs = {};
 
-  for ( const file of Object.keys( flattenedLangs ) ) {
+  // 1. Handle the lead file first
+  resolvedLangs[langFile] = {};
+
+  // Case 1.1: Keep all keys that exist in the lead file
+  for ( const key of Object.keys( flattenedLangs[langFile] ) ) {
+    resolvedLangs[langFile][key] = flattenedLangs[langFile][key];
+  }
+
+  // Store the lead keys for reference - these are the only valid keys
+  const leadKeys = Object.keys( resolvedLangs[langFile] );
+
+  // 2. Now process all other files
+  for ( const file of Object.keys( flattenedLangs ).filter( f => f !== langFile ) ) {
     resolvedLangs[file] = {};
 
-    for ( const key of allKeys ) {
-      const leadValue = flattenedLangs[langFile][key];
+    // For each key in the lead file
+    for ( const key of leadKeys ) {
+      // const leadValue = flattenedLangs[langFile][key];
       const currentValue = flattenedLangs[file][key];
 
-      if ( file === langFile ) {
-        // Keep lead values as-is
-        resolvedLangs[file][key] = leadValue ?? localizationPlaceholder;
-      } else if ( currentValue ) {
-        // Keep existing non-empty value
+      // Case 2.1 & 2.2: Key exists in lead and exists in current
+      if ( currentValue !== undefined ) {
+        // In this implementation, we don't have access to whether the lead value has changed.
+        // We can only see if the current values are different, which will always be the case
+        // for translations. For now, we just keep the current value.
         resolvedLangs[file][key] = currentValue;
-      } else {
-        // Default to placeholder
+      }
+      // Case 2.3: Key exists in lead but not in current
+      else {
+        // Add with placeholder
         resolvedLangs[file][key] = localizationPlaceholder;
       }
     }
+
+    // Case 2.4: Keys that don't exist in lead but exist in current are not included
+    // (handled automatically by only looping through lead keys)
   }
 
   for ( const file of Object.keys( resolvedLangs ) ) {

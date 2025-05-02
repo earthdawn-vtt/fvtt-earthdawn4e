@@ -48,13 +48,13 @@ let leadFile;
 if ( inputFiles.length === 1 ) {
   // Extract just the filename from the full path
   leadFile = path.basename( inputFiles[0] );
-
+  
   // Validate that the lead file follows ISO 639-1 format
   if ( !isValidLanguageFile( leadFile ) ) {
     console.error( `Error: Language file "${leadFile}" does not follow ISO 639-1 format (2-letter code + .json)` );
     process.exit( 1 );
   }
-
+  
   // Ensure the file exists in the lang directory
   if ( !files.includes( leadFile ) ) {
     console.error( `Error: Language file "${leadFile}" not found in ${LANG_DIR}` );
