@@ -108,6 +108,13 @@ export default class PowerData extends ActionTemplate.mixin(
   /*  Getter                                      */
   /* -------------------------------------------- */
 
+  /**
+   *@type {boolean}
+   */
+  get isCreatureAttack() {
+    return this.rollType === "attack";
+  }
+  
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
