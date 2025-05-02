@@ -55,25 +55,28 @@ export function flattenObject( obj, _d=0 ) {
 
 /**
  * Consolidate localization JSON files by ensuring all keys are present in each file.
+ * @param {string} langFile The JSON file name to use as the lead. Required.
  * @param {string} [langDir] The directory containing the JSON files. Defaults to "lang".
- * @param {[string]} [langFiles] An array of JSON file names. If not provided, all JSON files in the directory will be used.
- * @throws {TypeError} If langFiles is not an array.
+ * @throws {TypeError} If langFile is not a string.
  */
-export default function consolidateLangJson( langDir, langFiles ) {
+export default function consolidateLangJson( langFile, langDir ) {
 
+  if ( !langFile ) throw new TypeError( "langFile is required" );
+  if ( typeof langFile !== "string" ) throw new TypeError( "langFile must be a string" );
   // eslint-disable-next-line no-param-reassign
   langDir ??= path.resolve( "lang" );
-  // eslint-disable-next-line no-param-reassign
-  langFiles ??= fs.readdirSync( langDir ).filter(
-    file => file.endsWith( ".json" )
-  );
-  if ( !Array.isArray( langFiles ) ) throw new TypeError( "langFiles must be an array" );
 
   const localizationPlaceholder = "TODO: Add translation";
 
+  // Get all language files (including the lead file)
+  const allLangFiles = fs.readdirSync( langDir ).filter(
+    file => file.endsWith( ".json" )
+  );
+
   const langData = {};
 
-  langFiles.forEach( file => {
+  // Load all language files
+  allLangFiles.forEach( file => {
     const fullPath = path.join( langDir, file );
     const raw = fs.readFileSync( fullPath, "utf8" );
     langData[file] = {
@@ -102,12 +105,12 @@ export default function consolidateLangJson( langDir, langFiles ) {
     resolvedLangs[file] = {};
 
     for ( const key of allKeys ) {
-      const deValue = flattenedLangs["de.json"][key];
+      const leadValue = flattenedLangs[langFile][key];
       const currentValue = flattenedLangs[file][key];
 
-      if ( file === "de.json" ) {
-        // Keep DE values as-is
-        resolvedLangs[file][key] = deValue ?? localizationPlaceholder;
+      if ( file === langFile ) {
+        // Keep lead values as-is
+        resolvedLangs[file][key] = leadValue ?? localizationPlaceholder;
       } else if ( currentValue ) {
         // Keep existing non-empty value
         resolvedLangs[file][key] = currentValue;
