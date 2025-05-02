@@ -122,7 +122,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.sourceTalentname",
           value:     learnData.talent.name,
-          fulfilled: learnData.talent.system.level >= this.minLevel
+          fulfilled: learnData.talent.isEmbedded
         },
         {
           name:      "ED.Dialogs.Legend.Validation.sourceTalentRank",

@@ -80,7 +80,7 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.sourceTalentname",
           value:     learnData.talent.name,
-          fulfilled: learnData.talent.system.level >= this.minLevel
+          fulfilled: learnData.talent.isEmbedded
         },
         {
           name:      "ED.Dialogs.Legend.Validation.sourceTalentRank",
