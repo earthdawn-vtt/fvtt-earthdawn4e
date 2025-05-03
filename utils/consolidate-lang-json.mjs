@@ -55,25 +55,28 @@ export function flattenObject( obj, _d=0 ) {
 
 /**
  * Consolidate localization JSON files by ensuring all keys are present in each file.
+ * @param {string} langFile The JSON file name to use as the lead. Required.
  * @param {string} [langDir] The directory containing the JSON files. Defaults to "lang".
- * @param {[string]} [langFiles] An array of JSON file names. If not provided, all JSON files in the directory will be used.
- * @throws {TypeError} If langFiles is not an array.
+ * @throws {TypeError} If langFile is not a string.
  */
-export default function consolidateLangJson( langDir, langFiles ) {
+export default function consolidateLangJson( langFile, langDir ) {
 
+  if ( !langFile ) throw new TypeError( "langFile is required" );
+  if ( typeof langFile !== "string" ) throw new TypeError( "langFile must be a string" );
   // eslint-disable-next-line no-param-reassign
   langDir ??= path.resolve( "lang" );
-  // eslint-disable-next-line no-param-reassign
-  langFiles ??= fs.readdirSync( langDir ).filter(
-    file => file.endsWith( ".json" )
-  );
-  if ( !Array.isArray( langFiles ) ) throw new TypeError( "langFiles must be an array" );
 
   const localizationPlaceholder = "TODO: Add translation";
 
+  // Get all language files (including the lead file)
+  const allLangFiles = fs.readdirSync( langDir ).filter(
+    file => file.endsWith( ".json" )
+  );
+  
   const langData = {};
-
-  langFiles.forEach( file => {
+  
+  // Load all language files
+  allLangFiles.forEach( file => {
     const fullPath = path.join( langDir, file );
     const raw = fs.readFileSync( fullPath, "utf8" );
     langData[file] = {
@@ -88,34 +91,45 @@ export default function consolidateLangJson( langDir, langFiles ) {
     flattenedLangs[file] = flattenObject( content );
   }
 
-  const allKeys = new Set(
-    Object.values(
-      flattenedLangs
-    ).map(
-      langObject => Object.keys( langObject )
-    ).flat()
-  );
-
+  // Create resolved languages object
   const resolvedLangs = {};
 
-  for ( const file of Object.keys( flattenedLangs ) ) {
+  // 1. Handle the lead file first
+  resolvedLangs[langFile] = {};
+
+  // Case 1.1: Keep all keys that exist in the lead file
+  for ( const key of Object.keys( flattenedLangs[langFile] ) ) {
+    resolvedLangs[langFile][key] = flattenedLangs[langFile][key];
+  }
+
+  // Store the lead keys for reference - these are the only valid keys
+  const leadKeys = Object.keys( resolvedLangs[langFile] );
+
+  // 2. Now process all other files
+  for ( const file of Object.keys( flattenedLangs ).filter( f => f !== langFile ) ) {
     resolvedLangs[file] = {};
 
-    for ( const key of allKeys ) {
-      const deValue = flattenedLangs["de.json"][key];
+    // For each key in the lead file
+    for ( const key of leadKeys ) {
+      // const leadValue = flattenedLangs[langFile][key];
       const currentValue = flattenedLangs[file][key];
 
-      if ( file === "de.json" ) {
-        // Keep DE values as-is
-        resolvedLangs[file][key] = deValue ?? localizationPlaceholder;
-      } else if ( currentValue ) {
-        // Keep existing non-empty value
+      // Case 2.1 & 2.2: Key exists in lead and exists in current
+      if ( currentValue !== undefined ) {
+        // In this implementation, we don't have access to whether the lead value has changed.
+        // We can only see if the current values are different, which will always be the case
+        // for translations. For now, we just keep the current value.
         resolvedLangs[file][key] = currentValue;
-      } else {
-        // Default to placeholder
+      }
+      // Case 2.3: Key exists in lead but not in current
+      else {
+        // Add with placeholder
         resolvedLangs[file][key] = localizationPlaceholder;
       }
     }
+
+    // Case 2.4: Keys that don't exist in lead but exist in current are not included
+    // (handled automatically by only looping through lead keys)
   }
 
   for ( const file of Object.keys( resolvedLangs ) ) {
