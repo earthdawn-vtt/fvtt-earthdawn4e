@@ -59,7 +59,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.threadWeavingHint",
     scope:   "world",
     config:  true,
-    default: "thread-weaving",
+    default: ED4E.edIds.threadWeaving,
     type:    new EdIdField(),
   } );
 
@@ -69,7 +69,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.spellCastingHint",
     scope:   "world",
     config:  true,
-    default: "spellcasting",
+    default: ED4E.edIds.spellcasting,
     type:    new EdIdField(),
   } );
 
@@ -79,7 +79,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.patterncraftHint",
     scope:   "world",
     config:  true,
-    default: "patterncraft",
+    default: ED4E.edIds.patterncraft,
     type:    new EdIdField(),
   } );
 
@@ -89,7 +89,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.languageSpeakHint",
     scope:   "world",
     config:  true,
-    default: "language-speak",
+    default: ED4E.edIds.languageSpeak,
     type:    new EdIdField(),
   } );
 
@@ -99,7 +99,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.languageRWHint",
     scope:   "world",
     config:  true,
-    default: "language-rw",
+    default: ED4E.edIds.languageRW,
     type:    new EdIdField(),
   } );
 
@@ -109,7 +109,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.versatilityHint",
     scope:   "world",
     config:  true,
-    default: "versatility",
+    default: ED4E.edIds.versatility,
     type:    new EdIdField(),
   } );
 
@@ -119,7 +119,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.questorDevotionHint",
     scope:   "world",
     config:  true,
-    default: "questor-devotion",
+    default: ED4E.edIds.questorDevotion,
     type:    new EdIdField(),
   } );
 
@@ -129,7 +129,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.unarmedCombatHint",
     scope:   "world",
     config:  true,
-    default: "unarmed-combat",
+    default: ED4E.edIds.unarmedCombat,
     type:    new EdIdField(),
   } );
 
@@ -139,7 +139,7 @@ export default function registerSystemSettings() {
     hint:    "ED.Settings.Edid.spellMatrixHint",
     scope:   "world",
     config:  true,
-    default: "matrix",
+    default: ED4E.edIds.spellMatrix,
     type:    new EdIdField(),
   } );
 

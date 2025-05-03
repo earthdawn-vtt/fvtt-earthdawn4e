@@ -72,4 +72,16 @@ export const icons = {
   },
 };
 
+export const edIds = {
+  threadWeaving:   "thread-weaving",
+  spellcasting:    "spellcasting",
+  patterncraft:    "patterncraft",
+  languageSpeak:   "language-speak",
+  languageRW:      "language-rw",
+  versatility:     "versatility",
+  questorDevotion: "questor-devotion",
+  unarmedCombat:   "unarmed-combat",
+  spellMatrix:     "matrix",
+};
+
 // endregion
