@@ -165,7 +165,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     } );
     await this.document.updateEmbeddedDocuments( "Item", updates );
 
-    this.render();
+    await this.render();
   }
 
   /**
