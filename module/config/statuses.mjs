@@ -195,6 +195,21 @@ export const statusEffects = [
     type:     "condition",
   },
   {
+    id:   "attuningOnTheFly",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.attuningOnTheFly",
+    img:  "systems/ed4e/assets/icons/attune-on-fly.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:    "condition",
+    changes: [ {} ],
+    system:  {
+      changes: [ {} ],
+    },
+    statuses: new Set( [ "concentrating", ] ),
+  },
+  {
     id:    "blindness",
     hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
     name: "ED.ActiveEffect.Status.blindness",
@@ -239,6 +254,16 @@ export const statusEffects = [
     system:  {
       changes: STATUS_CHANGES.calledShot,
     },
+  },
+  {
+    id:   "concentrating",
+    hud:  { actorTypes: SentientTemplate.SENTIENT_ACTOR_TYPES },
+    name: "ED.ActiveEffect.Status.concentrating",
+    img:  "systems/ed4e/assets/icons/concentrating.svg",
+
+    reference: "TODO: Compendium UUID to explanation",
+
+    type:    "condition",
   },
   {
     id:    "cover",
