@@ -50,6 +50,9 @@ export default class AttuningRollOptions extends EdRollOptions {
   _initializeSource( data, options={} ) {
     data.step ??= this._getStepData( data );
     data.target ??= this._getTargetDifficulty( data );
+    data.strain ??= {
+      base: data.attuningType === "matrixOnTheFly" ? 1 : 0,
+    };
     return super._initializeSource( data, options );
   }
 
