@@ -40,13 +40,14 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
    * @inheritDoc
    */
   get learnData() {
-    const actor = this.parent.actor;
+    const actor = this.parent._actor;
 
     return {
-      talent:     this.parent.actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent ),
+      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent ),
       requiredLp: this.requiredLpForLearning,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
+      actor:      actor,
     };
   }
 
@@ -92,12 +93,12 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForLearning,
-          fulfilled: this.requiredLpForLearning <= this.parent.actor.currentLp,
+          fulfilled: this.requiredLpForLearning <= learnData.actor.currentLp,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.availableMoney",
           value:     this.requiredMoneyForLearning,
-          fulfilled: this.requiredMoneyForLearning <= this.parent.actor.currentSilver,
+          fulfilled: this.requiredMoneyForLearning <= learnData.actor.currentSilver,
         },
       ],
       [ED4E.validationCategories.health]:    [
@@ -132,16 +133,17 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
       return;
     }
 
-    const learnedItem = await KnackTemplate.learn( actor, item, createData );
-
-
+    const learnData = item;
+    learnData._actor = actor;
 
     let learn = null;
 
-    const promptFactoryItem = await PromptFactory.fromDocument( learnedItem );
+    const promptFactoryItem = await PromptFactory.fromDocument( learnData );
     learn = await promptFactoryItem.getPrompt( "learnKnack" );
 
     if ( !learn || learn === "cancel" || learn === "close" ) return;
+
+    const learnedItem = await KnackTemplate.learn( actor, item, createData );
 
     const updatedActor = await actor.addLpTransaction(
       "spendings",
