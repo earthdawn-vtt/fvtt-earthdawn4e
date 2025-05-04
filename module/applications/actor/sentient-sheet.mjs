@@ -1,6 +1,7 @@
 import ActorSheetEd from "./common-sheet.mjs";
 import ED4E from "../../config/_module.mjs";
-import AttuneMatrixPrompt from "../workflow/attune-matrix-prompt.mjs";
+import { AttuneWorkflow } from "../../workflows/workflow/_module.mjs";
+
 
 
 /**
@@ -147,25 +148,14 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
 
-    const attuneData = await AttuneMatrixPrompt.waitPrompt( {
-      actor: this.document,
-      firstMatrixUuid,
-    } );
+    const attuneWorkflow = new AttuneWorkflow(
+      this.actor,
+      {
+        firstMatrix: firstMatrixUuid,
+      },
+    );
 
-    if ( !attuneData ) return;
-
-    const updates = Object.entries( attuneData.toAttune ).map( ( [ matrixId, toAttune ] ) => {
-      const spells = (
-        Array.isArray( toAttune ) ? toAttune : [ toAttune ]
-      ).filter( spellUuid => !!spellUuid );
-      return {
-        _id:                    matrixId,
-        "system.matrix.spells": spells,
-      };
-    } );
-    await this.document.updateEmbeddedDocuments( "Item", updates );
-
-    await this.render();
+    if ( await attuneWorkflow.execute() ) await this.render();
   }
 
   /**

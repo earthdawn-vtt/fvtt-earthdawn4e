@@ -264,6 +264,10 @@ export default class SentientTemplate extends CommonTemplate {
         label: this.labelKey( "characteristics" ),
         hint:  this.hintKey( "characteristics" ),
       } ),
+      concentrationSource: new fields.DocumentUUIDField( {
+        required: false,
+        empty:    false,
+      } ),
       condition: new fields.SchemaField( {
         aggressiveAttack: new fields.BooleanField( {
           required: true,

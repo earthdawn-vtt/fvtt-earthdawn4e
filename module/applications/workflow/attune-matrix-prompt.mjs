@@ -22,7 +22,8 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       submitOnChange: true,
     },
     actions:  {
-      emptyAll: AttuneMatrixPrompt._onEmptyAllMatrices,
+      cancelReattuning: AttuneMatrixPrompt._cancelReattuning,
+      emptyAll:         AttuneMatrixPrompt._onEmptyAllMatrices,
     },
     window:   {
       title: "ED.Dialogs.Title.attuneMatrix",
@@ -106,7 +107,9 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     this.#threadWeavingTalentField = this.#getThreadWeavingTalentField();
 
     if ( onTheFly ) {
-      this._data.threadWeavingId = Object.keys( this.#threadWeavingTalentField.choices )[0];
+      const threadWeavingUuid = this.#actor.system.concentrationSource;
+      this._data.threadWeavingId = foundry.utils.parseUuid( threadWeavingUuid )?.id
+        ?? Object.keys( this.#threadWeavingTalentField.choices )[0];
       this.#threadWeavingTalent = fromUuidSync( this._data.threadWeavingId );
     }
 
@@ -203,12 +206,19 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       }
       case "footer": {
         if ( this.#matrices.length > 0 ) {
-          const buttonContinue = this.constructor.BUTTONS.continue;
+          newContext.buttons = [];
+
+          if ( this.#actor.statuses.has( "attuningOnTheFly" ) ) {
+            const buttonCancel = foundry.utils.deepClone( this.constructor.BUTTONS.cancel );
+            buttonCancel.label = "ED.Dialogs.Buttons.TODO.X.CancelReattuning";
+            buttonCancel.action = "cancelReattuning";
+            newContext.buttons.push( buttonCancel );
+          }
+
+          const buttonContinue = foundry.utils.deepClone( this.constructor.BUTTONS.continue );
           buttonContinue.icon = this.#onTheFly ? ED4E.icons.onTheFly :ED4E.icons.attune;
           buttonContinue.label = this.#onTheFly ? "ED.Dialogs.Buttons.reattuneOnTheFly" : "ED.Dialogs.Buttons.attuneMatrix";
-          newContext.buttons = [
-            buttonContinue,
-          ];
+          newContext.buttons.push( buttonContinue, );
         } else {
           newContext.buttons = [
             this.constructor.BUTTONS.cancel,
@@ -240,6 +250,12 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   // endregion
 
   // region Event Handlers
+
+  static async _cancelReattuning( event, target ) {
+    this.submit();
+    this.resolve?.( { cancelReattuning: true } );
+    return this.close();
+  }
 
   static async _onEmptyAllMatrices( event, target ) {}
 
