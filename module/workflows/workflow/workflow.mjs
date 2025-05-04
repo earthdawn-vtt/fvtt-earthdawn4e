@@ -64,7 +64,7 @@ export default class Workflow {
 
   /**
    * Execute the workflow.
-   * @returns {Promise<any|undefined>} The result of the workflow, which is defined by the subclass, or
+   * @returns {Promise<any>} The result of the workflow, which is defined by the subclass, or
    * undefined if the workflow was interrupted.
    */
   async execute() {
