@@ -229,7 +229,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   // region Form Handling
 
   _processSubmitData ( event, form, formData, submitOptions ) {
-    const { toAttune, threadWeavingId} = super._processSubmitData( event, form, formData, submitOptions );
+    const { toAttune, threadWeavingId } = super._processSubmitData( event, form, formData, submitOptions );
     this.#threadWeavingTalent = this.#actor.items.get( threadWeavingId );
     return {
       toAttune,
