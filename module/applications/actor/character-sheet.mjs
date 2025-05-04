@@ -281,7 +281,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
    * @userFunction UF_ActorSheetEdCharacter-onDropItem
    */
   async _onDropItem( event, item ) {
-    if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item );
+    let createData = {
+      creationType: "itemDropped",
+    };
+    if ( item.system.learnable ) return item.system.constructor.learn( this.actor, item, createData );
     return super._onDropItem( event, item );
   }
 

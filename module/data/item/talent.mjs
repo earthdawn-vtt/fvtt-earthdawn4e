@@ -243,16 +243,18 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     let learnedAt;
 
     // assign the category of the talent
-    if ( !learnedItem.system.talentCategory ) {
+    if ( !learnedItem.system.talentCategory || createData?.creationType === "itemDropped" ) {
       const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
       category = await promptFactoryItem.getPrompt( "talentCategory" );
+    } else {
+      category = learnedItem.system.talentCategory;
     }
 
     // assign the level at which the talent was learned and the source discipline
     if ( !learnedItem.system.source?.class ) {
       const promptFactoryActor = PromptFactory.fromDocument( actor );
       const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-      discipline = await fromUuid( disciplineUuid );
+      discipline = disciplineUuid === "noDiscipline" ? undefined : await fromUuid( disciplineUuid );
       learnedAt = discipline?.system.level;
     }
 
@@ -263,9 +265,9 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
     // update the learned talent with the new data
     await learnedItem.update( {
-      "system.talentCategory":        learnedItem.system.talentCategory ?? category,
-      "system.source.class":          learnedItem.system.source.class ?? discipline,
-      "system.source.atLevel":        learnedItem.system.source.atLevel ?? learnedAt,
+      "system.talentCategory":        category,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline,
+      "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
     
     return learnedItem;
