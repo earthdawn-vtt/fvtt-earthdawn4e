@@ -98,6 +98,11 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     super( options );
     this.#actor = actor;
     this.#matrices = actor.getMatrices();
+    this._data.toAttune = this.#matrices.reduce( ( acc, matrix ) => {
+      acc[ matrix.id ] = matrix.system.matrix.spells?.toObject() ?? [];
+      return acc;
+    }, {} );
+
     // sort spells: first by spellcasting type, then by name
     this.#spells = actor.itemTypes.spell.toSorted( ( a, b ) => {
       const typeComparison = a.system.spellcastingType.localeCompare( b.system.spellcastingType );
@@ -110,13 +115,9 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
       const threadWeavingUuid = this.#actor.system.concentrationSource;
       this._data.threadWeavingId = foundry.utils.parseUuid( threadWeavingUuid )?.id
         ?? Object.keys( this.#threadWeavingTalentField.choices )[0];
-      this.#threadWeavingTalent = fromUuidSync( this._data.threadWeavingId );
+      this.#threadWeavingTalent = fromUuidSync( threadWeavingUuid );
     }
 
-    this._data.toAttune = this.#matrices.reduce( ( acc, matrix ) => {
-      acc[ matrix.id ] = matrix.system.matrix.spells?.toObject() ?? [];
-      return acc;
-    }, {} );
   }
 
   _getSpellSelectionField( matrix ) {
