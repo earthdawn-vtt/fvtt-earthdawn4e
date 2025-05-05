@@ -182,6 +182,8 @@ export default class AttuneWorkflow extends ActorWorkflow {
    * @returns {Promise<void>}
    */
   async #attuneSpellsToMatrices() {
+    if ( this._isCancelingReattuning ) return;
+
     // If we're successfully reattuning on the fly, remove the status
     if ( this._isReattuningOnTheFly && this._isReattuningSuccessful ) {
       await this._actor.toggleStatusEffect(
