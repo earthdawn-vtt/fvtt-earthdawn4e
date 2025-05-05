@@ -258,7 +258,12 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     return this.close();
   }
 
-  static async _onEmptyAllMatrices( event, target ) {}
+  static async _onEmptyAllMatrices( event, target ) {
+    Object.keys( this._data.toAttune ).forEach( key => {
+      this._data.toAttune[key] = "";
+    } );
+    this.render();
+  }
 
   // endregion
 
