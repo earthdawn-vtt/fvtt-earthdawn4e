@@ -82,7 +82,7 @@ export default class AttuningRollOptions extends EdRollOptions {
       base:      0,
       modifiers: data.spellsToAttune?.reduce( ( acc, spellUuid ) => {
         const spell = fromUuidSync( spellUuid );
-        acc[spell.name] = spell.system?.spellDifficulty?.reattune;
+        if ( spell ) acc[spell.name] = spell.system?.spellDifficulty?.reattune;
         return acc;
       }, {} ),
     };
