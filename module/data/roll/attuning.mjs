@@ -114,7 +114,7 @@ export default class AttuningRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.customFlavor ||= await this._getChatFlavor();
-    newContext.spellsToAttune = await this.getSpellItems();
+    newContext.spellsToAttune = ( await this.getSpellItems() ).filter( spell => !!spell );
 
     return newContext;
   }
