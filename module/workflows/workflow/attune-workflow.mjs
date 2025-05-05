@@ -66,6 +66,8 @@ export default class AttuneWorkflow extends ActorWorkflow {
 
   }
 
+  // region Steps
+
   /**
    * Gets user input for attuning configuration using AttuneMatrixPrompt.
    * @returns {Promise<void>}
@@ -88,7 +90,7 @@ export default class AttuneWorkflow extends ActorWorkflow {
     }
 
     const { toAttune, threadWeavingId } = response;
-    this._toAttune = toAttune;
+    this._toAttune = this.#filterUnchangedMatrices( toAttune );
     this._attuneAbility = this._actor.items.get( threadWeavingId );
   }
 
@@ -213,4 +215,48 @@ export default class AttuneWorkflow extends ActorWorkflow {
     // Set the result to true to indicate success
     this._result = true;
   }
+
+  // endregion
+
+  /**
+   * Removes entries from the toAttune object where the matrix spell configuration hasn't changed.
+   * @param {object} toAttune - The object mapping matrix IDs to their selected spell UUIDs.
+   * @returns {{[matrixId: string]: string[]}} - A filtered copy of the toAttune object with only changed matrices.
+   */
+  #filterUnchangedMatrices( toAttune ) {
+    if ( !toAttune ) return {};
+
+    const matrices = this._actor.getMatrices();
+    const result = {};
+
+    for ( const [ matrixId, selectedSpells ] of Object.entries( toAttune ) ) {
+      const matrix = matrices.find( m => m.id === matrixId );
+      if ( !matrix ) continue;
+
+      // Convert to arrays for comparison if needed
+      const selected = Array.isArray( selectedSpells ) ? selectedSpells : [ selectedSpells ].filter( Boolean );
+      const current = matrix.system.matrix.spells?.toObject() ?? [];
+
+      // Check if the configuration has changed
+      const hasChanged = ( () => {
+        // Different lengths mean different configuration
+        if ( selected.length !== current.length ) return true;
+
+        // Check if every selected spell is already in the current configuration
+        // and if every current spell is in the selected configuration
+        const allSelectedInCurrent = selected.every( spell => current.includes( spell ) );
+        const allCurrentInSelected = current.every( spell => selected.includes( spell ) );
+
+        return !( allSelectedInCurrent && allCurrentInSelected );
+      } )();
+
+      // Only include this matrix if its configuration has changed
+      if ( hasChanged ) {
+        result[matrixId] = selectedSpells;
+      }
+    }
+
+    return result;
+  }
+
 }
