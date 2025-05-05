@@ -1,7 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
 import ED4E from "../../config/_module.mjs";
-import { AttuneWorkflow } from "../../workflows/workflow/_module.mjs";
-
 
 
 /**
@@ -148,14 +146,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
 
-    const attuneWorkflow = new AttuneWorkflow(
-      this.actor,
-      {
-        firstMatrix: firstMatrixUuid,
-      },
-    );
-
-    if ( await attuneWorkflow.execute() ) await this.render();
+    if ( await this.actor.reattuneSpells( firstMatrixUuid ) ) await this.render();
   }
 
   /**
