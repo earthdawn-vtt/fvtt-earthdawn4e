@@ -1,1 +1,0 @@
-This function sets the position of the bar based on its order.

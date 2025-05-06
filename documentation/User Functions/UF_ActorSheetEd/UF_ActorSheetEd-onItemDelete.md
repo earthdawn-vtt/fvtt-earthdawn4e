@@ -1,1 +1,0 @@
-This function allows the deletion of an item. Usually a prompt asks the user if he is sure about this action. A configuration in the system settings can be set up to avoid the prompt to show up if the delete option is shift+clicked.

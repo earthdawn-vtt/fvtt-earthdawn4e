@@ -1,1 +1,0 @@
-this function will be called if an expected error occurs and will return a dedicated error message

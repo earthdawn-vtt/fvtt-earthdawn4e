@@ -7,10 +7,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class RollPrompt extends HandlebarsApplicationMixin(
   ApplicationV2,
 ) {
-  /**
-   * @inheritDoc
-   * @userFunction        UF_RollPrompt-constructor
-   */
+  /** @inheritDoc */
   constructor(
     edRollOptions = {},
     { resolve, rollData = {}, options = {} } = {},
@@ -38,7 +35,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
    * @param {object} edRollOptions             The roll options that are updated by the prompt.
    * @param {object} [options]        Options to pass to the constructor.
    * @returns {Promise<EdRoll|null>}  Created roll instance or `null`.
-   * @userFunction UF_RollPrompt-waitPrompt
    */
   static waitPrompt( edRollOptions, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -49,7 +45,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
 
   /**
    * @description                 Roll a step prompt.
-   * @userFunction                UF_RollPrompt-rollArbitraryPrompt
    */
   static rollArbitraryPrompt() {
     RollPrompt.waitPrompt(
@@ -60,10 +55,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     ).then( ( roll ) => roll?.toMessage() );
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_RollPrompt-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id:       "roll-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -88,10 +80,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     },
   };
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-parts
-   */
+  /** @inheritDoc */
   static PARTS = {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
@@ -115,10 +104,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     },
   };
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_RollPrompt-tabs
-   */
+  /** @inheritDoc */
   static TABS = {
     "base-tab": {
       id:       "base-tab",
@@ -140,10 +126,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     labelPrefix: "ED.Sheet.Tabs",
   };
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-buttons
-   */
+  /** @inheritDoc */
   buttons = [
     {
       type:     "button",
@@ -161,10 +144,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     },
   ];
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-prepareContext
-   */
+  /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     return {
@@ -175,10 +155,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     };
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-preparePartContext
-   */
+  /** @inheritDoc */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
 
@@ -200,10 +177,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     return context;
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-prepareTabsContext
-   */
+  /** @inheritDoc */
   async _prepareTabsContext( context, options ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
@@ -213,10 +187,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     return context;
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-onRender
-   */
+  /** @inheritDoc */
   _onRender( context, options ) {
     this.element
       .querySelectorAll( "#karma-input,#devotion-input" )
@@ -231,7 +202,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
   /**
    * @description                 Validate the available resources.
    * @param {Event} event        The event that triggered the validation.
-   * @userFunction UF_RollPrompt-validateAvailableRessource
    */
   _validateAvailableRessource( event ) {
     const newValue = event.currentTarget.value;
@@ -246,10 +216,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     }
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_RollPrompt-onFormSubmission
-   */
+  /** @inheritDoc */
   static async #onFormSubmission( event, form, formData ) {
     this.edRollOptions.updateSource( formData.object );
     return this.render( true );
@@ -260,7 +227,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
    * @param {Event} event        The event that triggered the roll.
    * @param {HTMLElement} target The target element of the event.
    * @returns {Promise}          The promise of the roll.
-   * @userFunction UF_RollPrompt-roll
    */
   static async _roll( event, target ) {
     event.preventDefault();

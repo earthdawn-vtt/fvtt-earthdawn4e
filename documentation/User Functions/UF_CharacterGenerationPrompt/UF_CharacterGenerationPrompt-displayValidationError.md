@@ -1,1 +1,0 @@
-This function is responsible for throwing an ui error stateing which step has not been completed yet.

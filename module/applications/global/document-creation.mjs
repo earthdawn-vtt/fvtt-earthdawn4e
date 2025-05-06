@@ -8,10 +8,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   ApplicationV2,
 ) {
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-constructor
-   */
+  /** @inheritDoc */
   constructor(
     data = {},
     { resolve, documentCls, pack = null, parent = null, options = {} } = {},
@@ -44,10 +41,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     this._updateCreationData( data );
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id:      "document-create-dialog",
     classes: [ "earthdawn4e", "create-document" ],
@@ -74,10 +68,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     },
   };
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-parts
-   */
+  /** @inheritDoc */
   static PARTS = {
     form: {
       template:   "systems/ed4e/templates/global/document-creation.hbs",
@@ -96,7 +87,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    * @param {object} [data] Initial data to pass to the constructor.
    * @param {object} [options] Options to pass to the constructor.
    * @returns {Promise<Item|null>} Created item or null.
-   * @userFunction UF_DocumentCreateDialog-waitPrompt
    */
   static waitPrompt( data, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -115,10 +105,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-prepareContext
-   */
+  /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const folders = this.parent
       ? []
@@ -168,10 +155,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   /*  Form Handling                               */
   /* -------------------------------------------- */
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-onFormSubmission
-   */
+  /** @inheritDoc */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
@@ -184,7 +168,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    * Update the creation data object with the provided data.
    * @param {object} data The data to update the creation data with.
    * @returns {object} The updated creation data object.
-   * @userFunction UF_DocumentCreateDialog-updateCreationData
    */
   _updateCreationData( data = {} ) {
     // Fill in default type if missing
@@ -207,10 +190,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   /*  Event Listeners and Handlers                */
   /* -------------------------------------------- */
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_DocumentCreateDialog-onRender
-   */
+  /** @inheritDoc */
   _onRender( context, options ) {
     this.element
       .querySelectorAll( ".type-selection label" )
@@ -227,7 +207,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    * @this {DocumentCreateDialog}
    * @param {Event} event The originating click event.
    * @returns {Promise<Item|null>} Created item or null.
-   * @userFunction UF_DocumentCreateDialog-createDocument
    */
   static async _createDocument( event ) {
     event.preventDefault();
@@ -275,7 +254,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   /**
    * A small prompt asking the user if they want to use the character generation.
    * @returns {Promise<boolean>} True if the user wants to use the character generation, false otherwise.
-   * @userFunction UF_DocumentCreateDialog-showCharGenPrompt
    */
   static async _showCharGenPrompt() {
     return foundry.applications.api.DialogV2.confirm( {
@@ -289,7 +267,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    * Handle the close event for the document creation dialog.
    * @param {object} options The options to pass to the close method.
    * @returns {Promise} The promise to resolve when the dialog is closed.
-   * @userFunction UF_DocumentCreateDialog-close
    */
   close( options = {} ) {
     this.resolve?.( null );

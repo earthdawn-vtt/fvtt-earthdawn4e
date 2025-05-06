@@ -2,10 +2,7 @@ import { ED4E } from "../../../earthdawn4e.mjs";
 
 export default class CombatTrackerEd extends foundry.applications.sidebar.tabs.CombatTracker {
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_CombatTrackerEd-getEntryContextOptions
-   */
+  /** @inheritDoc */
   _getEntryContextOptions() {
     const getCombatant = li => this.viewed.combatants.get( li.dataset.combatantId );
     return [

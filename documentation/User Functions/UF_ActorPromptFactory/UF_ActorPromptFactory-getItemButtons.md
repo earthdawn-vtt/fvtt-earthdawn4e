@@ -1,1 +1,0 @@
-This function collects all available item options (talents with a specific rolltype) to show up as buttons in the related prompt. 

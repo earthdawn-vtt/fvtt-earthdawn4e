@@ -1,1 +1,0 @@
-This function reverts all legend point entries up to the selected item.

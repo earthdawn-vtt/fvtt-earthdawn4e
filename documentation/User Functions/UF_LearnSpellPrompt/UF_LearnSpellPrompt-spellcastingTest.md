@@ -1,1 +1,0 @@
-This function triggers a roll for the spellcasting talent (see ed ids) with the difficulty of spell circle +5. if the roll was successful, the patterncraft roll to learn the spell gets a bonus equal to the mentors spellcasting rank.

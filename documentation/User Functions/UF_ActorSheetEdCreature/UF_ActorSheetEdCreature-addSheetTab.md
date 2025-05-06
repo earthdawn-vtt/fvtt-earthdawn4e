@@ -1,1 +1,0 @@
-This function adds the power-, configuration- and the reputaiton Tab to the creature sheet.

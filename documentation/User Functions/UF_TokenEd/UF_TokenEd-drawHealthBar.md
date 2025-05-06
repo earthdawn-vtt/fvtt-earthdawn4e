@@ -1,1 +1,0 @@
-This function sets the token bar for health rating.

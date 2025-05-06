@@ -91,7 +91,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    *
    * @returns {Promise<ActorEd|void>} The newly created actor or `undefined` if the generation was canceled.
-   * @userFunction UF_CharacterGenerationPrompt--characterGeneration
    */
   static async characterGeneration () {
     const generation = await CharacterGenerationPrompt.waitPrompt();
@@ -430,7 +429,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the armor values based on attribute values and items.
    * @private
-   * @userFunction UF_Pc-prepareArmor
    */
   #prepareArmor() {
     // attribute based
@@ -450,7 +448,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the blood magic damage based on items.
    * @private
-   * @userFunction UF_Pc-prepareBloodMagic
    */
   #prepareBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
@@ -488,7 +485,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived devotion values based on questor items.
    * @private
-   * @userFunction UF_Pc-prepareDevotion
    */
   #prepareDevotion() {
     const questor = this.parent?.itemTypes.questor[0];
@@ -498,7 +494,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived health values based on attribute values and items.
    * @private
-   * @userFunction UF_Pc-prepareHealth
    */
   #prepareHealth() {
     // attribute based
@@ -515,7 +510,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived karma values based on namegiver items and free attribute points.
    * @private
-   * @userFunction UF_Pc-prepareKarma
    */
   #prepareKarma() {
     const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
@@ -527,7 +521,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived movement values based on namegiver items.
    * @private
-   * @userFunction UF_Pc-prepareMovement
    */
   #prepareMovement() {
     const namegiver = this.parent?.namegiver;
@@ -541,7 +534,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived recovery test resource values based on attribute values.
    * @private
-   * @userFunction UF_Pc-prepareRecoveryTestsResource
    */
   #prepareRecoveryTestResource() {
     this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );

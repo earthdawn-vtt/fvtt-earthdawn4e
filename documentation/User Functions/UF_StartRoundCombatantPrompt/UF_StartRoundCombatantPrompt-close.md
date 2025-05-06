@@ -1,1 +1,0 @@
-This function is responsible for either closing the initiative prompt for a combatant and set the selected conditions, or prevent the prompt from appearing if the check was set in a previous round.

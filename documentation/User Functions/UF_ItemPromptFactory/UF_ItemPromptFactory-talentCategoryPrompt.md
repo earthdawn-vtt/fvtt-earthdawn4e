@@ -1,1 +1,0 @@
-This function provides a list of disciplines to choose from when a talent is added to the actor.

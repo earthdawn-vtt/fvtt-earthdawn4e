@@ -1,1 +1,0 @@
-This function handles form submission and updates the object with the form data.
