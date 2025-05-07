@@ -23,7 +23,7 @@ export default class RollableTemplate extends SystemDataModel {
         initial:  "",
         choices:  filterObject(
           ED4E.rollTypes,
-          ( key, _ ) => ![ "attribute", "halfmagic" ].includes( key )
+          ( key, _ ) => ![ "attribute", "attuning", "halfmagic" ].includes( key )
         ),
         label:    this.labelKey( "Rollable.type" ),
         hint:     this.hintKey( "Rollable.type" )

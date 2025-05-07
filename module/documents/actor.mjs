@@ -14,6 +14,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
+import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 
 const futils = foundry.utils;
 
@@ -376,6 +377,32 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+
+  /**
+   * Reattunes spells by executing an attunement workflow with the provided matrix.
+   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
+   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
+   */
+  async reattuneSpells( matrixUuid ) {
+    const attuneWorkflow = new AttuneWorkflow(
+      this,
+      {
+        firstMatrix: matrixUuid,
+      },
+    );
+
+    return attuneWorkflow.execute();
+  }
+
+  /**
+   * Remove all spells from all matrices of this actor.
+   * @returns {Promise<Document|undefined>} The array of changed matrix items, or undefined if nothing changed.
+   */
+  async emptyAllMatrices() {
+    return Promise.all(
+      this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
 
   /* -------------------------------------------- */
   /*                   Rolls                      */

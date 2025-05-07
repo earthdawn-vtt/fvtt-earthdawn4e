@@ -202,6 +202,30 @@ export function createContentLink( uuid, description ) {
 }
 
 /**
+ * Creates an anchor element representing a content link for a given document.
+ * @param {Document} document The document to link to.
+ * @returns {Element} The anchor element with the "content-link" class.
+ */
+export function createContentAnchor( document ) {
+  return foundry.applications.ux.TextEditor.createAnchor( {
+    attrs:   {
+      draggable: true,
+    },
+    dataset: {
+      link:        document.link,
+      uuid:        document.uuid,
+      id:          document.id,
+      type:        document.type,
+      tooltip:     game.i18n.localize( `DOCUMENT.${document.documentName}` ),
+      tooltipText: document.type,
+    },
+    classes: [ "content-link", ],
+    name:    document.name,
+    icon:    "fa-solid fa-suitcase",
+  } );
+}
+
+/**
  * Prepare the final formula value for a model field.
  * @param {ItemDataModel} model  Model for which the value is being prepared.
  * @param {string} keyPath                        Path to the field within the model.

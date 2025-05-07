@@ -264,6 +264,19 @@ export default class MatrixTemplate extends SystemDataModel {
   }
 
   /**
+   * Remove the given spells from the matrix, or all if none are given
+   * @param {string[]} [spellsToRemove] The uuids of the spells to remove, or undefined, empty or null to remove all.
+   * @returns {Promise<Document | undefined>} The updated matrix item, or undefined if not updated
+   */
+  async removeSpells( spellsToRemove ) {
+    const removeList = Array.from( spellsToRemove || this.matrix.spells );
+    const newSpells = this.matrix.spells.filter( spell => !removeList.includes( spell ) );
+    return this.parent?.update( {
+      "system.matrix.spells": newSpells,
+    } );
+  }
+
+  /**
    * Looks up the death rating of the matrix based on its type.
    * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
    * @returns {number|undefined} The death rating of the matrix, or undefined if not found.

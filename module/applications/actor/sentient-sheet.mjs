@@ -1,6 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
 import ED4E from "../../config/_module.mjs";
-import AttuneMatrixPrompt from "../workflow/attune-matrix-prompt.mjs";
 
 
 /**
@@ -121,38 +120,18 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
   /**
    * Handle attune matrix events on the actor sheet
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEdSentient}
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<void>}
    */
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
-    const matrices = this.document.getMatrices();
-    const spells = this.document.itemTypes.spell;
 
-    const li = target.closest( ".item-id" );
-    const firstMatrix = matrices.findSplice( matrix => matrix.uuid === li?.dataset?.uuid );
+    const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
 
-    const attuneData = await AttuneMatrixPrompt.waitPrompt( {
-      matrices,
-      spells,
-      firstMatrix,
-    } );
-
-    if ( !attuneData ) return;
-
-    const updates = Object.entries( attuneData ).map( ( [ matrixId, toAttune ] ) => {
-      const spells = (
-        Array.isArray( toAttune ) ? toAttune : [ toAttune ]
-      ).filter( spellUuid => !!spellUuid );
-      return {
-        _id:                    matrixId,
-        "system.matrix.spells": spells,
-      };
-    } );
-    await this.document.updateEmbeddedDocuments( "Item", updates );
-
-    this.render();
+    if ( await this.actor.reattuneSpells( firstMatrixUuid ) ) await this.render();
   }
 
   /**

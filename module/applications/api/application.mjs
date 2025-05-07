@@ -85,7 +85,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
   constructor( options ) {
     super( options );
     this.resolve = options.resolve;
-    this._data = options.data;
+    this._data = options.data ?? {};
   }
 
   /**
@@ -128,6 +128,10 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
     return this.close();
   }
 
+  // endregion
+
+  // region Form Handling
+
   /**
    * Handle form submission.
    * @this {ApplicationEd}
@@ -138,6 +142,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
    */
   static async #onFormSubmission( event, form, formData, submitOptions ) {
     this._data = this._processSubmitData( event, form, formData, submitOptions );
+    if ( this.options.form.submitOnChange ) this.render();
   }
 
   /**
