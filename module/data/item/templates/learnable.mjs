@@ -32,6 +32,23 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
+   * @description Data needed to validate if this entity can be learned.
+   * @type {object}
+   */
+  get learnData() {
+    throw new Error( "A subclass of the LearnableTemplate must implement the learnValidationData getter." );
+  }
+
+  /**
+   * The data needed to validate if this entity can be learned. Each key is a validation rule with the value
+   * indicating whether the rule is fulfilled. If any of the values is `false`, the learning process should not be allowed.
+   * @type {Record<string, boolean>}
+   */
+  get learnValidationData() {
+    throw new Error( "A subclass of the LearnableTemplate must implement the validation getter." );
+  }
+
+  /**
    * A string representation of the rules, conditions and costs for learning this entity.
    * @type {string}
    */
