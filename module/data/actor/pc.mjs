@@ -267,6 +267,7 @@ export default class PcData extends NamegiverTemplate {
       return;
     }
 
+    const attributeEnhanceStep = getAttributeStep( attributeField.value + 1 ) > attributeField.step ? attributeField.step + 1 : attributeField.step;
     const rule = game.settings.get( "ed4e", "lpTrackingAttributes" );
     const lpCost = onCircleIncrease && rule === "freePerCircle" ? 0 : ED4E.legendPointsCost[currentIncrease + 1 + 4];
     const increaseValidationData = {
@@ -278,7 +279,7 @@ export default class PcData extends NamegiverTemplate {
 
     // placeholder, will be localized based on the selected rules for attribute increases
     const content = `
-    <p>${ game.i18n.localize( "ED.Rules.attributeIncreaseShortRequirements" ) }</p>
+    <p>${ game.i18n.format( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
     ${ Object.entries( increaseValidationData ).map( ( [ key, value ] ) => {
     return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
   } ).join( "" ) }

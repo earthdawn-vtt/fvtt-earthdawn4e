@@ -114,6 +114,8 @@ export const disciplineTeacherCost = [ 0, 100, 200, 300, 500, 800, 1000, 1500, 2
 
 export const legendPointsCost = [ 0, 100, 200, 300, 500, 800, 1300, 2100, 3400, 5500, 8900, 14400, 23300, 37700, 61000, 98700, 159700, 258400, 418100 ];
 
+export const trainingTime = [ 2, 3, 5, 8, 13, 21, 34, 55, 89 ];
+
 export const levelTierMapping = {
   discipline: {
     1:  "novice",

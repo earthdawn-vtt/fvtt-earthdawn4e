@@ -58,7 +58,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Legend.Rules.questorClassIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorClassIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */

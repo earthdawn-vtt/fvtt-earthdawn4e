@@ -89,7 +89,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.disciplineIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
