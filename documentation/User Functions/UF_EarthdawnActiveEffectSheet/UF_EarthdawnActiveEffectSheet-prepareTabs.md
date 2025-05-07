@@ -1,1 +1,0 @@
-This function prepares the tabs for the effect sheet.

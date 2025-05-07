@@ -5,10 +5,6 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
  */
 export default class ActorSheetEdHorror extends ActorSheetEdSentient {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ActorSheetEdHorror-addSheetTab
-   */
   static {
     this.addSheetTabs( [
       { id: "talents", },
@@ -22,10 +18,7 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   }
 
   // region DEFAULT_OPTIONS
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdHorror-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -41,10 +34,7 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   };
 
   // region PARTS
-  /** 
-   * @inheritdoc
-   * @userFunction UF_ActorSheetEdHorror-parts
-   */
+  /** @inheritdoc */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
@@ -113,19 +103,13 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   };
 
   // region _prepareContext
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdHorror-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext() {
     return await super._prepareContext();
   }
 
   // region _prepare Part Context
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdHorror-preparePartContext
-   */
+  /** @inheritdoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {

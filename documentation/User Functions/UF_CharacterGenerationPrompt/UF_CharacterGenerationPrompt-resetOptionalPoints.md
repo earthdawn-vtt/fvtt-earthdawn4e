@@ -1,1 +1,0 @@
-This function resets points already spend on an optional talent if that was changed. it will not reset all other spend talent points.

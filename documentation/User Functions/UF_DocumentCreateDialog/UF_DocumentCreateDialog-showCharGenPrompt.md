@@ -1,1 +1,0 @@
-This function triggers if an actor of type character is created. This function will then ask the user if the Character Generation shall be used or not.

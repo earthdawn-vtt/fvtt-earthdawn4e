@@ -1,1 +1,0 @@
-This function handles the schema data field for the constraints field on the document's system property.

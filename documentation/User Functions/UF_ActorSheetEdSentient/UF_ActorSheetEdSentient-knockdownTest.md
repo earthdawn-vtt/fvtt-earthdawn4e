@@ -1,1 +1,0 @@
-This function is triggerd by the "knock down test" button to avoid being knocked down.

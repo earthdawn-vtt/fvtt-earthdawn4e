@@ -72,7 +72,6 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
   /**
    * Title of the application window, dynamically created based on the combatant's name.
    * @returns {string} The combatant to show the prompt for.
-   * @userFunction UF_StartRoundCombatantPrompt-title
    */
   get title() {
     return game.i18n.format( "ED.Dialogs.Title.startRoundCombatantPrompt", {
@@ -167,7 +166,6 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
    * closes the prompt and resolves the promise with a value of true.
    * @param {PointerEvent} event The pointer event.
    * @param {*} _  Unused parameter, included for consistency with the method signature.
-   * @userFunction UF_StartRoundCombatantPrompt-continue
    */
   static async _continue( event, _ ) {
     event.preventDefault();

@@ -1,9 +1,6 @@
 export default class TokenHUDEd extends foundry.applications.hud.TokenHUD {
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_TokenHUDEd-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions: {
       effect: {
@@ -15,10 +12,7 @@ export default class TokenHUDEd extends foundry.applications.hud.TokenHUD {
 
   // region Handlers
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_TokenHUDEd-onToggleEffect
-   */
+  /** @inheritDoc */
   static async #onToggleEffect( event, target ) {
     if ( !this.actor ) {
       ui.notifications.warn( "HUD.WarningEffectNoActor", { localize: true } );

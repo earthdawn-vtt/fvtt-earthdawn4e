@@ -1,1 +1,0 @@
-This function validates the completion of the character generation process.

@@ -17,7 +17,6 @@ export default class PromptFactory {
   /**
    * Creates an instance of PromptFactory.
    * @param {object} document - The document object.
-   * @userFunction UF_PromptFactory-constructor
    */
   constructor( document ) {
     if ( new.target === PromptFactory ) {
@@ -32,7 +31,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "cancel".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-cancelButton
    */
   static get cancelButton() {
     return {
@@ -48,7 +46,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "free".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-freeButton
    */
   static get freeButton() {
     return {
@@ -64,7 +61,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "spendLp".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-spendLpButton
    */
   static get spendLpButton() {
     return {
@@ -80,7 +76,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "completeButton".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-completeButton
    */
   static get completeButton() {
     return {
@@ -96,7 +91,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "goBackButton".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-goBackButton
    */
   static get goBackButton() {
     return {
@@ -112,7 +106,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "continueButton".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-continueButton
    */
   static get continueButton() {
     return {
@@ -128,7 +121,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "versatility".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-versatilityButton
    */
   static get versatilityButton() {
     return {
@@ -144,7 +136,6 @@ export default class PromptFactory {
    * A {@link DialogV2Button} object for a button with data action "noDisciplineButton".
    * @type {DialogV2Button}
    * @returns {DialogV2Button} - The button object.
-   * @userFunction UF_PromptFactory-noDisciplineButton
    */
   static get noDisciplineButton() {
     return {
@@ -161,7 +152,6 @@ export default class PromptFactory {
    * @param {object} document - The document object.
    * @returns {PromptFactory} - An instance of the appropriate factory class.
    * @throws {TypeError} - If no factory class is found for the document type.
-   * @userFunction UF_PromptFactory-fromDocument
    */
   static fromDocument( document ) {
     const FactoryClass = document instanceof ActorEd ? ActorPromptFactory
@@ -177,7 +167,6 @@ export default class PromptFactory {
    * Retrieves a prompt based on the specified type.
    * @param {string} type - The type of prompt to retrieve.
    * @returns {Promise} - A promise that resolves to the result of the prompt.
-   * @userFunction UF_PromptFactory-getPrompt
    */
   async getPrompt( type ) {
     return this._promptTypeMapping[type]();
@@ -198,7 +187,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the recovery dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the recovery prompt dialog.
-   * @userFunction UF_ActorPromptFactory-recoveryPrompt
    */
   async _recoveryPrompt() {
     const buttons = [];
@@ -242,7 +230,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the take damage dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the take damage prompt dialog.
-   * @userFunction UF_ActorPromptFactory-takeDamagePrompt
    */
   async _takeDamagePrompt() {
     const formFields = {
@@ -328,7 +315,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the jump up dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the jump up prompt dialog.
-   * @userFunction UF_ActorPromptFactory-jumpUpPrompt
    */
   async _jumpUpPrompt() {
     const buttons = await this._getAbilityButtonByAction( "jumpUp" );
@@ -354,7 +340,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the knock down dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the knock down prompt dialog.
-   * @userFunction UF_ActorPromptFactory-knockDownPrompt
    */
   async _knockDownPrompt() {
     const buttons = await this._getAbilityButtonByAction( "knockDown" );
@@ -380,7 +365,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the choose discipline dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
-   * @userFunction UF_ActorPromptFactory-chooseDisciplinePrompt
    */
   async _chooseDisciplinePrompt() {
     
@@ -405,7 +389,6 @@ class ActorPromptFactory extends PromptFactory {
   /**
    * Creates the draw weapon dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the draw weapon prompt dialog.
-   * @userFunction UF_ActorPromptFactory-drawWeaponPrompt
    */
   async _drawWeaponPrompt() {
     const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
@@ -431,7 +414,6 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the choose discipline dialog.
    * @param {string} action - The action to get the ability buttons for.
    * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
-   * @userFunction UF_ActorPromptFactory-chooseDisciplinePrompt
    */
   async _getAbilityButtonByAction( action ) {
     const abilities = this.document.getItemsByAction( action );
@@ -443,7 +425,6 @@ class ActorPromptFactory extends PromptFactory {
    * @param {Array} items - The items to create buttons for.
    * @param {string} buttonClass - The class to use for the buttons.
    * @returns {Array} An array of button objects.
-   * @userFunction UF_ActorPromptFactory-getItemButtons
    */  
   async _getItemButtons( items, buttonClass ) {
     return items.map( ( item ) => {
@@ -473,7 +454,6 @@ class ItemPromptFactory extends PromptFactory {
   /**
    * Creates the learn ability dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the learn ability prompt dialog.
-   * @userFunction UF_ItemPromptFactory-learnAbilityPrompt
    */
   async _learnAbilityPrompt() {
     if ( !this.document.system.hasMixin( LearnableTemplate ) ) {
@@ -521,7 +501,6 @@ class ItemPromptFactory extends PromptFactory {
   /**
    * Creates the learn knack dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the learn knack prompt dialog.
-   * @userFunction UF_ItemPromptFactory-learnKnackPrompt
    */
   async _learnKnackPrompt() {
     const validationTemplate = "systems/ed4e/templates/advancement/learn-knack-requirements.hbs";
@@ -557,7 +536,6 @@ class ItemPromptFactory extends PromptFactory {
   /**
    * Creates the choose tier dialog.
    * @returns {Promise<any>} A promise that resolves to the choose tier prompt dialog.
-   * @userFunction UF_ItemPromptFactory-chooseTierPrompt
    */
   async _chooseTierPrompt( ) {
 
@@ -592,7 +570,6 @@ class ItemPromptFactory extends PromptFactory {
   /**
    * Creates the LP increase dialog.
    * @returns {Promise<any>} A promise that resolves to the LP increase prompt dialog.
-   * @userFunction UF_ItemPromptFactory-lpIncreasePrompt
    */
   async _lpIncreasePrompt() {
     if ( !this.document.system.hasMixin( LpIncreaseTemplate ) ) {
@@ -633,7 +610,6 @@ class ItemPromptFactory extends PromptFactory {
   /**
    * Creates the talent category dialog.
    * @returns {Promise<any>} A promise that resolves to the talent category prompt dialog.
-   * @userFunction UF_ItemPromptFactory-talentCategoryPrompt
    */
   async _talentCategoryPrompt() {
 

@@ -1,1 +1,0 @@
-This function retrieves all equipments of a specific type from the compendium "starting equipment" based on the language.

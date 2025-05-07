@@ -8,19 +8,13 @@ const { DocumentSheetV2, } = foundry.applications.api;
  */
 export default class BaseConfigSheet extends DocumentSheetMixinEd( DocumentSheetV2 ) {
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_BaseConfigSheet-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     classes:     [ "config-sheet", ],
     sheetConfig: false,
   };
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_BaseConfigSheet-preparePartContext
-   */
+  /** @inheritDoc */
   async _preparePartContext( partId, context, options ) {
     const newContext = await super._preparePartContext( partId, context, options );
 

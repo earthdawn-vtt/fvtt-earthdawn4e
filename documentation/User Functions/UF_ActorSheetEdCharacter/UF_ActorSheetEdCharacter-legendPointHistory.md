@@ -1,1 +1,0 @@
-This function opens up the legend point history of a character.

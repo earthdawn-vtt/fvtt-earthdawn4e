@@ -1,9 +1,6 @@
 export default class CombatantConfigEd extends foundry.applications.sheets.CombatantConfig {
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_CombatantConfigEd-parts
-   */
+  /** @inheritDoc */
   static PARTS = {
     system: {
       root:      true,
@@ -11,10 +8,7 @@ export default class CombatantConfigEd extends foundry.applications.sheets.Comba
     },
   };
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_CombatantConfigEd-prepareContext
-   */
+  /** @inheritDoc */
   async _prepareContext( options={} ) {
     const context = await super._prepareContext( options );
     context.system = this.document.system;

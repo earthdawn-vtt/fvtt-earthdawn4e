@@ -1,1 +1,0 @@
-This function handles the click event for the go back button.

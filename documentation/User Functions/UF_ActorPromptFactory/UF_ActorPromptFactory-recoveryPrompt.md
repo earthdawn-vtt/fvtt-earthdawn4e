@@ -1,1 +1,0 @@
-This function creates a dialog for recovery.
