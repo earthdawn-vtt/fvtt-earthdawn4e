@@ -280,12 +280,7 @@ export default class PcData extends NamegiverTemplate {
 
     // placeholder, will be localized based on the selected rules for attribute increases
     const content = `
-    <p>${ game.i18n.format( "ED.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
-
-    game.i18n.format(
-      "ED.Dialogs.Legend.Rules.skillIncreaseShortRequirements",
-      { trainingTime: trainingTime }
-    );
+    <p>${ game.i18n.format( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
     ${ Object.entries( increaseValidationData ).map( ( [ key, value ] ) => {
     return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
   } ).join( "" ) }
