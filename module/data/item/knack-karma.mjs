@@ -73,7 +73,7 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
   }
 
   /** @inheritdoc */
-  get increaseValidationData () {
+  get learnValidationData () {
 
     const learnData = this.learnData;
     return {
