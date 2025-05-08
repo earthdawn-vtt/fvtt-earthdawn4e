@@ -31,17 +31,20 @@ export function setSetting( settingKey, value, options={} ) {
  * @returns {string[]} - A list of all available ed-ids.
  */
 export function getEdIds() {
-  return [
-    "edidThreadWeaving",
-    "edidSpellcasting",
-    "edidPatterncraft",
-    "edidLanguageSpeak",
-    "edidLanguageRW",
-    "edidVersatility",
-    "edidQuestorDevotion",
-    "edidUnarmedCombat",
-    "edidSpellMatrix",
-  ].map( id => getSetting( id ) );
+  return Object.keys(
+    ED4E.defaultEdIds
+  ).map(
+    edid => getSetting( getEdidSettingKey( edid ) )
+  );
+}
+
+/**
+ * Generates a formatted EDID setting key based on the provided EDID name.
+ * @param {string} edidName - The name of the EDID to be formatted into a key.
+ * @returns {string} The formatted EDID setting key.
+ */
+function getEdidSettingKey( edidName ) {
+  return `edid${ edidName.capitalize() }`;
 }
 
 /**
@@ -53,94 +56,15 @@ export default function registerSystemSettings() {
   /*                                      ED-IDs                                      */
   /* -------------------------------------------------------------------------------- */
 
-  // edid for thread weaving
-  game.settings.register( "ed4e", "edidThreadWeaving", {
-    name:    "ED.Settings.Edid.threadWeaving",
-    hint:    "ED.Settings.Edid.threadWeavingHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.threadWeaving,
-    type:    new EdIdField(),
-  } );
-
-  // edid for spellcasting
-  game.settings.register( "ed4e", "edidSpellcasting", {
-    name:    "ED.Settings.Edid.spellCasting",
-    hint:    "ED.Settings.Edid.spellCastingHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.spellcasting,
-    type:    new EdIdField(),
-  } );
-
-  // edid for patterncraft
-  game.settings.register( "ed4e", "edidPatterncraft", {
-    name:    "ED.Settings.Edid.patterncraft",
-    hint:    "ED.Settings.Edid.patterncraftHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.patterncraft,
-    type:    new EdIdField(),
-  } );
-
-  // edid for speak language
-  game.settings.register( "ed4e", "edidLanguageSpeak", {
-    name:    "ED.Settings.Edid.languageSpeak",
-    hint:    "ED.Settings.Edid.languageSpeakHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.languageSpeak,
-    type:    new EdIdField(),
-  } );
-
-  // edid for read/write language
-  game.settings.register( "ed4e", "edidLanguageRW", {
-    name:    "ED.Settings.Edid.languageRW",
-    hint:    "ED.Settings.Edid.languageRWHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.languageRW,
-    type:    new EdIdField(),
-  } );
-
-  // edid for versatility
-  game.settings.register( "ed4e", "edidVersatility", {
-    name:    "ED.Settings.Edid.versatility",
-    hint:    "ED.Settings.Edid.versatilityHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.versatility,
-    type:    new EdIdField(),
-  } );
-
-  // edid for questor devotion
-  game.settings.register( "ed4e", "edidQuestorDevotion", {
-    name:    "ED.Settings.Edid.questorDevotion",
-    hint:    "ED.Settings.Edid.questorDevotionHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.questorDevotion,
-    type:    new EdIdField(),
-  } );
-
-  // edid for unarmed combat
-  game.settings.register( "ed4e", "edidUnarmedCombat", {
-    name:    "ED.Settings.Edid.unarmedCombat",
-    hint:    "ED.Settings.Edid.unarmedCombatHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.unarmedCombat,
-    type:    new EdIdField(),
-  } );
-
-  // edid for items that house a spell matrix (talents or physical items)
-  game.settings.register( "ed4e", "edidSpellMatrix", {
-    name:    "ED.Settings.Edid.spellMatrix",
-    hint:    "ED.Settings.Edid.spellMatrixHint",
-    scope:   "world",
-    config:  true,
-    default: ED4E.edIds.spellMatrix,
-    type:    new EdIdField(),
+  Object.entries( ED4E.defaultEdIds ).forEach( ( [ name, edid ] ) => {
+    game.settings.register( "ed4e", getEdidSettingKey( name ), {
+      name:    `ED.Settings.Edid.${ name }`,
+      hint:    `ED.Settings.Edid.${ name }Hint`,
+      scope:   "world",
+      config:  true,
+      default: edid,
+      type:    new EdIdField(),
+    } );
   } );
 
 
@@ -390,7 +314,7 @@ export default function registerSystemSettings() {
   /* -------------------------------------------------------------------------------- */
   /*                                  ENCUMBRANCE                                     */
   /* -------------------------------------------------------------------------------- */
-  
+
   // Encumbrance options
   game.settings.register( "ed4e", "encumbrance", {
     name:    "ED.Settings.Encumbrance.encumbrance",
