@@ -34,6 +34,7 @@
     "cspell": "^9.0.1",
     "eslint": "^9.6.0",
     "eslint-plugin-jsdoc": "^46.8.2",
+    "fast-glob": "^3.3.3",
     "globals": "^15.10.0",
     "gulp": "^5.0.0",
     "gulp-eslint-new": "^1.8.3",
