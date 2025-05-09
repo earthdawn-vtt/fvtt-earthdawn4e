@@ -493,7 +493,7 @@ const argv = yargs( hideBin( process.argv ) )
     alias:       "o",
     type:        "string",
     description: "Path to file where results will be saved",
-    default:     "./reports/localization/results.json"
+    default:     "./reports/localization/missing-keys-report.json"
   } )
   .option( "verbose", {
     alias:       "v",
