@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: localization-report
-          path: reports/localization/results.json
+          path: reports/localization/missing-keys-report.json
           if-no-files-found: warn
