@@ -39,12 +39,12 @@ class LocalizationChecker {
   /**
    * @type {RegExp} Regular expression to match localization keys in *.hbs files
    */
-  hbsLocalizeRegex = /[{(]\s*localize\s+((["']([a-zA-Z0-9_.-]+(?:\.[a-zA-Z0-9_.-]+)*)["'])|([a-zA-Z0-9_]+))/g;
+  hbsLocalizeRegex = /[{(]\s*localize\s+(["']([a-zA-Z0-9_.-]+(?:\.[a-zA-Z0-9_.-]+)*)["'])/g;
 
   /**
    * @type {RegExp} Regular expression to match any potential localization key pattern
    */
-  potentialKeyRegex = /["']([a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)+)["']/g;
+  potentialKeyRegex = /["']([A-Z]+(\.[a-zA-Z0-9_]+)+)["']/g;
 
   /**
    * Constructor
@@ -52,13 +52,26 @@ class LocalizationChecker {
    * @param {string} options.modulesDir - Directory containing *.mjs files
    * @param {string} options.templatesDir - Directory containing *.hbs files
    * @param {string} options.langDir - Directory containing language files
+   * @param {string} options.outputFile - File to write results to
    * @param {boolean} options.verbose - Whether to output verbose information
    */
-  constructor( { modulesDir, templatesDir, langDir, verbose = false } ) {
+  constructor( { modulesDir, templatesDir, langDir, outputFile, verbose = false } ) {
     this.modulesDir = modulesDir;
     this.templatesDir = templatesDir;
     this.langDir = langDir;
+    this.outputFile = outputFile;
     this.verbose = verbose;
+    
+    // Results storage
+    this.results = {
+      missingInLang: {},
+      unusedKeys:    [],
+      summary:       {
+        totalKeysInCode: 0,
+        totalKeysInLang: {},
+        timestamp:       new Date().toISOString()
+      }
+    };
   }
 
   /**
@@ -219,41 +232,133 @@ class LocalizationChecker {
   }
 
   /**
+   * Format the results for storage
+   * @param {Set<string>} keysInCode - All keys found in code
+   * @returns {object} Formatted results object
+   */
+  formatResults( keysInCode ) {
+    // Reset results
+    this.results = {
+      missingInLang: {},
+      unusedKeys:    [],
+      summary:       {
+        totalKeysInCode: keysInCode.size,
+        totalKeysInLang: {},
+        timestamp:       new Date().toISOString()
+      }
+    };
+    
+    // Check which keys are missing from language files
+    for ( const [ langCode, langKeys ] of this.keysInLang.entries() ) {
+      const missingKeys = [ ...keysInCode ].filter( key => !langKeys.has( key ) );
+      
+      this.results.summary.totalKeysInLang[langCode] = langKeys.size;
+      
+      if ( missingKeys.length > 0 ) {
+        this.results.missingInLang[langCode] = missingKeys.sort().map( key => {
+          const locations = this.keyLocations.get( key );
+          const locationsArr = [ ...locations ].map( loc =>
+            loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
+          );
+          
+          return {
+            key,
+            locations: locationsArr
+          };
+        } );
+      }
+    }
+    
+    // Check if there are keys in language files not used in code
+    const baseKeys = this.keysInLang.has( "en" )
+      ? this.keysInLang.get( "en" )
+      : this.keysInLang.values().next().value;
+      
+    if ( baseKeys ) {
+      this.results.unusedKeys = [ ...baseKeys ]
+        .filter( key => !keysInCode.has( key ) )
+        .sort();
+    }
+    
+    return this.results;
+  }
+  
+  /**
+   * Ensures that a directory exists, creating it if necessary
+   * @param {string} dirPath - Directory path to ensure
+   * @returns {Promise<void>}
+   */
+  async ensureDirectoryExists( dirPath ) {
+    try {
+      await fs.promises.mkdir( dirPath, { recursive: true } );
+    } catch ( error ) {
+      if ( error.code !== "EEXIST" ) {
+        throw error;
+      }
+    }
+  }
+  
+  /**
+   * Save results to the specified output file
+   * @returns {Promise<void>}
+   */
+  async saveResults() {
+    try {
+      // Ensure the directory exists
+      const outputDir = path.dirname( this.outputFile );
+      await this.ensureDirectoryExists( outputDir );
+      
+      // Write the file
+      await fs.promises.writeFile(
+        this.outputFile,
+        JSON.stringify( this.results, null, 2 ),
+        "utf8"
+      );
+      console.log( `\n✅ Results saved to: ${this.outputFile}` );
+    } catch ( error ) {
+      console.error( `\n❌ Error saving results to ${this.outputFile}:`, error );
+    }
+  }
+  
+  /**
    * Report the results of the localization check
    */
   reportResults() {
     console.log( "\n===== LOCALIZATION CHECK RESULTS =====\n" );
-
+  
     const keysInCode = new Set( [ ...this.keysInJs, ...this.keysInTemplates ] );
-
+    
+    // Format results for saving to file
+    this.formatResults( keysInCode );
+  
     // Check which keys are missing from language files
     for ( const [ langCode, langKeys ] of this.keysInLang.entries() ) {
       const missingInLang = [ ...keysInCode ].filter( key => !langKeys.has( key ) );
-
+  
       if ( missingInLang.length > 0 ) {
         console.log( `\n🔍 Keys used in code but missing in ${ langCode }.json: ${ missingInLang.length }\n` );
-
+  
         missingInLang.sort().forEach( key => {
           const locations = this.keyLocations.get( key );
           const locationsStr = [ ...locations ].map( loc =>
             loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
           ).join( ", " );
-
+  
           console.log( `  "${ key }" - Found in: ${ locationsStr }` );
         } );
       } else {
         console.log( `✅ All keys used in code are present in ${ langCode }.json.` );
       }
     }
-
+  
     // Check if there are keys in language files not used in code
     const baseKeys = this.keysInLang.has( "en" )
       ? this.keysInLang.get( "en" )
       : this.keysInLang.values().next().value;
-
+  
     if ( baseKeys ) {
       const unusedKeys = [ ...baseKeys ].filter( key => !keysInCode.has( key ) );
-
+  
       if ( unusedKeys.length > 0 ) {
         console.log( `\n⚠️ Keys present in language files but not found in code: ${ unusedKeys.length }\n` );
         unusedKeys.sort().forEach( key => {
@@ -263,8 +368,11 @@ class LocalizationChecker {
         console.log( "✅ All keys in language files are used in code." );
       }
     }
-
+  
     console.log( "\n" );
+    
+    // Save results to file
+    this.saveResults();
   }
 }
 
@@ -289,6 +397,12 @@ const argv = yargs( hideBin( process.argv ) )
     description: "Directory containing language files",
     default:     "lang"
   } )
+  .option( "output-file", {
+    alias:       "o",
+    type:        "string",
+    description: "Path to file where results will be saved",
+    default:     "./reports/localization/results.json"
+  } )
   .option( "verbose", {
     alias:       "v",
     type:        "boolean",
@@ -303,6 +417,7 @@ const checker = new LocalizationChecker( {
   modulesDir:   argv.moduleDir,
   templatesDir: argv.templatesDir,
   langDir:      argv.langDir,
+  outputFile:   argv.outputFile,
   verbose:      argv.verbose
 } );
 
