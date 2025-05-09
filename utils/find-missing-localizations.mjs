@@ -44,7 +44,7 @@ class LocalizationChecker {
   /**
    * @type {RegExp} Regular expression to match localization keys in *.hbs files
    */
-  hbsLocalizeRegex = /[{(]\s*localize\s+(["']([a-zA-Z0-9_.-]+(?:\.[a-zA-Z0-9_.-]+)*)["'])/g;
+  hbsLocalizeRegex = /[{(]\s*localize\s+["']([a-zA-Z0-9_.-]+(?:\.[a-zA-Z0-9_.-]+)*)["']/g;
 
   /**
    * @type {RegExp} Regular expression to match any potential localization key pattern
