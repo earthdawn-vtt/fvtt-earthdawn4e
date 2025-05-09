@@ -24,8 +24,8 @@ jobs:
         run: npm install fast-glob yargs
 
       - name: Run localization checker
-        run: |
-          node utils/find-missing-localizations.mjs
+        run: node utils/find-missing-localizations.mjs
+          --output-file "./reports/localization/missing-keys-report.json"
         continue-on-error: true
 
       - name: Upload localization results
