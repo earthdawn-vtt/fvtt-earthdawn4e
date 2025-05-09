@@ -549,7 +549,7 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
  */
 export function validateEdid( value ) {
   // `any` is a reserved word
-  if ( value === ED4E.reserved_edid.ANY ) {
+  if ( value === ED4E.reservedEdid.ANY ) {
     return new foundry.data.validation.DataModelValidationFailure( {
       unresolved:   true,
       invalidValue: value,

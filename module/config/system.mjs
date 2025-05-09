@@ -7,14 +7,35 @@ ________  _____       _____ _______
 |_______| |___/        |  | |______|
 _______________________________`;
 
+// region ED-IDs
+
 /**
  * Reserved earthdawn ids.
  * @enum {string}
  */
-export const reserved_edid = {
+export const reservedEdid = {
   DEFAULT:    "none",
   ANY:        "any",
 };
+
+/**
+ * The default values for certain ed ids that can be set via settings.
+ * @enum {string}
+ */
+export const defaultEdIds = {
+  creatureAttack:  "creature-attack",
+  languageRW:      "language-rw",
+  languageSpeak:   "language-speak",
+  patterncraft:    "patterncraft",
+  questorDevotion: "questor-devotion",
+  spellMatrix:     "matrix",
+  spellcasting:    "spellcasting",
+  threadWeaving:   "thread-weaving",
+  unarmedCombat:   "unarmed-combat",
+  versatility:     "versatility",
+};
+
+// endregion
 
 /**
  * @description The grouping for the document creation dialogues in from the sidebar.
