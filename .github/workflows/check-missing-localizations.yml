@@ -1,0 +1,36 @@
+name: Check Missing Localizations
+on:
+  pull_request:
+    branches: [ "dev", "main" ]
+
+jobs:
+  find_missing_localization:
+    name: Scan for missing localization keys
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20'
+
+      - name: Install dependencies
+        run: npm install fast-glob yargs
+
+      - name: Run localization checker
+        run: |
+          node utils/find-missing-localizations.mjs
+        continue-on-error: true
+
+      - name: Upload localization results
+        uses: actions/upload-artifact@v4
+        with:
+          name: localization-report
+          path: reports/localization/results.json
+          if-no-files-found: warn

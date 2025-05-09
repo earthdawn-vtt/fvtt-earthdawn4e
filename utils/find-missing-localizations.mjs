@@ -12,6 +12,11 @@ import { hideBin } from "yargs/helpers";
 class LocalizationChecker {
 
   /**
+   * @type {boolean} Whether the script is running in GitHub Actions
+   */
+  static isGitHubActions = Boolean( process.env.GITHUB_ACTIONS );
+
+  /**
    * @type {Set<string>} Set of all keys found in *.mjs files
    */
   keysInJs = new Set();
@@ -84,7 +89,7 @@ class LocalizationChecker {
     await this.scanAllLangFiles();
 
     // Compare and report results
-    this.reportResults();
+    await this.reportResults();
   }
 
   /**
@@ -299,6 +304,39 @@ class LocalizationChecker {
   }
   
   /**
+   * Write content to GitHub step summary if running in GitHub Actions
+   * @param {string} content - Markdown content to write
+   * @returns {Promise<void>}
+   */
+  async writeToGitHubSummary( content ) {
+    if ( !LocalizationChecker.isGitHubActions || !process.env.GITHUB_STEP_SUMMARY ) return;
+    
+    try {
+      await fs.promises.appendFile( process.env.GITHUB_STEP_SUMMARY, content );
+    } catch ( error ) {
+      console.error( "Error writing to GitHub summary:", error );
+    }
+  }
+  
+  /**
+   * Output a GitHub workflow command annotation
+   * @param {string} type - The annotation type: warning, error, notice
+   * @param {string} message - The message to display
+   * @param {string} [file] - Optional file path where the issue is found
+   * @param {number} [line] - Optional line number where the issue is found
+   */
+  outputGitHubAnnotation( type, message, file, line ) {
+    if ( !LocalizationChecker.isGitHubActions ) return;
+    
+    let command = `::${type}`;
+    if ( file ) {
+      command += ` file=${file}`;
+      if ( line ) command += `,line=${line}`;
+    }
+    console.log( `${command}::${message}` );
+  }
+  
+  /**
    * Save results to the specified output file
    * @returns {Promise<void>}
    */
@@ -323,13 +361,20 @@ class LocalizationChecker {
   /**
    * Report the results of the localization check
    */
-  reportResults() {
+  async reportResults() {
     console.log( "\n===== LOCALIZATION CHECK RESULTS =====\n" );
   
     const keysInCode = new Set( [ ...this.keysInJs, ...this.keysInTemplates ] );
     
     // Format results for saving to file
     this.formatResults( keysInCode );
+    
+    // Start GitHub summary if we're in GitHub Actions
+    if ( LocalizationChecker.isGitHubActions ) {
+      await this.writeToGitHubSummary( "# Localization Check Results\n\n" );
+      await this.writeToGitHubSummary( `_Generated on ${new Date().toISOString()}_\n\n` );
+      await this.writeToGitHubSummary( `Total keys found in code: **${keysInCode.size}**\n\n` );
+    }
   
     // Check which keys are missing from language files
     for ( const [ langCode, langKeys ] of this.keysInLang.entries() ) {
@@ -337,17 +382,45 @@ class LocalizationChecker {
   
       if ( missingInLang.length > 0 ) {
         console.log( `\n🔍 Keys used in code but missing in ${ langCode }.json: ${ missingInLang.length }\n` );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( `## 🔍 Keys missing in ${langCode}.json: ${missingInLang.length}\n\n` );
+          await this.writeToGitHubSummary( "| Key | Found In |\n|-----|----------|\n" );
+        }
   
         missingInLang.sort().forEach( key => {
           const locations = this.keyLocations.get( key );
-          const locationsStr = [ ...locations ].map( loc =>
+          const locationsArr = [ ...locations ].map( loc =>
             loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
-          ).join( ", " );
-  
+          );
+          const locationsStr = locationsArr.join( ", " );
+          
           console.log( `  "${ key }" - Found in: ${ locationsStr }` );
+          
+          // Create annotation for the first file where the key was found
+          if ( LocalizationChecker.isGitHubActions && locationsArr.length > 0 ) {
+            this.outputGitHubAnnotation(
+              "warning", 
+              `Missing localization key: "${key}" (not found in ${langCode}.json)`,
+              locationsArr[0]
+            );
+            
+            // Add to summary
+            const escapedKey = key.replace( /\|/g, "\\|" );
+            const escapedLocations = locationsStr.replace( /\|/g, "\\|" );
+            this.writeToGitHubSummary( `| \`${escapedKey}\` | ${escapedLocations} |\n` );
+          }
         } );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( "\n" );
+        }
       } else {
         console.log( `✅ All keys used in code are present in ${ langCode }.json.` );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( `## ✅ All keys used in code are present in ${langCode}.json\n\n` );
+        }
       }
     }
   
@@ -361,18 +434,37 @@ class LocalizationChecker {
   
       if ( unusedKeys.length > 0 ) {
         console.log( `\n⚠️ Keys present in language files but not found in code: ${ unusedKeys.length }\n` );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( `## ⚠️ Unused keys: ${unusedKeys.length}\n\n` );
+          await this.writeToGitHubSummary( "Keys present in language files but not found in code:\n\n" );
+          await this.writeToGitHubSummary( "```\n" );
+        }
+        
         unusedKeys.sort().forEach( key => {
           console.log( `  "${ key }"` );
+          
+          if ( LocalizationChecker.isGitHubActions ) {
+            this.writeToGitHubSummary( `${key}\n` );
+          }
         } );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( "```\n\n" );
+        }
       } else {
         console.log( "✅ All keys in language files are used in code." );
+        
+        if ( LocalizationChecker.isGitHubActions ) {
+          await this.writeToGitHubSummary( "## ✅ All keys in language files are used in code.\n\n" );
+        }
       }
     }
   
     console.log( "\n" );
     
     // Save results to file
-    this.saveResults();
+    await this.saveResults();
   }
 }
 
