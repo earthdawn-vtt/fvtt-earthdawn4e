@@ -3,6 +3,8 @@
     {{!-- Weapon Type --}}
     {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
     {{#if this.item.system.isRanged}}
+        {{!-- Weapon SubType --}}
+        {{formField systemFields.weaponSubType name="system.weaponSubType" value=item.system.weaponSubType localize=true}}
         {{!-- ammunition - Type --}}
         {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
     {{/if}}

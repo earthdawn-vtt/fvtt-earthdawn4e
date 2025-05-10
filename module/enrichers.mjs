@@ -40,7 +40,6 @@ async function enrichString( match, options ) {
  * @param {RegExpMatchArray} match   The regular expression match result.
  * @param {EnrichmentOptions} options  Options provided to customize text enrichment.
  * @returns {HTMLElement|null}   An HTML link if the check could be built, otherwise null.
- * @userFunction                UF_Journal-enrichRoll
  */
 async function enrichRoll( match, options ) {
 

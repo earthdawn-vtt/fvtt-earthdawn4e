@@ -1,1 +1,0 @@
-This function is triggered if no weapon is equipped and an attack roll is triggered which requires an equipped weapon.

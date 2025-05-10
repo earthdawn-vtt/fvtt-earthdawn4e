@@ -57,7 +57,6 @@ export function getAllEdIds( type ) {
  * @param {string} edid           The SWID of the item(s) which you want to retrieve
  * @param {string} type           Optionally, a type name to restrict the search
  * @returns {Item[]|undefined}    An array containing the found items
- * @userFunction                  UF_Utils_getGlobalItemsByEdid
  */
 export async function getGlobalItemsByEdid( edid, type ) {
   return getAllDocuments(
@@ -77,7 +76,6 @@ export async function getGlobalItemsByEdid( edid, type ) {
  * @param {string} edid         The EDID of the item(s) which you want to retrieve
  * @param {string} type         Optionally, a type name to restrict the search
  * @returns {Item|undefined}    The matching item, or undefined if none was found.
- * @userFunction                UF_Utils_getSingleGlobalItemByEdid
  */
 export async function getSingleGlobalItemByEdid( edid, type ) {
   return getGlobalItemsByEdid( edid, type ).then( item => item[0] );
@@ -201,6 +199,30 @@ export function documentsToSelectChoices( documents ) {
  */
 export function createContentLink( uuid, description ) {
   return `@UUID[${uuid}]{${description}}`;
+}
+
+/**
+ * Creates an anchor element representing a content link for a given document.
+ * @param {Document} document The document to link to.
+ * @returns {Element} The anchor element with the "content-link" class.
+ */
+export function createContentAnchor( document ) {
+  return foundry.applications.ux.TextEditor.createAnchor( {
+    attrs:   {
+      draggable: true,
+    },
+    dataset: {
+      link:        document.link,
+      uuid:        document.uuid,
+      id:          document.id,
+      type:        document.type,
+      tooltip:     game.i18n.localize( `DOCUMENT.${document.documentName}` ),
+      tooltipText: document.type,
+    },
+    classes: [ "content-link", ],
+    name:    document.name,
+    icon:    "fa-solid fa-suitcase",
+  } );
 }
 
 /**
@@ -524,11 +546,10 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
  * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
  * @param { string }  value The string to be checked for validity
  * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
- * @userFunction            UF_Utils_validateEdid
  */
 export function validateEdid( value ) {
   // `any` is a reserved word
-  if ( value === ED4E.reserved_edid.ANY ) {
+  if ( value === ED4E.reservedEdid.ANY ) {
     return new foundry.data.validation.DataModelValidationFailure( {
       unresolved:   true,
       invalidValue: value,

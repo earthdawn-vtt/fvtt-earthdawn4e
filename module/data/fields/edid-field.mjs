@@ -12,7 +12,7 @@ export default class EdIdField extends foundry.data.fields.StringField {
   /** @inheritdoc */
   static get _defaults() {
     return foundry.utils.mergeObject( super._defaults, {
-      initial:         ED4E.reserved_edid.DEFAULT,
+      initial:         ED4E.reservedEdid.DEFAULT,
       blank:           false,
       required:        true,
       documentSubtype: "",

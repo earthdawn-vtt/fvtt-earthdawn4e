@@ -14,6 +14,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
+import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 
 const futils = foundry.utils;
 
@@ -118,10 +119,7 @@ export default class ActorEd extends Actor {
     return this.items.filter( item => item.system.rollType === "reaction" );
   }
 
-  /**
-   * @inheritDoc
-   * @userFunction            UF_TokenResources-preCreate
-   */
+  /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
 
@@ -228,7 +226,6 @@ export default class ActorEd extends Actor {
    * @description                       Returns all ammunitoin items of the given actor
    * @param {string} type               The type of ammunition to get
    * @returns {ItemEd[]}                An array of ammunition items
-   * @userFunction                      UF_PhysicalItems-getAmmo
    */
   getAmmo ( type ) {
     return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
@@ -283,6 +280,14 @@ export default class ActorEd extends Actor {
     return this.items.filter(
       item => item.system.rollType === action
     );
+  }
+
+  /**
+   * Find all items that have a matrix.
+   * @returns {ItemEd[]} An array of items that have a matrix.
+   */
+  getMatrices() {
+    return this.items.filter( item => item.system?.hasMatrix );
   }
 
   /**
@@ -361,7 +366,6 @@ export default class ActorEd extends Actor {
    * Triggers a prompt for updating the Legend Point (LP) history of the actor.
    * Updates the LPTrackingData of the actor based on the input from the prompt.
    * @returns {Promise<Actor>} A Promise that resolves to the updated Actor instance.
-   * @userFunction            UF_LpTracking-legendPointHistory
    * @see ../../documentation/User Functions/UF_LpTracking-legendPointHistory.md
    */
   async legendPointHistory() {
@@ -373,6 +377,32 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+
+  /**
+   * Reattunes spells by executing an attunement workflow with the provided matrix.
+   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
+   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
+   */
+  async reattuneSpells( matrixUuid ) {
+    const attuneWorkflow = new AttuneWorkflow(
+      this,
+      {
+        firstMatrix: matrixUuid,
+      },
+    );
+
+    return attuneWorkflow.execute();
+  }
+
+  /**
+   * Remove all spells from all matrices of this actor.
+   * @returns {Promise<Document|undefined>} The array of changed matrix items, or undefined if nothing changed.
+   */
+  async emptyAllMatrices() {
+    return Promise.all(
+      this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
 
   /* -------------------------------------------- */
   /*                   Rolls                      */
@@ -456,7 +486,6 @@ export default class ActorEd extends Actor {
    * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
    * @param {object} options      Any additional options for the {@link EdRoll}.
-   * @userFunction                UF_PhysicalItems-rollEquipment
    */
   async rollEquipment( equipment, options = {} ) {
     const arbitraryStep = equipment.system.usableItem.arbitraryStep;
@@ -473,13 +502,15 @@ export default class ActorEd extends Actor {
       equipment:   equipment.name,
       step:        arbitraryStep
     } );
+
+    const arbitraryFinalstep = { base: arbitraryStep };
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
         rollType:         "equipment",
         strain:           0,
         target:           difficultyFinal,
-        step:             arbitraryStep,
+        step:             arbitraryFinalstep,
         devotionRequired: false,
         chatFlavor:       chatFlavor
       },
@@ -494,7 +525,6 @@ export default class ActorEd extends Actor {
    * @param {object}    itemId        Id of the item to rotate the status of
    * @param {boolean}   backwards     Whether to rotate the status backwards
    * @returns {Promise<ItemEd[]>}       The updated items
-   * @userFunction                    UF_PhysicalItems-rotateItemStatus
    */
   async rotateItemStatus( itemId, backwards = false ) {
     const item = this.items.get( itemId );
@@ -640,7 +670,6 @@ export default class ActorEd extends Actor {
    * @summary                           Take the given amount of strain as damage.
    * @param {number} strain             The amount of strain damage to take
    * @param {ItemEd} [strainOrigin]     The ability causing the strain
-   * @userFunction                      UF_Actor-takeStrain
    */
   takeStrain( strain, strainOrigin ) {
     if ( !strain ) return;
@@ -1026,7 +1055,6 @@ export default class ActorEd extends Actor {
    * @param {object}    itemToUpdate    The item to update
    * @param {string}    nextStatus      The next status of the item
    * @returns {Promise<ItemEd[]>}       The updated items
-   * @userFunction                      UF_PhysicalItems-updateItemStates
    */
   async _updateItemStates( itemToUpdate, nextStatus ) {
     const updates = [];
@@ -1161,7 +1189,6 @@ export default class ActorEd extends Actor {
    * @param {('earnings'|'spendings')} type       Type of the transaction
    * @param {object} transactionData   Data of the transaction
    * @returns {ActorEd}                           The updated actor data
-   * @userFunction                                UF_LPTracking-addLpTransaction
    * @see                             ../../documentation/User Functions/UF_LpTracking-addLpTransaction.md
    */
   async addLpTransaction( type, transactionData ) {

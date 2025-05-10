@@ -1,1 +1,0 @@
-this function checks if a previous step exists and returns the number of that step if it exists.

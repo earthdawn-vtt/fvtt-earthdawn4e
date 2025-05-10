@@ -79,7 +79,7 @@ export default class PathData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.pathIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */

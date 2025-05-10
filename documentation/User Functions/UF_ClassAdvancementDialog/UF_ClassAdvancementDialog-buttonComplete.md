@@ -1,1 +1,0 @@
-This function will finalize the process.

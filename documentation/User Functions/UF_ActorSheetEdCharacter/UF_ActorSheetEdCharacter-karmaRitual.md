@@ -1,1 +1,0 @@
-This function resets the current karma points of the actor to the maximum value. This represents the Karma ritual of an Adept.

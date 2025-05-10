@@ -1,1 +1,0 @@
-This function handles the path to the extraThreads or extraSuccess data on the document's system property.

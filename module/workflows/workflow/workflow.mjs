@@ -44,6 +44,12 @@ export default class Workflow {
   _steps = [];
 
   /**
+   * Whether the workflow has been canceled.
+   * @type {boolean}
+   */
+  _canceled = false;
+
+  /**
    * @param {WorkflowOptions}  [options] The options for this workflow.
    */
   constructor( options = {} ) {
@@ -60,12 +66,30 @@ export default class Workflow {
     return this._name;
   }
 
+  /**
+   * Whether the workflow is canceled.
+   * @type {boolean}
+   * @readonly
+   */
+  get canceled() {
+    return this._canceled;
+  }
+
   // endregion
 
   /**
+   * Cancel the workflow execution silently without throwing an error.
+   * This allows steps to signal that the workflow should stop but
+   * without being treated as an error condition.
+   */
+  cancel() {
+    this._canceled = true;
+  }
+
+  /**
    * Execute the workflow.
-   * @returns {Promise<any|undefined>} The result of the workflow, which is defined by the subclass, or
-   * undefined if the workflow was interrupted.
+   * @returns {Promise<any>} The result of the workflow, which is defined by the subclass, or
+   * undefined if the workflow was interrupted or canceled.
    */
   async execute() {
     try {
@@ -73,6 +97,11 @@ export default class Workflow {
         const step = this._steps[this._currentStep];
         await step();
         this._currentStep++;
+        
+        // Check if the workflow was canceled during the step execution
+        if ( this._canceled ) {
+          return undefined;
+        }
       }
     } catch ( e ) {
       if ( e instanceof WorkflowInterruptError ) {

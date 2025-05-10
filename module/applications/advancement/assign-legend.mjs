@@ -4,10 +4,7 @@ import ApplicationEd from "../api/application.mjs";
 export default class AssignLpPrompt extends ApplicationEd {
 
 
-  /** 
-   * @inheritdoc
-   * @userFunction UF_AssignLpPrompt-constructor
-   */
+  /** @inheritdoc */
   constructor( options = {} ) {
     super( options );
     const data = options.data || {};
@@ -24,7 +21,6 @@ export default class AssignLpPrompt extends ApplicationEd {
    * Displays this application and waits for user input.
    * @param {object} options - Options to configure the prompt.
    * @returns {Promise<any>} - A promise that resolves with the user input.
-   * @userFunction UF_AssignLpPrompt-waitPrompt
    */
   static async waitPrompt( options = {} ) {
     return new Promise( ( resolve ) => {
@@ -33,10 +29,7 @@ export default class AssignLpPrompt extends ApplicationEd {
     } );
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_AssignLpPrompt-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "assign-legend-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -55,10 +48,7 @@ export default class AssignLpPrompt extends ApplicationEd {
     },
   };
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_AssignLpPrompt-parts
-   */
+  /** @inheritdoc */
   static PARTS = {
     form: {
       template: "systems/ed4e/templates/prompts/assign-legend.hbs",
@@ -73,7 +63,6 @@ export default class AssignLpPrompt extends ApplicationEd {
    * Prepare the data to be used in the template
    * @param {object} options - Options to be used in the template
    * @returns {object} - The data to be used in the template
-   * @userFunction UF_AssignLpPrompt-prepareContext
    */
   async _prepareContext( options = {} ) {
     const context = {};
@@ -133,10 +122,7 @@ export default class AssignLpPrompt extends ApplicationEd {
     return data;
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_AssignLpPrompt-close
-   */
+  /** @inheritdoc */
   static async close( options = {} ) {
     this.resolve?.( null );
     return super.close( options );
@@ -146,7 +132,6 @@ export default class AssignLpPrompt extends ApplicationEd {
    * assigns Legend points to actors
    * @param {Event} event - The event object from the form submission.
    * @returns {Promise<void>} - A promise that resolves when the LP assignment is complete.
-   * @userFunction UF_AssignLpPrompt-assignLp
    */
   static async _assignLP( event ) {
     event.preventDefault();

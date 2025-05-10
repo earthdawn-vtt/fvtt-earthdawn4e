@@ -7,14 +7,35 @@ ________  _____       _____ _______
 |_______| |___/        |  | |______|
 _______________________________`;
 
+// region ED-IDs
+
 /**
  * Reserved earthdawn ids.
  * @enum {string}
  */
-export const reserved_edid = {
+export const reservedEdid = {
   DEFAULT:    "none",
   ANY:        "any",
 };
+
+/**
+ * The default values for certain ed ids that can be set via settings.
+ * @enum {string}
+ */
+export const defaultEdIds = {
+  creatureAttack:  "creature-attack",
+  languageRW:      "language-rw",
+  languageSpeak:   "language-speak",
+  patterncraft:    "patterncraft",
+  questorDevotion: "questor-devotion",
+  spellMatrix:     "matrix",
+  spellcasting:    "spellcasting",
+  threadWeaving:   "thread-weaving",
+  unarmedCombat:   "unarmed-combat",
+  versatility:     "versatility",
+};
+
+// endregion
 
 /**
  * @description The grouping for the document creation dialogues in from the sidebar.
@@ -42,17 +63,21 @@ export const icons = {
   ability:          "fa-bolt",
   attack:           "fa-crosshairs",
   attribute:        "fa-dice-d20",
+  attune:           "fa-thin fa-chart-network",
   cancel:           "fa-times",
   classAdvancement: "fa-arrow-trend-up",
   configure:        "fa-cogs",
   damage:           "fa-skull-crossbones",
+  delete:           "fa-trash",
   dice:             "fa-dice",
   effect:           "fa-biohazard",
   effectExecution:  "fa-light fa-arrow-progress",
+  emptyMatrices:    "fa-empty-set",
   halfmagic:        "fa-hat-wizard",
   initiative:       "fa-running",
   itemHistory:      "fa-history",
   ok:               "fa-check",
+  onTheFly:         "fa-forward-fast",
   patterncraft:     "fa-thin fa-group-arrows-rotate",
   recovery:         "fa-heartbeat",
   research:         "fa-thin fa-search",
@@ -63,6 +88,7 @@ export const icons = {
   nextCharGen:      "fa-thin fa-arrow-right",
   resetPoints:      "fa-arrows-rotate",
   undo:             "fa-arrow-rotate-left",
+  unknown:          "fa-question",
   Tabs:             {
   },
 };

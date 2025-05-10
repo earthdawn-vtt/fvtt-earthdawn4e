@@ -1,1 +1,0 @@
-This function saves all changes done to the legend point history.

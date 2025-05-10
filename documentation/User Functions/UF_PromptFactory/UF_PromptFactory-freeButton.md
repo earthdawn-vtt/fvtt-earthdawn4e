@@ -1,1 +1,0 @@
-This function triggers the learning or increasing of an ability etc. without spending legend points.

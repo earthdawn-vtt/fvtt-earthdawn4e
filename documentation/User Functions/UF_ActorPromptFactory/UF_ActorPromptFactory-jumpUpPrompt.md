@@ -1,1 +1,0 @@
-This function triggers a prompt with abilities of the roll type **jump up**, when the actor is tries to jump up.

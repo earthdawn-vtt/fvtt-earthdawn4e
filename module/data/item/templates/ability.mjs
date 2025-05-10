@@ -121,6 +121,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             nullable: true,
             blank:    false,
             trim:     true,
+            initial:  null,
             choices:  ED4E.spellcastingTypes,
           } ),
         }, {} ),

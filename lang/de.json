@@ -1,7 +1,5 @@
 {
-  "COMBAT": {
-    "CombatantShowStartRoundPrompt":               "Prompt zu Rundenbeginn"
-  },
+  "COMBAT":                                        "TODO: Add translation",
   "ED": {
     "ActiveEffect": {
       "ChangeKeys": {
@@ -33,44 +31,14 @@
       "Header": {
         "applyToAbility":                          "Auf Fähigkeit anwenden"
       },
-      "Status": {
-        "aggressive":                              "Aggressiver Angriff",
-        "attackKnockdown":                         "Angriff zum Niederschlag",
-        "attackStun":                              "Angriff zum Betäuben",
-        "blindness":                               "Blindheit",
-        "blindsided":                              "Im Toten Winkel",
-        "calledShot":                              "Gezielter Angriff",
-        "cover":                                   "Deckung",
-        "coverFull":                               "voll",
-        "coverPartial":                            "teilweise",
-        "darkness":                                "Dunkelheit",
-        "darknessFull":                            "voll",
-        "darknessPartial":                         "teilweise",
-        "dazzled":                                 "Geblendet",
-        "dead":                                    "Tot",
-        "defensive":                               "Abwehrhaltung",
-        "fury":                                    "Zorn",
-        "grappled":                                "Umklammert",
-        "harried":                                 "Bedrängt",
-        "impaired":                                "Eingeschränkte Bewegung",
-        "impairedHeavy":                           "stark",
-        "impairedLight":                           "leicht",
-        "jumpUp":                                  "Aufspringen",
-        "knockedDown":                             "Niedergeschlagen",
-        "overwhelmed":                             "Überwältigt",
-        "setAgainstCharge":                        "Erwartung eines Sturmangriffs",
-        "shatterShield":                           "Zerschmettern eines Schildes",
-        "splitMovement":                           "Aufteilen der Bewegung",
-        "surprised":                               "Überrascht",
-        "tailAttack":                              "Schwanzangriff",
-        "unconscious":                             "Bewusstlos"
-      },
+      "Status":                                    "TODO: Add translation",
       "Tooltips": {
         "abilityEdidSelection":                    "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       },
       "newEffectName":                             "Neuer Earthdawn ActiveEffect"
     },
     "Actor": {
+      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attribueStep":                            "Stufe",
         "attributeName":                           "Attribut",
@@ -258,6 +226,21 @@
         },
         "attributeImprovement":                    "Attribut Erhöhung"
       },
+      "Navigator": {
+        "classes":                                 "TODO: Add translation",
+        "configuration":                           "TODO: Add translation",
+        "devotions":                               "TODO: Add translation",
+        "equipment":                               "TODO: Add translation",
+        "general":                                 "TODO: Add translation",
+        "information":                             "TODO: Add translation",
+        "legend":                                  "TODO: Add translation",
+        "power":                                   "TODO: Add translation",
+        "reputation":                              "TODO: Add translation",
+        "skills":                                  "TODO: Add translation",
+        "specials":                                "TODO: Add translation",
+        "spells":                                  "TODO: Add translation",
+        "talents":                                 "TODO: Add translation"
+      },
       "Spellcasting": {
         "elementalist":                            "Elementarist",
         "illusionist":                             "Illusionist",
@@ -329,28 +312,7 @@
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Nimm den Schaden für deinen Charakter"
       },
-      "Flavor": {
-        "actorTookDamage":                         "{dealtTo} hat Schaden genommen",
-        "jumpUp":                                  "{sourceActor} springt auf mit Stufe {step}",
-        "knockdownTest":                           "{sourceActor} versucht dem Niederschlag zu widerstehen {step}",
-        "rollAbility":                             "{sourceActor} würfelt {attribute} mit Stufe {step}",
-        "rollAbilityMultipleTargets":              "{sourceActor} benutzt {Ability} mit Stufe {abilityFinalStep} gegen mehrere Ziele",
-        "rollAbilitySingleTarget":                 "{sourceActor} benutzt {Ability} mit Stufe {abilityFinalStep} gegen {singleTarget}",
-        "rollAbilityWithoutTarget":                "{sourceActor} benutzt {Ability} mit Stufe {abilityFinalStep}",
-        "rollAttackMultipleTargets":               "{sourceActor} benutzt {Ability} ({weapon}) mit Stufe {abilityFinalStep} gegen mehrere Ziele",
-        "rollAttackSingleTarget":                  "{sourceActor} benutzt {Ability} ({weapon}) mit Stufe {abilityFinalStep} gegen {singleTarget}",
-        "rollAttackWithoutTarget":                 "{sourceActor} benutzt {Ability} ({weapon}) mit Stufe {abilityFinalStep}",
-        "rollAttribute":                           "{sourceActor} würfelt {attribute} mit Stufe {step}",
-        "rollEquipment":                           "{sourceActor} würfelt {equipment} mit Stufe {step}",
-        "rollEquipmentMultipleTargets":            "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen mehrere Ziele",
-        "rollEquipmentSingleTarget":               "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep} gegen {singleTarget}",
-        "rollEquipmentWithoutTarget":              "{sourceActor} benutzt {equipment} mit Stufe {arbitraryStep}",
-        "rollInitiative":                          "{sourceActor} würfelt Initiative",
-        "rollRecovery":                            "{sourceActor} erholt sich mit Stufe {step}",
-        "takeDamage":                              "{actor} nimmt {amount} Schaden",
-        "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}",
-        "undoDamage":                              "Schaden zurücknehmen"
-      },
+      "Flavor":                                    "TODO: Add translation",
       "Header": {
         "actionTest":                              "Aktions Test",
         "arbitraryTest":                           "Willkürlicher Test",
@@ -363,6 +325,7 @@
     "Config": {
       "Action": {
         "free":                                    "Frei",
+        "none":                                    "TODO: Add translation",
         "simple":                                  "Einfach",
         "standard":                                "Standard",
         "sustained":                               "Anhaltend"
@@ -420,6 +383,7 @@
         "lowestOfGroup":                           "Niedrigste der Gruppe",
         "lowestX":                                 "Niedrigste der Gruppe + Ziele",
         "mystical":                                "Mystische Verteidung",
+        "none":                                    "TODO: Add translation",
         "physical":                                "Körperliche Verteidigung",
         "social":                                  "Soziale Verteidigung"
       },
@@ -606,6 +570,8 @@
         "effect":                                  "Effekt",
         "halfmagic":                               "Halb Magie",
         "initiative":                              "Initiative",
+        "jumpUp":                                  "TODO: Add translation",
+        "knockDown":                               "TODO: Add translation",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
         "spellcasting":                            "Spruchzauberei",
@@ -632,36 +598,8 @@
     },
     "Data": {
       "ActiveEffect": {
-        "Hints": {
-          "abilityEdid":                           "Wenn angegeben wird dieser Effekt auf die Fertigkeit übertragen",
-          "begin":                                 "Wann beginnt der Effekt",
-          "changes":                               "Die Änderungen die dieser Effekt anwendet",
-          "documentOriginType":                    "Der Typ des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
-          "documentOriginUuid":                    "Die UUID des Dokuments aus dem dieser Effekt stammt. Leer, wenn direkt durch User erstellt.",
-          "duration":                              "Die Dauer des Effekts",
-          "executable":                            "Hat dieser EAE einen eigens implementierten Effekt?",
-          "executeOn":                             "Wann wird dieses Effekt-Script ausgeführt?",
-          "executionScript":                       "Das Script das ausgeführt wird wenn dieser Effekt aktiviert wird",
-          "level":                                 "Für Status mit mehreren Stufen, wie Bedrängt oder Dunkelheit",
-          "primary":                               "Der Statuseffekt auf den sich dieser Zustand und eine mögliche Stufe bezieht",
-          "source":                                "Woher kommt dieser Effekt und wie ist er zustande gekommen?",
-          "transferToTarget":                      "Wird dieser Effekt nach Ausführung der Fähigkeit auf das Ziel übertragen?"
-        },
-        "Labels": {
-          "abilityEdid":                           "Fähigkeit",
-          "begin":                                 "Start",
-          "changes":                               "Änderungen",
-          "documentOriginType":                    "Dokumenttyp Ursprung",
-          "documentOriginUuid":                    "Dokument Ursprung",
-          "duration":                              "Dauer",
-          "executable":                            "Ausführbar",
-          "executeOn":                             "Ausführungszeitpunkt",
-          "executionScript":                       "Script",
-          "level":                                 "Stufe",
-          "primary":                               "Primärer Statuseffekt",
-          "source":                                "Ursprung",
-          "transferToTarget":                      "Übertrage auf Ziel"
-        }
+        "Hints":                                   "TODO: Add translation",
+        "Labels":                                  "TODO: Add translation"
       },
       "Actor": {
         "Hints": {
@@ -785,11 +723,9 @@
       },
       "General": {
         "Hints": {
-          "Combatant": {
-            "increaseAbilities":                   "Fähigkeiten die die Initiative-Stufe ergänzen",
-            "keepInitiative":                      "Behalte Initiative und würfle nicht neu",
-            "replacementEffect":                   "Eine Fähigkeit die die normale Initiative-Stufe ersetzt",
-            "savePromptSettings":                  "Zeigt diesen Dialog nicht mehr an und verwendet die aktuellen Einstellungen"
+          "Combatant":                             "TODO: Add translation",
+          "Knack": {
+            "lpCost":                              "TODO: Add translation"
           },
           "Knacks": {
             "requirements":                        "Alle Voraussetzungen müssen erfüllt sein, um den Kniff zu lernen. Fertigkeiten gelten hierfür nicht, nur Talente und Kniffe.",
@@ -805,12 +741,7 @@
           }
         },
         "Labels": {
-          "Combatant": {
-            "increaseAbilities":                   "Verbesserungseffekte",
-            "keepInitiative":                      "Initiative beibehalten",
-            "replacementEffect":                   "Ersetzungseffekt",
-            "savePromptSettings":                  "Speicher diese Einstellungen?"
-          },
+          "Combatant":                             "TODO: Add translation",
           "Knack": {
             "requirements":                        "Voraussetzungen",
             "restrictions":                        "Einschränkungen"
@@ -826,12 +757,19 @@
         }
       },
       "Item": {
+        "Fields": {
+          "dispelDifficulty":                      "TODO: Add translation"
+        },
         "Hints": {
           "Ability": {
             "Magic": {
               "magic":                             "Magie",
               "magicType":                         "Magie Typ",
               "spellcasting":                      "Spruchzauberei",
+              "talentMagic":                       "TODO: Add translation",
+              "talentMagicType":                   "TODO: Add translation",
+              "talentSpellcasting":                "TODO: Add translation",
+              "talentThreadWeaving":               "TODO: Add translation",
               "threadWeaving":                     "Fadenweben"
             },
             "RollTypeDetails": {
@@ -850,6 +788,7 @@
               "class":                             "Zu welchem Pfad, Questor oder Disziplin gehört diese Fähigkeit?"
             },
             "attribute":                           "Welches Attribut wird für diese Fähigkeit verwendet?",
+            "class":                               "TODO: Add translation",
             "devotionRequired":                    "Weihepunkt benötigt",
             "durability":                          "Unempfindlichkeit",
             "rank":                                "Rang",
@@ -861,7 +800,8 @@
             "talentKnacksAvailable":               "Verfügbare Kniffe",
             "talentKnacksLearned":                 "Gelernte Kniffe",
             "talentLearnedKnacks":                 "Gelernte Kniffe",
-            "tier":                                "Welche Stufe hat diese Fähigkeit?"
+            "tier":                                "Welche Stufe hat diese Fähigkeit?",
+            "type":                                "TODO: Add translation"
           },
           "Action": {
             "action":                              "Aktion",
@@ -967,6 +907,7 @@
             "itemStatus":                          "In welchem Ausrüstungszustand befindet sich der Gegenstand?",
             "price":                               "Preis",
             "usableItem":                          "Benutzbarer Gegenstand",
+            "value":                               "TODO: Add translation",
             "weight":                              "Gewicht"
           },
           "PoisonDisease": {
@@ -992,6 +933,12 @@
             "powerStep":                           "Aktionsstufe",
             "strain":                              "Überanstrengung"
           },
+          "Powers": {
+            "action":                              "TODO: Add translation",
+            "damageStep":                          "TODO: Add translation",
+            "powerStep":                           "TODO: Add translation",
+            "strain":                              "TODO: Add translation"
+          },
           "Questor": {
             "questorDevotion":                     "Die 'Questor' Weihekraft die die Verbindung zu dieser Passion darstellt"
           },
@@ -1014,23 +961,50 @@
           },
           "Spell": {
             "area":                                "Wirkungsbereich des Zaubers",
+            "binding":                             "TODO: Add translation",
+            "circle":                              "TODO: Add translation",
+            "concentration":                       "TODO: Add translation",
+            "duration": {
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
             "effect":                              "Effekt des Zaubers",
+            "elementSubtype":                      "TODO: Add translation",
+            "elementType":                         "TODO: Add translation",
             "extraSuccess":                        "Effekt bei zusätzlichen Erfolgen",
             "extraSuccesses":                      "Effekt des zusätzlichen Erfolgs",
             "extraThreadOption":                   "Effekt des zusätzlichen Fadens",
             "extraThreads":                        "Mögliche Effekte bei zusätzlichen Fäden",
+            "illusionType":                        "TODO: Add translation",
             "keyword":                             "Besonderheit des Zaubers",
             "keywords":                            "Besonderheiten des Zaubers",
             "level":                               "Der Kreis zu dem dieser Zauber gehört",
+            "magicType":                           "TODO: Add translation",
+            "range": {
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
             "reattuneDifficulty":                  "Die Schwierigkeit um  den Zauber auf die Schnelle neu abzustimmen",
+            "reattunedifficulty":                  "TODO: Add translation",
+            "resist":                              "TODO: Add translation",
             "sensingDifficulty":                   "Die Schwierigkeit um diese Illusion zu durchschauen",
+            "spellArea": {
+              "shape":                             "TODO: Add translation",
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
             "spellElement":                        "Element des Zaubers",
             "spellElementSubtype":                 "Unterart des Elements",
             "spellElementType":                    "Typ des Elements",
+            "spellIllustion":                      "TODO: Add translation",
             "spellThreadsRequired":                "Die Anzahl der Fäden die zum Wirken benötigt werden",
             "spellThreadsWoven":                   "Die Anzahl der Fäden die bereits gewoben wurden",
             "spellcastingType":                    "Art der Spruchzauberei die für diesen Zauber benötigt wird",
-            "weavingDifficulty":                   "Die Schwierigkeit um den Zauber erfolgreich zu wirken"
+            "spirit":                              "TODO: Add translation",
+            "summoning":                           "TODO: Add translation",
+            "threadsrequired":                     "TODO: Add translation",
+            "weavingDifficulty":                   "Die Schwierigkeit um den Zauber erfolgreich zu wirken",
+            "weavingdifficulty":                   "TODO: Add translation"
           },
           "Weapons": {
             "ammunitionType":                      "Welcher Munitionstyp wird für diese Waffe benötigt?",
@@ -1058,6 +1032,10 @@
               "magic":                             "Magie",
               "magicType":                         "Magie Typ",
               "spellcasting":                      "Spruchzauberei",
+              "talentMagic":                       "TODO: Add translation",
+              "talentMagicType":                   "TODO: Add translation",
+              "talentSpellcasting":                "TODO: Add translation",
+              "talentThreadWeaving":               "TODO: Add translation",
               "threadWeaving":                     "Fadenweben"
             },
             "RollTypeDetails": {
@@ -1094,7 +1072,8 @@
             "talentKnacksAvailable":               "Verfügbare Kniffe",
             "talentKnacksLearned":                 "Gelernte Kniffe",
             "talentLearnedKnacks":                 "Gelernte Kniffe",
-            "tier":                                "Tier"
+            "tier":                                "Tier",
+            "type":                                "TODO: Add translation"
           },
           "Action": {
             "action":                              "Aktion",
@@ -1199,6 +1178,7 @@
             "itemStatus":                          "Status",
             "price":                               "Preis",
             "usableItem":                          "Benutzbarer Gegenstand",
+            "value":                               "TODO: Add translation",
             "weight":                              "Gewicht"
           },
           "PoisonDisease": {
@@ -1219,10 +1199,18 @@
             "armorType":                           "Rüstungstyp",
             "damageStep":                          "Schadensstufe",
             "damageType":                          "Schadensart",
+            "elementSubtype":                      "TODO: Add translation",
+            "elementType":                         "TODO: Add translation",
             "powerElementSubtype":                 "Unterklasse",
             "powerElementType":                    "Elementarart",
             "powerStep":                           "Aktionsstufe",
             "strain":                              "Überanstrengung"
+          },
+          "Powers": {
+            "action":                              "TODO: Add translation",
+            "damageStep":                          "TODO: Add translation",
+            "powerStep":                           "TODO: Add translation",
+            "strain":                              "TODO: Add translation"
           },
           "Questor": {
             "questorDevotion":                     "Questor-Weihekraft"
@@ -1245,25 +1233,50 @@
             "salvoCost":                           "Salve Kosten"
           },
           "Spell": {
+            "Duration": {
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
+            "Range": {
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
             "area":                                "Bereich",
+            "binding":                             "TODO: Add translation",
+            "circle":                              "TODO: Add translation",
+            "concentration":                       "TODO: Add translation",
             "duration":                            "Dauer",
             "effect":                              "Effekt",
+            "elementSubtype":                      "TODO: Add translation",
+            "elementType":                         "TODO: Add translation",
             "extraSuccess":                        "Zusätzlicher Erfolg",
             "extraSuccesses":                      "Zusätzliche Erfolge",
             "extraThreadOption":                   "Effekt",
             "extraThreads":                        "Zusätzliche Fäden",
+            "illusionType":                        "TODO: Add translation",
             "keyword":                             "Schlüsselwort",
             "keywords":                            "Schlüsselwörter",
             "level":                               "Kreis",
+            "magicType":                           "TODO: Add translation",
             "range":                               "Reichweite",
             "reattuneDifficulty":                  "Neuabstimmungsschwierigkeit",
+            "resist":                              "TODO: Add translation",
             "sensingDifficulty":                   "Durchschauenmindestwurf",
+            "spellArea": {
+              "shape":                             "TODO: Add translation",
+              "uom":                               "TODO: Add translation",
+              "value":                             "TODO: Add translation"
+            },
             "spellElement":                        "Element",
             "spellElementSubtype":                 "Element Subtyp",
             "spellElementType":                    "Element Typ",
+            "spellIllustion":                      "TODO: Add translation",
             "spellThreadsRequired":                "Benötigte Fäden",
             "spellThreadsWoven":                   "Gewebte Fäden",
             "spellcastingType":                    "Spruchzauberei Typ",
+            "spirit":                              "TODO: Add translation",
+            "summoning":                           "TODO: Add translation",
+            "threadsrequired":                     "TODO: Add translation",
             "weavingDifficulty":                   "Webschwierigkeit"
           },
           "Weapons": {
@@ -1294,6 +1307,10 @@
             }
           }
         }
+      },
+      "Journal": {
+        "Hints":                                   "TODO: Add translation",
+        "Labels":                                  "TODO: Add translation"
       },
       "Other": {
         "Hints": {
@@ -1473,35 +1490,7 @@
         "description":                             "Beschreibung",
         "legendPoints":                            "Legendenpunkte"
       },
-      "Buttons": {
-        "add":                                     "Hinzufügen",
-        "cancel":                                  "Abbrechen",
-        "close":                                   "Schließen",
-        "complete":                                "Abschließen",
-        "configure":                               "Konfigurieren",
-        "continue":                                "Weiter",
-        "finish":                                  "Abschließen",
-        "free":                                    "Umsonst",
-        "goBack":                                  "Zurück",
-        "learn":                                   "Lernen",
-        "learnSpellPatterncraftTest":              "Lernen durch Struktur Verstehen",
-        "nextStep":                                "Nächster Schritt",
-        "nightRest":                               "Vollständige Rast",
-        "noAbilityDex":                            "Geschicklichkeit",
-        "noAbilityStr":                            "Stärke",
-        "noDiscipline":                            "Ohne Disziplin/Pfad",
-        "ok":                                      "Ok",
-        "previousStep":                            "Vorheriger Schritt",
-        "recoverStun":                             "Betäubungsschaden Erholungsprobe",
-        "recovery":                                "Erholungsprobe",
-        "resetRanks":                              "Ränge zurücksetzen",
-        "roll":                                    "Würfeln",
-        "roundStartRollInitiative":                "Würfle Initiative",
-        "save":                                    "Speichern",
-        "spendLp":                                 "Legendenpunkte ausgeben",
-        "takeDamage":                              "Schaden nehmen",
-        "teacherSpellcasting":                     "Spruchzauberei der Lehrenden"
-      },
+      "Buttons":                                   "TODO: Add translation",
       "CharGen": {
         "Buttons": {
           "resetAttributes":                       "Attribute zurücksetzen",
@@ -1614,84 +1603,30 @@
       "Errors": {
         "noLp":                                    "Keine Legendenpunkte angegeben!"
       },
+      "Header": {
+        "activeUser":                              "TODO: Add translation",
+        "actorsNoUserConfigured":                  "TODO: Add translation",
+        "inactiveUser":                            "TODO: Add translation"
+      },
       "Legend": {
-        "ClassAdvancement": {
-          "NoSpellsAvailable":                     "Keine Zauber verfügbar.",
-          "NoSpellsSelected":                      "Keine Zauber ausgewählt.",
-          "SelectedSpells":                        "Ausgewählte Zauber",
-          "YouCanChooseSpells":                    "Du kannst nun Zauber auswählen, die du lernen möchtest.",
-          "chooseAbilityOption":                   "Wähle ein optionales Talent",
-          "classAbilitiesGained":                  "Fähigkeiten erhalten",
-          "classIncreasedTier":                    "Kreis erhöht",
-          "effectsGained":                         "Effekte erhalten",
-          "increaseClassTo":                       "Erhöhe die Disziplin auf Kreis {increaseClassToLevel}",
-          "learningClass":                         "Lernen einer neuen Disziplin",
-          "optionalAbilityGained":                 "Optionale Fähigkeit erhalten",
-          "resourceStepIncreased":                 "Ressourcenstufe erhöht",
-          "spellsGained":                          "Zauber erhalten"
-        },
-        "LearnSpell": {
-          "chatFlavorPatterncraft":                "{name} versucht den Zauber {spell} zu lernen.",
-          "chatFlavorTeacherTest":                 "{name} versucht mit Hilfe der Lehrenden den Zauber {spell} zu lernen. Spruchzauberei der Lehrenden:",
-          "legendPatterncraft":                    "Lernen durch Struktur Verstehen",
-          "legendRequirements":                    "Voraussetzungen",
-          "legendTeacherTest":                     "Unterstützung Lehrende",
-          "noPatterncraftTalentFound":             "Kein passendes Struktur Verstehen Talent gefunden",
-          "noSpellcastingTalentFound":             "Kein passendes Spruchzauberei Talent gefunden",
-          "teacherBonusModifier":                  "Unterstützung Lehrende"
-        },
-        "LpHistory": {
-          "addEarning":                            "Legendenpunkte erhalten",
-          "tabChronological":                      "Chronologisch",
-          "tabEarned":                             "Erhalten",
-          "tabSpend":                              "Ausgegeben"
-        },
         "Rules": {
-          "disciplineLearnShortRequirements":      "<ul>\n<li>study with an adept of the desired\ndiscipline (5th circle or higher)</li>\n<li>standard fee is 100 silver pieces for each circle the student has achieved in other disciplines, charged for each talent the adept needs to\nlearn</li>\n<li>learn all of the first circle discipline talents you do not yet know at rank 1</li>\n<li>must have enough current legend points to pay for these new talents simultaneously</li>\n<li>use the lowest circle among current disciplines to determine the legend point cost for a rank 1 talent in the new discipline</li>\n<li>talent option for first circle can be learned at a later time, all talent option slots for the new discipline must be chosen from that discipline</li>\n<li>for each new talent study with the tutor\nfor 40 hours during the course of a week</li>\n</ul>\n",
-          "pathLearnShortRequirements":            "<ul>\n<li>Aufstiegsritus... read Mystic paths</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n<li>...</li>\n</ul>\n",
+          "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
+          "devotionIncreaseShortRequirements":     "<ul>\n<li>Der Questor kann pro Tag nur eine Weihekraft um einen Rang steigern.</li>\n<li>Der neue Rang darf nicht höher sein als der Rang der Questor-Weihekraft</li>\n</ul>\n",
+          "disciplineIncreaseShortRequirements":   "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
+          "disciplineLearnShortRequirements":      "TODO: Add translation",
+          "pathIncreaseShortRequirements":         "Um einen Rang zu steigern ist es erforderlich:<ul>\n<li>Die entsprechende Pfadprüfung zu absolvieren</li>\n<li>Die Erlaubnis von ranghöheren Anhängern des Pfades einzuholen</li>\n<li>Das Rangaufstiegsritual durchzuführen</li>\n</ul>\n",
+          "pathLearnShortRequirements":            "<ul>\n<li>Der Charakter muss die Pfadprüfung absolviert haben.</li>\n<li>Der Charakter muss mit der Erlaubnis eines Ranghöheren Mitglieds das Aufstiegsritual vollzogen haben.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Der Charakter muss eine erfolgreiche Fadenwebenprobe geschafft haben.</li>\n</ul>\n",
           "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
-          "talentIncreaseShortRequirements":       "<ul>\n<li>Legendnepunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n"
-        },
-        "Validation": {
-          "availableLp":                           "Genügend Legendenpunkte? Kostet: ",
-          "availableMoney":                        "Genügend Silber? Kostet: ",
-          "enoughTalentsOfTier":                   "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel}).",
-          "enoughTalentsOnMinRank":                "Die Mindestanzahl ({required}) an Talenten sind auf dem erforderlichen Rang ({nextLevel})",
-          "hasDamage":                             "Aktuell Schaden?",
-          "hasRequiredJourneymanTalents":          "Erforderliche Anzahl Gesellen-Talente auf neuem Rang?",
-          "hasRequiredMasterTalents":              "Erforderliche Anzahl Meister-Talente auf neuem Rang?",
-          "hasRequiredNoviceTalents":              "Erforderliche Anzahl Novizen-Talente auf neuem Rang?",
-          "hasRequiredWardenTalents":              "Erforderliche Anzahl Wächter-Talente auf neuem Rang?",
-          "hasTalentFromCurrentCircle":            "Talent aus aktuellem Kreis auf erforderlichem Rang?",
-          "hasTalentsOnMinRank":                   "Alle Talente auf dem erforderlichen Rang?",
-          "hasWounds":                             "Aktuell Wunden?",
-          "maxLevel":                              "Maximaler Rang erreicht? Aktuell: ",
-          "noTalentFromCurrentCircleOnNewLevel":   "Mindestens ein Talent aus dem aktuellen Kreis ist nicht auf dem erforderlichen Rang {nextLevel}.",
-          "notEnoughTalentsOfTier":                "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}",
-          "notEnoughTalentsOnMinRank":             "Nicht genügend Talente auf dem erforderlichen Rang ({nextLevel}).<br>Aktuell: {current}<br>Benötigt: {required}",
-          "pathTalent":                            "Pfad-Talent?",
-          "requiredPathRank":                      "Erforderlicher Pfad-Rang: ",
-          "sourceTalentRank":                      "Mindestrang",
-          "sourceTalentname":                      "Quellentalent",
-          "talentFromCurrentCircleOnNewLevel":     "Mindestens ein Talent aus aktuellem Kreis ist auf erforderlichem Rang. Sehr gut gemacht!",
-          "talentOptionLp":                        "Genügend Legendenpunkte für Talentoption? Kostet: ",
-          "talentsRequirement":                    "Alle Bedingungen für vorherige Talente erfüllt?",
-          "talentsRequirementFailed":              "Folgende Disziplintalente müssen auf dem erforderlichen Rang ({requiredLevel}) sein:<br>{unfulfilledTalents}",
-          "talentsRequirementFulfilled":           "Alle Disziplintalente sind auf dem erforderlichen Rang"
-        },
-        "chooseAbilityOption":                     "Wähle ein optionales Talent",
-        "configuration":                           "Konfiguration",
-        "increaseClassTo":                         "Erhöhe die Disziplin auf Kreis ",
-        "increasePathTalentPrompt":                "Das Pfad Talent hat noch nicht den erforderlichen Rang. Soll es ebenfalls erhöht werden?",
-        "increaseQuestorDevotionPrompt":           "Soll die zugehörige Questor Weihekraft ebenfalls erhöht werden? (Sie ist die eigentliche Repräsentation des Questor-Rang)",
-        "initiativeAbilities":                     "Initiativefähigkeiten",
-        "learnOnZeroOrOne":                        "Auf Rang 0 hinzufügen, oder auf Rang 1 lernen?",
-        "learnPathKnackPrompt":                    "Soll der Pfad-Kniff erlernt werden?",
-        "learnPathTalentPrompt":                   "Soll das Pfad-Talent erlernt werden?",
-        "learnQuestorPrompt":                      "Soll die Questor Weihekraft erlernt werden?",
-        "questorDevotionNotFound":                 "Weihekraft 'Questor' nicht gefunden (braucht edid: {edid})",
-        "spendLp":                                 "Legendenpunkte ausgeben",
-        "writtenRules":                            "Regeln"
+          "skillIncreaseShortRequirements":        "<ul>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Der Charakter muss muss eine Anzahl an Wochen gleich dem neuen Fertigkeitsrang lernen.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Das Training einer Fertigkeit kostet in der Regel 10 Silber x dem neuen Fertigkeitsrang pro Woche</li>\n<li>Die letzte Steigerung der Fertigkeit muss mindestens {trainingTime} Wochen zurückliegen.</li>\n</ul>\n",
+          "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
+        }
+      },
+      "Navigator": {
+        "baseInput":                               "TODO: Add translation",
+        "options":                                 "TODO: Add translation"
+      },
+      "Placeholder": {
+        "lpDescription":                           "TODO: Add translation"
       },
       "RollPrompt": {
         "devotion":                                "Weihepunkt",
@@ -1718,21 +1653,7 @@
         "rollPromptBaseTab":                       "Basis Einstellungen",
         "rollPromptOtherTab":                      "Weitere Einstellungen"
       },
-      "Title": {
-        "assignLp":                                "Legendenpunkte zuweisen",
-        "attributeIncrease":                       "Attribut erhöhen",
-        "characterGeneration":                     "Charaktererschaffung",
-        "classAdvancement":                        "Rang- und Kreisaufstieg",
-        "drawWeapon":                              "Waffe ziehen",
-        "learnAbility":                            "Erlernen von {abilityName}",
-        "learnSpell":                              "Zauber lernen",
-        "lpIncrease":                              "Steigerung von {abilityName}",
-        "lpLearnKnack":                            "Kniff lernen: {abilityName}",
-        "recovery":                                "Erholungsprobe",
-        "startRoundCombatantPrompt":               "Initiative und Kampfoptionen: {name}",
-        "takeDamage":                              "Schaden nehmen",
-        "talentCategory":                          "Talentkategorie von {abilityName}"
-      },
+      "Title":                                     "TODO: Add translation",
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
       },
@@ -1800,6 +1721,7 @@
         "magic":                                   "Magie",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Zauber Verstärkung",
+        "summary":                                 "TODO: Add translation",
         "talentKnacks":                            "Kniffe",
         "talentKnacksAvailable":                   "Verfügbare Kniffe",
         "talentKnacksLearned":                     "Gelernte Kniffe",
@@ -1829,10 +1751,14 @@
       },
       "Namegiver": {
         "WeaponSize": {
-          "OneHanded.max":                         "Maximale Einhandwaffengröße",
-          "OneHanded.min":                         "Minimale Einhandwaffengröße",
-          "TwoHanded.max":                         "Maximale Zweihandwaffengröße",
-          "TwoHanded.min":                         "Minimale Zweihandwaffengröße"
+          "OneHanded": {
+            "max":                                 "Maximale Einhandwaffengröße",
+            "min":                                 "Minimale Einhandwaffengröße"
+          },
+          "TwoHanded": {
+            "max":                                 "Maximale Zweihandwaffengröße",
+            "min":                                 "Minimale Zweihandwaffengröße"
+          }
         },
         "burrow":                                  "Buddeln",
         "charismaValue":                           "Charisma Wert",
@@ -1847,6 +1773,15 @@
         "walk":                                    "Zu Fuß",
         "willpowerValue":                          "Willenskraft Wert"
       },
+      "Navigator": {
+        "advancement":                             "TODO: Add translation",
+        "details":                                 "TODO: Add translation",
+        "effects":                                 "TODO: Add translation",
+        "general":                                 "TODO: Add translation"
+      },
+      "Path": {
+        "sourceDiscipline":                        "TODO: Add translation"
+      },
       "PhysicalItems": {
         "addThreadLevel":                          "Füge einen Fadenrang hinzu.",
         "deleteThreadLevel":                       "Entferne den letzten (höchsten) Fadenrang.",
@@ -1857,13 +1792,31 @@
       "Placeholder": {
         "lpDescription":                           "Trage hier eine Beschreibung ein"
       },
+      "Spell": {
+        "binding":                                 "TODO: Add translation",
+        "concentration":                           "TODO: Add translation",
+        "resist":                                  "TODO: Add translation",
+        "sensingDifficulty":                       "TODO: Add translation",
+        "spirit":                                  "TODO: Add translation",
+        "summoning":                               "TODO: Add translation"
+      },
       "Tabs": {
         "advancement":                             "Fortschritt",
+        "classes":                                 "TODO: Add translation",
         "details":                                 "Details",
+        "devotions":                               "TODO: Add translation",
         "effects":                                 "Effekte",
+        "equipment":                               "TODO: Add translation",
         "general":                                 "Allgemein",
+        "legend":                                  "TODO: Add translation",
         "level":                                   "Kreis {circle}",
+        "notes":                                   "TODO: Add translation",
+        "reputation":                              "TODO: Add translation",
+        "skills":                                  "TODO: Add translation",
+        "specials":                                "TODO: Add translation",
+        "spells":                                  "TODO: Add translation",
         "talentOptions":                           "Optionale Talente",
+        "talents":                                 "TODO: Add translation",
         "thread":                                  "Fäden"
       },
       "Talent": {
@@ -1895,9 +1848,7 @@
       "windling":                                  "Windling"
     },
     "Notifications": {
-      "Error": {
-        "singleton":                               "Only a single {itemType} can be added to a {actorType}."
-      },
+      "Error":                                     "TODO: Add translation",
       "Info": {
         "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
@@ -1944,6 +1895,7 @@
       "formulaKarma":                              "{amount}x Karma (St {step})",
       "formulaStep":                               "Stufe {step}",
       "karma":                                     "Karma",
+      "moreTargets":                               "TODO: Add translation",
       "rollResult":                                "Würfelergebnis",
       "rolls":                                     "würfelt",
       "ruleOfOne":                                 "Fehlschlag, Regel der Eins",
@@ -1952,12 +1904,6 @@
       "successesAchieved":                         "Gesamt Erfolge ( {numSuccesses} + {numExtraSuccesses} extra Erfolge )",
       "targetDifficulty":                          "Schwierigkeit",
       "targetModifiers":                           "Ziel Modifikatoren"
-    },
-    "Rules": {
-      "attributeIncreaseShortRequirements":        "<ul>\n<li>Legendenpunkte müssen vorhanden sein... bla bla bla</li>\n</ul>\n",
-      "disciplineIncreaseShortRequirements":       "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
-      "pathIncreaseShortRequirements":             "Um einen Rang zu steigern ist es erforderlich:<ul>\n<li>Die entsprechende Pfadprüfung zu absolvieren</li>\n<li>Die Erlaubnis von ranghöheren Anhängern des Pfades einzuholen</li>\n<li>Das Rangaufstiegsritual durchzuführen</li>\n</ul>\n",
-      "questorClassIncreaseShortRequirements":     "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n"
     },
     "Settings": {
       "Edid": {
@@ -2003,6 +1949,25 @@
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"
     },
+    "Sheet": {
+      "Tabs": {
+        "advancement":                             "TODO: Add translation",
+        "classes":                                 "TODO: Add translation",
+        "details":                                 "TODO: Add translation",
+        "devotions":                               "TODO: Add translation",
+        "effects":                                 "TODO: Add translation",
+        "equipment":                               "TODO: Add translation",
+        "general":                                 "TODO: Add translation",
+        "legend":                                  "TODO: Add translation",
+        "notes":                                   "TODO: Add translation",
+        "reputation":                              "TODO: Add translation",
+        "skills":                                  "TODO: Add translation",
+        "specials":                                "TODO: Add translation",
+        "spells":                                  "TODO: Add translation",
+        "talents":                                 "TODO: Add translation",
+        "thread":                                  "TODO: Add translation"
+      }
+    },
     "ToolTips": {
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
@@ -2019,51 +1984,15 @@
       "execution":                                 "Ausführung"
     }
   },
-  "TYPES": {
-    "ActiveEffect": {
-      "eae":                                       "EAE"
-    },
-    "Actor": {
-      "character":                                 "Charakter",
-      "creature":                                  "Kreatur",
-      "dragon":                                    "Drache",
-      "group":                                     "Gruppe",
-      "horror":                                    "Dämon",
-      "loot":                                      "Loot",
-      "npc":                                       "NSC",
-      "spirit":                                    "Geist",
-      "trap":                                      "Falle",
-      "vehicle":                                   "Transportmittel"
-    },
-    "Item": {
-      "armor":                                     "Rüstung",
-      "attack":                                    "Angriff",
-      "bindingSecret":                             "Bindungsgeheimnis",
-      "cursemark":                                 "Fluch / Dämonenmal",
-      "devotion":                                  "Weihekraft",
-      "discipline":                                "Disziplin",
-      "effect":                                    "Effekt",
-      "equipment":                                 "Ausrüstung",
-      "knackAbility":                              "Kniff",
-      "knackKarma":                                "Karma Kniff",
-      "knackManeuver":                             "Maneuver Kniff",
-      "maneuver":                                  "Manöver",
-      "mask":                                      "Maske",
-      "matrix":                                    "Matrix",
-      "namegiver":                                 "Namensgeber",
-      "path":                                      "Pfad",
-      "poisonDisease":                             "Gift / Krankheit",
-      "power":                                     "Kraft",
-      "questor":                                   "Questor",
-      "shield":                                    "Schild",
-      "shipWeapon":                                "Schiffswaffe",
-      "skill":                                     "Fertigkeit",
-      "specialAbility":                            "Sonstige Fähigkeit",
-      "spell":                                     "Zauberspruch",
-      "spellKnack":                                "Zauberkniff",
-      "talent":                                    "Talent",
-      "thread":                                    "Permanenter Faden",
-      "weapon":                                    "Waffe"
+  "SETTINGS": {
+    "UI": {
+      "FIELDS": {
+        "colorScheme": {
+          "dark":                                  "TODO: Add translation",
+          "light":                                 "TODO: Add translation"
+        }
+      }
     }
-  }
+  },
+  "TYPES":                                         "TODO: Add translation"
 }

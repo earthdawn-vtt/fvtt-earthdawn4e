@@ -73,7 +73,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.devotionIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.devotionIncreaseShortRequirements" );
   }
 
   /**
@@ -107,21 +107,16 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     return {
       [ED4E.validationCategories.base]: [
         {
-          name:      "ED.Legend.Validation.maxLevel",
+          name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
           fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankSkill" ),
         },
       ],
       [ED4E.validationCategories.resources]: [
         {
-          name:      "ED.Legend.Validation.availableLp",
+          name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     increaseData.requiredLp,
           fulfilled: this.containingActor.currentLp >= increaseData.requiredLp,
-        },
-        {
-          name:      "ED.Legend.Validation.availableMoney",
-          value:     this.requiredMoneyForIncrease,
-          fulfilled: this.containingActor.currentSilver >= this.requiredMoneyForIncrease,
         },
       ],
     };
