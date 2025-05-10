@@ -1,8 +1,12 @@
 /**
- * oldAttributes options
+ * Old system configuration
+ */
+export const previousSystem = {
+/**
+ * attributes options from the LaPorta System
  * @enum {string}
  */
-export const oldAttributes = 
+  attributes:
 [ 
   "", 
   "dexterityStep", 
@@ -12,7 +16,20 @@ export const oldAttributes =
   "willpowerStep", 
   "charismaStep", 
   "initiativeStep" 
-];
+],
+  /**
+   * targetDefense options from the LaPorta System
+   * @enum {string}
+   */
+  targetDefense: [ "", "physicaldefense", "mysticaldefense", "socialdefense" ],
+
+  /**
+   * GroupDifficulty options from the LaPorta System
+   * @enum {string}
+   */
+  groupDifficulty: [ "", "defenseLow", "defenseLowPlus", "defenseHigh", "defenseHighPlus" ],
+
+};
 
 /**
  * newAttributes options
@@ -31,22 +48,10 @@ export const newAttributes =
 ];
 
 /**
- * oldTargetDefense options
- * @enum {string}
- */
-export const oldTargetDefense = [ "", "physicaldefense", "mysticaldefense", "socialdefense" ];
-
-/**
  * newTargetDefense options
  * @enum {string}
  */
 export const newTargetDefense = [ "", "physical", "mystical", "social" ];
-
-/**
- * oldGroupDifficulty options
- * @enum {string}
- */
-export const oldGroupDifficulty = [ "", "defenseLow", "defenseLowPlus", "defenseHigh", "defenseHighPlus" ];
 
 /**
  * newGroupDifficulty options
@@ -55,29 +60,30 @@ export const oldGroupDifficulty = [ "", "defenseLow", "defenseLowPlus", "defense
 export const newGroupDifficulty = [ "", "lowestOfGroup", "lowestX", "highestOfGroup", "highestX" ];
 
 /**
- * newGroupDifficulty options
+ * thread weaving naming options for automatic migration (will be slugified)
  * @enum {string}
  */
-export const oldThreadWeavingTalentNames = [
-  "Fadenweben (Beschützerweben)",
-  "Fadenweben (Diebweben)",
-  "Fadenweben (Elementarismus)",
-  "Fadenweben (Fadenschmieden)",
-  "Fadenweben (Flussweben)",
-  "Fadenweben (Geisterbeschwörung)",
-  "Fadenweben (Geschichtenweben)",
-  "Fadenweben (Himmelsweben)",
-  "Fadenweben (Illusionismus)",
-  "Fadenweben (Kriegsweben)",
-  "Fadenweben (Kundschafterweben)",
-  "Fadenweben (Luftweben)",
-  "Fadenweben (Magie)",
-  "Fadenweben (Meeresweben)",
-  "Fadenweben (Pfeilweben)",
-  "Fadenweben (Reiterweben)",
-  "Fadenweben (Schamanismus)",
-  "Fadenweben (Tierweben)",
-  "Fadenweben (Waffenweben)",
+export const threadWeavingNames = [
+  "Beschützerweben",
+  "Diebweben",
+  "Elementarismus",
+  "Fadenschmieden",
+  "Flussweben",
+  "Geisterbeschwörung",
+  "Geschichtenweben",
+  "Himmelsweben",
+  "Illusionismus",
+  "Kriegsweben",
+  "Kundschafterweben",
+  "Luftweben",
+  "Magie",
+  "Meeresweben",
+  "Pfeilweben",
+  "Reiterweben",
+  "Schamanismus",
+  "Tierweben",
+  "Waffenweben",
+  "Fadenweben",
   "Thread Weaving (ENGLISH)",
   // missing Translations thread weaving names 
   // English
@@ -89,7 +95,7 @@ export const oldThreadWeavingTalentNames = [
  * oldThreadWeavingTalentNameForCasters options
  * @enum {string}
  */
-export const oldThreadWeavingTalentNameForCasters = {
+export const threadWeavingNameForCasters = {
   elementalism: "Fadenweben (Elementarismus)",
   illusionism:  "Fadenweben (Illusionismus)",
   nethermancy:  "Fadenweben (Geisterbeschwörung)",
@@ -102,17 +108,17 @@ export const oldThreadWeavingTalentNameForCasters = {
 };
   
 /**
- * oldSpellcastingTalentNames options
+ * oldSpellcastingNames options
  * @enum {string}
  */
-export const oldSpellcastingTalentNames = [ "Spellcasting", "Spruchzauberei" 
+export const spellcastingNames = [ "Spellcasting", "Spruchzauberei" 
   // missing Translations thread weaving names 
   // polish
   // french];
 ];
 
 /**
- * oldSpellcastingTalentNames options
+ * oldSpellcastingNames options
  * @enum {string}
  */
 export const patterncraftNames = [ "Patterncraft", "Struktur Verstehen" 
@@ -122,10 +128,10 @@ export const patterncraftNames = [ "Patterncraft", "Struktur Verstehen"
 ];
 
 /**
- * oldSpellcastingTalentNames options
+ * oldSpellcastingNames options
  * @enum {string}
  */
-export const versatilityTalentNames = [ "Versatility", "Vielseitigkeit" 
+export const versatilityNames = [ "Versatility", "Vielseitigkeit" 
   // missing Translations thread weaving names 
   // polish
   // french];
@@ -135,7 +141,7 @@ export const versatilityTalentNames = [ "Versatility", "Vielseitigkeit"
  * oldDamageAdderNames options
  * @enum {string}
  */
-export const oldDamageAdderNames = [
+export const damageAdderNames = [
   "Schmetterschlag",
   "Brandpfeil",
   "Sturmangriff",
@@ -219,53 +225,8 @@ export const socialReactionNames = [ "Resist Taunt", "Starrsinn"
   // polish
   // french];
 ];
-  
 /**
- * itemStatusMeleeWeapons options
+ * oldSystemRollType options
  * @enum {string}
  */
-export const itemStatusMeleeWeapons = [ "mainHand", "twoHands" ];
-
-/**
- * itemStatusMissileWeapons options
- * @enum {string}
- */
-export const itemStatusMissileWeapons = [ "twoHands" ];
-
-/**
- * itemStatusThrowingWeapons options
- * @enum {string}
- */
-export const itemStatusThrowingWeapons = [ "mainHand" ];
-
-  
-// took them over from draft branch, will use them later
-// /**
-//  * ammunitionArrowNames options
-//  * @enum {string}
-//  */
-// export const ammunitionArrowNames = [ "Windlingspfeile", "Langbogenpfeile", "Kurzbogenpfeile", "Kriegsbogenpfeile"// missing Translations thread weaving names 
-//   // English
-//   // polish
-//   // french
-// ];
-
-// /**
-//  * ammunitionBoltNames options
-//  * @enum {string}
-//  */
-// export const ammunitionBoltNames = [ "Mittlere Bolzen", "Leichte Bolzen"// missing Translations thread weaving names 
-//   // English
-//   // polish
-//   // french
-// ];
-// /**
-//  * ammunitionNeedleNames options
-//  * @enum {string}
-//  */
-// export const ammunitionNeedleNames = [ "Schachtel mit 10 Nadeln"// missing Translations thread weaving names 
-//   // English
-//   // polish
-//   // french
-// ];
-  
+export const offHandCombatTalents = [ "Zweitwaffe", "Second Weapon" ];

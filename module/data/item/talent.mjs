@@ -308,41 +308,36 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
     // Migrate action
     if ( source.action && /^[A-Z]/.test( source.action ) ) {
-      source.action = source.action.toLowerCase();
-      console.log( "New Talent action ", source.action );
+      source.action = source.action.slugify( { lowercase: true, strict: true } );
     }
 
     // Migrate Attributes
-    if ( ED4E.oldAttributes.includes( source.attribute ) ) {
+    if ( ED4E.previousSystem.attributes.includes( source.attribute ) ) {
       if ( source.attribute === "initiativeStep" ) {
         source.rollType = "initiative";
       } 
-      source.attribute = ED4E.newAttributes[ED4E.oldAttributes.indexOf( source.attribute )];
-      console.log( "new Talent attribute ", source.attribute );
+      source.attribute = ED4E.newAttributes[ED4E.previousSystem.attributes.indexOf( source.attribute )];
     }
 
     // Migrate description
     if ( typeof source.description === "string" ) {
       source.description = { value: source.description };
-      console.log( "new Talent description ", source.description.value );
     }
 
     // Migrate minDifficulty
-    if ( ED4E.oldTargetDefense.includes( source.defenseTarget ) && source.defenseTarget !== "" && source.difficulty?.target === undefined ) {
-      if ( ED4E.oldGroupDifficulty.includes( source.defenseGroup ) && source.difficulty?.group === undefined ) {
+    if ( ED4E.previousSystem.targetDefense.includes( source.defenseTarget ) && source.defenseTarget !== "" && source.difficulty?.target === undefined ) {
+      if ( ED4E.previousSystem.groupDifficulty.includes( source.defenseGroup ) && source.difficulty?.group === undefined ) {
         source.difficulty = {
           ...source.difficulty,
-          target: ED4E.newTargetDefense[ED4E.oldTargetDefense.indexOf( source.defenseTarget )],
-          group:  ED4E.newGroupDifficulty[ED4E.oldGroupDifficulty.indexOf( source.defenseGroup )]
+          target: ED4E.newTargetDefense[ED4E.previousSystem.targetDefense.indexOf( source.defenseTarget )],
+          group:  ED4E.newGroupDifficulty[ED4E.previousSystem.groupDifficulty.indexOf( source.defenseGroup )]
         };
       } else {
         source.difficulty = {
           ...source.difficulty, // Spread the existing properties of source.difficulty
-          target: ED4E.newTargetDefense[ED4E.oldTargetDefense.indexOf( source.defenseTarget )], // Update the target property
+          target: ED4E.newTargetDefense[ED4E.previousSystem.targetDefense.indexOf( source.defenseTarget )], // Update the target property
         };
       }
-      console.log( "new Talent difficulty target Setting ", source.difficulty.target );
-      console.log( "new Talent difficulty Group setting ", source.difficulty.group );
     }
 
     // Migrate level
@@ -360,14 +355,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // Migrate Talent category
     if ( source.talentCategory && /^[A-Z]/.test( source.talentCategory ) ) {
       if ( source.talentCategory === "Racial" ) source.talentCategory = "free";
-      source.talentCategory = source.titalentCategoryer.toLowerCase();
-      console.log( "new Talent Category ", source.talentCategory );
+      source.talentCategory = source.titalentCategoryer.slugify( { lowercase: true, strict: true } );;
     }
 
     // Migrate tier
     if ( source.tier && /^[A-Z]/.test( source.tier ) ) {
-      source.tier = source.tier.toLowerCase();
-      console.log( "new Talent tier ", source.tier );
+      source.tier = source.tier.slugify( { lowercase: true, strict: true } );;
     }
   }
 }

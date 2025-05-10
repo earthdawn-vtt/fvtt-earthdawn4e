@@ -1,27 +1,42 @@
 import ED4E from "../../../../config/_module.mjs";
 
-  
 export default class EdIdMigration {
   
   static async migrateData( source ) {
-  
-    // set ed-id based on talent names
-    if ( source.system.edid === undefined ) {
-      if ( ED4E.oldThreadWeavingTalentNames.includes( source.name ) ) {
+
+    source.system = source.system || {};
+
+    if ( source.system?.edid === undefined ) {
+
+      // slugify the name to make it easier to compare
+      const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
+
+      // check if the name is included in one of the talent name arrays to automatically set the edid
+      if ( ED4E.threadWeavingNames.some( 
+        talentName => slugifiedName.includes( 
+          talentName.slugify( { lowercase: true, strict: true } ) ) ) ) {
         source.system.edid = "thread-weaving";
-      } else if ( ED4E.oldSpellcastingTalentNames.includes( source.name ) ) {
+      } else if ( ED4E.spellcastingNames.some( 
+        talentName => slugifiedName.includes( 
+          talentName.slugify( { lowercase: true, strict: true } ) ) ) ) {
         source.system.edid = "spellcasting";
-      } else if ( ED4E.versatilityTalentNames.includes( source.name ) ) {
-        source.system.edid = "versatility";
-      } else if ( ED4E.unarmedCombatNames.includes( source.name ) ) {
-        source.system.edid = "unarmed-combat";
-      } else if ( ED4E.patterncraftNames.includes( source.name ) ) {
+      } else if ( ED4E.patterncraftNames.some( 
+        talentName => slugifiedName.includes( 
+          talentName.slugify( { lowercase: true, strict: true } ) ) ) ) {
         source.system.edid = "patterncraft";
+      } else if ( ED4E.versatilityNames.some( 
+        talentName => slugifiedName.includes( 
+          talentName.slugify( { lowercase: true, strict: true } ) ) ) ) {
+        source.system.edid = "versatility";
+      } else if ( ED4E.unarmedCombatNames.some( 
+        talentName => slugifiedName.includes( 
+          talentName.slugify( { lowercase: true, strict: true } ) ) ) ) {
+        source.system.edid = "unarmed-combat";
       } else {
         source.system.edid = "none";
       }
     }
-    return source; // Return the modified data
+    return source;
   }
 }
   
