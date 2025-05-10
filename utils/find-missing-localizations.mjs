@@ -588,7 +588,7 @@ class LocalizationChecker {
         .addHeading( "Summary Status", 2 )
         .addRaw( "✅ Check completed successfully", true )
         .addRaw( `📊 Total keys in code: **${keysInCode.size}**`, true )
-        .addRaw( `⏱️ Execution time: **${( new Date() - this.startTime ) / 1000}s**`, true )
+        .addRaw( `⏱️ Execution time: <em>${( new Date() - this.startTime ) / 1000}s</em>`, true )
         .write();
       
       core.endGroup();
