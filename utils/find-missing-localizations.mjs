@@ -341,6 +341,7 @@ class LocalizationChecker {
    * @returns {Promise<void>}
    */
   async saveResults() {
+    if ( !this.outputFile ) return;
     try {
       // Ensure the directory exists
       const outputDir = path.dirname( this.outputFile );
@@ -490,10 +491,10 @@ const argv = yargs( hideBin( process.argv ) )
     default:     "lang"
   } )
   .option( "output-file", {
-    alias:       "o",
-    type:        "string",
-    description: "Path to file where results will be saved",
-    default:     "./reports/localization/missing-keys-report.json"
+    alias:        "o",
+    type:         "string",
+    demandOption: false,
+    description:  "Path to file where results will be saved",
   } )
   .option( "verbose", {
     alias:       "v",
