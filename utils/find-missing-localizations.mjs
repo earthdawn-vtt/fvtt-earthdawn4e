@@ -551,7 +551,7 @@ class LocalizationChecker {
           console.log( `  "${ key }" - Found in language files: ${ langFiles }` );
           
           // Add row to table data
-          tableData.push( [ `\`${key}\``, langFiles ] );
+          tableData.push( [ `${key}`, langFiles ] );
         } );
         
         // Add table to summary
