@@ -5,6 +5,7 @@ import path from "path";
 import fg from "fast-glob";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import * as core from "@actions/core";
 
 /**
  * Finds missing localization keys by comparing code and language files
@@ -66,6 +67,7 @@ class LocalizationChecker {
     this.langDir = langDir;
     this.outputFile = outputFile;
     this.verbose = verbose;
+    this.startTime = new Date();
     
     // Results storage
     this.results = {
@@ -83,13 +85,33 @@ class LocalizationChecker {
    * Run the localization check
    */
   async run() {
-    // Collect all keys from code and language files
-    await this.scanAllMjsFiles();
-    await this.scanAllHbsFiles();
-    await this.scanAllLangFiles();
-
-    // Compare and report results
-    await this.reportResults();
+    if ( LocalizationChecker.isGitHubActions ) {
+      core.info( "Starting localization check in GitHub Actions environment" );
+      core.startGroup( "Localization Check Process" );
+    }
+    
+    try {
+      // Collect all keys from code and language files
+      await this.scanAllMjsFiles();
+      await this.scanAllHbsFiles();
+      await this.scanAllLangFiles();
+  
+      // Compare and report results
+      await this.reportResults();
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        core.endGroup();
+        core.info( "Localization check completed successfully" );
+      }
+    } catch ( error ) {
+      if ( LocalizationChecker.isGitHubActions ) {
+        core.endGroup();
+        core.setFailed( `Localization check failed: ${error.message}` );
+      } else {
+        console.error( "Error running localization checker:", error );
+      }
+      throw error;
+    }
   }
 
   /**
@@ -321,31 +343,55 @@ class LocalizationChecker {
    * @returns {Promise<void>}
    */
   async writeToGitHubSummary( content ) {
-    if ( !LocalizationChecker.isGitHubActions || !process.env.GITHUB_STEP_SUMMARY ) return;
+    if ( !LocalizationChecker.isGitHubActions ) return;
     
     try {
-      await fs.promises.appendFile( process.env.GITHUB_STEP_SUMMARY, content );
+      await core.summary.addRaw( content, true ).write();
     } catch ( error ) {
       console.error( "Error writing to GitHub summary:", error );
+      core.error( `Failed to write to GitHub summary: ${error.message}` );
     }
   }
   
   /**
    * Output a GitHub workflow command annotation
-   * @param {string} type - The annotation type: warning, error, notice
+   * @param {string} type - The annotation type: warning, error, notice, debug, info
    * @param {string} message - The message to display
-   * @param {string} [file] - Optional file path where the issue is found
-   * @param {number} [line] - Optional line number where the issue is found
+   * @param {object} [options] - Optional properties for the annotation
+   * @param {string} [options.file] - File path where the issue is found
+   * @param {number} [options.line] - Line number where the issue is found
+   * @param {number} [options.endLine] - End line number for multi-line annotations
+   * @param {number} [options.column] - Column number
+   * @param {number} [options.endColumn] - End column number
    */
-  outputGitHubAnnotation( type, message, file, line ) {
+  outputGitHubAnnotation( type, message, options = {} ) {
     if ( !LocalizationChecker.isGitHubActions ) return;
     
-    let command = `::${type}`;
-    if ( file ) {
-      command += ` file=${file}`;
-      if ( line ) command += `,line=${line}`;
+    const properties = { 
+      file:        options.file, 
+      startLine:   options.line,
+      endLine:     options.endLine,
+      startColumn: options.column,
+      endColumn:   options.endColumn
+    };
+  
+    switch ( type ) {
+      case "error":
+        core.error( message, properties );
+        break;
+      case "warning":
+        core.warning( message, properties );
+        break;
+      case "debug":
+        core.debug( message );
+        break;
+      case "info":
+        core.info( message );
+        break;
+      case "notice":
+      default:
+        core.notice( message, properties );
     }
-    console.log( `${command}::${message}` );
   }
   
   /**
@@ -365,9 +411,26 @@ class LocalizationChecker {
         JSON.stringify( this.results, null, 2 ),
         "utf8"
       );
-      console.log( `\n✅ Results saved to: ${this.outputFile}` );
+      
+      const successMessage = `\n✅ Results saved to: ${this.outputFile}`;
+      console.log( successMessage );
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        core.info( successMessage );
+        // Set output for potential downstream jobs
+        core.setOutput( "results_file", this.outputFile );
+        core.setOutput( "missing_keys_count", 
+          Object.values( this.results.missingInLang ).reduce( ( sum, arr ) => sum + arr.length, 0 )
+        );
+      }
     } catch ( error ) {
-      console.error( `\n❌ Error saving results to ${this.outputFile}:`, error );
+      const errorMessage = `\n❌ Error saving results to ${this.outputFile}: ${error.message}`;
+      console.error( errorMessage );
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        core.error( errorMessage );
+        core.setFailed( `Failed to save results: ${error.message}` );
+      }
     }
   }
   
@@ -384,9 +447,15 @@ class LocalizationChecker {
     
     // Start GitHub summary if we're in GitHub Actions
     if ( LocalizationChecker.isGitHubActions ) {
-      await this.writeToGitHubSummary( "# Localization Check Results\n\n" );
-      await this.writeToGitHubSummary( `_Generated on ${new Date().toISOString()}_\n\n` );
-      await this.writeToGitHubSummary( `Total keys found in code: **${keysInCode.size}**\n\n` );
+      core.startGroup( "Localization Check Summary" );
+      
+      await core.summary
+        .addHeading( "Localization Check Results", 1 )
+        .addRaw( `_Generated on ${new Date().toISOString()}_`, true )
+        .addEOL()
+        .addRaw( `Total keys found in code: **${keysInCode.size}**`, true )
+        .addEOL()
+        .write();
     }
   
     // Check which keys are missing from language files
@@ -398,41 +467,63 @@ class LocalizationChecker {
         
         if ( LocalizationChecker.isGitHubActions ) {
           await this.writeToGitHubSummary( `## 🔍 Keys missing in ${langCode}.json: ${missingInLang.length}\n\n` );
-          await this.writeToGitHubSummary( "| Key | Found In |\n|-----|----------|\n" );
-        }
-  
-        missingInLang.sort().forEach( key => {
-          const locations = this.keyLocations.get( key );
-          const locationsArr = [ ...locations ].map( loc =>
-            loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
-          );
-          const locationsStr = locationsArr.join( ", " );
           
-          console.log( `  "${ key }" - Found in: ${ locationsStr }` );
+          // Prepare table data
+          const tableData = [
+            // Header row
+            [ { data: "Key", header: true }, { data: "Found In", header: true } ]
+          ];
           
-          // Create annotation for the first file where the key was found
-          if ( LocalizationChecker.isGitHubActions && locationsArr.length > 0 ) {
-            this.outputGitHubAnnotation(
-              "warning", 
-              `Missing localization key: "${key}" (not found in ${langCode}.json)`,
-              locationsArr[0]
+          missingInLang.sort().forEach( key => {
+            const locations = this.keyLocations.get( key );
+            const locationsArr = [ ...locations ].map( loc =>
+              loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
             );
+            const locationsStr = locationsArr.join( ", " );
             
-            // Add to summary
-            const escapedKey = key.replace( /\|/g, "\\|" );
-            const escapedLocations = locationsStr.replace( /\|/g, "\\|" );
-            this.writeToGitHubSummary( `| \`${escapedKey}\` | ${escapedLocations} |\n` );
-          }
-        } );
-        
-        if ( LocalizationChecker.isGitHubActions ) {
-          await this.writeToGitHubSummary( "\n" );
+            core.info( `  "${ key }" - Found in: ${ locationsStr }` );
+            
+            // Create annotation for the first file where the key was found
+            if ( locationsArr.length > 0 ) {
+              this.outputGitHubAnnotation(
+                "warning", 
+                `Missing localization key: "${key}" (not found in ${langCode}.json)`,
+                { file: locationsArr[0] }
+              );
+              
+              // Add row to table data
+              tableData.push( [ `\`${key}\``, locationsStr ] );
+            }
+          } );
+          
+          // Add table to summary
+          await core.summary.addTable( tableData )
+            .addEOL()
+            .write();
+        } else {
+          missingInLang.sort().forEach( key => {
+            const locations = this.keyLocations.get( key );
+            const locationsArr = [ ...locations ].map( loc =>
+              loc.replace( /\\/g, "/" ).replace( process.cwd().replace( /\\/g, "/" ) + "/", "" )
+            );
+            const locationsStr = locationsArr.join( ", " );
+            
+            console.log( `  "${ key }" - Found in: ${ locationsStr }` );
+          } );
         }
       } else {
         console.log( `✅ All keys used in code are present in ${ langCode }.json.` );
         
         if ( LocalizationChecker.isGitHubActions ) {
-          await this.writeToGitHubSummary( `## ✅ All keys used in code are present in ${langCode}.json\n\n` );
+          await core.summary
+            .addHeading( `✅ All keys used in code are present in ${langCode}.json`, 2 )
+            .addList( [
+              `Total keys in ${langCode}.json: ${this.keysInLang.get( langCode ).size}`,
+              `All ${keysInCode.size} code keys are present`,
+              "Status: Complete"
+            ] )
+            .addEOL()
+            .write();
         }
       }
     }
@@ -444,24 +535,37 @@ class LocalizationChecker {
       console.log( `\n⚠️ Keys present in language files but not found in code: ${ keysOnlyInLang.length }\n` );
       
       if ( LocalizationChecker.isGitHubActions ) {
+        core.startGroup( "Unused localization keys" );
+        
         await this.writeToGitHubSummary( `## ⚠️ Unused keys: ${keysOnlyInLang.length}\n\n` );
         await this.writeToGitHubSummary( "Keys present in language files but not found in code:\n\n" );
-        await this.writeToGitHubSummary( "| Key | Found In Language Files |\n|-----|------------------------|\n" );
-      }
-      
-      keysOnlyInLang.sort().forEach( key => {
-        const langFiles = this.results.keysOnlyInLang[key].join( ", " );
-        console.log( `  "${ key }" - Found in language files: ${ langFiles }` );
         
-        if ( LocalizationChecker.isGitHubActions ) {
-          const escapedKey = key.replace( /\|/g, "\\|" );
-          const escapedLangFiles = langFiles.replace( /\|/g, "\\|" );
-          this.writeToGitHubSummary( `| \`${escapedKey}\` | ${escapedLangFiles} |\n` );
-        }
-      } );
-      
-      if ( LocalizationChecker.isGitHubActions ) {
-        await this.writeToGitHubSummary( "\n\n" );
+        // Prepare table data
+        const tableData = [
+          // Header row
+          [ { data: "Key", header: true }, { data: "Found In Language Files", header: true } ]
+        ];
+        
+        keysOnlyInLang.sort().forEach( key => {
+          const langFiles = this.results.keysOnlyInLang[key].join( ", " );
+          console.log( `  "${ key }" - Found in language files: ${ langFiles }` );
+          
+          // Add row to table data
+          tableData.push( [ `\`${key}\``, langFiles ] );
+        } );
+        
+        // Add table to summary
+        await core.summary.addTable( tableData )
+          .addEOL()
+          .addSeparator()
+          .write();
+          
+        core.endGroup();
+      } else {
+        keysOnlyInLang.sort().forEach( key => {
+          const langFiles = this.results.keysOnlyInLang[key].join( ", " );
+          console.log( `  "${ key }" - Found in language files: ${ langFiles }` );
+        } );
       }
     } else {
       console.log( "✅ All keys in language files are used in code." );
@@ -470,11 +574,25 @@ class LocalizationChecker {
         await this.writeToGitHubSummary( "## ✅ All keys in language files are used in code.\n\n" );
       }
     }
-  
+
     console.log( "\n" );
-    
+
     // Save results to file
     await this.saveResults();
+
+    // Close the group if we're in GitHub Actions
+    if ( LocalizationChecker.isGitHubActions ) {
+      // Add final summary section with emoji status indicators
+      await core.summary
+        .addSeparator()
+        .addHeading( "Summary Status", 2 )
+        .addRaw( "✅ Check completed successfully", true )
+        .addRaw( `📊 Total keys in code: **${keysInCode.size}**`, true )
+        .addRaw( `⏱️ Execution time: **${( new Date() - this.startTime ) / 1000}s**`, true )
+        .write();
+      
+      core.endGroup();
+    }
   }
 }
 
