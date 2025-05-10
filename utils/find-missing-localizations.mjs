@@ -69,9 +69,9 @@ class LocalizationChecker {
     
     // Results storage
     this.results = {
-      missingInLang: {},
-      unusedKeys:    [],
-      summary:       {
+      missingInLang:  {},
+      keysOnlyInLang: {},
+      summary:        {
         totalKeysInCode: 0,
         totalKeysInLang: {},
         timestamp:       new Date().toISOString()
@@ -244,9 +244,9 @@ class LocalizationChecker {
   formatResults( keysInCode ) {
     // Reset results
     this.results = {
-      missingInLang: {},
-      unusedKeys:    [],
-      summary:       {
+      missingInLang:  {},
+      keysOnlyInLang: {},
+      summary:        {
         totalKeysInCode: keysInCode.size,
         totalKeysInLang: {},
         timestamp:       new Date().toISOString()
@@ -274,15 +274,27 @@ class LocalizationChecker {
       }
     }
     
-    // Check if there are keys in language files not used in code
-    const baseKeys = this.keysInLang.has( "en" )
-      ? this.keysInLang.get( "en" )
-      : this.keysInLang.values().next().value;
+    // Find all keys that only exist in language files
+    const keysOnlyInLang = new Set();
+    
+    // Collect all keys from all language files
+    for ( const langKeys of this.keysInLang.values() ) {
+      for ( const key of langKeys ) {
+        if ( !keysInCode.has( key ) ) {
+          keysOnlyInLang.add( key );
+        }
+      }
+    }
+    
+    // For each key only in language files, record which lang files contain it
+    for ( const key of keysOnlyInLang ) {
+      this.results.keysOnlyInLang[key] = [];
       
-    if ( baseKeys ) {
-      this.results.unusedKeys = [ ...baseKeys ]
-        .filter( key => !keysInCode.has( key ) )
-        .sort();
+      for ( const [ langCode, langKeys ] of this.keysInLang.entries() ) {
+        if ( langKeys.has( key ) ) {
+          this.results.keysOnlyInLang[key].push( langCode );
+        }
+      }
     }
     
     return this.results;
@@ -426,39 +438,36 @@ class LocalizationChecker {
     }
   
     // Check if there are keys in language files not used in code
-    const baseKeys = this.keysInLang.has( "en" )
-      ? this.keysInLang.get( "en" )
-      : this.keysInLang.values().next().value;
-  
-    if ( baseKeys ) {
-      const unusedKeys = [ ...baseKeys ].filter( key => !keysInCode.has( key ) );
-  
-      if ( unusedKeys.length > 0 ) {
-        console.log( `\n⚠️ Keys present in language files but not found in code: ${ unusedKeys.length }\n` );
+    const keysOnlyInLang = Object.keys( this.results.keysOnlyInLang );
+      
+    if ( keysOnlyInLang.length > 0 ) {
+      console.log( `\n⚠️ Keys present in language files but not found in code: ${ keysOnlyInLang.length }\n` );
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        await this.writeToGitHubSummary( `## ⚠️ Unused keys: ${keysOnlyInLang.length}\n\n` );
+        await this.writeToGitHubSummary( "Keys present in language files but not found in code:\n\n" );
+        await this.writeToGitHubSummary( "| Key | Found In Language Files |\n|-----|------------------------|\n" );
+      }
+      
+      keysOnlyInLang.sort().forEach( key => {
+        const langFiles = this.results.keysOnlyInLang[key].join( ", " );
+        console.log( `  "${ key }" - Found in language files: ${ langFiles }` );
         
         if ( LocalizationChecker.isGitHubActions ) {
-          await this.writeToGitHubSummary( `## ⚠️ Unused keys: ${unusedKeys.length}\n\n` );
-          await this.writeToGitHubSummary( "Keys present in language files but not found in code:\n\n" );
-          await this.writeToGitHubSummary( "```\n" );
+          const escapedKey = key.replace( /\|/g, "\\|" );
+          const escapedLangFiles = langFiles.replace( /\|/g, "\\|" );
+          this.writeToGitHubSummary( `| \`${escapedKey}\` | ${escapedLangFiles} |\n` );
         }
-        
-        unusedKeys.sort().forEach( key => {
-          console.log( `  "${ key }"` );
-          
-          if ( LocalizationChecker.isGitHubActions ) {
-            this.writeToGitHubSummary( `${key}\n` );
-          }
-        } );
-        
-        if ( LocalizationChecker.isGitHubActions ) {
-          await this.writeToGitHubSummary( "```\n\n" );
-        }
-      } else {
-        console.log( "✅ All keys in language files are used in code." );
-        
-        if ( LocalizationChecker.isGitHubActions ) {
-          await this.writeToGitHubSummary( "## ✅ All keys in language files are used in code.\n\n" );
-        }
+      } );
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        await this.writeToGitHubSummary( "\n\n" );
+      }
+    } else {
+      console.log( "✅ All keys in language files are used in code." );
+      
+      if ( LocalizationChecker.isGitHubActions ) {
+        await this.writeToGitHubSummary( "## ✅ All keys in language files are used in code.\n\n" );
       }
     }
   
