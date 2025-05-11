@@ -595,11 +595,11 @@ class LocalizationChecker {
         .addRaw( `⏱️ Execution time: <strong>${ ( new Date() - this.startTime ) / 1000 }s</strong>`, true )
         .write();
 
-      if ( hasMissingKeys ) {
-        core.setFailed( "Localization check found missing translation keys" );
-      }
-
       core.endGroup();
+
+      if ( hasMissingKeys ) {
+        throw new Error( "Localization check found missing translation keys" );
+      }
     }
   }
 }
