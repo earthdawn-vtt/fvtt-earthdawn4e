@@ -1,4 +1,5 @@
 import ED4E from "../../../../config/_module.mjs";
+import { determineConfigValue } from "../../../../utils.mjs";
   
 export default class AbilityMigration {
   
@@ -13,16 +14,15 @@ export default class AbilityMigration {
       ...ED4E.missileWeaponNames,
       ...ED4E.throwingWeaponNames,
     ];
+
+    const configMappings = [
+      { names: combinedPhysicalAttackNames, targetValue: "physical" },
+    ];
+
+    source.system ??= {};
+    source.system.difficulty ??= {};
+    source.system.difficulty.target = determineConfigValue( slugifiedName, configMappings );
     
-    // Set the target difficulty of all combat abilties to "physical" if the slugified name includes any of the combined physical attack names
-    if ( source.system?.difficulty?.target === undefined ) {
-      if ( combinedPhysicalAttackNames.some( abilityName =>
-        slugifiedName.includes( abilityName.slugify( { lowercase: true, strict: true } ) )
-      )
-      ) { 
-        source.system.difficulty = { target: "physical" };
-      }
-    }
     return source;
   }
 }

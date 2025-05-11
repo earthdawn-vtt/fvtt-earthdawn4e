@@ -1,7 +1,7 @@
 /**
- * Old system configuration
+ * system configuration for the migration of the system from Version 0.8.2 to Version 1.0.0
  */
-export const previousSystem = {
+export const previousSystemV0_8_2 = {
 /**
  * attributes options from the LaPorta System
  * @enum {string}
@@ -32,10 +32,10 @@ export const previousSystem = {
 };
 
 /**
- * newAttributes options
+ * attributesV1_0_0 options
  * @enum {string}
  */
-export const newAttributes = 
+export const attributesV1_0_0 = 
 [ 
   "", 
   "dex", 
@@ -48,16 +48,16 @@ export const newAttributes =
 ];
 
 /**
- * newTargetDefense options
+ * targetDefenseV1_0_0 options
  * @enum {string}
  */
-export const newTargetDefense = [ "", "physical", "mystical", "social" ];
+export const targetDefenseV1_0_0 = [ "", "physical", "mystical", "social" ];
 
 /**
- * newGroupDifficulty options
+ * groupDifficultyV1_0_0 options
  * @enum {string}
  */
-export const newGroupDifficulty = [ "", "lowestOfGroup", "lowestX", "highestOfGroup", "highestX" ];
+export const groupDifficultyV1_0_0 = [ "", "lowestOfGroup", "lowestX", "highestOfGroup", "highestX" ];
 
 /**
  * thread weaving naming options for automatic migration (will be slugified)

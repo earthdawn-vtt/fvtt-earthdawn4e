@@ -649,6 +649,25 @@ function _localizeObject( obj, keys ) {
 }
 
 /* -------------------------------------------- */
+/*                    Migration                 */
+/* -------------------------------------------- */
+
+/**
+ * Determine the new target value of an item setting based on its name referenced in a config.
+ * @param {string} slugifiedName the name of the item
+ * @param {object} configMappings the mapping of names to the target value
+ * @returns {string} the target value for that item
+ */
+export function determineConfigValue( slugifiedName, configMappings ) {
+  for ( const { names, targetValue } of configMappings ) {
+    if ( names.some( itemName => slugifiedName.includes( itemName.slugify( { lowercase: true, strict: true } ) ) ) ) {
+      return targetValue;
+    }
+  }
+  return;
+}
+
+/* -------------------------------------------- */
 /*  Handlebars -  Template - Helpers            */
 /* -------------------------------------------- */
 
