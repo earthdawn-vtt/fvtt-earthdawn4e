@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "enabledFileTypes": {
+    "js":   true,
+    "mjs":  true,
+    "hbs":  true,
+    "json": false
+  },
+  "ignorePaths": [
+    "lang",
+    "module/packs",
+    "node_modules"
+  ],
+  "words": [
+    "Earthdawn",
+    "edid"
+  ]
+}
