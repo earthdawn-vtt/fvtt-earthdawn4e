@@ -583,14 +583,22 @@ class LocalizationChecker {
     // Close the group if we're in GitHub Actions
     if ( LocalizationChecker.isGitHubActions ) {
       // Add final summary section with emoji status indicators
+      const hasMissingKeys = Object.values( this.results.missingInLang ).some( arr => arr.length > 0 );
+      const statusEmoji = hasMissingKeys ? "⚠️" : "✅";
+      const statusText = hasMissingKeys ? "Check completed with missing keys" : "Check completed successfully";
+
       await core.summary
         .addSeparator()
         .addHeading( "Summary Status", 2 )
-        .addRaw( "✅ Check completed successfully", true )
-        .addRaw( `📊 Total keys in code: <strong>${keysInCode.size}</strong>`, true )
-        .addRaw( `⏱️ Execution time: <strong>${( new Date() - this.startTime ) / 1000}s</strong>`, true )
+        .addRaw( `${ statusEmoji } ${ statusText }`, true )
+        .addRaw( `📊 Total keys in code: <strong>${ keysInCode.size }</strong>`, true )
+        .addRaw( `⏱️ Execution time: <strong>${ ( new Date() - this.startTime ) / 1000 }s</strong>`, true )
         .write();
-      
+
+      if ( hasMissingKeys ) {
+        core.setFailed( "Localization check found missing translation keys" );
+      }
+
       core.endGroup();
     }
   }
