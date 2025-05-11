@@ -451,9 +451,9 @@ class LocalizationChecker {
       
       await core.summary
         .addHeading( "Localization Check Results", 1 )
-        .addRaw( `_Generated on ${new Date().toISOString()}_`, true )
+        .addRaw( `<em>Generated on ${new Date().toISOString()}</em>`, true )
         .addEOL()
-        .addRaw( `Total keys found in code: **${keysInCode.size}**`, true )
+        .addRaw( `Total keys found in code: <strong>${keysInCode.size}</strong>`, true )
         .addEOL()
         .write();
     }
@@ -492,7 +492,7 @@ class LocalizationChecker {
               );
               
               // Add row to table data
-              tableData.push( [ `\`${key}\``, locationsStr ] );
+              tableData.push( [ `${key}`, locationsStr ] );
             }
           } );
           
@@ -587,8 +587,8 @@ class LocalizationChecker {
         .addSeparator()
         .addHeading( "Summary Status", 2 )
         .addRaw( "✅ Check completed successfully", true )
-        .addRaw( `📊 Total keys in code: **${keysInCode.size}**`, true )
-        .addRaw( `⏱️ Execution time: <em>${( new Date() - this.startTime ) / 1000}s</em>`, true )
+        .addRaw( `📊 Total keys in code: <strong>${keysInCode.size}</strong>`, true )
+        .addRaw( `⏱️ Execution time: <strong>${( new Date() - this.startTime ) / 1000}s</strong>`, true )
         .write();
       
       core.endGroup();
