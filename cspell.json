@@ -1,19 +1,36 @@
 {
-  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "version": "0.2",
-  "enabledFileTypes": {
+  "$schema":               "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version":               "0.2",
+  "language":              "en",
+  "dictionaryDefinitions": [
+    {
+      "name":     "ed4e-words",
+      "path":     "./dictionaries/ed4e-words.txt",
+      "addWords": true
+    },
+    {
+      "name":     "foundry-vtt-words",
+      "path":     "./dictionaries/foundry-vtt-words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": [
+    "ed4e-words",
+    "foundry-vtt-words"
+  ],
+  "enabledFileTypes":      {
     "js":   true,
     "mjs":  true,
     "hbs":  true,
     "json": false
   },
-  "ignorePaths": [
-    "lang",
-    "module/packs",
-    "node_modules"
+  "ignorePaths":           [
+    "**/*.svg",
+    ".husky/**/*",
+    "lang/**",
+    "module/packs/**",
+    "module/tours/de/**",
+    "node_modules/**"
   ],
-  "words": [
-    "Earthdawn",
-    "edid"
-  ]
+  "useGitignore":          true
 }
