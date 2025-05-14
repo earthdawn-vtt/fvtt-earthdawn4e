@@ -3,14 +3,15 @@ import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
-import MatrixData from "../common/matrix.mjs";
+import MatrixTemplate from "./templates/matrix.mjs";
 
 /**
  * Data model template with information on talent items.
  * @mixes ItemDescriptionTemplate
  */
 export default class TalentData extends IncreasableAbilityTemplate.mixin(
-  ItemDescriptionTemplate
+  ItemDescriptionTemplate,
+  MatrixTemplate,
 ) {
 
   /** @inheritdoc */
@@ -25,50 +26,19 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return this.mergeSchema( super.defineSchema(), {
       talentCategory: new fields.StringField( {
         required: true,
-        blank:    false,
-        initial:  "free",
+        blank:    true,
+        initial:  "",
         trim:     true,
         choices:  ED4E.talentCategory,
         label:    this.labelKey( "Ability.talentCategory" ),
         hint:     this.hintKey( "Ability.talentCategory" )
-      } ),
-      matrix: MatrixData.asEmbeddedDataField(),
-      magic:  new fields.SchemaField( {
-        threadWeaving: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.threadWeaving" ),
-          hint:     this.hintKey( "Ability.Magic.threadWeaving" )
-        } ),
-        spellcasting: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.spellcasting" ),
-          hint:     this.hintKey( "Ability.Magic.spellcasting" )
-        } ),
-        magicType: new fields.StringField( {
-          required: true,
-          nullable: true,
-          blank:    true,
-          trim:     true,
-          choices:  ED4E.spellcastingTypes,
-          label:    this.labelKey( "Ability.Magic.magicType" ),
-          hint:     this.hintKey( "Ability.Magic.magicType" )
-        } ),
-      }, {
-        required: true,
-        nullable: false,
-        label:    this.labelKey( "Ability.Magic.magic" ),
-        hint:     this.hintKey( "Ability.Magic.magic" )
       } ),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -88,7 +58,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -263,26 +233,40 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
+    // dropping an item on the actor has no createData. This is only used when learning a
+    // talent from the class increasement. If talents are learned from the class, the
+    // class defines category, tier, source discipline and the level it was learned at.
     const learnedItem = await super.learn( actor, item, createData );
 
-    let category = null;
+    let category;
+    let discipline;
+    let learnedAt;
 
-    // assign the talent category
-    const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-    category = await promptFactoryItem.getPrompt( "talentCategory" );
+    // assign the category of the talent
+    if ( !learnedItem.system.talentCategory ) {
+      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+      category = await promptFactoryItem.getPrompt( "talentCategory" );
+    }
 
-    // assign the level at which the talent was learned
-    const promptFactoryActor = PromptFactory.fromDocument( actor );
-    const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-    const discipline = await fromUuid( disciplineUuid );
-    const learnedAt = discipline?.system.level;
+    // assign the level at which the talent was learned and the source discipline
+    if ( !learnedItem.system.source?.class ) {
+      const promptFactoryActor = PromptFactory.fromDocument( actor );
+      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
+      discipline = await fromUuid( disciplineUuid );
+      learnedAt = discipline?.system.level;
+    }
 
+    // assign the tier of the talent
+    if ( !learnedItem.system.tier ) {
+      await learnedItem.system.chooseTier();
+    }
+
+    // update the learned talent with the new data
     await learnedItem.update( {
-      "system.talentCategory":        category,
-      "system.source.class":          discipline ? discipline.uuid : null,
-      "system.source.atLevel":        learnedAt ? learnedAt : null,
+      "system.talentCategory":        learnedItem.system.talentCategory ?? category,
+      "system.source.class":          learnedItem.system.source.class ?? discipline,
+      "system.source.atLevel":        learnedItem.system.source.atLevel ?? learnedAt,
     } );
-    await learnedItem.system.chooseTier();
     
     return learnedItem;
   }

@@ -1,1 +1,0 @@
-This function is handling the actual creation of the new document.

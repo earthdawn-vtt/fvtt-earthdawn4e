@@ -1,1 +1,0 @@
-This function is an array of buttons necessary for the roll prompt.

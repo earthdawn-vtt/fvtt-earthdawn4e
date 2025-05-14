@@ -1,5 +1,8 @@
 import { callIfExists } from "../utils.mjs";
 
+
+const { TextEditor } = foundry.applications.ux;
+
 /**
  * Taken from DnD5e ( https://github.com/foundryvtt/dnd5e )
  *
@@ -627,7 +630,6 @@ export class ItemDataModel extends SystemDataModel {
       event, document
     ) ?? true;
   }
-
 
   // region Rolling
 

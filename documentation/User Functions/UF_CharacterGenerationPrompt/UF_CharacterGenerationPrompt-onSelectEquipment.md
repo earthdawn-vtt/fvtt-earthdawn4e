@@ -1,1 +1,0 @@
-This function adds selected equipment items to the character.

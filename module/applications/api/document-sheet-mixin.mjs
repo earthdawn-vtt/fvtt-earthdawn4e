@@ -115,7 +115,6 @@ const DocumentSheetMixinEd = Base => {
      * @param {HTMLElement} target - The HTML element that triggered the action.
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is created.
      * @throws {Error} - If the document type is unknown.
-     * @userFunction UF_DocumentSheetMixinEd-onCreateChild
      */
     static async _onCreateChild( event, target ) {
       const type = target.dataset.type;
@@ -150,7 +149,6 @@ const DocumentSheetMixinEd = Base => {
      * @param {Event} event - The event that triggered the form submission.
      * @param {HTMLElement} target - The HTML element that triggered the action.
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
-     * @userFunction UF_DocumentSheetMixinEd-onDeleteChild
      */
     static async _onDeleteChild( event, target ) {
       const document = await fromUuid( target.dataset.uuid );
@@ -163,7 +161,6 @@ const DocumentSheetMixinEd = Base => {
      * @param {Event} event - The event that triggered the form submission.
      * @param {HTMLElement} target - The HTML element that triggered the action.
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is displayed in chat.
-     * @userFunction UF_DocumentSheetMixinEd-onDisplayChild
      */
     static async _onDisplayChild( event, target ) {
       return ChatMessage.create( { content: "Coming up: a beautiful description of the Item you just clicked to be displayed here in chat!" } );
@@ -174,7 +171,6 @@ const DocumentSheetMixinEd = Base => {
      * @param {Event} event - The event that triggered the form submission.
      * @param {HTMLElement} target - The HTML element that triggered the action.
      * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is displayed in chat.
-     * @userFunction UF_DocumentSheetMixinEd-onEditChild
      */
     static async _onEditChild( event, target ) {
       ( await fromUuid( target.dataset.uuid ) ).sheet?.render( { force: true } );
@@ -185,7 +181,6 @@ const DocumentSheetMixinEd = Base => {
      * @param {Event} event - The event that triggered the form submission.
      * @param {HTMLElement} target - The HTML element that triggered the action.
      * @returns {Promise<FilePicker>} - A promise that resolves when the image is changed.
-     * @userFunction UF_DocumentSheetMixinEd-onEditImage
      */
     static async _onEditImage( event, target ) {
       const attr = target.dataset.edit;

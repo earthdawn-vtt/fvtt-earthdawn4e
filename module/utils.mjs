@@ -57,7 +57,6 @@ export function getAllEdIds( type ) {
  * @param {string} edid           The SWID of the item(s) which you want to retrieve
  * @param {string} type           Optionally, a type name to restrict the search
  * @returns {Item[]|undefined}    An array containing the found items
- * @userFunction                  UF_Utils_getGlobalItemsByEdid
  */
 export async function getGlobalItemsByEdid( edid, type ) {
   return getAllDocuments(
@@ -77,7 +76,6 @@ export async function getGlobalItemsByEdid( edid, type ) {
  * @param {string} edid         The EDID of the item(s) which you want to retrieve
  * @param {string} type         Optionally, a type name to restrict the search
  * @returns {Item|undefined}    The matching item, or undefined if none was found.
- * @userFunction                UF_Utils_getSingleGlobalItemByEdid
  */
 export async function getSingleGlobalItemByEdid( edid, type ) {
   return getGlobalItemsByEdid( edid, type ).then( item => item[0] );
@@ -124,6 +122,7 @@ export async function getSingleGlobalItemByEdid( edid, type ) {
  *                                        strings of the found documents. Empty
  *                                        if no documents are found.
  */
+// eslint-disable-next-line max-params
 export async function getAllDocuments(
   documentName,
   documentType,
@@ -203,6 +202,30 @@ export function createContentLink( uuid, description ) {
 }
 
 /**
+ * Creates an anchor element representing a content link for a given document.
+ * @param {Document} document The document to link to.
+ * @returns {Element} The anchor element with the "content-link" class.
+ */
+export function createContentAnchor( document ) {
+  return foundry.applications.ux.TextEditor.createAnchor( {
+    attrs:   {
+      draggable: true,
+    },
+    dataset: {
+      link:        document.link,
+      uuid:        document.uuid,
+      id:          document.id,
+      type:        document.type,
+      tooltip:     game.i18n.localize( `DOCUMENT.${document.documentName}` ),
+      tooltipText: document.type,
+    },
+    classes: [ "content-link", ],
+    name:    document.name,
+    icon:    "fa-solid fa-suitcase",
+  } );
+}
+
+/**
  * Prepare the final formula value for a model field.
  * @param {ItemDataModel} model  Model for which the value is being prepared.
  * @param {string} keyPath                        Path to the field within the model.
@@ -232,7 +255,7 @@ export function prepareFormulaValue( model, keyPath, label, rollData ) {
  * If the attribute is not found in the provided data, display a warning on the actor.
  * @param {string} formula           The original formula within which to replace.
  * @param {object} data              The data object which provides replacements.
- * @param {object} [options]
+ * @param {object} [options]         Options for the replacement process.
  * @param {ActorEd} [options.actor]            Actor for which the value is being prepared.
  * @param {ItemEd} [options.item]              Item for which the value is being prepared.
  * @param {string|null} [options.missing]  Value to use when replacing missing references, or `null` to not replace.
@@ -523,7 +546,6 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
  * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
  * @param { string }  value The string to be checked for validity
  * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
- * @userFunction            UF_Utils_validateEdid
  */
 export function validateEdid( value ) {
   // `any` is a reserved word
@@ -738,6 +760,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
 
     // Item details
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",

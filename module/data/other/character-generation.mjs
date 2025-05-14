@@ -386,11 +386,11 @@ export default class CharacterGenerationData extends SparseDataModel {
     return ( await this.getMaxSpellPoints() ) - sum( currentSpellLevels );
   }
 
-  async getMagicType() {
+  async getCastingType() {
     for ( const abilityUuid of Object.keys( this.abilities.class ) ) {
       let ability = await fromUuid( abilityUuid );
 
-      if ( ability?.system.magic?.threadWeaving ) return ability.system.magic.magicType;
+      if ( ability?.system.rollType === "threadWeaving" ) return ability.system.castingType;
     }
     return undefined;
   }

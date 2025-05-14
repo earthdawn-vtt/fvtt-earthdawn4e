@@ -1,1 +1,0 @@
-This function is triggered if a new ability (devotion, skill or talent) is learned.

@@ -54,7 +54,6 @@ export default class TargetTemplate extends SystemDataModel {
   /**
    *  
    * @returns {number} return
-   * @userFunction              UC_Actions-getDifficulty
    */
   getDifficulty() {
     let difficulty;
@@ -97,7 +96,6 @@ export default class TargetTemplate extends SystemDataModel {
    * @param { string } targetDefenseType defense
    * @param { any } aggregate ???
    * @returns { number} return
-   * @userFunction              UC_Actions-getAggregatedDefense
    */
   static _getAggregatedDefense( targets, targetDefenseType, aggregate = Math.max ) {
     return targets.length > 0 ? aggregate( ...targets.map( ( t ) => t.system.characteristics.defenses[targetDefenseType].value ) ) : 0;

@@ -1,1 +1,0 @@
-This function is triggered if a knack is added to the actor sheet.

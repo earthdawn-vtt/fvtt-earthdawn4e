@@ -1,1 +1,0 @@
-This function is triggering a completing or finishing operation.

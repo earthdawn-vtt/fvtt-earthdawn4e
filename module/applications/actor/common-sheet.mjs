@@ -1,4 +1,5 @@
 import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
+import { ED4E } from "../../../earthdawn4e.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -9,10 +10,7 @@ const { ActorSheetV2 } = foundry.applications.sheets;
  */
 export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEd-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "actor", ],
     actions:  {
@@ -20,10 +18,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     },
   };
 
-  /** 
-   * @inheritdoc
-   * @userFunction UF_ActorSheetEd-tabs
-   */
+  /** @inheritdoc */
   static TABS = {
     sheet: {
       tabs:        [],
@@ -35,7 +30,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   /**
    * Defines the order of tabs in the actor sheet.
    * @type {Array<string>}
-   * @userFunction UF_ActorSheetEd-tabOrderSheet
    */
   static TAB_ORDER_SHEET = [
     "general",
@@ -60,7 +54,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
    * @param {string} tabs.id  The unique identifier for the tab.
    * @param {string} tabs.label The label for the tab (used for localization).
    * @param {string} tabs.template The path to the Handlebars template for the tab's content.
-   * @userFunction UF_ActorSheetEd-addSheetTabs
    */
   static addSheetTabs( tabs ) {
     this.TABS = foundry.utils.deepClone( this.TABS );
@@ -72,24 +65,19 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
   // region Rendering
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEd-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
     foundry.utils.mergeObject( context, {
       actor:                  this.document,
       items:                  this.document.items,
+      icons:                  ED4E.icons,
     } );
 
     return context;
   }
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEd-renderHTML
-   */
+  /** @inheritdoc */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
   }
@@ -103,7 +91,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
    * @returns {Promise<void>} - A promise that resolves when the item description is expanded or collapsed.
-   * @userFunction UF_ActorSheetEd-onCardExpand
    */
   static async _onCardExpand( event, target ) {
     event.preventDefault();

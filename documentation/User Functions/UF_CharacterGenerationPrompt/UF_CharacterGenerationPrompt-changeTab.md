@@ -1,1 +1,0 @@
-This function controls the active tab of the character generation prompt

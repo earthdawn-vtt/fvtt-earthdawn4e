@@ -2,7 +2,7 @@ import { ItemDataModel } from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config/_module.mjs";
 import ThreadTemplate from "./threads.mjs";
-import MatrixData from "../../common/matrix.mjs";
+import MatrixTemplate from "./matrix.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -19,8 +19,9 @@ import MatrixData from "../../common/matrix.mjs";
  * @property {number} usableItem.recoveryPropertyValue      recovery type value
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
+  MatrixTemplate,
   TargetTemplate,
-  ThreadTemplate
+  ThreadTemplate,
 ) {
 
   /** @inheritdoc */
@@ -170,7 +171,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         label:    this.labelKey( "PhysicalItems.itemStatus" ),
         hint:     this.hintKey( "PhysicalItems.itemStatus" )
       } ),
-      matrix: MatrixData.asEmbeddedDataField(),
     } );
   }
 
@@ -255,7 +255,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   /**
    * Set the item status to "carried".
    * @returns {Promise} The updated Item instance.
-   * @userFunction            UF_PhysicalItems-carry
    */
   async carry() {
     return this.parent.update( {
@@ -266,7 +265,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   /**
    * Set the item status to "owned".
    * @returns {Promise} The updated Item instance.
-   * @userFunction            UF_PhysicalItems-deposit
    */
   async deposit() {
     return this.parent.update( {

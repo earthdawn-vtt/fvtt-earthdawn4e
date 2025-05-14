@@ -8,10 +8,7 @@ const { getProperty } = foundry.utils;
  */
 export default class SpellEnhancementsConfig extends BaseConfigSheet {
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_SpellEnhancementsConfig-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     classes: [ "spell-enhancements-config" ],
     window:  {
@@ -24,10 +21,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
     type:    null,
   };
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_SpellEnhancementsConfig-parts
-   */
+  /** @inheritDoc */
   static PARTS = {
     config: {
       template: "systems/ed4e/templates/configs/spell-enhancements-config.hbs",
@@ -41,7 +35,6 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /**
    * The data for the enhancements field on the document's system property.
    * @type {object}
-   * @userFunction UF_SpellEnhancementsConfig-enhancements
    */
   get enhancements() {
     return getProperty( this.document.system, this.keyPath );
@@ -50,7 +43,6 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /**
    * The schema data field for the enhancements field on the document's system property.
    * @type {DataField}
-   * @userFunction UF_SpellEnhancementsConfig-enhancementsField
    */
   get enhancementsField() {
     return this.document.system.schema.fields[ this.keyPath ];
@@ -60,7 +52,6 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
    * Path to the extraThreads or extraSuccess data on the document's system property.
    * E.g., "extraThreads" for the document type "spell" system.extraThreads field.
    * @type {string}
-   * @userFunction UF_SpellEnhancementsConfig-keyPath
    */
   get keyPath() {
     return  this.options.keyPath ?? this.options.type;
@@ -71,10 +62,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_SpellEnhancementsConfig-preparePartContext
-   */
+  /** @inheritDoc */
   async _preparePartContext( partId, context, options ) {
     const newContext = await super._preparePartContext( partId, context, options );
 
@@ -101,7 +89,6 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
    * @param {HTMLFormElement} form                The form element that was submitted
    * @param {FormDataExtended} formData           Processed data for the submitted form
    * @returns {Promise<void>}
-   * @userFunction UF_SpellEnhancementsConfig-onSubmitForm
    */
   static async #onSubmitForm( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );

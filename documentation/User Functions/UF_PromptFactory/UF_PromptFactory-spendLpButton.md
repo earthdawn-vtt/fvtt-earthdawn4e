@@ -1,1 +1,0 @@
-This function triggers the spending of legend points for the learn or increase action.

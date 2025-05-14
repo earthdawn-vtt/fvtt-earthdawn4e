@@ -54,6 +54,7 @@ export default class CombatEd extends foundry.documents.Combat {
   async _onStartTurn( combatant, context ) {
     super._onStartTurn( combatant, context );
     await this.#executeEffectsForAll( "turnStart" );
+    if ( combatant.actor.statuses.has( "attuningOnTheFly" ) ) await combatant.actor.reattuneSpells();
   }
 
   /** @inheritdoc */

@@ -1,1 +1,0 @@
-This function validates whether all skill ranks have been properly assigned during character generation.

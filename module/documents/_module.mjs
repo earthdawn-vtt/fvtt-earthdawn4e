@@ -1,4 +1,4 @@
-// document classes
+// Document Classes
 export {default as ActorEd} from "./actor.mjs";
 export {default as ChatMessageEd} from "./chat.mjs";
 export {default as CombatEd} from "./combat.mjs";
@@ -8,3 +8,6 @@ export {default as ItemEd} from "./item.mjs";
 export {default as JournalEntryEd} from "./journal.mjs";
 
 export * as collections from "./collections/_module.mjs";
+
+// Migrations
+export * as migration from "./migration/_module.mjs";

@@ -1,1 +1,0 @@
-This function is triggered by the "jump up" button to fulfill the jump up action.

@@ -1,1 +1,0 @@
-This function handles the path to the requirements or restrictions data on the document's system property.

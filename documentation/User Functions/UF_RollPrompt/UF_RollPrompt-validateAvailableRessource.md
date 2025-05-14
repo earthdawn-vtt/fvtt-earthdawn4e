@@ -1,1 +1,0 @@
-This function evaluates if the rolling actor has enough resources to make the roll (devotion, karma, recovery)

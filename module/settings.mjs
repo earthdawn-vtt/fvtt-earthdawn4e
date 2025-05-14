@@ -9,7 +9,6 @@ const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields
  * Get an ed4e setting from the system settings.
  * @param {string} settingKey   The key of the setting to get.
  * @returns {*}                 The value of the setting.
- * @userFunction                UF_Settings-getSetting
  */
 export function getSetting( settingKey ) {
   return game.settings.get( "ed4e", settingKey );
@@ -22,7 +21,6 @@ export function getSetting( settingKey ) {
  * @param {object} [options]   Any additional options to pass to the setting.
  *                             See {@link https://foundryvtt.com/api/classes/client.ClientSettings.html#set}
  * @returns {*}                The assigned value of the setting.
- * @userFunction               UF_Settings-setSetting
  */
 export function setSetting( settingKey, value, options={} ) {
   return game.settings.set( "ed4e", settingKey, value, options );
@@ -31,7 +29,6 @@ export function setSetting( settingKey, value, options={} ) {
 /**
  * Get all available ed-ids from the system settings.
  * @returns {string[]} - A list of all available ed-ids.
- * @userFunction               UF_Settings-getEdIds
  */
 export function getEdIds() {
   return [
@@ -43,7 +40,7 @@ export function getEdIds() {
     "edidVersatility",
     "edidQuestorDevotion",
     "edidUnarmedCombat",
-    "edidCreatureAttack",
+    "edidSpellMatrix",
   ].map( id => getSetting( id ) );
 }
 
@@ -57,9 +54,6 @@ export default function registerSystemSettings() {
   /* -------------------------------------------------------------------------------- */
 
   // edid for thread weaving
-  /**
-   * @userFunction               UF_Settings-edidThreadWeaving
-   */
   game.settings.register( "ed4e", "edidThreadWeaving", {
     name:    "ED.Settings.Edid.threadWeaving",
     hint:    "ED.Settings.Edid.threadWeavingHint",
@@ -70,9 +64,6 @@ export default function registerSystemSettings() {
   } );
 
   // edid for spellcasting
-  /**
-   * @userFunction               UF_Settings-edidSpellcasting
-   */
   game.settings.register( "ed4e", "edidSpellcasting", {
     name:    "ED.Settings.Edid.spellCasting",
     hint:    "ED.Settings.Edid.spellCastingHint",
@@ -83,9 +74,6 @@ export default function registerSystemSettings() {
   } );
 
   // edid for patterncraft
-  /**
-   * @userFunction               UF_Settings-edidPatterncraft
-   */
   game.settings.register( "ed4e", "edidPatterncraft", {
     name:    "ED.Settings.Edid.patterncraft",
     hint:    "ED.Settings.Edid.patterncraftHint",
@@ -96,9 +84,6 @@ export default function registerSystemSettings() {
   } );
 
   // edid for speak language
-  /**
-   * @userFunction               UF_Settings-edidLanguageSpeak       
-   */
   game.settings.register( "ed4e", "edidLanguageSpeak", {
     name:    "ED.Settings.Edid.languageSpeak",
     hint:    "ED.Settings.Edid.languageSpeakHint",
@@ -109,9 +94,6 @@ export default function registerSystemSettings() {
   } );
 
   // edid for read/write language
-  /**
-   * @userFunction                UF_Settings-edidLanguageRW
-   */
   game.settings.register( "ed4e", "edidLanguageRW", {
     name:    "ED.Settings.Edid.languageRW",
     hint:    "ED.Settings.Edid.languageRWHint",
@@ -122,9 +104,6 @@ export default function registerSystemSettings() {
   } );
 
   // edid for versatility
-  /**
-   * @userFunction                UF_Settings-edidVersatility
-   */
   game.settings.register( "ed4e", "edidVersatility", {
     name:    "ED.Settings.Edid.versatility",
     hint:    "ED.Settings.Edid.versatilityHint",
@@ -154,15 +133,16 @@ export default function registerSystemSettings() {
     type:    new EdIdField(),
   } );
 
-  // edid for creature power used as attack
-  game.settings.register( "ed4e", "edidCreatureAttack", {
-    name:    "ED.Settings.Edid.creatureAttack",
-    hint:    "ED.Settings.Edid.creatureAttackHint",
+  // edid for items that house a spell matrix (talents or physical items)
+  game.settings.register( "ed4e", "edidSpellMatrix", {
+    name:    "ED.Settings.Edid.spellMatrix",
+    hint:    "ED.Settings.Edid.spellMatrixHint",
     scope:   "world",
     config:  true,
-    default: "creature-attack",
+    default: "matrix",
     type:    new EdIdField(),
   } );
+
 
   // region CONTROLS
 
@@ -181,10 +161,7 @@ export default function registerSystemSettings() {
   /*                                  STEP TABLES                                     */
   /* -------------------------------------------------------------------------------- */
 
-  /**
-   * Step Table used for step to dice conversion
-   * @userFunction                chooseStepTable
-   */
+  // Step Table used for step to dice conversion
   game.settings.register( "ed4e", "stepTable", {
     name:    "ED.Settings.StepTable.stepTable",
     hint:    "ED.Settings.StepTable.hint",
@@ -204,10 +181,7 @@ export default function registerSystemSettings() {
   /*                                  OWNED ITEMS                                     */
   /* -------------------------------------------------------------------------------- */
 
-  /**
-   * Should Living Armor checked on Namegivers
-   * @userFunction                UF_Settings-enforceLivingArmor
-   */
+  // Should Living Armor checked on Namegivers
   game.settings.register( "ed4e", "enforceLivingArmor", {
     name:    "ED.Settings.Label.enforceLivingArmor",
     hint:    "ED.Settings.Hint.enforceLivingArmor",
@@ -228,9 +202,6 @@ export default function registerSystemSettings() {
   // } );
 
   // Auto open char gen on PC document creation
-  /**
-   * @userFunction                UF_Settings-autoOpenCharGen
-   */
   game.settings.register( "ed4e", "autoOpenCharGen", {
     name:    "ED.Settings.CharGen.autoOpenCharGen",
     hint:    "ED.Settings.CharGen.hintAutoOpenCharGen",
@@ -241,9 +212,6 @@ export default function registerSystemSettings() {
   } );
 
   // Starting attribute points to spend
-  /**
-   * @userFunction                UF_Settings-attributePoints
-   */
   game.settings.register( "ed4e", "charGenAttributePoints", {
     name:    "ED.Settings.CharGen.attributePoints",
     hint:    "ED.Settings.CharGen.hintAttributePoints",
@@ -254,9 +222,6 @@ export default function registerSystemSettings() {
   } );
 
   // Maximum rank that can be assigned to a talent or skill on character generation
-  /**
-   * @userFunction                UF_Settings-maxRank
-   */
   game.settings.register( "ed4e", "charGenMaxRank", {
     name:    "ED.Settings.CharGen.maxRanks",
     hint:    "ED.Settings.CharGen.hintMaxRanks",
@@ -267,9 +232,6 @@ export default function registerSystemSettings() {
   } );
 
   // Maximum circle for learnable spells at character generation
-  /**
-   * @userFunction                UF_Settings-maxSpellCircle
-   */
   game.settings.register( "ed4e", "charGenMaxSpellCircle", {
     name:   "ED.Settings.CharGen.maxSpellCircle",
     hint:   "ED.Settings.CharGen.hintMaxSpellCircle",
@@ -290,16 +252,7 @@ export default function registerSystemSettings() {
   /*                                  LP TRACKING                                     */
   /* -------------------------------------------------------------------------------- */
 
-  // Legend point settings Header
-  // game.settings.register( "ed4e", "lpTrackingHeader", {
-  //     name: "ED.Settings.LpTracking.lpTrackingHeader",
-  //     config: true,
-  // } );
-
   // LP Tracking On/Off
-  /**
-   * @userFunction                UF_Settings-lpTrackingUsed
-   */
   game.settings.register( "ed4e", "lpTrackingUsed", {
     name:    "ED.Settings.LpTracking.lpTrackingUsed",
     hint:    "ED.Settings.LpTracking.hintLpTrackingUsed",
@@ -310,9 +263,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Attributes
-  /**
-   * @userFunction                UF_Settings-lpTrackingAttributes
-   */
   game.settings.register( "ed4e", "lpTrackingAttributes", {
     name:    "ED.Settings.LpTracking.attributeOptions",
     hint:    "ED.Settings.LpTracking.hintAttributeOption",
@@ -327,9 +277,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Talents
-  /**
-   * @userFunction                UF_Settings-lpTrackingTalents
-   */
   game.settings.register( "ed4e", "lpTrackingCircleTalentRequirements", {
     name:    "ED.Settings.LpTracking.circleTalentRequirements",
     hint:    "ED.Settings.LpTracking.hintCircleTalentRequirements",
@@ -341,9 +288,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Option Skill Training
-  /**
-   * @userFunction                UF_Settings-lpTrackingSkillTraining
-   */
   game.settings.register( "ed4e", "lpTrackingRemoveSilver", {
     name:    "ED.Settings.LpTracking.removeSilver",
     hint:    "ED.Settings.LpTracking.hintRemoveSilver",
@@ -354,9 +298,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Talent
-  /**
-   * @userFunction                UF_Settings-lpTrackingMaxRankTalent
-   */
   game.settings.register( "ed4e", "lpTrackingMaxRankTalent", {
     name:    "ED.Settings.LpTracking.maxRankTalent",
     hint:    "ED.Settings.LpTracking.hintMaxRankTalent",
@@ -371,9 +312,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Skill
-  /**
-   * @userFunction                UF_Settings-lpTrackingMaxRankSkill
-   */
   game.settings.register( "ed4e", "lpTrackingMaxRankSkill", {
     name:    "ED.Settings.LpTracking.maxRankSkill",
     hint:    "ED.Settings.LpTracking.hintMaxRankSkill",
@@ -388,9 +326,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Max Rank Devotion
-  /**
-   * @userFunction                UF_Settings-lpTrackingMaxRankDevotion
-   */
   game.settings.register( "ed4e", "lpTrackingMaxRankDevotion", {
     name:    "ED.Settings.LpTracking.maxRankDevotion",
     hint:    "ED.Settings.LpTracking.hintMaxRankDevotion",
@@ -405,9 +340,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Spell Cost
-  /**
-   * @userFunction                UF_Settings-lpTrackingSpellCost
-   */
   game.settings.register( "ed4e", "lpTrackingSpellCost", {
     name:    "ED.Settings.LpTracking.spellCost",
     hint:    "ED.Settings.LpTracking.hintSpellCost",
@@ -425,9 +357,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Use Patterncraft to Learn Spell
-  /**
-   * @userFunction                UF_Settings-lpTrackingLearnSpellUsePatterncraft
-   */
   game.settings.register( "ed4e", "lpTrackingLearnSpellUsePatterncraft", {
     name:    "ED.Settings.LpTracking.learnSpellUsePatterncraft",
     hint:    "ED.Settings.LpTracking.hintLearnSpellUsePatterncraft",
@@ -443,9 +372,6 @@ export default function registerSystemSettings() {
   } );
 
   // LP Tracking Learn Spells on Circle Up
-  /**
-   * @userFunction                UF_Settings-lpTrackingLearnSpellsOnCircleUp
-   */
   game.settings.register( "ed4e", "lpTrackingLearnSpellsOnCircleUp", {
     name:    "ED.Settings.LpTracking.learnSpellsOnCircleUp",
     hint:    "ED.Settings.LpTracking.hintLearnSpellsOnCircleUp",
@@ -464,17 +390,8 @@ export default function registerSystemSettings() {
   /* -------------------------------------------------------------------------------- */
   /*                                  ENCUMBRANCE                                     */
   /* -------------------------------------------------------------------------------- */
-
-  // Encumbrance settings Header
-  // game.settings.register( "ed4e", "encumberedHeader", {
-  //     name: "ED.Settings.Encumbrance.encumberedHeader",
-  //     config: true,
-  // } );
-
+  
   // Encumbrance options
-  /**
-   * @userFunction                UF_Settings-encumbrance
-   */
   game.settings.register( "ed4e", "encumbrance", {
     name:    "ED.Settings.Encumbrance.encumbrance",
     hint:    "ED.Settings.Encumbrance.encumbranceHint",
@@ -488,18 +405,7 @@ export default function registerSystemSettings() {
   /*                                GAME MECHANICS                                    */
   /* -------------------------------------------------------------------------------- */
 
-  // Game Mechanics settings Header
-  /*
-  game.settings.register( "ed4e", "loreHeader", {
-      name: "ED.Settings.Lore.loreHeader",
-      config: true,
-  } );
-  */
-
   // Languages
-  /**
-   * @userFunction                UF_Settings-languages
-   */
   game.settings.register( "ed4e", "languages", {
     name:   "ED.Settings.Mechanics.languages",
     hint:   "ED.Settings.Mechanics.languagesHint",
@@ -517,9 +423,6 @@ export default function registerSystemSettings() {
   } );
 
   // Spellcasting / Thread Weaving Types
-  /**
-   * @userFunction                UF_Settings-spellcastingTypes
-   */
   game.settings.register( "ed4e", "spellcastingTypes", {
     name:    "ED.Settings.Mechanics.spellcastingTypes",
     hint:    "ED.Settings.Mechanics.spellcastingTypesHint",
@@ -538,9 +441,6 @@ export default function registerSystemSettings() {
   } );
 
   // Split Talents
-  /**
-   * @userFunction                UF_Settings-talentsSplit
-   */
   game.settings.register( "ed4e", "talentsSplit", {
     name:    "ED.Settings.talentsSplit",
     hint:    "ED.Settings.talentsSplitHint",
@@ -551,9 +451,6 @@ export default function registerSystemSettings() {
   } );
 
   // Minimum difficulty for tests
-  /**
-   * @userFunction                UF_Settings-minimumDifficulty
-   */
   game.settings.register( "ed4e", "minimumDifficulty", {
     name:    "ED.Settings.GameMechanics.minimumDifficulty",
     hint:    "ED.Settings.GameMechanics.minimumDifficultyHint",
@@ -576,16 +473,7 @@ export default function registerSystemSettings() {
   /*                                  GM Chat Avatar                                     */
   /* -------------------------------------------------------------------------------- */
 
-  // Chat Avatar settings Header
-  // game.settings.register( "ed4e", "chatAvatarHeader", {
-  //     name: "ED.Settings.Chat.chatAvatarHeader",
-  //     config: true,
-  // } );
-
   // Chat Avater Options
-  /**
-   * @userFunction                UF_Settings-chatAvatar
-   */
   game.settings.register( "ed4e", "chatAvatar", {
     name:    "ED.Settings.Chat.chatAvatar",
     hint:    "ED.Settings.Chat.chatAvatarHint",

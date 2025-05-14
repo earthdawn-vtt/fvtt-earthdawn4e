@@ -1,1 +1,0 @@
-This function triggers a prompt with abilities of the roll type **knock down** if the actor might be knocked down.

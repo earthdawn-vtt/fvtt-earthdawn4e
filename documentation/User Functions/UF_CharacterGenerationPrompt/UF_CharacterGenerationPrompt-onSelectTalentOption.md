@@ -1,1 +1,0 @@
-This function selects the optional talent

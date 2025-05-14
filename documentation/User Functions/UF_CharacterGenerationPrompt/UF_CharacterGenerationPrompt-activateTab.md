@@ -1,1 +1,0 @@
-This function is responsible for setting the relevant tab to active.

@@ -43,9 +43,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       } ),
       tier: new fields.StringField( {
         nullable: false,
-        blank:    false,
+        blank:    true,
         choices:  ED4E.tier,
-        initial:  "novice",
+        initial:  "",
         label:    this.labelKey( "Ability.tier" ),
         hint:     this.hintKey( "Ability.tier" )
       } ),
@@ -93,7 +93,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponType" )
           } ),
         }, {
-          required: false,
           label:    this.labelKey( "Ability.RollTypeDetails.attack" ),
           hint:     this.hintKey( "Ability.RollTypeDetails.attack" )
         } ),
@@ -111,15 +110,22 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             hint:     this.hintKey( "Ability.RollTypeDetails.Reaction.defenseType" )
           } ),
         }, {
-          required: false,
           label:    this.labelKey( "Ability.RollTypeDetails.reaction" ),
           hint:     this.hintKey( "Ability.RollTypeDetails.reaction" ),
         } ),
         recovery:      new fields.SchemaField( {}, {} ),
         spellcasting:  new fields.SchemaField( {}, {} ),
-        threadWeaving: new fields.SchemaField( {}, {} ),
+        threadWeaving: new fields.SchemaField( {
+          castingType: new fields.StringField( {
+            required: false,
+            nullable: true,
+            blank:    false,
+            trim:     true,
+            initial:  null,
+            choices:  ED4E.spellcastingTypes,
+          } ),
+        }, {} ),
       }, {
-        required: false,
         label:    this.labelKey( "Ability.rollTypeDetails" ),
         hint:     this.hintKey( "Ability.rollTypeDetails" )
       } ),
@@ -159,6 +165,16 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     };
 
     return new AbilityRollOptions( abilityRollOptions );
+  }
+
+  /**
+   * The type of spellcasting magic of this ability, if it is of type thread weaving.
+   * Null if thread weaving of a non spellcasting discipline.
+   * @type {string|null|undefined}
+   * @see ED4E.spellcastingTypes
+   */
+  get castingType() {
+    return this.rollType === "threadWeaving" ? this.rollTypeDetails.threadWeaving.castingType : undefined;
   }
 
   /**
@@ -240,6 +256,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     );
     return this.containingActor.processRoll( roll );
   }
+
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 

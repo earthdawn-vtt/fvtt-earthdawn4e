@@ -1,1 +1,0 @@
-This function is triggered by the "Initiative" button to manually roll initiative.
