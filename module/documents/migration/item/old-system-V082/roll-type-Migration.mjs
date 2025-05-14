@@ -12,20 +12,20 @@ export default class RollTypeMigration {
 
       const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
       const combinedReactionNames = [
-        ...ED4E.physicalReactionNames,
-        ...ED4E.mysticReactionNames,
-        ...ED4E.socialReactionNames,
+        ...ED4E.systemV0_8_2.physicalReactionNames,
+        ...ED4E.systemV0_8_2.mysticReactionNames,
+        ...ED4E.systemV0_8_2.socialReactionNames,
       ];
       const combinedPhysicalAttackNames = [
-        ...ED4E.unarmedCombatNames,
-        ...ED4E.meleeWeaponNames,
-        ...ED4E.missileWeaponNames,
-        ...ED4E.throwingWeaponNames,
-        ...ED4E.offHandCombatTalents,
+        ...ED4E.systemV0_8_2.unarmedCombatNames,
+        ...ED4E.systemV0_8_2.meleeWeaponNames,
+        ...ED4E.systemV0_8_2.missileWeaponNames,
+        ...ED4E.systemV0_8_2.throwingWeaponNames,
+        ...ED4E.systemV0_8_2.offHandCombatTalents,
       ];
       const combinedMeleeNames = [
-        ...ED4E.meleeWeaponNames,
-        ...ED4E.offHandCombatTalents,
+        ...ED4E.systemV0_8_2.meleeWeaponNames,
+        ...ED4E.systemV0_8_2.offHandCombatTalents,
       ];
      
       source.system ??= {};
@@ -36,22 +36,22 @@ export default class RollTypeMigration {
 
       // mapping for the roll type
       const configMappings = [
-        { names: ED4E.damageAdderNames, targetValue: "damage" },
+        { names: ED4E.systemV0_8_2.damageAdderNames, targetValue: "damage" },
         { names: combinedReactionNames, targetValue: "reaction" },
         { names: combinedPhysicalAttackNames, targetValue: "attack" },
-        { names: ED4E.threadWeavingNames, targetValue: "threadWeaving" },
-        { names: ED4E.spellcastingNames, targetValue: "spellcasting" },
+        { names: ED4E.systemV0_8_2.threadWeavingNames, targetValue: "threadWeaving" },
+        { names: ED4E.systemV0_8_2.spellcastingNames, targetValue: "spellcasting" },
       ];
 
       // mapping for subcategories of the roll type (reactionType, combatType)
       const configSubCategoryMappings = [
-        { names: ED4E.physicalReactionNames, targetValue: "physical" },
-        { names: ED4E.mysticReactionNames, targetValue: "mystical" },
-        { names: ED4E.socialReactionNames, targetValue: "social" },
-        { names: ED4E.unarmedCombatNames, targetValue: "unarmed" },
+        { names: ED4E.systemV0_8_2.physicalReactionNames, targetValue: "physical" },
+        { names: ED4E.systemV0_8_2.mysticReactionNames, targetValue: "mystical" },
+        { names: ED4E.systemV0_8_2.socialReactionNames, targetValue: "social" },
+        { names: ED4E.systemV0_8_2.unarmedCombatNames, targetValue: "unarmed" },
         { names: combinedMeleeNames, targetValue: "melee" },
-        { names: ED4E.missileWeaponNames, targetValue: "missile" },
-        { names: ED4E.throwingWeaponNames, targetValue: "thrown" },
+        { names: ED4E.systemV0_8_2.missileWeaponNames, targetValue: "missile" },
+        { names: ED4E.systemV0_8_2.throwingWeaponNames, targetValue: "thrown" },
       ];
      
       source.system.rollType = determineConfigValue( slugifiedName, configMappings );
@@ -66,7 +66,7 @@ export default class RollTypeMigration {
           source.system.rollTypeDetails.attack.weaponItemStatus = new Set();
           source.system.rollTypeDetails.attack.weaponItemStatus.add( "twoHands" );
         } else if ( source.system.rollTypeDetails.attack.weaponType === "melee" ) {
-          if ( ED4E.offHandCombatTalents.some( offHandCombatNames =>
+          if ( ED4E.systemV0_8_2.offHandCombatTalents.some( offHandCombatNames =>
             slugifiedName.includes( offHandCombatNames.slugify( { lowercase: true, strict: true } ) )  
           ) ) {
             source.system.rollTypeDetails.attack.weaponItemStatus = new Set();
@@ -78,17 +78,20 @@ export default class RollTypeMigration {
           }
         }
       } else if ( source.system.rollType === "threadWeaving" ) {
-        const matchingKey = Object.keys( ED4E.threadWeavingNameForCasters ).find( 
-          key => ED4E.threadWeavingNameForCasters[key] === source.name );
+        const matchingKey = Object.keys( ED4E.systemV0_8_2.threadWeavingNameForCasters ).find( 
+          key => ED4E.systemV0_8_2.threadWeavingNameForCasters[key] === source.name );
         if ( matchingKey && ED4E.spellcastingTypes[matchingKey] ) {
           source.system.rollTypeDetails.threadWeaving.castingType = matchingKey;
           source.system.rollTypeDetails.threadWeaving = {
             castingType:     matchingKey,
           };
         }
-      } else {
+      }
+
+      if ( !source.system.rollType ) {
         source.system.rollType = "ability";
       }
+      
     }
     
     return source; // Return the modified data

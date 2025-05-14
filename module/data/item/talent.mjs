@@ -311,11 +311,13 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     source.action = source.action?.slugify( { lowercase: true, strict: true } );
 
     // Migrate Attributes
-    if ( ED4E.previousSystemV0_8_2.attributes.includes( source.attribute ) ) {
+    if ( ED4E.systemV0_8_2.attributes.includes( source.attribute ) ) {
       if ( source.attribute === "initiativeStep" ) {
         source.rollType = "initiative";
-      } 
-      source.attribute = ED4E.attributesV1_0_0[ED4E.previousSystemV0_8_2.attributes.indexOf( source.attribute )];
+        source.attribute = "";
+      } else if ( source.attribute !== "" ) {
+        source.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.attributes.indexOf( source.attribute )];
+      }
     }
 
     // Migrate description
@@ -324,10 +326,20 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     }
  
 
-    // Migrate minDifficulty
-    source.difficulty ??= {};
-    source.difficulty.target ??= ED4E.targetDefenseV1_0_0[ED4E.previousSystemV0_8_2.targetDefense.indexOf( source.defenseTarget )];
-    source.difficulty.group ??= ED4E.groupDifficultyV1_0_0[ED4E.previousSystemV0_8_2.groupDifficulty.indexOf( source.defenseGroup )];
+    // Migrate minDifficulty (only if source.difficulty is not set)
+    if ( !source.difficulty ) {
+      source.difficulty ??= {};
+      if ( source.difficulty.target === "" ) {
+        source.difficulty.target = "";
+      } else {
+        source.difficulty.target ??= Object.keys( ED4E.targetDifficulty )[ED4E.systemV0_8_2.targetDefense.indexOf( source.defenseTarget )];
+      }
+      if ( source.difficulty.group === "" ) {
+        source.difficulty.group = "";
+      } else {
+        source.difficulty.group ??= Object.keys( ED4E.groupDifficulty )[ED4E.systemV0_8_2.groupDifficulty.indexOf( source.defenseGroup )];
+      }
+    }
 
     // Migrate level
     source.level ??= source.ranks;

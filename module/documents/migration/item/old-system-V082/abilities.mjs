@@ -9,10 +9,11 @@ export default class AbilityMigration {
     const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
     // Combine multiple arrays into one
     const combinedPhysicalAttackNames = [
-      ...ED4E.unarmedCombatNames,
-      ...ED4E.meleeWeaponNames,
-      ...ED4E.missileWeaponNames,
-      ...ED4E.throwingWeaponNames,
+      ...ED4E.systemV0_8_2.unarmedCombatNames,
+      ...ED4E.systemV0_8_2.meleeWeaponNames,
+      ...ED4E.systemV0_8_2.missileWeaponNames,
+      ...ED4E.systemV0_8_2.throwingWeaponNames,
+      ...ED4E.systemV0_8_2.offHandCombatTalents,
     ];
 
     const configMappings = [
