@@ -7,8 +7,16 @@
   - "eslint --config eslint.config.mjs --max-warnings 0"
 
 
+# spell check
+"**/*.{js,mjs,md}":
+  - "cspell --no-progress --no-summary"
+
+
+
+
 # consolidate, format and check language files
 "lang/**/*.json": "npm run lint:lang"
+
 
 # activate when clear what the *.md format is
 # if Github docs, there is an extra module for it: https://github.com/github/markdownlint-github
