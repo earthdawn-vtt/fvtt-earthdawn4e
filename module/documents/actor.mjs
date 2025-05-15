@@ -12,7 +12,7 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
-import { typeMigrationConfig } from "./migration/actor/old-system/_module.mjs";
+import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 

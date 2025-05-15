@@ -1,3 +1,4 @@
+ 
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
@@ -303,8 +304,63 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+   
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+
+    // Migrate action
+    source.action = source.action?.slugify( { lowercase: true, strict: true } );
+
+    // Migrate Attributes
+    if ( ED4E.systemV0_8_2.attributes.includes( source.attribute ) ) {
+      if ( source.attribute === "initiativeStep" ) {
+        source.rollType = "initiative";
+        source.attribute = "";
+      } else if ( source.attribute !== "" ) {
+        source.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.attributes.indexOf( source.attribute )];
+      }
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
+ 
+
+    // Migrate minDifficulty (only if source.difficulty is not set)
+    if ( !source.difficulty ) {
+      source.difficulty ??= {};
+      if ( source.difficulty.target === "" ) {
+        source.difficulty.target = "";
+      } else {
+        source.difficulty.target ??= Object.keys( ED4E.targetDifficulty )[ED4E.systemV0_8_2.targetDefense.indexOf( source.defenseTarget )];
+      }
+      if ( source.difficulty.group === "" ) {
+        source.difficulty.group = "";
+      } else {
+        source.difficulty.group ??= Object.keys( ED4E.groupDifficulty )[ED4E.systemV0_8_2.groupDifficulty.indexOf( source.defenseGroup )];
+      }
+    }
+
+    // Migrate level
+    source.level ??= source.ranks;
+
+    // Migrate rollTypes
+    if ( source.healing > 0 ) {
+      source.rollType ??= "recovery";
+    }
+
+    // Migrate Talent category
+    if ( source.talentCategory ) {
+      if ( source.talentCategory?.slugify( { lowercase: true, strict: true } ) === "racial" ) {
+        source.talentCategory = "free";
+      } else {
+        source.talentCategory = source.talentCategory.slugify( { lowercase: true, strict: true } );
+      } 
+    }
+
+    // Migrate tier
+    if ( source.tier ) {
+      source.tier = source.tier.slugify( { lowercase: true, strict: true } );;
+    }
   }
 }

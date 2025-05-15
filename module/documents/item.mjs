@@ -1,6 +1,6 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
-import { typeMigrationConfig } from "./migration/item/old-system/_module.mjs";
+import { typeMigrationConfig } from "./migration/item/old-system-V082/_module.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.

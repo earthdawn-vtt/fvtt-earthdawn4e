@@ -12,6 +12,7 @@ import * as ROLLS from "./rolls.mjs";
 import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
+import * as MIGRATIONS from "./migrations.mjs";
 
 
 /* -------------------------------------------- */
@@ -54,6 +55,7 @@ const ED4E = {
   ...SOCKETS,
   ...STATUSES,
   ...SYSTEM,
+  ...MIGRATIONS
 };
 
 export default ED4E;
