@@ -508,7 +508,7 @@ class ItemPromptFactory extends PromptFactory {
       validationTemplate,
       {
         render:            { requirements: true },
-        requirementGroups: this.document?.system?.increaseValidationData ?? {},
+        requirementGroups: this.document?.system?.learnValidationData ?? {},
       },
     );
 

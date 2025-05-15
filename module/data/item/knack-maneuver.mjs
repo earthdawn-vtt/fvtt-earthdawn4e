@@ -6,8 +6,8 @@ import KnackTemplate from "./templates/knack-item.mjs";
  * Data model template with information on items that are used to represent custom active effects.
  */
 export default class KnackManeuverData extends ManeuverData.mixin(
-  KnackTemplate,
   ItemDescriptionTemplate,
+  KnackTemplate,
 ) {
 
   /** @inheritdoc */
