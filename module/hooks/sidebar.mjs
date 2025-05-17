@@ -3,42 +3,66 @@ import RollPrompt from "../applications/global/roll-prompt.mjs";
  *
  */
 export default function () {
-  Hooks.on( "renderSidebarTab", ( app, html ) => {
-
+  Hooks.on( "renderSettings", ( app, html ) => {
     if ( app instanceof Settings ) {
       // Add buttons
-      const changeLogButton = $( `<button id="ed4eChangelog" class="changelog">
-      ${game.i18n.localize( "ED.Settings.SpecificSettingOptions.changelog" )}</button>` );
-      const helpButton = $( `<button id="ed4eHelp" class="help">
-      ${game.i18n.localize( "ED.Settings.SpecificSettingOptions.help" )}</button>` );
-      const createBugButton = $( `<button id="ed4eTroubleshooting" class="troubleshooter">
-      ${ game.i18n.localize( "ED.Settings.SpecificSettingOptions.troubleshooting" )}</button>` );
-      html
-        .find( "#game-details" )
-        .after(
-          $( "<div id=\"ed4e-sidebar\">" ).append(
-            $( `<h2>${game.i18n.localize( "ED.Settings.SpecificSettingOptions.title" )}</h2>` ),
-            $( "<div id='ed4e-details'>" ).append( changeLogButton, helpButton, createBugButton )
-          )
-        );
-      changeLogButton.click( () => {
-        window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log", "_blank" );
-      } );
-      helpButton.click( () => {
-        window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Functional-Specification", "_blank" );
-      } );
-      createBugButton.click( () => {
-        window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/issues/new/choose", "_blank" );
-      } );
+      const changeLogButton = document.createElement( "button" );
+      changeLogButton.id = "ed4eChangelog";
+      changeLogButton.className = "changelog";
+      changeLogButton.textContent = game.i18n.localize( "ED.Settings.SpecificSettingOptions.changelog" );
+
+      const helpButton = document.createElement( "button" );
+      helpButton.id = "ed4eHelp";
+      helpButton.className = "help";
+      helpButton.textContent = game.i18n.localize( "ED.Settings.SpecificSettingOptions.help" );
+
+      const createBugButton = document.createElement( "button" );
+      createBugButton.id = "ed4eTroubleshooting";
+      createBugButton.className = "troubleshooter";
+      createBugButton.textContent = game.i18n.localize( "ED.Settings.SpecificSettingOptions.troubleshooting" );
+
+      // Find the first element with the class "settings"
+      const settingsElement = html.querySelector( ".settings" );
+      if ( settingsElement ) {
+        // Create the new sidebar container
+        const sidebarDiv = document.createElement( "section" );
+        sidebarDiv.className = "flexcol";
+        sidebarDiv.id = "ed4e-sidebar";
+
+        const title = document.createElement( "h4" );
+        title.className = "divider"; // Add the "divider" class
+        title.textContent = game.i18n.localize( "ED.Settings.SpecificSettingOptions.title" );
+
+        // Append title and buttons directly to the sidebar div
+        sidebarDiv.appendChild( title );
+        sidebarDiv.appendChild( changeLogButton );
+        sidebarDiv.appendChild( helpButton );
+        sidebarDiv.appendChild( createBugButton );
+
+        // Insert the sidebar div after the settings element
+        settingsElement.insertAdjacentElement( "afterend", sidebarDiv );
+
+        // Add click event listeners
+        changeLogButton.addEventListener( "click", () => {
+          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log", "_blank" );
+        } );
+        helpButton.addEventListener( "click", () => {
+          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki", "_blank" );
+        } );
+        createBugButton.addEventListener( "click", () => {
+          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/issues/new/choose", "_blank" );
+        } );
+      }
     }
   } );
-
-
 
   Hooks.on( "changeSidebarTab", ( app ) => {
     /* -------------------------------------------- */
     /*  Dice Icon Roll                              */
     /* -------------------------------------------- */
-    $( "#chat-controls i.fa-dice-d20" ).on( "click", RollPrompt.rollArbitraryPrompt.bind( null ) );
-  }  );
+    const diceIcon = document.querySelector( "#chat-controls i.fa-dice-d20" );
+    if ( diceIcon ) {
+      diceIcon.addEventListener( "click", RollPrompt.rollArbitraryPrompt.bind( null ) );
+    }
+  } );
 }
