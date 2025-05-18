@@ -33,7 +33,7 @@ const inputFiles = process.argv.slice( 2 ).filter( file => file.endsWith( ".json
 
 // If called from lint-staged with files, ensure there's only one lang file
 if ( inputFiles.length > 1 ) {
-  console.error( "So nicht, Freundchen! Only one language file can be staged at a time." );
+  console.error( "Sorry Buddy! Only one language file can be staged at a time." );
   process.exit( 1 );
 }
 
