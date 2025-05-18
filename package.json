@@ -13,15 +13,15 @@
     "url": "https://github.com/patrickmohrmann/earthdawn4eV2/issues"
   },
   "scripts": {
-    "build": "gulp buildAll",
-    "build:css": "gulp buildCSS",
-    "build:watch": "gulp",
-    "lint:lang": "node ./utils/lint-json.mjs",
-    "lint": "gulp lint",
-    "lint:fix": "gulp lint --fix",
+    "build":         "gulp buildAll",
+    "build:css":     "gulp buildCSS",
+    "build:watch":   "gulp",
+    "lint:lang":     "node tools/lint-json.mjs",
+    "lint":          "gulp lint",
+    "lint:fix":      "gulp lint --fix",
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
     "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
-    "prepare": "husky"
+    "prepare":       "husky"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
