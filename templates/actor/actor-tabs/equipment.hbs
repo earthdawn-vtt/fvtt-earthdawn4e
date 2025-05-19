@@ -2,45 +2,48 @@
 <h3>{{localize "ED.Actor.Header.equipment"}}</h3>
 <div class="container__block">
  {{#if (eq this.actor.type "character")}}
-    <div class="encumbrance-wrapper">
-        <div class="encumbrance-row">
-            <span class="encumbrance-label">{{localize "ED.Actor.Header.encumbrance"}}:</span>
-            <div>
-            <input id="meter-value" class="input__number-input" type="number" name="system.encumbrance.value"
-                value="{{actor.system.encumbrance.value}}" min="0" step="1" oninput="
-                const wrapper = this.closest('.encumbrance-wrapper');
-                const fill = wrapper.querySelector('.encumbrance-fill');
-                const max = parseFloat(wrapper.querySelector('#max-value').value);
-                const val = parseFloat(this.value);
-                const rangeMax = max * 2;
-                const percent = (val / rangeMax) * 100;
-                fill.style.setProperty('--fill-width', percent + '%');
-                fill.classList.remove('low', 'medium', 'high', 'over');
-                if (val <= max) {
-                    fill.classList.add('low');
-                } else if (val <= max * 1.5) {
-                    fill.classList.add('medium');
-                } else if (val <= rangeMax) {
-                    fill.classList.add('high');
-                } else {
-                    fill.classList.add('over');
-                }
-                ">
-            </div>
-            <span>/</span>
-            <div>
-            <input id="max-value" class="input__number-input" type="number" name="system.encumbrance.max"
-                value="{{actor.system.encumbrance.max}}" min="1" step="1" oninput="
-                document.getElementById('meter-value').dispatchEvent(new Event('input'));
-                ">
-            </div>
-            <div class="encumbrance-bar">
-            <div class="encumbrance-fill"></div>
-            <div class="encumbrance-marker marker-x"></div>
-            <div class="encumbrance-marker marker-x15"></div>
-            </div>
-        </div>
+<div class="encumbrance__container">
+  <div class="encumbrance__row">
+    <span class="encumbrance__label">{{localize "ED.Actor.Header.encumbrance"}}:</span>
+    <input id="encumbrance__value" class="input__rectangle-input--centered"
+           type="number"
+           name="system.encumbrance.value"
+           value="{{actor.system.encumbrance.value}}"
+           min="0" step="1"
+           oninput="
+             const container = this.closest('.encumbrance__container');
+             const fill = container.querySelector('.encumbrance__fill');
+             const max = parseFloat(container.querySelector('#encumbrance__max').value);
+             const val = parseFloat(this.value);
+             const rangeMax = max * 2;
+             const percent = (val / rangeMax) * 100;
+             fill.style.setProperty('--fill-width', percent + '%');
+             fill.classList.remove('low', 'medium', 'high', 'over');
+             if (val <= max) {
+               fill.classList.add('low');
+             } else if (val <= max * 1.5) {
+               fill.classList.add('medium');
+             } else if (val <= rangeMax) {
+               fill.classList.add('high');
+             } else {
+               fill.classList.add('over');
+             }
+           ">
+    <span>/</span>
+    <input id="encumbrance__max" class="input__rectangle-input--centered"
+           type="number"
+           name="system.encumbrance.max"
+           value="{{actor.system.encumbrance.max}}"
+           min="1" step="1"
+           oninput="document.getElementById('encumbrance__value').dispatchEvent(new Event('input'))">
+    <div class="encumbrance__bar">
+      <div class="encumbrance__fill"></div>
+      <div class="encumbrance__marker marker__x"></div>
+      <div class="encumbrance__marker marker__x15"></div>
     </div>
+  </div>
+</div>
+
     {{/if}}
     {{!-- Weapons --}}
     <div class="equipment-card__grid--container container__header text-break__auto">

@@ -109,13 +109,13 @@
         <div class="effect-card__grid--item"></div>
         <div class="effect-card__grid--item"></div>
       </div>
-    </div>
-    <div>
+      <div>
       {{#each actor.effects as |effect id|}}
         {{#if effect.system.permanent}}
           {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
         {{/if}}
       {{/each}}
+    </div>
     </div>
     <p class="undefined">Hier müssen die permanenten Effekte hin.</p>
   </div>

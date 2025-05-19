@@ -31,67 +31,64 @@
     border: none;
     display: block;
 }
-// Hover effect for dice icons
-.ability-card__grid--item.icons__dice:hover+div,
-.attribute-card__grid--item.icons__dice:hover+div,
-.power-card__grid--item.icons__dice:hover+div,
-.maneuver-card__grid--item.icons__dice:hover+div,
-.equipment-card__grid--item.icons__dice:hover+div {
-    cursor: pointer;
-    color: var(--color-gold-1);
-    text-shadow: 0 0 10px var(--color-gold-5);
-}
 // Hover animation for full grid containers
+.attribute-card__grid--container:hover {
+    .icons__dice img {
+        width: 20px;
+        height: 20px;
+        margin: 0 0 0 5px;  
+    }
+}
 .ability-card__grid--container:hover,
 .knack-card__grid--container:hover,
 .attribute-card__grid--container:hover,
 .power-card__grid--container:hover,
 .equipment-card__grid--container:hover {
-.icons__dice img {
-    box-shadow: 0 0 10px var(--color-gold-1);
-    border-radius: 50%;
-    background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
-}
-.roll-icon__hover,
-.attribute-icon,
-.power-icon,
-.equipment-icon {
-    margin-top: -4px;
-    display: block;
-    animation-duration: 3s;
-    animation-name: example;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-.roll-icon__hover-fixed {
-    display: block;
-    width: 20px;
-    height: 20px;
-}
-.ability-icon,
-.equipment-icon,
-.power-icon {
-    display: none;
-}
-.ability-card__grid--item:hover,
-.attribute-card__grid--item:hover,
-.equipment-card__grid--item:hover,
-.maneuver-card__grid--item:hover,
-.power-card__grid--item:hover {
-    .roll-icon__pointer {
-    display: block;
+    .icons__dice img {
+        box-shadow: 0 0 10px var(--color-gold-1);
+        border-radius: 50%;
+        background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1)); 
     }
+    .roll-icon__hover,
     .attribute-icon,
+    .power-icon,
+    .equipment-icon {
+        margin-top: -4px;
+        display: block;
+        animation-duration: 3s;
+        animation-name: example;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    .roll-icon__hover-fixed {
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
     .ability-icon,
     .equipment-icon,
     .power-icon {
-    display: none;
+        display: none;
     }
-    .roll-icon__hover,
-    .roll-icon__hover-fixed {
-    display: none;
+    .ability-card__grid--item:hover,
+    .attribute-card__grid--item:hover,
+    .equipment-card__grid--item:hover,
+    .maneuver-card__grid--item:hover,
+    .power-card__grid--item:hover {
+        .roll-icon__pointer {
+        display: block;
+        }
+        .attribute-icon,
+        .ability-icon,
+        .equipment-icon,
+        .power-icon {
+        display: none;
+        }
+        .roll-icon__hover,
+        .roll-icon__hover-fixed {
+        display: none;
+        }
     }
-}
 }
 
 
@@ -102,40 +99,37 @@ display: none;
 }
 
 .brief-description {
-max-width: 200px;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-display: inline-block; /* Ensure it stays inline */
-vertical-align: top; /* Aligns with other inline elements */
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block; /* Ensure it stays inline */
+    vertical-align: top; /* Aligns with other inline elements */
 }
-
 
 .knack-card__single-line {
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-max-width: 280px;
-display: flex; /* Use flexbox to keep spans inline */
-align-items: center; /* Align items vertically */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+    display: flex; /* Use flexbox to keep spans inline */
+    align-items: center; /* Align items vertically */
 }
-
 .knack-card__single-line.display__inline-block {
-flex-shrink: 0; /* Prevent spans from shrinking */
-white-space: nowrap; /* Ensure no line breaks */
-overflow: hidden; /* Hide overflow */
-text-overflow: ellipsis; /* Add ellipsis for overflow text */
-max-width: 100%; /* Ensure the span does not exceed the container's width */
-display: inline-block; /* Ensure it stays inline */
-vertical-align: top; /* Aligns with other inline elements */
+    flex-shrink: 0; /* Prevent spans from shrinking */
+    white-space: nowrap; /* Ensure no line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 100%; /* Ensure the span does not exceed the container's width */
+    display: inline-block; /* Ensure it stays inline */
+    vertical-align: top; /* Aligns with other inline elements */
 }
-
 .knack-card__single-line.display__inline-block p {
-display: inline; /* Display paragraphs inline */
-margin: 0; /* Remove default margin */
-padding: 0; /* Remove default padding */
-white-space: nowrap; /* Ensure no line breaks */
-overflow: hidden; /* Hide overflow */
-text-overflow: ellipsis; /* Add ellipsis for overflow text */
-max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
+    display: inline; /* Display paragraphs inline */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    white-space: nowrap; /* Ensure no line breaks */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
 }

@@ -3,6 +3,7 @@
     background: var(--background-sheet-actor);
     .tab {
         overflow: auto;
+        margin-top: 10px;
     }
     .window-content {
     backdrop-filter: none;
@@ -222,56 +223,6 @@
             }
         }
     }
-    .encumbrance-row {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0.6rem 0 0.6rem 0;
-    }
-    .encumbrance-label {
-        white-space: nowrap;
-        text-transform: uppercase;
-        padding-top: 2px;
-    }
-    .encumbrance-bar {
-        position: relative;
-        overflow: hidden;
-        flex: 1;
-        height: 12px;
-        background: var(--color-primary-grey);
-    }
-      .encumbrance-fill {
-        height: 100%;
-        width: var(--fill-width, 0%);
-        transition: width 0.3s ease, background-color 0.3s ease;
-        background-color: grey;
-    }
-    .encumbrance-fill.low {
-        background-color: var(--color-meter-1);
-    }
-    .encumbrance-fill.medium {
-        background-color: var(--color-meter-2);
-    }
-    .encumbrance-fill.high {
-        background-color: var(--color-meter-3);
-    }
-    .encumbrance-fill.over {
-        background-color: var(--color-meter-4);
-    }
-    .encumbrance-marker {
-        position: absolute;
-        top: 0;
-        width: 2px;
-        height: 100%;
-        background-color: var(--color-primary);
-        pointer-events: none;
-    }
-    .marker-x {
-        left: 50%;
-    }
-    .marker-x15 {
-        left: 75%;
-    }
     // Effects Tab
     .conditions__grid--container {
         display: grid;
@@ -320,40 +271,67 @@
             minmax(200px, 200px)
             minmax(70px, 70px)
             minmax(70px, 70px)
-            minmax(60px, 60px)
+            minmax(60px, 60px);
+        height: 30px;
     }
 
 
 
-        
+    // Meters
 
+    .encumbrance__container {
+        margin-top: 0.5rem;
+    }
+    .encumbrance__row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.6rem 0;
+    }
+    .encumbrance__label {
+        white-space: nowrap;
+        text-transform: uppercase;
+        padding-top: 2px;
+    }
+    .encumbrance__bar {
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+        height: 12px;
+        background: var(--color-primary-grey);
+    }
+    .encumbrance__fill {
+        height: 100%;
+        width: var(--fill-width, 0%);
+        transition: width 0.3s ease, background-color 0.3s ease;
+        background-color: grey;
+        &.low { background-color: var(--color-meter-1); }
+        &.medium { background-color: var(--color-meter-2); }
+        &.high { background-color: var(--color-meter-3); }
+        &.over { background-color: var(--color-meter-4); }
+    }
+    .encumbrance__marker {
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background-color: var(--color-primary);
+        pointer-events: none;
+        &.marker__x { left: 50%; }
+        &.marker__x15 { left: 75%; }
+    }
 
+    // Navigation tab
 
-
-
-
-
-
-
-
-
-
-
-
+    .sheet-tabs.tabs.tabs-navigation  {
+        gap: var(--grid-col-gap);
+        line-height: 1.2rem;
+    }
+    .sheet-tabs >[data-tab]  {
+        padding: 8px 4px;
+    }
     
 
-        // Navigation tab formatting
-        .sheet-tabs.tabs.tabs-navigation  {
-            gap: var(--grid-col-gap);
-            line-height: 1.2rem;
-        }
-        .sheet-tabs >[data-tab]  {
-            padding: 8px 4px;
-        }
-
-        .hint {
-            display: none;
-        }
         
         // .body {
         //     position: relative;
