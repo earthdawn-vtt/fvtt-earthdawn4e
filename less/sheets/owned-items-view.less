@@ -1,273 +1,53 @@
-.ability-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        40px // Icon
-        250px // Name
-        100px // Action
-        70px // Rank
-        70px // Step
-        70px // Strain
-        70px // Attribute
-        100px // Control Icons
-    ;
-
-    .ability-card__grid--item {
-
-        .roll-icon__hover,
-        .roll-icon__hover-fixed,
-        .roll-icon__pointer {
-            display: none;
-        }
+// Hide roll icons by default in all relevant containers
+.ability-card__grid--item,
+.knack-card__grid--item,
+.maneuver-card__grid--item,
+.knack-maneuver-card__grid--item,
+.attribute-card__grid--item,
+.equipment-card__grid--item,
+.power-card__grid--item {
+    .roll-icon__hover,
+    .roll-icon__hover-fixed,
+    .roll-icon__pointer {
+        display: none;
     }
 }
-
-.knack-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        60px // Icon
-        190px // Name
-        40px // StanardEffect
-        100px // Action
-        70px // Rank
-        70px // Step
-        70px // Strain
-        70px // Attribute
-        100px // Control Icons
-    ;
-
-    .knack-card__grid--item {
-
-        
-
-        .roll-icon__hover,
-        .roll-icon__hover-fixed,
-        .roll-icon__pointer {
-            display: none;
-        }
-    }
+// Reset item control float where needed
+.maneuver-card__grid--container .itemControlGroup,
+.equipment-card__grid--container .itemControlGroup,
+.power-card__grid--container .itemControlGroup {
+    float: none;
 }
-
-.maneuver-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        40px // Icon
-        280px // Name
-        100px // Extra Successes 
-        250px // Summary
-        100px // Control Icons
-    ;
-
-    .maneuver-card__grid--item {
-        .roll-icon__hover,
-        .roll-icon__hover-fixed,
-        .roll-icon__pointer {
-            display: none;
-        }
-    }
-
-    
-    .itemControlGroup {
-        float:none;
-    }
-}
-
-.knack-maneuver-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        60px // Icon
-        190px // Name
-        40px // StanardEffect
-        100px // Type
-        280px // Summary
-        100px // Control Icons
-    ;
-
-    .knack-card__grid--item {
-
-        
-
-        .roll-icon__hover,
-        .roll-icon__hover-fixed,
-        .roll-icon__pointer {
-            display: none;
-        }
-    }
-}
-
-.parent__rank {
-    font-style: italic;
-    opacity: 0.5;
-}
-
-.ability-icon,
-.equipment-icon,
-.power-icon,
-.effect-icon, 
-.item__image--visible,
-.equipment-icon__visible,
-.power-icon__visible {
-    width: 25px;
-    height: 25px;
-    border: none;
-}
-
-.item__status {
-    width: 16px;
-    border: none;
-}
-
-
-.attribute-card__grid--container {
-    margin-bottom: 3px;
-    align-items: center;
-    height: 30px;
-    display: grid;
-    grid-template-columns:
-        // 250 px available
-        30px // Icon
-        110px // Name
-        38px // value
-        38px // enhancement
-        38px // Step
-    ;
-
-    .attribute__name {
-        padding-left: 2px;
-        text-align: left;
-    }
-
-    .attribute-card__grid--item {
-        .roll-icon__pointer {
-            display: none;  
-        }
-    }
-}
-
-.equipment-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        40px // Icon
-        250px // Name
-        100px // Action
-        75px // Rank
-        75px // Step
-        75px // Strain
-        75px // Attribute
-        75px // Control Icons
-    ;
-
-    .equipment-card__grid--item {
-        .roll-icon__hover,
-        .roll-icon__pointer {
-            display: none;
-        }  
-    }
-
-    .itemControlGroup {
-        float:none;
-    }
-}
-
-.power-card__grid--container {
-    align-items: center;
-    display: grid;
-    height: 30px;
-    grid-template-columns:
-        // 790 px available
-        40px // Icon
-        280px // Name
-        100px // Action
-        100px // powerStep | extraSuccesses
-        75px // damageStep
-        75px // Strain
-        100px // Control Icons
-    ;
-
-    .power-card__grid--item,
-    .maneuver-card__grid--item {
-        .roll-icon__hover,
-        .roll-icon__hover-fixed,
-        .roll-icon__pointer {
-            display: none;
-        }
-    }
-
-    .itemControlGroup {
-        float:none;
-    }
-}
-
-
-.effect-card__grid--container {
-    align-items: center;
-    height: 30px;
-    display: grid;
-    grid-template-columns:
-        // 790 px available
-        40px // Icon
-        250px // Name
-        200px // Origin
-        100px // active
-        100px // duration
-        100px // Control Icons
-    ;
-
-    .effect {
-        padding-left: 2px;
-        text-align: left;
-    }
-}
-
-
+// General roll icon styles
 .roll-icon__hover,
 .roll-icon__hover-fixed,
 .roll-icon__pointer,
 .ability-icon,
 .attribute-icon,
 .power-icon,
-.power-icon__visible  
+.power-icon__visible,
 .equipment-icon,
 .equipment-icon__visible {
     border: none;
     display: block;
 }
-
-
-.ability-card__grid--item.icons__dice:hover+div,
-.attribute-card__grid--item.icons__dice:hover+div,
-.power-card__grid--item.icons__dice:hover+div,
-.maneuver-card__grid--item.icons__dice:hover+div,
-.equipment-card__grid--item.icons__dice:hover+div {
-    cursor: pointer;
-    color: #000;
-    text-shadow: 0 0 10px red;
+// Hover animation for full grid containers
+.attribute-card__grid--container:hover {
+    .icons__dice img {
+        width: 20px;
+        height: 20px;
+        margin: 0 0 0 5px;  
+    }
 }
-
-
 .ability-card__grid--container:hover,
 .knack-card__grid--container:hover,
 .attribute-card__grid--container:hover,
 .power-card__grid--container:hover,
 .equipment-card__grid--container:hover {
-    .icons__dice img{
-        box-shadow: 0 0 10px red;
+    .icons__dice img {
+        box-shadow: 0 0 10px var(--color-gold-1);
         border-radius: 50%;
-        background-image: radial-gradient(rgb(90, 0, 0), rgb(221, 86, 86), rgb(221, 207, 205));
+        background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1)); 
     }
     .roll-icon__hover,
     .attribute-icon,
@@ -279,56 +59,43 @@
         animation-name: example;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-
-        @keyframes example {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-
-        }
     }
     .roll-icon__hover-fixed {
-            margin-top: -4px;
-            display: block;
-            width: 20px;
+        display: block;
+        width: 20px;
+        height: 20px;
     }
-
     .ability-icon,
     .equipment-icon,
     .power-icon {
         display: none;
     }
-
     .ability-card__grid--item:hover,
     .attribute-card__grid--item:hover,
     .equipment-card__grid--item:hover,
     .maneuver-card__grid--item:hover,
     .power-card__grid--item:hover {
         .roll-icon__pointer {
-            display: block;
-            margin-top: -4px;
+        display: block;
         }
-
         .attribute-icon,
         .ability-icon,
         .equipment-icon,
         .power-icon {
-            display: none;
+        display: none;
         }
-
-        .roll-icon__hover, 
+        .roll-icon__hover,
         .roll-icon__hover-fixed {
-            display: none;
+        display: none;
         }
     }
 }
 
+
+
+
 .card__description--toggle {
-    display: none;
+display: none;
 }
 
 .brief-description {
@@ -340,7 +107,6 @@
     vertical-align: top; /* Aligns with other inline elements */
 }
 
-
 .knack-card__single-line {
     white-space: nowrap;
     overflow: hidden;
@@ -349,7 +115,6 @@
     display: flex; /* Use flexbox to keep spans inline */
     align-items: center; /* Align items vertically */
 }
-
 .knack-card__single-line.display__inline-block {
     flex-shrink: 0; /* Prevent spans from shrinking */
     white-space: nowrap; /* Ensure no line breaks */
@@ -359,7 +124,6 @@
     display: inline-block; /* Ensure it stays inline */
     vertical-align: top; /* Aligns with other inline elements */
 }
-
 .knack-card__single-line.display__inline-block p {
     display: inline; /* Display paragraphs inline */
     margin: 0; /* Remove default margin */

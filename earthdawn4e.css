@@ -30,56 +30,131 @@
   font-style: normal;
 }
 :root {
+  --font-size-8: 0.5rem;
+  --font-size-9: 0.5625rem;
+  --font-size-17: 1.0625rem;
+  --font-size-19: 1.1875rem;
+  --font-size-21: 1.3125rem;
+  --font-size-22: 1.375rem;
+  --font-size-23: 1.4375rem;
+  --font-size-25: 1.5625rem;
+  --font-size-26: 1.625rem;
+  --font-size-27: 1.6875rem;
+  --font-size-29: 1.8125rem;
+  --font-size-30: 1.875rem;
+  --font-size-31: 1.9375rem;
+  --font-size-33: 2.0625rem;
+  --font-size-34: 2.125rem;
+  --font-size-35: 2.1875rem;
+  --font-size-37: 2.3125rem;
+  --font-size-38: 2.375rem;
+  --font-size-39: 2.4375rem;
+  --font-size-40: 2.5rem;
+  --font-size-42: 2.625rem;
+  --font-league-spartan: 'League Spartan', sans-serif;
+  --font-container-header: 0.8rem;
+  --font-icon-small: 0.6rem;
+  --font-icon-medium: 0.8rem;
+  --grid-col-gap: 0.5rem;
+  --size-scrollbar-width: 1rem;
   --color-transparent: rgba(0, 0, 0, 0);
   --color-gold-1: rgba(50, 40, 30);
   --color-gold-2: rgba(70, 55, 20);
-  --color-gold-3: rgba(120, 90, 40);
-  --color-gold-4: rgba(200, 155, 60);
+  --color-gold-3: #6d4f1a;
+  --color-gold-4: #a17619;
   --color-gold-5: rgba(200, 170, 110);
+  --color-meter-1: rgba(238, 227, 103, 0.75);
+  --color-meter-2: #cc8f1f;
+  --color-meter-3: #864d0b;
+  --color-meter-4: #9b1010;
+  --color-text-banner: rgba(230, 210, 200);
 }
-:root .theme-dark {
+:root .application.sheet.earthdawn4e.actor,
+:root .theme-dark.application.sheet.earthdawn4e.actor {
+  --color-primary: rgba(3, 4, 10);
+  --color-primary-35: rgba(3, 4, 10, 0.35);
+  --color-secondary: rgba(21, 18, 54);
+  --color-secondary-35: rgba(21, 18, 54, 0.35);
+  --color-tertiary: rgba(55, 61, 117);
+  --color-tertiary-35: rgba(55, 61, 117, 0.35);
+  --color-primary-grey: rgba(54, 54, 54);
+  --color-primary-grey-60: rgba(54, 54, 54, 0.6);
   --color-text-primary: rgba(230, 210, 200);
-  --color-npc-primary: rgba(3, 4, 10);
-  --color-npc-primary-35: rgba(3, 4, 10, 0.35);
-  --color-npc-secondary: rgba(21, 18, 54);
-  --color-npc-secondary-35: rgba(21, 18, 54, 0.35);
-  --color-npc-tertiary-3: rgba(55, 61, 117);
-  --color-npc-tertiary-35: rgba(55, 61, 117, 0.35);
-  --color-pc-primary: rgba(2, 3, 0);
-  --color-pc-primary-35: rgba(2, 3, 0, 0.35);
-  --color-pc-secondary: rgba(22, 46, 28);
-  --color-pc-secondary-35: rgba(22, 46, 28, 0.35);
-  --color-pc-tertiary: rgba(58, 118, 62);
-  --color-pc-tertiary-35: rgba(58, 118, 62, 0.35);
-  --color-grey-dark: rgba(16, 16, 16);
-  --color-gold-text: rgba(230, 210, 200);
-  --sheet-npc-background: var(--color-npc-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
-  --sheet-pc-background: var(--color-pc-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
+  --border-main: 2px solid var(--color-gold-3);
+  --border-button: 1px solid var(--color-gold-2);
+  --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
+  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
 }
-:root .theme-light {
+:root .application.sheet.earthdawn4e.actor.character,
+:root .theme-dark.application.sheet.earthdawn4e.actor.character {
+  --color-primary: rgba(2, 3, 0);
+  --color-primary-35: rgba(2, 3, 0, 0.35);
+  --color-secondary: rgba(22, 46, 28);
+  --color-secondary-35: rgba(22, 46, 28, 0.35);
+  --color-tertiary: rgba(58, 118, 62);
+  --color-tertiary-35: rgba(58, 118, 62, 0.35);
+  --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
+  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
+}
+:root .theme-light.application.sheet.earthdawn4e.actor {
+  --color-primary: rgba(255, 255, 255);
+  --color-primary-35: rgba(255, 255, 255, 0.35);
+  --color-secondary: rgba(46, 54, 128);
+  --color-secondary-35: rgba(46, 54, 128, 0.35);
+  --color-tertiary: #464646;
+  --color-tertiary-35: rgba(70, 70, 70, 0.35);
+  --color-primary-grey: #8f8f8f;
   --color-text-primary: #2e2730;
-  --sheet-npc-background: url(assets/sheet/parchment.webp) repeat;
-  --sheet-pc-background: url(assets/sheet/parchment.webp) repeat;
+  --color-text-banner: rgba(245, 229, 222);
+  --border-main: 2px solid var(--color-gold-3);
+  --border-button: 2px solid var(--color-gold-4);
+  --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
+  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
 }
-.partial__two {
-  float: left;
-  width: 50%;
+.layout__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.95rem;
 }
-.partial__three {
-  float: left;
-  width: 33.3%;
+.layout__col {
+  flex: 1 1 0;
+  box-sizing: border-box;
+  min-width: 0;
 }
-.partial__four {
-  float: left;
-  width: 25%;
+.layout__col--2 {
+  flex: 0 0 calc(98% / 2);
 }
-.partial__five {
-  float: left;
-  width: 20%;
+.layout__col--3 {
+  flex: 0 0 calc(98% / 3);
 }
-.partial__six {
-  float: left;
-  width: 16.6%;
+.layout__col--4 {
+  flex: 0 0 calc(98% / 4);
+}
+.layout__col--5 {
+  flex: 0 0 calc(98% / 5);
+}
+.layout__col--6 {
+  flex: 0 0 calc(98% / 6);
+}
+.one-line__vertical-align > * {
+  line-height: 35px;
+  vertical-align: middle;
+}
+.window-header {
+  background: none;
+  border: none;
+  justify-content: flex-end;
+  transform: scale(0.8);
+  transform-origin: top right;
+}
+.window-header .window-title {
+  display: none;
+}
+.application .window-header button.header-control {
+  color: var(--color-text-primary);
+}
+.application .controls-dropdown {
+  z-index: 99;
 }
 .header__no-border {
   border: none;
@@ -88,34 +163,19 @@
   border: none;
   background: transparent;
 }
-.header--centered {
+.input__square-input--centered,
+.input__rectangle-input--centered {
+  background: var(--color-primary);
+  border: var(--border-button);
+  border-radius: 3px;
   text-align: center;
+  width: 25px;
+  height: 25px;
 }
-.window-header {
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 4px;
-  transform: scale(0.8);
-  transform-origin: top right;
-}
-.window-header .window-title {
-  display: none;
-}
-.window-header .header-button {
-  margin-left: 4px;
-}
-.application .window-content {
-  backdrop-filter: none;
-  padding: 0 1rem 1rem 1rem;
-}
-.application .window-header button.header-control {
-  color: var(--color-text-primary);
-}
-.application .controls-dropdown {
-  z-index: 9;
+.input__rectangle-input--centered {
+  width: 40px;
+  height: 25px;
+  padding-top: 2px;
 }
 .input__circle-input--centered {
   border: 1px solid;
@@ -124,51 +184,10 @@
   height: 30px;
   border-radius: 50%;
   padding-top: 5px;
-}
-.input--centered {
-  text-align: center;
-}
-input.input__number-input {
-  width: 30px;
-  padding-top: 5px;
-  height: 20px;
-}
-.one-line__vertical-align > * {
-  line-height: 35px;
-  vertical-align: middle;
-}
-.text__alignment--left {
-  text-align: left;
-}
-.text__alignment--right {
-  text-align: right;
-}
-.text__alignment--center {
-  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
 }
 .application .font__bold {
   font-weight: bold;
-}
-.application .text-break__auto {
-  word-break: normal;
-}
-.application #chat-log,
-.application .window-content,
-.application input,
-.application .body {
-  font-family: 'ArnoPro Regular', serif;
-  font-size: 1.05em;
-}
-.application .h1,
-.application h2,
-.application h3,
-.application h4,
-.application h5,
-.application h6 {
-  font-family: 'WarhorseDIY', serif;
-  font-size: 1em;
-  color: inherit;
-  padding-top: 5px;
 }
 .application .font__no-underline {
   border-bottom: none;
@@ -176,18 +195,62 @@ input.input__number-input {
 .application .font__italic {
   font-style: italic;
 }
+.application .text-break__auto {
+  word-break: normal;
+}
+.application .h1,
+.application h2 {
+  font-family: 'WarhorseDIY', serif;
+}
+.application h3,
+.application h5,
+.application h6 {
+  font-family: 'WarhorseDIY', serif;
+  font-size: 1rem;
+  margin: 0;
+}
+.application h4 {
+  padding: 10px 0 0 0;
+  font-family: revert;
+  font-size: 0.9rem;
+  margin: 0;
+}
+.application .editor p {
+  font-family: 'ArnoPro Regular', serif;
+  font-size: 1.05em;
+}
 .display__inline-block {
   display: inline-block;
 }
 .space__small {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .undefined {
   background-color: red;
   color: black;
 }
-.scrollable {
-  overflow: auto;
+.header-bar {
+  background: var(--background-banner-actor);
+}
+.header-bar {
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px #000000;
+  margin: 0 0 5px 0;
+}
+.container__block {
+  margin: -7px 0 10px 0;
+  border: var(--border-main);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.container__header {
+  margin: 5px 0;
 }
 .item-image {
   width: 150px;
@@ -196,8 +259,19 @@ input.input__number-input {
 .icon__position--right {
   float: right;
 }
-.icons__small {
+.icons__small svg,
+.icons__small i,
+.icons__small img {
   font-size: small;
+  width: 16px;
+  height: 16px;
+}
+.icons__xsmall svg,
+.icons__xsmall i,
+.icons__xsmall img {
+  font-size: x-small;
+  width: 11px;
+  height: 11px;
 }
 .roll-icon__hover,
 .roll-icon__pointer,
@@ -476,87 +550,308 @@ input.input__number-input {
   filter: invert(100%);
 }
 .application.sheet.earthdawn4e.actor {
-  background: var(--sheet-npc-background);
+  font-size: var(--font-size-12);
+  background: var(--background-sheet-actor);
 }
-.character.application.sheet.earthdawn4e.actor {
-  background: var(--sheet-pc-background);
-}
-.application.sheet.earthdawn4e.actor header {
-  position: relative;
-  z-index: 3;
-  border: none;
-}
-.application.sheet.earthdawn4e.actor header .window-title {
-  padding-left: 80px;
-  margin-top: -4px;
-}
-.application.sheet.earthdawn4e.actor header .header-button {
-  margin-top: -4px;
-}
-.application.sheet.earthdawn4e.actor header .close {
-  padding-right: 80px;
+.application.sheet.earthdawn4e.actor .tab {
+  overflow: auto;
+  margin-top: 10px;
 }
 .application.sheet.earthdawn4e.actor .window-content {
-  background-size: cover;
-  padding: 0;
+  backdrop-filter: none;
   padding-top: 1px;
   height: 440px;
   overflow-y: auto;
   padding-left: 5px;
   padding-right: 5px;
 }
-.application.sheet.earthdawn4e.actor .window-content .tab.notes .sheet__editor .editor {
-  min-height: 200px;
-  max-height: 100%;
-}
-.application.sheet.earthdawn4e.actor .window-content .header__frame {
-  position: absolute;
-  margin-top: -70px;
-  z-index: 2;
-}
-.application.sheet.earthdawn4e.actor .window-content .header__frame img {
-  border: none;
-}
 .application.sheet.earthdawn4e.actor .window-content .section__name {
   position: relative;
   z-index: 4;
 }
-.application.sheet.earthdawn4e.actor .window-content .section__name .header-section__name .sheet-header__indent--left {
-  width: 45%;
-  float: left;
-  padding-left: 5px;
+.application.sheet.earthdawn4e.actor .window-content .tab h3 {
+  background: var(--background-banner-actor);
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px #000000;
+  margin: 0 0 5px 0;
 }
-.application.sheet.earthdawn4e.actor .window-content .section__name .header-section__name .sheet-header__indent--right {
-  width: 45%;
-  float: right;
-  padding-top: 10px;
-  padding-right: 10px;
+.application.sheet.earthdawn4e.actor .window-content .item__image {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
 }
-.application.sheet.earthdawn4e.actor .window-content .tab.general,
-.application.sheet.earthdawn4e.actor .window-content .talents,
-.application.sheet.earthdawn4e.actor .window-content .skills,
-.application.sheet.earthdawn4e.actor .window-content .devotions,
-.application.sheet.earthdawn4e.actor .window-content .spells,
-.application.sheet.earthdawn4e.actor .window-content .equipment,
-.application.sheet.earthdawn4e.actor .window-content .notes,
-.application.sheet.earthdawn4e.actor .window-content .reputation,
-.application.sheet.earthdawn4e.actor .window-content .specials,
-.application.sheet.earthdawn4e.actor .window-content .legend,
-.application.sheet.earthdawn4e.actor .window-content .classes {
-  height: 450px;
-  /* Set the desired fixed height */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
+.application.sheet.earthdawn4e.actor .window-content .container__block {
+  padding: 0 5px 3px 5px;
+}
+.application.sheet.earthdawn4e.actor .window-content .container__block .container__header {
+  background: var(--color-secondary-35);
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
+  display: grid;
+  column-gap: var(--grid-col-gap);
+  text-transform: capitalize;
+  font-weight: normal;
+  line-height: 25px;
+  height: 25px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header {
+  background-color: var(--color-primary-grey-60);
+  text-transform: uppercase;
+  line-height: 20px;
+  height: 20px;
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4),
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(8),
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(9),
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(7),
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(7),
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(7),
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5) {
+  font-size: var(--font-icon-small);
+  padding: 0 4px 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6) {
+  font-size: var(--font-icon-medium);
+  padding: 0 4px 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .skill-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(2) {
+  text-align: left;
+}
+.application.sheet.earthdawn4e.actor .window-content .ability-icon,
+.application.sheet.earthdawn4e.actor .window-content .equipment-icon,
+.application.sheet.earthdawn4e.actor .window-content .power-icon,
+.application.sheet.earthdawn4e.actor .window-content .effect-icon,
+.application.sheet.earthdawn4e.actor .window-content .item__image--visible,
+.application.sheet.earthdawn4e.actor .window-content .equipment-icon__visible,
+.application.sheet.earthdawn4e.actor .window-content .power-icon__visible {
+  width: 25px;
+  height: 25px;
+  border: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .general .layout__col--2:first-of-type {
+  flex: 0 0 250px;
+  max-width: 250px;
+}
+.application.sheet.earthdawn4e.actor .window-content .general .layout__col--2:nth-of-type(2) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .attribute-icon {
+  height: 20px;
+  width: 20px;
+  margin: 0 0 0 5px;
+  padding: 1px;
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  gap: var(--grid-col-gap);
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons {
+  display: flex;
+  align-items: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons input[type="checkbox"],
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons input[type="checkbox"] {
+  margin: 0;
+  margin: 6px 0 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons button,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button {
+  background: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  color: var(--color-text-inverse);
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 1fr) minmax(25px, 1fr) minmax(25px, 1fr);
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .karma-devotion__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2) {
+  text-align: left;
+}
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
+  grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(115px, 115px) minmax(75px, 75px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container .item__status {
+  height: 20px;
+  width: 20px;
+}
+.application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container .item__status.flipped {
+  transform: scaleX(-1);
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0 0 10px 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--grid-col-gap) 0;
+  border: var(--border-main);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  background-color: var(--color-primary);
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
+  gap: var(--grid-col-gap);
+  flex-direction: row;
+  height: 35px;
+  border: none;
+  background-color: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type="checkbox"] {
+  display: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type="number"] {
+  width: 3rem;
+  margin-bottom: 0.25rem;
+}
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
+  background-color: var(--color-tertiary);
+  border-color: var(--color-tertiary);
+  color: var(--color-text-inverse);
+}
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
+  height: 30px;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__container {
+  margin-top: 0.5rem;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__label {
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__bar {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: 12px;
+  background: var(--color-primary-grey);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__fill {
+  height: 100%;
+  width: var(--fill-width, 0%);
+  transition: width 0.3s ease, background-color 0.3s ease;
+  background-color: grey;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__fill.low {
+  background-color: var(--color-meter-1);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__fill.medium {
+  background-color: var(--color-meter-2);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__fill.high {
+  background-color: var(--color-meter-3);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__fill.over {
+  background-color: var(--color-meter-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__marker {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-primary);
+  pointer-events: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__marker.marker__x {
+  left: 50%;
+}
+.application.sheet.earthdawn4e.actor .window-content .encumbrance__marker.marker__x15 {
+  left: 75%;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
-  gap: 0.5rem;
+  gap: var(--grid-col-gap);
   line-height: 1.2rem;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs > [data-tab] {
   padding: 8px 4px;
-}
-.application.sheet.earthdawn4e.actor .window-content .hint {
-  display: none;
 }
 .application.sheet.earthdawn4e.actor .window-content .top {
   grid-area: empty;
@@ -688,125 +983,33 @@ input.input__number-input {
 .application.sheet.earthdawn4e.actor .window-resizable-handle {
   z-index: 5;
 }
-.ability-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 40px 250px 100px 70px 70px 70px 70px 100px;
-}
-.ability-card__grid--container .ability-card__grid--item .roll-icon__hover,
-.ability-card__grid--container .ability-card__grid--item .roll-icon__hover-fixed,
-.ability-card__grid--container .ability-card__grid--item .roll-icon__pointer {
+.ability-card__grid--item .roll-icon__hover,
+.knack-card__grid--item .roll-icon__hover,
+.maneuver-card__grid--item .roll-icon__hover,
+.knack-maneuver-card__grid--item .roll-icon__hover,
+.attribute-card__grid--item .roll-icon__hover,
+.equipment-card__grid--item .roll-icon__hover,
+.power-card__grid--item .roll-icon__hover,
+.ability-card__grid--item .roll-icon__hover-fixed,
+.knack-card__grid--item .roll-icon__hover-fixed,
+.maneuver-card__grid--item .roll-icon__hover-fixed,
+.knack-maneuver-card__grid--item .roll-icon__hover-fixed,
+.attribute-card__grid--item .roll-icon__hover-fixed,
+.equipment-card__grid--item .roll-icon__hover-fixed,
+.power-card__grid--item .roll-icon__hover-fixed,
+.ability-card__grid--item .roll-icon__pointer,
+.knack-card__grid--item .roll-icon__pointer,
+.maneuver-card__grid--item .roll-icon__pointer,
+.knack-maneuver-card__grid--item .roll-icon__pointer,
+.attribute-card__grid--item .roll-icon__pointer,
+.equipment-card__grid--item .roll-icon__pointer,
+.power-card__grid--item .roll-icon__pointer {
   display: none;
 }
-.knack-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 60px 190px 40px 100px 70px 70px 70px 70px 100px;
-}
-.knack-card__grid--container .knack-card__grid--item .roll-icon__hover,
-.knack-card__grid--container .knack-card__grid--item .roll-icon__hover-fixed,
-.knack-card__grid--container .knack-card__grid--item .roll-icon__pointer {
-  display: none;
-}
-.maneuver-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 40px 280px 100px 250px 100px;
-}
-.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__hover,
-.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__hover-fixed,
-.maneuver-card__grid--container .maneuver-card__grid--item .roll-icon__pointer {
-  display: none;
-}
-.maneuver-card__grid--container .itemControlGroup {
-  float: none;
-}
-.knack-maneuver-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 60px 190px 40px 100px 280px 100px;
-}
-.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__hover,
-.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__hover-fixed,
-.knack-maneuver-card__grid--container .knack-card__grid--item .roll-icon__pointer {
-  display: none;
-}
-.parent__rank {
-  font-style: italic;
-  opacity: 0.5;
-}
-.ability-icon,
-.equipment-icon,
-.power-icon,
-.effect-icon,
-.item__image--visible,
-.equipment-icon__visible,
-.power-icon__visible {
-  width: 25px;
-  height: 25px;
-  border: none;
-}
-.item__status {
-  width: 16px;
-  border: none;
-}
-.attribute-card__grid--container {
-  margin-bottom: 3px;
-  align-items: center;
-  height: 30px;
-  display: grid;
-  grid-template-columns: 30px 110px 38px 38px 38px;
-}
-.attribute-card__grid--container .attribute__name {
-  padding-left: 2px;
-  text-align: left;
-}
-.attribute-card__grid--container .attribute-card__grid--item .roll-icon__pointer {
-  display: none;
-}
-.equipment-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 40px 250px 100px 75px 75px 75px 75px 75px;
-}
-.equipment-card__grid--container .equipment-card__grid--item .roll-icon__hover,
-.equipment-card__grid--container .equipment-card__grid--item .roll-icon__pointer {
-  display: none;
-}
-.equipment-card__grid--container .itemControlGroup {
-  float: none;
-}
-.power-card__grid--container {
-  align-items: center;
-  display: grid;
-  height: 30px;
-  grid-template-columns: 40px 280px 100px 100px 75px 75px 100px;
-}
-.power-card__grid--container .power-card__grid--item .roll-icon__hover,
-.power-card__grid--container .maneuver-card__grid--item .roll-icon__hover,
-.power-card__grid--container .power-card__grid--item .roll-icon__hover-fixed,
-.power-card__grid--container .maneuver-card__grid--item .roll-icon__hover-fixed,
-.power-card__grid--container .power-card__grid--item .roll-icon__pointer,
-.power-card__grid--container .maneuver-card__grid--item .roll-icon__pointer {
-  display: none;
-}
+.maneuver-card__grid--container .itemControlGroup,
+.equipment-card__grid--container .itemControlGroup,
 .power-card__grid--container .itemControlGroup {
   float: none;
-}
-.effect-card__grid--container {
-  align-items: center;
-  height: 30px;
-  display: grid;
-  grid-template-columns: 40px 250px 200px 100px 100px 100px;
-}
-.effect-card__grid--container .effect {
-  padding-left: 2px;
-  text-align: left;
 }
 .roll-icon__hover,
 .roll-icon__hover-fixed,
@@ -814,28 +1017,25 @@ input.input__number-input {
 .ability-icon,
 .attribute-icon,
 .power-icon,
-.power-icon__visible .equipment-icon,
+.power-icon__visible,
+.equipment-icon,
 .equipment-icon__visible {
   border: none;
   display: block;
 }
-.ability-card__grid--item.icons__dice:hover + div,
-.attribute-card__grid--item.icons__dice:hover + div,
-.power-card__grid--item.icons__dice:hover + div,
-.maneuver-card__grid--item.icons__dice:hover + div,
-.equipment-card__grid--item.icons__dice:hover + div {
-  cursor: pointer;
-  color: #000;
-  text-shadow: 0 0 10px red;
+.attribute-card__grid--container:hover .icons__dice img {
+  width: 20px;
+  height: 20px;
+  margin: 0 0 0 5px;
 }
 .ability-card__grid--container:hover .icons__dice img,
 .knack-card__grid--container:hover .icons__dice img,
 .attribute-card__grid--container:hover .icons__dice img,
 .power-card__grid--container:hover .icons__dice img,
 .equipment-card__grid--container:hover .icons__dice img {
-  box-shadow: 0 0 10px red;
+  box-shadow: 0 0 10px var(--color-gold-1);
   border-radius: 50%;
-  background-image: radial-gradient(#5a0000, #dd5656, #ddcfcd);
+  background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
 }
 .ability-card__grid--container:hover .roll-icon__hover,
 .knack-card__grid--container:hover .roll-icon__hover,
@@ -864,22 +1064,14 @@ input.input__number-input {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
-@keyframes example {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .ability-card__grid--container:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .roll-icon__hover-fixed {
-  margin-top: -4px;
   display: block;
   width: 20px;
+  height: 20px;
 }
 .ability-card__grid--container:hover .ability-icon,
 .knack-card__grid--container:hover .ability-icon,
@@ -924,7 +1116,6 @@ input.input__number-input {
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer {
   display: block;
-  margin-top: -4px;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,

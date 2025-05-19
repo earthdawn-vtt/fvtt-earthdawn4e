@@ -1,234 +1,172 @@
 <section class="tab {{tabs.general.cssClass}}" data-group="sheet" data-tab="general">
-<div class="left-part">
-    {{!-- Attribute --}}
-    <div>
-        <h3 class="margin__none">
-            <label>{{localize "ED.Actor.Header.attributes"}}</label>
-        </h3>
-        <div class="attribute-card__grid--container font__bold">
+  <div class="layout__row">
+
+    <!-- Left Column -->
+    <div class="layout__col--2">
+
+      <!-- Attributes -->
+      
+      <h3>
+        <label>{{localize "ED.Actor.Header.attributes"}}</label>
+      </h3>
+        <div class="container__block container__custom">
+          <div class="attribute-card__grid--container container__header">
             <div class="attribute-card__grid--item"></div>
-            <div class="attribute-card__grid--item">
-                <label>{{localize "ED.Actor.Attributes.attributeName"}}</label>
-            </div>
+            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
             {{#if (eq this.actor.type "character")}}
-            <div class="attribute-card__grid--item">
-                <label>
-                    {{localize "ED.Actor.Attributes.attributeValue"}}
-                </label>
-            </div>
-             <div class="attribute-card__grid--item">
-                <label>
-                    {{localize "ED.Actor.Attributes.increase"}}
-                </label>
-            </div>
+              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
+              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increase"}}</div>
+              {{else}}
+              <div class="attribute-card__grid--item"></div>
             {{/if}}
-            <div class="attribute-card__grid--item">
-                <label>
-                    {{localize "ED.Actor.Attributes.attribueStep"}}
-                </label>
-            </div>
+            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attribueStep"}}</div>
+          </div>
+          {{#if (eq this.actor.type "character")}}
+            {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
+          {{else}}
+            {{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
+          {{/if}}
         </div>
+
+
+      <!-- Karma -->
+      <h3 class="karma-devotion__header margin__none one-line__vertical-align">
+        <span class="karma-devotion__header-label">
+          {{localize "ED.Actor.Header.karma"}}
+        </span>
+        <span class="karma-devotion__header-icons">
+          <input type="checkbox"
+                name="system.karma.useAlways"
+                {{checked actor.system.karma.useAlways}}
+                title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
+          {{#if (eq this.actor.type "character")}}
+            <a class="karma__ritual">
+              <button class="button__Karma-refresh"
+                      data-action="karmaRitual"
+                      title="Karma-Ritual">
+                <i class="fa-solid fa-person-rays"
+                  title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
+              </button>
+            </a>
+          {{/if}}
+        </span>
+      </h3>
+    <div class="container__block container__custom">
+      <div class="karma-devotion__grid--container container__header">
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
+      </div>
+      <div class="karma-devotion__grid--container">
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
+        </div>
+      </div>
+    </div>
+
+    <!-- Devotion -->
+    <h3 class="karma-devotion__header one-line__vertical-align margin__none">
+      <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
+    </h3>
+    <div class="container__block container__custom">
+    <div class="karma-devotion__grid--container container__header">
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
+    </div>
+    <div class="karma-devotion__grid--container">
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.value"
+              value="{{actor.system.devotion.value}}">
+      </div>
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.max"
+              value="{{actor.system.devotion.max}}"
+              {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+      </div>
+      <div class="karma-devotion__grid--item">
+        <input class="input__square-input--centered"
+              name="system.devotion.step"
+              value="{{actor.system.devotion.step}}">
+      </div>
+    </div>
+    </div>
+  
+    <h3 class="recovery__header margin__none one-line__vertical-align">
+      <span class="recovery__header-label">
+        {{localize "ED.Actor.Header.recovery"}}
+      </span>
+      <span class="recovery__header-icons">
         {{#if (eq this.actor.type "character")}}
-        {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
-        {{else}}
-        {{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
+          <a class="button__recovery-test">
+            <button class="button__recovery-rest"
+                    data-action="recovery"
+                    title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}">
+              <i class="fa-solid fa-bed"
+                title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
+            </button>
+          </a>
         {{/if}}
-    </div>
+      </span>
+    </h3>
 
-    {{!-- Karma --}}
-    <div class="space__small1">
-        <h3 class="one-line__vertical-align karma-devotion__header margin__none">
-            <label>{{localize "ED.Actor.Header.karma"}}</label>
-            <span class="icon__position--right one-line__vertical-align">
-                <input type="checkbox" name="system.karma.useAlways" {{checked actor.system.karma.useAlways}} title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
-                {{#if (eq this.actor.type "character")}}
-                <a class="karma__ritual">
-                    <button class="button__Karma-refresh" data-action="karmaRitual" title="Karma-Ritual">
-                        <i class="fa-solid fa-person-rays" title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
-                    </button>
-                </a>
-                {{/if}}
-            </span>
-        </h3>
-        <div class="karma-devotion__grid--container font__bold">
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
-        </div>
-        <div class="karma-devotion__grid--container font__bold">
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered"  name="system.karma.value"
-                            value="{{actor.system.karma.value}}">
-            </div>
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered" name="system.karma.max"
-                            value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-            </div>
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered" name="system.karma.step"
-                            value="{{actor.system.karma.step}}">
-            </div>
-        </div>
-    </div>
-    {{!-- Devotion --}}
-    <div class="space__small1">
-        <h3 class="one-line__vertical-align karma-devotion__header margin__none">
-            <label>{{localize "ED.Actor.Header.devotion"}}</label>
-        </h3>
-        <div class="karma-devotion__grid--container font__bold">
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
-            <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
-        </div>
-        <div class="karma-devotion__grid--container font__bold">
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered"  name="system.devotion.value"
-                            value="{{actor.system.devotion.value}}">
-            </div>
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered" name="system.devotion.max"
-                            value="{{actor.system.devotion.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-            </div>
-            <div class="karma-devotion__grid--item">
-                <input class="input__circle-input--centered" name="system.devotion.step"
-                            value="{{actor.system.devotion.step}}">
-            </div>
-        </div>
-    </div>
-</div>
-{{!-- Conditions --}}
-<div class="right-part">
-    <div class="partial__two">
-        <h3 class="margin__right">{{localize "ED.Actor.Header.conditions"}}</h3>
-        {{!-- aggressiveAttack --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.aggressiveAttack" {{checked
-                        actor.system.condition.aggressiveAttack}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.aggressiveAttack"}}</div>
-        </div>
-        {{!-- coverPartial --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.cover.partial" {{checked
-                        actor.system.condition.cover.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.coverPartial"}}</div>
-        </div>
-        {{!-- coverFull --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.cover.full" {{checked
-                        actor.system.condition.cover.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.coverFull"}}</div>
-        </div>
-        {{!-- darknessPartial --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.darkness.partial" {{checked
-                        actor.system.condition.darkness.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.darknessPartial"}}</div>
-        </div>
-        {{!-- darknessFull --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.darkness.full" {{checked
-                        actor.system.condition.darkness.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.darknessFull"}}</div>
-        </div>
-        {{!-- defensiveStance --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.defensiveStance" {{checked
-                        actor.system.condition.defensiveStance}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.defensiveStance"}}</div>
-        </div>
-        {{!-- fury --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.fury" {{checked
-                        actor.system.condition.fury}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.fury"}}</div>
-        </div>
-        {{!-- harried --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.harried" {{checked
-                        actor.system.condition.harried}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.harried"}}</div>
-        </div>
-        {{!-- impairedMovementPartial --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.partial" {{checked
-                        actor.system.condition.impairedMovement.partial}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.impairedMovementPartial"}}</div>
-        </div>
-        {{!-- impairedMovementFull --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.full" {{checked
-                        actor.system.condition.impairedMovement.full}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.impairedMovementFull"}}</div>
-        </div>
-        {{!-- knockedDown --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.knockedDown" {{checked
-                        actor.system.condition.knockedDown}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.knockedDown"}}</div>
-        </div>
-        {{!-- surprised --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input type="checkbox" class="input__checkbox" name="system.condition.surprised" {{checked
-                        actor.system.condition.surprised}}>
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.surprised"}}</div>
-        </div>
-        {{!-- overwhelmed --}}
-        <div class="conditions__grid--container">
-            <div class="conditions__grid--item">
-                <input class="input__number-input input__circle-input--centered" name="system.condition.overwhelmed"
-                        value="{{actor.system.condition.overwhelmed}}">
-            </div>
-            <div class="conditions__grid--item">{{localize "ED.Actor.Conditions.overwhelmed"}}</div>
-        </div>
-    </div>
 
-  <!-- Attacks -->
-  <div class="partial__two">
-    {{#if (eq this.actor.type "character")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
-    {{/if}}
-    {{#if (eq this.actor.type "npc")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-    {{/if}}
-    {{#if (eq this.actor.type "creature")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-    {{/if}}
-    {{#if (eq this.actor.type "spirit")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-    {{/if}}
-    {{#if (eq this.actor.type "horror")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-    {{/if}}
-    {{#if (eq this.actor.type "dragon")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-    {{/if}}
-    
-    
+    <div class="container__block container__custom">
+    <div class="recovery__grid--container container__header">
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.current"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.daily"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.step"}}</div>
+    </div>
+    <div class="recovery__grid--container">
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+            value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+      </div>
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+            value="{{actor.system.characteristics.recoveryTestsResource.max}}">
+      </div>
+      <div class="recovery__grid--item">
+        <input class="input__square-input--centered"
+              value="">
+      </div>
+    </div>
   </div>
 
 </div>
+
+    <!-- Right Column -->
+    <div class="layout__col--2">
+
+      <!-- Attacks -->
+      {{#if (eq this.actor.type "character")}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
+      {{else if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
+        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
+      {{/if}}
+
+    <div class="action--buttons">
+        <div class="buttons--left input--centered1">
+            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
+            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+            <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+        </div>
+        <div class="buttons--right input--centered1">
+            <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+            <button class="action-buttons" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
+            <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
+        </div>
+    </div>
+
+
+    </div>
+  </div>
 </section>

@@ -1,4 +1,6 @@
-
+//###########################################################
+//                       Fonts
+//###########################################################
 @font-face {
   font-family: 'ArnoPro Bold';
   src: url('fonts/ArnoPro-Bold.otf');
@@ -56,36 +58,89 @@ font-family: 'WarhorseDIY', serif;
 font-family: 'OldLondon', serif;
 }
 
-:root {
---color-transparent: rgba(0, 0, 0, 0);
---color-gold-1: rgba(50, 40, 30);
---color-gold-2: rgba(70, 55, 20);
---color-gold-3: rgba(120, 90, 40);
---color-gold-4: rgba(200, 155, 60);
---color-gold-5: rgba(200, 170, 110);
-}
-:root .theme-dark {
---color-text-primary: rgba(230, 210, 200);
---color-npc-primary: rgba(3, 4, 10);
---color-npc-primary-35: rgba(3, 4, 10, 0.35);
---color-npc-secondary: rgba(21, 18, 54);
---color-npc-secondary-35: rgba(21, 18, 54, 0.35);
---color-npc-tertiary-3: rgba(55, 61, 117);
---color-npc-tertiary-35: rgba(55, 61, 117, 0.35);
---color-pc-primary: rgba(2, 3, 0);
---color-pc-primary-35: rgba(2, 3, 0, 0.35);
---color-pc-secondary: rgba(22, 46, 28);
---color-pc-secondary-35: rgba(22, 46, 28, 0.35);
---color-pc-tertiary: rgba(58, 118, 62);
---color-pc-tertiary-35: rgba(58, 118, 62, 0.35);
---color-grey-dark: rgba(16, 16, 16);
---color-gold-text: rgba(230, 210, 200);
---sheet-npc-background: var(--color-npc-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 600px auto;
---sheet-pc-background: var(--color-pc-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 600px auto;
+//###########################################################
+//                       Sheet Styles
+//###########################################################
 
-}
-:root .theme-light {
---color-text-primary: rgb(46, 39, 48);
---sheet-npc-background: url(assets/sheet/parchment.webp) repeat;
---sheet-pc-background: url(assets/sheet/parchment.webp) repeat;
+:root {
+  --font-size-8: 0.5rem;
+  --font-size-9: 0.5625rem;
+  --font-size-17: 1.0625rem;
+  --font-size-19: 1.1875rem;
+  --font-size-21: 1.3125rem;
+  --font-size-22: 1.375rem;
+  --font-size-23: 1.4375rem;
+  --font-size-25: 1.5625rem;
+  --font-size-26: 1.625rem;
+  --font-size-27: 1.6875rem;
+  --font-size-29: 1.8125rem;
+  --font-size-30: 1.875rem;
+  --font-size-31: 1.9375rem;
+  --font-size-33: 2.0625rem;
+  --font-size-34: 2.125rem;
+  --font-size-35: 2.1875rem;
+  --font-size-37: 2.3125rem;
+  --font-size-38: 2.375rem;
+  --font-size-39: 2.4375rem;
+  --font-size-40: 2.5rem;
+  --font-size-42: 2.625rem;
+  --font-league-spartan: 'League Spartan', sans-serif;
+  --font-container-header: 0.8rem;
+  --font-icon-small: 0.6rem;
+  --font-icon-medium: 0.8rem;
+  --grid-col-gap: 0.5rem;
+  --size-scrollbar-width: 1rem;
+  --color-transparent: rgba(0, 0, 0, 0);
+  --color-gold-1: rgba(50, 40, 30);
+  --color-gold-2: rgba(70, 55, 20);
+  --color-gold-3: rgb(109, 79, 26);
+  --color-gold-4: rgb(161, 118, 25);
+  --color-gold-5: rgba(200, 170, 110);
+  --color-meter-1: rgba(238, 227, 103, 0.75);
+  --color-meter-2: rgb(204, 143, 31, 0.75);
+  --color-meter-3: rgb(134, 77, 11, 0.75);
+  --color-meter-4: rgb(155, 16, 16, 0.75);
+  --color-text-banner: rgba(230, 210, 200);
+
+  .application.sheet.earthdawn4e.actor,
+  .theme-dark.application.sheet.earthdawn4e.actor {
+    --color-primary: rgba(3, 4, 10);
+    --color-primary-35: rgba(3, 4, 10, 0.35);
+    --color-secondary: rgba(21, 18, 54);
+    --color-secondary-35: rgba(21, 18, 54, 0.35);
+    --color-tertiary: rgba(55, 61, 117);
+    --color-tertiary-35: rgba(55, 61, 117, 0.35);
+    --color-primary-grey: rgba(54, 54, 54);
+    --color-primary-grey-60: rgba(54, 54, 54, 0.60);
+    --color-text-primary: rgba(230, 210, 200);
+    --border-main: 2px solid var(--color-gold-3);
+    --border-button: 1px solid var(--color-gold-2);
+    --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
+    --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
+    &.character {
+      --color-primary: rgba(2, 3, 0);
+      --color-primary-35: rgba(2, 3, 0, 0.35);
+      --color-secondary: rgba(22, 46, 28);
+      --color-secondary-35: rgba(22, 46, 28, 0.35);
+      --color-tertiary: rgba(58, 118, 62);
+      --color-tertiary-35: rgba(58, 118, 62, 0.35);
+      --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
+      --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
+    }
+  }
+  .theme-light.application.sheet.earthdawn4e.actor {
+    --color-primary: rgba(255, 255, 255);
+    --color-primary-35: rgba(255, 255, 255, 0.35);
+    --color-secondary: rgba(46, 54, 128);
+    --color-secondary-35: rgba(46, 54, 128, 0.35);
+    --color-tertiary: rgb(70, 70, 70);
+    --color-tertiary-35: rgba(70, 70, 70, 0.35);
+    --color-primary-grey: rgb(143, 143, 143);
+    --color-text-primary: rgb(46, 39, 48);
+    --color-text-banner: rgba(245, 229, 222);
+    --border-main: 2px solid var(--color-gold-3);
+    --border-button: 2px solid var(--color-gold-4);
+    --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
+    --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center repeat;
+  }
 }

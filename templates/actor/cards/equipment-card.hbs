@@ -13,117 +13,110 @@
         {{/if}}
         <div class="equipment-card__grid--item">{{name}}</div>
         {{#if (eq this.type "armor")}}
-        <div class="equipment-card__grid--item text__alignment--center">{{ed-add system.physical.armor
-            system.physical.forgeBonus}}</div>
-        <div class="equipment-card__grid--item text__alignment--center">{{ed-add system.mystical.armor
-            system.mystical.forgeBonus}}</div>
-        <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item">{{ed-add system.physical.armor system.physical.forgeBonus}}</div>
+        <div class="equipment-card__grid--item">{{ed-add system.mystical.armor system.mystical.forgeBonus}}</div>
+        <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
+        <div class="equipment-card__grid--item" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title="{{localize "ED.Actor.Tooltips.notEquipped"}}">
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "owned" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/backpack.svg" title="{{localize "ED.Actor.Tooltips.carried"}}">
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "equipped" )}}
             {{!-- equipped --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/armor.svg" title="{{localize "ED.Actor.Tooltips.equippedArmor"}}">
+            <i class="item__status fa-solid fa-helmet-battle" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
             {{/if}}
         </div>
         {{/if}}
         {{#if (eq this.type "equipment")}}
-        <div class="equipment-card__grid--item text__alignment--center">{{system.amount}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item">{{system.amount}}</div>
+        <div class="equipment-card__grid--item"></div>
+        <div class="equipment-card__grid--item"></div>
+        <div class="equipment-card__grid--item" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title="{{localize "ED.Actor.Tooltips.notEquipped"}}">
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "owned" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/backpack.svg" title="{{localize "ED.Actor.Tooltips.carried"}}">
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "equipped" )}}
             {{!-- equipped --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/equipped.svg" title="{{localize "ED.Actor.Tooltips.equipped"}}">
+            <i class="item__status fa-solid fa-user" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
             {{/if}}
-            
         </div>
         {{/if}}
         {{#if (eq this.type "shield")}}
-        <div class="equipment-card__grid--item text__alignment--center">{{system.defenseBonus.physical}}</div>
-        <div class="equipment-card__grid--item text__alignment--center">{{system.defenseBonus.mystical}}</div>
-        <div class="equipment-card__grid--item text__alignment--center">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
-        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item">{{system.defenseBonus.physical}}</div>
+        <div class="equipment-card__grid--item">{{system.defenseBonus.mystical}}</div>
+        <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
+        <div class="equipment-card__grid--item" data-action="changeItemStatus">
         
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title="{{localize "ED.Actor.Tooltips.notEquipped"}}">
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "owned" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/backpack.svg" title="{{localize "ED.Actor.Tooltips.carried"}}">
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "equipped" )}}
             {{!-- equipped --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/equipped.svg" title="{{localize "ED.Actor.Tooltips.equippedShield"}}">
+            <i class="item__status fa-solid fa-shield" title="{{localize "ED.Actor.Tooltips.offHand"}}"></i>
             {{/if}}
             
         </div>
         {{/if}}
         {{#if (eq this.type "weapon")}}
-        <div class="equipment-card__grid--item text__alignment--center">{{this.system.damageTotal}}</div>
-        <div class="equipment-card__grid--item text__alignment--center"></div>
+        <div class="equipment-card__grid--item">{{this.system.damageTotal}}</div>
         {{#if system.isRanged}}
-            <div class="equipment-card__grid--item text__alignment--center">{{system.range.shortMin}}-{{system.range.shortMax}}/{{system.range.longMin}}-{{system.range.longMax}}</div>
+            <div class="equipment-card__grid--item">{{system.range.shortMin}}-{{system.range.shortMax}}/{{system.range.longMin}}-{{system.range.longMax}}</div>
             {{#if (eq system.weaponType "thrown")}}
-            <div class="equipment-card__grid--item text__alignment--center">{{system.amount}}</div>
+            <div class="equipment-card__grid--item">{{system.amount}}</div>
             {{else}}
-            <div class="equipment-card__grid--item text__alignment--center">{{system.ammoAmount}}</div>
+            <div class="equipment-card__grid--item">{{system.ammoAmount}}</div>
             {{/if}}
         {{else}}
-            <div class="equipment-card__grid--item text__alignment--center">{{system.range.longMax}}</div>
-            <div class="equipment-card__grid--item text__alignment--center">{{system.amount}}</div>
+            <div class="equipment-card__grid--item">{{system.range.longMax}}</div>
+            <div class="equipment-card__grid--item">{{system.amount}}</div>
         {{/if}}
-        <div class="equipment-card__grid--item text__alignment--center" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/not-equipped.svg" title={{localize "ED.Actor.Tooltips.notEquipped"}}>
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "owned" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/backpack.svg" title="{{localize "ED.Actor.Tooltips.carried"}}">
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "equipped" )}}
             {{!-- equipped --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/equipped.svg" title="{{localize "ED.Actor.Tooltips.equipped"}}">
+            <i class="item__status fa-solid fa-sword" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "mainHand" )}}
             {{!-- carried --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/main-hand.svg" title="{{localize "ED.Actor.Tooltips.mainHand"}}">
+            <i class="item__status fa-solid fa-hand" title="{{localize "ED.Actor.Tooltips.mainHand"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "offHand" )}}
             {{!-- equipped --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/off-hand.svg" title="{{localize "ED.Actor.Tooltips.offHand"}}">
+            <i class="item__status fa-regular fa-hand" title="{{localize "ED.Actor.Tooltips.offHand"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "twoHands" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/two-handed.svg" title="{{localize "ED.Actor.Tooltips.twoHanded"}}">
+            <i class="item__status fa-solid fa-hands" title="{{localize "ED.Actor.Tooltips.twoHanded"}}"></i>
             {{/if}}
             {{#if (eq this.system.itemStatus "tail" )}}
             {{!-- owned --}}
-            <img class="item__status" src="systems/ed4e/assets/icons/tail.svg" title="{{localize "ED.Actor.Tooltips.tail"}}">
+            <i class="item__status fa-solid fa-worm" title="{{localize "ED.Actor.Tooltips.tail"}}"></i>
             {{/if}}
         </div>
         {{/if}}
 
-        <div class="equipment-card__grid--item text__alignment--center">
+        <div class="equipment-card__grid--item">
             {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
         </div>
     </div>
