@@ -15,15 +15,31 @@
 
         <!-- matrices -->
         <div class="tab {{tabsSpells.matrix.cssClass}}" data-group="spellsContent" data-tab="matrix">
-          <div class="undefined">
-            <p>matrizen</p>
-            <p>zeige alle Matrizen und Matrix items und funktionen für aktunement etc.</p>
+          <div class="flexrow">
+            <button class="button" data-action="attuneMatrix">
+              <i class="fas {{icons.attune}}"></i>
+              {{localize "ED.TODO.X.Dialogs.SpellMatrix.attune"}}
+            </button>
           </div>
-          {{#each actor.itemTypes.matrix}}
-            <div class="item-id item-name__card" data-uuid="{{uuid}}">
-              {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-            </div>
-          {{/each}}
+          <div class="flexrow" style="flex-wrap: wrap;gap: 1rem;justify-content: space-around;">
+            {{#each matrices}}
+              <div class="item-id item-name__card" style="cursor:pointer;flex: 1 1 calc(25% - 1rem);max-width: 200px;box-sizing: border-box;" data-uuid="{{this.uuid}}" data-action="attuneMatrix">
+                <div class="flexrow">
+                  <img src="{{this.img}}" alt="{{this.name}}" class="item-id item-name__card" data-uuid="{{this.uuid}}"
+                       data-action="attuneMatrix" height="52" width="52" />
+                  <figcaption class="item-id item-name__card" data-uuid="{{this.uuid}}"
+                              data-action="attuneMatrix" >
+                    {{this.name}}
+                  </figcaption>
+                </div>
+                <span>
+                  {{#each this.system.matrix.spells}}
+                    {{{ed-linkForUuid this}}}
+                  {{/each}}
+                </span>
+              </div>
+            {{/each}}
+          </div>
         </div>
 
         <!-- all spells -->

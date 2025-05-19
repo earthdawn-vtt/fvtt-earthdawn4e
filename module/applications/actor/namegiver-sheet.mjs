@@ -5,10 +5,6 @@ import ActorSheetEdSentient from "./sentient-sheet.mjs";
  */
 export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ActorSheetEdNamegiver-addSheetTab
-   */
   static {
     this.addSheetTabs( [
       { id: "talents", },
@@ -19,10 +15,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     ] );
   }
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdNamegiver-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -40,10 +33,7 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     },
   };
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_ActorSheetEdNamegiver-perpareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options ) {
     // TODO: überprüfen was davon benötigt wird
     const context = await super._prepareContext( options );
@@ -54,12 +44,25 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     return context;
   }
 
+  /** @inheritdoc */
+  async _onDropItem( event, item ) {
+    const dataModel = CONFIG.Item.dataModels[item.type];
+    const singleton = dataModel?.metadata?.singleton ?? false;
+    if ( singleton && this.actor.itemTypes[item.type].length ) {
+      ui.notifications.error( game.i18n.format( "ED.Notifications.Error.singleton", {
+        itemType:  game.i18n.localize( CONFIG.Item.typeLabels[item.type] ),
+        actorType: game.i18n.localize( CONFIG.Actor.typeLabels[this.actor.type] )
+      } ) );
+      return false;
+    }
+    return super._onDropItem( event, item );
+  }
+
   // region Actions
   /**
    * This function triggers the half magic roll of an adept.
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @userFunction UF_ActorSheetEdNamegiver-rollHalfMagic
    */
   static async rollHalfMagic( event, target ) {
     event.preventDefault();

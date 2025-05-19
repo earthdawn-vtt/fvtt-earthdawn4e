@@ -6,7 +6,7 @@ import ActorEd from "../../documents/actor.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * System data definition for PCs.
@@ -91,7 +91,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    *
    * @returns {Promise<ActorEd|void>} The newly created actor or `undefined` if the generation was canceled.
-   * @userFunction UF_CharacterGenerationPrompt--characterGeneration
    */
   static async characterGeneration () {
     const generation = await CharacterGenerationPrompt.waitPrompt();
@@ -268,6 +267,7 @@ export default class PcData extends NamegiverTemplate {
       return;
     }
 
+    const attributeEnhanceStep = getAttributeStep( attributeField.value + 1 ) > attributeField.step ? attributeField.step + 1 : attributeField.step;
     const rule = game.settings.get( "ed4e", "lpTrackingAttributes" );
     const lpCost = onCircleIncrease && rule === "freePerCircle" ? 0 : ED4E.legendPointsCost[currentIncrease + 1 + 4];
     const increaseValidationData = {
@@ -279,14 +279,14 @@ export default class PcData extends NamegiverTemplate {
 
     // placeholder, will be localized based on the selected rules for attribute increases
     const content = `
-    <p>${ game.i18n.localize( "ED.Rules.attributeIncreaseShortRequirements" ) }</p>
+    <p>${ game.i18n.format( "ED.Dialogs.Legend.Rules.attributeIncreaseShortRequirements", {trainingsTimeAttribute: attributeEnhanceStep, learningTime: attributeField.step, trainingCost: attributeField.step * 10 } ) }</p>
     ${ Object.entries( increaseValidationData ).map( ( [ key, value ] ) => {
     return `<div class="flex-row">${ key }: <i class="fa-solid ${ value ? "fa-hexagon-check" : "fa-hexagon-xmark" }"></i></div>`;
   } ).join( "" ) }
     `;
 
     let spendLp = useLp;
-    spendLp ??= await DialogV2.wait( {
+    spendLp ??= await DialogEd.wait( {
       id:          "attribute-increase-prompt",
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "ed4e", "attribute-increase-prompt" ],
@@ -430,7 +430,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the armor values based on attribute values and items.
    * @private
-   * @userFunction UF_Pc-prepareArmor
    */
   #prepareArmor() {
     // attribute based
@@ -450,7 +449,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the blood magic damage based on items.
    * @private
-   * @userFunction UF_Pc-prepareBloodMagic
    */
   #prepareBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
@@ -488,7 +486,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived devotion values based on questor items.
    * @private
-   * @userFunction UF_Pc-prepareDevotion
    */
   #prepareDevotion() {
     const questor = this.parent?.itemTypes.questor[0];
@@ -498,7 +495,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived health values based on attribute values and items.
    * @private
-   * @userFunction UF_Pc-prepareHealth
    */
   #prepareHealth() {
     // attribute based
@@ -515,7 +511,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived karma values based on namegiver items and free attribute points.
    * @private
-   * @userFunction UF_Pc-prepareKarma
    */
   #prepareKarma() {
     const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
@@ -527,7 +522,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived movement values based on namegiver items.
    * @private
-   * @userFunction UF_Pc-prepareMovement
    */
   #prepareMovement() {
     const namegiver = this.parent?.namegiver;
@@ -541,7 +535,6 @@ export default class PcData extends NamegiverTemplate {
   /**
    * Prepare the derived recovery test resource values based on attribute values.
    * @private
-   * @userFunction UF_Pc-prepareRecoveryTestsResource
    */
   #prepareRecoveryTestResource() {
     this.characteristics.recoveryTestsResource.max = Math.ceil( this.attributes.tou.value / 6 );

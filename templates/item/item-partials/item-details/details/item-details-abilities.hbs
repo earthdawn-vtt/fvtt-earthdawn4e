@@ -1,2 +1,6 @@
-{{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
-{{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
+{{#if system.matrix}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs"}}
+{{else}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
+{{/if}}

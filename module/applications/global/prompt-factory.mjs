@@ -3,8 +3,10 @@ import ActorEd from "../../documents/actor.mjs";
 import ItemEd from "../../documents/item.mjs";
 import LearnableTemplate from "../../data/item/templates/learnable.mjs";
 import ED4E from "../../config/_module.mjs";
+import DialogEd from "../api/dialog.mjs";
 
-const DialogClass = foundry.applications.api.DialogV2;
+
+const DialogClass = DialogEd;
 const fields = foundry.data.fields;
 
 /**
@@ -12,6 +14,10 @@ const fields = foundry.data.fields;
  */
 export default class PromptFactory {
 
+  /**
+   * Creates an instance of PromptFactory.
+   * @param {object} document - The document object.
+   */
   constructor( document ) {
     if ( new.target === PromptFactory ) {
       throw new TypeError( "Cannot construct PromptFactory instances directly; use `fromDocument static method." );
@@ -24,6 +30,7 @@ export default class PromptFactory {
   /**
    * A {@link DialogV2Button} object for a button with data action "cancel".
    * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
    */
   static get cancelButton() {
     return {
@@ -38,6 +45,7 @@ export default class PromptFactory {
   /**
    * A {@link DialogV2Button} object for a button with data action "free".
    * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
    */
   static get freeButton() {
     return {
@@ -52,6 +60,7 @@ export default class PromptFactory {
   /**
    * A {@link DialogV2Button} object for a button with data action "spendLp".
    * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
    */
   static get spendLpButton() {
     return {
@@ -63,6 +72,11 @@ export default class PromptFactory {
     };
   }
 
+  /**
+   * A {@link DialogV2Button} object for a button with data action "completeButton".
+   * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
+   */
   static get completeButton() {
     return {
       action:  "complete",
@@ -73,6 +87,11 @@ export default class PromptFactory {
     };
   }
 
+  /**
+   * A {@link DialogV2Button} object for a button with data action "goBackButton".
+   * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
+   */
   static get goBackButton() {
     return {
       action:   "goBack",
@@ -83,6 +102,11 @@ export default class PromptFactory {
     };
   }
 
+  /**
+   * A {@link DialogV2Button} object for a button with data action "continueButton".
+   * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
+   */
   static get continueButton() {
     return {
       action:   "continue",
@@ -96,6 +120,7 @@ export default class PromptFactory {
   /**
    * A {@link DialogV2Button} object for a button with data action "versatility".
    * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
    */
   static get versatilityButton() {
     return {
@@ -107,6 +132,11 @@ export default class PromptFactory {
     };
   }
 
+  /**
+   * A {@link DialogV2Button} object for a button with data action "noDisciplineButton".
+   * @type {DialogV2Button}
+   * @returns {DialogV2Button} - The button object.
+   */
   static get noDisciplineButton() {
     return {
       action:  "noDiscipline",
@@ -154,6 +184,10 @@ class ActorPromptFactory extends PromptFactory {
     takeDamage:       this._takeDamagePrompt.bind( this ),
   };
 
+  /**
+   * Creates the recovery dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the recovery prompt dialog.
+   */
   async _recoveryPrompt() {
     const buttons = [];
     if ( this.document.system.characteristics.recoveryTestsResource.value > 0 ) buttons.push( {
@@ -193,6 +227,10 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the take damage dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the take damage prompt dialog.
+   */
   async _takeDamagePrompt() {
     const formFields = {
       damage: new fields.NumberField( {
@@ -274,6 +312,10 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the jump up dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the jump up prompt dialog.
+   */
   async _jumpUpPrompt() {
     const buttons = await this._getAbilityButtonByAction( "jumpUp" );
 
@@ -295,6 +337,10 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the knock down dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the knock down prompt dialog.
+   */
   async _knockDownPrompt() {
     const buttons = await this._getAbilityButtonByAction( "knockDown" );
 
@@ -316,6 +362,10 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the choose discipline dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
+   */
   async _chooseDisciplinePrompt() {
     
     const noDisciplineButton = this.constructor.noDisciplineButton;
@@ -336,6 +386,10 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the draw weapon dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the draw weapon prompt dialog.
+   */
   async _drawWeaponPrompt() {
     const buttons = await this._getItemButtons( this.document.itemTypes.weapon, "weapon" );
     if ( buttons.length === 0 ) {
@@ -356,11 +410,22 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the choose discipline dialog.
+   * @param {string} action - The action to get the ability buttons for.
+   * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
+   */
   async _getAbilityButtonByAction( action ) {
     const abilities = this.document.getItemsByAction( action );
     return this._getItemButtons( abilities, "action" );
   }
 
+  /**
+   * Creates a list of buttons for the given items.
+   * @param {Array} items - The items to create buttons for.
+   * @param {string} buttonClass - The class to use for the buttons.
+   * @returns {Array} An array of button objects.
+   */  
   async _getItemButtons( items, buttonClass ) {
     return items.map( ( item ) => {
       return {
@@ -386,6 +451,10 @@ class ItemPromptFactory extends PromptFactory {
     talentCategory: this._talentCategoryPrompt.bind( this ),
   };
 
+  /**
+   * Creates the learn ability dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the learn ability prompt dialog.
+   */
   async _learnAbilityPrompt() {
     if ( !this.document.system.hasMixin( LearnableTemplate ) ) {
       throw new Error( "Item must be a subclass of LearnableTemplate to use this prompt." );
@@ -429,13 +498,17 @@ class ItemPromptFactory extends PromptFactory {
   }
 
   // Knacks do not have increase, thats why it makes sense to separate the learn method from the abilities.
+  /**
+   * Creates the learn knack dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the learn knack prompt dialog.
+   */
   async _learnKnackPrompt() {
     const validationTemplate = "systems/ed4e/templates/advancement/learn-knack-requirements.hbs";
     const content = await renderTemplate(
       validationTemplate,
       {
         render:            { requirements: true },
-        requirementGroups: this.document?.system?.increaseValidationData ?? {},
+        requirementGroups: this.document?.system?.learnValidationData ?? {},
       },
     );
 
@@ -459,6 +532,11 @@ class ItemPromptFactory extends PromptFactory {
       rejectClose: false,
     } );
   }
+
+  /**
+   * Creates the choose tier dialog.
+   * @returns {Promise<any>} A promise that resolves to the choose tier prompt dialog.
+   */
   async _chooseTierPrompt( ) {
 
     const buttons = Object.entries( ED4E.tier ).map(
@@ -489,6 +567,10 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the LP increase dialog.
+   * @returns {Promise<any>} A promise that resolves to the LP increase prompt dialog.
+   */
   async _lpIncreasePrompt() {
     if ( !this.document.system.hasMixin( LpIncreaseTemplate ) ) {
       throw new Error( "Item must be a subclass of LpIncreaseTemplate to use this prompt." );
@@ -525,6 +607,10 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
+  /**
+   * Creates the talent category dialog.
+   * @returns {Promise<any>} A promise that resolves to the talent category prompt dialog.
+   */
   async _talentCategoryPrompt() {
 
     const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );

@@ -7,7 +7,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} defenseBonusMystical    mystical defense bonus
  * @property {number} initiativePenalty     initiative penalty
  * @property {number} shatterThreshold      shatter threshold
- * @property {boolean} broken           broken condition
+ * @property {boolean} shattered           shattered condition
  */
 export default class ShieldData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate
@@ -61,7 +61,7 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
         label:    this.labelKey( "Shields.shatterThreshold" ),
         hint:     this.hintKey( "Shields.shatterThreshold" )
       } ),
-      broken: new fields.BooleanField( {
+      shattered: new fields.BooleanField( {
         required: true,
         initial:  false,
         label:    this.labelKey( "Shields.broken" ),

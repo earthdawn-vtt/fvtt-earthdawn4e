@@ -43,9 +43,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       } ),
       tier: new fields.StringField( {
         nullable: false,
-        blank:    false,
+        blank:    true,
         choices:  ED4E.tier,
-        initial:  "novice",
+        initial:  "",
         label:    this.labelKey( "Ability.tier" ),
         hint:     this.hintKey( "Ability.tier" )
       } ),
@@ -93,7 +93,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponType" )
           } ),
         }, {
-          required: false,
           label:    this.labelKey( "Ability.RollTypeDetails.attack" ),
           hint:     this.hintKey( "Ability.RollTypeDetails.attack" )
         } ),
@@ -111,15 +110,22 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             hint:     this.hintKey( "Ability.RollTypeDetails.Reaction.defenseType" )
           } ),
         }, {
-          required: false,
           label:    this.labelKey( "Ability.RollTypeDetails.reaction" ),
           hint:     this.hintKey( "Ability.RollTypeDetails.reaction" ),
         } ),
         recovery:      new fields.SchemaField( {}, {} ),
         spellcasting:  new fields.SchemaField( {}, {} ),
-        threadWeaving: new fields.SchemaField( {}, {} ),
+        threadWeaving: new fields.SchemaField( {
+          castingType: new fields.StringField( {
+            required: false,
+            nullable: true,
+            blank:    false,
+            trim:     true,
+            initial:  null,
+            choices:  ED4E.spellcastingTypes,
+          } ),
+        }, {} ),
       }, {
-        required: false,
         label:    this.labelKey( "Ability.rollTypeDetails" ),
         hint:     this.hintKey( "Ability.rollTypeDetails" )
       } ),
@@ -133,7 +139,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       abilityUuid:      this.parent.uuid,
       step:             {
         base:      this.rankFinal,
@@ -162,11 +168,21 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   }
 
   /**
+   * The type of spellcasting magic of this ability, if it is of type thread weaving.
+   * Null if thread weaving of a non spellcasting discipline.
+   * @type {string|null|undefined}
+   * @see ED4E.spellcastingTypes
+   */
+  get castingType() {
+    return this.rollType === "threadWeaving" ? this.rollTypeDetails.threadWeaving.castingType : undefined;
+  }
+
+  /**
    * The final rank of the ability (e.g. attribute + rank).
    * @type {number}
    */
   get rankFinal() {
-    return ( this.parentActor?.system.attributes[this.attribute]?.step ?? 0 );
+    return ( this.containingActor?.system.attributes[this.attribute]?.step ?? 0 );
   }
 
   /** @inheritDoc */
@@ -223,7 +239,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -235,15 +251,16 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AbilityRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
+
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
 
-    const equippedWeapons = this.parentActor.equippedWeapons;
+    const equippedWeapons = this.containingActor.equippedWeapons;
 
     const whatToDo = this._checkEquippedWeapons( equippedWeapons );
     if ( !whatToDo ) throw new Error( "No action to take! Something's messed up :)" );
@@ -261,7 +278,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
-      rollingActorUuid: this.parentActor.uuid,
+      rollingActorUuid: this.containingActor.uuid,
       target:           { 
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
@@ -275,10 +292,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
-        rollData: this.parentActor,
+        rollData: this.containingActor,
       }
     );
-    return this.parentActor.processRoll( roll );
+    return this.containingActor.processRoll( roll );
   }
 
   async _attack() {
@@ -286,11 +303,11 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   }
 
   async _drawWeapon() {
-    return this.parentActor.drawWeapon();
+    return this.containingActor.drawWeapon();
   }
 
   async _switchWeapon() {
-    return this.parentActor.switchWeapon();
+    return this.containingActor.switchWeapon();
   }
 
   /**

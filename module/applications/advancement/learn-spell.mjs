@@ -1,9 +1,9 @@
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class LearnSpellPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class LearnSpellPrompt extends ApplicationEd {
 
   /**
    * @inheritDoc
@@ -11,7 +11,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Function} options.resolve          The function to call when the dialog is resolved.
    * @param {ActorEd} options.actor             The actor that is learning the spell.
    * @param {ItemEd} options.spell              The spell that is being learned.
-   * @userFunction                              UF_LearnSpellPrompt-constructor
    */
   constructor( options ) {
     super( options );
@@ -83,16 +82,12 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     };
   }
 
-  /** 
-   * @inheritdoc 
-   * @userFunction                             UF_LearnSpellPrompt-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id:      "learn-spell-prompt",
-    classes: [ "earthdawn4e", "learn-spell" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "learn-spell-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "learn-spell", ],
+    window:   {
       icon:  "fa-thin fa-scroll",
       title: "ED.Dialogs.Title.learnSpell",
     },
@@ -105,14 +100,10 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
     form:    {
       handler:        LearnSpellPrompt.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
   };
 
-  /** 
-   * @inheritdoc 
-   * @userFunction                              UF_LearnSpellPrompt-parts
-   */
+  /** @inheritdoc */
   static PARTS = {
     form: {
       template: "systems/ed4e/templates/actor/legend-points/learn-spell.hbs",
@@ -127,7 +118,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
    * @param {object} [options.actor]            The actor to which the lpHistory belongs.
    * @param {object} [options.resolve]          The function to call when the dialog is resolved.
-   * @userFunction                              UF_LearnSpellPrompt-waitPrompt
    */
   static async waitPrompt( options = {} ) {
     return new Promise( ( resolve ) => {
@@ -141,7 +131,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Event} event The event object triggered by the form submission.
    * @param {HTMLElement} form The form element.
    * @param {object} formData The form data.
-   * @userFunction UF_LearnSpellPrompt-onFormSubmission
    */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
@@ -153,7 +142,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * Handles the action getting teacher support.
    * @param {Event} _ - The event object triggered by the action.
    * @returns {Promise<void>} A promise that resolves when the dialog is closed.
-   * @userFunction UF_LearnSpellPrompt-spellcastingTest
    */
   static async _spellcastingTest( _ ) {
     const roll = await this.actor.rollAbility(
@@ -182,7 +170,6 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * Handles the action of copying the spell using a patterncraft test.
    * @param {Event} _ - The event object triggered by the action.
    * @returns {Promise<void>} A promise that resolves when the dialog is closed.
-   * @userFunction UF_LearnSpellPrompt-patterncraftTest
    */
   static async _patterncraftTest( _ ) {
     const modifiers = {};
@@ -223,17 +210,13 @@ export default class LearnSpellPrompt extends HandlebarsApplicationMixin( Applic
    * @param {Event} event The event object triggered by the action.
    * @param {HTMLElement} target The target element that triggered the action.
    * @returns {Promise<void>} A promise that resolves when the dialog is closed.
-   * @userFunction UF_LearnSpellPrompt-learnAndClose
    */
   static async _learnAndClose( event, target ) {
     this.resolve?.( target.dataset.action );
     return this.close();
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction                              UF_LearnSpellPrompt-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( _ ) {
     const context = {};
     context.source = this.dataModel;

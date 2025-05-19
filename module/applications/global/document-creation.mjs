@@ -5,24 +5,29 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 /**
  * Derivate of Foundry's Item.createDialog() functionality.
  */
-export default class DocumentCreateDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
-
+export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
+  ApplicationV2,
+) {
   /** @inheritDoc */
-  constructor( data = {}, { resolve, documentCls, pack = null, parent = null, options = {}, } = {} ) {
+  constructor(
+    data = {},
+    { resolve, documentCls, pack = null, parent = null, options = {} } = {},
+  ) {
     const documentType = documentCls.name;
-    const documentTypeLocalized = game.i18n.localize( `DOCUMENT.${documentType}` );
+    const documentTypeLocalized = game.i18n.localize(
+      `DOCUMENT.${documentType}`,
+    );
     const classes = options.classes || [];
     classes.push( `create-${documentType.toLowerCase()}` );
     const window = options.window || {};
-    window.title ??= game.i18n.format( "DOCUMENT.Create", { type: documentTypeLocalized } );
+    window.title ??= game.i18n.format( "DOCUMENT.Create", {
+      type: documentTypeLocalized,
+    } );
 
-    foundry.utils.mergeObject(
-      options,
-      {
-        classes,
-        window,
-      },
-    );
+    foundry.utils.mergeObject( options, {
+      classes,
+      window,
+    } );
 
     super( options );
 
@@ -33,20 +38,19 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
     this.parent = parent;
     this.documentTypeLocalized = documentTypeLocalized;
 
-
-
     this._updateCreationData( data );
   }
 
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
-    id:             "document-create-dialog",
-    classes:        [ "earthdawn4e", "create-document" ],
-    tag:            "form",
+    id:      "document-create-dialog",
+    classes: [ "earthdawn4e", "create-document" ],
+    tag:     "form",
     window:  {
-      frame:          true,
-      resizable:      true,
-      height:         900,
-      width:          800,
+      frame:     true,
+      resizable: true,
+      height:    900,
+      width:     800,
     },
     form: {
       handler:        this.#onFormSubmission,
@@ -64,8 +68,9 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
     },
   };
 
+  /** @inheritDoc */
   static PARTS = {
-    form:   {
+    form: {
       template:   "systems/ed4e/templates/global/document-creation.hbs",
       id:         "-document-selection",
       scrollable: [ "type-selection" ],
@@ -100,14 +105,15 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   /*  Rendering                                   */
   /* -------------------------------------------- */
 
+  /** @inheritDoc */
   async _prepareContext( options = {} ) {
-    const folders = this.parent ? [] : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
+    const folders = this.parent
+      ? []
+      : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
     // add compendium folders
-    game.packs.filter(
-      ( pack ) => pack.metadata.type === this.documentType
-    ).forEach(
-      ( pack ) => folders.push( ...pack.folders )
-    );
+    game.packs
+      .filter( ( pack ) => pack.metadata.type === this.documentType )
+      .forEach( ( pack ) => folders.push( ...pack.folders ) );
 
     const types = CONFIG.ED4E.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
@@ -120,8 +126,10 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
 
     const buttons = [
       {
-        type:     "button",
-        label:    game.i18n.format( "DOCUMENT.Create", { type: this.documentTypeLocalized } ),
+        type:  "button",
+        label: game.i18n.format( "DOCUMENT.Create", {
+          type: this.documentTypeLocalized,
+        } ),
         cssClass: "finish",
         action:   "createDocument",
       },
@@ -131,10 +139,12 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
       documentTypeLocalized: this.documentTypeLocalized,
       folders,
       name:                  createData.name,
-      defaultName:           this.documentCls.implementation.defaultName( { type: createData.type } ),
-      folder:                createData.folder,
-      hasFolders:            folders.length > 0,
-      currentType:           createData.type,
+      defaultName:           this.documentCls.implementation.defaultName( {
+        type: createData.type,
+      } ),
+      folder:      createData.folder,
+      hasFolders:  folders.length > 0,
+      currentType: createData.type,
       types,
       typesRadio,
       buttons,
@@ -145,6 +155,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
   /*  Form Handling                               */
   /* -------------------------------------------- */
 
+  /** @inheritDoc */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
 
@@ -153,17 +164,20 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
     this.render();
   }
 
+  /**
+   * Update the creation data object with the provided data.
+   * @param {object} data The data to update the creation data with.
+   * @returns {object} The updated creation data object.
+   */
   _updateCreationData( data = {} ) {
     // Fill in default type if missing
-    data.type ||= CONFIG[this.documentType].defaultType || game.documentTypes[this.documentType][1];
+    data.type ||=
+      CONFIG[this.documentType].defaultType ||
+      game.documentTypes[this.documentType][1];
 
-    foundry.utils.mergeObject(
-      this.createData,
-      data,
-      {
-        inplace: true,
-      }
-    );
+    foundry.utils.mergeObject( this.createData, data, {
+      inplace: true,
+    } );
     this.createData.system ??= {};
 
     // Clean up data
@@ -178,12 +192,14 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
 
   /** @inheritDoc */
   _onRender( context, options ) {
-    this.element.querySelectorAll( ".type-selection label" ).forEach(
-      element => element.addEventListener(
-        "dblclick",
-        this.constructor._createDocument.bind( this )
-      )
-    );
+    this.element
+      .querySelectorAll( ".type-selection label" )
+      .forEach( ( element ) =>
+        element.addEventListener(
+          "dblclick",
+          this.constructor._createDocument.bind( this ),
+        ),
+      );
   }
 
   /**
@@ -199,14 +215,17 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
 
     /* eslint-disable new-cap */
     let createData = this._updateCreationData( this.createData );
-    createData.name ||= this.documentCls.implementation.defaultName( { type: createData.type } );
+    createData.name ||= this.documentCls.implementation.defaultName( {
+      type: createData.type,
+    } );
     createData = new this.documentCls.implementation( createData ).toObject();
     /* eslint-enable new-cap */
 
     let promise;
 
-    if ( createData.type === "character"
-      && game.settings.get( "ed4e", "autoOpenCharGen" )
+    if (
+      createData.type === "character" &&
+      game.settings.get( "ed4e", "autoOpenCharGen" )
     ) {
       const useCharGen = await DocumentCreateDialog._showCharGenPrompt();
       if ( useCharGen ) {
@@ -232,17 +251,25 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin( Ap
     return this.close();
   }
 
+  /**
+   * A small prompt asking the user if they want to use the character generation.
+   * @returns {Promise<boolean>} True if the user wants to use the character generation, false otherwise.
+   */
   static async _showCharGenPrompt() {
     return foundry.applications.api.DialogV2.confirm( {
       content:     "X-Do you want to use the character generation?",
       rejectClose: false,
-      modal:       true
+      modal:       true,
     } );
   }
 
+  /**
+   * Handle the close event for the document creation dialog.
+   * @param {object} options The options to pass to the close method.
+   * @returns {Promise} The promise to resolve when the dialog is closed.
+   */
   close( options = {} ) {
     this.resolve?.( null );
     return super.close( options );
   }
-
 }

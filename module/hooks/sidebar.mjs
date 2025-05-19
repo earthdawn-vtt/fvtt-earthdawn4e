@@ -39,9 +39,6 @@ export default function () {
     /* -------------------------------------------- */
     /*  Dice Icon Roll                              */
     /* -------------------------------------------- */
-    /**
-     * @userFunction                UF_Rolls_triggerDiceIconRoll
-     */
     $( "#chat-controls i.fa-dice-d20" ).on( "click", RollPrompt.rollArbitraryPrompt.bind( null ) );
   }  );
 }

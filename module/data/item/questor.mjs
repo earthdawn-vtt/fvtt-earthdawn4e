@@ -4,7 +4,7 @@ import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on the questor path items.
@@ -58,7 +58,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Legend.Rules.questorClassIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorClassIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -70,7 +70,7 @@ export default class QuestorData extends ClassTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.parentActor.currentLp,
+          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
         },
       ],
     };
@@ -127,7 +127,7 @@ export default class QuestorData extends ClassTemplate.mixin(
           ${createContentLink( questorDevotion.uuid, questorDevotion.name )}
         </p>
       `;
-    const increaseDevotion = await DialogV2.confirm( {
+    const increaseDevotion = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );
@@ -168,7 +168,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       <p>${ questorDevotionLink }</p>
       `;
 
-    const learn = await DialogV2.confirm( {
+    const learn = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );

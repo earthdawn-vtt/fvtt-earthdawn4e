@@ -1,1 +1,0 @@
-This function validates whether the class ranks are properly assigned during character generation.

@@ -1,1 +1,0 @@
-This function adds a legend Tab to the Character sheet.

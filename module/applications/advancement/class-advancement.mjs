@@ -2,15 +2,14 @@ import ClassTemplate from "../../data/item/templates/class.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { getAllDocuments } from "../../utils.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 const { isEmpty } = foundry.utils;
 
-export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class ClassAdvancementDialog extends ApplicationEd {
 
   /**
    * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ClassAdvancementDialog-steps
    */
   STEPS = [
     "requirements",
@@ -23,7 +22,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * Button to navigate to the previous step in the dialog.
    * Sourced from {@link PromptFactory.goBackButton}.
    * Used in steps where the user can go back to review or modify their choices.
-   * @userFunction UF_ClassAdvancementDialog-buttonGoBack
    */
   buttonGoBack = PromptFactory.goBackButton;
 
@@ -31,7 +29,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * Button to proceed to the next step in the dialog.
    * Sourced from {@link PromptFactory.continueButton}.
    * Marked as the default action for steps where the user can continue.
-   * @userFunction UF_ClassAdvancementDialog-buttonContinue
    */
   buttonContinue = Object.assign( PromptFactory.continueButton, { default: true } );
 
@@ -39,7 +36,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * Button to finalize the dialog and complete the process.
    * Sourced from {@link PromptFactory.completeButton}.
    * Marked as the default action for the final step of the dialog.
-   * @userFunction UF_ClassAdvancementDialog-buttonComplete
    */
   buttonComplete = Object.assign( PromptFactory.completeButton, { default: true } );
 
@@ -48,7 +44,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * @param {ItemEd} classItem                  The class item for which to display advancement options. Must be on its
    *                                            original level.
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
-   * @userFunction UF_ClassAdvancementDialog-constructor
    */
   constructor( classItem, options = {} ) {
 
@@ -83,7 +78,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * @returns {Promise<
    * {spendLp: string, abilityChoice: string, spells: Set<string>}
    * >}                                           The selected options of the dialog. The abilityChoice
-   * @userFunction UF_ClassAdvancementDialog-waitPrompt
    */
   static async waitPrompt( classItem, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -92,16 +86,12 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     } );
   }
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ClassAdvancementDialog-defaultOptions
-   */
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
-    id:      "class-advancement-dialog",
-    classes: [ "earthdawn4e", "class-advancement-dialog" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "class-advancement-dialog-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "class-advancement-dialog" ],
+    window:   {
       icon:  `fa-thin ${ED4E.icons.classAdvancement}`,
       title: "ED.Dialogs.Title.classAdvancement",
     },
@@ -113,37 +103,33 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     form:    {
       handler:        ClassAdvancementDialog.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
   };
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ClassAdvancementDialog-parts
-   */
+  /** @inheritDoc */
   static PARTS = {
     requirements: {
       template:   "systems/ed4e/templates/advancement/advancement-requirements.hbs",
       id:         "advancement-requirements",
-      classes:    [ "advancement-requirements" ],
+      classes:    [ "advancement-requirements", "scrollable" ],
       scrollable: [ "" ],
     },
     optionChoice:   {
       template:   "systems/ed4e/templates/advancement/class-advancement-option-choice.hbs",
       id:         "advancement-option-choice",
-      classes:    [ "advancement-option-choice" ],
+      classes:    [ "advancement-option-choice", "scrollable" ],
       scrollable: [ "" ],
     },
     spellSelection: {
       template:   "systems/ed4e/templates/advancement/class-advancement-spell-selection.hbs",
       id:         "advancement-spell-selection",
-      classes:    [ "advancement-spell-selection" ],
+      classes:    [ "advancement-spell-selection", "scrollable" ],
       scrollable: [ "" ],
     },
     summary:        {
       template:   "systems/ed4e/templates/advancement/class-advancement-summary.hbs",
       id:         "advancement-summary",
-      classes:    [ "advancement-summary" ],
+      classes:    [ "advancement-summary", "scrollable" ],
       scrollable: [ "" ],
     },
     footer:         {
@@ -157,7 +143,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * @param {Event} event The event object triggered by the form submission.
    * @param {HTMLElement} form The form element.
    * @param {object} formData The form data.
-   * @userFunction UF_ClassAdvancementDialog-onFormSubmission
    */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
@@ -169,7 +154,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * Handles the click event for the continue button.
    * @param {Event} event The event object triggered by the button click.
    * @param {HTMLElement} target The target element.
-   * @userFunction UF_ClassAdvancementDialog-continue
    */
   static async _continue( event, target ) {
     if ( this.currentStep === 0 ) this.currentStep++;
@@ -186,7 +170,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * Handles the click event for the go back button.
    * @param {Event} event The event object triggered by the button click.
    * @param {HTMLElement} target The target element.
-   * @userFunction UF_ClassAdvancementDialog-goBack
    */
   static async _goBack( event, target ) {
     if ( this.currentStep === 1 ) this.currentStep--;
@@ -202,7 +185,6 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
    * @param {Event} event The event object triggered by the button click.
    * @param {HTMLElement} target The target element.
    * @returns {Promise<void>} A promise that resolves when the dialog is closed.
-   * @userFunction UF_ClassAdvancementDialog-complete
    */
   static async _complete( event, target ) {
     this.resolve?.( {
@@ -213,10 +195,7 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
     return this.close();
   }
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ClassAdvancementDialog-prepareContext
-   */
+  /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
 
@@ -242,8 +221,8 @@ export default class ClassAdvancementDialog extends HandlebarsApplicationMixin( 
       "spell",
       true,
       "OBSERVER",
-      [ "system.magicType" ],
-      _ => true // x.system.magicType === this.classItem
+      [ "system.spellcastingType" ],
+      spell => spell.system?.spellcastingType === this.classItem.system.getCastingType()
     ) ).filter(
       spell => !this.actor.itemTypes.spell.map( s => s.uuid ).includes( spell )
     ) : [];

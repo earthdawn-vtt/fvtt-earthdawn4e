@@ -252,6 +252,9 @@
 .container__header {
   margin: 5px 0;
 }
+.item-image {
+  width: 150px;
+}
 .itemControlGroup,
 .icon__position--right {
   float: right;

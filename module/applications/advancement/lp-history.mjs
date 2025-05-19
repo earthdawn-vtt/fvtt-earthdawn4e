@@ -1,13 +1,13 @@
 import LpTrackingData from "../../data/advancement/lp-tracking.mjs";
 import LpEarningTransactionData from "../../data/advancement/lp-earning-transaction.mjs";
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+import ApplicationEd from "../api/application.mjs";
 
 /**
  * The application responsible for handling Legend Point related interactions and data.
  * @augments ApplicationV2
  * @mixes HandlebarsApplicationMixin
  */
-export default class LegendPointHistory extends HandlebarsApplicationMixin( ApplicationV2 ) {
+export default class LegendPointHistory extends ApplicationEd {
 
   /**
    * @inheritDoc
@@ -15,7 +15,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
    * @param {ActorEd} options.actor             The actor to which the lpHistory belongs.
    * @param {Function} options.resolve          The function to call when the dialog is resolved.
-   * @userFunction                              UF_LegendPointHistory-constructor
    */
   constructor( lpHistory, options = {} ) {
     super( options );
@@ -39,7 +38,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
    * @param {object} [options.actor]            The actor to which the lpHistory belongs.
    * @param {object} [options.resolve]          The function to call when the dialog is resolved.
-   * @userFunction                              UF_LegendPointHistory-waitPrompt
    */
   static async waitPrompt( lpHistory, options = {} ) {
     return new Promise( ( resolve ) => {
@@ -48,16 +46,12 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     } );
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_LegendPointHistory-prepareOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id:      "legend-point-history-prompt", 
-    classes: [ "earthdawn4e", "legend-point__history" ],
-    tag:     "form",
-    window:  {
-      frame: true,
+    id:       "legend-point-history-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "legend-point__history", ],
+    window:   {
       icon:  "fa-thin fa-list-timeline",
       title: "X-Localize Legend Point History",
     },
@@ -70,7 +64,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     form: {
       handler:        LegendPointHistory.#onFormSubmission,
       submitOnChange: true,
-      closeOnSubmit:  false,
     },
     position: {
       width:  1000,
@@ -78,10 +71,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     },
   };
 
-  /**
-   * @inheritDoc
-   * @userFunction UF_LegendPointHistory-parts
-   */
+  /** @inheritdoc */
   static PARTS = {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
@@ -104,10 +94,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     }
   };
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_LegendPointHistory-tabs
-   */
+  /** @inheritdoc */
   static TABS = {
     "earned-tab": {
       id:       "earned-tab",
@@ -139,10 +126,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
 
   // put _configureRenderOptions here if needed
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_LegendPointHistory-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     context.lpHistory = this.lpHistory;
@@ -171,10 +155,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     return context;
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_LegendPointHistory-preparePartContext
-   */
+  /** @inheritdoc */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
 
@@ -204,7 +185,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @param {object} context The context object to prepare.
    * @param {object} options The options object to prepare.
    * @returns {object} The prepared context object.
-   * @userFunction UF_LegendPointHistory-prepareTabsContext
    */
   async _prepareTabsContext( context, options ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
@@ -215,10 +195,7 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
     return context;
   }
 
-  /**
-   * @inheritdoc
-   * @userFunction UF_LegendPointHistory-onRender
-   */
+  /** @inheritdoc */
   _onRender( context, options ) {
     // TODO: @patrick - solve this in css, just hover: visibility: visible, else: hidden
     this.element.querySelectorAll(
@@ -248,7 +225,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @param {Event} event The event object triggered by the form submission.
    * @param {HTMLElement} form The form element.
    * @param {object} formData The form data.
-   * @userFunction UF_LegendPointHistory-onFormSubmission
    */
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
@@ -278,7 +254,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * Handles the toggle detail action for the lp history dialog.
    * @param {Event} event The event object triggered by the toggle detail action.
    * @param {HTMLElement} target The target element that triggered the action.
-   * @userFunction UF_LegendPointHistory-toggleDetail
    */
   static async _toggleDetail( event, target ) {
     const group = target.getAttribute( "data-group" );
@@ -290,9 +265,9 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
 
   /**
    * manually adding legend points to an actor
-   * @userFunction UF_LpTracking-addEarnings
+   * @param {Event} event The event object triggered by the toggle detail action.
+   * @param {HTMLElement} target The target element that triggered the action.
    */
-
   static async _addEarning( event, target ) {
     const transaction = new LpEarningTransactionData( {
       amount:      0,
@@ -316,7 +291,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * Handles the revert button for transactions.
    * @param {Event} event The event object triggered by the revert transactions action.
    * @param {HTMLElement} target The target element that triggered the action.
-   * @userFunction UF_LegendPointHistory-revertTransactions
    */
   static async _revertTransactions( event, target ) {
     this.lpHistory.updateSource(
@@ -331,7 +305,6 @@ export default class LegendPointHistory extends HandlebarsApplicationMixin( Appl
    * @param {Event} event The event object triggered by the save changes action.
    * @param {HTMLElement} target The target element that triggered the action.
    * @returns {Promise} A promise that resolves when the changes are saved.
-   * @userFunction UF_LegendPointHistory-saveChanges
    */
   static async _saveChanges( event, target ) {
     this.resolve?.( this.lpHistory );

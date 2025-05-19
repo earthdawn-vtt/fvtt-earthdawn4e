@@ -3,7 +3,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import DisciplineData from "./discipline.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on path items.
@@ -62,7 +62,7 @@ export default class PathData extends ClassTemplate.mixin(
   get increaseData() {
     const nextLevel = this.level + 1;
 
-    const actor = this.parentActor;
+    const actor = this.containingActor;
     if ( !actor ) return null;
     const pathTalent = actor.items.find( item => item.type === "talent" && item.system.edid === this.edid );
 
@@ -79,7 +79,7 @@ export default class PathData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.pathIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -138,7 +138,7 @@ export default class PathData extends ClassTemplate.mixin(
       <p>${ pathTalentLink }</p>
       `;
 
-      const learn = await DialogV2.confirm( {
+      const learn = await DialogEd.confirm( {
         rejectClose: false,
         content:     await TextEditor.enrichHTML( content ),
       } );
@@ -156,7 +156,7 @@ export default class PathData extends ClassTemplate.mixin(
       <p>${ pathKnackLink }</p>
       `;
 
-      const learn = await DialogV2.confirm( {
+      const learn = await DialogEd.confirm( {
         rejectClose: false,
         content:     await TextEditor.enrichHTML( content ),
       } );
@@ -197,7 +197,7 @@ export default class PathData extends ClassTemplate.mixin(
             ${createContentLink( pathTalent.uuid, pathTalent.name )}
           </p>
         `;
-      const increasePathTalent = await DialogV2.confirm( {
+      const increasePathTalent = await DialogEd.confirm( {
         rejectClose: false,
         content:     await TextEditor.enrichHTML( content ),
       } );

@@ -4,11 +4,18 @@ import ED4E from "../../config/_module.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV2 ) {
-
-  constructor( edRollOptions = {}, { resolve, rollData = {}, options = {} } = {} ) {
+export default class RollPrompt extends HandlebarsApplicationMixin(
+  ApplicationV2,
+) {
+  /** @inheritDoc */
+  constructor(
+    edRollOptions = {},
+    { resolve, rollData = {}, options = {} } = {},
+  ) {
     if ( !( edRollOptions instanceof EdRollOptions ) ) {
-      throw new TypeError( "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`." );
+      throw new TypeError(
+        "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`.",
+      );
     }
     super( options );
 
@@ -38,19 +45,17 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
 
   /**
    * @description                 Roll a step prompt.
-   * @userFunction                UF_Rolls-rollStepPrompt
    */
   static rollArbitraryPrompt() {
     RollPrompt.waitPrompt(
       new EdRollOptions( {
         testType:   "arbitrary",
         chatFlavor: game.i18n.localize( "ED.Chat.Header.arbitraryTest" ),
-      } )
-    ).then(
-      ( roll ) => roll?.toMessage()
-    );
+      } ),
+    ).then( ( roll ) => roll?.toMessage() );
   }
 
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id:       "roll-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -60,7 +65,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
       width:  "auto",
       height: "auto",
     },
-    window:   {
+    window: {
       frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
       icon:  `fa-regular ${ED4E.icons.dice}`,
@@ -68,13 +73,14 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     actions: {
       roll: this._roll,
     },
-    form:    {
+    form: {
       handler:        RollPrompt.#onFormSubmission,
       submitOnChange: true,
       closeOnSubmit:  false,
     },
   };
 
+  /** @inheritDoc */
   static PARTS = {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
@@ -98,9 +104,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     },
   };
 
-  /**
-   * @type {Record<string, ApplicationTab>}
-   */
+  /** @inheritDoc */
   static TABS = {
     "base-tab": {
       id:       "base-tab",
@@ -122,6 +126,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     labelPrefix: "ED.Sheet.Tabs",
   };
 
+  /** @inheritDoc */
   buttons = [
     {
       type:     "button",
@@ -136,7 +141,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
       cssClass: "roll",
       icon:     `fa-regular ${ED4E.icons.dice}`,
       action:   "roll",
-    }
+    },
   ];
 
   /** @inheritDoc */
@@ -150,11 +155,13 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     };
   }
 
+  /** @inheritDoc */
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
 
     switch ( partId ) {
-      case "tabs": return this._prepareTabsContext( context, options );
+      case "tabs":
+        return this._prepareTabsContext( context, options );
       case "base-tab":
         break;
       case "other-tab":
@@ -164,11 +171,13 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
     // We only reach it if we're in a tab part
     const tabGroup = "primary";
     context.tab = foundry.utils.deepClone( this.constructor.TABS[partId] );
-    if ( this.tabGroups[tabGroup] === context.tab?.id ) context.tab.cssClass = "active";
+    if ( this.tabGroups[tabGroup] === context.tab?.id )
+      context.tab.cssClass = "active";
 
     return context;
   }
 
+  /** @inheritDoc */
   async _prepareTabsContext( context, options ) {
     // make a deep copy to guarantee the css classes are always empty before setting it to active
     context.tabs = foundry.utils.deepClone( this.constructor.TABS );
@@ -180,27 +189,45 @@ export default class RollPrompt extends HandlebarsApplicationMixin( ApplicationV
 
   /** @inheritDoc */
   _onRender( context, options ) {
-    this.element.querySelectorAll( "#karma-input,#devotion-input" ).forEach( element => {
-      element.addEventListener( "change", this._validateAvailableRessource.bind( this ) );
-    } );
+    this.element
+      .querySelectorAll( "#karma-input,#devotion-input" )
+      .forEach( ( element ) => {
+        element.addEventListener(
+          "change",
+          this._validateAvailableRessource.bind( this ),
+        );
+      } );
   }
 
+  /**
+   * @description                 Validate the available resources.
+   * @param {Event} event        The event that triggered the validation.
+   */
   _validateAvailableRessource( event ) {
     const newValue = event.currentTarget.value;
     const resource = event.currentTarget.dataset.resource;
     if (
-      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary
-      && newValue > this.edRollOptions[resource].available
+      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary &&
+      newValue > this.edRollOptions[resource].available
     ) {
-      ui.notifications.warn( `Localize: Not enough ${resource}. You can use it, but only max available will be deducted from current.` );
+      ui.notifications.warn(
+        `Localize: Not enough ${resource}. You can use it, but only max available will be deducted from current.`,
+      );
     }
   }
 
+  /** @inheritDoc */
   static async #onFormSubmission( event, form, formData ) {
     this.edRollOptions.updateSource( formData.object );
     return this.render( true );
   }
 
+  /**
+   * @description                Roll the step.
+   * @param {Event} event        The event that triggered the roll.
+   * @param {HTMLElement} target The target element of the event.
+   * @returns {Promise}          The promise of the roll.
+   */
   static async _roll( event, target ) {
     event.preventDefault();
     event.stopPropagation();

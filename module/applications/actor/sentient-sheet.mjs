@@ -1,15 +1,12 @@
 import ActorSheetEd from "./common-sheet.mjs";
 import ED4E from "../../config/_module.mjs";
 
+
 /**
  * Extend the basic ActorSheet with modifications
  */
 export default class ActorSheetEdSentient extends ActorSheetEd {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   * @userFunction UF_ActorSheetEdSentient-addSheetTab
-   */
   static {
     this.addSheetTabs( [
       { id: "general", },
@@ -20,10 +17,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     ] );
   }
 
-  /** 
-   * @inheritdoc 
-   * @userFunction UF_ActorSheetEdSentient-defaultOptions
-   */
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes:  [ "earthdawn4e", "sheet", "actor" ],
     window:   {
@@ -38,6 +32,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
     actions:  {
       attack:           ActorSheetEdSentient._onAttack,
+      attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
       takeDamage:       ActorSheetEdSentient.takeDamage,
       knockDown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
@@ -48,18 +43,12 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
   };
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ActorSheetEdSentient-prepareContext
-   */
+  /** @inheritdoc */
   async _prepareContext( options ) {
     return await super._prepareContext( options );
   }
 
-  /** 
-   * @inheritDoc 
-   * @userFunction UF_ActorSheetEdSentient-preparePartContext
-   */
+  /** @inheritdoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
 
@@ -69,6 +58,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       case "spells":
         foundry.utils.mergeObject( context, {
           tabsSpells: this._getSpellTabs(),
+          matrices:   this.document.getMatrices(),
         } );
         break;
       case "equipment":
@@ -86,7 +76,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * Get the sub-tabs for the spells section
    * @returns {{}}   The tabs object
    * @protected
-   * @userFunction UF_ActorSheetEdSentient-getSpellTabs
    */
   _getSpellTabs() {
     this.tabGroups["spellsContent"] ??= "matrix";
@@ -122,7 +111,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the attack roll result document.
-   * @userFunction UF_ActorSheetEdSentient-onAttack
    */
   static async _onAttack( event, target ) {
     event.preventDefault();
@@ -131,11 +119,26 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   }
 
   /**
+   * Handle attune matrix events on the actor sheet
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEdSentient}
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>}
+   */
+  static async _onAttuneMatrix( event, target ) {
+    event.preventDefault();
+
+    const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
+
+    if ( await this.actor.reattuneSpells( firstMatrixUuid ) ) await this.render();
+  }
+
+  /**
    * Handle take damage action button on the actor sheet
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the damage roll result document.
-   * @userFunction UF_ActorSheetEdSentient-takeDamage
    */
   static async takeDamage( event, target ) {
     const takeDamage = await this.document.getPrompt( "takeDamage" );
@@ -154,7 +157,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the knockdown test result document.
-   * @userFunction UF_ActorSheetEdSentient-knockdownTest
    */
   static async knockdownTest( event, target ) {
     event.preventDefault();
@@ -166,8 +168,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * Handle recovery roll button on the actor sheet.
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
-   * @returns {Promise<Document>} - A promise that resolves to the recovery roll result document.
-   * @userFunction UF_ActorSheetEdSentient-rollRecovery
+   * @returns {Promise<Document>} - A promise that resolves to the recovery roll result document.y
    */
   static async rollRecovery( event, target ) {
     event.preventDefault();
@@ -180,7 +181,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the jump up result document.
-   * @userFunction UF_ActorSheetEdSentient-jumpUp
    */
   static async jumpUp( event, target ) {
     event.preventDefault();
@@ -192,7 +192,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the initiative roll result document.
-   * @userFunction UF_ActorSheetEdSentient-rollInitiative
    */
   static async rollInitiative( event, target ) {
     event.preventDefault();
@@ -205,7 +204,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @param {Event} event     The originating click event.
    * @param {HTMLElement} target  The target element that was clicked.
    * @returns {Promise<Document>} - A promise that resolves to the roll result document.
-   * @userFunction UF_ActorSheetEdSentient-rollable
    */
   static async rollable( event, target ) {
     event.preventDefault();
@@ -238,7 +236,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * 7: tail
    * @returns {ApplicationV2}   The rendered item sheet.
    * @private
-   * @userFunction              UF_ActorSheetEdSentient-changeItemStatus
    */
    
   static async changeItemStatus( event, target ) {

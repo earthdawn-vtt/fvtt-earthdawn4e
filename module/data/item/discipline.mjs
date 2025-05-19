@@ -89,7 +89,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.disciplineIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.disciplineIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
@@ -102,7 +102,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.parentActor.currentLp,
+          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.availableMoney",
@@ -116,7 +116,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
       {
         name:      "ED.Dialogs.Legend.Validation.talentOptionLp",
         value:     this.requiredLpForIncrease,
-        fulfilled: nextTalentLpCost <= this.parentActor.currentLp,
+        fulfilled: nextTalentLpCost <= this.containingActor.currentLp,
       },
     ];
     return validationData;
@@ -137,7 +137,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    * @type {ItemEd[]}
    */
   get talentsFromDiscipline() {
-    return this.parentActor.itemTypes.talent.filter(
+    return this.containingActor.itemTypes.talent.filter(
       talent => talent.system.source.class === this.parent.uuid
     );
   }

@@ -56,8 +56,8 @@ export const startingEquipment = {
       en: "Adventure's Kit>",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.QoFs74sBrsKYBYla",
-      en: "Compendium.export const core-items-english.Item.ChlB1OC6AQlp3oyj",
+      de: "Compendium.ed4e.core-items-deutsch.Item.QoFs74sBrsKYBYla",
+      en: "Compendium.ed4e.core-items-english.Item.ChlB1OC6AQlp3oyj",
     },
   },
   backpack: {
@@ -66,8 +66,8 @@ export const startingEquipment = {
       en: "Backpack",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.pRHY0FtscONOTBx3",
-      en: "Compendium.export const core-items-english.Item.eJMPAkYJZS27MSWO",
+      de: "Compendium.ed4e.core-items-deutsch.Item.pRHY0FtscONOTBx3",
+      en: "Compendium.ed4e.core-items-english.Item.eJMPAkYJZS27MSWO",
     },
   },
   bedroll: {
@@ -76,8 +76,8 @@ export const startingEquipment = {
       en: "Bedroll",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.bj6QLFwZ3RqRmvuK",
-      en: "Compendium.export const core-items-english.Item.gn1aAtPYJJEkDESL",
+      de: "Compendium.ed4e.core-items-deutsch.Item.bj6QLFwZ3RqRmvuK",
+      en: "Compendium.ed4e.core-items-english.Item.gn1aAtPYJJEkDESL",
     },
   },
   flintAndSteel: {
@@ -86,8 +86,8 @@ export const startingEquipment = {
       en: "Flint & Steel",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.VYDU8AYjbfqt8hGM",
-      en: "Compendium.export const core-items-english.Item.sANrGj1jZJeXKrHH",
+      de: "Compendium.ed4e.core-items-deutsch.Item.VYDU8AYjbfqt8hGM",
+      en: "Compendium.ed4e.core-items-english.Item.sANrGj1jZJeXKrHH",
     },
   },
   torch: {
@@ -96,8 +96,8 @@ export const startingEquipment = {
       en: "Torch",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.qyLwljtWgScvpZn2",
-      en: "Compendium.export const core-items-english.Item.gGMJqLCpM4tBQzX9",
+      de: "Compendium.ed4e.core-items-deutsch.Item.qyLwljtWgScvpZn2",
+      en: "Compendium.ed4e.core-items-english.Item.gGMJqLCpM4tBQzX9",
     },
   },
   waterskin: {
@@ -106,8 +106,8 @@ export const startingEquipment = {
       en: "Waterskin",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.d2dzfa6mPibJKEO1",
-      en: "Compendium.export const core-items-english.Item.NdIZiXzonRNHqTYf",
+      de: "Compendium.ed4e.core-items-deutsch.Item.d2dzfa6mPibJKEO1",
+      en: "Compendium.ed4e.core-items-english.Item.NdIZiXzonRNHqTYf",
     },
   },
   sackLarge: {
@@ -116,8 +116,8 @@ export const startingEquipment = {
       en: "Sack, large",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.jGbxX7PKvQwHtnL1",
-      en: "Compendium.export const core-items-english.Item.YtxceiyTFpiWlPp5",
+      de: "Compendium.ed4e.core-items-deutsch.Item.jGbxX7PKvQwHtnL1",
+      en: "Compendium.ed4e.core-items-english.Item.YtxceiyTFpiWlPp5",
     },
   },
   artisanToolsCarving: {
@@ -126,8 +126,8 @@ export const startingEquipment = {
       en: "Artisan Tools (Carving)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.38QuMhtR3djGN5qA",
-      en: "Compendium.export const core-items-english.Item.pKTOraTpHPgtk2BF",
+      de: "Compendium.ed4e.core-items-deutsch.Item.38QuMhtR3djGN5qA",
+      en: "Compendium.ed4e.core-items-english.Item.pKTOraTpHPgtk2BF",
     },
   },
   artisanToolsEmbroidery: {
@@ -136,8 +136,8 @@ export const startingEquipment = {
       en: "Artisan Tools (Embroidery/Sewing)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.DEOGtob4q6LNTNib",
-      en: "Compendium.export const core-items-english.Item.wLmtnFm3AJnXUThF",
+      de: "Compendium.ed4e.core-items-deutsch.Item.DEOGtob4q6LNTNib",
+      en: "Compendium.ed4e.core-items-english.Item.wLmtnFm3AJnXUThF",
     },
   },
   artisanToolsForging: {
@@ -146,8 +146,8 @@ export const startingEquipment = {
       en: "Artisan Tools (Forging)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.r7msZUtOhwy7xJLX",
-      en: "Compendium.export const core-items-english.Item.tAvZXpaY4uF0qUmF",
+      de: "Compendium.ed4e.core-items-deutsch.Item.r7msZUtOhwy7xJLX",
+      en: "Compendium.ed4e.core-items-english.Item.tAvZXpaY4uF0qUmF",
     },
   },
   artisanToolsPainting: {
@@ -156,8 +156,8 @@ export const startingEquipment = {
       en: "Artisan Tools (Painting)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.HqLVNxAy2zmaKcJ9",
-      en: "Compendium.export const core-items-english.Item.rn2jotHdGEfYTwKq",
+      de: "Compendium.ed4e.core-items-deutsch.Item.HqLVNxAy2zmaKcJ9",
+      en: "Compendium.ed4e.core-items-english.Item.rn2jotHdGEfYTwKq",
     },
   },
   artisanToolsSculpting: {
@@ -166,8 +166,8 @@ export const startingEquipment = {
       en: "Artisan Tools (Sculpting)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.IvQIzwPm2sQPEGWb",
-      en: "Compendium.export const core-items-english.Item.VMvTL6inPht8N5Sp",
+      de: "Compendium.ed4e.core-items-deutsch.Item.IvQIzwPm2sQPEGWb",
+      en: "Compendium.ed4e.core-items-english.Item.VMvTL6inPht8N5Sp",
     },
   },
   dagger: {
@@ -176,8 +176,8 @@ export const startingEquipment = {
       en: "Dagger",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.9sTzuUGNIgIJaVEu",
-      en: "Compendium.export const core-items-english.Item.VftlPHz6zAJqHgnB",
+      de: "Compendium.ed4e.core-items-deutsch.Item.9sTzuUGNIgIJaVEu",
+      en: "Compendium.ed4e.core-items-english.Item.VftlPHz6zAJqHgnB",
     },
   },
   knife: {
@@ -186,8 +186,8 @@ export const startingEquipment = {
       en: "Knife",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.Nxc41za4gALuz1SL",
-      en: "Compendium.export const core-items-english.Item.JjNpz0S4TatlUgOX",
+      de: "Compendium.ed4e.core-items-deutsch.Item.Nxc41za4gALuz1SL",
+      en: "Compendium.ed4e.core-items-english.Item.JjNpz0S4TatlUgOX",
     },
   },
   grimoire: {
@@ -196,8 +196,8 @@ export const startingEquipment = {
       en: "Grimoire",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.DJJ4XVTJybLGuA6w",
-      en: "Compendium.export const core-items-english.Item.3YEhvAkdbmd6xfV3",
+      de: "Compendium.ed4e.core-items-deutsch.Item.DJJ4XVTJybLGuA6w",
+      en: "Compendium.ed4e.core-items-english.Item.3YEhvAkdbmd6xfV3",
     },
   },
   travelorsGarbBreeches: {
@@ -206,8 +206,8 @@ export const startingEquipment = {
       en: "Traveler's Garb (Breeches)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.iWgU0JKCKC2NjzJi",
-      en: "Compendium.export const core-items-english.Item.GaC3r4sglSmU9F0B",
+      de: "Compendium.ed4e.core-items-deutsch.Item.iWgU0JKCKC2NjzJi",
+      en: "Compendium.ed4e.core-items-english.Item.GaC3r4sglSmU9F0B",
     },
   },
   travelorsGarbRobe: {
@@ -216,8 +216,8 @@ export const startingEquipment = {
       en: "Traveler's Garb (Robe)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.JZJoTOckUCiAwE2q",
-      en: "Compendium.export const core-items-english.Item.HAwAcmh8NSECYXVK",
+      de: "Compendium.ed4e.core-items-deutsch.Item.JZJoTOckUCiAwE2q",
+      en: "Compendium.ed4e.core-items-english.Item.HAwAcmh8NSECYXVK",
     },
   },
   bootsSoft: {
@@ -226,8 +226,8 @@ export const startingEquipment = {
       en: "Boots, soft",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.PHMxb31tiLLQC1NZ",
-      en: "Compendium.export const core-items-english.Item.YYcA7gxpr5SnMZgs",
+      de: "Compendium.ed4e.core-items-deutsch.Item.PHMxb31tiLLQC1NZ",
+      en: "Compendium.ed4e.core-items-english.Item.YYcA7gxpr5SnMZgs",
     },
   },
   shirt: {
@@ -236,8 +236,8 @@ export const startingEquipment = {
       en: "Shirt",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.AfSPCXYdvZLT47VR",
-      en: "Compendium.export const core-items-english.Item.krdcWXGfq9iOOQWD",
+      de: "Compendium.ed4e.core-items-deutsch.Item.AfSPCXYdvZLT47VR",
+      en: "Compendium.ed4e.core-items-english.Item.krdcWXGfq9iOOQWD",
     },
   },
   belt: {
@@ -246,8 +246,8 @@ export const startingEquipment = {
       en: "Belt",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.MWRKfzNdbFE953tC",
-      en: "Compendium.export const core-items-english.Item.UJZ3QzCjO4aBlA13",
+      de: "Compendium.ed4e.core-items-deutsch.Item.MWRKfzNdbFE953tC",
+      en: "Compendium.ed4e.core-items-english.Item.UJZ3QzCjO4aBlA13",
     },
   },
   robe: {
@@ -256,8 +256,8 @@ export const startingEquipment = {
       en: "Robe",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.IcXlmZcdsBz9KKct",
-      en: "Compendium.export const core-items-english.Item.9K6Rnq370zCc2kLg",
+      de: "Compendium.ed4e.core-items-deutsch.Item.IcXlmZcdsBz9KKct",
+      en: "Compendium.ed4e.core-items-english.Item.9K6Rnq370zCc2kLg",
     },
   },
   breeches: {
@@ -266,8 +266,8 @@ export const startingEquipment = {
       en: "Breeches",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.Z9KaKS8TFj6M5ixA",
-      en: "Compendium.export const core-items-english.Item.UZUUpFwTs18qKC65",
+      de: "Compendium.ed4e.core-items-deutsch.Item.Z9KaKS8TFj6M5ixA",
+      en: "Compendium.ed4e.core-items-english.Item.UZUUpFwTs18qKC65",
     },
   },
   cloakTravelers: {
@@ -276,8 +276,8 @@ export const startingEquipment = {
       en: "Cloak, Travelers",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.z9cEPE63TKyht1Ij",
-      en: "Compendium.export const core-items-english.Item.n3XE3IV2TZtyqLBz",
+      de: "Compendium.ed4e.core-items-deutsch.Item.z9cEPE63TKyht1Ij",
+      en: "Compendium.ed4e.core-items-english.Item.n3XE3IV2TZtyqLBz",
     },
   },
   rationTrail: {
@@ -286,8 +286,8 @@ export const startingEquipment = {
       en: "Rations, Trail (1 Week)",
     },
     uuid: {
-      de: "Compendium.export const core-items-deutsch.Item.vGdo76Of1ypkIN6g",
-      en: "Compendium.export const core-items-english.Item.wRLl9FhLR67YgOqA",
+      de: "Compendium.ed4e.core-items-deutsch.Item.vGdo76Of1ypkIN6g",
+      en: "Compendium.ed4e.core-items-english.Item.wRLl9FhLR67YgOqA",
     },
   },
 };

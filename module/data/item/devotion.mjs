@@ -2,7 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink } from "../../utils.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
-const { DialogV2 } = foundry.applications.api;
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on Devotion items.
@@ -73,7 +73,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.devotionIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.devotionIncreaseShortRequirements" );
   }
 
   /**
@@ -107,21 +107,16 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     return {
       [ED4E.validationCategories.base]: [
         {
-          name:      "ED.Legend.Validation.maxLevel",
+          name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
           fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankSkill" ),
         },
       ],
       [ED4E.validationCategories.resources]: [
         {
-          name:      "ED.Legend.Validation.availableLp",
+          name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     increaseData.requiredLp,
-          fulfilled: this.parentActor.currentLp >= increaseData.requiredLp,
-        },
-        {
-          name:      "ED.Legend.Validation.availableMoney",
-          value:     this.requiredMoneyForIncrease,
-          fulfilled: this.parentActor.currentSilver >= this.requiredMoneyForIncrease,
+          fulfilled: this.containingActor.currentLp >= increaseData.requiredLp,
         },
       ],
     };
@@ -135,7 +130,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     if ( !updatedDevotion || !this.isActorEmbedded ) return undefined;
 
     // update the corresponding questor item
-    const questorItem = this.parentActor.itemTypes.questor.find(
+    const questorItem = this.containingActor.itemTypes.questor.find(
       ( item ) => item.system.questorDevotion === this.parent.uuid
     );
     if ( !questorItem ) return updatedDevotion;
@@ -148,7 +143,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
           ${createContentLink( questorItem.uuid, questorItem.name )}
         </p>
       `;
-    const increaseQuestor = await DialogV2.confirm( {
+    const increaseQuestor = await DialogEd.confirm( {
       rejectClose: false,
       content:     await TextEditor.enrichHTML( content ),
     } );

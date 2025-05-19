@@ -4,8 +4,8 @@
   "description": "A system for playing the 4th edition of Earthdawn in the Foundry Virtual Tabletop environment.",
   "version": "1.0.0",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "13.340",
+    "verified": "13.340"
   },
   "url": "https://github.com/patrickmohrmann/earthdawn4eV2",
   "manifest": "this will be replaced",
@@ -228,7 +228,6 @@
       "knackManeuver": {},
       "maneuver": {},
       "mask": {},
-      "matrix": {},
       "namegiver": {},
       "path": {},
       "poisonDisease": {},

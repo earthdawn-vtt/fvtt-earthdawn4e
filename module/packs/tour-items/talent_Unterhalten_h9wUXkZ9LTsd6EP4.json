@@ -39,11 +39,6 @@
       "threadWeaving": {}
     },
     "talentCategory": null,
-    "magic": {
-      "threadWeaving": false,
-      "spellcasting": false,
-      "magicType": ""
-    },
     "knacks": {
       "available": [],
       "learned": []

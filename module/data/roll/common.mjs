@@ -6,6 +6,10 @@ import FormulaField from "../fields/formula-field.mjs";
 import { SparseDataModel } from "../abstract.mjs";
 
 /**
+ * @typedef {import('../../dice/ed-roll.mjs').FlavorTemplateData} FlavorTemplateData
+ */
+
+/**
  * @typedef { object} RollStepData Data for a roll step.
  * @property { number } base The base step that is used to determine the dice that are rolled.
  * @property { Record<string, number> } modifiers All modifiers that are applied to the base step.
@@ -408,9 +412,11 @@ export default class EdRollOptions extends SparseDataModel {
   }
 
   /**
-   * @description Get the data that is used to render the flavor template for the given roll type.
-   * @param { object } context The Handlebars context data that is used to render the flavor template.
-   * @returns {Promise<object>} The possibly updated data that is used to render the flavor template.
+   * Prepares data for rendering flavor templates in roll chat messages.
+   * Subclasses of EdRollOptions can override this method to add roll-type specific data
+   * to the base FlavorTemplateData.
+   * @param {object} context - Initial template data containing base roll information
+   * @returns {Promise<FlavorTemplateData>} Enhanced template data for the specific roll type
    */
   async getFlavorTemplateData( context ) {
     return context;

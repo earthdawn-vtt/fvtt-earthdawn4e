@@ -2,6 +2,7 @@ import { ItemDataModel } from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config/_module.mjs";
 import ThreadTemplate from "./threads.mjs";
+import MatrixTemplate from "./matrix.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -18,8 +19,9 @@ import ThreadTemplate from "./threads.mjs";
  * @property {number} usableItem.recoveryPropertyValue      recovery type value
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
+  MatrixTemplate,
   TargetTemplate,
-  ThreadTemplate
+  ThreadTemplate,
 ) {
 
   /** @inheritdoc */
@@ -90,7 +92,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           hint:     this.hintKey( "PhysicalItems.Weight.calculated" )
         } ),
       } ),
-      // availability types are Everyday, Average, Unusual, Rare, Very Rare, Unique
       availability: new fields.StringField( {
         required: true,
         nullable: true,
@@ -161,10 +162,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         label: this.labelKey( "PhysicalItems.usableItem" ),
         hint:  this.hintKey( "PhysicalItems.usableItem" )
       } ),
-      // item status is for differentiation of the carried status of each item
-      // a toggle shall be show either equipped, carried or owned
-      // all equipped and carried items count as owned as well
-      // all equipped items count as carried as well
       itemStatus: new fields.StringField( {
         required: true,
         nullable: true,
@@ -173,7 +170,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         choices:  ED4E.itemStatus,
         label:    this.labelKey( "PhysicalItems.itemStatus" ),
         hint:     this.hintKey( "PhysicalItems.itemStatus" )
-      } )
+      } ),
     } );
   }
 
@@ -258,7 +255,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   /**
    * Set the item status to "carried".
    * @returns {Promise} The updated Item instance.
-   * @userFunction            UF_PhysicalItems-carry
    */
   async carry() {
     return this.parent.update( {
@@ -269,7 +265,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   /**
    * Set the item status to "owned".
    * @returns {Promise} The updated Item instance.
-   * @userFunction            UF_PhysicalItems-deposit
    */
   async deposit() {
     return this.parent.update( {

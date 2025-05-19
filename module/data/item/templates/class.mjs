@@ -103,7 +103,28 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /* -------------------------------------------- */
 
+  getAllAbilityUuids() {
+    return this.advancement.levels
+      .flatMap( level => Array.from( level.abilities.class ) )
+      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.free ) ) )
+      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.special ) ) )
+      .concat( Object.values( this.advancement.abilityOptions ).flatMap( pool => Array.from( pool ) ) );
+  }
+
+  /**
+   * Get the casting type of the class, if it has a thread weaving ability for spellcasting.
+   * @returns {typeof AbilityTemplate.castingType} The casting type of the class, see {@link AbilityTemplate.castingType}.
+   */
+  getCastingType() {
+    return this
+      .getAllAbilityUuids()
+      .map( uuid => fromUuidSync( uuid ) )
+      .find( ability => ability?.system?.castingType )
+      ?.system?.castingType;
+  }
+
   /** @inheritDoc */
+  // eslint-disable-next-line complexity
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
@@ -139,13 +160,15 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
     const abilityChoiceItem = await fromUuid( abilityChoice );
     const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
-      this.parentActor,
+      this.containingActor,
       abilityChoiceItem,
       foundry.utils.mergeObject(
         systemSourceData,
         {
-          "system.talentCategory": "optional",
-          "system.tier":           nextTier,
+          "system.source.class":    this.parent.uuid,
+          "system.source.atLevel":  nextLevel,
+          "system.talentCategory":  "optional",
+          "system.tier":            nextTier,
         },
         { inplace: false },
       )
@@ -156,7 +179,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     for ( const spellUuid of spells ) {
       const spell = await fromUuid( spellUuid );
       await spell?.system?.constructor?.learn(
-        this.parentActor,
+        this.containingActor,
         spell,
         systemSourceData,
       );
@@ -165,7 +188,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     for ( const abilityUuid of nextLevelData.abilities.class ) {
       const ability = await fromUuid( abilityUuid );
       await ability?.system?.constructor?.learn(
-        this.parentActor,
+        this.containingActor,
         ability,
         systemSourceData,
       );
@@ -189,22 +212,22 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
     const effects = Array.from( nextLevelData.effects );
 
-    await this.parentActor.createEmbeddedDocuments( "Item", [ ...freeAbilityData, ...specialAbilityData ] );
-    await this.parentActor.createEmbeddedDocuments( "ActiveEffect", effects );
+    await this.containingActor.createEmbeddedDocuments( "Item", [ ...freeAbilityData, ...specialAbilityData ] );
+    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effects );
     // TODO: activate permanent effects immediately
 
     // increase resource step of the discipline
-    const highestDiscipline = this.parentActor.highestDiscipline;
+    const highestDiscipline = this.containingActor.highestDiscipline;
     
     const resourceStep = nextLevelData.resourceStep;
     if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
-      await this.parentActor.update( { "system.karma.step": resourceStep } );
+      await this.containingActor.update( { "system.karma.step": resourceStep } );
     } else if ( this.parent.type === "questor" ) {
-      await this.parentActor.update( { "system.devotion.step": resourceStep } );
+      await this.containingActor.update( { "system.devotion.step": resourceStep } );
     }
 
     // increase all abilities of category "free" to new circle, if lower
-    const freeAbilities = this.parentActor.items.filter(
+    const freeAbilities = this.containingActor.items.filter(
       i => i.system.talentCategory === "free"
         && i.system.source?.class === this.parent.uuid
         && i.system.level < nextLevel

@@ -1,15 +1,18 @@
+ 
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
+import MatrixTemplate from "./templates/matrix.mjs";
 
 /**
  * Data model template with information on talent items.
  * @mixes ItemDescriptionTemplate
  */
 export default class TalentData extends IncreasableAbilityTemplate.mixin(
-  ItemDescriptionTemplate
+  ItemDescriptionTemplate,
+  MatrixTemplate,
 ) {
 
   /** @inheritdoc */
@@ -24,49 +27,19 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return this.mergeSchema( super.defineSchema(), {
       talentCategory: new fields.StringField( {
         required: true,
-        blank:    false,
-        initial:  "free",
+        blank:    true,
+        initial:  "",
         trim:     true,
         choices:  ED4E.talentCategory,
         label:    this.labelKey( "Ability.talentCategory" ),
         hint:     this.hintKey( "Ability.talentCategory" )
-      } ),
-      magic: new fields.SchemaField( {
-        threadWeaving: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.threadWeaving" ),
-          hint:     this.hintKey( "Ability.Magic.threadWeaving" )
-        } ),
-        spellcasting: new fields.BooleanField( {
-          required: true,
-          nullable: false,
-          initial:  false,
-          label:    this.labelKey( "Ability.Magic.spellcasting" ),
-          hint:     this.hintKey( "Ability.Magic.spellcasting" )
-        } ),
-        magicType: new fields.StringField( {
-          required: true,
-          nullable: true,
-          blank:    true,
-          trim:     true,
-          choices:  ED4E.spellcastingTypes,
-          label:    this.labelKey( "Ability.Magic.magicType" ),
-          hint:     this.hintKey( "Ability.Magic.magicType" )
-        } ),
-      }, {
-        required: true,
-        nullable: false,
-        label:    this.labelKey( "Ability.Magic.magic" ),
-        hint:     this.hintKey( "Ability.Magic.magic" )
       } ),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -86,7 +59,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           new fields.DocumentUUIDField( {
             required:        true,
             nullable:        false,
-            validate:        ( value, options ) => {
+            validate:        ( value, _ ) => {
               if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
               return undefined; // undefined means do further validation
             },
@@ -155,7 +128,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
    */
   get increaseData() {
     if ( !this.isActorEmbedded ) return undefined;
-    const actor = this.parent.actor;
+    const actor = this.containingActor;
 
     return {
       newLevel:   this.level + 1,
@@ -261,26 +234,40 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
+    // dropping an item on the actor has no createData. This is only used when learning a
+    // talent from the class increasement. If talents are learned from the class, the
+    // class defines category, tier, source discipline and the level it was learned at.
     const learnedItem = await super.learn( actor, item, createData );
 
-    let category = null;
+    let category;
+    let discipline;
+    let learnedAt;
 
-    // assign the talent category
-    const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-    category = await promptFactoryItem.getPrompt( "talentCategory" );
+    // assign the category of the talent
+    if ( !learnedItem.system.talentCategory ) {
+      const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+      category = await promptFactoryItem.getPrompt( "talentCategory" );
+    }
 
-    // assign the level at which the talent was learned
-    const promptFactoryActor = PromptFactory.fromDocument( actor );
-    const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
-    const discipline = await fromUuid( disciplineUuid );
-    const learnedAt = discipline?.system.level;
+    // assign the level at which the talent was learned and the source discipline
+    if ( !learnedItem.system.source?.class ) {
+      const promptFactoryActor = PromptFactory.fromDocument( actor );
+      const disciplineUuid = await promptFactoryActor.getPrompt( "chooseDiscipline" );
+      discipline = await fromUuid( disciplineUuid );
+      learnedAt = discipline?.system.level;
+    }
 
+    // assign the tier of the talent
+    if ( !learnedItem.system.tier ) {
+      await learnedItem.system.chooseTier();
+    }
+
+    // update the learned talent with the new data
     await learnedItem.update( {
-      "system.talentCategory":        category,
-      "system.source.class":          discipline ? discipline.uuid : null,
-      "system.source.atLevel":        learnedAt ? learnedAt : null,
+      "system.talentCategory":        category ?? learnedItem.system.talentCategory,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline,
+      "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
-    await learnedItem.system.chooseTier();
     
     return learnedItem;
   }
@@ -317,8 +304,63 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+   
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+
+    // Migrate action
+    source.action = source.action?.slugify( { lowercase: true, strict: true } );
+
+    // Migrate Attributes
+    if ( ED4E.systemV0_8_2.attributes.includes( source.attribute ) ) {
+      if ( source.attribute === "initiativeStep" ) {
+        source.rollType = "initiative";
+        source.attribute = "";
+      } else if ( source.attribute !== "" ) {
+        source.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.attributes.indexOf( source.attribute )];
+      }
+    }
+
+    // Migrate description
+    if ( typeof source.description === "string" ) {
+      source.description = { value: source.description };
+    }
+ 
+
+    // Migrate minDifficulty (only if source.difficulty is not set)
+    if ( !source.difficulty ) {
+      source.difficulty ??= {};
+      if ( source.difficulty.target === "" ) {
+        source.difficulty.target = "";
+      } else {
+        source.difficulty.target ??= Object.keys( ED4E.targetDifficulty )[ED4E.systemV0_8_2.targetDefense.indexOf( source.defenseTarget )];
+      }
+      if ( source.difficulty.group === "" ) {
+        source.difficulty.group = "";
+      } else {
+        source.difficulty.group ??= Object.keys( ED4E.groupDifficulty )[ED4E.systemV0_8_2.groupDifficulty.indexOf( source.defenseGroup )];
+      }
+    }
+
+    // Migrate level
+    source.level ??= source.ranks;
+
+    // Migrate rollTypes
+    if ( source.healing > 0 ) {
+      source.rollType ??= "recovery";
+    }
+
+    // Migrate Talent category
+    if ( source.talentCategory ) {
+      if ( source.talentCategory?.slugify( { lowercase: true, strict: true } ) === "racial" ) {
+        source.talentCategory = "free";
+      } else {
+        source.talentCategory = source.talentCategory.slugify( { lowercase: true, strict: true } );
+      } 
+    }
+
+    // Migrate tier
+    if ( source.tier ) {
+      source.tier = source.tier.slugify( { lowercase: true, strict: true } );;
+    }
   }
 }

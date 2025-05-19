@@ -67,7 +67,11 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    return game.i18n.localize( "ED.Rules.skillIncreaseShortRequirements" );
+    const trainingTime = ED4E.trainingTime[this.level];
+    return game.i18n.format(
+      "ED.Dialogs.Legend.Rules.skillIncreaseShortRequirements",
+      { trainingTime: trainingTime }
+    );
   }
 
   /**

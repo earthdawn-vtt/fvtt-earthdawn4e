@@ -1,1 +1,0 @@
-This function is triggered if an action requires strain.

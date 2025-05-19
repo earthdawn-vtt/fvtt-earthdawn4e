@@ -1,5 +1,6 @@
 export * as actor from "./actor/_module.mjs";
 export * as advancement from "./advancement/_module.mjs";
+export * as api from "./api/_module.mjs";
 export * as combat from "./combat/_module.mjs";
 export * as configs from "./configs/_module.mjs";
 export * as effect from "./effect/_module.mjs";
@@ -7,6 +8,7 @@ export * as global from "./global/_module.mjs";
 export * as hud from "./hud/_module.mjs";
 export * as item from "./item/_module.mjs";
 export * as journal from "./journal/_module.mjs";
+export * as workflow from "./workflow/_module.mjs";
 
 
 /**

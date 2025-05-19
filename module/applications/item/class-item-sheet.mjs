@@ -8,6 +8,7 @@ import ItemSheetEd from "./item-sheet.mjs";
  */
 export default class ClassItemSheetEd extends ItemSheetEd {
   
+  /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id:       "item-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
@@ -36,6 +37,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   };
 
   // region PARTS
+  /** @inheritDoc */
   static PARTS = {
     header: { 
       template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs", 
@@ -55,22 +57,22 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     },
     "general": {
       template:   "systems/ed4e/templates/item/item-partials/item-description.hbs", 
-      classes:    [ "general" ],
+      classes:    [ "general", "scrollable" ],
       scrollable: [ "" ], 
     },
     "details": {
       template:   "systems/ed4e/templates/item/item-partials/item-details.hbs", 
-      classes:    [ "details" ],
+      classes:    [ "details", "scrollable" ],
       scrollable: [ "" ], 
     },
     "effects": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs", 
-      classes:    [ "effects" ],
+      classes:    [ "effects", "scrollable" ],
       scrollable: [ "" ],
     },
     "advancement": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
-      classes:    [ "advancement" ],
+      classes:    [ "advancement", "scrollable" ],
       scrollable: [ "" ],
     },
   };
@@ -90,6 +92,11 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     },
   };
 
+  
+  /** 
+   * Creating the tabs for the class advancement tab group.
+   * @returns {object} tabs for the class advancement tab group
+   */
   #getClassTabs() {
     const labelPrefix = "ED.Item.Tabs";
     
@@ -118,6 +125,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   }
 
   // region _prepare Part Context
+  /** @inheritDoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -145,6 +153,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /** @inheritDoc */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -170,12 +179,22 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /**
+   * Add level to the class advancement.
+   * @param {Event} event The form submission event.
+   * @param {HTMLElement} target The form element.
+   */
   static async addClassLevel( event, target ) {
     event.preventDefault();
     await this.document.system.advancement.addLevel();
     this.render();
   }
 
+  /**
+   * Delete the highest level of the class advencement.
+   * @param {Event} event The form submission event.
+   * @param {HTMLElement} target The form element.
+   */
   static async deleteClassLevel( event, target ) {
     event.preventDefault();
     const oldMaxLevel = this.document.system.advancement.levels.length;
