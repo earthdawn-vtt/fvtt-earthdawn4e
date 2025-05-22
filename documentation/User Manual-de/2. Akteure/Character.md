@@ -52,8 +52,33 @@ Der dritte Teil ist eine Navigation der einzelnen Tabs (die einzelnen Tabs werde
 - Reputation
 - Legende
 Der Vierte Teil ist der jeweils aktive Tab (siehe weiter unten)
-Der fünfte und letzte Teil beinhaltet einige nützliche Button (Erholung, Aufspringen, Niederschlag)
+Der fünfte und letzte Teil beinhaltet einige nützliche Button (Erholung, Aufspringen, Niederschlag)<br>
+Im Folgenden werden die Systemspezifischen Punte genauer beschrieben.
 
+### Kopfzeile des Bogens
 
+Die Kopfzeile ... gibt es hier was???
 
+### Charakterbild
+
+Das Charakterbild kann durch einfaches klicken auf das Bild geändert werden. Hierzu sind jedoch die Rechte nötig um auf den Fileserver zugreifen zu können. <br>
+
+### Charakteristiken
+
+Die Charakteristiken eines Charakters werdnen größten Teils automatisch berechnet und sind auch nicht manuell überschreibbar, kann jedoch durch Ausrüstung oder Effekte verändert werden. Es gibt folgende Charakteristiken in dieser Sektion:
+- Physische Widerstandskraft
+- Mystische Widerstandskraft
+- Soziale Widerstandskraft
+- Physische Rüstung
+- Mystische Rüstung
+- Todesschwelle
+- Bewußtlosigkeitsschwelle
+- Verwundungsschwelle
+- Bewegung
+<br>
+Des Weiteren gibt es noch zwei Charakteristiken die etwas spezieller sind. Schaden und Wunden. Diese beiden Charakteristiken können manuell angepasst werden **ist das so?** und Schaden wird in drei Subkategorien unterteilt. Körperlicher-, Betäubungs- und Blutmagieschaden. Für Wunden gibt es normale und Blutmagie wunden.<br>
+mittels der kleinen +/- Symbole an jeder Charakteristik ist es möglich einen Aktiven Effekt zu erzeugen, der den Wert senkt oder erhöht. Diese Effekte sind im Tab Effekte zu sehen.
+
+**Mach einen PR für Bewegung** 
+Zeige nur zuFuss als bewegung an, der rest als Tooltip udn auch nur wenn die Bewegung != 0 ist. Sparrt viel platz
 
