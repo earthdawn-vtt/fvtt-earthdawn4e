@@ -105,7 +105,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     return spellTabs;
   };
 
-  // Refactor together with the option to roll substitude abilities. dexterity should house all attack options and also tail attack if the namegiver has that set to true
+  // Refactor together with the option to roll substitute abilities. dexterity should house all attack options and also tail attack if the namegiver has that set to true
   /**
    * Handle special attack button available to actors
    * @param {Event} event     The originating click event.

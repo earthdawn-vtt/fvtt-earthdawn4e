@@ -47,7 +47,6 @@ export async function rollStep( {
 
 export class KarmaDice extends DiceTerm {
   constructor( step ) {
-    // nee, man kann glaub ich auch diceterms im roll labeln einfach
     super();
   }
 }

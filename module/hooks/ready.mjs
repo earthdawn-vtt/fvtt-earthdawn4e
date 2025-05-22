@@ -108,7 +108,7 @@ async function _createDebugDocuments() {
         "type":  "text",
         "title": {"show": true,"level": 1},
         "text":  {
-          "content": "<p>Jetzt nimm erstmal @Roll( /s 13 + 1 )(Säureschaden)(damage) wenn du das machst.</p>",
+          "content": "<p>First, take @Roll( /s 13 + 1 )(Acid Damage)(damage) if you want to do it.</p>",
         },
       }
     ]

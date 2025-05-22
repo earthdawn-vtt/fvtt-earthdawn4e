@@ -191,7 +191,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
   }
 
   /**
-   * Delete the highest level of the class advencement.
+   * Delete the highest level of the class advancement.
    * @param {Event} event The form submission event.
    * @param {HTMLElement} target The form element.
    */

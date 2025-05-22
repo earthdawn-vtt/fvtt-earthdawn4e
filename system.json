@@ -18,6 +18,9 @@
     {
       "name": "Chris",
       "discord": "qrizzl"
+    }, 
+    {
+      "name": "alegionofone"
     }
   ],
   "esmodules": [
@@ -218,7 +221,7 @@
     "Item": {
       "armor": {},
       "bindingSecret": {},
-      "cursemark": {},
+      "curseMark": {},
       "devotion": {},
       "discipline": {},
       "effect": {},

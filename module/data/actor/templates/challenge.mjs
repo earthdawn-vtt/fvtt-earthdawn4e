@@ -4,7 +4,6 @@ import ED4E from "../../../config/_module.mjs";
  * Data model template for Challenge types
  * @property {object} challenge    The object containing the challenge data for different challenge types.  
  * @property {string} challenge.rate   Challenge rate.
- * Später zu erweitern mit Environment und vielem mehr 
  * @mixin
  */
 export default class ChallengeFields {

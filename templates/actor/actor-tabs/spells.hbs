@@ -45,8 +45,8 @@
         <!-- all spells -->
         <div class="tab {{tabsSpells.all.cssClass}}" data-group="spellsContent" data-tab="all">
           <div class="undefined">
-            <p>Alle Zauber</p>
-            <p>Zeige alle Zauber, spellKnacks und binding secrets</p>
+            <p>All Spells</p>
+            <p>show all spells, spell knacks, and binding secrets</p>
           </div>
           {{#each actor.itemTypes.spell}}
             <div class="item-id item-name__card" data-uuid="{{uuid}}">
@@ -61,7 +61,7 @@
             <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
               <div class="undefined">
                 <p>{{tab.label}}</p>
-                <p>zeige alle {{tab.label}} Zauber, spellKnacks und binding secrets</p>
+                <p>show all  {{tab.label}} spells, spell knacks and secret bindings</p>
               </div>
               {{#each @root/actor.itemTypes.spell as |spell| }}
                 {{#if (eq spell.system.spellcastingType ../id)}}

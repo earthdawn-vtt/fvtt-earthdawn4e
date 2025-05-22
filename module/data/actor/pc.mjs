@@ -11,7 +11,7 @@ import DialogEd from "../../applications/api/dialog.mjs";
 /**
  * System data definition for PCs.
  * @mixin
- * @property {number} initialValue      initial Value will only be affected by charactergeneration
+ * @property {number} initialValue      initial Value will only be affected by character generation
  * @property {number} value             value is the one shown. baseValue + modifications
  * @property {number} timesIncreased    attribute increases
  */

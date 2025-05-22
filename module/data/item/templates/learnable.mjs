@@ -23,7 +23,7 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * @description Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checkin
+   * @description Whether the entity can be learned. Should always be true if mixed in, as a shortcut for checking
    * if this is mixed in.
    * @type {boolean}
    */

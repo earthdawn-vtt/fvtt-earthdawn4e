@@ -22,13 +22,13 @@ export default class ThreadBaseData extends SparseDataModel {
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isIdentified",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isIdentified"
       } ),
-      isAnalysed: new fields.BooleanField( {
+      isAnalyzed: new fields.BooleanField( {
         required: true,
         initial:  false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.isAnalysed" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isAnalysed" )
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isAnalysed",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isAnalysed"
+        // label:    this.labelKey( "PhysicalItems.ThreadItem.isAnalyzed" ),
+        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isAnalyzed" )
+        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isAnalyzed",
+        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isAnalyzed"
       } ),
       // to be aligned with the path of actor mystical defense
       characteristics: new fields.SchemaField( {
@@ -94,10 +94,10 @@ export default class ThreadBaseData extends SparseDataModel {
           {
             required: false,
             nullable: true,
-            // label:    this.labelKey( "PhysicalItems.ThreadItem.threadlevel" ),
-            // hint:     this.hintKey( "PhysicalItems.ThreadItem.threadlevel" )
-            label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.threadlevel",
-            hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.threadlevel"
+            // label:    this.labelKey( "PhysicalItems.ThreadItem.threadLevel" ),
+            // hint:     this.hintKey( "PhysicalItems.ThreadItem.threadLevel" )
+            label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.threadLevel",
+            hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.threadLevel"
           }
         ),
         {

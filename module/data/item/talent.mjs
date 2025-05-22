@@ -235,7 +235,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     // dropping an item on the actor has no createData. This is only used when learning a
-    // talent from the class increasement. If talents are learned from the class, the
+    // talent from the class increase. If talents are learned from the class, the
     // class defines category, tier, source discipline and the level it was learned at.
     const learnedItem = await super.learn( actor, item, createData );
 

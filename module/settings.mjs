@@ -95,7 +95,7 @@ export default function registerSystemSettings() {
     type:    String,
     choices: {
       classic: "ED.Settings.StepTable.editionClassic",
-      first:   "ED.Settings.StepTable.editionfirst",
+      first:   "ED.Settings.StepTable.editionFirst",
       third:   "ED.Settings.StepTable.editionThird",
       fourth:  "ED.Settings.StepTable.editionFourth"
     }
@@ -397,7 +397,7 @@ export default function registerSystemSettings() {
   /*                                  GM Chat Avatar                                     */
   /* -------------------------------------------------------------------------------- */
 
-  // Chat Avater Options
+  // Chat Avatar Options
   game.settings.register( "ed4e", "chatAvatar", {
     name:    "ED.Settings.Chat.chatAvatar",
     hint:    "ED.Settings.Chat.chatAvatarHint",

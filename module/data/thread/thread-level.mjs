@@ -23,14 +23,14 @@ export default class ThreadLevelData extends SparseDataModel {
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.level",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.level"
       } ),
-      isAnalysed: new fields.BooleanField( {
+      isAnalyzed: new fields.BooleanField( {
         required: true,
         nullable: false,
         initial:  false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.isLevelAnalysed" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isLevelAnalysed" )
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isLevelAnalysed",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isLevelAnalysed"
+        // label:    this.labelKey( "PhysicalItems.ThreadItem.isLevelAnalyzed" ),
+        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isLevelAnalyzed" )
+        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isLevelAnalyzed",
+        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isLevelAnalyzed"
       } ),
       isActive: new fields.BooleanField( {
         required: true,
@@ -69,14 +69,14 @@ export default class ThreadLevelData extends SparseDataModel {
           label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.KeyKnowledge.answer",
           hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.KeyKnowledge.answer"
         } ),
-        isknown: new fields.BooleanField( {
+        isKnown: new fields.BooleanField( {
           required: true,
           nullable: false,
           initial:  false,
-          // label:    this.labelKey( "PhysicalItems.ThreadItem.KeyKnowledge.isknown" ),
-          // hint:     this.hintKey( "PhysicalItems.ThreadItem.KeyKnowledge.isknown" )
-          label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.KeyKnowledge.isknown",
-          hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.KeyKnowledge.isknown"
+          // label:    this.labelKey( "PhysicalItems.ThreadItem.KeyKnowledge.isKnown" ),
+          // hint:     this.hintKey( "PhysicalItems.ThreadItem.KeyKnowledge.isKnown" )
+          label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.KeyKnowledge.isKnown",
+          hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.KeyKnowledge.isKnown"
         } )
       } ),
       deed: new fields.SchemaField( {

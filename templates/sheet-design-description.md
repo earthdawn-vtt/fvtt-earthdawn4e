@@ -9,14 +9,14 @@
         - Action Button: containing action buttons for quick access and the bottom Image frame
 
 ## DETAILS
-    the navigator and details section is different depending on the actor type. the following details extist
+    the navigator and details section is different depending on the actor type. the following details exist:
         - Devotion: containing all Devotions. Items can be sorted by drag and drop, and a System Setting shall split devotions by Tier.
         - Disciplines: containing all discipline, questor, Path items
-        - Equipment: containing all Equipements, weapons, shields and armor items. Each Item can be either held in one or two hands, be equipped, carried or owned.
-        - Familiars and Reputation: containing all Familiars, mounts or other actors whcih are somehow linked to the Actor. like Horrors, follower or people owning Favors
-        - General: containing attributs. Karma, devotions, conditions and special abilities
-        - Legends: everything regarding to Legendpoint tracking as well as Legend Status and the option to link Legend journals.
-        - notes: containing Personal Notes and baisic descriptive elements like eye color etc.
+        - Equipment: containing all Equipment, weapons, shields and armor items. Each Item can be either held in one or two hands, be equipped, carried or owned.
+        - Familiars and Reputation: containing all Familiars, mounts or other actors which are somehow linked to the Actor. like Horrors, follower or people owning Favors
+        - General: containing attributes. Karma, devotions, conditions and special abilities
+        - Legends: everything regarding to Legend points tracking as well as Legend Status and the option to link Legend journals.
+        - notes: containing Personal Notes and basic descriptive elements like eye color etc.
         - skills: containing all skills. Items can be sorted by drag and drop, and a System Setting shall split skills by Tier.
         - specials: containing Earthdawn Active effects and group patterns
         - spells: containing all spells. Items can be sorted by drag and drop, and a System Setting shall split spells by circle and another one to split by discipline.

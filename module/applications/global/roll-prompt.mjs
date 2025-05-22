@@ -194,7 +194,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
       .forEach( ( element ) => {
         element.addEventListener(
           "change",
-          this._validateAvailableRessource.bind( this ),
+          this._validateAvailableResource.bind( this ),
         );
       } );
   }
@@ -203,7 +203,7 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
    * @description                 Validate the available resources.
    * @param {Event} event        The event that triggered the validation.
    */
-  _validateAvailableRessource( event ) {
+  _validateAvailableResource( event ) {
     const newValue = event.currentTarget.value;
     const resource = event.currentTarget.dataset.resource;
     if (

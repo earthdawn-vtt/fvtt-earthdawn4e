@@ -119,7 +119,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     return {
       [ED4E.validationCategories.talentsRequirement]: [
         {
-          name:      "ED.Dialogs.Legend.Validation.sourceTalentname",
+          name:      "ED.Dialogs.Legend.Validation.sourceTalentName",
           value:     learnData.talent.name,
           fulfilled: learnData.talent.isEmbedded
         },

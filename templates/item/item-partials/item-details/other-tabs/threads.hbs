@@ -25,8 +25,8 @@
         {{!-- isIdentified --}}
         {{formField systemFields.threadData.fields.isIdentified name="system.threadData.isIdentified" value=item.system.threadData.isIdentified localize=true}}
           {{#if item.system.threadData.isIdentified}}
-          {{!-- isAnalysed --}}
-          {{formField systemFields.threadData.fields.isAnalysed name="system.threadData.isAnalysed" value=item.system.threadData.isAnalysed localize=true}}
+          {{!-- isAnalyzed --}}
+          {{formField systemFields.threadData.fields.isAnalyzed name="system.threadData.isAnalyzed" value=item.system.threadData.isAnalyzed localize=true}}
           {{!-- Mystical Defense --}}
           {{formField systemFields.threadData.fields.characteristics.fields.defenses.fields.mystical.fields.value name="system.threadData.characteristics.defenses.mystical.value" value=item.system.threadData.characteristics.defenses.mystical.value localize=true}}
           {{!-- maxThreads --}}
@@ -39,10 +39,10 @@
       {{else}}
           {{#if item.system.threadData.isIdentified}}
           <div>
-            {{localize "Dieser Gegenstand hat eine wahre magische Struktur"}}
+            {{localize "ED.Item.PhysicalItems.hasTruePattern"}}
           </div>
           {{/if}}
-          {{#if item.system.threadData.isAnalysed}}
+          {{#if item.system.threadData.isAnalyzed}}
           {{!-- Mystical Defense --}}
           {{formField systemFields.threadData.fields.characteristics.fields.defenses.fields.mystical.fields.value name="system.threadData.characteristics.defenses.mystical.value" value=item.system.threadData.characteristics.defenses.mystical.value localize=true}}
           {{!-- maxThreads --}}
@@ -80,15 +80,15 @@
 {{/if}}
   <!-- Level Contents -->
   {{#each item.system.threadData.levels}}
-    {{#if (or ../isGM this.isAnalysed)}}
+    {{#if (or ../isGM this.isAnalyzed)}}
     <fieldset>
       <div>
         <fieldset>
           <div>
           {{!-- level --}}
           {{formField this.schema.fields.level name=(concat "system.threadData.levels." @index ".level") value=this.level localize=true }}
-          {{!-- isAnalysed --}}
-          {{formField this.schema.fields.isAnalysed name=(concat "system.threadData.levels." @index ".isAnalysed") value=this.isAnalysed localize=true disabled=(not ../isGM)}}
+          {{!-- isAnalyzed --}}
+          {{formField this.schema.fields.isAnalyzed name=(concat "system.threadData.levels." @index ".isAnalyzed") value=this.isAnalyzed localize=true disabled=(not ../isGM)}}
           {{!-- isActive --}}
           {{formField this.schema.fields.isActive name=(concat "system.threadData.levels." @index ".isActive") value=this.isActive localize=true disabled=(not ../isGM)}}
           </div>
@@ -105,8 +105,8 @@
             {{formField this.schema.fields.keyKnowledge.fields.question name=(concat "system.threadData.levels." @index ".keyKnowledge.question") value=this.keyKnowledge.question localize=true}}
             {{!-- keyKnowledge answer --}}
             {{formField this.schema.fields.keyKnowledge.fields.answer name=(concat "system.threadData.levels." @index ".keyKnowledge.answer") value=this.keyKnowledge.answer localize=true}}
-            {{!-- keyKnowledge isknown --}}
-            {{formField this.schema.fields.keyKnowledge.fields.isknown name=(concat "system.threadData.levels." @index ".keyKnowledge.isknown") value=this.keyKnowledge.isknown localize=true disabled=(not ../isGM)}}
+            {{!-- keyKnowledge isKnown --}}
+            {{formField this.schema.fields.keyKnowledge.fields.isKnown name=(concat "system.threadData.levels." @index ".keyKnowledge.isKnown") value=this.keyKnowledge.isKnown localize=true disabled=(not ../isGM)}}
             {{/if}}
           </div>
         </fieldset>

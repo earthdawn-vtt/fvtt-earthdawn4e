@@ -1,6 +1,6 @@
 # Guideline
 
-This Guideline provieds an overview of the documentation and provides the rules which shall be applied to it.
+This Guideline provides an overview of the documentation and provides the rules which shall be applied to it.
 
 ## Release Notes
 
@@ -72,7 +72,7 @@ Known bugs will contain a list of all current Bugs in the system
 
 ## Manual
 
-There will be two different types of manuals available. The first is to be found in the github repository, accessable for everyone. The second manual is an ingame Journal Compendium for the usage during the gaming session. Each Manual is separated into two parts. A Game Master section and a Player section. The Game Master section containing all information about the system setup, configurations etc. 
+There will be two different types of manuals available. The first is to be found in the github repository, accessible for everyone. The second manual is an in game Journal Compendium for the usage during the gaming session. Each Manual is separated into two parts. A Game Master section and a Player section. The Game Master section containing all information about the system setup, configurations etc. 
 
 ### System Manual for Game Master
 

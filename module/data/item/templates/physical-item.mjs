@@ -145,7 +145,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           label:    this.labelKey( "PhysicalItems.UsableItem.action" ),
           hint:     this.hintKey( "PhysicalItems.UsableItem.action" )
         } ),
-        // recovery property value shall be a drop down menu with several options discribed in #26
+        // recovery property value shall be a drop down menu with several options described in #26
         recoveryPropertyValue: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -193,7 +193,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    // TODO: return object instead of array? to have meaningful keys and you dont have to remember the positions of the values in the array
+    // TODO: return object instead of array? to have meaningful keys and you don't have to remember the positions of the values in the array
     return [
       this.parent.usableItem.labels.arbitraryStep,
       this.parent.usableItem.labels.action,

@@ -4,7 +4,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 /**
  * Data model template with information on mask items.
  * @property {number} dexterityStep             dexterity step modifications
- * @property {number} strengthStep              strenght step modifications
+ * @property {number} strengthStep              strength step modifications
  * @property {number} toughnessStep             toughness step modifications
  * @property {number} perceptionStep            perception step modifications
  * @property {number} willpowerStep             willpower step modifications
@@ -16,19 +16,19 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} movement.swim             movement type swim modifications
  * @property {number} movement.burrow           movement type burrow modifications
  * @property {number} movement.climb            movement type climb modifications
- * @property {number} physicaldefense           physical defense modifications
- * @property {number} mysticdefense             mystical defense modifications
- * @property {number} socialdefense             social defense modifications
- * @property {number} physicalarmor             physical armor modifications
- * @property {number} mysticarmor               mystic armor modifications
+ * @property {number} physicalDefense           physical defense modifications
+ * @property {number} mysticalDefense             mystical defense modifications
+ * @property {number} socialDefense             social defense modifications
+ * @property {number} physicalArmor             physical armor modifications
+ * @property {number} mysticArmor               mystic armor modifications
  * @property {number} knockDownStep             knock down step modifications
  * @property {number} recoveryTestsResource             recovery tests modifications
  * @property {number} deathThreshold            death threshold modifications
- * @property {number} unconsciousThreshold      unconcious threshold modifications
+ * @property {number} unconsciousThreshold      unconscious threshold modifications
  * @property {number} woundThreshold            wound threshold modifications
  * @property {number} attackStepsBonus          attack steps modifications
  * @property {number} damageStepsBonus          damage steps modification
- * @property {number} challengingRate           changes to the challengingrate
+ * @property {number} challengingRate           changes to the challenging rate
  * @property {object} powers                    array of powers
  */
 export default class MaskData extends ItemDataModel.mixin(
@@ -175,21 +175,21 @@ export default class MaskData extends ItemDataModel.mixin(
           label:    "ED.Actor.Characteristics.defenseSocial"
         } ),
       } ),
-      physicalarmor: new fields.NumberField( {
+      physicalArmor: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.physicalarmor"
+        label:    "ED.Item.Masks.physicalArmor"
       } ),
-      mysticarmor: new fields.NumberField( {
+      mysticArmor: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.mysticarmor"
+        label:    "ED.Item.Masks.mysticArmor"
       } ),
       knockDownStep: new fields.NumberField( {
         required: true,
@@ -263,7 +263,6 @@ export default class MaskData extends ItemDataModel.mixin(
         integer:  true,
         label:    "ED.Item.Masks.challengingRate"
       } ),
-      // @chris das ist eher ein Array oder machen wir das ganz anders?
       powers: new fields.StringField( {
         required: true,
         blank:    true,

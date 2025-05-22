@@ -1,9 +1,0 @@
-sheets cover all actor and item sheets
-
-actor-sheet-layout.less covers all global styling available for all actor sheets.
-
-ACTORTYPE-sheet.less is relevant for the related Actor type sheet based on sheet-layout.less
-
-owned-items.less covers the styling of items shown on actor sheets.
-
-item-sheet-layout.less covers all global styling available for item sheets

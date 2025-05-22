@@ -19,7 +19,7 @@ import { SparseDataModel } from "../abstract.mjs";
  */
 
 /**
- * @typedef { object } RollRessourceData Data for a roll resource like karma or devotion.
+ * @typedef { object } RollResourceData Data for a roll resource like karma or devotion.
  * @property { number } pointsUsed How many points of this resource should be consumed after rolling.
  * @property { number } available How many points of this resource are available.
  * @property { number } step The step that is used to determine the dice that are rolled for this resource.
@@ -46,8 +46,8 @@ import { SparseDataModel } from "../abstract.mjs";
 /**
  * EdRollOptions for creating an EdRoll instance.
  * @property { RollStepData } step Ever information related to the step of the action, Mods, Boni, Mali etc.
- * @property { RollRessourceData } karma Available Karma, Karma dice and used karma.
- * @property { RollRessourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
+ * @property { RollResourceData } karma Available Karma, Karma dice and used karma.
+ * @property { RollResourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
  * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
  *                                            Keys are localized labels. Values are the number of dice.
  * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
@@ -255,7 +255,7 @@ export default class EdRollOptions extends SparseDataModel {
         blank:    true,
         initial:  "",
         label:    "localize: roll chat flavour",
-        hint:     "localize: text that is added to the chatmessage when this call is put to chat",
+        hint:     "localize: text that is added to the chat message when this call is put to chat",
       } ),
       rollingActorUuid: new fields.DocumentUUIDField( {
         required: false,
@@ -361,7 +361,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * @description Bonus resources to be added globally
-   * @type { RollRessourceData }
+   * @type { RollResourceData }
    */
   static get _bonusResource() {
     const fields = foundry.data.fields;

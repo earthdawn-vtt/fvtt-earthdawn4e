@@ -30,7 +30,11 @@
     "lang/**",
     "module/packs/**",
     "module/tours/de/**",
-    "node_modules/**"
+    "node_modules/**",
+    "system.json",
+    "module/config/migrations.mjs",
+    "module/config/document-data.mjs",
+    "eslint.config.mjs",
   ],
   "useGitignore":          true
 }
