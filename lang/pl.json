@@ -1003,7 +1003,7 @@
             "spellElement":                        "TODO: Add translation",
             "spellElementSubtype":                 "TODO: Add translation",
             "spellElementType":                    "TODO: Add translation",
-            "spellIllustion":                      "TODO: Add translation",
+            "spellIllusion":                       "TODO: Add translation",
             "spellThreadsRequired":                "TODO: Add translation",
             "spellThreadsWoven":                   "TODO: Add translation",
             "spellcastingType":                    "TODO: Add translation",
@@ -1277,7 +1277,7 @@
             "spellElement":                        "TODO: Add translation",
             "spellElementSubtype":                 "TODO: Add translation",
             "spellElementType":                    "TODO: Add translation",
-            "spellIllustion":                      "TODO: Add translation",
+            "spellIllusion":                       "TODO: Add translation",
             "spellThreadsRequired":                "TODO: Add translation",
             "spellThreadsWoven":                   "TODO: Add translation",
             "spellcastingType":                    "TODO: Add translation",
@@ -1629,10 +1629,6 @@
           "talentIncreaseShortRequirements":       "TODO: Add translation"
         }
       },
-      "Navigator": {
-        "baseInput":                               "TODO: Add translation",
-        "options":                                 "TODO: Add translation"
-      },
       "Placeholder": {
         "lpDescription":                           "TODO: Add translation"
       },
@@ -1903,7 +1899,6 @@
       "formulaKarma":                              "TODO: Add translation",
       "formulaStep":                               "TODO: Add translation",
       "karma":                                     "TODO: Add translation",
-      "moreTargets":                               "TODO: Add translation",
       "rollResult":                                "TODO: Add translation",
       "rolls":                                     "TODO: Add translation",
       "ruleOfOne":                                 "TODO: Add translation",
