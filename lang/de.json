@@ -1,5 +1,5 @@
 {
-  "COMBAT":                                        "Kampf ",
+  "COMBAT":                                        "TODO: Add translation",
   "ED": {
     "ActiveEffect": {
       "ChangeKeys": {
@@ -31,14 +31,14 @@
       "Header": {
         "applyToAbility":                          "Auf Fähigkeit anwenden"
       },
-      "Status":                                    "Status",
+      "Status":                                    "TODO: Add translation",
       "Tooltips": {
         "abilityEdidSelection":                    "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       },
       "newEffectName":                             "Neuer Earthdawn ActiveEffect"
     },
     "Actor": {
-      "Abilities":                                 "Fähigkeiten",
+      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attribueStep":                            "Stufe",
         "attributeName":                           "Attribut",
@@ -312,7 +312,7 @@
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Nimm den Schaden für deinen Charakter"
       },
-      "Flavor":                                    "Geschmack",
+      "Flavor":                                    "TODO: Add translation",
       "Header": {
         "actionTest":                              "Aktions Test",
         "arbitraryTest":                           "Willkürlicher Test",
@@ -723,7 +723,7 @@
       },
       "General": {
         "Hints": {
-          "Combatant":                             "Kämpfer",
+          "Combatant":                             "TODO: Add translation",
           "Knack": {
             "lpCost":                              "Legendenpunktkosten"
           },
@@ -741,7 +741,7 @@
           }
         },
         "Labels": {
-          "Combatant":                             "Kämpfer",
+          "Combatant":                             "TODO: Add translation",
           "Knack": {
             "requirements":                        "Voraussetzungen",
             "restrictions":                        "Einschränkungen"
@@ -1004,7 +1004,7 @@
             "summoning":                           "Beschwörung",
             "threadsrequired":                     "Erforderliche Fäden",
             "weavingDifficulty":                   "Die Schwierigkeit um den Zauber erfolgreich zu wirken",
-            "weavingdifficulty":                   "Webeschwierigkeit"
+            "weavingdifficulty":                   "Webschwierigkeit"
           },
           "Weapons": {
             "ammunitionType":                      "Welcher Munitionstyp wird für diese Waffe benötigt?",
@@ -1309,7 +1309,7 @@
         }
       },
       "Journal": {
-        "Hints":                                   "Hinweise",
+        "Hints":                                   "TODO: Add translation",
         "Labels":                                  "Beschreibung"
       },
       "Other": {
@@ -1490,7 +1490,7 @@
         "description":                             "Beschreibung",
         "legendPoints":                            "Legendenpunkte"
       },
-      "Buttons":                                   "Buttons",
+      "Buttons":                                   "TODO: Add translation",
       "CharGen": {
         "Buttons": {
           "resetAttributes":                       "Attribute zurücksetzen",
@@ -1613,7 +1613,7 @@
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
           "devotionIncreaseShortRequirements":     "<ul>\n<li>Der Questor kann pro Tag nur eine Weihekraft um einen Rang steigern.</li>\n<li>Der neue Rang darf nicht höher sein als der Rang der Questor-Weihekraft</li>\n</ul>\n",
           "disciplineIncreaseShortRequirements":   "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
-          "disciplineLearnShortRequirements":      "man muss einen Lehrer finden der die Disziplin beherrscht und bereit ist zu lehren... ",
+          "disciplineLearnShortRequirements":      "TODO: Add translation",
           "pathIncreaseShortRequirements":         "Um einen Rang zu steigern ist es erforderlich:<ul>\n<li>Die entsprechende Pfadprüfung zu absolvieren</li>\n<li>Die Erlaubnis von ranghöheren Anhängern des Pfades einzuholen</li>\n<li>Das Rangaufstiegsritual durchzuführen</li>\n</ul>\n",
           "pathLearnShortRequirements":            "<ul>\n<li>Der Charakter muss die Pfadprüfung absolviert haben.</li>\n<li>Der Charakter muss mit der Erlaubnis eines Ranghöheren Mitglieds das Aufstiegsritual vollzogen haben.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Der Charakter muss eine erfolgreiche Fadenwebenprobe geschafft haben.</li>\n</ul>\n",
           "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
@@ -1649,7 +1649,7 @@
         "rollPromptBaseTab":                       "Basis Einstellungen",
         "rollPromptOtherTab":                      "Weitere Einstellungen"
       },
-      "Title":                                     "Titel",
+      "Title":                                     "TODO: Add translation",
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
       },
@@ -1844,7 +1844,7 @@
       "windling":                                  "Windling"
     },
     "Notifications": {
-      "Error":                                     "Fehlermeldung",
+      "Error":                                     "TODO: Add translation",
       "Info": {
         "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
@@ -1989,5 +1989,5 @@
       }
     }
   },
-  "TYPES":                                         "Typen"
+  "TYPES":                                         "TODO: Add translation"
 }
