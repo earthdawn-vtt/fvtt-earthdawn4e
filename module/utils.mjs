@@ -704,7 +704,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/generation/spell-selection.hbs",
     "systems/ed4e/templates/actor/generation/skill-selection.hbs",
     "systems/ed4e/templates/actor/generation/language-selection.hbs",
-    "systems/ed4e/templates/actor/generation/equipment.hbs",
+    "systems/ed4e/templates/actor/generation/equipment-selection.hbs",
 
     // Character details section partials
     "systems/ed4e/templates/actor/actor-tabs/powers.hbs",

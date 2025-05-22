@@ -30,38 +30,19 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     this.edidLanguageRW = game.settings.get( "ed4e", "edidLanguageRW" );
 
     this._steps = [
-      "namegiver-tab",
-      "class-tab",
-      "attribute-tab",
-      "spell-tab",
-      "skill-tab",
-      "language-tab",
-      "equipment-tab",
+      "namegiver",
+      "classes",
+      "attributes",
+      "spells",
+      "skills",
+      "languages",
+      "equipment",
     ];
     this._currentStep = 0;
-
-    this.tabGroups = {
-      primary: "namegiver-tab",
-    };
-  }
-  // #region Error Messages
-  /**
-   * @returns {object} An object containing localized error messages.
-   */
-  static get errorMessages() {
-    return {
-      noNamegiver:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.noNamegiver" ),
-      noClass:             game.i18n.localize( "ED.Dialogs.CharGen.Errors.noClass" ),
-      attributes:          game.i18n.localize( "ED.Dialogs.CharGen.Errors.attributes" ),
-      talentRanksLeft:     game.i18n.localize( "ED.Dialogs.CharGen.Errors.talentRanksLeft" ),
-      skillRanksLeft:      game.i18n.localize( "ED.Dialogs.CharGen.Errors.skillRanksLeft" ),
-      notFinished:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.notFinished" ),
-      maxLanguagesToSpeak: game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak" ),
-      maxLanguagesToRead:  game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToRead" ),
-    };
   }
 
-  // #region DEFAULT_OPTIONS
+  // region Static Properties
+
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id:       "character-generation-prompt-{id}",
@@ -98,10 +79,6 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     }
   };
 
-  /* ----------------------------------------------------------- */
-  /* --------------------------  Parts  ------------------------ */
-  /* ----------------------------------------------------------- */
-  // #region PARTS
   /** @inheritdoc */
   static PARTS = {
     tabs: {
@@ -109,45 +86,45 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       id:       "-tabs-navigation",
       classes:  [ "navigation" ],
     },
-    "namegiver-tab": {
+    "namegiver": {
       template:   "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
-      id:         "-namegiver-tab",
+      id:         "-namegiver",
       classes:    [ "namegiver" ],
       scrollable: [ "" ],
     },
-    "class-tab": {
+    "classes": {
       template:   "systems/ed4e/templates/actor/generation/class-selection.hbs",
-      id:         "-class-tab",
+      id:         "-classes",
       classes:    [ "class" ],
       scrollable: [ "" ],
     },
-    "attribute-tab": {
+    "attributes": {
       template:   "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
-      id:         "-attribute-tab",
+      id:         "-attributes",
       classes:    [ "attribute" ],
       scrollable: [ "" ],
     },
-    "spell-tab": {
+    "spells": {
       template:   "systems/ed4e/templates/actor/generation/spell-selection.hbs",
-      id:         "-spell-tab",
+      id:         "-spells",
       classes:    [ "spell" ],
       scrollable: [ "" ],
     },
-    "skill-tab": {
+    "skills": {
       template:   "systems/ed4e/templates/actor/generation/skill-selection.hbs",
-      id:         "-skill-tab",
+      id:         "-skills",
       classes:    [ "skill" ],
       scrollable: [ "" ],
     },
-    "language-tab": {
+    "languages": {
       template:   "systems/ed4e/templates/actor/generation/language-selection.hbs",
-      id:         "-language-tab",
+      id:         "-languages",
       classes:    [ "language" ],
       scrollable: [ "" ],
     },
-    "equipment-tab": {
-      template:   "systems/ed4e/templates/actor/generation/equipment.hbs",
-      id:         "-equipment-tab",
+    "equipment": {
+      template:   "systems/ed4e/templates/actor/generation/equipment-selection.hbs",
+      id:         "-equipment",
       classes:    [ "equipment" ],
       scrollable: [ "" ],
     },
@@ -158,71 +135,54 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     }
   };
 
-  /* ----------------------------------------------------------- */
-  /* --------------------------  Tabs  ------------------------- */
-  /* ----------------------------------------------------------- */
-
   /** @inheritdoc */
   static TABS = {
-    "namegiver-tab": {
-      id:       "namegiver-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.namegiver",
-      active:   false,
-      cssClass: ""
+    primary: {
+      tabs: [
+        {
+          id:       "namegiver",
+        },
+        {
+          id:       "classes",
+        },
+        {
+          id:       "attributes",
+        },
+        {
+          id:       "spells",
+        },
+        {
+          id:       "skills",
+        },
+        {
+          id:       "languages",
+        },
+        {
+          id:       "equipment",
+        },
+      ],
+      initial:     "namegiver",
+      labelPrefix: "ED.Tabs.CharacterGeneration",
     },
-    "class-tab": {
-      id:       "class-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.class",
-      active:   false,
-      cssClass: ""
-    },
-    "attribute-tab": {
-      id:       "attribute-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.attribute",
-      active:   false,
-      cssClass: ""
-    },
-    "spell-tab": {
-      id:       "spell-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.spell",
-      active:   false,
-      cssClass: ""
-    },
-    "skill-tab": {
-      id:       "skill-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.skill",
-      active:   false,
-      cssClass: ""
-    },
-    "language-tab": {
-      id:       "language-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.language",
-      active:   false,
-      cssClass: ""
-    },
-    "equipment-tab": {
-      id:       "equipment-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.CharGen.equipment",
-      active:   false,
-      cssClass: ""
-    },
-    initial:     "namegiver-tab",
-    labelPrefix: "ED.Sheet.Tabs",
   };
+
+  /**
+   * @returns {object} An object containing localized error messages.
+   */
+  static get errorMessages() {
+    return {
+      noNamegiver:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.noNamegiver" ),
+      noClass:             game.i18n.localize( "ED.Dialogs.CharGen.Errors.noClass" ),
+      attributes:          game.i18n.localize( "ED.Dialogs.CharGen.Errors.attributes" ),
+      talentRanksLeft:     game.i18n.localize( "ED.Dialogs.CharGen.Errors.talentRanksLeft" ),
+      skillRanksLeft:      game.i18n.localize( "ED.Dialogs.CharGen.Errors.skillRanksLeft" ),
+      notFinished:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.notFinished" ),
+      maxLanguagesToSpeak: game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak" ),
+      maxLanguagesToRead:  game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToRead" ),
+    };
+  }
+
+  // region end
 
   /* ----------------------------------------------------------- */
   /* --------------------  _prepareContext  -------------------- */
@@ -339,63 +299,30 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   async _preparePartContext( partId, context, options ) {
     await super._preparePartContext( partId, context, options );
     switch ( partId ) {
-      case "tabs": return this._prepareTabsContext( context, options );
-      case "namegiver-tab":
+      case "tabs": break;
+      case "namegiver":
         break;
-      case "class-tab":
+      case "classes":
         break;
-      case "attribute-tab":
+      case "attributes":
         break;
-      case "spell-tab":
+      case "spells":
         break;
-      case "skill-tab":
+      case "skills":
         break;
-      case "language-tab":
+      case "languages":
         break;
-      case "equipment-tab":
+      case "equipment":
         break;
     }
-
-    // We only reach it if we're in a tab part
-    const tabGroup = "primary";
-    context.tab = foundry.utils.deepClone( this.constructor.TABS[partId] );
-    if ( this.tabGroups[tabGroup] === context.tab?.id ) context.tab.cssClass = "active";
 
     return context;
   }
 
   /** @inheritdoc */
-  async _prepareTabsContext( context, _ ) {
-    // make a deep copy to guarantee the css classes are always empty before setting it to active
-    context.tabs = foundry.utils.deepClone( this.constructor.TABS );
-    const tab = this.tabGroups.primary;
-    context.tabs[tab].cssClass = "active";
-
-    return context;
-  }
-
-
-  /* ----------------------------------------------------------- */
-  /* -------------------  Tab Handling  ------------------------ */
-  /* ----------------------------------------------------------- */
-  /**
-   * @param {object} context - The context object to be updated.
-   * @param {string} tabId - The ID of the tab to activate.
-   */
-  async activateTab ( context, tabId ) {
-    const tabGroup = "primary";
-    for ( const tab of Object.values( this.constructor.TABS ) ) {
-      tab.active = tab.id === tabId;
-    }
-    this.tabGroups[tabGroup] = tabId;
-    if ( context?.tabs ) context.tabs[tabId].cssClass = "active";
-  }
-
-  /** @inheritdoc */ 
   changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
     super.changeTab( tab, group, {event, navElement, force, updatePosition} );
 
-    // until we have a `_onChangeTab` method we need to do it here
     // check if the currentStep is still valid with the active tab
     // this is not the case if the tab was changed via the navigation, not the buttons
     this._currentStep = this._steps.indexOf( tab );
