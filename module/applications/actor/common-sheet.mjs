@@ -23,7 +23,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     sheet: {
       tabs:        [],
       initial:     "general",
-      labelPrefix: "ED.Sheet.Tabs",
+      labelPrefix: "ED.Tabs.ActorSheet",
     },
   };
 

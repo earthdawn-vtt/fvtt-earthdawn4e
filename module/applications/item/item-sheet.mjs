@@ -68,7 +68,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
         { id:    "effects", },
       ],
       initial:     "general",
-      labelPrefix: "ED.Sheet.Tabs",
+      labelPrefix: "ED.Tabs.ItemSheet",
     },
   };
   // endregion
