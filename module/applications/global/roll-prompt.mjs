@@ -25,9 +25,6 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     this.edRollOptions.updateSource( {
       "step.modifiers.manual": edRollOptions.step.modifiers.manual ?? 0,
     } );
-    this.tabGroups = {
-      primary: "base-tab",
-    };
   }
 
   /**
@@ -82,48 +79,16 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
 
   /** @inheritDoc */
   static PARTS = {
-    tabs: {
-      template: "templates/generic/tab-navigation.hbs",
-      id:       "-tabs-navigation",
-      classes:  [ "navigation" ],
-    },
-    "base-tab": {
+    base: {
       template: "systems/ed4e/templates/prompts/roll-prompt.hbs",
       id:       "-base-input",
       classes:  [ "base-input" ],
     },
-    // "other-tab": {
-    //   template: "systems/ed4e/templates/placeholder.hbs",
-    //   id:       "-other-input",
-    //   classes:  [ "other-input" ],
-    // },
     footer: {
       template: "templates/generic/form-footer.hbs",
       id:       "-footer",
       classes:  [ "flexrow" ],
     },
-  };
-
-  /** @inheritDoc */
-  static TABS = {
-    "base-tab": {
-      id:       "base-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.rollPromptBaseTab",
-      active:   false,
-      cssClass: "",
-    },
-    "other-tab": {
-      id:       "other-tab",
-      group:    "primary",
-      icon:     "",
-      label:    "ED.Dialogs.Tabs.rollPromptOtherTab",
-      active:   false,
-      cssClass: "",
-    },
-    initial:     "base-tab",
-    labelPrefix: "ED.Sheet.Tabs",
   };
 
   /** @inheritDoc */
@@ -160,29 +125,11 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     await super._preparePartContext( partId, context, options );
 
     switch ( partId ) {
-      case "tabs":
-        return this._prepareTabsContext( context, options );
-      case "base-tab":
+      case "base":
         break;
-      case "other-tab":
+      case "other":
         break;
     }
-
-    // We only reach it if we're in a tab part
-    const tabGroup = "primary";
-    context.tab = foundry.utils.deepClone( this.constructor.TABS[partId] );
-    if ( this.tabGroups[tabGroup] === context.tab?.id )
-      context.tab.cssClass = "active";
-
-    return context;
-  }
-
-  /** @inheritDoc */
-  async _prepareTabsContext( context, options ) {
-    // make a deep copy to guarantee the css classes are always empty before setting it to active
-    context.tabs = foundry.utils.deepClone( this.constructor.TABS );
-    const tab = this.tabGroups.primary;
-    context.tabs[tab].cssClass = "active";
 
     return context;
   }
