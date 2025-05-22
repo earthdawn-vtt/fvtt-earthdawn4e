@@ -79,8 +79,8 @@
         "chat":                                    "show information in as Chat message",
         "delete":                                  "Delete Item",
         "edit":                                    "Edit Item",
-        "knackManeuver":                           "Maneuver",
-        "knackKarma":                              "Karma"
+        "knackKarma":                              "Karma",
+        "knackManeuver":                           "Maneuver"
       },
       "Characteristics": {
         "currentDamage":                           "Damage",
@@ -107,16 +107,13 @@
         },
         "aggressiveAttack":                        "Aggressive Attack",
         "blindsided":                              "Blindsided",
-        "cover":                                   "Cover",
         "coverFull":                               "Full Cover",
         "coverPartial":                            "Partial Cover",
-        "darkness":                                "Darkness",
         "darknessFull":                            "Full Darkness",
         "darknessPartial":                         "Partial Darkness",
         "defensiveStance":                         "Defensive Stance",
         "fury":                                    "Fury",
         "harried":                                 "Harried",
-        "impairedMovement":                         "Impared Movement",
         "impairedMovementFull":                    "Fully Impaired",
         "impairedMovementPartial":                 "Partial Impaired",
         "knockedDown":                             "Knocked Down",
@@ -144,7 +141,6 @@
         "allTests":                                "All Tests"
       },
       "Header": {
-        "abilities":                               "Abilities",
         "action":                                  "Action",
         "active":                                  "Active",
         "ammunition":                              "Ammo",
@@ -153,17 +149,13 @@
         "attacks":                                 "Attacks",
         "attribute":                               "Attribute",
         "attributes":                              "Attributes",
-        "biography":                               "Biography",
         "carryingCapacity":                        "Carrying Capacity",
-        "circles":                                 "Circles",
-        "classes":                                 "Classes",
         "conditions":                              "Conditions",
         "controlIcons":                            "Controls",
         "damage":                                  "Damage",
         "defaultAttacks":                          "Default Attacks",
         "defenses":                                "Defenses",
         "devotion":                                "Devotion",
-        "devotions":                               "Devotions",
         "disciplines":                             "Disciplines",
         "duration":                                "Duration",
         "effectsPermanent":                        "Permanent Effects",
@@ -172,7 +164,6 @@
         "equipment":                               "Equipment",
         "equippedStatus":                          "Equipped",
         "extraSuccesses":                          "Extra Successes",
-        "favorites":                               "Favorites",
         "healthRating":                            "Health Rating",
         "inactive":                                "Inactive",
         "information":                             "Information",
@@ -191,7 +182,6 @@
         "mysticalArmor":                           "Mystical Armor",
         "mysticalDefense":                         "Mystical Defense",
         "name":                                    "Name",
-        "namegiver":                               "Namegiver",
         "navigator":                               "Navigator",
         "origin":                                  "Origin",
         "paths":                                   "Path",
@@ -202,7 +192,6 @@
         "range":                                   "Range",
         "rank":                                    "Rank",
         "recovery":                                "Recovery",
-        "skills":                                  "Skills",
         "shields":                                 "Shields",
         "specialAbility":                          "Special Abilities",
         "step":                                    "Step",
@@ -252,11 +241,6 @@
         "specials":                                "Specials",
         "spells":                                  "Spells",
         "talents":                                 "Talents"
-      },
-      "Recovery": {
-        "current":                                 "Current",
-        "daily":                                   "Daily",
-        "step":                                    "Step"   
       },
       "Spellcasting": {
         "elementalist":                            "Elemetnatalist",
@@ -1013,7 +997,7 @@
             "spellElement":                        "Element",
             "spellElementSubtype":                 "TODO: Add translation",
             "spellElementType":                    "TODO: Add translation",
-            "spellIllustion":                      "Illusion",
+            "spellIllusion":                       "TODO: Add translation",
             "spellThreadsRequired":                "TODO: Add translation",
             "spellThreadsWoven":                   "TODO: Add translation",
             "spellcastingType":                    "TODO: Add translation",
@@ -1287,7 +1271,7 @@
             "spellElement":                        "Element",
             "spellElementSubtype":                 "TODO: Add translation",
             "spellElementType":                    "TODO: Add translation",
-            "spellIllustion":                      "Illusion",
+            "spellIllusion":                       "TODO: Add translation",
             "spellThreadsRequired":                "Number of Spell Threads Required",
             "spellThreadsWoven":                   "TODO: Add translation",
             "spellcastingType":                    "Spellcasting Type",
@@ -1640,10 +1624,6 @@
           "talentIncreaseShortRequirements":       "TODO: Add translation"
         }
       },
-      "Navigator": {
-        "baseInput":                               "Base Options",
-        "options":                                 "Other Options"
-      },
       "Placeholder": {
         "lpDescription":                           "Enter your description here"
       },
@@ -1915,7 +1895,6 @@
       "formulaKarma":                              "{amount}x Karma (St {step})",
       "formulaStep":                               "Step {step}",
       "karma":                                     "Karma",
-      "moreTargets":                               "and other targets",
       "rollResult":                                "Roll Result",
       "rolls":                                     "rolls",
       "ruleOfOne":                                 "Failue, Rule of One",
@@ -1972,23 +1951,20 @@
     "Sheet": {
       "Tabs": {
         "advancement":                             "Advancement",
-        "configuration":                           "Configuration",
-        "description":                             "Description",
+        "classes":                                 "Classes",
         "details":                                 "Details",
-        "effects":                                 "Effects",
-        "general":                                 "General",
-        "talents":                                 "Talents",
-        "skills":                                  "Skills",
         "devotions":                               "Devotions",
-        "spells":                                  "Spells",
+        "effects":                                 "Effects",
         "equipment":                               "Equipment",
-        "notes":                                   "Notes",
-        "powers":                                  "Powers",
-        "reputation":                              "Reputation",
-        "specials":                                "Specials",
-        "thread":                                  "Threads",
+        "general":                                 "General",
         "legend":                                  "Legend",
-        "classes":                                 "Classes"
+        "notes":                                   "Notes",
+        "reputation":                              "Reputation",
+        "skills":                                  "Skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents",
+        "thread":                                  "Threads"
       }
     },
     "ToolTips": {
