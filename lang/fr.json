@@ -42,8 +42,8 @@
     "Actor": {
       "Abilities":                                 "TODO: Add translation",
       "Attributes": {
-        "attribueStep":                            "TODO: Add translation",
         "attributeName":                           "TODO: Add translation",
+        "attributeStep":                           "TODO: Add translation",
         "attributeValue":                          "TODO: Add translation",
         "charisma":                                "TODO: Add translation",
         "charismaAbbr":                            "TODO: Add translation",
@@ -85,9 +85,9 @@
       },
       "Characteristics": {
         "currentDamage":                           "TODO: Add translation",
-        "currentRecoveryTestsRecource":            "TODO: Add translation",
-        "dailyrecoveryTestsResource":              "TODO: Add translation",
-        "deathThesholdShort":                      "TODO: Add translation",
+        "currentRecoveryTestsResource":            "TODO: Add translation",
+        "dailyRecoveryTestsResource":              "TODO: Add translation",
+        "deathThresholdShort":                     "TODO: Add translation",
         "maxWounds":                               "TODO: Add translation",
         "mysticalArmor":                           "TODO: Add translation",
         "mysticalDefense":                         "TODO: Add translation",
@@ -729,6 +729,7 @@
       "General": {
         "Hints": {
           "Combatant": {
+            "savePromptSettings":                  "TODO: Add translation"
           },
           "Knack": {
             "lpCost":                              "TODO: Add translation"
@@ -748,6 +749,7 @@
         },
         "Labels": {
           "Combatant": {
+            "savePromptSettings":                  "TODO: Add translation"
           },
           "Knack": {
             "requirements":                        "TODO: Add translation",
@@ -855,10 +857,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "TODO: Add translation",
-              "oneHandedmin":                      "TODO: Add translation",
-              "twoHandedmax":                      "TODO: Add translation",
-              "twoHandedmin":                      "TODO: Add translation"
+              "oneHandedMax":                      "TODO: Add translation",
+              "oneHandedMin":                      "TODO: Add translation",
+              "twoHandedMax":                      "TODO: Add translation",
+              "twoHandedMin":                      "TODO: Add translation"
             },
             "karmaModifier":                       "TODO: Add translation",
             "livingArmorOnly":                     "TODO: Add translation",
@@ -878,8 +880,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "TODO: Add translation",
+                "isKnown":                         "TODO: Add translation",
                 "isRequired":                      "TODO: Add translation",
-                "isknown":                         "TODO: Add translation",
                 "question":                        "TODO: Add translation"
               },
               "activeEffect":                      "TODO: Add translation",
@@ -887,9 +889,9 @@
               "enchantmentPattern":                "TODO: Add translation",
               "identifier":                        "TODO: Add translation",
               "isActive":                          "TODO: Add translation",
-              "isAnalysed":                        "TODO: Add translation",
+              "isAnalyzed":                        "TODO: Add translation",
               "isIdentified":                      "TODO: Add translation",
-              "isLevelAnalysed":                   "TODO: Add translation",
+              "isLevelAnalyzed":                   "TODO: Add translation",
               "level":                             "TODO: Add translation",
               "maxThreads":                        "TODO: Add translation",
               "mysticalDefense":                   "TODO: Add translation",
@@ -1127,10 +1129,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "TODO: Add translation",
-              "oneHandedmin":                      "TODO: Add translation",
-              "twoHandedmax":                      "TODO: Add translation",
-              "twoHandedmin":                      "TODO: Add translation"
+              "oneHandedMax":                      "TODO: Add translation",
+              "oneHandedMin":                      "TODO: Add translation",
+              "twoHandedMax":                      "TODO: Add translation",
+              "twoHandedMin":                      "TODO: Add translation"
             },
             "abilities":                           "TODO: Add translation",
             "karmaModifier":                       "TODO: Add translation",
@@ -1151,8 +1153,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "TODO: Add translation",
+                "isKnown":                         "TODO: Add translation",
                 "isRequired":                      "TODO: Add translation",
-                "isknown":                         "TODO: Add translation",
                 "question":                        "TODO: Add translation"
               },
               "activeEffect":                      "TODO: Add translation",
@@ -1160,9 +1162,9 @@
               "enchantmentPattern":                "TODO: Add translation",
               "identifier":                        "TODO: Add translation",
               "isActive":                          "TODO: Add translation",
-              "isAnalysed":                        "TODO: Add translation",
+              "isAnalyzed":                        "TODO: Add translation",
               "isIdentified":                      "TODO: Add translation",
-              "isLevelAnalysed":                   "TODO: Add translation",
+              "isLevelAnalyzed":                   "TODO: Add translation",
               "level":                             "TODO: Add translation",
               "maxThreads":                        "TODO: Add translation",
               "mysticalDefense":                   "TODO: Add translation",
@@ -1555,9 +1557,9 @@
           "removeSpell":                           "TODO: Add translation"
         },
         "abilities":                               "TODO: Add translation",
-        "availabelSkillPoints":                    "TODO: Add translation",
         "availableAttributePoints":                "TODO: Add translation",
         "availableRanks":                          "TODO: Add translation",
+        "availableSkillPoints":                    "TODO: Add translation",
         "availableSpellPoints":                    "TODO: Add translation",
         "carryCapacity":                           "TODO: Add translation",
         "charGenRules":                            "TODO: Add translation",
@@ -1595,7 +1597,7 @@
         "requiredArtisanSkillPoints":              "TODO: Add translation",
         "requiredKnowledgeSkillPoints":            "TODO: Add translation",
         "socialDefense":                           "TODO: Add translation",
-        "unconciousDeathRate":                     "TODO: Add translation",
+        "unconsciousDeathRate":                    "TODO: Add translation",
         "woundThreshold":                          "TODO: Add translation"
       },
       "Configs": {
@@ -1794,6 +1796,7 @@
       "PhysicalItems": {
         "addThreadLevel":                          "TODO: Add translation",
         "deleteThreadLevel":                       "TODO: Add translation",
+        "hasTruePattern":                          "TODO: Add translation",
         "itemHistoryCheck":                        "TODO: Add translation",
         "researchCheck":                           "TODO: Add translation",
         "weaveThreadCheck":                        "TODO: Add translation"
