@@ -49,8 +49,5 @@
   },
   "overrides": {
     "glob-parent": "6.0.2"
-  },
-  "dependencies": {
-    "@cspell/dict-en-common-misspellings": "^2.0.11"
   }
 }

@@ -624,20 +624,20 @@ export default class SentientTemplate extends CommonTemplate {
       // physicalArmor, mysticArmor
       {
         pa:            this.characteristics.armor.physical.value,
-        physicalArmor: this.characteristics.armor.physical.value,
+        physicalarmor: this.characteristics.armor.physical.value,
         ma:            this.characteristics.armor.mystical.value,
-        mysticArmor:   this.characteristics.armor.mystical.value,
+        mysticarmor:   this.characteristics.armor.mystical.value,
       },
       // defense values
       // pd, md, sd
       // physicalDefense, mysticalDefense, socialDefense
       {
         pd:              this.characteristics.defenses.physical.value,
-        physicalDefense: this.characteristics.defenses.physical.value,
+        physicaldefense: this.characteristics.defenses.physical.value,
         md:              this.characteristics.defenses.mystical.value,
-        mysticalDefense:   this.characteristics.defenses.mystical.value,
+        mysticaldefense:   this.characteristics.defenses.mystical.value,
         sd:              this.characteristics.defenses.social.value,
-        socialDefense:   this.characteristics.defenses.social.value,
+        socialdefense:   this.characteristics.defenses.social.value,
       },
       // health values
       // damage/da/currentDamage, wounds/currentWounds, woundThreshold/wt/woundThresh,
@@ -647,24 +647,24 @@ export default class SentientTemplate extends CommonTemplate {
       {
         damage:                 this.characteristics.health.damage.total,
         da:                     this.characteristics.health.damage.total,
-        currentDamage:          this.characteristics.health.damage.total,
+        currentdamage:          this.characteristics.health.damage.total,
         wounds:                 this.characteristics.health.wounds,
-        currentWounds:          this.characteristics.health.wounds,
-        woundThreshold:         this.characteristics.health.woundThreshold,
+        currentwounds:          this.characteristics.health.wounds,
+        woundthreshold:         this.characteristics.health.woundThreshold,
         wt:                     this.characteristics.health.woundThreshold,
         woundthresh:            this.characteristics.health.woundThreshold,
         unconscious:            this.characteristics.health.unconscious,
         uncon:                  this.characteristics.health.unconscious,
-        unconsciousnessRating:  this.characteristics.health.unconscious,
+        unconsciousnessrating:  this.characteristics.health.unconscious,
         death:                  this.characteristics.health.death,
-        deathRating:            this.characteristics.health.death,
-        stunDam:                this.characteristics.health.damage.stun,
-        stunDamage:             this.characteristics.health.damage.stun,
-        currentStunDamage:      this.characteristics.health.damage.stun,
-        bloodDamage:            this.characteristics.health.bloodMagic.damage,
-        currentBloodDamage:     this.characteristics.health.bloodMagic.damage,
-        bloodWounds:            this.characteristics.health.bloodMagic.wounds,
-        currentBloodWounds:     this.characteristics.health.bloodMagic.wounds,
+        deathrating:            this.characteristics.health.death,
+        stundam:                this.characteristics.health.damage.stun,
+        stundamage:             this.characteristics.health.damage.stun,
+        currentstundamage:      this.characteristics.health.damage.stun,
+        blooddamage:            this.characteristics.health.bloodMagic.damage,
+        currentblooddamage:     this.characteristics.health.bloodMagic.damage,
+        bloodwounds:            this.characteristics.health.bloodMagic.wounds,
+        currentbloodwounds:     this.characteristics.health.bloodMagic.wounds,
       },
       // movement values
       // burrow, climb, fly, swim, walk
@@ -679,25 +679,25 @@ export default class SentientTemplate extends CommonTemplate {
       // recovery/recoveryStep, currentRecovery, maxRecovery/maximumRecovery
       {
         karma:           this.karma.step,
-        currentKarma:    this.karma.step,
-        maxKarma:        this.karma.max,
-        maximumKarma:    this.karma.max,
+        currentkarma:    this.karma.step,
+        maxkarma:        this.karma.max,
+        maximumkarma:    this.karma.max,
         devotion:        this.devotion.step,
-        currentDevotion: this.devotion.step,
-        maxDevotion:     this.devotion.max,
-        maximumDevotion: this.devotion.max,
+        currentdevotion: this.devotion.step,
+        maxdevotion:     this.devotion.max,
+        maximumdevotion: this.devotion.max,
         recovery:        this.characteristics.recoveryTestsResource.step,
-        recoveryStep:    this.characteristics.recoveryTestsResource.step,
-        currentRecovery: this.characteristics.recoveryTestsResource.value,
-        maxRecovery:     this.characteristics.recoveryTestsResource.max,
-        maximumRecovery: this.characteristics.recoveryTestsResource.max
+        recoverystep:    this.characteristics.recoveryTestsResource.step,
+        currentrecovery: this.characteristics.recoveryTestsResource.value,
+        maxrecovery:     this.characteristics.recoveryTestsResource.max,
+        maximumrecovery: this.characteristics.recoveryTestsResource.max
       },
       // initiative step
       // ini/initiative/initiativeStep
       {
         ini:            this.initiative,
         initiative:     this.initiative,
-        initiativeStep: this.initiative,
+        initiativestep: this.initiative,
       },
     );
   }

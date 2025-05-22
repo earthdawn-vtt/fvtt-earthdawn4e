@@ -35,6 +35,7 @@
     "module/config/migrations.mjs",
     "module/config/document-data.mjs",
     "eslint.config.mjs",
+    "module/data/actor/templates/sentient.mjs",
   ],
   "useGitignore":          true
 }

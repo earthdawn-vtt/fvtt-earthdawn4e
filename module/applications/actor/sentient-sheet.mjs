@@ -105,7 +105,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     return spellTabs;
   };
 
-  // Refactor together with the option to roll substitute abilities. dexterity should house all attack options and also tail attack if the namegiver has that set to true
   /**
    * Handle special attack button available to actors
    * @param {Event} event     The originating click event.
@@ -211,7 +210,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const ability = this.document.items.get( li?.dataset?.itemId );
 
     if ( ability?.system?.roll instanceof Function ) return ability.system.roll();
-    const rollType = target.dataset.rolltype;
+    const rollType = target.dataset.rollType;
     if ( rollType === "attribute" ) {
       const attribute = target.dataset.attribute;
       this.document.rollAttribute( attribute, {}, { event: event } );

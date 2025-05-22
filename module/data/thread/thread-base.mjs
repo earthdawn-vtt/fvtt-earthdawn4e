@@ -17,16 +17,12 @@ export default class ThreadBaseData extends SparseDataModel {
       isIdentified: new fields.BooleanField( {
         required: true,
         initial:  false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.isIdentified" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isIdentified" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isIdentified",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isIdentified"
       } ),
       isAnalyzed: new fields.BooleanField( {
         required: true,
         initial:  false,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.isAnalyzed" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.isAnalyzed" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isAnalyzed",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isAnalyzed"
       } ),
@@ -49,8 +45,6 @@ export default class ThreadBaseData extends SparseDataModel {
               step:     1,
               initial:  0,
               integer:  true,
-              // label:    this.labelKey( "PhysicalItems.ThreadItem.mysticalDefense" ),
-              // hint:     this.hintKey( "PhysicalItems.ThreadItem.mysticalDefense" )
               label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.mysticalDefense",
               hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.mysticalDefense"
             } ),
@@ -64,8 +58,6 @@ export default class ThreadBaseData extends SparseDataModel {
         step:     1,
         initial:  1,
         integer:  true,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.maxThreads" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.maxThreads" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.maxThreads",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.maxThreads"
       } ),
@@ -74,8 +66,6 @@ export default class ThreadBaseData extends SparseDataModel {
         nullable: false,
         initial:  "novice",
         choices:  ED4E.tier,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.tier" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.tier" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.tier",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.tier"
       } ),
@@ -83,8 +73,6 @@ export default class ThreadBaseData extends SparseDataModel {
         required: true,
         nullable: true,
         initial:  null,
-        // label:    this.labelKey( "PhysicalItems.ThreadItem.enchantmentPattern" ),
-        // hint:     this.hintKey( "PhysicalItems.ThreadItem.enchantmentPattern" )
         label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.enchantmentPattern",
         hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.enchantmentPattern"
       } ),
@@ -94,8 +82,6 @@ export default class ThreadBaseData extends SparseDataModel {
           {
             required: false,
             nullable: true,
-            // label:    this.labelKey( "PhysicalItems.ThreadItem.threadLevel" ),
-            // hint:     this.hintKey( "PhysicalItems.ThreadItem.threadLevel" )
             label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.threadLevel",
             hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.threadLevel"
           }

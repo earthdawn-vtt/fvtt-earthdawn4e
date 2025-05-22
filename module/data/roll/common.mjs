@@ -45,7 +45,7 @@ import { SparseDataModel } from "../abstract.mjs";
 
 /**
  * EdRollOptions for creating an EdRoll instance.
- * @property { RollStepData } step Ever information related to the step of the action, Mods, Boni, Mali etc.
+ * @property { RollStepData } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
  * @property { RollResourceData } karma Available Karma, Karma dice and used karma.
  * @property { RollResourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
  * @property { Record<string, number> } extraDice Extra dice that are added to the roll.

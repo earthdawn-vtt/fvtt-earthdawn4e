@@ -145,7 +145,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           label:    this.labelKey( "PhysicalItems.UsableItem.action" ),
           hint:     this.hintKey( "PhysicalItems.UsableItem.action" )
         } ),
-        // recovery property value shall be a drop down menu with several options described in #26
         recoveryPropertyValue: new fields.NumberField( {
           required: true,
           nullable: false,
