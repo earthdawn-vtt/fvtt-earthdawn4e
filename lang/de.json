@@ -1,5 +1,5 @@
 {
-  "COMBAT":                                        "Kampf",
+  "COMBAT":                                        "Kampf ",
   "ED": {
     "ActiveEffect": {
       "ChangeKeys": {
@@ -1270,7 +1270,7 @@
             "spellElement":                        "Element",
             "spellElementSubtype":                 "Element Subtyp",
             "spellElementType":                    "Element Typ",
-            "spellIllusion":                      "Illusion",
+            "spellIllusion":                       "Illusion",
             "spellThreadsRequired":                "Benötigte Fäden",
             "spellThreadsWoven":                   "Gewebte Fäden",
             "spellcastingType":                    "Spruchzauberei Typ",
