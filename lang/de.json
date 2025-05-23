@@ -1963,6 +1963,51 @@
         "thread":                                  "Fäden"
       }
     },
+    "Tabs": {
+      "ActorSheet": {
+        "classes":                                 "Berufung",
+        "configuration":                           "Konfiguration",
+        "description":                             "Beschreibung",
+        "devotions":                               "Weihekräfte",
+        "equipment":                               "Ausrüstung",
+        "general":                                 "Allgemein",
+        "legend":                                  "Legende",
+        "notes":                                   "Notizen",
+        "powers":                                  "Kräfte",
+        "reputation":                              "Ansehen",
+        "skills":                                  "Fertigkeiten",
+        "specials":                                "Extra",
+        "spells":                                  "Zauber",
+        "talents":                                 "Talente"
+      },
+      "CharacterGeneration": {
+        "attributes":                              "Attribute",
+        "classes":                                 "Berufung",
+        "equipment":                               "Ausrüstung",
+        "languages":                               "Sprachen",
+        "namegiver":                               "Namensgebende",
+        "skills":                                  "Fertigkeiten",
+        "spells":                                  "Zauber"
+      },
+      "EAESheet": {
+        "changes":                                 "Änderungen",
+        "details":                                 "Details",
+        "duration":                                "Dauer",
+        "execution":                               "Ausführung"
+      },
+      "ItemSheet": {
+        "advancement":                             "Ränge",
+        "details":                                 "Details",
+        "effects":                                 "Effekte",
+        "general":                                 "Allgemein",
+        "thread":                                  "Fäden"
+      },
+      "LpHistory": {
+        "chronological":                           "Zeitlich",
+        "earned":                                  "Erhalten",
+        "spend":                                   "Ausgegeben"
+      }
+    },
     "ToolTips": {
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
