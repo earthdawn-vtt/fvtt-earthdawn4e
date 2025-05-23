@@ -1,27 +1,27 @@
 <section class="tab {{tabs.notes.cssClass}}" data-group="sheet" data-tab="notes">
   <div class="sheet__editor">
     <div class="layout__row">
-    
+
       <!-- Left Column -->
       <div class="layout__col--2">
 
         <!-- Namegiver -->
-      {{#unless (or (eq actor.type "dragon") (eq actor.type "horror") (eq actor.type "spirit") (eq actor.type "creature"))}}
-        <h3>{{localize "ED.Actor.Header.namegiver"}}</h3>
+        {{#unless (or (eq actor.type "dragon") (eq actor.type "horror") (eq actor.type "spirit") (eq actor.type "creature"))}}
+          <h3>{{localize "ED.Actor.Header.namegiver"}}</h3>
 
-        <div class="container__block">
-          {{#each actor.itemTypes.namegiver}}
-            <div class="class-card__grid--container">
-              <div class="class-card__grid--item"></div>
-              <div class="class-card__grid--item">{{name}}</div>
-              <div class="class-card__grid--item"></div>
-              <div class="class-card__grid--item">
-                {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
+          <div class="container__block">
+            {{#each actor.itemTypes.namegiver}}
+              <div class="class-card__grid--container">
+                <div class="class-card__grid--item"></div>
+                <div class="class-card__grid--item">{{name}}</div>
+                <div class="class-card__grid--item"></div>
+                <div class="class-card__grid--item">
+                  {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
+                </div>
               </div>
-            </div>
-          {{/each}}
-        </div>
-      {{/unless}}
+            {{/each}}
+          </div>
+        {{/unless}}
 
         <!-- Circles -->
         <h3>{{localize "ED.Actor.Header.circles"}}</h3>
@@ -29,65 +29,67 @@
 
         <!-- Disciplines Header -->
         <div class="container__block">
-        <div class="class-card__grid--container container__header text-break__auto disciplines__grid">
-          <div class="class-card__grid--item"></div>
-          <div class="class-card__grid--item">{{localize "ED.Actor.Header.disciplines"}}</div>
-          <div class="class-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-          <div class="class-card__grid--item"></div>
-        </div>
-
-        {{#each actor.itemTypes.discipline}}
-          <div class="item-id item-name__card" data-item-id="{{_id}}">
-            {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
-          </div>
-        {{/each}}
-
-        <!-- Paths -->
-
-        {{#if actor.itemTypes.path.length}}
-          <div class="class-card__grid--container container__header text-break__auto paths__grid">
+          <div class="class-card__grid--container container__header text-break__auto disciplines__grid">
             <div class="class-card__grid--item"></div>
-            <div class="class-card__grid--item">{{localize "ED.Actor.Header.paths"}}</div>
+            <div class="class-card__grid--item">{{localize "ED.Actor.Header.disciplines"}}</div>
             <div class="class-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
             <div class="class-card__grid--item"></div>
           </div>
 
-          {{#each actor.itemTypes.path}}
+          {{#each actor.itemTypes.discipline}}
             <div class="item-id item-name__card" data-item-id="{{_id}}">
               {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
             </div>
           {{/each}}
-        {{/if}}
 
-        <!-- Questor -->
-        {{#if actor.itemTypes.questor.length}}
-          <div class="class-card__grid--container container__header text-break__auto questors__grid">
-            <div class="class-card__grid--item"></div>
-            <div class="class-card__grid--item">{{localize "ED.Actor.Header.questor"}}</div>
-            <div class="class-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-            <div class="class-card__grid--item"></div>
-          </div>
+          <!-- Paths -->
 
-          {{#each actor.itemTypes.questor}}
-            <div class="item-id item-name__card" data-item-id="{{_id}}">
-              {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+          {{#if actor.itemTypes.path.length}}
+            <div class="class-card__grid--container container__header text-break__auto paths__grid">
+              <div class="class-card__grid--item"></div>
+              <div class="class-card__grid--item">{{localize "ED.Actor.Header.paths"}}</div>
+              <div class="class-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+              <div class="class-card__grid--item"></div>
             </div>
-          {{/each}}
-        {{/if}}
+
+            {{#each actor.itemTypes.path}}
+              <div class="item-id item-name__card" data-item-id="{{_id}}">
+                {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+              </div>
+            {{/each}}
+          {{/if}}
+
+          <!-- Questor -->
+          {{#if actor.itemTypes.questor.length}}
+            <div class="class-card__grid--container container__header text-break__auto questors__grid">
+              <div class="class-card__grid--item"></div>
+              <div class="class-card__grid--item">{{localize "ED.Actor.Header.questor"}}</div>
+              <div class="class-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+              <div class="class-card__grid--item"></div>
+            </div>
+
+            {{#each actor.itemTypes.questor}}
+              <div class="item-id item-name__card" data-item-id="{{_id}}">
+                {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+              </div>
+            {{/each}}
+          {{/if}}
         </div>
 
         <!-- Languages -->
-        <h3>{{localize "ED.Actor.Header.languages"}}</h3>
-        <div class="flexrow">
+        {{#if systemFields.languages}}
+          <h3>{{localize "ED.Actor.Header.languages"}}</h3>
+          <div class="flexrow">
           <span>
             <div class="container__header">{{localize "ED.Actor.Header.languagesSpoken"}}</div>
             {{formField systemFields.languages.fields.speak value=actor.system.languages.speak name="system.languages.speak"}}
           </span>
-          <span>
+            <span>
             <div class="container__header">{{localize "ED.Actor.Header.languagesWritten"}}</div>
-            {{formField systemFields.languages.fields.readWrite value=actor.system.languages.readWrite name="system.languages.readWrite"}}
+              {{formField systemFields.languages.fields.readWrite value=actor.system.languages.readWrite name="system.languages.readWrite"}}
           </span>
-        </div>
+          </div>
+        {{/if}}
 
       </div>
 
