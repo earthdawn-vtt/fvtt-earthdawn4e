@@ -30,7 +30,7 @@ const { renderTemplate } = foundry.applications.handlebars;
 
 /**
  * EdRollOptions for creating an EdRoll instance.
- * @property { object } step Ever information related to the step of the action, Mods, Boni, Mali etc.
+ * @property { object } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
  * @property { number } step.total The final step that is used to determine the dice that are rolled.
  * @property { object } karma Available Karma, Karma dice and used karma.
  * @property { object } devotion Available Devotions, Devotion die, Devotion die used and used devotion.

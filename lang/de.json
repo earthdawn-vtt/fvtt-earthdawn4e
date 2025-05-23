@@ -40,8 +40,8 @@
     "Actor": {
       "Abilities":                                 "TODO: Add translation",
       "Attributes": {
-        "attribueStep":                            "Stufe",
         "attributeName":                           "Attribut",
+        "attributeStep":                           "Stufe",
         "attributeValue":                          "Wert",
         "charisma":                                "Charisma",
         "charismaAbbr":                            "Cha",
@@ -83,9 +83,9 @@
       },
       "Characteristics": {
         "currentDamage":                           "Schaden",
-        "currentRecoveryTestsRecource":            "Aktuell",
-        "dailyrecoveryTestsResource":              "Täglich",
-        "deathThesholdShort":                      "Todesschwelle",
+        "currentRecoveryTestsResource":            "Aktuell",
+        "dailyRecoveryTestsResource":              "Täglich",
+        "deathThresholdShort":                     "Todesschwelle",
         "maxWounds":                               "Max Wunden",
         "mysticalArmor":                           "Mystisch",
         "mysticalDefense":                         "Mystisch",
@@ -723,7 +723,9 @@
       },
       "General": {
         "Hints": {
-          "Combatant":                             "TODO: Add translation",
+          "Combatant": {
+            "savePromptSettings":                  "Behalte die Initiative Einstellungen für diesen Kampf bei und überspringe dieses Fenster in den nächsten Runden."
+          },
           "Knack": {
             "lpCost":                              "Legendenpunktkosten"
           },
@@ -741,7 +743,9 @@
           }
         },
         "Labels": {
-          "Combatant":                             "TODO: Add translation",
+          "Combatant": {
+            "savePromptSettings":                  "Einstellung Speichern"
+          },
           "Knack": {
             "requirements":                        "Voraussetzungen",
             "restrictions":                        "Einschränkungen"
@@ -848,10 +852,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "Maximalgröße für Einhandwaffen",
-              "oneHandedmin":                      "Minimalgröße für Einhandwaffen",
-              "twoHandedmax":                      "Maximalgröße für Zweihandwaffen",
-              "twoHandedmin":                      "Minimalgröße für Zweihandwaffen"
+              "oneHandedMax":                      "Maximalgröße für Einhandwaffen",
+              "oneHandedMin":                      "Minimalgröße für Einhandwaffen",
+              "twoHandedMax":                      "Maximalgröße für Zweihandwaffen",
+              "twoHandedMin":                      "Minimalgröße für Zweihandwaffen"
             },
             "karmaModifier":                       "Wie viele Karma Punkte erhält dieser Namensgeber pro Kreis?",
             "livingArmorOnly":                     "Es kann nur nur lebendige Rüstung getragen werden.",
@@ -871,8 +875,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "Wie ist die Antwort der Schlüsselinformation?",
+                "isKnown":                         "Ist die Schlüsselinformation bekannt?",
                 "isRequired":                      "Wird eine Schlüsselinformation benötigt?",
-                "isknown":                         "Ist die Schlüsselinformation bekannt?",
                 "question":                        "Wie ist die Fagestellung der Schlüsselinformation?"
               },
               "activeEffect":                      "Welche Active Effects hat dieser Fadenrang",
@@ -880,9 +884,9 @@
               "enchantmentPattern":                "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde.",
               "identifier":                        "Wurde der Fadengegenstand bereits identifiziert?",
               "isActive":                          "Ist dieser Fadenrang aktiv?",
-              "isAnalysed":                        "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
+              "isAnalyzed":                        "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
               "isIdentified":                      "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
-              "isLevelAnalysed":                   "Dieser Fadenrang ist analysiert und kann erforscht werden.",
+              "isLevelAnalyzed":                   "Dieser Fadenrang ist analysiert und kann erforscht werden.",
               "level":                             "Fadenrang",
               "maxThreads":                        "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
               "mysticalDefense":                   "Die Mystisch Verteidigung des Fadengegenstand.",
@@ -1120,10 +1124,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "Einhandwaffen max.",
-              "oneHandedmin":                      "Einhandwaffen min.",
-              "twoHandedmax":                      "Zweihandwaffen max.",
-              "twoHandedmin":                      "Zweihandwaffen min."
+              "oneHandedMax":                      "Einhandwaffen max.",
+              "oneHandedMin":                      "Einhandwaffen min.",
+              "twoHandedMax":                      "Zweihandwaffen max.",
+              "twoHandedMin":                      "Zweihandwaffen min."
             },
             "abilities":                           "Namensgeber-Fähigkeiten",
             "karmaModifier":                       "Karma Modifikator",
@@ -1144,8 +1148,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "Antwort",
+                "isKnown":                         "bekannt",
                 "isRequired":                      "Schlüsselinformation benötigt?",
-                "isknown":                         "bekannt",
                 "question":                        "Schlüsselinformation"
               },
               "activeEffect":                      "Aktive Effekte",
@@ -1153,9 +1157,9 @@
               "enchantmentPattern":                "Verzauberungsanleitung",
               "identifier":                        "Identifiziert",
               "isActive":                          "Aktiv",
-              "isAnalysed":                        "Analysiert?",
+              "isAnalyzed":                        "Analysiert?",
               "isIdentified":                      "Identifiziert?",
-              "isLevelAnalysed":                   "Fadenrang Analysiert?",
+              "isLevelAnalyzed":                   "Fadenrang Analysiert?",
               "level":                             "Rang",
               "maxThreads":                        "Maximale Fäden?",
               "mysticalDefense":                   "Mystisch Verteidigung",
@@ -1547,9 +1551,9 @@
           "removeSpell":                           "Entferne den Zauber"
         },
         "abilities":                               "Wähle deine Fähigkeiten",
-        "availabelSkillPoints":                    "Verfügbare Fertigkeitsränge",
         "availableAttributePoints":                "Verfügbare Attributspunkte",
         "availableRanks":                          "Verfügbare Ränge",
+        "availableSkillPoints":                    "Verfügbare Fertigkeitsränge",
         "availableSpellPoints":                    "Verfügbare Punkte",
         "carryCapacity":                           "Tragkraft",
         "charGenRules":                            "Die Charaktererschaffung folgt den Regeln aus dem Spielerhandbuch im gleichnamigen Kapitel.<br> Die folgenden Schritte sind nach einander zu erfüllen: <br><ul><li>Wähle einen Namensgeber aus (Dieser Tab)</li>\n<li>Wähle eine Berufung (Disziplin oder Questor) und die entsprechenden Fähigkeiten.</li>\n<li>Bestimme die Attribute.</li>\n<li>Wähle Zauber (nur wenn die Disziplin zu den Zaubernden gehört).</li>\n<li>Wähle deine Fähigkeiten aus.</li>\n<li>Wähle deine Sprachen aus.</li>\n<li>Wähle deine Ausrüstung aus.</li></ul>",
@@ -1587,7 +1591,7 @@
         "requiredArtisanSkillPoints":              "Ein Kunsthandwerk muss mindestens einen Rang von 1 haben.",
         "requiredKnowledgeSkillPoints":            "Mindestens 2 Ränge in Wissensfertigkeiten müssen gewählt werden",
         "socialDefense":                           "Soziale Verteidigung",
-        "unconciousDeathRate":                     "Bewusstlosigkeits- und Todesschwelle",
+        "unconsciousDeathRate":                    "Bewusstlosigkeits- und Todesschwelle",
         "woundThreshold":                          "Wundschwelle"
       },
       "Configs": {
@@ -1781,6 +1785,7 @@
       "PhysicalItems": {
         "addThreadLevel":                          "Füge einen Fadenrang hinzu.",
         "deleteThreadLevel":                       "Entferne den letzten (höchsten) Fadenrang.",
+        "hasTruePattern":                          "Dieser Gegenstand hat eine wahre magische Struktur",
         "itemHistoryCheck":                        "Artefaktgeschichte ",
         "researchCheck":                           "Forschen ",
         "weaveThreadCheck":                        "Fadenweben "

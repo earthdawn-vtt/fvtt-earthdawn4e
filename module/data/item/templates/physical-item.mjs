@@ -11,7 +11,7 @@ import MatrixTemplate from "./matrix.mjs";
  * @property {string} price.denomination                    denomination type of the cost
  * @property {number} weight                                item weight
  * @property {number} amount                                amount of the item
- * @property {number} bloodMagicDamage                      number of Bloodmagic damage the actor is receiving
+ * @property {number} bloodMagicDamage                      number of blood magic damage the actor is receiving
  * @property {object} usableItem                            usable item object
  * @property {boolean} usableItem.isUsableItem        usable item selector
  * @property {number} usableItem.arbitraryStep              arbitrary step
@@ -145,7 +145,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           label:    this.labelKey( "PhysicalItems.UsableItem.action" ),
           hint:     this.hintKey( "PhysicalItems.UsableItem.action" )
         } ),
-        // recovery property value shall be a drop down menu with several options discribed in #26
         recoveryPropertyValue: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -193,7 +192,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    // TODO: return object instead of array? to have meaningful keys and you dont have to remember the positions of the values in the array
+    // TODO: return object instead of array? to have meaningful keys and you don't have to remember the positions of the values in the array
     return [
       this.parent.usableItem.labels.arbitraryStep,
       this.parent.usableItem.labels.action,

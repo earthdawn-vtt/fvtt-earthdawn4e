@@ -107,7 +107,7 @@ export default class ItemEd extends Item {
   /**
    * Get all ActiveEffects that may apply to this Item.
    * This is taken from Foundry's Actor class.
-   * Legacy Transferal does not apply here, it's always the new behaviour.
+   * Legacy Transferal does not apply here, it's always the new behavior.
    * @yields {ActiveEffect}
    * @returns {Generator<ActiveEffect, void, void>} All effects that may apply to this item.
    */

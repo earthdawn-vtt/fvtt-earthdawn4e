@@ -86,8 +86,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  1,
             integer:  false,
             positive: true,
-            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedmin" ),
-            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedmin" )
+            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedMin" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedMin" )
           } ),
           max: new fields.NumberField( {
             required: true,
@@ -95,8 +95,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  3,
             integer:  false,
             positive: true,
-            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedmax" ),
-            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedmax" )
+            label:    this.labelKey( "Namegiver.WeaponSize.oneHandedMax" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.oneHandedMax" )
           } ),
         } ),
         twoHanded: new fields.SchemaField( {
@@ -106,8 +106,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  4,
             integer:  false,
             positive: true,
-            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedmin" ),
-            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedmin" )
+            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedMin" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedMin" )
           } ),
           max: new fields.NumberField( {
             required: true,
@@ -115,8 +115,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
             initial:  6,
             integer:  false,
             positive: true,
-            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedmax" ),
-            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedmax" )
+            label:    this.labelKey( "Namegiver.WeaponSize.twoHandedMax" ),
+            hint:     this.hintKey( "Namegiver.WeaponSize.twoHandedMax" )
           } )
         } )
       } ),

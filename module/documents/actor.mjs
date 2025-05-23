@@ -223,7 +223,7 @@ export default class ActorEd extends Actor {
   // endregion
 
   /**
-   * @description                       Returns all ammunitoin items of the given actor
+   * @description                       Returns all ammunition items of the given actor
    * @param {string} type               The type of ammunition to get
    * @returns {ItemEd[]}                An array of ammunition items
    */
@@ -262,7 +262,7 @@ export default class ActorEd extends Actor {
   /**
    * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
    * Returns an array of items that match a given EDID and optionally an item type.
-   * @param {string} edid           The SWID of the item(s) which you want to retrieve
+   * @param {string} edid           The EDID of the item(s) which you want to retrieve
    * @param {string} [type]           Optionally, a type name to restrict the search
    * @returns {Item[]|undefined}    An array containing the found items
    */
@@ -503,14 +503,14 @@ export default class ActorEd extends Actor {
       step:        arbitraryStep
     } );
 
-    const arbitraryFinalstep = { base: arbitraryStep };
+    const arbitraryFinalStep = { base: arbitraryStep };
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
         rollType:         "equipment",
         strain:           0,
         target:           difficultyFinal,
-        step:             arbitraryFinalstep,
+        step:             arbitraryFinalStep,
         devotionRequired: false,
         chatFlavor:       chatFlavor
       },
@@ -521,7 +521,7 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @description                     The sequence that is rotaded
+   * @description                     The sequence that is rotated
    * @param {object}    itemId        Id of the item to rotate the status of
    * @param {boolean}   backwards     Whether to rotate the status backwards
    * @returns {Promise<ItemEd[]>}       The updated items

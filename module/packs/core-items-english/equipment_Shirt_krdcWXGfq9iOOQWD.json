@@ -10,7 +10,7 @@
     },
     "threadData": {
       "isIdentified": false,
-      "isAnalysed": false,
+      "isAnalyzed": false,
       "characteristics": {
         "defenses": {
           "mystical": {

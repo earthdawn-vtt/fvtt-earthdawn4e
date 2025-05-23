@@ -34,7 +34,7 @@
         "id": "chooseActorType",
         "selector": ".app.window-app.form.earthdawn4e.create-document.create-actor",
         "title": "Actor selection",
-        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the buttom <strong>Create New Actor</strong> at the bottom.",
+        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the button <strong>Create New Actor</strong> at the bottom.",
         "activateTab": "actors",
         "action": "none"
       },
@@ -66,7 +66,7 @@
         "id": "chooseItemType",
         "selector": ".app.window-app.form.earthdawn4e.create-document.create-item",
         "title": "Item selection",
-        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the buttom <strong>Akteur erstellen</strong> at the bottom.",
+        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the button <strong>Create Actor</strong> at the bottom.",
         "activateTab": "items",
         "action": "none"
       }

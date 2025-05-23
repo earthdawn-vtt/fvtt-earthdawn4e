@@ -8,7 +8,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} rangeShort        short range
  * @property {number} rangeLong         long range
  * @property {number} salvoCost         cost per salvo
- * @property {number} charakterDamage   weapon damage on a sentient being
+ * @property {number} characterDamage   weapon damage on a sentient being
  */
 export default class ShipWeaponData extends ItemDataModel.mixin(
   ItemDescriptionTemplate

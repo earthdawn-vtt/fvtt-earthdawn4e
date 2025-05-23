@@ -66,7 +66,7 @@ export {default as ThreadTemplate} from "./templates/threads.mjs";
 export const config = {
   armor:          ArmorData,
   bindingSecret:  BindingSecretData,
-  cursemark:      CurseHorrorMarkData,
+  curseMark:      CurseHorrorMarkData,
   devotion:       DevotionData,
   discipline:     DisciplineData,
   effect:         EffectData,

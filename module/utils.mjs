@@ -54,7 +54,7 @@ export function getAllEdIds( type ) {
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
  * Returns an array of items that match a given EDID and optionally an item type.
  * Searched documents are world and compendium items.
- * @param {string} edid           The SWID of the item(s) which you want to retrieve
+ * @param {string} edid           The EDID of the item(s) which you want to retrieve
  * @param {string} type           Optionally, a type name to restrict the search
  * @returns {Item[]|undefined}    An array containing the found items
  */
@@ -299,8 +299,8 @@ export function staticStatusId( status ) {
 /* -------------------------------------------- */
 /**
  * 
- * @param {*} ms miliseconds
- * @returns {*} miliseconds
+ * @param {*} ms milliseconds
+ * @returns {*} milliseconds
  */
 export async function delay( ms ) {
   return new Promise( resolve => {
@@ -785,7 +785,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-armor.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-bindingSecret.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-cursemark.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-curseMark.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-devotion.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-discipline.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-effect.hbs",
@@ -813,7 +813,7 @@ export async function preloadHandlebarsTemplates() {
 
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-armor.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-bindingSecret.hbs",
-    "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-cursemark.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-curseMark.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-devotion.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-discipline.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-effect.hbs",

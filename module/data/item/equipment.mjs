@@ -26,7 +26,6 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
         label:    this.labelKey( "Equipment.consumable" ),
         hint:     this.hintKey( "Equipment.consumable" )
       } ),
-      // different ammo types are availabel see issue #
       ammunition: new fields.SchemaField( {
         type: new fields.StringField( {
           required: true,

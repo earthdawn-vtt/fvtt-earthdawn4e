@@ -23,7 +23,7 @@ import * as MIGRATIONS from "./migrations.mjs";
 // Since Foundry does not support hot reloading object notation templates...
 Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path } = {}) => {
   if (extension === 'hbs') {
-    const key = Object.entries(flattenObject(templates)).find(([_, tpath]) => tpath == path)?.[0];
+    const key = Object.entries(flattenObject(templates)).find(([_, templatePath]) => templatePath == path)?.[0];
     if (!key) throw new Error(`Unrecognized template: ${path}`);
     await new Promise((resolve, reject) => {
       game.socket.emit('template', path, resp => {

@@ -41,8 +41,8 @@
       "Abilities": {
       },
       "Attributes": {
-        "attribueStep":                            "Step",
         "attributeName":                           "Attribute",
+        "attributeStep":                           "Step",
         "attributeValue":                          "Value",
         "charisma":                                "Charisma",
         "charismaAbbr":                            "Cha",
@@ -84,9 +84,9 @@
       },
       "Characteristics": {
         "currentDamage":                           "Damage",
-        "currentRecoveryTestsRecource":            "Current",
-        "dailyrecoveryTestsResource":              "Daily",
-        "deathThesholdShort":                      "Death Rating",
+        "currentRecoveryTestsResource":            "Current",
+        "dailyRecoveryTestsResource":              "Daily",
+        "deathThresholdShort":                     "Death Rating",
         "maxWounds":                               "Max Wounds",
         "mysticalArmor":                           "Mystical",
         "mysticalDefense":                         "Mystical",
@@ -724,7 +724,9 @@
       },
       "General": {
         "Hints": {
-          "Combatant":                             "TODO: Add translation",
+          "Combatant": {
+            "savePromptSettings":                  "TODO: Add translation"
+          },
           "Knack": {
             "lpCost":                              "Legend Point Cost"
           },
@@ -742,7 +744,9 @@
           }
         },
         "Labels": {
-          "Combatant":                             "TODO: Add translation",
+          "Combatant": {
+            "savePromptSettings":                  "TODO: Add translation"
+          },
           "Knack": {
             "requirements":                        "Knack Requirements",
             "restrictions":                        "Knack Restrictions"
@@ -849,10 +853,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "OneHanded max.",
-              "oneHandedmin":                      "OneHanded min.",
-              "twoHandedmax":                      "TwoHanded max.",
-              "twoHandedmin":                      "TwoHanded min."
+              "oneHandedMax":                      "OneHanded max.",
+              "oneHandedMin":                      "OneHanded min.",
+              "twoHandedMax":                      "TwoHanded max.",
+              "twoHandedMin":                      "TwoHanded min."
             },
             "karmaModifier":                       "Karma Modifier",
             "livingArmorOnly":                     "This item is considered as living armor.",
@@ -872,8 +876,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "TODO: Add translation",
+                "isKnown":                         "TODO: Add translation",
                 "isRequired":                      "Is Required",
-                "isknown":                         "TODO: Add translation",
                 "question":                        "TODO: Add translation"
               },
               "activeEffect":                      "Active Effect",
@@ -881,9 +885,9 @@
               "enchantmentPattern":                "Echantment Pattern",
               "identifier":                        "TODO: Add translation",
               "isActive":                          "Is Active",
-              "isAnalysed":                        "Is Analysed",
+              "isAnalyzed":                        "Is Analysed",
               "isIdentified":                      "Is Identified",
-              "isLevelAnalysed":                   "Is Rank Analysed",
+              "isLevelAnalyzed":                   "Is Rank Analysed",
               "level":                             "Circle/Rank",
               "maxThreads":                        "Max Threads",
               "mysticalDefense":                   "Mystical Defense",
@@ -1121,10 +1125,10 @@
           },
           "Namegiver": {
             "WeaponSize": {
-              "oneHandedmax":                      "OneHanded max.",
-              "oneHandedmin":                      "OneHanded min.",
-              "twoHandedmax":                      "TwoHanded max.",
-              "twoHandedmin":                      "TwoHanded min."
+              "oneHandedMax":                      "OneHanded max.",
+              "oneHandedMin":                      "OneHanded min.",
+              "twoHandedMax":                      "TwoHanded max.",
+              "twoHandedMin":                      "TwoHanded min."
             },
             "abilities":                           "Namegiver Abilities",
             "karmaModifier":                       "Karma Modifier",
@@ -1145,8 +1149,8 @@
               },
               "KeyKnowledge": {
                 "answer":                          "TODO: Add translation",
+                "isKnown":                         "TODO: Add translation",
                 "isRequired":                      "Is Required",
-                "isknown":                         "TODO: Add translation",
                 "question":                        "TODO: Add translation"
               },
               "activeEffect":                      "Active Effect",
@@ -1154,9 +1158,9 @@
               "enchantmentPattern":                "Echantment Pattern",
               "identifier":                        "TODO: Add translation",
               "isActive":                          "Is Active",
-              "isAnalysed":                        "Is Analysed",
+              "isAnalyzed":                        "Is Analysed",
               "isIdentified":                      "Is Identified",
-              "isLevelAnalysed":                   "Is Rank Analysed",
+              "isLevelAnalyzed":                   "Is Rank Analysed",
               "level":                             "Circle/Rank",
               "maxThreads":                        "Max Threads",
               "mysticalDefense":                   "Mystical Defense",
@@ -1550,9 +1554,9 @@
           "removeSpell":                           "TODO: Add translation"
         },
         "abilities":                               "TODO: Add translation",
-        "availabelSkillPoints":                    "TODO: Add translation",
         "availableAttributePoints":                "TODO: Add translation",
         "availableRanks":                          "TODO: Add translation",
+        "availableSkillPoints":                    "TODO: Add translation",
         "availableSpellPoints":                    "TODO: Add translation",
         "carryCapacity":                           "TODO: Add translation",
         "charGenRules":                            "TODO: Add translation",
@@ -1590,7 +1594,7 @@
         "requiredArtisanSkillPoints":              "TODO: Add translation",
         "requiredKnowledgeSkillPoints":            "TODO: Add translation",
         "socialDefense":                           "TODO: Add translation",
-        "unconciousDeathRate":                     "TODO: Add translation",
+        "unconsciousDeathRate":                    "TODO: Add translation",
         "woundThreshold":                          "TODO: Add translation"
       },
       "Configs": {
@@ -1784,6 +1788,7 @@
       "PhysicalItems": {
         "addThreadLevel":                          "Add Thread Rank",
         "deleteThreadLevel":                       "Delete Thread Rank",
+        "hasTruePattern":                          "TODO: Add translation",
         "itemHistoryCheck":                        "Item History Check",
         "researchCheck":                           "Research Check",
         "weaveThreadCheck":                        "Weave Thread Check"

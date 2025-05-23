@@ -18,7 +18,7 @@
       "id": "step-1",
       "selector": ".journal--roll",
       "title": "create fast rolling in journals",
-      "content": "It is possible to create arbitrary roll commands in a journal usin @Roll(/s 14)(falling damage).",
+      "content": "It is possible to create arbitrary roll commands in a journal using @Roll(/s 14)(falling damage).",
       "action": "none"
     },
     {

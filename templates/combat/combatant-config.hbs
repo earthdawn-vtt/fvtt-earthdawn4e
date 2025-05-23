@@ -80,14 +80,14 @@
                 value=savePromptSettings
                 name="system.savePromptSettings"
                 id=(concat document.uuid "-savePromptSettings")
-                label=(localize "XTODO.savePromptSettings")
+                label=(localize "savePromptSettings")
                 hint=""
     }}
     {{formGroup systemFields.keepInitiative
                 value=system.keepInitiative
                 name="system.keepInitiative"
                 id=(concat document.uuid "-keepInitiative")
-                label=(localize "XTODO.keepInitiative")
+                label=(localize "keepInitiative")
                 hint=""
     --}}
     <div class="form-group">
@@ -95,11 +95,9 @@
       <div class="form-fields">
         <label class="checkbox">
           <input type="checkbox" name="system.savePromptSettings" {{checked system.savePromptSettings}} />
-          {{localize "TODO.dontShowPrompt"}}
         </label>
         <label class="checkbox">
           <input type="checkbox" name="system.keepInitiative" {{checked system.keepInitiative}} />
-          {{localize "TODO.keepInitiative"}}
         </label>
       </div>
     </div>

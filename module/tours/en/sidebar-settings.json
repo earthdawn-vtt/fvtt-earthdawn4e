@@ -18,7 +18,7 @@
       "id": "changelog",
       "selector": "#ed4eChangelog",
       "title": "Change Log",
-      "content": "Find the lates system changes",
+      "content": "Find the latest system changes",
       "sidebarTab": "settings",
       "action": "none"
     },

@@ -10,3 +10,13 @@ prosemirror
 explodify
 slugify
 slugified
+
+dtype
+crosshairs
+unlist
+hexagon-xmark
+appv
+blindroll
+gmroll
+futils
+placeables

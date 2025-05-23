@@ -7,7 +7,7 @@ export default function () {
 
     if ( app instanceof Settings ) {
       // Add buttons
-      const chlogButton = $( `<button id="ed4eChangelog" class="changelog">
+      const changeLogButton = $( `<button id="ed4eChangelog" class="changelog">
       ${game.i18n.localize( "ED.Settings.SpecificSettingOptions.changelog" )}</button>` );
       const helpButton = $( `<button id="ed4eHelp" class="help">
       ${game.i18n.localize( "ED.Settings.SpecificSettingOptions.help" )}</button>` );
@@ -18,10 +18,10 @@ export default function () {
         .after(
           $( "<div id=\"ed4e-sidebar\">" ).append(
             $( `<h2>${game.i18n.localize( "ED.Settings.SpecificSettingOptions.title" )}</h2>` ),
-            $( "<div id='ed4e-details'>" ).append( chlogButton, helpButton, createBugButton )
+            $( "<div id='ed4e-details'>" ).append( changeLogButton, helpButton, createBugButton )
           )
         );
-      chlogButton.click( () => {
+      changeLogButton.click( () => {
         window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log", "_blank" );
       } );
       helpButton.click( () => {

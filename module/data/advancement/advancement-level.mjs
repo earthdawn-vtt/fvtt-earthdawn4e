@@ -66,7 +66,7 @@ export default class AdvancementLevelData extends SparseDataModel {
           required:        true,
           nullable:        false,
           label:           "ED.advancement.levelAbilities",
-          hint:            "good stoff"
+          hint:            "ED.advancement.levelAbilities",
         }
       ),
       effects: new fields.SetField(

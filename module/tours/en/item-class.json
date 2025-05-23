@@ -1,8 +1,8 @@
 {
-  "title": "System Einstellungen",
+  "title": "System settings",
   "module": "ed4e",
   "id": "edDisciplineItem",
-  "description": "Earthdawn Spezifische System Einstellungen",
+  "description": "Earthdawn specific System settings",
   "canBeResumed": true,
   "display": true,
   "steps": [

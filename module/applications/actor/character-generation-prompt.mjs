@@ -405,7 +405,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   /* ----------------------------------------------------------- */
   /* --------------------------  Form  ------------------------- */
   /* ----------------------------------------------------------- */
-  // region FORMSUBMISSION
+  // region FORM SUBMISSION
   /**
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLFormElement} form - The HTML form element being submitted.
