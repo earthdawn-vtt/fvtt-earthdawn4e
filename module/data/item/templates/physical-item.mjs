@@ -11,7 +11,7 @@ import MatrixTemplate from "./matrix.mjs";
  * @property {string} price.denomination                    denomination type of the cost
  * @property {number} weight                                item weight
  * @property {number} amount                                amount of the item
- * @property {number} bloodMagicDamage                      number of Bloodmagic damage the actor is receiving
+ * @property {number} bloodMagicDamage                      number of blood magic damage the actor is receiving
  * @property {object} usableItem                            usable item object
  * @property {boolean} usableItem.isUsableItem        usable item selector
  * @property {number} usableItem.arbitraryStep              arbitrary step

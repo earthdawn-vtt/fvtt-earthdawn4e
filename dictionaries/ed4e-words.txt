@@ -44,7 +44,7 @@ grimoires
 spezialmanover
 spellmatrix
 unequip
-Bloodmagic
+
 emsp
 SWADE
 uncon
