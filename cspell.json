@@ -12,11 +12,29 @@
       "name":     "foundry-vtt-words",
       "path":     "./dictionaries/foundry-vtt-words.txt",
       "addWords": true
+    },
+    {
+      "name":     "0_8_2_migration-words",
+      "path":     "./dictionaries/0_8_2_migration-words.txt",
+      "addWords": true
+    },
+    {
+      "name":     "technical-words",
+      "path":     "./dictionaries/technical-words.txt",
+      "addWords": true
+    },
+    {
+      "name":     "ui-ux-words",
+      "path":     "./dictionaries/ui-ux-words.txt",
+      "addWords": true  
     }
   ],
   "dictionaries": [
     "ed4e-words",
-    "foundry-vtt-words"
+    "foundry-vtt-words",
+    "0_8_2_migration-words",
+    "technical-words",
+    "ui-ux-words",
   ],
   "enabledFileTypes":      {
     "js":   true,
@@ -34,8 +52,6 @@
     "system.json",
     "module/config/migrations.mjs",
     "module/config/document-data.mjs",
-    "eslint.config.mjs",
-    "module/data/actor/templates/sentient.mjs",
   ],
   "useGitignore":          true
 }
