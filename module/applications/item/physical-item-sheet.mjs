@@ -1,6 +1,8 @@
 import ED4E from "../../config/_module.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 
+const TextEditor = foundry.applications.ux.TextEditor.implementation;
+
 /**
  * Extend the basic ActorSheet with modifications
  */
