@@ -57,8 +57,6 @@ export default class PcData extends NamegiverTemplate {
         initial:  1,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "attributeValue" ),
-        hint:     this.hintKey( "attributeValue" )
       } ),
     } );
 
@@ -69,8 +67,6 @@ export default class PcData extends NamegiverTemplate {
         step:     1,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "durabilityBonus" ),
-        hint:     this.hintKey( "durabilityBonus" ),
       } ),
       lp: new foundry.data.fields.EmbeddedDataField(
         LpTrackingData,

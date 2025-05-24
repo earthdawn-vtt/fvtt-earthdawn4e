@@ -30,8 +30,6 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Shields.defenseBonusPhysical" ),
-          hint:     this.hintKey( "Shields.defenseBonusPhysical" )
         } ),
         mystical: new fields.NumberField( {
           required: true,
@@ -39,8 +37,6 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Shields.defenseBonusMystical" ),
-          hint:     this.hintKey( "Shields.defenseBonusMystical" )
         } ),
       } ),
       initiativePenalty: new fields.NumberField( {
@@ -49,8 +45,6 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Shields.initiativePenalty" ),
-        hint:     this.hintKey( "Shields.initiativePenalty" )
       } ),
       shatterThreshold: new fields.NumberField( {
         required: true,
@@ -58,26 +52,18 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Shields.shatterThreshold" ),
-        hint:     this.hintKey( "Shields.shatterThreshold" )
       } ),
       shattered: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Shields.broken" ),
-        hint:     this.hintKey( "Shields.broken" )
       } ),
       isLiving: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Shields.livingArmor" ),
-        hint:     this.hintKey( "Shields.livingArmor" )
       } ),
       bowUsage: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Shields.bowUsage" ),
-        hint:     this.hintKey( "Shields.bowUsage" )
       } ),
     } );
   }

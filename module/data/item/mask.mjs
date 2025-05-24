@@ -51,7 +51,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.dexterityStep"
       } ), 
       strengthStep: new fields.NumberField( {
         required: true,
@@ -59,7 +58,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.strengthStep"
       } ),
       toughnessStep: new fields.NumberField( {
         required: true,
@@ -67,7 +65,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.toughnessStep"
       } ),
       perceptionStep: new fields.NumberField( {
         required: true,
@@ -75,7 +72,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.perceptionStep"
       } ),
       willpowerStep: new fields.NumberField( {
         required: true,
@@ -83,7 +79,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.willpowerStep"
       } ),
       charismaStep: new fields.NumberField( {
         required: true,
@@ -91,7 +86,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.charismaStep"
       } ),
       initiativeStep: new fields.NumberField( {
         required: true,
@@ -99,7 +93,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.initiativeStep"
       } ),
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
@@ -108,7 +101,6 @@ export default class MaskData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Masks.walk"
         } ),
         fly: new fields.NumberField( {
           required: true,
@@ -116,7 +108,6 @@ export default class MaskData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Masks.fly"
         } ),
         swim: new fields.NumberField( {
           required: true,
@@ -124,7 +115,6 @@ export default class MaskData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Masks.swim"
         } ),
         burrow: new fields.NumberField( {
           required: true,
@@ -132,7 +122,6 @@ export default class MaskData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Masks.burrow"
         } ),
         climb: new fields.NumberField( {
           required: true,
@@ -140,11 +129,7 @@ export default class MaskData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    "ED.Item.Masks.climb"
         } ),
-      },
-      {
-        label: "ED.Item.Masks.movement"
       } ),
       defenses: new fields.SchemaField( {
         physical: new fields.NumberField( {
@@ -154,7 +139,6 @@ export default class MaskData extends ItemDataModel.mixin(
           step:     1,
           initial:  0,
           integer:  true,
-          label:    "ED.Actor.Characteristics.defensePhysical"
         } ),
         mystical: new fields.NumberField( {
           required: true,
@@ -163,7 +147,6 @@ export default class MaskData extends ItemDataModel.mixin(
           step:     1,
           initial:  0,
           integer:  true,
-          label:    "ED.Actor.Characteristics.defenseMystical"
         } ),
         social: new fields.NumberField( {
           required: true,
@@ -172,7 +155,6 @@ export default class MaskData extends ItemDataModel.mixin(
           step:     1,
           initial:  0,
           integer:  true,
-          label:    "ED.Actor.Characteristics.defenseSocial"
         } ),
       } ),
       physicalArmor: new fields.NumberField( {
@@ -181,7 +163,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.physicalArmor"
       } ),
       mysticArmor: new fields.NumberField( {
         required: true,
@@ -189,7 +170,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.mysticArmor"
       } ),
       knockDownStep: new fields.NumberField( {
         required: true,
@@ -197,7 +177,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.knockDownStep"
       } ),
       recoveryTestsResource: new fields.NumberField( {
         required: true,
@@ -205,7 +184,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.recoveryTestsResource"
       } ),
       deathThreshold: new fields.NumberField( {
         required: true,
@@ -213,7 +191,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.deathThreshold"
       } ),
       unconsciousThreshold: new fields.NumberField( {
         required: true,
@@ -221,7 +198,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.unconsciousThreshold"
       } ),
       woundThreshold: new fields.NumberField( {
         required: true,
@@ -229,7 +205,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.woundThreshold"
       } ),
       attacks: new fields.NumberField( {
         required: true,
@@ -237,7 +212,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.attacks"
       } ),
       attackStepsBonus: new fields.NumberField( {
         required: true,
@@ -245,7 +219,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.attackStepsBonus"
       } ),
       damageStepsBonus: new fields.NumberField( {
         required: true,
@@ -253,7 +226,6 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.damageStepsBonus"
       } ),
       challengingRate: new fields.NumberField( {
         required: true,
@@ -261,13 +233,11 @@ export default class MaskData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    "ED.Item.Masks.challengingRate"
       } ),
       powers: new fields.StringField( {
         required: true,
         blank:    true,
         initial:  "",
-        label:    "ED.Item.Masks.powers"
       } ),
     } );
   }

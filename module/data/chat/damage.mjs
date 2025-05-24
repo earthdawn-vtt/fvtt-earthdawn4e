@@ -29,25 +29,16 @@ export default class DamageMessageData extends BaseMessageData {
               min:      0,
               initial:  0,
               integer:  true,
-              label:    this.labelKey( "Damage.Transactions.transaction.damage" ),
-              hint:     this.hintKey( "Damage.Transactions.transaction.damage" ),
             } ),
             dealtTo: new fields.DocumentUUIDField( {
               type:  "Actor",
-              label: this.labelKey( "Damage.Transactions.transaction.dealtTo" ),
-              hint:  this.hintKey( "Damage.Transactions.transaction.dealtTo" ),
             } ),
             timestamp: new fields.NumberField( {
               initial: new Date().valueOf(),
             } ),
-          }, {
-            label: this.labelKey( "Damage.Transactions.transaction" ),
-            hint:  this.hintKey( "Damage.Transactions.transaction" ),
           } ),
         {
           initial: [],
-          label:   this.labelKey( "Damage.transactions" ),
-          hint:    this.hintKey( "Damage.transactions" ),
         }
       ),
     } );

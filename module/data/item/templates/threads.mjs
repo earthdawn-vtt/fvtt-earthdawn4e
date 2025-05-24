@@ -23,8 +23,6 @@ export default class ThreadTemplate extends ItemDataModel {
         ThreadBaseData,
         {
           required: true,
-          label:    this.labelKey( "PhysicalItems.threadData" ),
-          hint:     this.hintKey( "PhysicalItems.threadData" )
         }
       )
     } );

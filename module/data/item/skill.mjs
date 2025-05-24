@@ -24,8 +24,6 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
         required: true,
         initial:  "general",
         choices:  ED4E.skillTypes,
-        label:    this.labelKey( "Ability.skillType" ),
-        hint:     this.hintKey( "Ability.skillType" )
       } ),
     } );
   }

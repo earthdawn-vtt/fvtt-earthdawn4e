@@ -31,8 +31,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         initial:  "",
         trim:     true,
         choices:  ED4E.talentCategory,
-        label:    this.labelKey( "Ability.talentCategory" ),
-        hint:     this.hintKey( "Ability.talentCategory" )
       } ),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
@@ -44,15 +42,11 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
               return undefined; // undefined means do further validation
             },
             validationError:  "must be a knack type",
-            label:            this.labelKey( "Ability.talentAvailableKnack" ),
-            hint:             this.hintKey( "Ability.talentAvailableKnack" )
           } ),
           {
             required: true,
             nullable: false,
             initial:  [],
-            label:    this.labelKey( "Ability.talentKnacksAvailable" ),
-            hint:     this.hintKey( "Ability.talentKnacksAvailable" )
           }
         ),
         learned:   new fields.SetField(
@@ -64,22 +58,16 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
               return undefined; // undefined means do further validation
             },
             validationError:  "must be a knack type",
-            label:            this.labelKey( "Ability.talentLearnedKnack" ),
-            hint:             this.hintKey( "Ability.talentLearnedKnack" )
           } ),
           {
             required: true,
             nullable: false,
             initial:  [],
-            label:    this.labelKey( "Ability.talentKnacksLearned" ),
-            hint:     this.hintKey( "Ability.talentKnacksLearned" )
           }
         ),
       }, {
         nullable: false,
         initial:  { learned: [], available: [] },
-        label:    this.labelKey( "Ability.talentKnacks" ),
-        hint:     this.hintKey( "Ability.talentKnacks" )
       } )
     } );
   }

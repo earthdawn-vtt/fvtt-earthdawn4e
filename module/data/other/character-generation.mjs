@@ -50,8 +50,6 @@ export default class CharacterGenerationData extends SparseDataModel {
         required: true,
         nullable: true,
         initial:  null,
-        label:    "X.CharGenModel.namegiver",
-        hint:     "X.CharGenModel.The chosen namegiver.",
       } ),
 
       // Class
@@ -59,15 +57,11 @@ export default class CharacterGenerationData extends SparseDataModel {
         required: true,
         nullable: false,
         initial:  true,
-        label:    "X.CharGenModel.isAdept",
-        hint:     "X.CharGenModel.Choose discipline if true, questor otherwise.",
       } ),
       selectedClass: new fields.DocumentUUIDField( {
         required: true,
         nullable: true,
         initial:  null,
-        label:    "X.CharGenModel.selectedClass",
-        hint:     "X.CharGenModel.The chosen class.",
       } ),
 
       // Attributes
@@ -80,8 +74,6 @@ export default class CharacterGenerationData extends SparseDataModel {
           max:      this.maxAttributeModifier,
           step:     1,
           integer:  true,
-          label:    "X.CharGenModel.Attributes.change",
-          hint:     "X.CharGenModel.The de-/increase of a given attribute value.",
         } ),
         cost: new fields.NumberField( {
           required: true,
@@ -90,13 +82,10 @@ export default class CharacterGenerationData extends SparseDataModel {
           min:      -2,
           max:      15,
           integer:  true,
-          label:    "X.CharGenModel.Attributes.cost",
-          hint:     "X.CharGenModel.The cost for the given attribute change.",
         } ),
       } ), {
         initialKeys:     ED4E.attributes,
         initialKeysOnly: true,
-        label:           "ED.Attributes.attributes"
       } ),
 
       // Abilities
@@ -108,15 +97,11 @@ export default class CharacterGenerationData extends SparseDataModel {
             min:      0,
             max:      game.settings.get( "ed4e", "charGenMaxRank" ),
             integer:  true,
-            label:    "X.CharGenModel.abilityLevel",
-            hint:     "X.CharGenModel.The assigned level of the ability"
           } ),
           {
             required:        true,
             initialKeys:     [],
             initialKeysOnly: false,
-            label:           "X.CharGenModel.Selected Skills",
-            hint:            "X.CharGenModel.Which skills where taken on char gen.",
           }
         ), {
           required:        true,
@@ -175,8 +160,6 @@ export default class CharacterGenerationData extends SparseDataModel {
         } ),
       }, {
         required: true,
-        label:    "X.CharGenModel.AssignableRanks",
-        hint:     "X.CharGenModel.How ranks are left to assign to abilities",
       } ),
 
       // Spells

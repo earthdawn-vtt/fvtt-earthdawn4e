@@ -31,8 +31,6 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Curse.step" ),
-        hint:     this.hintKey( "Curse.step" )
       } ), 
       type: new fields.StringField( {
         required: true,
@@ -41,19 +39,13 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
         trim:     true,
         initial:  "minor",
         choices:  ED4E.curseType,
-        label:    this.labelKey( "Curse.curseType" ),
-        hint:     this.hintKey( "Curse.curseType" )
       } ),
       active: new fields.BooleanField( {
         required: true,
-        label:    this.labelKey( "Curse.curseActive" ),
-        hint:     this.hintKey( "Curse.curseActive" )
       } ),
       detected: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Curse.curseDetected" ),
-        hint:     this.hintKey( "Curse.curseDetected" )
       } ),
       source: new fields.ForeignDocumentField( SystemDataModel, {
         idOnly: true,

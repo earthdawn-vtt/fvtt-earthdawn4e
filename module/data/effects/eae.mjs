@@ -24,57 +24,29 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     return this.mergeSchema( super.defineSchema(), {
       changes: new fields.ArrayField( new fields.EmbeddedDataField(
         EarthdawnActiveEffectChangeData
-      ), {
-        label: this.labelKey( "changes" ),
-        hint:  this.hintKey( "changes" )
-      } ),
-      duration: new fields.EmbeddedDataField( EarthdawnActiveEffectDurationData, {
-        label: this.labelKey( "duration" ),
-        hint:  this.hintKey( "duration" )
-      } ),
-      executable:       new fields.BooleanField( {
-        label:   this.labelKey( "executable" ),
-        hint:    this.hintKey( "executable" )
-      } ),
+      ) ),
+      duration:   new fields.EmbeddedDataField( EarthdawnActiveEffectDurationData ),
+      executable:       new fields.BooleanField(),
       executeOn:        new fields.StringField( {
         required: false,
         choices:  ED4E.eaeExecutionTime,
-        label:    this.labelKey( "executeOn" ),
-        hint:     this.hintKey( "executeOn" ),
       } ),
       executionScript:  new fields.JavaScriptField( {
         required: false,
         initial:  "/**\n* This scope has the following variables available:\n* - effect: The \`EarthdawnActiveEffect\` document instance this script lives on\n* - parent: The parent document of this effect, either an \`ActorEd\` or an \`ItemEd\`\n*/\n\n",
-        label:    this.labelKey( "executionScript" ),
-        hint:     this.hintKey( "executionScript" )
       } ),
       transferToTarget: new fields.BooleanField( {
         initial: false,
-        label:   this.labelKey( "transferToTarget" ),
-        hint:    this.hintKey( "transferToTarget" )
       } ),
       abilityEdid: new EdIdField( {
         blank:   true,
         initial: "",
-        label:   this.labelKey( "abilityEdid" ),
-        hint:    this.hintKey( "abilityEdid" )
       } ),
       source: new fields.SchemaField(
         {
-          documentOriginUuid: new fields.DocumentUUIDField( {
-            label: this.labelKey( "documentOriginUuid" ),
-            hint:  this.hintKey( "documentOriginUuid" )
-          } ),
-          documentOriginType: new fields.StringField( {
-            label: this.labelKey( "documentOriginType" ),
-            hint:  this.hintKey( "documentOriginType" )
-          } )
-        },
-        {
-          label: this.labelKey( "source" ),
-          hint:  this.hintKey( "source" )
-        }
-      )
+          documentOriginUuid: new fields.DocumentUUIDField(),
+          documentOriginType: new fields.StringField()
+        } ),
     } );
   }
 

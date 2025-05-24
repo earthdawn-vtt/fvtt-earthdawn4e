@@ -27,14 +27,10 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
       isPathKnack: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Knack.isPathKnack" ),
-        hint:     this.hintKey( "Knack.isPathKnack" ),
       } ),
       standardEffect: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Knack.standardEffect" ),
-        hint:     this.hintKey( "Knack.standardEffect" ),
       } ),
     } );
   }

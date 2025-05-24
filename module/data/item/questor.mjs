@@ -33,8 +33,6 @@ export default class QuestorData extends ClassTemplate.mixin(
           return undefined;
         },
         validationError: "must be a questor talent with the questor edId.",
-        label:           this.labelKey( "Questor.questorDevotion" ),
-        hint:            this.hintKey( "Questor.questorDevotion" ),
       } ),
     } );
   }

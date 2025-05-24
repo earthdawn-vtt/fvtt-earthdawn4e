@@ -17,14 +17,10 @@ export default class ThreadBaseData extends SparseDataModel {
       isIdentified: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isIdentified",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isIdentified"
       } ),
       isAnalyzed: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.isAnalyzed",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.isAnalyzed"
       } ),
       // to be aligned with the path of actor mystical defense
       characteristics: new fields.SchemaField( {
@@ -45,8 +41,6 @@ export default class ThreadBaseData extends SparseDataModel {
               step:     1,
               initial:  0,
               integer:  true,
-              label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.mysticalDefense",
-              hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.mysticalDefense"
             } ),
           } ),
         } ),
@@ -58,23 +52,17 @@ export default class ThreadBaseData extends SparseDataModel {
         step:     1,
         initial:  1,
         integer:  true,
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.maxThreads",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.maxThreads"
       } ),
       tier:               new fields.StringField( { 
         required: true,
         nullable: false,
         initial:  "novice",
         choices:  ED4E.tier,
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.tier",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.tier"
       } ),
       enchantmentPattern: new fields.DocumentUUIDField( {
         required: true,
         nullable: true,
         initial:  null,
-        label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.enchantmentPattern",
-        hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.enchantmentPattern"
       } ),
       levels:     new fields.ArrayField(
         new fields.EmbeddedDataField(
@@ -82,8 +70,6 @@ export default class ThreadBaseData extends SparseDataModel {
           {
             required: false,
             nullable: true,
-            label:    "ED.Data.Item.Labels.PhysicalItems.ThreadItem.threadLevel",
-            hint:     "ED.Data.Item.Hints.PhysicalItems.ThreadItem.threadLevel"
           }
         ),
         {

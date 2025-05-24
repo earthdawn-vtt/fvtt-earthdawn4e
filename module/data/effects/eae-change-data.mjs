@@ -17,25 +17,15 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
     const fields = foundry.data.fields;
 
     return {
-      key:      new fields.StringField( {
-        label: this.labelKey( "EAEChangeData.key" ),
-        hint:  this.hintKey( "EAEChangeData.key" ),
-      } ),
+      key:      new fields.StringField(),
       value:    new FormulaField( {
         required: false,
         blank:    true,
-        label:    this.labelKey( "EAEChangeData.value" ),
-        hint:     this.hintKey( "EAEChangeData.value" ),
       } ),
       mode:     new fields.NumberField( {
         initial: CONST.ACTIVE_EFFECT_MODES.ADD,
-        label:   this.labelKey( "EAEChangeData.mode" ),
-        hint:    this.hintKey( "EAEChangeData.mode" ),
       } ),
-      priority: new fields.NumberField( {
-        label: this.labelKey( "EAEChangeData.priority" ),
-        hint:  this.hintKey( "EAEChangeData.priority" ),
-      } ),
+      priority: new fields.NumberField(),
     };
   }
 

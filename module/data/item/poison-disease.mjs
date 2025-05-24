@@ -37,8 +37,6 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,   
           integer:  true,
-          label:    this.labelKey( "PoisonDisease.damageStep" ),
-          hint:     this.hintKey( "PoisonDisease.damageStep" )
         } ), 
         paralysisStep: new fields.NumberField( {
           required: true,
@@ -46,8 +44,6 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "PoisonDisease.paralysisStep" ),
-          hint:     this.hintKey( "PoisonDisease.paralysisStep" )
         } ), 
         debilitationStep: new fields.NumberField( {
           required: true,
@@ -55,13 +51,7 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "PoisonDisease.debilitationStep" ),
-          hint:     this.hintKey( "PoisonDisease.debilitationStep" )
         } ), 
-      },
-      {
-        label:    this.labelKey( "PoisonDisease.effect" ),
-        hint:     this.hintKey( "PoisonDisease.effect" )
       } ),
       interval: new fields.SchemaField( {
         totalEffects: new fields.NumberField( {
@@ -70,8 +60,6 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "PoisonDisease.totalEffects" ),
-          hint:     this.hintKey( "PoisonDisease.totalEffects" )
         } ), 
         timeInBetween: new fields.NumberField( {
           required: true,
@@ -79,13 +67,7 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "PoisonDisease.timeInBetween" ),
-          hint:     this.hintKey( "PoisonDisease.timeInBetween" )
         } ), 
-      },
-      {
-        label:    this.labelKey( "PoisonDisease.interval" ),
-        hint:     this.hintKey( "PoisonDisease.interval" )
       } ),
       onsetTime: new fields.NumberField( {
         required: true,
@@ -93,8 +75,6 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "PoisonDisease.onsetTime" ),
-        hint:     this.hintKey( "PoisonDisease.onsetTime" )
       } ), 
       duration: new fields.NumberField( {
         required: true,
@@ -102,22 +82,16 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "PoisonDisease.duration" ),
-        hint:     this.hintKey( "PoisonDisease.duration" )
       } ), 
       activation: new fields.StringField( {
         required: true,
         blank:    false,
         initial:  "wound",
         choices:  ED4E.PoisonActivation,
-        label:    this.labelKey( "PoisonDisease.activation" ),
-        hint:     this.hintKey( "PoisonDisease.activation" )
       } ),
       death: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "PoisonDisease.death" ),
-        hint:     this.hintKey( "PoisonDisease.death" )
       } ),
             
     } );

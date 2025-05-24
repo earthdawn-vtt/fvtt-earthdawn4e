@@ -28,24 +28,18 @@ export default class TargetTemplate extends SystemDataModel {
           required: false,
           initial:  "",
           choices:  ED4E.targetDifficulty,
-          label:    this.labelKey( "Target.target" ),
-          hint:     this.hintKey( "Target.target" )
         } ),
         group: new foundry.data.fields.StringField( {
           nullable: true,
           blank:    true,
           initial:  "",
           choices:  ED4E.groupDifficulty,
-          label:    this.labelKey( "Target.group" ),
-          hint:     this.hintKey( "Target.group" )
         } ),
         fixed: new foundry.data.fields.NumberField( {
           required: false,
           nullable: true,
           min:      0,
           integer:  true,
-          label:    this.labelKey( "Target.fixed" ),
-          hint:     this.hintKey( "Target.fixed" )
         } ),
       } ),
     } );
