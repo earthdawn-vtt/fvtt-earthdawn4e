@@ -17,38 +17,28 @@ export default class MovementFields {
           required: true,
           nullable: true,
           integer:  true,
-          label:    "ED.Item.Namegiver.walk"
         } ),
         fly: new fields.NumberField( {
           required: true,
           nullable: true,
           integer:  true,
-          label:    "ED.Item.Namegiver.fly"
         } ),
         swim: new fields.NumberField( {
           required: true,
           nullable: true,
           integer:  true,
-          label:    "ED.Item.Namegiver.swim"
         } ),
         burrow: new fields.NumberField( {
           required: true,
           nullable: true,
           integer:  true,
-          label:    "ED.Item.Namegiver.burrow"
         } ),
         climb: new fields.NumberField( {
           required: true,
           nullable: true,
           integer:  true,
-          label:    "ED.Item.Namegiver.climb"
         } )
-      },
-      {
-        label: "ED.Data.Other.Labels.movement",
-        hint:  "ED.Data.Other.Hints.movement"
-      }
-      )
+      } )
     };
   }
 

@@ -475,12 +475,6 @@ export class ActorDataModel extends SystemDataModel {
     "ED.Data.Actor",
   ];
 
-  /** @inheritDoc */
-  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Actor", false );
-
-  /** @inheritDoc */
-  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "Actor", true );
-
   /**
    * @typedef {SystemDataModelMetadata} ActorDataModelMetadata
    * @property {boolean} supportsAdvancement  Can advancement be performed for this actor type?
