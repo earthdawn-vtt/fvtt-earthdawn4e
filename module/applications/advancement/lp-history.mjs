@@ -1,11 +1,10 @@
 import LpTrackingData from "../../data/advancement/lp-tracking.mjs";
 import LpEarningTransactionData from "../../data/advancement/lp-earning-transaction.mjs";
 import ApplicationEd from "../api/application.mjs";
+import ED4E from "../../config/_module.mjs";
 
 /**
  * The application responsible for handling Legend Point related interactions and data.
- * @augments ApplicationV2
- * @mixes HandlebarsApplicationMixin
  */
 export default class LegendPointHistory extends ApplicationEd {
 
@@ -27,9 +26,6 @@ export default class LegendPointHistory extends ApplicationEd {
       item: game.i18n.localize( "ED.Dialogs.Sorting.item" ),
     };
     this.sortBy = "time";
-    this.tabGroups = {
-      primary: "earned-tab",
-    };
   }
 
   /**
@@ -76,15 +72,15 @@ export default class LegendPointHistory extends ApplicationEd {
     tabs: {
       template: "templates/generic/tab-navigation.hbs",
     },
-    "earned-tab": {
+    earned: {
       template:   "systems/ed4e/templates/actor/legend-points/history-earned.hbs",
       scrollable: [ "table" ],
     },
-    "spend-tab": {
+    spend: {
       template:   "systems/ed4e/templates/actor/legend-points/history-spend.hbs",
       scrollable: [ "table" ],
     },
-    "chronological-tab": {
+    chronological: {
       template:   "systems/ed4e/templates/actor/legend-points/history-chronological.hbs",
       scrollable: [ "table" ],
     },
@@ -96,35 +92,25 @@ export default class LegendPointHistory extends ApplicationEd {
 
   /** @inheritdoc */
   static TABS = {
-    "earned-tab": {
-      id:       "earned-tab",
-      group:    "primary",
-      icon:     "fa-light fa-hexagon-plus",
-      label:    "ED.Dialogs.Legend.LpHistory.tabEarned",
-      active:   false,
-      cssClass: ""
+    primary: {
+      tabs:        [
+        {
+          id:       "earned",
+          icon:     ED4E.icons.Tabs.lpEarned,
+        },
+        {
+          id:       "spend",
+          icon:     ED4E.icons.Tabs.lpSpend,
+        },
+        {
+          id:       "chronological",
+          icon:     ED4E.icons.Tabs.lpChronological,
+        },
+      ],
+      initial:     "chronological",
+      labelPrefix: "ED.Tabs.LpHistory",
     },
-    "spend-tab": {
-      id:       "spend-tab",
-      group:    "primary",
-      icon:     "fa-light fa-hexagon-minus",
-      label:    "ED.Dialogs.Legend.LpHistory.tabSpend",
-      active:   false,
-      cssClass: ""
-    },
-    "chronological-tab": {
-      id:       "chronological-tab",
-      group:    "primary",
-      icon:     "fa-light fa-timeline-arrow",
-      label:    "ED.Dialogs.Legend.LpHistory.tabChronological",
-      active:   false,
-      cssClass: ""
-    },
-    initial:     "chronological-tab",
-    labelPrefix: "ED.Sheets.Tabs",
   };
-
-  // put _configureRenderOptions here if needed
 
   /** @inheritdoc */
   async _prepareContext( options = {} ) {
@@ -160,37 +146,16 @@ export default class LegendPointHistory extends ApplicationEd {
     await super._preparePartContext( partId, context, options );
 
     switch ( partId ) {
-      case "tabs": return this._prepareTabsContext( context, options );
-      case "chronological-tab":
+      case "chronological":
         context.chronologicalHtmlTable = this.lpHistory.getHtmlTable( "chronological", this.sortBy );
         break;
-      case "earned-tab":
+      case "earned":
         context.earningsHtmlTable = this.lpHistory.getHtmlTable( "earnings", this.sortBy );
         break;
-      case "spend-tab":
+      case "spend":
         context.spendingsHtmlTable = this.lpHistory.getHtmlTable( "spendings", this.sortBy );
         break;
     }
-
-    // We only reach it if we're in a tab part
-    const tabGroup = "primary";
-    context.tab = foundry.utils.deepClone( this.constructor.TABS[partId] );
-    if ( this.tabGroups[tabGroup] === context.tab?.id ) context.tab.cssClass = "active";
-
-    return context;
-  }
-
-  /**
-   * Prepares the context for the tabs part.
-   * @param {object} context The context object to prepare.
-   * @param {object} options The options object to prepare.
-   * @returns {object} The prepared context object.
-   */
-  async _prepareTabsContext( context, options ) {
-    // make a deep copy to guarantee the css classes are always empty before setting it to active
-    context.tabs = foundry.utils.deepClone( this.constructor.TABS );
-    const tab = this.tabGroups.primary;
-    context.tabs[tab].cssClass = "active";
 
     return context;
   }
@@ -199,7 +164,7 @@ export default class LegendPointHistory extends ApplicationEd {
   _onRender( context, options ) {
     // TODO: @patrick - solve this in css, just hover: visibility: visible, else: hidden
     this.element.querySelectorAll(
-      "section.chronological-tab tbody tr"
+      "section.chronological tbody tr"
     ).forEach( element => {
       element.addEventListener(
         "mouseover",
@@ -280,9 +245,9 @@ export default class LegendPointHistory extends ApplicationEd {
 
     this.render( {
       parts: [
-        "earned-tab",
-        "spend-tab",
-        "chronological-tab",
+        "earned",
+        "spend",
+        "chronological",
       ],
     } );
   }

@@ -88,7 +88,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
         { id:    "advancement", },
       ],
       initial:     "general",
-      labelPrefix: "ED.Sheet.Tabs",
+      labelPrefix: "ED.Tabs.ItemSheet",
     },
   };
 

@@ -90,6 +90,9 @@ export const icons = {
   undo:             "fa-arrow-rotate-left",
   unknown:          "fa-question",
   Tabs:             {
+    lpEarned:        "fa-light fa-hexagon-plus",
+    lpSpend:         "fa-light fa-hexagon-minus",
+    lpChronological: "fa-light fa-timeline-arrow",
   },
 };
 
