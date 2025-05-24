@@ -1,5 +1,4 @@
 import ED4E from "../../config/_module.mjs";
-import { getLocalizeKey } from "../abstract.mjs";
 import { getAllEdIds, validateEdid } from "../../utils.mjs";
 import { getEdIds } from "../../settings.mjs";
 
@@ -16,8 +15,6 @@ export default class EdIdField extends foundry.data.fields.StringField {
       blank:           false,
       required:        true,
       documentSubtype: "",
-      label:           getLocalizeKey( "Item", false, "edid" ),
-      hints:           getLocalizeKey( "Item", true, "edid" ),
     } );
   }
 

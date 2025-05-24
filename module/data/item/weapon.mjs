@@ -42,22 +42,16 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         nullable: true,
         initial:  "melee",
         choices:  ED4E.weaponType,
-        label:    this.labelKey( "Weapons.weaponType" ),
-        hint:     this.hintKey( "Weapons.weaponType" )
       } ),
       weaponSubType: new fields.StringField( {
         required: true,
         initial:  "bow",
         choices:  ED4E.weaponSubType,
-        label:    this.labelKey( "Weapons.weaponSubType" ),
-        hint:     this.hintKey( "Weapons.weaponSubType" ),
       } ),
       wieldingType: new fields.StringField( {
         required: true,
         initial:  "mainHand",
         choices:  ED4E.weaponWieldingType,
-        label:    this.labelKey( "Weapons.wieldingType" ),
-        hint:     this.hintKey( "Weapons.wieldingType" ),
       } ),
       damage:        new fields.SchemaField( {
         attribute: new fields.StringField( {
@@ -65,8 +59,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           nullable: false,
           initial:  "str",
           choices:  ED4E.attributes,
-          label:    this.labelKey( "Weapons.damageAttribute" ),
-          hint:     this.hintKey( "Weapons.damageAttribute" )
         } ),
         baseStep: new fields.NumberField( {
           required: true,
@@ -74,14 +66,10 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Weapons.damageBaseStep" ),
-          hint:     this.hintKey( "Weapons.damageBaseStep" )
         } ),
         type: new fields.StringField( {
           initial:  "standard",
           choices:  ED4E.damageType,
-          label:    this.labelKey( "Weapons.damageType" ),
-          hint:     this.hintKey( "Weapons.damageType" )
         } ),
       } ),
       size: new fields.NumberField( {
@@ -92,8 +80,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         initial:  1,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "Weapons.size" ),
-        hint:     this.hintKey( "Weapons.size" )
       } ),
       strengthMinimum: new fields.NumberField( {
         required: true,
@@ -101,8 +87,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         min:      1,
         initial:  1,
         integer:  true,
-        label:    this.labelKey( "Weapons.strengthMinimum" ),
-        hint:     this.hintKey( "Weapons.strengthMinimum" )
       } ),
       dexterityMinimum: new fields.NumberField( {
         required: true,
@@ -110,8 +94,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         min:      1,
         initial:  1,
         integer:  true,
-        label:    this.labelKey( "Weapons.dexterityMinimum" ),
-        hint:     this.hintKey( "Weapons.dexterityMinimum" )
       } ),
       range: new fields.SchemaField( {
         shortMin: new fields.NumberField( {
@@ -120,8 +102,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Weapons.rangeShortMin" ),
-          hint:     this.hintKey( "Weapons.rangeShortMin" )
         } ),
         shortMax: new fields.NumberField( {
           required: true,
@@ -129,8 +109,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Weapons.rangeShortMax" ),
-          hint:     this.hintKey( "Weapons.rangeShortMax" )
         } ),
         longMin: new fields.NumberField( {
           required: true,
@@ -138,8 +116,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Weapons.rangeLongMin" ),
-          hint:     this.hintKey( "Weapons.rangeLongMin" )
         } ),
         longMax: new fields.NumberField( {
           required: true,
@@ -147,8 +123,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           min:      1,
           initial:  1,
           integer:  true,
-          label:    this.labelKey( "Weapons.rangeLongMax" ),
-          hint:     this.hintKey( "Weapons.rangeLongMax" )
         } ),
       } ),
       ammunition: new fields.SchemaField( {
@@ -158,8 +132,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
           blank:    true,
           initial:  "",
           choices:  ED4E.ammunitionType,
-          label:    this.labelKey( "Weapons.ammunitionType" ),
-          hint:     this.hintKey( "Weapons.ammunitionType" )
         } ),
       } ),
       forgeBonus: new fields.NumberField( {
@@ -168,8 +140,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Weapons.forgeBonus" ),
-        hint:     this.hintKey( "Weapons.forgeBonus" )
       } ),
       armorType: new fields.StringField( {
         required: true,
@@ -177,8 +147,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         blank:    true,
         initial:  "",
         choices:  ED4E.armor,
-        label:    this.labelKey( "Weapons.armorType" ),
-        hint:     this.hintKey( "Weapons.armorType" )
       } ),
     } );
   }

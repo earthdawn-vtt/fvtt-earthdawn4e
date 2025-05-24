@@ -50,8 +50,6 @@ export class ConstraintData extends SparseDataModel {
         initial:         this.TYPE,
         validate:        value => value === this.TYPE,
         validationError: `must be equal to "${this.TYPE}"`,
-        label:           this.labelKey( "BaseConstraint.type" ),
-        hint:            this.hintKey( "BaseConstraint.type" ),
       } ),
     };
   }
@@ -74,16 +72,11 @@ export class AbilityConstraintData extends ConstraintData {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      ability: new EdIdField( {
-        label:    this.labelKey( "AbilityConstraint.ability" ),
-        hint:     this.hintKey( "AbilityConstraint.ability" ),
-      } ),
-      rank: new fields.NumberField( {
+      ability: new EdIdField(),
+      rank:    new fields.NumberField( {
         required: false,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "AbilityConstraint.rank" ),
-        hint:     this.hintKey( "AbilityConstraint.rank" ),
       } ),
     } );
   }
@@ -103,15 +96,11 @@ export class AttributeConstraintData extends ConstraintData {
         required: true,
         choices:  ED4E.attributes,
         initial:  "str",
-        label:    this.labelKey( "AttributeConstraint.attribute" ),
-        hint:     this.hintKey( "AttributeConstraint.attribute" ),
       } ),
       value: new fields.NumberField( {
         required: true,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "AttributeConstraint.value" ),
-        hint:     this.hintKey( "AttributeConstraint.value" ),
       } ),
     } );
   }
@@ -127,16 +116,11 @@ export class ClassConstraintData extends ConstraintData {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      class: new EdIdField( {
-        label:    this.labelKey( "ClassConstraint.class" ),
-        hint:     this.hintKey( "ClassConstraint.class" ),
-      } ),
+      class: new EdIdField(),
       level: new fields.NumberField( {
         required: false,
         integer:  true,
         positive: true,
-        label:    this.labelKey( "ClassConstraint.level" ),
-        hint:     this.hintKey( "ClassConstraint.level" ),
       } ),
     } );
   }
@@ -157,8 +141,6 @@ export class LanguageConstraintData extends ConstraintData {
         // or, prepare choices during rendering...
         choices:  ED4E.languages,
         initial:  "dwarf",
-        label:    this.labelKey( "LanguageConstraint.language" ),
-        hint:     this.hintKey( "LanguageConstraint.language" ),
       } ),
     } );
   }
@@ -174,10 +156,7 @@ export class NamegiverConstraintData extends ConstraintData {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      namegiver: new EdIdField( {
-        label:    this.labelKey( "NamegiverConstraint.namegiver" ),
-        hint:     this.hintKey( "NamegiverConstraint.namegiver" ),
-      } ),
+      namegiver: new EdIdField(),
     } );
   }
 
@@ -192,10 +171,7 @@ export class RelationConstraintData extends ConstraintData {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
-      relation: new fields.StringField( {
-        label:    this.labelKey( "RelationConstraint.relation" ),
-        hint:     this.hintKey( "RelationConstraint.relation" ),
-      } ),
+      relation: new fields.StringField(),
     } );
   }
 

@@ -21,43 +21,19 @@ export default class EarthdawnActiveEffectDurationData extends SparseDataModel {
         required: true,
         choices:  ED4E.eaeDurationTypes,
         initial:  "combat",
-        label:    this.labelKey( "EAEDurationData.type" ),
-        hint:     this.hintKey( "EAEDurationData.type" ),
       } ),
       startTime: new fields.NumberField( {
         initial: Date.now(),
-        label:   this.labelKey( "EAEDurationData.startTime" ),
-        hint:    this.hintKey( "EAEDurationData.startTime" ),
       } ),
-      seconds: new FormulaField( {
-        label: this.labelKey( "EAEDurationData.seconds" ),
-        hint:  this.hintKey( "EAEDurationData.seconds" ),
-      } ),
-      combat: new fields.DocumentIdField( {
-        label: this.labelKey( "EAEDurationData.combat" ),
-        hint:  this.hintKey( "EAEDurationData.combat" ),
-      } ),
-      rounds: new FormulaField( {
-        label: this.labelKey( "EAEDurationData.rounds" ),
-        hint:  this.hintKey( "EAEDurationData.rounds" ),
-      } ),
-      turns: new FormulaField( {
-        label: this.labelKey( "EAEDurationData.turns" ),
-        hint:  this.hintKey( "EAEDurationData.turns" ),
-      } ),
-      startRound: new fields.NumberField( {
-        label: this.labelKey( "EAEDurationData.startRound" ),
-        hint:  this.hintKey( "EAEDurationData.startRound" ),
-      } ),
-      startTurn: new fields.NumberField( {
-        label: this.labelKey( "EAEDurationData.startTurn" ),
-        hint:  this.hintKey( "EAEDurationData.startTurn" ),
-      } ),
-      uses: new fields.NumberField( {
+      seconds:    new FormulaField(),
+      combat:     new fields.DocumentIdField(),
+      rounds:     new FormulaField(),
+      turns:      new FormulaField(),
+      startRound: new fields.NumberField(),
+      startTurn:  new fields.NumberField(),
+      uses:       new fields.NumberField( {
         integer:  true,
         positive: true,
-        label:    this.labelKey( "EAEDurationData.uses" ),
-        hint:     this.hintKey( "EAEDurationData.uses" ),
       } ),
     };
   }

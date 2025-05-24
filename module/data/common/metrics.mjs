@@ -57,28 +57,19 @@ export class MetricData extends SparseDataModel {
         initial:         this.TYPE,
         validate:        value => value === this.TYPE,
         validationError: `must be equal to "${this.TYPE}"`,
-        label:           this.labelKey( "BaseUnit.type" ),
-        hint:            this.hintKey( "BaseUnit.type" ),
       } ),
       value:   new FormulaField( {
         required:      true,
         nullable:      true,
         deterministic: true,
-        label:         this.labelKey( "BaseUnit.value" ),
-        hint:          this.hintKey( "BaseUnit.value" ),
       } ),
       unit:   new fields.StringField( {
         required: true,
         nullable: true,
         blank:    false,
         trim:     true,
-        label:    this.labelKey( "BaseUnit.unit" ),
-        hint:     this.hintKey( "BaseUnit.unit" ),
       } ),
-      special: new fields.StringField( {
-        label: this.labelKey( "BaseUnit.special" ),
-        hint:  this.hintKey( "BaseUnit.special" ),
-      } )
+      special: new fields.StringField()
     };
   }
 
@@ -240,13 +231,9 @@ export class AreaMetricData extends MetricData {
         trim:     true,
         choices:  ED4E.movementUnits,
         initial:  null,
-        label:    this.labelKey( "AreaUnit.unit" ),
-        hint:     this.hintKey( "AreaUnit.unit" )
       } ),
       count: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.count" ),
-        hint:          this.hintKey( "AreaUnit.count" )
       } ),
       areaType: new fields.StringField( {
         required: true,
@@ -254,37 +241,22 @@ export class AreaMetricData extends MetricData {
         trim:     true,
         choices:  ED4E.areaTargetDefinition,
         initial:  "",
-        label:    this.labelKey( "AreaUnit.areaType" ),
-        hint:     this.hintKey( "AreaUnit.areaType" )
       } ),
-      angle: new fields.AngleField( {
-        label:         this.labelKey( "AreaUnit.angle" ),
-        hint:          this.hintKey( "AreaUnit.angle" )
-      } ),
+      angle:  new fields.AngleField( ),
       height: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.height" ),
-        hint:          this.hintKey( "AreaUnit.height" )
       } ),
       length: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.length" ),
-        hint:          this.hintKey( "AreaUnit.length" )
       } ),
       radius: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.radius" ),
-        hint:          this.hintKey( "AreaUnit.radius" )
       } ),
       thickness: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.thickness" ),
-        hint:          this.hintKey( "AreaUnit.thickness" )
       } ),
       width: new FormulaField( {
         deterministic: true,
-        label:         this.labelKey( "AreaUnit.width" ),
-        hint:          this.hintKey( "AreaUnit.width" )
       } )
     } );
   }
@@ -313,8 +285,6 @@ export class DurationMetricData extends MetricData {
         trim:     true,
         choices:  ED4E.timePeriods,
         initial:  "inst",
-        label:    this.labelKey( "DurationUnit.unit" ),
-        hint:     this.hintKey( "DurationUnit.unit" )
       } )
     } );
   }
@@ -381,8 +351,6 @@ export class RangeMetricData extends MetricData {
         trim:     true,
         choices:  ED4E.distanceUnits,
         initial:  "any",
-        label:    this.labelKey( "RangeUnit.unit" ),
-        hint:     this.hintKey( "RangeUnit.unit" )
       } )
     } );
   }

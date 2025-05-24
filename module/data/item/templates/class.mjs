@@ -36,15 +36,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Class.level" ),
-        hint:     this.hintKey( "Class.level" )
       } ),
       advancement: new fields.EmbeddedDataField(
         AdvancementData,
         {
           required: true,
-          label:    "ED.advancement",
-          hint:     "ED.advancementSchemaForThisClass"
         }
       )
     } );

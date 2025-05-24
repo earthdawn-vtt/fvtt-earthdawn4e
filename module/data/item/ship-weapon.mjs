@@ -30,8 +30,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "ShipWeapon.firePowerPoints" ),
-        hint:     this.hintKey( "ShipWeapon.firePowerPoints" )
       } ), 
       crewWeapon: new fields.NumberField( {
         required: true,
@@ -39,8 +37,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "ShipWeapon.crewWeapon" ),
-        hint:     this.hintKey( "ShipWeapon.crewWeapon" )
         
       } ), 
       range: new fields.SchemaField( {
@@ -50,8 +46,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "ShipWeapon.rangeShort" ),
-          hint:     this.hintKey( "ShipWeapon.rangeShort" )
         } ), 
         long: new fields.NumberField( {
           required: true,
@@ -59,8 +53,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "ShipWeapon.rangeLong" ),
-          hint:     this.hintKey( "ShipWeapon.rangeLong" )
         } ), 
       } ),
       salvoCost: new fields.NumberField( {
@@ -69,8 +61,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "ShipWeapon.salvoCost" ),
-        hint:     this.hintKey( "ShipWeapon.salvoCost" )
       } ), 
       characterDamage: new fields.NumberField( {
         required: true,
@@ -78,8 +68,6 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "ShipWeapon.characterDamage" ),
-        hint:     this.hintKey( "ShipWeapon.characterDamage" )
       } ), 
     } );
   }

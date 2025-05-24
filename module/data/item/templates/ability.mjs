@@ -38,35 +38,24 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         blank:    true,
         initial:  "",
         choices:  ED4E.attributes,
-        label:    this.labelKey( "Ability.attribute" ),
-        hint:     this.hintKey( "Ability.attribute" )
       } ),
       tier: new fields.StringField( {
         nullable: false,
         blank:    true,
         choices:  ED4E.tier,
         initial:  "",
-        label:    this.labelKey( "Ability.tier" ),
-        hint:     this.hintKey( "Ability.tier" )
       } ),
       source: new fields.SchemaField( {
-        class: new fields.DocumentUUIDField( ClassTemplate, {
-          label:    this.labelKey( "Ability.Source.class" ),
-          hint:     this.hintKey( "Ability.Source.class" )
-        } ),
+        class:   new fields.DocumentUUIDField( ClassTemplate ),
         atLevel: new fields.NumberField( {
           required: false,
           nullable: true,
           min:      0,
           integer:  true,
-          label:    this.labelKey( "Ability.Source.atLevel" ),
-          hint:     this.hintKey( "Ability.Source.atLevel" )
         } ),
       },
       {
         required: false,
-        label:    this.labelKey( "Ability.Source.class" ),
-        hint:     this.hintKey( "Ability.Source.class" )
       } ),
       rollTypeDetails: new fields.SchemaField( {
         ability:       new fields.SchemaField( {}, {} ),
@@ -80,8 +69,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             {
               required: true,
               initial:  [],
-              label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" ),
-              hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponItemStatus" )
             }
           ),
           weaponType: new fields.StringField( {
@@ -89,12 +76,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             blank:    false,
             initial:  "melee",
             choices:  ED4E.weaponType,
-            label:    this.labelKey( "Ability.RollTypeDetails.Attack.weaponType" ),
-            hint:     this.hintKey( "Ability.RollTypeDetails.Attack.weaponType" )
           } ),
-        }, {
-          label:    this.labelKey( "Ability.RollTypeDetails.attack" ),
-          hint:     this.hintKey( "Ability.RollTypeDetails.attack" )
         } ),
         damage:        new fields.SchemaField( {}, {} ),
         effect:        new fields.SchemaField( {}, {} ),
@@ -106,12 +88,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             blank:    true,
             initial:  "physical",
             choices:  ED4E.targetDifficulty,
-            label:    this.labelKey( "Ability.RollTypeDetails.Reaction.defenseType" ),
-            hint:     this.hintKey( "Ability.RollTypeDetails.Reaction.defenseType" )
           } ),
-        }, {
-          label:    this.labelKey( "Ability.RollTypeDetails.reaction" ),
-          hint:     this.hintKey( "Ability.RollTypeDetails.reaction" ),
         } ),
         recovery:      new fields.SchemaField( {}, {} ),
         spellcasting:  new fields.SchemaField( {}, {} ),
@@ -125,9 +102,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             choices:  ED4E.spellcastingTypes,
           } ),
         }, {} ),
-      }, {
-        label:    this.labelKey( "Ability.rollTypeDetails" ),
-        hint:     this.hintKey( "Ability.rollTypeDetails" )
       } ),
     } );
   }

@@ -29,8 +29,6 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Ability.rank" ),
-        hint:     this.hintKey( "Ability.rank" )
       } ),
     } );
   }

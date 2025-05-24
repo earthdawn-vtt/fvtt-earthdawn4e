@@ -17,34 +17,24 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
         nullable: false,
         blank:    false,
         initial:  () => foundry.utils.randomID(),
-        label:    "X.transactionId",
-        hint:     "X.Unique identifier for this transaction",
       } ),
       type: new fields.StringField( {
         blank: false,
-        label: "X.transactionType",
-        hint:  "X.transaction Type",
       } ),
       amount: new fields.NumberField( {
         required: true,
         initial:  0,
         min:      0,
         integer:  true,
-        label:    "X.LP Transaction Amount",
-        hint:     "X.The amount of LP handled in this transaction",
       } ),
       date: new fields.NumberField( {
         required: true,
         initial:  Date.now,
-        label:    "X.Datetime of transaction",
-        hint:     "X.The date and time of this transaction",
       } ),
       description: new fields.StringField( {
         required: true,
         blank:    true,
         initial:  "",
-        label:    "X.transactionDescription",
-        hint:     "X. Description of the transaction."
       } ),
     };
   }

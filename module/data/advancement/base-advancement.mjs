@@ -25,8 +25,6 @@ export default class AdvancementData extends SparseDataModel {
           {
             required: false,
             nullable: true,
-            label:    "ED.advancementLevel",
-            hint:     "ED.aLevelInThisAdvancement"
           }
         ),
         {
@@ -37,25 +35,16 @@ export default class AdvancementData extends SparseDataModel {
       abilityOptions: new MappingField(
         new fields.SetField(
           new fields.DocumentUUIDField(
-            AbilityTemplate,
-            {
-              label: this.labelKey( "classAbilityOption" ),
-              hint:  this.hintKey( "classAbilityOption" ),
-            }
-          ),
+            AbilityTemplate ),
           {
             required: true,
             empty:    true,
-            label:    this.labelKey( "classAbilityOptionsPools" ),
-            hint:     this.hintKey( "classAbilityOptionsPools" ),
           } ),
         {
           initialKeys:     CONFIG.ED4E.tier,
           initialKeysOnly: true,
           required:        true,
           nullable:        false,
-          label:           this.labelKey( "classAbilityOptionsByTier" ),
-          hint:            this.hintKey( "classAbilityOptionsByTier" ),
         } ),
       learnedOptions: new MappingField(
         new fields.NumberField( {
@@ -63,16 +52,12 @@ export default class AdvancementData extends SparseDataModel {
           nullable: false,
           positive:  true,
           integer:   true,
-          label:    this.labelKey( "classLearnedOption" ),
-          hint:     this.hintKey( "classLearnedOption" ),
         } ),
         {
           initialKeysOnly: false,
           required:        true,
           nullable:        false,
           empty:           true,
-          label:           this.labelKey( "classLearnedOptions" ),
-          hint:            this.hintKey( "classLearnedOptions" ),
         } ),
     };
   }

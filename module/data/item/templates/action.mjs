@@ -26,8 +26,6 @@ export default class ActionTemplate extends ItemDataModel.mixin(
         blank:    true,
         choices:  ED4E.action,
         initial:  "standard",
-        label:    this.labelKey( "Action.action" ),
-        hint:     this.hintKey( "Action.action" )
       } ),
       strain: new foundry.data.fields.NumberField( {
         required: true,
@@ -35,8 +33,6 @@ export default class ActionTemplate extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Action.strain" ),
-        hint:     this.hintKey( "Action.strain" )
       } ),
     } );
   }

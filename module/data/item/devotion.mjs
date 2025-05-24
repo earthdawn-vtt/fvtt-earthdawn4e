@@ -24,8 +24,6 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
       devotionRequired: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Ability.devotionRequired" ),
-        hint:     this.hintKey( "Ability.devotionRequired" )
       } ),
       durability: new fields.NumberField( {
         required: true,
@@ -33,8 +31,6 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Ability.durability" ),
-        hint:     this.hintKey( "Ability.durability" )
       } ),
     } );
   }

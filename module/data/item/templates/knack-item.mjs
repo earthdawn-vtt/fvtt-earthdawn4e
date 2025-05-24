@@ -25,39 +25,22 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceTalent: new EdIdField( {
-        label:           this.labelKey( "Knack.sourceTalent" ),
-        hint:            this.hintKey( "Knack.sourceTalent" ),
-      } ),
+      sourceTalent: new EdIdField(),
       minLevel:         new fields.NumberField( {
         required: true,
         positive: true,
         integer:  true,
         initial:  1,
-        label:    this.labelKey( "Knack.minLevel" ),
-        hint:     this.hintKey( "Knack.minLevel" ),
       } ),
       lpCost:           new fields.NumberField( {
         required: false,
         positive: true,
         integer:  true,
-        label:    this.labelKey( "Knack.lpCost" ),
-        hint:     this.hintKey( "Knack.lpCost" ),
       } ),
       restrictions:     new fields.ArrayField(
-        new fields.TypedSchemaField( ConstraintData.TYPES ),
-        {
-          label: this.labelKey( "Knack.restrictions" ),
-          hint:  this.hintKey( "Knack.restrictions" ),
-        }
-      ),
+        new fields.TypedSchemaField( ConstraintData.TYPES ) ),
       requirements:     new fields.ArrayField(
-        new fields.TypedSchemaField( ConstraintData.TYPES ),
-        {
-          label: this.labelKey( "Knack.requirements" ),
-          hint:  this.hintKey( "Knack.requirements" ),
-        }
-      ),
+        new fields.TypedSchemaField( ConstraintData.TYPES ) ),
     } );
   }
 

@@ -32,8 +32,6 @@ export default class PowerData extends ActionTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Powers.powerStep" ),
-        hint:     this.hintKey( "Powers.powerStep" )
       } ),
       damageStep: new fields.NumberField( {
         required: false,
@@ -41,8 +39,6 @@ export default class PowerData extends ActionTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Powers.damageStep" ),
-        hint:     this.hintKey( "Powers.damageStep" )
       } ),
       armorType: new fields.StringField( {
         required: true,
@@ -50,15 +46,11 @@ export default class PowerData extends ActionTemplate.mixin(
         blank:    true,
         initial:  "",
         choices:  ED4E.armor,
-        label:    this.labelKey( "Power.armorType" ),
-        hint:     this.hintKey( "Power.armorType" )
       } ),
       damage:        new fields.SchemaField( {
         type: new fields.StringField( {
           initial:  "standard",
           choices:  ED4E.damageType,
-          label:    this.labelKey( "Power.damageType" ),
-          hint:     this.hintKey( "Power.damageType" )
         } ),
       } ),
       element: new fields.SchemaField( {
@@ -68,8 +60,6 @@ export default class PowerData extends ActionTemplate.mixin(
           blank:    true,
           trim:     true,
           choices:  ED4E.elements,
-          label:    this.labelKey( "Power.elementType" ),
-          hint:     this.hintKey( "Power.elementType" ),
         } ),
         subtype: new fields.StringField( {
           required: true,
@@ -81,15 +71,11 @@ export default class PowerData extends ActionTemplate.mixin(
           ).map(
             subtypes => Object.keys( subtypes )
           ).flat(),
-          label:    this.labelKey( "Power.elementSubtype" ),
-          hint:     this.hintKey( "Power.elementSubtype" ),
         } )
       },
       {
         required: true,
         nullable: true,
-        label:    this.labelKey( "Power.element" ),
-        hint:     this.hintKey( "Power.element" ),
       } ),
     } );
   }

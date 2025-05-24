@@ -33,8 +33,6 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Armor.physicalArmor" ),
-          hint:     this.hintKey( "Armor.physicalArmor" )
         } ), 
         forgeBonus: new fields.NumberField( {
           required: true,
@@ -42,8 +40,6 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Armor.forgeBonusPhysical" ),
-          hint:     this.hintKey( "Armor.forgeBonusPhysical" )
         } ),
       } ),
       mystical: new fields.SchemaField( {
@@ -53,8 +49,6 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Armor.mysticalArmor" ),
-          hint:     this.hintKey( "Armor.mysticalArmor" )
         } ),
         forgeBonus: new fields.NumberField( {
           required: true,
@@ -62,8 +56,6 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Armor.forgeBonusMystical" ),
-          hint:     this.hintKey( "Armor.forgeBonusMystical" )
         } ),
       } ),
       initiativePenalty: new fields.NumberField( {
@@ -72,21 +64,15 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Armor.initiativePenalty" ),
-        hint:     this.hintKey( "Armor.initiativePenalty" )
       } ),
       isLiving: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Armor.living" ),
-        hint:     this.hintKey( "Armor.living" )
       } ),
       piecemeal: new fields.SchemaField( {
         isPiecemeal: new fields.BooleanField( {
           required: true,
           initial:  false,
-          label:    this.labelKey( "Armor.piecemealArmor" ),
-          hint:     this.hintKey( "Armor.piecemealArmor" )
         } ),
         size: new fields.NumberField( {
           required: true,
@@ -95,14 +81,10 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           max:      3,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "Armor.piecemealArmorSize" ),
-          hint:     this.hintKey( "Armor.piecemealArmorSize" )
         } ),
       }, {
         required: true,
         nullable: false,
-        label:    this.labelKey( "Armor.piecemealArmor" ),
-        hint:     this.hintKey( "Armor.piecemealArmor" )
       } ),
     } );
   }

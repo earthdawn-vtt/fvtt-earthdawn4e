@@ -31,15 +31,11 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
       primary: new StringField( {
         required: true,
         blank:    false,
-        label:    this.labelKey( "primary" ),
-        hint:     this.hintKey( "primary" ),
       } ),
       level: new NumberField( {
         nullable: true,
         initial:  null,
         integer:  true,
-        label:    this.labelKey( "level" ),
-        hint:     this.hintKey( "level" ),
       } ),
     } );
   }

@@ -29,8 +29,6 @@ export default class DisciplineData extends ClassTemplate.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "Class.durability" ),
-        hint:     this.hintKey( "Class.durability" )
       } ),
       // identifier for additional disciplines
       order: new fields.NumberField( {
@@ -40,14 +38,10 @@ export default class DisciplineData extends ClassTemplate.mixin(
         initial:  1,
         positive: true,
         integer:  true,
-        label:    this.labelKey( "Class.order" ),
-        hint:     this.hintKey( "Class.order" )
       } ),
       spellcasting: new fields.BooleanField( {
         required: true,
         initial:  false,
-        label:    this.labelKey( "Class.spellcasting" ),
-        hint:     this.hintKey( "Class.spellcasting" )
       } ),
     } );
   }

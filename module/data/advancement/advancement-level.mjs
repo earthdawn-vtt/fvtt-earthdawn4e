@@ -22,8 +22,6 @@ export default class AdvancementLevelData extends SparseDataModel {
       identifier: new IdentifierField( {
         required: true,
         nullable: false,
-        label:    "ED.identifier",
-        hint:     "ED.data.hints.ClearIdentifierForThis"
       } ),
       level: new fields.NumberField( {
         required: true,
@@ -31,8 +29,6 @@ export default class AdvancementLevelData extends SparseDataModel {
         step:     1,
         positive: true,
         initial:  1,
-        label:    "ED.level",
-        hint:     "ED.TheLevelThisAdvancementDescribes"
       } ),
       tier: new fields.StringField( {
         required: true,
@@ -40,24 +36,15 @@ export default class AdvancementLevelData extends SparseDataModel {
         blank:    true,
         initial:  "",
         choices:  ED4E.tier,
-        label:    "ED.tier",
-        hint:     "ED.The tier to which this level belongs to"
       } ),
       abilities: new MappingField(
         new fields.SetField(
           new fields.DocumentUUIDField(
-            AbilityTemplate,
-            {
-              label: "ED.Ability",
-              hint:  "ED.AnAbilityGrantedOnThisLevel"
-            }
-          ),
+            AbilityTemplate ),
           {
             required: true,
             empty:    true,
             initial:  [],
-            label:    "ED.advancement.abilityPoolLevel",
-            hint:     "ED.TheSetOfAbilitiesGrantedOnThisLevel"
           }
         ),
         {
@@ -65,24 +52,15 @@ export default class AdvancementLevelData extends SparseDataModel {
           initialKeysOnly: true,
           required:        true,
           nullable:        false,
-          label:           "ED.advancement.levelAbilities",
-          hint:            "ED.advancement.levelAbilities",
         }
       ),
       effects: new fields.SetField(
         new fields.DocumentUUIDField(
-          ActiveEffect,
-          {
-            label: "ED.ActiveEffect",
-            hint:  "ED.AnActiveEffectGrantedOnThisLevel"
-          }
-        ),
+          ActiveEffect ),
         {
           required: true,
           empty:    true,
           initial:  [],
-          label:    "ED.advancement.levelActiveEffects",
-          hint:     "ED.TheSetOfActiveAbilitiesGrantedOnThisLevel"
         }
       ),
       resourceStep: new fields.NumberField( {
@@ -92,8 +70,6 @@ export default class AdvancementLevelData extends SparseDataModel {
         min:      1,
         positive: true,
         initial:  this.initResourceStep,
-        label:    "ED.advancement.levelResourceStep",
-        hint:     "ED.advancement.hintLevelResourceStep",
       } ),
     };
   }

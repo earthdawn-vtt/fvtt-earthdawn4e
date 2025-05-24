@@ -30,28 +30,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   ];
 
   /**
-   * A bound version of {@link getLocalizeKey}. Used to automatically get the
-   * localization key of a data field label for this instances document type.
-   * It is bound to call `getLocalizeKey` with the document type as its first
-   * argument and `false` as the second argument.
-   * @see getLocalizeKey
-   * @param {string} name  The name of the field to get the label key for.
-   * @type {Function}
-   */
-  static labelKey = getLocalizeKey.bind( this, "General", false );
-
-  /**
-   * A bound version of {@link getLocalizeKey}. Used to automatically get the
-   * localization key of a data field hint for this instances document type.
-   * It is bound to call `getLocalizeKey` with the document type as its first
-   * argument and `true` as the second argument.
-   * @see getLocalizeKey
-   * @param {string} name  The name of the field to get the hint key for.
-   * @type {Function}
-   */
-  static hintKey = getLocalizeKey.bind( this, "General", true );
-
-  /**
    * System type that this system data model represents ( e.g. "character", "npc", "vehicle" ).
    * @type {string}
    */
@@ -449,16 +427,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return container.children;
   }
 
-  /**
-   * Get the localization keys for the label or hint property of a {@link foundry.data.fields.DataField}.
-   * @param {string}  documentType    The type of document of the data model, like "Actor", "Item", or "ActiveEffect".
-   * @param {boolean}  hint           `True`, if the key is made for the `hint` field, otherwise for `label` field.
-   * @param {string}  name            The final part of the localization key, the actual name.
-   * @returns {string}                A localization key in the form of `ED.Data.<DocumentType>.<Labels|Hints>.<name>`.
-   */
-  static getLocalizeKey( documentType, hint, name ) {
-    return `ED.Data.${documentType}.${hint ? "Hints" : "Labels"}.${name}`;
-  }
 
 }
 
@@ -542,12 +510,6 @@ export class ItemDataModel extends SystemDataModel {
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item",
   ];
-
-  /** @inheritDoc */
-  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "Item", false );
-
-  /** @inheritDoc */
-  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "Item", true );
 
   /**
    * @typedef {SystemDataModelMetadata} ItemDataModelMetadata
@@ -733,12 +695,6 @@ export class ActiveEffectDataModel extends SystemDataModel {
     "ED.Data.ActiveEffect",
   ];
 
-  /** @inheritDoc */
-  static labelKey = SystemDataModel.getLocalizeKey.bind( this, "ActiveEffect", false );
-
-  /** @inheritDoc */
-  static hintKey = SystemDataModel.getLocalizeKey.bind( this, "ActiveEffect", true );
-
   /**
    * @typedef {SystemDataModelMetadata} ActiveEffectDataModelMetadata
    * @property {boolean} foo    This is just a test property
@@ -779,28 +735,6 @@ export class SparseDataModel extends foundry.abstract.DataModel {
   static LOCALIZATION_PREFIXES = [
     "ED.Data.Other",
   ];
-
-  /**
-   * A bound version of {@link getLocalizeKey}. Used to automatically get the
-   * localization key of a data field label for this instances document type.
-   * It is bound to call `getLocalizeKey` with the document type as its first
-   * argument and `false` as the second argument.
-   * @see getLocalizeKey
-   * @param {string} name  The name of the field to get the label key for.
-   * @type {Function}
-   */
-  static labelKey = getLocalizeKey.bind( this, "Other", false );
-
-  /**
-   * A bound version of {@link getLocalizeKey}. Used to automatically get the
-   * localization key of a data field hint for this instances document type.
-   * It is bound to call `getLocalizeKey` with the document type as its first
-   * argument and `true` as the second argument.
-   * @see getLocalizeKey
-   * @param {string} name  The name of the field to get the hint key for.
-   * @type {Function}
-   */
-  static hintKey = getLocalizeKey.bind( this, "Other", true );
 
   /** @inheritDoc */
   toObject( source = true ) {
@@ -848,14 +782,3 @@ export class SparseDataModel extends foundry.abstract.DataModel {
 }
 
 /* -------------------------------------------- */
-
-/**
- * Get the localization keys for the label or hint property of a {@link foundry.data.fields.DataField}.
- * @param {string}  documentType    The type of document of the data model, like "Actor", "Item", or "ActiveEffect".
- * @param {boolean}  hint           `True`, if the key is made for the `hint` field, otherwise for `label` field.
- * @param {string}  name            The final part of the localization key, the actual name.
- * @returns {string}                A localization key in the form of `ED.Data.<DocumentType>.<Labels|Hints>.<name>`.
- */
-export function getLocalizeKey( documentType, hint, name ) {
-  return `ED.Data.${documentType}.${hint ? "Hints" : "Labels"}.${name}`;
-}

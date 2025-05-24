@@ -48,10 +48,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           nullable: false,
           min:      0,
           initial:  0,
-          // label:    this.labelKey( "PhysicalItems.Price.value",
-          // hint:     this.hintKey( "PhysicalItems.Price.value"
-          label:    this.labelKey( "PhysicalItems.Price.value" ),
-          hint:     this.hintKey( "PhysicalItems.Price.value" )
         } ),
         denomination: new fields.StringField( {
           required: true,
@@ -60,13 +56,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           trim:     true,
           initial:  "silver",
           choices:  ED4E.denomination,
-          label:    this.labelKey( "PhysicalItems.Price.denomination" ),
-          hint:     this.hintKey( "PhysicalItems.Price.denomination" )
         } )
-      },
-      {
-        label: this.labelKey( "PhysicalItems.price" ),
-        hint:  this.hintKey( "PhysicalItems.price" )
       } ),
       weight: new fields.SchemaField( {
         value: new fields.NumberField( {
@@ -74,22 +64,16 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           nullable: false,
           min:      0,
           initial:  0,
-          label:    this.labelKey( "PhysicalItems.Weight.value" ),
-          hint:     this.hintKey( "PhysicalItems.Weight.value" )
         } ),
         multiplier: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  1,
-          label:    this.labelKey( "PhysicalItems.Weight.multiplier" ),
-          hint:     this.hintKey( "PhysicalItems.Weight.multiplier" )
         } ),
         calculated: new fields.BooleanField( {
           required: true,
           initial:  false,
-          label:    this.labelKey( "PhysicalItems.Weight.calculated" ),
-          hint:     this.hintKey( "PhysicalItems.Weight.calculated" )
         } ),
       } ),
       availability: new fields.StringField( {
@@ -99,8 +83,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         trim:     true,
         initial:  "average",
         choices:  ED4E.availability,
-        label:    this.labelKey( "PhysicalItems.availability" ),
-        hint:     this.hintKey( "PhysicalItems.availability" )
 
       } ),
       amount: new fields.NumberField( {
@@ -109,8 +91,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         min:      0,
         initial:  1,
         integer:  true,
-        label:    this.labelKey( "PhysicalItems.amount" ),
-        hint:     this.hintKey( "PhysicalItems.amount" )
       } ),
       bloodMagicDamage: new fields.NumberField( {
         required: true,
@@ -118,14 +98,10 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-        label:    this.labelKey( "PhysicalItems.bloodMagicDamage" ),
-        hint:     this.hintKey( "PhysicalItems.bloodMagicDamage" )
       } ),
       usableItem: new fields.SchemaField( {
         isUsableItem: new fields.BooleanField( {
           required: true,
-          label:    this.labelKey( "PhysicalItems.UsableItem.selector" ),
-          hint:     this.hintKey( "PhysicalItems.UsableItem.selector" )
         } ),
         arbitraryStep: new fields.NumberField( {
           required: true,
@@ -133,8 +109,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-          label:    this.labelKey( "PhysicalItems.UsableItem.arbitraryStep" ),
-          hint:     this.hintKey( "PhysicalItems.UsableItem.arbitraryStep" )
         } ),
         action: new fields.StringField( {
           required: true,
@@ -142,8 +116,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           blank:    true,
           choices:  ED4E.action,
           initial:  "standard",
-          label:    this.labelKey( "PhysicalItems.UsableItem.action" ),
-          hint:     this.hintKey( "PhysicalItems.UsableItem.action" )
         } ),
         recoveryPropertyValue: new fields.NumberField( {
           required: true,
@@ -153,13 +125,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           initial:  0,
           choices:  ED4E.recoveryProperty,
           integer:  true,
-          label:    this.labelKey( "PhysicalItems.UsableItem.recoveryPropertyValue" ),
-          hint:     this.hintKey( "PhysicalItems.UsableItem.recoveryPropertyValue" )
         } ),
-      },
-      {
-        label: this.labelKey( "PhysicalItems.usableItem" ),
-        hint:  this.hintKey( "PhysicalItems.usableItem" )
       } ),
       itemStatus: new fields.StringField( {
         required: true,
@@ -167,8 +133,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         blank:    false,
         initial:  "owned",
         choices:  ED4E.itemStatus,
-        label:    this.labelKey( "PhysicalItems.itemStatus" ),
-        hint:     this.hintKey( "PhysicalItems.itemStatus" )
       } ),
     } );
   }
