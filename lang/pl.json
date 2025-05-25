@@ -355,8 +355,14 @@
     "Advancement": {
       "Pools": {
         "class":                                   "TODO: Add translation",
+        "classHint":                               "TODO: Add translation",
+        "effects":                                 "TODO: Add translation",
+        "effectsHint":                             "TODO: Add translation",
         "free":                                    "TODO: Add translation",
-        "namegiver":                               "TODO: Add translation"
+        "freeHint":                                "TODO: Add translation",
+        "namegiver":                               "TODO: Add translation",
+        "special":                                 "TODO: Add translation",
+        "specialHint":                             "TODO: Add translation"
       }
     },
     "Chat": {
