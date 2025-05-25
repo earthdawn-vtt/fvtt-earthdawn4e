@@ -276,7 +276,7 @@ export function replaceFormulaData( formula, data, { actor, item, missing="0", p
   const newActor = actor ?? item?.parent;
   if ( ( missingReferences.size > 0 ) && newActor && property ) {
     const listFormatter = new Intl.ListFormat( game.i18n.lang, { style: "long", type: "conjunction" } );
-    const message = game.i18n.format( "DND5E.FormulaMissingReferenceWarn", {
+    const message = game.i18n.format( "ED.Notifications.FormulaMissingReferenceWarn", {
       property, name: item?.name ?? newActor.name, references: listFormatter.format( missingReferences )
     } );
     newActor._preparationWarnings.push( { message, link: item?.uuid ?? newActor.uuid, type: "warning" } );

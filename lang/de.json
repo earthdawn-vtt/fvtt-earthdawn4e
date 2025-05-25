@@ -1873,6 +1873,7 @@
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
+        "FormulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "Legend": {
           "abilityIncreaseProblems":               "Rang konnte nicht aktualisiert werden",
           "cannotLearn":                           "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
