@@ -1,5 +1,15 @@
 {
   "COMBAT": {
+    "CombatantActor":                              "TODO: Add translation",
+    "CombatantDefeated":                           "TODO: Add translation",
+    "CombatantHidden":                             "TODO: Add translation",
+    "CombatantImage":                              "TODO: Add translation",
+    "CombatantInitiative":                         "TODO: Add translation",
+    "CombatantName":                               "TODO: Add translation",
+    "CombatantShowStartRoundPrompt":               "TODO: Add translation",
+    "CombatantStatus":                             "TODO: Add translation",
+    "CombatantToken":                              "TODO: Add translation",
+    "NotStarted":                                  "TODO: Add translation"
   },
   "ED": {
     "ActiveEffect": {
