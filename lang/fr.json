@@ -400,6 +400,14 @@
         "effectTest":                              "TODO: Add translation"
       }
     },
+    "Conditions": {
+      "Encumbrance": {
+        "heavy":                                   "TODO: Add translation",
+        "light":                                   "TODO: Add translation",
+        "notEncumbered":                           "TODO: Add translation",
+        "tooHeavy":                                "TODO: Add translation"
+      }
+    },
     "Config": {
       "Action": {
         "free":                                    "TODO: Add translation",
