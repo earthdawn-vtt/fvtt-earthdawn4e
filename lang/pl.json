@@ -437,6 +437,11 @@
         "mystical":                                "TODO: Add translation",
         "physical":                                "TODO: Add translation"
       },
+      "AttuningType": {
+        "grimoire":                                "TODO: Add translation",
+        "matrixOnTheFly":                          "TODO: Add translation",
+        "matrixStandard":                          "TODO: Add translation"
+      },
       "Availability": {
         "average":                                 "TODO: Add translation",
         "everyday":                                "TODO: Add translation",
@@ -480,6 +485,7 @@
       },
       "Eae": {
         "DurationTypes": {
+          "allKnockdownTests":                     "TODO: Add translation",
           "combat":                                "TODO: Add translation",
           "permanent":                             "TODO: Add translation",
           "realTime":                              "TODO: Add translation",
@@ -501,6 +507,7 @@
       },
       "Elements": {
         "air":                                     "TODO: Add translation",
+        "airElectric":                             "TODO: Add translation",
         "airElectricity":                          "TODO: Add translation",
         "earth":                                   "TODO: Add translation",
         "earthMetal":                              "TODO: Add translation",
@@ -534,6 +541,12 @@
         "freePerCircle":                           "TODO: Add translation",
         "spendLp":                                 "TODO: Add translation",
         "spendLpPerCircle":                        "TODO: Add translation"
+      },
+      "MatrixTypes": {
+        "armored":                                 "TODO: Add translation",
+        "enhanced":                                "TODO: Add translation",
+        "shared":                                  "TODO: Add translation",
+        "standard":                                "TODO: Add translation"
       },
       "MovementTypes": {
         "burrow":                                  "TODO: Add translation",
@@ -571,6 +584,24 @@
         "arbitraryOptionalAttribute":              "TODO: Add translation",
         "noHealing":                               "TODO: Add translation",
         "noRecovery":                              "TODO: Add translation"
+      },
+      "Resistance": {
+        "fire":                                    "TODO: Add translation"
+      },
+      "RollTypes": {
+        "ability":                                 "TODO: Add translation",
+        "attack":                                  "TODO: Add translation",
+        "attribute":                               "TODO: Add translation",
+        "damage":                                  "TODO: Add translation",
+        "effect":                                  "TODO: Add translation",
+        "halfmagic":                               "TODO: Add translation",
+        "initiative":                              "TODO: Add translation",
+        "jumpUp":                                  "TODO: Add translation",
+        "knockDown":                               "TODO: Add translation",
+        "reaction":                                "TODO: Add translation",
+        "recovery":                                "TODO: Add translation",
+        "spellcasting":                            "TODO: Add translation",
+        "threadWeaving":                           "TODO: Add translation"
       },
       "ScalarTimePeriods": {
         "day":                                     "TODO: Add translation",
@@ -616,6 +647,9 @@
         "novice":                                  "TODO: Add translation",
         "warden":                                  "TODO: Add translation"
       },
+      "Vulnerabilities": {
+        "fire":                                    "TODO: Add translation"
+      },
       "WeaponSubType": {
         "axe":                                     "TODO: Add translation",
         "blade":                                   "TODO: Add translation",
@@ -649,19 +683,12 @@
         "lowestOfGroup":                           "TODO: Add translation",
         "lowestX":                                 "TODO: Add translation"
       },
-      "rollTypes": {
-        "ability":                                 "TODO: Add translation",
-        "attack":                                  "TODO: Add translation",
-        "attribute":                               "TODO: Add translation",
-        "effect":                                  "TODO: Add translation",
-        "halfmagic":                               "TODO: Add translation",
-        "initiative":                              "TODO: Add translation",
-        "jumpUp":                                  "TODO: Add translation",
-        "knockDown":                               "TODO: Add translation",
-        "reaction":                                "TODO: Add translation",
-        "recovery":                                "TODO: Add translation",
-        "spellcasting":                            "TODO: Add translation",
-        "threadWeaving":                           "TODO: Add translation"
+      "illusionType": {
+        "figment":                                 "TODO: Add translation",
+        "glamour":                                 "TODO: Add translation",
+        "illusion":                                "TODO: Add translation",
+        "phantasm":                                "TODO: Add translation",
+        "shadow":                                  "TODO: Add translation"
       },
       "spellcastingTypes": {
         "elementalism":                            "TODO: Add translation",
