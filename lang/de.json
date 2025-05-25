@@ -294,6 +294,11 @@
         "spells":                                  "Zauber",
         "talents":                                 "Talente"
       },
+      "Recovery": {
+        "current":                                 "Aktuell",
+        "daily":                                   "Täglich",
+        "step":                                    "Stufe"
+      },
       "Spellcasting": {
         "elementalist":                            "Elementarist",
         "illusionist":                             "Illusionist",
