@@ -1685,6 +1685,11 @@
       "mystical":                                  "TODO: Add translation",
       "physical":                                  "TODO: Add translation"
     },
+    "Document": {
+      "actor":                                     "TODO: Add translation",
+      "create":                                    "TODO: Add translation",
+      "item":                                      "TODO: Add translation"
+    },
     "Documents": {
       "ActorSheetEdCharacter":                     "TODO: Add translation",
       "ActorSheetEdCreature":                      "TODO: Add translation",
