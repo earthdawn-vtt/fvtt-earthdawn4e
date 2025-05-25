@@ -1680,6 +1680,11 @@
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden"
     },
+    "Document": {
+      "actor":                                     "Actor",
+      "create":                                    "Erstelle {type}",
+      "item":                                      "Item"
+    },
     "Documents": {
       "ActorSheetEdCharacter":                     "Charakterbogen",
       "ActorSheetEdCreature":                      "Kreaturen-Bogen",
