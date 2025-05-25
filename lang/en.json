@@ -274,7 +274,9 @@
           "descriptionNewlyAdded":                 "Newly added item",
           "knackSourceNotFound":                   "The Knack is not referenced in any Talent of the Actor",
           "knackSourceNotHighEnough":              "The Rank of the Talent is not high enough",
-          "maxIncreaseReached":                    "Maximum increase reached"
+          "learningTransactionDescription":        "TODO: Add translation",
+          "maxIncreaseReached":                    "Maximum increase reached",
+          "spendingTransactionDescription":        "TODO: Add translation"
         },
         "attributeImprovement":                    "Attribute increase"
       },
