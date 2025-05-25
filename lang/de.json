@@ -1,5 +1,16 @@
 {
-  "COMBAT":                                        "TODO: Add translation",
+  "COMBAT": {
+    "CombatantActor":                              "Kämpfer",
+    "CombatantDefeated":                           "Kämpfer besiegt",
+    "CombatantHidden":                             "Kämpfer versteckt",
+    "CombatantImage":                              "Kämpfer Bild",
+    "CombatantInitiative":                         "Kämpfer Initiative",
+    "CombatantName":                               "Kämpfer Name",
+    "CombatantShowStartRoundPrompt":               "Kämpfer Runde Start Prompt",
+    "CombatantStatus":                             "Kämpfer Status",
+    "CombatantToken":                              "Kämpfer Token",
+    "NotStarted":                                  "Noch nicht gestartet"
+  },
   "ED": {
     "ActiveEffect": {
       "ChangeKeys": {
