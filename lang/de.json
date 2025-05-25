@@ -344,7 +344,9 @@
         "mainHand":                                "Haupthand",
         "notEquipped":                             "Nicht Ausgerüstet",
         "offHand":                                 "Nebenhand",
+        "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
+        "recoveryRestTooltip":                     "Erholung",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
         "twoHanded":                               "Zweihändig"
