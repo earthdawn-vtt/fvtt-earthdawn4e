@@ -437,6 +437,11 @@
         "mystical":                                "Mystische Rüstung",
         "physical":                                "Physische Rüstung"
       },
+      "AttuningType": {
+        "grimoire":                                "Abstimmung eines Grimoires",
+        "matrixOnTheFly":                          "Eine Matrix auf die Schnelle abstimmen",
+        "matrixStandard":                          "Eine Matrix abstimmen"
+      },
       "Availability": {
         "average":                                 "Durchschnittlich",
         "everyday":                                "Alltäglich",
@@ -480,6 +485,7 @@
       },
       "Eae": {
         "DurationTypes": {
+          "allKnockdownTests":                     "Alle Niederschlagsproben",
           "combat":                                "Kampf",
           "permanent":                             "Permanent",
           "realTime":                              "Zeit",
@@ -501,6 +507,7 @@
       },
       "Elements": {
         "air":                                     "Luft",
+        "airElectric":                             "Elektrizität",
         "airElectricity":                          "Elektrizität",
         "earth":                                   "Erde",
         "earthMetal":                              "Metall",
@@ -534,6 +541,12 @@
         "freePerCircle":                           "Bei Kreisaufstieg (kostenlos)",
         "spendLp":                                 "Kostet Legendpunkte",
         "spendLpPerCircle":                        "Bei Kreisaufstieg (kostet Legendenpunkte)"
+      },
+      "MatrixTypes": {
+        "armored":                                 "Gepanzerte Matrix",
+        "enhanced":                                "Verbesserte Matrix",
+        "shared":                                  "Summenmatrix",
+        "standard":                                "Standard Matrix"
       },
       "MovementTypes": {
         "burrow":                                  "Graben",
@@ -571,6 +584,24 @@
         "arbitraryOptionalAttribute":              "Willkürlich und/oder Attribut",
         "noHealing":                               "Keine Heilung",
         "noRecovery":                              "Keine Erholung"
+      },
+      "Resistance": {
+        "fire":                                    "Feuer"
+      },
+      "RollTypes": {
+        "ability":                                 "Fähigkeit",
+        "attack":                                  "Angriff",
+        "attribute":                               "Attribute",
+        "damage":                                  "Schaden",
+        "effect":                                  "Effekt",
+        "halfmagic":                               "Halb Magie",
+        "initiative":                              "Initiative",
+        "jumpUp":                                  "Aufspringen",
+        "knockDown":                               "Niederschlag",
+        "reaction":                                "Reaktion",
+        "recovery":                                "Erholung",
+        "spellcasting":                            "Spruchzauberei",
+        "threadWeaving":                           "Fadenweben"
       },
       "ScalarTimePeriods": {
         "day":                                     "Tag",
@@ -616,6 +647,9 @@
         "novice":                                  "Novize",
         "warden":                                  "Wächter"
       },
+      "Vulnerabilities": {
+        "fire":                                    "Feuer"
+      },
       "WeaponSubType": {
         "axe":                                     "Axt",
         "blade":                                   "Klinge",
@@ -649,19 +683,12 @@
         "lowestOfGroup":                           "Niedrigster der Gruppe",
         "lowestX":                                 "Niedrigster + Ziele"
       },
-      "rollTypes": {
-        "ability":                                 "Fähigkeit",
-        "attack":                                  "Angriff",
-        "attribute":                               "Attribute",
-        "effect":                                  "Effekt",
-        "halfmagic":                               "Halb Magie",
-        "initiative":                              "Initiative",
-        "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
-        "reaction":                                "Reaktion",
-        "recovery":                                "Erholung",
-        "spellcasting":                            "Spruchzauberei",
-        "threadWeaving":                           "Fadenweben"
+      "illusionType": {
+        "figment":                                 "Gebilde",
+        "glamour":                                 "Glamour",
+        "illusion":                                "Illusion",
+        "phantasm":                                "Phantasma",
+        "shadow":                                  "Schatten"
       },
       "spellcastingTypes": {
         "elementalism":                            "Elementarist",

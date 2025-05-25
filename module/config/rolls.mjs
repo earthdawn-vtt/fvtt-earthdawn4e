@@ -7,35 +7,35 @@ import { preLocalize } from "../utils.mjs";
  */
 export const combatTypes = {
   Aerial: {
-    label:            "ED.Config.combatTypes.Aerial",
+    label:            "ED.Config.CombatTypes.Aerial",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   Close: {
-    label:            "ED.Config.combatTypes.Close",
+    label:            "ED.Config.CombatTypes.Close",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   melee: {
-    label:            "ED.Config.combatTypes.melee",
+    label:            "ED.Config.CombatTypes.melee",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   mounted: {
-    label:            "ED.Config.combatTypes.mounted",
+    label:            "ED.Config.CombatTypes.mounted",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   projectile: {
-    label:            "ED.Config.combatTypes.projectile",
+    label:            "ED.Config.CombatTypes.projectile",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   ranged: {
-    label:            "ED.Config.combatTypes.ranged",
+    label:            "ED.Config.CombatTypes.ranged",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   throwing: {
-    label:            "ED.Config.combatTypes.throwing",
+    label:            "ED.Config.CombatTypes.throwing",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   unarmed: {
-    label:            "ED.Config.combatTypes.unarmed",
+    label:            "ED.Config.CombatTypes.unarmed",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
 };
@@ -58,59 +58,59 @@ export const resourceDefaultStep = {
  */
 export const rollTypes = {
   ability: {
-    label:            "ED.Config.rollTypes.ability",
+    label:            "ED.Config.RollTypes.ability",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
   attack: {
-    label:            "ED.Config.rollTypes.attack",
+    label:            "ED.Config.RollTypes.attack",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   attribute: {
-    label:            "ED.Config.rollTypes.attribute",
+    label:            "ED.Config.RollTypes.attribute",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attribute-roll-flavor.hbs",
   },
   attuning: {
-    label:            "ED.Config.rollTypes.attuning",
+    label:            "ED.Config.RollTypes.attuning",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attuning-roll-flavor.hbs",
   },
   damage: {
-    label:            "ED.Rolls.Labels.damageRoll",
+    label:            "ED.Config.RollTypes.damage",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/damage-roll-flavor.hbs",
   },
   effect: {
-    label:            "ED.Config.rollTypes.effect",
+    label:            "ED.Config.RollTypes.effect",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
   },
   halfmagic: {
-    label:            "ED.Config.rollTypes.halfmagic",
+    label:            "ED.Config.RollTypes.halfmagic",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfmagic-roll-flavor.hbs",
   },
   initiative: {
-    label:            "ED.Config.rollTypes.initiative",
+    label:            "ED.Config.RollTypes.initiative",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/initiative-roll-flavor.hbs",
   },
   reaction: {
-    label:            "ED.Config.rollTypes.reaction",
+    label:            "ED.Config.RollTypes.reaction",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/reaction-roll-flavor.hbs",
   },
   recovery: {
-    label:            "ED.Config.rollTypes.recovery",
+    label:            "ED.Config.RollTypes.recovery",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/recovery-roll-flavor.hbs",
   },
   spellcasting: {
-    label:            "ED.Config.rollTypes.spellcasting",
+    label:            "ED.Config.RollTypes.spellcasting",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spellcasting-roll-flavor.hbs",
   },
   threadWeaving: {
-    label:            "ED.Config.rollTypes.threadWeaving",
+    label:            "ED.Config.RollTypes.threadWeaving",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/threadWeaving-roll-flavor.hbs",
   },
   jumpUp: {
-    label:            "ED.Config.rollTypes.jumpUp",
+    label:            "ED.Config.RollTypes.jumpUp",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
   knockDown: {
-    label:            "ED.Config.rollTypes.knockDown",
+    label:            "ED.Config.RollTypes.knockDown",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
 };
