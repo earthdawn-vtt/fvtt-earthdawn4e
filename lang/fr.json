@@ -273,7 +273,9 @@
           "descriptionNewlyAdded":                 "TODO: Add translation",
           "knackSourceNotFound":                   "TODO: Add translation",
           "knackSourceNotHighEnough":              "TODO: Add translation",
-          "maxIncreaseReached":                    "TODO: Add translation"
+          "learningTransactionDescription":        "TODO: Add translation",
+          "maxIncreaseReached":                    "TODO: Add translation",
+          "spendingTransactionDescription":        "TODO: Add translation"
         },
         "attributeImprovement":                    "TODO: Add translation"
       },
