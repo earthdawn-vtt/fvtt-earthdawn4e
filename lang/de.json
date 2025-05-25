@@ -400,6 +400,14 @@
         "effectTest":                              "Effect Test"
       }
     },
+    "Conditions": {
+      "Encumbrance": {
+        "heavy":                                   "Stark überlastet",
+        "light":                                   "Wenig überlastet",
+        "notEncumbered":                           "Nicht Überlastet",
+        "tooHeavy":                                "Du kannst das nicht alles tragen!"
+      }
+    },
     "Config": {
       "Action": {
         "free":                                    "Frei",
