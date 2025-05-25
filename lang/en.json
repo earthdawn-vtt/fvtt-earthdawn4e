@@ -345,7 +345,9 @@
         "mainHand":                                "Main Hand",
         "notEquipped":                             "Not equipped",
         "offHand":                                 "Off Hand",
+        "owned":                                   "TODO: Add translation",
         "parentTalent":                            "TODO: Add translation",
+        "recoveryRestTooltip":                     "TODO: Add translation",
         "standardEffect":                          "TODO: Add translation",
         "tail":                                    "Tail",
         "twoHanded":                               "Two Handed"
