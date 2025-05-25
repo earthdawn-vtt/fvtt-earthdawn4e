@@ -378,7 +378,19 @@
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Nimm den Schaden für deinen Charakter"
       },
-      "Flavor":                                    "TODO: Add translation",
+      "Flavor": {
+        "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
+        "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
+        "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
+        "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
+        "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
+        "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
+        "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
+        "rollRecovery":                            "{sourceActor} würfelt {recovery} ({step})",
+        "takeDamage":                              "Schaden nehmen",
+        "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
+        "undoDamage":                              "Setzte den Schaden zurück"
+      },
       "Header": {
         "actionTest":                              "Aktions Test",
         "arbitraryTest":                           "Willkürlicher Test",

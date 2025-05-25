@@ -1,6 +1,6 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
-import { typeMigrationConfig } from "./migration/item/old-system-V082/_module.mjs";
+// import { typeMigrationConfig } from "./migration/item/old-system-V082/_module.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.
@@ -256,12 +256,12 @@ export default class ItemEd extends Item {
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
-  static migrateData( source ) {
-    const newSource = super.migrateData( source );
+  // static migrateData( source ) {
+  //   const newSource = super.migrateData( source );
 
-    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( source );
+  //   typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( source );
 
-    return newSource;
-  }
+  //   return newSource;
+  // }
 
 }
