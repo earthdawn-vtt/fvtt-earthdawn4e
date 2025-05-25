@@ -273,7 +273,9 @@
           "descriptionNewlyAdded":                 "Neu hinzugefügt",
           "knackSourceNotFound":                   "Der Kniff verweißt auf kein Talent des Acteurs.",
           "knackSourceNotHighEnough":              "Der Rank des Talents ist nicht hoch genug für diesen Kniff",
-          "maxIncreaseReached":                    "Maximale Steigerung erreicht"
+          "learningTransactionDescription":        "TODO: WO IST DAS?",
+          "maxIncreaseReached":                    "Maximale Steigerung erreicht",
+          "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         },
         "attributeImprovement":                    "Attribut Erhöhung"
       },
