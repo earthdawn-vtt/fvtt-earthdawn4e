@@ -438,6 +438,11 @@
         "mystical":                                "Mystical Armor",
         "physical":                                "Physical Armor"
       },
+      "AttuningType": {
+        "grimoire":                                "TODO: Add translation",
+        "matrixOnTheFly":                          "TODO: Add translation",
+        "matrixStandard":                          "TODO: Add translation"
+      },
       "Availability": {
         "average":                                 "Average",
         "everyday":                                "Everyday",
@@ -481,6 +486,7 @@
       },
       "Eae": {
         "DurationTypes": {
+          "allKnockdownTests":                     "TODO: Add translation",
           "combat":                                "Combat",
           "permanent":                             "Permanent",
           "realTime":                              "Real Time",
@@ -502,6 +508,7 @@
       },
       "Elements": {
         "air":                                     "Air",
+        "airElectric":                             "TODO: Add translation",
         "airElectricity":                          "TODO: Add translation",
         "earth":                                   "Earth",
         "earthMetal":                              "TODO: Add translation",
@@ -535,6 +542,12 @@
         "freePerCircle":                           "TODO: Add translation",
         "spendLp":                                 "TODO: Add translation",
         "spendLpPerCircle":                        "TODO: Add translation"
+      },
+      "MatrixTypes": {
+        "armored":                                 "TODO: Add translation",
+        "enhanced":                                "TODO: Add translation",
+        "shared":                                  "TODO: Add translation",
+        "standard":                                "TODO: Add translation"
       },
       "MovementTypes": {
         "burrow":                                  "Burrow",
@@ -572,6 +585,24 @@
         "arbitraryOptionalAttribute":              "Arbitrary and/or Attribute",
         "noHealing":                               "No Recovery",
         "noRecovery":                              "No Recovery"
+      },
+      "Resistance": {
+        "fire":                                    "TODO: Add translation"
+      },
+      "RollTypes": {
+        "ability":                                 "TODO: Add translation",
+        "attack":                                  "TODO: Add translation",
+        "attribute":                               "TODO: Add translation",
+        "damage":                                  "TODO: Add translation",
+        "effect":                                  "TODO: Add translation",
+        "halfmagic":                               "TODO: Add translation",
+        "initiative":                              "TODO: Add translation",
+        "jumpUp":                                  "TODO: Add translation",
+        "knockDown":                               "TODO: Add translation",
+        "reaction":                                "TODO: Add translation",
+        "recovery":                                "TODO: Add translation",
+        "spellcasting":                            "TODO: Add translation",
+        "threadWeaving":                           "TODO: Add translation"
       },
       "ScalarTimePeriods": {
         "day":                                     "Day",
@@ -617,6 +648,9 @@
         "novice":                                  "Novice",
         "warden":                                  "Warden"
       },
+      "Vulnerabilities": {
+        "fire":                                    "TODO: Add translation"
+      },
       "WeaponSubType": {
         "axe":                                     "TODO: Add translation",
         "blade":                                   "TODO: Add translation",
@@ -650,19 +684,12 @@
         "lowestOfGroup":                           "Lowest of Group",
         "lowestX":                                 "Lowest + Targets"
       },
-      "rollTypes": {
-        "ability":                                 "Ability",
-        "attack":                                  "Attack",
-        "attribute":                               "Attribute",
-        "effect":                                  "Effect",
-        "halfmagic":                               "Half Magic",
-        "initiative":                              "Initiative",
-        "jumpUp":                                  "Jump Up",
-        "knockDown":                               "Knock Down",
-        "reaction":                                "Reaction",
-        "recovery":                                "Recovery",
-        "spellcasting":                            "Spell Casting",
-        "threadWeaving":                           "Thread Weaving"
+      "illusionType": {
+        "figment":                                 "TODO: Add translation",
+        "glamour":                                 "TODO: Add translation",
+        "illusion":                                "TODO: Add translation",
+        "phantasm":                                "TODO: Add translation",
+        "shadow":                                  "TODO: Add translation"
       },
       "spellcastingTypes": {
         "elementalism":                            "Elementalist",
