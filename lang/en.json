@@ -1877,6 +1877,7 @@
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
+        "FormulaMissingReferenceWarn":             "TODO: Add translation",
         "Legend": {
           "abilityIncreaseProblems":               "TODO: Add translation",
           "cannotLearn":                           "TODO: Add translation",
