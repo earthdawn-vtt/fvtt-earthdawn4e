@@ -355,8 +355,14 @@
     "Advancement": {
       "Pools": {
         "class":                                   "Berufung",
+        "classHint":                               "Disziplintalente die auf diesem Rang/Kreis gelernt werden",
+        "effects":                                 "Effekte",
+        "effectsHint":                             "Effekte die auf diesem Rang/Kreis hinzugefügt werden",
         "free":                                    "Frei",
-        "namegiver":                               "Namensgeber"
+        "freeHint":                                "Freie Talente die auf diesem Rang/Kreis hinzugefügt werden",
+        "namegiver":                               "Namensgeber",
+        "special":                                 "Spezial",
+        "specialHint":                             "Spezialfähigkeiten die auf diesem Rang/Kreis hinzugefügt werden"
       }
     },
     "Chat": {
