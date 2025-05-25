@@ -295,6 +295,11 @@
         "spells":                                  "Spells",
         "talents":                                 "Talents"
       },
+      "Recovery": {
+        "current":                                 "TODO: Add translation",
+        "daily":                                   "TODO: Add translation",
+        "step":                                    "TODO: Add translation"
+      },
       "Spellcasting": {
         "elementalist":                            "Elemetnatalist",
         "illusionist":                             "Illusionist",
