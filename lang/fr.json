@@ -1676,6 +1676,35 @@
         "legendPoints":                            "TODO: Add translation"
       },
       "Buttons": {
+        "add":                                     "TODO: Add translation",
+        "attuneMatrix":                            "TODO: Add translation",
+        "cancel":                                  "TODO: Add translation",
+        "cancelReattuning":                        "TODO: Add translation",
+        "close":                                   "TODO: Add translation",
+        "complete":                                "TODO: Add translation",
+        "configure":                               "TODO: Add translation",
+        "continue":                                "TODO: Add translation",
+        "finish":                                  "TODO: Add translation",
+        "free":                                    "TODO: Add translation",
+        "goBack":                                  "TODO: Add translation",
+        "learn":                                   "TODO: Add translation",
+        "learnSpellPatterncraftTest":              "TODO: Add translation",
+        "nextStep":                                "TODO: Add translation",
+        "nightRest":                               "TODO: Add translation",
+        "noAbility":                               "TODO: Add translation",
+        "noDiscipline":                            "TODO: Add translation",
+        "ok":                                      "TODO: Add translation",
+        "previousStep":                            "TODO: Add translation",
+        "reattuneOnTheFly":                        "TODO: Add translation",
+        "recoverStun":                             "TODO: Add translation",
+        "recovery":                                "TODO: Add translation",
+        "roll":                                    "TODO: Add translation",
+        "roundStartRollInitiative":                "TODO: Add translation",
+        "save":                                    "TODO: Add translation",
+        "spendLp":                                 "TODO: Add translation",
+        "takeDamage":                              "TODO: Add translation",
+        "teacherSpellcasting":                     "TODO: Add translation",
+        "versatility":                             "TODO: Add translation"
       },
       "CharGen": {
         "Buttons": {
@@ -1795,6 +1824,33 @@
         "inactiveUser":                            "TODO: Add translation"
       },
       "Legend": {
+        "ClassAdvancement": {
+          "NoSpellsAvailable":                     "TODO: Add translation",
+          "NoSpellsSelected":                      "TODO: Add translation",
+          "SelectedSpells":                        "TODO: Add translation",
+          "YouCanChooseSpells":                    "TODO: Add translation",
+          "chooseAbilityOption":                   "TODO: Add translation",
+          "classIncreasedTier":                    "TODO: Add translation",
+          "effectsGained":                         "TODO: Add translation",
+          "increaseClassTo":                       "TODO: Add translation",
+          "learningClass":                         "TODO: Add translation",
+          "optionalAbilityGained":                 "TODO: Add translation",
+          "resourceStepIncreased":                 "TODO: Add translation",
+          "spellsGained":                          "TODO: Add translation"
+        },
+        "LearnSpell": {
+          "chatFlavorPatterncraft":                "TODO: Add translation",
+          "chatFlavorTeacherTest":                 "TODO: Add translation",
+          "legendPatterncraft":                    "TODO: Add translation",
+          "legendRequirements":                    "TODO: Add translation",
+          "legendTeacherTest":                     "TODO: Add translation",
+          "noPatterncraftTalentFound":             "TODO: Add translation",
+          "noSpellcastingTalentFound":             "TODO: Add translation",
+          "teacherBonusModifier":                  "TODO: Add translation"
+        },
+        "LpHistory": {
+          "addEarning":                            "TODO: Add translation"
+        },
         "Rules": {
           "attributeIncreaseShortRequirements":    "TODO: Add translation",
           "devotionIncreaseShortRequirements":     "TODO: Add translation",
@@ -1805,7 +1861,46 @@
           "questorClassIncreaseShortRequirements": "TODO: Add translation",
           "skillIncreaseShortRequirements":        "TODO: Add translation",
           "talentIncreaseShortRequirements":       "TODO: Add translation"
-        }
+        },
+        "Validation": {
+          "availableLp":                           "TODO: Add translation",
+          "availableMoney":                        "TODO: Add translation",
+          "enoughTalentsOfTier":                   "TODO: Add translation",
+          "enoughTalentsOnMinRank":                "TODO: Add translation",
+          "hasDamage":                             "TODO: Add translation",
+          "hasRequiredJourneymanTalents":          "TODO: Add translation",
+          "hasRequiredMasterTalents":              "TODO: Add translation",
+          "hasRequiredNoviceTalents":              "TODO: Add translation",
+          "hasRequiredWardenTalents":              "TODO: Add translation",
+          "hasTalentFromCurrentCircle":            "TODO: Add translation",
+          "hasTalentsOnMinRank":                   "TODO: Add translation",
+          "hasWounds":                             "TODO: Add translation",
+          "maxLevel":                              "TODO: Add translation",
+          "maxLevelReached":                       "TODO: Add translation",
+          "noTalentFromCurrentCircleOnNewLevel":   "TODO: Add translation",
+          "notEnoughTalentsOfTier":                "TODO: Add translation",
+          "notEnoughTalentsOnMinRank":             "TODO: Add translation",
+          "pathTalents":                           "TODO: Add translation",
+          "requiredPathRank":                      "TODO: Add translation",
+          "sourceTalentName":                      "TODO: Add translation",
+          "sourceTalentRank":                      "TODO: Add translation",
+          "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
+          "talentOptionLp":                        "TODO: Add translation",
+          "talentOptionLpCost":                    "TODO: Add translation",
+          "talentsRequirementFailed":              "TODO: Add translation",
+          "talentsRequirementFulfilled":           "TODO: Add translation"
+        },
+        "configuration":                           "TODO: Add translation",
+        "increasePathTalentPrompt":                "TODO: Add translation",
+        "increaseQuestorDevotionPrompt":           "TODO: Add translation",
+        "initiativeAbilities":                     "TODO: Add translation",
+        "learnOnZeroOrOneRank":                    "TODO: Add translation",
+        "learnPathKnackPrompt":                    "TODO: Add translation",
+        "learnPathTalentPrompt":                   "TODO: Add translation",
+        "learnQuestorPrompt":                      "TODO: Add translation",
+        "pathKnackNotFound":                       "TODO: Add translation",
+        "questorDevotionNotFound":                 "TODO: Add translation",
+        "writtenRules":                            "TODO: Add translation"
       },
       "Placeholder": {
         "lpDescription":                           "TODO: Add translation"
@@ -1822,6 +1917,12 @@
         "step":                                    "TODO: Add translation",
         "strain":                                  "TODO: Add translation"
       },
+      "Sorting": {
+        "item":                                    "TODO: Add translation",
+        "sortBy":                                  "TODO: Add translation",
+        "time":                                    "TODO: Add translation",
+        "type":                                    "TODO: Add translation"
+      },
       "Tabs": {
         "CharGen": {
           "attribute":                             "TODO: Add translation",
@@ -1836,6 +1937,25 @@
         "rollPromptOtherTab":                      "TODO: Add translation"
       },
       "Title": {
+        "assignLp":                                "TODO: Add translation",
+        "attributeIncrease":                       "TODO: Add translation",
+        "attuneMatrix":                            "TODO: Add translation",
+        "characterGeneration":                     "TODO: Add translation",
+        "chooseDiscipline":                        "TODO: Add translation",
+        "chooseTier":                              "TODO: Add translation",
+        "classAdvancement":                        "TODO: Add translation",
+        "drawWeapon":                              "TODO: Add translation",
+        "jumpUp":                                  "TODO: Add translation",
+        "knockDown":                               "TODO: Add translation",
+        "learnAbility":                            "TODO: Add translation",
+        "learnSpell":                              "TODO: Add translation",
+        "lpIncrease":                              "TODO: Add translation",
+        "lpLearnKnack":                            "TODO: Add translation",
+        "recovery":                                "TODO: Add translation",
+        "rollPrompt":                              "TODO: Add translation",
+        "startRoundCombatantPrompt":               "TODO: Add translation",
+        "takeDamage":                              "TODO: Add translation",
+        "talentIncrease":                          "TODO: Add translation"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "TODO: Add translation"
