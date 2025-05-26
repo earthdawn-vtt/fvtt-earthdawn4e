@@ -722,6 +722,10 @@
         }
       },
       "Actor": {
+        "Common":                                  "TODO: Add translation",
+        "Creature":                                "TODO: Add translation",
+        "Dragon":                                  "TODO: Add translation",
+        "Group":                                   "TODO: Add translation",
         "Hints": {
           "Characteristics": {
             "armor":                               "TODO: Add translation",
@@ -770,6 +774,7 @@
           "karmaStep":                             "TODO: Add translation",
           "singleBonuses":                         "TODO: Add translation"
         },
+        "Horror":                                  "TODO: Add translation",
         "Labels": {
           "Characteristics": {
             "armor":                               "TODO: Add translation",
@@ -817,7 +822,15 @@
           "karmaMax":                              "Maximum Karma",
           "karmaStep":                             "Karma Step",
           "singleBonuses":                         "TODO: Add translation"
-        }
+        },
+        "Loot":                                    "TODO: Add translation",
+        "Namegiver":                               "TODO: Add translation",
+        "Npc":                                     "TODO: Add translation",
+        "Pc":                                      "TODO: Add translation",
+        "Sentient":                                "TODO: Add translation",
+        "Spirit":                                  "TODO: Add translation",
+        "Trap":                                    "TODO: Add translation",
+        "Vehicle":                                 "TODO: Add translation"
       },
       "Fields": {
         "Labels": {
@@ -881,8 +894,20 @@
         }
       },
       "Item": {
+        "Ability":                                 "TODO: Add translation",
+        "Action":                                  "TODO: Add translation",
+        "Armor":                                   "TODO: Add translation",
+        "BindingSecret":                           "TODO: Add translation",
+        "Class":                                   "TODO: Add translation",
+        "CurseHorrorMark":                         "TODO: Add translation",
+        "Description":                             "TODO: Add translation",
+        "Devotion":                                "TODO: Add translation",
+        "Discipline":                              "TODO: Add translation",
+        "Effect":                                  "TODO: Add translation",
+        "Equipment":                               "TODO: Add translation",
         "Fields": {
-          "dispelDifficulty":                      "Dispel Difficulty"
+          "dispelDifficulty":                      "Dispel Difficulty",
+          "sensingDifficulty":                     "TODO: Add translation"
         },
         "Hints": {
           "Ability": {
@@ -977,6 +1002,7 @@
               "twoHandedMax":                      "TwoHanded max.",
               "twoHandedMin":                      "TwoHanded min."
             },
+            "abilities":                           "TODO: Add translation",
             "karmaModifier":                       "Karma Modifier",
             "livingArmorOnly":                     "This item is considered as living armor.",
             "tail":                                "Tail",
@@ -1010,6 +1036,7 @@
               "level":                             "Circle/Rank",
               "maxThreads":                        "Max Threads",
               "mysticalDefense":                   "Mystical Defense",
+              "threadLevel":                       "TODO: Add translation",
               "tier":                              "Tier"
             },
             "UsableItem": {
@@ -1423,6 +1450,21 @@
           },
           "edid":                                  "ED-ID"
         },
+        "Learnable":                               "TODO: Add translation",
+        "LpIncrease":                              "TODO: Add translation",
+        "Maneuver":                                "TODO: Add translation",
+        "Mask":                                    "TODO: Add translation",
+        "Namegiver":                               "TODO: Add translation",
+        "Path":                                    "TODO: Add translation",
+        "PhysicalItem":                            "TODO: Add translation",
+        "PoisonDisease":                           "TODO: Add translation",
+        "Power":                                   "TODO: Add translation",
+        "Questor":                                 "TODO: Add translation",
+        "Rollable":                                "TODO: Add translation",
+        "Shield":                                  "TODO: Add translation",
+        "ShipWeapon":                              "TODO: Add translation",
+        "Skill":                                   "TODO: Add translation",
+        "SpecaialAbility":                         "TODO: Add translation",
         "Spell": {
           "FIELDS": {
             "spellcastingType": {
@@ -1430,7 +1472,12 @@
               "label":                             "TODO: Add translation"
             }
           }
-        }
+        },
+        "SpellKnack":                              "TODO: Add translation",
+        "Talent":                                  "TODO: Add translation",
+        "Target":                                  "TODO: Add translation",
+        "Thread":                                  "TODO: Add translation",
+        "Weapon":                                  "TODO: Add translation"
       },
       "Journal": {
         "Hints": {
@@ -1439,6 +1486,13 @@
         }
       },
       "Other": {
+        "AbilityRollOptions":                      "TODO: Add translation",
+        "Advancement":                             "TODO: Add translation",
+        "AdvancementLevel":                        "TODO: Add translation",
+        "AttackRollOptions":                       "TODO: Add translation",
+        "AttuningRollOptions":                     "TODO: Add translation",
+        "CharacterGeneration":                     "TODO: Add translation",
+        "DamageRollOptions":                       "TODO: Add translation",
         "Hints": {
           "AbilityConstraint": {
             "ability":                             "TODO: Add translation",
@@ -1607,7 +1661,14 @@
             "useRecoveryTestToLearnSpell":         "TODO: Add translation"
           },
           "movement":                              "TODO: Add translation"
-        }
+        },
+        "LpEarningTransaction":                    "TODO: Add translation",
+        "LpSpendingTransaction":                   "TODO: Add translation",
+        "LpTracking":                              "TODO: Add translation",
+        "LpTransaction":                           "TODO: Add translation",
+        "RollOptions":                             "TODO: Add translation",
+        "ThreadBase":                              "TODO: Add translation",
+        "ThreadLevel":                             "TODO: Add translation"
       },
       "placeholderBlankSelectOption":              "---"
     },
