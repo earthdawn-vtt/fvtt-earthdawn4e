@@ -725,6 +725,10 @@
         }
       },
       "Actor": {
+        "Common":                                  "Allgemein",
+        "Creature":                                "Kreature",
+        "Dragon":                                  "Drache",
+        "Group":                                   "Gruppe",
         "Hints": {
           "Characteristics": {
             "armor":                               "Werte die von erlittenem Schaden abgezogen werden",
@@ -773,6 +777,7 @@
           "karmaStep":                             "Die Stufe die verwendet wird wenn Karmapunkte ausgegeben werden",
           "singleBonuses":                         "Einzelne Wertänderungen "
         },
+        "Horror":                                  "Dämon",
         "Labels": {
           "Characteristics": {
             "armor":                               "Rüstung",
@@ -820,7 +825,15 @@
           "karmaMax":                              "Maximale Karmapunkte",
           "karmaStep":                             "Karma Stufe",
           "singleBonuses":                         "Einzelne Boni"
-        }
+        },
+        "Loot":                                    "Beute",
+        "Namegiver":                               "Namensgeber",
+        "Npc":                                     "Nicht-Spieler-Charakter",
+        "Pc":                                      "Charakter",
+        "Sentient":                                "Wesen",
+        "Spirit":                                  "Geist",
+        "Trap":                                    "Falle",
+        "Vehicle":                                 "Fahrzeug"
       },
       "Fields": {
         "Labels": {
@@ -884,8 +897,31 @@
         }
       },
       "Item": {
+        "Ability": {
+        },
+        "Action": {
+        },
+        "Armor": {
+        },
+        "BindingSecret": {
+        },
+        "Class": {
+        },
+        "CurseHorrorMark": {
+        },
+        "Description": {
+        },
+        "Devotion": {
+        },
+        "Discipline": {
+        },
+        "Effect": {
+        },
+        "Equipment": {
+        },
         "Fields": {
-          "dispelDifficulty":                      "Neutralisierungsschwerigkeit"
+          "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
+          "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
         "Hints": {
           "Ability": {
@@ -980,6 +1016,7 @@
               "twoHandedMax":                      "Maximalgröße für Zweihandwaffen",
               "twoHandedMin":                      "Minimalgröße für Zweihandwaffen"
             },
+            "abilities":                           "Welche Fähigkeiten hat dieser Namensgeber?",
             "karmaModifier":                       "Wie viele Karma Punkte erhält dieser Namensgeber pro Kreis?",
             "livingArmorOnly":                     "Es kann nur nur lebendige Rüstung getragen werden.",
             "tail":                                "Kann dieser Namensgeber Angriffe mit dem Schwanz ausführen",
@@ -1013,6 +1050,7 @@
               "level":                             "Fadenrang",
               "maxThreads":                        "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
               "mysticalDefense":                   "Die Mystisch Verteidigung des Fadengegenstand.",
+              "threadLevel":                       "Fadenrang",
               "tier":                              "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?"
             },
             "UsableItem": {
@@ -1426,6 +1464,36 @@
           },
           "edid":                                  "ED-ID"
         },
+        "Learnable": {
+        },
+        "LpIncrease": {
+        },
+        "Maneuver": {
+        },
+        "Mask": {
+        },
+        "Namegiver": {
+        },
+        "Path": {
+        },
+        "PhysicalItem": {
+        },
+        "PoisonDisease": {
+        },
+        "Power": {
+        },
+        "Questor": {
+        },
+        "Rollable": {
+        },
+        "Shield": {
+        },
+        "ShipWeapon": {
+        },
+        "Skill": {
+        },
+        "SpecaialAbility": {
+        },
         "Spell": {
           "FIELDS": {
             "spellcastingType": {
@@ -1433,6 +1501,16 @@
               "label":                             "Spruchzauberei Typ"
             }
           }
+        },
+        "SpellKnack": {
+        },
+        "Talent": {
+        },
+        "Target": {
+        },
+        "Thread": {
+        },
+        "Weapon": {
         }
       },
       "Journal": {
@@ -1440,6 +1518,20 @@
         "Labels":                                  "Beschreibung"
       },
       "Other": {
+        "AbilityRollOptions": {
+        },
+        "Advancement": {
+        },
+        "AdvancementLevel": {
+        },
+        "AttackRollOptions": {
+        },
+        "AttuningRollOptions": {
+        },
+        "CharacterGeneration": {
+        },
+        "DamageRollOptions": {
+        },
         "Hints": {
           "AbilityConstraint": {
             "ability":                             "Die ED-ID der Fähigkeit die vorausgesetzt wird",
@@ -1608,6 +1700,20 @@
             "useRecoveryTestToLearnSpell":         "Erholungsprobe"
           },
           "movement":                              "Bewegung"
+        },
+        "LpEarningTransaction": {
+        },
+        "LpSpendingTransaction": {
+        },
+        "LpTracking": {
+        },
+        "LpTransaction": {
+        },
+        "RollOptions": {
+        },
+        "ThreadBase": {
+        },
+        "ThreadLevel": {
         }
       },
       "placeholderBlankSelectOption":              "---"
