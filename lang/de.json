@@ -711,8 +711,18 @@
     },
     "Data": {
       "ActiveEffect": {
+        "Change": {
+        },
+        "Eae": {
+        },
+        "EaeCondition": {
+        },
+        "EaeDuration": {
+        },
         "Hints":                                   "Effekt",
-        "Labels":                                  "Besonderer Effekt"
+        "Labels": {
+          "begin":                                 "Beginn"
+        }
       },
       "Actor": {
         "Hints": {
