@@ -243,7 +243,7 @@ export function prepareFormulaValue( model, keyPath, label, rollData ) {
     foundry.utils.setProperty( model, keyPath, roll.evaluateSync().total );
   } catch( err ) {
     if ( item.isEmbedded ) {
-      const message = game.i18n.format( "ED.Error.FormulaMalformedError", { property, name: model.name ?? item.name } );
+      const message = game.i18n.format( "ED.Notifications.Error.FormulaMalformedError", { property, name: model.name ?? item.name } );
       // item.actor._preparationWarnings.push( { message, link: item.uuid, type: "error" } );
       console.error( message, err );
     }

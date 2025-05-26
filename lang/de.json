@@ -2105,6 +2105,33 @@
         "standardEffect":                          "Standard Effekt",
         "strain":                                  "Überanstrengung"
       },
+      "Mask": {
+        "attackStepsBonus":                        "Angriffsbonus",
+        "attacks":                                 "Angriffs Anzahlbonus",
+        "burrow":                                  "Grabenbonus",
+        "challengingRate":                         "Herausforderungsratenbonus",
+        "charismaStep":                            "Charismastufenbonus",
+        "climb":                                   "Kletternbonus",
+        "damageStepsBonus":                        "Schadensstufenbonus",
+        "deathThreshold":                          "Todesschwellenbonus",
+        "dexterityStep":                           "Geschicklichkeitsstufenbonus",
+        "fly":                                     "Fliegenbonus",
+        "initiativeStep":                          "Initiativestufenbonus",
+        "knockDownStep":                           "Niederschlagsstufenbonus",
+        "movement":                                "Bewegungsbonus",
+        "mysticArmor":                             "Mystischer Rüstungsbonus",
+        "perceptionStep":                          "Wahrnehmungsstufenbonus",
+        "physicalArmor":                           "Physischer Rüstungsbonus",
+        "powers":                                  "Kräfte",
+        "recoveryTestsResource":                   "Erholungsstupfenbonus",
+        "strengthStep":                            "Stärkestufenbonus",
+        "swim":                                    "Schwimmenbonus",
+        "toughnessStep":                           "Zähigkeitsstufenbonus",
+        "unconsciousThreshold":                    "Bewusstlosigkeitsschwellenbonus",
+        "walk":                                    "Gehenbonus",
+        "willpowerStep":                           "Willenskraftstufenbonus",
+        "woundThreshold":                          "Wundschwellenbonus"
+      },
       "Namegiver": {
         "WeaponSize": {
           "OneHanded": {
@@ -2205,7 +2232,11 @@
       "windling":                                  "Windling"
     },
     "Notifications": {
-      "Error":                                     "TODO: Add translation",
+      "Error": {
+        "FormulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
+        "IdentifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
+        "InvalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp."
+      },
       "Info": {
         "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",

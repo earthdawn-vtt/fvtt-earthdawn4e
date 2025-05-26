@@ -64,7 +64,7 @@ export default class EdRoll extends Roll {
     // us ternary operator to also check for empty strings, nullish coalescing operator (??) only checks null or undefined
     const baseTerm = formula
       ? formula
-      : // : ( `${getDice( step )}[${game.i18n.localize( "ED.General.S.step" )} ${step}]` );
+      : // : ( `${getDice( step )}[${game.i18n.localize( "ED.Rolls.step )} ${step}]` );
       `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
         edRollOptions.step.total
       }]`;
