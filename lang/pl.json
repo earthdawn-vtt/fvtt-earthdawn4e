@@ -711,9 +711,14 @@
     },
     "Data": {
       "ActiveEffect": {
+        "Change":                                  "TODO: Add translation",
+        "Eae":                                     "TODO: Add translation",
+        "EaeCondition":                            "TODO: Add translation",
+        "EaeDuration":                             "TODO: Add translation",
         "Hints": {
         },
         "Labels": {
+          "begin":                                 "TODO: Add translation"
         }
       },
       "Actor": {
