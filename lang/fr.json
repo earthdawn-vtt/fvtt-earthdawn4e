@@ -2057,6 +2057,33 @@
         "standardEffect":                          "TODO: Add translation",
         "strain":                                  "TODO: Add translation"
       },
+      "Mask": {
+        "attackStepsBonus":                        "TODO: Add translation",
+        "attacks":                                 "TODO: Add translation",
+        "burrow":                                  "TODO: Add translation",
+        "challengingRate":                         "TODO: Add translation",
+        "charismaStep":                            "TODO: Add translation",
+        "climb":                                   "TODO: Add translation",
+        "damageStepsBonus":                        "TODO: Add translation",
+        "deathThreshold":                          "TODO: Add translation",
+        "dexterityStep":                           "TODO: Add translation",
+        "fly":                                     "TODO: Add translation",
+        "initiativeStep":                          "TODO: Add translation",
+        "knockDownStep":                           "TODO: Add translation",
+        "movement":                                "TODO: Add translation",
+        "mysticArmor":                             "TODO: Add translation",
+        "perceptionStep":                          "TODO: Add translation",
+        "physicalArmor":                           "TODO: Add translation",
+        "powers":                                  "TODO: Add translation",
+        "recoveryTestsResource":                   "TODO: Add translation",
+        "strengthStep":                            "TODO: Add translation",
+        "swim":                                    "TODO: Add translation",
+        "toughnessStep":                           "TODO: Add translation",
+        "unconsciousThreshold":                    "TODO: Add translation",
+        "walk":                                    "TODO: Add translation",
+        "willpowerStep":                           "TODO: Add translation",
+        "woundThreshold":                          "TODO: Add translation"
+      },
       "Namegiver": {
         "WeaponSize": {
           "OneHanded": {
@@ -2157,7 +2184,11 @@
       "windling":                                  "TODO: Add translation"
     },
     "Notifications": {
-      "Error":                                     "TODO: Add translation",
+      "Error": {
+        "FormulaMalformedError":                   "TODO: Add translation",
+        "IdentifierError":                         "TODO: Add translation",
+        "InvalidElementSubtype":                   "TODO: Add translation"
+      },
       "Info": {
         "noMoreItemsOfThisType":                   "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
