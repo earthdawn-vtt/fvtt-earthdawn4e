@@ -243,7 +243,7 @@
         "skills":                                  "Fertigkeiten",
         "specialAbility":                          "Sonstige Fähigkeit",
         "step":                                    "Stufe",
-        "strain":                                  "Überan-strenung",
+        "strain":                                  "Überanstr.",
         "talents":                                 "Talente",
         "talentsDiscipline":                       "Disziplintalente",
         "talentsFreeRacial":                       "Freie- und andere Talente",
@@ -1723,7 +1723,37 @@
         "description":                             "Beschreibung",
         "legendPoints":                            "Legendenpunkte"
       },
-      "Buttons":                                   "TODO: Add translation",
+      "Buttons": {
+        "add":                                     "Hinzufügen",
+        "attuneMatrix":                            "Matrix neu abstimmen",
+        "cancel":                                  "Abbrechen",
+        "cancelReattuning":                        "Abbrechen der Neuabstimmung",
+        "close":                                   "Schließen",
+        "complete":                                "Abschließen",
+        "configure":                               "Konfigurieren",
+        "continue":                                "Fortfahren",
+        "finish":                                  "Fertigstellen",
+        "free":                                    "Kostenlos",
+        "goBack":                                  "Zurück",
+        "learn":                                   "Lernen",
+        "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
+        "nextStep":                                "Nächster Schritt",
+        "nightRest":                               "Nachtruhe",
+        "noAbility":                               "Keine Fähigkeit vorhanden",
+        "noDiscipline":                            "Keine Disziplin ausgewählt",
+        "ok":                                      "OK",
+        "previousStep":                            "Vorheriger Schritt",
+        "reattuneOnTheFly":                        "Neu abstimmen während des Spiels",
+        "recoverStun":                             "Erholung von Betäubungsschaden",
+        "recovery":                                "Erholung",
+        "roll":                                    "Würfel!",
+        "roundStartRollInitiative":                "Runde Start: Würfle Initiative",
+        "save":                                    "Speichern",
+        "spendLp":                                 "Legendenpunkte ausgeben",
+        "takeDamage":                              "Schaden nehmen",
+        "teacherSpellcasting":                     "Lehrer Spruchzauberei",
+        "versatility":                             "Vielseitigkeit"
+      },
       "CharGen": {
         "Buttons": {
           "resetAttributes":                       "Attribute zurücksetzen",
@@ -1842,6 +1872,33 @@
         "inactiveUser":                            "Charaktere von inaktiven Spieler"
       },
       "Legend": {
+        "ClassAdvancement": {
+          "NoSpellsAvailable":                     "Keine Zauber verfügbar",
+          "NoSpellsSelected":                      "Keine Zauber ausgewählt",
+          "SelectedSpells":                        "Ausgewählte Zauber",
+          "YouCanChooseSpells":                    "Du kannst Zauber auswählen",
+          "chooseAbilityOption":                   "Wähle eine Fähigkeit",
+          "classIncreasedTier":                    "WO IST DAS??? CONTEXT Die Klasse wurde auf {newTier} erhöht",
+          "effectsGained":                         "Erhaltene Effekte",
+          "increaseClassTo":                       "Berufung auf {increaseClassToLevel} erhöhen",
+          "learningClass":                         "Lerne Berufung",
+          "optionalAbilityGained":                 "Du hast eine optionale Fähigkeit erhalten, die du später steigern kannst.",
+          "resourceStepIncreased":                 "Die Stufe der Ressourcen wurde erhöht. Dies kann die Stufe der Ressourcen erhöhen, die du verwenden kannst.",
+          "spellsGained":                          "Erhaltene Zauber"
+        },
+        "LearnSpell": {
+          "chatFlavorPatterncraft":                "{name} Lernt den Zauber {spell} mit Struktur Verstehen",
+          "chatFlavorTeacherTest":                 "{name} lernt den Zauber {spell} mit Hilfe des Lehrers",
+          "legendPatterncraft":                    "Struktur Verstehen",
+          "legendRequirements":                    "Voraussetzungen",
+          "legendTeacherTest":                     "Lehrer Test",
+          "noPatterncraftTalentFound":             "Kein Struktur Verstehen Talent gefunden",
+          "noSpellcastingTalentFound":             "Kein Spruchzauberei Talent gefunden",
+          "teacherBonusModifier":                  "Lehrer Bonus Modifikator"
+        },
+        "LpHistory": {
+          "addEarning":                            "Füge Legendenpunkte hinzu"
+        },
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
           "devotionIncreaseShortRequirements":     "<ul>\n<li>Der Questor kann pro Tag nur eine Weihekraft um einen Rang steigern.</li>\n<li>Der neue Rang darf nicht höher sein als der Rang der Questor-Weihekraft</li>\n</ul>\n",
@@ -1852,7 +1909,46 @@
           "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
           "skillIncreaseShortRequirements":        "<ul>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Der Charakter muss muss eine Anzahl an Wochen gleich dem neuen Fertigkeitsrang lernen.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Das Training einer Fertigkeit kostet in der Regel 10 Silber x dem neuen Fertigkeitsrang pro Woche</li>\n<li>Die letzte Steigerung der Fertigkeit muss mindestens {trainingTime} Wochen zurückliegen.</li>\n</ul>\n",
           "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
-        }
+        },
+        "Validation": {
+          "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
+          "availableMoney":                        "Ist ausreichend Silber vorhanden?",
+          "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
+          "enoughTalentsOnMinRank":                "Alle {required} Talente haben vorhanden",
+          "hasDamage":                             "Hat Schaden",
+          "hasRequiredJourneymanTalents":          "Hat die erforderlichen Gesellen-Talente",
+          "hasRequiredMasterTalents":              "Hat die erforderlichen Meister-Talente",
+          "hasRequiredNoviceTalents":              "Hat die erforderlichen Novizen-Talente",
+          "hasRequiredWardenTalents":              "Hat die erforderlichen Wächter-Talente",
+          "hasTalentFromCurrentCircle":            "Mindestens ein Talent des aktuellen Kreises auf einem Rang gleich dem neuen Kreis",
+          "hasTalentsOnMinRank":                   "Hat Talente auf dem Mindestrang {minRank}",
+          "hasWounds":                             "Hat Wunden",
+          "maxLevel":                              "Ist die Maximale Stufe erreicht?",
+          "maxLevelReached":                       "Maximale Stufe erreicht",
+          "noTalentFromCurrentCircleOnNewLevel":   "Hat kein Talent des aktuellen Kreises auf dem {nextLevel} Rang",
+          "notEnoughTalentsOfTier":                "Es sind nicht genügend {required} Talente auf Rang {nextLevel}, was ist {current}",
+          "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
+          "pathTalents":                           "Pfad-Talente",
+          "requiredPathRank":                      "Erforderlicher Pfad-Rang",
+          "sourceTalentName":                      "Quell-Talent Name",
+          "sourceTalentRank":                      "Quell-Talent Rang",
+          "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
+          "talentOptionLp":                        "Legendenpunkte für Talentoption",
+          "talentOptionLpCost":                    "Legendenpunkte Kosten für Talentoption",
+          "talentsRequirementFailed":              "Die folgenden Talente müssen mindestens einen Rang von  {requiredLevel} haben: {unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "Die folgenden Talente sind auf dem Mindestrang {requiredLevel}: {unfulfilledTalents}"
+        },
+        "configuration":                           "Konfiguration",
+        "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
+        "increaseQuestorDevotionPrompt":           "Wähle eine Questor-Weihekraft um sie zu steigern",
+        "initiativeAbilities":                     "Initiative Fähigkeiten",
+        "learnOnZeroOrOneRank":                    "Lerne auf Rang 0 oder 1",
+        "learnPathKnackPrompt":                    "Wähle ein Pfad-Kniff um es zu lernen",
+        "learnPathTalentPrompt":                   "Wähle ein Pfad-Talent um es zu lernen",
+        "learnQuestorPrompt":                      "Wähle eine Questor-Weihekraft um sie zu lernen",
+        "pathKnackNotFound":                       "Pfad-Kniff nicht gefunden",
+        "questorDevotionNotFound":                 "Questor-Weihekraft nicht gefunden",
+        "writtenRules":                            "Geschriebene Regeln"
       },
       "Placeholder": {
         "lpDescription":                           "Beschreibung der Legendenprämie"
@@ -1869,6 +1965,12 @@
         "step":                                    "Stufe",
         "strain":                                  "Überanstrengung"
       },
+      "Sorting": {
+        "item":                                    "Item",
+        "sortBy":                                  "Sortiere nach",
+        "time":                                    "Zeit",
+        "type":                                    "Typ"
+      },
       "Tabs": {
         "CharGen": {
           "attribute":                             "Attribute",
@@ -1882,7 +1984,27 @@
         "rollPromptBaseTab":                       "Basis Einstellungen",
         "rollPromptOtherTab":                      "Weitere Einstellungen"
       },
-      "Title":                                     "TODO: Add translation",
+      "Title": {
+        "assignLp":                                "Legendenpunkte zuweisen",
+        "attributeIncrease":                       "Attribut steigern",
+        "attuneMatrix":                            "Matrix neu abstimmen",
+        "characterGeneration":                     "Charaktererschaffung",
+        "chooseDiscipline":                        "Wähle eine Disziplin",
+        "chooseTier":                              "Wähle einen Kreis",
+        "classAdvancement":                        "Klassenaufstieg",
+        "drawWeapon":                              "Waffe ziehen",
+        "jumpUp":                                  "Aufspringen",
+        "knockDown":                               "Niederschlag",
+        "learnAbility":                            "Fähigkeit lernen",
+        "learnSpell":                              "Zauber lernen",
+        "lpIncrease":                              "Legendenpunkte erhöhen",
+        "lpLearnKnack":                            "Lerne Kniff",
+        "recovery":                                "Erholung",
+        "rollPrompt":                              "Würfel Dialog",
+        "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
+        "takeDamage":                              "Schaden nehmen",
+        "talentIncrease":                          "Talent steigern"
+      },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
       },

@@ -184,7 +184,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
         target:     { base: this.spell.system.learningDifficulty },
         step:       { modifiers },
         chatFlavor: game.i18n.format(
-          "ED.Dialogs.LearnSpell.chatFlavorPatterncraft",
+          "ED.Dialogs.Legend.LearnSpell.chatFlavorPatterncraft",
           { name: this.actor.name, spell: this.spell.name },
         ),
       }
