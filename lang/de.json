@@ -2233,11 +2233,14 @@
     },
     "Notifications": {
       "Error": {
+        "ActorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "FormulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "IdentifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
-        "InvalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp."
+        "InvalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
       },
       "Info": {
+        "ReattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
         "notAddedforTheActor":                     "Diese Item ist nicht für diesen Actortyp gedacht.",
@@ -2245,18 +2248,16 @@
       },
       "Warn": {
         "FormulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
-        "Legend": {
-          "abilityIncreaseProblems":               "Rang konnte nicht aktualisiert werden",
-          "cannotLearn":                           "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
-          "classIncreaseProblems":                 "Rang/Kreis konnte nicht aktualisiert werden",
-          "firstDisciplineViaCharGen":             "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
-          "noTalentCategorySelected":              "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
-          "questorItemNotUpdated":                 "Questor-Item konnte nicht aktualisiert werden"
-        },
+        "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
+        "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
+        "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
+        "noTalentCategorySelected":                "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
-        "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
+        "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
+        "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden"
       }
     },
     "Rolls": {
@@ -2294,6 +2295,22 @@
       "targetModifiers":                           "Ziel Modifikatoren"
     },
     "Settings": {
+      "CharGen": {
+        "attributePoints":                         "Verfügbare Attributspunkte",
+        "autoOpenCharGen":                         "Charaktergenerierung an?",
+        "hintAttributePoints":                     "Wie viele Attributspunkte stehen während der Charaktererschaffung zur Verfügung",
+        "hintAutoOpenCharGen":                     "automatisch die Charaktergenerierung starten",
+        "hintMaxRanks":                            "Maximale Ränge für Talente, Fertigkeiten und Weihekräfte während der Charaktergenerierung",
+        "hintMaxSpellCircle":                      "Welchen maximalen Kreis dürfen Zauber bei der Charaktererschaffung haben?",
+        "maxRanks":                                "Maximale Ränge",
+        "maxSpellCircle":                          "Maximaler Zauberkreis"
+      },
+      "Chat": {
+        "chatAvatar":                              "Chatnachricht Avatar",
+        "chatAvatarConfiguration":                 "Chat Avatar aus der Benutzer-Konfiguration",
+        "chatAvatarHint":                          "Welches Avatarbild soll für Chatnachrichten verwendet werden?",
+        "chatAvatarToken":                         "Chat Avatar des Token benutzen"
+      },
       "Edid": {
         "Versatility":                             "ED-ID für Vielseitigkeit",
         "VersatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
@@ -2312,6 +2329,18 @@
         "unarmedCombat":                           "ED-ID für Waffenlosen Kampf",
         "unarmedCombatHint":                       "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
       },
+      "Encumbrance": {
+        "encumbrance":                             "Belastung",
+        "encumbranceHint":                         "Soll Belastung berücksichtigt werden?"
+      },
+      "GameMechanics": {
+        "languages":                               "Sprachen",
+        "languagesHint":                           "Welche Sprachen sollen verwendet werden?",
+        "minimumDifficulty":                       "Minimale Schwierigkeit",
+        "minimumDifficultyHint":                   "Setze die minimale Schwierigkeit für Proben",
+        "spellcastingTypes":                       "Spruchzauberei Typen",
+        "spellcastingTypesHint":                   "Welche Spruchzauberei Typen sollen verwendet werden?"
+      },
       "Hint": {
         "enforceLivingArmor":                      "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
       },
@@ -2323,16 +2352,48 @@
         "allTalentsHouseRule":                     "Alle Talente für Kreisaufstieg (Hausregel)",
         "attributeOptions":                        "Kosten Attributesteigerung",
         "circleTalentRequirements":                "Mindestanforderungen Talente bei Kreisaufstieg",
+        "circleX100":                              "Zauberkreis x 100",
         "disciplineTalents":                       "Disziplintalente auf nächstem Kreis",
+        "free":                                    "Umsonst",
+        "freePerCircle":                           "Umsonst pro Kreis",
+        "hintAttributeOption":                     "Wie können Attribute gesteigert werden?",
         "hintAttributeOptions":                    "Regeln zum steigern von Attributen",
         "hintCircleTalentRequirements":            "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
+        "hintLearnSpellUsePatterncraft":           "kann ein Strukturverstehenwurf das erlernen von Zaubern vereinfachen?",
+        "hintLearnSpellsOnCircleUp":               "Soll ein Zauber beim Kreisaufstieg erlernt werden?",
         "hintLpTrackingUsed":                      "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
-        "lpTrackingUsed":                          "Tracke Legendenpunkte"
+        "hintMaxRankDevotion":                     "Maximaler Rang für Weihekräfte",
+        "hintMaxRankSkill":                        "Maximaler Rang für Fertigkeiten",
+        "hintMaxRankTalent":                       "Maximaler Rang für Talente",
+        "hintQuickDeleteEmbeddedOnShiftClick":     "Schnelle Löschfunktion aktiviere Shift+Klick",
+        "hintRemoveSilver":                        "Soll Silber automatische durch LP-Ausgaben entfernt werden?",
+        "hintSpellCost":                           "Zauberkosten beim lernen",
+        "learnSpellUsePatterncraft":               "Strukturverstehenwurf beim Zauberlernen",
+        "learnSpellsOnCircleUp":                   "Zauber beim Kreisaufstieg erlernen",
+        "lpTrackingUsed":                          "Tracke Legendenpunkte",
+        "maxRankDevotion":                         "Weihekräfte Rang",
+        "maxRankSkill":                            "Fertigkeiten Rang",
+        "maxRankTalent":                           "Talente Rang",
+        "noviceTalent":                            "Wie ein Novizen Talent",
+        "quickDeleteEmbeddedOnShiftClick":         "Schnelles Löschen",
+        "removeSilver":                            "Silber entfernen",
+        "spellCost":                               "Zauberkosten",
+        "spendLp":                                 "Legendenpunkte ausgeben",
+        "spendLpPerCircle":                        "Legendenpunkte ausgeben, einmal pro Kreis"
       },
       "SpecificSettingOptions": {
         "changelog":                               "Änderungsprotokoll",
         "help":                                    "Hilfe",
+        "title":                                   "Spezifische Einstellungen",
         "troubleshooting":                         "Fehlermeldung"
+      },
+      "StepTable": {
+        "editionClassic":                          "Klassische (zweite) Edition",
+        "editionFirst":                            "Erste Edition",
+        "editionFourth":                           "Vierte Edition",
+        "editionThird":                            "Dritte Edition",
+        "hint":                                    "Wähle die Stufentabelle aus",
+        "stepTable":                               "Stufentabelle"
       },
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"
