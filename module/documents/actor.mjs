@@ -630,7 +630,7 @@ export default class ActorEd extends Actor {
             base:      0,
             modifiers: {},
           },
-          chatFlavor:       game.i18n.format( "TODO.ED.Chat.Flavor.rollUnarmedDamage", {} ),
+          chatFlavor:       game.i18n.format( "ED.Chat.Flavor.rollUnarmedDamage", {sourceActor: this.name} ),
           testType:         "effect",
           rollType:         "damage",
           weaponUuid:       null,
@@ -1099,7 +1099,7 @@ export default class ActorEd extends Actor {
                   sum( equippedArmor.map( armor => armor.system.piecemeal.size ) )
                     + itemToUpdate.system.piecemeal.size > 5
                 ) {
-                  ui.notifications.warn( game.i18n.localize( "ED4E.Notifications.Warn.piecemealArmorSizeExceeded" ) );
+                  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.piecemealArmorSizeExceeded" ) );
                   break;
                 }
               }

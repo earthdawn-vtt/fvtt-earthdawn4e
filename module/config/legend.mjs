@@ -179,15 +179,15 @@ export const lpIndexModForTier = [
 ];
 
 export const lpSpendingTypes = {
-  attribute:        "X.Attribute",
-  devotion:         "X.devotion",
-  knack:            "X.knack",
-  knackManeuver:    "X.knackManeuver",
-  skill:            "X.skill",
-  spell:            "X.spell",
-  spellKnack:       "X.spellKnack",
-  talent:           "X.talent",
-  thread:           "X.thread",
+  attribute:        "ED.Actor.LpTracking.lpSpendingTypes.attribute",
+  devotion:         "ED.Actor.LpTracking.lpSpendingTypes.devotion",
+  knack:            "ED.Actor.LpTracking.lpSpendingTypes.knack",
+  knackManeuver:    "ED.Actor.LpTracking.lpSpendingTypes.knackManeuver",
+  skill:            "ED.Actor.LpTracking.lpSpendingTypes.skill",
+  spell:            "ED.Actor.LpTracking.lpSpendingTypes.spell",
+  spellKnack:       "ED.Actor.LpTracking.lpSpendingTypes.spellKnack",
+  talent:           "ED.Actor.LpTracking.lpSpendingTypes.talent",
+  thread:           "ED.Actor.LpTracking.lpSpendingTypes.thread",
 };
 preLocalize( "lpSpendingTypes" );
 

@@ -7,16 +7,16 @@
     <div>
       <button type="button" class="emptyAll" data-action="emptyAll">
         <i class="fa-solid fa-empty-set" inert></i>
-        <span>{{localize "ED.X.TODO.EmptyAllMatrices"}}</span>
+        <span>{{localize "ED.Dialogs.Buttons.emptyAllMatrices"}}</span>
       </button>
     </div>
-    <summary>{{localize "ED.X.TODO.otherMatrices"}}</summary>
+    <summary>{{localize "ED.Dialogs.AttuneMatrices.summary"}}</summary>
   {{/if}}
   {{#unless firstField}}
     <div>
       <button type="button" class="emptyAll" data-action="emptyAll">
         <i class="fa-solid fa-empty-set" inert></i>
-        <span>{{localize "ED.X.TODO.EmptyAllMatrices"}}</span>
+        <span>{{localize "ED.Dialogs.Buttons.emptyAllMatrices"}}</span>
       </button>
     </div>
   {{/unless}}
@@ -30,7 +30,7 @@
   {{/if}}
 
   <fieldset class="reattuneOnTheFly">
-    <legend>{{localize "ED.TODO.X.OnTheFly"}}</legend>
+    <legend>{{localize "ED.Dialogs.Header.attuneOnTheFly"}}</legend>
     {{formGroup threadWeavingField value=data.threadWeavingId localize=true}}
   </fieldset>
 </div>

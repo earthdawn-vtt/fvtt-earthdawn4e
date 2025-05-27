@@ -1,5 +1,16 @@
 {
-  "COMBAT":                                        "TODO: Add translation",
+  "COMBAT": {
+    "CombatantActor":                              "Kämpfer",
+    "CombatantDefeated":                           "Kämpfer besiegt",
+    "CombatantHidden":                             "Kämpfer versteckt",
+    "CombatantImage":                              "Kämpfer Bild",
+    "CombatantInitiative":                         "Kämpfer Initiative",
+    "CombatantName":                               "Kämpfer Name",
+    "CombatantShowStartRoundPrompt":               "Kämpfer Runde Start Prompt",
+    "CombatantStatus":                             "Kämpfer Status",
+    "CombatantToken":                              "Kämpfer Token",
+    "NotStarted":                                  "Noch nicht gestartet"
+  },
   "ED": {
     "ActiveEffect": {
       "ChangeKeys": {
@@ -31,7 +42,40 @@
       "Header": {
         "applyToAbility":                          "Auf Fähigkeit anwenden"
       },
-      "Status":                                    "TODO: Add translation",
+      "Status": {
+        "aggressive":                              "Aggressiver Angriff",
+        "attackKnockdown":                         "Angriff zum Niederschlag",
+        "attackStun":                              "Angriff zum Betäuben",
+        "attuningOnTheFly":                        "Matrix auf die Schnelle abstimmen",
+        "blindness":                               "Geblendet",
+        "blindsided":                              "Angriff aus dem Toten Winkel",
+        "calledShot":                              "Geziehlter Schuss",
+        "concentrating":                           "Konzentration",
+        "cover":                                   "Deckung",
+        "coverFull":                               "Volle Deckung",
+        "coverPartial":                            "Halbe Deckung",
+        "darkness":                                "Dunkelheit",
+        "darknessFull":                            "Volle Dunkelheit",
+        "darknessPartial":                         "Teilweise Dunkelheit",
+        "dazzled":                                 "Betäubt",
+        "dead":                                    "Tod",
+        "defensive":                               "Defensive Haltung",
+        "fury":                                    "Zorn",
+        "grappled":                                "Umklammert",
+        "harried":                                 "Bedrängt",
+        "impaired":                                "Eingeschränkte Bewegung",
+        "impairedHeavy":                           "Bewegung stark eingeschränkt",
+        "impairedLight":                           "Bewegung leicht eingeschränkt",
+        "jumpUp":                                  "Aufspringen",
+        "knockedDown":                             "Niedergeschlagen",
+        "overwhelmed":                             "Überwältigt",
+        "setAgainstCharge":                        "Erwartung eines Sturmangriffs",
+        "shatterShield":                           "Zerschmettern eines Schildes",
+        "splitMovement":                           "Bewegung aufteilen",
+        "surprised":                               "Überrascht",
+        "tailAttack":                              "Schwanzangriff",
+        "unconscious":                             "Bewusstlos"
+      },
       "Tooltips": {
         "abilityEdidSelection":                    "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       },
@@ -148,13 +192,16 @@
         "attacks":                                 "Angriffe",
         "attribute":                               "Attribut",
         "attributes":                              "Attribute",
+        "biography":                               "Biographie",
         "carryingCapacity":                        "Tragkraft",
+        "castingDifficulty":                       "Zauberschwierigkeit",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
         "damage":                                  "Schaden",
         "defaultAttacks":                          "Standard Angriffe",
         "defenses":                                "Verteidigung",
         "devotion":                                "Weihekraft",
+        "devotions":                               "Weihekräfte",
         "disciplines":                             "Disziplinen",
         "duration":                                "Dauer",
         "effectsPermanent":                        "Permanente Effekte",
@@ -163,6 +210,7 @@
         "equipment":                               "Ausrüstung",
         "equippedStatus":                          "Ausgerüstet",
         "extraSuccesses":                          "Zusätzliche Erfolge",
+        "favorites":                               "Favoriten",
         "healthRating":                            "Gesundheit",
         "inactive":                                "Ausgeschaltet?",
         "information":                             "Informationen",
@@ -181,6 +229,7 @@
         "mysticalArmor":                           "Mystische Rüstung",
         "mysticalDefense":                         "Mystische Verteidigung",
         "name":                                    "Name",
+        "namegiver":                               "Namensgeber",
         "navigator":                               "Navigator",
         "origin":                                  "Herkunft",
         "paths":                                   "Pfade",
@@ -192,14 +241,19 @@
         "rank":                                    "Rang",
         "recovery":                                "Erholung",
         "shields":                                 "Schilde",
+        "skills":                                  "Fertigkeiten",
         "specialAbility":                          "Sonstige Fähigkeit",
         "step":                                    "Stufe",
-        "strain":                                  "Überan-strenung",
+        "strain":                                  "Überanstr.",
+        "talents":                                 "Talente",
         "talentsDiscipline":                       "Disziplintalente",
         "talentsFreeRacial":                       "Freie- und andere Talente",
         "talentsOptional":                         "Optionale Talente",
         "talentsVersatility":                      "Vielseitigkeitstalente",
-        "weapons":                                 "Waffen"
+        "threads":                                 "Fäden",
+        "vocations":                               "Berufungen",
+        "weapons":                                 "Waffen",
+        "weavingDifficulty":                       "Webschwierigkeit"
       },
       "Karma": {
         "current":                                 "Aktuell",
@@ -215,6 +269,17 @@
           "name":                                  "Name",
           "type":                                  "Typ"
         },
+        "LpSpendingTypes": {
+          "Attribute":                             "Attribut",
+          "devotion":                              "Weihekraft",
+          "knack":                                 "Kniff",
+          "knackManeuver":                         "Kniff Manöver",
+          "skill":                                 "Fertigkeit",
+          "spell":                                 "Zauber",
+          "spellKnack":                            "Zauber Kniff",
+          "talent":                                "Talent",
+          "thread":                                "Faden"
+        },
         "Spendings": {
           "description":                           "Verbesserung von {previousLevel} auf {newLevel}",
           "descriptionAbility":                    "Verbessert {abilityName} von {previousLevel} auf {newLevel}",
@@ -222,7 +287,9 @@
           "descriptionNewlyAdded":                 "Neu hinzugefügt",
           "knackSourceNotFound":                   "Der Kniff verweißt auf kein Talent des Acteurs.",
           "knackSourceNotHighEnough":              "Der Rank des Talents ist nicht hoch genug für diesen Kniff",
-          "maxIncreaseReached":                    "Maximale Steigerung erreicht"
+          "learningTransactionDescription":        "TODO: WO IST DAS?",
+          "maxIncreaseReached":                    "Maximale Steigerung erreicht",
+          "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         },
         "attributeImprovement":                    "Attribut Erhöhung"
       },
@@ -240,6 +307,11 @@
         "specials":                                "Effekte",
         "spells":                                  "Zauber",
         "talents":                                 "Talente"
+      },
+      "Recovery": {
+        "current":                                 "Aktuell",
+        "daily":                                   "Täglich",
+        "step":                                    "Stufe"
       },
       "Spellcasting": {
         "elementalist":                            "Elementarist",
@@ -286,7 +358,9 @@
         "mainHand":                                "Haupthand",
         "notEquipped":                             "Nicht Ausgerüstet",
         "offHand":                                 "Nebenhand",
+        "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
+        "recoveryRestTooltip":                     "Erholung",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
         "twoHanded":                               "Zweihändig"
@@ -295,8 +369,14 @@
     "Advancement": {
       "Pools": {
         "class":                                   "Berufung",
+        "classHint":                               "Disziplintalente die auf diesem Rang/Kreis gelernt werden",
+        "effects":                                 "Effekte",
+        "effectsHint":                             "Effekte die auf diesem Rang/Kreis hinzugefügt werden",
         "free":                                    "Frei",
-        "namegiver":                               "Namensgeber"
+        "freeHint":                                "Freie Talente die auf diesem Rang/Kreis hinzugefügt werden",
+        "namegiver":                               "Namensgeber",
+        "special":                                 "Spezial",
+        "specialHint":                             "Spezialfähigkeiten die auf diesem Rang/Kreis hinzugefügt werden"
       }
     },
     "Chat": {
@@ -312,7 +392,20 @@
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Nimm den Schaden für deinen Charakter"
       },
-      "Flavor":                                    "TODO: Add translation",
+      "Flavor": {
+        "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
+        "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
+        "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
+        "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
+        "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
+        "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
+        "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
+        "rollRecovery":                            "{sourceActor} würfelt {recovery} ({step})",
+        "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
+        "takeDamage":                              "Schaden nehmen",
+        "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
+        "undoDamage":                              "Setzte den Schaden zurück"
+      },
       "Header": {
         "actionTest":                              "Aktions Test",
         "arbitraryTest":                           "Willkürlicher Test",
@@ -320,6 +413,14 @@
         "attackReactions":                         "Reaktionen",
         "attackTargets":                           "Ziele",
         "effectTest":                              "Effect Test"
+      }
+    },
+    "Conditions": {
+      "Encumbrance": {
+        "heavy":                                   "Stark überlastet",
+        "light":                                   "Wenig überlastet",
+        "notEncumbered":                           "Nicht Überlastet",
+        "tooHeavy":                                "Du kannst das nicht alles tragen!"
       }
     },
     "Config": {
@@ -350,6 +451,11 @@
       "Armor": {
         "mystical":                                "Mystische Rüstung",
         "physical":                                "Physische Rüstung"
+      },
+      "AttuningType": {
+        "grimoire":                                "Abstimmung eines Grimoires",
+        "matrixOnTheFly":                          "Eine Matrix auf die Schnelle abstimmen",
+        "matrixStandard":                          "Eine Matrix abstimmen"
       },
       "Availability": {
         "average":                                 "Durchschnittlich",
@@ -394,6 +500,7 @@
       },
       "Eae": {
         "DurationTypes": {
+          "allKnockdownTests":                     "Alle Niederschlagsproben",
           "combat":                                "Kampf",
           "permanent":                             "Permanent",
           "realTime":                              "Zeit",
@@ -415,6 +522,7 @@
       },
       "Elements": {
         "air":                                     "Luft",
+        "airElectric":                             "Elektrizität",
         "airElectricity":                          "Elektrizität",
         "earth":                                   "Erde",
         "earthMetal":                              "Metall",
@@ -448,6 +556,12 @@
         "freePerCircle":                           "Bei Kreisaufstieg (kostenlos)",
         "spendLp":                                 "Kostet Legendpunkte",
         "spendLpPerCircle":                        "Bei Kreisaufstieg (kostet Legendenpunkte)"
+      },
+      "MatrixTypes": {
+        "armored":                                 "Gepanzerte Matrix",
+        "enhanced":                                "Verbesserte Matrix",
+        "shared":                                  "Summenmatrix",
+        "standard":                                "Standard Matrix"
       },
       "MovementTypes": {
         "burrow":                                  "Graben",
@@ -485,6 +599,24 @@
         "arbitraryOptionalAttribute":              "Willkürlich und/oder Attribut",
         "noHealing":                               "Keine Heilung",
         "noRecovery":                              "Keine Erholung"
+      },
+      "Resistance": {
+        "fire":                                    "Feuer"
+      },
+      "RollTypes": {
+        "ability":                                 "Fähigkeit",
+        "attack":                                  "Angriff",
+        "attribute":                               "Attribute",
+        "damage":                                  "Schaden",
+        "effect":                                  "Effekt",
+        "halfmagic":                               "Halb Magie",
+        "initiative":                              "Initiative",
+        "jumpUp":                                  "Aufspringen",
+        "knockDown":                               "Niederschlag",
+        "reaction":                                "Reaktion",
+        "recovery":                                "Erholung",
+        "spellcasting":                            "Spruchzauberei",
+        "threadWeaving":                           "Fadenweben"
       },
       "ScalarTimePeriods": {
         "day":                                     "Tag",
@@ -530,6 +662,9 @@
         "novice":                                  "Novize",
         "warden":                                  "Wächter"
       },
+      "Vulnerabilities": {
+        "fire":                                    "Feuer"
+      },
       "WeaponSubType": {
         "axe":                                     "Axt",
         "blade":                                   "Klinge",
@@ -563,19 +698,12 @@
         "lowestOfGroup":                           "Niedrigster der Gruppe",
         "lowestX":                                 "Niedrigster + Ziele"
       },
-      "rollTypes": {
-        "ability":                                 "Fähigkeit",
-        "attack":                                  "Angriff",
-        "attribute":                               "Attribute",
-        "effect":                                  "Effekt",
-        "halfmagic":                               "Halb Magie",
-        "initiative":                              "Initiative",
-        "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
-        "reaction":                                "Reaktion",
-        "recovery":                                "Erholung",
-        "spellcasting":                            "Spruchzauberei",
-        "threadWeaving":                           "Fadenweben"
+      "illusionType": {
+        "figment":                                 "Gebilde",
+        "glamour":                                 "Glamour",
+        "illusion":                                "Illusion",
+        "phantasm":                                "Phantasma",
+        "shadow":                                  "Schatten"
       },
       "spellcastingTypes": {
         "elementalism":                            "Elementarist",
@@ -596,12 +724,36 @@
         "social":                                  "Sozial"
       }
     },
+    "Controls": {
+      "delete":                                    "Lösche Item",
+      "displayItem":                               "Zeige Item im Chat",
+      "downgrade":                                 "Herabstufen",
+      "edit":                                      "Bearbeiten",
+      "lockHint":                                  "TODO, hier fehlt die beschreibung für 'lockHint'",
+      "middleClick":                               "Mittlere Maustaste (Mausrad)",
+      "upgrade":                                   "Hochstufen"
+    },
     "Data": {
       "ActiveEffect": {
+        "Change": {
+        },
+        "Eae": {
+        },
+        "EaeCondition": {
+        },
+        "EaeDuration": {
+        },
         "Hints":                                   "Effekt",
-        "Labels":                                  "Besonderer Effekt"
+        "Labels": {
+          "begin":                                 "Beginn"
+        },
+        "placeholderBlankSelectOption":            "TODO, hier fehlt die beschreibung für 'placeholderBlankSelectOption'"
       },
       "Actor": {
+        "Common":                                  "Allgemein",
+        "Creature":                                "Kreature",
+        "Dragon":                                  "Drache",
+        "Group":                                   "Gruppe",
         "Hints": {
           "Characteristics": {
             "armor":                               "Werte die von erlittenem Schaden abgezogen werden",
@@ -650,6 +802,7 @@
           "karmaStep":                             "Die Stufe die verwendet wird wenn Karmapunkte ausgegeben werden",
           "singleBonuses":                         "Einzelne Wertänderungen "
         },
+        "Horror":                                  "Dämon",
         "Labels": {
           "Characteristics": {
             "armor":                               "Rüstung",
@@ -697,7 +850,15 @@
           "karmaMax":                              "Maximale Karmapunkte",
           "karmaStep":                             "Karma Stufe",
           "singleBonuses":                         "Einzelne Boni"
-        }
+        },
+        "Loot":                                    "Beute",
+        "Namegiver":                               "Namensgeber",
+        "Npc":                                     "Nicht-Spieler-Charakter",
+        "Pc":                                      "Charakter",
+        "Sentient":                                "Wesen",
+        "Spirit":                                  "Geist",
+        "Trap":                                    "Falle",
+        "Vehicle":                                 "Fahrzeug"
       },
       "Fields": {
         "Labels": {
@@ -761,8 +922,31 @@
         }
       },
       "Item": {
+        "Ability": {
+        },
+        "Action": {
+        },
+        "Armor": {
+        },
+        "BindingSecret": {
+        },
+        "Class": {
+        },
+        "CurseHorrorMark": {
+        },
+        "Description": {
+        },
+        "Devotion": {
+        },
+        "Discipline": {
+        },
+        "Effect": {
+        },
+        "Equipment": {
+        },
         "Fields": {
-          "dispelDifficulty":                      "Neutralisierungsschwerigkeit"
+          "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
+          "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
         "Hints": {
           "Ability": {
@@ -857,6 +1041,7 @@
               "twoHandedMax":                      "Maximalgröße für Zweihandwaffen",
               "twoHandedMin":                      "Minimalgröße für Zweihandwaffen"
             },
+            "abilities":                           "Welche Fähigkeiten hat dieser Namensgeber?",
             "karmaModifier":                       "Wie viele Karma Punkte erhält dieser Namensgeber pro Kreis?",
             "livingArmorOnly":                     "Es kann nur nur lebendige Rüstung getragen werden.",
             "tail":                                "Kann dieser Namensgeber Angriffe mit dem Schwanz ausführen",
@@ -890,6 +1075,7 @@
               "level":                             "Fadenrang",
               "maxThreads":                        "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
               "mysticalDefense":                   "Die Mystisch Verteidigung des Fadengegenstand.",
+              "threadLevel":                       "Fadenrang",
               "tier":                              "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?"
             },
             "UsableItem": {
@@ -1303,6 +1489,36 @@
           },
           "edid":                                  "ED-ID"
         },
+        "Learnable": {
+        },
+        "LpIncrease": {
+        },
+        "Maneuver": {
+        },
+        "Mask": {
+        },
+        "Namegiver": {
+        },
+        "Path": {
+        },
+        "PhysicalItem": {
+        },
+        "PoisonDisease": {
+        },
+        "Power": {
+        },
+        "Questor": {
+        },
+        "Rollable": {
+        },
+        "Shield": {
+        },
+        "ShipWeapon": {
+        },
+        "Skill": {
+        },
+        "SpecaialAbility": {
+        },
         "Spell": {
           "FIELDS": {
             "spellcastingType": {
@@ -1310,6 +1526,16 @@
               "label":                             "Spruchzauberei Typ"
             }
           }
+        },
+        "SpellKnack": {
+        },
+        "Talent": {
+        },
+        "Target": {
+        },
+        "Thread": {
+        },
+        "Weapon": {
         }
       },
       "Journal": {
@@ -1317,6 +1543,20 @@
         "Labels":                                  "Beschreibung"
       },
       "Other": {
+        "AbilityRollOptions": {
+        },
+        "Advancement": {
+        },
+        "AdvancementLevel": {
+        },
+        "AttackRollOptions": {
+        },
+        "AttuningRollOptions": {
+        },
+        "CharacterGeneration": {
+        },
+        "DamageRollOptions": {
+        },
         "Hints": {
           "AbilityConstraint": {
             "ability":                             "Die ED-ID der Fähigkeit die vorausgesetzt wird",
@@ -1485,6 +1725,20 @@
             "useRecoveryTestToLearnSpell":         "Erholungsprobe"
           },
           "movement":                              "Bewegung"
+        },
+        "LpEarningTransaction": {
+        },
+        "LpSpendingTransaction": {
+        },
+        "LpTracking": {
+        },
+        "LpTransaction": {
+        },
+        "RollOptions": {
+        },
+        "ThreadBase": {
+        },
+        "ThreadLevel": {
         }
       },
       "placeholderBlankSelectOption":              "---"
@@ -1494,7 +1748,42 @@
         "description":                             "Beschreibung",
         "legendPoints":                            "Legendenpunkte"
       },
-      "Buttons":                                   "TODO: Add translation",
+      "AttuneMatrices": {
+        "summary":                                 "Zusammenfassung"
+      },
+      "Buttons": {
+        "add":                                     "Hinzufügen",
+        "attuneMatrices":                          "Matrizen neu abstimmen",
+        "attuneMatrix":                            "Matrix neu abstimmen",
+        "cancel":                                  "Abbrechen",
+        "cancelReattuning":                        "Abbrechen der Neuabstimmung",
+        "close":                                   "Schließen",
+        "complete":                                "Abschließen",
+        "configure":                               "Konfigurieren",
+        "continue":                                "Fortfahren",
+        "emptyAllMatrices":                        "Alle Matrizen leeren",
+        "finish":                                  "Fertigstellen",
+        "free":                                    "Kostenlos",
+        "goBack":                                  "Zurück",
+        "learn":                                   "Lernen",
+        "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
+        "nextStep":                                "Nächster Schritt",
+        "nightRest":                               "Nachtruhe",
+        "noAbility":                               "Keine Fähigkeit vorhanden",
+        "noDiscipline":                            "Keine Disziplin ausgewählt",
+        "ok":                                      "OK",
+        "previousStep":                            "Vorheriger Schritt",
+        "reattuneOnTheFly":                        "Neu abstimmen während des Spiels",
+        "recoverStun":                             "Erholung von Betäubungsschaden",
+        "recovery":                                "Erholung",
+        "roll":                                    "Würfel!",
+        "roundStartRollInitiative":                "Runde Start: Würfle Initiative",
+        "save":                                    "Speichern",
+        "spendLp":                                 "Legendenpunkte ausgeben",
+        "takeDamage":                              "Schaden nehmen",
+        "teacherSpellcasting":                     "Lehrer Spruchzauberei",
+        "versatility":                             "Vielseitigkeit"
+      },
       "CharGen": {
         "Buttons": {
           "resetAttributes":                       "Attribute zurücksetzen",
@@ -1610,9 +1899,37 @@
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
+        "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
         "inactiveUser":                            "Charaktere von inaktiven Spieler"
       },
       "Legend": {
+        "ClassAdvancement": {
+          "NoSpellsAvailable":                     "Keine Zauber verfügbar",
+          "NoSpellsSelected":                      "Keine Zauber ausgewählt",
+          "SelectedSpells":                        "Ausgewählte Zauber",
+          "YouCanChooseSpells":                    "Du kannst Zauber auswählen",
+          "chooseAbilityOption":                   "Wähle eine Fähigkeit",
+          "classIncreasedTier":                    "WO IST DAS??? CONTEXT Die Klasse wurde auf {newTier} erhöht",
+          "effectsGained":                         "Erhaltene Effekte",
+          "increaseClassTo":                       "Berufung auf {increaseClassToLevel} erhöhen",
+          "learningClass":                         "Lerne Berufung",
+          "optionalAbilityGained":                 "Du hast eine optionale Fähigkeit erhalten, die du später steigern kannst.",
+          "resourceStepIncreased":                 "Die Stufe der Ressourcen wurde erhöht. Dies kann die Stufe der Ressourcen erhöhen, die du verwenden kannst.",
+          "spellsGained":                          "Erhaltene Zauber"
+        },
+        "LearnSpell": {
+          "chatFlavorPatterncraft":                "{name} Lernt den Zauber {spell} mit Struktur Verstehen",
+          "chatFlavorTeacherTest":                 "{name} lernt den Zauber {spell} mit Hilfe des Lehrers",
+          "legendPatterncraft":                    "Struktur Verstehen",
+          "legendRequirements":                    "Voraussetzungen",
+          "legendTeacherTest":                     "Lehrer Test",
+          "noPatterncraftTalentFound":             "Kein Struktur Verstehen Talent gefunden",
+          "noSpellcastingTalentFound":             "Kein Spruchzauberei Talent gefunden",
+          "teacherBonusModifier":                  "Lehrer Bonus Modifikator"
+        },
+        "LpHistory": {
+          "addEarning":                            "Füge Legendenpunkte hinzu"
+        },
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
           "devotionIncreaseShortRequirements":     "<ul>\n<li>Der Questor kann pro Tag nur eine Weihekraft um einen Rang steigern.</li>\n<li>Der neue Rang darf nicht höher sein als der Rang der Questor-Weihekraft</li>\n</ul>\n",
@@ -1623,7 +1940,46 @@
           "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
           "skillIncreaseShortRequirements":        "<ul>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Der Charakter muss muss eine Anzahl an Wochen gleich dem neuen Fertigkeitsrang lernen.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Das Training einer Fertigkeit kostet in der Regel 10 Silber x dem neuen Fertigkeitsrang pro Woche</li>\n<li>Die letzte Steigerung der Fertigkeit muss mindestens {trainingTime} Wochen zurückliegen.</li>\n</ul>\n",
           "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
-        }
+        },
+        "Validation": {
+          "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
+          "availableMoney":                        "Ist ausreichend Silber vorhanden?",
+          "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
+          "enoughTalentsOnMinRank":                "Alle {required} Talente haben vorhanden",
+          "hasDamage":                             "Hat Schaden",
+          "hasRequiredJourneymanTalents":          "Hat die erforderlichen Gesellen-Talente",
+          "hasRequiredMasterTalents":              "Hat die erforderlichen Meister-Talente",
+          "hasRequiredNoviceTalents":              "Hat die erforderlichen Novizen-Talente",
+          "hasRequiredWardenTalents":              "Hat die erforderlichen Wächter-Talente",
+          "hasTalentFromCurrentCircle":            "Mindestens ein Talent des aktuellen Kreises auf einem Rang gleich dem neuen Kreis",
+          "hasTalentsOnMinRank":                   "Hat Talente auf dem Mindestrang {minRank}",
+          "hasWounds":                             "Hat Wunden",
+          "maxLevel":                              "Ist die Maximale Stufe erreicht?",
+          "maxLevelReached":                       "Maximale Stufe erreicht",
+          "noTalentFromCurrentCircleOnNewLevel":   "Hat kein Talent des aktuellen Kreises auf dem {nextLevel} Rang",
+          "notEnoughTalentsOfTier":                "Es sind nicht genügend {required} Talente auf Rang {nextLevel}, was ist {current}",
+          "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
+          "pathTalents":                           "Pfad-Talente",
+          "requiredPathRank":                      "Erforderlicher Pfad-Rang",
+          "sourceTalentName":                      "Quell-Talent Name",
+          "sourceTalentRank":                      "Quell-Talent Rang",
+          "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
+          "talentOptionLp":                        "Legendenpunkte für Talentoption",
+          "talentOptionLpCost":                    "Legendenpunkte Kosten für Talentoption",
+          "talentsRequirementFailed":              "Die folgenden Talente müssen mindestens einen Rang von  {requiredLevel} haben: {unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "Die folgenden Talente sind auf dem Mindestrang {requiredLevel}: {unfulfilledTalents}"
+        },
+        "configuration":                           "Konfiguration",
+        "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
+        "increaseQuestorDevotionPrompt":           "Wähle eine Questor-Weihekraft um sie zu steigern",
+        "initiativeAbilities":                     "Initiative Fähigkeiten",
+        "learnOnZeroOrOneRank":                    "Lerne auf Rang 0 oder 1",
+        "learnPathKnackPrompt":                    "Wähle ein Pfad-Kniff um es zu lernen",
+        "learnPathTalentPrompt":                   "Wähle ein Pfad-Talent um es zu lernen",
+        "learnQuestorPrompt":                      "Wähle eine Questor-Weihekraft um sie zu lernen",
+        "pathKnackNotFound":                       "Pfad-Kniff nicht gefunden",
+        "questorDevotionNotFound":                 "Questor-Weihekraft nicht gefunden",
+        "writtenRules":                            "Geschriebene Regeln"
       },
       "Placeholder": {
         "lpDescription":                           "Beschreibung der Legendenprämie"
@@ -1640,6 +1996,12 @@
         "step":                                    "Stufe",
         "strain":                                  "Überanstrengung"
       },
+      "Sorting": {
+        "item":                                    "Item",
+        "sortBy":                                  "Sortiere nach",
+        "time":                                    "Zeit",
+        "type":                                    "Typ"
+      },
       "Tabs": {
         "CharGen": {
           "attribute":                             "Attribute",
@@ -1653,7 +2015,27 @@
         "rollPromptBaseTab":                       "Basis Einstellungen",
         "rollPromptOtherTab":                      "Weitere Einstellungen"
       },
-      "Title":                                     "TODO: Add translation",
+      "Title": {
+        "assignLp":                                "Legendenpunkte zuweisen",
+        "attributeIncrease":                       "Attribut steigern",
+        "attuneMatrix":                            "Matrix neu abstimmen",
+        "characterGeneration":                     "Charaktererschaffung",
+        "chooseDiscipline":                        "Wähle eine Disziplin",
+        "chooseTier":                              "Wähle einen Kreis",
+        "classAdvancement":                        "Klassenaufstieg",
+        "drawWeapon":                              "Waffe ziehen",
+        "jumpUp":                                  "Aufspringen",
+        "knockDown":                               "Niederschlag",
+        "learnAbility":                            "Fähigkeit lernen",
+        "learnSpell":                              "Zauber lernen",
+        "lpIncrease":                              "Legendenpunkte erhöhen",
+        "lpLearnKnack":                            "Lerne Kniff",
+        "recovery":                                "Erholung",
+        "rollPrompt":                              "Würfel Dialog",
+        "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
+        "takeDamage":                              "Schaden nehmen",
+        "talentIncrease":                          "Talent steigern"
+      },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
       },
@@ -1668,6 +2050,11 @@
       "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden"
+    },
+    "Document": {
+      "actor":                                     "Actor",
+      "create":                                    "Erstelle {type}",
+      "item":                                      "Item"
     },
     "Documents": {
       "ActorSheetEdCharacter":                     "Charakterbogen",
@@ -1701,6 +2088,7 @@
       "Discipline": {
         "addLevel":                                "Füge eine Kreis hinzu",
         "circle":                                  "Kreis {circle}",
+        "deleteItem":                              "Eintrag löschen",
         "deleteLevel":                             "Lösche Stufe",
         "disciplineTalents":                       "Disziplin Talente",
         "durability":                              "Unverwundbarkeit",
@@ -1719,6 +2107,7 @@
         "general":                                 "Allgemein",
         "inactiveUser":                            "Inaktive Spieler",
         "magic":                                   "Magie",
+        "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
@@ -1748,6 +2137,33 @@
         "sourceTalent":                            "Kniff Quelle",
         "standardEffect":                          "Standard Effekt",
         "strain":                                  "Überanstrengung"
+      },
+      "Mask": {
+        "attackStepsBonus":                        "Angriffsbonus",
+        "attacks":                                 "Angriffs Anzahlbonus",
+        "burrow":                                  "Grabenbonus",
+        "challengingRate":                         "Herausforderungsratenbonus",
+        "charismaStep":                            "Charismastufenbonus",
+        "climb":                                   "Kletternbonus",
+        "damageStepsBonus":                        "Schadensstufenbonus",
+        "deathThreshold":                          "Todesschwellenbonus",
+        "dexterityStep":                           "Geschicklichkeitsstufenbonus",
+        "fly":                                     "Fliegenbonus",
+        "initiativeStep":                          "Initiativestufenbonus",
+        "knockDownStep":                           "Niederschlagsstufenbonus",
+        "movement":                                "Bewegungsbonus",
+        "mysticArmor":                             "Mystischer Rüstungsbonus",
+        "perceptionStep":                          "Wahrnehmungsstufenbonus",
+        "physicalArmor":                           "Physischer Rüstungsbonus",
+        "powers":                                  "Kräfte",
+        "recoveryTestsResource":                   "Erholungsstupfenbonus",
+        "strengthStep":                            "Stärkestufenbonus",
+        "swim":                                    "Schwimmenbonus",
+        "toughnessStep":                           "Zähigkeitsstufenbonus",
+        "unconsciousThreshold":                    "Bewusstlosigkeitsschwellenbonus",
+        "walk":                                    "Gehenbonus",
+        "willpowerStep":                           "Willenskraftstufenbonus",
+        "woundThreshold":                          "Wundschwellenbonus"
       },
       "Namegiver": {
         "WeaponSize": {
@@ -1849,26 +2265,32 @@
       "windling":                                  "Windling"
     },
     "Notifications": {
-      "Error":                                     "TODO: Add translation",
+      "Error": {
+        "ActorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
+        "FormulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
+        "IdentifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
+        "InvalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
+      },
       "Info": {
+        "ReattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
         "notAddedforTheActor":                     "Diese Item ist nicht für diesen Actortyp gedacht.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
-        "Legend": {
-          "abilityIncreaseProblems":               "Rang konnte nicht aktualisiert werden",
-          "cannotLearn":                           "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
-          "classIncreaseProblems":                 "Rang/Kreis konnte nicht aktualisiert werden",
-          "firstDisciplineViaCharGen":             "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
-          "noTalentCategorySelected":              "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
-          "questorItemNotUpdated":                 "Questor-Item konnte nicht aktualisiert werden"
-        },
+        "FormulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
+        "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
+        "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
+        "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
+        "noTalentCategorySelected":                "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
-        "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten."
+        "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
+        "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden"
       }
     },
     "Rolls": {
@@ -1906,6 +2328,22 @@
       "targetModifiers":                           "Ziel Modifikatoren"
     },
     "Settings": {
+      "CharGen": {
+        "attributePoints":                         "Verfügbare Attributspunkte",
+        "autoOpenCharGen":                         "Charaktergenerierung an?",
+        "hintAttributePoints":                     "Wie viele Attributspunkte stehen während der Charaktererschaffung zur Verfügung",
+        "hintAutoOpenCharGen":                     "automatisch die Charaktergenerierung starten",
+        "hintMaxRanks":                            "Maximale Ränge für Talente, Fertigkeiten und Weihekräfte während der Charaktergenerierung",
+        "hintMaxSpellCircle":                      "Welchen maximalen Kreis dürfen Zauber bei der Charaktererschaffung haben?",
+        "maxRanks":                                "Maximale Ränge",
+        "maxSpellCircle":                          "Maximaler Zauberkreis"
+      },
+      "Chat": {
+        "chatAvatar":                              "Chatnachricht Avatar",
+        "chatAvatarConfiguration":                 "Chat Avatar aus der Benutzer-Konfiguration",
+        "chatAvatarHint":                          "Welches Avatarbild soll für Chatnachrichten verwendet werden?",
+        "chatAvatarToken":                         "Chat Avatar des Token benutzen"
+      },
       "Edid": {
         "Versatility":                             "ED-ID für Vielseitigkeit",
         "VersatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
@@ -1924,6 +2362,18 @@
         "unarmedCombat":                           "ED-ID für Waffenlosen Kampf",
         "unarmedCombatHint":                       "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
       },
+      "Encumbrance": {
+        "encumbrance":                             "Belastung",
+        "encumbranceHint":                         "Soll Belastung berücksichtigt werden?"
+      },
+      "GameMechanics": {
+        "languages":                               "Sprachen",
+        "languagesHint":                           "Welche Sprachen sollen verwendet werden?",
+        "minimumDifficulty":                       "Minimale Schwierigkeit",
+        "minimumDifficultyHint":                   "Setze die minimale Schwierigkeit für Proben",
+        "spellcastingTypes":                       "Spruchzauberei Typen",
+        "spellcastingTypesHint":                   "Welche Spruchzauberei Typen sollen verwendet werden?"
+      },
       "Hint": {
         "enforceLivingArmor":                      "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
       },
@@ -1935,16 +2385,48 @@
         "allTalentsHouseRule":                     "Alle Talente für Kreisaufstieg (Hausregel)",
         "attributeOptions":                        "Kosten Attributesteigerung",
         "circleTalentRequirements":                "Mindestanforderungen Talente bei Kreisaufstieg",
+        "circleX100":                              "Zauberkreis x 100",
         "disciplineTalents":                       "Disziplintalente auf nächstem Kreis",
+        "free":                                    "Umsonst",
+        "freePerCircle":                           "Umsonst pro Kreis",
+        "hintAttributeOption":                     "Wie können Attribute gesteigert werden?",
         "hintAttributeOptions":                    "Regeln zum steigern von Attributen",
         "hintCircleTalentRequirements":            "Welche Regeln für benötigte Talente und Ränge bei Kreisaufstieg wird verwendet",
+        "hintLearnSpellUsePatterncraft":           "kann ein Strukturverstehenwurf das erlernen von Zaubern vereinfachen?",
+        "hintLearnSpellsOnCircleUp":               "Soll ein Zauber beim Kreisaufstieg erlernt werden?",
         "hintLpTrackingUsed":                      "Verwende automatisiertes Tracking und Verwaltung von Legendenpunkten",
-        "lpTrackingUsed":                          "Tracke Legendenpunkte"
+        "hintMaxRankDevotion":                     "Maximaler Rang für Weihekräfte",
+        "hintMaxRankSkill":                        "Maximaler Rang für Fertigkeiten",
+        "hintMaxRankTalent":                       "Maximaler Rang für Talente",
+        "hintQuickDeleteEmbeddedOnShiftClick":     "Schnelle Löschfunktion aktiviere Shift+Klick",
+        "hintRemoveSilver":                        "Soll Silber automatische durch LP-Ausgaben entfernt werden?",
+        "hintSpellCost":                           "Zauberkosten beim lernen",
+        "learnSpellUsePatterncraft":               "Strukturverstehenwurf beim Zauberlernen",
+        "learnSpellsOnCircleUp":                   "Zauber beim Kreisaufstieg erlernen",
+        "lpTrackingUsed":                          "Tracke Legendenpunkte",
+        "maxRankDevotion":                         "Weihekräfte Rang",
+        "maxRankSkill":                            "Fertigkeiten Rang",
+        "maxRankTalent":                           "Talente Rang",
+        "noviceTalent":                            "Wie ein Novizen Talent",
+        "quickDeleteEmbeddedOnShiftClick":         "Schnelles Löschen",
+        "removeSilver":                            "Silber entfernen",
+        "spellCost":                               "Zauberkosten",
+        "spendLp":                                 "Legendenpunkte ausgeben",
+        "spendLpPerCircle":                        "Legendenpunkte ausgeben, einmal pro Kreis"
       },
       "SpecificSettingOptions": {
         "changelog":                               "Änderungsprotokoll",
         "help":                                    "Hilfe",
+        "title":                                   "Spezifische Einstellungen",
         "troubleshooting":                         "Fehlermeldung"
+      },
+      "StepTable": {
+        "editionClassic":                          "Klassische (zweite) Edition",
+        "editionFirst":                            "Erste Edition",
+        "editionFourth":                           "Vierte Edition",
+        "editionThird":                            "Dritte Edition",
+        "hint":                                    "Wähle die Stufentabelle aus",
+        "stepTable":                               "Stufentabelle"
       },
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"

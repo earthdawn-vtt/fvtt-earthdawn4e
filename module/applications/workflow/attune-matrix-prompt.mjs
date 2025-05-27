@@ -211,7 +211,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
 
           if ( this.#actor.statuses.has( "attuningOnTheFly" ) ) {
             const buttonCancel = foundry.utils.deepClone( this.constructor.BUTTONS.cancel );
-            buttonCancel.label = "ED.Dialogs.Buttons.TODO.X.CancelReattuning";
+            buttonCancel.label = "ED.Dialogs.Buttons.cancelReattuning";
             buttonCancel.action = "cancelReattuning";
             newContext.buttons.push( buttonCancel );
           }

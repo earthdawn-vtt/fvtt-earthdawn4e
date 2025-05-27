@@ -119,12 +119,6 @@ export default function registerSystemSettings() {
   /*                              CHARACTER GENERATION                                */
   /* -------------------------------------------------------------------------------- */
 
-  // Legend point settings Header
-  // game.settings.register( "ed4e", "charGenHeader", {
-  //     name: "ED.Settings.CharGen.charGenHeader",
-  //     config: true,
-  // } );
-
   // Auto open char gen on PC document creation
   game.settings.register( "ed4e", "autoOpenCharGen", {
     name:    "ED.Settings.CharGen.autoOpenCharGen",
@@ -331,8 +325,8 @@ export default function registerSystemSettings() {
 
   // Languages
   game.settings.register( "ed4e", "languages", {
-    name:   "ED.Settings.Mechanics.languages",
-    hint:   "ED.Settings.Mechanics.languagesHint",
+    name:   "ED.Settings.GameMechanics.languages",
+    hint:   "ED.Settings.GameMechanics.languagesHint",
     scope:  "world",
     config: true,
     type:   new SetField(
@@ -348,8 +342,8 @@ export default function registerSystemSettings() {
 
   // Spellcasting / Thread Weaving Types
   game.settings.register( "ed4e", "spellcastingTypes", {
-    name:    "ED.Settings.Mechanics.spellcastingTypes",
-    hint:    "ED.Settings.Mechanics.spellcastingTypesHint",
+    name:    "ED.Settings.GameMechanics.spellcastingTypes",
+    hint:    "ED.Settings.GameMechanics.spellcastingTypesHint",
     scope:   "world",
     config:  true,
     default:  Object.values( ED4E.spellcastingTypes ),

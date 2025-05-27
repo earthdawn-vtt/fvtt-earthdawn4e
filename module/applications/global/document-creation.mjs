@@ -15,12 +15,12 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   ) {
     const documentType = documentCls.name;
     const documentTypeLocalized = game.i18n.localize(
-      `DOCUMENT.${documentType}`,
+      `ED.Document.${documentType.toLowerCase()}`,
     );
     const classes = options.classes || [];
     classes.push( `create-${documentType.toLowerCase()}` );
     const window = options.window || {};
-    window.title ??= game.i18n.format( "DOCUMENT.Create", {
+    window.title ??= game.i18n.format( "ED.Document.create", {
       type: documentTypeLocalized,
     } );
 
@@ -127,7 +127,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     const buttons = [
       {
         type:  "button",
-        label: game.i18n.format( "DOCUMENT.Create", {
+        label: game.i18n.format( "ED.Document.create", {
           type: this.documentTypeLocalized,
         } ),
         cssClass: "finish",

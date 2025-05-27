@@ -57,7 +57,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     if ( this.document.system.appliedToActor ) return ED4E.eaeChangeKeysActor;
     return [ {
       value:    "",
-      label:    game.i18n.localize( "ED4E.Data.placeholderBlankSelectOption" ),
+      label:    game.i18n.localize( "ED.Data.ActiveEffects.placeholderBlankSelectOption" ),
       selected: true,
     } ];
   }
