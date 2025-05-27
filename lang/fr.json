@@ -194,6 +194,7 @@
         "attributes":                              "TODO: Add translation",
         "biography":                               "TODO: Add translation",
         "carryingCapacity":                        "TODO: Add translation",
+        "castingDifficulty":                       "TODO: Add translation",
         "conditions":                              "TODO: Add translation",
         "controlIcons":                            "TODO: Add translation",
         "damage":                                  "TODO: Add translation",
@@ -249,8 +250,10 @@
         "talentsFreeRacial":                       "TODO: Add translation",
         "talentsOptional":                         "TODO: Add translation",
         "talentsVersatility":                      "TODO: Add translation",
+        "threads":                                 "TODO: Add translation",
         "vocations":                               "TODO: Add translation",
-        "weapons":                                 "TODO: Add translation"
+        "weapons":                                 "TODO: Add translation",
+        "weavingDifficulty":                       "TODO: Add translation"
       },
       "Karma": {
         "current":                                 "TODO: Add translation",
@@ -265,6 +268,17 @@
           "legendPoints":                          "TODO: Add translation",
           "name":                                  "TODO: Add translation",
           "type":                                  "TODO: Add translation"
+        },
+        "LpSpendingTypes": {
+          "Attribute":                             "TODO: Add translation",
+          "devotion":                              "TODO: Add translation",
+          "knack":                                 "TODO: Add translation",
+          "knackManeuver":                         "TODO: Add translation",
+          "skill":                                 "TODO: Add translation",
+          "spell":                                 "TODO: Add translation",
+          "spellKnack":                            "TODO: Add translation",
+          "talent":                                "TODO: Add translation",
+          "thread":                                "TODO: Add translation"
         },
         "Spendings": {
           "description":                           "TODO: Add translation",
@@ -387,6 +401,7 @@
         "rollEquipment":                           "TODO: Add translation",
         "rollInitiative":                          "TODO: Add translation",
         "rollRecovery":                            "TODO: Add translation",
+        "rollUnarmedDamage":                       "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation"
@@ -709,6 +724,15 @@
         "social":                                  "TODO: Add translation"
       }
     },
+    "Controls": {
+      "delete":                                    "TODO: Add translation",
+      "displayItem":                               "TODO: Add translation",
+      "downgrade":                                 "TODO: Add translation",
+      "edit":                                      "TODO: Add translation",
+      "lockHint":                                  "TODO: Add translation",
+      "middleClick":                               "TODO: Add translation",
+      "upgrade":                                   "TODO: Add translation"
+    },
     "Data": {
       "ActiveEffect": {
         "Change":                                  "TODO: Add translation",
@@ -719,7 +743,8 @@
         },
         "Labels": {
           "begin":                                 "TODO: Add translation"
-        }
+        },
+        "placeholderBlankSelectOption":            "TODO: Add translation"
       },
       "Actor": {
         "Common":                                  "TODO: Add translation",
@@ -1675,8 +1700,12 @@
         "description":                             "TODO: Add translation",
         "legendPoints":                            "TODO: Add translation"
       },
+      "AttuneMatrices": {
+        "summary":                                 "TODO: Add translation"
+      },
       "Buttons": {
         "add":                                     "TODO: Add translation",
+        "attuneMatrices":                          "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
         "cancel":                                  "TODO: Add translation",
         "cancelReattuning":                        "TODO: Add translation",
@@ -1684,6 +1713,7 @@
         "complete":                                "TODO: Add translation",
         "configure":                               "TODO: Add translation",
         "continue":                                "TODO: Add translation",
+        "emptyAllMatrices":                        "TODO: Add translation",
         "finish":                                  "TODO: Add translation",
         "free":                                    "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
@@ -1821,6 +1851,7 @@
       "Header": {
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
+        "attuneOnTheFly":                          "TODO: Add translation",
         "inactiveUser":                            "TODO: Add translation"
       },
       "Legend": {
@@ -2009,6 +2040,7 @@
       "Discipline": {
         "addLevel":                                "TODO: Add translation",
         "circle":                                  "TODO: Add translation",
+        "deleteItem":                              "TODO: Add translation",
         "deleteLevel":                             "TODO: Add translation",
         "disciplineTalents":                       "TODO: Add translation",
         "durability":                              "TODO: Add translation",
@@ -2027,6 +2059,7 @@
         "general":                                 "TODO: Add translation",
         "inactiveUser":                            "TODO: Add translation",
         "magic":                                   "TODO: Add translation",
+        "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
         "spellEnhancement":                        "TODO: Add translation",
         "summary":                                 "TODO: Add translation",
