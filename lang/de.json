@@ -194,6 +194,7 @@
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
         "carryingCapacity":                        "Tragkraft",
+        "castingDifficulty":                       "Zauberschwierigkeit",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
         "damage":                                  "Schaden",
@@ -249,8 +250,10 @@
         "talentsFreeRacial":                       "Freie- und andere Talente",
         "talentsOptional":                         "Optionale Talente",
         "talentsVersatility":                      "Vielseitigkeitstalente",
+        "threads":                                 "Fäden",
         "vocations":                               "Berufungen",
-        "weapons":                                 "Waffen"
+        "weapons":                                 "Waffen",
+        "weavingDifficulty":                       "Webschwierigkeit"
       },
       "Karma": {
         "current":                                 "Aktuell",
@@ -265,6 +268,17 @@
           "legendPoints":                          "Legendenpunkte",
           "name":                                  "Name",
           "type":                                  "Typ"
+        },
+        "LpSpendingTypes": {
+          "Attribute":                             "Attribut",
+          "devotion":                              "Weihekraft",
+          "knack":                                 "Kniff",
+          "knackManeuver":                         "Kniff Manöver",
+          "skill":                                 "Fertigkeit",
+          "spell":                                 "Zauber",
+          "spellKnack":                            "Zauber Kniff",
+          "talent":                                "Talent",
+          "thread":                                "Faden"
         },
         "Spendings": {
           "description":                           "Verbesserung von {previousLevel} auf {newLevel}",
@@ -387,6 +401,7 @@
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} würfelt {recovery} ({step})",
+        "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
         "undoDamage":                              "Setzte den Schaden zurück"
@@ -709,6 +724,15 @@
         "social":                                  "Sozial"
       }
     },
+    "Controls": {
+      "delete":                                    "Lösche Item",
+      "displayItem":                               "Zeige Item im Chat",
+      "downgrade":                                 "Herabstufen",
+      "edit":                                      "Bearbeiten",
+      "lockHint":                                  "TODO, hier fehlt die beschreibung für 'lockHint'",
+      "middleClick":                               "Mittlere Maustaste (Mausrad)",
+      "upgrade":                                   "Hochstufen"
+    },
     "Data": {
       "ActiveEffect": {
         "Change": {
@@ -722,7 +746,8 @@
         "Hints":                                   "Effekt",
         "Labels": {
           "begin":                                 "Beginn"
-        }
+        },
+        "placeholderBlankSelectOption":            "TODO, hier fehlt die beschreibung für 'placeholderBlankSelectOption'"
       },
       "Actor": {
         "Common":                                  "Allgemein",
@@ -1723,8 +1748,12 @@
         "description":                             "Beschreibung",
         "legendPoints":                            "Legendenpunkte"
       },
+      "AttuneMatrices": {
+        "summary":                                 "Zusammenfassung"
+      },
       "Buttons": {
         "add":                                     "Hinzufügen",
+        "attuneMatrices":                          "Matrizen neu abstimmen",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "cancel":                                  "Abbrechen",
         "cancelReattuning":                        "Abbrechen der Neuabstimmung",
@@ -1732,6 +1761,7 @@
         "complete":                                "Abschließen",
         "configure":                               "Konfigurieren",
         "continue":                                "Fortfahren",
+        "emptyAllMatrices":                        "Alle Matrizen leeren",
         "finish":                                  "Fertigstellen",
         "free":                                    "Kostenlos",
         "goBack":                                  "Zurück",
@@ -1869,6 +1899,7 @@
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
+        "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
         "inactiveUser":                            "Charaktere von inaktiven Spieler"
       },
       "Legend": {
@@ -2057,6 +2088,7 @@
       "Discipline": {
         "addLevel":                                "Füge eine Kreis hinzu",
         "circle":                                  "Kreis {circle}",
+        "deleteItem":                              "Eintrag löschen",
         "deleteLevel":                             "Lösche Stufe",
         "disciplineTalents":                       "Disziplin Talente",
         "durability":                              "Unverwundbarkeit",
@@ -2075,6 +2107,7 @@
         "general":                                 "Allgemein",
         "inactiveUser":                            "Inaktive Spieler",
         "magic":                                   "Magie",
+        "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
