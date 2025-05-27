@@ -15,19 +15,12 @@
         <input class="input__square-input--centered" name="system.attributes.{{@key}}.value" value="{{value}}">
     </div>
     <div class="attribute-card__grid--item attribute__increases">
-        {{#if (eq timesIncreased 1)}}
-        <i class="enhancement-1 fa fa-star"></i>
-        {{/if}}
-        {{#if (eq timesIncreased 2)}}
-        <i class="enhancement-1 fa fa-star"></i>
-        <i class="enhancement-2 fa fa-star"></i>
-        {{/if}}
-        {{#if (eq timesIncreased 3)}}
-        <i class="enhancement-1 fa fa-star"></i>
-        <i class="enhancement-2 fa fa-star"></i>
-        <i class="enhancement-3 fa fa-star"></i>
-        {{/if}}
+    <span class="circle {{#if (gte timesIncreased 1)}}filled{{/if}}"></span>
+    <span class="circle {{#if (gte timesIncreased 2)}}filled{{/if}}"></span>
+    <span class="circle {{#if (gte timesIncreased 3)}}filled{{/if}}"></span>
     </div>
+
+
     <div class="attribute-card__grid--item">
         <input class="input__square-input--centered" name="system.attributes.{{@key}}.step" value="{{this.step}}"
             readonly>

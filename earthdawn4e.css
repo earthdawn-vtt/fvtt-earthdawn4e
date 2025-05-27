@@ -136,6 +136,9 @@
 .layout__col--6 {
   flex: 0 0 calc(98% / 6);
 }
+.standard-form {
+  gap: 0px;
+}
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
@@ -241,19 +244,16 @@
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   box-shadow: inset 0 0 18px #000000;
-  margin: 0 0 5px 0;
+  margin: 10px 0 5px 0;
 }
 .container__block {
-  margin: -7px 0 10px 0;
+  margin: -7px 0 0 0;
   border: var(--border-main);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 .container__header {
   margin: 5px 0;
-}
-.item-image {
-  width: 150px;
 }
 .itemControlGroup,
 .icon__position--right {
@@ -555,15 +555,13 @@
 }
 .application.sheet.earthdawn4e.actor .tab {
   overflow: auto;
-  margin-top: 10px;
+  gap: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content {
   backdrop-filter: none;
-  padding-top: 1px;
+  padding: 0px 5px;
   height: 440px;
   overflow-y: auto;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 .application.sheet.earthdawn4e.actor .window-content .section__name {
   position: relative;
@@ -579,7 +577,7 @@
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   box-shadow: inset 0 0 18px #000000;
-  margin: 0 0 5px 0;
+  margin: 10px 0 5px 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .item__image {
   width: 25px;
@@ -673,13 +671,32 @@
   min-width: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(40px, 1fr) minmax(35px, 35px) minmax(35px, 35px) minmax(35px, 35px);
+  grid-auto-flow: row;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .attribute-icon {
   height: 20px;
   width: 20px;
   margin: 0 0 0 5px;
   padding: 1px;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .circle {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.85em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  margin-right: 0.2em;
+  background: transparent;
+  margin-right: 0.01em;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .circle.filled {
+  background: currentColor;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .attribute__increases i {
+  display: flex;
+  gap: 0.1em;
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header {
@@ -722,9 +739,11 @@
   justify-content: center;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2) {
@@ -732,15 +751,19 @@
 }
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(120px, 120px) minmax(120px, 120px) minmax(115px, 115px) minmax(75px, 75px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container .item__status {
@@ -790,6 +813,7 @@
   color: var(--color-text-inverse);
 }
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
+  display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
   height: 30px;
 }
@@ -849,9 +873,8 @@
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
   gap: var(--grid-col-gap);
   line-height: 1.2rem;
-}
-.application.sheet.earthdawn4e.actor .window-content .sheet-tabs > [data-tab] {
-  padding: 8px 4px;
+  padding: 5px 0px;
+  margin: 5px 0 0 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .top {
   grid-area: empty;
