@@ -195,6 +195,7 @@
         "attributes":                              "Attributes",
         "biography":                               "TODO: Add translation",
         "carryingCapacity":                        "Carrying Capacity",
+        "castingDifficulty":                       "TODO: Add translation",
         "conditions":                              "Conditions",
         "controlIcons":                            "Controls",
         "damage":                                  "Damage",
@@ -250,8 +251,10 @@
         "talentsFreeRacial":                       "Free and other Talents",
         "talentsOptional":                         "Optional Talents",
         "talentsVersatility":                      "Versatility Talents",
+        "threads":                                 "TODO: Add translation",
         "vocations":                               "TODO: Add translation",
-        "weapons":                                 "Weapons"
+        "weapons":                                 "Weapons",
+        "weavingDifficulty":                       "TODO: Add translation"
       },
       "Karma": {
         "current":                                 "Current",
@@ -266,6 +269,17 @@
           "legendPoints":                          "Legend Points",
           "name":                                  "Name",
           "type":                                  "Type"
+        },
+        "LpSpendingTypes": {
+          "Attribute":                             "TODO: Add translation",
+          "devotion":                              "TODO: Add translation",
+          "knack":                                 "TODO: Add translation",
+          "knackManeuver":                         "TODO: Add translation",
+          "skill":                                 "TODO: Add translation",
+          "spell":                                 "TODO: Add translation",
+          "spellKnack":                            "TODO: Add translation",
+          "talent":                                "TODO: Add translation",
+          "thread":                                "TODO: Add translation"
         },
         "Spendings": {
           "description":                           "Enhancement from {previousLevel} to {newLevel}",
@@ -388,6 +402,7 @@
         "rollEquipment":                           "TODO: Add translation",
         "rollInitiative":                          "TODO: Add translation",
         "rollRecovery":                            "TODO: Add translation",
+        "rollUnarmedDamage":                       "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation"
@@ -710,6 +725,15 @@
         "social":                                  "Social"
       }
     },
+    "Controls": {
+      "delete":                                    "TODO: Add translation",
+      "displayItem":                               "TODO: Add translation",
+      "downgrade":                                 "TODO: Add translation",
+      "edit":                                      "TODO: Add translation",
+      "lockHint":                                  "TODO: Add translation",
+      "middleClick":                               "TODO: Add translation",
+      "upgrade":                                   "TODO: Add translation"
+    },
     "Data": {
       "ActiveEffect": {
         "Change":                                  "TODO: Add translation",
@@ -719,7 +743,8 @@
         "Hints":                                   "TODO: Add translation",
         "Labels": {
           "begin":                                 "TODO: Add translation"
-        }
+        },
+        "placeholderBlankSelectOption":            "TODO: Add translation"
       },
       "Actor": {
         "Common":                                  "TODO: Add translation",
@@ -1677,8 +1702,12 @@
         "description":                             "Description",
         "legendPoints":                            "Legend Points"
       },
+      "AttuneMatrices": {
+        "summary":                                 "TODO: Add translation"
+      },
       "Buttons": {
         "add":                                     "TODO: Add translation",
+        "attuneMatrices":                          "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
         "cancel":                                  "TODO: Add translation",
         "cancelReattuning":                        "TODO: Add translation",
@@ -1686,6 +1715,7 @@
         "complete":                                "TODO: Add translation",
         "configure":                               "TODO: Add translation",
         "continue":                                "TODO: Add translation",
+        "emptyAllMatrices":                        "TODO: Add translation",
         "finish":                                  "TODO: Add translation",
         "free":                                    "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
@@ -1823,6 +1853,7 @@
       "Header": {
         "activeUser":                              "Active User",
         "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
+        "attuneOnTheFly":                          "TODO: Add translation",
         "inactiveUser":                            "Inactive User"
       },
       "Legend": {
@@ -2011,6 +2042,7 @@
       "Discipline": {
         "addLevel":                                "Add Circle",
         "circle":                                  "Circle {circle}",
+        "deleteItem":                              "TODO: Add translation",
         "deleteLevel":                             "Delete Circle",
         "disciplineTalents":                       "Discipline Talents",
         "durability":                              "Durability",
@@ -2029,6 +2061,7 @@
         "general":                                 "General",
         "inactiveUser":                            "Inactive User",
         "magic":                                   "Magic",
+        "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
