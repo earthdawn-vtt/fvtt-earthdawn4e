@@ -13,20 +13,3 @@ export {
   LevelMigration,
   TierMigration,
 };
-
-// export const typeMigrationConfig = {
-//   armor:        AttributeMigration,
-//   devotion:     DevotionMigration,
-//   discipline:   DisciplineMigration,
-//   equipment:    EquipmentMigration,
-//   knack:        KnackMigration,
-//   mask:         MaskMigration,
-//   spellmatrix:  MatrixMigration,
-//   namegiver:    NamegiverMigration,
-//   attack:        PowerMigration,
-//   shield:       ShieldMigration,
-//   skill:        SkillMigration,
-//   spell:        SpellMigration,
-//   talent:       TalentMigration,
-//   weapon:       WeaponMigration,
-// };

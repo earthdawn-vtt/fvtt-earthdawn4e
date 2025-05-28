@@ -7,19 +7,19 @@ import ImageMigration from "./image.mjs";
 export default class TalentMigration {
 
   static async migrateData( source ) {
+    if ( source?._stats?.systemVersion === "0.8.2.2" ) {
 
-    RollTypeMigration.migrateData( source );
+      RollTypeMigration.migrateData( source );
 
-    EdIdMigration.migrateData( source );
+      EdIdMigration.migrateData( source );
 
-    AbilityMigration.migrateData( source );
+      AbilityMigration.migrateData( source );
 
-    ImageMigration.migrateData( source );
+      ImageMigration.migrateData( source );
 
-    // DefenseMigration.migrateData( source );
+      // DefenseMigration.migrateData( source );
   
-    console.log( "source.name", source.name );
-    console.log( "source.system.difficulty.target", source.system.difficulty.target );
-    return source;
+      return source;
+    }
   }
 }

@@ -332,6 +332,5 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         source.talentCategory = source.talentCategory.slugify( { lowercase: true, strict: true } );
       } 
     }
-    console.log( "source ", source );
   }
 }

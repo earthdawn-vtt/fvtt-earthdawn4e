@@ -8,33 +8,33 @@ import RollTypeMigration from "./roll-type-Migration.mjs";
 export default class SkillMigration {
 
   static async migrateData( source ) {
+    if ( source?._stats?.systemVersion === "0.8.2.2" ) {
 
-    RollTypeMigration.migrateData( source );
+      RollTypeMigration.migrateData( source );
     
-    EdIdMigration.migrateData( source );
+      EdIdMigration.migrateData( source );
     
-    AbilityMigration.migrateData( source );
+      AbilityMigration.migrateData( source );
 
-    ImageMigration.migrateData( source );
+      ImageMigration.migrateData( source );
 
-    // DefenseMigration.migrateData( source );
+      // DefenseMigration.migrateData( source );
 
-    const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
+      const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
 
-    if ( !source.skillType ) {
-      if ( ED4E.systemV0_8_2.artisan.some( artisanSkill =>
-        slugifiedName.includes( artisanSkill.slugify( { lowercase: true, strict: true } ) ) ) ) {
-        source.system.skillType = "artisan"; 
-      } else if ( ED4E.systemV0_8_2.knowledge.some( knowledgeSkill =>
-        slugifiedName.includes( knowledgeSkill.slugify( { lowercase: true, strict: true } ) ) ) ) {
-        source.system.skillType = "knowledge"; 
-      } else {
-        source.system.skillType = "general";
+      if ( !source.skillType ) {
+        if ( ED4E.systemV0_8_2.artisan.some( artisanSkill =>
+          slugifiedName.includes( artisanSkill.slugify( { lowercase: true, strict: true } ) ) ) ) {
+          source.system.skillType = "artisan"; 
+        } else if ( ED4E.systemV0_8_2.knowledge.some( knowledgeSkill =>
+          slugifiedName.includes( knowledgeSkill.slugify( { lowercase: true, strict: true } ) ) ) ) {
+          source.system.skillType = "knowledge"; 
+        } else {
+          source.system.skillType = "general";
+        }
       }
-    }
-    console.log( "source.name", source.name );
-    console.log( "source.system.defenseTarget", source.system.defenseTarget );
   
-    return source;
+      return source;
+    }
   }
 }
