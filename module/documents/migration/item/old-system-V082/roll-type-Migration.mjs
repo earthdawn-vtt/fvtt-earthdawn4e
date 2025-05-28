@@ -41,6 +41,7 @@ export default class RollTypeMigration {
         { names: combinedPhysicalAttackNames, targetValue: "attack" },
         { names: ED4E.systemV0_8_2.threadWeavingNames, targetValue: "threadWeaving" },
         { names: ED4E.systemV0_8_2.spellcastingNames, targetValue: "spellcasting" },
+        { names: ED4E.systemV0_8_2.resistKnockDownNames, targetValue: "knockDown" }, 
       ];
 
       // mapping for subcategories of the roll type (reactionType, combatType)
@@ -87,7 +88,6 @@ export default class RollTypeMigration {
           };
         }
       }
-
       if ( !source.system.rollType ) {
         source.system.rollType = "ability";
       }
