@@ -2057,16 +2057,21 @@
       "item":                                      "Item"
     },
     "Documents": {
-      "ActorSheetEdCharacter":                     "Charakterbogen",
-      "ActorSheetEdCreature":                      "Kreaturen-Bogen",
-      "ActorSheetEdDragon":                        "Drachen-Bogen",
-      "ActorSheetEdGroup":                         "Gruppen-Bogen",
-      "ActorSheetEdHorror":                        "Dämonen-Bogen",
-      "ActorSheetEdLoot":                          "Schatz-Bogen",
-      "ActorSheetEdNpc":                           "NSC-Bogen",
-      "ActorSheetEdSpirit":                        "Geister-Bogen",
-      "ActorSheetEdTrap":                          "Fallen-Bogen",
-      "ActorSheetEdVehicle":                       "Transportmittel-Bogen"
+      "activeEffectSheetEd":                       "Effekt-Bogen",
+      "actorSheetEdCharacter":                     "Charakterbogen",
+      "actorSheetEdCreature":                      "Kreaturen-Bogen",
+      "actorSheetEdDragon":                        "Drachen-Bogen",
+      "actorSheetEdGroup":                         "Gruppen-Bogen",
+      "actorSheetEdHorror":                        "Dämonen-Bogen",
+      "actorSheetEdLoot":                          "Schatz-Bogen",
+      "actorSheetEdNpc":                           "NSC-Bogen",
+      "actorSheetEdSpirit":                        "Geister-Bogen",
+      "actorSheetEdTrap":                          "Fallen-Bogen",
+      "actorSheetEdVehicle":                       "Transportmittel-Bogen",
+      "itemSheetEd":                               "Item-Bogen",
+      "itemSheetEdClass":                          "Berufung-Bogen",
+      "itemSheetEdPhysical":                       "Ausrüstungs-Bogen",
+      "journalSheetEd":                            "Journal-Bogen"
     },
     "Item": {
       "Ability": {
@@ -2345,8 +2350,6 @@
         "chatAvatarToken":                         "Chat Avatar des Token benutzen"
       },
       "Edid": {
-        "Versatility":                             "ED-ID für Vielseitigkeit",
-        "VersatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
         "knockDown":                               "ED-ID für Niederschlag",
@@ -2355,12 +2358,22 @@
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",
         "languageSpeakHint":                       "Identifiziert die Fähigkeit Fremdsprachen",
+        "patterncraft":                            "ED-ID für Strukturverstehen",
+        "patterncraftHint":                        "Identifiziert die Fähigkeit die für Strukturverstehen verwendet wird",
+        "questorDevotion":                         "ED-ID für Questor-Weihekraft",
+        "questorDevotionHint":                     "Identifiziert die Fähigkeit die für Questor-Weihekräfte verwendet wird",
         "spellCasting":                            "ED-ID für Spruchzauberei",
         "spellCastingHint":                        "Identifiziert die Fähigkeit die für Spruchzauberei verwendet wird",
+        "spellMatrix":                             "ED-ID für Spruchmatrix",
+        "spellMatrixHint":                         "Identifiziert die Fähigkeit die für Spruchmatrix verwendet wird",
+        "spellcasting":                            "ED-ID für Spruchzauberei",
+        "spellcastingHint":                        "Identifiziert die Fähigkeit die für Spruchzauberei verwendet wird",
         "threadWeaving":                           "ED-ID für Fadenweben",
         "threadWeavingHint":                       "Identifiziert die Fähigkeit die für Fadenweben verwendet wird",
         "unarmedCombat":                           "ED-ID für Waffenlosen Kampf",
-        "unarmedCombatHint":                       "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird"
+        "unarmedCombatHint":                       "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird",
+        "versatility":                             "ED-ID für Vielseitigkeit",
+        "versatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird"
       },
       "Encumbrance": {
         "encumbrance":                             "Belastung",
@@ -2521,5 +2534,71 @@
       }
     }
   },
-  "TYPES":                                         "TODO: Add translation"
+  "TYPES": {
+    "ActiveEffect": {
+      "condition":                                 "Effekt",
+      "eae":                                       "Aktiver Effekt"
+    },
+    "Actor": {
+      "character":                                 "Charakter",
+      "creature":                                  "Kreatur",
+      "dragon":                                    "Drache",
+      "group":                                     "Gruppe",
+      "horror":                                    "Horror",
+      "loot":                                      "Schatz",
+      "npc":                                       "NSC",
+      "spirit":                                    "Geist",
+      "trap":                                      "Falle",
+      "vehicle":                                   "Fahrzeug"
+    },
+    "Cards": {
+      "deck":                                      "Deck",
+      "hand":                                      "Hand",
+      "pile":                                      "Stapel"
+    },
+    "Item": {
+      "armor":                                     "Rüstung",
+      "bindingSecret":                             "Bindungsgeheimnis",
+      "curseMark":                                 "Fluch / Dämonenmal",
+      "devotion":                                  "Weihekraft",
+      "discipline":                                "Disziplin",
+      "effect":                                    "Effekt",
+      "equipment":                                 "Ausrüstung",
+      "knackAbility":                              "Talentkniff",
+      "knackKarma":                                "Karma-Kniff",
+      "knackManeuver":                             "Kniff (Spezialmanöver)",
+      "maneuver":                                  "Manöver",
+      "mask":                                      "Maske",
+      "namegiver":                                 "Namensgeber",
+      "path":                                      "Pfad",
+      "poisonDisease":                             "Gift / Krankheit",
+      "power":                                     "Kraft",
+      "questor":                                   "Questor",
+      "shield":                                    "Schild",
+      "shipWeapon":                                "Schiffswaffe",
+      "skill":                                     "Fertigkeit",
+      "specialAbility":                            "Spezialfähigkeit",
+      "spell":                                     "Zauber",
+      "spellKnack":                                "Zauberkniff",
+      "talent":                                    "Talent",
+      "weapon":                                    "Waffe"
+    },
+    "JournalEntryPage": {
+      "image":                                     "Bild",
+      "pdf":                                       "PDF",
+      "text":                                      "Text",
+      "video":                                     "Video"
+    },
+    "RegionBehavior": {
+      "adjustDarknessLevel":                       "Dunkelheitslevel anpassen",
+      "displayScrollingText":                      "Scrolltext anzeigen",
+      "executeMacro":                              "Makro ausführen",
+      "executeScript":                             "Skript ausführen",
+      "modifyMovementCost":                        "Bewegungskosten anpassen",
+      "pauseGame":                                 "Spiel pausieren",
+      "suppressWeather":                           "Wetter unterdrücken",
+      "teleportToken":                             "Token teleportieren",
+      "toggleBehavior":                            "Verhalten umschalten"
+    }
+  }
 }
