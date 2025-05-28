@@ -56,6 +56,19 @@ export default function registerSystemSettings() {
   /*                                      ED-IDs                                      */
   /* -------------------------------------------------------------------------------- */
 
+  game.settings.register( "ed4e", "updateNews", {
+    name:    "ED.Settings.Update.updateNewsName",
+    hint:    "ED.Settings.Update.updateNewsHint",
+    scope:   "world",
+    type:    Boolean,
+    config:  true,
+    default: false
+  } );
+
+  /* -------------------------------------------------------------------------------- */
+  /*                                      ED-IDs                                      */
+  /* -------------------------------------------------------------------------------- */
+
   Object.entries( ED4E.defaultEdIds ).forEach( ( [ name, edid ] ) => {
     game.settings.register( "ed4e", getEdidSettingKey( name ), {
       name:    `ED.Settings.Edid.${ name }`,
