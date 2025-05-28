@@ -1854,7 +1854,8 @@
         "activeUser":                              "Active User",
         "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
         "attuneOnTheFly":                          "TODO: Add translation",
-        "inactiveUser":                            "Inactive User"
+        "inactiveUser":                            "Inactive User",
+        "update":                                  "TODO: Add translation"
       },
       "Legend": {
         "ClassAdvancement": {
@@ -2382,6 +2383,10 @@
         "hint":                                    "TODO: Add translation",
         "stepTable":                               "TODO: Add translation"
       },
+      "Update": {
+        "updateNewsHint":                          "TODO: Add translation",
+        "updateNewsName":                          "TODO: Add translation"
+      },
       "talentsSplit":                              "Sort Talents by Kategory",
       "talentsSplitHint":                          "Sort Talents"
     },
@@ -2455,6 +2460,12 @@
       "itemHistoryCheck":                          "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",
       "weaveThreadCheck":                          "TODO: Add translation"
+    },
+    "Update": {
+      "contact":                                   "TODO: Add translation",
+      "news1_0_0":                                 "TODO: Add translation",
+      "newsHeader":                                "TODO: Add translation",
+      "welcome":                                   "TODO: Add translation"
     }
   },
   "EFFECT": {
