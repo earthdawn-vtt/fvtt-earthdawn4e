@@ -2009,16 +2009,21 @@
       "item":                                      "TODO: Add translation"
     },
     "Documents": {
-      "ActorSheetEdCharacter":                     "TODO: Add translation",
-      "ActorSheetEdCreature":                      "TODO: Add translation",
-      "ActorSheetEdDragon":                        "TODO: Add translation",
-      "ActorSheetEdGroup":                         "TODO: Add translation",
-      "ActorSheetEdHorror":                        "TODO: Add translation",
-      "ActorSheetEdLoot":                          "TODO: Add translation",
-      "ActorSheetEdNpc":                           "TODO: Add translation",
-      "ActorSheetEdSpirit":                        "TODO: Add translation",
-      "ActorSheetEdTrap":                          "TODO: Add translation",
-      "ActorSheetEdVehicle":                       "TODO: Add translation"
+      "activeEffectSheetEd":                       "TODO: Add translation",
+      "actorSheetEdCharacter":                     "TODO: Add translation",
+      "actorSheetEdCreature":                      "TODO: Add translation",
+      "actorSheetEdDragon":                        "TODO: Add translation",
+      "actorSheetEdGroup":                         "TODO: Add translation",
+      "actorSheetEdHorror":                        "TODO: Add translation",
+      "actorSheetEdLoot":                          "TODO: Add translation",
+      "actorSheetEdNpc":                           "TODO: Add translation",
+      "actorSheetEdSpirit":                        "TODO: Add translation",
+      "actorSheetEdTrap":                          "TODO: Add translation",
+      "actorSheetEdVehicle":                       "TODO: Add translation",
+      "itemSheetEd":                               "TODO: Add translation",
+      "itemSheetEdClass":                          "TODO: Add translation",
+      "itemSheetEdPhysical":                       "TODO: Add translation",
+      "journalSheetEd":                            "TODO: Add translation"
     },
     "Item": {
       "Ability": {
@@ -2297,8 +2302,6 @@
         "chatAvatarToken":                         "TODO: Add translation"
       },
       "Edid": {
-        "Versatility":                             "TODO: Add translation",
-        "VersatilityHint":                         "TODO: Add translation",
         "creatureAttack":                          "TODO: Add translation",
         "creatureAttackHint":                      "TODO: Add translation",
         "knockDown":                               "TODO: Add translation",
@@ -2307,12 +2310,22 @@
         "languageRWHint":                          "TODO: Add translation",
         "languageSpeak":                           "TODO: Add translation",
         "languageSpeakHint":                       "TODO: Add translation",
+        "patterncraft":                            "TODO: Add translation",
+        "patterncraftHint":                        "TODO: Add translation",
+        "questorDevotion":                         "TODO: Add translation",
+        "questorDevotionHint":                     "TODO: Add translation",
         "spellCasting":                            "TODO: Add translation",
         "spellCastingHint":                        "TODO: Add translation",
+        "spellMatrix":                             "TODO: Add translation",
+        "spellMatrixHint":                         "TODO: Add translation",
+        "spellcasting":                            "TODO: Add translation",
+        "spellcastingHint":                        "TODO: Add translation",
         "threadWeaving":                           "TODO: Add translation",
         "threadWeavingHint":                       "TODO: Add translation",
         "unarmedCombat":                           "TODO: Add translation",
-        "unarmedCombatHint":                       "TODO: Add translation"
+        "unarmedCombatHint":                       "TODO: Add translation",
+        "versatility":                             "TODO: Add translation",
+        "versatilityHint":                         "TODO: Add translation"
       },
       "Encumbrance": {
         "encumbrance":                             "TODO: Add translation",
@@ -2474,5 +2487,70 @@
     }
   },
   "TYPES": {
+    "ActiveEffect": {
+      "condition":                                 "TODO: Add translation",
+      "eae":                                       "TODO: Add translation"
+    },
+    "Actor": {
+      "character":                                 "TODO: Add translation",
+      "creature":                                  "TODO: Add translation",
+      "dragon":                                    "TODO: Add translation",
+      "group":                                     "TODO: Add translation",
+      "horror":                                    "TODO: Add translation",
+      "loot":                                      "TODO: Add translation",
+      "npc":                                       "TODO: Add translation",
+      "spirit":                                    "TODO: Add translation",
+      "trap":                                      "TODO: Add translation",
+      "vehicle":                                   "TODO: Add translation"
+    },
+    "Cards": {
+      "deck":                                      "TODO: Add translation",
+      "hand":                                      "TODO: Add translation",
+      "pile":                                      "TODO: Add translation"
+    },
+    "Item": {
+      "armor":                                     "TODO: Add translation",
+      "bindingSecret":                             "TODO: Add translation",
+      "curseMark":                                 "TODO: Add translation",
+      "devotion":                                  "TODO: Add translation",
+      "discipline":                                "TODO: Add translation",
+      "effect":                                    "TODO: Add translation",
+      "equipment":                                 "TODO: Add translation",
+      "knackAbility":                              "TODO: Add translation",
+      "knackKarma":                                "TODO: Add translation",
+      "knackManeuver":                             "TODO: Add translation",
+      "maneuver":                                  "TODO: Add translation",
+      "mask":                                      "TODO: Add translation",
+      "namegiver":                                 "TODO: Add translation",
+      "path":                                      "TODO: Add translation",
+      "poisonDisease":                             "TODO: Add translation",
+      "power":                                     "TODO: Add translation",
+      "questor":                                   "TODO: Add translation",
+      "shield":                                    "TODO: Add translation",
+      "shipWeapon":                                "TODO: Add translation",
+      "skill":                                     "TODO: Add translation",
+      "specialAbility":                            "TODO: Add translation",
+      "spell":                                     "TODO: Add translation",
+      "spellKnack":                                "TODO: Add translation",
+      "talent":                                    "TODO: Add translation",
+      "weapon":                                    "TODO: Add translation"
+    },
+    "JournalEntryPage": {
+      "image":                                     "TODO: Add translation",
+      "pdf":                                       "TODO: Add translation",
+      "text":                                      "TODO: Add translation",
+      "video":                                     "TODO: Add translation"
+    },
+    "RegionBehavior": {
+      "adjustDarknessLevel":                       "TODO: Add translation",
+      "displayScrollingText":                      "TODO: Add translation",
+      "executeMacro":                              "TODO: Add translation",
+      "executeScript":                             "TODO: Add translation",
+      "modifyMovementCost":                        "TODO: Add translation",
+      "pauseGame":                                 "TODO: Add translation",
+      "suppressWeather":                           "TODO: Add translation",
+      "teleportToken":                             "TODO: Add translation",
+      "toggleBehavior":                            "TODO: Add translation"
+    }
   }
 }
