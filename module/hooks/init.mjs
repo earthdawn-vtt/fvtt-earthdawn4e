@@ -77,52 +77,52 @@ export default function () {
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCharacter, {
       types:       [ "character" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdCharacter"
+      label:       "ED.Documents.actorSheetEdCharacter"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdNpc, {
       types:       [ "npc" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdNpc"
+      label:       "ED.Documents.actorSheetEdNpc"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdGroup, {
       types:       [ "group" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdGroup"
+      label:       "ED.Documents.actorSheetEdGroup"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdVehicle, {
       types:       [ "vehicle" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdVehicle"
+      label:       "ED.Documents.actorSheetEdVehicle"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdLoot, {
       types:       [ "loot" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdLoot"
+      label:       "ED.Documents.actorSheetEdLoot"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdTrap, {
       types:       [ "trap" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdTrap"
+      label:       "ED.Documents.actorSheetEdTrap"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCreature, {
       types:       [ "creature" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdCreature"
+      label:       "ED.Documents.actorSheetEdCreature"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdSpirit, {
       types:       [ "spirit" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdSpirit"
+      label:       "ED.Documents.actorSheetEdSpirit"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdDragon, {
       types:       [ "dragon" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdDragon"
+      label:       "ED.Documents.actorSheetEdDragon"
     } );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdHorror, {
       types:       [ "horror" ],
       makeDefault: true,
-      label:       "ED.Documents.ActorSheetEdHorror"
+      label:       "ED.Documents.actorSheetEdHorror"
     } );
 
     DocumentSheetConfig.unregisterSheet( ActiveEffect, "core", ActiveEffectConfig );
@@ -130,7 +130,9 @@ export default function () {
       ActiveEffect,
       "earthdawn4e",
       applications.effect.EarthdawnActiveEffectSheet,
-      { makeDefault: true },
+      { makeDefault: true, 
+        label:       "ED.Documents.activeEffectSheetEd",
+      },
     );
 
     DocumentSheetConfig.unregisterSheet( Combatant, "core", CombatantConfig );
@@ -143,20 +145,24 @@ export default function () {
 
     Items.unregisterSheet( "core", foundry.appv1.sheets.ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
-      makeDefault: true
+      makeDefault: true,
+      label:       "ED.Documents.itemSheetEd"
     } );
     Items.registerSheet( "earthdawn4e", applications.item.ClassItemSheetEd, { 
       types:       [ "discipline", "questor", "path" ],
-      makeDefault: true 
+      makeDefault: true,
+      label:       "ED.Documents.itemSheetEdClass" 
     } );
     Items.registerSheet( "earthdawn4e", applications.item.PhysicalItemSheetEd, { 
       types:       [ "armor", "equipment", "shield", "weapon" ],
-      makeDefault: true 
+      makeDefault: true,
+      label:       "ED.Documents.itemSheetEdPhysical"
     } );
 
     Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
-      makeDefault: true
+      makeDefault: true,
+      label:       "ED.Documents.journalSheetEd"
     } );
 
     // endregion
