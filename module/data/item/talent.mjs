@@ -5,6 +5,12 @@ import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
+import AttributeMigration from "./migration/old-system-V082/attribute.mjs";
+import ActionMigration from "./migration/old-system-V082/action.mjs";
+import DescriptionMigration from "./migration/old-system-V082/description.mjs";
+import DifficultyMigration from "./migration/old-system-V082/difficulty.mjs";
+import LevelMigration from "./migration/old-system-V082/level.mjs";
+import TierMigration from "./migration/old-system-V082/tier.mjs";
 
 /**
  * Data model template with information on talent items.
@@ -296,43 +302,24 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   static migrateData( source ) {
 
     // Migrate action
-    source.action = source.action?.slugify( { lowercase: true, strict: true } );
+    ActionMigration.migrateData( source );
 
     // Migrate Attributes
-    if ( ED4E.systemV0_8_2.attributes.includes( source.attribute ) ) {
-      if ( source.attribute === "initiativeStep" ) {
-        source.rollType = "initiative";
-        source.attribute = "";
-      } else if ( source.attribute !== "" ) {
-        source.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.attributes.indexOf( source.attribute )];
-      }
-    }
+    AttributeMigration.migrateData( source );
 
     // Migrate description
-    if ( typeof source.description === "string" ) {
-      source.description = { value: source.description };
-    }
- 
+    DescriptionMigration.migrateData( source );
 
     // Migrate minDifficulty (only if source.difficulty is not set)
-    if ( !source.difficulty ) {
-      source.difficulty ??= {};
-      if ( source.difficulty.target === "" ) {
-        source.difficulty.target = "";
-      } else {
-        source.difficulty.target ??= Object.keys( ED4E.targetDifficulty )[ED4E.systemV0_8_2.targetDefense.indexOf( source.defenseTarget )];
-      }
-      if ( source.difficulty.group === "" ) {
-        source.difficulty.group = "";
-      } else {
-        source.difficulty.group ??= Object.keys( ED4E.groupDifficulty )[ED4E.systemV0_8_2.groupDifficulty.indexOf( source.defenseGroup )];
-      }
-    }
+    DifficultyMigration.migrateData( source );
 
     // Migrate level
-    source.level ??= source.ranks;
+    LevelMigration.migrateData( source );
+    
+    // // Migrate tier
+    TierMigration.migrateData( source );
 
-    // Migrate rollTypes
+    // Migrate rollTypes healing
     if ( source.healing > 0 ) {
       source.rollType ??= "recovery";
     }
@@ -344,11 +331,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       } else {
         source.talentCategory = source.talentCategory.slugify( { lowercase: true, strict: true } );
       } 
-    }
-
-    // Migrate tier
-    if ( source.tier ) {
-      source.tier = source.tier.slugify( { lowercase: true, strict: true } );;
     }
   }
 }

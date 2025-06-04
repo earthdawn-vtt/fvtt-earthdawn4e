@@ -1515,6 +1515,10 @@
 .application.sheet.earthdawn4e.item .tab.advancements .item__right--main .prosemirror {
   height: 430px;
 }
+.item-image {
+  width: 64px;
+  height: 64px;
+}
 .denomination__value-currency .denomination__value {
   width: 75%;
   float: left;

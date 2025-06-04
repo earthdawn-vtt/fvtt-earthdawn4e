@@ -14,16 +14,51 @@ export default class AbilityMigration {
       ...ED4E.systemV0_8_2.missileWeaponNames,
       ...ED4E.systemV0_8_2.throwingWeaponNames,
       ...ED4E.systemV0_8_2.offHandCombatTalents,
+      ...ED4E.systemV0_8_2.abilityPhysicalDefense,
     ];
 
-    const configMappings = [
+    const combinedMysticalAttackNames = [
+      ...ED4E.systemV0_8_2.abilityMysticalDefense,
+    ];
+    const combinedSocialAttackNames = [
+      ...ED4E.systemV0_8_2.abilitySocialDefense,
+    ];
+
+    const configMappingsTarget = [
       { names: combinedPhysicalAttackNames, targetValue: "physical" },
+      { names: combinedMysticalAttackNames, targetValue: "mystical" },
+      { names: combinedSocialAttackNames, targetValue: "social" },
     ];
 
     source.system ??= {};
     source.system.difficulty ??= {};
-    source.system.difficulty.target = determineConfigValue( slugifiedName, configMappings );
+    source.system.difficulty.target = source.system.difficulty.target ? source.system.difficulty.target : determineConfigValue( slugifiedName, configMappingsTarget );
     
+
+    const combinedGroupAttackNamesMax = [
+      ...ED4E.systemV0_8_2.abilityGroupDefenseMaxNames,
+    ];
+    const combinedGroupAttackNamesMaxPlus = [
+      ...ED4E.systemV0_8_2.abilityGroupDefenseMaxNamesPlus,
+    ];
+    const combinedGroupAttackNamesMin = [
+      ...ED4E.systemV0_8_2.abilityGroupDefenseMinNames,
+    ];
+    const combinedGroupAttackNamesMinPlus = [
+      ...ED4E.systemV0_8_2.abilityGroupDefenseMinNamesPlus,
+    ];
+
+    const configMappingsGroup = [
+      { names: combinedGroupAttackNamesMax, targetValue: "highestX" },
+      { names: combinedGroupAttackNamesMaxPlus, targetValue: "highestOfGroup" },
+      { names: combinedGroupAttackNamesMin, targetValue: "lowestX" },
+      { names: combinedGroupAttackNamesMinPlus, targetValue: "lowestOfGroup" },
+    ];
+
+    source.system ??= {};
+    source.system.difficulty ??= {};
+    source.system.difficulty.group = source.system.difficulty.group ? source.system.difficulty.group : determineConfigValue( slugifiedName, configMappingsGroup );
+
     return source;
   }
 }
