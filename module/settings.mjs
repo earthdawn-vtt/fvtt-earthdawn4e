@@ -59,7 +59,7 @@ export default function registerSystemSettings() {
   game.settings.register( "ed4e", "updateNews", {
     name:    "ED.Settings.Update.updateNewsName",
     hint:    "ED.Settings.Update.updateNewsHint",
-    scope:   "world",
+    scope:   "user",
     type:    Boolean,
     config:  true,
     default: false
