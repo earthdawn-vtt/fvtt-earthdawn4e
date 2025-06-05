@@ -1723,6 +1723,7 @@
         "nightRest":                               "TODO: Add translation",
         "noAbility":                               "TODO: Add translation",
         "noDiscipline":                            "TODO: Add translation",
+        "notAgain":                                "TODO: Add translation",
         "ok":                                      "TODO: Add translation",
         "previousStep":                            "TODO: Add translation",
         "reattuneOnTheFly":                        "TODO: Add translation",
@@ -1852,7 +1853,8 @@
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
         "attuneOnTheFly":                          "TODO: Add translation",
-        "inactiveUser":                            "TODO: Add translation"
+        "inactiveUser":                            "TODO: Add translation",
+        "update":                                  "TODO: Add translation"
       },
       "Legend": {
         "ClassAdvancement": {
@@ -2393,6 +2395,10 @@
         "hint":                                    "TODO: Add translation",
         "stepTable":                               "TODO: Add translation"
       },
+      "Update": {
+        "updateNewsHint":                          "TODO: Add translation",
+        "updateNewsName":                          "TODO: Add translation"
+      },
       "talentsSplit":                              "TODO: Add translation",
       "talentsSplitHint":                          "TODO: Add translation"
     },
@@ -2466,6 +2472,12 @@
       "itemHistoryCheck":                          "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",
       "weaveThreadCheck":                          "TODO: Add translation"
+    },
+    "Update": {
+      "contact":                                   "TODO: Add translation",
+      "news1_0_0":                                 "TODO: Add translation",
+      "newsHeader":                                "TODO: Add translation",
+      "welcome":                                   "TODO: Add translation"
     }
   },
   "EFFECT": {

@@ -20,6 +20,30 @@ export default function () {
     /* -------------------------------------------- */
     EdTour.travelAgency();
   } );
+
+  Hooks.on( "ready", async () => {
+    if ( game.settings.get( "ed4e", "updateNews" ) ) return;
+    // Fetch the HTML file content
+    const html = await renderTemplate( "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs" );
+    // Create a dialog to display the update message
+    new Dialog( {
+      title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
+      content: html,
+      buttons: {
+        ok: {
+          label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
+          callback: () => {}
+        },
+        notAgain: {
+          label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
+          callback: () => {
+            game.settings.set( "ed4e", "updateNews", true );
+          }
+        }
+      },
+      default: "ok"
+    } ).render( true );
+  } );
 }
 
 /**

@@ -1771,6 +1771,7 @@
         "nightRest":                               "Nachtruhe",
         "noAbility":                               "Keine Fähigkeit vorhanden",
         "noDiscipline":                            "Keine Disziplin ausgewählt",
+        "notAgain":                                "Zeige diese Nachricht nicht noch einmal",
         "ok":                                      "OK",
         "previousStep":                            "Vorheriger Schritt",
         "reattuneOnTheFly":                        "Neu abstimmen während des Spiels",
@@ -1900,7 +1901,8 @@
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
         "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
-        "inactiveUser":                            "Charaktere von inaktiven Spieler"
+        "inactiveUser":                            "Charaktere von inaktiven Spieler",
+        "update":                                  "System Update Neuigkeiten"
       },
       "Legend": {
         "ClassAdvancement": {
@@ -2441,6 +2443,10 @@
         "hint":                                    "Wähle die Stufentabelle aus",
         "stepTable":                               "Stufentabelle"
       },
+      "Update": {
+        "updateNewsHint":                          "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
+        "updateNewsName":                          "Verstecke Update Nachrichten"
+      },
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"
     },
@@ -2514,6 +2520,12 @@
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",
       "weaveThreadCheck":                          "Würfle Fadenweben um den Fadenrang zu erhöhen."
+    },
+    "Update": {
+      "contact":                                   "Bei Fragen oder Problemen kontaktiert uns bitte im <a href=\"https://discord.gg/earthdawn-foundry\" target=\"_blank\">Earthdawn Foundry Discord</a>.",
+      "news1_0_0":                                 "<h3>Willkommen in bei der neuesten Version vom Earthdawn System für Foundry Virtual Tabletop</h3><p>Dies ist die erste Version (Beta) des überarbeiteten Earthdawn Systems.</p><p>Das System wurde von Grund auf neu überarbeitet und viele Abläufe haben sich geändert.</p><p>Alle Einzelheiten hier aufzuführen wäre zu viel, bitte lest euch die Release Notes <a href=\"https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log\" target=\"_blank\">Release Notes</a></p>",
+      "newsHeader":                                "Neuigkeiten",
+      "welcome":                                   "Willkommen bei der Edition {version} vom Earthdawn Foundry System"
     }
   },
   "EFFECT": {
