@@ -79,11 +79,10 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    */
   _getSpellTabs() {
     this.tabGroups["spellsContent"] ??= "matrix";
-    const labelPrefix = "ED.Actor.Tabs.Spells";
 
     const spellTabs = {
-      matrix: { id: "matrix", group: "spellsContent", label: `${labelPrefix}.matrix` },
-      all:    { id: "all", group: "spellsContent", label: `${labelPrefix}.all` },
+      matrix: { id: "matrix", group: "spellsContent", label: "ED.Actor.Tabs.Spells.matrix" },
+      all:    { id: "all", group: "spellsContent", label: "ED.Actor.Tabs.Spells.all" },
     };
 
     const spellcastingTypes = new Set(

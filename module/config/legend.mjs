@@ -178,18 +178,18 @@ export const lpIndexModForTier = [
   { novice: 3, journeyman: 4, warden: 5, master: 6, }, // Fourth+ Discipline
 ];
 
-export const lpSpendingTypes = {
-  attribute:        "ED.Actor.LpTracking.lpSpendingTypes.attribute",
-  devotion:         "ED.Actor.LpTracking.lpSpendingTypes.devotion",
-  knack:            "ED.Actor.LpTracking.lpSpendingTypes.knack",
-  knackManeuver:    "ED.Actor.LpTracking.lpSpendingTypes.knackManeuver",
-  skill:            "ED.Actor.LpTracking.lpSpendingTypes.skill",
-  spell:            "ED.Actor.LpTracking.lpSpendingTypes.spell",
-  spellKnack:       "ED.Actor.LpTracking.lpSpendingTypes.spellKnack",
-  talent:           "ED.Actor.LpTracking.lpSpendingTypes.talent",
-  thread:           "ED.Actor.LpTracking.lpSpendingTypes.thread",
+export const lpSpendingEntityTypes = {
+  attribute:        "ED.Actor.LpTracking.LpSpendingEntityTypes.attribute",
+  devotion:         "ED.Actor.LpTracking.LpSpendingEntityTypes.devotion",
+  knack:            "ED.Actor.LpTracking.LpSpendingEntityTypes.knack",
+  knackManeuver:    "ED.Actor.LpTracking.LpSpendingEntityTypes.knackManeuver",
+  skill:            "ED.Actor.LpTracking.LpSpendingEntityTypes.skill",
+  spell:            "ED.Actor.LpTracking.LpSpendingEntityTypes.spell",
+  spellKnack:       "ED.Actor.LpTracking.LpSpendingEntityTypes.spellKnack",
+  talent:           "ED.Actor.LpTracking.LpSpendingEntityTypes.talent",
+  thread:           "ED.Actor.LpTracking.LpSpendingEntityTypes.thread",
 };
-preLocalize( "lpSpendingTypes" );
+preLocalize( "lpSpendingEntityTypes" );
 
 /**
  * The cost of learning a new talent for additional disciplines. The first index is the order of the corresponding

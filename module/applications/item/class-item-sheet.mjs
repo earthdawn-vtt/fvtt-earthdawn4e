@@ -98,20 +98,19 @@ export default class ClassItemSheetEd extends ItemSheetEd {
    * @returns {object} tabs for the class advancement tab group
    */
   #getClassTabs() {
-    const labelPrefix = "ED.Item.Tabs";
     
     const classTabs = {
       "options":     {
         id:    "options",
         group: "classAdvancements",
-        label: `${labelPrefix}.talentOptions`,
+        label: "ED.Item.Tabs.talentOptions",
       },
     };
     for ( let levelIndex = 1; levelIndex <= this.document.system.advancement.levels.length; levelIndex++ ) {
       classTabs[`level${levelIndex}`] = {
         id:    `level${levelIndex}`,
         group: "classAdvancements",
-        label: `${labelPrefix}.level`,
+        label: "ED.Item.Tabs.level",
         level: levelIndex,
       };
     }

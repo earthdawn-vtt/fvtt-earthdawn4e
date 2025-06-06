@@ -65,7 +65,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
     if ( isEmpty( updatedItem ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }
@@ -94,7 +94,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
     if ( foundry.utils.isEmpty( updatedItem ) ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
       return;
     }
@@ -110,7 +110,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
 
     return this.parent;
@@ -120,7 +120,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
   static async learn( actor, item, createData ) {
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.Legend.cannotLearn", {itemType: item.type} )
+        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
       );
       return;
     }

@@ -155,7 +155,7 @@ export default class SpellData extends ItemDataModel.mixin(
       if ( !elemSubtype ) return undefined;
 
       if ( !Object.keys( ED4E.elementSubtypes[ elemType ] ).includes( elemSubtype ) )
-        throw new Error( game.i18n.format( "ED.Errors.InvalidElementSubtype" ) );
+        throw new Error( game.i18n.format( "ED.Notifications.Error.invalidElementSubtype" ) );
     }
 
     // continue validation

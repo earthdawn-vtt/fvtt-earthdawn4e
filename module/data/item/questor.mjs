@@ -87,7 +87,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     const updatedQuestor = await super.increase();
     if ( updatedQuestor?.system.level !== nextLevel ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.classIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.classIncreaseProblems" )
       );
       return;
     }
@@ -110,7 +110,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.abilityIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
 
     // possibly update the associated devotion
@@ -131,7 +131,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     } );
     if ( increaseDevotion && !(
       await questorDevotion.update( { "system.level": nextLevel } )
-    ) ) ui.notifications.warn( "ED.Notifications.Warn.Legend.questorItemNotUpdated" );
+    ) ) ui.notifications.warn( "ED.Notifications.Warn.questorItemNotUpdated" );
 
     return this.parent;
   }
@@ -140,7 +140,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   static async learn( actor, item, _ ) {
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.Legend.cannotLearn", {itemType: item.type} )
+        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
       );
       return;
     }

@@ -73,7 +73,7 @@ function triggerCharGen( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerCoinAward( argString ) {
-  ui.notifications.warn( game.i18n.localize( "X.NotImplementedYet" ) );
+  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notImplementedYet" ) );
   return false;
 }
 
@@ -85,7 +85,7 @@ function triggerCoinAward( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerCrCalc( argString ) {
-  ui.notifications.warn( game.i18n.localize( "X.NotImplementedYet" ) );
+  ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notImplementedYet" ) );
   return false;
 }
 
