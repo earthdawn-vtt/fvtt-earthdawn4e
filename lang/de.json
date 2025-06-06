@@ -102,24 +102,18 @@
         "willpowerAbbr":                           "Wil"
       },
       "Buttons": {
-        "deleteItem":                              "Item löschen",
-        "displayItem":                             "Item anzeigen",
-        "editItem":                                "Item bearbeiten",
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "karmaRitual":                             "Karmaritual",
         "knockDownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
         "tailAttack":                              "Schwanzangriff",
         "takeDamage":                              "Schaden",
         "unarmedAttack":                           "Unbewaffneter Angriff",
-        "upgrade":                                 "Verbessern",
         "weaponAttack":                            "Waffenangriff"
       },
       "Cards": {
-        "chat":                                    "Zeige Item Informationen als Chat Nachricht",
         "delete":                                  "Lösche Item",
         "edit":                                    "Bearbeite Item",
         "knackKarma":                              "[Karma]",
@@ -142,14 +136,7 @@
         "woundsThreshold":                         "Wundschwelle"
       },
       "Conditions": {
-        "Encumbrance": {
-          "heavy":                                 "Stark überlastet",
-          "light":                                 "Wenig überlastet",
-          "notEncumbered":                         "Nicht Überlastet",
-          "tooHeavy":                              "Du kannst das nicht alles tragen!"
-        },
         "aggressiveAttack":                        "Aggressiver Angriff",
-        "blindsided":                              "Angriff aus dem Toten Winkel",
         "coverFull":                               "Volle Deckung",
         "coverPartial":                            "Teilweise Deckung",
         "darknessFull":                            "Volle Dunkelheit",
@@ -193,7 +180,6 @@
         "attribute":                               "Attribut",
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
-        "carryingCapacity":                        "Tragkraft",
         "castingDifficulty":                       "Zauberschwierigkeit",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
@@ -262,7 +248,6 @@
       },
       "LpTracking": {
         "Header": {
-          "advancement":                           "Fortschritt",
           "date":                                  "Datum",
           "description":                           "Beschreibung",
           "legendPoints":                          "Legendenpunkte",
@@ -281,17 +266,9 @@
           "thread":                                "Faden"
         },
         "Spendings": {
-          "description":                           "Verbesserung von {previousLevel} auf {newLevel}",
-          "descriptionAbility":                    "Verbessert {abilityName} von {previousLevel} auf {newLevel}",
-          "descriptionAttribute":                  "Verbessert {attributeName} von {previousLevel} auf {newLevel}",
-          "descriptionNewlyAdded":                 "Neu hinzugefügt",
-          "knackSourceNotFound":                   "Der Kniff verweißt auf kein Talent des Acteurs.",
-          "knackSourceNotHighEnough":              "Der Rank des Talents ist nicht hoch genug für diesen Kniff",
           "learningTransactionDescription":        "TODO: WO IST DAS?",
-          "maxIncreaseReached":                    "Maximale Steigerung erreicht",
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
-        },
-        "attributeImprovement":                    "Attribut Erhöhung"
+        }
       },
       "Navigator": {
         "classes":                                 "Berufung",
@@ -313,50 +290,20 @@
         "daily":                                   "Täglich",
         "step":                                    "Stufe"
       },
-      "Spellcasting": {
-        "elementalist":                            "Elementarist",
-        "illusionist":                             "Illusionist",
-        "matrix":                                  "Matrix",
-        "nethermancer":                            "Geisterbeschwörer",
-        "shaman":                                  "Schamane",
-        "wizard":                                  "Magier"
-      },
       "Tabs": {
         "Spells": {
           "all":                                   "Alle",
           "matrix":                                "Matrix"
-        },
-        "classes":                                 "Berufung",
-        "configuration":                           "Konfiguration",
-        "description":                             "Beschreibung",
-        "devotions":                               "Weihekräfte",
-        "equipment":                               "Ausrüstung",
-        "general":                                 "Allgemein",
-        "information":                             "Informationen",
-        "legend":                                  "Legende",
-        "notes":                                   "Notizen",
-        "powers":                                  "Kräfte",
-        "reputation":                              "Ruf",
-        "skills":                                  "Fertigkeiten",
-        "specials":                                "Spezial",
-        "spells":                                  "Zauber",
-        "talents":                                 "Talente"
+        }
       },
       "Tooltips": {
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
-        "damageSubdual":                           "Betäubung",
         "equipped":                                "Ausgerüstet",
-        "equippedArmor":                           "Rüstung Ausgerüstet",
-        "equippedShield":                          "Schild Ausgerüstet",
         "extraSuccesses":                          "Benötigte extra Erfolge",
         "karmaAlways":                             "Benutze immer Karma",
         "karmaRitualTooltip":                      "Karmaritual",
-        "loaded":                                  "Belastet",
-        "loadedHeavy":                             "Stark Belastet",
-        "loadedOver":                              "Überlasted",
         "mainHand":                                "Haupthand",
-        "notEquipped":                             "Nicht Ausgerüstet",
         "offHand":                                 "Nebenhand",
         "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
@@ -374,7 +321,6 @@
         "effectsHint":                             "Effekte die auf diesem Rang/Kreis hinzugefügt werden",
         "free":                                    "Frei",
         "freeHint":                                "Freie Talente die auf diesem Rang/Kreis hinzugefügt werden",
-        "namegiver":                               "Namensgeber",
         "special":                                 "Spezial",
         "specialHint":                             "Spezialfähigkeiten die auf diesem Rang/Kreis hinzugefügt werden"
       }
@@ -388,9 +334,7 @@
         "rollDamage":                              "Schadenswurf",
         "rollDamageTitle":                         "Würfel den Effect",
         "rollEffect":                              "Effektwurf",
-        "rollEffectTitle":                         "Würfel den Effect",
-        "takeDamage":                              "Schaden nehmen",
-        "takeDamageTitle":                         "Nimm den Schaden für deinen Charakter"
+        "takeDamage":                              "Schaden nehmen"
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
@@ -407,12 +351,10 @@
         "undoDamage":                              "Setzte den Schaden zurück"
       },
       "Header": {
-        "actionTest":                              "Aktions Test",
         "arbitraryTest":                           "Willkürlicher Test",
         "attackManeuvers":                         "Manöver",
         "attackReactions":                         "Reaktionen",
-        "attackTargets":                           "Ziele",
-        "effectTest":                              "Effect Test"
+        "attackTargets":                           "Ziele"
       }
     },
     "Conditions": {
@@ -426,7 +368,6 @@
     "Config": {
       "Action": {
         "free":                                    "Frei",
-        "none":                                    "keine",
         "simple":                                  "Einfach",
         "standard":                                "Standard",
         "sustained":                               "Anhaltend"
@@ -489,7 +430,6 @@
         "lowestOfGroup":                           "Niedrigste der Gruppe",
         "lowestX":                                 "Niedrigste der Gruppe + Ziele",
         "mystical":                                "Mystische Verteidung",
-        "none":                                    "keine",
         "physical":                                "Körperliche Verteidigung",
         "social":                                  "Soziale Verteidigung"
       },
@@ -500,7 +440,6 @@
       },
       "Eae": {
         "DurationTypes": {
-          "allKnockdownTests":                     "Alle Niederschlagsproben",
           "combat":                                "Kampf",
           "permanent":                             "Permanent",
           "realTime":                              "Zeit",
@@ -524,7 +463,6 @@
       "Elements": {
         "air":                                     "Luft",
         "airElectric":                             "Elektrizität",
-        "airElectricity":                          "Elektrizität",
         "earth":                                   "Erde",
         "earthMetal":                              "Metall",
         "fire":                                    "Feuer",
@@ -560,10 +498,7 @@
           "titleNewAbilityLp":                     "LP für neue Fähigkeit",
           "titleResources":                        "Ressourcen",
           "titleTalentsRequirement":               "Erforderliche Talente"
-        },
-        "freePerCircle":                           "Bei Kreisaufstieg (kostenlos)",
-        "spendLp":                                 "Kostet Legendpunkte",
-        "spendLpPerCircle":                        "Bei Kreisaufstieg (kostet Legendenpunkte)"
+        }
       },
       "MatrixTypes": {
         "armored":                                 "Gepanzerte Matrix",
@@ -674,22 +609,6 @@
       "Vulnerabilities": {
         "fire":                                    "Feuer"
       },
-      "WeaponSubType": {
-        "axe":                                     "Axt",
-        "blade":                                   "Klinge",
-        "bola":                                    "Bola",
-        "bow":                                     "Bogen",
-        "club":                                    "Keule",
-        "crossbow":                                "Armbrust",
-        "dagger":                                  "Dolch",
-        "dart":                                    "Wurfpfeil",
-        "hawkHatchet":                             "Falkenklaue",
-        "net":                                     "Netz",
-        "polearm":                                 "Stangenwaffe",
-        "spear":                                   "Speer",
-        "staff":                                   "Stab",
-        "sword":                                   "Schwert"
-      },
       "WeaponType": {
         "melee":                                   "Nahkampf",
         "missile":                                 "Projektilwaffe",
@@ -700,19 +619,6 @@
         "horror":                                  "Dämonenfluch",
         "major":                                   "Großer Fluch",
         "minor":                                   "Kleiner Fluch"
-      },
-      "groupDifficulty": {
-        "highestOfGroup":                          "Höchster der Gruppe",
-        "highestX":                                "Höchster + Ziele",
-        "lowestOfGroup":                           "Niedrigster der Gruppe",
-        "lowestX":                                 "Niedrigster + Ziele"
-      },
-      "illusionType": {
-        "figment":                                 "Gebilde",
-        "glamour":                                 "Glamour",
-        "illusion":                                "Illusion",
-        "phantasm":                                "Phantasma",
-        "shadow":                                  "Schatten"
       },
       "spellcastingTypes": {
         "elementalism":                            "Elementarist",
@@ -726,11 +632,6 @@
         "free":                                    "Frei",
         "optional":                                "Optional",
         "versatility":                             "Vielseitigkeit"
-      },
-      "targetDifficulty": {
-        "mystical":                                "Mystisch",
-        "physical":                                "Körperlich",
-        "social":                                  "Sozial"
       }
     },
     "Controls": {
@@ -752,7 +653,6 @@
         },
         "EaeDuration": {
         },
-        "Hints":                                   "Effekt",
         "Labels": {
           "begin":                                 "Beginn"
         },
@@ -763,103 +663,7 @@
         "Creature":                                "Kreature",
         "Dragon":                                  "Drache",
         "Group":                                   "Gruppe",
-        "Hints": {
-          "Characteristics": {
-            "armor":                               "Werte die von erlittenem Schaden abgezogen werden",
-            "armorValue":                          "Der Wert dieser Rüstung",
-            "bloodMagic":                          "Einflüsse auf die Gesundheit die durch Blutmagie verursacht werden",
-            "bloodMagicDamage":                    "Permanenter Schaden durch Blutmagie",
-            "bloodMagicWounds":                    "Permanente Wunden durch Blutmagie",
-            "damage":                              "Die Anzahl an Schadenspunkten",
-            "damageStandard":                      "Normaler Schaden",
-            "damageStun":                          "Schaden der nicht zum Tod führen kann",
-            "damageTotal":                         "Gesamter Schaden aus Standard und Betäubung",
-            "deathRating":                         "Wie viel Schaden kann ich nehmen bevor ich sterbe?",
-            "defenseValue":                        "Der Wert dieser Verteidigung",
-            "defenses":                            "Werte die bestimme wie schwer es ist zu treffen",
-            "health":                              "Werte die die Gesundheit des Charakters beschreiben",
-            "maxWounds":                           "Die Anzahl an Wunden um den Mob zu besiegen",
-            "recoveryTestStep":                    "Die Stufe die verwendet wird wenn Erholungsproben gemacht werden",
-            "recoveryTestsCurrent":                "Die aktuelle Anzahl an Erholungsproben für diesen Tag",
-            "recoveryTestsMax":                    "Die maximale Anzahl an Erholungsproben pro Tag",
-            "recoveryTestsResource":               "Die Ressource die unter anderem für Erholungsproben verwendet wird",
-            "stunRecoveryAvailable":               "Kann Betäubungsschaden aktuell geheilt werden?",
-            "unconsciousRate":                     "Wie viel Schaden kann ich nehmen bevor ich bewusstlos werde?",
-            "woundThreshold":                      "Der Schaden der erlitten werden muss um eine Wunde zu verursachen",
-            "wounds":                              "Anzahl der Wunden"
-          },
-          "attributeValue":                        "Der Wert des Attributs",
-          "attributes":                            "Die Attribute des Charakters",
-          "challenge":                             "Wie herausfordernd bin ich?",
-          "challengeRate":                         "Eine Beschreibung der Herausforderung als Berechnung",
-          "characteristics":                       "Werte die den Charakter beschreiben, wie Verteidung, Gesundheit oder Rüstung",
-          "description":                           "Eine Beschreibung des Charakters",
-          "descriptionValue":                      "Der Text darüber wer ich bin",
-          "devotion":                              "Die verfügbaren Weihpunkte die dazugehörige Stufe",
-          "devotionMax":                           "Maximale Anzahl an insgesamt verfügbaren Weihepunkten",
-          "devotionStep":                          "Die Stufe die verwendet wird wenn Weihpunkte ausgegeben werden",
-          "durabilityBonus":                       "Extra Bonus auf Unempfindlichkeit",
-          "encumbrance":                           "Berechnung der Traglast und damit verbundene Effekte",
-          "encumbranceBonus":                      "Bonus auf den Stärkewert zur Bestimmung der Traglast",
-          "encumbranceMax":                        "Die maximale Last die getragen werden kann ohne negative Effekte",
-          "globalBonuses":                         "Allgemeine globale Wertänderungen",
-          "healthRate":                            "Gesundheitswerte für Token Module, nicht system-relevant",
-          "initiative":                            "Die Stufe die ich in der Initiative würfle",
-          "isMob":                                 "Hier werden Wunden anstatt Schaden verwendet",
-          "karma":                                 "Die verfügbaren Karmapunkte und die dazugehörige Stufe",
-          "karmaMax":                              "Maximale Anzahl an verfügbaren Karmapunkten pro Tag",
-          "karmaStep":                             "Die Stufe die verwendet wird wenn Karmapunkte ausgegeben werden",
-          "singleBonuses":                         "Einzelne Wertänderungen "
-        },
         "Horror":                                  "Dämon",
-        "Labels": {
-          "Characteristics": {
-            "armor":                               "Rüstung",
-            "armorValue":                          "Rüstungswert",
-            "bloodMagic":                          "Blutmagie",
-            "bloodMagicDamage":                    "Blutmagie Schaden",
-            "bloodMagicWounds":                    "Blutmagie Wunden",
-            "damage":                              "Schaden",
-            "damageStandard":                      "Normaler Schaden",
-            "damageStun":                          "Betäubungsschaden",
-            "damageTotal":                         "Gesamtschaden",
-            "deathRating":                         "Todesschwelle",
-            "defenseValue":                        "Verteidigungswert",
-            "defenses":                            "Verteidigung",
-            "health":                              "Gesundheit",
-            "maxWounds":                           "Mob: Max. Wunden",
-            "recoveryTestStep":                    "Erholungsproben Stufe",
-            "recoveryTestsCurrent":                "Aktuelle Erholungsproben",
-            "recoveryTestsMax":                    "Maximale Erholungsproben",
-            "recoveryTestsResource":               "Ressource - Erholungsproben",
-            "stunRecoveryAvailable":               "Betäubungserholung verfügbar",
-            "unconsciousRate":                     "Bewusstlosigkeitsschwelle",
-            "woundThreshold":                      "Wundschwelle",
-            "wounds":                              "Wunden"
-          },
-          "attributeValue":                        "Attribut Wert",
-          "attributes":                            "Attribute",
-          "challenge":                             "Herausforderung",
-          "challengeRate":                         "Herausforderungsrate",
-          "characteristics":                       "Charakteristiken",
-          "description":                           "Beschreibung",
-          "descriptionValue":                      "Beschreibungstext",
-          "devotion":                              "Weihe",
-          "devotionMax":                           "Maximale Weihepunkte",
-          "devotionStep":                          "Weihe Stufe",
-          "durabilityBonus":                       "Unempfindlichkeitsbonus",
-          "encumbrance":                           "Traglast",
-          "encumbranceBonus":                      "Traglast - Bonus",
-          "encumbranceMax":                        "Maximale Traglast",
-          "globalBonuses":                         "Globale Boni",
-          "healthRate":                            "Gesundheitswerte",
-          "initiative":                            "Initiative",
-          "isMob":                                 "Mob-Regeln",
-          "karma":                                 "Karma",
-          "karmaMax":                              "Maximale Karmapunkte",
-          "karmaStep":                             "Karma Stufe",
-          "singleBonuses":                         "Einzelne Boni"
-        },
         "Loot":                                    "Beute",
         "Namegiver":                               "Namensgeber",
         "Npc":                                     "Nicht-Spieler-Charakter",
@@ -870,14 +674,6 @@
         "Vehicle":                                 "Fahrzeug"
       },
       "Fields": {
-        "Labels": {
-          "SpellEnhancement": {
-            "special":                             "Spezial",
-            "type":                                "Typ",
-            "unit":                                "Einheit",
-            "value":                               "Wert"
-          }
-        },
         "Options": {
           "Duration": {
             "groupPermanentTime":                  "Permanent",
@@ -892,34 +688,7 @@
         }
       },
       "General": {
-        "Hints": {
-          "Combatant": {
-            "savePromptSettings":                  "Behalte die Initiative Einstellungen für diesen Kampf bei und überspringe dieses Fenster in den nächsten Runden."
-          },
-          "Knack": {
-            "lpCost":                              "Legendenpunktkosten"
-          },
-          "Knacks": {
-            "requirements":                        "Alle Voraussetzungen müssen erfüllt sein, um den Kniff zu lernen. Fertigkeiten gelten hierfür nicht, nur Talente und Kniffe.",
-            "restrictions":                        "Mindestens eine dieser Einschränkungen muss erfüllt sein um den Kniff zu lernen"
-          },
-          "Rollable": {
-            "type":                                "Welche Aktionsart wird für diese Fähigkeit verwendet?"
-          },
-          "Target": {
-            "fixed":                               "Unabhängig von ausgewählten Zielen wird dieser Wert als Schwierigkeit verwendet.",
-            "group":                               "Welche Gruppen Parameter werden für mehrere Ziele verwendet?",
-            "target":                              "Welcher Widerstandstyp des Ziels wird für diese Fähigkeit verwendet?"
-          }
-        },
         "Labels": {
-          "Combatant": {
-            "savePromptSettings":                  "Einstellung Speichern"
-          },
-          "Knack": {
-            "requirements":                        "Voraussetzungen",
-            "restrictions":                        "Einschränkungen"
-          },
           "Rollable": {
             "type":                                "Aktionsart"
           },
@@ -957,547 +726,6 @@
           "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
-        "Hints": {
-          "Ability": {
-            "Magic": {
-              "magic":                             "Magie",
-              "magicType":                         "Magie Typ",
-              "spellcasting":                      "Spruchzauberei",
-              "talentMagic":                       "Fadenwebentalent zum Zaubern",
-              "talentMagicType":                   "Fadenwebentalenttyp zum Zaubern",
-              "talentSpellcasting":                "Spruchzauberei",
-              "talentThreadWeaving":               "Fadenwebentalent",
-              "threadWeaving":                     "Fadenweben"
-            },
-            "RollTypeDetails": {
-              "Attack": {
-                "weaponItemStatus":                "Wie muss die Waffe getragen werden um damit anzugreifen",
-                "weaponType":                      "Welchen Kampftyp muss die verwendete Waffe haben?"
-              },
-              "Reaction": {
-                "defenseType":                     "Auf welchen Widerstand muss eine Fähigkeit zielen damit diese Reaktion ausgelöst wird?"
-              },
-              "attack":                            "Details für Aktionstyp 'Angriff'",
-              "reaction":                          "Details für Aktionstyp 'Reaktion'"
-            },
-            "Source": {
-              "atLevel":                           "Auf welchem Kreis oder Rang wurde diese Fähigkeit erlernt?",
-              "class":                             "Zu welchem Pfad, Questor oder Disziplin gehört diese Fähigkeit?"
-            },
-            "attribute":                           "Welches Attribut wird für diese Fähigkeit verwendet?",
-            "class":                               "Berufung",
-            "devotionRequired":                    "Weihepunkt benötigt",
-            "durability":                          "Unempfindlichkeit",
-            "rank":                                "Rang",
-            "rollTypeDetails":                     "Details zur Aktionsart",
-            "skillType":                           "Skilltyp",
-            "talentAvailableKnacks":               "Verfügbare Kniffe",
-            "talentCategory":                      "Talent Kategorie",
-            "talentKnacks":                        "Kniffe",
-            "talentKnacksAvailable":               "Verfügbare Kniffe",
-            "talentKnacksLearned":                 "Gelernte Kniffe",
-            "talentLearnedKnacks":                 "Gelernte Kniffe",
-            "tier":                                "Welche Stufe hat diese Fähigkeit?",
-            "type":                                "Art"
-          },
-          "Action": {
-            "action":                              "Aktion",
-            "strain":                              "Überanstrengung"
-          },
-          "Armor": {
-            "forgeBonusMystical":                  "Schmiedebonus Mystisch",
-            "forgeBonusPhysical":                  "Schmiedebonus Körperlich",
-            "initiativePenalty":                   "Initiative Malus",
-            "living":                              "Dieser Gegenstand gilt als Lebendige Rüstung.",
-            "mysticalArmor":                       "Mystische Rüstung",
-            "physicalArmor":                       "Physische Rüstung",
-            "piecemealArmor":                      "Ist diese Rüstung nicht komplett, sondern nur ein Teil?",
-            "piecemealArmorSize":                  "Größe der zusammengesetzten Rüstung (Wert zwischen 1 und 3)"
-          },
-          "Class": {
-            "bloodMagicDamage":                    "Blutmagie Schaden",
-            "durability":                          "Unempfindlichkeitwert der Disziplin",
-            "level":                               "Kreis oder Rang der Berufung",
-            "order":                               "Die wievielte Disziplin ist dies?",
-            "sourceDiscipline":                    "Herkunfts Disziplin",
-            "spellcasting":                        "Kann diese Disciplin Spurchzauberei ausüben?"
-          },
-          "Curse": {
-            "curseActive":                         "ist der Fluch aktiv?",
-            "curseDetected":                       "ist der Fluch erkannt?",
-            "curseType":                           "Art des Fluches",
-            "step":                                "Fluchstufe"
-          },
-          "Equipment": {
-            "ammunition":                          "Welcher Munitionstyp ist dieser Gegenstand?",
-            "bundleSize":                          "Wie viele Gegenstände gehören zu einem Bündel?",
-            "consumable":                          "Wird dieser Gegenstand bei der benutzung verbraucht?"
-          },
-          "Knack": {
-            "isPathKnack":                         "Ist dieser Kniff ein Pfadkniff?",
-            "lpCost":                              "Hat dieser Kniff abweichende LP Kosten zum Ursprungstalentrang?",
-            "minLevel":                            "welchen Rang muss das Ursprungstalent mindestens haben?",
-            "sourceTalent":                        "Von welchem Talent stammt dieser Kniff?",
-            "standardEffect":                      "Wird der Effekt des Ursprungtalentes mit ausgelöst?"
-          },
-          "Maneuver": {
-            "extraSuccesses":                      "Wie viele zusätzliche Erfolge werden benötigt?"
-          },
-          "Namegiver": {
-            "WeaponSize": {
-              "oneHandedMax":                      "Maximalgröße für Einhandwaffen",
-              "oneHandedMin":                      "Minimalgröße für Einhandwaffen",
-              "twoHandedMax":                      "Maximalgröße für Zweihandwaffen",
-              "twoHandedMin":                      "Minimalgröße für Zweihandwaffen"
-            },
-            "abilities":                           "Welche Fähigkeiten hat dieser Namensgeber?",
-            "karmaModifier":                       "Wie viele Karma Punkte erhält dieser Namensgeber pro Kreis?",
-            "livingArmorOnly":                     "Es kann nur nur lebendige Rüstung getragen werden.",
-            "tail":                                "Kann dieser Namensgeber Angriffe mit dem Schwanz ausführen",
-            "weightMultiplier":                    "Um wie viel wird das Gewicht eines Gegenstandes für diesen Namensgeber multipliziert?"
-          },
-          "PhysicalItems": {
-            "Price": {
-              "denomination":                      "Währung",
-              "value":                             "Preis"
-            },
-            "ThreadItem": {
-              "Deed": {
-                "description":                     "Was für eine Tat ist erforderlich?",
-                "isCompleted":                     "Ist die Tat abgeschlossen?",
-                "isRequired":                      "Ist eine Tat erforderlich?"
-              },
-              "KeyKnowledge": {
-                "answer":                          "Wie ist die Antwort der Schlüsselinformation?",
-                "isKnown":                         "Ist die Schlüsselinformation bekannt?",
-                "isRequired":                      "Wird eine Schlüsselinformation benötigt?",
-                "question":                        "Wie ist die Fagestellung der Schlüsselinformation?"
-              },
-              "activeEffect":                      "Welche Active Effects hat dieser Fadenrang",
-              "effect":                            "Welchen Effekt hat dieser Fadenrang",
-              "enchantmentPattern":                "Welche Verzauberungsanleitung liegt diesem Fadenegenstand zu grunde.",
-              "identifier":                        "Wurde der Fadengegenstand bereits identifiziert?",
-              "isActive":                          "Ist dieser Fadenrang aktiv?",
-              "isAnalyzed":                        "Die Grundstruktur dieses Gegenstandes ist untersucht, Anzahl der Fäden, Mystische Verteidigung und Anzahl der Fäden sowie die Kategorie sind bekannt.",
-              "isIdentified":                      "Dieser Gegenstand ist ein bekannter Fadengegenstand.",
-              "isLevelAnalyzed":                   "Dieser Fadenrang ist analysiert und kann erforscht werden.",
-              "level":                             "Fadenrang",
-              "maxThreads":                        "Wie viele Fäden können gleichzeitig mit diesem Fadengegenstand verwoben sein?",
-              "mysticalDefense":                   "Die Mystisch Verteidigung des Fadengegenstand.",
-              "threadLevel":                       "Fadenrang",
-              "tier":                              "Welcher Kategorie gehört dieser Fadengegenstand an (Novize, Geselle, Wächter oder Meister)?"
-            },
-            "UsableItem": {
-              "action":                            "Aktionsart, welche für die benutzung des Gegenstandes verwendet wird.",
-              "arbitraryStep":                     "Willkürliche Stufe, die beim benutzen des Gegenstandes verwendet wird.",
-              "recoveryPropertyValue":             "Erholungsproben relevanz",
-              "selector":                          "Kann der Gegenstand benutzt werden?"
-            },
-            "Weight": {
-              "calculated":                        "Wurde dieser Gegenstand bereits mit dem Multipliktor des Namensgebers berechnet?",
-              "multiplier":                        "Der Multiplikator des Namensgebers",
-              "value":                             "Gewicht"
-            },
-            "action":                              "Aktionsart, welche für die benutzung des Gegenstandes verwendet wird.",
-            "amount":                              "Menge",
-            "arbitraryStep":                       "Willkürliche Stufe, die beim benutzen des Gegenstandes verwendet wird.",
-            "availability":                        "Verfügbarkeit",
-            "bloodMagicDamage":                    "Blutmagie Schaden",
-            "itemStatus":                          "In welchem Ausrüstungszustand befindet sich der Gegenstand?",
-            "price":                               "Preis",
-            "usableItem":                          "Benutzbarer Gegenstand",
-            "value":                               "Wert",
-            "weight":                              "Gewicht"
-          },
-          "PoisonDisease": {
-            "activation":                          "Aktivierungsart des Giftes/der Krankheit",
-            "damageStep":                          "Schadensstufe des Giftes/der Krankheit",
-            "death":                               "Ist das Gift/die Krankheit tödlich?",
-            "debilitationStep":                    "Schwächungsstufe des Giftes/der Krankheit",
-            "duration":                            "Dauer des Giftes/der Krankheit",
-            "effect":                              "Effekt des Giftes/der Krankheit",
-            "interval":                            "Intervall zwischen den Effekten",
-            "onsetTime":                           "Einsetzzeit des Giftes/der Krankheit",
-            "paralysisStep":                       "Lähmungsstufe des Giftes/der Krankheit",
-            "timeInBetween":                       "Zeit zwischen den Effekten",
-            "totalEffects":                        "Gesamteffekte des Giftes/der Krankheit"
-          },
-          "Power": {
-            "action":                              "Aktionsart",
-            "armorType":                           "Rüstungstyp der gegen diese Kraft schützt.",
-            "damageStep":                          "Schadensstufe",
-            "damageType":                          "Schadensart der durch diese Kraft verursacht wird.",
-            "elementSubtype":                      "Ist die Elementarart der Kraft eine Unterart des Elements?",
-            "elementType":                         "Wird diese Kraft durch ein Element beeinflusst?",
-            "powerStep":                           "Aktionsstufe",
-            "strain":                              "Überanstrengung"
-          },
-          "Powers": {
-            "action":                              "Aktion",
-            "damageStep":                          "Schadensstufe",
-            "powerStep":                           "Kraftstufe",
-            "strain":                              "Überanstrengung"
-          },
-          "Questor": {
-            "questorDevotion":                     "Die 'Questor' Weihekraft die die Verbindung zu dieser Passion darstellt"
-          },
-          "Shields": {
-            "bowUsage":                            "Kann dieser Schild mit einem Bogen benutzt werden?",
-            "broken":                              "Ist dieser Schild zerbrochen?",
-            "defenseBonusMystical":                "Mystischer Verteidigungsbonus",
-            "defenseBonusPhysical":                "Körperlicher Verteidigungsbonus",
-            "initiativePenalty":                   "Initiative Malus",
-            "livingArmor":                         "Gilt dieser Schild als Lebendige Rüstung?",
-            "shatterThreshold":                    "Schwellenwert für das Zerbrechen des Schildes"
-          },
-          "ShipWeapon": {
-            "characterDamage":                     "Wie viel Schaden macht die Waffe an Lebewesen?",
-            "crewWeapon":                          "Wie viele Crewmitglieder werden benötigt um diese Waffe zu bedienen?",
-            "firePowerPoints":                     "Wie viel Feuerkraft Punkte hat diese Waffe?",
-            "rangeLong":                           "Reichweite Lang Minimum",
-            "rangeShort":                          "Reichweite Kurz Minimum",
-            "salvoCost":                           "Wie viel kostet eine Salve?"
-          },
-          "Spell": {
-            "area":                                "Wirkungsbereich des Zaubers",
-            "binding":                             "Bindung",
-            "circle":                              "Kreis",
-            "concentration":                       "Concentration",
-            "duration": {
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "effect":                              "Effekt des Zaubers",
-            "elementSubtype":                      "Elementarunterkategorie",
-            "elementType":                         "Elementarkategorie",
-            "extraSuccess":                        "Effekt bei zusätzlichen Erfolgen",
-            "extraSuccesses":                      "Effekt des zusätzlichen Erfolgs",
-            "extraThreadOption":                   "Effekt des zusätzlichen Fadens",
-            "extraThreads":                        "Mögliche Effekte bei zusätzlichen Fäden",
-            "illusionType":                        "Illusionsart",
-            "keyword":                             "Besonderheit des Zaubers",
-            "keywords":                            "Besonderheiten des Zaubers",
-            "level":                               "Der Kreis zu dem dieser Zauber gehört",
-            "magicType":                           "Zauberart",
-            "range": {
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "reattuneDifficulty":                  "Die Schwierigkeit um  den Zauber auf die Schnelle neu abzustimmen",
-            "reattunedifficulty":                  "Neuabstimmungsschwierigkeit",
-            "resist":                              "Widerstand",
-            "sensingDifficulty":                   "Die Schwierigkeit um diese Illusion zu durchschauen",
-            "spellArea": {
-              "shape":                             "Form",
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "spellElement":                        "Element des Zaubers",
-            "spellElementSubtype":                 "Unterart des Elements",
-            "spellElementType":                    "Typ des Elements",
-            "spellIllusion":                       "Illusion",
-            "spellThreadsRequired":                "Die Anzahl der Fäden die zum Wirken benötigt werden",
-            "spellThreadsWoven":                   "Die Anzahl der Fäden die bereits gewoben wurden",
-            "spellcastingType":                    "Art der Spruchzauberei die für diesen Zauber benötigt wird",
-            "spirit":                              "Geist",
-            "summoning":                           "Beschwörung",
-            "threadsrequired":                     "Erforderliche Fäden",
-            "weavingDifficulty":                   "Die Schwierigkeit um den Zauber erfolgreich zu wirken",
-            "weavingdifficulty":                   "Webschwierigkeit"
-          },
-          "Weapons": {
-            "ammunitionType":                      "Welcher Munitionstyp wird für diese Waffe benötigt?",
-            "armorType":                           "Der Typ von Rüstungs den diese Waffe angreift",
-            "damageAttribute":                     "Schaden Attribut",
-            "damageBaseStep":                      "Grundschaden Stufe",
-            "damageType":                          "Die Art von Schaden die diese Waffe verursacht",
-            "dexterityMinimum":                    "Geschicklichkeit Minimum",
-            "forgeBonus":                          "Schmiedebonus",
-            "rangeLongMax":                        "Reichweite Lang Maximum",
-            "rangeLongMin":                        "Reichweite Lang Minimum",
-            "rangeShortMax":                       "Reichweite Kurz Maximum",
-            "rangeShortMin":                       "Reichweite Kurz Minimum",
-            "size":                                "Größe",
-            "strengthMinimum":                     "Stärke Minimum",
-            "weaponSubType":                       "Die Art der Waffe",
-            "weaponType":                          "Der Kampftyp der Waffe",
-            "wieldingType":                        "Die Art wie die Waffe gehalten werden muss um sie zu benutzen"
-          },
-          "edid":                                  "Eine ID mit der ein Item unabhängig vom Namen identifziert werden kann"
-        },
-        "Labels": {
-          "Ability": {
-            "Magic": {
-              "magic":                             "Magie",
-              "magicType":                         "Magie Typ",
-              "spellcasting":                      "Spruchzauberei",
-              "talentMagic":                       "Zaubertalent",
-              "talentMagicType":                   "Zaubertalentart",
-              "talentSpellcasting":                "Spruchzaubereitalent",
-              "talentThreadWeaving":               "Fadenwebentalent",
-              "threadWeaving":                     "Fadenweben"
-            },
-            "RollTypeDetails": {
-              "Attack": {
-                "weaponItemStatus":                "Waffenstatus",
-                "weaponType":                      "Kampftyp"
-              },
-              "Reaction": {
-                "defenseType":                     "Verteidigungstyp"
-              },
-              "ability":                           "Fähigkeit",
-              "attack":                            "Angriff",
-              "damage":                            "Schaden",
-              "effect":                            "Effekt",
-              "initiative":                        "Initiative",
-              "reaction":                          "Reaktion",
-              "recovery":                          "Erholung",
-              "spellcasting":                      "Spruchzauberei",
-              "threadWeaving":                     "Fadenweben"
-            },
-            "Source": {
-              "atLevel":                           "Auf Rank/Kreis",
-              "class":                             "Herkunft"
-            },
-            "attribute":                           "Attribut",
-            "devotionRequired":                    "Weihepunkt benötigt",
-            "durability":                          "Unempfindlichkeit",
-            "rank":                                "Rang",
-            "rollTypeDetails":                     "Details zur Aktionsart",
-            "skillType":                           "Skilltyp",
-            "talentAvailableKnacks":               "Verfügbare Kniffe",
-            "talentCategory":                      "Talent Kategorie",
-            "talentKnacks":                        "Kniffe",
-            "talentKnacksAvailable":               "Verfügbare Kniffe",
-            "talentKnacksLearned":                 "Gelernte Kniffe",
-            "talentLearnedKnacks":                 "Gelernte Kniffe",
-            "tier":                                "Tier",
-            "type":                                "Art"
-          },
-          "Action": {
-            "action":                              "Aktion",
-            "strain":                              "Überanstrengung"
-          },
-          "Armor": {
-            "forgeBonusMystical":                  "Schmiedebonus Mystisch",
-            "forgeBonusPhysical":                  "Schmiedebonus Körperlich",
-            "initiativePenalty":                   "Initiative Malus",
-            "living":                              "Lebendige Rüstung",
-            "mysticalArmor":                       "Mystische Rüstung",
-            "physicalArmor":                       "Physische Rüstung",
-            "piecemealArmor":                      "Zusammengesetzte Rüstung",
-            "piecemealArmorSize":                  "Größe der zusammengesetzten Rüstung"
-          },
-          "Class": {
-            "bloodMagicDamage":                    "Blutmagie Schaden",
-            "durability":                          "Unempfindlichkeit",
-            "level":                               "Kreis/Rang",
-            "order":                               "Reihenfolge",
-            "sourceDiscipline":                    "Herkunfts Disziplin",
-            "spellcasting":                        "Spruchzauberei"
-          },
-          "Curse": {
-            "curseActive":                         "Aktiv?",
-            "curseDetected":                       "Erkannt?",
-            "curseType":                           "Fluchart",
-            "step":                                "Fluchstufe"
-          },
-          "Equipment": {
-            "ammunition":                          "Munitionstyp",
-            "bundleSize":                          "Bündelgröße",
-            "consumable":                          "Verbrauchsgegenstand?"
-          },
-          "Knack": {
-            "isPathKnack":                         "Pfad Kniff",
-            "lpCost":                              "LP Kosten",
-            "minLevel":                            "Min. Rang",
-            "sourceTalent":                        "Ursprungstalent",
-            "standardEffect":                      "Standard Effekt"
-          },
-          "Maneuver": {
-            "extraSuccesses":                      "Zusätzliche Erfolge"
-          },
-          "Namegiver": {
-            "WeaponSize": {
-              "oneHandedMax":                      "Einhandwaffen max.",
-              "oneHandedMin":                      "Einhandwaffen min.",
-              "twoHandedMax":                      "Zweihandwaffen max.",
-              "twoHandedMin":                      "Zweihandwaffen min."
-            },
-            "abilities":                           "Namensgeber-Fähigkeiten",
-            "karmaModifier":                       "Karma Modifikator",
-            "livingArmorOnly":                     "Nur legendige Rüstung",
-            "tail":                                "Schwanz",
-            "weightMultiplier":                    "Gewichtsmultiplikator"
-          },
-          "PhysicalItems": {
-            "Price": {
-              "denomination":                      "Währung",
-              "value":                             "Wert"
-            },
-            "ThreadItem": {
-              "Deed": {
-                "description":                     "Tat",
-                "isCompleted":                     "Abgeschlossen",
-                "isRequired":                      "Tat erforderlich?"
-              },
-              "KeyKnowledge": {
-                "answer":                          "Antwort",
-                "isKnown":                         "bekannt",
-                "isRequired":                      "Schlüsselinformation benötigt?",
-                "question":                        "Schlüsselinformation"
-              },
-              "activeEffect":                      "Aktive Effekte",
-              "effect":                            "Effekt",
-              "enchantmentPattern":                "Verzauberungsanleitung",
-              "identifier":                        "Identifiziert",
-              "isActive":                          "Aktiv",
-              "isAnalyzed":                        "Analysiert?",
-              "isIdentified":                      "Identifiziert?",
-              "isLevelAnalyzed":                   "Fadenrang Analysiert?",
-              "level":                             "Rang",
-              "maxThreads":                        "Maximale Fäden?",
-              "mysticalDefense":                   "Mystisch Verteidigung",
-              "tier":                              "Kategorie?"
-            },
-            "UsableItem": {
-              "action":                            "Aktion",
-              "arbitraryStep":                     "Willkürliche Stufe",
-              "recoveryPropertyValue":             "Erholungsproben relevanz",
-              "selector":                          "Benutzbar"
-            },
-            "Weight": {
-              "calculated":                        "Berechnet",
-              "multiplier":                        "Multiplikator",
-              "value":                             "Gewicht"
-            },
-            "amount":                              "Menge",
-            "availability":                        "Verfügbarkeit",
-            "bloodMagicDamage":                    "Blutmagie Schaden",
-            "itemStatus":                          "Status",
-            "price":                               "Preis",
-            "usableItem":                          "Benutzbarer Gegenstand",
-            "value":                               "Wert",
-            "weight":                              "Gewicht"
-          },
-          "PoisonDisease": {
-            "activation":                          "Aktivierung",
-            "damageStep":                          "Schadensstufe",
-            "death":                               "Tod",
-            "debilitationStep":                    "Schwächungsstufe",
-            "duration":                            "Dauer",
-            "effect":                              "Effekt",
-            "interval":                            "Intervall",
-            "onsetTime":                           "Einsetzzeit",
-            "paralysisStep":                       "Lähmungsstufe",
-            "timeInBetween":                       "Zeit zwischen den Effekten",
-            "totalEffects":                        "Gesamteffekte"
-          },
-          "Power": {
-            "action":                              "Aktionsart",
-            "armorType":                           "Rüstungstyp",
-            "damageStep":                          "Schadensstufe",
-            "damageType":                          "Schadensart",
-            "elementSubtype":                      "Elementarunterkategorie",
-            "elementType":                         "Elementarart",
-            "powerElementSubtype":                 "Unterklasse",
-            "powerElementType":                    "Elementarart",
-            "powerStep":                           "Aktionsstufe",
-            "strain":                              "Überanstrengung"
-          },
-          "Powers": {
-            "action":                              "Aktion",
-            "damageStep":                          "Schadensstufe",
-            "powerStep":                           "Kraftstufe",
-            "strain":                              "Überanstrengung"
-          },
-          "Questor": {
-            "questorDevotion":                     "Questor-Weihekraft"
-          },
-          "Shields": {
-            "bowUsage":                            "Tartsche?",
-            "broken":                              "Zerbrochen",
-            "defenseBonusMystical":                "Mystischer Verteidigungsbonus",
-            "defenseBonusPhysical":                "Körperlicher Verteidigungsbonus",
-            "initiativePenalty":                   "Initiative Malus",
-            "livingArmor":                         "Lebendige Rüstung?",
-            "shatterThreshold":                    "Bruchschwelle"
-          },
-          "ShipWeapon": {
-            "characterDamage":                     "Charakter Schaden",
-            "crewWeapon":                          "Besatzung",
-            "firePowerPoints":                     "Feuerkraft Punkte",
-            "rangeLong":                           "Lange Reichweite",
-            "rangeShort":                          "Kurze Reichweite",
-            "salvoCost":                           "Salve Kosten"
-          },
-          "Spell": {
-            "Duration": {
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "Range": {
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "area":                                "Bereich",
-            "binding":                             "Bindung",
-            "circle":                              "Kreis",
-            "concentration":                       "Konzentration",
-            "duration":                            "Dauer",
-            "effect":                              "Effekt",
-            "elementSubtype":                      "Elementarunterkategorie",
-            "elementType":                         "Elementarart",
-            "extraSuccess":                        "Zusätzlicher Erfolg",
-            "extraSuccesses":                      "Zusätzliche Erfolge",
-            "extraThreadOption":                   "Effekt",
-            "extraThreads":                        "Zusätzliche Fäden",
-            "illusionType":                        "Illusionsart",
-            "keyword":                             "Schlüsselwort",
-            "keywords":                            "Schlüsselwörter",
-            "level":                               "Kreis",
-            "magicType":                           "Zauberart",
-            "range":                               "Reichweite",
-            "reattuneDifficulty":                  "Neuabstimmungsschwierigkeit",
-            "resist":                              "Widerstand",
-            "sensingDifficulty":                   "Durchschauenmindestwurf",
-            "spellArea": {
-              "shape":                             "Form",
-              "uom":                               "Einheit",
-              "value":                             "Wert"
-            },
-            "spellElement":                        "Element",
-            "spellElementSubtype":                 "Element Subtyp",
-            "spellElementType":                    "Element Typ",
-            "spellIllusion":                       "Illusion",
-            "spellThreadsRequired":                "Benötigte Fäden",
-            "spellThreadsWoven":                   "Gewebte Fäden",
-            "spellcastingType":                    "Spruchzauberei Typ",
-            "spirit":                              "Geist",
-            "summoning":                           "Beschwörung",
-            "threadsrequired":                     "Benötigte Fäden",
-            "weavingDifficulty":                   "Webschwierigkeit"
-          },
-          "Weapons": {
-            "ammunitionType":                      "Munitionstyp",
-            "armorType":                           "Rüstungstyp",
-            "damageAttribute":                     "Schaden Attribut",
-            "damageBaseStep":                      "Grundschaden Stufe",
-            "damageType":                          "Schadensart",
-            "dexterityMinimum":                    "Geschicklichkeit Minimum",
-            "forgeBonus":                          "Schmiedebonus",
-            "rangeLongMax":                        "Reichweite Lang Maximum",
-            "rangeLongMin":                        "Reichweite Lang Minimum",
-            "rangeShortMax":                       "Reichweite Kurz Maximum",
-            "rangeShortMin":                       "Reichweite Kurz Minimum",
-            "size":                                "Größe",
-            "strengthMinimum":                     "Stärke Minimum",
-            "weaponSubType":                       "Waffensubtyp",
-            "weaponType":                          "Kampftyp",
-            "wieldingType":                        "Waffenführung"
-          },
-          "edid":                                  "ED-ID"
-        },
         "Learnable": {
         },
         "LpIncrease": {
@@ -1526,16 +754,6 @@
         },
         "Skill": {
         },
-        "SpecaialAbility": {
-        },
-        "Spell": {
-          "FIELDS": {
-            "spellcastingType": {
-              "hint":                              "Art der Spruchzauberei die für diesen Zauber benötigt wird",
-              "label":                             "Spruchzauberei Typ"
-            }
-          }
-        },
         "SpellKnack": {
         },
         "Talent": {
@@ -1546,10 +764,6 @@
         },
         "Weapon": {
         }
-      },
-      "Journal": {
-        "Hints":                                   "TODO: Add translation",
-        "Labels":                                  "Beschreibung"
       },
       "Other": {
         "AbilityRollOptions": {
@@ -1565,175 +779,6 @@
         "CharacterGeneration": {
         },
         "DamageRollOptions": {
-        },
-        "Hints": {
-          "AbilityConstraint": {
-            "ability":                             "Die ED-ID der Fähigkeit die vorausgesetzt wird",
-            "rank":                                "Optional: ein Mindestrang den die Fähigkeit haben muss"
-          },
-          "AreaUnit": {
-            "angle":                               "Der Winkel des Bereichs",
-            "areaTyp":                             "Die geometrische Form des Bereichs",
-            "count":                               "Die Anzahl der Bereiche",
-            "height":                              "Die Höhe des Bereichs",
-            "length":                              "Die Länge des Bereichs",
-            "radius":                              "Der Radius des Bereichs",
-            "thickness":                           "Die Dicke des Bereichs",
-            "unit":                                "Die Maßeinheit des Bereichs",
-            "width":                               "Die Breite des Bereichs"
-          },
-          "AttributeConstraint": {
-            "attribute":                           "Das Attribute das vorausgesetzt wird",
-            "value":                               "Der Wert (nicht Stufe!) des Attributs der vorausgesetzt wird"
-          },
-          "BaseUnit": {
-            "special":                             "Beschreibung des speziellen Wertes",
-            "type":                                "Die Art von Maß die beschrieben wird",
-            "unit":                                "Die Maßeinheit des Wertes",
-            "value":                               "Der eigentliche Wert"
-          },
-          "ClassConstraint": {
-            "class":                               "Die ED-ID der Berufung die vorausgesetzt wird",
-            "level":                               "Optional: ein Mindestrang/-kreis den die Berufung haben muss"
-          },
-          "DurationUnit": {
-            "unit":                                "Die Zeiteinheit der Dauer"
-          },
-          "EAEChangeData": {
-            "abilityUuid":                         "Die Fähigkeit die verändert wird",
-            "key":                                 "Die Eigenschaft die verändert wird",
-            "mode":                                "Die Operation die auf die Eigenschaft angewendet wird",
-            "priority":                            "Die Priorität für die Ausführungsreihenfolge der Veränderung",
-            "value":                               "Der Wert oder die Formel die auf die Eigenschaft angewendet wird"
-          },
-          "EAEDurationData": {
-            "combat":                              "Die _id des CombatEncounter in dem der Effekt zuerst begonnen hat",
-            "rounds":                              "Die maximale Dauer des Effekts in Kampfrunden",
-            "seconds":                             "Die maximale Dauer des Effekts in Sekunden",
-            "startRound":                          "Die Runde des Kampfes in der der Effekt zuerst begonnen hat",
-            "startTime":                           "Die Zeit in der Welt zu der der Effekt zuerst begonnen hat",
-            "startTurn":                           "Der Zug des Kampfes in dem der Effekt zuerst begonnen hat",
-            "turns":                               "Die maximale Dauer des Effekts in Kampfzügen",
-            "type":                                "In welcher Form wird die Dauer des Effekts gemessen",
-            "uses":                                "Wie oft kann dieser Effekt angewendet werden bevor er endet"
-          },
-          "LanguageConstraint": {
-            "language":                            "Die Sprache die vorausgesetzt wird, wie sie in den Einstellungen angegeben ist"
-          },
-          "MetricData": {
-            "area":                                "Verändere den Wirkungsbereich. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
-            "duration":                            "Verändere die Dauer. Wenn sich nur die Einheit verändern soll (z.B. von Runden auf Minuten), dann lasse die anderen Felder leer.",
-            "effect":                              "Verändere die Stufe des Effektwurfs. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
-            "range":                               "Verändere die Reichweite. Wenn sich nur die Einheit verändern soll (z.B. von Fuß auf Schritt), dann lasse die anderen Felder leer.",
-            "section":                             "Verändere die Anzahl an Abschnitten. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann.",
-            "special":                             "Eine textuelle Beschreibung der Veränderung. Das ist ein spezieller Wert, der nicht in die anderen Kategorien passt.",
-            "target":                              "Verändere die Anzahl an möglichen Zielen. Hier kann eine Formel genutzt werden die mit '@' auf die Daten des würfelnden <i>actors</i> zugreifen kann."
-          },
-          "NamegiverConstraint": {
-            "namegiver":                           "Der Namensgeber der vorausgesetzt wird"
-          },
-          "RangeUnit": {
-            "unit":                                "Die Maßeinheit der Reichweite"
-          },
-          "RelationConstraint": {
-            "relation":                            "Eine Form von Beziehung die vorausgesetzt wird, z.B. eine Mitgliedschaft in einer Vereinigung (tbd)"
-          },
-          "SpellEnhancement": {
-            "enhancementType":                     "Die Art der Verstärkung",
-            "unit":                                "Die Maßeinheit der Verstärkung"
-          },
-          "learnSpell": {
-            "freePatterncraftToLearnSpell":        "Freies Struktur Verstehen um den Zauber zu lernen",
-            "learnDifficulty":                     "Schwierigkeit des Lernens",
-            "lpCost":                              "Legendenpunkte für den Zauber Kosten",
-            "patterncraftSuccessful":              "Struktur Verstehen erfolgreich",
-            "patterncraftToLearnSpell":            "Soll Struktur Verstehen benutzt werden um den Zauber zu lernen (1 pro Tag)",
-            "teacherRank":                         "Welchen Rang hat der Lehrmeister in Spruchzauberei",
-            "teacherTestSuccessful":               "Der Spruchzaubereiwurf war erfolgreich. Der Lehrerrang wird nun als Bonus zum lernen des Zaubers addiert.",
-            "teacherToLearnSpell":                 "gibt es einen Lehrmeister der das erlernen des Zaubers unterstützt?",
-            "useRecoveryTestToLearnSpell":         "Soll eine Erholungsprobe geopfert werden um einen weiteren versuch zu unternehmen einen Zauber am gleichen Tag zu erlernen?"
-          },
-          "movement":                              "Die Geschwindigkeiten der verschiedenen Fortbewegungsarten"
-        },
-        "Labels": {
-          "AbilityConstraint": {
-            "ability":                             "Fähigkeit",
-            "rank":                                "Rang"
-          },
-          "AreaUnit": {
-            "angle":                               "Winkel",
-            "areaTyp":                             "Typ",
-            "count":                               "Anzahl",
-            "height":                              "Höhe",
-            "length":                              "Länge",
-            "radius":                              "Radius",
-            "thickness":                           "Dicke",
-            "unit":                                "Maßeinheit",
-            "width":                               "Breite"
-          },
-          "AttributeConstraint": {
-            "attribute":                           "Attribut",
-            "value":                               "Wert"
-          },
-          "BaseUnit": {
-            "special":                             "Spezial",
-            "type":                                "Typ",
-            "unit":                                "Einheit",
-            "value":                               "Wert"
-          },
-          "ClassConstraint": {
-            "class":                               "Disziplin / Questor / Pfad",
-            "level":                               "Kreis / Rang"
-          },
-          "DurationUnit": {
-            "unit":                                "Zeiteinheit"
-          },
-          "EAEChangeData": {
-            "abilityUuid":                         "Fähigkeit",
-            "key":                                 "Schlüssel",
-            "mode":                                "Modus",
-            "priority":                            "Priorität",
-            "value":                               "Wert"
-          },
-          "EAEDurationData": {
-            "combat":                              "Kampf-ID",
-            "rounds":                              "Runden",
-            "seconds":                             "Sekunden",
-            "startRound":                          "Start Runde",
-            "startTime":                           "Startzeit",
-            "startTurn":                           "Start Zug",
-            "turns":                               "Züge",
-            "type":                                "Typ",
-            "uses":                                "Anwendungen"
-          },
-          "LanguageConstraint": {
-            "language":                            "Sprache"
-          },
-          "NamegiverConstraint": {
-            "namegiver":                           "Namensgeber"
-          },
-          "RangeUnit": {
-            "unit":                                "Maßeinheit"
-          },
-          "RelationConstraint": {
-            "relation":                            "Beziehungen"
-          },
-          "SpellEnhancement": {
-            "enhancementType":                     "Art",
-            "unit":                                "Einheit"
-          },
-          "learnSpell": {
-            "freePatterncraftToLearnSpell":        "Freies Struktur Verstehen",
-            "learnDifficulty":                     "Schwierigkeit",
-            "lpCost":                              "Lp Kosten",
-            "patterncraftSuccessful":              "Erfolg",
-            "patterncraftToLearnSpell":            "Struktur Verstehen",
-            "teacherRank":                         "Lehrerrang",
-            "teacherTestSuccessful":               "Erfolgreicher Spruchzaubereiwurf",
-            "teacherToLearnSpell":                 "Lehrmeister vorhanden?",
-            "useRecoveryTestToLearnSpell":         "Erholungsprobe"
-          },
-          "movement":                              "Bewegung"
         },
         "LpEarningTransaction": {
         },
@@ -1914,6 +959,9 @@
         "inactiveUser":                            "Charaktere von inaktiven Spieler",
         "update":                                  "System Update Neuigkeiten"
       },
+      "IniPrompt": {
+        "configuration":                           "Konfiguration"
+      },
       "Legend": {
         "ClassAdvancement": {
           "NoSpellsAvailable":                     "Keine Zauber verfügbar",
@@ -1967,20 +1015,15 @@
           "hasTalentsOnMinRank":                   "Hat Talente auf dem Mindestrang {minRank}",
           "hasWounds":                             "Hat Wunden",
           "maxLevel":                              "Ist die Maximale Stufe erreicht?",
-          "maxLevelReached":                       "Maximale Stufe erreicht",
           "noTalentFromCurrentCircleOnNewLevel":   "Hat kein Talent des aktuellen Kreises auf dem {nextLevel} Rang",
           "notEnoughTalentsOfTier":                "Es sind nicht genügend {required} Talente auf Rang {nextLevel}, was ist {current}",
           "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
           "pathTalent":                            "Pfad-Talent",
-          "pathTalents":                           "Pfad-Talente",
           "requiredPathRank":                      "Erforderlicher Pfad-Rang",
           "sourceTalentName":                      "Quell-Talent Name",
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
-          "talentOptionLp":                        "Legendenpunkte für Talentoption",
-          "talentOptionLpCost":                    "Legendenpunkte Kosten für Talentoption",
-          "talentsRequirementFailed":              "Die folgenden Talente müssen mindestens einen Rang von  {requiredLevel} haben: {unfulfilledTalents}",
-          "talentsRequirementFulfilled":           "Die folgenden Talente sind auf dem Mindestrang {requiredLevel}: {unfulfilledTalents}"
+          "talentOptionLp":                        "Legendenpunkte für Talentoption"
         },
         "configuration":                           "Konfiguration",
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
@@ -2049,7 +1092,9 @@
       "physical":                                  "Körperlicher Schaden"
     },
     "Document": {
-      "create":                                    "Erstelle {type}"
+      "create":                                    "Erstelle {type}",
+      "name":                                      "Name",
+      "type":                                      "Typ"
     },
     "Documents": {
       "activeEffectSheetEd":                       "Effekt-Bogen",
@@ -2096,6 +1141,14 @@
         "targetingDetails":                        "Ziel Details",
         "type":                                    "Typ"
       },
+      "Namegiver": {
+        "charismaValue":                           "Charisma Wert",
+        "dexterityValue":                          "Geschicklichkeit Wert",
+        "perceptionValue":                         "Wahrnehmung Wert",
+        "strengthValue":                           "Stärke Wert",
+        "toughnessValue":                          "Zähigkeit Wert",
+        "willpowerValue":                          "Willenskraft Wert"
+      },
       "Navigator": {
         "advancement":                             "Aufstieg",
         "details":                                 "Details",
@@ -2120,6 +1173,10 @@
         "sensingDifficulty":                       "Durchschauenmindestwurf",
         "spirit":                                  "Geist",
         "summoning":                               "Beschwörung"
+      },
+      "Tabs": {
+        "level":                                   "Rang/Kreis",
+        "talentOptions":                           "Optionale Talente"
       }
     },
     "Journal": {
@@ -2141,6 +1198,7 @@
       "Error": {
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
+        "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
@@ -2158,7 +1216,6 @@
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
-        "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",

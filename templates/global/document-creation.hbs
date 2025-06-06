@@ -1,6 +1,6 @@
 <div id="document-create">
   <div class="form-group">
-    <label>{{localize "TODO.Name"}}</label>
+    <label>{{localize "ED.Document.name"}}</label>
     <div class="form-fields">
       <input type="text" name="name" placeholder="{{defaultName}}" value="{{name}}" autofocus>
     </div>
@@ -19,7 +19,7 @@
   {{/if}}
 
   <div class="type-selection scrollable flexcol">
-    <header id='typeSelectionHeader'>{{localize "TODO.Type"}}</header>
+    <header id='typeSelectionHeader'>{{localize "ED.Document.type"}}</header>
     {{#each typesRadio}}
       <header class='type-group-label'>{{@key}}</header>
       <div class='form-fields'>
