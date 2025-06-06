@@ -316,11 +316,11 @@ export default class DisciplineData extends ClassTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
     if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.Legend.cannotLearn" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
     if ( isEmpty( actor.disciplines ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.Legend.firstDisciplineViaCharGen" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstDisciplineViaCharGen" ) );
       return;
     }
 

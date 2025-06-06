@@ -104,7 +104,7 @@ export default class PathData extends ClassTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
     if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.Legend.cannotLearn" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
 
@@ -118,7 +118,7 @@ export default class PathData extends ClassTemplate.mixin(
       : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
 
     if ( !pathKnack || !pathTalent ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.Legend.cannotLearn" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
 
@@ -201,7 +201,7 @@ export default class PathData extends ClassTemplate.mixin(
     const updatedPath = await super.increase();
     if ( updatedPath?.system.level !== nextLevel ) {
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.Legend.classIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.classIncreaseProblems" )
       );
       return;
     }

@@ -7,11 +7,11 @@ import { preLocalize } from "../utils.mjs";
  */
 export const combatTypes = {
   Aerial: {
-    label:            "ED.Config.CombatTypes.Aerial",
+    label:            "ED.Config.CombatTypes.aerial",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   Close: {
-    label:            "ED.Config.CombatTypes.Close",
+    label:            "ED.Config.CombatTypes.close",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
   melee: {

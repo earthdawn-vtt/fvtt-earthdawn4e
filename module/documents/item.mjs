@@ -178,7 +178,7 @@ export default class ItemEd extends Item {
       await this.update( updateData );
       this.render( true );
     } else if ( this.system.weight.calculated ) {
-      ui.notifications.warn( game.i18n.localize( "X.cantUpdateItemWeight" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantUpdateItemWeight" ) );
     }
   }
 

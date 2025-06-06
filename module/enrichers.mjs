@@ -49,7 +49,7 @@ async function enrichRoll( match, options ) {
 
   const textRollFormula = rollCmd.replace(
     "/s",
-    game.i18n.localize( "ED.General.step"
+    game.i18n.localize( "ED.Journal.TextEnricher.step"
     ) );
   const textTestType = ( testType === "arbitrary" )
     ? ""

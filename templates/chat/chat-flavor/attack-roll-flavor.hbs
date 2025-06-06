@@ -75,45 +75,6 @@
   <!-- Conditional Section: Success-based Options -->
   {{#if (ne numSuccesses 0)}}
 
-    <!-- Reactions Section -->
-    {{!--#if reactionsByTarget}}
-      <h4>{{localize "ED.Chat.Header.attackReactions"}}</h4>
-      <div class="reactions-section">
-        {{#each reactionsByTarget as |reactions targetName|}}
-          <details>
-            <summary>{{targetName}}</summary>
-            <span>
-              <ul class="unlist">
-                {{#each reactions}}
-                  <li>
-                    <button class="reaction-button" data-action="reaction" data-reaction-uuid="{{this.uuid}}">
-                      {{this.name}}
-                    </button>
-                  </li>
-                {{/each}}
-              </ul>
-            </span>
-          </details>
-        {{/each}}
-      </div>
-    {{/if--}}
-
-    <!-- Maneuvers Section -->
-    {{!--#if maneuvers}}
-      <h4>{{localize "ED.Chat.Header.attackManeuvers"}}</h4>
-      <div class="maneuvers-section">
-        <ul>
-          {{#each maneuvers}}
-            <li>
-              <button class="maneuver-button" data-maneuver-id="{{this.id}}">
-                {{this.name}} ({{this.cost}} {{localize "ED.Common.successes"}})
-              </button>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    {{/if--}}
-
     <!-- Active Effects Section -->
     {{#if activeEffects}}
       <details class="effects-section">

@@ -269,8 +269,8 @@
           "name":                                  "Name",
           "type":                                  "Typ"
         },
-        "LpSpendingTypes": {
-          "Attribute":                             "Attribut",
+        "LpSpendingEntityTypes": {
+          "attribute":                             "Attribut",
           "devotion":                              "Weihekraft",
           "knack":                                 "Kniff",
           "knackManeuver":                         "Kniff Manöver",
@@ -518,7 +518,8 @@
           "roundStart":                            "Rundenbeginn",
           "turnEnd":                               "Zugende",
           "turnStart":                             "Zugbeginn"
-        }
+        },
+        "allKnockdownTests":                       "Alle Niederschlagsproben"
       },
       "Elements": {
         "air":                                     "Luft",
@@ -535,6 +536,13 @@
       "Health": {
         "damageStandard":                          "Standard",
         "damageStun":                              "Betäubung"
+      },
+      "IllusionType": {
+        "figment":                                 "Gebilde",
+        "glamour":                                 "Glamour",
+        "illusion":                                "Illusion",
+        "phantasm":                                "Phantasma",
+        "shadow":                                  "Schatten"
       },
       "ItemStatus": {
         "carried":                                 "Getragen",
@@ -600,13 +608,14 @@
         "noHealing":                               "Keine Heilung",
         "noRecovery":                              "Keine Erholung"
       },
-      "Resistance": {
+      "Resistances": {
         "fire":                                    "Feuer"
       },
       "RollTypes": {
         "ability":                                 "Fähigkeit",
         "attack":                                  "Angriff",
         "attribute":                               "Attribute",
+        "attuning":                                "Abstimmung",
         "damage":                                  "Schaden",
         "effect":                                  "Effekt",
         "halfmagic":                               "Halb Magie",
@@ -1826,6 +1835,7 @@
           "overview":                              "Übersicht",
           "preview":                               "Vorschau der Änderungen",
           "readWrite":                             "Lesen/Schreiben",
+          "shields":                               "Schilde",
           "speak":                                 "Gesprochene Sprachen",
           "spellOptions":                          "Verfügbare Zauber",
           "step":                                  "Stufe",
@@ -1961,6 +1971,7 @@
           "noTalentFromCurrentCircleOnNewLevel":   "Hat kein Talent des aktuellen Kreises auf dem {nextLevel} Rang",
           "notEnoughTalentsOfTier":                "Es sind nicht genügend {required} Talente auf Rang {nextLevel}, was ist {current}",
           "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
+          "pathTalent":                            "Pfad-Talent",
           "pathTalents":                           "Pfad-Talente",
           "requiredPathRank":                      "Erforderlicher Pfad-Rang",
           "sourceTalentName":                      "Quell-Talent Name",
@@ -1975,7 +1986,7 @@
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
         "increaseQuestorDevotionPrompt":           "Wähle eine Questor-Weihekraft um sie zu steigern",
         "initiativeAbilities":                     "Initiative Fähigkeiten",
-        "learnOnZeroOrOneRank":                    "Lerne auf Rang 0 oder 1",
+        "learnOnZeroOrOne":                        "Lerne auf Rang 0 oder 1",
         "learnPathKnackPrompt":                    "Wähle ein Pfad-Kniff um es zu lernen",
         "learnPathTalentPrompt":                   "Wähle ein Pfad-Talent um es zu lernen",
         "learnQuestorPrompt":                      "Wähle eine Questor-Weihekraft um sie zu lernen",
@@ -2036,6 +2047,7 @@
         "rollPrompt":                              "Würfel Dialog",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
+        "talentCategory":                          "Talent Kategorie",
         "talentIncrease":                          "Talent steigern"
       },
       "ToolTips": {
@@ -2261,6 +2273,11 @@
         "rollPrompt":                              "Würfelübersicht"
       }
     },
+    "Journal": {
+      "TextEnricher": {
+        "step":                                    "Stufe"
+      }
+    },
     "Languages": {
       "dwarf":                                     "Zwergisch",
       "elf":                                       "Sperethiel",
@@ -2273,10 +2290,10 @@
     },
     "Notifications": {
       "Error": {
-        "ActorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
-        "FormulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
-        "IdentifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
-        "InvalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
+        "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
+        "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
+        "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
       },
       "Info": {
@@ -2287,15 +2304,21 @@
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
-        "FormulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
+        "WarningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu.",
         "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
+        "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
+        "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+        "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
+        "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
-        "noTalentCategorySelected":                "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
+        "noTalntCategorySelected":                 "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
+        "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden"
       }

@@ -67,7 +67,7 @@ export default class AttackWorkflow extends ActorWorkflow {
     if ( !weapon && this._attackType !== "tail" ) weapon = this.actor.drawWeapon();
     if ( !weapon ) throw new WorkflowInterruptError(
       this,
-      game.i18n.localize( "ED.Notifications.Warn.Workflow.AttackNoWeaponFound" ),
+      game.i18n.localize( "ED.Notifications.Warn.attackNoWeaponFound" ),
     );
 
     this._weapon = weapon;

@@ -127,7 +127,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const nextLevel = this.level + 1;
     const nextLevelData = this.advancement.levels.find( l => l.level === nextLevel );
     if ( !nextLevelData ) {
-      ui.notifications.warn( "ED.Notifications.Warn.NoMoreClassLevelsToIncrease" );
+      ui.notifications.warn( "ED.Notifications.Warn.noMoreClassLevelsToIncrease" );
       return;
     }
     const nextTier = nextLevelData.tier;
