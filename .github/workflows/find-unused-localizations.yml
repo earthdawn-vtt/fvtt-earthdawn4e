@@ -1,0 +1,38 @@
+name: find-unused-localizations.yml
+on: workflow_dispatch
+jobs:
+  find_unused_localizations:
+    name: Scan for unused localizations from lang files
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20'
+
+      - name: Install dependencies
+        run: npm install fast-glob yargs
+
+      - name: Run localization checker
+        id: localization_checker
+        run: node tools/find-unused-lang-keys.mjs
+          --output-file "./reports/localization/missing-keys-report.json"
+        continue-on-error: true
+
+      - name: Upload localization check results
+        uses: actions/upload-artifact@v4
+        with:
+          name: localization-report
+          path: reports/localization/unused-keys-report.json
+          if-no-files-found: warn
+
+      - name: Pass or fail
+        if: steps.localization_checker.outcome == 'failure'
+        run: exit 1
