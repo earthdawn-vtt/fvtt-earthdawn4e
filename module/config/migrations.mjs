@@ -380,5 +380,13 @@ export const systemV0_8_2 = {
 
   ],
 
+  /**
+   * old system ability names for durability Devotions
+   * @enum {string}
+   */
+  durabilityNames: [
+    "durability",
+    "unempfindlichkeit",
+  ],
 };
 
