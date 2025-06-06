@@ -139,7 +139,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( !(
       ( await this.parent.update( { "system.level": nextLevel } ) ).system.level === nextLevel
     ) )
-      ui.notifications.warn( "ED.Notifications.Warn.ClassIncreaseProblems" );
+      ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
 
 
     // learn everything that potentially costs lp

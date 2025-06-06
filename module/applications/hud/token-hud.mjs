@@ -15,7 +15,7 @@ export default class TokenHUDEd extends foundry.applications.hud.TokenHUD {
   /** @inheritDoc */
   static async #onToggleEffect( event, target ) {
     if ( !this.actor ) {
-      ui.notifications.warn( "ED.Notifications.Warn.WarningEffectNoActor", { localize: true } );
+      ui.notifications.warn( "ED.Notifications.Warn.warningEffectNoActor", { localize: true } );
       return;
     }
 
