@@ -2151,7 +2151,6 @@
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
-        "WarningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu.",
         "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
         "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
         "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
@@ -2166,7 +2165,8 @@
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
         "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
-        "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden"
+        "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
+        "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
       }
     },
     "Rolls": {

@@ -178,7 +178,7 @@ export const lpIndexModForTier = [
   { novice: 3, journeyman: 4, warden: 5, master: 6, }, // Fourth+ Discipline
 ];
 
-export const LpSpendingEntityTypes = {
+export const lpSpendingEntityTypes = {
   attribute:        "ED.Actor.LpTracking.LpSpendingEntityTypes.attribute",
   devotion:         "ED.Actor.LpTracking.LpSpendingEntityTypes.devotion",
   knack:            "ED.Actor.LpTracking.LpSpendingEntityTypes.knack",
@@ -189,7 +189,7 @@ export const LpSpendingEntityTypes = {
   talent:           "ED.Actor.LpTracking.LpSpendingEntityTypes.talent",
   thread:           "ED.Actor.LpTracking.LpSpendingEntityTypes.thread",
 };
-preLocalize( "LpSpendingEntityTypes" );
+preLocalize( "lpSpendingEntityTypes" );
 
 /**
  * The cost of learning a new talent for additional disciplines. The first index is the order of the corresponding
