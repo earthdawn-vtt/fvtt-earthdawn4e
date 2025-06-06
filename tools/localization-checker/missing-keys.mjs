@@ -188,12 +188,6 @@ export default class MissingLocalizationChecker extends LocalizationChecker {
       }
     }
 
-    // Note about unused keys being in a separate script
-    console.log( "\n⚠️ Check for unused keys in language files has been moved to a separate script: find-unused-lang-keys.mjs" );
-    if ( LocalizationChecker.isGitHubActions ) {
-      await this.writeToGitHubSummary( "\n## ⚠️ Unused Keys Check\n\nCheck for unused keys in language files has been moved to a separate script: find-unused-lang-keys.mjs\n" );
-    }
-
     console.log( "\n" );
 
     // Save results to file
