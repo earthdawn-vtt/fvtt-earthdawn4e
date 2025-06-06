@@ -1,9 +1,9 @@
 /**
- * system configuration for the migration of the system from Version 0.8.2 
+ * System configuration for the migration of the system from Version 0.8.2 
  */
 export const systemV0_8_2 = {
 /**
- * attributes options from the LaPorta System
+ * Attributes options from the LaPorta System
  * @enum {string}
  */
   attributes:
@@ -16,19 +16,19 @@ export const systemV0_8_2 = {
   "charismaStep", 
 ],
   /**
-   * targetDefense options from the LaPorta System
+   * Target Defense options from the LaPorta System
    * @enum {string}
    */
   targetDefense: [ "mysticaldefense", "physicaldefense", "socialdefense" ],
 
   /**
-   * GroupDifficulty options from the LaPorta System
+   * Group Difficulty options from the LaPorta System
    * @enum {string}
    */
   groupDifficulty: [ "defenseHigh", "defenseLow", "defenseHighPlus", "defenseLowPlus" ],
 
   /**
-   * thread weaving naming options for automatic migration (will be slugified)
+   * Thread weaving naming options for automatic migration (will be slugified)
    * @enum {string}
    */
   threadWeavingNames: [
@@ -60,7 +60,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * oldThreadWeavingTalentNameForCasters options
+   * Thread weaving talent name for casters options
    * @enum {string}
    */
   threadWeavingNameForCasters: {
@@ -76,7 +76,7 @@ export const systemV0_8_2 = {
   },
 
   /**
-   * oldSpellcastingNames options
+   * Spellcasting names options
    * @enum {string}
    */
   spellcastingNames: [ "Spellcasting", "Spruchzauberei" 
@@ -86,7 +86,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * oldSpellcastingNames options
+   * Patterncraft names options
    * @enum {string}
    */
   patterncraftNames: [ "Patterncraft", "Struktur Verstehen" 
@@ -96,7 +96,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * oldSpellcastingNames options
+   * Versatility names options
    * @enum {string}
    */
   versatilityNames: [ "Versatility", "Vielseitigkeit" 
@@ -106,7 +106,7 @@ export const systemV0_8_2 = {
   ],
   
   /**
-   * oldDamageAdderNames options
+   * Damage adder names options
    * @enum {string}
    */
   damageAdderNames: [
@@ -125,7 +125,7 @@ export const systemV0_8_2 = {
   ],
   
   /**
-   * unarmedCombatNames options
+   * Unarmed combat names options
    * @enum {string}
    */
   unarmedCombatNames: [ "Unarmed Combat", "Waffenloser Kampf" 
@@ -135,7 +135,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * meleeWeaponNames options
+   * Melee weapon names options
    * @enum {string}
    */
   meleeWeaponNames: [ "Melee Weapons", "Nahkampfwaffen" 
@@ -145,7 +145,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * missileWeaponNames options
+   * Missile weapon names options
    * @enum {string}
    */
   missileWeaponNames: [ "Missile Weapons", "Projektilwaffen" 
@@ -155,7 +155,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * throwingWeaponNames options
+   * Throwing weapon names options
    * @enum {string}
    */
   throwingWeaponNames: [ "Throwing Weapons", "Wurfwaffen" 
@@ -165,7 +165,7 @@ export const systemV0_8_2 = {
   ],
   
   /**
-   * physicalReactionNames options
+   * Physical reaction names options
    * @enum {string}
    */
   physicalReactionNames: [ 
@@ -179,7 +179,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * physicalReactionNames options
+   * Resist knock down names options
    * @enum {string}
    */
   resistKnockDownNames: [ 
@@ -191,7 +191,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * mysticReactionNames options
+   * Mystical reaction names options
    * @enum {string}
    */
   mysticReactionNames: [ "Steel Thought", "Eiserner Wille" 
@@ -201,7 +201,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * socialReactionNames options
+   * Social reaction names options
    * @enum {string}
    */
   socialReactionNames: [ "Resist Taunt", "Starrsinn" 
@@ -211,37 +211,37 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * oldSystemRollType options
+   * Off hand combat talent names options
    * @enum {string}
    */
   offHandCombatTalents: [ "Zweitwaffe", "Second Weapon" ],
 
   /**
-   * old artisan skill names 
+   * Artisan skill names 
    * @enum {string}
    */
   artisan:       [ "Kunsthandwerk", "Artisan" ],
 
   /**
-   * old knowledge skill names 
+   * Knowledge skill names 
    * @enum {string}
    */
   knowledge:     [ "Wissen", "Knowledge" ],
 
   /**
-   * old read and write skill names 
+   * Read and write skill names 
    * @enum {string}
    */
   languageRW:    [ "Lesen und Schreiben", "Read and Write" ],
 
   /**
-   * old speak language skill names 
+   * Speak language skill names 
    * @enum {string}
    */
   languageSpeak: [ "Fremdsprachen", "Speak Language" ],
 
   /**
-   * old system ability names for Physical Defense
+   * System ability names for Physical Defense
    * @enum {string}
    */
   abilityPhysicalDefense: [
@@ -263,7 +263,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for Mystical Defense
+   * System ability names for Mystical Defense
    * @enum {string}
    */
   abilityMysticalDefense: [
@@ -296,7 +296,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for Social Defense
+   * System ability names for Social Defense
    * @enum {string}
    */
   abilitySocialDefense: [
@@ -336,7 +336,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for highest group defenses 
+   * System ability names for highest group defenses 
    * @enum {string}
    */
   abilityGroupDefenseMaxNames: [
@@ -350,7 +350,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for highest group defenses plus number of targets
+   * System ability names for highest group defenses plus number of targets
    * @enum {string}
    */
   abilityGroupDefenseMaxNamesPlus: [
@@ -365,7 +365,7 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for lowest group defenses 
+   * System ability names for lowest group defenses 
    * @enum {string}
    */
   abilityGroupDefenseMinNames: [
@@ -373,12 +373,20 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * old system ability names for lowest group defenses plus number of targets
+   * System ability names for lowest group defenses plus number of targets
    * @enum {string}
    */
   abilityGroupDefenseMinNamesPlus: [
 
   ],
 
+  /**
+   * Sstem ability names for durability Devotions
+   * @enum {string}
+   */
+  durabilityNames: [
+    "durability",
+    "unempfindlichkeit",
+  ],
 };
 
