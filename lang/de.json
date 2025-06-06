@@ -1999,11 +1999,9 @@
       },
       "RollPrompt": {
         "devotion":                                "Weihepunkt",
-        "devotionDice":                            "Weihepunkt Würfel",
         "devotionStep":                            "Weihepunkt Stufe",
         "difficulty":                              "Schwierigkeit",
         "karma":                                   "Karma",
-        "karmaDice":                               "Karma Würfel",
         "karmaStep":                               "Karma Stufe",
         "modifier":                                "Modifikator",
         "step":                                    "Stufe",
@@ -2014,19 +2012,6 @@
         "sortBy":                                  "Sortiere nach",
         "time":                                    "Zeit",
         "type":                                    "Typ"
-      },
-      "Tabs": {
-        "CharGen": {
-          "attribute":                             "Attribute",
-          "class":                                 "Berufung",
-          "equipment":                             "Ausrüstung",
-          "language":                              "Sprachen",
-          "namegiver":                             "Namensgeber",
-          "skill":                                 "Fertigkeiten",
-          "spell":                                 "Zauber"
-        },
-        "rollPromptBaseTab":                       "Basis Einstellungen",
-        "rollPromptOtherTab":                      "Weitere Einstellungen"
       },
       "Title": {
         "assignLp":                                "Legendenpunkte zuweisen",
@@ -2047,8 +2032,7 @@
         "rollPrompt":                              "Würfel Dialog",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
-        "talentCategory":                          "Talent Kategorie",
-        "talentIncrease":                          "Talent steigern"
+        "talentCategory":                          "Talent Kategorie"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
@@ -2060,15 +2044,12 @@
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
       "ignoreArmor":                               "Ignoriere Rüstung",
-      "jumpUpChoice":                              "Wähle die Fähigkeit um aufzuspringen",
       "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden"
     },
     "Document": {
-      "actor":                                     "Actor",
-      "create":                                    "Erstelle {type}",
-      "item":                                      "Item"
+      "create":                                    "Erstelle {type}"
     },
     "Documents": {
       "activeEffectSheetEd":                       "Effekt-Bogen",
@@ -2088,17 +2069,6 @@
       "journalSheetEd":                            "Journal-Bogen"
     },
     "Item": {
-      "Ability": {
-        "damage":                                  "Schaden",
-        "difficulty": {
-          "fixed":                                 "Fester Schwierigkeitsgrad",
-          "groupDifficulty":                       "Schwierigkeitsanpassung für Gruppen",
-          "targetDifficulty":                      "Schwierigkeitstyp"
-        },
-        "relatedRollType":                         "gilt für Aktionstyp",
-        "rollType":                                "Aktionstyp",
-        "substitute":                              "Ersetzt Stärke"
-      },
       "CreateData": {
         "nameQuestorDevotion":                     "Questor Weihekraft",
         "nameReadWriteLanguage":                   "Lesen/Schreiben",
@@ -2106,107 +2076,25 @@
       },
       "Discipline": {
         "addLevel":                                "Füge eine Kreis hinzu",
-        "circle":                                  "Kreis {circle}",
         "deleteItem":                              "Eintrag löschen",
-        "deleteLevel":                             "Lösche Stufe",
-        "disciplineTalents":                       "Disziplin Talente",
-        "durability":                              "Unverwundbarkeit",
-        "optionalAbilities":                       "Optionale Talente",
-        "talentOptionsForTier":                    "Talent Optionen für"
+        "deleteLevel":                             "Lösche Stufe"
       },
       "Header": {
         "actionType":                              "Aktionstyp",
-        "activeUser":                              "Aktive Spieler",
-        "actorsNoUserConfigured":                  "Nicht konfigurierte, zugewiesene Akteure",
         "damageSettings":                          "Schadenseinstellungen",
         "description":                             "Beschreibung",
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
-        "inactiveUser":                            "Inaktive Spieler",
-        "magic":                                   "Magie",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
         "talentKnacks":                            "Kniffe",
-        "talentKnacksAvailable":                   "Verfügbare Kniffe",
-        "talentKnacksLearned":                     "Gelernte Kniffe",
         "talentSource":                            "Talent Ursprung",
         "targetingDetails":                        "Ziel Details",
         "type":                                    "Typ"
-      },
-      "Knack": {
-        "Notification": {
-          "knackSourceMultipleTalents":            "Der Kniff verweißt auf mehrere Talente des Acteurs.",
-          "knackSourceNotFound":                   "Der Kniff verweißt auf kein Talent des Acteurs.",
-          "knackSourceNotHighEnough":              "Der Rank des Talents ist nicht hoch genug für diesen Kniff",
-          "maxKnacksReached":                      "Maximale Anzahl an Kniffen erreicht"
-        },
-        "action":                                  "Aktion",
-        "attribute":                               "Attribut",
-        "description":                             "Beschreibung",
-        "difficultyFixed":                         "Feste Schwierigkeit",
-        "difficultyGroup":                         "Schwierigkeit bei Gruppe",
-        "difficultyTarget":                        "Ziel Schwierigkeit",
-        "lpCost":                                  "Feste LP Kosten",
-        "minLevel":                                "Min. Rang",
-        "rank":                                    "Rang",
-        "sourceTalent":                            "Kniff Quelle",
-        "standardEffect":                          "Standard Effekt",
-        "strain":                                  "Überanstrengung"
-      },
-      "Mask": {
-        "attackStepsBonus":                        "Angriffsbonus",
-        "attacks":                                 "Angriffs Anzahlbonus",
-        "burrow":                                  "Grabenbonus",
-        "challengingRate":                         "Herausforderungsratenbonus",
-        "charismaStep":                            "Charismastufenbonus",
-        "climb":                                   "Kletternbonus",
-        "damageStepsBonus":                        "Schadensstufenbonus",
-        "deathThreshold":                          "Todesschwellenbonus",
-        "dexterityStep":                           "Geschicklichkeitsstufenbonus",
-        "fly":                                     "Fliegenbonus",
-        "initiativeStep":                          "Initiativestufenbonus",
-        "knockDownStep":                           "Niederschlagsstufenbonus",
-        "movement":                                "Bewegungsbonus",
-        "mysticArmor":                             "Mystischer Rüstungsbonus",
-        "perceptionStep":                          "Wahrnehmungsstufenbonus",
-        "physicalArmor":                           "Physischer Rüstungsbonus",
-        "powers":                                  "Kräfte",
-        "recoveryTestsResource":                   "Erholungsstupfenbonus",
-        "strengthStep":                            "Stärkestufenbonus",
-        "swim":                                    "Schwimmenbonus",
-        "toughnessStep":                           "Zähigkeitsstufenbonus",
-        "unconsciousThreshold":                    "Bewusstlosigkeitsschwellenbonus",
-        "walk":                                    "Gehenbonus",
-        "willpowerStep":                           "Willenskraftstufenbonus",
-        "woundThreshold":                          "Wundschwellenbonus"
-      },
-      "Namegiver": {
-        "WeaponSize": {
-          "OneHanded": {
-            "max":                                 "Maximale Einhandwaffengröße",
-            "min":                                 "Minimale Einhandwaffengröße"
-          },
-          "TwoHanded": {
-            "max":                                 "Maximale Zweihandwaffengröße",
-            "min":                                 "Minimale Zweihandwaffengröße"
-          }
-        },
-        "burrow":                                  "Buddeln",
-        "charismaValue":                           "Charisma Wert",
-        "climb":                                   "Klettern",
-        "dexterityValue":                          "Geschick Wert",
-        "fly":                                     "Fliegen",
-        "karmaModifier":                           "Karma Modifikator",
-        "perceptionValue":                         "Wahrnehmung Wert",
-        "strengthValue":                           "Stärke Wert",
-        "swim":                                    "Schwimmen",
-        "toughnessValue":                          "Zähigkeit Wert",
-        "walk":                                    "Zu Fuß",
-        "willpowerValue":                          "Willenskraft Wert"
       },
       "Navigator": {
         "advancement":                             "Aufstieg",
@@ -2225,9 +2113,6 @@
         "researchCheck":                           "Forschen ",
         "weaveThreadCheck":                        "Fadenweben "
       },
-      "Placeholder": {
-        "lpDescription":                           "Trage hier eine Beschreibung ein"
-      },
       "Spell": {
         "binding":                                 "Bindung",
         "concentration":                           "Konzentration",
@@ -2235,42 +2120,6 @@
         "sensingDifficulty":                       "Durchschauenmindestwurf",
         "spirit":                                  "Geist",
         "summoning":                               "Beschwörung"
-      },
-      "Tabs": {
-        "advancement":                             "Fortschritt",
-        "classes":                                 "Berufung",
-        "details":                                 "Details",
-        "devotions":                               "Weihekräfte",
-        "effects":                                 "Effekte",
-        "equipment":                               "Ausrüstung",
-        "general":                                 "Allgemein",
-        "legend":                                  "Legende",
-        "level":                                   "Kreis {circle}",
-        "notes":                                   "Notizen",
-        "reputation":                              "Ruf",
-        "skills":                                  "Fertigkeiten",
-        "specials":                                "Effekte",
-        "spells":                                  "Zauber",
-        "talentOptions":                           "Optionale Talente",
-        "talents":                                 "Talente",
-        "thread":                                  "Fäden"
-      },
-      "Talent": {
-        "action":                                  "Aktion",
-        "attribute":                               "Attribut",
-        "description":                             "Beschreibung",
-        "difficultyFixed":                         "Feste Schwierigkeit",
-        "difficultyGroup":                         "Schwierigkeit bei Gruppe",
-        "difficultyTarget":                        "Ziel Schwierigkeit",
-        "rank":                                    "Rang",
-        "strain":                                  "Überanstrengung",
-        "talentCategory":                          "Kategorie",
-        "talentIdentifier":                        "Talent Identifikator",
-        "tier":                                    "Stufe"
-      },
-      "Title": {
-        "assignLp":                                "Legendenpunkte zuweisen",
-        "rollPrompt":                              "Würfelübersicht"
       }
     },
     "Journal": {
@@ -2298,9 +2147,7 @@
       },
       "Info": {
         "ReattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
-        "noMoreItemsOfThisType":                   "Diese Item kann kein weiteres Mal hinzugefügt werden.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
-        "notAddedforTheActor":                     "Diese Item ist nicht für diesen Actortyp gedacht.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
@@ -2316,7 +2163,6 @@
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
-        "noTalntCategorySelected":                 "Du musst eine Talentkategorie auswählen, sonst können wir nichts zuordnen und kuhle LP Sachen machen :(",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
         "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
@@ -2325,31 +2171,16 @@
     },
     "Rolls": {
       "Labels": {
-        "abilityRoll":                             "Fähigkeitsprobe",
         "actionTestRoll":                          "Aktionsprobe",
-        "arbitraryRoll":                           "Willkürlicher Test",
         "arbitraryTestRoll":                       "Willkürlicher Test",
-        "attackRoll":                              "Angriffstprobe",
-        "attributeRoll":                           "Attributsprobe",
-        "damageRoll":                              "Schadensprobe",
-        "effectRoll":                              "Effektprobe",
-        "effectTestRoll":                          "Effektprobe",
-        "halfmagicRoll":                           "Halbmagieprobe",
-        "initiativeRoll":                          "Initiativeprobe",
-        "recoveryRoll":                            "Erholungsprobe",
-        "spellcastingRoll":                        "Spruchzaubereiprobe",
-        "threadWeavingRoll":                       "Fadenwebenprobe"
+        "effectTestRoll":                          "Effektprobe"
       },
-      "against":                                   "gegen",
       "baseValue":                                 "Basis Stufe",
-      "devotion":                                  "Weihekraft",
       "formulaDevotion":                           "{amount}x Weihe (St {step})",
       "formulaExtraStep":                          "{label} (St {step})",
       "formulaKarma":                              "{amount}x Karma (St {step})",
       "formulaStep":                               "Stufe {step}",
-      "karma":                                     "Karma",
       "rollResult":                                "Würfelergebnis",
-      "rolls":                                     "würfelt",
       "ruleOfOne":                                 "Fehlschlag, Regel der Eins",
       "step":                                      "Stufe",
       "stepModifiers":                             "Stufen Modifikatoren",
