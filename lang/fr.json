@@ -2103,7 +2103,6 @@
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
-        "WarningEffectNoActor":                    "TODO: Add translation",
         "abilityIncreaseProblems":                 "TODO: Add translation",
         "addLpTransactionProblems":                "TODO: Add translation",
         "attackNoWeaponFound":                     "TODO: Add translation",
@@ -2118,7 +2117,8 @@
         "noWeaponToAttackWith":                    "TODO: Add translation",
         "notImplementedYet":                       "TODO: Add translation",
         "piecemealArmorSizeExceeded":              "TODO: Add translation",
-        "questorItemNotUpdated":                   "TODO: Add translation"
+        "questorItemNotUpdated":                   "TODO: Add translation",
+        "warningEffectNoActor":                    "TODO: Add translation"
       }
     },
     "Rolls": {
