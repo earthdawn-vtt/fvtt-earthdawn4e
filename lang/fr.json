@@ -269,8 +269,8 @@
           "name":                                  "TODO: Add translation",
           "type":                                  "TODO: Add translation"
         },
-        "LpSpendingTypes": {
-          "Attribute":                             "TODO: Add translation",
+        "LpSpendingEntityTypes": {
+          "attribute":                             "TODO: Add translation",
           "devotion":                              "TODO: Add translation",
           "knack":                                 "TODO: Add translation",
           "knackManeuver":                         "TODO: Add translation",
@@ -518,7 +518,8 @@
           "roundStart":                            "TODO: Add translation",
           "turnEnd":                               "TODO: Add translation",
           "turnStart":                             "TODO: Add translation"
-        }
+        },
+        "allKnockdownTests":                       "TODO: Add translation"
       },
       "Elements": {
         "air":                                     "TODO: Add translation",
@@ -535,6 +536,13 @@
       "Health": {
         "damageStandard":                          "TODO: Add translation",
         "damageStun":                              "TODO: Add translation"
+      },
+      "IllusionType": {
+        "figment":                                 "TODO: Add translation",
+        "glamour":                                 "TODO: Add translation",
+        "illusion":                                "TODO: Add translation",
+        "phantasm":                                "TODO: Add translation",
+        "shadow":                                  "TODO: Add translation"
       },
       "ItemStatus": {
         "carried":                                 "TODO: Add translation",
@@ -600,13 +608,14 @@
         "noHealing":                               "TODO: Add translation",
         "noRecovery":                              "TODO: Add translation"
       },
-      "Resistance": {
+      "Resistances": {
         "fire":                                    "TODO: Add translation"
       },
       "RollTypes": {
         "ability":                                 "TODO: Add translation",
         "attack":                                  "TODO: Add translation",
         "attribute":                               "TODO: Add translation",
+        "attuning":                                "TODO: Add translation",
         "damage":                                  "TODO: Add translation",
         "effect":                                  "TODO: Add translation",
         "halfmagic":                               "TODO: Add translation",
@@ -1778,6 +1787,7 @@
           "overview":                              "TODO: Add translation",
           "preview":                               "TODO: Add translation",
           "readWrite":                             "TODO: Add translation",
+          "shields":                               "TODO: Add translation",
           "speak":                                 "TODO: Add translation",
           "spellOptions":                          "TODO: Add translation",
           "step":                                  "TODO: Add translation",
@@ -1913,6 +1923,7 @@
           "noTalentFromCurrentCircleOnNewLevel":   "TODO: Add translation",
           "notEnoughTalentsOfTier":                "TODO: Add translation",
           "notEnoughTalentsOnMinRank":             "TODO: Add translation",
+          "pathTalent":                            "TODO: Add translation",
           "pathTalents":                           "TODO: Add translation",
           "requiredPathRank":                      "TODO: Add translation",
           "sourceTalentName":                      "TODO: Add translation",
@@ -1927,7 +1938,7 @@
         "increasePathTalentPrompt":                "TODO: Add translation",
         "increaseQuestorDevotionPrompt":           "TODO: Add translation",
         "initiativeAbilities":                     "TODO: Add translation",
-        "learnOnZeroOrOneRank":                    "TODO: Add translation",
+        "learnOnZeroOrOne":                        "TODO: Add translation",
         "learnPathKnackPrompt":                    "TODO: Add translation",
         "learnPathTalentPrompt":                   "TODO: Add translation",
         "learnQuestorPrompt":                      "TODO: Add translation",
@@ -1988,6 +1999,7 @@
         "rollPrompt":                              "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
+        "talentCategory":                          "TODO: Add translation",
         "talentIncrease":                          "TODO: Add translation"
       },
       "ToolTips": {
@@ -2213,6 +2225,11 @@
         "rollPrompt":                              "TODO: Add translation"
       }
     },
+    "Journal": {
+      "TextEnricher": {
+        "step":                                    "TODO: Add translation"
+      }
+    },
     "Languages": {
       "dwarf":                                     "TODO: Add translation",
       "elf":                                       "TODO: Add translation",
@@ -2225,10 +2242,10 @@
     },
     "Notifications": {
       "Error": {
-        "ActorWarningSingleton":                   "TODO: Add translation",
-        "FormulaMalformedError":                   "TODO: Add translation",
-        "IdentifierError":                         "TODO: Add translation",
-        "InvalidElementSubtype":                   "TODO: Add translation",
+        "actorWarningSingleton":                   "TODO: Add translation",
+        "formulaMalformedError":                   "TODO: Add translation",
+        "identifierError":                         "TODO: Add translation",
+        "invalidElementSubtype":                   "TODO: Add translation",
         "singleton":                               "TODO: Add translation"
       },
       "Info": {
@@ -2239,15 +2256,21 @@
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
-        "FormulaMissingReferenceWarn":             "TODO: Add translation",
+        "WarningEffectNoActor":                    "TODO: Add translation",
         "abilityIncreaseProblems":                 "TODO: Add translation",
+        "addLpTransactionProblems":                "TODO: Add translation",
+        "attackNoWeaponFound":                     "TODO: Add translation",
         "cannotLearn":                             "TODO: Add translation",
+        "cantUpdateItemWeight":                    "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
         "firstDisciplineViaCharGen":               "TODO: Add translation",
+        "formulaMissingReferenceWarn":             "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
+        "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
-        "noTalentCategorySelected":                "TODO: Add translation",
+        "noTalntCategorySelected":                 "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
+        "notImplementedYet":                       "TODO: Add translation",
         "piecemealArmorSizeExceeded":              "TODO: Add translation",
         "questorItemNotUpdated":                   "TODO: Add translation"
       }
