@@ -1953,11 +1953,9 @@
       },
       "RollPrompt": {
         "devotion":                                "Devotion",
-        "devotionDice":                            "TODO: Add translation",
         "devotionStep":                            "Devotion Step",
         "difficulty":                              "Difficulty",
         "karma":                                   "Karma",
-        "karmaDice":                               "TODO: Add translation",
         "karmaStep":                               "Karma Step",
         "modifier":                                "Modifier",
         "step":                                    "Step",
@@ -1968,19 +1966,6 @@
         "sortBy":                                  "TODO: Add translation",
         "time":                                    "TODO: Add translation",
         "type":                                    "TODO: Add translation"
-      },
-      "Tabs": {
-        "CharGen": {
-          "attribute":                             "TODO: Add translation",
-          "class":                                 "TODO: Add translation",
-          "equipment":                             "TODO: Add translation",
-          "language":                              "TODO: Add translation",
-          "namegiver":                             "TODO: Add translation",
-          "skill":                                 "TODO: Add translation",
-          "spell":                                 "TODO: Add translation"
-        },
-        "rollPromptBaseTab":                       "Base",
-        "rollPromptOtherTab":                      "Other"
       },
       "Title": {
         "assignLp":                                "TODO: Add translation",
@@ -2001,8 +1986,7 @@
         "rollPrompt":                              "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
-        "talentCategory":                          "TODO: Add translation",
-        "talentIncrease":                          "TODO: Add translation"
+        "talentCategory":                          "TODO: Add translation"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "TODO: Add translation"
@@ -2014,15 +1998,12 @@
       "damageStun":                                "Stun Damage",
       "damageType":                                "Damage Type",
       "ignoreArmor":                               "Ignore Armor",
-      "jumpUpChoice":                              "Chose the Ability to jump up",
       "knockDownChoice":                           "Chose the Ability to withstand the Knock Down",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage"
     },
     "Document": {
-      "actor":                                     "TODO: Add translation",
-      "create":                                    "TODO: Add translation",
-      "item":                                      "TODO: Add translation"
+      "create":                                    "TODO: Add translation"
     },
     "Documents": {
       "activeEffectSheetEd":                       "TODO: Add translation",
@@ -2042,17 +2023,6 @@
       "journalSheetEd":                            "TODO: Add translation"
     },
     "Item": {
-      "Ability": {
-        "damage":                                  "Damage",
-        "difficulty": {
-          "fixed":                                 "Fixed Difficulty",
-          "groupDifficulty":                       "Difficult Adjusted by Groups",
-          "targetDifficulty":                      "Difficulty Type"
-        },
-        "relatedRollType":                         "counts for Roll Type",
-        "rollType":                                "Roll Type",
-        "substitute":                              "Replaces Strength"
-      },
       "CreateData": {
         "nameQuestorDevotion":                     "TODO: Add translation",
         "nameReadWriteLanguage":                   "TODO: Add translation",
@@ -2060,107 +2030,25 @@
       },
       "Discipline": {
         "addLevel":                                "Add Circle",
-        "circle":                                  "Circle {circle}",
         "deleteItem":                              "TODO: Add translation",
-        "deleteLevel":                             "Delete Circle",
-        "disciplineTalents":                       "Discipline Talents",
-        "durability":                              "Durability",
-        "optionalAbilities":                       "Optional Abilities",
-        "talentOptionsForTier":                    "Talent Options for"
+        "deleteLevel":                             "Delete Circle"
       },
       "Header": {
         "actionType":                              "Action Type",
-        "activeUser":                              "Active User",
-        "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
         "damageSettings":                          "Damage Settings",
         "description":                             "Description",
         "details":                                 "Details",
         "effects":                                 "Effects",
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
-        "inactiveUser":                            "Inactive User",
-        "magic":                                   "Magic",
         "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
         "talentKnacks":                            "TODO: Add translation",
-        "talentKnacksAvailable":                   "TODO: Add translation",
-        "talentKnacksLearned":                     "TODO: Add translation",
         "talentSource":                            "TODO: Add translation",
         "targetingDetails":                        "Targeting Details",
         "type":                                    "Type"
-      },
-      "Knack": {
-        "Notification": {
-          "knackSourceMultipleTalents":            "The Knack is referenced in multiple Talents of the Actor",
-          "knackSourceNotFound":                   "The Knack is not referenced in any Talent of the Actor",
-          "knackSourceNotHighEnough":              "The Rank of the Talent is not high enough",
-          "maxKnacksReached":                      "Maximum amount of Knacks reached"
-        },
-        "action":                                  "Action",
-        "attribute":                               "Attribute",
-        "description":                             "Description",
-        "difficultyFixed":                         "Fixed Difficulty",
-        "difficultyGroup":                         "Group Difficulty",
-        "difficultyTarget":                        "Target Difficulty",
-        "lpCost":                                  "LP Cost",
-        "minLevel":                                "Min. Rank",
-        "rank":                                    "Rank",
-        "sourceTalent":                            "Source Talent",
-        "standardEffect":                          "Standard Effect",
-        "strain":                                  "Strain"
-      },
-      "Mask": {
-        "attackStepsBonus":                        "TODO: Add translation",
-        "attacks":                                 "TODO: Add translation",
-        "burrow":                                  "TODO: Add translation",
-        "challengingRate":                         "TODO: Add translation",
-        "charismaStep":                            "TODO: Add translation",
-        "climb":                                   "TODO: Add translation",
-        "damageStepsBonus":                        "TODO: Add translation",
-        "deathThreshold":                          "TODO: Add translation",
-        "dexterityStep":                           "TODO: Add translation",
-        "fly":                                     "TODO: Add translation",
-        "initiativeStep":                          "TODO: Add translation",
-        "knockDownStep":                           "TODO: Add translation",
-        "movement":                                "TODO: Add translation",
-        "mysticArmor":                             "TODO: Add translation",
-        "perceptionStep":                          "TODO: Add translation",
-        "physicalArmor":                           "TODO: Add translation",
-        "powers":                                  "TODO: Add translation",
-        "recoveryTestsResource":                   "TODO: Add translation",
-        "strengthStep":                            "TODO: Add translation",
-        "swim":                                    "TODO: Add translation",
-        "toughnessStep":                           "TODO: Add translation",
-        "unconsciousThreshold":                    "TODO: Add translation",
-        "walk":                                    "TODO: Add translation",
-        "willpowerStep":                           "TODO: Add translation",
-        "woundThreshold":                          "TODO: Add translation"
-      },
-      "Namegiver": {
-        "WeaponSize": {
-          "OneHanded": {
-            "max":                                 "Maximum One hand Weapon Size",
-            "min":                                 "Minimal One hand Weapon Size"
-          },
-          "TwoHanded": {
-            "max":                                 "Maximum two hand Weapon Size",
-            "min":                                 "Minimal two hand Weapon Size"
-          }
-        },
-        "burrow":                                  "burrow",
-        "charismaValue":                           "Charisma Value",
-        "climb":                                   "climb",
-        "dexterityValue":                          "Dexterity Value",
-        "fly":                                     "fly",
-        "karmaModifier":                           "Karma Modifier",
-        "perceptionValue":                         "Perception Value",
-        "strengthValue":                           "Strength Value",
-        "swim":                                    "swim",
-        "toughnessValue":                          "Toughness Value",
-        "walk":                                    "walk",
-        "willpowerValue":                          "Willpower Value"
       },
       "Navigator": {
         "advancement":                             "advancement",
@@ -2179,9 +2067,6 @@
         "researchCheck":                           "Research Check",
         "weaveThreadCheck":                        "Weave Thread Check"
       },
-      "Placeholder": {
-        "lpDescription":                           "TODO: Add translation"
-      },
       "Spell": {
         "binding":                                 "Binding",
         "concentration":                           "Concentration",
@@ -2189,42 +2074,6 @@
         "sensingDifficulty":                       "Sensing Difficulty",
         "spirit":                                  "Spirit",
         "summoning":                               "Summoning"
-      },
-      "Tabs": {
-        "advancement":                             "Advancement",
-        "classes":                                 "Classes",
-        "details":                                 "Details",
-        "devotions":                               "Devotions",
-        "effects":                                 "Effects",
-        "equipment":                               "Equipment",
-        "general":                                 "General",
-        "legend":                                  "Legend",
-        "level":                                   "TODO: Add translation",
-        "notes":                                   "Notes",
-        "reputation":                              "Reputation",
-        "skills":                                  "Skills",
-        "specials":                                "Specials",
-        "spells":                                  "Spells",
-        "talentOptions":                           "TODO: Add translation",
-        "talents":                                 "Talents",
-        "thread":                                  "Threads"
-      },
-      "Talent": {
-        "action":                                  "Action",
-        "attribute":                               "Attribute",
-        "description":                             "Description",
-        "difficultyFixed":                         "Fixed Difficulty",
-        "difficultyGroup":                         "Group Difficulty",
-        "difficultyTarget":                        "Target Difficulty",
-        "rank":                                    "Rank",
-        "strain":                                  "Strain",
-        "talentCategory":                          "Talent Category",
-        "talentIdentifier":                        "Source Talent Identifier",
-        "tier":                                    "Tier"
-      },
-      "Title": {
-        "assignLp":                                "TODO: Add translation",
-        "rollPrompt":                              "TODO: Add translation"
       }
     },
     "Journal": {
@@ -2252,9 +2101,7 @@
       },
       "Info": {
         "ReattuningCancelled":                     "TODO: Add translation",
-        "noMoreItemsOfThisType":                   "This Item cannot be added again to this Actor.",
         "noWeaponAvailable":                       "TODO: Add translation",
-        "notAddedforTheActor":                     "This Item is not meant for this Actor.",
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
@@ -2270,7 +2117,6 @@
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
-        "noTalntCategorySelected":                 "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
         "notImplementedYet":                       "TODO: Add translation",
         "piecemealArmorSizeExceeded":              "Maximum amount of piecemeal armor reached. Unequip other parts to equip the new piece.",
@@ -2279,31 +2125,16 @@
     },
     "Rolls": {
       "Labels": {
-        "abilityRoll":                             "Ability Test",
         "actionTestRoll":                          "Action Test",
-        "arbitraryRoll":                           "Arbitrary Test",
         "arbitraryTestRoll":                       "Arbitrary Test",
-        "attackRoll":                              "Attack Test",
-        "attributeRoll":                           "Attribute Test",
-        "damageRoll":                              "Damage Test",
-        "effectRoll":                              "Effect Test",
-        "effectTestRoll":                          "Effect Test",
-        "halfmagicRoll":                           "Half-magic Test",
-        "initiativeRoll":                          "Initiative Test",
-        "recoveryRoll":                            "Recovery Test",
-        "spellcastingRoll":                        "Spellcasting Test",
-        "threadWeavingRoll":                       "Thread weaving Test"
+        "effectTestRoll":                          "Effect Test"
       },
-      "against":                                   "against",
       "baseValue":                                 "Base Step",
-      "devotion":                                  "Devotion",
       "formulaDevotion":                           "{amount}x Devotion (St {step})",
       "formulaExtraStep":                          "{label} (St {step})",
       "formulaKarma":                              "{amount}x Karma (St {step})",
       "formulaStep":                               "Step {step}",
-      "karma":                                     "Karma",
       "rollResult":                                "Roll Result",
-      "rolls":                                     "rolls",
       "ruleOfOne":                                 "Failue, Rule of One",
       "step":                                      "Step",
       "stepModifiers":                             "Step Modifier",
