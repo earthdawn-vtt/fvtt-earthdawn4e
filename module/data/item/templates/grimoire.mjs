@@ -106,4 +106,43 @@ export default class GrimoireTemplate extends SystemDataModel {
 
   // endregion
 
+  // region Item Methods
+
+  /**
+   * Adds a spell to the grimoire.
+   * @param {Item} spell The spell to add to the grimoire.
+   * @returns {Promise<Item|undefined>} The updated grimoire item or undefined if the spell was not added.
+   */
+  async addSpellToGrimoire( spell ) {
+    if ( !this.isGrimoire || spell.type !== "spell" ) {
+      if ( !this.isGrimoire ) {
+        ui.notifications.error(
+          game.i18n.localize( "ED.Notifications.Error.grimoireAddNotAGrimoire" ),
+        );
+      }
+      if ( spell.type !== "spell" ) {
+        ui.notifications.error(
+          game.i18n.localize( "ED.Notifications.Error.grimoireAddNotASpell" ),
+        );
+      }
+
+      return;
+    }
+
+    // If the spell is already in the grimoire, do nothing
+    if ( this.grimoire.spells.has( spell.uuid ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.grimoireAddAlreadyInGrimoire" ),
+      );
+      return;
+    }
+
+    // Add the spell to the grimoire
+    return this.parent.update( {
+      "system.grimoire.spells": this.grimoire.spells.add( spell.uuid ),
+    } );
+  }
+
+  // endregion
+
 }

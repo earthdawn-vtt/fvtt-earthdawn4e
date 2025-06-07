@@ -8,6 +8,8 @@ const TextEditor = foundry.applications.ux.TextEditor.implementation;
  */
 export default class PhysicalItemSheetEd extends ItemSheetEd {
 
+  // region Static Properties
+
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
@@ -17,7 +19,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     },
   };
 
-  // region PARTS
+  /** @inheritDoc */
   static PARTS = {
     header: {
       template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
@@ -55,7 +57,6 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     },
   };
 
-  // region TABS
   /** @inheritDoc */
   static TABS = {
     sheet: {
@@ -69,6 +70,10 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       labelPrefix: "ED.Tabs.ItemSheet",
     },
   };
+
+  // endregion
+
+  // region Rendering
 
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
@@ -116,6 +121,27 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
     return context;
   }
+
+  // endregion
+
+  // region Drag and Drop
+
+
+  /** @inheritDoc */
+  async _onDropItem( event, item ) {
+    await super._onDropItem( event, item );
+
+    let changed = false;
+
+    if ( item.type === "spell" && this.item.system.isGrimoire ) {
+      // If the item is a spell and the item is a grimoire, add it to the grimoire
+      await this.item.system.addSpellToGrimoire( item );
+    }
+
+    if ( changed ) this.render();
+  }
+
+  // endregion
 
   static async addThreadLevel( event, target ) {
     event.preventDefault();
