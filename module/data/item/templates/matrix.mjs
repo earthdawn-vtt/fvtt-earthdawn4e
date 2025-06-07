@@ -146,20 +146,6 @@ export default class MatrixTemplate extends SystemDataModel {
 
   // region Life Cycle Events
 
-  /** @inheritdoc */
-  async _preCreate( data, options, user ) {
-    if ( await super._preCreate( data, options, user ) === false ) return false;
-
-    this._prepareMatrixData( data );
-  }
-
-  /** @inheritdoc */
-  async _preUpdate( changes, options, user ) {
-    if ( await super._preUpdate( changes, options, user ) === false ) return false;
-
-    this._prepareMatrixData( changes );
-  }
-
   /**
    * Prepares the matrix data for creation or update.
    * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.

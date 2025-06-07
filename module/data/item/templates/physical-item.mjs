@@ -212,6 +212,26 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return statusOrder[ ( prevIndex < 0 ? ( statusOrder.length - 1 ) : prevIndex ) % statusOrder.length ];
   }
 
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    this._prepareGrimoireData( data );
+    this._prepareMatrixData( data );
+  }
+
+  /** @inheritdoc */
+  async _preUpdate( changed, options, user ) {
+    if ( await super._preUpdate( changed, options, user ) === false ) return false;
+
+    this._prepareGrimoireData( changed );
+    this._prepareMatrixData( changed );
+  }
+
+  // endregion
+
   /* -------------------------------------------- */
   /*  Methods                                     */
   /* -------------------------------------------- */
