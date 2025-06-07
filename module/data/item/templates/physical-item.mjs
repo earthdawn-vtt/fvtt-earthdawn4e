@@ -3,6 +3,7 @@ import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config/_module.mjs";
 import ThreadTemplate from "./threads.mjs";
 import MatrixTemplate from "./matrix.mjs";
+import GrimoireTemplate from "./grimoire.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -19,6 +20,7 @@ import MatrixTemplate from "./matrix.mjs";
  * @property {number} usableItem.recoveryPropertyValue      recovery type value
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
+  GrimoireTemplate,
   MatrixTemplate,
   TargetTemplate,
   ThreadTemplate,
