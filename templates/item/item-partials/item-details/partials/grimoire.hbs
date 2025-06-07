@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>{{localize "ED.Item.Header.grimoireConfiguration"}}</legend>
+
+  {{#if system.isOwnGrimoire}}
+    <div class="grimoire-own-indicator">
+      <i class="fas fa-star"></i> <strong>{{localize "ED.Item.Grimoire.ownGrimoire"}}</strong>
+    </div>
+  {{else}}
+    <div class="grimoire-own-indicator">
+      {{localize "ED.Item.Grimoire.otherGrimoire"}}
+    </div>
+  {{/if}}
+
+  {{formGroup
+    systemFields.grimoire.fields.owner
+    name="system.grimoire.owner"
+    value=system.grimoire.owner
+    localize=true
+  }}
+
+  {{#each system.grimoire.spells}}
+    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
+  {{else}}
+    <p class="no-spells">{{localize "ED.Item.Grimoire.noSpells"}}</p>
+  {{/each}}
+</fieldset>
