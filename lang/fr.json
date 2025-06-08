@@ -1031,16 +1031,116 @@
       },
       "Other": {
         "AbilityRollOptions":                      "TODO: Add translation",
-        "Advancement":                             "TODO: Add translation",
-        "AdvancementLevel":                        "TODO: Add translation",
+        "Advancement": {
+          "FIELDS": {
+            "levels": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "AdvancementLevel": {
+          "FIELDS": {
+            "effects": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "identifier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "AttackRollOptions":                       "TODO: Add translation",
         "AttuningRollOptions":                     "TODO: Add translation",
         "CharacterGeneration":                     "TODO: Add translation",
         "DamageRollOptions":                       "TODO: Add translation",
-        "LpEarningTransaction":                    "TODO: Add translation",
-        "LpSpendingTransaction":                   "TODO: Add translation",
-        "LpTracking":                              "TODO: Add translation",
-        "LpTransaction":                           "TODO: Add translation",
+        "LpEarningTransaction": {
+          "FIELDS": {
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "LpSpendingTransaction": {
+          "FIELDS": {
+            "entityType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "itemUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "name": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "value": {
+              "after": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "before": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            }
+          }
+        },
+        "LpTracking": {
+          "FIELDS": {
+            "earnings": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "spendings": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "LpTransaction": {
+          "FIELDS": {
+            "amount": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "date": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "description": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "id": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "RollOptions":                             "TODO: Add translation",
         "ThreadBase":                              "TODO: Add translation",
         "ThreadLevel":                             "TODO: Add translation"
