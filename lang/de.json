@@ -1016,6 +1016,26 @@
             }
           }
         },
+        "Combatant": {
+          "FIELDS": {
+            "increaseAbilities": {
+              "hint":                              "Fähigkeiten die den Initiativewert erhöhen.",
+              "label":                             "Erhöhende Fähigkeiten"
+            },
+            "keepInitiative": {
+              "hint":                              "Soll die Initiative des Kampfteilnehmers behalten werden (nicht neu würfeln)?",
+              "label":                             "Initiative behalten"
+            },
+            "replacementEffect": {
+              "hint":                              "Fähigkeiten die den Initiativewert ersetzen.",
+              "label":                             "Ersetzende Fähigkeiten"
+            },
+            "savePromptSettings": {
+              "hint":                              "Wenn aktiviert, erscheint dieses Fenster nicht mehr \n(zurückgesetzt werden kann es per rechtsklick auf den Akteur in der Initiativeleiste).",
+              "label":                             "Speicher Initiative Einstellungen"
+            }
+          }
+        },
         "DamageMessage": {
           "FIELDS": {
             "transactions": {
