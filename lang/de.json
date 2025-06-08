@@ -999,6 +999,42 @@
       },
       "General": {
         "Labels": {
+          "AttackMessage": {
+            "FIELDS": {
+              "successes": {
+                "max": {
+                  "hint":                          "Anzahl der erzielten Erfolge.",
+                  "label":                         "Erfolge"
+                },
+                "value": {
+                  "hint":                          "Anzahl der aktuellen Erfolge.",
+                  "label":                         "Aktuelle Erfolge"
+                }
+              },
+              "successful": {
+                "hint":                            "Wurde der Angriff erfolgreich durchgeführt?",
+                "label":                           "Erfolgreicher Angriff"
+              }
+            }
+          },
+          "DamageMessage": {
+            "FIELDS": {
+              "transactions": {
+                "damage": {
+                  "hint":                          "Schaden der durch den Angriff verursacht wurde",
+                  "label":                         "Schaden"
+                },
+                "deatlTotal": {
+                  "hint":                          "Todesrate des Akteurs",
+                  "label":                         "Todesrate"
+                },
+                "timestamp": {
+                  "hint":                          "Zeitstempel",
+                  "label":                         "Zeitstempel"
+                }
+              }
+            }
+          },
           "Rollable": {
             "type":                                "Aktionsart"
           },
