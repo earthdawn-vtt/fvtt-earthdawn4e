@@ -1,6 +1,13 @@
 import { ActorDataModel } from "../../abstract.mjs";
 
 export default class NoneCharacterTemplate extends ActorDataModel {
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.NoneCharacter",
+  ];
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;

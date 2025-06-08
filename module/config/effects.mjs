@@ -231,17 +231,17 @@ export const eaeChangeKeysActor = [
   // encumbrance
   {
     value:          "system.encumbrance.value",
-    label:          "ED.Data.Actor.Labels.encumbrance",
+    label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.value",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   {
     value:          "system.encumbrance.max",
-    label:          "ED.Data.Actor.Labels.encumbranceMax",
+    label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.max",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   {
     value:          "system.encumbrance.bonus",
-    label:          "ED.Data.Actor.Labels.encumbranceBonus",
+    label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.bonus",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
   },
   // health

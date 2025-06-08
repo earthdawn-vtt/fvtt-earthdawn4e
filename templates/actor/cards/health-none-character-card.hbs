@@ -3,7 +3,7 @@
 </div>
 {{#if (eq actor.system.isMob false)}}
 <div class="characteristics-health-1__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.woundsThreshold"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label"}}</label>
     <div>
         <input id="characteristic-health-rating-wounds" class="input__circle-input--centered"
             name="system.characteristics.health.woundThreshold"
@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="characteristics-health-2__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.unconsciousThresholdShort"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label"}}</label>
     <div>
         <input id="characteristic-health-rating-unconscious" class="input__circle-input--centered"
             name="system.characteristics.health.unconscious"
@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="characteristics-health-3__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.deathThresholdShort"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label"}}</label>
     <div>
         <input id="characteristic-health-rating-death" class="input__circle-input--centered"
             name="system.characteristics.health.death" value="{{actor.system.characteristics.health.death}}">
@@ -27,7 +27,7 @@
 </div>
 {{else}}
 <div class="characteristics-health-2__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.woundsThreshold"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label"}}</label>
     <div>
         <input id="characteristic-health-rating-wounds" class="input__circle-input--centered"
             name="system.characteristics.health.woundThreshold"
