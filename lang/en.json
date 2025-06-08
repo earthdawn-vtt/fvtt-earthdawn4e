@@ -322,7 +322,8 @@
         "rollDamage":                              "Roll Damage",
         "rollDamageTitle":                         "Roll for Damage",
         "rollEffect":                              "Roll Effect",
-        "takeDamage":                              "Take Damage"
+        "takeDamage":                              "Take Damage",
+        "takeDamageTitle":                         "TODO: Add translation"
       },
       "Flavor": {
         "actorTookDamage":                         "TODO: Add translation",
