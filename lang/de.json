@@ -120,20 +120,12 @@
         "knackManeuver":                           "[Spezialmanöver]"
       },
       "Characteristics": {
-        "currentDamage":                           "Schaden",
-        "currentRecoveryTestsResource":            "Aktuell",
-        "dailyRecoveryTestsResource":              "Täglich",
-        "deathThresholdShort":                     "Todesschwelle",
-        "maxWounds":                               "Max Wunden",
         "mysticalArmor":                           "Mystisch",
         "mysticalDefense":                         "Mystisch",
         "physicalArmor":                           "Körperlich",
         "physicalDefense":                         "Körperlich",
         "socialDefense":                           "Sozial",
-        "unconsciousThresholdShort":               "Bewußtlosigkeit",
-        "walkMovement":                            "Zu Fuss",
-        "woundsDamage":                            "Wunden",
-        "woundsThreshold":                         "Wundschwelle"
+        "walkMovement":                            "Zu Fuss"
       },
       "Conditions": {
         "aggressiveAttack":                        "Aggressiver Angriff",
@@ -284,11 +276,6 @@
         "specials":                                "Effekte",
         "spells":                                  "Zauber",
         "talents":                                 "Talente"
-      },
-      "Recovery": {
-        "current":                                 "Aktuell",
-        "daily":                                   "Täglich",
-        "step":                                    "Stufe"
       },
       "Tabs": {
         "Spells": {
@@ -609,6 +596,10 @@
       "Vulnerabilities": {
         "fire":                                    "Feuer"
       },
+      "WeaponSubType": {
+        "bow":                                     "Bogen",
+        "crossbow":                                "Armbrust"
+      },
       "WeaponType": {
         "melee":                                   "Nahkampf",
         "missile":                                 "Projektilwaffe",
@@ -659,19 +650,338 @@
         "placeholderBlankSelectOption":            "TODO, hier fehlt die beschreibung für 'placeholderBlankSelectOption'"
       },
       "Actor": {
-        "Common":                                  "Allgemein",
-        "Creature":                                "Kreature",
-        "Dragon":                                  "Drache",
-        "Group":                                   "Gruppe",
-        "Horror":                                  "Dämon",
-        "Loot":                                    "Beute",
-        "Namegiver":                               "Namensgeber",
-        "Npc":                                     "Nicht-Spieler-Charakter",
-        "Pc":                                      "Charakter",
-        "Sentient":                                "Wesen",
-        "Spirit":                                  "Geist",
-        "Trap":                                    "Falle",
-        "Vehicle":                                 "Fahrzeug"
+        "Common": {
+          "FIELDS": {
+            "globalBonuses": {
+              "hint":                              "Globaler Bonus",
+              "label":                             "Globaler Bonus"
+            },
+            "singleBonuses": {
+              "hint":                              "Einzel Bonus",
+              "label":                             "Einzel Bonus"
+            }
+          }
+        },
+        "Creature": {
+          "FIELDS": {
+          }
+        },
+        "Dragon": {
+          "FIELDS": {
+          }
+        },
+        "FIELDS": {
+          "description": {
+            "hint":                                "Beschreibung",
+            "label":                               "Beschreibung"
+          }
+        },
+        "Group": {
+          "FIELDS": {
+          }
+        },
+        "Horror": {
+          "FIELDS": {
+          }
+        },
+        "Loot": {
+          "FIELDS": {
+          }
+        },
+        "Namegiver": {
+          "FIELDS": {
+            "languages": {
+              "readWrite": {
+                "hint":                            "Welche Sprachen kann der Namegeber lesen und schreiben",
+                "label":                           "Geschriebene Sprachen"
+              },
+              "speak": {
+                "hint":                            "Welche Sprachen spricht der Namegeber",
+                "label":                           "Gesprochene Sprachen"
+              }
+            }
+          }
+        },
+        "NoneCharacter": {
+          "FIELDS": {
+            "actions": {
+              "hint":                              "Wie viele Aktionen hat der Akteur pro Runde?",
+              "label":                             "Aktionen"
+            },
+            "challenge": {
+              "rate": {
+                "hint":                            "Herausforderungsrate des Akteurs (1 - 15)",
+                "label":                           "Herausforderungsrate"
+              }
+            },
+            "isMob": {
+              "hint":                              "Besitzt dieser Akteur nur Wunden und keine Legendenpunkte?",
+              "label":                             "Mobregeln anwenden?"
+            }
+          }
+        },
+        "Npc": {
+          "FIELDS": {
+          }
+        },
+        "Pc": {
+          "FIELDS": {
+          }
+        },
+        "Sentient": {
+          "FIELDS": {
+            "characteristics": {
+              "armor": {
+              },
+              "defenses": {
+              },
+              "health": {
+                "bloodMagic": {
+                  "hint":                          "Blutmagieschaden des Akteurs",
+                  "label":                         "Blutmagieschaden"
+                },
+                "damage": {
+                  "hint":                          "Gesamtschaden des Akteurs",
+                  "label":                         "Schaden",
+                  "standard": {
+                    "hint":                        "Standard Schaden des Akteurs",
+                    "label":                       "Standard Schaden"
+                  },
+                  "stun": {
+                    "hint":                        "Betäubungsschaden des Akteurs",
+                    "label":                       "Betäubungsschaden"
+                  },
+                  "total": {
+                    "hint":                        "Gesamtschaden des Akteurs",
+                    "label":                       "Gesamtschaden"
+                  }
+                },
+                "death": {
+                  "hint":                          "Todesrate des Akteurs",
+                  "label":                         "Todesschwelle"
+                },
+                "maxWounds": {
+                  "hint":                          "Maximale Wunden des Akteurs",
+                  "label":                         "Maximale Wunden"
+                },
+                "unconscious": {
+                  "hint":                          "Bewußtlosigkeitsrate des Akteurs",
+                  "label":                         "Bewußtlosigkeit"
+                },
+                "woundThreshold": {
+                  "hint":                          "Wundschwelle des Akteurs",
+                  "label":                         "Wundschwelle"
+                },
+                "wounds": {
+                  "hint":                          "Wunden des Akteurs",
+                  "label":                         "Wunden"
+                }
+              },
+              "movement": {
+                "burrow": {
+                  "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Graben",
+                  "label":                         "Graben"
+                },
+                "climb": {
+                  "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Klettern",
+                  "label":                         "Klettern"
+                },
+                "fly": {
+                  "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Fliegen",
+                  "label":                         "Fliegen"
+                },
+                "swim": {
+                  "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Schwimmen",
+                  "label":                         "Schwimmen"
+                },
+                "walk": {
+                  "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Gehen",
+                  "label":                         "Gehen"
+                }
+              },
+              "recoveryTestsResource": {
+                "hint":                            "Erholungsproben des Akteurs",
+                "label":                           "Erholungsproben",
+                "max": {
+                  "hint":                          "Maximale Erholungsproben pro Tag",
+                  "label":                         "Täglich"
+                },
+                "step": {
+                  "hint":                          "Stufe der Erholungsproben des Akteurs",
+                  "label":                         "Stufe"
+                },
+                "stunRecoveryAvailable": {
+                  "hint":                          "Ist die Erholung von Betäubungsschaden verfügbar?",
+                  "label":                         "Erholung von Betäubungsschaden?"
+                },
+                "value": {
+                  "hint":                          "Aktuelle Erholungsproben",
+                  "label":                         "Aktuell"
+                }
+              }
+            },
+            "concentrationSource": {
+              "hint":                              "Quelle der Konzentration des Akteurs",
+              "label":                             "Konzentrationsquelle"
+            },
+            "condition": {
+              "aggressiveAttack": {
+                "hint":                            "Ist der Akteur im aggressiven Angriff Modus?",
+                "label":                           "Aggressiver Angriff"
+              },
+              "blindsided": {
+                "hint":                            "Ist der Akteur überrascht?",
+                "label":                           "Überrascht"
+              },
+              "cover": {
+                "full": {
+                  "hint":                          "Ist der Akteur vollständig verdeckt?",
+                  "label":                         "Vollständig verdeckt"
+                },
+                "hint":                            "Ist der Akteur verdeckt?",
+                "label":                           "Verdeckt",
+                "partial": {
+                  "hint":                          "Ist der Akteur teilweise verdeckt?",
+                  "label":                         "Teilweise verdeckt"
+                }
+              },
+              "darkness": {
+                "full": {
+                  "hint":                          "Ist der Akteur vollständig in Dunkelheit?",
+                  "label":                         "Vollständig Dunkelheit"
+                },
+                "hint":                            "Ist der Akteur in Dunkelheit?",
+                "label":                           "Dunkelheit",
+                "partial": {
+                  "hint":                          "Ist der Akteur teilweise in Dunkelheit?",
+                  "label":                         "Teilweise Dunkelheit"
+                }
+              },
+              "defensiveStance": {
+                "hint":                            "Ist der Akteur in defensiver Haltung?",
+                "label":                           "Defensive Haltung"
+              },
+              "fury": {
+                "hint":                            "Ist der Akteur im Furor Modus?",
+                "label":                           "Furor"
+              },
+              "harried": {
+                "hint":                            "Ist der Akteur bedrängt?",
+                "label":                           "Bedrängt"
+              },
+              "impairedMovement": {
+                "full": {
+                  "hint":                          "Ist die Bewegung des Akteurs vollständig beeinträchtigt?",
+                  "label":                         "Vollständig beeinträchtigte Bewegung"
+                },
+                "hint":                            "Ist die Bewegung des Akteurs beeinträchtigt?",
+                "label":                           "Beeinträchtigte Bewegung",
+                "partial": {
+                  "hint":                          "Ist die Bewegung des Akteurs teilweise beeinträchtigt?",
+                  "label":                         "Teilweise beeinträchtigte Bewegung"
+                }
+              },
+              "knockedDown": {
+                "hint":                            "Ist der Akteur niedergeschlagen?",
+                "label":                           "Niedergeschlagen"
+              },
+              "overwhelmed": {
+                "hint":                            "Ist der Akteur überwältigt?",
+                "label":                           "Überwältigt"
+              },
+              "surprised": {
+                "hint":                            "Ist der Akteur überrascht?",
+                "label":                           "Überrascht"
+              }
+            },
+            "devotion": {
+              "max": {
+                "hint":                            "Maximale Weihekraft des Akteurs",
+                "label":                           "Maximal"
+              },
+              "step": {
+                "hint":                            "Stufe der Weihekraft des Akteurs",
+                "label":                           "Stufe"
+              },
+              "value": {
+                "hint":                            "Aktuelle Weihekraft des Akteurs",
+                "label":                           "Aktuell"
+              }
+            },
+            "encumbrance": {
+              "Status": {
+                "hint":                            "Überlastungsstatus des Akteurs",
+                "label":                           "Überlastung"
+              },
+              "bonus": {
+                "hint":                            "Tragkraftbonus des Akteurs",
+                "label":                           "Bonus"
+              },
+              "max": {
+                "hint":                            "Maximale Trakkraft des Akteurs",
+                "label":                           "Maximal"
+              },
+              "value": {
+                "hint":                            "Aktuelle Traglast des Akteurs",
+                "label":                           "Aktuell"
+              }
+            },
+            "healthRate": {
+              "max": {
+                "hint":                            "Maximale Gesundheitsrate des Akteurs",
+                "label":                           "Maximale Gesundheit"
+              },
+              "value": {
+                "hint":                            "Aktuelle Gesundheit des Akteurs",
+                "label":                           "Aktuelle Gesundheit"
+              }
+            },
+            "initiative": {
+              "hint":                              "Initiative des Akteurs",
+              "label":                             "Initiative"
+            },
+            "karma": {
+              "freeAttributePoints": {
+                "hint":                            "Freie Attributspunkte des Akteurs",
+                "label":                           "Freie Attributspunkte"
+              },
+              "max": {
+                "hint":                            "Maximale Karma des Akteurs",
+                "label":                           "Maximal"
+              },
+              "step": {
+                "hint":                            "Stufe der Karma des Akteurs",
+                "label":                           "Stufe"
+              },
+              "useAlways": {
+                "hint":                            "Soll immer Karma verwendet werden?",
+                "label":                           "Immer Karma verwenden?"
+              },
+              "value": {
+                "hint":                            "Aktuelle Karma des Akteurs",
+                "label":                           "Aktuell"
+              }
+            },
+            "relations": {
+              "attitude": {
+                "hint":                            "Einstellung des Akteurs gegenüber anderen Akteuren",
+                "label":                           "Einstellung"
+              }
+            }
+          }
+        },
+        "Spirit": {
+          "FIELDS": {
+          }
+        },
+        "Trap": {
+          "FIELDS": {
+          }
+        },
+        "Vehicle": {
+          "FIELDS": {
+          }
+        }
       },
       "Fields": {
         "Options": {
@@ -1124,6 +1434,11 @@
         "deleteItem":                              "Eintrag löschen",
         "deleteLevel":                             "Lösche Stufe"
       },
+      "Grimoire": {
+        "noSpells":                                "Keine Zauber verfügbar",
+        "otherGrimoire":                           "Andere Grimoire",
+        "ownGrimoire":                             "Eigenes Grimoire"
+      },
       "Header": {
         "actionType":                              "Aktionstyp",
         "damageSettings":                          "Schadenseinstellungen",
@@ -1132,6 +1447,7 @@
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
+        "grimoireConfiguration":                   "Grimoire Konfiguration",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
         "spellEnhancement":                        "Zauber Verstärkung",
@@ -1199,6 +1515,8 @@
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
+        "grimoireAddNotAGrimoire":                 "Das Item ist kein Grimoire. Bitte überprüfe das Item.",
+        "grimoireAddNotASpell":                    "Das Item ist kein Zauber. Bitte überprüfe das Item.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
@@ -1216,6 +1534,7 @@
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+        "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",

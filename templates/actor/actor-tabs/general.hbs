@@ -38,7 +38,7 @@
           <input type="checkbox"
                 name="system.karma.useAlways"
                 {{checked actor.system.karma.useAlways}}
-                title="{{localize "ED.Actor.Tooltips.karmaAlways"}}">
+                title="{{localize "ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint"}}">
           {{#if (eq this.actor.type "character")}}
             <a class="karma__ritual">
               <button class="button__Karma-refresh"
@@ -53,9 +53,9 @@
       </h3>
     <div class="container__block container__custom">
       <div class="karma-devotion__grid--container container__header">
-        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.current"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.max"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Actor.Karma.step"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.value.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.max.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.step.label"}}</div>
       </div>
       <div class="karma-devotion__grid--container">
         <div class="karma-devotion__grid--item">
@@ -76,9 +76,9 @@
     </h3>
     <div class="container__block container__custom">
     <div class="karma-devotion__grid--container container__header">
-      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.current"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.max"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Actor.Devotion.step"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
+      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
     </div>
     <div class="karma-devotion__grid--container">
       <div class="karma-devotion__grid--item">
@@ -121,9 +121,9 @@
 
     <div class="container__block container__custom">
     <div class="recovery__grid--container container__header">
-      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.current"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.daily"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Actor.Recovery.step"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
+      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
     </div>
     <div class="recovery__grid--container">
       <div class="recovery__grid--item">
@@ -165,7 +165,6 @@
             <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
         </div>
     </div>
-
 
     </div>
   </div>

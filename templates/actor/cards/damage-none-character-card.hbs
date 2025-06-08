@@ -3,7 +3,7 @@
     <h4 class="header--centered">{{localize "ED.Actor.Header.damage"}}</h4>
 </div>
 <div class="characteristics-damage-damage__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.currentDamage"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.label"}}</label>
     <div>
         <input id="characteristic-damage" class="input__circle-input--centered"
             name="system.characteristics.health.damage.standard"
@@ -23,7 +23,7 @@
 
 </div>
 <div class="characteristics-damage-wounds__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.woundsDamage"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}</label>
     <div>
         <input id="characteristic-wounds" class="input__circle-input--centered"
             name="system.characteristics.health.wounds" value="{{actor.system.characteristics.health.wounds}}" editable>
@@ -33,8 +33,8 @@
     <h4 class="header--centered">{{localize "ED.Actor.Header.recovery"}}</h4>
 </div>
 <div class="characteristics-recovery__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.currentRecoveryTestsResource"}}/{{localize
-        "ED.Actor.Characteristics.dailyRecoveryTestsResource"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}/
+        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</label>
     <div>
         <input id="characteristic-recovery-current" class="input__circle-input--centered"
             name="system.characteristics.recoveryTestsResource.value"
@@ -47,14 +47,14 @@
 </div>
 {{else}}
 <div class="characteristics-damage-wounds__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.woundsDamage"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}</label>
     <div>
         <input id="characteristic-wounds" class="input__circle-input--centered"
             name="system.characteristics.health.wounds" value="{{actor.system.characteristics.health.wounds}}" editable>
     </div>
 </div>
 <div class="characteristics-max-wounds__grid-item">
-    <label class="">{{localize "ED.Actor.Characteristics.maxWounds"}}</label>
+    <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.maxWounds.label"}}</label>
     <div>
             <input id="characteristic-maxWounds" class="input__circle-input--centered"
             name="system.characteristics.health.maxWounds" value="{{actor.system.characteristics.health.maxWounds}}"
