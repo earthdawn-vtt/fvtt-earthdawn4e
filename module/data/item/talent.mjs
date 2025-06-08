@@ -266,6 +266,24 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return learnedItem;
   }
 
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    this._prepareMatrixData( data );
+  }
+
+  /** @inheritdoc */
+  async _preUpdate( changed, options, user ) {
+    if ( await super._preUpdate( changed, options, user ) === false ) return false;
+
+    this._prepareMatrixData( changed );
+  }
+
+  // endregion
+
   /* -------------------------------------------- */
   /*  Socket Events                               */
   /* -------------------------------------------- */
