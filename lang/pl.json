@@ -1000,6 +1000,26 @@
             }
           }
         },
+        "Combatant": {
+          "FIELDS": {
+            "increaseAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "keepInitiative": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "replacementEffect": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "savePromptSettings": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "DamageMessage": {
           "FIELDS": {
             "transactions": {
