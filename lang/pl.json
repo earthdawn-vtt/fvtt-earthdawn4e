@@ -321,7 +321,8 @@
         "rollDamage":                              "TODO: Add translation",
         "rollDamageTitle":                         "TODO: Add translation",
         "rollEffect":                              "TODO: Add translation",
-        "takeDamage":                              "TODO: Add translation"
+        "takeDamage":                              "TODO: Add translation",
+        "takeDamageTitle":                         "TODO: Add translation"
       },
       "Flavor": {
         "actorTookDamage":                         "TODO: Add translation",
