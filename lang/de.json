@@ -1079,8 +1079,36 @@
         "AbilityRollOptions": {
         },
         "Advancement": {
+          "FIELDS": {
+            "levels": {
+              "hint":                              "Rang/Kreis",
+              "label":                             "Rang/Kreis"
+            }
+          }
         },
         "AdvancementLevel": {
+          "FIELDS": {
+            "effects": {
+              "hint":                              "Effekte die auf dieser Stufe freigeschaltet werden",
+              "label":                             "Effekte"
+            },
+            "identifier": {
+              "hint":                              "Eindeutige Kennung des Ranges oder Kreises",
+              "label":                             "Kennung"
+            },
+            "level": {
+              "hint":                              "Stufe des Fortschritts",
+              "label":                             "Rang/Kreis"
+            },
+            "resourceStep": {
+              "hint":                              "Karma- oder Weihekraftstufe Änderungen",
+              "label":                             "Ressourcenstufe"
+            },
+            "tier": {
+              "hint":                              "Stufe des Fortschritts",
+              "label":                             "Stufe"
+            }
+          }
         },
         "AttackRollOptions": {
         },
@@ -1091,12 +1119,78 @@
         "DamageRollOptions": {
         },
         "LpEarningTransaction": {
+          "FIELDS": {
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            }
+          }
         },
         "LpSpendingTransaction": {
+          "FIELDS": {
+            "entityType": {
+              "hint":                              "Typ des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objekttyp"
+            },
+            "itemUuid": {
+              "hint":                              "UUID des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objekt-UUID"
+            },
+            "name": {
+              "hint":                              "Name des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objektname"
+            },
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            },
+            "value": {
+              "after": {
+                "hint":                            "Legendenpunkte nach der Transaktion",
+                "label":                           "Nachher"
+              },
+              "before": {
+                "hint":                            "Legendenpunkte vor der Transaktion",
+                "label":                           "Vorher"
+              }
+            }
+          }
         },
         "LpTracking": {
+          "FIELDS": {
+            "earnings": {
+              "hint":                              "Legendenpunkte die verdient wurden",
+              "label":                             "Verdiente Legendenpunkte"
+            },
+            "spendings": {
+              "hint":                              "Legendenpunkte die ausgegeben wurden",
+              "label":                             "Ausgegebene Legendenpunkte"
+            }
+          }
         },
         "LpTransaction": {
+          "FIELDS": {
+            "amount": {
+              "hint":                              "Anzahl der Legendenpunkte die verdient oder ausgegeben wurden",
+              "label":                             "Legendenpunkte"
+            },
+            "date": {
+              "hint":                              "Datum der Transaktion",
+              "label":                             "Datum"
+            },
+            "description": {
+              "hint":                              "Beschreibung",
+              "label":                             "Beschreibung"
+            },
+            "id": {
+              "hint":                              "Eindeutige Kennung der Transaktion",
+              "label":                             "Transaktions-ID"
+            },
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            }
+          }
         },
         "RollOptions": {
         },
@@ -1491,7 +1585,7 @@
         "summoning":                               "Beschwörung"
       },
       "Tabs": {
-        "level":                                   "Rang/Kreis",
+        "level":                                   "Kreis {circle}",
         "talentOptions":                           "Optionale Talente"
       }
     },
