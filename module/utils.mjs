@@ -780,6 +780,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs",
 
     // Item details
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",

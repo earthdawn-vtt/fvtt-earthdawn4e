@@ -1,5 +1,6 @@
     {{!-- itemStatus --}}
     {{formField systemFields.itemStatus name="system.itemStatus" value=item.system.itemStatus localize=true}}
+
     {{#if item.isOwned}}
         {{!-- automatic Weight Calculation --}}
         {{> "systems/ed4e/templates/item/item-partials/item-details/partials/tailor-to-namegiver.hbs"}}
@@ -7,4 +8,8 @@
 
     {{#if system.matrix}}
       {{> "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs"}}
+    {{/if}}
+
+    {{#if system.grimoire}}
+      {{> "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs"}}
     {{/if}}

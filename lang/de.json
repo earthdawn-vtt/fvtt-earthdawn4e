@@ -317,11 +317,12 @@
         "applyDamage":                             "Schaden zufügen",
         "applyDamageTitle":                        "Füge den Schaden den ausgewählten Zielen zu!",
         "applyEffect":                             "Effekt zufügen",
-        "applyEffectTitle":                        "Füge den Effect den ausgewählten Zielen zu!",
+        "applyEffectTitle":                        "Füge den Effekt den ausgewählten Zielen zu!",
         "rollDamage":                              "Schadenswurf",
-        "rollDamageTitle":                         "Würfel den Effect",
+        "rollDamageTitle":                         "Würfel den Effekt",
         "rollEffect":                              "Effektwurf",
-        "takeDamage":                              "Schaden nehmen"
+        "takeDamage":                              "Schaden nehmen",
+        "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu!"
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",

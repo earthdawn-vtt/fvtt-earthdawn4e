@@ -3,6 +3,7 @@ import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config/_module.mjs";
 import ThreadTemplate from "./threads.mjs";
 import MatrixTemplate from "./matrix.mjs";
+import GrimoireTemplate from "./grimoire.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -19,6 +20,7 @@ import MatrixTemplate from "./matrix.mjs";
  * @property {number} usableItem.recoveryPropertyValue      recovery type value
  */
 export default class PhysicalItemTemplate extends ItemDataModel.mixin(
+  GrimoireTemplate,
   MatrixTemplate,
   TargetTemplate,
   ThreadTemplate,
@@ -209,6 +211,26 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     // if the previous index is negative, it will return the last index of the array
     return statusOrder[ ( prevIndex < 0 ? ( statusOrder.length - 1 ) : prevIndex ) % statusOrder.length ];
   }
+
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    this._prepareGrimoireData( data );
+    this._prepareMatrixData( data );
+  }
+
+  /** @inheritdoc */
+  async _preUpdate( changed, options, user ) {
+    if ( await super._preUpdate( changed, options, user ) === false ) return false;
+
+    this._prepareGrimoireData( changed );
+    this._prepareMatrixData( changed );
+  }
+
+  // endregion
 
   /* -------------------------------------------- */
   /*  Methods                                     */
