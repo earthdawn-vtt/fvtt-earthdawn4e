@@ -636,14 +636,114 @@
     },
     "Data": {
       "ActiveEffect": {
-        "Change":                                  "TODO: Add translation",
-        "Eae":                                     "TODO: Add translation",
-        "EaeCondition":                            "TODO: Add translation",
-        "EaeDuration":                             "TODO: Add translation",
-        "Labels": {
-          "begin":                                 "TODO: Add translation"
+        "Change": {
+          "FIELDS": {
+            "key": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "mode": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "priority": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "value": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
         },
-        "placeholderBlankSelectOption":            "TODO: Add translation"
+        "Eae": {
+          "FIELDS": {
+            "abilityEdid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "changes": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "duration": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "executable": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "executeOn": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "executionScript": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "source": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "transferToTarget": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "EaeCondition": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "primary": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "EaeDuration": {
+          "FIELDS": {
+            "combat": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rounds": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "seconds": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "startRound": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "startTime": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "startTurn": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "turns": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "uses": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        }
       },
       "Actor": {
         "Common": {
@@ -1020,6 +1120,14 @@
             }
           }
         },
+        "Constraint": {
+          "FIELDS": {
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "DamageMessage": {
           "FIELDS": {
             "transactions": {
@@ -1046,6 +1154,26 @@
             "fixed":                               "TODO: Add translation",
             "group":                               "TODO: Add translation",
             "target":                              "TODO: Add translation"
+          }
+        },
+        "Metric": {
+          "FIELDS": {
+            "special": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "type": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "unit": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "value": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
           }
         }
       },
