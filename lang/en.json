@@ -984,6 +984,42 @@
       },
       "General": {
         "Labels": {
+          "AttackMessage": {
+            "FIELDS": {
+              "successes": {
+                "max": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "value": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
+              "successful": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            }
+          },
+          "DamageMessage": {
+            "FIELDS": {
+              "transactions": {
+                "damage": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "deatlTotal": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "timestamp": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              }
+            }
+          },
           "Rollable": {
             "type":                                "Roll Type"
           },
