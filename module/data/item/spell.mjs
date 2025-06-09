@@ -76,7 +76,13 @@ export default class SpellData extends ItemDataModel.mixin(
           initial:  0,
           integer:  true,
         } ),
-        extra: new NumberField( {} ),
+        extra: new NumberField( {
+          required: true,
+          nullable: true,
+          min:      0,
+          initial:  null,
+          integer:  true,
+        } ),
       } ),
       effect: new StringField( {
         required: true,
