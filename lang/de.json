@@ -638,17 +638,113 @@
     "Data": {
       "ActiveEffect": {
         "Change": {
+          "FIELDS": {
+            "key": {
+              "hint":                              "Schlüssel des Effekts",
+              "label":                             "Schlüssel"
+            },
+            "mode": {
+              "hint":                              "Modus des Effekts",
+              "label":                             "Modus"
+            },
+            "priority": {
+              "hint":                              "Priorität des Effekts",
+              "label":                             "Priorität"
+            },
+            "value": {
+              "hint":                              "Wert des Effekts",
+              "label":                             "Wert"
+            }
+          }
         },
         "Eae": {
+          "FIELDS": {
+            "abilityEdid": {
+              "hint":                              "ED-ID der Zielfähigkeit des Effekts",
+              "label":                             "Fähigkeit EDID"
+            },
+            "changes": {
+              "hint":                              "Änderungen des Effekts",
+              "label":                             "Änderungen"
+            },
+            "duration": {
+              "hint":                              "Dauer des Effekts",
+              "label":                             "Dauer"
+            },
+            "executable": {
+              "hint":                              "Ausführbarer Code des Effekts",
+              "label":                             "Ausführbar"
+            },
+            "executeOn": {
+              "hint":                              "Ausführungszeitpunkt des Scripts",
+              "label":                             "Ausführungszeitpunkt"
+            },
+            "executionScript": {
+              "hint":                              "Ausführungsskript des Effekts",
+              "label":                             "Ausführungsskript"
+            },
+            "source": {
+              "hint":                              "Quelle des Effekts",
+              "label":                             "Quelle"
+            },
+            "transferToTarget": {
+              "hint":                              "Übertragung des Effekts auf das Ziel",
+              "label":                             "Übertragung auf Ziel"
+            }
+          }
         },
         "EaeCondition": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "Stufe der Bedingung des Effekts",
+              "label":                             "Stufe"
+            },
+            "primary": {
+              "hint":                              "Primäre Bedingung des Effekts",
+              "label":                             "Primäre Bedingung"
+            }
+          }
         },
         "EaeDuration": {
-        },
-        "Labels": {
-          "begin":                                 "Beginn"
-        },
-        "placeholderBlankSelectOption":            "TODO, hier fehlt die beschreibung für 'placeholderBlankSelectOption'"
+          "FIELDS": {
+            "combat": {
+              "hint":                              "Dauer in Kampfrunden",
+              "label":                             "Kampf"
+            },
+            "rounds": {
+              "hint":                              "Dauer in Runden",
+              "label":                             "Runden"
+            },
+            "seconds": {
+              "hint":                              "Dauer in Sekunden",
+              "label":                             "Sekunden"
+            },
+            "startRound": {
+              "hint":                              "Start der Runde für die Dauer des Effekts",
+              "label":                             "Start der Runde"
+            },
+            "startTime": {
+              "hint":                              "Startzeit der Dauer des Effekts",
+              "label":                             "Start"
+            },
+            "startTurn": {
+              "hint":                              "Start des Zuges für die Dauer des Effekts",
+              "label":                             "Start des Zuges"
+            },
+            "turns": {
+              "hint":                              "Dauer in Zügen",
+              "label":                             "Züge"
+            },
+            "type": {
+              "hint":                              "Art der Dauer des Effekts",
+              "label":                             "Dauer"
+            },
+            "uses": {
+              "hint":                              "Anzahl der Anwendungen die der Effekt anhält",
+              "label":                             "Anwendungen"
+            }
+          }
+        }
       },
       "Actor": {
         "Common": {
@@ -999,6 +1095,70 @@
         }
       },
       "General": {
+        "AttackMessage": {
+          "FIELDS": {
+            "successes": {
+              "max": {
+                "hint":                            "Anzahl der erzielten Erfolge.",
+                "label":                           "Erfolge"
+              },
+              "value": {
+                "hint":                            "Anzahl der aktuellen Erfolge.",
+                "label":                           "Aktuelle Erfolge"
+              }
+            },
+            "successful": {
+              "hint":                              "Wurde der Angriff erfolgreich durchgeführt?",
+              "label":                             "Erfolgreicher Angriff"
+            }
+          }
+        },
+        "Combatant": {
+          "FIELDS": {
+            "increaseAbilities": {
+              "hint":                              "Fähigkeiten die den Initiativewert erhöhen.",
+              "label":                             "Erhöhende Fähigkeiten"
+            },
+            "keepInitiative": {
+              "hint":                              "Soll die Initiative des Kampfteilnehmers behalten werden (nicht neu würfeln)?",
+              "label":                             "Initiative behalten"
+            },
+            "replacementEffect": {
+              "hint":                              "Fähigkeiten die den Initiativewert ersetzen.",
+              "label":                             "Ersetzende Fähigkeiten"
+            },
+            "savePromptSettings": {
+              "hint":                              "Wenn aktiviert, erscheint dieses Fenster nicht mehr \n(zurückgesetzt werden kann es per rechtsklick auf den Akteur in der Initiativeleiste).",
+              "label":                             "Speicher Initiative Einstellungen"
+            }
+          }
+        },
+        "Constraint": {
+          "FIELDS": {
+            "type": {
+              "hint":                              "Art der Einschränkung",
+              "label":                             "Einschränkungstyp"
+            }
+          }
+        },
+        "DamageMessage": {
+          "FIELDS": {
+            "transactions": {
+              "damage": {
+                "hint":                            "Schaden der durch den Angriff verursacht wurde",
+                "label":                           "Schaden"
+              },
+              "deatlTotal": {
+                "hint":                            "Todesrate des Akteurs",
+                "label":                           "Todesrate"
+              },
+              "timestamp": {
+                "hint":                            "Zeitstempel",
+                "label":                           "Zeitstempel"
+              }
+            }
+          }
+        },
         "Labels": {
           "Rollable": {
             "type":                                "Aktionsart"
@@ -1007,6 +1167,26 @@
             "fixed":                               "Fester Schwierigkeitsgrad",
             "group":                               "Gruppen Parameter",
             "target":                              "Widerstandstyp"
+          }
+        },
+        "Metric": {
+          "FIELDS": {
+            "special": {
+              "hint":                              "Spezial",
+              "label":                             "Spezial"
+            },
+            "type": {
+              "hint":                              "Metric Typ",
+              "label":                             "Metric Typ"
+            },
+            "unit": {
+              "hint":                              "Metriceinheit",
+              "label":                             "Einheit"
+            },
+            "value": {
+              "hint":                              "Metricwert",
+              "label":                             "Wert"
+            }
           }
         }
       },
@@ -1080,8 +1260,36 @@
         "AbilityRollOptions": {
         },
         "Advancement": {
+          "FIELDS": {
+            "levels": {
+              "hint":                              "Rang/Kreis",
+              "label":                             "Rang/Kreis"
+            }
+          }
         },
         "AdvancementLevel": {
+          "FIELDS": {
+            "effects": {
+              "hint":                              "Effekte die auf dieser Stufe freigeschaltet werden",
+              "label":                             "Effekte"
+            },
+            "identifier": {
+              "hint":                              "Eindeutige Kennung des Ranges oder Kreises",
+              "label":                             "Kennung"
+            },
+            "level": {
+              "hint":                              "Stufe des Fortschritts",
+              "label":                             "Rang/Kreis"
+            },
+            "resourceStep": {
+              "hint":                              "Karma- oder Weihekraftstufe Änderungen",
+              "label":                             "Ressourcenstufe"
+            },
+            "tier": {
+              "hint":                              "Stufe des Fortschritts",
+              "label":                             "Stufe"
+            }
+          }
         },
         "AttackRollOptions": {
         },
@@ -1092,12 +1300,78 @@
         "DamageRollOptions": {
         },
         "LpEarningTransaction": {
+          "FIELDS": {
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            }
+          }
         },
         "LpSpendingTransaction": {
+          "FIELDS": {
+            "entityType": {
+              "hint":                              "Typ des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objekttyp"
+            },
+            "itemUuid": {
+              "hint":                              "UUID des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objekt-UUID"
+            },
+            "name": {
+              "hint":                              "Name des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objektname"
+            },
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            },
+            "value": {
+              "after": {
+                "hint":                            "Legendenpunkte nach der Transaktion",
+                "label":                           "Nachher"
+              },
+              "before": {
+                "hint":                            "Legendenpunkte vor der Transaktion",
+                "label":                           "Vorher"
+              }
+            }
+          }
         },
         "LpTracking": {
+          "FIELDS": {
+            "earnings": {
+              "hint":                              "Legendenpunkte die verdient wurden",
+              "label":                             "Verdiente Legendenpunkte"
+            },
+            "spendings": {
+              "hint":                              "Legendenpunkte die ausgegeben wurden",
+              "label":                             "Ausgegebene Legendenpunkte"
+            }
+          }
         },
         "LpTransaction": {
+          "FIELDS": {
+            "amount": {
+              "hint":                              "Anzahl der Legendenpunkte die verdient oder ausgegeben wurden",
+              "label":                             "Legendenpunkte"
+            },
+            "date": {
+              "hint":                              "Datum der Transaktion",
+              "label":                             "Datum"
+            },
+            "description": {
+              "hint":                              "Beschreibung",
+              "label":                             "Beschreibung"
+            },
+            "id": {
+              "hint":                              "Eindeutige Kennung der Transaktion",
+              "label":                             "Transaktions-ID"
+            },
+            "type": {
+              "hint":                              "Art der Transaktion",
+              "label":                             "Transaktionstyp"
+            }
+          }
         },
         "RollOptions": {
         },
@@ -1492,7 +1766,7 @@
         "summoning":                               "Beschwörung"
       },
       "Tabs": {
-        "level":                                   "Rang/Kreis",
+        "level":                                   "Kreis {circle}",
         "talentOptions":                           "Optionale Talente"
       }
     },

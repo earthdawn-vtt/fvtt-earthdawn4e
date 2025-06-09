@@ -17,7 +17,7 @@
   {{#if (eq source.system.duration.type "combat")}}
     <fieldset>
       <div class="form-group">
-        <label>{{localize systemFields.duration.label}}</label>
+        <label>{{localize "ED.Data.ActiveEffect.EaeDuration.FIELDS.type.label"}}</label>
         <div class="form-fields">
           <label for="{{rootId}}-duration.rounds">{{localize systemFields.duration.fields.rounds.label}}</label>
           {{formInput systemFields.duration.fields.rounds value=source.system.duration.rounds
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label>{{localize "ED.Data.ActiveEffect.Labels.begin"}}</label>
+        <label>{{localize "ED.Data.ActiveEffect.EaeDuration.FIELDS.startTime.label"}}</label>
         <div class="form-fields">
           <label for="{{rootId}}-duration.startRound">{{localize systemFields.duration.fields.startRound.label}}</label>
           {{formInput systemFields.duration.fields.startRound value=source.system.duration.startRound
