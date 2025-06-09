@@ -1,4 +1,3 @@
-import ClassTemplate from "./class.mjs";
 import TargetTemplate from "./targeting.mjs";
 import ActionTemplate from "./action.mjs";
 import ED4E from "../../../config/_module.mjs";
@@ -46,7 +45,10 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         initial:  "",
       } ),
       source: new fields.SchemaField( {
-        class:   new fields.DocumentUUIDField( ClassTemplate ),
+        class:   new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: true,
+        } ),
         atLevel: new fields.NumberField( {
           required: false,
           nullable: true,
