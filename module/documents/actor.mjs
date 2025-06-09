@@ -15,6 +15,7 @@ import DamageRollOptions from "../data/roll/damage.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
+import { getSetting } from "../settings.mjs";
 
 const futils = foundry.utils;
 
@@ -244,6 +245,22 @@ export default class ActorEd extends Actor {
         && item.system.rollTypeDetails?.attack?.weaponItemStatus.has( wieldingType )
         && item.system.difficulty?.target === armorType
     );
+  }
+
+  /**
+   * Returns the discipline item that is associated with the given spell's spellcasting type.
+   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} spellcastingType The spellcasting type key (from config.spellcastingTypes).
+   * @returns {ItemEd|null} The discipline item, or null if none was found.
+   */
+  getDisciplineForSpellcastingType( spellcastingType ) {
+    const threadWeavingTalent = this.getItemsByEdid(
+      getSetting( "edidThreadWeaving" ),
+    ).find(
+      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
+    );
+    if ( !threadWeavingTalent ) return null;
+
+    return fromUuidSync( threadWeavingTalent.system.source?.class );
   }
 
   /**
