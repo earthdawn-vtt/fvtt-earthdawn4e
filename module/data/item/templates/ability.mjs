@@ -47,7 +47,6 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       source: new fields.SchemaField( {
         class:   new fields.DocumentUUIDField( {
           type:     "Item",
-          embedded: true,
         } ),
         atLevel: new fields.NumberField( {
           required: false,
