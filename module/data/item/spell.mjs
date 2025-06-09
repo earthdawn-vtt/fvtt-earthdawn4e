@@ -7,6 +7,7 @@ import TargetTemplate from "./templates/targeting.mjs";
 import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
 
 
+const { fields } = foundry.data;
 
 /**
  * Data model template with information on Spell items.
@@ -26,10 +27,8 @@ export default class SpellData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const { ArrayField, EmbeddedDataField, NumberField, SchemaField, SetField, StringField, TypedSchemaField } = foundry.data.fields;
-
     return this.mergeSchema( super.defineSchema(), {
-      spellcastingType: new StringField( {
+      spellcastingType: new fields.StringField( {
         required: true,
         nullable: false,
         blank:    false,
@@ -37,7 +36,7 @@ export default class SpellData extends ItemDataModel.mixin(
         choices:  ED4E.spellcastingTypes,
         initial:  "elementalism",
       } ),
-      level: new NumberField( {
+      level: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      1,
@@ -45,15 +44,15 @@ export default class SpellData extends ItemDataModel.mixin(
         integer:  true,
         positive: true,
       } ),
-      spellDifficulty:    new SchemaField( {
-        reattune: new NumberField( {
+      spellDifficulty:    new fields.SchemaField( {
+        reattune: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      ED4E.minDifficulty,
           initial:  ( data ) => { return data.weaving + 5 || ED4E.minDifficulty; },
           integer:  true,
         } ),
-        weaving: new NumberField( {
+        weaving: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      ED4E.minDifficulty,
@@ -61,22 +60,22 @@ export default class SpellData extends ItemDataModel.mixin(
           integer:  true,
         } ),
       } ),
-      threads: new SchemaField( {
-        required: new NumberField( {
+      threads: new fields.SchemaField( {
+        required: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
         } ),
-        woven: new NumberField( {
+        woven: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
         } ),
-        extra: new NumberField( {
+        extra: new fields.NumberField( {
           required: true,
           nullable: true,
           min:      0,
@@ -84,12 +83,12 @@ export default class SpellData extends ItemDataModel.mixin(
           integer:  true,
         } ),
       } ),
-      effect: new StringField( {
+      effect: new fields.StringField( {
         required: true,
         blank:    true,
         initial:  "",
       } ),
-      keywords: new SetField( new StringField( {
+      keywords: new fields.SetField( new fields.StringField( {
         required: true,
         nullable: false,
         blank:    false,
@@ -100,15 +99,15 @@ export default class SpellData extends ItemDataModel.mixin(
         nullable: false,
         initial:  [],
       } ),
-      element: new SchemaField( {
-        type: new StringField( {
+      element: new fields.SchemaField( {
+        type: new fields.StringField( {
           required: true,
           nullable: true,
           blank:    false,
           trim:     true,
           choices:  ED4E.elements,
         } ),
-        subtype: new StringField( {
+        subtype: new fields.StringField( {
           required: true,
           nullable: true,
           blank:    false,
@@ -124,13 +123,13 @@ export default class SpellData extends ItemDataModel.mixin(
         required: true,
         nullable: true,
       } ),
-      duration: new EmbeddedDataField( DurationMetricData, {
+      duration: new fields.EmbeddedDataField( DurationMetricData, {
       } ),
-      range:    new EmbeddedDataField( RangeMetricData, {
+      range:    new fields.EmbeddedDataField( RangeMetricData, {
       } ),
-      area: new EmbeddedDataField( AreaMetricData, {
+      area: new fields.EmbeddedDataField( AreaMetricData, {
       } ),
-      extraSuccess: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
+      extraSuccess: new fields.ArrayField( new fields.TypedSchemaField( MetricData.TYPES, {
       } ),
       {
         required: true,
@@ -138,12 +137,17 @@ export default class SpellData extends ItemDataModel.mixin(
         initial:  [],
         max:      1,
       } ),
-      extraThreads: new ArrayField( new TypedSchemaField( MetricData.TYPES, {
+      extraThreads: new fields.ArrayField( new fields.TypedSchemaField( MetricData.TYPES, {
       } ),
       {
         required: true,
         nullable: true,
         initial:  [],
+      } ),
+      isWeaving: new fields.BooleanField( {
+        required: true,
+        nullable: false,
+        initial:  false,
       } ),
     } );
   }
@@ -168,9 +172,7 @@ export default class SpellData extends ItemDataModel.mixin(
     return undefined;
   }
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+  // region Properties
 
   /**
    * @description Whether this spell is an illusion and therefore can be sensed.
@@ -195,6 +197,12 @@ export default class SpellData extends ItemDataModel.mixin(
   get sensingDifficulty() {
     return this.isIllusion ? this.level + 15 : undefined;
   }
+
+  get totalRequiredThreads() {
+    return this.threads.required + ( this.threads.extra || 0 );
+  }
+
+  // endregion
 
   /* -------------------------------------------- */
   /*  LP Tracking                                 */
