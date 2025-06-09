@@ -18,6 +18,7 @@ import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 
 const futils = foundry.utils;
+const { TextEditor } = foundry.applications.ux;
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
