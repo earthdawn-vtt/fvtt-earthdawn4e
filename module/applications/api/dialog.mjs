@@ -24,7 +24,7 @@ export default class DialogEd extends foundry.applications.api.DialogV2 {
   static async waitButtonSelect( items, buttonClass, config = {} ) {
     return this.wait( {
       rejectClose: false,
-      id:          "ed-button-select",
+      id:          "ed-button-select-{id}",
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "ed-button-select" ],
       window:      {
