@@ -1192,6 +1192,68 @@
       },
       "Item": {
         "Ability": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                              "Attribut auf das sich die Fähigkeit bezieht",
+              "label":                             "Attribut"
+            },
+            "rollTypeDetails": {
+              "ability": {
+                "hint":                            "Fähigkeit auf die sich der Würfelwurf bezieht",
+                "label":                           "Fähigkeit"
+              },
+              "attack": {
+                "hint":                            "Angriff auf den sich der Würfelwurf bezieht",
+                "label":                           "Angriff"
+              },
+              "damage": {
+                "hint":                            "Schaden auf den sich der Würfelwurf bezieht",
+                "label":                           "Schaden"
+              },
+              "effect": {
+                "hint":                            "Effekt auf den sich der Würfelwurf bezieht",
+                "label":                           "Effekt"
+              },
+              "initiative": {
+                "hint":                            "Initiative auf die sich der Würfelwurf bezieht",
+                "label":                           "Initiative"
+              },
+              "reaction": {
+                "defensiveType": {
+                  "hint":                          "Defensiver Typ auf den sich der Würfelwurf bezieht",
+                  "label":                         "Defensiver Typ"
+                }
+              },
+              "recovery": {
+                "hint":                            "Erholung auf die sich der Würfelwurf bezieht",
+                "label":                           "Erholung"
+              },
+              "spellcasting": {
+                "hint":                            "Spruchzauberei auf die sich der Würfelwurf bezieht",
+                "label":                           "Spruchzauberei"
+              },
+              "threadWeaving": {
+                "castingType": {
+                  "hint":                          "Fadenweben Typ auf den sich der Würfelwurf bezieht",
+                  "label":                         "Fadenweben Typ"
+                }
+              }
+            },
+            "source": {
+              "atLevel": {
+                "hint":                            "Stufe auf der die Fähigkeit erlernt wurde",
+                "label":                           "Erlernt auf Stufe"
+              },
+              "class": {
+                "hint":                            "Disziplin auf die sich die Fähigkeit bezieht",
+                "label":                           "Disziplin"
+              }
+            },
+            "tier": {
+              "hint":                              "Stufe der Fähigkeit",
+              "label":                             "Stufe"
+            }
+          }
         },
         "Action": {
         },
