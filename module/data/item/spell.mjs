@@ -5,6 +5,9 @@ import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
+import { SelectExtraThreadsPrompt } from "../../applications/workflow/_module.mjs";
+import ThreadWeavingRollOptions from "../roll/weaving.mjs";
+import { RollPrompt } from "../../applications/global/_module.mjs";
 
 
 const { fields } = foundry.data;
@@ -75,12 +78,11 @@ export default class SpellData extends ItemDataModel.mixin(
           initial:  0,
           integer:  true,
         } ),
-        extra: new fields.NumberField( {
+        extra: new fields.ArrayField( new fields.TypedSchemaField(
+          MetricData.TYPES,
+        ),{
           required: true,
-          nullable: true,
-          min:      0,
-          initial:  null,
-          integer:  true,
+          initial:  [],
         } ),
       } ),
       effect: new fields.StringField( {
@@ -191,6 +193,22 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
+   * How many threads are missing to cast this spell.
+   * @type {number}
+   */
+  get missingThreads() {
+    return Math.max( 0, this.totalRequiredThreads - this.wovenThreads );
+  }
+
+  /**
+   * How many extra threads should be woven for this spell.
+   * @type {number}
+   */
+  get numChosenExtraThreads() {
+    return this.threads.extra?.length || 0;
+  }
+
+  /**
    * @description The difficulty number to sense this spell, if it is an illusion, else undefined.
    * @type { number | undefined }
    */
@@ -198,8 +216,20 @@ export default class SpellData extends ItemDataModel.mixin(
     return this.isIllusion ? this.level + 15 : undefined;
   }
 
+  /**
+   * The total number of threads required to cast this spell, including extra threads.
+   * @type {number}
+   */
   get totalRequiredThreads() {
-    return this.threads.required + ( this.threads.extra || 0 );
+    return this.threads.required + this.numChosenExtraThreads;
+  }
+
+  /**
+   * The number of threads that have been woven for this spell.
+   * @type {number}
+   */
+  get wovenThreads() {
+    return this.threads.woven;
   }
 
   // endregion
@@ -269,6 +299,104 @@ export default class SpellData extends ItemDataModel.mixin(
 
     return learnedItem;
   }
+
+  // region Methods
+
+  // region Spellcasting
+
+  /**
+   * Set woven threads to zero and empty the chosen extra threads.
+   * @returns {Promise<ItemEd|undefined>} Returns the updated spell item or undefined if not updated.
+   */
+  async resetThreads() {
+    return await this.parent.update( {
+      "system.threads.woven": 0,
+      "system.threads.extra": [],
+    } );
+  }
+
+  /**
+   * Stop the weaving process for this spell, resetting all threads.
+   * @returns {Promise<ItemEd|undefined>} Returns the updated spell item or undefined if not updated.
+   */
+  async stopWeaving() {
+    // We're not calling resetThreads here to avoid unnecessary updates
+    return await this.parent.update( {
+      "system.isWeaving":     false,
+      "system.threads.woven": 0,
+      "system.threads.extra": [],
+    } );
+  }
+
+  /**
+   * Weave threads for this spell using the given ability and matrix. If the spell already has all necessary threads,
+   * this does nothing.
+   * @param {ItemEd} threadWeavingAbility The ability used for weaving threads to this spell.
+   * @param {ItemEd} [matrix] The matrix this spell is attuned to, if any.
+   * @returns {Promise<void>}
+   */
+  async weaveThreads( threadWeavingAbility, matrix ) {
+    let system = this;
+    if ( !matrix.system.canWeave() ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
+      return;
+    }
+
+    if ( !this.isWeaving ) {
+      const chosenExtraThreads = await SelectExtraThreadsPrompt.waitPrompt( {
+        spell:  this.parent,
+        caster: this.containingActor,
+      } );
+      await this.parent.update( {
+        "system.isWeaving":     true,
+        "system.threads.extra": chosenExtraThreads || [],
+        "system.threads.woven": matrix?.system?.matrix?.threads?.hold?.value || 0,
+      } );
+      // cspell:disable-next-line
+      // Quote Zhell on Discord: "Embedded data models (of which the TypeDataModel kind of is one) are reinstantiated entirely each update"
+      system = this.parent.system;
+    }
+
+    if ( system.missingThreads > 0 ) {
+      const abilityRollOptions = threadWeavingAbility.system.baseRollOptions;
+      const weavingRollOptions = new ThreadWeavingRollOptions( {
+        ...abilityRollOptions,
+        target: {
+          base:      system.spellDifficulty.weaving,
+          modifiers: {},
+          public:    true,
+        },
+        chatFlavor: game.i18n.format( "ED.Chat.Flavor.threadWeaving", { to: system.parent.name } ),
+        rollType:   "threadWeaving",
+        spellUuid:  system.parent.uuid,
+        threads:    {
+          required: system.threads.required,
+          extra:    system.numChosenExtraThreads,
+        },
+      } );
+
+      const roll = await RollPrompt.waitPrompt(
+        weavingRollOptions,
+        {
+          rollData: system.parent.getRollData(),
+        },
+      );
+      await roll.toMessage();
+
+      if ( roll?.numSuccesses > 0 ) {
+        this.parent.update( {
+          "system.threads.woven": Math.min(
+            system.totalRequiredThreads,
+            system.wovenThreads + roll.numSuccesses
+          ),
+        } );
+      }
+    }
+  }
+
+  // endregion
+
+  // endregion
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
