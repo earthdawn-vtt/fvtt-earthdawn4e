@@ -103,7 +103,7 @@ export const rollTypes = {
   },
   threadWeaving: {
     label:            "ED.Config.RollTypes.threadWeaving",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/threadWeaving-roll-flavor.hbs",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/thread-weaving-roll-flavor.hbs",
   },
   jumpUp: {
     label:            "ED.Config.RollTypes.jumpUp",
