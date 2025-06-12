@@ -366,7 +366,14 @@ export default class SpellData extends ItemDataModel.mixin(
           modifiers: {},
           public:    true,
         },
-        chatFlavor: game.i18n.format( "ED.Chat.Flavor.threadWeaving", { to: system.parent.name } ),
+        chatFlavor: game.i18n.format(
+          "ED.Chat.Flavor.threadWeaving",
+          {
+            sourceActor: await fromUuid( abilityRollOptions.rollingActorUuid ),
+            spell:       system.parent.name,
+            step:        abilityRollOptions.totalStep,
+          }
+        ),
         rollType:   "threadWeaving",
         spellUuid:  system.parent.uuid,
         threads:    {
