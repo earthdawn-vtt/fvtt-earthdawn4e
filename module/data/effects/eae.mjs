@@ -1,9 +1,9 @@
-import { ActiveEffectDataModel } from "../abstract.mjs";
 import EdIdField from "../fields/edid-field.mjs";
 import EarthdawnActiveEffectChangeData from "./eae-change-data.mjs";
 import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 
 
 /**

@@ -1,4 +1,4 @@
-import { ActorDataModel } from "../../abstract.mjs";
+import ActorDataModel from "../../abstract/actor-data-model.mjs";
 
 export default class NoneCharacterTemplate extends ActorDataModel {
 

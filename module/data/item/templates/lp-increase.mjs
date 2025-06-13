@@ -1,4 +1,4 @@
-import SystemDataModel from "../../abstract.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
  * Template to be mixed in with data models that have a level that can be increased through spending legend points.

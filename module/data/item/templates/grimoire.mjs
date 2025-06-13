@@ -1,5 +1,5 @@
-import SystemDataModel from "../../abstract.mjs";
 import { getSetting } from "../../../settings.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 const { fields } = foundry.data;
 

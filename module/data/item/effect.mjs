@@ -1,5 +1,5 @@
-import SystemDataModel from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import SystemDataModel from "../abstract/system-data-model.mjs";
 
 /**
  * Data model template with information on items that are used to represent custom active effects.

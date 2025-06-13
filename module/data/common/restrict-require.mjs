@@ -1,6 +1,6 @@
-import { SparseDataModel } from "../abstract.mjs";
 import EdIdField from "../fields/edid-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 const { fields } = foundry.data;
 

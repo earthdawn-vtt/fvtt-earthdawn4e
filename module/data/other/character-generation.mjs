@@ -1,4 +1,3 @@
-import { SparseDataModel } from "../abstract.mjs";
 import ED4E from "../../config/_module.mjs";
 import {
   filterObject,
@@ -10,6 +9,7 @@ import {
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
  * The data model from which a new character is generated.

@@ -1,6 +1,7 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
-import { ItemDataModel } from "../abstract.mjs";
+
+import ItemDataModel from "../abstract/item-data-model.mjs";
 
 /**
  * Data model template with information on items that are used to represent custom active effects.

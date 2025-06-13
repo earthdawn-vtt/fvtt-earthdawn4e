@@ -1,5 +1,5 @@
-import { SparseDataModel } from "../abstract.mjs";
 import FormulaField from "../fields/formula-field.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
  * @implements {EffectChangeData}

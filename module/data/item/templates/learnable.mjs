@@ -1,4 +1,4 @@
-import SystemDataModel from "../../abstract.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
  * Template to be mixed in with data models that can be acquired through legend points (like abilities and spells).
