@@ -66,6 +66,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
           nullable: false,
           min:      0,
           initial:  0,
+          integer:  false,
         } ),
         multiplier: new fields.NumberField( {
           required: true,

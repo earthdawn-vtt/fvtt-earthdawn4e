@@ -27,6 +27,19 @@ export const systemV0_8_2 = {
    */
   groupDifficulty: [ "defenseHigh", "defenseLow", "defenseHighPlus", "defenseLowPlus" ],
 
+
+  /**
+   * availability options from the LaPorta System
+   * @enum {string}
+   */
+  availability: [
+    "availabilityeveryday",
+    "availabilityaverage",
+    "availabilityunusual",
+    "availabilityrare",
+    "availabilityveryrare",
+  ],
+
   /**
    * Thread weaving naming options for automatic migration (will be slugified)
    * @enum {string}

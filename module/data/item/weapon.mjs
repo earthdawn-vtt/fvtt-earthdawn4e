@@ -5,6 +5,11 @@ import ED4E from "../../config/_module.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollableTemplate from "./templates/rollable.mjs";
+import DescriptionMigration from "./migration/old-system-V082/description.mjs";
+import AvailabilityMigration from "./migration/old-system-V082/availability.mjs";
+import PriceMigration from "./migration/old-system-V082/price.mjs";
+import WeightMigration from "./migration/old-system-V082/weight.mjs";
+import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -374,7 +379,19 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    // Migrate description
+    DescriptionMigration.migrateData( source );
+
+    // Migrate availability
+    AvailabilityMigration.migrateData( source );
+
+    // migrate price
+    PriceMigration.migrateData( source );
+
+    // migrate price
+    WeightMigration.migrateData( source );
+
+    // migrate usable items
+    UsableItemMigration.migrateData( source );
   }
 }
