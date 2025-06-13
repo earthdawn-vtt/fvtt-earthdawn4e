@@ -70,7 +70,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _immiscible = new Set( [ "length", "mixed", "name", "prototype", "cleanData", "_cleanData",
     "_initializationOrder", "validateJoint", "_validateJoint", "migrateData", "_migrateData",
-    "shimData", "_shimData", "defineSchema" ] );
+    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES" ] );
 
   /* -------------------------------------------- */
 
@@ -371,11 +371,19 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       configurable: false
     } );
 
+    // Special handling for LOCALIZATION_PREFIXES to ensure they're combined rather than overwritten
+    const allPrefixes = new Set( [ ...( this.LOCALIZATION_PREFIXES || [] ) ] );
+
     for ( const template of templates ) {
       // take all static methods and fields from template and mix in to base class
       for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template ) ) ) {
-        if (  this._immiscible.has( key )  ) continue;
+        if ( this._immiscible.has( key ) ) continue;
         Object.defineProperty( Base, key, descriptor );
+      }
+
+      // Collect all localization prefixes for consolidation
+      if ( template.LOCALIZATION_PREFIXES ) {
+        template.LOCALIZATION_PREFIXES.forEach( prefix => allPrefixes.add( prefix ) );
       }
 
       // take all instance methods and fields from template and mix in to base class
@@ -384,6 +392,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
         Object.defineProperty( Base.prototype, key, descriptor );
       }
     }
+
+    Object.defineProperty( Base, "LOCALIZATION_PREFIXES", {
+      value:        [ ...allPrefixes ],
+      writable:     true,
+      configurable: true
+    } );
 
     return Base;
   }
