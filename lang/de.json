@@ -315,14 +315,16 @@
     "Chat": {
       "Button": {
         "applyDamage":                             "Schaden zufügen",
-        "applyDamageTitle":                        "Füge den Schaden den ausgewählten Zielen zu!",
+        "applyDamageTitle":                        "Füge den Schaden den ausgewählten Zielen zu",
         "applyEffect":                             "Effekt zufügen",
-        "applyEffectTitle":                        "Füge den Effekt den ausgewählten Zielen zu!",
+        "applyEffectTitle":                        "Füge den Effekt den ausgewählten Zielen zu",
+        "castSpell":                               "Zauber wirken",
+        "castSpellTitle":                          "Alle Fäden gewoben, wirke den Zauber auf die ausgewählten Ziele",
         "rollDamage":                              "Schadenswurf",
         "rollDamageTitle":                         "Würfel den Effekt",
         "rollEffect":                              "Effektwurf",
         "takeDamage":                              "Schaden nehmen",
-        "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu!"
+        "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
@@ -336,13 +338,17 @@
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
+        "threadWeaving":                           "{sourceActor} webt Fäden für \"{spell}\" ({step})",
         "undoDamage":                              "Setzte den Schaden zurück"
       },
       "Header": {
         "arbitraryTest":                           "Willkürlicher Test",
         "attackManeuvers":                         "Manöver",
         "attackReactions":                         "Reaktionen",
-        "attackTargets":                           "Ziele"
+        "attackTargets":                           "Ziele",
+        "extraThreads":                            "Zusätzliche Fäden",
+        "numThreadsJustWoven":                     "Gerade gewebte Fäden",
+        "numThreadsWovenTotal":                    "Gesamt gewebte Fäden"
       }
     },
     "Conditions": {
@@ -1541,6 +1547,7 @@
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
         "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
+        "fieldsetExtraThreads":                    "Zusätzliche Fäden",
         "inactiveUser":                            "Charaktere von inaktiven Spieler",
         "update":                                  "System Update Neuigkeiten"
       },
@@ -1635,6 +1642,9 @@
         "step":                                    "Stufe",
         "strain":                                  "Überanstrengung"
       },
+      "SelectExtraThreads": {
+        "selectedXofYthreads":                     "{numSelected} von maximal {maxExtraThreads} Fäden ausgewählt"
+      },
       "Sorting": {
         "item":                                    "Item",
         "sortBy":                                  "Sortiere nach",
@@ -1645,6 +1655,7 @@
         "assignLp":                                "Legendenpunkte zuweisen",
         "attributeIncrease":                       "Attribut steigern",
         "attuneMatrix":                            "Matrix neu abstimmen",
+        "buttonSelect":                            "Wähle eine Option",
         "characterGeneration":                     "Charaktererschaffung",
         "chooseDiscipline":                        "Wähle eine Disziplin",
         "chooseTier":                              "Wähle einen Kreis",
@@ -1658,6 +1669,7 @@
         "lpLearnKnack":                            "Lerne Kniff",
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
+        "selectExtraThreads":                      "Wähle zusätzliche Fäden",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie"
@@ -1811,6 +1823,8 @@
         "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
+        "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
+        "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",

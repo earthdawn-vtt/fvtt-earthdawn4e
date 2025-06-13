@@ -126,7 +126,7 @@ export default class AttuneWorkflow extends ActorWorkflow {
     // Notify the user
     ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.ReattuningCancelled" ) );
 
-    this._result = true;
+    this._result = false;
   }
 
   /**
@@ -207,13 +207,14 @@ export default class AttuneWorkflow extends ActorWorkflow {
       };
     } );
 
+    let updatedDocuments;
     // Apply the updates if we have any
     if ( updates.length > 0 ) {
-      await this._actor.updateEmbeddedDocuments( "Item", updates );
+      updatedDocuments = await this._actor.updateEmbeddedDocuments( "Item", updates );
     }
 
     // Set the result to true to indicate success
-    this._result = true;
+    this._result = updatedDocuments?.length > 0;
   }
 
   // endregion

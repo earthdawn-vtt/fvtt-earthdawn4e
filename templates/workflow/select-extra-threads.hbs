@@ -1,0 +1,18 @@
+<div>
+
+  <div>
+    {{localize "ED.Dialogs.SelectExtraThreads.selectedXofYthreads" numSelected maxExtraThreads}}
+  </div>
+
+  <fieldset class="extra-threads">
+    <legend>{{localize "ED.Dialogs.Header.fieldsetExtraThreads"}}</legend>
+    {{#each optionFields}}
+      {{formInput
+        this
+        name=this.name
+        value=(lookup (lookup ../data "extraThreads") @index)
+      }}
+    {{/each}}
+  </fieldset>
+
+</div>

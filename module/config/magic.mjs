@@ -53,6 +53,28 @@ preLocalize(
   { keys: [ "air", "earth", "fire", "water", "wood" ] }
 );
 
+/**
+ * The number of extra threads that can be added to a spell based on the circle of its corresponding discipline.
+ * @type {{ [circle: number]: number }}
+ */
+export const extraThreadsByCircle = {
+  1:  1,
+  2:  1,
+  3:  1,
+  4:  1,
+  5:  2,
+  6:  2,
+  7:  2,
+  8:  2,
+  9:  3,
+  10: 3,
+  11: 3,
+  12: 3,
+  13: 4,
+  14: 4,
+  15: 4,
+};
+
 export const matrixTypes = {
   "standard": {
     label:         "ED.Config.MatrixTypes.standard",
