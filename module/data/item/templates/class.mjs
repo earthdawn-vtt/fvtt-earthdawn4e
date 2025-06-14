@@ -1,9 +1,9 @@
-import { ItemDataModel } from "../../abstract.mjs";
 import AdvancementData from "../../advancement/base-advancement.mjs";
 import LpIncreaseTemplate from "./lp-increase.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import ClassAdvancementDialog from "../../../applications/advancement/class-advancement.mjs";
 import ED4E from "../../../config/_module.mjs";
+import ItemDataModel from "../../abstract/item-data-model.mjs";
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.

@@ -1,5 +1,5 @@
-import { ItemDataModel } from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
 
 /**
  * Data model template with information on namegiver items.

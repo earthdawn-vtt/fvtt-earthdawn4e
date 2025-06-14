@@ -1,5 +1,5 @@
-import { ItemDataModel } from "../../abstract.mjs";
 import ThreadBaseData from "../../thread/thread-base.mjs";
+import ItemDataModel from "../../abstract/item-data-model.mjs";
 
 
 /**

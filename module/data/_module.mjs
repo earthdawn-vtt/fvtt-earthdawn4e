@@ -1,5 +1,4 @@
-export {default as SystemDataModel, SparseDataModel} from "./abstract.mjs";
-
+export * as abstract from "./abstract/_module.mjs";
 export * as actor from "./actor/_module.mjs";
 export * as advancement from "./advancement/_module.mjs";
 export * as chat from "./chat/_module.mjs";

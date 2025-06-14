@@ -1,6 +1,6 @@
 import ED4E from "../../config/_module.mjs";
-import { SparseDataModel } from "../abstract.mjs";
 import ThreadLevelData from "./thread-level.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 export default class ThreadBaseData extends SparseDataModel {
 

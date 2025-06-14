@@ -1,4 +1,4 @@
-import { SparseDataModel } from "../abstract.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 export default class ThreadLevelData extends SparseDataModel {
 

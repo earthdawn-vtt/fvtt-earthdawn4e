@@ -1,6 +1,6 @@
-import SystemDataModel from "../../abstract.mjs";
 import { ED4E } from "../../../../earthdawn4e.mjs";
 import { getSetting } from "../../../settings.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
 import DialogEd from "../../../applications/api/dialog.mjs";
 import AttuneWorkflow from "../../../workflows/workflow/attune-workflow.mjs";
 

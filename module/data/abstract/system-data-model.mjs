@@ -1,6 +1,3 @@
-import { callIfExists } from "../utils.mjs";
-
-
 const { TextEditor } = foundry.applications.ux;
 
 /**
@@ -70,7 +67,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _immiscible = new Set( [ "length", "mixed", "name", "prototype", "cleanData", "_cleanData",
     "_initializationOrder", "validateJoint", "_validateJoint", "migrateData", "_migrateData",
-    "shimData", "_shimData", "defineSchema" ] );
+    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES" ] );
 
   /* -------------------------------------------- */
 
@@ -371,11 +368,19 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       configurable: false
     } );
 
+    // Special handling for LOCALIZATION_PREFIXES to ensure they're combined rather than overwritten
+    const allPrefixes = new Set( [ ...( this.LOCALIZATION_PREFIXES || [] ) ] );
+
     for ( const template of templates ) {
       // take all static methods and fields from template and mix in to base class
       for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template ) ) ) {
-        if (  this._immiscible.has( key )  ) continue;
+        if ( this._immiscible.has( key ) ) continue;
         Object.defineProperty( Base, key, descriptor );
+      }
+
+      // Collect all localization prefixes for consolidation
+      if ( template.LOCALIZATION_PREFIXES ) {
+        template.LOCALIZATION_PREFIXES.forEach( prefix => allPrefixes.add( prefix ) );
       }
 
       // take all instance methods and fields from template and mix in to base class
@@ -384,6 +389,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
         Object.defineProperty( Base.prototype, key, descriptor );
       }
     }
+
+    Object.defineProperty( Base, "LOCALIZATION_PREFIXES", {
+      value:        [ ...allPrefixes ],
+      writable:     true,
+      configurable: true
+    } );
 
     return Base;
   }
@@ -429,356 +440,3 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
 
 }
-
-/* -------------------------------------------- */
-
-/**
- * Variant of the SystemDataModel with some extra actor-specific handling.
- */
-export class ActorDataModel extends SystemDataModel {
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Actor",
-  ];
-
-  /**
-   * @typedef {SystemDataModelMetadata} ActorDataModelMetadata
-   * @property {boolean} supportsAdvancement  Can advancement be performed for this actor type?
-   */
-
-  /** @type {ActorDataModelMetadata} */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    supportsAdvancement: false
-  }, {
-    inplace: false
-  } ) );
-
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
-
-  /** @override */
-  get embeddedDescriptionKeyPath() {
-    return "description.value";
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Other actors that are available for currency transfers from this actor.
-   * @type {ActorEd[]}
-   */
-  get transferDestinations() {
-    const primaryParty = game.settings.get( "ed4e", "primaryParty" )?.actor;
-    if ( !primaryParty?.system.members.ids.has( this.parent.id ) ) return [];
-    const destinations = primaryParty.system.members.map( m => m.actor ).filter( a => a.isOwner && a !== this.parent );
-    if ( primaryParty.isOwner ) destinations.unshift( primaryParty );
-    return destinations;
-  }
-
-
-  // region Rolling
-
-  /**
-   * See {@link Actor#getRollData}
-   * @returns {object} An object to evaluate rolls and {@link FormulaField}s against.
-   */
-  getRollData() {
-    return {};
-  }
-
-  // endregion
-
-
-  /* -------------------------------------------- */
-  /*  Helpers                                     */
-  /* -------------------------------------------- */
-
-}
-
-/* -------------------------------------------- */
-
-/**
- * Variant of the SystemDataModel with support for rich item tooltips.
- */
-export class ItemDataModel extends SystemDataModel {
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item",
-  ];
-
-  /**
-   * @typedef {SystemDataModelMetadata} ItemDataModelMetadata
-   * @property {boolean} enchantable    Can this item be modified by enchantment effects?
-   * @property {boolean} threadable     Can magic threads be woven to this item ?
-   * @property {boolean} inventoryItem  Should this item be listed with an actor's inventory?
-   * @property {number} inventoryOrder  Order this item appears in the actor's inventory, smaller numbers are earlier.
-   * @property {boolean} singleton      Should only a single item of this type be allowed on an actor?
-   */
-
-  /** @type {ItemDataModelMetadata} */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    enchantable:    false,
-    hasLinkedItems: false,
-    inventoryItem:  false,
-    inventoryOrder: Infinity,
-    singleton:      false,
-    threadable:     false,
-  }, {
-    inplace: false
-  } ) );
-
-  /**
-   * The handlebars template for rendering item tooltips.
-   * @type {string}
-   */
-  static ITEM_TOOLTIP_TEMPLATE = "systems/ed4e/templates/item/item-partials/item-tooltip.hbs";
-
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
-
-  /** @override */
-  get embeddedDescriptionKeyPath() {
-    return game.user.isGM || ( this.identified !== false ) ? "description.value" : "unidentified.description";
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  prepareBaseData() {
-    if ( this.parent.isEmbedded ) {
-      const sourceId = this.parent.flags.ed4e?.sourceId
-        ?? this.parent._stats.compendiumSource
-        ?? this.parent.flags.core?.sourceId;
-      if ( sourceId ) this.parent.actor?.sourcedItems?.set( sourceId, this.parent );
-    }
-  }
-
-
-  /* -------------------------------------------- */
-  /*  Drop Events                                 */
-  /* -------------------------------------------- */
-
-  /**
-   * Handle a dropped document on the ItemSheet belonging to this data models parent document.
-   * @param {DragEvent} event         The initiating drop event
-   * @param {Document} document       The resolved Document class
-   * @returns {Promise<boolean>}      True if drop handling should continue, false if it should be cancelled.
-   * @protected
-   */
-  _onDropDocument( event, document ) {
-    const functionMapping = {
-      devotion:      "_onDropDevotion",
-      knackAbility:  "_onDropKnack",
-      knackKarma:    "_onDropKnack",
-      knackManeuver: "_onDropKnack",
-    };
-
-    return callIfExists(
-      this, functionMapping[document.type],
-      event, document
-    ) ?? true;
-  }
-
-  // region Rolling
-
-  /**
-   * See {@link Item#getRollData}
-   * @returns {object} An object to evaluate rolls and {@link FormulaField}s against.
-   */
-  getRollData() {
-    return this.parent?.getRollData() ?? {};
-  }
-
-  // endregion
-
-
-  /* -------------------------------------------- */
-  /*  Helpers                                     */
-  /* -------------------------------------------- */
-
-  /**
-   * Render a rich tooltip for this item.
-   * @param {EnrichmentOptions} [enrichmentOptions]   Options for text enrichment.
-   * @returns {{content: string, classes: string[]}}  The tooltip HTML content and classes.
-   */
-  async richTooltip( enrichmentOptions={} ) {
-    return {
-      content: await renderTemplate(
-        this.constructor.ITEM_TOOLTIP_TEMPLATE, await this.getCardData( enrichmentOptions )
-      ),
-      classes: [ "earthdawn4e", "earthdawn4e-tooltip", "item-tooltip" ]
-    };
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare item card template data.
-   * @param {EnrichmentOptions} enrichmentOptions Options for text enrichment.
-   * @returns {Promise<object>}                   The template context data.
-   */
-  // eslint-disable-next-line complexity
-  async getCardData( enrichmentOptions={} ) {
-    const { name, type, img } = this.parent;
-    let {
-      price, weight, uses, identified, unidentified, description, materials, activation
-    } = this;
-    const rollData = this.parent.getRollData();
-    const isIdentified = identified !== false;
-    const chat = isIdentified ? description.chat || description.value : unidentified?.description;
-    description = game.user.isGM || isIdentified ? description.value : unidentified?.description;
-    uses = this.hasLimitedUses && ( game.user.isGM || identified ) ? uses : null;
-    price = game.user.isGM || identified ? price : null;
-
-    const subtitle = [ this.type?.label ?? game.i18n.localize( CONFIG.Item.typeLabels[this.parent.type] ) ];
-    const context = {
-      name, type, img, price, weight, uses, materials, activation,
-      config:       CONFIG.ED4E,
-      controlHints: game.settings.get( "ed4e", "controlHints" ),
-      labels:       foundry.utils.deepClone( this.parent.labels ),
-      tags:         this.parent.labels?.components?.tags,
-      subtitle:     subtitle.filterJoin( " &bull; " ),
-      description:  {
-        value: await TextEditor.enrichHTML( description ?? "", {
-          rollData, relativeTo: this.parent, ...enrichmentOptions
-        } ),
-        chat: await TextEditor.enrichHTML( chat ?? "", {
-          rollData, relativeTo: this.parent, ...enrichmentOptions
-        } )
-      }
-    };
-
-    context.properties = [];
-
-    if ( game.user.isGM || isIdentified ) {
-      context.properties.push(
-        ...this.cardProperties ?? [],
-        ...this.activatedEffectCardProperties ?? [],
-        ...this.equippableItemCardProperties ?? []
-      );
-    }
-
-    context.properties = context.properties.filter( _ => _ );
-    context.hasProperties = context.tags?.length || context.properties.length;
-    return context;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare type-specific data for the Item sheet.
-   * @param {object} context  Sheet context data.
-   * @returns {Promise<void>}
-   */
-  async getSheetData( context ) {}
-
-}
-
-/* -------------------------------------------- */
-
-/**
- * Variant of the SystemDataModel with support for custom active effects.
- */
-export class ActiveEffectDataModel extends SystemDataModel {
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.ActiveEffect",
-  ];
-
-  /**
-   * @typedef {SystemDataModelMetadata} ActiveEffectDataModelMetadata
-   * @property {boolean} foo    This is just a test property
-   */
-
-  /** @type {ActiveEffectDataModelMetadata} */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    foo: false,
-  }, {
-    inplace: false,
-  } ) );
-
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  prepareBaseData() {
-    super.prepareBaseData();
-    if ( this.parent.isEmbedded ) {
-      const sourceId = this.parent.flags.ed4e?.sourceId
-        ?? this.parent._stats.compendiumSource
-        ?? this.parent.flags.core?.sourceId;
-      if ( sourceId ) this.parent.actor?.sourcedEffects?.set( sourceId, this.parent );
-    }
-  }
-
-}
-
-/* -------------------------------------------- */
-
-/**
- * Data Model variant that does not export fields with an `undefined` value during `toObject( true )`.
- */
-export class SparseDataModel extends foundry.abstract.DataModel {
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    "ED.Data.Other",
-  ];
-
-  /** @inheritDoc */
-  toObject( source = true ) {
-    if (  !source  ) return super.toObject( source );
-    const clone = foundry.utils.flattenObject( this._source );
-    // remove any undefined keys from the source data
-    Object.keys( clone ).filter( k => clone[k] === undefined ).forEach( k => delete clone[k] );
-    return foundry.utils.expandObject( clone );
-  }
-
-  /**
-   * Merge two schema definitions together as well as possible.
-   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
-   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
-   * @returns {DataModel}  Fully merged schema.
-   */
-  static mergeSchema( a, b ) {
-    Object.assign( a, b );
-    return a;
-  }
-
-  // region Properties
-
-  /**
-   * Get the actor that contains this data model or undefined if it is not embedded.
-   * @type {*|undefined}
-   */
-  get containingActor() {
-    if ( !this.parent ) return undefined;
-    return this.parent.actor ?? this.parent.containingActor;
-  }
-
-  /**
-   * Check if this data model is a descendent of an actor.
-   * @type {boolean}
-   */
-  get isActorEmbedded() {
-    if ( !this.parent ) return false;
-    if ( this.parent.actor ) return true;
-    return this.parent.isActorEmbedded ?? false;
-  }
-
-  // endregion
-
-}
-
-/* -------------------------------------------- */

@@ -1,10 +1,10 @@
-import SystemDataModel from "../../abstract.mjs";
 import TargetTemplate from "./targeting.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import { ConstraintData } from "../../common/restrict-require.mjs";
 import EdIdField from "../../fields/edid-field.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import ED4E from "../../../config/_module.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
 
 /**
  * Data model template for Knacks

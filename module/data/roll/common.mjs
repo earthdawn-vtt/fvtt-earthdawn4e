@@ -3,7 +3,8 @@ import getDice from "../../dice/step-tables.mjs";
 import ED4E from "../../config/_module.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
-import { SparseDataModel } from "../abstract.mjs";
+
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
  * @typedef {import('../../dice/ed-roll.mjs').FlavorTemplateData} FlavorTemplateData

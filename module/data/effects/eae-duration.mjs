@@ -1,6 +1,6 @@
-import { SparseDataModel } from "../abstract.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
  * @implements {EffectDurationData}

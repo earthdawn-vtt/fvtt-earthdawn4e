@@ -1,6 +1,6 @@
 import LpTransactionData from "./lp-transaction.mjs";
-import SystemDataModel from "../abstract.mjs";
 import { dateToInputString } from "../../utils.mjs";
+import SystemDataModel from "../abstract/system-data-model.mjs";
 
 export default class LpSpendingTransactionData extends LpTransactionData {
 

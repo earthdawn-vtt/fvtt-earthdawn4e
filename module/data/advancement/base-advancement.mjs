@@ -1,7 +1,7 @@
-import { SparseDataModel } from "../abstract.mjs";
 import AbilityTemplate from "../item/templates/ability.mjs";
 import AdvancementLevelData from "./advancement-level.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
  * Advancement of Disciplines, Paths and Questors
