@@ -13,6 +13,7 @@ import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
 import * as MIGRATIONS from "./migrations.mjs";
+import * as WORKFLOWS from "./workflows.mjs";
 
 
 /* -------------------------------------------- */
@@ -41,6 +42,22 @@ Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path 
 
 // Namespace Configuration Values
 const ED4E = {
+  ACTIONS,
+  ACTORS,
+  CHAT,
+  COMBAT,
+  DOCUMENT_DATA,
+  EFFECTS,
+  ITEMS,
+  LEGEND,
+  MAGIC,
+  QUANTITIES,
+  ROLLS,
+  SOCKETS,
+  STATUSES,
+  SYSTEM,
+  MIGRATIONS,
+  WORKFLOWS,
   ...ACTIONS,
   ...ACTORS,
   ...CHAT,
@@ -55,7 +72,8 @@ const ED4E = {
   ...SOCKETS,
   ...STATUSES,
   ...SYSTEM,
-  ...MIGRATIONS
+  ...MIGRATIONS,
+  ...WORKFLOWS,
 };
 
 export default ED4E;
