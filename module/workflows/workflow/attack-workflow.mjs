@@ -3,13 +3,14 @@ import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import { getSetting } from "../../settings.mjs";
 import AttackRollOptions from "../../data/roll/attack.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
+import Rollable from "./rollable.mjs";
 
 /**
  * @typedef {object} AttackWorkflowOptions
  * @property {"tail"|"unarmed"|"weapon"} [attackType="unarmed"] The type of attack being performed.
  */
 
-export default class AttackWorkflow extends ActorWorkflow {
+export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * The ability used for the attack.
@@ -22,18 +23,6 @@ export default class AttackWorkflow extends ActorWorkflow {
    * @type {"tail"|"unarmed"|"weapon"}
    */
   _attackType;
-
-  /**
-   * The roll object that is created for the attack.
-   * @type {EdRoll}
-   */
-  _roll;
-
-  /**
-   * The options that are passed to the roll object.
-   * @type {EdRollOptions}
-   */
-  _rollOptions;
 
   /**
    * The weapon being used for the attack.
