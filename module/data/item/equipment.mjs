@@ -68,5 +68,8 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
 
     // migrate usable items
     UsableItemMigration.migrateData( source );
+
+    // migrate consumable items
+    source.consumable = source.consumable ?? false;
   }
 }
