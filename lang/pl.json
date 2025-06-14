@@ -318,6 +318,8 @@
         "applyDamageTitle":                        "TODO: Add translation",
         "applyEffect":                             "TODO: Add translation",
         "applyEffectTitle":                        "TODO: Add translation",
+        "castSpell":                               "TODO: Add translation",
+        "castSpellTitle":                          "TODO: Add translation",
         "rollDamage":                              "TODO: Add translation",
         "rollDamageTitle":                         "TODO: Add translation",
         "rollEffect":                              "TODO: Add translation",
@@ -336,13 +338,17 @@
         "rollUnarmedDamage":                       "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
+        "threadWeaving":                           "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation"
       },
       "Header": {
         "arbitraryTest":                           "TODO: Add translation",
         "attackManeuvers":                         "TODO: Add translation",
         "attackReactions":                         "TODO: Add translation",
-        "attackTargets":                           "TODO: Add translation"
+        "attackTargets":                           "TODO: Add translation",
+        "extraThreads":                            "TODO: Add translation",
+        "numThreadsJustWoven":                     "TODO: Add translation",
+        "numThreadsWovenTotal":                    "TODO: Add translation"
       }
     },
     "Conditions": {
@@ -1491,6 +1497,7 @@
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
         "attuneOnTheFly":                          "TODO: Add translation",
+        "fieldsetExtraThreads":                    "TODO: Add translation",
         "inactiveUser":                            "TODO: Add translation",
         "update":                                  "TODO: Add translation"
       },
@@ -1585,6 +1592,9 @@
         "step":                                    "TODO: Add translation",
         "strain":                                  "TODO: Add translation"
       },
+      "SelectExtraThreads": {
+        "selectedXofYthreads":                     "TODO: Add translation"
+      },
       "Sorting": {
         "item":                                    "TODO: Add translation",
         "sortBy":                                  "TODO: Add translation",
@@ -1595,6 +1605,7 @@
         "assignLp":                                "TODO: Add translation",
         "attributeIncrease":                       "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
+        "buttonSelect":                            "TODO: Add translation",
         "characterGeneration":                     "TODO: Add translation",
         "chooseDiscipline":                        "TODO: Add translation",
         "chooseTier":                              "TODO: Add translation",
@@ -1608,6 +1619,7 @@
         "lpLearnKnack":                            "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
+        "selectExtraThreads":                      "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation"
@@ -1761,6 +1773,8 @@
         "firstDisciplineViaCharGen":               "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
+        "matrixBrokenCannotWeave":                 "TODO: Add translation",
+        "noActiveSpellSelected":                   "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",

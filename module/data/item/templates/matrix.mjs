@@ -1,6 +1,8 @@
 import { ED4E } from "../../../../earthdawn4e.mjs";
 import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import DialogEd from "../../../applications/api/dialog.mjs";
+import AttuneWorkflow from "../../../workflows/workflow/attune-workflow.mjs";
 
 
 const { fields } = foundry.data;
@@ -66,14 +68,15 @@ export default class MatrixTemplate extends SystemDataModel {
           }, {
             required:        true,
           } ),
-          woven: new fields.NumberField( {
-            required:        true,
-            initial:         0,
-            integer:         true,
-            min:             0,
-          } ),
         }, {
           required:        true,
+        } ),
+        activeSpell: new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: true,
+          required: true,
+          nullable: true,
+          initial:  null,
         } ),
       }, {
         nullable:        true,
@@ -83,6 +86,14 @@ export default class MatrixTemplate extends SystemDataModel {
   }
 
   // region Properties
+
+  /**
+   * Whether this item has a matrix.
+   * @type {boolean}
+   */
+  get hasMatrix() {
+    return this.edid === getSetting( "edidSpellMatrix" );
+  }
 
   /**
    * Is this matrix broken and therefore cannot be used?
@@ -101,11 +112,11 @@ export default class MatrixTemplate extends SystemDataModel {
   }
 
   /**
-   * Whether this item has a matrix.
+   * Whether the matrix has a more than one spell attuned.
    * @type {boolean}
    */
-  get hasMatrix() {
-    return this.edid === getSetting( "edidSpellMatrix" );
+  get matrixHasMultipleSpells() {
+    return this.matrix?.spells?.size > 1;
   }
 
   /**
@@ -152,6 +163,12 @@ export default class MatrixTemplate extends SystemDataModel {
    */
   _prepareMatrixData( data ) {
     const edidMatrix = getSetting( "edidSpellMatrix" );
+
+    if ( !this.matrixHasMultipleSpells && this.matrixSpellUuid && !this.matrix.activeSpell ) {
+      // If the matrix has only one spell attuned, only that one
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = this.matrixSpellUuid;
+    }
 
     if ( this._isBecomingMatrix( data, edidMatrix ) ) {
       this._setDefaultMatrixData( data );
@@ -236,6 +253,8 @@ export default class MatrixTemplate extends SystemDataModel {
 
   // endregion
 
+  // region Methods
+
   /**
    * Checks if the matrix is attuned to a specific spell.
    * @param {string} spellUuid The UUID of the spell to check.
@@ -279,5 +298,68 @@ export default class MatrixTemplate extends SystemDataModel {
   _lookupMatrixMaxHoldThread( matrixType = "standard" ) {
     return ED4E.matrixTypes[ matrixType ].maxHoldThread;
   }
+
+  // region Spellcasting
+
+  /**
+   * Checks if threads can be woven into the matrix's spell.
+   * @returns {boolean} False if the matrix is broken, true otherwise.
+   */
+  canWeave() {
+    return !this.matrixBroken;
+  }
+
+  /**
+   * Gets the currently active spell for the matrix.
+   * @returns {Promise<Document|null>} The active spell document, or null if no active spell could be set.
+   */
+  async getActiveSpell() {
+    if ( !this.matrix.activeSpell ) await this.selectActiveSpell();
+    return fromUuid( this.matrix.activeSpell );
+  }
+
+  /**
+   * Whether there are currently threads being woven into the matrix.
+   * @returns {boolean} True if the containing spell is actively being woven threads to, false otherwise.
+   */
+  matrixIsWeaving() {
+    return fromUuidSync( this.matrix?.activeSpell )?.system?.isWeaving || false;
+  }
+
+  /**
+   * Selects the active spell for the matrix.
+   * @returns {Promise<boolean>} True if the active spell was successfully selected, false otherwise.
+   */
+  async selectActiveSpell() {
+    let newActiveSpell;
+    if ( this.matrixHasMultipleSpells ) {
+      newActiveSpell = await fromUuid( await DialogEd.waitButtonSelect( this.matrix.spells ) );
+      if ( !newActiveSpell ) {
+        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActiveSpellSelected" ) );
+        return false;
+      }
+    } else if ( this.matrixSpell ) {
+      newActiveSpell = this.matrixSpell;
+    } else {
+      // Not attuned, try to attune a spell
+      const attuneWorkflow = new AttuneWorkflow(
+        this.containingActor,
+        { firstMatrix: this.uuid },
+      );
+
+      // If the attune workflow is successful, try to select the active spell again
+      return ( await attuneWorkflow.execute() ) ? this.selectActiveSpell() : false;
+    }
+
+    const updated = await this.parent?.update( {
+      "system.matrix.activeSpell": newActiveSpell
+    } );
+
+    return !!updated;
+  }
+
+  // endregion
+
+  // endregion
 
 }

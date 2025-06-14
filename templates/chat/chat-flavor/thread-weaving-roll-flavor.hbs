@@ -1,14 +1,44 @@
 <div class="custom-flavor">{{ customFlavor }}</div>
+
+<h4>{{ localize "ED.Chat.Header.numThreadsJustWoven" }}</h4>
+<div>
+  {{threads.woven.now}}
+</div>
+
+<h4>{{ localize "ED.Chat.Header.numThreadsWovenTotal" }}</h4>
+<div>
+  {{threads.woven.total}} / {{threads.totalRequired}}
+</div>
+
+<h4>{{ localize "ED.Chat.Header.extraThreads" }}</h4>
+<div class="extra-threads-list">
+  <ul class="unlist">
+    {{#each spell.system.threads.extra as |thread|}}
+        <li>
+          {{{thread.summaryString}}}
+        </li>
+    {{/each}}
+  </ul>
+</div>
+
+{{#if doneWeaving}}
+  {{> "systems/ed4e/templates/chat/chat-buttons/cast-spell.hbs"}}
+{{/if}}
+
+<!-- Rule of One Check -->
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
 {{else}}
-{{#if (ne target.total 0)}}
-{{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-{{/if}}
-<div class="modifier-lists flexrow">
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-  {{#if target.public}}
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+
+  <!-- Modifier Lists -->
+  {{#if (ne target.total 0)}}
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
   {{/if}}
-</div>
+
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+    {{#if target.public}}
+      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+    {{/if}}
+  </div>
 {{/if}}

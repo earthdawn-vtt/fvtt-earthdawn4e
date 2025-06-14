@@ -85,10 +85,6 @@ export class MetricData extends SparseDataModel {
     return this.unit === this.specialUnitKey;
   }
 
-  get hint() {
-    return this.constructor.hintKey( `MetricData.${this.constructor.TYPE}` );
-  }
-
   get scalarConfig() {
     return {};
   }
