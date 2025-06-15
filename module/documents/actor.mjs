@@ -659,6 +659,9 @@ export default class ActorEd extends Actor {
 
     const updates = { [`system.characteristics.health.damage.${ damageType }`]: newDamage };
 
+    // First recovery test after taking stun damage can be done with willpower bonus
+    if ( damageType === "stun" ) updates["system.characteristics.recoveryTestsResource.stunRecoveryAvailable"] = true;
+
     if ( damageTaken >= health.woundThreshold && !options.isStrain ) {
       switch ( damageType ) {
         case "standard":
