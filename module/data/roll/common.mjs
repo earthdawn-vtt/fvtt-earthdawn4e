@@ -166,7 +166,7 @@ export default class EdRollOptions extends SparseDataModel {
           } ),
         },
         {
-          required: true,
+          required: false,
           nullable: false,
         },
       ),
@@ -221,24 +221,21 @@ export default class EdRollOptions extends SparseDataModel {
         nullable: false,
         blank:    true,
         initial:  "arbitrary",
+        choices:  ED4E.ROLLS.testTypes,
       } ),
       rollType: new fields.StringField( {
         required: false,
         nullable: true,
         blank:    true,
         initial:  "",
-      } ),
-      rollSubType: new fields.StringField( {
-        required: false,
-        nullable: true,
-        blank:    true,
-        initial:  "",
+        choices:  ED4E.ROLLS.rollTypes,
       } ),
 
     };
   }
 
   get totalTarget() {
+    if ( !this.target ) return null;
     return Math.max(
       this.target.base + sum( Object.values( this.target.modifiers ) ),
       game.settings.get( "ed4e", "minimumDifficulty" ),
@@ -297,9 +294,8 @@ export default class EdRollOptions extends SparseDataModel {
       options
     );
     updates.step ??= {};
-    updates.target ??= {};
     updates.step.total = this.step.total = this.totalStep;
-    updates.target.total = this.target.total = this.totalTarget;
+    if ( updates.target?.total ) updates.target.total = this.target.total = this.totalTarget;
     return super.updateSource( updates, options );
   }
 

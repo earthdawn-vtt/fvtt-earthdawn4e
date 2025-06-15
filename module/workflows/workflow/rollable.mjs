@@ -4,6 +4,8 @@
  * @property {EdRollOptions} [rollOptions] The options to use for creating rolls.
  */
 
+import RollPrompt from "../../applications/global/roll-prompt.mjs";
+
 /**
  * A mixin that adds roll-related functionality to a workflow.
  * This mixin can be applied to any workflow that needs to perform dice rolls.
@@ -25,6 +27,13 @@ export default function Rollable( WorkflowClass ) {
     _rollOptions;
 
     /**
+     * The title for the roll prompt application.
+     * @type {string}
+     * @private
+     */
+    _rollPromptTitle;
+
+    /**
      * Extra roll results (for workflows that may have multiple rolls)
      * @type {Map<string, EdRoll>}
      */
@@ -40,6 +49,49 @@ export default function Rollable( WorkflowClass ) {
       const options = args[args.length - 1] || {};
       if ( options.roll ) this._roll = options.roll;
       if ( options.rollOptions ) this._rollOptions = options.rollOptions;
+    }
+
+    /**
+     * Create the roll for this workflow based on {@link _rollOptions}.
+     * @returns {Promise<void>}
+     * @private
+     */
+    async _createRoll() {
+      if ( !this._rollOptions ) {
+        throw new Error( "Roll options are required to create a roll." );
+      }
+
+      // Create the roll using the provided options
+      const applicationOptions = {};
+      if ( this._rollPromptTitle ) {
+        applicationOptions.window = {
+          title: this._rollPromptTitle
+        };
+      }
+
+      this._roll = await RollPrompt.waitPrompt(
+        this._rollOptions,
+        {
+          rollData: this._actor.getRollData(),
+          options:  applicationOptions,
+        }
+      );
+    }
+
+    async _processRoll() {
+      if ( !this._roll ) return;
+      // Process the roll results, this can be overridden by subclasses
+    }
+
+    async _rollToChat() {
+      if ( !this._roll ) {
+        return;
+      }
+
+      // Send the roll to chat
+      await this._roll.toMessage( {
+        flavor: this._rollOptions.chatFlavor || "",
+      } );
     }
 
   };
