@@ -1241,7 +1241,15 @@
               },
               "attack": {
                 "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "label":                           "TODO: Add translation",
+                "weaponItemStatus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "weaponType": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
               },
               "damage": {
                 "hint":                            "TODO: Add translation",
@@ -1256,7 +1264,7 @@
                 "label":                           "TODO: Add translation"
               },
               "reaction": {
-                "defensiveType": {
+                "defenseType": {
                   "hint":                          "TODO: Add translation",
                   "label":                         "TODO: Add translation"
                 }
