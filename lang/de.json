@@ -1252,7 +1252,15 @@
               },
               "attack": {
                 "hint":                            "Angriff auf den sich der Würfelwurf bezieht",
-                "label":                           "Angriff"
+                "label":                           "Angriff",
+                "weaponItemStatus": {
+                  "hint":                          "Waffenstatus auf den sich der Würfelwurf bezieht",
+                  "label":                         "Waffenstatus"
+                },
+                "weaponType": {
+                  "hint":                          "Waffentyp auf den sich der Würfelwurf bezieht",
+                  "label":                         "Waffentyp"
+                }
               },
               "damage": {
                 "hint":                            "Schaden auf den sich der Würfelwurf bezieht",
@@ -1267,7 +1275,7 @@
                 "label":                           "Initiative"
               },
               "reaction": {
-                "defensiveType": {
+                "defenseType": {
                   "hint":                          "Defensiver Typ auf den sich der Würfelwurf bezieht",
                   "label":                         "Defensiver Typ"
                 }
