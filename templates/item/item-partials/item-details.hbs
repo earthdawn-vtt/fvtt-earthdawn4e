@@ -1,5 +1,5 @@
 <section class="tab {{tabs.details.cssClass}}" data-group="sheet" data-tab="details">
-    {{formField systemFields.edid name="system.edid" hint=(localize "ED.Data.Item.Hints.edid") value=item.system.edid localize=true}}
+    {{formField systemFields.edid name="system.edid" value=item.system.edid localize=true}}
 
     {{#if (eq item.type "armor") }}
     {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-armor.hbs"}}

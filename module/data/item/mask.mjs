@@ -164,7 +164,7 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      mysticArmor: new fields.NumberField( {
+      mysticalArmor: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,

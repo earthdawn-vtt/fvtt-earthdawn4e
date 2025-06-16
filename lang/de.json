@@ -1175,6 +1175,48 @@
             "target":                              "Widerstandstyp"
           }
         },
+        "Matrix": {
+          "FIELDS": {
+            "matrix": {
+              "activeSpell": {
+                "hint":                            "Aktiver Zauber der Matrix",
+                "label":                           "Aktiver Zauber"
+              },
+              "damage": {
+                "hint":                            "Erlittener Schaden der Matrix",
+                "label":                           "Schaden"
+              },
+              "deathRating": {
+                "hint":                            "Todesrate der Matrix",
+                "label":                           "Todesrate"
+              },
+              "level": {
+                "hint":                            "Rang der Matrix",
+                "label":                           "Rang"
+              },
+              "matrixType": {
+                "hint":                            "Typ der Matrix",
+                "label":                           "Matrix Typ"
+              },
+              "spells": {
+                "hint":                            "Zauber die aktuell in dieser Matrix gehalten werden",
+                "label":                           "Zauber"
+              },
+              "threads": {
+                "hold": {
+                  "max": {
+                    "hint":                        "Maximale Anzahl der Fäden die an diese Matrix gewoben werden können",
+                    "label":                       "Maximale Fäden"
+                  },
+                  "value": {
+                    "hint":                        "Anzahl der aktuell gewobene Fäden zu der Matrix",
+                    "label":                       "Gewobene Fäden"
+                  }
+                }
+              }
+            }
+          }
+        },
         "Metric": {
           "FIELDS": {
             "special": {
@@ -1198,68 +1240,942 @@
       },
       "Item": {
         "Ability": {
+          "FIELDS": {
+            "attribute": {
+              "hint":                              "Das Talent basiert auf diesem Attribut",
+              "label":                             "Attribut"
+            },
+            "rollTypeDetails": {
+              "ability": {
+                "hint":                            "Fähigkeit auf die sich der Würfelwurf bezieht",
+                "label":                           "Fähigkeit"
+              },
+              "attack": {
+                "hint":                            "Angriff auf den sich der Würfelwurf bezieht",
+                "label":                           "Angriff",
+                "weaponItemStatus": {
+                  "hint":                          "Waffenstatus auf den sich der Würfelwurf bezieht",
+                  "label":                         "Waffenstatus"
+                },
+                "weaponType": {
+                  "hint":                          "Waffentyp auf den sich der Würfelwurf bezieht",
+                  "label":                         "Waffentyp"
+                }
+              },
+              "damage": {
+                "hint":                            "Schaden auf den sich der Würfelwurf bezieht",
+                "label":                           "Schaden"
+              },
+              "effect": {
+                "hint":                            "Effekt auf den sich der Würfelwurf bezieht",
+                "label":                           "Effekt"
+              },
+              "initiative": {
+                "hint":                            "Initiative auf die sich der Würfelwurf bezieht",
+                "label":                           "Initiative"
+              },
+              "reaction": {
+                "defenseType": {
+                  "hint":                          "Defensiver Typ auf den sich der Würfelwurf bezieht",
+                  "label":                         "Defensiver Typ"
+                }
+              },
+              "recovery": {
+                "hint":                            "Erholung auf die sich der Würfelwurf bezieht",
+                "label":                           "Erholung"
+              },
+              "spellcasting": {
+                "hint":                            "Spruchzauberei auf die sich der Würfelwurf bezieht",
+                "label":                           "Spruchzauberei"
+              },
+              "threadWeaving": {
+                "castingType": {
+                  "hint":                          "Fadenweben Typ auf den sich der Würfelwurf bezieht",
+                  "label":                         "Fadenweben Typ"
+                }
+              }
+            },
+            "source": {
+              "atLevel": {
+                "hint":                            "Krais auf dem dieses Talent erlernt wurde",
+                "label":                           "Erlernt auf Kreis"
+              },
+              "class": {
+                "hint":                            "Herkunftsdisziplin der Fähigkeit",
+                "label":                           "Disziplin"
+              }
+            },
+            "tier": {
+              "hint":                              "Grad der Fähigkeit",
+              "label":                             "Grad"
+            }
+          }
         },
         "Action": {
+          "FIELDS": {
+            "action": {
+              "hint":                              "Art der Aktion",
+              "label":                             "Aktion"
+            },
+            "strain": {
+              "hint":                              "Überanstrengung die durch die Aktion verursacht wird",
+              "label":                             "Überanstrengung"
+            }
+          }
         },
         "Armor": {
+          "FIELDS": {
+            "initiativePenalty": {
+              "hint":                              "Initiative Malus der Rüstung",
+              "label":                             "Initiative Malus"
+            },
+            "isLiving": {
+              "hint":                              "Ist diese Rüstung lebendig?",
+              "label":                             "Lebendig"
+            },
+            "mystical": {
+              "armor": {
+                "hint":                            "Rüstungsschutz gegen mystischen Schaden",
+                "label":                           "Mystische Rüstung"
+              },
+              "forgeBonus": {
+                "hint":                            "Bonus auf mystische Rüstung durch Waffe schmieden",
+                "label":                           "Schmiede Bonus mystisch"
+              }
+            },
+            "physical": {
+              "armor": {
+                "hint":                            "Rüstungsschutz gegen physischen Schaden",
+                "label":                           "Physische Rüstung"
+              },
+              "forgeBonus": {
+                "hint":                            "Bonus auf physische Rüstung durch Waffe schmieden",
+                "label":                           "Schmiede Bonus physisch"
+              }
+            },
+            "piecemeal": {
+              "isPiecemeal": {
+                "hint":                            "Ist diese Rüstung eine Teilrüstung?",
+                "label":                           "Teilrüstung"
+              },
+              "size": {
+                "hint":                            "Größe der Teilrüstung",
+                "label":                           "Größe"
+              }
+            }
+          }
         },
         "BindingSecret": {
+          "FIELDS": {
+          }
         },
         "Class": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "Kreis/Rang der Berufungs",
+              "label":                             "Kreis/Rang"
+            }
+          }
         },
         "CurseHorrorMark": {
+          "FIELDS": {
+            "active": {
+              "hint":                              "Ist der Fluch oder das Horrormal aktiv?",
+              "label":                             "Aktiv"
+            },
+            "detected": {
+              "hint":                              "Wurde der Fluch oder das Horrormal entdeckt?",
+              "label":                             "Entdeckt"
+            },
+            "source": {
+              "hint":                              "Quelle des Fluchs oder Horrormals",
+              "label":                             "Quelle"
+            },
+            "step": {
+              "hint":                              "Stufe des Fluchs oder Horrormals",
+              "label":                             "Stufe"
+            },
+            "target": {
+              "hint":                              "Ziel des Fluchs oder Horrormals",
+              "label":                             "Ziel"
+            },
+            "type": {
+              "hint":                              "Art des Fluchs oder Horrormals",
+              "label":                             "Typ"
+            }
+          }
         },
         "Description": {
+          "FIELDS": {
+            "description": {
+              "value": {
+                "hint":                            "Beschreibung des Items",
+                "label":                           "Beschreibung"
+              }
+            },
+            "edid": {
+              "hint":                              "Eindeutige ID des Items",
+              "label":                             "ID"
+            },
+            "summary": {
+              "value": {
+                "hint":                            "Kurzbeschreibung des Items",
+                "label":                           "Kurzbeschreibung"
+              }
+            }
+          }
         },
         "Devotion": {
+          "FIELDS": {
+            "devotionRequired": {
+              "hint":                              "Wird ein Weihepunkt benötigt um diese Weihekraft einzusetzen?",
+              "label":                             "Weihepunkt benötigt"
+            },
+            "durability": {
+              "hint":                              "Unempfindlichkeitswertbonus den die Weihekraft pro Rang gewährt",
+              "label":                             "Unempfindlichkeitswertbonus"
+            }
+          }
         },
         "Discipline": {
+          "FIELDS": {
+            "durability": {
+              "hint":                              "Unempfindlichkeitswertbonus den die Disziplin pro Kreis gewährt",
+              "label":                             "Unempfindlichkeitswertbonus"
+            },
+            "order": {
+              "hint":                              "Die wie vielte Disziplin des Adepten ist diese?",
+              "label":                             "Ordnung"
+            },
+            "spellcasting": {
+              "hint":                              "Besitzt diese Disziplin Spruchzauberei?",
+              "label":                             "Spruchzauberei"
+            }
+          }
         },
         "Effect": {
+          "FIELDS": {
+          }
         },
         "Equipment": {
+          "FIELDS": {
+            "ammunition": {
+              "type": {
+                "hint":                            "Art der Munition",
+                "label":                           "Munitionstyp"
+              }
+            },
+            "bundleSize": {
+              "hint":                              "Anzahl der Munition pro Bündel",
+              "label":                             "Bündelgröße"
+            },
+            "consumable": {
+              "hint":                              "Ist dieses Ausrüstungsgegenstand verbrauchbar?",
+              "label":                             "Verbrauchbar"
+            }
+          }
         },
         "Fields": {
           "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
+        "Grimoire": {
+          "FIELDS": {
+            "grimoire": {
+              "owner": {
+                "hint":                            "Besitzer des Grimoires",
+                "label":                           "Besitzer"
+              },
+              "spells": {
+                "hint":                            "Zauber die in diesem Grimoire enthalten sind",
+                "label":                           "Zauber"
+              }
+            }
+          }
+        },
+        "IncreasableAbility": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "Rang der Fähigkeit",
+              "label":                             "Rang"
+            }
+          }
+        },
+        "Knack": {
+          "FIELDS": {
+            "lpCost": {
+              "hint":                              "Feste Legendenpunktkosten für das Lernen dieses Kniffs",
+              "label":                             "Legendenpunktkosten"
+            },
+            "minLevel": {
+              "hint":                              "Mindestrang des Herkunftstalents",
+              "label":                             "Mindestrang"
+            },
+            "requirements": {
+              "hint":                              "Voraussetzungen für das Lernen dieses Kniffs",
+              "label":                             "Voraussetzungen"
+            },
+            "restrictions": {
+              "hint":                              "Einschränkungen für das Lernen dieses Kniffs",
+              "label":                             "Einschränkungen"
+            },
+            "sourceTalent": {
+              "hint":                              "Talent auf dem dieses Kniffs basiert",
+              "label":                             "Basis Talent"
+            }
+          }
+        },
+        "KnackAbility": {
+          "FIELDS": {
+            "isPathKnack": {
+              "hint":                              "Ist dieses Kniff ein Pfadkniff?",
+              "label":                             "Pfadkniff"
+            },
+            "standardEffect": {
+              "hint":                              "Wird der Standardeffekt des Herkunfttalents mit ausgelöst?",
+              "label":                             "Standardeffekt"
+            }
+          }
+        },
         "Learnable": {
+          "FIELDS": {
+          }
         },
         "LpIncrease": {
+          "FIELDS": {
+          }
         },
         "Maneuver": {
+          "FIELDS": {
+            "extraSuccesses": {
+              "hint":                              "Zusätzliche Erfolge die für diesen Manöver benötigt werden",
+              "label":                             "Zusätzliche Erfolge"
+            }
+          }
         },
         "Mask": {
+          "FIELDS": {
+            "attackStepsBonus": {
+              "hint":                              "Bonus auf die Angriffsstufen des Maskenträgers",
+              "label":                             "Angriffsstufen Bonus"
+            },
+            "attacks": {
+              "hint":                              "Angriffe die der Maskenträger ausführen kann",
+              "label":                             "Angriffe"
+            },
+            "challengingRate": {
+              "hint":                              "Herausforderungsrate des Maskenträgers",
+              "label":                             "Herausforderungsrate"
+            },
+            "charismaStep": {
+              "hint":                              "Stufe des Charismas des Maskenträgers",
+              "label":                             "Charismastufe"
+            },
+            "damageStepsBonus": {
+              "hint":                              "Bonus auf die Schadensstufen des Maskenträgers",
+              "label":                             "Schadensstufen Bonus"
+            },
+            "deathThreshold": {
+              "hint":                              "Todesgrenze des Maskenträgers",
+              "label":                             "Todesgrenze"
+            },
+            "defenses": {
+              "magical": {
+                "hint":                            "Bonus auf die magische Verteidigung",
+                "label":                           "Magische Verteidigung"
+              },
+              "physical": {
+                "hint":                            "Bonus auf die physische Verteidigung",
+                "label":                           "Physische Verteidigung"
+              },
+              "social": {
+                "hint":                            "Bonus auf die soziale Verteidigung",
+                "label":                           "Soziale Verteidigung"
+              }
+            },
+            "dexterityStep": {
+              "hint":                              "Stufe der Geschicklichkeit des Maskenträgers",
+              "label":                             "Geschicklichkeitsstufe"
+            },
+            "initiativeStep": {
+              "hint":                              "Stufe der Initiative des Maskenträgers",
+              "label":                             "Initiativestufe"
+            },
+            "knockDownStep": {
+              "hint":                              "Stufe des Niederschlagens",
+              "label":                             "Niederschlagungsstufe"
+            },
+            "magicalArmor": {
+              "hint":                              "Rüstungsschutz gegen magischen Schaden",
+              "label":                             "Magischer Rüstungsschutz"
+            },
+            "movement": {
+              "burrow": {
+                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Graben",
+                "label":                           "Graben"
+              },
+              "climb": {
+                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Klettern",
+                "label":                           "Klettern"
+              },
+              "fly": {
+                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Fliegen",
+                "label":                           "Fliegen"
+              },
+              "swim": {
+                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Schwimmen",
+                "label":                           "Schwimmen"
+              },
+              "walk": {
+                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Gehen",
+                "label":                           "Gehen"
+              }
+            },
+            "perceptionStep": {
+              "hint":                              "Stufe der Wahrnehmung des Maskenträgers",
+              "label":                             "Wahrnehmungsstufe"
+            },
+            "physicalArmor": {
+              "hint":                              "Rüstungsschutz gegen physischen Schaden",
+              "label":                             "Physischer Rüstungsschutz"
+            },
+            "powers": {
+              "hint":                              "Fähigkeiten die der Maskenträger besitzt",
+              "label":                             "Fähigkeiten"
+            },
+            "recoveryTestsResource": {
+              "hint":                              "Erholungsproben des Maskenträgers",
+              "label":                             "Erholungsproben"
+            },
+            "strengthStep": {
+              "hint":                              "Stufe der Stärke des Maskenträgers",
+              "label":                             "Stärkestufe"
+            },
+            "toughnessStep": {
+              "hint":                              "Stufe der Zähigkeit des Maskenträgers",
+              "label":                             "Zähigkeitsstufe"
+            },
+            "unconsciousThreshold": {
+              "hint":                              "Bewusstlosigkeitsgrenze des Maskenträgers",
+              "label":                             "Bewusstlosigkeitsgrenze"
+            },
+            "willpowerStep": {
+              "hint":                              "Stufe des Willens des Maskenträgers",
+              "label":                             "Willenskraftstufe"
+            },
+            "woundThreshold": {
+              "hint":                              "Wundgrenze des Maskenträgers",
+              "label":                             "Wundgrenze"
+            }
+          }
         },
         "Namegiver": {
+          "FIELDS": {
+            "abilities": {
+              "hint":                              "Fähigkeiten die der Namensgeber besitzt",
+              "label":                             "Fähigkeiten"
+            },
+            "karmaModifier": {
+              "hint":                              "Karma Modifikator des Namensgebers",
+              "label":                             "Karma Modifikator"
+            },
+            "livingArmorOnly": {
+              "hint":                              "Kann der Namensgeber nur lebendige Rüstungen tragen?",
+              "label":                             "Nur für lebendige Rüstungen"
+            },
+            "movement": {
+              "burrow": {
+                "hint":                            "Bewegungsgeschwindigkeit des Namensgebers beim Graben",
+                "label":                           "Graben"
+              },
+              "climb": {
+                "hint":                            "Bewegungsgeschwindigkeit des Namensgebers beim Klettern",
+                "label":                           "Klettern"
+              },
+              "fly": {
+                "hint":                            "Bewegungsgeschwindigkeit des Namensgebers beim Fliegen",
+                "label":                           "Fliegen"
+              },
+              "swim": {
+                "hint":                            "Bewegungsgeschwindigkeit des Namensgebers beim Schwimmen",
+                "label":                           "Schwimmen"
+              },
+              "walk": {
+                "hint":                            "Bewegungsgeschwindigkeit des Namensgebers beim Gehen",
+                "label":                           "Gehen"
+              }
+            },
+            "tailAttack": {
+              "hint":                              "Hat der Namensgeber einen Schwanzangriff?",
+              "label":                             "Schwanzangriff"
+            },
+            "weaponSize": {
+              "oneHanded": {
+                "max": {
+                  "hint":                          "Maximale Größe für eine Einhandwaffe",
+                  "label":                         "Einhandwaffe"
+                },
+                "min": {
+                  "hint":                          "Minimale Größe für eine Einhandwaffe",
+                  "label":                         "Einhandwaffe"
+                }
+              },
+              "twoHanded": {
+                "max": {
+                  "hint":                          "Maximale Größe für eine Zweihandwaffe",
+                  "label":                         "Zweihandwaffe"
+                },
+                "min": {
+                  "hint":                          "Minimale Größe für eine Zweihandwaffe",
+                  "label":                         "Zweihandwaffe"
+                }
+              }
+            },
+            "weightMultiplier": {
+              "hint":                              "Gewichtsmultiplikator des Namensgebers",
+              "label":                             "Gewichtsmultiplikator"
+            }
+          }
         },
         "Path": {
+          "FIELDS": {
+            "bloodMagicDamage": {
+              "hint":                              "Blutmagieschaden des Pfades",
+              "label":                             "Blutmagieschaden"
+            },
+            "pathKnack": {
+              "hint":                              "Kniff zum erlernen des Pfades",
+              "label":                             "Pfadkniffe"
+            },
+            "pathTalent": {
+              "hint":                              "Pfadtalent das zum steigern verwendet wird.",
+              "label":                             "Pfadtalent"
+            },
+            "sourceDiscipline": {
+              "hint":                              "Disziplin auf der dieser Pfad basiert",
+              "label":                             "Basis Disziplin"
+            }
+          }
         },
         "PhysicalItem": {
+          "FIELDS": {
+            "amount": {
+              "hint":                              "Anzahl des Gegenstandes",
+              "label":                             "Anzahl"
+            },
+            "availability": {
+              "hint":                              "Verfügbarkeit des Gegenstandes",
+              "label":                             "Verfügbarkeit"
+            },
+            "bloodMagicDamage": {
+              "hint":                              "Blutmagieschaden des Gegenstandes",
+              "label":                             "Blutmagieschaden"
+            },
+            "itemStatus": {
+              "hint":                              "Status des Gegenstandes",
+              "label":                             "Gegenstandsstatus"
+            },
+            "price": {
+              "denomination": {
+                "hint":                            "Währungseinheit des Preises",
+                "label":                           "Währung"
+              },
+              "value": {
+                "hint":                            "Preis des Gegenstandes",
+                "label":                           "Preis"
+              }
+            },
+            "usableItem": {
+              "action": {
+                "hint":                            "Aktion mit der der Gegenstand ausführt werden muss",
+                "label":                           "Aktion"
+              },
+              "arbitraryStep": {
+                "hint":                            "Basisstufe des Gegenstandes",
+                "label":                           "Basisstufe"
+              },
+              "isUsableItem": {
+                "hint":                            "Ist der Gegenstand benutzbar?",
+                "label":                           "Benutzbar"
+              },
+              "recoveryPropertyValue": {
+                "hint":                            "welchen einfluss hat der Gegenstand auf die Erholung des Charakters",
+                "label":                           "Erholungswert"
+              }
+            },
+            "weight": {
+              "calculated": {
+                "hint":                            "Das Gewicht des Gegenstandes wurde an den Namensgeber angepasst",
+                "label":                           "Berechnetes Gewicht"
+              },
+              "multiplier": {
+                "hint":                            "Gewichtsmultiplikator des Gegenstandes basierend auf dem Namensgeber",
+                "label":                           "Gewichtsmultiplikator"
+              },
+              "value": {
+                "hint":                            "Gewicht des Gegenstandes",
+                "label":                           "Gewicht"
+              }
+            }
+          }
         },
         "PoisonDisease": {
+          "FIELDS": {
+            "activation": {
+              "hint":                              "Aktivierung des Giftes oder der Krankheit",
+              "label":                             "Aktivierung"
+            },
+            "death": {
+              "hint":                              "Ist dieses Gift tödlich?",
+              "label":                             "Tödlich"
+            },
+            "duration": {
+              "hint":                              "Dauer des Giftes oder der Krankheit",
+              "label":                             "Dauer"
+            },
+            "effect": {
+              "damageStep": {
+                "hint":                            "Schadensstufe des Giftes oder der Krankheit",
+                "label":                           "Schadensstufe"
+              },
+              "debilitationStep": {
+                "hint":                            "Schwächungsstufe des Giftes oder der Krankheit",
+                "label":                           "Schwächungsstufe"
+              },
+              "paralysisStep": {
+                "hint":                            "Paralyse Stufe des Giftes oder der Krankheit",
+                "label":                           "Paralyse Stufe"
+              }
+            },
+            "interval": {
+              "timeInBetween": {
+                "hint":                            "Zeit zwischen den Effekten des Giftes oder der Krankheit",
+                "label":                           "Zeit zwischen Effekten"
+              },
+              "totalEffects": {
+                "hint":                            "Anzahl der Effekte die das Gift oder die Krankheit insgesamt hat",
+                "label":                           "Gesamte Effekte"
+              }
+            },
+            "onsetTime": {
+              "hint":                              "Zeit bis das Gift oder die Krankheit wirkt",
+              "label":                             "Wirkzeit"
+            }
+          }
         },
         "Power": {
+          "FIELDS": {
+            "armorType": {
+              "hint":                              "Welche Rüstungsart schützt gegne diese Kraft?",
+              "label":                             "Rüstungstyp"
+            },
+            "damageStep": {
+              "hint":                              "Schadensstufe der Kraft",
+              "label":                             "Schadensstufe"
+            },
+            "damageType": {
+              "hint":                              "Schadensart der Kraft",
+              "label":                             "Schadensart"
+            },
+            "element": {
+              "subType": {
+                "hint":                            "Elementarsubtyp der Kraft",
+                "label":                           "Elementarsubtyp"
+              },
+              "type": {
+                "hint":                            "Elementartyp der Kraft",
+                "label":                           "Elementartyp"
+              }
+            },
+            "powerStep": {
+              "hint":                              "Stufe der Kraft",
+              "label":                             "Kraftstufe"
+            }
+          }
         },
         "Questor": {
+          "FIELDS": {
+            "questorDevotion": {
+              "hint":                              "Questorweihekraft der Questorberufung",
+              "label":                             "Questorweihekraft"
+            }
+          }
         },
         "Rollable": {
+          "FIELDS": {
+            "rollType": {
+              "hint":                              "Art des Tests",
+              "label":                             "Testtyp"
+            }
+          }
         },
         "Shield": {
+          "FIELDS": {
+            "bowUsage": {
+              "hint":                              "Kann dieser Schild als Bogen verwendet werden?",
+              "label":                             "Bogenverwendung"
+            },
+            "defenseBonus": {
+              "mystical": {
+                "hint":                            "Bonus auf die mystische Verteidigung durch den Schild",
+                "label":                           "Mystische Verteidigung"
+              },
+              "physical": {
+                "hint":                            "Bonus auf die physische Verteidigung durch den Schild",
+                "label":                           "Physische Verteidigung"
+              }
+            },
+            "initiativePenalty": {
+              "hint":                              "Initiative Malus des Schildes",
+              "label":                             "Initiative Malus"
+            },
+            "isLiving": {
+              "hint":                              "Ist dieser Schild lebendig?",
+              "label":                             "Lebendig"
+            },
+            "shatterThreshold": {
+              "hint":                              "Schwelle bei der der Schild zerbricht",
+              "label":                             "Zerbruchsgrenze"
+            },
+            "shattered": {
+              "hint":                              "Ist der Schild zerbrochen?",
+              "label":                             "Zerbrochen"
+            }
+          }
         },
         "ShipWeapon": {
+          "FIELDS": {
+            "characterDamage": {
+              "hint":                              "Schaden den die Schiffwaffe einem Charakter zufügt",
+              "label":                             "Charakter Schaden"
+            },
+            "crewWeapon": {
+              "hint":                              "Muss diese Schiffwaffe von einer Besatzung bedient werden?",
+              "label":                             "Besatzungswaffe"
+            },
+            "firePowerPoints": {
+              "hint":                              "Feuerkraftpunkte die diese Schiffwaffe hat",
+              "label":                             "Feuerkraftpunkte"
+            },
+            "range": {
+              "long": {
+                "hint":                            "Langreichweite der Schiffwaffe",
+                "label":                           "Langreichweite"
+              },
+              "short": {
+                "hint":                            "Kurzreichweite der Schiffwaffe",
+                "label":                           "Kurzreichweite"
+              }
+            },
+            "salvoCost": {
+              "hint":                              "Kosten für einen Salvo der Schiffwaffe",
+              "label":                             "Salvo Kosten"
+            }
+          }
         },
         "Skill": {
+          "FIELDS": {
+            "skillType": {
+              "hint":                              "Art der Fertigkeit",
+              "label":                             "Fertigkeitstyp"
+            }
+          }
+        },
+        "Spell": {
+          "FIELDS": {
+            "area": {
+              "hint":                              "Bereich des Spruches",
+              "label":                             "Bereich"
+            },
+            "duration": {
+              "hint":                              "Dauer des Spruches",
+              "label":                             "Dauer"
+            },
+            "effect": {
+              "hint":                              "Effekt des Spruches",
+              "label":                             "Spruch Effekt"
+            },
+            "element": {
+              "subType": {
+                "hint":                            "Elementarsubtyp des Spruches",
+                "label":                           "Elementarsubtyp"
+              },
+              "type": {
+                "hint":                            "Elementartyp des Spruches",
+                "label":                           "Elementartyp"
+              }
+            },
+            "extraSuccesses": {
+              "hint":                              "Bonuseffekte die durch zusätzliche Erfolge erzielt werden können",
+              "label":                             "Zusätzliche Erfolge"
+            },
+            "extraThreads": {
+              "hint":                              "Bonuseffekte die durch zusätzliche Fäden erzielt werden können",
+              "label":                             "Zusätzliche Fäden"
+            },
+            "isWeaving": {
+              "hint":                              "Werden gerade Fäden für diesen Spruch gewebt?",
+              "label":                             "Fadenweben aktiv"
+            },
+            "keywords": {
+              "hint":                              "Schlüsselwörter des Spruches",
+              "label":                             "Schlüsselwörter"
+            },
+            "level": {
+              "hint":                              "Kreis des Spruches",
+              "label":                             "Kreis"
+            },
+            "range": {
+              "hint":                              "Reichweite des Spruches",
+              "label":                             "Reichweite"
+            },
+            "spellDifficulty": {
+              "reattune": {
+                "hint":                            "Schwierigkeit des Spruches bei der Neuabstimmung",
+                "label":                           "Neuabstimmungs Schwierigkeit"
+              },
+              "weaving": {
+                "hint":                            "Schwierigkeit des Spruches beim Fadenweben",
+                "label":                           "Fadenweben Schwierigkeit"
+              }
+            },
+            "spellcastingType": {
+              "hint":                              "Art der Spruchzauberei",
+              "label":                             "Spruchzauberei Typ"
+            },
+            "threads": {
+              "extraWoven": {
+                "hint":                            "Anzahl der zusätzlich gewebten Fäden für den Spruch",
+                "label":                           "Zusätzlich gewebte Fäden"
+              },
+              "required": {
+                "hint":                            "Anzahl der benötigten Fäden für den Spruch",
+                "label":                           "Benötigte Fäden"
+              },
+              "woven": {
+                "hint":                            "Anzahl der gewebten Fäden für den Spruch",
+                "label":                           "Gewebte Fäden"
+              }
+            }
+          }
         },
         "SpellKnack": {
+          "FIELDS": {
+          }
         },
         "Talent": {
+          "FIELDS": {
+            "knacks": {
+              "available": {
+                "hint":                            "Verfügbare Kniffe für dieses Talent",
+                "label":                           "Verfügbare Kniffe"
+              },
+              "learned": {
+                "hint":                            "Gelernte Kniffe für dieses Talent",
+                "label":                           "Gelernte Kniffe"
+              }
+            },
+            "talentCategory": {
+              "hint":                              "Kategorie des Talents",
+              "label":                             "Talentkategorie"
+            }
+          }
         },
         "Target": {
+          "FIELDS": {
+            "difficulty": {
+              "fixed": {
+                "hint":                            "Fester Schwierigkeitsgrad des Widerstandes",
+                "label":                           "Fester Schwierigkeitsgrad"
+              },
+              "group": {
+                "hint":                            "Zielwert der Gruppe",
+                "label":                           "Gruppen Zielwert"
+              },
+              "target": {
+                "hint":                            "Zielwert des Widerstandes",
+                "label":                           "Zielwert"
+              }
+            }
+          }
         },
         "Thread": {
+          "FIELDS": {
+          }
         },
         "Weapon": {
+          "FIELDS": {
+            "ammunition": {
+              "type": {
+                "hint":                            "Art der Munition die die Waffe benötigt",
+                "label":                           "Munitionstyp"
+              }
+            },
+            "armorType": {
+              "hint":                              "Rüstungstyp gegen den die Waffe effektiv ist",
+              "label":                             "Rüstungstyp"
+            },
+            "damage": {
+              "attribute": {
+                "hint":                            "Attribut auf dem der Schaden basiert",
+                "label":                           "Attribut"
+              },
+              "baseStep": {
+                "hint":                            "Basisstufe des Schadens",
+                "label":                           "Basisstufe"
+              },
+              "type": {
+                "hint":                            "Art des Schadens",
+                "label":                           "Schadensart"
+              }
+            },
+            "dexterityMinimum": {
+              "hint":                              "Minimale Geschicklichkeit die benötigt wird um die Waffe zu führen",
+              "label":                             "Minimale Geschicklichkeit"
+            },
+            "forgeBonus": {
+              "hint":                              "Bonus auf die Waffe durch Schmiedekunst",
+              "label":                             "Schmiedekunst Bonus"
+            },
+            "range": {
+              "longMax": {
+                "hint":                            "Maximale Langreichweite der Waffe",
+                "label":                           "Maximale Langreichweite"
+              },
+              "longMin": {
+                "hint":                            "Minimale Langreichweite der Waffe",
+                "label":                           "Minimale Langreichweite"
+              },
+              "shortMax": {
+                "hint":                            "Maximale Kurzreichweite der Waffe",
+                "label":                           "Maximale Kurzreichweite"
+              },
+              "shortMin": {
+                "hint":                            "Minimale Kurzreichweite der Waffe",
+                "label":                           "Minimale Kurzreichweite"
+              }
+            },
+            "size": {
+              "hint":                              "Größe der Waffe",
+              "label":                             "Waffengröße"
+            },
+            "strengthMinimum": {
+              "hint":                              "Minimale Stärke die benötigt wird um die Waffe zu führen",
+              "label":                             "Minimale Stärke"
+            },
+            "weaponSubType": {
+              "hint":                              "Unterart der Waffe",
+              "label":                             "Waffenuntertyp"
+            },
+            "weaponType": {
+              "hint":                              "Art der Waffe",
+              "label":                             "Waffentyp"
+            },
+            "wieldingType": {
+              "hint":                              "Art wie die Waffe geführt wird",
+              "label":                             "Führungsart"
+            }
+          }
         }
       },
       "Other": {

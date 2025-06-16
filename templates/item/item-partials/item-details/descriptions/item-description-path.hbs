@@ -1,15 +1,15 @@
-<div class="item__left--main">
+<div>
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Circle / Rank --}}
     {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
     {{!-- sourceDiscipline --}}
     {{!-- commented out due to the paths source discipline not getting collected. --}}
-    {{!-- {{formField systemFields.sourceDiscipline name="system.sourceDiscipline" value=item.system.sourceDiscipline localize=true}} --}}
-    <div class="item-data__input--line">
+    {{formField systemFields.sourceDiscipline name="system.sourceDiscipline" value=item.system.sourceDiscipline localize=true}}
+    {{!-- <div class="item-data__input--line">
         <label class="label__left">{{localize "ED.Item.Path.sourceDiscipline"}}:</label>
         <input class="input__text-input" name="system.sourceDiscipline" type="text" value="{{item.system.sourceDiscipline}}"
             data-dtype="String">
-    </div>
+    </div> --}}
 </div>
 <div class="item__right--main sheet__editor">
     <h3>{{localize "ED.Item.Header.description"}}</h3>
