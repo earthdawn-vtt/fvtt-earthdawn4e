@@ -16,6 +16,7 @@ import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.m
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
+import RollProcessor from "../services/roll-processor.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -906,7 +907,7 @@ export default class ActorEd extends Actor {
    * @returns {boolean}                       Returns `true` if the full amount was deducted (enough available), 'false'
    *                                          otherwise.
    */
-  #useResource( resourceType, amount ) {
+  useResource( resourceType, amount ) {
     const available = this.system[resourceType].value;
     this.update( { [`system.${ resourceType }.value`]: ( available - amount ) } );
     return amount <= available;
@@ -927,6 +928,11 @@ export default class ActorEd extends Actor {
       // No roll available, do nothing.
       return;
     }
+    if ( roll?.options.rollType !== "recovery" ) return RollProcessor.process(
+      roll,
+      this,
+      { rollToMessage: true, },
+    );
 
     // Check if this uses karma or strain at all
     this.takeDamage( roll.totalStrain, {
@@ -936,7 +942,7 @@ export default class ActorEd extends Actor {
     } );
 
     const { karma, devotion } = roll.options;
-    const resourcesUsedSuccessfully = this.#useResource( "karma", karma.pointsUsed ) && this.#useResource( "devotion", devotion.pointsUsed );
+    const resourcesUsedSuccessfully = this.useResource( "karma", karma.pointsUsed ) && this.useResource( "devotion", devotion.pointsUsed );
 
     if ( !resourcesUsedSuccessfully ) {
       ui.notifications.warn( "Localize: Not enough karma,devotion or recovery. Used all that was available." );
