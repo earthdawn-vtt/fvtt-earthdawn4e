@@ -329,6 +329,7 @@
         "takeDamageTitle":                         "TODO: Add translation"
       },
       "Flavor": {
+        "AttuningRollOptions":                     "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdownTest":                           "TODO: Add translation",
@@ -2176,7 +2177,14 @@
         }
       },
       "Other": {
-        "AbilityRollOptions":                      "TODO: Add translation",
+        "AbilityRollOptions": {
+          "FIELDS": {
+            "abilityUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "Advancement": {
           "FIELDS": {
             "levels": {
@@ -2209,45 +2217,139 @@
             }
           }
         },
-        "AttackRollOptions":                       "TODO: Add translation",
-        "AttuningRollOptions":                     "TODO: Add translation",
-        "CharacterGeneration":                     "TODO: Add translation",
-        "DamageRollOptions":                       "TODO: Add translation",
-        "LearnSpell": {
+        "AttackRollOptions": {
           "FIELDS": {
-            "freePatterncraft": {
+            "weaponType": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "learnDifficulty": {
+            "weaponUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "AttuningRollOptions": {
+          "FIELDS": {
+            "attuningAbility": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "lpCost": {
+            "attuningType": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "patterncraft": {
+            "spellsToAttune": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "CharacterGeneration": {
+          "FIELDS": {
+            "availableRanks": {
+              "artisan": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "devotion": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "general": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "knowledge": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "readWrite": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "speak": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "talent": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "equipment": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "patterncraftSuccessful": {
+            "isAdept": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "teacher": {
+            "languages": {
+              "readWrite": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "speak": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "namegiver": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "teacherRank": {
+            "selectedClass": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "teacherTestSuccessful": {
+            "spells": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "DamageRollOptions": {
+          "FIELDS": {
+            "armorType": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "useRecoveryTest": {
+            "damageAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "damageType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "element": {
+              "subType": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "type": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "ignoreArmor": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "weaponUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "InitiativeRollOptions": {
+          "FIELDS": {
+            "increaseAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "replacementEffect": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
@@ -2327,9 +2429,204 @@
             }
           }
         },
-        "RollOptions":                             "TODO: Add translation",
-        "ThreadBase":                              "TODO: Add translation",
-        "ThreadLevel":                             "TODO: Add translation"
+        "RollOptions": {
+          "FIELDS": {
+            "chatFlavowr": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "devotion": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "karma": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rolLSubType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rollType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rollingActorUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "step": {
+              "base": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "modifiers": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "total": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "strain": {
+              "base": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "modifiers": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "total": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "target": {
+              "base": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "modifiers": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "public": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "tokens": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "total": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "testType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "ThreadBase": {
+          "FIELDS": {
+            "characteristics": {
+              "defenses": {
+                "mystical": {
+                  "baseValue": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "value": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
+                }
+              }
+            },
+            "enchantmentPattern": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "isAnalyzed": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "isIdentified": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "levels": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "maxThreads": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "ThreadLevel": {
+          "FIELDS": {
+            "activeEffects": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "deed": {
+              "description": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "isCompleted": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "isRequired": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "effects": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "isActive": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "isAnalyzed": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "keyKnowledge": {
+              "answer": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "isKnown": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "isRequired": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "question": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "ThreadWeavingRollOptions": {
+          "FIELDS": {
+            "spellUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "threads": {
+              "extra": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "required": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            }
+          }
+        }
       },
       "placeholderBlankSelectOption":              "---"
     },
