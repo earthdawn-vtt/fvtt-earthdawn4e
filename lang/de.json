@@ -2744,6 +2744,8 @@
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
+        "notEnoughDevotionUsedAll":                "Nicht genug Weihepunkte. Es wurden alle genutzt die verfügbar waren.",
+        "notEnoughKarmaUsedAll":                   "Nicht genug Karma. Es wurden alles genutzt das verfügbar war.",
         "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
