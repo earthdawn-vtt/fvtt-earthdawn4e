@@ -2864,12 +2864,6 @@
         "spendLp":                                 "Legendenpunkte ausgeben",
         "spendLpPerCircle":                        "Legendenpunkte ausgeben, einmal pro Kreis"
       },
-      "SpecificSettingOptions": {
-        "changelog":                               "Änderungsprotokoll",
-        "help":                                    "Hilfe",
-        "title":                                   "Spezifische Einstellungen",
-        "troubleshooting":                         "Fehlermeldung"
-      },
       "StepTable": {
         "editionClassic":                          "Klassische (zweite) Edition",
         "editionFirst":                            "Erste Edition",
@@ -2877,6 +2871,12 @@
         "editionThird":                            "Dritte Edition",
         "hint":                                    "Wähle die Stufentabelle aus",
         "stepTable":                               "Stufentabelle"
+      },
+      "SystemSupportOptions": {
+        "changelog":                               "Änderungsprotokoll",
+        "help":                                    "Handbuch",
+        "title":                                   "Earthdawn Optionen",
+        "troubleshooting":                         "Fehlermeldung"
       },
       "Update": {
         "updateNewsHint":                          "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",

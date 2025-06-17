@@ -2838,12 +2838,6 @@
         "spendLp":                                 "TODO: Add translation",
         "spendLpPerCircle":                        "TODO: Add translation"
       },
-      "SpecificSettingOptions": {
-        "changelog":                               "TODO: Add translation",
-        "help":                                    "TODO: Add translation",
-        "title":                                   "TODO: Add translation",
-        "troubleshooting":                         "TODO: Add translation"
-      },
       "StepTable": {
         "editionClassic":                          "TODO: Add translation",
         "editionFirst":                            "TODO: Add translation",
@@ -2851,6 +2845,12 @@
         "editionThird":                            "TODO: Add translation",
         "hint":                                    "TODO: Add translation",
         "stepTable":                               "TODO: Add translation"
+      },
+      "SystemSupportOptions": {
+        "changelog":                               "TODO: Add translation",
+        "help":                                    "TODO: Add translation",
+        "title":                                   "TODO: Add translation",
+        "troubleshooting":                         "TODO: Add translation"
       },
       "Update": {
         "updateNewsHint":                          "TODO: Add translation",
