@@ -79,7 +79,8 @@
       "Tooltips": {
         "abilityEdidSelection":                    "TODO: Add translation"
       },
-      "newEffectName":                             "TODO: Add translation"
+      "newEffectName":                             "TODO: Add translation",
+      "placeholderBlankSelectOption":              "TODO: Add translation"
     },
     "Actor": {
       "Abilities":                                 "TODO: Add translation",
@@ -822,7 +823,12 @@
           "FIELDS":                                "TODO: Add translation"
         },
         "Pc": {
-          "FIELDS":                                "TODO: Add translation"
+          "FIELDS": {
+            "durabilityBonus": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
         },
         "Sentient": {
           "FIELDS": {
@@ -831,8 +837,16 @@
               "defenses":                          "TODO: Add translation",
               "health": {
                 "bloodMagic": {
+                  "damage": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "TODO: Add translation",
+                  "wounds": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
                 },
                 "damage": {
                   "hint":                          "TODO: Add translation",
@@ -2198,6 +2212,46 @@
         "AttuningRollOptions":                     "TODO: Add translation",
         "CharacterGeneration":                     "TODO: Add translation",
         "DamageRollOptions":                       "TODO: Add translation",
+        "LearnSpell": {
+          "FIELDS": {
+            "freePatterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "learnDifficulty": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "lpCost": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraftSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacher": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherRank": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherTestSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "useRecoveryTest": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "LpEarningTransaction": {
           "FIELDS": {
             "type": {
@@ -2718,6 +2772,8 @@
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
+        "notEnoughDevotionUsedAll":                "TODO: Add translation",
+        "notEnoughKarmaUsedAll":                   "TODO: Add translation",
         "notImplementedYet":                       "TODO: Add translation",
         "piecemealArmorSizeExceeded":              "TODO: Add translation",
         "questorItemNotUpdated":                   "TODO: Add translation",

@@ -21,6 +21,9 @@ export default class LearnSpellPrompt extends ApplicationEd {
 
     const fields = foundry.data.fields;
     this.dataModel = new class extends foundry.abstract.DataModel {
+      static LOCALIZATION_PREFIXES = [
+        "ED.Data.Other.LearnSpell",
+      ];
       static defineSchema() {
         return {
           lpCost:       new fields.NumberField( {
@@ -28,54 +31,36 @@ export default class LearnSpellPrompt extends ApplicationEd {
             integer:  true,
             step:     1,
             initial:  options.spell.system.requiredLpToLearn,
-            label:    "ED.Data.Other.Labels.learnSpell.lpCost",
-            hint:     "ED.Data.Other.Hints.learnSpell.lpCost",
           } ),
           patterncraft: new fields.BooleanField( {
             initial:  true,
-            label:    "ED.Data.Other.Labels.learnSpell.patterncraftToLearnSpell",
-            hint:     "ED.Data.Other.Hints.learnSpell.patterncraftToLearnSpell",
           } ),
           freePatterncraft: new fields.BooleanField( {
             initial:  true,
-            label:    "ED.Data.Other.Labels.learnSpell.freePatterncraftToLearnSpell",
-            hint:     "ED.Data.Other.Hints.learnSpell.freePatterncraftToLearnSpell",
           } ),
           useRecoveryTest: new fields.BooleanField( {
             initial:  true,
-            label:    "ED.Data.Other.Labels.learnSpell.useRecoveryTestToLearnSpell",
-            hint:     "ED.Data.Other.Hints.learnSpell.useRecoveryTestToLearnSpell",
           } ),
           patterncraftSuccessful: new fields.BooleanField( {
             initial:  false,
-            label:    "ED.Data.Other.Labels.learnSpell.patterncraftSuccessful",
-            hint:     "ED.Data.Other.Hints.learnSpell.patterncraftSuccessful",
           } ),
           teacher:      new fields.BooleanField( {
             initial:  true,
-            label:    "ED.Data.Other.Labels.learnSpell.teacherToLearnSpell",
-            hint:     "ED.Data.Other.Hints.learnSpell.teacherToLearnSpell",
           } ),
           teacherRank:  new fields.NumberField( {
             min:      0,
             integer:  true,
             step:     1,
             initial:  0,
-            label:    "ED.Data.Other.Labels.learnSpell.teacherRank",
-            hint:     "ED.Data.Other.Hints.learnSpell.teacherRank",
           } ),
           teacherTestSuccessful: new fields.BooleanField( {
             initial:  false,
-            label:    "ED.Data.Other.Labels.learnSpell.teacherTestSuccessful",
-            hint:     "ED.Data.Other.Hints.learnSpell.teacherTestSuccessful",
           } ),
           learnDifficulty: new fields.NumberField( {
             min:      0,
             integer:  true,
             step:     1,
             initial:  options.spell.system.learningDifficulty,
-            label:    "ED.Data.Other.Labels.learnSpell.learnDifficulty",
-            hint:     "ED.Data.Other.Hints.learnSpell.learnDifficulty",
           } ),
         };
       }

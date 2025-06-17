@@ -79,7 +79,8 @@
       "Tooltips": {
         "abilityEdidSelection":                    "Gib hier eine ED-ID ein die du selbst vergeben hast, oder wähle eine der Standard-IDs aus den Einstellungen aus indem du in das Feld klickst."
       },
-      "newEffectName":                             "Neuer Earthdawn ActiveEffect"
+      "newEffectName":                             "Neuer Earthdawn ActiveEffect",
+      "placeholderBlankSelectOption":              "---"
     },
     "Actor": {
       "Abilities":                                 "TODO: Add translation",
@@ -829,6 +830,10 @@
         },
         "Pc": {
           "FIELDS": {
+            "durabilityBonus": {
+              "hint":                              "Bonus auf Unempfindlichkeit des Characters",
+              "label":                             "Unempflindlichkeit Bonus"
+            }
           }
         },
         "Sentient": {
@@ -840,8 +845,16 @@
               },
               "health": {
                 "bloodMagic": {
+                  "damage": {
+                    "hint":                        "Blutmagieschaden des Akteurs",
+                    "label":                       "Blutmagieschaden"
+                  },
                   "hint":                          "Blutmagieschaden des Akteurs",
-                  "label":                         "Blutmagieschaden"
+                  "label":                         "Blutmagieschaden",
+                  "wounds": {
+                    "hint":                        "Blutmagiewunden des Akteurs",
+                    "label":                       "Blutmagiewunden"
+                  }
                 },
                 "damage": {
                   "hint":                          "Gesamtschaden des Akteurs",
@@ -2221,6 +2234,46 @@
         },
         "DamageRollOptions": {
         },
+        "LearnSpell": {
+          "FIELDS": {
+            "freePatterncraft": {
+              "hint":                              "Muss für Struktur Verstehen keine Erholungsprobe ausgegeben werden?",
+              "label":                             "Erholungsprobe frei"
+            },
+            "learnDifficulty": {
+              "hint":                              "Schwierigkeit des Lernens des Spruches",
+              "label":                             "Lernschwierigkeit"
+            },
+            "lpCost": {
+              "hint":                              "Legendenpunkte die für das Lernen des Spruches benötigt werden",
+              "label":                             "LP Kosten"
+            },
+            "patterncraft": {
+              "hint":                              "Nutze Struktur Verstehen um den Spruch zu lernen",
+              "label":                             "Struktur Verstehen"
+            },
+            "patterncraftSuccessful": {
+              "hint":                              "War die Probe auf Struktur Verstehen erfolgreich?",
+              "label":                             "Struktur Verstehen erfolgreich"
+            },
+            "teacher": {
+              "hint":                              "Unterstützung beim Lernen des Spruches?",
+              "label":                             "Unterstützung"
+            },
+            "teacherRank": {
+              "hint":                              "Rang der Unterstützung",
+              "label":                             "Rang der Unterstützung"
+            },
+            "teacherTestSuccessful": {
+              "hint":                              "War die Probe der Lehrenden erfolgreich?",
+              "label":                             "Unterstützung erfolgreich"
+            },
+            "useRecoveryTest": {
+              "hint":                              "Kosten zusätzliche Versuche zu lernen Erholungsproben?",
+              "label":                             "Extra kostet Erholungsprobe"
+            }
+          }
+        },
         "LpEarningTransaction": {
           "FIELDS": {
             "type": {
@@ -2744,6 +2797,8 @@
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
+        "notEnoughDevotionUsedAll":                "Nicht genug Weihepunkte. Es wurden alle genutzt die verfügbar waren.",
+        "notEnoughKarmaUsedAll":                   "Nicht genug Karma. Es wurden alles genutzt das verfügbar war.",
         "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
