@@ -79,7 +79,8 @@
       "Tooltips": {
         "abilityEdidSelection":                    "TODO: Add translation"
       },
-      "newEffectName":                             "New Effect Name"
+      "newEffectName":                             "New Effect Name",
+      "placeholderBlankSelectOption":              "TODO: Add translation"
     },
     "Actor": {
       "Abilities": {
@@ -823,7 +824,12 @@
           "FIELDS":                                "TODO: Add translation"
         },
         "Pc": {
-          "FIELDS":                                "TODO: Add translation"
+          "FIELDS": {
+            "durabilityBonus": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
         },
         "Sentient": {
           "FIELDS": {
@@ -832,8 +838,16 @@
               "defenses":                          "TODO: Add translation",
               "health": {
                 "bloodMagic": {
+                  "damage": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "TODO: Add translation",
+                  "wounds": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
                 },
                 "damage": {
                   "hint":                          "TODO: Add translation",
@@ -2199,6 +2213,46 @@
         "AttuningRollOptions":                     "TODO: Add translation",
         "CharacterGeneration":                     "TODO: Add translation",
         "DamageRollOptions":                       "TODO: Add translation",
+        "LearnSpell": {
+          "FIELDS": {
+            "freePatterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "learnDifficulty": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "lpCost": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraftSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacher": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherRank": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherTestSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "useRecoveryTest": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "LpEarningTransaction": {
           "FIELDS": {
             "type": {
