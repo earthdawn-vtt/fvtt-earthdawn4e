@@ -99,7 +99,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     if ( !( this._recoveryMode in ED4E.WORKFLOWS.recoveryModes ) ) {
       throw new WorkflowInterruptError(
         this,
-        game.i18n.localize( "ED4E.Notifications.Warn.invalidRecoveryMode" ),
+        game.i18n.localize( "ED.Notifications.Warn.invalidRecoveryMode" ),
       );
     }
 
@@ -107,7 +107,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       ( this._isRecovery || this._isStunRecovery )
       && !this._actor.hasDamage( "standard" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED4E.Notifications.Info.noDamageNoRecoveryNeeded" ) );
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
       this.cancel();
       return;
 
@@ -117,7 +117,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       this._isStunRecovery
       && !this._actor.hasDamage( "stun" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED4E.Notifications.Info.noDamageNoRecoveryNeeded" ) );
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noDamageNoRecoveryNeeded" ) );
       this.cancel();
       return;
     }
@@ -127,13 +127,13 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       && !this._actor.hasDamage( "standard" )
       && !this._actor.hasWounds( "standard" )
     ) {
-      ui.notifications.info( game.i18n.localize( "ED4E.Notifications.Info.noFullRestRecoveryNeeded" ) );
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noFullRestRecoveryNeeded" ) );
       this.cancel();
       return;
     }
 
     if ( this._actorCharacteristics.recoveryTestsResource.value < 1 ) {
-      ui.notifications.warn( game.i18n.localize( "ED4E.Notifications.Warn.noRecoveryTestsAvailable" ) );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noRecoveryTestsAvailable" ) );
       this.cancel();
     }
   }
@@ -145,9 +145,6 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _prepareRecoveryRollOptions() {
     if ( this._isFullRest && !this._actor.hasDamage( "standard" ) ) {
-      ui.notifications.info(
-        game.i18n.localize( "ED4E.Notifications.Info.noDamageNoFullRestRecoveryNeeded" )
-      );
       this._rollOptions = null;
       this._roll = null;
       return;
@@ -159,9 +156,8 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       stepModifiers[ED4E.EFFECTS.globalBonuses.allRecoveryTests.label] = recoveryModifier;
     }
     if ( this._isStunRecovery && this._actorCharacteristics.recoveryTestsResource.stunRecoveryAvailable ) {
-      // "ED.Rolls.Recovery.stunModifierWillpower"
       stepModifiers[ game.i18n.localize(
-        "The Keys of the modifiers object get expanded by period right now shit"
+        "ED.Rolls.Modifiers.stunRecoveryWillpower"
       ) ] = this._actor.system.attributes.wil.step;
     }
 
@@ -174,11 +170,10 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
           modifiers: stepModifiers,
         },
         chatFlavor: game.i18n.format(
-          "ED4E.Chat.Flavor.rollRecovery",
+          "ED.Chat.Flavor.rollRecovery",
           {
-            sourceActor: this._actor.name,
-            step:        this._actorCharacteristics.recoveryTestsResource.step,
-          // TODO: Edit localization to not use step, but recovery mode
+            sourceActor:  this._actor.name,
+            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ].label,
           },
         ),
       },
