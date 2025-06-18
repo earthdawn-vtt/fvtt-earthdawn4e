@@ -857,73 +857,8 @@ export default class ActorEd extends Actor {
       // No roll available, do nothing.
       return;
     }
-    if ( roll?.options.rollType !== "recovery" ) return RollProcessor.process(
-      roll,
-      this,
-      { rollToMessage: true, },
-    );
 
-    // Check if this uses karma or strain at all
-    this.takeDamage( roll.totalStrain, {
-      isStrain:     true,
-      damageType:   "standard",
-      ignoreArmor:  true,
-    } );
-
-    const { karma, devotion } = roll.options;
-    const resourcesUsedSuccessfully = this.useResource( "karma", karma.pointsUsed ) && this.useResource( "devotion", devotion.pointsUsed );
-
-    if ( !resourcesUsedSuccessfully ) {
-      ui.notifications.warn( "Localize: Not enough karma,devotion or recovery. Used all that was available." );
-    }
-
-    const rollTypeProcessors = {
-      "initiative": () => { return roll; },
-      "jumpUp":     () => this.#processJumpUpResult( roll ),
-      "knockdown":  () => this.#processKnockdownResult( roll ),
-      "recovery":   () => this.#processRecoveryResult( roll ),
-    };
-
-    const processRollType = rollTypeProcessors[roll.options.rollType];
-
-    if ( processRollType ) {
-      await processRollType();
-    } else {
-      await roll.toMessage();
-    }
-
-    return roll;
-  }
-
-  async #processJumpUpResult( roll ) {
-    await roll.evaluate();
-
-    if ( roll._total && roll.isSuccess ) {
-      this.update( { "system.condition.knockedDown": false } );
-    }
-
-    roll.toMessage();
-  }
-
-  async #processKnockdownResult( roll ) {
-    await roll.evaluate();
-    if ( !roll._total ) {
-      return;
-    } else {
-      if ( roll.isSuccess === false ) {
-        this.update( { "system.condition.knockedDown": true } );
-      }
-    }
-    roll.toMessage();
-  }
-
-  /**
-   * Process the result of a recovery roll. This will reduce the damage taken by the amount rolled.
-   * @param {EdRoll} roll The roll to process.
-   * @returns {Promise<ChatMessage | object>} The created ChatMessage or the data for it.
-   */
-  async #processRecoveryResult( roll ) {
-    // done in workflow
+    return RollProcessor.process( roll, this, );
   }
 
   async _enableHTMLEnrichment() {

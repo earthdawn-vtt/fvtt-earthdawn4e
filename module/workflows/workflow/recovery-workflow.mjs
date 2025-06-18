@@ -3,6 +3,7 @@ import RecoveryRollOptions from "../../data/roll/recovery.mjs";
 import ED4E from "../../config/_module.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import Rollable from "./rollable.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 
 /**
@@ -248,7 +249,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       availableRecoveryTests -= 1;
     }
 
-    await this._actor.processRoll( this._roll );
+    await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
 
     await this._actor.update( {
       "system.characteristics": {
