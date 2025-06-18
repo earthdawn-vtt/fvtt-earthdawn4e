@@ -530,6 +530,11 @@
         "special":                                 "TODO: Add translation",
         "touch":                                   "TODO: Add translation"
       },
+      "RecoveryModes": {
+        "fullRest":                                "TODO: Add translation",
+        "recoverStun":                             "TODO: Add translation",
+        "recovery":                                "TODO: Add translation"
+      },
       "RecoveryProperty": {
         "abilityStep":                             "TODO: Add translation",
         "arbitrary":                               "TODO: Add translation",
@@ -2353,11 +2358,11 @@
         "emptyAllMatrices":                        "TODO: Add translation",
         "finish":                                  "TODO: Add translation",
         "free":                                    "TODO: Add translation",
+        "fullRest":                                "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
         "learn":                                   "TODO: Add translation",
         "learnSpellPatterncraftTest":              "TODO: Add translation",
         "nextStep":                                "TODO: Add translation",
-        "nightRest":                               "TODO: Add translation",
         "noAbility":                               "TODO: Add translation",
         "noDiscipline":                            "TODO: Add translation",
         "notAgain":                                "TODO: Add translation",
@@ -2753,8 +2758,10 @@
         "singleton":                               "TODO: Add translation"
       },
       "Info": {
-        "ReattuningCancelled":                     "TODO: Add translation",
+        "noDamageNoRecoveryNeeded":                "TODO: Add translation",
+        "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
+        "reattuningCancelled":                     "TODO: Add translation",
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
@@ -2766,10 +2773,12 @@
         "classIncreaseProblems":                   "TODO: Add translation",
         "firstDisciplineViaCharGen":               "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
+        "invalidRecoveryMode":                     "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
+        "noRecoveryTestsAvailable":                "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
         "notEnoughDevotionUsedAll":                "TODO: Add translation",
@@ -2785,6 +2794,9 @@
         "actionTestRoll":                          "TODO: Add translation",
         "arbitraryTestRoll":                       "TODO: Add translation",
         "effectTestRoll":                          "TODO: Add translation"
+      },
+      "Modifiers": {
+        "stunRecoveryWillpower":                   "TODO: Add translation"
       },
       "baseValue":                                 "TODO: Add translation",
       "formulaDevotion":                           "TODO: Add translation",
@@ -2847,6 +2859,8 @@
         "encumbranceHint":                         "TODO: Add translation"
       },
       "GameMechanics": {
+        "checkEnoughTestsOnRecovery":              "TODO: Add translation",
+        "checkEnoughTestsOnRecoveryHint":          "TODO: Add translation",
         "languages":                               "TODO: Add translation",
         "languagesHint":                           "TODO: Add translation",
         "minimumDifficulty":                       "TODO: Add translation",
