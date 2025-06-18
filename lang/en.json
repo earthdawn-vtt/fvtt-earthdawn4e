@@ -531,6 +531,11 @@
         "special":                                 "Special",
         "touch":                                   "Touch"
       },
+      "RecoveryModes": {
+        "fullRest":                                "TODO: Add translation",
+        "recoverStun":                             "TODO: Add translation",
+        "recovery":                                "TODO: Add translation"
+      },
       "RecoveryProperty": {
         "abilityStep":                             "Ability Step",
         "arbitrary":                               "Arbitrary",
@@ -2354,11 +2359,11 @@
         "emptyAllMatrices":                        "TODO: Add translation",
         "finish":                                  "TODO: Add translation",
         "free":                                    "TODO: Add translation",
+        "fullRest":                                "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
         "learn":                                   "TODO: Add translation",
         "learnSpellPatterncraftTest":              "TODO: Add translation",
         "nextStep":                                "TODO: Add translation",
-        "nightRest":                               "TODO: Add translation",
         "noAbility":                               "TODO: Add translation",
         "noDiscipline":                            "TODO: Add translation",
         "notAgain":                                "TODO: Add translation",
@@ -2754,8 +2759,10 @@
         "singleton":                               "TODO: Add translation"
       },
       "Info": {
-        "ReattuningCancelled":                     "TODO: Add translation",
+        "noDamageNoRecoveryNeeded":                "TODO: Add translation",
+        "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
+        "reattuningCancelled":                     "TODO: Add translation",
         "switchWeapon":                            "TODO: Add translation"
       },
       "Warn": {
@@ -2767,10 +2774,12 @@
         "classIncreaseProblems":                   "TODO: Add translation",
         "firstDisciplineViaCharGen":               "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
+        "invalidRecoveryMode":                     "TODO: Add translation",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
+        "noRecoveryTestsAvailable":                "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
         "notEnoughDevotionUsedAll":                "TODO: Add translation",
@@ -2786,6 +2795,9 @@
         "actionTestRoll":                          "Action Test",
         "arbitraryTestRoll":                       "Arbitrary Test",
         "effectTestRoll":                          "Effect Test"
+      },
+      "Modifiers": {
+        "stunRecoveryWillpower":                   "TODO: Add translation"
       },
       "baseValue":                                 "Base Step",
       "formulaDevotion":                           "{amount}x Devotion (St {step})",
@@ -2848,6 +2860,8 @@
         "encumbranceHint":                         "TODO: Add translation"
       },
       "GameMechanics": {
+        "checkEnoughTestsOnRecovery":              "TODO: Add translation",
+        "checkEnoughTestsOnRecoveryHint":          "TODO: Add translation",
         "languages":                               "TODO: Add translation",
         "languagesHint":                           "TODO: Add translation",
         "minimumDifficulty":                       "TODO: Add translation",
