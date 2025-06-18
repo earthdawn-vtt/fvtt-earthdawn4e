@@ -19,6 +19,7 @@ import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as enrichers from "./module/enrichers.mjs";
 import * as hooks from "./module/hooks/_module.mjs";
+import * as services from "./module/services/_module.mjs";
 import * as system from "./module/system/_module.mjs";
 import * as tours from "./module/tours/_module.mjs";
 import * as utils from "./module/utils.mjs";
@@ -37,6 +38,7 @@ globalThis.ed4e = {
   documents,
   enrichers,
   hooks,
+  services,
   system,
   tours,
   utils,
