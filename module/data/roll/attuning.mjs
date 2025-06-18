@@ -90,7 +90,7 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   async _getChatFlavor() {
     return game.i18n.format(
-      "ED.TODO.X.{actor} attempts to attune these spells to {attuningItem} with {attuningAbility}",
+      "ED.Chat.Flavor.AttuningRollOptions",
       {
         actor:           createContentAnchor( await fromUuid( this.rollingActorUuid ) ).outerHTML,
         attuningItem:    ED4E.attuningType[ this.attuningType ],

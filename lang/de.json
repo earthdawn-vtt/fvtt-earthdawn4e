@@ -328,6 +328,7 @@
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
       "Flavor": {
+        "AttuningRollOptions":                     "{actor} versucht ''{attuningItem}'' und benutzt dafür {attuningAbility}",
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
@@ -2193,6 +2194,12 @@
       },
       "Other": {
         "AbilityRollOptions": {
+          "FIELDS": {
+            "abilityUuid": {
+              "hint":                              "UUID der Fähigkeit auf die sich diese Option bezieht",
+              "label":                             "Fähigkeits-UUID"
+            }
+          }
         },
         "Advancement": {
           "FIELDS": {
@@ -2227,12 +2234,142 @@
           }
         },
         "AttackRollOptions": {
+          "FIELDS": {
+            "weaponType": {
+              "hint":                              "Art der Waffe auf die sich diese Option bezieht",
+              "label":                             "Waffentyp"
+            },
+            "weaponUuid": {
+              "hint":                              "UUID der Waffe auf die sich diese Option bezieht",
+              "label":                             "Waffen-UUID"
+            }
+          }
         },
         "AttuningRollOptions": {
+          "FIELDS": {
+            "attuningAbility": {
+              "hint":                              "Fähigkeit auf die sich diese Neuabstimmung bezieht",
+              "label":                             "Neuabstimmungsfähigkeit"
+            },
+            "attuningType": {
+              "hint":                              "Art der Neuabstimmung",
+              "label":                             "Neuabstimmungsart"
+            },
+            "spellsToAttune": {
+              "hint":                              "Zauber die neu abgestimmt werden sollen",
+              "label":                             "Zu neu abstimmende Zauber"
+            }
+          }
         },
         "CharacterGeneration": {
+          "FIELDS": {
+            "availableRanks": {
+              "artisan": {
+                "hint":                            "Verfügbare Kunsthandwerksfertigkeiten für den Charakter",
+                "label":                           "Kunsthandwerksfertigkeiten"
+              },
+              "devotion": {
+                "hint":                            "Verfügbare Weihekräfte für den Charakter",
+                "label":                           "Weihekräfte"
+              },
+              "general": {
+                "hint":                            "Verfügbare allgemeine Fertigkeiten für den Charakter",
+                "label":                           "Allgemeine Fertigkeiten"
+              },
+              "knowledge": {
+                "hint":                            "Verfügbare Wissensfertigkeiten für den Charakter",
+                "label":                           "Wissensfertigkeiten"
+              },
+              "readWrite": {
+                "hint":                            "Verfügbare Lese- und Schreibfertigkeiten für den Charakter",
+                "label":                           "Lesen/Schreiben Fertigkeiten"
+              },
+              "speak": {
+                "hint":                            "Verfügbare gesprochene Sprachen für den Charakter",
+                "label":                           "Gesprochene Sprachen"
+              },
+              "talent": {
+                "hint":                            "Verfügbare Talentränge für den Charakter",
+                "label":                           "Talentränge"
+              }
+            },
+            "equipment": {
+              "hint":                              "Verfügbare Ausrüstung für den Charakter",
+              "label":                             "Ausrüstung"
+            },
+            "isAdept": {
+              "hint":                              "Ist der Charakter ein Adept?",
+              "label":                             "Adept"
+            },
+            "languages": {
+              "readWrite": {
+                "hint":                            "Verfügbare Lese- und Schreibfertigkeiten für den Charakter",
+                "label":                           "Lesen/Schreiben Fertigkeiten"
+              },
+              "speak": {
+                "hint":                            "Verfügbare gesprochene Sprachen für den Charakter",
+                "label":                           "Gesprochene Sprachen"
+              }
+            },
+            "namegiver": {
+              "hint":                              "Namensgeber des Charakters",
+              "label":                             "Namensgeber"
+            },
+            "selectedClass": {
+              "hint":                              "Ausgewählte Klasse des Charakters",
+              "label":                             "Ausgewählte Klasse"
+            },
+            "spells": {
+              "hint":                              "Verfügbare Zauber für den Charakter",
+              "label":                             "Zauber"
+            }
+          }
         },
         "DamageRollOptions": {
+          "FIELDS": {
+            "armorType": {
+              "hint":                              "Rüstungstyp gegen den der Schaden effektiv ist",
+              "label":                             "Rüstungstyp"
+            },
+            "damageAbilities": {
+              "hint":                              "Fähigkeiten die auf den Schaden angewendet werden",
+              "label":                             "Schadenfähigkeiten"
+            },
+            "damageType": {
+              "hint":                              "Art des Schadens",
+              "label":                             "Schadensart"
+            },
+            "element": {
+              "subType": {
+                "hint":                            "Elementarsubtyp des Schadens",
+                "label":                           "Elementarsubtyp"
+              },
+              "type": {
+                "hint":                            "Elementartyp des Schadens",
+                "label":                           "Elementartyp"
+              }
+            },
+            "ignoreArmor": {
+              "hint":                              "Soll die Rüstung des Ziels ignoriert werden?",
+              "label":                             "Rüstung ignorieren"
+            },
+            "weaponUuid": {
+              "hint":                              "UUID der Waffe auf die sich diese Option bezieht",
+              "label":                             "Waffen-UUID"
+            }
+          }
+        },
+        "InitiativeRollOptions": {
+          "FIELDS": {
+            "increaseAbilities": {
+              "hint":                              "Fähigkeiten die auf die Initiative angewendet werden",
+              "label":                             "Initiativefähigkeiten"
+            },
+            "replacementEffect": {
+              "hint":                              "Effekt der die Initiative ersetzt",
+              "label":                             "Ersetzungseffekt"
+            }
+          }
         },
         "LearnSpell": {
           "FIELDS": {
@@ -2349,10 +2486,202 @@
           }
         },
         "RollOptions": {
+          "FIELDS": {
+            "chatFlavowr": {
+              "hint":                              "Text der im Chat angezeigt wird",
+              "label":                             "Chattext"
+            },
+            "devotion": {
+              "hint":                              "Weihekraft die auf den Wurf angewendet wird",
+              "label":                             "Weihekraft"
+            },
+            "karma": {
+              "hint":                              "Karma das auf den Wurf angewendet wird",
+              "label":                             "Karma"
+            },
+            "rolLSubType": {
+              "hint":                              "Unterart des Wurfs",
+              "label":                             "Wurfuntertyp"
+            },
+            "rollType": {
+              "hint":                              "Art des Wurfs",
+              "label":                             "Wurfart"
+            },
+            "rollingActorUuid": {
+              "hint":                              "UUID des Charakters der den Wurf ausführt",
+              "label":                             "Wurfcharakter"
+            },
+            "step": {
+              "base": {
+                "hint":                            "Basisstufe des Wurfs",
+                "label":                           "Basisstufe"
+              },
+              "modifiers": {
+                "hint":                            "Modifikatoren die auf die Basisstufe angewendet werden",
+                "label":                           "Modifikatoren"
+              },
+              "total": {
+                "hint":                            "Gesamte Stufe des Wurfs nach Modifikatoren",
+                "label":                           "Gesamtstufe"
+              }
+            },
+            "strain": {
+              "base": {
+                "hint":                            "Basisbelastung des Wurfs",
+                "label":                           "Basisbelastung"
+              },
+              "modifiers": {
+                "hint":                            "Modifikatoren die auf die Basisbelastung angewendet werden",
+                "label":                           "Modifikatoren"
+              },
+              "total": {
+                "hint":                            "Gesamte Belastung des Wurfs nach Modifikatoren",
+                "label":                           "Gesamtbelastung"
+              }
+            },
+            "target": {
+              "base": {
+                "hint":                            "Basiszielwert des Wurfs",
+                "label":                           "Basiszielwert"
+              },
+              "modifiers": {
+                "hint":                            "Modifikatoren die auf den Basiszielwert angewendet werden",
+                "label":                           "Modifikatoren"
+              },
+              "public": {
+                "hint":                            "Soll der Zielwert öffentlich sein?",
+                "label":                           "Öffentlicher Zielwert"
+              },
+              "tokens": {
+                "hint":                            "Token die auf den Zielwert angewendet werden",
+                "label":                           "Zielwert Token"
+              },
+              "total": {
+                "hint":                            "Gesamter Zielwert des Wurfs nach Modifikatoren",
+                "label":                           "Gesamtzielwert"
+              }
+            },
+            "testType": {
+              "hint":                              "Art des Tests",
+              "label":                             "Testtyp"
+            }
+          }
         },
         "ThreadBase": {
+          "FIELDS": {
+            "characteristics": {
+              "defenses": {
+                "mystical": {
+                  "baseValue": {
+                    "hint":                        "Basiswert der mystischen Verteidigung des Fadens",
+                    "label":                       "Mystische Verteidigung"
+                  },
+                  "value": {
+                    "hint":                        "Gesamtwert der mystischen Verteidigung des Fadens",
+                    "label":                       "Mystische Verteidigung Gesamt"
+                  }
+                }
+              }
+            },
+            "enchantmentPattern": {
+              "hint":                              "Muster des Fadens",
+              "label":                             "Fadenmuster"
+            },
+            "isAnalyzed": {
+              "hint":                              "Ist dieser Faden analysiert?",
+              "label":                             "Analysiert"
+            },
+            "isIdentified": {
+              "hint":                              "Ist dieser Faden identifiziert?",
+              "label":                             "Identifiziert"
+            },
+            "levels": {
+              "hint":                              "Ränge oder Kreise die dieser Faden hat",
+              "label":                             "Fadenränge"
+            },
+            "maxThreads": {
+              "hint":                              "Maximale Anzahl an Fäden die dieser Faden haben kann",
+              "label":                             "Maximale Fäden"
+            },
+            "tier": {
+              "hint":                              "Stufe des Fadens",
+              "label":                             "Fadenstufe"
+            }
+          }
         },
         "ThreadLevel": {
+          "FIELDS": {
+            "activeEffects": {
+              "hint":                              "Aktive Effekte die auf dieser Stufe des Fadens aktiv sind",
+              "label":                             "Aktive Fadeneffekte"
+            },
+            "deed": {
+              "description": {
+                "hint":                            "Beschreibung der Tat die erforderlich ist um den Faden zu nutzen",
+                "label":                           "Tatbeschreibung"
+              },
+              "isCompleted": {
+                "hint":                            "Ist diese Tat abgeschlossen?",
+                "label":                           "Tat abgeschlossen"
+              },
+              "isRequired": {
+                "hint":                            "Ist diese Tat erforderlich um den Faden zu nutzen?",
+                "label":                           "Erforderliche Tat"
+              }
+            },
+            "effects": {
+              "hint":                              "Effekte die auf dieser Stufe des Fadens freigeschaltet werden",
+              "label":                             "Fadeneffekte"
+            },
+            "isActive": {
+              "hint":                              "Ist dieser Faden aktiv?",
+              "label":                             "Aktiv"
+            },
+            "isAnalyzed": {
+              "hint":                              "Ist dieser Faden analysiert?",
+              "label":                             "Analysiert"
+            },
+            "keyKnowledge": {
+              "answer": {
+                "hint":                            "Antwort die gegeben werden muss um den Faden zu nutzen",
+                "label":                           "Fadenantwort"
+              },
+              "isKnown": {
+                "hint":                            "Ist dieses Wissen bekannt?",
+                "label":                           "Wissen bekannt"
+              },
+              "isRequired": {
+                "hint":                            "Ist dieses Wissen erforderlich um den Faden zu nutzen?",
+                "label":                           "Erforderliches Wissen"
+              },
+              "question": {
+                "hint":                            "Frage die gestellt werden muss um den Faden zu nutzen",
+                "label":                           "Fadenfrage"
+              }
+            },
+            "level": {
+              "hint":                              "Stufe des Fadens",
+              "label":                             "Fadenstufe"
+            }
+          }
+        },
+        "ThreadWeavingRollOptions": {
+          "FIELDS": {
+            "spellUuid": {
+              "hint":                              "UUID des Spruches auf den sich diese Option bezieht",
+              "label":                             "Spruch-UUID"
+            },
+            "threads": {
+              "extra": {
+                "hint":                            "Anzahl der zusätzlich gewebten Fäden für den Spruch",
+                "label":                           "Zusätzlich gewebte Fäden"
+              },
+              "required": {
+                "hint":                            "Anzahl der benötigten Fäden für den Spruch",
+                "label":                           "Benötigte Fäden"
+              }
+            }
+          }
         }
       },
       "placeholderBlankSelectOption":              "---"
