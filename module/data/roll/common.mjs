@@ -232,7 +232,7 @@ export default class EdRollOptions extends SparseDataModel {
         required: true,
         nullable: false,
         blank:    true,
-        initial:  "action",
+        initial:  "arbitrary",
         choices:  ED4E.ROLLS.testTypes,
       } ),
       rollType: new fields.StringField( {
