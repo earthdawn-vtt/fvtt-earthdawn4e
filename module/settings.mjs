@@ -400,6 +400,19 @@ export default function registerSystemSettings() {
     } )
   } );
 
+  // Check if enough recovery tests are available
+  game.settings.register( "ed4e", "checkEnoughTestsOnRecovery", {
+    scope:   "world",
+    config:  true,
+    type:    new BooleanField( {
+      required: true,
+      nullable: false,
+      initial:  true,
+      label:    "ED.Settings.GameMechanics.checkEnoughTestsOnRecovery",
+      hint:     "ED.Settings.GameMechanics.checkEnoughTestsOnRecoveryHint",
+    } ),
+  } );
+
   /* -------------------------------------------------------------------------------- */
   /*                                  GM Chat Avatar                                     */
   /* -------------------------------------------------------------------------------- */
