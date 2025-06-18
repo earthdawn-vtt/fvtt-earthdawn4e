@@ -119,7 +119,7 @@ export default class AttuneWorkflow extends Rollable( ActorWorkflow ) {
     await this._actor.emptyAllMatrices();
 
     // Notify the user
-    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.ReattuningCancelled" ) );
+    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.reattuningCancelled" ) );
 
     this._result = false;
   }
