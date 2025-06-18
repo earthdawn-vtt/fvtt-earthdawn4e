@@ -25,7 +25,7 @@ export default class RollProcessor {
    * @typedef {object} ProcessOptions
    * @property {boolean} [skipResources=false] Whether to skip resource processing
    * @property {boolean} [skipStrain=false] Whether to skip strain processing
-   * @property {boolean} [rollToMessage=false] Whether to send the roll to chat
+   * @property {boolean} [rollToMessage=true] Whether to send the roll to chat
    */
 
   /**
@@ -41,7 +41,7 @@ export default class RollProcessor {
     options = {
       skipResources: false,
       skipStrain:    false,
-      rollToMessage: false,
+      rollToMessage: true
     }
   ) {
     if ( !roll ) throw new Error( "RollProcessor.process: No roll provided" );
