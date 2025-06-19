@@ -17,6 +17,7 @@ import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
+import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -552,88 +553,13 @@ export default class ActorEd extends Actor {
   }
 
   async rollRecovery( recoveryMode, options = {} ) {
-
-    const { characteristics, globalBonuses } = this.system;
-
-    let recoveryStep = characteristics.recoveryTestsResource.step;
-    const recoveryFinalStep = {
-      base:      recoveryStep,
-      modifiers: {},
-    };
-    if ( globalBonuses.allRecoveryTests.value > 0 ) recoveryFinalStep.modifiers["localize: Global Recovery Bonus"] = globalBonuses.allRecoveryTests.value;
-
-    const { stun: stunDamage, total: totalDamage } = characteristics.health.damage;
-    const currentWounds = characteristics.health.wounds;
-    const newWounds = Math.max( currentWounds - 1, 0 );
-
-    const recoveryTestPerDay = characteristics.recoveryTestsResource.max;
-    const availableRecoveryTestResource = characteristics.recoveryTestsResource.value;
-
-    const woundsPath = "system.characteristics.health.wounds";
-    const recoveryTestAvailablePath = "system.characteristics.recoveryTestsResource.value";
-    const recoveryStunAvailablePath = "system.characteristics.recoveryTestsResource.stunRecoveryAvailable";
-
-    switch ( recoveryMode ) {
-
-      case "recovery":
-        if ( availableRecoveryTestResource < 1 ) {
-          ui.notifications.warn( "LocalizeLabel: Not enough recovery tests available." );
-          return;
-        } else if ( totalDamage === 0 ) {
-          ui.notifications.warn( "LocalizeLabel: No Injuries, no recovery needed" );
-          return;
-        }
-        break;
-
-      case "nightRest":
-        if ( totalDamage === 0 ) {
-          const updateData = {
-            [recoveryStunAvailablePath]: true,
-            [recoveryTestAvailablePath]: currentWounds === 0 ? recoveryTestPerDay : recoveryTestPerDay - 1
-          };
-          if ( currentWounds > 0 ) updateData[woundsPath] = newWounds;
-          this.update( updateData );
-          return;
-        }
-        break;
-
-      case "recoverStun":
-        if ( availableRecoveryTestResource < 1 ) {
-          ui.notifications.warn( "Localize: Not enough recovery tests available." );
-          return;
-        }
-        if ( stunDamage === 0 ) {
-          ui.notifications.warn( "Localize: You don'T have Stun damage" );
-          return;
-        }
-        // TODO: won't be visible in the prompt until modifiers input is implemented
-        recoveryFinalStep.modifiers["localize: Wil for Stun Recovery"] = this.system.attributes.wil.step;
-        break;
-
-      default:
-        console.warn( "ED4E | ActorEd.rollRecovery: No recovery type found" );
-        return;
-    }
-
-    let chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollRecovery", {
-      sourceActor: this.name,
-      step:        recoveryStep
-    } );
-    const edRollOptions = EdRollOptions.fromActor(
+    const recoveryWorkflow = new RecoveryWorkflow(
+      this,
       {
-        testType:         "effect",
-        rollType:         "recovery",
-        rollSubType:      recoveryMode,
-        strain:           0,
-        target:           undefined,
-        step:             recoveryFinalStep,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
+        recoveryMode: recoveryMode,
       },
-      this
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    this.processRoll( roll );
+    return recoveryWorkflow.execute();
   }
 
   async rollUnarmedDamage( rollOptionsData = {} ) {
@@ -732,6 +658,9 @@ export default class ActorEd extends Actor {
     const newDamage = health.damage[damageType] + damageTaken;
 
     const updates = { [`system.characteristics.health.damage.${ damageType }`]: newDamage };
+
+    // First recovery test after taking stun damage can be done with willpower bonus
+    if ( damageType === "stun" ) updates["system.characteristics.recoveryTestsResource.stunRecoveryAvailable"] = true;
 
     if ( damageTaken >= health.woundThreshold && !options.isStrain ) {
       switch ( damageType ) {
@@ -839,7 +768,7 @@ export default class ActorEd extends Actor {
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
-        rollType:         "knockdown",
+        rollType:         "knockDown",
         strain:           strain,
         target:           difficultyFinal,
         step:             knockdownStepFinal,
@@ -928,131 +857,8 @@ export default class ActorEd extends Actor {
       // No roll available, do nothing.
       return;
     }
-    if ( roll?.options.rollType !== "recovery" ) return RollProcessor.process(
-      roll,
-      this,
-      { rollToMessage: true, },
-    );
 
-    // Check if this uses karma or strain at all
-    this.takeDamage( roll.totalStrain, {
-      isStrain:     true,
-      damageType:   "standard",
-      ignoreArmor:  true,
-    } );
-
-    const { karma, devotion } = roll.options;
-    const resourcesUsedSuccessfully = this.useResource( "karma", karma.pointsUsed ) && this.useResource( "devotion", devotion.pointsUsed );
-
-    if ( !resourcesUsedSuccessfully ) {
-      ui.notifications.warn( "Localize: Not enough karma,devotion or recovery. Used all that was available." );
-    }
-
-    const rollTypeProcessors = {
-      "initiative": () => { return roll; },
-      "jumpUp":     () => this.#processJumpUpResult( roll ),
-      "knockdown":  () => this.#processKnockdownResult( roll ),
-      "recovery":   () => this.#processRecoveryResult( roll ),
-    };
-
-    const processRollType = rollTypeProcessors[roll.options.rollType];
-
-    if ( processRollType ) {
-      await processRollType();
-    } else {
-      await roll.toMessage();
-    }
-
-    return roll;
-  }
-
-  async #processJumpUpResult( roll ) {
-    await roll.evaluate();
-
-    if ( roll._total && roll.isSuccess ) {
-      this.update( { "system.condition.knockedDown": false } );
-    }
-
-    roll.toMessage();
-  }
-
-  async #processKnockdownResult( roll ) {
-    await roll.evaluate();
-    if ( !roll._total ) {
-      return;
-    } else {
-      if ( roll.isSuccess === false ) {
-        this.update( { "system.condition.knockedDown": true } );
-      }
-    }
-    roll.toMessage();
-  }
-
-  /**
-   * Process the result of a recovery roll. This will reduce the damage taken by the amount rolled.
-   * @param {EdRoll} roll The roll to process.
-   * @returns {Promise<ChatMessage | object>} The created ChatMessage or the data for it.
-   */
-  async #processRecoveryResult( roll ) {
-    await roll.evaluate();
-
-    if ( !roll._total ) {
-      return;
-    }
-
-    const { characteristics } = this.system;
-    const { health, recoveryTestsResource } = characteristics;
-    const { damage, wounds } = health;
-    const { stun, standard, total } = damage;
-
-    const rollTotal = roll._total;
-    const healingRate = Math.max( rollTotal - wounds, 1 );
-    const newWounds = Math.max( wounds - 1, 0 );
-    const newPhysicalDamage = Math.max( standard - healingRate, 0 );
-    const newStunDamage = Math.max( stun - healingRate, 0 );
-
-    const recoveryTestPerDay = recoveryTestsResource.max;
-    const recoveryTestsCurrent = recoveryTestsResource.value;
-
-    const updatePaths = {
-      wounds:                "system.characteristics.health.wounds",
-      standardDamage:        "system.characteristics.health.damage.standard",
-      stunDamage:            "system.characteristics.health.damage.stun",
-      recoveryTestAvailable: "system.characteristics.recoveryTestsResource.value",
-      stunRecoveryAvailable: "system.characteristics.recoveryTestsResource.stunRecoveryAvailable"
-    };
-
-    const updateData = {};
-
-    switch ( roll.options.rollSubType ) {
-      case "recovery": 
-        updateData[updatePaths.standardDamage] = newPhysicalDamage;
-        updateData[updatePaths.stunDamage] = newStunDamage;
-        updateData[updatePaths.stunRecoveryAvailable] = true;
-        updateData[updatePaths.recoveryTestAvailable] = recoveryTestsCurrent - 1;
-        break;
-      case "nightRest":
-        if ( wounds > 0 && total === 0 ) { 
-          updateData[updatePaths.wounds] = newWounds;
-        } else if ( total > 0 ) {
-          updateData[updatePaths.standardDamage] = newPhysicalDamage;
-          updateData[updatePaths.stunDamage] = newStunDamage;
-        }
-        updateData[updatePaths.stunRecoveryAvailable] = true;
-        updateData[updatePaths.recoveryTestAvailable] = recoveryTestPerDay - ( wounds > 0 || total > 0 ? 1 : 0 );
-        break;
-      case "recoverStun":
-        updateData[updatePaths.stunDamage] = newStunDamage;
-        updateData[updatePaths.stunRecoveryAvailable] = false;
-        updateData[updatePaths.recoveryTestAvailable] = recoveryTestsCurrent - 1;
-        break;
-      default:
-        ui.notifications.warn( "Localize: No recovery type found." );
-        return;
-    }
-
-    this.update( updateData );
-    return roll.toMessage();
+    return RollProcessor.process( roll, this, );
   }
 
   async _enableHTMLEnrichment() {

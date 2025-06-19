@@ -206,10 +206,10 @@ class ActorPromptFactory extends PromptFactory {
       default: false
     } );
     buttons.push( {
-      action:  "nightRest",
-      label:   "ED.Dialogs.Buttons.nightRest",
+      action:  "fullRest",
+      label:   "ED.Dialogs.Buttons.fullRest",
       icon:    "fa-duotone fa-campfire",
-      class:   "nightRest default button-nightRest",
+      class:   "fullRest default button-fullRest",
       default: true
     } );
     buttons.push( this.constructor.cancelButton );

@@ -336,7 +336,7 @@
         "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
-        "rollRecovery":                            "{sourceActor} würfelt {recovery} ({step})",
+        "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
@@ -530,6 +530,11 @@
         "self":                                    "Selbst",
         "special":                                 "Spezial",
         "touch":                                   "Berührung"
+      },
+      "RecoveryModes": {
+        "fullRest":                                "Vollständige Rast",
+        "recoverStun":                             "Erholung von Betäubungsschaden",
+        "recovery":                                "Erholungsprobe"
       },
       "RecoveryProperty": {
         "abilityStep":                             "Fähigkeitsstufe",
@@ -2707,11 +2712,11 @@
         "emptyAllMatrices":                        "Alle Matrizen leeren",
         "finish":                                  "Fertigstellen",
         "free":                                    "Kostenlos",
+        "fullRest":                                "Vollständige Rast",
         "goBack":                                  "Zurück",
         "learn":                                   "Lernen",
         "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
         "nextStep":                                "Nächster Schritt",
-        "nightRest":                               "Nachtruhe",
         "noAbility":                               "Keine Fähigkeit vorhanden",
         "noDiscipline":                            "Keine Disziplin ausgewählt",
         "notAgain":                                "Zeige diese Nachricht nicht noch einmal",
@@ -3107,8 +3112,10 @@
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
       },
       "Info": {
-        "ReattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
+        "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
+        "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
+        "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
       },
       "Warn": {
@@ -3120,10 +3127,12 @@
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
+        "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
+        "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
         "notEnoughDevotionUsedAll":                "Nicht genug Weihepunkte. Es wurden alle genutzt die verfügbar waren.",
@@ -3139,6 +3148,9 @@
         "actionTestRoll":                          "Aktionsprobe",
         "arbitraryTestRoll":                       "Willkürlicher Test",
         "effectTestRoll":                          "Effektprobe"
+      },
+      "Modifiers": {
+        "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",
       "formulaDevotion":                           "{amount}x Weihe (St {step})",

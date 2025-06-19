@@ -2,19 +2,14 @@ import ActorWorkflow from "./actor-workflow.mjs";
 import AttuneMatrixPrompt from "../../applications/workflow/attune-matrix-prompt.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import AttuningRollData from "../../data/roll/attuning.mjs";
+import Rollable from "./rollable.mjs";
 
 /**
  * @typedef {object} AttuneMatrixWorkflowOptions
  * @property {string} firstMatrix The UUID for a matrix that should be focused when displaying the attune matrix prompt.
  */
 
-export default class AttuneWorkflow extends ActorWorkflow {
-
-  /**
-   * The result of the attuning roll, if performed.
-   * @type {EdRoll|null}
-   */
-  _attuneRoll = null;
+export default class AttuneWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * An optional ability with which an attune test should be rolled. "Patterncraft"
@@ -124,7 +119,7 @@ export default class AttuneWorkflow extends ActorWorkflow {
     await this._actor.emptyAllMatrices();
 
     // Notify the user
-    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.ReattuningCancelled" ) );
+    ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.reattuningCancelled" ) );
 
     this._result = false;
   }
@@ -137,7 +132,7 @@ export default class AttuneWorkflow extends ActorWorkflow {
     // Skip the roll if we're not reattuning on the fly
     if ( !this._isReattuningOnTheFly ) return;
 
-    const rollOptions = AttuningRollData.fromActor(
+    this._rollOptions = AttuningRollData.fromActor(
       {
         attuningType:    "matrixOnTheFly",
         attuningAbility: this._attuneAbility.uuid,
@@ -147,14 +142,14 @@ export default class AttuneWorkflow extends ActorWorkflow {
       {},
     );
 
-    this._attuneRoll = await RollPrompt.waitPrompt(
-      rollOptions,
+    this._roll = await RollPrompt.waitPrompt(
+      this._rollOptions,
       {
         rollData: this._actor.getRollData(),
       },
     );
-    await this._attuneRoll.toMessage();
-    this._isReattuningSuccessful = this._attuneRoll.isSuccess;
+    await this._roll.toMessage();
+    this._isReattuningSuccessful = this._roll.isSuccess;
   }
 
   /**

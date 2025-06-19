@@ -13,6 +13,7 @@ import * as SOCKETS from "./sockets.mjs";
 import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
 import * as MIGRATIONS from "./migrations.mjs";
+import * as WORKFLOWS from "./workflows.mjs";
 
 
 /* -------------------------------------------- */
@@ -41,6 +42,25 @@ Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path 
 
 // Namespace Configuration Values
 const ED4E = {
+  // Need to write this out explicitly since the imported module namespaces are
+  // exotic objects, meaning their prototype is null. This make Foundry's mergeObject
+  // function not work as expected since it checks if objects are instanceof Object.
+  ACTIONS:       {...ACTIONS},
+  ACTORS:        {...ACTORS},
+  CHAT:          {...CHAT},
+  COMBAT:        {...COMBAT},
+  DOCUMENT_DATA: {...DOCUMENT_DATA},
+  EFFECTS:       {...EFFECTS},
+  ITEMS:         {...ITEMS},
+  LEGEND:        {...LEGEND},
+  MAGIC:         {...MAGIC},
+  QUANTITIES:    {...QUANTITIES},
+  ROLLS:         {...ROLLS},
+  SOCKETS:       {...SOCKETS},
+  STATUSES:      {...STATUSES},
+  SYSTEM:        {...SYSTEM},
+  MIGRATIONS:    {...MIGRATIONS},
+  WORKFLOWS:     {...WORKFLOWS},
   ...ACTIONS,
   ...ACTORS,
   ...CHAT,
@@ -55,7 +75,8 @@ const ED4E = {
   ...SOCKETS,
   ...STATUSES,
   ...SYSTEM,
-  ...MIGRATIONS
+  ...MIGRATIONS,
+  ...WORKFLOWS,
 };
 
 export default ED4E;
