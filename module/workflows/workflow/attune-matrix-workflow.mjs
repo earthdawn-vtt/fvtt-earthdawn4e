@@ -9,7 +9,7 @@ import Rollable from "./rollable.mjs";
  * @property {string} firstMatrix The UUID for a matrix that should be focused when displaying the attune matrix prompt.
  */
 
-export default class AttuneWorkflow extends Rollable( ActorWorkflow ) {
+export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * An optional ability with which an attune test should be rolled. "Patterncraft"

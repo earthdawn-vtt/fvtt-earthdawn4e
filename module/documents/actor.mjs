@@ -14,7 +14,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
-import { AttuneWorkflow } from "../workflows/workflow/_module.mjs";
+import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
@@ -404,14 +404,14 @@ export default class ActorEd extends Actor {
    * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
    */
   async reattuneSpells( matrixUuid ) {
-    const attuneWorkflow = new AttuneWorkflow(
+    const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
       this,
       {
         firstMatrix: matrixUuid,
       },
     );
 
-    return attuneWorkflow.execute();
+    return attuneMatrixWorkflow.execute();
   }
 
   /**
