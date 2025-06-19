@@ -11,7 +11,7 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 
 /**
- * @typedef { object} RollStepData Data for a roll step.
+ * @typedef { object } RollStepData Data for a roll step.
  * @property { number } base The base step that is used to determine the dice that are rolled.
  * @property { Record<string, number> } modifiers All modifiers that are applied to the base step.
  *                                              Keys are localized labels. Values are the modifier.
@@ -71,6 +71,18 @@ export default class EdRollOptions extends SparseDataModel {
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Other.RollOptions",
   ];
+
+  /**
+   * The type of test that this roll represents.
+   * @type {string}
+   */
+  static TEST_TYPE = "action";
+
+  /**
+   * The type of roll that this represents.
+   * @type {string}
+   */
+  static ROLL_TYPE = "arbitrary";
 
   /** @inheritDoc */
   static defineSchema() {
@@ -285,6 +297,16 @@ export default class EdRollOptions extends SparseDataModel {
   }
 
   /** @inheritDoc */
+  _initializeSource( data, options = {} ) {
+    data.step ??= this._prepareStepData( data );
+    data.target ??= this._prepareTargetDifficulty( data );
+    data.strain ??= this._prepareStrainData( data );
+    data.testType ??= this.constructor.TEST_TYPE;
+    data.rollType ??= this.constructor.ROLL_TYPE;
+    return super._initializeSource( data, options );
+  }
+
+  /** @inheritDoc */
   updateSource( changes = {}, options = {} ) {
     const updates = super.updateSource(
       foundry.utils.mergeObject( changes, {
@@ -301,6 +323,33 @@ export default class EdRollOptions extends SparseDataModel {
 
   static initDiceForStep( parent ) {
     return getDice( parent.step.total ?? parent.step );
+  }
+
+  /**
+   * Used when initializing this data model. Retrieves step data based on the provided input data.
+   * @param {object} data The input data object containing relevant ability information.
+   * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
+   */
+  _prepareStepData( data ) {
+    return {};
+  }
+
+  /**
+   * Used when initializing this data model. Prepares strain data based on the provided input data.
+   * @param {object} data - The input data object containing relevant information for strain calculation.
+   * @returns {RollStrainData} The strain data object containing the base strain and any modifiers.
+   */
+  _prepareStrainData( data ) {
+    return {};
+  }
+
+  /**
+   * Used when initializing this data model. Calculates the target difficulty for a roll based on the input data.
+   * @param {object} data - The data object with which this model is initialized.
+   * @returns {RollTargetData} The target difficulty containing base and modifiers.
+   */
+  _prepareTargetDifficulty( data ) {
+    return {};
   }
 
   /**
