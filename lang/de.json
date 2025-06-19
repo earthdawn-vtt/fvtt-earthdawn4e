@@ -2884,8 +2884,6 @@
         "encumbranceHint":                         "Soll Belastung berücksichtigt werden?"
       },
       "GameMechanics": {
-        "checkEnoughTestsOnRecovery":              "Prüfe verfügbare Erholungsproben",
-        "checkEnoughTestsOnRecoveryHint":          "Prüfe ob genug Erholungsproben verfügbar sind und verbiete Erholungsproben wenn nicht",
         "languages":                               "Sprachen",
         "languagesHint":                           "Welche Sprachen sollen verwendet werden?",
         "minimumDifficulty":                       "Minimale Schwierigkeit",

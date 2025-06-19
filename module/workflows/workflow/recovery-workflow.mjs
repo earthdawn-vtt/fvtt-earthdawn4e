@@ -4,7 +4,6 @@ import ED4E from "../../config/_module.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import Rollable from "./rollable.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
-import { getSetting } from "../../settings.mjs";
 
 
 /**
@@ -133,10 +132,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       return;
     }
 
-    if (
-      getSetting( "checkEnoughTestsOnRecovery" )
-      && !this._isFullRest
-      && this._actorCharacteristics.recoveryTestsResource.value < 1 ) {
+    if ( this._actorCharacteristics.recoveryTestsResource.value < 1 ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noRecoveryTestsAvailable" ) );
       this.cancel();
     }
@@ -177,7 +173,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
           "ED.Chat.Flavor.rollRecovery",
           {
             sourceActor:  this._actor.name,
-            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ],
+            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ].label,
           },
         ),
       },
