@@ -92,5 +92,12 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
 
     // migrate usable items
     UsableItemMigration.migrateData( source );
+    
+    // migrate shield specific data
+    source.defenseBonus ??= {};
+    source.defenseBonus.physical ??= source.physicaldefense;
+    source.defenseBonus.mystical ??= source.mysticdefense;
+    source.initiativePenalty ??= source.initiativepenalty;
+    source.shatterThreshold ??= source.shatterthreshold;
   }
 }

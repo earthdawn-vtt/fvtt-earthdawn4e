@@ -2,3 +2,7 @@ spellmatrix
 spezialmanover
 Aphysicalarmor
 Amysticarmor
+physicaldefense
+mysticdefense
+initiativepenalty
+shatterthreshold
