@@ -132,7 +132,10 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       return;
     }
 
-    if ( this._actorCharacteristics.recoveryTestsResource.value < 1 ) {
+    if (
+      !this._isFullRest
+      && this._actorCharacteristics.recoveryTestsResource.value < 1
+    ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noRecoveryTestsAvailable" ) );
       this.cancel();
     }
