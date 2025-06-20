@@ -104,8 +104,8 @@ preLocalize( "poisonActivation" );
  */
 export const ammunitionType = {
   arrow:           "ED.Config.AmmunitionType.arrow",
-  bolt:           "ED.Config.AmmunitionType.bolt",
-  needle:         "ED.Config.AmmunitionType.needle",
+  bolt:            "ED.Config.AmmunitionType.bolt",
+  needle:          "ED.Config.AmmunitionType.needle",
   stone:           "ED.Config.AmmunitionType.stone",
 };
 preLocalize( "ammunitionType" );
@@ -135,12 +135,20 @@ export const weaponType = {
 preLocalize( "weaponType", { key: "label" } );
 
 export const weaponSubType = {
+  blowgun: {
+    label:      "ED.Config.WeaponSubType.blowgun",
+    weaponType: "missile",
+  },
   bow: {
     label:      "ED.Config.WeaponSubType.bow",
     weaponType: "missile",
   },
   crossbow: {
     label:      "ED.Config.WeaponSubType.crossbow",
+    weaponType: "missile",
+  },
+  sling: {
+    label:      "ED.Config.WeaponSubType.sling",
     weaponType: "missile",
   },
 };

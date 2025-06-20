@@ -150,7 +150,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         required: true,
         nullable: true,
         blank:    true,
-        initial:  "",
+        initial:  "physical",
         choices:  ED4E.armor,
       } ),
     } );
@@ -378,6 +378,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+  // eslint-disable-next-line complexity
   static migrateData( source ) {
     // Migrate description
     DescriptionMigration.migrateData( source );
@@ -393,5 +394,44 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
 
     // migrate usable items
     UsableItemMigration.migrateData( source );
+
+    // migrate weapon data
+    // migrate weapon type
+    if ( source.weapontype ) {
+      source.weaponType = source.weapontype?.slugify( { lowercase: true, strict: true } );
+      if ( ED4E.systemV0_8_2.weaponTypesMelee.includes( source.weaponType ) ) {
+        source.weaponType = Object.keys( ED4E.weaponType )[0];
+      } else if ( ED4E.systemV0_8_2.weaponTypesMissile.includes( source.weaponType ) ) {
+        source.weaponType = Object.keys( ED4E.weaponType )[1];
+      } else if ( ED4E.systemV0_8_2.weaponTypesThrown.includes( source.weaponType ) ) {
+        source.weaponType = Object.keys( ED4E.weaponType )[2];
+      } else if ( ED4E.systemV0_8_2.weaponTypesUnarmed.includes( source.weaponType ) ) {
+        source.weaponType = Object.keys( ED4E.weaponType )[3];
+      }
+    }
+
+    // migrate damage step
+    source.damage ??= {};
+    if ( ED4E.systemV0_8_2.damageAttributes.includes( source.damageattribute ) ) {
+      source.damage.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.damageAttributes.indexOf( source.damageattribute )];
+    }
+    source.damage.baseStep ??= Number( source.damagestep ) || 0;
+
+    // migrate strength minimum
+    source.strengthMinimum ??= Number( source.strenghtminimum ) || 1;
+
+    // migrate forge bonus
+    source.forgeBonus ??= Number( source.timesForged ) || 0;
+
+    if ( source.longrange || source.shortrange ) {
+      source.longrange = source.longrange?.slugify( { lowercase: true, strict: true } );  
+      source.shortrange = source.shortrange?.slugify( { lowercase: true, strict: true } );
+
+      source.range ??= {};
+      source.range.shortMin ??= Number( source.shortrange.split( "-" )[0] ) || 0;
+      source.range.shortMax ??= Number( source.shortrange.split( "-" )[1] ) || 0;
+      source.range.longMin ??= Number( source.longrange.split( "-" )[0] ) || 0;
+      source.range.longMax ??= Number( source.longrange.split( "-" )[1] ) || 1;
+    }
   }
 }

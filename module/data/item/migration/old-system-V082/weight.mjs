@@ -5,11 +5,9 @@ export default class WeightMigration {
     // Ensure price object exists
       
       const weight = source.weight ?? 0;
-      console.log ( "weight log ", weight );
       source.weight = {
         value: Number( weight )
       };
-      console.log ( "weight log 2 ", source.weight );
     }
   }
 }
