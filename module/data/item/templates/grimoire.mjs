@@ -1,5 +1,6 @@
 import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import AttuneGrimoireWorkflow from "../../../workflows/workflow/attune-grimoire-workflow.mjs";
 
 const { fields } = foundry.data;
 
@@ -18,13 +19,17 @@ export default class GrimoireTemplate extends SystemDataModel {
         spells: new fields.SetField(
           new fields.DocumentUUIDField( {
             type:     "Item",
-            embedded: false,
           } ), {
             required:        true,
             initial:         [],
           } ),
         owner: new fields.DocumentUUIDField( {
           type:     "Actor",
+        } ),
+        attunedSpell: new fields.DocumentUUIDField( {
+          type:     "Item",
+          nullable: true,
+          initial:  null,
         } ),
       },{
         nullable: true,
@@ -106,7 +111,7 @@ export default class GrimoireTemplate extends SystemDataModel {
 
   // endregion
 
-  // region Item Methods
+  // Methods
 
   /**
    * Adds a spell to the grimoire.
@@ -140,6 +145,84 @@ export default class GrimoireTemplate extends SystemDataModel {
     // Add the spell to the grimoire
     return this.parent.update( {
       "system.grimoire.spells": this.grimoire.spells.add( spell.uuid ),
+    } );
+  }
+
+  /**
+   * Attune the grimoire.
+   * @param {ActorEd} [attuningActor] The actor that is attuning the grimoire. If not provided,
+   * uses the containing actor of the grimoire.
+   * @param {ItemEd} [spell] The spell to attune to the grimoire. If not provided, a user prompt will be shown
+   * to select a spell.
+   * @returns {Promise<*>} The result of the attuning workflow.
+   */
+  async attuneGrimoire( attuningActor, spell ) {
+    const attuneGrimoireWorkflow = new AttuneGrimoireWorkflow(
+      attuningActor ?? this.containingActor,
+      {
+        grimoire: this.parent,
+        spell,
+      },
+    );
+    return attuneGrimoireWorkflow.execute();
+  }
+
+  /**
+   * Gets the attuned spell of the grimoire.
+   * @returns {Promise<ItemEd|null>} The attuned spell item, or null if not found or not attuned.
+   */
+  async getAttunedSpell() {
+    if ( !this.grimoire?.attunedSpell ) {
+      return null;
+    }
+
+    const attunedSpell = await fromUuid( this.grimoire.attunedSpell );
+    if ( !attunedSpell ) {
+      console.warn( "ED | GrimoireTemplate.getAttunedSpell: Attuned spell not found", this.grimoire.attunedSpell );
+      return null;
+    }
+
+    return attunedSpell;
+  }
+
+  /**
+   * Checks if the grimoire is attuned to a specific spell.
+   * @param {string} spellUuid The UUID of the spell to check.
+   * @returns {boolean} True if the grimoire is attuned to the spell, false otherwise.
+   */
+  isSpellAttuned( spellUuid ) {
+    return this.grimoire.attunedSpell === spellUuid;
+  }
+
+  /**
+   * Sets the active spell for the grimoire.
+   * @param {string} spellUuid The UUID of the spell to set as active.
+   * @returns {Promise<ItemEd|undefined>} The updated grimoire item or undefined if the spell was not set.
+   */
+  async setGrimoireActiveSpell( spellUuid ) {
+    if ( !this.isGrimoire ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotAGrimoire" ),
+      );
+      return;
+    }
+
+    const spell = await fromUuid( spellUuid );
+    if ( !spell || spell.type !== "spell" ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotASpell" ),
+      );
+      return;
+    }
+    if ( !this.grimoire.spells.has( spell.uuid ) ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotInGrimoire" ),
+      );
+      return;
+    }
+
+    return this.parent.update( {
+      "system.grimoire.attunedSpell": spell.uuid,
     } );
   }
 
