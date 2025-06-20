@@ -19,7 +19,7 @@ export default class ActorWorkflow extends Workflow {
    * @param {WorkflowOptions} [options] See {@link Workflow#constructor}.
    */
   constructor( actor, options = {} ) {
-    if ( ! ( actor instanceof ActorEd ) )
+    if ( !actor || ! ( actor instanceof ActorEd ) )
       throw new TypeError( "ActorWorkflow constructor expects an Actor instance." );
 
     super( options );
