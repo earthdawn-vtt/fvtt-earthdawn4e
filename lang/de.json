@@ -611,8 +611,10 @@
         "fire":                                    "Feuer"
       },
       "WeaponSubType": {
+        "blowgun":                                 "Blasrohr",
         "bow":                                     "Bogen",
-        "crossbow":                                "Armbrust"
+        "crossbow":                                "Armbrust",
+        "sling":                                   "Schleuder"
       },
       "WeaponType": {
         "melee":                                   "Nahkampf",

@@ -15,6 +15,20 @@ export const systemV0_8_2 = {
   "willpowerStep", 
   "charismaStep", 
 ],
+
+  /**
+   * Damage attributes options from the LaPorta System
+   * @enum {string}
+   */
+  damageAttributes: [
+    "dexterity",
+    "strength",
+    "toughness",
+    "perception",
+    "willpower",
+    "charisma",
+  ],
+
   /**
    * Target Defense options from the LaPorta System
    * @enum {string}
@@ -26,6 +40,27 @@ export const systemV0_8_2 = {
    * @enum {string}
    */
   groupDifficulty: [ "defenseHigh", "defenseLow", "defenseHighPlus", "defenseLowPlus" ],
+
+  /**
+   * Weapon types from the LaPorta System
+   * @enum {string}
+   */
+  weaponTypesMelee:   [ "melee", "secondweapon", "secondattack" ],
+  weaponTypesMissile: [ "ranged", "secondshot" ],
+  weaponTypesThrown:  [ "thrown" ],
+  weaponTypesUnarmed: [ "unarmed", "swiftkick" ],
+
+  /**
+   * availability options from the LaPorta System
+   * @enum {string}
+   */
+  availability: [
+    "availabilityeveryday",
+    "availabilityaverage",
+    "availabilityunusual",
+    "availabilityrare",
+    "availabilityveryrare",
+  ],
 
   /**
    * Thread weaving naming options for automatic migration (will be slugified)
@@ -215,30 +250,45 @@ export const systemV0_8_2 = {
    * @enum {string}
    */
   offHandCombatTalents: [ "Zweitwaffe", "Second Weapon" ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * Artisan skill names 
    * @enum {string}
    */
   artisan:       [ "Kunsthandwerk", "Artisan" ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * Knowledge skill names 
    * @enum {string}
    */
   knowledge:     [ "Wissen", "Knowledge" ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * Read and write skill names 
    * @enum {string}
    */
   languageRW:    [ "Lesen und Schreiben", "Read and Write" ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * Speak language skill names 
    * @enum {string}
    */
   languageSpeak: [ "Fremdsprachen", "Speak Language" ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for Physical Defense
@@ -261,6 +311,9 @@ export const systemV0_8_2 = {
     "Zweiter Schuss",
     "Zweitwaffe",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for Mystical Defense
@@ -294,6 +347,9 @@ export const systemV0_8_2 = {
     "Verbannen",
     "Wispern",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for Social Defense
@@ -334,6 +390,9 @@ export const systemV0_8_2 = {
     "Unterhaltung",
     "Verführen",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for highest group defenses 
@@ -348,6 +407,9 @@ export const systemV0_8_2 = {
     "Schauspielerei",
     "Unterhaltung",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for highest group defenses plus number of targets
@@ -363,6 +425,9 @@ export const systemV0_8_2 = {
     "Gassenwissen",
     "Tierbeherrschung",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 
   /**
    * System ability names for lowest group defenses 
@@ -381,12 +446,77 @@ export const systemV0_8_2 = {
   ],
 
   /**
-   * Sstem ability names for durability Devotions
+   * System ability names for durability Devotions
    * @enum {string}
    */
   durabilityNames: [
     "durability",
     "unempfindlichkeit",
   ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
+
+  /**
+   * Item names for shields to set bow usage
+   * @enum {string}
+   */
+  shieldBowUsageNames: [
+    "Buckler",
+    "Farnschild",
+    "Kristallbuckler",
+  ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
+
+  /**
+   * Item names for bows
+   * @enum {string}
+   */
+  bowNames: [
+    "Kurzbogen",
+    "Langbogen",
+    "Windlingsbogen",
+    "Elfischer Kriegsbogen",
+  ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
+
+  /**
+   * Item names for bows
+   * @enum {string}
+   */
+  crossbowNames: [
+    "Leichte Armbrust",
+    "Mittlere Armbrust",
+  ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
+
+  /**
+   * Item names for bows
+   * @enum {string}
+   */
+  blowgunNames: [
+    "Blasrohr",
+  ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
+
+  /**
+   * Item names for bows
+   * @enum {string}
+   */
+  slingNames: [
+    "Schleuder",
+    "Trollschleuder",
+  ],
+  // missing Translations thread weaving names 
+  // polish
+  // french];
 };
 
