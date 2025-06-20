@@ -607,8 +607,10 @@
         "fire":                                    "TODO: Add translation"
       },
       "WeaponSubType": {
+        "blowgun":                                 "TODO: Add translation",
         "bow":                                     "TODO: Add translation",
-        "crossbow":                                "TODO: Add translation"
+        "crossbow":                                "TODO: Add translation",
+        "sling":                                   "TODO: Add translation"
       },
       "WeaponType": {
         "melee":                                   "Melee",
@@ -2350,6 +2352,46 @@
               "label":                             "TODO: Add translation"
             },
             "replacementEffect": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
+        "LearnSpell": {
+          "FIELDS": {
+            "freePatterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "learnDifficulty": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "lpCost": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraft": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "patterncraftSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacher": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherRank": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "teacherTestSuccessful": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "useRecoveryTest": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
