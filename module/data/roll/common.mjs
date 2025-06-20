@@ -76,7 +76,7 @@ export default class EdRollOptions extends SparseDataModel {
    * The type of test that this roll represents.
    * @type {string}
    */
-  static TEST_TYPE = "action";
+  static TEST_TYPE = "arbitrary";
 
   /**
    * The type of roll that this represents.
@@ -232,14 +232,14 @@ export default class EdRollOptions extends SparseDataModel {
         required: true,
         nullable: false,
         blank:    true,
-        initial:  "arbitrary",
+        initial:  "action",
         choices:  ED4E.ROLLS.testTypes,
       } ),
       rollType: new fields.StringField( {
         required: false,
         nullable: true,
         blank:    true,
-        initial:  "",
+        initial:  "arbitrary",
         choices:  ED4E.ROLLS.rollTypes,
       } ),
 

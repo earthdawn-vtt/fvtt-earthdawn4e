@@ -39,6 +39,9 @@ export default class AttuningRollOptions extends EdRollOptions {
           min:      1,
         },
       ),
+      grimoirePenalty: new fields.BooleanField( {
+        initial:  false,
+      } ),
     } );
   }
 
@@ -55,10 +58,13 @@ export default class AttuningRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _prepareStepData( data ) {
     const ability = fromUuidSync( data.attuningAbility );
-    return {
+    const stepData = {
       base:      ability.system.rankFinal,
-      modifiers: {},
     };
+    stepData.modifiers = ( data.attuningType === "grimoire" && data.grimoirePenalty )
+      ? { [ game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" ) ]: -2 }
+      : {};
+    return stepData;
   }
 
   /** @inheritDoc */
