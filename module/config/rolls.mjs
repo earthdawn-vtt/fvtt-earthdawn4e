@@ -61,6 +61,10 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.ability",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
+  arbitrary: {
+    label:            "ED.Rolls.Labels.arbitraryTestRoll",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/arbitrary-roll-flavor.hbs",
+  },
   attack: {
     label:            "ED.Config.RollTypes.attack",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
