@@ -72,7 +72,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
         availableGrimoires,
         "ed-button-select-grimoire",
         {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoire" ),
+          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
         },
       )
     );
@@ -101,7 +101,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
         availableSpells,
         "ed-button-select-spell",
         {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectSpell" ),
+          title: game.i18n.localize( "ED.Dialogs.Title.selectSpellToAttuneToGrimoire" ),
         },
       )
     );
