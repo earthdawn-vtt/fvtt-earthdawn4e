@@ -18,6 +18,13 @@
     localize=true
   }}
 
+  {{formGroup
+    systemFields.grimoire.fields.attunedSpell
+    name="system.grimoire.attunedSpell"
+    value=system.grimoire.attunedSpell
+    localize=true
+  }}
+
   {{#each system.grimoire.spells}}
     {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
   {{else}}

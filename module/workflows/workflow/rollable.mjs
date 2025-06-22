@@ -5,6 +5,7 @@
  */
 
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 /**
  * A mixin that adds roll-related functionality to a workflow.
@@ -80,7 +81,15 @@ export default function Rollable( WorkflowClass ) {
 
     async _processRoll() {
       if ( !this._roll ) return;
+
       // Process the roll results, this can be overridden by subclasses
+      await RollProcessor.process(
+        this._roll,
+        this._actor,
+        {
+          rollToMessage: false,
+        }
+      );
     }
 
     async _rollToChat() {

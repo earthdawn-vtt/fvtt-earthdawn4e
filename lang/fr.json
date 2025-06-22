@@ -330,6 +330,7 @@
       "Flavor": {
         "AttuningRollOptions":                     "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
+        "attuningRollOptions":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdownTest":                           "TODO: Add translation",
         "rollAbility":                             "TODO: Add translation",
@@ -1490,6 +1491,10 @@
         "Grimoire": {
           "FIELDS": {
             "grimoire": {
+              "attunedSpell": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
               "owner": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
@@ -2921,6 +2926,9 @@
         "lpDescription":                           "TODO: Add translation"
       },
       "RollPrompt": {
+        "Title": {
+          "attuneGrimoire":                        "TODO: Add translation"
+        },
         "devotion":                                "TODO: Add translation",
         "devotionStep":                            "TODO: Add translation",
         "difficulty":                              "TODO: Add translation",
@@ -2958,6 +2966,8 @@
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
         "selectExtraThreads":                      "TODO: Add translation",
+        "selectGrimoireToAttune":                  "TODO: Add translation",
+        "selectSpellToAttuneToGrimoire":           "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation"
@@ -3088,12 +3098,19 @@
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "TODO: Add translation",
+        "attuneAbilityNotFound":                   "TODO: Add translation",
         "formulaMalformedError":                   "TODO: Add translation",
         "formulaMissingReferenceWarn":             "TODO: Add translation",
         "grimoireAddNotAGrimoire":                 "TODO: Add translation",
         "grimoireAddNotASpell":                    "TODO: Add translation",
+        "grimoireAttuneAbilityNotFound":           "TODO: Add translation",
+        "grimoireSetActiveNotAGrimoire":           "TODO: Add translation",
+        "grimoireSetActiveNotASpell":              "TODO: Add translation",
+        "grimoireSetActiveNotInGrimoire":          "TODO: Add translation",
         "identifierError":                         "TODO: Add translation",
         "invalidElementSubtype":                   "TODO: Add translation",
+        "noGrimoiresAvailableToAttune":            "TODO: Add translation",
+        "noSpellsAvailableToAttune":               "TODO: Add translation",
         "singleton":                               "TODO: Add translation"
       },
       "Info": {
@@ -3125,6 +3142,7 @@
         "notImplementedYet":                       "TODO: Add translation",
         "piecemealArmorSizeExceeded":              "TODO: Add translation",
         "questorItemNotUpdated":                   "TODO: Add translation",
+        "spellAlreadyAttunedInGrimoire":           "TODO: Add translation",
         "warningEffectNoActor":                    "TODO: Add translation"
       }
     },
@@ -3135,6 +3153,7 @@
         "effectTestRoll":                          "TODO: Add translation"
       },
       "Modifiers": {
+        "grimoirePenalty":                         "TODO: Add translation",
         "stunRecoveryWillpower":                   "TODO: Add translation"
       },
       "baseValue":                                 "TODO: Add translation",
@@ -3198,8 +3217,6 @@
         "encumbranceHint":                         "TODO: Add translation"
       },
       "GameMechanics": {
-        "checkEnoughTestsOnRecovery":              "TODO: Add translation",
-        "checkEnoughTestsOnRecoveryHint":          "TODO: Add translation",
         "languages":                               "TODO: Add translation",
         "languagesHint":                           "TODO: Add translation",
         "minimumDifficulty":                       "TODO: Add translation",

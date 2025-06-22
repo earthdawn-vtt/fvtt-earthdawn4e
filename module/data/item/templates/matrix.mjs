@@ -2,7 +2,7 @@ import { ED4E } from "../../../../earthdawn4e.mjs";
 import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import DialogEd from "../../../applications/api/dialog.mjs";
-import AttuneWorkflow from "../../../workflows/workflow/attune-workflow.mjs";
+import AttuneMatrixWorkflow from "../../../workflows/workflow/attune-matrix-workflow.mjs";
 
 
 const { fields } = foundry.data;
@@ -342,13 +342,13 @@ export default class MatrixTemplate extends SystemDataModel {
       newActiveSpell = this.matrixSpell;
     } else {
       // Not attuned, try to attune a spell
-      const attuneWorkflow = new AttuneWorkflow(
+      const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
         this.containingActor,
         { firstMatrix: this.uuid },
       );
 
       // If the attune workflow is successful, try to select the active spell again
-      return ( await attuneWorkflow.execute() ) ? this.selectActiveSpell() : false;
+      return ( await attuneMatrixWorkflow.execute() ) ? this.selectActiveSpell() : false;
     }
 
     const updated = await this.parent?.update( {

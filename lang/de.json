@@ -328,8 +328,8 @@
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
       "Flavor": {
-        "AttuningRollOptions":                     "{actor} versucht ''{attuningItem}'' und benutzt dafür {attuningAbility}",
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
+        "attuningRollOptions":                     "{sourceActor} versucht ''{attuningItem}'' und benutzt dafür {attuningAbility}",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
@@ -1435,8 +1435,8 @@
               }
             },
             "edid": {
-              "hint":                              "Eindeutige ID des Items",
-              "label":                             "ID"
+              "hint":                              "Eindeutige ID die das Item im Earthdawn-System identifiziert",
+              "label":                             "ED-ID"
             },
             "summary": {
               "value": {
@@ -1503,6 +1503,10 @@
         "Grimoire": {
           "FIELDS": {
             "grimoire": {
+              "attunedSpell": {
+                "hint":                            "Zauber der in diesem Grimoire abgestimmt ist",
+                "label":                           "Abgestimmter Zauber"
+              },
               "owner": {
                 "hint":                            "Besitzer des Grimoires",
                 "label":                           "Besitzer"
@@ -2938,6 +2942,9 @@
         "lpDescription":                           "Beschreibung der Legendenprämie"
       },
       "RollPrompt": {
+        "Title": {
+          "attuneGrimoire":                        "Struktur Verstehen um Grimoire abzustimmen"
+        },
         "devotion":                                "Weihepunkt",
         "devotionStep":                            "Weihepunkt Stufe",
         "difficulty":                              "Schwierigkeit",
@@ -2975,6 +2982,8 @@
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
         "selectExtraThreads":                      "Wähle zusätzliche Fäden",
+        "selectGrimoireToAttune":                  "Wähle Grimoire zum Abstimmen",
+        "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie"
@@ -3027,8 +3036,8 @@
         "deleteLevel":                             "Lösche Stufe"
       },
       "Grimoire": {
-        "noSpells":                                "Keine Zauber verfügbar",
-        "otherGrimoire":                           "Andere Grimoire",
+        "noSpells":                                "Keine Zauber in diesem Grimoire. Ziehe Zauber hierher um sie dem Grimoire hinzuzufügen.",
+        "otherGrimoire":                           "Nicht das eigene Grimoire ",
         "ownGrimoire":                             "Eigenes Grimoire"
       },
       "Header": {
@@ -3105,12 +3114,19 @@
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
+        "attuneAbilityNotFound":                   "",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "grimoireAddNotAGrimoire":                 "Das Item ist kein Grimoire. Bitte überprüfe das Item.",
         "grimoireAddNotASpell":                    "Das Item ist kein Zauber. Bitte überprüfe das Item.",
+        "grimoireAttuneAbilityNotFound":           "Struktur Verstehen Fähigkeit nicht gefunden. Die ist notwendig um ein Grimoire abzustimmen.",
+        "grimoireSetActiveNotAGrimoire":           "Das Item ist kein Grimoire. Hier kann kein Zauber abgestimmt werden.",
+        "grimoireSetActiveNotASpell":              "Das Item ist kein Zauber. Das Grimoire kann nicht abgestimmt werden.",
+        "grimoireSetActiveNotInGrimoire":          "Der Zauber ist nicht im Grimoire enthalten. Es kann nicht abgestimmt werden.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
+        "noSpellsAvailableToAttune":               "Das Grimoire enthält keine Zauber, die abgestimmt werden können.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
       },
       "Info": {
@@ -3142,6 +3158,7 @@
         "notImplementedYet":                       "Diese Funktion ist noch nicht implementiert.",
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
+        "spellAlreadyAttunedInGrimoire":           "Der Zauber ist bereits im Grimoire abgestimmt.",
         "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
       }
     },
@@ -3152,6 +3169,7 @@
         "effectTestRoll":                          "Effektprobe"
       },
       "Modifiers": {
+        "grimoirePenalty":                         "Fremdes Grimoire",
         "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",

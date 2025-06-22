@@ -11,6 +11,12 @@ export default class AttuningRollOptions extends EdRollOptions {
     "ED.Data.Other.AttuningRollOptions",
   ];
 
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "attuning";
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -33,6 +39,9 @@ export default class AttuningRollOptions extends EdRollOptions {
           min:      1,
         },
       ),
+      grimoirePenalty: new fields.BooleanField( {
+        initial:  false,
+      } ),
     } );
   }
 
@@ -47,37 +56,27 @@ export default class AttuningRollOptions extends EdRollOptions {
   }
 
   /** @inheritDoc */
-  _initializeSource( data, options={} ) {
-    data.step ??= this._getStepData( data );
-    data.target ??= this._getTargetDifficulty( data );
-    data.strain ??= {
-      base: data.attuningType === "matrixOnTheFly" ? 1 : 0,
+  _prepareStepData( data ) {
+    const ability = fromUuidSync( data.attuningAbility );
+    const stepData = {
+      base:      ability.system.rankFinal,
     };
-    return super._initializeSource( data, options );
+    stepData.modifiers = ( data.attuningType === "grimoire" && data.grimoirePenalty )
+      ? { [ game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" ) ]: -2 }
+      : {};
+    return stepData;
   }
 
-  /**
-   * Retrieves step data based on the provided input data.
-   * @param {object} data The input data object containing relevant ability information.
-   * @param {string} data.attuningAbility The UUID of the ability with which to attune, "patterncraft" for grimoire,
-   *                                      "thread weaving" for matrix.
-   * @returns {object} An object containing the base rank and empty modifiers for the ability.
-   */
-  _getStepData( data ) {
-    const ability = fromUuidSync( data.attuningAbility );
+  /** @inheritDoc */
+  _prepareStrainData( data ) {
     return {
-      base:      ability.system.rankFinal,
+      base:      data.attuningType === "matrixOnTheFly" ? 1 : 0,
       modifiers: {},
     };
   }
 
-  /**
-   * Calculates the target difficulty for an attuning roll.
-   * @param {object} data - The data object containing spell information.
-   * @param {Array<string>} data.spells - Array of spell UUIDs to be attuned.
-   * @returns {object} The target difficulty containing base and modifiers.
-   */
-  _getTargetDifficulty( data ) {
+  /** @inheritDoc */
+  _prepareTargetDifficulty( data ) {
     return  {
       base:      0,
       modifiers: data.spellsToAttune?.reduce( ( acc, spellUuid ) => {
@@ -90,9 +89,9 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   async _getChatFlavor() {
     return game.i18n.format(
-      "ED.Chat.Flavor.AttuningRollOptions",
+      "ED.Chat.Flavor.attuningRollOptions",
       {
-        actor:           createContentAnchor( await fromUuid( this.rollingActorUuid ) ).outerHTML,
+        sourceActor:     createContentAnchor( await fromUuid( this.rollingActorUuid ) ).outerHTML,
         attuningItem:    ED4E.attuningType[ this.attuningType ],
         attuningAbility: createContentAnchor( await fromUuid( this.attuningAbility ) ).outerHTML,
       },
