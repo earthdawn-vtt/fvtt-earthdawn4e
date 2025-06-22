@@ -330,6 +330,17 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Checks if this actor has at least one matrix that can hold the given spell.
+   * @param {ItemEd} spell The spell to check for.
+   * @returns {boolean} True if there is at least one matrix that has a level >= the spell's level, false otherwise.
+   */
+  hasMatrixForSpell( spell ) {
+    return this.getMatrices().some(
+      matrix => matrix.system.matrix.level >= spell.system.level
+    );
+  }
+
+  /**
    * @param {('standard'|'blood'|'any')} [type] The type of wounds that is to be checked.
    * @returns {boolean} True if there is a positive amount of wounds of the given type marked on this actor, false otherwise.
    */
