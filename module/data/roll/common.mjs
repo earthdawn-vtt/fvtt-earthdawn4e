@@ -1,4 +1,4 @@
-import { sum } from "../../utils.mjs";
+import { lowerCaseFirstLetter, sum } from "../../utils.mjs";
 import getDice from "../../dice/step-tables.mjs";
 import ED4E from "../../config/_module.mjs";
 import MappingField from "../fields/mapping-field.mjs";
@@ -326,6 +326,26 @@ export default class EdRollOptions extends SparseDataModel {
   }
 
   /**
+   * Generates the chat flavor text for this roll. The localized key is 'ED.Chat.Flavor.' + the
+   * camelCase class name.
+   * @returns {string} The formatted chat flavor text for this roll.
+   */
+  _getChatFlavor() {
+    return game.i18n.format(
+      `ED.Chat.Flavor.${lowerCaseFirstLetter( this.constructor.name )}`,
+      this._getChatFlavorData( this.source ),
+    );
+  }
+
+  /**
+   * Generates the data object for the `format` method call of the chat flavor text.
+   * @returns {object} The data object containing the data for the call to {@link Localization.format}.
+   */
+  _getChatFlavorData() {
+    return {};
+  }
+
+  /**
    * Used when initializing this data model. Retrieves step data based on the provided input data.
    * @param {object} data The input data object containing relevant ability information.
    * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
@@ -404,7 +424,10 @@ export default class EdRollOptions extends SparseDataModel {
    * @returns {Promise<FlavorTemplateData>} Enhanced template data for the specific roll type
    */
   async getFlavorTemplateData( context ) {
-    return context;
+    return {
+      ...context,
+      customFlavor: context.customFlavor || this._getChatFlavor(),
+    };
   }
 
 }

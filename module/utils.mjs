@@ -1,7 +1,4 @@
-
-/* -------------------------------------------- */
-/*  Earthdawn                                   */
-/* -------------------------------------------- */
+// region Earthdawn
 
 import ED4E from "./config/_module.mjs";
 
@@ -32,9 +29,9 @@ export function getDefenseValue( attributeValue ) {
   return attributeValue <= 0 ? 0 : Math.ceil( attributeValue / 2 ) + 1;
 }
 
-/* -------------------------------------------- */
-/*  Foundry                                     */
-/* -------------------------------------------- */
+// endregion
+
+// region Foundry
 
 /**
  * Get all ED-IDs of all Items in the game world, optionally filtered by Item type.
@@ -294,9 +291,10 @@ export function staticStatusId( status ) {
   return status.padEnd( 16, "0" );
 }
 
-/* -------------------------------------------- */
-/*  View Helper                                 */
-/* -------------------------------------------- */
+// endregion
+
+// region View Helpers
+
 /**
  * 
  * @param {*} ms milliseconds
@@ -309,9 +307,9 @@ export async function delay( ms ) {
 
 }
 
-/* -------------------------------------------- */
-/*  Maths                                       */
-/* -------------------------------------------- */
+// endregion
+
+// region Maths
 
 /**
  * Computes the sum of the values in array.
@@ -321,8 +319,6 @@ export async function delay( ms ) {
 export function sum( arr ) {
   return arr.reduce( ( partialSum, a ) => partialSum + a, 0 );
 }
-
-/* -------------------------------------------- */
 
 /**
  * Computes the sum of a specific property's  values in an array of objects. The sum for only one property can be
@@ -347,9 +343,9 @@ export function inRange( value, min, max, includeLimits = true ) {
   return includeLimits ? value >= min && value <= max : value > min && value < max;
 }
 
-/* -------------------------------------------- */
-/*  Formatting                                  */
-/* -------------------------------------------- */
+// endregion
+
+// region Formatting
 
 /**
  * @description Converts a date object or integer to a string that can be used as value in a datetime input field.
@@ -360,9 +356,19 @@ export function dateToInputString( date ) {
   return ( new Date( date ) ).toISOString().substring( 0, 16 );
 }
 
-/* -------------------------------------------- */
-/*  Object Helpers                              */
-/* -------------------------------------------- */
+/**
+ * Converts the first letter of a string to lowercase.
+ * @param { string } str The string to be modified.
+ * @returns { string } The input string with its first letter converted to lowercase.
+ */
+export function lowerCaseFirstLetter( str ) {
+  if ( !str || str.length === 0 ) return str;
+  return str.charAt( 0 ).toLowerCase() + str.slice( 1 );
+}
+
+// endregion
+
+// region Object Helpers
 
 /**
  * Safely call a method if it exists on the object.
@@ -391,8 +397,6 @@ export function sortObjectEntries( obj, sortKey ) {
   return Object.fromEntries( sorted );
 }
 
-/* -------------------------------------------- */
-
 /**
  * Filter an object's entries by the given predicate (filter function). Creates
  * a new object with only entries that satisfy the predicate.
@@ -413,8 +417,6 @@ export function filterObject( obj, predicate ) {
   );
 }
 
-/* -------------------------------------------- */
-
 /**
  * Map an object's entries by the given function. Creates a new object with the
  * mapped entries according to the function.
@@ -434,8 +436,6 @@ export function mapObject( obj, mappingFunction ) {
   );
 }
 
-/* -------------------------------------------- */
-
 /**
  * Renames all keys of an object by prepending a specified prefix to each key.
  * @param {object} obj - The object whose keys are to be renamed.
@@ -450,8 +450,6 @@ export function renameKeysWithPrefix( obj ) {
   }
   return renamedObj;
 }
-
-/* -------------------------------------------- */
 
 /**
  * Retrieves the value of a given string property of an object which works for nested property names.
@@ -486,8 +484,6 @@ export function multiplyArray( arr, times ) {
   return Array.from( { length: times }, () => clonedArray ).flat();
 }
 
-/* -------------------------------------------- */
-
 /**
  * Creates an HTML document link for the provided UUID.
  * @param {string} uuid  UUID for which to produce the link.
@@ -496,8 +492,6 @@ export function multiplyArray( arr, times ) {
 export async function linkForUuid( uuid ) {
   return TextEditor._createContentLink( [ "", "UUID", uuid ] );
 }
-
-/* -------------------------------------------- */
 
 /**
  * Creates an HTML document link for the provided UUID.
@@ -525,9 +519,9 @@ export function linkForUuidSync( uuid ) {
     </a>`;
 }
 
-/* -------------------------------------------- */
-/*  Validators                                  */
-/* -------------------------------------------- */
+// endregion
+
+// region Validation
 
 /**
  * Ensure the provided string contains only the characters allowed in identifiers.
@@ -571,10 +565,9 @@ export const validators = {
   validateEdid:      validateEdid,
 };
 
+// endregion
 
-/* -------------------------------------------- */
-/*  Config Pre-Localization                     */
-/* -------------------------------------------- */
+// region Config Pre-localization
 
 /**
  * Storage for pre-localization configuration.
@@ -598,8 +591,6 @@ export function preLocalize( configKeyPath, { key, keys=[], sort=false }={} ) {
   _preLocalizationRegistrations[configKeyPath] = { keys, sort };
 }
 
-/* -------------------------------------------- */
-
 /**
  * Execute previously defined pre-localization tasks on the provided config object.
  * @param {object} config  The `CONFIG.ED4E` object to localize and sort. *Will be mutated.*
@@ -611,8 +602,6 @@ export function performPreLocalization( config ) {
     if ( settings.sort ) foundry.utils.setProperty( config, keyPath, sortObjectEntries( target, settings.keys[0] ) );
   }
 }
-
-/* -------------------------------------------- */
 
 /**
  * Localize the values of a configuration object by translating them in-place.
@@ -648,9 +637,9 @@ function _localizeObject( obj, keys ) {
   }
 }
 
-/* -------------------------------------------- */
-/*                    Migration                 */
-/* -------------------------------------------- */
+// endregion
+
+// region Migration
 
 /**
  * Determine the new target value of an item setting based on its name referenced in a config.
@@ -667,9 +656,9 @@ export function determineConfigValue( slugifiedName, configMappings ) {
   return;
 }
 
-/* -------------------------------------------- */
-/*  Handlebars -  Template - Helpers            */
-/* -------------------------------------------- */
+// endregion
+
+// region Handlebars - Template - Helpers
 
 /**
  * Define a set of template paths to preload.
@@ -890,3 +879,5 @@ export async function preloadHandlebarsTemplates() {
 
   return foundry.applications.handlebars.loadTemplates( paths );
 }
+
+// endregion
