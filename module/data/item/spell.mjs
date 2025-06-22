@@ -416,12 +416,21 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * Checks if the spell is known/learned by the given actor. This is defined as the spell being present in the actor's
+   * Checks if the spell is in any of the actor's grimoires.
+   * @param {ActorEd} actor - The actor to check for the spell.
+   * @returns {boolean} - Returns true if the spell is in any of the actor's grimoires, false otherwise.
+   */
+  inActorGrimoires( actor ) {
+    return !!actor.itemTypes.equipment.find( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+  }
+
+  /**
+   * Checks if the spell is learned by the given actor. This is defined as the spell being present in the actor's
    * items of type "spell".
    * @param {ActorEd} actor - The actor to check for the spell.
-   * @returns {boolean} - Returns the spell item if it is known/learned by the actor, false otherwise.
+   * @returns {boolean} - Returns the spell item if it is learned by the actor, false otherwise.
    */
-  knownBy( actor ) {
+  learnedBy( actor ) {
     if ( !actor ) return undefined;
 
     return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
