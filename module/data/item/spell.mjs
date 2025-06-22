@@ -22,6 +22,8 @@ export default class SpellData extends ItemDataModel.mixin(
   TargetTemplate
 )  {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -174,6 +176,8 @@ export default class SpellData extends ItemDataModel.mixin(
     return undefined;
   }
 
+  // endregion
+
   // region Properties
 
   /**
@@ -234,9 +238,9 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // region Methods
+
+  // region LP Tracking
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -300,9 +304,11 @@ export default class SpellData extends ItemDataModel.mixin(
     return learnedItem;
   }
 
-  // region Methods
+  // endregion
 
   // region Spellcasting
+
+  cast( caster, options = {} ) {}
 
   /**
    * Set woven threads to zero and empty the chosen extra threads.
@@ -403,16 +409,34 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
+  getAttunedMatrix() {
+    return this.containingActor?.items.find( item => {
+      return item.system.matrix?.activeSpell === this.parent.uuid;
+    } );
+  }
+
+  /**
+   * Checks if the spell is known/learned by the given actor. This is defined as the spell being present in the actor's
+   * items of type "spell".
+   * @param {ActorEd} actor - The actor to check for the spell.
+   * @returns {boolean} - Returns the spell item if it is known/learned by the actor, false otherwise.
+   */
+  knownBy( actor ) {
+    if ( !actor ) return undefined;
+
+    return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
+  }
+
   // endregion
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 
 }
