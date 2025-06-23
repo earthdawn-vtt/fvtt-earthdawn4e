@@ -397,11 +397,13 @@ export default class SpellData extends ItemDataModel.mixin(
       await roll.toMessage();
 
       if ( roll?.numSuccesses > 0 ) {
+        const wovenThreads = Math.min(
+          system.totalRequiredThreads,
+          system.wovenThreads + roll.numSuccesses
+        );
         this.parent.update( {
-          "system.threads.woven": Math.min(
-            system.totalRequiredThreads,
-            system.wovenThreads + roll.numSuccesses
-          ),
+          "system.threads.woven": wovenThreads,
+          "system.isWeaving":     wovenThreads < system.missingThreads,
         } );
       }
     }
