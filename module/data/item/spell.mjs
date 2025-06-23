@@ -411,7 +411,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
   getAttunedMatrix() {
     return this.containingActor?.items.find( item => {
-      return item.system.matrix?.activeSpell === this.parent.uuid;
+      return item.system.matrix?.spells.has( this.parent.uuid );
     } );
   }
 
