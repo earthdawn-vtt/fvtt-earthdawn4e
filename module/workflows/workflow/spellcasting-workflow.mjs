@@ -61,12 +61,6 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   _targets = [];
 
   /**
-   * Additional threads to weave
-   * @type {number}
-   */
-  _additionalThreads = 0;
-
-  /**
    * Results of thread weaving tests
    * @type {Array}
    */
@@ -107,6 +101,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       this.#chooseCastingMethod.bind( this ),
       this.#attuneSpell.bind( this ),
       this.#createCastingWorkflow.bind( this ),
+      this.#executeCastingWorkflow.bind( this ),
     );
   }
 
@@ -215,104 +210,34 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       );
     }
 
-    const CastingWorkflow = SpellcastingWorkflow.CASTING_WORKFLOW_TYPES[ this._castingMethod ];
-    if ( !CastingWorkflow ) {
+    this._CastingWorkflow = SpellcastingWorkflow.CASTING_WORKFLOW_TYPES[ this._castingMethod ];
+  }
+
+  async #executeCastingWorkflow() {
+    if ( !this._CastingWorkflow ) {
       throw new Error( `Unknown casting method: ${this._castingMethod}` );
     }
 
-    const castingWorkflow = new CastingWorkflow( this._actor, {
-      spell:               this._spell,
-      targets:             this._targets,
-      additionalThreads:   this._additionalThreads,
-      matrix:              this._matrix,
+    // Create the specialized casting workflow
+    const castingWorkflow = new this._CastingWorkflow( this._actor, {
+      spell:             this._spell,
+      matrix:            this._matrix,
     } );
 
-    await castingWorkflow.execute();
-
-    // Store results from the casting workflow
-    this._threadWeavingResults = castingWorkflow.threadWeavingResults;
-    this._spellcastingResult = castingWorkflow.spellcastingResult;
-    this._effectResult = castingWorkflow.effectResult;
-    this._rawMagicResults = castingWorkflow.rawMagicResults;
-
-    // Finalize the workflow
-    await this.finalizeWorkflow();
-  }
-
-  /**
-   * Creates a spellcasting roll
-   * @param {object} options - Options for the spellcasting roll
-   * @param {number} [options.stepModifier] - Modifier to the spellcasting step
-   * @returns {Promise<EdRoll>} The resulting roll
-   */
-  async createSpellcastingRoll( options = {} ) {
-    const { stepModifier = 0 } = options;
-
-    // Get the spellcasting talent step from the caster
-    const spellcastingTalent = this._actor.items.find( i =>
-      i.type === "talent" && i.name.includes( "Spellcasting" ) );
-
-    if ( !spellcastingTalent ) {
-      throw new WorkflowInterruptError( this,
-        game.i18n.localize( "ED.Notifications.Warn.spellcastingNoSpellcasting" ) );
+    try {
+      this._result = await castingWorkflow.execute();
+    } catch ( error ) {
+      console.error( `Error in ${this._castingMethod} casting workflow:`, error );
+      if ( error instanceof WorkflowInterruptError ) {
+        throw error; // Re-throw workflow interruptions
+      } else {
+        throw new WorkflowInterruptError(
+          this,
+          game.i18n.format( "ED.Notifications.Error.spellcastingWorkflowFailed", {
+            error: error.message
+          } )
+        );
+      }
     }
-
-    const baseStep = spellcastingTalent.system.step || 0;
-    const totalStep = baseStep + stepModifier;
-
-    // Create the roll options
-    const rollOptions = {
-      step: {
-        base:      baseStep,
-        modifiers: { modifier: stepModifier },
-        total:     totalStep
-      },
-      testType: "spellCasting",
-      rollType: "spellCasting",
-      actor:    this._actor,
-      item:     this._spell
-    };
-
-    // Create and evaluate the roll
-    const roll = new EdRoll( rollOptions );
-    await roll.evaluate( { async: true } );
-
-    return roll;
-  }
-
-  /**
-   * Determine the effect of the spell
-   * @returns {Promise<void>}
-   */
-  async determineEffect() {
-    // Determine spell effect and duration
-    // Base implementation - subclasses may override or extend
-  }
-
-  /**
-   * Apply any additional effects based on casting method
-   * @abstract
-   * @returns {Promise<void>}
-   */
-  async applyAdditionalEffects() {
-    // To be implemented by subclasses
-  }
-
-  /**
-   * Finalize the workflow and set the result
-   * @returns {Promise<void>}
-   */
-  async finalizeWorkflow() {
-    this._result = {
-      caster:               this._actor,
-      spell:                this._spell,
-      targets:              this._targets,
-      threadWeavingResults: this._threadWeavingResults,
-      spellcastingResult:   this._spellcastingResult,
-      effectResult:         this._effectResult,
-      additionalEffects:    this._rawMagicResults,
-      success:              this._spellcastingResult?.success && this._effectResult
-    };
   }
 }
-

@@ -8,6 +8,7 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import { SelectExtraThreadsPrompt } from "../../applications/workflow/_module.mjs";
 import ThreadWeavingRollOptions from "../roll/weaving.mjs";
 import { RollPrompt } from "../../applications/global/_module.mjs";
+import SpellcastingRollOptions from "../roll/spellcasting.mjs";
 
 
 const { fields } = foundry.data;
@@ -316,7 +317,36 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // region Spellcasting
 
-  cast( caster, options = {} ) {}
+  async cast( caster, spellcastingAbility ) {
+    if ( !this.isWeavingComplete ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.spellNotReadyToCast" ) );
+      return;
+    }
+
+    const spellcastingRollOptions = SpellcastingRollOptions.fromActor(
+      {
+        spell:               this.parent.uuid,
+        spellcastingAbility: spellcastingAbility.uuid,
+      },
+      caster,
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      spellcastingRollOptions,
+      {
+        rollData: this.containingActor.getRollData(),
+      },
+    );
+    await roll.toMessage();
+
+    await this.parent.update( {
+      "system.isWeaving":     false,
+      "system.threads.woven": 0,
+      "system.threads.extra": [],
+    } );
+
+    return roll;
+  }
 
   /**
    * Set woven threads to zero and empty the chosen extra threads.
@@ -347,7 +377,7 @@ export default class SpellData extends ItemDataModel.mixin(
    * this does nothing.
    * @param {ItemEd} threadWeavingAbility The ability used for weaving threads to this spell.
    * @param {ItemEd} [matrix] The matrix this spell is attuned to, if any.
-   * @returns {Promise<void>}
+   * @returns {Promise<EdRoll|undefined>} Returns the roll made for weaving threads, or undefined if no roll was made.
    */
   async weaveThreads( threadWeavingAbility, matrix ) {
     let system = this;
@@ -380,14 +410,6 @@ export default class SpellData extends ItemDataModel.mixin(
           modifiers: {},
           public:    true,
         },
-        chatFlavor: game.i18n.format(
-          "ED.Chat.Flavor.threadWeaving",
-          {
-            sourceActor: await fromUuid( abilityRollOptions.rollingActorUuid ),
-            spell:       system.parent.name,
-            step:        abilityRollOptions.totalStep,
-          }
-        ),
         rollType:   "threadWeaving",
         spellUuid:  system.parent.uuid,
         threads:    {
@@ -399,7 +421,7 @@ export default class SpellData extends ItemDataModel.mixin(
       const roll = await RollPrompt.waitPrompt(
         weavingRollOptions,
         {
-          rollData: system.parent.getRollData(),
+          rollData: system.containingActor.getRollData(),
         },
       );
       await roll.toMessage();
@@ -409,10 +431,12 @@ export default class SpellData extends ItemDataModel.mixin(
           system.totalRequiredThreads,
           system.wovenThreads + roll.numSuccesses
         );
-        this.parent.update( {
+        await this.parent.update( {
           "system.threads.woven": wovenThreads,
         } );
       }
+
+      return roll;
     }
   }
 

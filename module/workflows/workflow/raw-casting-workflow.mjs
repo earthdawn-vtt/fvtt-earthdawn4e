@@ -7,6 +7,7 @@ import Rollable from "./rollable.mjs";
 
 /**
  * Handles the workflow for casting a spell using raw magic
+ * @implements {BaseCastingWorkflow}
  */
 export default class RawCastingWorkflow extends Rollable( Workflow ) {
   /* /!**
@@ -391,6 +392,193 @@ export default class RawCastingWorkflow extends Rollable( Workflow ) {
       success: success,
       step:    horrorMarkStep,
       target:  casterMysticDefense
+    };
+  } */
+/*
+  /!**
+   * Additional results specific to raw magic
+   * @type {object}
+   *!/
+  _aftermathResults = null;
+
+  /!**
+   * @param {SpellcastingWorkflowOptions} options
+   *!/
+  constructor( options = {} ) {
+    // Ensure casting method is set to raw
+    options.castingMethod = "raw";
+    super( options );
+
+    // Raw casting specific properties
+    this._astralSpaceType = this._rawData?.astralSpaceType || "safe";
+  }
+
+  /!**
+   * Execute the full workflow for raw casting
+   * @returns {Promise<object>} The result of the casting
+   *!/
+  async execute() {
+    try {
+      await this._preWeaveThreads();
+      await this._weaveThreads();
+      await this.preCastSpell();
+      await this._castSpell();
+      await this._applyEffect();
+      await this._handleAftermath();
+      return this._setResult();
+    } catch ( error ) {
+      console.error( "Raw casting workflow error:", error );
+      throw error;
+    }
+  }
+
+  /!**
+   * Prepare for thread weaving
+   * Raw casting doesn't require special preparation
+   * @override
+   *!/
+  async preWeaveThreads() {
+    // Warn the caster about the dangers of raw magic
+    console.log( `Casting with raw magic in ${this._astralSpaceType} astral space. This may result in harmful effects.` );
+  }
+
+  /!**
+   * Weave threads for the spell
+   * @override
+   *!/
+  async weaveThreads() {
+    const requiredThreads = this._spell.system.threads?.required || 0;
+    const totalThreads = requiredThreads + this._additionalThreads;
+
+    if ( totalThreads <= 0 ) {
+      return;
+    }
+
+    // Handle thread weaving for each required thread
+    for ( let i = 0; i < totalThreads; i++ ) {
+      // Create a thread weaving roll
+      const threadWeavingRoll = await this.createThreadWeavingRoll( { stepModifier: 0 } );
+
+      // Determine success based on the roll result vs difficulty
+      const difficultyTarget = this._spell.system.threadDifficulty || this._spell.system.circle + 5;
+      const isSuccess = threadWeavingRoll.total >= difficultyTarget;
+
+      const threadWeavingResult = {
+        roll:             threadWeavingRoll,
+        success:          isSuccess,
+        threadIndex:      i,
+        difficultyTarget: difficultyTarget
+      };
+
+      this._threadWeavingResults.push( threadWeavingResult );
+
+      // If thread weaving fails, the workflow is interrupted
+      if ( !isSuccess ) {
+        throw new WorkflowInterruptError( this,
+          game.i18n.format( "ED.Notifications.Warn.spellcastingThreadWeavingFailed", {
+            threadNumber: i + 1
+          } ) );
+      }
+    }
+  }
+
+  /!**
+   * Prepare for spellcasting
+   * @override
+   *!/
+  async preCastSpell() {
+    // Raw casting doesn't need special preparation beyond thread weaving
+  }
+
+  /!**
+   * Cast the spell using raw magic
+   * @override
+   *!/
+  async castSpell() {
+    // Create a spellcasting roll
+    const spellcastingRoll = await this.createSpellcastingRoll( { stepModifier: 0 } );
+
+    // Determine success
+    const difficultyTarget = this._spell.system.difficulty ||
+                           ( this._targets.length > 0 ? this._targets[0].system.defense?.mystic?.value : 0 ) ||
+                           this._spell.system.circle + 5;
+
+    const isSuccess = spellcastingRoll.total >= difficultyTarget;
+
+    this._spellcastingResult = {
+      roll:             spellcastingRoll,
+      success:          isSuccess,
+      difficultyTarget: difficultyTarget,
+      extraSuccesses:   Math.max( 0, Math.floor( ( spellcastingRoll.total - difficultyTarget ) / 5 ) )
+    };
+
+    if ( !isSuccess ) {
+      throw new WorkflowInterruptError( this,
+        game.i18n.localize( "ED.Notifications.Warn.spellcastingTestFailed" ) );
+    }
+  }
+
+  /!**
+   * Apply the spell effect
+   * @returns {Promise<object>} The effect result
+   *!/
+  async applyEffect() {
+    // Implementation for applying the spell effect
+    this._effectResult = {
+      targets: this._targets,
+      effect:  "Applied spell effect" // Placeholder for actual effect logic
+    };
+    return this._effectResult;
+  }
+
+  /!**
+   * Handle aftermath of raw casting (strain, feedback, etc.)
+   * @returns {Promise<object>} The aftermath results
+   *!/
+  async handleAftermath() {
+    if ( !this._sufferRawConsequences ) return null;
+
+    // Calculate and apply raw magic consequences
+    const consequenceRoll = await this.roll( {
+      actor:        this._actor,
+      attribute:    "willpower",
+      stepModifier: 0
+    } );
+
+    this._aftermathResults = {
+      roll:         consequenceRoll,
+      consequences: this._determineRawConsequences( consequenceRoll )
+    };
+
+    return this._aftermathResults;
+  }
+
+  /!**
+   * Determine consequences of raw casting based on roll
+   * @private
+   * @param {Roll} roll The roll result
+   * @returns {object} The consequences
+   *!/
+  _determineRawConsequences( roll ) {
+    // Placeholder for actual consequence determination logic
+    return {
+      strain:   Math.max( 1, this._spell.system.circle ),
+      feedback: roll.total < 10
+    };
+  }
+
+  /!**
+   * Get the complete result of this casting workflow
+   * @returns {object} The complete casting result
+   *!/
+  getResult() {
+    return {
+      threadWeavingResults: this._threadWeavingResults || [],
+      spellcastingResult:   this._spellcastingResult || null,
+      effectResult:         this._effectResult || null,
+      aftermathResults:     this._aftermathResults || null,
+      castingMethod:        "raw",
+      astralSpaceType:      this._astralSpaceType
     };
   } */
 }
