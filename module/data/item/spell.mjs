@@ -189,6 +189,14 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
+   * Is this spell ready to be cast?
+   * @returns {boolean} True if the spell is weaving and has all required threads, false otherwise.
+   */
+  get isWeavingComplete() {
+    return this.isWeaving && this.wovenThreads >= this.totalRequiredThreads;
+  }
+
+  /**
    * @description The difficulty number to dispel this spell.
    * @type {number}
    */
@@ -403,7 +411,6 @@ export default class SpellData extends ItemDataModel.mixin(
         );
         this.parent.update( {
           "system.threads.woven": wovenThreads,
-          "system.isWeaving":     wovenThreads < system.missingThreads,
         } );
       }
     }
