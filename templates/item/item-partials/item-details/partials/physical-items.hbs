@@ -1,14 +1,11 @@
 {{!-- Blood Magic Damage --}}
 {{formField systemFields.bloodMagicDamage name="system.bloodMagicDamage" value=item.system.bloodMagicDamage localize=true}}
 {{!-- Price and Currency --}}
-<div class="denomination__value-currency">
-    <div class="denomination__value">
+
         {{formField systemFields.price.fields.value name="system.price.value" value=item.system.price.value localize=true}}
-    </div>
-    <div class="denomination__currency">
+{{!-- Denomination --}}
         {{formInput systemFields.price.fields.denomination name="system.price.denomination" value=item.system.price.denomination}}
-    </div>
-</div>
+
 {{!-- weight --}}
 {{formField systemFields.weight.fields.value name="system.weight.value" value=item.system.weight.value localize=true}}
 {{!-- Availability --}}

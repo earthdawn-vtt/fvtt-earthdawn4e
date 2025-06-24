@@ -55,11 +55,11 @@ export const systemV0_8_2 = {
    * @enum {string}
    */
   availability: [
-    "availabilityeveryday",
-    "availabilityaverage",
-    "availabilityunusual",
-    "availabilityrare",
-    "availabilityveryrare",
+    [ "availabilityeveryday", "everyday" ],
+    [ "availabilityaverage", "average" ],
+    [ "availabilityunusual", "unusual" ],
+    [ "availabilityrare", "rare" ],
+    [ "availabilityveryrare", "veryrare" ],
   ],
 
   /**
