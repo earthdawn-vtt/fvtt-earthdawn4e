@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import ED4E from "../../config/_module.mjs";
 
 export default class SpellcastingRollOptions extends EdRollOptions {
 
@@ -42,9 +43,14 @@ export default class SpellcastingRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _prepareStepData( data ) {
     const ability = fromUuidSync( data.spellcastingAbility );
+    const actor = fromUuidSync( data.rollingActorUuid );
     return {
       base:      ability.system.rankFinal,
-      modifiers: {},
+      modifiers: {
+        [ ED4E.EFFECTS.globalBonuses.allSpellcasting.label ]: actor.system.globalBonuses.allSpellcasting.value,
+        [ ED4E.EFFECTS.globalBonuses.allSpellTests.label ]:   actor.system.globalBonuses.allSpellTests.value,
+        [ ED4E.EFFECTS.globalBonuses.allTests.label ]:        actor.system.globalBonuses.allTests.value,
+      },
     };
   }
 
