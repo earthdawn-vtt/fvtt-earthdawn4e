@@ -256,11 +256,7 @@ export default class ActorEd extends Actor {
    * @returns {ItemEd|null} The discipline item, or null if none was found.
    */
   getDisciplineForSpellcastingType( spellcastingType ) {
-    const threadWeavingTalent = this.getItemsByEdid(
-      getSetting( "edidThreadWeaving" ),
-    ).find(
-      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
-    );
+    const threadWeavingTalent = this.getThreadWeavingByCastingType( spellcastingType );
     if ( !threadWeavingTalent ) return null;
 
     return fromUuidSync( threadWeavingTalent.system.source?.class );
@@ -319,6 +315,14 @@ export default class ActorEd extends Actor {
    */
   getSingleItemByEdid( edid, type ) {
     return this.getItemsByEdid( edid, type )[0];
+  }
+
+  getThreadWeavingByCastingType( spellcastingType ) {
+    return this.getItemsByEdid(
+      getSetting( "edidThreadWeaving" ),
+    ).find(
+      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
+    );
   }
 
   /**
