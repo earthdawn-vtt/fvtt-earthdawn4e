@@ -40,6 +40,25 @@ Hooks.on('hotReload', async ({ content, extension, packageId, packageType, path 
 });
 /* eslint-enable */
 
+export {
+  ACTIONS,
+  ACTORS,
+  CHAT,
+  COMBAT,
+  DOCUMENT_DATA,
+  EFFECTS,
+  ITEMS,
+  LEGEND,
+  MAGIC,
+  QUANTITIES,
+  ROLLS,
+  SOCKETS,
+  STATUSES,
+  SYSTEM,
+  MIGRATIONS,
+  WORKFLOWS
+};
+
 // Namespace Configuration Values
 const ED4E = {
   // Need to write this out explicitly since the imported module namespaces are
