@@ -51,14 +51,14 @@
 
             <!-- Level Number -->
             <div class="title-level-number">
-              {{formField this.schema.fields.level name=(concat "system.advancement.levels." @index ".level") value=this.level readonly=true hint="" localize=true}}
+              {{formField this.schema.fields.level name=(concat "system.advancement.levels." @index ".level") value=this.level readonly=true label=("ED.Data.Item.Class.FIELDS.resourceStep") hint=("ED.Data.Item.Class.FIELDS.resourceStep") localize=true}}
             </div>
 
             <!-- Tier -->
-            {{formField this.schema.fields.tier name=(concat "system.advancement.levels." @index ".tier") value=this.tier required=true}}
+            {{formField this.schema.fields.tier name=(concat "system.advancement.levels." @index ".tier") label=("ED.Data.Item.Class.FIELDS.tier") hint=("ED.Data.Item.Class.FIELDS.tier") value=this.tier required=true}}
 
             <!-- Resource Step -->
-            {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") value=this.resourceStep required=true}}
+            {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") label=("ED.Data.Item.Class.FIELDS.resourceStep") hint=("ED.Data.Item.Class.FIELDS.resourceStep") value=this.resourceStep required=true}}
 
             <!-- Class Talents -->
             <div class="form-group class-abilities">
