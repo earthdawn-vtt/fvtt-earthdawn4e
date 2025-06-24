@@ -328,7 +328,6 @@
         "takeDamageTitle":                         "TODO: Add translation"
       },
       "Flavor": {
-        "AttuningRollOptions":                     "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
@@ -1382,6 +1381,14 @@
         "Class": {
           "FIELDS": {
             "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
