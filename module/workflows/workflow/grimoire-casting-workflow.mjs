@@ -1,5 +1,4 @@
-import Workflow from "./workflow.mjs";
-import Rollable from "./rollable.mjs";
+import BaseCastingWorkflow from "./base-casting-workflow.mjs";
 
 /**
  * @typedef {import("./spellcasting-workflow.mjs").SpellcastingWorkflowOptions} SpellcastingWorkflowOptions
@@ -7,8 +6,15 @@ import Rollable from "./rollable.mjs";
 
 /**
  * Handles the workflow for casting a spell from a grimoire
+ * @augments BaseCastingWorkflow
  */
-export default class GrimoireCastingWorkflow extends Rollable( Workflow ) {
+export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
+
+  constructor() {
+    super();
+    throw new Error( "RawCastingWorkflow: Not implemented yet." );
+  }
+
   /* /!**
    * @param {SpellcastingWorkflowOptions} options
    *!/

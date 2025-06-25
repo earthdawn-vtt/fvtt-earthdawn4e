@@ -1,5 +1,4 @@
-import Workflow from "./workflow.mjs";
-import Rollable from "./rollable.mjs";
+import BaseCastingWorkflow from "./base-casting-workflow.mjs";
 
 /**
  * @typedef {import("./spellcasting-workflow.mjs").SpellcastingWorkflowOptions} SpellcastingWorkflowOptions
@@ -7,9 +6,15 @@ import Rollable from "./rollable.mjs";
 
 /**
  * Handles the workflow for casting a spell using raw magic
- * @implements {BaseCastingWorkflow}
+ * @augments {BaseCastingWorkflow}
  */
-export default class RawCastingWorkflow extends Rollable( Workflow ) {
+export default class RawCastingWorkflow extends BaseCastingWorkflow {
+
+  constructor() {
+    super();
+    throw new Error( "RawCastingWorkflow: Not implemented yet." );
+  }
+
   /* /!**
    * The type of astral space (safe, open, tainted, corrupt)
    * @type {string}
@@ -394,7 +399,8 @@ export default class RawCastingWorkflow extends Rollable( Workflow ) {
       target:  casterMysticDefense
     };
   } */
-/*
+
+  /*
   /!**
    * Additional results specific to raw magic
    * @type {object}
