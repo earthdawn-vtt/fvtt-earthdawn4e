@@ -329,7 +329,7 @@
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
-        "attuningRollOptions":                     "{sourceActor} versucht ''{attuningItem}'' und benutzt dafür {attuningAbility}",
+        "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
@@ -338,9 +338,10 @@
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
+        "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
-        "threadWeaving":                           "{sourceActor} webt Fäden für \"{spell}\" ({step})",
+        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell} ({step})",
         "undoDamage":                              "Setzte den Schaden zurück"
       },
       "Header": {
@@ -2578,6 +2579,10 @@
             }
           }
         },
+        "SpellcastingRollOptions": {
+          "FIELDS": {
+          }
+        },
         "ThreadBase": {
           "FIELDS": {
             "characteristics": {
@@ -2720,14 +2725,18 @@
         "free":                                    "Kostenlos",
         "fullRest":                                "Vollständige Rast",
         "goBack":                                  "Zurück",
+        "grimoireCasting":                         "Grimoire",
         "learn":                                   "Lernen",
         "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
+        "matrixCastingAlreadyAttuned":             "Matrix (abgestimmt)",
+        "matrixCastingToAttune":                   "Matrix (neu abstimmen)",
         "nextStep":                                "Nächster Schritt",
         "noAbility":                               "Keine Fähigkeit vorhanden",
         "noDiscipline":                            "Keine Disziplin ausgewählt",
         "notAgain":                                "Zeige diese Nachricht nicht noch einmal",
         "ok":                                      "OK",
         "previousStep":                            "Vorheriger Schritt",
+        "rawCasting":                              "Rohe Magie",
         "reattuneOnTheFly":                        "Neu abstimmen während des Spiels",
         "recoverStun":                             "Erholung von Betäubungsschaden",
         "recovery":                                "Erholung",
@@ -2981,6 +2990,7 @@
         "lpLearnKnack":                            "Lerne Kniff",
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
+        "selectCastingMethod":                     "Zaubermethode wählen",
         "selectExtraThreads":                      "Wähle zusätzliche Fäden",
         "selectGrimoireToAttune":                  "Wähle Grimoire zum Abstimmen",
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
@@ -2997,6 +3007,7 @@
       "damageStandard":                            "Tödlicher Schaden",
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
+      "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
@@ -3114,7 +3125,6 @@
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
-        "attuneAbilityNotFound":                   "",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
         "grimoireAddNotAGrimoire":                 "Das Item ist kein Grimoire. Bitte überprüfe das Item.",
@@ -3125,9 +3135,13 @@
         "grimoireSetActiveNotInGrimoire":          "Der Zauber ist nicht im Grimoire enthalten. Es kann nicht abgestimmt werden.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
+        "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
         "noSpellsAvailableToAttune":               "Das Grimoire enthält keine Zauber, die abgestimmt werden können.",
-        "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben."
+        "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
+        "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
+        "spellcastingWorkflowFailed":              ""
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
@@ -3159,6 +3173,7 @@
         "piecemealArmorSizeExceeded":              "Maximale Menge an stückweiser Rüstung erreicht. Leg andere Teile ab um das neue Stück auszurüsten.",
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
         "spellAlreadyAttunedInGrimoire":           "Der Zauber ist bereits im Grimoire abgestimmt.",
+        "spellNotReadyToCast":                     "Der Zauber ist nicht bereit zum Wirken. Es fehlen noch Fäden.",
         "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
       }
     },
