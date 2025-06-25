@@ -12,6 +12,7 @@ import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
  * @typedef {object} SpellcastingWorkflowOptions
  * @property {Item} spell - The spell being cast
  * @property {"raw"|"grimoire"|"matrix"} [castingMethod] - The method used to cast the spell (matrix, grimoire, raw)
+ * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
  * @property {Actor[]} [targets] - The targets of the spell
  * @property {number} [additionalThreads=0] - Additional threads to weave
  */
@@ -85,6 +86,12 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   _rawMagicResults = null;
 
   /**
+   * Whether to stop the workflow after thread weaving
+   * @type {boolean}
+   */
+  _stopOnWeaving;
+
+  /**
    * @override
    * @param {ActorEd} caster The actor casting the spell
    * @param {WorkflowOptions & SpellcastingWorkflowOptions} options Options for the spellcasting workflow
@@ -94,8 +101,8 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     this._spell = options.spell;
     this._matrix = options.spell.system.getAttunedMatrix();
     this._targets = options.targets || [];
-    this._additionalThreads = options.additionalThreads || 0;
     this._castingMethod = options.castingMethod;
+    this._stopOnWeaving = options.stopOnWeaving ?? true;
 
     this._steps.push(
       this.#chooseCastingMethod.bind( this ),
@@ -222,6 +229,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     const castingWorkflow = new this._CastingWorkflow( this._actor, {
       spell:             this._spell,
       matrix:            this._matrix,
+      stopOnWeaving:     this._stopOnWeaving,
     } );
 
     try {

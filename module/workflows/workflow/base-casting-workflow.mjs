@@ -37,7 +37,7 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
    * Whether to stop the workflow after thread weaving is required
    * @type {boolean}
    */
-  _stopOnWeaving = true;
+  _stopOnWeaving;
 
   /**
    * The ability used for thread weaving
@@ -60,7 +60,7 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
       throw new Error( "CastingWorkflowInterface is an abstract class and cannot be instantiated directly." );
     }
     super( caster, options );
-    this.stopOnWeaving = options.stopOnWeaving ?? true;
+    this._stopOnWeaving = options.stopOnWeaving ?? true;
   }
 
   /**
