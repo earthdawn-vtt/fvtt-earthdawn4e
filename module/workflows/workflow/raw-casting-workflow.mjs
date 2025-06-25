@@ -82,7 +82,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
       // If thread weaving fails, the workflow is interrupted
       if ( !isSuccess ) {
         throw new WorkflowInterruptError( this,
-          game.i18n.format( "ED.Notifications.Warn.spellcastingThreadWeavingFailed", {
+          game.i18n.format( ".", {
             threadNumber: i + 1
           } ) );
       }
@@ -121,7 +121,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
 
     if ( !isSuccess ) {
       throw new WorkflowInterruptError( this,
-        game.i18n.localize( "ED.Notifications.Warn.spellcastingTestFailed" ) );
+        game.i18n.localize( "" ) );
     }
   }
 
@@ -481,7 +481,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
       // If thread weaving fails, the workflow is interrupted
       if ( !isSuccess ) {
         throw new WorkflowInterruptError( this,
-          game.i18n.format( "ED.Notifications.Warn.spellcastingThreadWeavingFailed", {
+          game.i18n.format( "", {
             threadNumber: i + 1
           } ) );
       }
@@ -520,7 +520,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
 
     if ( !isSuccess ) {
       throw new WorkflowInterruptError( this,
-        game.i18n.localize( "ED.Notifications.Warn.spellcastingTestFailed" ) );
+        game.i18n.localize( "" ) );
     }
   }
 

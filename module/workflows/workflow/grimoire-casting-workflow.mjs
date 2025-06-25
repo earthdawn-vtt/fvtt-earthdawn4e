@@ -45,7 +45,7 @@ export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
 
     if ( !grimoire ) {
       throw new WorkflowInterruptError( this,
-        game.i18n.localize( "ED.Notifications.Warn.spellcastingNoGrimoire" ) );
+        game.i18n.localize( "" ) );
     }
 
     // Check if the grimoire contains the spell
@@ -57,7 +57,7 @@ export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
 
     if ( !grimoireContainsSpell ) {
       throw new WorkflowInterruptError( this,
-        game.i18n.format( "ED.Notifications.Warn.spellcastingGrimoireDoesNotContainSpell", {
+        game.i18n.format( "", {
           spell: this._spell.name
         } ) );
     }
@@ -101,7 +101,7 @@ export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
       // If thread weaving fails, the workflow is interrupted
       if ( !isSuccess ) {
         throw new WorkflowInterruptError( this,
-          game.i18n.format( "ED.Notifications.Warn.spellcastingThreadWeavingFailed", {
+          game.i18n.format( "", {
             threadNumber: i + 1
           } ) );
       }
@@ -146,7 +146,7 @@ export default class GrimoireCastingWorkflow extends BaseCastingWorkflow {
 
     if ( !isSuccess ) {
       throw new WorkflowInterruptError( this,
-        game.i18n.localize( "ED.Notifications.Warn.spellcastingTestFailed" ) );
+        game.i18n.localize( "" ) );
     }
   }
 
