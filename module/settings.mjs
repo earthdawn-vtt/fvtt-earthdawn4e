@@ -53,6 +53,20 @@ function getEdidSettingKey( edidName ) {
 export default function registerSystemSettings() {
 
   /* -------------------------------------------------------------------------------- */
+  /*                                 System Migration                                 */
+  /* -------------------------------------------------------------------------------- */
+
+  // register the system version is not shown, it is a parameter which will be overwritten with the current version
+  // every time a system update is done. This is used to track the migration of the system.
+  game.settings.register( "ed4e", "systemMigrationVersion", {
+    name:    "System Migration Version",
+    scope:   "world",
+    config:  false,
+    type:    String,
+    default: "0.0.0"
+  } );
+
+  /* -------------------------------------------------------------------------------- */
   /*                                      ED-IDs                                      */
   /* -------------------------------------------------------------------------------- */
 

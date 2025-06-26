@@ -1,11 +1,28 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
+import { migrateWorld } from "../system/migration.mjs";
 
 /**
  * TODO
  */
 export default function () {
   Hooks.once( "ready", async () => {
+
+    /* -------------------------------------------- */
+    /*  System Migration                            */
+    /* -------------------------------------------- */
+    // this hook checks and compares the current system version with the system migration version stored in the settings.
+    // If the current version is newer, it will run the migration function and update the system migration version in the settings.
+    // This is used to ensure that the system is always up to date with the latest changes
+    if ( game.user.isGM ) {
+      const currentVersion = game.system.version;
+      const previousVersion = game.settings.get( "ed4e", "systemMigrationVersion" );
+      
+      if ( foundry.utils.isNewerVersion( currentVersion, previousVersion ) ) {
+        await migrateWorld( currentVersion, previousVersion );
+        await game.settings.set( "ed4e", "systemMigrationVersion", currentVersion );
+      }
+    }
 
 
     /* -------------------------------------------- */
