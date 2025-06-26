@@ -61,7 +61,7 @@ export default function registerSystemSettings() {
   game.settings.register( "ed4e", "systemMigrationVersion", {
     name:    "System Migration Version",
     scope:   "world",
-    config:  false,
+    config:  true,
     type:    String,
     default: "0.0.0"
   } );

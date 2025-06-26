@@ -2,6 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import DescriptionMigration from "./migration/old-system-V082/description.mjs";
 
 /**
  * Data model template with information on items that are used to represent custom active effects.
@@ -30,7 +31,16 @@ export default class KnackKarmaData extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    // sourceTalent
+    // minLevel
+    // lpCost
+    // restrictions
+    // requirements
+        
+    // Migrate description
+    DescriptionMigration.migrateData( source );
+    
+    source.restrictions = [];
+    source.requirements = [];
   }
 }

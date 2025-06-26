@@ -1,3 +1,7 @@
+import ActionMigration from "./migration/old-system-V082/action.mjs";
+import AttributeMigration from "./migration/old-system-V082/attribute.mjs";
+import DescriptionMigration from "./migration/old-system-V082/description.mjs";
+import DifficultyMigration from "./migration/old-system-V082/difficulty.mjs";
 import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
@@ -68,7 +72,19 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    // Migrate action
+    ActionMigration.migrateData( source );
+    
+    // Migrate Attributes
+    AttributeMigration.migrateData( source );
+    
+    // Migrate description
+    DescriptionMigration.migrateData( source );
+    
+    // Migrate minDifficulty (only if source.difficulty is not set)
+    DifficultyMigration.migrateData( source );
+
+    source.restrictions = [];
+    source.requirements = [];
   }
 }

@@ -1,4 +1,5 @@
 import ManeuverData from "./maneuver.mjs";
+import DescriptionMigration from "./migration/old-system-V082/description.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 
@@ -29,7 +30,16 @@ export default class KnackManeuverData extends ManeuverData.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
+    // sourceTalent
+    // minLevel
+    // lpCost
+    // restrictions
+    // requirements
+    
+    // Migrate description
+    DescriptionMigration.migrateData( source );
+    
+    source.restrictions = [];
+    source.requirements = [];
   }
 }

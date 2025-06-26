@@ -8,6 +8,7 @@ import AvailabilityMigration from "./availability.mjs";
 import PriceMigration from "./price.mjs";
 import WeightMigration from "./weight.mjs";
 import UsableItemMigration from "./usable-items.mjs";
+import KnackMigration from "./knacks.mjs";
 
 export {
   AttributeMigration,
@@ -20,4 +21,5 @@ export {
   PriceMigration,
   WeightMigration,
   UsableItemMigration,
+  KnackMigration,
 };
