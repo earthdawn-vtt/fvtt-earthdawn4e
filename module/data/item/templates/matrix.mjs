@@ -165,9 +165,13 @@ export default class MatrixTemplate extends SystemDataModel {
     const edidMatrix = getSetting( "edidSpellMatrix" );
 
     if ( !this.matrixHasMultipleSpells && this.matrixSpellUuid && !this.matrix.activeSpell ) {
-      // If the matrix has only one spell attuned, only that one
+      // If the matrix has only one spell attuned, only that one can be active
       data.system.matrix ??= {};
       data.system.matrix.activeSpell = this.matrixSpellUuid;
+    } else if ( this.matrix?.activeSpell && !this.matrix?.spells?.has( this.matrix.activeSpell ) ) {
+      // If the active spell is not in the list of spells, reset it
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = null;
     }
 
     if ( this._isBecomingMatrix( data, edidMatrix ) ) {

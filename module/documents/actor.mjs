@@ -256,11 +256,7 @@ export default class ActorEd extends Actor {
    * @returns {ItemEd|null} The discipline item, or null if none was found.
    */
   getDisciplineForSpellcastingType( spellcastingType ) {
-    const threadWeavingTalent = this.getItemsByEdid(
-      getSetting( "edidThreadWeaving" ),
-    ).find(
-      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
-    );
+    const threadWeavingTalent = this.getThreadWeavingByCastingType( spellcastingType );
     if ( !threadWeavingTalent ) return null;
 
     return fromUuidSync( threadWeavingTalent.system.source?.class );
@@ -321,12 +317,31 @@ export default class ActorEd extends Actor {
     return this.getItemsByEdid( edid, type )[0];
   }
 
+  getThreadWeavingByCastingType( spellcastingType ) {
+    return this.getItemsByEdid(
+      getSetting( "edidThreadWeaving" ),
+    ).find(
+      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
+    );
+  }
+
   /**
    * Perform the karma ritual for this actor to set the current karma points to maximum.
    * Only to be used for namegivers with a discipline.
    */
   karmaRitual() {
     this.update( { "system.karma.value": this.system.karma.max } );
+  }
+
+  /**
+   * Checks if this actor has at least one matrix that can hold the given spell.
+   * @param {ItemEd} spell The spell to check for.
+   * @returns {boolean} True if there is at least one matrix that has a level >= the spell's level, false otherwise.
+   */
+  hasMatrixForSpell( spell ) {
+    return this.getMatrices().some(
+      matrix => matrix.system.matrix.level >= spell.system.level
+    );
   }
 
   /**

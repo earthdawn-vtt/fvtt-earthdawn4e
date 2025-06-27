@@ -87,15 +87,13 @@ export default class AttuningRollOptions extends EdRollOptions {
     };
   }
 
-  async _getChatFlavor() {
-    return game.i18n.format(
-      "ED.Chat.Flavor.attuningRollOptions",
-      {
-        sourceActor:     createContentAnchor( await fromUuid( this.rollingActorUuid ) ).outerHTML,
-        attuningItem:    ED4E.attuningType[ this.attuningType ],
-        attuningAbility: createContentAnchor( await fromUuid( this.attuningAbility ) ).outerHTML,
-      },
-    );
+  /** @inheritDoc */
+  _getChatFlavorData() {
+    return {
+      sourceActor:     createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
+      attuningItem:    ED4E.attuningType[ this.attuningType ],
+      attuningAbility: createContentAnchor( fromUuidSync( this.attuningAbility ) ).outerHTML,
+    };
   }
 
   /**
@@ -112,7 +110,6 @@ export default class AttuningRollOptions extends EdRollOptions {
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
 
-    newContext.customFlavor ||= await this._getChatFlavor();
     newContext.spellsToAttune = ( await this.getSpellItems() ).filter( spell => !!spell );
 
     return newContext;

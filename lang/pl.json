@@ -328,7 +328,6 @@
         "takeDamageTitle":                         "TODO: Add translation"
       },
       "Flavor": {
-        "AttuningRollOptions":                     "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
@@ -339,9 +338,10 @@
         "rollInitiative":                          "TODO: Add translation",
         "rollRecovery":                            "TODO: Add translation",
         "rollUnarmedDamage":                       "TODO: Add translation",
+        "spellcastingRollOptions":                 "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
-        "threadWeaving":                           "TODO: Add translation",
+        "threadWeavingRollOptions":                "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation"
       },
       "Header": {
@@ -2562,6 +2562,9 @@
             }
           }
         },
+        "SpellcastingRollOptions": {
+          "FIELDS":                                "TODO: Add translation"
+        },
         "ThreadBase": {
           "FIELDS": {
             "characteristics": {
@@ -2704,14 +2707,18 @@
         "free":                                    "TODO: Add translation",
         "fullRest":                                "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
+        "grimoireCasting":                         "TODO: Add translation",
         "learn":                                   "TODO: Add translation",
         "learnSpellPatterncraftTest":              "TODO: Add translation",
+        "matrixCastingAlreadyAttuned":             "TODO: Add translation",
+        "matrixCastingToAttune":                   "TODO: Add translation",
         "nextStep":                                "TODO: Add translation",
         "noAbility":                               "TODO: Add translation",
         "noDiscipline":                            "TODO: Add translation",
         "notAgain":                                "TODO: Add translation",
         "ok":                                      "TODO: Add translation",
         "previousStep":                            "TODO: Add translation",
+        "rawCasting":                              "TODO: Add translation",
         "reattuneOnTheFly":                        "TODO: Add translation",
         "recoverStun":                             "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
@@ -2965,6 +2972,7 @@
         "lpLearnKnack":                            "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
+        "selectCastingMethod":                     "TODO: Add translation",
         "selectExtraThreads":                      "TODO: Add translation",
         "selectGrimoireToAttune":                  "TODO: Add translation",
         "selectSpellToAttuneToGrimoire":           "TODO: Add translation",
@@ -2981,6 +2989,7 @@
       "damageStandard":                            "TODO: Add translation",
       "damageStun":                                "TODO: Add translation",
       "damageType":                                "TODO: Add translation",
+      "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
       "knockDownChoice":                           "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
@@ -3098,7 +3107,6 @@
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "TODO: Add translation",
-        "attuneAbilityNotFound":                   "TODO: Add translation",
         "formulaMalformedError":                   "TODO: Add translation",
         "formulaMissingReferenceWarn":             "TODO: Add translation",
         "grimoireAddNotAGrimoire":                 "TODO: Add translation",
@@ -3109,9 +3117,13 @@
         "grimoireSetActiveNotInGrimoire":          "TODO: Add translation",
         "identifierError":                         "TODO: Add translation",
         "invalidElementSubtype":                   "TODO: Add translation",
+        "matrixCastingSpellNotAttuned":            "TODO: Add translation",
+        "noCastingMethodSelected":                 "TODO: Add translation",
         "noGrimoiresAvailableToAttune":            "TODO: Add translation",
         "noSpellsAvailableToAttune":               "TODO: Add translation",
-        "singleton":                               "TODO: Add translation"
+        "singleton":                               "TODO: Add translation",
+        "spellNotAttunedToMatrix":                 "TODO: Add translation",
+        "spellcastingWorkflowFailed":              "TODO: Add translation"
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
@@ -3143,6 +3155,7 @@
         "piecemealArmorSizeExceeded":              "TODO: Add translation",
         "questorItemNotUpdated":                   "TODO: Add translation",
         "spellAlreadyAttunedInGrimoire":           "TODO: Add translation",
+        "spellNotReadyToCast":                     "TODO: Add translation",
         "warningEffectNoActor":                    "TODO: Add translation"
       }
     },

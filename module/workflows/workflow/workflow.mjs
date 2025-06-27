@@ -75,6 +75,10 @@ export default class Workflow {
     return this._canceled;
   }
 
+  get result() {
+    return this._result;
+  }
+
   // endregion
 
   /**

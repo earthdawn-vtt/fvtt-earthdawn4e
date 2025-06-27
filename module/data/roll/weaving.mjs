@@ -1,4 +1,6 @@
 import EdRollOptions from "./common.mjs";
+import { createContentAnchor } from "../../utils.mjs";
+
 
 export default class ThreadWeavingRollOptions extends EdRollOptions {
 
@@ -32,6 +34,15 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
         } ),
       } ),
     } );
+  }
+
+  /** @inheritDoc */
+  _getChatFlavorData() {
+    return {
+      sourceActor: createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
+      spell:       createContentAnchor( fromUuidSync( this.spellUuid ) ).outerHTML,
+      step:        this.step.total,
+    };
   }
 
   /** @inheritDoc */
