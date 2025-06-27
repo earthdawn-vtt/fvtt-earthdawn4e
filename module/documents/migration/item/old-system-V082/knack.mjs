@@ -1,9 +1,10 @@
-import { config } from "../../../../data/item/_module.mjs";
-
-
 export default class KnackMigration {
 
   static async migrateData( source ) {
+    // Track changes for migration log journal
+    const originalType = source.type;
+    const changes = [];
+    const changeDetails = {};
 
     const slugifiedName = source.name.slugify( { strict: true, } );
     const knackType = source.system?.knackType?.slugify( { strict: true, } );
@@ -17,19 +18,38 @@ export default class KnackMigration {
     else
       source.type = "knackAbility";
 
-    config[ source.type ].migrateData( source.system );
+    // Track type change if it happened
+    if ( originalType !== source.type ) {
+      changes.push( `type changed from "${originalType}" to "${source.type}"` );
+      changeDetails.changeType = {
+        originalType: originalType,
+        newType:      source.type
+      };
+    }
 
-    // check for edid of sourceTalentName - check both system and root level
     const sourceTalentName = source.system.sourceTalentName;
-    
     if ( sourceTalentName ) {
       // Transform sourceTalentName: replace spaces with dashes and slugify
       const sourceEdIdName = sourceTalentName
-        .replace( /\s+/g, "-" )  // Replace all whitespace with dashes
-        .slugify( { strict: true } );  // Slugify for consistency
+        .replace( /\s+/g, "-" ) 
+        .slugify( { lowercase: true, strict: true } ); 
+      
+      // Track sourceTalentName transformation if it changed
+      
+      changes.push( `Set ed-id to "${sourceEdIdName}"` );
+      changeDetails.setEdid = {
+        transformedValue:   sourceEdIdName,
+        transformationType: "slugify"
+      };
       
       source.system.sourceTalent = sourceEdIdName;
     }
+    
+    // Store migration results on the source for the item document to collect
+    source._migrationResults = {
+      changes,
+      changeDetails
+    };
   
     return source;
   }

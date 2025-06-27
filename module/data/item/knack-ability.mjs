@@ -71,20 +71,36 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
-  static migrateData( source ) {
-    // Migrate action
+  static migrateData( source, itemContext = null ) {
+
+    // Collect all migration changes
+    const allChanges = [];
+    const allChangeDetails = {};
+
+    // Migrate action (doesn't return changes)
     ActionMigration.migrateData( source );
     
-    // Migrate Attributes
-    AttributeMigration.migrateData( source );
+    // Migrate Attributes - collect changes
+    const attributeResult = AttributeMigration.migrateData( source, itemContext );
     
-    // Migrate description
+    if ( attributeResult?.changes?.length > 0 ) {
+      allChanges.push( ...attributeResult.changes );
+      Object.assign( allChangeDetails, attributeResult.changeDetails || {} );
+    }
+    
+    // Migrate description (doesn't return changes)
     DescriptionMigration.migrateData( source );
     
-    // Migrate minDifficulty (only if source.difficulty is not set)
+    // Migrate minDifficulty (doesn't return changes)
     DifficultyMigration.migrateData( source );
 
     source.restrictions = [];
     source.requirements = [];
+
+    // Return combined migration results
+    return {
+      changes:       allChanges,
+      changeDetails: allChangeDetails
+    };
   }
 }

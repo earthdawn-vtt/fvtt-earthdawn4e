@@ -87,12 +87,15 @@ export function getMigrationContext() {
  * @param {object} [data] - Additional data for debugging
  */
 export function addMigrationIssue( severity, type, name, message, data = {} ) {
+  // reason for this if/else function:
+  // 1. Foundry starts loading world
+  // 2. Documents load → migrateData() called → addMigrationIssue() called
+  // 3. But migrationContext is still null!
+  // 4. Later: migrateWorld() runs and creates migrationContext
+  // 5. Need to collect all those "early" migration issues
   if ( migrationContext ) {
     migrationContext.addIssue( severity, type, name, message, data );
   } else {
-    // If no migration context available, log to console and store in a temporary array
-    console.warn( "ED4e Migration | No migration context available for issue:", { severity, type, name, message, data } );
-    
     // Store in a temporary array for later processing
     if ( !globalThis.ed4eMigrationIssues ) {
       globalThis.ed4eMigrationIssues = [];
@@ -105,8 +108,6 @@ export function addMigrationIssue( severity, type, name, message, data = {} ) {
       data,
       timestamp: new Date().toISOString()
     } );
-    
-    console.log( `ED4e Migration | Stored issue in temporary array. Total issues: ${globalThis.ed4eMigrationIssues.length}` );
   }
 }
 
@@ -133,12 +134,8 @@ export async function migrateWorld( currentVersion, previousVersion ) {
     // Count total documents for progress tracking
     migrationContext.documentCount = game.actors.size + game.items.size;
     
-    // Example: Create migration journal entry for version 0.8.3
-    if ( foundry.utils.isNewerVersion( currentVersion, previousVersion ) ) {
-      await runSpecificMigrations( currentVersion );
-    }
-    
-    // Add more version-specific migrations here
+    // Validate that successfully migrated items still exist before creating journal
+    await validateMigrationIssues( migrationContext );
     
     // Create the migration journal with all collected issues
     await createMigrationJournalEntry( migrationContext );
@@ -154,77 +151,11 @@ export async function migrateWorld( currentVersion, previousVersion ) {
 }
 
 /**
- * Run migrations specific to a version
- * @param {string} version - The version to migrate to
- */
-async function runSpecificMigrations( version ) {
-  // Process all items
-  for ( const item of game.items ) {
-    migrationContext.processedCount++;
-    
-    try {
-      // Force re-migration by calling the data model's migration on the source data
-      const sourceData = item.toObject();
-      
-      // Call the migrateData method to process the item
-      item.system.constructor.migrateData( sourceData.system );
-      
-      // Log successful item migration
-      migrationContext.addIssue( "info", "Item", item.name, `Successfully migrated ${item.type}`, { 
-        itemId:   item.id, 
-        itemType: item.type
-      } );
-      
-    } catch ( error ) {
-      migrationContext.addIssue( "error", "Item", item.name, `Failed to migrate: ${error.message}`, { 
-        itemId:   item.id, 
-        itemType: item.type,
-        error:    error.stack 
-      } );
-    }
-  }
-  
-  // Process all actors
-  for ( const actor of game.actors ) {
-    migrationContext.processedCount++;
-    
-    try {
-      // Force re-migration by calling the data model's migration on the source data
-      const sourceData = actor.toObject();
-      
-      // Call the migrateData method to process the actor
-      actor.system.constructor.migrateData( sourceData.system );
-      
-      // Log successful actor migration
-      migrationContext.addIssue( "info", "Actor", actor.name, `Successfully migrated ${actor.type}`, { 
-        actorId:   actor.id, 
-        actorType: actor.type
-      } );
-      
-    } catch ( error ) {
-      migrationContext.addIssue( "error", "Actor", actor.name, `Failed to migrate: ${error.message}`, { 
-        actorId:   actor.id, 
-        actorType: actor.type,
-        error:     error.stack 
-      } );
-    }
-  }
-}
-
-/**
  * Create a journal entry documenting the migration
  * @param {MigrationContext} context - The migration context with all issues
  */
 async function createMigrationJournalEntry( context ) {
   const summary = context.getSummary();
-  
-  // Debug: log the summary before creating the journal
-  console.log( "ED4e Migration | Final summary:", summary );
-  console.log( "ED4e Migration | Issues breakdown:", {
-    errors:    context.issues.length,
-    warnings:  context.warnings.length,
-    successes: context.successes.length
-  } );
   
   // Create pages array starting with summary page
   const pages = [];
@@ -257,9 +188,8 @@ async function createMigrationJournalEntry( context ) {
         <h2>What to Check</h2>
         <p>Please review your:</p>
         <ul>
-          <li>Character sheets</li>
-          <li>Item configurations</li>
-          <li>Macros and roll tables</li>
+          <li>Actor sheets</li>
+          <li>Item sheets</li>
           ${summary.errors > 0 ? "<li><strong style=\"color: red;\">Items listed in the error pages</strong></li>" : ""}
         </ul>
       `
@@ -270,7 +200,7 @@ async function createMigrationJournalEntry( context ) {
   context.issues.forEach( ( issue, index ) => {
     pages.push( {
       sort:  1000 + index,
-      name:  `Error ${index + 1}: ${issue.type} "${issue.name}"`,
+      name:  `Error ${index + 1}: "${issue.name}" (${issue.type})`,
       type:  "text",
       title: { show: true, level: 1 },
       text:  {
@@ -296,14 +226,6 @@ async function createMigrationJournalEntry( context ) {
 ${JSON.stringify( issue.data, null, 2 )}
             </pre>
           </details>
-          
-          <h2>Next Steps</h2>
-          <p>This error needs to be investigated and fixed. Check:</p>
-          <ul>
-            <li>The item's data structure</li>
-            <li>Any custom migration logic</li>
-            <li>System compatibility issues</li>
-          </ul>
         `
       }
     } );
@@ -313,7 +235,7 @@ ${JSON.stringify( issue.data, null, 2 )}
   context.warnings.forEach( ( warning, index ) => {
     pages.push( {
       sort:  2000 + index,
-      name:  `Warning ${index + 1}: ${warning.type} "${warning.name}"`,
+      name:  `Warning ${index + 1}: "${warning.name}" (${warning.type})`,
       type:  "text",
       title: { show: true, level: 1 },
       text:  {
@@ -351,7 +273,7 @@ ${JSON.stringify( warning.data, null, 2 )}
   if ( context.successes.length > 0 ) {
     const buildSuccessList = () => {
       return context.successes.map( success => `
-        <li><strong>${success.type}</strong> "${success.name}": ${success.message}</li>
+        <li><strong>"${success.name}"</strong> (${success.type}): ${success.message}</li>
       ` ).join( "" );
     };
 
@@ -404,4 +326,84 @@ ${JSON.stringify( warning.data, null, 2 )}
   } catch ( error ) {
     console.error( "ED4e | Failed to create migration journal entry:", error );
   }
+}
+
+/**
+ * Utility function to find an item by name and type
+ * @param {string} name - The name of the item to find
+ * @param {string} type - The type of the item to find
+ * @returns {boolean} - True if an item with the given name and type exists
+ */
+function findItemByNameAndType( name, type ) {
+  // Check world items
+  const worldItem = game.items.find( item => item.name === name && item.type === type );
+  if ( worldItem ) return true;
+  
+  // Check items in all actors
+  for ( const actor of game.actors ) {
+    const actorItem = actor.items.find( item => item.name === name && item.type === type );
+    if ( actorItem ) return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Validate that items reported as successfully migrated still exist
+ * Remove success reports for items that were later deleted during migration
+ * @param {MigrationContext} context - The migration context to validate
+ */
+async function validateMigrationIssues( context ) {
+  const validSuccesses = [];
+  
+  for ( const success of context.successes ) {
+    let itemStillExists = true;
+    const itemData = success.data;
+    
+    // Check if this is an actor migration success
+    if ( success.type === "Actor" ) {
+      // Check if the actor still exists
+      if ( itemData.actorId ) {
+        const actor = game.actors.get( itemData.actorId );
+        itemStillExists = !!actor;
+      } else {
+        // Fallback to name-based search (less reliable)
+        itemStillExists = !!game.actors.find( actor => actor.name === success.name );
+      }
+    }
+    // Check if this is an item migration success
+    else if ( success.type === "Knack" || success.type === "Item" ) {
+      // If we have both actor and item IDs, this is an embedded item
+      if ( itemData.actorId && itemData.itemId ) {
+        // Check if the specific actor still has this specific item
+        const actor = game.actors.get( itemData.actorId );
+        if ( actor ) {
+          const item = actor.items.get( itemData.itemId );
+          itemStillExists = !!item;
+        } else {
+          itemStillExists = false;
+        }
+      } 
+      // If we only have item ID, this is a world item
+      else if ( itemData.itemId ) {
+        // World item - check if it still exists in world items
+        const item = game.items.get( itemData.itemId );
+        itemStillExists = !!item;
+      } 
+      // Fallback to name-based search (less reliable)
+      else {
+        itemStillExists = findItemByNameAndType( success.name, itemData.itemType );
+      }
+    }
+    
+    // Keep the success report only if the item still exists
+    if ( itemStillExists ) {
+      validSuccesses.push( success );
+    } else {
+      console.log( `ED4e Migration | Removing success report for deleted ${success.type.toLowerCase()}: ${success.name}` );
+    }
+  }
+  
+  // Replace the successes array with only valid ones
+  context.successes = validSuccesses;
 }
