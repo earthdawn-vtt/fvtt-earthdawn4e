@@ -1,4 +1,5 @@
 import ED4E from "../../../../config/_module.mjs";
+import { addMigrationIssue } from "../../../../system/migration.mjs";
 
 export default class AttributeMigration {
 
@@ -19,6 +20,18 @@ export default class AttributeMigration {
         newAttribute:      "no Attribute",
         rollTypeSet:       "initiative"
       };
+      
+      // Report this as a TODO item since it requires user attention
+      if ( itemContext ) {
+        addMigrationIssue( "todo", itemContext.type, itemContext.name, 
+          "Initiative attribute was automatically removed and the roll type was set to initiative. Please set the attribute manually if needed.", {
+            itemId:            itemContext._id,
+            itemType:          itemContext.type,
+            originalAttribute: "initiativeStep",
+            newRollType:       "initiative",
+            action:            "Verify if an attribute is required"
+          } );
+      }
     }
 
     // Return changes for higher-level migration to report (backward compatibility)

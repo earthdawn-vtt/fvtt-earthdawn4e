@@ -11,6 +11,7 @@ class MigrationContext {
     this.previousVersion = previousVersion;
     this.issues = [];
     this.warnings = [];
+    this.todos = [];
     this.successes = [];
     this.documentCount = 0;
     this.processedCount = 0;
@@ -18,7 +19,7 @@ class MigrationContext {
 
   /**
    * Add a migration issue
-   * @param {string} severity - "error", "warning", or "info"
+   * @param {string} severity - "error", "warning", "todo", or "info"
    * @param {string} type - Type of document/migration
    * @param {string} name - Name/ID of the problematic item
    * @param {string} message - Description of the issue
@@ -43,6 +44,10 @@ class MigrationContext {
         this.warnings.push( issue );
         // console.warn( `ED4e Migration | ${type} "${name}": ${message}`, data );
         break;
+      case "todo":
+        this.todos.push( issue );
+        // console.info( `ED4e Migration | TODO ${type} "${name}": ${message}`, data );
+        break;
       case "info":
         this.successes.push( issue );
         // console.info( `ED4e Migration | ${type} "${name}": ${message}`, data );
@@ -60,6 +65,7 @@ class MigrationContext {
       processed: this.processedCount,
       errors:    this.issues.length,
       warnings:  this.warnings.length,
+      todos:     this.todos.length,
       successes: this.successes.length
     };
   }
@@ -80,7 +86,7 @@ export function getMigrationContext() {
 
 /**
  * Add an issue to the current migration context
- * @param {string} severity - "error", "warning", or "info"
+ * @param {string} severity - "error", "warning", "todo", or "info"
  * @param {string} type - Type of document/migration
  * @param {string} name - Name/ID of the problematic item
  * @param {string} message - Description of the issue
@@ -179,11 +185,13 @@ async function createMigrationJournalEntry( context ) {
           <li><strong>Processed:</strong> ${summary.processed}</li>
           <li><strong>Errors:</strong> ${summary.errors}</li>
           <li><strong>Warnings:</strong> ${summary.warnings}</li>
+          <li><strong>TODOs:</strong> ${summary.todos}</li>
           <li><strong>Successful:</strong> ${summary.successes}</li>
         </ul>
         
         ${summary.errors > 0 ? `<p><strong style="color: #d32f2f;">⚠️ ${summary.errors} errors found - check individual error pages for details</strong></p>` : ""}
         ${summary.warnings > 0 ? `<p><strong style="color: #f57c00;">⚠️ ${summary.warnings} warnings found - check warning pages for details</strong></p>` : ""}
+        ${summary.todos > 0 ? `<p><strong style="color: #1976d2;">📋 ${summary.todos} items require your attention - check TODO pages for details</strong></p>` : ""}
         
         <h2>What to Check</h2>
         <p>Please review your:</p>
@@ -198,6 +206,9 @@ async function createMigrationJournalEntry( context ) {
 
   // Create individual pages for each error
   context.issues.forEach( ( issue, index ) => {
+    // Enhance the message with clickable links if possible
+    const enhancedMessage = enhanceMessageWithLinks( issue );
+    
     pages.push( {
       sort:  1000 + index,
       name:  `Error ${index + 1}: "${issue.name}" (${issue.type})`,
@@ -216,7 +227,7 @@ async function createMigrationJournalEntry( context ) {
           
           <h2>Error Message</h2>
           <div style="background: #ffebee; padding: 10px; border-left: 4px solid #d32f2f; margin: 10px 0;">
-            <code>${issue.message}</code>
+            <code>${enhancedMessage}</code>
           </div>
           
           <h2>Debug Information</h2>
@@ -233,6 +244,9 @@ ${JSON.stringify( issue.data, null, 2 )}
 
   // Create individual pages for each warning
   context.warnings.forEach( ( warning, index ) => {
+    // Enhance the message with clickable links if possible
+    const enhancedMessage = enhanceMessageWithLinks( warning );
+    
     pages.push( {
       sort:  2000 + index,
       name:  `Warning ${index + 1}: "${warning.name}" (${warning.type})`,
@@ -251,7 +265,7 @@ ${JSON.stringify( issue.data, null, 2 )}
           
           <h2>Warning Message</h2>
           <div style="background: #fff8e1; padding: 10px; border-left: 4px solid #f57c00; margin: 10px 0;">
-            <code>${warning.message}</code>
+            <code>${enhancedMessage}</code>
           </div>
           
           <h2>Debug Information</h2>
@@ -264,6 +278,45 @@ ${JSON.stringify( warning.data, null, 2 )}
           
           <h2>Recommendation</h2>
           <p>This warning indicates a potential issue that should be reviewed. The item may still function, but could have reduced functionality.</p>
+        `
+      }
+    } );
+  } );
+
+  // Create individual pages for each TODO item
+  context.todos.forEach( ( todo, index ) => {
+    // Enhance the message with clickable links if possible
+    const enhancedMessage = enhanceMessageWithLinks( todo );
+    
+    pages.push( {
+      sort:  2500 + index,
+      name:  `TODO ${index + 1}: "${todo.name}" (${todo.type})`,
+      type:  "text",
+      title: { show: true, level: 1 },
+      text:  {
+        content: `
+          <h1 style="color: #1976d2;">📋 Action Required</h1>
+          
+          <h2>Item Details</h2>
+          <ul>
+            <li><strong>Type:</strong> ${todo.type}</li>
+            <li><strong>Item:</strong> ${todo.name}</li>
+            <li><strong>Timestamp:</strong> ${new Date( todo.timestamp ).toLocaleString()}</li>
+          </ul>
+          
+          <h2>What You Need To Do</h2>
+          <div style="background: #e3f2fd; padding: 15px; border-left: 4px solid #1976d2; margin: 10px 0;">
+            <strong>📋 Action Required:</strong><br>
+            ${enhancedMessage}
+          </div>
+          
+          <h2>Debug Information</h2>
+          <details>
+            <summary><strong>Click to expand debug data</strong></summary>
+            <pre style="background: #f5f5f5; padding: 10px; overflow-x: auto; font-size: 12px;">
+${JSON.stringify( todo.data, null, 2 )}
+            </pre>
+          </details>
         `
       }
     } );
@@ -317,9 +370,13 @@ ${JSON.stringify( warning.data, null, 2 )}
     console.log( `ED4e | Created migration journal entry: ${journal.name} with ${pages.length} pages` );
     
     // Show the journal to GM if there were issues
-    if ( game.user.isGM && ( summary.errors > 0 || summary.warnings > 0 ) ) {
+    if ( game.user.isGM && ( summary.errors > 0 || summary.warnings > 0 || summary.todos > 0 ) ) {
       journal.sheet.render( true );
-      ui.notifications.warn( `Migration completed with ${summary.errors} errors and ${summary.warnings} warnings. Check the migration journal for details.` );
+      const messages = [];
+      if ( summary.errors > 0 ) messages.push( `${summary.errors} errors` );
+      if ( summary.warnings > 0 ) messages.push( `${summary.warnings} warnings` );
+      if ( summary.todos > 0 ) messages.push( `${summary.todos} items requiring attention` );
+      ui.notifications.warn( `Migration completed with ${messages.join( ", " )}. Check the migration journal for details.` );
     } else if ( game.user.isGM ) {
       ui.notifications.info( `Migration completed successfully! ${summary.processed} documents processed.` );
     }
@@ -353,57 +410,130 @@ function findItemByNameAndType( name, type ) {
  * Remove success reports for items that were later deleted during migration
  * @param {MigrationContext} context - The migration context to validate
  */
+/**
+ * Check if an item or actor still exists
+ * @param {object} issue - The migration issue to validate
+ * @returns {boolean} - True if the item/actor still exists
+ */
+function checkItemStillExists( issue ) {
+  const itemData = issue.data;
+  
+  // Check if this is an actor-related issue
+  if ( issue.type === "Actor" ) {
+    // Check if the actor still exists
+    if ( itemData.actorId ) {
+      const actor = game.actors.get( itemData.actorId );
+      return !!actor;
+    } else {
+      // Fallback to name-based search (less reliable)
+      return !!game.actors.find( actor => actor.name === issue.name );
+    }
+  }
+  // Check if this is an item-related issue
+  else if ( issue.type === "Knack" || issue.type === "Item" || issue.type === "knackAbility" || issue.type === "knackKarma" || issue.type === "knackManeuver" ) {
+    // If we have both actor and item IDs, this is an embedded item
+    if ( itemData.actorId && itemData.itemId ) {
+      // Check if the specific actor still has this specific item
+      const actor = game.actors.get( itemData.actorId );
+      if ( actor ) {
+        const item = actor.items.get( itemData.itemId );
+        return !!item;
+      } else {
+        return false;
+      }
+    } 
+    // If we only have item ID, this is a world item
+    else if ( itemData.itemId ) {
+      // World item - check if it still exists in world items
+      const item = game.items.get( itemData.itemId );
+      return !!item;
+    } 
+    // Fallback to name-based search (less reliable)
+    else {
+      return findItemByNameAndType( issue.name, itemData.itemType || issue.type );
+    }
+  }
+  
+  // If we can't determine, assume it still exists
+  return true;
+}
+
+/**
+ * Validate that items reported in migration issues still exist
+ * Remove reports for items that were later deleted during migration
+ * @param {MigrationContext} context - The migration context to validate
+ */
 async function validateMigrationIssues( context ) {
   const validSuccesses = [];
+  const validTodos = [];
   
+  // Validate success entries
   for ( const success of context.successes ) {
-    let itemStillExists = true;
-    const itemData = success.data;
-    
-    // Check if this is an actor migration success
-    if ( success.type === "Actor" ) {
-      // Check if the actor still exists
-      if ( itemData.actorId ) {
-        const actor = game.actors.get( itemData.actorId );
-        itemStillExists = !!actor;
-      } else {
-        // Fallback to name-based search (less reliable)
-        itemStillExists = !!game.actors.find( actor => actor.name === success.name );
-      }
-    }
-    // Check if this is an item migration success
-    else if ( success.type === "Knack" || success.type === "Item" ) {
-      // If we have both actor and item IDs, this is an embedded item
-      if ( itemData.actorId && itemData.itemId ) {
-        // Check if the specific actor still has this specific item
-        const actor = game.actors.get( itemData.actorId );
-        if ( actor ) {
-          const item = actor.items.get( itemData.itemId );
-          itemStillExists = !!item;
-        } else {
-          itemStillExists = false;
-        }
-      } 
-      // If we only have item ID, this is a world item
-      else if ( itemData.itemId ) {
-        // World item - check if it still exists in world items
-        const item = game.items.get( itemData.itemId );
-        itemStillExists = !!item;
-      } 
-      // Fallback to name-based search (less reliable)
-      else {
-        itemStillExists = findItemByNameAndType( success.name, itemData.itemType );
-      }
-    }
-    
-    // Keep the success report only if the item still exists
-    if ( itemStillExists ) {
+    if ( checkItemStillExists( success ) ) {
       validSuccesses.push( success );
     } else {
       console.log( `ED4e Migration | Removing success report for deleted ${success.type.toLowerCase()}: ${success.name}` );
     }
   }
   
-  // Replace the successes array with only valid ones
+  // Validate TODO entries
+  for ( const todo of context.todos ) {
+    if ( checkItemStillExists( todo ) ) {
+      validTodos.push( todo );
+    } else {
+      console.log( `ED4e Migration | Removing TODO for deleted ${todo.type.toLowerCase()}: ${todo.name}` );
+    }
+  }
+  
+  // Replace the arrays with only valid ones
   context.successes = validSuccesses;
+  context.todos = validTodos;
+  
+  // Note: We don't validate errors or warnings since they should remain 
+  // even if the item was deleted, as they provide important information about what happened
+}
+
+/**
+ * Enhance a migration issue message with clickable links to the relevant item/actor
+ * @param {object} issue - The migration issue object
+ * @returns {string} - Enhanced message with clickable links
+ */
+function enhanceMessageWithLinks( issue ) {
+  let enhancedMessage = issue.message;
+  const itemData = issue.data;
+  
+  // Try to find the actual document and create a link
+  let linkHtml = "";
+  
+  // If we have both actor and item IDs, this is an embedded item
+  if ( itemData.actorId && itemData.itemId ) {
+    const actor = game.actors.get( itemData.actorId );
+    if ( actor ) {
+      const item = actor.items.get( itemData.itemId );
+      if ( item ) {
+        linkHtml = `@UUID[Actor.${actor.id}.Item.${item.id}]{${item.name}} on @UUID[Actor.${actor.id}]{${actor.name}}`;
+      }
+    }
+  } 
+  // If we only have item ID, this is a world item
+  else if ( itemData.itemId ) {
+    const item = game.items.get( itemData.itemId );
+    if ( item ) {
+      linkHtml = `@UUID[Item.${item.id}]{${item.name}}`;
+    }
+  }
+  // If we only have actor ID, this is an actor
+  else if ( itemData.actorId ) {
+    const actor = game.actors.get( itemData.actorId );
+    if ( actor ) {
+      linkHtml = `@UUID[Actor.${actor.id}]{${actor.name}}`;
+    }
+  }
+  
+  // If we found a document, enhance the message with a link
+  if ( linkHtml ) {
+    enhancedMessage += `<br><br><strong>🔗 Quick Access:</strong> Click here to open ${linkHtml}`;
+  }
+  
+  return enhancedMessage;
 }
