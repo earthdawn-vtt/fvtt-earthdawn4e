@@ -268,13 +268,10 @@ export default class ItemEd extends Item {
     // First run the document-level type migrations (they may change the type)
     const documentMigration = typeMigrationConfig[ newSource.type?.toLowerCase() ];
     if ( documentMigration ) {
-      console.log( "ED4e Item Migration | Running document-level migration for type:", newSource.type );
       documentMigration.migrateData( newSource );
-      console.log( "ED4e Item Migration | After document migration, type is now:", newSource.type );
       
       // Collect document migration results if they exist
       if ( newSource._migrationResults ) {
-        console.log( "ED4e Item Migration | Document migration returned changes:", newSource._migrationResults.changes );
         allChanges = allChanges.concat( newSource._migrationResults.changes );
         allChangeDetails = { ...allChangeDetails, ...newSource._migrationResults.changeDetails };
         // Clean up temporary property
@@ -285,27 +282,19 @@ export default class ItemEd extends Item {
     // Then check if the data model has a migration method and pass item context
     const dataModel = CONFIG.Item.dataModels[newSource.type];
     if ( dataModel?.migrateData ) {
-      console.log( "ED4e Item Migration | Running data model migration for type:", newSource.type );
       // Pass item context so migrations can report issues with proper context
       const itemContext = { _id: newSource._id, name: newSource.name, type: newSource.type };
       const migrationResult = dataModel.migrateData( newSource.system, itemContext );
-      console.log( "ED4e Item Migration | Data model migration result:", migrationResult );
       
       // Collect data model migration results
       if ( migrationResult && migrationResult.changes && migrationResult.changes.length > 0 ) {
-        console.log( "ED4e Item Migration | Data model migration returned changes:", migrationResult.changes );
         allChanges = allChanges.concat( migrationResult.changes );
         allChangeDetails = { ...allChangeDetails, ...migrationResult.changeDetails };
-      } else {
-        console.log( "ED4e Item Migration | Data model migration returned no changes" );
-      }
-    } else {
-      console.log( "ED4e Item Migration | No data model migration available for type:", newSource.type );
-    }
+      } 
+    } 
 
     // Report combined migration result if any changes were made
     if ( allChanges.length > 0 ) {
-      console.log( "ED4e Item Migration | Reporting combined migration result for:", newSource.name );
       addMigrationIssue( "info", "Item", newSource.name, 
         `Item migration completed: ${allChanges.join( ", " )}`, {
           itemId:      newSource._id,
