@@ -318,6 +318,9 @@ export default class ActorEd extends Actor {
   }
 
   getThreadWeavingByCastingType( spellcastingType ) {
+    if ( this.type === "spirit" )
+      return this.getSingleItemByEdid( getSetting( "edidSpellcasting" ) );
+
     return this.getItemsByEdid(
       getSetting( "edidThreadWeaving" ),
     ).find(
