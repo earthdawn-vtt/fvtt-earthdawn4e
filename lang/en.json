@@ -391,6 +391,12 @@
         "mystical":                                "Mystical Armor",
         "physical":                                "Physical Armor"
       },
+      "AstralSpacePollution": {
+        "corrupt":                                 "TODO: Add translation",
+        "open":                                    "TODO: Add translation",
+        "safe":                                    "TODO: Add translation",
+        "tainted":                                 "TODO: Add translation"
+      },
       "AttuningType": {
         "grimoire":                                "TODO: Add translation",
         "matrixOnTheFly":                          "TODO: Add translation",
@@ -3016,7 +3022,8 @@
       "itemSheetEd":                               "TODO: Add translation",
       "itemSheetEdClass":                          "TODO: Add translation",
       "itemSheetEdPhysical":                       "TODO: Add translation",
-      "journalSheetEd":                            "TODO: Add translation"
+      "journalSheetEd":                            "TODO: Add translation",
+      "sceneConfigEd":                             "TODO: Add translation"
     },
     "Item": {
       "CreateData": {
@@ -3182,6 +3189,12 @@
       "successesAchieved":                         "Total Successes",
       "targetDifficulty":                          "Difficulty",
       "targetModifiers":                           "Target Modifier"
+    },
+    "Scene": {
+      "AstralPollution": {
+        "hint":                                    "TODO: Add translation",
+        "label":                                   "TODO: Add translation"
+      }
     },
     "Settings": {
       "CharGen": {
@@ -3361,6 +3374,9 @@
         "chronological":                           "TODO: Add translation",
         "earned":                                  "TODO: Add translation",
         "spend":                                   "TODO: Add translation"
+      },
+      "Scene": {
+        "earthdawn":                               "TODO: Add translation"
       }
     },
     "ToolTips": {

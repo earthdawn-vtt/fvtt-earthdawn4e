@@ -71,6 +71,7 @@ export const icons = {
   damage:           "fa-skull-crossbones",
   delete:           "fa-trash",
   dice:             "fa-dice",
+  earthdawn:        "fa-e",
   effect:           "fa-biohazard",
   effectExecution:  "fa-light fa-arrow-progress",
   emptyMatrices:    "fa-empty-set",

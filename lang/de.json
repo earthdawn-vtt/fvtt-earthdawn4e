@@ -390,6 +390,12 @@
         "mystical":                                "Mystische Rüstung",
         "physical":                                "Physische Rüstung"
       },
+      "AstralSpacePollution": {
+        "corrupt":                                 "Verdorben",
+        "open":                                    "Offen",
+        "safe":                                    "Sicher",
+        "tainted":                                 "Befleckt"
+      },
       "AttuningType": {
         "grimoire":                                "Abstimmung eines Grimoires",
         "matrixOnTheFly":                          "Eine Matrix auf die Schnelle abstimmen",
@@ -3033,7 +3039,8 @@
       "itemSheetEd":                               "Item-Bogen",
       "itemSheetEdClass":                          "Berufung-Bogen",
       "itemSheetEdPhysical":                       "Ausrüstungs-Bogen",
-      "journalSheetEd":                            "Journal-Bogen"
+      "journalSheetEd":                            "Journal-Bogen",
+      "sceneConfigEd":                             "Szene Konfiguration"
     },
     "Item": {
       "CreateData": {
@@ -3199,6 +3206,12 @@
       "successesAchieved":                         "Gesamt Erfolge ( {numSuccesses} + {numExtraSuccesses} extra Erfolge )",
       "targetDifficulty":                          "Schwierigkeit",
       "targetModifiers":                           "Ziel Modifikatoren"
+    },
+    "Scene": {
+      "AstralPollution": {
+        "hint":                                    "Bestimmt die Kategorie der Verunreinigung in der sich der Astralraum dieser Szene befindet.",
+        "label":                                   "Astrale Verunreinigung"
+      }
     },
     "Settings": {
       "CharGen": {
@@ -3378,6 +3391,9 @@
         "chronological":                           "Zeitlich",
         "earned":                                  "Erhalten",
         "spend":                                   "Ausgegeben"
+      },
+      "Scene": {
+        "earthdawn":                               "Earthdawn"
       }
     },
     "ToolTips": {
