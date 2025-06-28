@@ -94,6 +94,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     // Migrate minDifficulty (doesn't return changes)
     DifficultyMigration.migrateData( source );
 
+    // will change with the real Knack migration only for purposes of getting the journal log to work
     source.restrictions = [];
     source.requirements = [];
 

@@ -39,6 +39,7 @@ export default class KnackManeuverData extends ManeuverData.mixin(
     // Migrate description
     DescriptionMigration.migrateData( source );
     
+    // will change with the real Knack migration only for purposes of getting the journal log to work
     source.restrictions = [];
     source.requirements = [];
   }

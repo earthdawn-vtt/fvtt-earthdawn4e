@@ -259,9 +259,7 @@ export default class ItemEd extends Item {
 
   static migrateData( source ) {
     const newSource = super.migrateData( source );
-    console.log( "ED4e Item Migration | Processing item:", newSource.name, "type:", newSource.type );
 
-    // Collect all migration changes for this item
     let allChanges = [];
     let allChangeDetails = {};
 

@@ -24,13 +24,11 @@ export default class EvaluateKnackMigration {
               originalType: source.system.sourceTalentName,
               newType:      source.system.sourceTalent
             };
-            break; // Exit the loop once we find a match
+            break; 
           }
         }
         
-        // Only log error if no match was found
         if ( !foundMatch ) {
-          
           addMigrationIssue( 
             "error", 
             "Knack", 

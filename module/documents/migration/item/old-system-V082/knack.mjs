@@ -32,16 +32,12 @@ export default class KnackMigration {
       // Transform sourceTalentName: replace spaces with dashes and slugify
       const sourceEdIdName = sourceTalentName
         .replace( /\s+/g, "-" ) 
-        .slugify( { lowercase: true, strict: true } ); 
+        .slugify( { lowercase: true, strict: true } )
+        .replace( /-+$/, "" ); // Remove trailing hyphens
       
       // Track sourceTalentName transformation if it changed
-      
       changes.push( `Set ed-id to "${sourceEdIdName}"` );
-      changeDetails.setEdid = {
-        transformedValue:   sourceEdIdName,
-        transformationType: "slugify"
-      };
-      
+  
       source.system.sourceTalent = sourceEdIdName;
     }
     

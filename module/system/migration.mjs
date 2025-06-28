@@ -38,19 +38,15 @@ class MigrationContext {
     switch ( severity ) {
       case "error":
         this.issues.push( issue );
-        // console.error( `ED4e Migration | ${type} "${name}": ${message}`, data );
         break;
       case "warning":
         this.warnings.push( issue );
-        // console.warn( `ED4e Migration | ${type} "${name}": ${message}`, data );
         break;
       case "todo":
         this.todos.push( issue );
-        // console.info( `ED4e Migration | TODO ${type} "${name}": ${message}`, data );
         break;
       case "info":
         this.successes.push( issue );
-        // console.info( `ED4e Migration | ${type} "${name}": ${message}`, data );
         break;
     }
   }
@@ -367,7 +363,6 @@ ${JSON.stringify( todo.data, null, 2 )}
 
   try {
     const journal = await JournalEntry.create( journalData );
-    console.log( `ED4e | Created migration journal entry: ${journal.name} with ${pages.length} pages` );
     
     // Show the journal to GM if there were issues
     if ( game.user.isGM && ( summary.errors > 0 || summary.warnings > 0 || summary.todos > 0 ) ) {
@@ -386,26 +381,6 @@ ${JSON.stringify( todo.data, null, 2 )}
 }
 
 /**
- * Utility function to find an item by name and type
- * @param {string} name - The name of the item to find
- * @param {string} type - The type of the item to find
- * @returns {boolean} - True if an item with the given name and type exists
- */
-function findItemByNameAndType( name, type ) {
-  // Check world items
-  const worldItem = game.items.find( item => item.name === name && item.type === type );
-  if ( worldItem ) return true;
-  
-  // Check items in all actors
-  for ( const actor of game.actors ) {
-    const actorItem = actor.items.find( item => item.name === name && item.type === type );
-    if ( actorItem ) return true;
-  }
-  
-  return false;
-}
-
-/**
  * Validate that items reported as successfully migrated still exist
  * Remove success reports for items that were later deleted during migration
  * @param {MigrationContext} context - The migration context to validate
@@ -420,20 +395,13 @@ function checkItemStillExists( issue ) {
   
   // Check if this is an actor-related issue
   if ( issue.type === "Actor" ) {
-    // Check if the actor still exists
     if ( itemData.actorId ) {
       const actor = game.actors.get( itemData.actorId );
       return !!actor;
-    } else {
-      // Fallback to name-based search (less reliable)
-      return !!game.actors.find( actor => actor.name === issue.name );
-    }
-  }
-  // Check if this is an item-related issue
-  else if ( issue.type === "Knack" || issue.type === "Item" || issue.type === "knackAbility" || issue.type === "knackKarma" || issue.type === "knackManeuver" ) {
-    // If we have both actor and item IDs, this is an embedded item
+    } 
+  } else {
+    // check if this is an embedded item
     if ( itemData.actorId && itemData.itemId ) {
-      // Check if the specific actor still has this specific item
       const actor = game.actors.get( itemData.actorId );
       if ( actor ) {
         const item = actor.items.get( itemData.itemId );
@@ -442,19 +410,13 @@ function checkItemStillExists( issue ) {
         return false;
       }
     } 
-    // If we only have item ID, this is a world item
+    // check if this is a world item
     else if ( itemData.itemId ) {
-      // World item - check if it still exists in world items
       const item = game.items.get( itemData.itemId );
       return !!item;
     } 
-    // Fallback to name-based search (less reliable)
-    else {
-      return findItemByNameAndType( issue.name, itemData.itemType || issue.type );
-    }
   }
   
-  // If we can't determine, assume it still exists
   return true;
 }
 
@@ -471,18 +433,14 @@ async function validateMigrationIssues( context ) {
   for ( const success of context.successes ) {
     if ( checkItemStillExists( success ) ) {
       validSuccesses.push( success );
-    } else {
-      console.log( `ED4e Migration | Removing success report for deleted ${success.type.toLowerCase()}: ${success.name}` );
-    }
+    } 
   }
   
   // Validate TODO entries
   for ( const todo of context.todos ) {
     if ( checkItemStillExists( todo ) ) {
       validTodos.push( todo );
-    } else {
-      console.log( `ED4e Migration | Removing TODO for deleted ${todo.type.toLowerCase()}: ${todo.name}` );
-    }
+    } 
   }
   
   // Replace the arrays with only valid ones
