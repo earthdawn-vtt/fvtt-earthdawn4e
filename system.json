@@ -32,7 +32,8 @@
   ],
   "flags": {
     "hotReload": {
-      "extensions": ["css", "hbs", "json"]
+      "extensions": ["css", "hbs", "json"],
+      "paths": [ "templates", "lang" ]
     }
   },
   "packs": [
