@@ -15,7 +15,7 @@ import { staticStatusId } from "../utils.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
-const { Actors, Items, Journal } = foundry.documents.collections;
+const { Actors, Items, Journal, Scenes } = foundry.documents.collections;
 
 /**
  *
@@ -163,6 +163,12 @@ export default function () {
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
       makeDefault: true,
       label:       "ED.Documents.journalSheetEd"
+    } );
+
+    Scenes.unregisterSheet( "core", foundry.applications.sheets.SceneConfig );
+    Scenes.registerSheet( "earthdawn4e", applications.scene.SceneConfigEd, {
+      makeDefault: true,
+      label:       "ED.Documents.sceneConfigEd"
     } );
 
     // endregion

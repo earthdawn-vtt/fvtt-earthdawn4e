@@ -1,6 +1,51 @@
 import { preLocalize } from "../utils.mjs";
 
 
+export const astralSpacePollution = {
+  safe: {
+    label:            "ED.Config.AstralSpacePollution.safe",
+    sensingModifier:   0,
+    backlashModifier:  4,
+    rawMagic:          {
+      warpingModifier:    0,
+      damageModifier:     4,
+      horrorMarkModifier: null,
+    },
+  },
+  open: {
+    label:            "ED.Config.AstralSpacePollution.open",
+    sensingModifier:   2,
+    backlashModifier:  8,
+    rawMagic:          {
+      warpingModifier:    5,
+      damageModifier:     5,
+      horrorMarkModifier: 2,
+    },
+  },
+  tainted: {
+    label:            "ED.Config.AstralSpacePollution.tainted",
+    sensingModifier:   5,
+    backlashModifier:  12,
+    rawMagic:          {
+      warpingModifier:    10,
+      damageModifier:     12,
+      horrorMarkModifier: 5,
+    },
+  },
+  corrupt: {
+    label:            "ED.Config.AstralSpacePollution.corrupt",
+    sensingModifier:   12,
+    backlashModifier:  16,
+    rawMagic:          {
+      warpingModifier:    15,
+      damageModifier:     16,
+      horrorMarkModifier: 10,
+    },
+  },
+};
+preLocalize( "astralSpacePollution", { key: "label" } );
+
+
 /**
  * The different ways of attuning spells.
  * @enum {string}
