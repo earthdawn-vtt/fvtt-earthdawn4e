@@ -10,7 +10,7 @@ export default class AvailabilityMigration {
       array => Array.isArray( array ) && array.includes( source.availability )
     );
 
-    if ( availIndex !== -1 ) {
+    if ( availIndex >= 0 ) {
       source.availability = Object.keys( ED4E.availability )[availIndex];
     }
   }
