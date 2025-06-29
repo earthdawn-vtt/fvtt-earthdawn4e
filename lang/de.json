@@ -1402,6 +1402,14 @@
             "level": {
               "hint":                              "Kreis/Rang der Berufungs",
               "label":                             "Kreis/Rang"
+            },
+            "resourceStep": {
+              "hint":                              "Karma-/Weihestufe",
+              "label":                             "Ressource"
+            },
+            "tier": {
+              "hint":                              "Grad der Berufung",
+              "label":                             "Grad"
             }
           }
         },

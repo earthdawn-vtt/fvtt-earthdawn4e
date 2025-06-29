@@ -5,8 +5,13 @@ export default class AvailabilityMigration {
   static async migrateData( source ) {
   
     source.availability = source.availability?.slugify( { lowercase: true, strict: true } );
-    if ( ED4E.systemV0_8_2.availability.includes( source.availability ) ) {
-      source.availability = Object.keys( ED4E.availability )[ED4E.systemV0_8_2.availability.indexOf( source.availability )];
+
+    const availIndex = ED4E.systemV0_8_2.availability.findIndex(
+      array => Array.isArray( array ) && array.includes( source.availability )
+    );
+
+    if ( availIndex >= 0 ) {
+      source.availability = Object.keys( ED4E.availability )[availIndex];
     }
   }
 }

@@ -1390,6 +1390,14 @@
             "level": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
+            },
+            "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
