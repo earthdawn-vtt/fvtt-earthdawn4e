@@ -33,10 +33,6 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     return [ "dragon", "horror", "spirit" ].includes( this._actor.type );
   }
 
-  get _sufferRawConsequences() {
-    return ![ "horror", "spirit" ].includes( this._actor.type );
-  }
-
   /**
    * The spell being cast
    * @type {Item}

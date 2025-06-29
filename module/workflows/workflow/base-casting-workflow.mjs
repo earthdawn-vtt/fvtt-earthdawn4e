@@ -61,6 +61,15 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
     }
     super( caster, options );
     this._stopOnWeaving = options.stopOnWeaving ?? true;
+
+    this._steps.push(
+      this._preWeaveThreads.bind( this ),
+      this._weaveThreads.bind( this ),
+      this._preCastSpell.bind( this ),
+      this._castSpell.bind( this ),
+      this._postCastSpell.bind( this ),
+      this._setResult.bind( this ),
+    );
   }
 
   /**
@@ -110,12 +119,11 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   /**
-   * Handle any aftermath of the casting (drain, feedback, etc.)
-   * @abstract
+   * Handle any aftermath of the casting (raw magic, etc.)
    * @returns {Promise<void>}
    */
-  async _handleAftermath() {
-    throw new Error( "Method 'handleAftermath()' must be implemented by derived classes" );
+  async _postCastSpell() {
+    // Do nothing by default
   }
 
   /**
