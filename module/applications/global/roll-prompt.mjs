@@ -5,6 +5,28 @@ import ApplicationEd from "../api/application.mjs";
 
 export default class RollPrompt extends ApplicationEd {
 
+  // region Properties
+
+  /** @inheritDoc */
+  buttons = [
+    {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      cssClass: "cancel",
+      icon:     `fas ${ED4E.icons.cancel}`,
+      action:   "close",
+    },
+    {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.roll" ),
+      cssClass: "roll",
+      icon:     `fa-regular ${ED4E.icons.dice}`,
+      action:   "roll",
+    },
+  ];
+
+  // endregion
+
   /** @inheritDoc */
   constructor(
     edRollOptions = {},
@@ -27,30 +49,7 @@ export default class RollPrompt extends ApplicationEd {
     } );
   }
 
-  /**
-   * Wait for dialog to be resolved.
-   * @param {object} edRollOptions             The roll options that are updated by the prompt.
-   * @param {object} [options]        Options to pass to the constructor.
-   * @returns {Promise<EdRoll|null>}  Created roll instance or `null`.
-   */
-  static waitPrompt( edRollOptions, options = {} ) {
-    return new Promise( ( resolve ) => {
-      options.resolve = resolve;
-      new this( edRollOptions, options ).render( true, { focus: true } );
-    } );
-  }
-
-  /**
-   * @description                 Roll a step prompt.
-   */
-  static rollArbitraryPrompt() {
-    RollPrompt.waitPrompt(
-      new EdRollOptions( {
-        testType:   "arbitrary",
-        chatFlavor: game.i18n.localize( "ED.Chat.Header.arbitraryTest" ),
-      } ),
-    ).then( ( roll ) => roll?.toMessage() );
-  }
+  // region Static Properties
 
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
@@ -78,35 +77,73 @@ export default class RollPrompt extends ApplicationEd {
 
   /** @inheritDoc */
   static PARTS = {
-    base: {
-      template: "systems/ed4e/templates/prompts/roll-prompt.hbs",
-      id:       "-base-input",
-      classes:  [ "base-input" ],
-    },
-    footer: {
+    step:      { template: "systems/ed4e/templates/prompts/roll/part-step.hbs" },
+    target:    { template: "systems/ed4e/templates/prompts/roll/part-target.hbs" },
+    strain:    { template: "systems/ed4e/templates/prompts/roll/part-strain.hbs" },
+    resources: { template: "systems/ed4e/templates/prompts/roll/part-resources.hbs" },
+    footer:    {
       template: "templates/generic/form-footer.hbs",
       id:       "-footer",
       classes:  [ "flexrow" ],
     },
   };
 
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * Wait for dialog to be resolved.
+   * @param {object} edRollOptions             The roll options that are updated by the prompt.
+   * @param {object} [options]        Options to pass to the constructor.
+   * @returns {Promise<EdRoll|null>}  Created roll instance or `null`.
+   */
+  static waitPrompt( edRollOptions, options = {} ) {
+    return new Promise( ( resolve ) => {
+      options.resolve = resolve;
+      new this( edRollOptions, options ).render( true, { focus: true } );
+    } );
+  }
+
+  /**
+   * @description                 Roll a step prompt.
+   */
+  static rollArbitraryPrompt() {
+    RollPrompt.waitPrompt(
+      new EdRollOptions( {
+        testType:   "arbitrary",
+        chatFlavor: game.i18n.localize( "ED.Chat.Header.arbitraryTest" ),
+      } ),
+    ).then( ( roll ) => roll?.toMessage() );
+  }
+
+  // endregion
+
+  // region Rendering
+
   /** @inheritDoc */
-  buttons = [
-    {
-      type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
-      cssClass: "cancel",
-      icon:     `fas ${ED4E.icons.cancel}`,
-      action:   "close",
-    },
-    {
-      type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.roll" ),
-      cssClass: "roll",
-      icon:     `fa-regular ${ED4E.icons.dice}`,
-      action:   "roll",
-    },
-  ];
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+    options.parts = [ "step" ];
+
+    if ( this.edRollOptions.target !== null ) options.parts.push( "target" );
+    if ( this.edRollOptions.strain !== null ) options.parts.push( "strain" );
+
+    options.parts.push( "resources" );
+    options.parts.push( "footer" );
+  }
+
+  /** @inheritDoc */
+  _onRender( context, options ) {
+    this.element
+      .querySelectorAll( "#karma-input,#devotion-input" )
+      .forEach( ( element ) => {
+        element.addEventListener(
+          "change",
+          this._validateAvailableResource.bind( this ),
+        );
+      } );
+  }
 
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
@@ -138,17 +175,39 @@ export default class RollPrompt extends ApplicationEd {
     return context;
   }
 
+  // endregion
+
+  // region Form Handling
+
   /** @inheritDoc */
-  _onRender( context, options ) {
-    this.element
-      .querySelectorAll( "#karma-input,#devotion-input" )
-      .forEach( ( element ) => {
-        element.addEventListener(
-          "change",
-          this._validateAvailableResource.bind( this ),
-        );
-      } );
+  static async #onFormSubmission( event, form, formData ) {
+    this.edRollOptions.updateSource( formData.object );
+    return this.render( true );
   }
+
+  // endregion
+
+  // region Event Handling
+
+  /**
+   * @description                Roll the step.
+   * @param {Event} event        The event that triggered the roll.
+   * @param {HTMLElement} target The target element of the event.
+   * @returns {Promise}          The promise of the roll.
+   */
+  static async _roll( event, target ) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    const roll = new EdRoll( undefined, this.rollData, this.edRollOptions );
+    this.resolve?.( roll );
+    return this.close();
+  }
+
+  // endregion
+
+  // region Methods
 
   /**
    * @description                 Validate the available resources.
@@ -167,25 +226,5 @@ export default class RollPrompt extends ApplicationEd {
     }
   }
 
-  /** @inheritDoc */
-  static async #onFormSubmission( event, form, formData ) {
-    this.edRollOptions.updateSource( formData.object );
-    return this.render( true );
-  }
-
-  /**
-   * @description                Roll the step.
-   * @param {Event} event        The event that triggered the roll.
-   * @param {HTMLElement} target The target element of the event.
-   * @returns {Promise}          The promise of the roll.
-   */
-  static async _roll( event, target ) {
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-
-    const roll = new EdRoll( undefined, this.rollData, this.edRollOptions );
-    this.resolve?.( roll );
-    return this.close();
-  }
+  // endregion
 }
