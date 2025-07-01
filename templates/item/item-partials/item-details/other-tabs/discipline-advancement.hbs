@@ -34,9 +34,8 @@
               <div class="form-group {{@key}}-pool">
                 <label>{{lookup @root.config.tier @key}}</label>
                 <div class="form-fields">
-                  <document-tags name="system.advancement.abilityOptions.{{@key}}" value="{{ed-commaList this}}" placeholder="{{localize "X-No abilities added yet. You can do it by just dragging and dropping them onto this field"}}"></document-tags>
+                  <document-tags name="system.advancement.abilityOptions.{{@key}}" value="{{ed-commaList this}}"></document-tags>
                 </div>
-                {{!-- <p class="advancement-hint">{{localize (concat "ED.Item.Discipline.talentOptionsForTier " @key)}}</p> --}}
               </div>
             </div>
           {{/each}}
@@ -51,20 +50,20 @@
 
             <!-- Level Number -->
             <div class="title-level-number">
-              {{formField this.schema.fields.level name=(concat "system.advancement.levels." @index ".level") value=this.level readonly=true label=("ED.Data.Item.Class.FIELDS.resourceStep") hint=("ED.Data.Item.Class.FIELDS.resourceStep") localize=true}}
+              {{formField this.schema.fields.level name=(concat "system.advancement.levels." @index ".level") value=this.level readonly=true label="ED.Data.Item.Class.FIELDS.level.label" hint="ED.Data.Item.Class.FIELDS.level.hint" localize=true}}
             </div>
 
             <!-- Tier -->
-            {{formField this.schema.fields.tier name=(concat "system.advancement.levels." @index ".tier") label=("ED.Data.Item.Class.FIELDS.tier") hint=("ED.Data.Item.Class.FIELDS.tier") value=this.tier required=true}}
+            {{formField this.schema.fields.tier name=(concat "system.advancement.levels." @index ".tier") label="ED.Data.Item.Class.FIELDS.tier.label" hint="ED.Data.Item.Class.FIELDS.tier.hint" value=this.tier required=true  localize=true}}
 
             <!-- Resource Step -->
-            {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") label=("ED.Data.Item.Class.FIELDS.resourceStep") hint=("ED.Data.Item.Class.FIELDS.resourceStep") value=this.resourceStep required=true}}
+            {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") label="ED.Data.Item.Class.FIELDS.resourceStep.label" hint="ED.Data.Item.Class.FIELDS.resourceStep.hint" value=this.resourceStep required=true  localize=true}}
 
             <!-- Class Talents -->
             <div class="form-group class-abilities">
               <label>{{localize "ED.Advancement.Pools.class"}}</label>
               <div class="form-fields">
-                <document-tags name="system.advancement.levels.{{@index}}.abilities.class" value="{{ed-commaList this.abilities.class}}" placeholder="{{localize "X-No abilities added yet. You can do it by just dragging and dropping them onto this field"}}"></document-tags>
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.class" value="{{ed-commaList this.abilities.class}}"></document-tags>
               </div>
               <p class="advancement-hint">{{localize "ED.Advancement.Pools.classHint"}}</p>
             </div>
@@ -74,7 +73,7 @@
             <div class="form-group free-abilities">
               <label>{{localize "ED.Advancement.Pools.free"}}</label>
               <div class="form-fields">
-                <document-tags name="system.advancement.levels.{{@index}}.abilities.free" value="{{ed-commaList this.abilities.free}}" placeholder="{{localize "X-No abilities added yet. You can do it by just dragging and dropping them onto this field"}}"></document-tags>
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.free" value="{{ed-commaList this.abilities.free}}"></document-tags>
               </div>
               <p class="advancement-hint">{{localize "ED.Advancement.Pools.freeHint"}}</p>
             </div>
@@ -83,7 +82,7 @@
             <div class="form-group special-abilities">
               <label>{{localize "ED.Advancement.Pools.special"}}</label>
               <div class="form-fields">
-                <document-tags name="system.advancement.levels.{{@index}}.abilities.special" value="{{ed-commaList this.abilities.special}}" placeholder="{{localize "X-No abilities added yet. You can do it by just dragging and dropping them onto this field"}}"></document-tags>
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.special" value="{{ed-commaList this.abilities.special}}"></document-tags>
               </div>
               <p class="advancement-hint">{{localize "ED.Advancement.Pools.specialHint"}}</p>
             </div>
@@ -92,7 +91,7 @@
             <div class="form-group class-effects">
               <label>{{localize "ED.Advancement.Pools.effects"}}</label>
               <div class="form-fields">
-                <document-tags name="system.advancement.levels.{{@index}}.effects" value="{{ed-commaList this.effects}}" placeholder="{{localize "X-No abilities added yet. You can do it by just dragging and dropping them onto this field"}}"></document-tags>
+                <document-tags name="system.advancement.levels.{{@index}}.effects" value="{{ed-commaList this.effects}}"></document-tags>
               </div>
               <p class="advancement-hint">{{localize "ED.Advancement.Pools.effectsHint"}}</p>
             </div>
