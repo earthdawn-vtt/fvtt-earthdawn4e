@@ -102,7 +102,7 @@ export default class EdRollOptions extends SparseDataModel {
             new fields.NumberField( {
               required: true,
               nullable: false,
-              initial:  1,
+              initial:  0,
               step:     1,
               integer:  true,
             } ),
