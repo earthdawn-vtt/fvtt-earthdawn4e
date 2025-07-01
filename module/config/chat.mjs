@@ -6,12 +6,14 @@ import { preLocalize } from "../utils.mjs";
  * @enum {string}
  */
 export const chatCommands = {
-  char:     "X.chatCommandCharHelp no parameters, trigger char gen",
-  coin:     "X.chatCommandCoinHelp number plus coinage, pass out coins",
-  group:    "X.chatCommandGroupHelp no parameters?, calc CR for group",
-  h:        "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
-  help:     "X.chatCommandHelp optional param 'chatCommand', show general help or for given command",
-  lp:       "X.chatCommandLpHelp number, award LP points",
-  s:        "X.chatCommandSHelp any number of steps separated by whitespace or +, roll the given steps",
+  char:     "ED.Chat.Commands.char",
+  coin:     "ED.Chat.Commands.coin",
+  group:    "ED.Chat.Commands.group",
+  h:        "ED.Chat.Commands.help",
+  help:     "ED.Chat.Commands.help",
+  lp:       "ED.Chat.Commands.lp",
+  r:        "ED.Chat.Commands.r",
+  roll:     "ED.Chat.Commands.roll",
+  s:        "ED.Chat.Commands.s",
 };
 preLocalize( "chatCommands" );

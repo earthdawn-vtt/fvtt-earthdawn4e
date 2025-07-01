@@ -10,6 +10,8 @@ const cmdMapping = {
   h:     triggerHelp,
   help:  triggerHelp,
   lp:    triggerLpAward,
+  r:     triggerRollDice,
+  roll:  triggerRollDice,
   s:     triggerRollStep,
 };
 
@@ -24,6 +26,8 @@ export default function () {
    * /group Triggers Group calculation for Challenging rates
    * /help - Display a help message on all the commands above
    * /lp Triggers awarding legend points for players
+   * /r Triggers standard dice rolls (e.g., /r 1d6, /r 2d10+3)
+   * /roll Triggers standard dice rolls (e.g., /roll 1d6, /roll 2d10+3)
    * /s Triggers Step roll
    */
   Hooks.on( "chatMessage", ( html, content, msg ) => {
@@ -99,13 +103,15 @@ function triggerCrCalc( argString ) {
 function triggerHelp( argString ) {
   const helpText =
     CONFIG.ED4E.chatCommands[argString.toLowerCase()] ??
-    `X.localize<br>
-    /char Triggers Character Generation<br>
-    /coin Triggers awarding Silver for players<br>
-    /group Triggers Group calculation for Challenging rates<br>
-    /help - Display a help message on all the commands above<br>
-    /lp Triggers awarding legend points for players<br>
-    /s Triggers Step roll<br>
+    `${ game.i18n.localize( "ED.Chat.Commands.helpHeader" ) }<br>
+    /char - ${ game.i18n.localize( "ED.Chat.Commands.char" ) }<br>
+    /coin - ${ game.i18n.localize( "ED.Chat.Commands.coin" ) }<br>
+    /group - ${ game.i18n.localize( "ED.Chat.Commands.group" ) }<br>
+    /help - ${ game.i18n.localize( "ED.Chat.Commands.help" ) }<br>
+    /lp - ${ game.i18n.localize( "ED.Chat.Commands.lp" ) }<br>
+    /r - ${ game.i18n.localize( "ED.Chat.Commands.r" ) }<br>
+    /roll - ${ game.i18n.localize( "ED.Chat.Commands.roll" ) }<br>
+    /s - ${ game.i18n.localize( "ED.Chat.Commands.s" ) }<br>
     `;
 
   ChatMessage.create( {
@@ -150,6 +156,32 @@ function triggerRollStep( argString ) {
       } )
     ).toMessage(),
   );
+  return false;
+}
+
+/* -------------------------------------------- */
+/**
+ * Triggers a standard dice roll with /r or /roll.
+ * @param {string} argString - The argument string from the original chat message passed to the command.
+ * @returns {boolean} Always returns false to prevent further processing.
+ */
+function triggerRollDice( argString ) {
+  if ( !argString.trim() ) {
+    ui.notifications.warn( game.i18n.localize( "ED.Chat.Commands.provideDiceFormula" ) );
+    return false;
+  }
+
+  try {
+    // Create a standard Foundry roll with the dice formula
+    const roll = new Roll( argString.trim() );
+    roll.toMessage( {
+      flavor: game.i18n.localize( "ED.Chat.Commands.standardDiceRoll" )
+    } );
+  } catch ( error ) {
+    ui.notifications.error( `${ game.i18n.localize( "ED.Chat.Commands.invalidDiceFormula" ) }: ${ argString }` );
+    console.error( "Dice roll error:", error );
+  }
+  
   return false;
 }
 

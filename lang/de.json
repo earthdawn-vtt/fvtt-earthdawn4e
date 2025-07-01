@@ -327,6 +327,20 @@
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
+      "Commands": {
+        "char":                                    "Charaktergenerierung auslösen",
+        "coin":                                    "Silber an Spieler vergeben",
+        "group":                                   "Gruppen-Herausforderungsgrad berechnen",
+        "help":                                    "Zeige Hilfe zu Befehlen",
+        "helpHeader":                              "Verfügbare Chat-Befehle:",
+        "invalidDiceFormula":                      "Ungültige Würfelformel",
+        "lp":                                      "Legendenpunkte vergeben",
+        "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
+        "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
+        "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
+        "s":                                       "Stufenwurf ausführen",
+        "standardDiceRoll":                        "Standard Würfelwurf"
+      },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
         "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
