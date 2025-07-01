@@ -328,6 +328,20 @@
         "takeDamage":                              "Take Damage",
         "takeDamageTitle":                         "TODO: Add translation"
       },
+      "Commands": {
+        "char":                                    "TODO: Add translation",
+        "coin":                                    "TODO: Add translation",
+        "group":                                   "TODO: Add translation",
+        "help":                                    "TODO: Add translation",
+        "helpHeader":                              "TODO: Add translation",
+        "invalidDiceFormula":                      "TODO: Add translation",
+        "lp":                                      "TODO: Add translation",
+        "provideDiceFormula":                      "TODO: Add translation",
+        "r":                                       "TODO: Add translation",
+        "roll":                                    "TODO: Add translation",
+        "s":                                       "TODO: Add translation",
+        "standardDiceRoll":                        "TODO: Add translation"
+      },
       "Flavor": {
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
