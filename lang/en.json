@@ -2497,17 +2497,41 @@
         },
         "RollOptions": {
           "FIELDS": {
-            "chatFlavowr": {
+            "chatFlavor": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
             "devotion": {
+              "dice": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "TODO: Add translation",
+              "pointsUsed": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "step": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "karma": {
+              "dice": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "TODO: Add translation",
+              "pointsUsed": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "step": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "rolLSubType": {
               "hint":                              "TODO: Add translation",
@@ -3183,6 +3207,7 @@
       },
       "Modifiers": {
         "grimoirePenalty":                         "TODO: Add translation",
+        "manual":                                  "TODO: Add translation",
         "stunRecoveryWillpower":                   "TODO: Add translation"
       },
       "baseValue":                                 "Base Step",
