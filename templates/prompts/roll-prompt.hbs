@@ -21,6 +21,7 @@
       {{#each step.modifiers as |modifier|}}
         {{formGroup
           ../optionsFields.step.fields.modifiers.model
+          name=(concat "step.modifiers." @key)
           value=modifier
           label=@key
         }}
@@ -53,14 +54,18 @@
         value=strain.base
         hint=""
       }}
-      <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
-      {{#each strain.modifiers as |modifier|}}
-        {{formGroup
-          optionsFields.strain.fields.modifiers.model
-          value=modifier
-          label=@key
-        }}
-      {{/each}}
+
+      {{#if ( ed-hasItems strain.modifiers ) }}
+        <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
+        {{#each strain.modifiers as |modifier|}}
+          {{formGroup
+            optionsFields.strain.fields.modifiers.model
+            name=(concat "strain.modifiers." @key)
+            value=modifier
+            label=@key
+          }}
+        {{/each}}
+      {{/if}}
     </fieldset>
   {{/if}}
 
@@ -79,9 +84,9 @@
         hint=""
       }}
       {{formInput
-          optionsFields.karma.fields.dice
-          value=karma.dice
-          disabled=true
+        optionsFields.karma.fields.dice
+        value=karma.dice
+        disabled=true
       }}
     </div>
     <div class="flexrow">
@@ -96,9 +101,9 @@
         hint=""
       }}
       {{formInput
-          optionsFields.devotion.fields.dice
-          value=devotion.dice
-          disabled=true
+        optionsFields.devotion.fields.dice
+        value=devotion.dice
+        disabled=true
       }}
     </div>
   </fieldset>
