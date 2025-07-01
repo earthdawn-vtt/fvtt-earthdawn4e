@@ -192,10 +192,10 @@ export default class RollPrompt extends ApplicationEd {
   /**
    * @description                Roll the step.
    * @param {Event} event        The event that triggered the roll.
-   * @param {HTMLElement} target The target element of the event.
+   * @param {HTMLElement} _      The target element of the event. Unused.
    * @returns {Promise}          The promise of the roll.
    */
-  static async _roll( event, target ) {
+  static async _roll( event, _ ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
