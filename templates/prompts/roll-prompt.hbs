@@ -1,95 +1,107 @@
 <div class="roll-prompt" id="roll-prompt-form" autocomplete="off">
-  <div class="flex-column">
-    <div class="step partial__two">
-      <div class="partial__two">
-        <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.step"}}: </label>
-      </div>
-      <div class="partial__two">
-        <input class="input__circle-input--centered" id="step-mod-input"
-               value={{step.base}} name="step.base" data-type="number" autofocus />
-      </div>
-    </div>
-  </div>
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.RollPrompt.step"}}</legend>
+    {{formGroup
+      optionsFields.step.fields.base
+      value=step.base
+      hint=""
+      autofocus=true
+      localize=true
+    }}
+    {{formGroup
+      optionsFields.step.fields.total
+      value=step.total
+      hint=""
+      disabled=true
+      data-tooltip=""
+    }}
 
-  {{#if ( ne testType "arbitrary") }}
-    <div class="flex-column">
-      <div class="modifier partial__two">
-        <div class="partial__two">
-          <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}:</label>
-        </div>
-        <div class="partial__two">
-          <input class="input__circle-input--centered" id="step-mod-input"
-                 value={{step.modifiers.manual}} name="step.modifiers.manual"
-                 data-type="number" autofocus />
-        </div>
-      </div>
-    </div>
+    {{#if ( ne testType "arbitrary") }}
+      <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
+      {{#each step.modifiers as |modifier|}}
+        {{formGroup
+          ../optionsFields.step.fields.modifiers.model
+          value=modifier
+          label=@key
+        }}
+      {{/each}}
+    {{/if}}
+  </fieldset>
+
+  {{#if target}}
+    <fieldset>
+      <legend class="modifier-description">{{localize "ED.Dialogs.RollPrompt.difficulty"}}:</legend>
+      {{#if target.public}}
+        {{formGroup
+          optionsFields.target.fields.base
+          name="target.base"
+          value=target.base
+          hint=""
+        }}
+      {{else}}
+        ???
+      {{/if}}
+    </fieldset>
   {{/if}}
 
-  <div class="flex-column">
-    <div class="modifier partial__two">
-      <div class="partial__two">
-        <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.difficulty"}}:</label>
-      </div>
-      <div class="partial__two">
-        <input class="input__circle-input--centered" id="difficulty-input"
-               value={{target.base}} name="target.base" data-type="number" />
-      </div>
-    </div>
-  </div>
-
-  {{#if ( ne testType "arbitrary") }}
-    <div class="flex-column">
-      <div class="modifier partial__two">
-        <div class="partial__two">
-          <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.strain"}}:</label>
-        </div>
-        <div class="partial__two">
-          <input class="input__circle-input--centered" id="strain-input"
-                 value={{strain.total}} name="strain.total" data-type="number" />
-        </div>
-      </div>
-    </div>
+  {{#if strain }}
+    <fieldset>
+      <legend class="modifier-description">{{localize "ED.Dialogs.RollPrompt.strain"}}:</legend>
+      {{formGroup
+        optionsFields.strain.fields.base
+        name="strain.total"
+        value=strain.base
+        hint=""
+      }}
+      <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
+      {{#each strain.modifiers as |modifier|}}
+        {{formGroup
+          optionsFields.strain.fields.modifiers.model
+          value=modifier
+          label=@key
+        }}
+      {{/each}}
+    </fieldset>
   {{/if}}
 
 
-  <div class="flex-column">
-    <div class="partial__four">
-      <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.karma"}}: </label>
+  <fieldset>
+    <legend>{{localize "Ressourcen"}}</legend>
+    <div class="flexrow">
+      {{formGroup
+        optionsFields.karma.fields.pointsUsed
+        value=karma.pointsUsed
+        hint=""
+      }}
+      {{formGroup
+        optionsFields.karma.fields.step
+        value=karma.step
+        hint=""
+      }}
+      {{formInput
+          optionsFields.karma.fields.dice
+          value=karma.dice
+          disabled=true
+      }}
     </div>
-    <div class="partial__four">
-      <input class="input__circle-input--centered" id="karma-input" value={{karma.pointsUsed}}
-             name="karma.pointsUsed" data-type="number" data-resource="karma" />
+    <div class="flexrow">
+      {{formGroup
+        optionsFields.devotion.fields.pointsUsed
+        value=devotion.pointsUsed
+        hint=""
+      }}
+      {{formGroup
+        optionsFields.devotion.fields.step
+        value=devotion.step
+        hint=""
+      }}
+      {{formInput
+          optionsFields.devotion.fields.dice
+          value=devotion.dice
+          disabled=true
+      }}
     </div>
-    <div class="partial__four">
-      <label class="modifier-description" title="{{localize "
-                                        ED.Dialogs.RollPrompt.karmaDice:"}}+{{karma.dice}}">{{localize
-        "ED.Dialogs.RollPrompt.karmaStep"}}: </label>
-    </div>
-    <div class="partial__four">
-      <input class="input__circle-input--centered" id="karma-step" value={{karma.step}}
-             name="karma.step" data-type="number" />
-    </div>
-  </div>
-  <div class="flex-column">
-    <div class="partial__four">
-      <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.devotion"}}: </label>
-    </div>
-    <div class="partial__four">
-      <input class="input__circle-input--centered" id="devotion-input"
-             value={{devotion.pointsUsed}} name="devotion.pointsUsed" data-type="number"
-             data-resource="devotion" />
-    </div>
-
-    <div class="partial__four">
-      <label class="modifier-description" title="{{localize "
-                                        ED.Dialogs.RollPrompt.devotionDice:"}}+{{devotion.dice}}">{{localize "ED.Dialogs.RollPrompt.devotionStep"}}:</label>
-    </div>
-    <div class="partial__four">
-      <input class="input__circle-input--centered" id="devotion-step" value={{devotion.step}}
-             name="devotion.step" data-type="number" />
-    </div>
-  </div>
+  </fieldset>
   <div class="undefined">
     clickable options like "attack to stun"
   </div>

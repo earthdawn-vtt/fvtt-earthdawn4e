@@ -856,6 +856,7 @@ export async function preloadHandlebarsTemplates() {
     // Dice partials
     "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs",
+    "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs",
 
     // other tabs

@@ -1,12 +1,10 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+export default class RollPrompt extends ApplicationEd {
 
-export default class RollPrompt extends HandlebarsApplicationMixin(
-  ApplicationV2,
-) {
   /** @inheritDoc */
   constructor(
     edRollOptions = {},
@@ -22,8 +20,10 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     this.resolve = resolve;
     this.edRollOptions = edRollOptions;
     this.rollData = rollData;
+
+    const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
-      "step.modifiers.manual": edRollOptions.step.modifiers.manual ?? 0,
+      [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
     } );
   }
 
@@ -65,10 +65,9 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     window: {
       frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
-      icon:  `fa-regular ${ED4E.icons.dice}`,
     },
     actions: {
-      roll: this._roll,
+      roll:            this._roll,
     },
     form: {
       handler:        RollPrompt.#onFormSubmission,
@@ -114,9 +113,14 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     const context = await super._prepareContext( options );
     return {
       ...context,
-      ...this.edRollOptions,
-      buttons: this.buttons,
+      options:       this.edRollOptions,
+      optionsFields: this.edRollOptions.schema.fields,
+      buttons:       this.buttons,
+      tooltips:      {
+        stepModifiers: Object.values( this.edRollOptions.step.modifiers ).join( " + " ),
+      },
       CONFIG,
+      ...this.edRollOptions,
     };
   }
 
