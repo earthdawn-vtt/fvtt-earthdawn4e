@@ -8,6 +8,11 @@ export default class SparseDataModel extends foundry.abstract.DataModel {
     "ED.Data.Other"
   ];
 
+  /** @inheritdoc */
+  static defineSchema() {
+    return {};
+  }
+
   /** @inheritDoc */
   toObject( source = true ) {
     if ( !source ) return super.toObject( source );
