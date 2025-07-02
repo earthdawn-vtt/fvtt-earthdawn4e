@@ -4,6 +4,7 @@ import { getSetting } from "../../settings.mjs";
 
 /**
  * @typedef {object} BaseCastingWorkflowOptions
+ * @property {ItemEd} spell - The spell being cast
  * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
  */
 
@@ -60,6 +61,7 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
       throw new Error( "CastingWorkflowInterface is an abstract class and cannot be instantiated directly." );
     }
     super( caster, options );
+    this._spell = options.spell;
     this._stopOnWeaving = options.stopOnWeaving ?? true;
 
     this._steps.push(
