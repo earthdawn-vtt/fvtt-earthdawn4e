@@ -13,8 +13,6 @@ import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
  * @property {Item} spell - The spell being cast
  * @property {"raw"|"grimoire"|"matrix"} [castingMethod] - The method used to cast the spell (matrix, grimoire, raw)
  * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
- * @property {Actor[]} [targets] - The targets of the spell
- * @property {number} [additionalThreads=0] - Additional threads to weave
  */
 
 /**
@@ -52,36 +50,6 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   _matrix;
 
   /**
-   * The targets of the spell
-   * @type {Actor[]}
-   */
-  _targets = [];
-
-  /**
-   * Results of thread weaving tests
-   * @type {Array}
-   */
-  _threadWeavingResults = [];
-
-  /**
-   * Result of the spellcasting test
-   * @type {object}
-   */
-  _spellcastingResult = null;
-
-  /**
-   * The determined effect of the spell
-   * @type {object}
-   */
-  _effectResult = null;
-
-  /**
-   * Results of raw magic effects
-   * @type {object}
-   */
-  _rawMagicResults = null;
-
-  /**
    * Whether to stop the workflow after thread weaving
    * @type {boolean}
    */
@@ -96,7 +64,6 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     super( caster, options );
     this._spell = options.spell;
     this._matrix = options.spell.system.getAttunedMatrix();
-    this._targets = options.targets || [];
     this._castingMethod = options.castingMethod;
     this._stopOnWeaving = options.stopOnWeaving ?? true;
 
