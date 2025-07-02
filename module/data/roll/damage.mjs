@@ -21,7 +21,9 @@ export default class DamageRollOptions extends EdRollOptions {
           type:     "Item",
           embedded: true,
         } ),
-        {}
+        {
+          required: false,
+        }
       ),
       armorType:         new fields.StringField( {
         required: true,
@@ -77,7 +79,7 @@ export default class DamageRollOptions extends EdRollOptions {
   }
 
   async _removeDamageAbilityModifiers( changes ) {
-    const removedDamageAbilities = this.damageAbilities.difference( changes.system?.damageAbilities );
+    const removedDamageAbilities = this.damageAbilities?.difference( changes.system?.damageAbilities );
     console.log( "Coming up: removedDamageAbilities", removedDamageAbilities );
   }
 
