@@ -93,6 +93,14 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.initiative",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/initiative-roll-flavor.hbs",
   },
+  jumpUp: {
+    label:            "ED.Config.RollTypes.jumpUp",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
+  },
+  knockDown: {
+    label:            "ED.Config.RollTypes.knockDown",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
+  },
   reaction: {
     label:            "ED.Config.RollTypes.reaction",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/reaction-roll-flavor.hbs",
@@ -109,13 +117,9 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.threadWeaving",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/thread-weaving-roll-flavor.hbs",
   },
-  jumpUp: {
-    label:            "ED.Config.RollTypes.jumpUp",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
-  },
-  knockDown: {
-    label:            "ED.Config.RollTypes.knockDown",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
+  warping: {
+    label:            "ED.Config.RollTypes.warping",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/warping-roll-flavor.hbs",
   },
 };
 preLocalize( "testTypes", { key: "label" } );
