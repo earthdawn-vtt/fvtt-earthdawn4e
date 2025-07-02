@@ -12,19 +12,9 @@ export default class DamageRollOptions extends EdRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      weaponUuid:        new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
+      damageSource: new fields.StringField( {
+        initial: "???",
       } ),
-      damageAbilities: new fields.SetField(
-        new fields.DocumentUUIDField( {
-          type:     "Item",
-          embedded: true,
-        } ),
-        {
-          required: false,
-        }
-      ),
       armorType:         new fields.StringField( {
         required: true,
         nullable: true,
@@ -39,6 +29,19 @@ export default class DamageRollOptions extends EdRollOptions {
       ignoreArmor: new fields.BooleanField( {
         initial:  false,
       } ),
+      weaponUuid:        new fields.DocumentUUIDField( {
+        type:     "Item",
+        embedded: true,
+      } ),
+      damageAbilities: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: true,
+        } ),
+        {
+          required: false,
+        }
+      ),
       element: new fields.SchemaField(
         {
           type: new fields.StringField( {
@@ -63,6 +66,35 @@ export default class DamageRollOptions extends EdRollOptions {
     await this._addDamageAbilityModifiers( changes );
     await this._removeDamageAbilityModifiers( changes );
   }
+
+  // region Source Initialization
+
+  /** @inheritDoc */
+  _getChatFlavorData() {
+    return {
+      damageSource: "",
+      armorType:    ED4E.armor[ this.armorType ] || "",
+    };
+  }
+
+  /** @inheritDoc */
+  _prepareStepData( data ) {
+    if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
+
+    return super._prepareStepData( data );
+  }
+
+  /** @inheritDoc */
+  _prepareStrainData( data ) {
+    return super._prepareStrainData( data );
+  }
+
+  /** @inheritDoc */
+  _prepareTargetDifficulty( data ) {
+    return super._prepareTargetDifficulty( data );
+  }
+
+  // endregion
 
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
