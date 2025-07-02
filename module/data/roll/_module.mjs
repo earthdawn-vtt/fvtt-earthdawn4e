@@ -6,4 +6,5 @@ export {default as DamageRollData} from "./damage.mjs";
 export {default as InitiativeRollData} from "./initiative.mjs";
 export {default as RecoveryRollData} from "./recovery.mjs";
 export {default as SpellcastingRollData} from "./spellcasting.mjs";
+export {default as WarpingRollData} from "./warping.mjs";
 export {default as WeavingRollData} from "./weaving.mjs";
