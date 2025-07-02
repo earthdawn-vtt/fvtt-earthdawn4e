@@ -854,6 +854,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/chat/chat-flavor/thread-weaving-roll-flavor.hbs",
 
     // Dice partials
+    "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs",
