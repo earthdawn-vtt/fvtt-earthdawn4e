@@ -122,7 +122,7 @@ export const rollTypes = {
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/warping-roll-flavor.hbs",
   },
 };
-preLocalize( "testTypes", { key: "label" } );
+preLocalize( "rollTypes", { key: "label" } );
 
 /**
  * The available types of (roll) tests for {@link EdRollOptions}.
