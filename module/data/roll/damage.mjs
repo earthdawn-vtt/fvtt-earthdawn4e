@@ -9,6 +9,10 @@ export default class DamageRollOptions extends EdRollOptions {
     "ED.Data.Other.DamageRollOptions",
   ];
 
+  static TEST_TYPE = "effect";
+
+  static ROLL_TYPE = "damage";
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -72,7 +76,7 @@ export default class DamageRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
-      damageSource: "",
+      damageSource: this.damageSource,
       armorType:    ED4E.armor[ this.armorType ] || "",
     };
   }
@@ -86,7 +90,10 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   _prepareStrainData( data ) {
-    return super._prepareStrainData( data );
+    return {
+      base:      0,
+      modifiers: {},
+    };
   }
 
   /** @inheritDoc */
