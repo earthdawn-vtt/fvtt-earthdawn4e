@@ -94,7 +94,7 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
       this._matrix,
     );
 
-    if ( this._stopOnWeaving ) {
+    if ( this._stopOnWeaving || !this._spell.system.isWeavingComplete ) {
       this.cancel();
     }
   }
