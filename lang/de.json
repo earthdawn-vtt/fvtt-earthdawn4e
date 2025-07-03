@@ -328,18 +328,17 @@
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
       "Commands": {
-        "char":                                    "Charaktergenerierung auslösen",
+        "char":                                    "Charaktergenerierung starten",
         "coin":                                    "Silber an Spieler vergeben",
         "group":                                   "Gruppen-Herausforderungsgrad berechnen",
-        "help":                                    "Zeige Hilfe zu Befehlen",
+        "help":                                    "Zeige Hilfe zu Chat-Befehlen",
         "helpHeader":                              "Verfügbare Chat-Befehle:",
         "invalidDiceFormula":                      "Ungültige Würfelformel",
         "lp":                                      "Legendenpunkte vergeben",
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
-        "s":                                       "Stufenwurf ausführen",
-        "standardDiceRoll":                        "Standard Würfelwurf"
+        "s":                                       "Earthdawn Wurfelwurf mit einer Stufe"
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
