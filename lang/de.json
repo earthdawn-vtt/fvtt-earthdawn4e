@@ -338,7 +338,7 @@
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
-        "s":                                       "Earthdawn Wurfelwurf mit einer Stufe"
+        "s":                                       "Earthdawn Würfelwurf mit einer Stufe"
       },
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
