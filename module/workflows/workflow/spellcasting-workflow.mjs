@@ -13,6 +13,7 @@ import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
  * @property {Item} spell - The spell being cast
  * @property {"raw"|"grimoire"|"matrix"} [castingMethod] - The method used to cast the spell (matrix, grimoire, raw)
  * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
+ * @property {Item} [matrix] - The matrix the spell is attuned to, if applicable
  */
 
 /**
@@ -63,7 +64,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   constructor( caster, options ) {
     super( caster, options );
     this._spell = options.spell;
-    this._matrix = options.spell.system.getAttunedMatrix();
+    this._matrix = options.matrix ?? options.spell.system.getAttunedMatrix();
     this._castingMethod = options.castingMethod;
     this._stopOnWeaving = options.stopOnWeaving ?? true;
 

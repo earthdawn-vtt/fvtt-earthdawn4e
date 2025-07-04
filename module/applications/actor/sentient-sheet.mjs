@@ -33,6 +33,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     actions:  {
       attack:           ActorSheetEdSentient._onAttack,
       attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
+      castMatrix:       ActorSheetEdSentient._onCastMatrix,
       takeDamage:       ActorSheetEdSentient.takeDamage,
       knockDown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
@@ -127,9 +128,23 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
 
-    const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
+    const firstMatrixUuid = target.closest( ".matrix-card" )?.dataset?.uuid;
 
     if ( await this.actor.reattuneSpells( firstMatrixUuid ) ) await this.render();
+  }
+
+  static async _onCastMatrix( event, target ) {
+    event.preventDefault();
+
+    const firstMatrixUuid = target.closest( ".matrix-card" )?.dataset?.uuid;
+    const matrix = await fromUuid( firstMatrixUuid );
+
+    if ( !matrix.system?.matrixSpellUuid ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantCastNoSpellInMatrix" ) );
+      return;
+    }
+
+    await this.document.castFromMatrix( matrix, matrix.system.matrixSpell, );
   }
 
   /**
