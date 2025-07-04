@@ -339,8 +339,12 @@
         "s":                                       "Earthdawn Würfelwurf mit einer Stufe"
       },
       "Flavor": {
+        "aHorror":                                 "Ein Dämon",
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
         "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
+        "damageRollOptions":                       "Schaden durch {damageSource}:",
+        "horrorMarkRollOptions":                   "{horror} versucht ein Dämonenmal auf {caster} zu platzieren.",
+        "ignoresArmor":                            "Ignoriert Rüstung",
         "invalidDiceFormula":                      "Ungültige Würfelformel",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
@@ -356,7 +360,8 @@
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell} ({step})",
-        "undoDamage":                              "Setzte den Schaden zurück"
+        "undoDamage":                              "Setze den Schaden zurück",
+        "warpingRollOptions":                      "Verzerrungsprobe<br/>{sourceActor} wirkt rohe Magie in einer Region mit Verunreinigung: {pollution}"
       },
       "Header": {
         "arbitraryTest":                           "Willkürlicher Test",
@@ -575,14 +580,16 @@
         "attuning":                                "Abstimmung",
         "damage":                                  "Schaden",
         "effect":                                  "Effekt",
-        "halfmagic":                               "Halb Magie",
+        "halfmagic":                               "Halbmagie",
+        "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
         "knockDown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
         "spellcasting":                            "Spruchzauberei",
-        "threadWeaving":                           "Fadenweben"
+        "threadWeaving":                           "Fadenweben",
+        "warping":                                 "Verzerrung"
       },
       "ScalarTimePeriods": {
         "day":                                     "Tag",
@@ -3042,6 +3049,7 @@
         "lpLearnKnack":                            "Lerne Kniff",
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
+        "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
         "selectCastingMethod":                     "Zaubermethode wählen",
         "selectExtraThreads":                      "Wähle zusätzliche Fäden",
         "selectGrimoireToAttune":                  "Wähle Grimoire zum Abstimmen",
@@ -3201,7 +3209,8 @@
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
         "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
-        "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt."
+        "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
+        "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen."
       },
       "Warn": {
         "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
