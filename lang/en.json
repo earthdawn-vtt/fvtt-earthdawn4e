@@ -610,6 +610,9 @@
         "summon":                                  "Summon"
       },
       "Tier": {
+        "adherent":                                "TODO: Add translation",
+        "exemplar":                                "TODO: Add translation",
+        "follower":                                "TODO: Add translation",
         "journeyman":                              "Journeyman",
         "master":                                  "Master",
         "novice":                                  "Novice",
@@ -1388,11 +1391,31 @@
         },
         "Class": {
           "FIELDS": {
+            "circle": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "level": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "rankPath": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rankQuestor": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepDevotion": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepKarma": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
