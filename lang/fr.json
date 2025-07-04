@@ -609,6 +609,9 @@
         "summon":                                  "TODO: Add translation"
       },
       "Tier": {
+        "adherent":                                "TODO: Add translation",
+        "exemplar":                                "TODO: Add translation",
+        "follower":                                "TODO: Add translation",
         "journeyman":                              "TODO: Add translation",
         "master":                                  "TODO: Add translation",
         "novice":                                  "TODO: Add translation",
@@ -1387,11 +1390,31 @@
         },
         "Class": {
           "FIELDS": {
+            "circle": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "level": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "rankPath": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rankQuestor": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepDevotion": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepKarma": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
