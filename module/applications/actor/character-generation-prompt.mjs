@@ -193,8 +193,17 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     context.config = ED4E;
-    context.object = this.charGenData;
     context.options = options;
+
+    // Character generation data properties
+    context.namegiver = this.charGenData.namegiver;
+    context.isAdept = this.charGenData.isAdept;
+    context.selectedClass = this.charGenData.selectedClass;
+    context.attributes = this.charGenData.attributes;
+    context.abilities = this.charGenData.abilities;
+    context.availableRanks = this.charGenData.availableRanks;
+    context.languages = this.charGenData.languages;
+    context.schema = this.charGenData.schema;
 
     // Rules
     context.charGenRules = game.i18n.localize( "ED.Dialogs.CharGen.charGenRules" );
