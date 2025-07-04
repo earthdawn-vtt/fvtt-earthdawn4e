@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import ED4E from "../../config/_module.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 export default class DamageRollOptions extends EdRollOptions {
 
@@ -76,7 +77,9 @@ export default class DamageRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
-      damageSource: this.damageSource,
+      damageSource: this.weaponUuid ?
+        createContentAnchor( fromUuidSync( this.weaponUuid ) ).outerHTML
+        : this.damageSource,
       armorType:    ED4E.armor[ this.armorType ] || "",
     };
   }

@@ -70,4 +70,64 @@
       }
     }
   }
+
+  .damage-visualization {
+    align-items: center;
+    margin: 0.8em 0;
+    padding: 1.5em;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    border: 1px solid var(--color-border-light-2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    .damage-value {
+      font-size: 3.5em;
+      font-weight: bold;
+      color: #450c08;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      margin-bottom: 0.3em;
+    }
+
+    .armor-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3em 0.8em;
+      border-radius: 4px;
+
+      .armor-icon {
+        font-size: 2em;
+        margin-right: 0.5em;
+
+        &.fa-shield.fa-solid {
+          color: #314939;
+        }
+
+        &.fa-shield.fa-regular {
+          color: #301e47;
+        }
+
+        &.fa-shield-quartered {
+          color: #777;
+        }
+      }
+
+      .armor-label {
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+
+      &.physical {
+        color: #314939;
+      }
+
+      &.mystical {
+        color: #301e47;
+      }
+
+      &.none {
+        color: #777;
+      }
+    }
+  }
 }
