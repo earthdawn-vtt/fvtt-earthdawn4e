@@ -1401,6 +1401,117 @@
   max-width: 100%;
   /* Ensure the paragraph does not exceed the container's width */
 }
+section.spells button.button-attune-matrix {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+section.spells .matrix-card {
+  cursor: pointer;
+  flex: 0 0 calc(25% - 1rem);
+  /* Change to flex: 0 0 to prevent stretching */
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 0.5rem;
+  height: 12rem;
+  /* Fixed height for all cards */
+  justify-content: space-around;
+  /* Space between image and links */
+}
+section.spells .matrix-card .matrix-img {
+  align-items: center;
+  width: 100%;
+  flex: 0 0 auto;
+  /* Prevent image area from growing */
+  position: relative;
+  /* Positioning context for the overlay */
+  /* Hover overlay with split actions */
+  /* Left and right action zones */
+  /* Show overlay on image hover with darker base */
+  /* Darken the image itself when hovering */
+}
+section.spells .matrix-card .matrix-img figcaption {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+section.spells .matrix-card .matrix-img img {
+  width: 7em;
+  height: 7em;
+  margin: 0.5em auto;
+  position: relative;
+  /* Ensure proper stacking */
+  z-index: 1;
+}
+section.spells .matrix-card .matrix-img .matrix-actions-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 2;
+  display: flex;
+  pointer-events: none;
+  /* Initially invisible and doesn't block image */
+}
+section.spells .matrix-card .matrix-img .action-zone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  /* Darker base overlay */
+  transition: 0.1s ease;
+  position: relative;
+  pointer-events: auto;
+  /* Make clickable */
+}
+section.spells .matrix-card .matrix-img .action-zone:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Even darker when hovered */
+  cursor: pointer;
+  /* Create a contrasting effect for the icon */
+  /* Darken the neighboring zone even more for contrast */
+}
+section.spells .matrix-card .matrix-img .action-zone:hover .custom-icon {
+  filter: brightness(1.8) drop-shadow(0 0 4px #d4a76a);
+  transform: scale(1.2);
+}
+section.spells .matrix-card .matrix-img .action-zone:hover + .action-zone,
+section.spells .matrix-card .matrix-img .action-zone:hover:has(+ .action-zone) {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+section.spells .matrix-card .matrix-img .action-zone .custom-icon {
+  width: 2rem;
+  height: 2rem;
+  transition: 0.1s ease;
+  filter: brightness(1.2);
+  /* Slightly brighter base state */
+}
+section.spells .matrix-card .matrix-img:hover .matrix-actions-overlay {
+  opacity: 1;
+}
+section.spells .matrix-card .matrix-img:hover img {
+  filter: brightness(0.7);
+  transition: filter 0.1s ease;
+}
+section.spells .matrix-card .spell-links-container {
+  width: 100%;
+  flex: 0 0 auto;
+  /* Prevent growing */
+  overflow-y: auto;
+}
+section.spells .matrix-card .spell-link {
+  margin: 0.25em;
+  width: 100%;
+  text-align: center;
+  display: block;
+  /* Make links block elements for consistent spacing */
+}
 .body .actor-section__top {
   height: 158px;
 }

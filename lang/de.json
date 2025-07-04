@@ -3478,6 +3478,8 @@
     },
     "ToolTips": {
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
+      "attuneMatrix":                              "Matrix&nbsp;abstimmen",
+      "castSpell":                                 "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",
