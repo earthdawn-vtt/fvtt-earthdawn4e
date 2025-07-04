@@ -33,7 +33,7 @@
   "flags": {
     "hotReload": {
       "extensions": ["css", "hbs", "json"],
-      "paths": [ "templates", "lang" ]
+      "paths": [ "templates", "lang", "earthdawn4e.css" ]
     }
   },
   "packs": [
