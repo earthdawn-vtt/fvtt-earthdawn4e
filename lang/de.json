@@ -2513,17 +2513,41 @@
         },
         "RollOptions": {
           "FIELDS": {
-            "chatFlavowr": {
+            "chatFlavor": {
               "hint":                              "Text der im Chat angezeigt wird",
               "label":                             "Chattext"
             },
             "devotion": {
+              "dice": {
+                "hint":                            "Die für die Stufe der Weihepunkte verwendeten Würfel",
+                "label":                           "Weihepunkte Würfel"
+              },
               "hint":                              "Weihekraft die auf den Wurf angewendet wird",
-              "label":                             "Weihekraft"
+              "label":                             "Weihekraft",
+              "pointsUsed": {
+                "hint":                            "Anzahl der Weihepunkte die für den Wurf verwendet werden",
+                "label":                           "Weihepunkte"
+              },
+              "step": {
+                "hint":                            "Stufe der Weihepunkte die auf den Wurf angewendet wird",
+                "label":                           "Weihepunkt Stufe"
+              }
             },
             "karma": {
+              "dice": {
+                "hint":                            "Die für die Stufe des Karmas verwendeten Würfel",
+                "label":                           "Karmawürfel"
+              },
               "hint":                              "Karma das auf den Wurf angewendet wird",
-              "label":                             "Karma"
+              "label":                             "Karma",
+              "pointsUsed": {
+                "hint":                            "Anzahl der Karmapunkte die für den Wurf verwendet werden",
+                "label":                           "Karmapunkte"
+              },
+              "step": {
+                "hint":                            "Stufe des Karmas die auf den Wurf angewendet wird",
+                "label":                           "Karmastufe"
+              }
             },
             "rolLSubType": {
               "hint":                              "Unterart des Wurfs",
@@ -2553,16 +2577,16 @@
             },
             "strain": {
               "base": {
-                "hint":                            "Basisbelastung des Wurfs",
-                "label":                           "Basisbelastung"
+                "hint":                            "Überanstrengung des Wurfs",
+                "label":                           "Überanstrengungsschaden"
               },
               "modifiers": {
-                "hint":                            "Modifikatoren die auf die Basisbelastung angewendet werden",
+                "hint":                            "Modifikatoren die auf den Überanstrengungsschaden angewendet werden",
                 "label":                           "Modifikatoren"
               },
               "total": {
-                "hint":                            "Gesamte Belastung des Wurfs nach Modifikatoren",
-                "label":                           "Gesamtbelastung"
+                "hint":                            "Gesamte Überanstrengung des Wurfs nach Modifikatoren",
+                "label":                           "Überanstrengungsschaden gesamt"
               }
             },
             "target": {
@@ -3200,6 +3224,7 @@
       },
       "Modifiers": {
         "grimoirePenalty":                         "Fremdes Grimoire",
+        "manual":                                  "Manuelle Anpassung",
         "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",

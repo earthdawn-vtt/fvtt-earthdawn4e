@@ -167,7 +167,7 @@ export default class EdRoll extends Roll {
    */
   get totalStrain() {
     if ( !this.validEdRoll ) return undefined;
-    return this.options.strain.total;
+    return this.options.strain?.total ?? 0;
   }
 
   /* -------------------------------------------- */
@@ -207,23 +207,25 @@ export default class EdRoll extends Roll {
           step: this.options.step.total
         }
       ),
-      this.options.karma.pointsUsed
-        ? game.i18n.format(
-          "ED.Rolls.formulaKarma", {
-            step:   this.options.karma.step,
-            amount: this.options.karma.pointsUsed
-          }
-        )
-        : undefined,
-      this.options.devotion.pointsUsed
-        ? game.i18n.format(
-          "ED.Rolls.formulaDevotion", {
-            step:   this.options.devotion.step,
-            amount: this.options.devotion.pointsUsed
-          }
-        )
-        : undefined,
     ];
+    if ( this.options.karma?.pointsUsed > 0 ) formulaParts.push(
+      game.i18n.format(
+        "ED.Rolls.formulaKarma",
+        {
+          step:   this.options.karma.step,
+          amount: this.options.karma.pointsUsed
+        }
+      )
+    );
+    if ( this.options.devotion?.pointsUsed > 0 ) formulaParts.push(
+      game.i18n.format(
+        "ED.Rolls.formulaDevotion",
+        {
+          step:   this.options.devotion.step,
+          amount: this.options.devotion.pointsUsed
+        }
+      )
+    );
 
     formulaParts.push( ...Object.entries(
       this.options.extraDice

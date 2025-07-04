@@ -102,7 +102,7 @@ export default class EdRollOptions extends SparseDataModel {
             new fields.NumberField( {
               required: true,
               nullable: false,
-              initial:  1,
+              initial:  0,
               step:     1,
               integer:  true,
             } ),
@@ -178,8 +178,8 @@ export default class EdRollOptions extends SparseDataModel {
           } ),
         },
         {
-          required: false,
-          nullable: false,
+          required: true,
+          nullable: true,
         },
       ),
       strain: new fields.SchemaField(
@@ -195,7 +195,7 @@ export default class EdRollOptions extends SparseDataModel {
             new fields.NumberField( {
               required: true,
               nullable: false,
-              initial:  1,
+              initial:  0,
               min:      0,
               step:     1,
               integer:  true,
@@ -216,7 +216,7 @@ export default class EdRollOptions extends SparseDataModel {
         },
         {
           required: true,
-          nullable: false,
+          nullable: true,
         },
       ),
       chatFlavor: new fields.StringField( {
@@ -226,7 +226,7 @@ export default class EdRollOptions extends SparseDataModel {
         initial:  "",
       } ),
       rollingActorUuid: new fields.DocumentUUIDField( {
-        required: false,
+        nullable: true,
       } ),
       testType: new fields.StringField( {
         required: true,
@@ -303,16 +303,29 @@ export default class EdRollOptions extends SparseDataModel {
     data.strain ??= this._prepareStrainData( data );
     data.testType ??= this.constructor.TEST_TYPE;
     data.rollType ??= this.constructor.ROLL_TYPE;
+
+    if ( data[ "karma.step" ] || data.karma?.step ) {
+      data.karma.dice = getDice( data[ "karma.step" ] ?? data.karma?.step );
+    }
+    if ( data[ "devotion.step" ] || data.devotion?.step ) {
+      data.devotion.dice = getDice( data[ "devotion.step" ] ?? data.devotion?.step );
+    }
+
     return super._initializeSource( data, options );
   }
 
   /** @inheritDoc */
   updateSource( changes = {}, options = {} ) {
+    const resourceUpdates = {};
+    if ( changes[ "karma.step" ] ) {
+      resourceUpdates["karma.dice"] = getDice( changes[ "karma.step" ] );
+    }
+    if ( changes[ "devotion.step" ] ) {
+      resourceUpdates["devotion.dice"] = getDice( changes[ "devotion.step" ] );
+    }
+
     const updates = super.updateSource(
-      foundry.utils.mergeObject( changes, {
-        "karma.dice":    getDice( this.karma.step ),
-        "devotion.dice": getDice( this.devotion.step ),
-      } ),
+      foundry.utils.mergeObject( changes, resourceUpdates, ),
       options
     );
     updates.step ??= {};
@@ -357,19 +370,19 @@ export default class EdRollOptions extends SparseDataModel {
   /**
    * Used when initializing this data model. Prepares strain data based on the provided input data.
    * @param {object} data - The input data object containing relevant information for strain calculation.
-   * @returns {RollStrainData} The strain data object containing the base strain and any modifiers.
+   * @returns {RollStrainData|null} The strain data object containing the base strain and any modifiers or null if not applicable.
    */
   _prepareStrainData( data ) {
-    return {};
+    return data.strain ?? null;
   }
 
   /**
    * Used when initializing this data model. Calculates the target difficulty for a roll based on the input data.
    * @param {object} data - The data object with which this model is initialized.
-   * @returns {RollTargetData} The target difficulty containing base and modifiers.
+   * @returns {RollTargetData|null} The target difficulty containing base and modifiers or null if not applicable (e.g. for effect tests).
    */
   _prepareTargetDifficulty( data ) {
-    return {};
+    return data.target ?? null;
   }
 
   /**
@@ -411,9 +424,15 @@ export default class EdRollOptions extends SparseDataModel {
       },
       {
         required: true,
-        nullable: false,
+        nullable: true,
       },
     );
+  }
+
+  getModifierSum( fieldName ) {
+    const field = this[fieldName];
+    if ( !field || !field.modifiers ) return 0;
+    return sum( Object.values( field.modifiers ) );
   }
 
   /**

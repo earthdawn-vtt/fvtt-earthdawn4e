@@ -1,0 +1,37 @@
+<fieldset>
+  <legend>{{localize "Ressourcen"}}</legend>
+  <div class="flexrow">
+    {{formGroup
+      optionsFields.karma.fields.pointsUsed
+      value=karma.pointsUsed
+      hint=""
+    }}
+    {{formGroup
+      optionsFields.karma.fields.step
+      value=karma.step
+      hint=""
+    }}
+    {{formInput
+      optionsFields.karma.fields.dice
+      value=karma.dice
+      disabled=true
+    }}
+  </div>
+  <div class="flexrow">
+    {{formGroup
+      optionsFields.devotion.fields.pointsUsed
+      value=devotion.pointsUsed
+      hint=""
+    }}
+    {{formGroup
+      optionsFields.devotion.fields.step
+      value=devotion.step
+      hint=""
+    }}
+    {{formInput
+      optionsFields.devotion.fields.dice
+      value=devotion.dice
+      disabled=true
+    }}
+  </div>
+</fieldset>

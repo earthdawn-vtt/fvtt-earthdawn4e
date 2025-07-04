@@ -643,9 +643,9 @@ function _localizeObject( obj, keys ) {
 
 /**
  * Determine the new target value of an item setting based on its name referenced in a config.
- * @param {string} slugifiedName the name of the item
- * @param {object} configMappings the mapping of names to the target value
- * @returns {string} the target value for that item
+ * @param {string} slugifiedName The name of the item.
+ * @param {object} configMappings The mapping of names to the target value.
+ * @returns {string|null} The target value for that item or `null` if no mapping was found.
  */
 export function determineConfigValue( slugifiedName, configMappings ) {
   for ( const { names, targetValue } of configMappings ) {
@@ -653,7 +653,7 @@ export function determineConfigValue( slugifiedName, configMappings ) {
       return targetValue;
     }
   }
-  return;
+  return null;
 }
 
 // endregion
@@ -856,6 +856,7 @@ export async function preloadHandlebarsTemplates() {
     // Dice partials
     "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs",
+    "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs",
 
     // other tabs

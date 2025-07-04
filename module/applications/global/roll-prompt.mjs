@@ -1,12 +1,32 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
+import ApplicationEd from "../api/application.mjs";
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+export default class RollPrompt extends ApplicationEd {
 
-export default class RollPrompt extends HandlebarsApplicationMixin(
-  ApplicationV2,
-) {
+  // region Properties
+
+  /** @inheritDoc */
+  buttons = [
+    {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      cssClass: "cancel",
+      icon:     `fas ${ED4E.icons.cancel}`,
+      action:   "close",
+    },
+    {
+      type:     "button",
+      label:    game.i18n.localize( "ED.Dialogs.Buttons.roll" ),
+      cssClass: "roll",
+      icon:     `fa-regular ${ED4E.icons.dice}`,
+      action:   "roll",
+    },
+  ];
+
+  // endregion
+
   /** @inheritDoc */
   constructor(
     edRollOptions = {},
@@ -22,10 +42,55 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     this.resolve = resolve;
     this.edRollOptions = edRollOptions;
     this.rollData = rollData;
+
+    const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
-      "step.modifiers.manual": edRollOptions.step.modifiers.manual ?? 0,
+      [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
     } );
   }
+
+  // region Static Properties
+
+  /** @inheritDoc */
+  static DEFAULT_OPTIONS = {
+    id:       "roll-prompt-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ "earthdawn4e", "roll-prompt" ],
+    tag:      "form",
+    position: {
+      width:  "auto",
+      height: "auto",
+    },
+    window: {
+      frame: true,
+      title: "ED.Dialogs.Title.rollPrompt",
+    },
+    actions: {
+      roll:            this._roll,
+    },
+    form: {
+      handler:        RollPrompt.#onFormSubmission,
+      submitOnChange: true,
+      closeOnSubmit:  false,
+    },
+  };
+
+  /** @inheritDoc */
+  static PARTS = {
+    step:      { template: "systems/ed4e/templates/prompts/roll/part-step.hbs" },
+    target:    { template: "systems/ed4e/templates/prompts/roll/part-target.hbs" },
+    strain:    { template: "systems/ed4e/templates/prompts/roll/part-strain.hbs" },
+    resources: { template: "systems/ed4e/templates/prompts/roll/part-resources.hbs" },
+    footer:    {
+      template: "templates/generic/form-footer.hbs",
+      id:       "-footer",
+      classes:  [ "flexrow" ],
+    },
+  };
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * Wait for dialog to be resolved.
@@ -52,71 +117,47 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     ).then( ( roll ) => roll?.toMessage() );
   }
 
-  /** @inheritDoc */
-  static DEFAULT_OPTIONS = {
-    id:       "roll-prompt-{id}",
-    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "earthdawn4e", "roll-prompt" ],
-    tag:      "form",
-    position: {
-      width:  "auto",
-      height: "auto",
-    },
-    window: {
-      frame: true,
-      title: "ED.Dialogs.Title.rollPrompt",
-      icon:  `fa-regular ${ED4E.icons.dice}`,
-    },
-    actions: {
-      roll: this._roll,
-    },
-    form: {
-      handler:        RollPrompt.#onFormSubmission,
-      submitOnChange: true,
-      closeOnSubmit:  false,
-    },
-  };
+  // endregion
+
+  // region Rendering
 
   /** @inheritDoc */
-  static PARTS = {
-    base: {
-      template: "systems/ed4e/templates/prompts/roll-prompt.hbs",
-      id:       "-base-input",
-      classes:  [ "base-input" ],
-    },
-    footer: {
-      template: "templates/generic/form-footer.hbs",
-      id:       "-footer",
-      classes:  [ "flexrow" ],
-    },
-  };
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+    options.parts = [ "step" ];
+
+    if ( this.edRollOptions.target !== null ) options.parts.push( "target" );
+    if ( this.edRollOptions.strain !== null ) options.parts.push( "strain" );
+
+    options.parts.push( "resources" );
+    options.parts.push( "footer" );
+  }
 
   /** @inheritDoc */
-  buttons = [
-    {
-      type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
-      cssClass: "cancel",
-      icon:     `fas ${ED4E.icons.cancel}`,
-      action:   "close",
-    },
-    {
-      type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.roll" ),
-      cssClass: "roll",
-      icon:     `fa-regular ${ED4E.icons.dice}`,
-      action:   "roll",
-    },
-  ];
+  _onRender( context, options ) {
+    this.element
+      .querySelectorAll( "#karma-input,#devotion-input" )
+      .forEach( ( element ) => {
+        element.addEventListener(
+          "change",
+          this._validateAvailableResource.bind( this ),
+        );
+      } );
+  }
 
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
     const context = await super._prepareContext( options );
     return {
       ...context,
-      ...this.edRollOptions,
-      buttons: this.buttons,
+      options:       this.edRollOptions,
+      optionsFields: this.edRollOptions.schema.fields,
+      buttons:       this.buttons,
+      tooltips:      {
+        stepModifiers: Object.values( this.edRollOptions.step.modifiers ).join( " + " ),
+      },
       CONFIG,
+      ...this.edRollOptions,
     };
   }
 
@@ -134,17 +175,39 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     return context;
   }
 
+  // endregion
+
+  // region Form Handling
+
   /** @inheritDoc */
-  _onRender( context, options ) {
-    this.element
-      .querySelectorAll( "#karma-input,#devotion-input" )
-      .forEach( ( element ) => {
-        element.addEventListener(
-          "change",
-          this._validateAvailableResource.bind( this ),
-        );
-      } );
+  static async #onFormSubmission( event, form, formData ) {
+    this.edRollOptions.updateSource( formData.object );
+    return this.render( true );
   }
+
+  // endregion
+
+  // region Event Handling
+
+  /**
+   * @description                Roll the step.
+   * @param {Event} event        The event that triggered the roll.
+   * @param {HTMLElement} _      The target element of the event. Unused.
+   * @returns {Promise}          The promise of the roll.
+   */
+  static async _roll( event, _ ) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    const roll = new EdRoll( undefined, this.rollData, this.edRollOptions );
+    this.resolve?.( roll );
+    return this.close();
+  }
+
+  // endregion
+
+  // region Methods
 
   /**
    * @description                 Validate the available resources.
@@ -163,25 +226,5 @@ export default class RollPrompt extends HandlebarsApplicationMixin(
     }
   }
 
-  /** @inheritDoc */
-  static async #onFormSubmission( event, form, formData ) {
-    this.edRollOptions.updateSource( formData.object );
-    return this.render( true );
-  }
-
-  /**
-   * @description                Roll the step.
-   * @param {Event} event        The event that triggered the roll.
-   * @param {HTMLElement} target The target element of the event.
-   * @returns {Promise}          The promise of the roll.
-   */
-  static async _roll( event, target ) {
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-
-    const roll = new EdRoll( undefined, this.rollData, this.edRollOptions );
-    this.resolve?.( roll );
-    return this.close();
-  }
+  // endregion
 }
