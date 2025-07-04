@@ -2577,15 +2577,15 @@
             },
             "strain": {
               "base": {
-                "hint":                            "Basisbelastung des Wurfs",
-                "label":                           "Überanstrengungsschaden - Basis"
+                "hint":                            "Überanstrengung des Wurfs",
+                "label":                           "Überanstrengungsschaden"
               },
               "modifiers": {
-                "hint":                            "Modifikatoren die auf die Basisbelastung angewendet werden",
+                "hint":                            "Modifikatoren die auf den Überanstrengungsschaden angewendet werden",
                 "label":                           "Modifikatoren"
               },
               "total": {
-                "hint":                            "Gesamte Belastung des Wurfs nach Modifikatoren",
+                "hint":                            "Gesamte Überanstrengung des Wurfs nach Modifikatoren",
                 "label":                           "Überanstrengungsschaden gesamt"
               }
             },
@@ -3224,7 +3224,7 @@
       },
       "Modifiers": {
         "grimoirePenalty":                         "Fremdes Grimoire",
-        "manual":                                  "Manuell",
+        "manual":                                  "Manuelle Anpassung",
         "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",
