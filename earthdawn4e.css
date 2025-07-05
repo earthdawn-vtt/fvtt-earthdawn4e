@@ -137,21 +137,11 @@
   flex: 0 0 calc(98% / 6);
 }
 .standard-form {
-  gap: 0px;
+  gap: 0;
 }
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
-}
-.window-header {
-  background: none;
-  border: none;
-  justify-content: flex-end;
-  transform: scale(0.8);
-  transform-origin: top right;
-}
-.window-header .window-title {
-  display: none;
 }
 .application .window-header button.header-control {
   color: var(--color-text-primary);
@@ -407,18 +397,21 @@
 .chat-message .damage-visualization .armor-indicator.none {
   color: #777;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .navigator-section {
+.application.ed4e.roll-prompt i.window-icon {
+  font-size: large;
+}
+.application.ed4e.roll-prompt .navigator-section {
   position: relative;
   z-index: 5;
   margin-top: 10px;
   padding-bottom: 10px;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .roll-prompt-body .flex-column {
+.application.ed4e.roll-prompt .roll-prompt-body .flex-column {
   display: flex;
   flex-direction: row;
   padding-bottom: 5px;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .roll-prompt-body .flex-column label {
+.application.ed4e.roll-prompt .roll-prompt-body .flex-column label {
   display: block;
   height: max-content;
   padding-top: 8px;
@@ -597,6 +590,16 @@
   transform: scale(0.9);
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
+}
+.application.sheet.ed4e .window-header {
+  background: none;
+  border: none;
+  justify-content: flex-end;
+  transform: scale(0.8);
+  transform-origin: top right;
+}
+.application.sheet.ed4e .window-header .window-title {
+  display: none;
 }
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
