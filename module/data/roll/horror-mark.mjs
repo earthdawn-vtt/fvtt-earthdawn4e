@@ -57,7 +57,10 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
     const horror = data.horror ?? fromUuidSync( data.horrorUuid );
     if ( !horror ) {
       ui.notifications.info(
-        game.i18n.localize( "ED.Notifications.Info.upcomingSelectHorrorForRawCasting" )
+        "ED.Notifications.Info.upcomingSelectHorrorForRawCasting",
+        {
+          localize: true,
+        },
       );
     }
     const horrorMarkAbility = horror?.getSingleItemByEdid(
