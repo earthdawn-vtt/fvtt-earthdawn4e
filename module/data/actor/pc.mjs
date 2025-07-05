@@ -187,6 +187,20 @@ export default class PcData extends NamegiverTemplate {
       },
     } );
 
+    // If this is a questor class, set the questorDevotion field to the devotion UUID
+    if ( classAfterCreation.type === "questor" ) {
+      const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
+      const questorDevotionItem = newActor.items.find( item => 
+        item.type === "devotion" && item.system.edid === edidQuestorDevotion 
+      );
+      
+      if ( questorDevotionItem ) {
+        await classAfterCreation.update( {
+          "system.questorDevotion": questorDevotionItem.uuid
+        } );
+      }
+    }
+
     const actorApp = newActor.sheet.render( true, {focus: true} );
     // we have to wait until the app is rendered to activate a tab
     requestAnimationFrame( () => actorApp.activateTab( "actor-notes-tab" ) );
