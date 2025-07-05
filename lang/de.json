@@ -333,9 +333,7 @@
         "group":                                   "Gruppen-Herausforderungsgrad berechnen",
         "help":                                    "Zeige Hilfe zu Chat-Befehlen",
         "helpHeader":                              "Verfügbare Chat-Befehle:",
-        "invalidDiceFormula":                      "Ungültige Würfelformel",
         "lp":                                      "Legendenpunkte vergeben",
-        "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "s":                                       "Earthdawn Würfelwurf mit einer Stufe"
@@ -343,8 +341,10 @@
       "Flavor": {
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
         "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
+        "invalidDiceFormula":                      "Ungültige Würfelformel",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
+        "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
         "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
@@ -352,6 +352,7 @@
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
         "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
+        "standardDiceRoll":                        "Standard Würfelwurf",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell} ({step})",

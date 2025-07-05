@@ -167,7 +167,7 @@ function triggerRollStep( argString ) {
  */
 function triggerRollDice( argString ) {
   if ( !argString.trim() ) {
-    ui.notifications.warn( game.i18n.localize( "ED.Chat.Commands.provideDiceFormula" ) );
+    ui.notifications.warn( game.i18n.localize( "ED.Chat.Flavor.provideDiceFormula" ) );
     return false;
   }
 
@@ -175,10 +175,10 @@ function triggerRollDice( argString ) {
     // Create a standard Foundry roll with the dice formula
     const roll = new Roll( argString.trim() );
     roll.toMessage( {
-      flavor: game.i18n.localize( "ED.Chat.Commands.standardDiceRoll" )
+      flavor: game.i18n.localize( "ED.Chat.Flavor.standardDiceRoll" )
     } );
   } catch ( error ) {
-    ui.notifications.error( `${ game.i18n.localize( "ED.Chat.Commands.invalidDiceFormula" ) }: ${ argString }` );
+    ui.notifications.error( `${ game.i18n.localize( "ED.Chat.Flavor.invalidDiceFormula" ) }: ${ argString }` );
     console.error( "Dice roll error:", error );
   }
   
