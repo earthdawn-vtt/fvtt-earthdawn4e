@@ -333,9 +333,7 @@
         "group":                                   "TODO: Add translation",
         "help":                                    "TODO: Add translation",
         "helpHeader":                              "TODO: Add translation",
-        "invalidDiceFormula":                      "TODO: Add translation",
         "lp":                                      "TODO: Add translation",
-        "provideDiceFormula":                      "TODO: Add translation",
         "r":                                       "TODO: Add translation",
         "roll":                                    "TODO: Add translation",
         "s":                                       "TODO: Add translation"
@@ -343,8 +341,10 @@
       "Flavor": {
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
+        "invalidDiceFormula":                      "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdownTest":                           "TODO: Add translation",
+        "provideDiceFormula":                      "TODO: Add translation",
         "rollAbility":                             "TODO: Add translation",
         "rollAttribute":                           "TODO: Add translation",
         "rollEquipment":                           "TODO: Add translation",
@@ -352,6 +352,7 @@
         "rollRecovery":                            "TODO: Add translation",
         "rollUnarmedDamage":                       "TODO: Add translation",
         "spellcastingRollOptions":                 "TODO: Add translation",
+        "standardDiceRoll":                        "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
         "threadWeavingRollOptions":                "TODO: Add translation",
