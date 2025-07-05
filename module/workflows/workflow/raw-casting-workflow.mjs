@@ -22,16 +22,34 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
    */
   _astralSpacePollution;
 
+  /**
+   * The data for the selected astral space pollution type
+   * @type {object}
+   */
   _pollutionData;
 
-  _rawMagicResults;
-
+  /**
+   * The circle of the spell being cast
+   * @type {number}
+   */
   _spellCircle;
 
+  /**
+   * The roll for the warping test
+   * @type {EdRoll}
+   */
   _warpingRoll;
 
+  /**
+   * The roll for the damage test from warping
+   * @type {EdRoll}
+   */
   _damageRoll;
 
+  /**
+   * The roll for the horror mark test
+   * @type {EdRoll}
+   */
   _horrorMarkRoll;
 
   /**
@@ -42,6 +60,10 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
     return ![ "horror", "spirit" ].includes( this._actor.type );
   }
 
+  /**
+   * @param {ActorEd} caster - The actor casting the spell
+   * @param {WorkflowOptions&BaseCastingWorkflowOptions&RawCastingWorkflowOptions} [options] - Options for the workflow
+   */
   constructor( caster, options = {} ) {
     super( caster, options );
     this._astralSpacePollution = options.astralSpacePollution;
@@ -185,7 +207,6 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
   async _setResult() {
     await super._setResult();
     this._result.astralSpacePollution = this._astralSpacePollution;
-    this._result.rawMagicResults = this._rawMagicResults || null;
   }
 
 }
