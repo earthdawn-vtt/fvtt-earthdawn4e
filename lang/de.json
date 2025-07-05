@@ -332,7 +332,7 @@
         "coin":                                    "Silber an Spieler vergeben",
         "group":                                   "Gruppen-Herausforderungsgrad berechnen",
         "help":                                    "Zeige Hilfe zu Chat-Befehlen",
-        "helpHeader":                              "Verfügbare Chat-Befehle:",
+        "helpHeader":                              "Verfügbare Chat-Befehle",
         "lp":                                      "Legendenpunkte vergeben",
         "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
