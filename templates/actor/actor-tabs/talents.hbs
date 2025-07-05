@@ -93,6 +93,25 @@
               {{/if}}
             {{/each}}
           {{/each}}
+          <!-- Namegiver/Racial Talents (Other category) -->
+          {{#each (ed-getTalentCategory actor.itemTypes.talent "other") as |talent i|}}
+            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+            {{#each actor.itemTypes.knackAbility}}
+              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+                {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
+              {{/if}}
+            {{/each}}
+            {{#each actor.itemTypes.knackManeuver}}
+              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+                {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
+              {{/if}}
+            {{/each}}
+            {{#each actor.itemTypes.knackKarma}}
+              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+                {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
+              {{/if}}
+            {{/each}}
+          {{/each}}
 
           <!-- Versatility Talents -->
           <div class="ability-card__grid--container container__header text-break__auto">
