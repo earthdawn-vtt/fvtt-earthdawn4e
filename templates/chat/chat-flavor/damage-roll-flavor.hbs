@@ -12,7 +12,6 @@ Damage Flavor contains:
   <div class="damage-value">{{ result }}</div>
   <div class="armor-indicator {{rollOptions.armorType}}">
     <i class="armor-icon
-    {{log (not rollOptions.armorType)}}
       {{#if (eq rollOptions.armorType "physical")}}fa-solid fa-shield{{/if}}
       {{#if (eq rollOptions.armorType "mystical")}}fa-regular fa-shield{{/if}}
       {{#unless rollOptions.armorType}}fa-regular fa-shield-quartered{{/unless}}
