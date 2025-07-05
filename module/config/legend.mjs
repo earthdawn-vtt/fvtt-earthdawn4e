@@ -223,7 +223,8 @@ export const talentCategory = {
   discipline:     "ED.Config.talentCategory.discipline",
   optional:       "ED.Config.talentCategory.optional",
   free:           "ED.Config.talentCategory.free",
-  versatility:    "ED.Config.talentCategory.versatility"
+  versatility:    "ED.Config.talentCategory.versatility",
+  other:          "ED.Config.talentCategory.other"
 };
 preLocalize( "talentCategory" );
 
