@@ -63,10 +63,7 @@ export default class WarpingRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   _prepareStrainData( data ) {
-    // TODO: set null when roll refactoring is done
-    return {
-      base: 0,
-    };
+    return null;
   }
 
   /** @inheritDoc */
