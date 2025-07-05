@@ -111,7 +111,8 @@ export default class PcData extends NamegiverTemplate {
 
     const namegiverDocument = await generation.namegiverDocument;
     const classDocument = await generation.classDocument;
-    const abilities = ( await generation.abilityDocuments )
+    const allAbilityDocuments = await generation.abilityDocuments;
+    const abilities = allAbilityDocuments
       .filter( documentData => documentData.system.level > 0 )
       .map(
         documentData => {
@@ -166,12 +167,15 @@ export default class PcData extends NamegiverTemplate {
     const disciplineAfterCreation = newActor.disciplines[0];
     if ( disciplineAfterCreation ) {
       for ( const talent of newActor.itemTypes.talent ) {
-        if ( talent.system.source.class === classDocument.uuid ) await talent.update( {
-          "system.source": {
-            "class":   disciplineAfterCreation.uuid,
-            "atLevel": 1
-          }
-        } );
+        if ( talent.system.source.class === classDocument.uuid ) {
+          await talent.update( {
+            "system.source": {
+              "class":   disciplineAfterCreation.uuid,
+              "atLevel": 1
+            },
+            "system.level": talent.system.level 
+          } );
+        }
       }
     }
 
