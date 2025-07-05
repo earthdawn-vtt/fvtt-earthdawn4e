@@ -207,8 +207,10 @@ export default class CharacterGenerationData extends SparseDataModel {
         let initialLevel = level;
 
         const abilityCategory = category === "class" ? "discipline" : category;
+        // Treat namegiver talents as "other" talents so they are always included
+        const talentCategoryToSet = category === "namegiver" ? "other" : abilityCategory;
 
-        if ( Object.keys( ED4E.talentCategory ).includes( abilityCategory ) ) itemDocument.system.talentCategory = abilityCategory;
+        if ( Object.keys( ED4E.talentCategory ).includes( talentCategoryToSet ) ) itemDocument.system.talentCategory = talentCategoryToSet;
         if ( initialLevel === 0 && abilityCategory === "free" ) initialLevel = 1;
         if ( abilityCategory !== "special" ) itemDocument.system.level = initialLevel;
 

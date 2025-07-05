@@ -112,8 +112,12 @@ export default class PcData extends NamegiverTemplate {
     const namegiverDocument = await generation.namegiverDocument;
     const classDocument = await generation.classDocument;
     const allAbilityDocuments = await generation.abilityDocuments;
+    
+    // Filter abilities: include if level > 0 OR if it's an other ability (includes namegiver talents)
     const abilities = allAbilityDocuments
-      .filter( documentData => documentData.system.level > 0 )
+      .filter( documentData => 
+        documentData.system.level > 0 || documentData.system.talentCategory === "other"
+      )
       .map(
         documentData => {
           if ( documentData.type !== "specialAbility" ) {
