@@ -1,6 +1,6 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { ROLLS } from "../../config/_module.mjs";
 import ApplicationEd from "../api/application.mjs";
 
 export default class RollPrompt extends ApplicationEd {
@@ -43,6 +43,12 @@ export default class RollPrompt extends ApplicationEd {
     this.edRollOptions = edRollOptions;
     this.rollData = rollData;
 
+    if ( !options?.window?.title && edRollOptions.rollType ) {
+      options.window = {
+        ...options.window,
+        title: ROLLS.rollTypes[ edRollOptions.rollType ]?.label,
+      };
+    }
     const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
       [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
