@@ -36,12 +36,8 @@ export default class RollPrompt extends ApplicationEd {
       throw new TypeError(
         "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`.",
       );
-    }
-    super( options );
 
-    this.resolve = resolve;
-    this.edRollOptions = edRollOptions;
-    this.rollData = rollData;
+    }
 
     if ( !options?.window?.title && edRollOptions.rollType ) {
       options.window = {
@@ -49,6 +45,13 @@ export default class RollPrompt extends ApplicationEd {
         title: ROLLS.rollTypes[ edRollOptions.rollType ]?.label,
       };
     }
+
+    super( options );
+
+    this.resolve = resolve;
+    this.edRollOptions = edRollOptions;
+
+    this.rollData = rollData;
     const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
       [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
@@ -70,6 +73,7 @@ export default class RollPrompt extends ApplicationEd {
     window: {
       frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
+      icon:  `fa-light ${ED4E.SYSTEM.icons.dice}`,
     },
     actions: {
       roll:            this._roll,
