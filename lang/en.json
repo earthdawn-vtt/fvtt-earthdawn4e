@@ -659,6 +659,7 @@
         "discipline":                              "Discipline",
         "free":                                    "Free",
         "optional":                                "Optional",
+        "other":                                   "TODO: Add translation",
         "versatility":                             "Versatility"
       }
     },
