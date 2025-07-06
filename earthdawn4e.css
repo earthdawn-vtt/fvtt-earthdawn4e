@@ -137,21 +137,11 @@
   flex: 0 0 calc(98% / 6);
 }
 .standard-form {
-  gap: 0px;
+  gap: 0;
 }
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
-}
-.window-header {
-  background: none;
-  border: none;
-  justify-content: flex-end;
-  transform: scale(0.8);
-  transform-origin: top right;
-}
-.window-header .window-title {
-  display: none;
 }
 .application .window-header button.header-control {
   color: var(--color-text-primary);
@@ -358,18 +348,70 @@
 .chat-message .message-buttons.flexrow button:last-child {
   margin-right: 0;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .navigator-section {
+.chat-message .damage-visualization {
+  align-items: center;
+  margin: 0.8em 0;
+  padding: 1.5em;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  border: 1px solid var(--color-border-light-2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.chat-message .damage-visualization .damage-value {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #450c08;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.3em;
+}
+.chat-message .damage-visualization .armor-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+}
+.chat-message .damage-visualization .armor-indicator .armor-icon {
+  font-size: 2em;
+  margin-right: 0.5em;
+}
+.chat-message .damage-visualization .armor-indicator .armor-icon.fa-shield.fa-solid {
+  color: #314939;
+}
+.chat-message .damage-visualization .armor-indicator .armor-icon.fa-shield.fa-regular {
+  color: #301e47;
+}
+.chat-message .damage-visualization .armor-indicator .armor-icon.fa-shield-quartered {
+  color: #777;
+}
+.chat-message .damage-visualization .armor-indicator .armor-label {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+.chat-message .damage-visualization .armor-indicator.physical {
+  color: #314939;
+}
+.chat-message .damage-visualization .armor-indicator.mystical {
+  color: #301e47;
+}
+.chat-message .damage-visualization .armor-indicator.none {
+  color: #777;
+}
+.application.ed4e.roll-prompt i.window-icon {
+  font-size: large;
+}
+.application.ed4e.roll-prompt .navigator-section {
   position: relative;
   z-index: 5;
   margin-top: 10px;
   padding-bottom: 10px;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .roll-prompt-body .flex-column {
+.application.ed4e.roll-prompt .roll-prompt-body .flex-column {
   display: flex;
   flex-direction: row;
   padding-bottom: 5px;
 }
-.app.window-app.form.earthdawn4e.roll-prompt .roll-prompt-body .flex-column label {
+.application.ed4e.roll-prompt .roll-prompt-body .flex-column label {
   display: block;
   height: max-content;
   padding-top: 8px;
@@ -548,6 +590,16 @@
   transform: scale(0.9);
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
+}
+.application.sheet.ed4e .window-header {
+  background: none;
+  border: none;
+  justify-content: flex-end;
+  transform: scale(0.8);
+  transform-origin: top right;
+}
+.application.sheet.ed4e .window-header .window-title {
+  display: none;
 }
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);

@@ -180,15 +180,9 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         extraDice:       {
         // this should be the place for things like flame weapon, etc. but still needs to be implemented
         },
-        strain:          {
-          base:      0,
-          modifiers: {},
-        },
-        chatFlavor:      "WeaponTemplate: Weapon (Damage) Roll",
-        testType:        "effect",
-        rollType:        "damage",
-        weaponUuid:       this.parent?.uuid,
-        damageAbilities:  new Set( [] ),
+        damageSource:    this.parent?.name,
+        weaponUuid:      this.parent?.uuid,
+        damageAbilities: new Set( [] ),
         armorType:       this.armorType,
         damageType:      this.damage.type,
       },

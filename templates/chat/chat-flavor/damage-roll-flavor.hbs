@@ -6,7 +6,24 @@ Damage Flavor contains:
 - Step modifiers
 - Target Modifiers 
 --}}
-<div class="custom-flavor">{{ customFlavor }}</div>
+{{> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" }}
+
+<div class="damage-visualization flexcol">
+  <div class="damage-value">{{ result }}</div>
+  <div class="armor-indicator {{rollOptions.armorType}}">
+    <i class="armor-icon
+      {{#if (eq rollOptions.armorType "physical")}}fa-solid fa-shield{{/if}}
+      {{#if (eq rollOptions.armorType "mystical")}}fa-regular fa-shield{{/if}}
+      {{#unless rollOptions.armorType}}fa-regular fa-shield-quartered{{/unless}}
+      "></i>
+    <span class="armor-label">
+      {{#if (eq rollOptions.armorType "physical")}}{{CONFIG.ED4E.ACTORS.armor.physical}}{{/if}}
+      {{#if (eq rollOptions.armorType "mystical")}}{{CONFIG.ED4E.ACTORS.armor.mystical}}{{/if}}
+      {{#unless rollOptions.armorType}}{{localize "ED.Chat.Flavor.ignoresArmor"}}{{/unless}}
+    </span>
+  </div>
+</div>
+
 <div class="flexrow message-buttons damage-roll-buttons" data-roll-total={{ result }}>
   {{> "systems/ed4e/templates/chat/chat-buttons/apply-damage.hbs"}}
   {{#if hasAssignedCharacter}}

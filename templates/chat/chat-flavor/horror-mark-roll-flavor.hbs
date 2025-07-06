@@ -1,0 +1,18 @@
+{{> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" }}
+
+<div class="horror-mark-visualization flexrow">
+  <div class="horror-container">
+    <img src="{{horror.img}}" class="horror-image" alt="Horror" />
+    <div class="entity-name">{{horror.name}}</div>
+  </div>
+  <div class="marking-indicator flexcol">
+    <i class="fas fa-skull"></i>
+    <i class="fas fa-arrow-right marking-arrow"></i>
+  </div>
+  <div class="caster-container avatar">
+    <img src="{{caster.img}}" class="caster-image" alt="Caster" />
+    <div class="entity-name">{{caster.name}}</div>
+  </div>
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

@@ -66,6 +66,8 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 export default class EdRollOptions extends SparseDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -83,6 +85,8 @@ export default class EdRollOptions extends SparseDataModel {
    * @type {string}
    */
   static ROLL_TYPE = "arbitrary";
+
+  // endregion
 
   /** @inheritDoc */
   static defineSchema() {
@@ -246,14 +250,58 @@ export default class EdRollOptions extends SparseDataModel {
     };
   }
 
-  get totalTarget() {
-    if ( !this.target ) return null;
-    return Math.max(
-      this.target.base + sum( Object.values( this.target.modifiers ) ),
-      game.settings.get( "ed4e", "minimumDifficulty" ),
+  /**
+   * @description Bonus resources to be added globally
+   * @type { RollResourceData }
+   */
+  static get _bonusResource() {
+    const fields = foundry.data.fields;
+    return new fields.SchemaField(
+      {
+        pointsUsed: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        available: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        step: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  this.initResourceStep,
+          min:      1,
+          step:     1,
+          integer:  true,
+        } ),
+        dice: new FormulaField( {
+          required: true,
+          initial:  this.initDiceForStep,
+        } ),
+      },
+      {
+        required: true,
+        nullable: true,
+      },
     );
   }
 
+  /**
+   * Creates a new instance of EdRollOptions from the provided data and actor. Subclasses may extend this method.
+   * This basic implementation initializes the roll with karma and devotion data derived from the actor.
+   * @param {object} data - The data object containing the roll options, see {@link foundry.abstract.DataModel}.
+   * @param {ActorEd} actor - The actor from which to derive additional roll options.
+   * @param {RollOptions} [options] - Additional options for the roll, see {@link foundry.abstract.DataModel}.
+   * @returns {EdRollOptions} A new instance of EdRollOptions initialized with the provided data and actor.
+   */
   static fromActor( data, actor, options = {} ) {
     data.karma = {
       pointsUsed: actor.system.karma.useAlways ? 1 : 0,
@@ -269,6 +317,8 @@ export default class EdRollOptions extends SparseDataModel {
 
     return new this( data, options );
   }
+
+  // region Data Field Initialization
 
   static initResourceStep( _ ) {
     const parentField = this?.parent?.name;
@@ -292,9 +342,29 @@ export default class EdRollOptions extends SparseDataModel {
     return EdRollOptions.initTotal( source, "target", 1 );
   }
 
+  static initDiceForStep( parent ) {
+    return getDice( parent.step.total ?? parent.step );
+  }
+
+  // endregion
+
+  // region Dynamic Properties
+
   get totalStep() {
     return this.step.base + sum( Object.values( this.step.modifiers ) );
   }
+
+  get totalTarget() {
+    if ( !this.target ) return null;
+    return Math.max(
+      this.target.base + sum( Object.values( this.target.modifiers ) ),
+      game.settings.get( "ed4e", "minimumDifficulty" ),
+    );
+  }
+
+  // endregion
+
+  // region Source Lifecycle
 
   /** @inheritDoc */
   _initializeSource( data, options = {} ) {
@@ -334,9 +404,9 @@ export default class EdRollOptions extends SparseDataModel {
     return super.updateSource( updates, options );
   }
 
-  static initDiceForStep( parent ) {
-    return getDice( parent.step.total ?? parent.step );
-  }
+  // endregion
+
+  // region Data Initialization
 
   /**
    * Generates the chat flavor text for this roll. The localized key is 'ED.Chat.Flavor.' + the
@@ -385,55 +455,19 @@ export default class EdRollOptions extends SparseDataModel {
     return data.target ?? null;
   }
 
-  /**
-   * @description Bonus resources to be added globally
-   * @type { RollResourceData }
-   */
-  static get _bonusResource() {
-    const fields = foundry.data.fields;
-    return new fields.SchemaField(
-      {
-        pointsUsed: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        available: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        step: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  this.initResourceStep,
-          min:      1,
-          step:     1,
-          integer:  true,
-        } ),
-        dice: new FormulaField( {
-          required: true,
-          initial:  this.initDiceForStep,
-        } ),
-      },
-      {
-        required: true,
-        nullable: true,
-      },
-    );
-  }
+  // endregion
+
+  // region Methods
 
   getModifierSum( fieldName ) {
     const field = this[fieldName];
     if ( !field || !field.modifiers ) return 0;
     return sum( Object.values( field.modifiers ) );
   }
+
+  // endregion
+
+  // region Rendering
 
   /**
    * Prepares data for rendering flavor templates in roll chat messages.
@@ -448,5 +482,7 @@ export default class EdRollOptions extends SparseDataModel {
       customFlavor: context.customFlavor || this._getChatFlavor(),
     };
   }
+
+  // endregion
 
 }

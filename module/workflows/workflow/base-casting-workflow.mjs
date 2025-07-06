@@ -4,6 +4,7 @@ import { getSetting } from "../../settings.mjs";
 
 /**
  * @typedef {object} BaseCastingWorkflowOptions
+ * @property {ItemEd} spell - The spell being cast
  * @property {boolean} [stopOnWeaving=true] - Whether to stop the workflow after thread weaving is required
  */
 
@@ -60,7 +61,17 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
       throw new Error( "CastingWorkflowInterface is an abstract class and cannot be instantiated directly." );
     }
     super( caster, options );
+    this._spell = options.spell;
     this._stopOnWeaving = options.stopOnWeaving ?? true;
+
+    this._steps.push(
+      this._preWeaveThreads.bind( this ),
+      this._weaveThreads.bind( this ),
+      this._preCastSpell.bind( this ),
+      this._castSpell.bind( this ),
+      this._postCastSpell.bind( this ),
+      this._setResult.bind( this ),
+    );
   }
 
   /**
@@ -83,7 +94,7 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
       this._matrix,
     );
 
-    if ( this._stopOnWeaving ) {
+    if ( this._stopOnWeaving || !this._spell.system.isWeavingComplete ) {
       this.cancel();
     }
   }
@@ -110,12 +121,11 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   /**
-   * Handle any aftermath of the casting (drain, feedback, etc.)
-   * @abstract
+   * Handle any aftermath of the casting (raw magic, etc.)
    * @returns {Promise<void>}
    */
-  async _handleAftermath() {
-    throw new Error( "Method 'handleAftermath()' must be implemented by derived classes" );
+  async _postCastSpell() {
+    // Do nothing by default
   }
 
   /**

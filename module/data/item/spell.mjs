@@ -381,7 +381,7 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   async weaveThreads( threadWeavingAbility, matrix ) {
     let system = this;
-    if ( !matrix.system.canWeave() ) {
+    if ( matrix && !matrix?.system?.canWeave() ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
       return;
     }

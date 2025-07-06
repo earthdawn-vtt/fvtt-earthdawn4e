@@ -1,6 +1,6 @@
 import EdRoll from "../../dice/ed-roll.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { ROLLS } from "../../config/_module.mjs";
 import ApplicationEd from "../api/application.mjs";
 
 export default class RollPrompt extends ApplicationEd {
@@ -36,13 +36,22 @@ export default class RollPrompt extends ApplicationEd {
       throw new TypeError(
         "ED4E | Cannot construct RollPrompt from data. Must be of type `RollOptions`.",
       );
+
     }
+
+    if ( !options?.window?.title && edRollOptions.rollType ) {
+      options.window = {
+        ...options.window,
+        title: ROLLS.rollTypes[ edRollOptions.rollType ]?.label,
+      };
+    }
+
     super( options );
 
     this.resolve = resolve;
     this.edRollOptions = edRollOptions;
-    this.rollData = rollData;
 
+    this.rollData = rollData;
     const manualModifierKey = `step.modifiers.${ game.i18n.localize( "ED.Rolls.Modifiers.manual" ) }`;
     this.edRollOptions.updateSource( {
       [ manualModifierKey ]: edRollOptions.step.modifiers.manual ?? 0,
@@ -64,6 +73,7 @@ export default class RollPrompt extends ApplicationEd {
     window: {
       frame: true,
       title: "ED.Dialogs.Title.rollPrompt",
+      icon:  `fa-light ${ED4E.SYSTEM.icons.dice}`,
     },
     actions: {
       roll:            this._roll,

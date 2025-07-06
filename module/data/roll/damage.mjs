@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import ED4E from "../../config/_module.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 export default class DamageRollOptions extends EdRollOptions {
 
@@ -9,20 +10,16 @@ export default class DamageRollOptions extends EdRollOptions {
     "ED.Data.Other.DamageRollOptions",
   ];
 
+  static TEST_TYPE = "effect";
+
+  static ROLL_TYPE = "damage";
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      weaponUuid:        new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
+      damageSource: new fields.StringField( {
+        initial: "???",
       } ),
-      damageAbilities: new fields.SetField(
-        new fields.DocumentUUIDField( {
-          type:     "Item",
-          embedded: true,
-        } ),
-        {}
-      ),
       armorType:         new fields.StringField( {
         required: true,
         nullable: true,
@@ -37,6 +34,19 @@ export default class DamageRollOptions extends EdRollOptions {
       ignoreArmor: new fields.BooleanField( {
         initial:  false,
       } ),
+      weaponUuid:        new fields.DocumentUUIDField( {
+        type:     "Item",
+        embedded: true,
+      } ),
+      damageAbilities: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: true,
+        } ),
+        {
+          required: false,
+        }
+      ),
       element: new fields.SchemaField(
         {
           type: new fields.StringField( {
@@ -62,6 +72,40 @@ export default class DamageRollOptions extends EdRollOptions {
     await this._removeDamageAbilityModifiers( changes );
   }
 
+  // region Source Initialization
+
+  /** @inheritDoc */
+  _getChatFlavorData() {
+    return {
+      damageSource: this.weaponUuid ?
+        createContentAnchor( fromUuidSync( this.weaponUuid ) ).outerHTML
+        : this.damageSource,
+      armorType:    ED4E.armor[ this.armorType ] || "",
+    };
+  }
+
+  /** @inheritDoc */
+  _prepareStepData( data ) {
+    if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
+
+    return super._prepareStepData( data );
+  }
+
+  /** @inheritDoc */
+  _prepareStrainData( data ) {
+    return {
+      base:      0,
+      modifiers: {},
+    };
+  }
+
+  /** @inheritDoc */
+  _prepareTargetDifficulty( data ) {
+    return super._prepareTargetDifficulty( data );
+  }
+
+  // endregion
+
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
@@ -77,7 +121,7 @@ export default class DamageRollOptions extends EdRollOptions {
   }
 
   async _removeDamageAbilityModifiers( changes ) {
-    const removedDamageAbilities = this.damageAbilities.difference( changes.system?.damageAbilities );
+    const removedDamageAbilities = this.damageAbilities?.difference( changes.system?.damageAbilities );
     console.log( "Coming up: removedDamageAbilities", removedDamageAbilities );
   }
 

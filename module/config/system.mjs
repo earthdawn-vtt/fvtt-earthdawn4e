@@ -91,6 +91,12 @@ export const icons = {
   resetPoints:      "fa-arrows-rotate",
   undo:             "fa-arrow-rotate-left",
   unknown:          "fa-question",
+  AstralPollution:  {
+    safe:           "fa-thin fa-shield-check",
+    open:          "fa-regular circle-radiation",
+    tainted:       "fa-regular radiation",
+    corrupt:       "fa-regular fa-biohazard",
+  },
   Tabs:             {
     lpEarned:        "fa-light fa-hexagon-plus",
     lpSpend:         "fa-light fa-hexagon-minus",

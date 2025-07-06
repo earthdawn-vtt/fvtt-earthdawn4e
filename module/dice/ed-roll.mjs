@@ -339,6 +339,8 @@ export default class EdRoll extends Roll {
     let templateData = {};
 
     // Basic Data
+    templateData.CONFIG = CONFIG;
+    templateData.rollOptions = this.options;
     templateData.roller = ( await fromUuid( this.options.rollingActorUuid ) )?.name
       ?? game.user.character?.name
       ?? canvas.tokens.controlled[0]

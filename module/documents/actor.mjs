@@ -318,10 +318,19 @@ export default class ActorEd extends Actor {
   }
 
   getThreadWeavingByCastingType( spellcastingType ) {
+    if ( [ "horror", "spirit" ].includes( this.type ) ) {
+      return this.getSingleItemByEdid(
+        getSetting( "edidSpellcasting" )
+      ) ?? this.itemTypes.power.find( power => power.system.rollType === "spellcasting" );
+    }
+
     return this.getItemsByEdid(
       getSetting( "edidThreadWeaving" ),
     ).find(
       item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
+    ) ?? this.items.find(
+      item => item.system.rollType === "threadWeaving"
+        && item.system.rollTypeDetails?.threadWeaving?.castingType === spellcastingType
     );
   }
 

@@ -25,14 +25,6 @@ export default class MatrixCastingWorkflow extends BaseCastingWorkflow {
   constructor( caster, options ) {
     super( caster, options );
     this._matrix = options.matrix;
-
-    this._steps.push(
-      this._preWeaveThreads.bind( this ),
-      this._weaveThreads.bind( this ),
-      this._preCastSpell.bind( this ),
-      this._castSpell.bind( this ),
-      this._setResult.bind( this ),
-    );
   }
 
   /** @inheritDoc */
@@ -51,9 +43,5 @@ export default class MatrixCastingWorkflow extends BaseCastingWorkflow {
     await super._preWeaveThreads();
   }
 
-  /** @inheritDoc */
-  async _handleAftermath() {
-    // No aftermath handling needed for matrix casting
-  }
 }
 

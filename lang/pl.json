@@ -339,8 +339,12 @@
         "s":                                       "TODO: Add translation"
       },
       "Flavor": {
+        "aHorror":                                 "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
+        "damageRollOptions":                       "TODO: Add translation",
+        "horrorMarkRollOptions":                   "TODO: Add translation",
+        "ignoresArmor":                            "TODO: Add translation",
         "invalidDiceFormula":                      "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdownTest":                           "TODO: Add translation",
@@ -356,7 +360,8 @@
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
         "threadWeavingRollOptions":                "TODO: Add translation",
-        "undoDamage":                              "TODO: Add translation"
+        "undoDamage":                              "TODO: Add translation",
+        "warpingRollOptions":                      "TODO: Add translation"
       },
       "Header": {
         "arbitraryTest":                           "TODO: Add translation",
@@ -576,13 +581,15 @@
         "damage":                                  "TODO: Add translation",
         "effect":                                  "TODO: Add translation",
         "halfmagic":                               "TODO: Add translation",
+        "horrorMark":                              "TODO: Add translation",
         "initiative":                              "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockDown":                               "TODO: Add translation",
         "reaction":                                "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "spellcasting":                            "TODO: Add translation",
-        "threadWeaving":                           "TODO: Add translation"
+        "threadWeaving":                           "TODO: Add translation",
+        "warping":                                 "TODO: Add translation"
       },
       "ScalarTimePeriods": {
         "day":                                     "TODO: Add translation",
@@ -3024,6 +3031,7 @@
         "lpLearnKnack":                            "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
+        "selectAstralSpacePollution":              "TODO: Add translation",
         "selectCastingMethod":                     "TODO: Add translation",
         "selectExtraThreads":                      "TODO: Add translation",
         "selectGrimoireToAttune":                  "TODO: Add translation",
@@ -3183,7 +3191,8 @@
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
         "reattuningCancelled":                     "TODO: Add translation",
-        "switchWeapon":                            "TODO: Add translation"
+        "switchWeapon":                            "TODO: Add translation",
+        "upcomingSelectHorrorForRawCasting":       "TODO: Add translation"
       },
       "Warn": {
         "abilityIncreaseProblems":                 "TODO: Add translation",
