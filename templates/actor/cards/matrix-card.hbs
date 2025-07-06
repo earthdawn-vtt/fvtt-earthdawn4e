@@ -1,10 +1,11 @@
 <div class="flexcol matrix-card" data-uuid="{{this.uuid}}">
   <div class="matrix-img flexcol">
-    <figcaption class="" data-uuid="{{this.uuid}}">
-      {{this.name}}
-    </figcaption>
-    <img src="{{this.img}}" alt="{{this.name}}" class="" data-uuid="{{this.uuid}}"/>
-
+    <figure class="matrix-card-figure">
+      <figcaption class="" data-uuid="{{this.uuid}}">
+        {{this.name}}
+      </figcaption>
+      <img src="{{this.img}}" alt="{{this.name}}" class="" data-uuid="{{this.uuid}}"/>
+    </figure>
     <!-- Split action overlay -->
     <div class="matrix-actions-overlay">
       <!-- Left side - Attune action -->
@@ -26,10 +27,10 @@
   </div>
 
   <div class="spell-links-container">
-    <span class="spell-link">
-      {{#each this.system.matrix.spells}}
+    {{#each this.system.matrix.spells}}
+      <div class="spell-link">
         {{{ed-linkForUuid this}}}
-      {{/each}}
-    </span>
+      </div>
+    {{/each}}
   </div>
 </div>

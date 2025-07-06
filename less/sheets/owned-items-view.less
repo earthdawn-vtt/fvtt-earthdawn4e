@@ -36,7 +36,7 @@
     .icons__dice img {
         width: 20px;
         height: 20px;
-        margin: 0 0 0 5px;  
+        margin: 0 0 0 5px;
     }
 }
 .ability-card__grid--container:hover,
@@ -47,7 +47,7 @@
     .icons__dice img {
         box-shadow: 0 0 10px var(--color-gold-1);
         border-radius: 50%;
-        background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1)); 
+        background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
     }
     .roll-icon__hover,
     .attribute-icon,
@@ -144,6 +144,7 @@ section.spells{
     cursor: pointer;
     flex: 0 0 calc(25% - 1rem); /* Change to flex: 0 0 to prevent stretching */
     align-items: center;
+    align-content: space-around;
     text-align: center;
     background-color: @color-overlay;
     border-radius: @border-radius-md;
@@ -158,16 +159,21 @@ section.spells{
       position: relative; /* Positioning context for the overlay */
 
       figcaption {
+        position: relative;
+        top: 50%;
+        z-index: 2;
         width: 100%;
+        background-color: @color-overlay-x-strong;
         text-align: center;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
+        margin: 0;
+        font-size: larger;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
       }
 
       img {
-        width: 7em;
+        width: fit-content;
         height: 7em;
-        margin: 0.5em auto;
         position: relative; /* Ensure proper stacking */
         z-index: 1;
       }
@@ -181,7 +187,7 @@ section.spells{
         height: 100%;
         opacity: 0;
         transition: @transition-standard;
-        z-index: 2;
+        z-index: 3;
         display: flex;
         pointer-events: none; /* Initially invisible and doesn't block image */
       }
@@ -241,7 +247,8 @@ section.spells{
     }
 
     .spell-link {
-      margin: 0.25em;
+      margin-top: @space-sm;
+        margin-bottom: @space-sm;
       width: 100%;
       text-align: center;
       display: block; /* Make links block elements for consistent spacing */
