@@ -874,15 +874,16 @@ export default class ActorEd extends Actor {
    *     <li>recover from damage</li>
    * </ul>
    * @param {EdRoll} roll The prepared Roll.
+   * @param {object} [options] Options for processing the roll.
    * @returns {EdRoll}    The processed Roll.
    */
-  async processRoll( roll ) {
+  async processRoll( roll, options = {} ) {
     if ( !roll ) {
       // No roll available, do nothing.
       return;
     }
 
-    return RollProcessor.process( roll, this, );
+    return RollProcessor.process( roll, this, options );
   }
 
   async _enableHTMLEnrichment() {

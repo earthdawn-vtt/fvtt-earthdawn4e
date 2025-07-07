@@ -5,7 +5,7 @@ export default class InitiativeMessageData extends BaseMessageData {
   /** @inheritdoc */
   _onCreate( data, options, userId ) {
     super._onCreate( data, options, userId );
-    this.rollingActor?.processRoll( this.roll );
+    this.rollingActor?.processRoll( this.roll, { rollToMessage: false } );
   }
 
 }
