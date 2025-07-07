@@ -2992,7 +2992,8 @@
           "sourceTalentName":                      "Quell-Talent Name",
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
-          "talentOptionLp":                        "Legendenpunkte für Talentoption"
+          "talentOptionLp":                        "Legendenpunkte für Talentoption",
+          "talentsRequirementFailed":              "Die Talente-Anforderung ist fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}"
         },
         "configuration":                           "Konfiguration",
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
