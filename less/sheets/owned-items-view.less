@@ -6,17 +6,17 @@
 .attribute-card__grid--item,
 .equipment-card__grid--item,
 .power-card__grid--item {
-    .roll-icon__hover,
-    .roll-icon__hover-fixed,
-    .roll-icon__pointer {
-        display: none;
-    }
+  .roll-icon__hover,
+  .roll-icon__hover-fixed,
+  .roll-icon__pointer {
+    display: none;
+  }
 }
 // Reset item control float where needed
 .maneuver-card__grid--container .itemControlGroup,
 .equipment-card__grid--container .itemControlGroup,
 .power-card__grid--container .itemControlGroup {
-    float: none;
+  float: none;
 }
 // General roll icon styles
 .roll-icon__hover,
@@ -28,110 +28,110 @@
 .power-icon__visible,
 .equipment-icon,
 .equipment-icon__visible {
-    border: none;
-    display: block;
+  border: none;
+  display: block;
 }
 // Hover animation for full grid containers
 .attribute-card__grid--container:hover {
-    .icons__dice img {
-        width: 20px;
-        height: 20px;
-        margin: 0 0 0 5px;
-    }
+  .icons__dice img {
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 5px;
+  }
 }
 .ability-card__grid--container:hover,
 .knack-card__grid--container:hover,
 .attribute-card__grid--container:hover,
 .power-card__grid--container:hover,
 .equipment-card__grid--container:hover {
-    .icons__dice img {
-        box-shadow: 0 0 10px var(--color-gold-1);
-        border-radius: 50%;
-        background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
+  .icons__dice img {
+    box-shadow: 0 0 10px var(--color-gold-1);
+    border-radius: 50%;
+    background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
+  }
+  .roll-icon__hover,
+  .attribute-icon,
+  .power-icon,
+  .equipment-icon {
+    margin-top: -4px;
+    display: block;
+    animation-duration: 3s;
+    animation-name: example;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  .roll-icon__hover-fixed {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+  .ability-icon,
+  .equipment-icon,
+  .power-icon {
+    display: none;
+  }
+  .ability-card__grid--item:hover,
+  .attribute-card__grid--item:hover,
+  .equipment-card__grid--item:hover,
+  .maneuver-card__grid--item:hover,
+  .power-card__grid--item:hover {
+    .roll-icon__pointer {
+      display: block;
     }
-    .roll-icon__hover,
     .attribute-icon,
-    .power-icon,
-    .equipment-icon {
-        margin-top: -4px;
-        display: block;
-        animation-duration: 3s;
-        animation-name: example;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-    }
-    .roll-icon__hover-fixed {
-        display: block;
-        width: 20px;
-        height: 20px;
-    }
     .ability-icon,
     .equipment-icon,
     .power-icon {
-        display: none;
+      display: none;
     }
-    .ability-card__grid--item:hover,
-    .attribute-card__grid--item:hover,
-    .equipment-card__grid--item:hover,
-    .maneuver-card__grid--item:hover,
-    .power-card__grid--item:hover {
-        .roll-icon__pointer {
-        display: block;
-        }
-        .attribute-icon,
-        .ability-icon,
-        .equipment-icon,
-        .power-icon {
-        display: none;
-        }
-        .roll-icon__hover,
-        .roll-icon__hover-fixed {
-        display: none;
-        }
+    .roll-icon__hover,
+    .roll-icon__hover-fixed {
+      display: none;
     }
+  }
 }
 
 
 
 
 .card__description--toggle {
-display: none;
+  display: none;
 }
 
 .brief-description {
-    max-width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block; /* Ensure it stays inline */
-    vertical-align: top; /* Aligns with other inline elements */
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block; /* Ensure it stays inline */
+  vertical-align: top; /* Aligns with other inline elements */
 }
 
 .knack-card__single-line {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 280px;
-    display: flex; /* Use flexbox to keep spans inline */
-    align-items: center; /* Align items vertically */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  display: flex; /* Use flexbox to keep spans inline */
+  align-items: center; /* Align items vertically */
 }
 .knack-card__single-line.display__inline-block {
-    flex-shrink: 0; /* Prevent spans from shrinking */
-    white-space: nowrap; /* Ensure no line breaks */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    max-width: 100%; /* Ensure the span does not exceed the container's width */
-    display: inline-block; /* Ensure it stays inline */
-    vertical-align: top; /* Aligns with other inline elements */
+  flex-shrink: 0; /* Prevent spans from shrinking */
+  white-space: nowrap; /* Ensure no line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  max-width: 100%; /* Ensure the span does not exceed the container's width */
+  display: inline-block; /* Ensure it stays inline */
+  vertical-align: top; /* Aligns with other inline elements */
 }
 .knack-card__single-line.display__inline-block p {
-    display: inline; /* Display paragraphs inline */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    white-space: nowrap; /* Ensure no line breaks */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
+  display: inline; /* Display paragraphs inline */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  white-space: nowrap; /* Ensure no line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
 }
 
 section.spells{
@@ -140,118 +140,138 @@ section.spells{
     margin-bottom: 1em;
   }
 
-  .matrix-card {
-    cursor: pointer;
-    flex: 0 0 calc(25% - 1rem); /* Change to flex: 0 0 to prevent stretching */
-    align-items: center;
-    align-content: space-around;
-    text-align: center;
-    background-color: @color-overlay;
-    border-radius: @border-radius-md;
-    padding: @space-sm;
-    height: 12rem; /* Fixed height for all cards */
-    justify-content: space-around; /* Space between image and links */
+  .matrix-cards {
 
-    .matrix-img {
-      align-items: center;
-      width: 100%;
-      flex: 0 0 auto; /* Prevent image area from growing */
-      position: relative; /* Positioning context for the overlay */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-gap: @gap-standard;
 
-      figcaption {
-        position: relative;
-        top: 50%;
-        z-index: 2;
-        width: 100%;
-        background-color: @color-overlay-x-strong;
-        text-align: center;
-        margin: 0;
-        font-size: larger;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-      }
-
-      img {
-        width: fit-content;
-        height: 7em;
-        position: relative; /* Ensure proper stacking */
-        z-index: 1;
-      }
-
-      /* Hover overlay with split actions */
-      .matrix-actions-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: @transition-standard;
-        z-index: 3;
-        display: flex;
-        pointer-events: none; /* Initially invisible and doesn't block image */
-      }
-
-      /* Left and right action zones */
-      .action-zone {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0, 0, 0, 0.75); /* Darker base overlay */
-        transition: @transition-quick;
-        position: relative;
-        pointer-events: auto; /* Make clickable */
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.85); /* Even darker when hovered */
-          cursor: pointer;
-
-          /* Create a contrasting effect for the icon */
-          .custom-icon {
-            filter: brightness(1.8) drop-shadow(0 0 4px @color-secondary);
-            transform: scale(1.2);
-          }
-
-          /* Darken the neighboring zone even more for contrast */
-          & + .action-zone,
-          &:has(+ .action-zone) {
-            background-color: rgba(0, 0, 0, 0.9);
-          }
-        }
-
-        .custom-icon {
-          width: 2rem;
-          height: 2rem;
-          transition: @transition-quick;
-          filter: brightness(1.2); /* Slightly brighter base state */
-        }
-      }
-
-      /* Show overlay on image hover with darker base */
-      &:hover .matrix-actions-overlay {
-        opacity: 1;
-      }
-
-      /* Darken the image itself when hovering */
-      &:hover img {
-        filter: brightness(0.7);
-        transition: filter @transition-quick;
-      }
-    }
-
-    .spell-links-container {
-      width: 100%;
-      flex: 0 0 auto; /* Prevent growing */
-      overflow-y: auto;
-    }
-
-    .spell-link {
-      margin-top: @space-sm;
-        margin-bottom: @space-sm;
-      width: 100%;
+    .matrix-card {
+      cursor: pointer;
       text-align: center;
-      display: block; /* Make links block elements for consistent spacing */
+      width: auto;
+      background-color: @color-overlay;
+      border-radius: @border-radius-xl;
+      justify-content: space-between;
+
+      .matrix-img {
+        align-items: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .matrix-card-figure {
+          position: relative;
+          align-items: center;
+          max-height: 10rem;
+          height: 100%; /* Fill parent height */
+          display: flex;
+          justify-content: center;
+          width: 100%;
+
+          figcaption {
+            position: absolute;
+            top: 38.2%;
+            z-index: 2;
+            width: 100%;
+            background-color: @color-overlay-x-strong;
+            text-align: center;
+            margin: 0;
+            font-size: larger;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+          }
+
+          img {
+            border: none;
+            border-radius: @border-radius-xl;
+            margin: 0 auto;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* Maintain aspect ratio while fitting in container */
+            z-index: 1;
+            display: block;
+            filter: brightness(0.3);
+          }
+
+          /* Hover overlay with split actions */
+          .matrix-actions-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: @transition-standard;
+            z-index: 3;
+            display: flex;
+            pointer-events: none; /* Initially invisible and doesn't block image */
+          }
+
+          /* Left and right action zones */
+          .action-zone {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.75); /* Darker base overlay */
+            transition: @transition-quick;
+            position: relative;
+            pointer-events: auto; /* Make clickable */
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.85); /* Even darker when hovered */
+              cursor: pointer;
+
+              /* Create a contrasting effect for the icon */
+              .custom-icon {
+                filter: brightness(1.8) drop-shadow(0 0 4px @color-secondary);
+                transform: scale(1.2);
+              }
+
+              /* Darken the neighboring zone even more for contrast */
+              & + .action-zone,
+              &:has(+ .action-zone) {
+                background-color: rgba(0, 0, 0, 0.9);
+              }
+            }
+
+            .custom-icon {
+              border: none;
+              border-radius: 0;
+              width: 2rem;
+              height: 2rem;
+              transition: @transition-quick;
+              filter: brightness(1.2); /* Slightly brighter base state */
+            }
+          }
+
+          /* Show overlay on image hover with darker base */
+          &:hover .matrix-actions-overlay {
+            opacity: 1;
+          }
+
+          /* Darken the image itself when hovering */
+          &:hover img {
+            filter: brightness(0.7);
+            transition: filter @transition-quick;
+          }
+        }
+
+      }
+
+      .spell-links-container {
+        width: 100%;
+        overflow-y: auto;
+      }
+
+      .spell-link {
+        margin-top: @space-sm;
+        margin-bottom: @space-sm;
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
     }
   }
 }

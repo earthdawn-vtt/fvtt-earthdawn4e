@@ -5,25 +5,27 @@
         {{this.name}}
       </figcaption>
       <img src="{{this.img}}" alt="{{this.name}}" class="" data-uuid="{{this.uuid}}"/>
-    </figure>
-    <!-- Split action overlay -->
-    <div class="matrix-actions-overlay">
-      <!-- Left side - Attune action -->
-      <div class="action-zone attune-zone"
-           data-action="attuneMatrix"
-           data-uuid="{{this.uuid}}"
-           data-tooltip={{localize "ED.ToolTips.attuneMatrix"}}>
-        <img class="custom-icon" src="systems/ed4e/assets/icons/weave-threads.svg" alt="Attune Matrix">
-      </div>
 
-      <!-- Right side - Cast action -->
-      <div class="action-zone cast-zone"
-           data-action="castMatrix"
-           data-uuid="{{this.uuid}}"
-           data-tooltip={{localize "ED.ToolTips.castSpell"}}>
-        <img class="custom-icon" src="systems/ed4e/assets/icons/cast.svg" alt="Cast Spell">
+      <!-- Split action overlay -->
+      <div class="matrix-actions-overlay">
+        <!-- Left side - Attune action -->
+        <div class="action-zone attune-zone"
+             data-action="attuneMatrix"
+             data-uuid="{{this.uuid}}"
+             data-tooltip={{localize "ED.ToolTips.attuneMatrix"}}>
+          <img class="custom-icon" src="systems/ed4e/assets/icons/weave-threads.svg" alt="Attune Matrix">
+        </div>
+
+        <!-- Right side - Cast action -->
+        <div class="action-zone cast-zone"
+             data-action="castMatrix"
+             data-uuid="{{this.uuid}}"
+             data-tooltip={{localize "ED.ToolTips.castSpell"}}>
+          <img class="custom-icon" src="systems/ed4e/assets/icons/cast.svg" alt="Cast Spell">
+        </div>
       </div>
-    </div>
+    </figure>
+
   </div>
 
   <div class="spell-links-container">
