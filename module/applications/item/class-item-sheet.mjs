@@ -123,6 +123,39 @@ export default class ClassItemSheetEd extends ItemSheetEd {
     return classTabs;
   }
 
+  /**
+   * Prepare the advancement context with filtered ability options and tier display names.
+   * @returns {object} The prepared advancement context
+   */
+  #prepareAdvancementContext() {
+    const itemType = this.document.type;
+    const abilityOptions = this.document.system.advancement.abilityOptions;
+    
+    // Filter and map ability options based on item type
+    const filteredAbilityOptions = {};
+    const tierDisplayNames = {};
+    
+    // Get tier configuration from config
+    const currentTierConfig = ED4E.classTierConfig[itemType] || ED4E.classTierConfig.discipline;
+    const validTiersForType = Object.keys( currentTierConfig );
+    const tierSelectOptions = Object.values( currentTierConfig );
+    
+    // Process each tier
+    for ( const tier of validTiersForType ) {
+      if ( abilityOptions[tier] ) {
+        filteredAbilityOptions[tier] = abilityOptions[tier];
+        tierDisplayNames[tier] = currentTierConfig[tier];
+      }
+    }
+    
+    return {
+      filteredAbilityOptions,
+      tierDisplayNames,
+      tierSelectOptions,
+      validTiersForType
+    };
+  }
+
   // region _prepare Part Context
   /** @inheritDoc */
   async _preparePartContext( partId, contextInput, options ) {
@@ -144,7 +177,8 @@ export default class ClassItemSheetEd extends ItemSheetEd {
           {
             tabs: {
               classAdvancements: this.#getClassTabs(),
-            }
+            },
+            ...this.#prepareAdvancementContext()
           },
         );
         break;

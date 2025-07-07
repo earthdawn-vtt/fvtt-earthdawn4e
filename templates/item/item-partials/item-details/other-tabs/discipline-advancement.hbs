@@ -29,33 +29,15 @@
 
       <div class="advancement__content item-advancement-body">
         <div id="ability-list"  class="tab {{tabs.classAdvancements.options.cssClass}} advancement-options-pools flexcol" data-group="classAdvancements" data-tab="options">
-          {{#each @root.item.system.advancement.abilityOptions}}
-            {{!-- Show ability pools for tiers that are valid for this class type --}}
-            {{#if (or 
-              (and (eq @root.item.type "discipline") (or (eq @key "novice") (eq @key "journeyman") (eq @key "warden") (eq @key "master")))
-              (and (eq @root.item.type "path") (or (eq @key "journeyman") (eq @key "warden") (eq @key "master")))
-              (and (eq @root.item.type "questor") (or (eq @key "novice") (eq @key "journeyman") (eq @key "warden")))
-            )}}
-              <div class="{{@key}}-abilities">
-                <div class="form-group {{@key}}-pool">
-                  {{!-- Map questor tier display names --}}
-                  {{#if (eq @root.item.type "questor")}}
-                    {{#if (eq @key "novice")}}
-                      <label>{{localize "ED.Config.Tier.follower"}}</label>
-                    {{else if (eq @key "journeyman")}}
-                      <label>{{localize "ED.Config.Tier.adherent"}}</label>
-                    {{else if (eq @key "warden")}}
-                      <label>{{localize "ED.Config.Tier.exemplar"}}</label>
-                    {{/if}}
-                  {{else}}
-                    <label>{{localize (concat "ED.Config.Tier." @key)}}</label>
-                  {{/if}}
-                  <div class="form-fields">
-                    <document-tags name="system.advancement.abilityOptions.{{@key}}" value="{{ed-commaList this}}"></document-tags>
-                  </div>
+          {{#each filteredAbilityOptions}}
+            <div class="{{@key}}-abilities">
+              <div class="form-group {{@key}}-pool">
+                <label>{{localize (lookup (lookup @root.tierDisplayNames @key) "label")}}</label>
+                <div class="form-fields">
+                  <document-tags name="system.advancement.abilityOptions.{{@key}}" value="{{ed-commaList this}}"></document-tags>
                 </div>
               </div>
-            {{/if}}
+            </div>
           {{/each}}
         </div>
 
@@ -83,20 +65,9 @@
             <div class="form-group">
               <label>{{localize "ED.Data.Item.Class.FIELDS.tier.label"}}</label>
               <select name="system.advancement.levels.{{@index}}.tier" required>
-                {{#if (eq @root.item.type "discipline")}}
-                  <option value="novice" {{#if (eq this.tier "novice")}}selected{{/if}}>{{localize @root.config.tier.novice}}</option>
-                  <option value="journeyman" {{#if (eq this.tier "journeyman")}}selected{{/if}}>{{localize @root.config.tier.journeyman}}</option>
-                  <option value="warden" {{#if (eq this.tier "warden")}}selected{{/if}}>{{localize @root.config.tier.warden}}</option>
-                  <option value="master" {{#if (eq this.tier "master")}}selected{{/if}}>{{localize @root.config.tier.master}}</option>
-                {{else if (eq @root.item.type "path")}}
-                  <option value="journeyman" {{#if (eq this.tier "journeyman")}}selected{{/if}}>{{localize @root.config.tier.journeyman}}</option>
-                  <option value="warden" {{#if (eq this.tier "warden")}}selected{{/if}}>{{localize @root.config.tier.warden}}</option>
-                  <option value="master" {{#if (eq this.tier "master")}}selected{{/if}}>{{localize @root.config.tier.master}}</option>
-                {{else if (eq @root.item.type "questor")}}
-                  <option value="follower" {{#if (eq this.tier "follower")}}selected{{/if}}>{{localize "ED.Config.Tier.follower"}}</option>
-                  <option value="adherent" {{#if (eq this.tier "adherent")}}selected{{/if}}>{{localize "ED.Config.Tier.adherent"}}</option>
-                  <option value="exemplar" {{#if (eq this.tier "exemplar")}}selected{{/if}}>{{localize "ED.Config.Tier.exemplar"}}</option>
-                {{/if}}
+                {{#each @root.tierSelectOptions}}
+                  <option value="{{this.value}}" {{#if (eq ../this.tier this.value)}}selected{{/if}}>{{localize this.label}}</option>
+                {{/each}}
               </select>
               <p class="hint">{{localize "ED.Data.Item.Class.FIELDS.tier.hint"}}</p>
             </div>
