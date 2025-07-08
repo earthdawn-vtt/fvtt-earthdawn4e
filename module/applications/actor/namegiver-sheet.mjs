@@ -11,7 +11,6 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
       { id: "skills", },
       { id: "devotions", },
       { id: "reputation" },
-      { id: "classes" },
     ] );
   }
 
