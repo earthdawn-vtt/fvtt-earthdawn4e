@@ -18,8 +18,8 @@ const DocumentSheetMixinEd = Base => {
      * @enum {number}
      */
     static SHEET_MODES = {
-      EDIT: 0,
-      PLAY: 1,
+      PLAY: 0,
+      EDIT: 1,
     };
 
     /** @inheritdoc */
@@ -83,6 +83,26 @@ const DocumentSheetMixinEd = Base => {
     // region Rendering
 
     /** @inheritdoc */
+    async _renderFrame( options = {} ) {
+      const frame = await super._renderFrame( options );
+      const header = frame.querySelector( ".window-header" );
+
+      // Add edit <-> play slide toggle.
+      if ( this.isEditable ) {
+        const toggle = document.createElement( "slide-toggle" );
+        toggle.checked = this._sheetMode === this.constructor.SHEET_MODES.EDIT;
+        toggle.classList.add( "mode-slider" );
+        toggle.dataset.tooltip = "ED.Sheet.Controls.sheetModeEdit";
+        toggle.setAttribute( "aria-label", game.i18n.localize( "ED.Sheet.Controls.sheetModeEdit" ) );
+        toggle.addEventListener( "change", this._onChangeSheetMode.bind( this ) );
+        toggle.addEventListener( "dblclick", event => event.stopPropagation() );
+        header.insertAdjacentElement( "afterbegin", toggle );
+      }
+
+      return frame;
+    }
+
+    /** @inheritdoc */
     async _prepareContext( options ) {
       const context = await super._prepareContext( options );
       foundry.utils.mergeObject( context, {
@@ -108,6 +128,22 @@ const DocumentSheetMixinEd = Base => {
     // endregion
 
     // region Event Handlers
+
+    /**
+     * Handle the user toggling the sheet mode.
+     * @param {Event} event  The triggering event.
+     * @protected
+     */
+    async _onChangeSheetMode( event ) {
+      const { SHEET_MODES } = this.constructor;
+      const toggle = event.currentTarget;
+      const label = game.i18n.localize( `ED.Sheet.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
+      toggle.dataset.tooltip = label;
+      toggle.setAttribute( "aria-label", label );
+      this._sheetMode = toggle.checked ? SHEET_MODES.EDIT : SHEET_MODES.PLAY;
+      await this.submit();
+      this.render();
+    }
 
     /**
      * Creates a new embedded document of the specified type.

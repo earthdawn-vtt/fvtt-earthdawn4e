@@ -5,7 +5,8 @@
 .knack-maneuver-card__grid--item,
 .attribute-card__grid--item,
 .equipment-card__grid--item,
-.power-card__grid--item {
+.power-card__grid--item,
+.spell-card__grid--item {
   .roll-icon__hover,
   .roll-icon__hover-fixed,
   .roll-icon__pointer {
@@ -15,7 +16,8 @@
 // Reset item control float where needed
 .maneuver-card__grid--container .itemControlGroup,
 .equipment-card__grid--container .itemControlGroup,
-.power-card__grid--container .itemControlGroup {
+.power-card__grid--container .itemControlGroup,
+.spell-card__grid--container .itemControlGroup {
   float: none;
 }
 // General roll icon styles
@@ -27,7 +29,8 @@
 .power-icon,
 .power-icon__visible,
 .equipment-icon,
-.equipment-icon__visible {
+.equipment-icon__visible,
+.spell-icon {
   border: none;
   display: block;
 }
@@ -43,7 +46,8 @@
 .knack-card__grid--container:hover,
 .attribute-card__grid--container:hover,
 .power-card__grid--container:hover,
-.equipment-card__grid--container:hover {
+.equipment-card__grid--container:hover,
+.spell-card__grid--container:hover {
   .icons__dice img {
     box-shadow: 0 0 10px var(--color-gold-1);
     border-radius: 50%;
@@ -52,7 +56,8 @@
   .roll-icon__hover,
   .attribute-icon,
   .power-icon,
-  .equipment-icon {
+  .equipment-icon,
+  .spell-icon {
     margin-top: -4px;
     display: block;
     animation-duration: 3s;
@@ -67,14 +72,16 @@
   }
   .ability-icon,
   .equipment-icon,
-  .power-icon {
+  .power-icon,
+  .spell-icon {
     display: none;
   }
   .ability-card__grid--item:hover,
   .attribute-card__grid--item:hover,
   .equipment-card__grid--item:hover,
   .maneuver-card__grid--item:hover,
-  .power-card__grid--item:hover {
+  .power-card__grid--item:hover,
+  .spell-card__grid--item:hover {
     .roll-icon__pointer {
       display: block;
     }

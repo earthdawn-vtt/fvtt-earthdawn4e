@@ -1,3 +1,48 @@
+/* ---------------------------------- */
+/*  Slide Toggles                     */
+/* ---------------------------------- */
+slide-toggle {
+  --slide-toggle-height: 20px;
+  --slide-toggle-width: 36px;
+  --slide-toggle-padding: 3px;
+  --slide-toggle-track-color-unchecked: black;
+  --slide-toggle-track-color-checked: #3ba55d;
+  --slide-toggle-thumb-color: white;
+  --slide-toggle-thumb-width: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
+  --slide-toggle-thumb-height: var(--slide-toggle-thumb-width);
+  --slide-toggle-transition-time: 250ms;
+  display: inline-block;
+  width: var(--slide-toggle-width);
+  height: var(--slide-toggle-height);
+  cursor: var(--cursor-pointer);
+  /* Checked state */
+}
+slide-toggle .slide-toggle-track {
+  width: 100%;
+  height: 100%;
+  background: var(--slide-toggle-track-color-unchecked);
+  border-radius: calc((var(--slide-toggle-height) * 2) / 3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: var(--slide-toggle-padding);
+}
+slide-toggle .slide-toggle-thumb {
+  width: var(--slide-toggle-thumb-width);
+  height: var(--slide-toggle-thumb-height);
+  border-radius: 100%;
+  background: var(--slide-toggle-thumb-color);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  transition: margin-left var(--slide-toggle-transition-time) ease;
+}
+slide-toggle[checked] .slide-toggle-track {
+  background: var(--slide-toggle-track-color-checked);
+}
+slide-toggle[checked] .slide-toggle-thumb {
+  margin-left: calc(100% - var(--slide-toggle-thumb-width));
+}
 @font-face {
   font-family: 'ArnoPro Bold';
   src: url('fonts/ArnoPro-Bold.otf');
@@ -591,15 +636,38 @@
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
 }
-.application.sheet.ed4e .window-header {
-  background: none;
+.application.sheet.ed4e:where(:not(.minimized)) > header {
+  background: transparent;
+  position: relative;
+  z-index: 1;
   border: none;
-  justify-content: flex-end;
-  transform: scale(0.8);
-  transform-origin: top right;
+  /* Edit Mode Toggle */
 }
-.application.sheet.ed4e .window-header .window-title {
+.application.sheet.ed4e:where(:not(.minimized)) > header .window-title {
+  visibility: hidden;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle {
+  flex: none;
+  margin-inline-end: auto;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle .slide-toggle-thumb {
+  line-height: 12px;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle .slide-toggle-thumb::before {
+  content: "\f0ad";
+  font-family: var(--font-awesome);
+  color: #272727;
+  font-weight: bold;
+  font-size: var(--font-size-9);
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle[checked] .slide-toggle-thumb::before {
+  color: #ff9800;
+}
+.application.sheet.ed4e.minimized slide-toggle {
   display: none;
+}
+.application.sheet.ed4e slide-toggle {
+  transform: scale(0.9);
 }
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
@@ -652,7 +720,8 @@
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
   column-gap: var(--grid-col-gap);
   text-transform: capitalize;
@@ -673,7 +742,8 @@
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header {
   background-color: var(--color-primary-grey-60);
   text-transform: uppercase;
   line-height: 20px;
@@ -805,6 +875,10 @@
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
   display: grid;
@@ -1065,6 +1139,7 @@
 .attribute-card__grid--item .roll-icon__hover,
 .equipment-card__grid--item .roll-icon__hover,
 .power-card__grid--item .roll-icon__hover,
+.spell-card__grid--item .roll-icon__hover,
 .ability-card__grid--item .roll-icon__hover-fixed,
 .knack-card__grid--item .roll-icon__hover-fixed,
 .maneuver-card__grid--item .roll-icon__hover-fixed,
@@ -1072,18 +1147,21 @@
 .attribute-card__grid--item .roll-icon__hover-fixed,
 .equipment-card__grid--item .roll-icon__hover-fixed,
 .power-card__grid--item .roll-icon__hover-fixed,
+.spell-card__grid--item .roll-icon__hover-fixed,
 .ability-card__grid--item .roll-icon__pointer,
 .knack-card__grid--item .roll-icon__pointer,
 .maneuver-card__grid--item .roll-icon__pointer,
 .knack-maneuver-card__grid--item .roll-icon__pointer,
 .attribute-card__grid--item .roll-icon__pointer,
 .equipment-card__grid--item .roll-icon__pointer,
-.power-card__grid--item .roll-icon__pointer {
+.power-card__grid--item .roll-icon__pointer,
+.spell-card__grid--item .roll-icon__pointer {
   display: none;
 }
 .maneuver-card__grid--container .itemControlGroup,
 .equipment-card__grid--container .itemControlGroup,
-.power-card__grid--container .itemControlGroup {
+.power-card__grid--container .itemControlGroup,
+.spell-card__grid--container .itemControlGroup {
   float: none;
 }
 .roll-icon__hover,
@@ -1094,7 +1172,8 @@
 .power-icon,
 .power-icon__visible,
 .equipment-icon,
-.equipment-icon__visible {
+.equipment-icon__visible,
+.spell-icon {
   border: none;
   display: block;
 }
@@ -1107,7 +1186,8 @@
 .knack-card__grid--container:hover .icons__dice img,
 .attribute-card__grid--container:hover .icons__dice img,
 .power-card__grid--container:hover .icons__dice img,
-.equipment-card__grid--container:hover .icons__dice img {
+.equipment-card__grid--container:hover .icons__dice img,
+.spell-card__grid--container:hover .icons__dice img {
   box-shadow: 0 0 10px var(--color-gold-1);
   border-radius: 50%;
   background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
@@ -1117,21 +1197,31 @@
 .attribute-card__grid--container:hover .roll-icon__hover,
 .power-card__grid--container:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .roll-icon__hover,
+.spell-card__grid--container:hover .roll-icon__hover,
 .ability-card__grid--container:hover .attribute-icon,
 .knack-card__grid--container:hover .attribute-icon,
 .attribute-card__grid--container:hover .attribute-icon,
 .power-card__grid--container:hover .attribute-icon,
 .equipment-card__grid--container:hover .attribute-icon,
+.spell-card__grid--container:hover .attribute-icon,
 .ability-card__grid--container:hover .power-icon,
 .knack-card__grid--container:hover .power-icon,
 .attribute-card__grid--container:hover .power-icon,
 .power-card__grid--container:hover .power-icon,
 .equipment-card__grid--container:hover .power-icon,
+.spell-card__grid--container:hover .power-icon,
 .ability-card__grid--container:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-icon,
-.equipment-card__grid--container:hover .equipment-icon {
+.equipment-card__grid--container:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-icon,
+.ability-card__grid--container:hover .spell-icon,
+.knack-card__grid--container:hover .spell-icon,
+.attribute-card__grid--container:hover .spell-icon,
+.power-card__grid--container:hover .spell-icon,
+.equipment-card__grid--container:hover .spell-icon,
+.spell-card__grid--container:hover .spell-icon {
   margin-top: -4px;
   display: block;
   animation-duration: 3s;
@@ -1143,7 +1233,8 @@
 .knack-card__grid--container:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .roll-icon__hover-fixed,
-.equipment-card__grid--container:hover .roll-icon__hover-fixed {
+.equipment-card__grid--container:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .roll-icon__hover-fixed {
   display: block;
   width: 20px;
   height: 20px;
@@ -1153,16 +1244,25 @@
 .attribute-card__grid--container:hover .ability-icon,
 .power-card__grid--container:hover .ability-icon,
 .equipment-card__grid--container:hover .ability-icon,
+.spell-card__grid--container:hover .ability-icon,
 .ability-card__grid--container:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-icon,
 .equipment-card__grid--container:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-icon,
 .ability-card__grid--container:hover .power-icon,
 .knack-card__grid--container:hover .power-icon,
 .attribute-card__grid--container:hover .power-icon,
 .power-card__grid--container:hover .power-icon,
-.equipment-card__grid--container:hover .power-icon {
+.equipment-card__grid--container:hover .power-icon,
+.spell-card__grid--container:hover .power-icon,
+.ability-card__grid--container:hover .spell-icon,
+.knack-card__grid--container:hover .spell-icon,
+.attribute-card__grid--container:hover .spell-icon,
+.power-card__grid--container:hover .spell-icon,
+.equipment-card__grid--container:hover .spell-icon,
+.spell-card__grid--container:hover .spell-icon {
   display: none;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
@@ -1170,26 +1270,37 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer {
   display: block;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
@@ -1197,101 +1308,145 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .power-icon,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .power-icon {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .power-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .power-icon {
   display: none;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
@@ -1299,51 +1454,73 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed {
   display: none;
 }
 .card__description--toggle {

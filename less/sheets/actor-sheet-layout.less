@@ -1,188 +1,189 @@
 .application.sheet.earthdawn4e.actor {
-    font-size: var(--font-size-12);
-    background: var(--background-sheet-actor);
-    .tab {
-        overflow: auto;
-        gap: 0;
+  font-size: var(--font-size-12);
+  background: var(--background-sheet-actor);
+  .tab {
+    overflow: auto;
+    gap: 0;
+  }
+  .window-content {
+    backdrop-filter: none;
+    .section__name {
+      position: relative;
+      z-index: 4;
     }
-    .window-content {
-        backdrop-filter: none;
-        .section__name {
-            position: relative;
-            z-index: 4;
-        }
-        .tab h3 {
-            .header-bar();
-        }
-        .item__image {
-            width: 25px;
-            height: 25px;
-            object-fit: cover;
-        }
-        // All Containers
-        .container__block {
-            padding: 0 5px 3px 5px;
-            .container__header {
-                background: var(--color-secondary-35);
-            }
-        }
-        .class-card__grid--container,
-        .ability-card__grid--container,
-        .knack-card__grid--container,
-        .knack-maneuver-card__grid--container,
-        .equipment-card__grid--container,
-        .effect-card__grid--container,
-        .attribute-card__grid--container,
-        .power-card__grid--container,
-        .maneuver-card__grid--container,
-        .karma-devotion__grid--container,
-        .recovery__grid--container {
-            display: grid;
-            column-gap: var(--grid-col-gap);
-            text-transform: capitalize;
-            font-weight: normal;
-            line-height: 25px;
-            height: 25px;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            &.container__header {
-                background-color: var(--color-primary-grey-60);
-                text-transform: uppercase;
-                line-height: 20px;
-                height: 20px;
-            }
-        }
-        .class-card__grid--item:nth-child(4),
-        .ability-card__grid--item:nth-child(8),
-        .knack-card__grid--item:nth-child(9),
-        .equipment-card__grid--item:nth-child(7),
-        .equipment-card__grid--item:nth-child(7),
-        .power-card__grid--item:nth-child(7),
-        .maneuver-card__grid--item:nth-child(5) {
-            font-size: var(--font-icon-small);
-            padding: 0 4px 0 0;
-        }
-        .effect-card__grid--item:nth-child(6) {
-            font-size: var(--font-icon-medium);
-            padding: 0 4px 0 0;
-        }
-        .attribute-card__grid--item:nth-child(2),
-        .ability-card__grid--item:nth-child(2),
-        .skill-card__grid--item:nth-child(2),
-        .power-card__grid--item:nth-child(2),
-        .maneuver-card__grid--item:nth-child(2),
-        .class-card__grid--item:nth-child(2),
-        .equipment-card__grid--item:nth-child(2),
-        .knack-card__grid--item:nth-child(2) {
-            text-align: left;
-        }
-        .ability-icon,
-        .equipment-icon,
-        .power-icon,
-        .effect-icon, 
-        .item__image--visible,
-        .equipment-icon__visible,
-        .power-icon__visible {
-            width: 25px;
-            height: 25px;
-            border: none;
-        }
-        // General Tab
-        .general .layout__col--2:first-of-type {
-            flex: 0 0 250px;
-            max-width: 250px;
-        }
-        .general .layout__col--2:nth-of-type(2) {
-            flex: 1 1 auto;
-            min-width: 0;
-        }
-        .attribute-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    .tab h3 {
+      .header-bar();
+    }
+    .item__image {
+      width: 25px;
+      height: 25px;
+      object-fit: cover;
+    }
+    // All Containers
+    .container__block {
+      padding: 0 5px 3px 5px;
+      .container__header {
+        background: var(--color-secondary-35);
+      }
+    }
+    .class-card__grid--container,
+    .ability-card__grid--container,
+    .knack-card__grid--container,
+    .knack-maneuver-card__grid--container,
+    .equipment-card__grid--container,
+    .effect-card__grid--container,
+    .attribute-card__grid--container,
+    .power-card__grid--container,
+    .maneuver-card__grid--container,
+    .karma-devotion__grid--container,
+    .recovery__grid--container,
+    .spell-card__grid--container {
+      display: grid;
+      column-gap: var(--grid-col-gap);
+      text-transform: capitalize;
+      font-weight: normal;
+      line-height: 25px;
+      height: 25px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      &.container__header {
+        background-color: var(--color-primary-grey-60);
+        text-transform: uppercase;
+        line-height: 20px;
+        height: 20px;
+      }
+    }
+    .class-card__grid--item:nth-child(4),
+    .ability-card__grid--item:nth-child(8),
+    .knack-card__grid--item:nth-child(9),
+    .equipment-card__grid--item:nth-child(7),
+    .equipment-card__grid--item:nth-child(7),
+    .power-card__grid--item:nth-child(7),
+    .maneuver-card__grid--item:nth-child(5) {
+      font-size: var(--font-icon-small);
+      padding: 0 4px 0 0;
+    }
+    .effect-card__grid--item:nth-child(6) {
+      font-size: var(--font-icon-medium);
+      padding: 0 4px 0 0;
+    }
+    .attribute-card__grid--item:nth-child(2),
+    .ability-card__grid--item:nth-child(2),
+    .skill-card__grid--item:nth-child(2),
+    .power-card__grid--item:nth-child(2),
+    .maneuver-card__grid--item:nth-child(2),
+    .class-card__grid--item:nth-child(2),
+    .equipment-card__grid--item:nth-child(2),
+    .knack-card__grid--item:nth-child(2) {
+      text-align: left;
+    }
+    .ability-icon,
+    .equipment-icon,
+    .power-icon,
+    .effect-icon,
+    .item__image--visible,
+    .equipment-icon__visible,
+    .power-icon__visible {
+      width: 25px;
+      height: 25px;
+      border: none;
+    }
+    // General Tab
+    .general .layout__col--2:first-of-type {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .general .layout__col--2:nth-of-type(2) {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .attribute-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(40px, 1fr)
                 minmax(35px, 35px)
                 minmax(35px, 35px)
                 minmax(35px, 35px);
-            grid-auto-flow: row;
-            .attribute-icon {
-                height: 20px;
-                width: 20px;
-                margin: 0 0 0 5px;
-                padding: 1px;
-            }
-            .circle {
-                display: inline-block;
-                width: 0.8em;
-                height: 0.85em;
-                border: 1px solid currentColor;
-                border-radius: 50%;
-                margin-right: 0.2em;
-                background: transparent;
-                margin-right: 0.01em;
-                }
-            .circle.filled {
-                background: currentColor;
-            }
-            .attribute__increases i {
-                display: flex;
-                gap: 0.1em;
-            }
-        }
+      grid-auto-flow: row;
+      .attribute-icon {
+        height: 20px;
+        width: 20px;
+        margin: 0 0 0 5px;
+        padding: 1px;
+      }
+      .circle {
+        display: inline-block;
+        width: 0.8em;
+        height: 0.85em;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        margin-right: 0.2em;
+        background: transparent;
+        margin-right: 0.01em;
+      }
+      .circle.filled {
+        background: currentColor;
+      }
+      .attribute__increases i {
+        display: flex;
+        gap: 0.1em;
+      }
+    }
 
-        .karma-devotion__header,
-        .recovery__header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 30px;
-            gap: var(--grid-col-gap);
-        }
-        .karma-devotion__header-icons,
-        .recovery__header-icons {
-            display: flex;
-            align-items: center;
-            input[type="checkbox"] {
-                margin: 0;
-                margin: 6px 0 0 0;
-            }
-            button {
-                background: none;
-                border: none;
-                height: 20px;
-                width: 20px;
-                color: var(--color-text-inverse);
-            }
-        }
-        .karma-devotion__grid--container,
-        .recovery__grid--container {
-            display: grid;
-            grid-template-columns:
+    .karma-devotion__header,
+    .recovery__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      gap: var(--grid-col-gap);
+    }
+    .karma-devotion__header-icons,
+    .recovery__header-icons {
+      display: flex;
+      align-items: center;
+      input[type="checkbox"] {
+        margin: 0;
+        margin: 6px 0 0 0;
+      }
+      button {
+        background: none;
+        border: none;
+        height: 20px;
+        width: 20px;
+        color: var(--color-text-inverse);
+      }
+    }
+    .karma-devotion__grid--container,
+    .recovery__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 1fr)
                 minmax(25px, 1fr)
-                minmax(25px, 1fr);      
-            .karma-devotion__grid--item,
-            .recovery__grid--item {
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-        // Notes Tab
-        .class-card__grid--container {
-            display: grid;
-            grid-template-columns:
+                minmax(25px, 1fr);
+      .karma-devotion__grid--item,
+      .recovery__grid--item {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    // Notes Tab
+    .class-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(100px, 1fr)
                 minmax(40px, 40px)
                 minmax(60px, 60px);
-        }
-        // Abilities Tab
-        .ability-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    }
+    // Abilities Tab
+    .ability-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(200px, 1fr)
                 minmax(60px, 60px)
@@ -191,14 +192,14 @@
                 minmax(60px, 60px)
                 minmax(60px, 60px)
                 minmax(60px, 60px);
-        }
-        .ability-card__grid--item:nth-child(2) {
-            text-align: left;
-        }
-        .knack-maneuver-card__grid--container,
-        .knack-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    }
+    .ability-card__grid--item:nth-child(2) {
+      text-align: left;
+    }
+    .knack-maneuver-card__grid--container,
+    .knack-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 50px)
                 minmax(150px, 1fr)
                 minmax(20px, 20px)
@@ -208,11 +209,24 @@
                 minmax(60px, 60px)
                 minmax(60px, 60px)
                 minmax(60px, 60px)
-        }
-        // Powers Tab
-        .power-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    }
+    // Spells Tab
+    .spell-card__grid--container {
+      display: grid;
+      grid-template-columns:
+                minmax(25px, 25px) // Icon
+                minmax(50px, 1fr) // Name
+                minmax(60px, 60px) // Threads
+                minmax(40px, 40px) // Weaving
+                minmax(40px, 40px) // Casting
+                minmax(60px, 60px) // Duration
+                minmax(60px, 60px) // Range
+                minmax(60px, 60px); // Controls
+    }
+    // Powers Tab
+    .power-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(200px, 1fr)
                 minmax(120px, 120px)
@@ -220,20 +234,20 @@
                 minmax(60px, 60px)
                 minmax(60px, 60px)
                 minmax(60px, 60px);
-        }
-        .maneuver-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    }
+    .maneuver-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(200px, 1fr)
                 minmax(120px, 120px)
                 minmax(175px, 175px)
                 minmax(60px, 60px);
-        }
-        // Equipment Tab
-        .equipment-card__grid--container {
-            display: grid;
-            grid-template-columns:
+    }
+    // Equipment Tab
+    .equipment-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(50px, 1fr)
                 minmax(120px, 120px)
@@ -241,333 +255,333 @@
                 minmax(115px, 115px)
                 minmax(75px, 75px)
                 minmax(60px, 60px);
-            .item__status {
-                height: 20px;
-                width: 20px;
-                &.flipped {
-                    transform: scaleX(-1);
-                }
-            }
+      .item__status {
+        height: 20px;
+        width: 20px;
+        &.flipped {
+          transform: scaleX(-1);
         }
-        // Effects Tab
-        .conditions__grid--container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-            margin: 0 0 10px 0;
-            }    
-        .conditions__grid--item {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            padding: var(--grid-col-gap) 0;
-            border: var(--border-main);
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease;
-            background-color: var(--color-primary);
-            &:nth-child(13) {
-                gap: var(--grid-col-gap);
-                flex-direction: row; 
-                height: 35px;
-                border: none;
-                background-color: none;
-            }
-            input[type="checkbox"] {
-                display: none;
-            }
-            input[type="number"] {
-                width: 3rem;
-                margin-bottom: 0.25rem;
-            }
-            &:has(input:checked),
-            &.active {
-                background-color: var(--color-tertiary);
-                border-color: var(--color-tertiary);
-                color: var(--color-text-inverse);
+      }
+    }
+    // Effects Tab
+    .conditions__grid--container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin: 0 0 10px 0;
+    }
+    .conditions__grid--item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: var(--grid-col-gap) 0;
+      border: var(--border-main);
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+      background-color: var(--color-primary);
+      &:nth-child(13) {
+        gap: var(--grid-col-gap);
+        flex-direction: row;
+        height: 35px;
+        border: none;
+        background-color: none;
+      }
+      input[type="checkbox"] {
+        display: none;
+      }
+      input[type="number"] {
+        width: 3rem;
+        margin-bottom: 0.25rem;
+      }
+      &:has(input:checked),
+      &.active {
+        background-color: var(--color-tertiary);
+        border-color: var(--color-tertiary);
+        color: var(--color-text-inverse);
 
-            }
-        }
-        .effect-card__grid--container {
-            display: grid;
-            grid-template-columns:
+      }
+    }
+    .effect-card__grid--container {
+      display: grid;
+      grid-template-columns:
                 minmax(25px, 25px)
                 minmax(200px, 1fr)
                 minmax(200px, 200px)
                 minmax(70px, 70px)
                 minmax(70px, 70px)
                 minmax(60px, 60px);
-            height: 30px;
-        }
+      height: 30px;
+    }
 
-        // Meters
+    // Meters
 
-        .encumbrance__container {
-            margin-top: 0.5rem;
-        }
-        .encumbrance__row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0.6rem 0;
-        }
-        .encumbrance__label {
-            white-space: nowrap;
-            text-transform: uppercase;
-            padding-top: 2px;
-        }
-        .encumbrance__bar {
-            position: relative;
-            overflow: hidden;
-            flex: 1;
-            height: 12px;
-            background: var(--color-primary-grey);
-        }
-        .encumbrance__fill {
-            height: 100%;
-            width: var(--fill-width, 0%);
-            transition: width 0.3s ease, background-color 0.3s ease;
-            background-color: grey;
-            &.low { background-color: var(--color-meter-1); }
-            &.medium { background-color: var(--color-meter-2); }
-            &.high { background-color: var(--color-meter-3); }
-            &.over { background-color: var(--color-meter-4); }
-        }
-        .encumbrance__marker {
-            position: absolute;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background-color: var(--color-primary);
-            pointer-events: none;
-            &.marker__x { left: 50%; }
-            &.marker__x15 { left: 75%; }
-        }
+    .encumbrance__container {
+      margin-top: 0.5rem;
+    }
+    .encumbrance__row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.6rem 0;
+    }
+    .encumbrance__label {
+      white-space: nowrap;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+    .encumbrance__bar {
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      height: 12px;
+      background: var(--color-primary-grey);
+    }
+    .encumbrance__fill {
+      height: 100%;
+      width: var(--fill-width, 0%);
+      transition: width 0.3s ease, background-color 0.3s ease;
+      background-color: grey;
+      &.low { background-color: var(--color-meter-1); }
+      &.medium { background-color: var(--color-meter-2); }
+      &.high { background-color: var(--color-meter-3); }
+      &.over { background-color: var(--color-meter-4); }
+    }
+    .encumbrance__marker {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: var(--color-primary);
+      pointer-events: none;
+      &.marker__x { left: 50%; }
+      &.marker__x15 { left: 75%; }
+    }
 
-        // Navigation tab
+    // Navigation tab
 
-        .sheet-tabs.tabs.tabs-navigation  {
-            gap: var(--grid-col-gap);
-            line-height: 1.2rem;
-            padding: 5px 0px;
-            margin: 5px 0 0 0;
-        }
-        
+    .sheet-tabs.tabs.tabs-navigation  {
+      gap: var(--grid-col-gap);
+      line-height: 1.2rem;
+      padding: 5px 0px;
+      margin: 5px 0 0 0;
+    }
 
-        
-        // .body {
-        //     position: relative;
-        //     z-index: 4;
-        //     margin-top: 30px;
-        //     .navigator__flex {
-        //         .navigator__tab {
-        //             padding-left: 5px;
-        //         }
-        //     }
-            .top {
-                .image__grid-item { 
-                    grid-area: image; 
-                }
-                .characteristics-defenses-header__grid-item { 
-                    grid-area: defensesHeader; 
-                }
-                .characteristics-defenses-physical__grid-item { 
-                    grid-area: defensePhysical; 
-                }
-                .characteristics-defenses-mystical__grid-item { 
-                    grid-area: defenseMystical; 
-                }
-                .characteristics-defenses-social__grid-item { 
-                    grid-area: defenseSocial; 
-                }
-                .characteristics-health-header__grid-item { 
-                    grid-area: healthHeader; 
-                }
-                .characteristics-health-1__grid-item { 
-                    grid-area: healthWound; 
-                }
-                .characteristics-health-2__grid-item { 
-                    grid-area: healthUnconscious; 
-                }
-                .characteristics-health-3__grid-item {
-                    grid-area: healthDeath; 
-                }
-                .characteristics-armor-header__grid-item { 
-                    grid-area: armorHeader; 
-                }
-                .characteristics-armor-physical__grid-item { 
-                    grid-area: armorPhysical; 
-                }
-                .characteristics-armor-mystical__grid-item { 
-                    grid-area: armorMystical; 
-                }
-                .characteristics-movement-header__grid-item { 
-                    grid-area: movementHeader; 
-                }
-                .characteristics-movement__grid-item { 
-                    grid-area: movement; 
-                }
-                .characteristics-damage-header__grid-item { 
-                    grid-area: damageHeader; 
-                }
-                .characteristics-damage-damage__grid-item { 
-                    grid-area: damageDamage;
-                }
-                .characteristics-damage-wounds__grid-item { 
-                    grid-area: damageWounds;
 
-                    }
-                    .characteristics-recovery-header__grid-item { 
-                        grid-area: recoveryHeader; 
-                    }
-                    .characteristics-recovery__grid-item { 
-                        grid-area: recovery; 
-                    }
 
-                    .characteristics-max-wounds__grid-item { 
-                        grid-area: maxWounds; 
-                    }
+    // .body {
+    //     position: relative;
+    //     z-index: 4;
+    //     margin-top: 30px;
+    //     .navigator__flex {
+    //         .navigator__tab {
+    //             padding-left: 5px;
+    //         }
+    //     }
+    .top {
+      .image__grid-item {
+        grid-area: image;
+      }
+      .characteristics-defenses-header__grid-item {
+        grid-area: defensesHeader;
+      }
+      .characteristics-defenses-physical__grid-item {
+        grid-area: defensePhysical;
+      }
+      .characteristics-defenses-mystical__grid-item {
+        grid-area: defenseMystical;
+      }
+      .characteristics-defenses-social__grid-item {
+        grid-area: defenseSocial;
+      }
+      .characteristics-health-header__grid-item {
+        grid-area: healthHeader;
+      }
+      .characteristics-health-1__grid-item {
+        grid-area: healthWound;
+      }
+      .characteristics-health-2__grid-item {
+        grid-area: healthUnconscious;
+      }
+      .characteristics-health-3__grid-item {
+        grid-area: healthDeath;
+      }
+      .characteristics-armor-header__grid-item {
+        grid-area: armorHeader;
+      }
+      .characteristics-armor-physical__grid-item {
+        grid-area: armorPhysical;
+      }
+      .characteristics-armor-mystical__grid-item {
+        grid-area: armorMystical;
+      }
+      .characteristics-movement-header__grid-item {
+        grid-area: movementHeader;
+      }
+      .characteristics-movement__grid-item {
+        grid-area: movement;
+      }
+      .characteristics-damage-header__grid-item {
+        grid-area: damageHeader;
+      }
+      .characteristics-damage-damage__grid-item {
+        grid-area: damageDamage;
+      }
+      .characteristics-damage-wounds__grid-item {
+        grid-area: damageWounds;
 
-                    grid-area: empty;
+      }
+      .characteristics-recovery-header__grid-item {
+        grid-area: recoveryHeader;
+      }
+      .characteristics-recovery__grid-item {
+        grid-area: recovery;
+      }
 
-                .image-characteristics__grid-container {
-                    display: grid;
-                    grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-                    grid-column-gap: 4px;
-                    margin-left: 4px;
-                    grid-template-areas: 
+      .characteristics-max-wounds__grid-item {
+        grid-area: maxWounds;
+      }
+
+      grid-area: empty;
+
+      .image-characteristics__grid-container {
+        display: grid;
+        grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+        grid-column-gap: 4px;
+        margin-left: 4px;
+        grid-template-areas:
                     'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
                     'image defensePhysical defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
                     'image defensePhysical defenseMystical defenseSocial healthWound healthUnconscious healthDeath'
                     'image armorHeader armorHeader movementHeader damageHeader damageHeader recoveryHeader'
                     'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
                     'image armorPhysical armorMystical movement damageDamage damageWounds recovery'
-                    ;
-                }
+      ;
+      }
 
-                .image-characteristics-mob__grid-container {
-                    display: grid;
-                    grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
-                    grid-column-gap: 4px;
-                    margin-left: 4px;
-                    grid-template-areas: 
+      .image-characteristics-mob__grid-container {
+        display: grid;
+        grid-template-columns: 160px 100px 100px 100px 100px 100px 100px;
+        grid-column-gap: 4px;
+        margin-left: 4px;
+        grid-template-areas:
                     'image defensesHeader defensesHeader defensesHeader healthHeader healthHeader healthHeader'
                     'image defensePhysical defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
                     'image defensePhysical defenseMystical defenseSocial damageWounds maxWounds healthUnconscious'
                     'image armorHeader armorHeader movementHeader empty empty empty'
                     'image armorPhysical armorMystical movement damageDamage healthWound recovery'
                     'image armorPhysical armorMystical movement damageDamage healthWound recovery'
-                    ;
-                }
+      ;
+      }
 
-                    .image-characteristics__grid-container > div,
-                    .image-characteristics-mob__grid-container > div {
-                        text-align: center;
-                        }
+      .image-characteristics__grid-container > div,
+      .image-characteristics-mob__grid-container > div {
+        text-align: center;
+      }
 
 
-                    .actor-image {
-                        width: 160px;
-                        border: none;
-                    }
+      .actor-image {
+        width: 160px;
+        border: none;
+      }
 
-                }
-                // .main {
-                //     padding-top: 1px;
-                //     height: 440px;
-                //     overflow-y: auto;
-                //     padding-left: 5px;
-                //     padding-right: 5px;
-                    
-                //     .sheet__editor {
-                //         min-height: 400px;
-                //         max-height: 100%;
-                //         display: flex;
-                //         flex-direction: column;
-                    
-                //         .editor,
-                //         .prosemirror,
-                //         .editor-container,
-                //         .editor-content {
-                //             min-height: 350px;
-                //             max-height: 100%;
-                //         }
-                //     }
-
-                //     .form-group {
-                //         label {
-                //             float: left;
-                //             width: 40%;
-                //         }
-                //         .form-fields {
-                //             float: right;
-                //             width: 60%;
-                //         }
-                //         .hint {
-                //             font-size:smaller;
-                //         }
-                //     }
-                    
-                // }
-                
-                    padding: 0px 5px;
-                    height: 440px;
-                    overflow-y: auto;
-                    
-                    .sheet__editor,
-                    .editor {
-                        min-height: 400px;
-                        max-height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                    
-                        .editor,
-                        .prosemirror,
-                        .editor-container,
-                        .editor-content
-                        .editor {
-                            min-height: 350px;
-                            max-height: 100%;
-                        }
-                    }
-
-                    .form-group {
-                        label {
-                            float: left;
-                            width: 40%;
-                        }
-                        .form-fields {
-                            float: right;
-                            width: 60%;
-                        }
-                        .hint {
-                            font-size:smaller;
-                        }
-                    }
-                    .tab.notes {
-                        .sheet__editor {
-                            .editor {
-                                min-height: 200px;
-                                max-height: 100%;
-                            }
-                        }
-                    }
-                
-            // }
-            
-            .footer__frame {
-                position: absolute;
-                transform: rotate(180deg);
-                bottom: -45px;
-                z-index: 2;
-                img {
-                    border: none;  
-                }
-            }
-        }
-    .window-resizable-handle {
-        z-index: 5;
     }
+    // .main {
+    //     padding-top: 1px;
+    //     height: 440px;
+    //     overflow-y: auto;
+    //     padding-left: 5px;
+    //     padding-right: 5px;
+
+    //     .sheet__editor {
+    //         min-height: 400px;
+    //         max-height: 100%;
+    //         display: flex;
+    //         flex-direction: column;
+
+    //         .editor,
+    //         .prosemirror,
+    //         .editor-container,
+    //         .editor-content {
+    //             min-height: 350px;
+    //             max-height: 100%;
+    //         }
+    //     }
+
+    //     .form-group {
+    //         label {
+    //             float: left;
+    //             width: 40%;
+    //         }
+    //         .form-fields {
+    //             float: right;
+    //             width: 60%;
+    //         }
+    //         .hint {
+    //             font-size:smaller;
+    //         }
+    //     }
+
+    // }
+
+    padding: 0px 5px;
+    height: 440px;
+    overflow-y: auto;
+
+    .sheet__editor,
+    .editor {
+      min-height: 400px;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .editor,
+      .prosemirror,
+      .editor-container,
+      .editor-content
+      .editor {
+        min-height: 350px;
+        max-height: 100%;
+      }
+    }
+
+    .form-group {
+      label {
+        float: left;
+        width: 40%;
+      }
+      .form-fields {
+        float: right;
+        width: 60%;
+      }
+      .hint {
+        font-size:smaller;
+      }
+    }
+    .tab.notes {
+      .sheet__editor {
+        .editor {
+          min-height: 200px;
+          max-height: 100%;
+        }
+      }
+    }
+
+    // }
+
+    .footer__frame {
+      position: absolute;
+      transform: rotate(180deg);
+      bottom: -45px;
+      z-index: 2;
+      img {
+        border: none;
+      }
+    }
+  }
+  .window-resizable-handle {
+    z-index: 5;
+  }
 }
