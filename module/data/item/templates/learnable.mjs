@@ -85,7 +85,7 @@ export default class LearnableTemplate extends SystemDataModel {
   static async learn( actor, item, createData = {} ) {
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.Legend.cannotLearn", {itemType: item.type} )
+        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
       );
       return;
     }
