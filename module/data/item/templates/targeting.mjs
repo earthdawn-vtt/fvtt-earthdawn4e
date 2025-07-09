@@ -53,14 +53,19 @@ export default class TargetTemplate extends SystemDataModel {
    */
   get difficultyLabel() {
     let difficulty = this.difficulty;
+    let label = "";
+
     if ( difficulty.fixed > 0 ) {
-      return String( difficulty.fixed );
-    } else if ( difficulty.target ) {
-      return ED4E.ACTIONS.targetDifficulty[ difficulty.target ];
-    } else if ( difficulty.group ) {
-      return this.groupDifficultyIcon;
+      return difficulty.fixed.toString();
     }
-    return "";
+
+    if ( difficulty.target ) {
+      label += ED4E.ACTIONS.targetDifficulty[ difficulty.target ]?.abbreviation;
+    }
+    if ( difficulty.group ) {
+      label += ` ${ this.groupDifficultyIcon }`;
+    }
+    return label;
   }
 
   /**
@@ -85,7 +90,7 @@ export default class TargetTemplate extends SystemDataModel {
       case "lowestOfGroup":
         return `${group} ${lowest}`;
       case "lowestX":
-        return `<i class="fas ${icons.group}"></i>`;
+        return `${group} ${lowest} ${x}`;
       default:
         return "";
     }
