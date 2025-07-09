@@ -75,16 +75,25 @@ export default class LearnableTemplate extends SystemDataModel {
   }
 
   /**
-   * Learn the entity by an actor. This means creating a new item instance onn the actor, either without spending LP on
+   * Learn the entity by an actor. This means creating a new item instance on the actor, either without spending LP on
    * level 0 for items with a level, or by spending LP.
    * @param {ActorEd} actor                 The actor that is learning the entity.
    * @param {ItemEd} item                   The item that is being learned.
    * @param {object} createData             Additional data to create the item with. Keys can be in the period separated format.
    * @returns {Promise<ItemEd>|undefined}   The created Item instance if learned, or undefined if the entity was not learned.
-   * @abstract
    */
   static async learn( actor, item, createData = {} ) {
-    throw new Error( "A subclass of the LearnableTemplate must implement the 'learn' method." );
+    if ( !item.system.canBeLearned ) {
+      ui.notifications.warn(
+        game.i18n.format( "ED.Notifications.Warn.Legend.cannotLearn", {itemType: item.type} )
+      );
+      return;
+    }
+    const itemData = foundry.utils.mergeObject(
+      item.toObject(),
+      foundry.utils.expandObject( createData ),
+    );
+    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
   }
 
   /* -------------------------------------------- */

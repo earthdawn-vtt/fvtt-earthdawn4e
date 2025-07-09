@@ -275,12 +275,7 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /** @inheritDoc */
-  static async learn( actor, item, _ ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
-      return;
-    }
-
+  static async learn( actor, item, createData = {} ) {
     const learn = await LearnSpellPrompt.waitPrompt( {
       actor: actor,
       spell: item,
@@ -288,9 +283,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
     if ( !learn || learn === "cancel" || learn === "close" ) return;
 
-    const learnedItem = ( await actor.createEmbeddedDocuments(
-      "Item", [ item.toObject() ]
-    ) )?.[0];
+    const learnedItem = await super.learn( actor, item, createData );
 
     const updatedActor = await actor.addLpTransaction(
       "spendings",

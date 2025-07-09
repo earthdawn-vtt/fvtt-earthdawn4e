@@ -192,17 +192,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
-      );
-      return;
-    }
-    const itemData = foundry.utils.mergeObject(
-      item.toObject(),
-      foundry.utils.expandObject( createData ),
-    );
-    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+    return await super.learn( actor, item, createData );
   }
 
   /* -------------------------------------------- */
