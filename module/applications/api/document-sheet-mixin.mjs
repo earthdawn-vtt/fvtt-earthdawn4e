@@ -92,8 +92,8 @@ const DocumentSheetMixinEd = Base => {
         const toggle = document.createElement( "slide-toggle" );
         toggle.checked = this._sheetMode === this.constructor.SHEET_MODES.EDIT;
         toggle.classList.add( "mode-slider" );
-        toggle.dataset.tooltip = "ED.Sheet.Controls.sheetModeEdit";
-        toggle.setAttribute( "aria-label", game.i18n.localize( "ED.Sheet.Controls.sheetModeEdit" ) );
+        toggle.dataset.tooltip = "ED.Controls.sheetModeEdit";
+        toggle.setAttribute( "aria-label", game.i18n.localize( "ED.Controls.sheetModeEdit" ) );
         toggle.addEventListener( "change", this._onChangeSheetMode.bind( this ) );
         toggle.addEventListener( "dblclick", event => event.stopPropagation() );
         header.insertAdjacentElement( "afterbegin", toggle );
@@ -138,7 +138,7 @@ const DocumentSheetMixinEd = Base => {
     async _onChangeSheetMode( event ) {
       const { SHEET_MODES } = this.constructor;
       const toggle = event.currentTarget;
-      const label = game.i18n.localize( `ED.Sheet.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
+      const label = game.i18n.localize( `ED.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
       toggle.dataset.tooltip = label;
       toggle.setAttribute( "aria-label", label );
       this._sheetMode = toggle.checked ? SHEET_MODES.EDIT : SHEET_MODES.PLAY;
@@ -154,6 +154,8 @@ const DocumentSheetMixinEd = Base => {
      * @throws {Error} - If the document type is unknown.
      */
     static async _onCreateChild( event, target ) {
+      const documentType = target.dataset.document;
+      const documentConfig = CONFIG[documentType];
       const type = target.dataset.type;
 
       switch ( type ) {
@@ -175,6 +177,18 @@ const DocumentSheetMixinEd = Base => {
           } );
         }
         default: {
+          if ( documentConfig && type in documentConfig.dataModels ) {
+            const createdDocuments = await this.document.createEmbeddedDocuments(
+              documentType,
+              [ {
+                name:  game.i18n.localize( documentConfig.typeLabels[ type ] ),
+                type,
+              } ],
+            );
+            await createdDocuments[0]?.sheet?.render( { force: true } );
+            return createdDocuments[0];
+          }
+
           throw new Error( `Unknown document type: ${type}` );
         }
       }
