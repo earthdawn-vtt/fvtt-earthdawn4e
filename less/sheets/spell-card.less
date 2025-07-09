@@ -97,18 +97,23 @@
 
   &__name {
     margin: 0;
-    font-size: 13px;
-    font-weight: bold;
+    font-family: @font-primary;
+    font-size: 12px;
+    font-weight: 400; // Normal weight instead of bold
+    letter-spacing: 0.2px; // Reduced letter spacing for better text density
     color: #fff;
     text-shadow:
       1px 1px 0 rgba(0, 0, 0, 0.8),
       0 0 5px rgba(0, 0, 0, 0.5);
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.1; // Tighter line height for better fit
     cursor: pointer;
     transition: color 0.2s ease;
+    word-break: auto-phrase;
+    hyphens: none; // Enable automatic hyphenation
+    overflow: hidden; // Hide text that exceeds max height
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // Limit to 2 lines
+    -webkit-box-orient: vertical;
 
     &:hover {
       color: @color-gold;
@@ -151,10 +156,11 @@
   &__circle-number {
     font-size: 16px;
     font-weight: bold;
-    color: @color-gold;
+    color: @color-light; // Changed to white for better contrast
     text-shadow:
-      1px 1px 0 rgba(0, 0, 0, 0.8),
-      0 0 3px rgba(240, 208, 128, 0.5);
+      1px 1px 0 rgba(0, 0, 0, 1), // Stronger black outline
+      0 0 4px rgba(240, 208, 128, 0.8), // Golden glow
+      0 0 8px rgba(240, 208, 128, 0.4); // Wider golden glow
     z-index: 2;
   }
 

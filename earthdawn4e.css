@@ -2003,16 +2003,21 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .spell-card__name {
   margin: 0;
-  font-size: 13px;
-  font-weight: bold;
+  font-family: "ArnoPro-Regular", serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5);
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.1;
   cursor: pointer;
   transition: color 0.2s ease;
+  word-break: auto-phrase;
+  hyphens: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .spell-card__name:hover {
   color: #f0d080;
@@ -2048,8 +2053,8 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .spell-card__circle-number {
   font-size: 16px;
   font-weight: bold;
-  color: #f0d080;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8), 0 0 3px rgba(240, 208, 128, 0.5);
+  color: #faf6e8;
+  text-shadow: 1px 1px 0 #000000, 0 0 4px rgba(240, 208, 128, 0.8), 0 0 8px rgba(240, 208, 128, 0.4);
   z-index: 2;
 }
 .spell-card__circle-ring {
