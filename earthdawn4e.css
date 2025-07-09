@@ -1981,6 +1981,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   justify-content: space-between;
   padding: 8px 12px;
   position: relative;
+  overflow: hidden;
 }
 .spell-card__header::before {
   content: '';
@@ -1994,13 +1995,11 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .spell-card__name-section {
   flex: 1;
   padding-right: 8px;
-}
-.spell-card__name-section:hover {
-  cursor: pointer;
+  min-width: 0;
+  overflow: hidden;
 }
 .spell-card__name-section:hover .spell-card__name {
   color: #f0d080;
-  cursor: pointer;
 }
 .spell-card__name {
   margin: 0;
@@ -2025,9 +2024,14 @@ section.spells .matrix-cards .matrix-card .spell-link {
   letter-spacing: 0.5px;
   margin-top: 2px;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .spell-card__circle-container {
   position: relative;
+  flex-shrink: 0;
+  margin-left: 4px;
 }
 .spell-card__circle {
   position: relative;

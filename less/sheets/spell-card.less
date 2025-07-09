@@ -71,6 +71,7 @@
     justify-content: space-between;
     padding: 8px 12px;
     position: relative;
+    overflow: hidden; // Ensure nothing spills outside
 
     &::before {
       content: '';
@@ -86,14 +87,11 @@
   &__name-section {
     flex: 1;
     padding-right: 8px;
+    min-width: 0; // Allow flex item to shrink below content size
+    overflow: hidden; // Prevent text from spilling out
 
-    &:hover {
-      cursor: pointer;
-
-      .spell-card__name {
-        color: @color-gold;
-        cursor: pointer;
-      }
+    &:hover .spell-card__name {
+      color: @color-gold;
     }
   }
 
@@ -124,10 +122,15 @@
     letter-spacing: 0.5px;
     margin-top: 2px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__circle-container {
     position: relative;
+    flex-shrink: 0; // Prevent circle from shrinking
+    margin-left: 4px; // Small gap from name section
   }
 
   &__circle {
