@@ -1,5 +1,6 @@
 <section class="tab {{tabs.spells.cssClass}}" data-group="sheet" data-tab="spells">
-  <div class="input--centered">
+  <h3>{{localize "ED.Actor.Header.spells"}}</h3>
+  <div class="container__block">
     <nav class="tabs navigator__flex" data-group="spellsContent">
       {{#each tabsSpells as |tab|}}
         <a class="navigator__tab {{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
@@ -9,9 +10,7 @@
         </a>
       {{/each}}
     </nav>
-    <div class="main">
       <!--spells tabs-->
-      <div class="actor-sheet-spell-body">
 
         <!-- matrices -->
         <div class="tab {{tabsSpells.matrix.cssClass}}" data-group="spellsContent" data-tab="matrix">
@@ -30,37 +29,37 @@
 
         <!-- all spells -->
         <div class="tab {{tabsSpells.all.cssClass}}" data-group="spellsContent" data-tab="all">
-          <div class="undefined">
-            <p>All Spells</p>
-            <p>show all spells, spell knacks, and binding secrets</p>
-          </div>
-          {{#each actor.itemTypes.spell}}
-            <div class="item-id item-name__card" data-uuid="{{uuid}}">
+          <div class="spell-cards-container">
+            {{#if @root.editable}}
+              <div class="spell-card-add-button" data-action="createChild" data-document="Item" data-type="spell" data-tooltip="{{localize 'ED.ToolTips.addSpell'}}">
+                <i class="fas fa-plus"></i>
+                <span>{{localize 'ED.Controls.addSpell'}}</span>
+              </div>
+            {{/if}}
+            {{#each actor.itemTypes.spell}}
               {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-            </div>
-          {{/each}}
+            {{/each}}
+          </div>
         </div>
 
-        <!-- spells by spellcasting discipline -->
-        {{#each tabsSpells as |tab|}}
-          {{#unless (or (eq tab.id "matrix") (eq tab.id "all"))}}
-            <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
-              <div class="undefined">
-                <p>{{tab.label}}</p>
-                <p>show all  {{tab.label}} spells, spell knacks and secret bindings</p>
+    <!-- spells by spellcasting discipline -->
+    {{#each tabsSpells as |tab|}}
+      {{#unless (or (eq tab.id "matrix") (eq tab.id "all"))}}
+        <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
+          <div class="undefined">
+            <p>{{tab.label}}</p>
+            <p>show all  {{tab.label}} spells, spell knacks and secret bindings</p>
+          </div>
+          {{#each @root/actor.itemTypes.spell as |spell| }}
+            {{#if (eq spell.system.spellcastingType ../id)}}
+              <div class="item-id item-name__card" data-uuid="{{spell.uuid}}">
+                {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
               </div>
-              {{#each @root/actor.itemTypes.spell as |spell| }}
-                {{#if (eq spell.system.spellcastingType ../id)}}
-                  <div class="item-id item-name__card" data-uuid="{{spell.uuid}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                  </div>
-                {{/if}}
-              {{/each}}
-            </div>
-          {{/unless}}
-        {{/each}}
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/unless}}
+    {{/each}}
 
-      </div>
-    </div>
   </div>
 </section>

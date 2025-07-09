@@ -1,44 +1,53 @@
-<div class="card__ability one-line__vertical-align">
-    <span class="card__icon rollable-icons">
-        <img class="item__image" src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
-        <img class="roll-icon__hover rollable" src="icons/svg/d20-grey.svg">
-        <img class="roll-icon__pointer rollable" src="icons/svg/d20-black.svg" data-attribute="{{@key}}">
+<div class="spell-card" data-uuid="{{this.uuid}}" data-item-id="{{_id}}">
+  {{#if @root.editable}}
+    <div class="spell-card__delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
+      <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
+    </div>
+  {{/if}}
 
-    </span>
-    <span class="card__name">
-        {{name}}
-    </span>
-    <span class="card__number">
-        <label>{{localize "ED.Actor.Header.threads"}}:</label>
-        {{system.threads.required}}
-    </span>
-    <span class="card__number">
-        <label>{{localize "ED.Actor.Header.weavingDifficulty"}}:</label>
-        {{system.spellDifficulty.weaving}} / {{system.spellDifficulty.reattune}}
-    </span>
-    <span class="card__number">
-        <label>{{localize "ED.Actor.Header.castingDifficulty"}}:</label>
-        {{system.castingDifficulty}}
-    </span>
-    <span class="card__number">
-        <label>{{localize "ED.Actor.Header.duration"}}:</label>
-        {{system.duration.value}} {{system.duration.uom}} 
-    </span>
-    <span class="card__number">
-        <label>{{localize "ED.Actor.Header.range"}}:</label>
-        {{system.range.value}} {{system.range.uom}} 
-    </span>
-    <span class="card__control">
-        {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
-    </span>
-</div>
-<div class="card__description card__description--toggle">
-    <span class="card__description--content">
-        {{{system.description.value}}}
-    </span>
-    {{!-- <span class="card__description--effects">
-        {{#each this.effects as |effects id|}}
-            {{> "systems/ed4e/templates/global/effect-card.hbs" effects }}
-        {{/each}}
-    </span> --}}
+  <div class="spell-card__header" data-action="editChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.edit'}}">
+    <div class="spell-card__name-section">
+      <h4 class="spell-card__name">{{name}}</h4>
+      <div class="spell-card__type">{{localize (lookup @root.config.spellcastingTypes system.spellcastingType)}}</div>
+    </div>
+    <div class="spell-card__circle-container">
+      <div class="spell-card__circle">
+        <span class="spell-card__circle-number">{{system.level}}</span>
+        <div class="spell-card__circle-ring"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spell-card__image-section">
+    {{#if img}}
+      <img src="{{img}}" alt="{{name}}" class="spell-card__image">
+    {{else}}
+      <div class="spell-card__image-placeholder">
+        <i class="fas fa-magic"></i>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="spell-card__footer">
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <img src="systems/ed4e/assets/icons/thread.svg" alt="Threads" data-tooltip="{{localize 'ED.Actor.Header.threads'}}">
+      </div>
+      <div class="spell-card__attribute-value">{{system.threads.required}}</div>
+    </div>
+
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <img src="systems/ed4e/assets/icons/weave-threads.svg" alt="Weaving" data-tooltip="{{localize 'ED.Actor.Header.weavingDifficulty'}} / {{localize 'ED.Actor.Header.reattuneDifficulty'}}">
+      </div>
+      <div class="spell-card__attribute-value">{{system.spellDifficulty.weaving}}/{{system.spellDifficulty.reattune}}</div>
+    </div>
+
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <i class="fal fa-crosshairs" data-tooltip="{{localize 'ED.Actor.Header.castingDifficulty'}}"></i>
+      </div>
+      <div class="spell-card__attribute-value">{{{system.difficultyLabel}}}</div>
+    </div>
+  </div>
 </div>
