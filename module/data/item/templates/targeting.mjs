@@ -46,7 +46,54 @@ export default class TargetTemplate extends SystemDataModel {
   }
 
   /**
-   *  
+   * Returns a short string representation of the difficulty setting.
+   * A number for fixed difficulties, a string for target and additional icon
+   * for group difficulties.
+   * @type {string}
+   */
+  get difficultyLabel() {
+    let difficulty = this.difficulty;
+    if ( difficulty.fixed > 0 ) {
+      return String( difficulty.fixed );
+    } else if ( difficulty.target ) {
+      return ED4E.ACTIONS.targetDifficulty[ difficulty.target ];
+    } else if ( difficulty.group ) {
+      return this.groupDifficultyIcon;
+    }
+    return "";
+  }
+
+  /**
+   * Returns an HTML string with font awesome icons representing the group difficulty.
+   * Empty string if no group difficulty is set.
+   * @type {string}
+   */
+  get groupDifficultyIcon() {
+    let groupDifficulty = this.difficulty?.group;
+    if ( !groupDifficulty ) return "";
+
+    const icons = ED4E.SYSTEM.icons.GroupDifficulty;
+    const group = `<i class="fas ${icons.group}"></i>`;
+    const highest = `<i class="fas ${icons.highest}"></i>`;
+    const lowest = `<i class="fas ${icons.lowest}"></i>`;
+    const x = `<i class="fas ${icons.x}"></i>`;
+    switch ( groupDifficulty ) {
+      case "highestOfGroup":
+        return `${group} ${highest}`;
+      case "highestX":
+        return `${group} ${highest} ${x}`;
+      case "lowestOfGroup":
+        return `${group} ${lowest}`;
+      case "lowestX":
+        return `<i class="fas ${icons.group}"></i>`;
+      default:
+        return "";
+    }
+  }
+
+
+  /**
+   *
    * @returns {number} return
    */
   getDifficulty() {
@@ -84,7 +131,6 @@ export default class TargetTemplate extends SystemDataModel {
     return Math.max( difficulty, game.settings.get( "ed4e", "minimumDifficulty" ) );
   }
 
-
   /**
    * @param { Array } targets array of all targets
    * @param { string } targetDefenseType defense
@@ -94,9 +140,9 @@ export default class TargetTemplate extends SystemDataModel {
   static _getAggregatedDefense( targets, targetDefenseType, aggregate = Math.max ) {
     return targets.length > 0 ? aggregate( ...targets.map( ( t ) => t.system.characteristics.defenses[targetDefenseType].value ) ) : 0;
   }
-
   /* -------------------------------------------- */
   /*  Migrations                                  */
+
   /* -------------------------------------------- */
 
   /** @inheritDoc */
