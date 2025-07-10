@@ -32,6 +32,16 @@
         <i class="fas fa-magic"></i>
       </div>
     {{/if}}
+
+    <!-- Cast action overlay -->
+    <div class="spell-card__actions-overlay">
+      <div class="action-zone cast-zone"
+           data-action="castSpell"
+           data-uuid="{{this.uuid}}"
+           data-tooltip="{{localize 'ED.ToolTips.castSpell'}}">
+        <img class="custom-icon" src="systems/ed4e/assets/icons/cast.svg" alt="Cast Spell">
+      </div>
+    </div>
   </div>
 
   <div class="spell-card__footer">

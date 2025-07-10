@@ -200,6 +200,59 @@
     }
   }
 
+  // Cast action overlay
+  &__actions-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: @transition-standard;
+    z-index: 3;
+    display: flex;
+    pointer-events: none;
+
+    .action-zone {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.75);
+      transition: @transition-quick;
+      position: relative;
+      pointer-events: auto;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.85);
+        cursor: pointer;
+
+        .custom-icon {
+          filter: brightness(1.8) drop-shadow(0 0 4px @color-secondary);
+          transform: scale(1.2);
+        }
+      }
+
+      .custom-icon {
+        border: none;
+        border-radius: 0;
+        width: 2rem;
+        height: 2rem;
+        transition: @transition-quick;
+        filter: brightness(1.2);
+      }
+    }
+  }
+
+  &__image-section:hover &__actions-overlay {
+    opacity: 1;
+  }
+
+  &__image-section:hover &__image {
+    filter: brightness(0.7);
+    transition: filter @transition-quick;
+  }
+
   &__image {
     width: 100%;
     height: 100%;
