@@ -3243,7 +3243,7 @@
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
-        "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+        "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",

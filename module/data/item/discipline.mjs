@@ -320,9 +320,8 @@ export default class DisciplineData extends ClassTemplate.mixin(
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
       return;
     }
-    if ( isEmpty( actor.disciplines ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstDisciplineViaCharGen" ) );
-      return;
+    if ( isEmpty ( actor.disciplines && actor.itemTypes.questor ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     const disciplineItemData = item.toObject();

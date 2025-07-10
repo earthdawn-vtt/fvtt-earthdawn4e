@@ -145,6 +145,10 @@ export default class QuestorData extends ClassTemplate.mixin(
       return;
     }
 
+    if ( isEmpty ( actor.itemTypes.discipline ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+    }
+
     // get the questor devotion
     const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
     let questorDevotion = await fromUuid( item.system.questorDevotion );
