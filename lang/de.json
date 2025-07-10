@@ -630,6 +630,9 @@
         "summon":                                  "Beschwörung"
       },
       "Tier": {
+        "adherent":                                "Anhänger",
+        "exemplar":                                "Vorbild",
+        "follower":                                "Jünger",
         "journeyman":                              "Geselle",
         "master":                                  "Meister",
         "novice":                                  "Novize",
@@ -1420,13 +1423,33 @@
         },
         "Class": {
           "FIELDS": {
+            "circle": {
+              "hint":                              "Kreis der Disziplin",
+              "label":                             "Kreis"
+            },
             "level": {
               "hint":                              "Kreis/Rang der Berufungs",
               "label":                             "Kreis/Rang"
             },
+            "rankPath": {
+              "hint":                              "Rang des Pfades",
+              "label":                             "Rang"
+            },
+            "rankQuestor": {
+              "hint":                              "Rang des Questors",
+              "label":                             "Rang"
+            },
             "resourceStep": {
               "hint":                              "Karma-/Weihestufe",
               "label":                             "Ressource"
+            },
+            "resourceStepDevotion": {
+              "hint":                              "Weihekraftstufe",
+              "label":                             "Weihekraft"
+            },
+            "resourceStepKarma": {
+              "hint":                              "Karmastufe",
+              "label":                             "Karma"
             },
             "tier": {
               "hint":                              "Grad der Berufung",
