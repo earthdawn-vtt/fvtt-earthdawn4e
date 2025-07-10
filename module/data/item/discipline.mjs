@@ -4,7 +4,7 @@ import ED4E from "../../config/_module.mjs";
 import { linkForUuidSync } from "../../utils.mjs";
 import DescriptionMigration from "./migration/old-system-V082/description.mjs";
 
-const { expandObject, mergeObject } = foundry.utils;
+const { expandObject, isEmpty, mergeObject } = foundry.utils;
 
 /**
  * Data model template with information on discipline items.
@@ -319,6 +319,9 @@ export default class DisciplineData extends ClassTemplate.mixin(
     if ( !item.system.canBeLearned ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
       return;
+    }
+    if ( isEmpty ( actor.disciplines && actor.itemTypes.questor ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     const disciplineItemData = item.toObject();
