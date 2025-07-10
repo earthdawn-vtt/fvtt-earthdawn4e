@@ -2477,7 +2477,7 @@
             },
             "useRecoveryTest": {
               "hint":                              "Kosten zusätzliche Versuche zu lernen Erholungsproben?",
-              "label":                             "Extra kostet Erholungsprobe"
+              "label":                             "Kostet Erholungsprobe"
             }
           }
         },
