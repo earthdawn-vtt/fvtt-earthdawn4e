@@ -112,11 +112,16 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @returns {typeof AbilityTemplate.castingType} The casting type of the class, see {@link AbilityTemplate.castingType}.
    */
   getCastingType() {
-    return this
-      .getAllAbilityUuids()
-      .map( uuid => fromUuidSync( uuid ) )
-      .find( ability => ability?.system?.castingType )
-      ?.system?.castingType;
+    const allUuids = this.getAllAbilityUuids();
+    const abilities = allUuids.map( uuid => fromUuidSync( uuid ) );
+    
+    // Find abilities with rollType === "threadWeaving"
+    const threadWeavingAbility = abilities.find( ability => 
+      ability?.system?.rollType === "threadWeaving"
+    );
+    
+    // Return the castingType from the thread weaving ability (uses getter)
+    return threadWeavingAbility?.system?.castingType;
   }
 
   /** @inheritDoc */
