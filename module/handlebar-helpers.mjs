@@ -90,13 +90,13 @@ function stepFromAttributeValue( attributeValue ) {
 }
 
 /**
- * Retrieves the talents that match a given category or categories.
+ * Retrieves the talents that match a given category.
  * @param {Array[ItemEd]} talents - The talents to filter.
- * @param {...string} types - The categories to filter by.
- * @returns {Array[ItemEd]} - The talents that match the given categories.
+ * @param {string} type - The category to filter by.
+ * @returns {Array[ItemEd]} - The talents that match the given category.
  */
-function getTalentCategory( talents, ...types ) {
-  return talents.filter( ( talent ) => types.includes( talent.system.talentCategory ) );
+function getTalentCategory( talents, type ) {
+  return talents.filter( ( talent ) => talent.system.talentCategory === type );
 }
 
 /**

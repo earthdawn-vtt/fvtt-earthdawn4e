@@ -171,15 +171,12 @@ export default class PcData extends NamegiverTemplate {
     const disciplineAfterCreation = newActor.disciplines[0];
     if ( disciplineAfterCreation ) {
       for ( const talent of newActor.itemTypes.talent ) {
-        if ( talent.system.source.class === classDocument.uuid ) {
-          await talent.update( {
-            "system.source": {
-              "class":   disciplineAfterCreation.uuid,
-              "atLevel": 1
-            },
-            "system.level": talent.system.level 
-          } );
-        }
+        if ( talent.system.source.class === classDocument.uuid ) await talent.update( {
+          "system.source": {
+            "class":   disciplineAfterCreation.uuid,
+            "atLevel": 1
+          }
+        } );
       }
     }
 
