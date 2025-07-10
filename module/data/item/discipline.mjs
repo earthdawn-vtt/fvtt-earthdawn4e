@@ -350,6 +350,11 @@ export default class DisciplineData extends ClassTemplate.mixin(
   /*  Migrations                                  */
   /* -------------------------------------------- */  /** @inheritDoc */
   static migrateData( source ) {
+    // Skip migration if already properly migrated (has levels)
+    if ( source?.advancement?.levels?.length > 0 ) {
+      return;
+    }
+    
     // Migrate basic description data
     migrateLegacyDescription( source );
     
@@ -413,7 +418,18 @@ export default class DisciplineData extends ClassTemplate.mixin(
      * @param {object} source - The source data object
      */
     function migrateCircleLevels( source ) {
-      if ( !source || ( source.advancement?.levels && source.advancement.levels.length > 0 ) ) return;
+      if ( !source ) return;
+
+      // Skip if levels already exist - never overwrite existing level data
+      if ( source.advancement?.levels?.length > 0 ) {
+        return; // Already has levels, don't overwrite
+      }
+
+      // Check for legacy description fields - only migrate if we have them
+      const legacyFields = Object.keys( source ).filter( key => key.startsWith( "descriptionCircle" ) );
+      if ( legacyFields.length === 0 ) {
+        return;
+      }
 
       source.advancement ??= {};
       source.advancement.levels = [];
@@ -425,7 +441,10 @@ export default class DisciplineData extends ClassTemplate.mixin(
         const levelData = createLevelData( i, tierByCircle[i] );
         migrateLevelTalents( source, levelData, i );
         source.advancement.levels.push( levelData );
-      }    }
+      }
+    }
+
+
 
     /**
      * Create level data structure.

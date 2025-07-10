@@ -2974,7 +2974,8 @@
           "sourceTalentName":                      "TODO: Add translation",
           "sourceTalentRank":                      "TODO: Add translation",
           "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
-          "talentOptionLp":                        "TODO: Add translation"
+          "talentOptionLp":                        "TODO: Add translation",
+          "talentsRequirementFailed":              "TODO: Add translation"
         },
         "configuration":                           "TODO: Add translation",
         "increasePathTalentPrompt":                "TODO: Add translation",
