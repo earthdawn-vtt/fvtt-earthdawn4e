@@ -632,12 +632,12 @@
         "summon":                                  "Beschwörung"
       },
       "TargetDifficulty": {
-        "mystical": "Mystische Verteidigung",
-        "mysticalAbbreviation": "MVZ",
-        "physical": "Körperliche Verteidigung",
-        "physicalAbbreviation": "KVZ",
-        "social": "Soziale Verteidigung",
-        "socialAbbreviation": "SVZ"
+        "mystical":                                "Mystische Verteidigung",
+        "mysticalAbbreviation":                    "MVZ",
+        "physical":                                "Körperliche Verteidigung",
+        "physicalAbbreviation":                    "KVZ",
+        "social":                                  "Soziale Verteidigung",
+        "socialAbbreviation":                      "SVZ"
       },
       "Tier": {
         "adherent":                                "Anhänger",
@@ -690,9 +690,9 @@
       "edit":                                      "Bearbeiten",
       "lockHint":                                  "TODO, hier fehlt die beschreibung für 'lockHint'",
       "middleClick":                               "Mittlere Maustaste (Mausrad)",
-      "upgrade":                                   "Hochstufen",
       "sheetModeEdit":                             "Bearbeiten",
-      "sheetModePlay":                             "Spielen"
+      "sheetModePlay":                             "Spielen",
+      "upgrade":                                   "Hochstufen"
     },
     "Data": {
       "ActiveEffect": {
@@ -3494,7 +3494,7 @@
       "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",
-      "castSpell":                                 "Zauber&nbsp;wirken",
+      "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
