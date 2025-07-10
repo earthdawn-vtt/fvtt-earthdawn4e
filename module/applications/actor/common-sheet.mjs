@@ -45,7 +45,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     "specials",
     "legend",
     "configuration",
-    "classes",
   ];
 
   /**
