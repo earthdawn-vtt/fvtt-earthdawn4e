@@ -58,8 +58,15 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         break;
       case "spells":
         foundry.utils.mergeObject( context, {
-          tabsSpells: this._getSpellTabs(),
-          matrices:   this.document.getMatrices(),
+          tabsSpells:         this._getSpellTabs(),
+          matrices:           this.document.getMatrices(),
+          spellcastingColors: {
+            elementalism: "rgb(221, 135, 79)",
+            illusionism:  "rgb(160, 160, 240)",
+            nethermancy:  "rgb(10, 28, 0)",
+            shamanism:    "rgb(98, 145, 17)",
+            wizardry:     "rgb(42, 90, 165)",
+          },
         } );
         break;
       case "equipment":

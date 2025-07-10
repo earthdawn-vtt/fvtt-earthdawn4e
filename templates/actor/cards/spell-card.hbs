@@ -1,14 +1,21 @@
-<div class="spell-card" data-uuid="{{this.uuid}}" data-item-id="{{_id}}">
+<div class="spell-card" data-uuid="{{this.uuid}}" data-item-id="{{_id}}"
+     style="box-shadow: 0 0 10px {{lookup @root.spellcastingColors system.spellcastingType}}; border-color: {{lookup @root.spellcastingColors system.spellcastingType}};">
   {{#if @root.editable}}
     <div class="spell-card__delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
       <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
     </div>
   {{/if}}
+{{log (lookup @root.spellcastingColors system.spellcastingType)}}
 
+  {{!-- Spell Card Header --}}
+
+  {{!-- Header Section --}}
   <div class="spell-card__header" data-action="editChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.edit'}}">
     <div class="spell-card__name-section">
       <h4 class="spell-card__name">{{name}}</h4>
-      <div class="spell-card__type">{{localize (lookup @root.config.spellcastingTypes system.spellcastingType)}}</div>
+      <div class="spell-card__type">
+        {{localize (lookup @root.config.spellcastingTypes system.spellcastingType)}}
+      </div>
     </div>
     <div class="spell-card__circle-container">
       <div class="spell-card__circle">
