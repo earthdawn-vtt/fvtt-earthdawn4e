@@ -1,14 +1,16 @@
 <section class="tab {{tabs.powers.cssClass}}" data-group="sheet" data-tab="powers">
+<h3>{{localize "ED.Actor.Header.abilities"}}</h3>
+  <div class="container__block">
 
 {{!-- Attacks --}}
-<div class="power-card__grid--container font__bold text-break__auto">
+<div class="power-card__grid--container container__header text-break__auto">
     <div class="power-card__grid--item text__alignment--center"></div>
-    <div class="power-card__grid--item"><h3 class="font__bold font__no-underline">{{localize "ED.Actor.Header.attacks"}}</h3></div>
+    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.attacks"}}</div>
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.action"}}</div>
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.step"}}</div>
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.damage"}}</div>
     <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.strain"}}</div>
-    <div class="power-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
+    <div class="power-card__grid--item text__alignment--center"></div>
 </div>
 {{#each actor.itemTypes.power}}
     {{#if this.system.isCreatureAttack}}

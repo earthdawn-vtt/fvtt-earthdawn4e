@@ -165,6 +165,7 @@
         "allTests":                                "All Tests"
       },
       "Header": {
+        "abilities":                               "Abilities",
         "action":                                  "Action",
         "active":                                  "Active",
         "ammunition":                              "Ammo",
