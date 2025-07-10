@@ -18,7 +18,6 @@ import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
 
 /**
  * Base class for all spellcasting workflows
- * @abstract
  */
 export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
 

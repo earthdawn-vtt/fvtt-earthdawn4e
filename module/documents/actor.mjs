@@ -440,6 +440,18 @@ export default class ActorEd extends Actor {
     return castingWorkflow.execute();
   }
 
+  async castSpell( spell, options = {} ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        spell,
+        stopOnWeaving: false,
+      }
+    );
+
+    return castingWorkflow.execute( options );
+  }
+
   /**
    * Reattunes spells by executing an attunement workflow with the provided matrix.
    * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.

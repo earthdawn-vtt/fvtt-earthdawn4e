@@ -2028,7 +2028,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 2px;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2086,6 +2086,51 @@ section.spells .matrix-cards .matrix-card .spell-link {
   right: 0;
   bottom: 0;
   background: radial-gradient(circle at 30% 30%, rgba(139, 105, 20, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(139, 105, 20, 0.1) 0%, transparent 50%);
+}
+.spell-card__actions-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 3;
+  display: flex;
+  pointer-events: none;
+}
+.spell-card__actions-overlay .action-zone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  transition: 0.1s ease;
+  position: relative;
+  pointer-events: auto;
+}
+.spell-card__actions-overlay .action-zone:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+.spell-card__actions-overlay .action-zone:hover .custom-icon {
+  filter: brightness(1.8) drop-shadow(0 0 4px #d4a76a);
+  transform: scale(1.2);
+}
+.spell-card__actions-overlay .action-zone .custom-icon {
+  border: none;
+  border-radius: 0;
+  width: 2rem;
+  height: 2rem;
+  transition: 0.1s ease;
+  filter: brightness(1.2);
+}
+.spell-card__image-section:hover .spell-card__actions-overlay {
+  opacity: 1;
+}
+.spell-card__image-section:hover .spell-card__image {
+  filter: brightness(0.7);
+  transition: filter 0.1s ease;
 }
 .spell-card__image {
   width: 100%;
@@ -2186,7 +2231,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   }
   50% {
     opacity: 0.5;
-    transform: scale(1.1);
+    transform: scale(1.13);
   }
   100% {
     opacity: 1;
