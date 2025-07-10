@@ -78,10 +78,10 @@ export default class TargetTemplate extends SystemDataModel {
     if ( !groupDifficulty ) return "";
 
     const icons = ED4E.SYSTEM.icons.GroupDifficulty;
-    const group = `<i class="fas ${icons.group}"></i>`;
-    const highest = `<i class="fas ${icons.highest}"></i>`;
-    const lowest = `<i class="fas ${icons.lowest}"></i>`;
-    const x = `<i class="fas ${icons.x}"></i>`;
+    const group = `<i class="fa-thin ${icons.group}"></i>`;
+    const highest = `<i class="fa-thin ${icons.highest}"></i>`;
+    const lowest = `<i class="fa-thin ${icons.lowest}"></i>`;
+    const x = `<i class="fa-thin ${icons.x}"></i>`;
     switch ( groupDifficulty ) {
       case "highestOfGroup":
         return `${group} ${highest}`;

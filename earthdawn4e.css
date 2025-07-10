@@ -2172,7 +2172,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .spell-card__attribute-value {
   font-size: 1em;
-  font-weight: bold;
+  font-weight: lighter;
   color: #f0d080;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
   min-height: 14px;
