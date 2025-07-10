@@ -158,6 +158,10 @@ const DocumentSheetMixinEd = Base => {
       const documentConfig = CONFIG[documentType];
       const type = target.dataset.type;
 
+      const createData = {
+        type,
+      };
+
       switch ( type ) {
         case "effect": {
           return ActiveEffect.implementation.create( {
@@ -176,14 +180,16 @@ const DocumentSheetMixinEd = Base => {
             renderSheet: true,
           } );
         }
+        case "spell": {
+          const spellcastingType = target.dataset.spellcastingType;
+          if ( spellcastingType ) createData[ "system.spellcastingType" ] = spellcastingType;
+        }
         default: {
           if ( documentConfig && type in documentConfig.dataModels ) {
+            createData.name = game.i18n.localize( documentConfig.typeLabels[ type ] );
             const createdDocuments = await this.document.createEmbeddedDocuments(
               documentType,
-              [ {
-                name:  game.i18n.localize( documentConfig.typeLabels[ type ] ),
-                type,
-              } ],
+              [ createData ],
             );
             await createdDocuments[0]?.sheet?.render( { force: true } );
             return createdDocuments[0];
