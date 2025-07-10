@@ -164,6 +164,7 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
+        "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
