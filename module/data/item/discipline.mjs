@@ -321,9 +321,8 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
-    if ( isEmpty( actor.disciplines ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstDisciplineViaCharGen" ) );
-      return;
+    if ( isEmpty( actor.disciplines && actor.itemTypes.questor ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
     const disciplineCreateData = foundry.utils.mergeObject(

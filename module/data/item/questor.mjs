@@ -6,6 +6,8 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 
+const { isEmpty } = foundry.utils;
+
 /**
  * Data model template with information on the questor path items.
  */
@@ -138,6 +140,10 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
+    if ( isEmpty ( actor.itemTypes.discipline ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+    }
+
     // get the questor devotion
     const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
     let questorDevotion = await fromUuid( item.system.questorDevotion );
