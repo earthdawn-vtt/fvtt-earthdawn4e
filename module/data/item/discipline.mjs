@@ -4,7 +4,7 @@ import ED4E from "../../config/_module.mjs";
 import { linkForUuidSync } from "../../utils.mjs";
 import DescriptionMigration from "./migration/old-system-V082/description.mjs";
 
-const { expandObject, isEmpty, mergeObject } = foundry.utils;
+const { isEmpty } = foundry.utils;
 
 /**
  * Data model template with information on discipline items.
@@ -320,27 +320,20 @@ export default class DisciplineData extends ClassTemplate.mixin(
   }
 
   /** @inheritDoc */
-  static async learn( actor, item, createData ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
-      return;
-    }
-    if ( isEmpty ( actor.disciplines && actor.itemTypes.questor ) ) {
+  static async learn( actor, item, createData = {} ) {
+    if ( isEmpty( actor.disciplines && actor.itemTypes.questor ) ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
 
-    const disciplineItemData = item.toObject();
-    disciplineItemData.system.level = 0;
-    disciplineItemData.system.order = actor.disciplines.length + 1;
-    mergeObject(
-      disciplineItemData,
-      expandObject( createData ),
+    const disciplineCreateData = foundry.utils.mergeObject(
+      createData,
       {
-        inplace: true
-      },
+        "system.level": 0,
+        "system.order": actor.disciplines.length + 1,
+      }
     );
 
-    const learnedDiscipline = ( await actor.createEmbeddedDocuments( "Item", [ disciplineItemData ] ) )?.[0];
+    const learnedDiscipline = await super.learn( actor, item, disciplineCreateData );
     if ( !learnedDiscipline ) throw new Error(
       "Error learning discipline item. Could not create embedded Items."
     );
@@ -358,7 +351,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     if ( source?.advancement?.levels?.length > 0 ) {
       return;
     }
-    
+
     // Migrate basic description data
     migrateLegacyDescription( source );
     

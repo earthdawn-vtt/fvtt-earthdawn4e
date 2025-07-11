@@ -166,13 +166,8 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
     if ( !learn || learn === "cancel" || learn === "close" ) return;
 
-    // const learnedItem = await super.learn( actor, item, createData );
-
-    const itemData = foundry.utils.mergeObject(
-      learnData.toObject(),
-      foundry.utils.expandObject( createData ),
-    );
-    await actor.createEmbeddedDocuments( "Item", [ itemData ] ) ?.[0];
+    // Use super.learn to create the item with the basic logic
+    const learnedItem = await super.learn( actor, item, createData );
 
     const updatedActor = await actor.addLpTransaction(
       "spendings",
@@ -181,9 +176,9 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         description: game.i18n.format(
           "ED.Actor.LpTracking.Spendings",
         ),
-        entityType:  learnData.type,
-        name:       learnData.name,
-        itemUuid:   learnData.uuid,
+        entityType:  learnedItem.type,
+        name:       learnedItem.name,
+        itemUuid:   learnedItem.uuid,
       },
     );
 
@@ -192,7 +187,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         game.i18n.localize( "ED.Notifications.Warn.addLpTransactionProblems" )
       );
 
-    return learnData;
+    return learnedItem;
   }
 
   /* -------------------------------------------- */

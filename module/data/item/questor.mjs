@@ -6,6 +6,8 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 
+const { isEmpty } = foundry.utils;
+
 /**
  * Data model template with information on the questor path items.
  */
@@ -137,14 +139,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   }
 
   /** @inheritDoc */
-  static async learn( actor, item, _ ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
-      );
-      return;
-    }
-
+  static async learn( actor, item, createData = {} ) {
     if ( isEmpty ( actor.itemTypes.discipline ) ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
     }
@@ -182,11 +177,15 @@ export default class QuestorData extends ClassTemplate.mixin(
     questorDevotionData.system.level = 1;
     const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
 
-    const questorItemData = item.toObject();
-    questorItemData.system.level = 1;
-    questorItemData.system.questorDevotion = learnedDevotion?.uuid;
+    const questorCreateData = foundry.utils.mergeObject(
+      createData,
+      {
+        "system.level":           1,
+        "system.questorDevotion": learnedDevotion?.uuid,
+      }
+    );
 
-    const learnedQuestor = ( await actor.createEmbeddedDocuments( "Item", [ questorItemData ] ) )?.[0];
+    const learnedQuestor = await super.learn( actor, item, questorCreateData );
     if ( !learnedDevotion || !learnedQuestor ) throw new Error(
       "Error learning questor item. Could not create embedded Items."
     );
