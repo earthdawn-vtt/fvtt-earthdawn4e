@@ -1,36 +1,41 @@
 <div class="class-advancement-spell-selection" {{#unless render.spellSelection}}style="display:none;"{{/unless}}>
 
-  <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.YouCanChooseSpells"}}</p>
+  <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.YouCanChooseSpells"}}</h3>
 
-  <div>
-    {{#each availableSpells as |uuid|}}
-        {{{ed-linkForUuid uuid}}}
+  <div class="available-spells">
+    {{#if spellsByLevel}}
+      {{#each spellsByLevel as |levelGroup|}}
+        <div class="spell-level-group">
+          <h4>
+            {{localize "ED.Dialogs.Header.castingLevel"}} {{levelGroup.level}}
+          </h4>
+          {{#each levelGroup.spells as |uuid|}}
+            <div class="spell-option flexrow">
+              <input type="checkbox" name="selectedSpells" value="{{uuid}}" id="spell-{{../levelGroup.level}}-{{@index}}" {{#if (ed-includes ../../selectedSpells uuid)}}checked{{/if}}>
+              <label for="spell-{{../levelGroup.level}}-{{@index}}" class="spell-label">
+                {{{ed-linkForUuid uuid}}}
+              </label>
+            </div>
+          {{/each}}
+        </div>
+      {{/each}}
     {{else}}
       <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsAvailable"}}</p>
-    {{/each}}
+    {{/if}}
   </div>
 
   <hr>
 
   <div>
     {{#if (ed-hasItems selectedSpells)}}
-      <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.SelectedSpells"}}</p>
-
-      <document-tags name="selectedSpells" placeholder="{{localize "ED.X-No spells added yet. You can do it by just dragging and dropping them onto this field"}}">
+      <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.SelectedSpells"}}</h3>
+      <ul class="selected-spells-list">
         {{#each selectedSpells as |uuid|}}
-          <div class="tags input-element-tags">
-            <div class="tag document-tag" data-key="Item.4CtXPK8Jp3WW6wRQ">
-              {{{ed-linkForUuid uuid}}}
-              <a class="remove fa-solid fa-times" data-tooltip="Remove Document" aria-label="Remove Document"></a>
-            </div>
-          </div>
-          <input type="text" placeholder="Enter UUID or Drop Document">
-          <button type="button" class="icon fa-solid fa-file-plus" data-tooltip="Add Document" aria-label="Add Document">
-          </button>
+          <li>{{{ed-linkForUuid uuid}}}</li>
         {{/each}}
-      </document-tags>
+      </ul>
     {{else}}
-      <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsSelected"}}</p>
+      <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsSelected"}}</h3>
     {{/if}}
   </div>
 

@@ -2494,7 +2494,7 @@
             },
             "useRecoveryTest": {
               "hint":                              "Kosten zusätzliche Versuche zu lernen Erholungsproben?",
-              "label":                             "Extra kostet Erholungsprobe"
+              "label":                             "Kostet Erholungsprobe"
             }
           }
         },
@@ -2964,6 +2964,7 @@
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
         "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
+        "castingLevel":                            "Zauber des Kreises",
         "fieldsetExtraThreads":                    "Zusätzliche Fäden",
         "inactiveUser":                            "Charaktere von inaktiven Spieler",
         "update":                                  "System Update Neuigkeiten"

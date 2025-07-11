@@ -40,10 +40,6 @@ export default class DisciplineData extends ClassTemplate.mixin(
         positive: true,
         integer:  true,
       } ),
-      spellcasting: new fields.BooleanField( {
-        required: true,
-        initial:  false,
-      } ),
     } );
   }
 
@@ -312,6 +308,15 @@ export default class DisciplineData extends ClassTemplate.mixin(
    */
   getTalentsByTier( tier ) {
     return this.talentsFromDiscipline.filter( talent => talent.system.tier === tier );
+  }
+
+  /**
+   * Whether this discipline is a spellcasting discipline.
+   * Automatically determined by checking if the discipline has a casting type.
+   * @type {boolean}
+   */
+  get isSpellcasting() {
+    return !!this.getCastingType();
   }
 
   /** @inheritDoc */
