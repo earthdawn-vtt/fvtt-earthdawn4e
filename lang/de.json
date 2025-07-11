@@ -297,10 +297,12 @@
         "offHand":                                 "Nebenhand",
         "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
+        "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
-        "twoHanded":                               "Zweihändig"
+        "twoHanded":                               "Zweihändig",
+        "weavingDifficulty":                       "Webschwierigkeit"
       }
     },
     "Advancement": {
