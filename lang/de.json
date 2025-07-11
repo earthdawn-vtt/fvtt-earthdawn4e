@@ -228,8 +228,9 @@
         "strain":                                  "Überanstr.",
         "talents":                                 "Talente",
         "talentsDiscipline":                       "Disziplintalente",
-        "talentsFreeRacial":                       "Freie- und andere Talente",
+        "talentsFree":                             "Freie Talente",
         "talentsOptional":                         "Optionale Talente",
+        "talentsOther":                            "Andere Talente",
         "talentsVersatility":                      "Vielseitigkeitstalente",
         "threads":                                 "Fäden",
         "vocations":                               "Berufungen",
@@ -681,6 +682,7 @@
         "discipline":                              "Disziplin",
         "free":                                    "Frei",
         "optional":                                "Optional",
+        "other":                                   "Andere",
         "versatility":                             "Vielseitigkeit"
       }
     },

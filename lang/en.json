@@ -229,8 +229,9 @@
         "strain":                                  "Strain",
         "talents":                                 "TODO: Add translation",
         "talentsDiscipline":                       "Discipline Talents",
-        "talentsFreeRacial":                       "Free and other Talents",
+        "talentsFree":                             "TODO: Add translation",
         "talentsOptional":                         "Optional Talents",
+        "talentsOther":                            "TODO: Add translation",
         "talentsVersatility":                      "Versatility Talents",
         "threads":                                 "TODO: Add translation",
         "vocations":                               "TODO: Add translation",
@@ -682,6 +683,7 @@
         "discipline":                              "Discipline",
         "free":                                    "Free",
         "optional":                                "Optional",
+        "other":                                   "TODO: Add translation",
         "versatility":                             "Versatility"
       }
     },
