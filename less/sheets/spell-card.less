@@ -1,0 +1,431 @@
+// Earthdawn 4e Spell Card Styling
+// Beautiful, slick spell cards with Earthdawn theme
+
+.spell-card {
+  position: relative;
+  width: 180px;
+  height: 240px;
+  margin: 8px;
+  background: linear-gradient(135deg, #2c1810 0%, #4a2f1f 50%, #3d261a 100%);
+  border: 2px solid #8b6914;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(139, 105, 20, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(139, 105, 20, 0.5),
+      0 0 20px rgba(139, 105, 20, 0.3);
+  }
+
+  // Delete button for edit mode
+  &__delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #8b4914 0%, #6b3414 100%);
+    border: 1px solid #a85c1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: linear-gradient(135deg, #a85c1a 0%, #8b4914 100%);
+      border-color: #c66d20;
+      transform: scale(1.1);
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    i {
+      color: @color-gold;
+      font-size: 10px;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  // Header section with name and circle
+  &__header {
+    height: 60px;
+    background: linear-gradient(135deg, #8b6914 0%, #b8941b 50%, #8b6914 100%);
+    border-bottom: 2px solid #6b4f0f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    position: relative;
+    overflow: hidden; // Ensure nothing spills outside
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+  }
+
+  &__name-section {
+    flex: 1;
+    padding-right: 8px;
+    min-width: 0; // Allow flex item to shrink below content size
+    overflow: hidden; // Prevent text from spilling out
+
+    &:hover .spell-card__name {
+      color: @color-gold;
+    }
+  }
+
+  &__name {
+    margin: 0;
+    font-family: @font-primary;
+    font-size: 12px;
+    font-weight: 400; // Normal weight instead of bold
+    letter-spacing: 0.2px; // Reduced letter spacing for better text density
+    color: #fff;
+    text-shadow:
+      1px 1px 0 rgba(0, 0, 0, 0.8),
+      0 0 5px rgba(0, 0, 0, 0.5);
+    line-height: 1.1; // Tighter line height for better fit
+    cursor: pointer;
+    transition: color 0.2s ease;
+    word-break: auto-phrase;
+    hyphens: none; // Enable automatic hyphenation
+    overflow: hidden; // Hide text that exceeds max height
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // Limit to 2 lines
+    -webkit-box-orient: vertical;
+
+    &:hover {
+      color: @color-gold;
+    }
+  }
+
+  &__type {
+    font-size: 9px;
+    color: @color-gold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__circle-container {
+    position: relative;
+    flex-shrink: 0; // Prevent circle from shrinking
+    margin-left: 4px; // Small gap from name section
+  }
+
+  &__circle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #2c1810 30%, #8b6914 70%);
+    border: 3px solid #b8941b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  &__circle-number {
+    font-size: 16px;
+    font-weight: bold;
+    color: @color-light; // Changed to white for better contrast
+    text-shadow:
+      1px 1px 0 rgba(0, 0, 0, 1), // Stronger black outline
+      0 0 4px rgba(240, 208, 128, 0.8), // Golden glow
+      0 0 8px rgba(240, 208, 128, 0.4); // Wider golden glow
+    z-index: 2;
+  }
+
+  &__circle-ring {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(240, 208, 128, 0.5);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  // Image section
+  &__image-section {
+    height: 120px;
+    background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+    border-top: 1px solid rgba(139, 105, 20, 0.3);
+    border-bottom: 1px solid rgba(139, 105, 20, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(139, 105, 20, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(139, 105, 20, 0.1) 0%, transparent 50%);
+    }
+  }
+
+  // Cast action overlay
+  &__actions-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: @transition-standard;
+    z-index: 3;
+    display: flex;
+    pointer-events: none;
+
+    .action-zone {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.75);
+      transition: @transition-quick;
+      position: relative;
+      pointer-events: auto;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.85);
+        cursor: pointer;
+
+        .custom-icon {
+          filter: brightness(1.8) drop-shadow(0 0 4px @color-secondary);
+          transform: scale(1.2);
+        }
+      }
+
+      .custom-icon {
+        border: none;
+        border-radius: 0;
+        width: 2rem;
+        height: 2rem;
+        transition: @transition-quick;
+        filter: brightness(1.2);
+      }
+    }
+  }
+
+  &__image-section:hover &__actions-overlay {
+    opacity: 1;
+  }
+
+  &__image-section:hover &__image {
+    filter: brightness(0.7);
+    transition: filter @transition-quick;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image-placeholder {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #8b6914 0%, #6b4f0f 100%);
+    border: 2px solid #b8941b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    i {
+      font-size: 24px;
+      color: @color-gold;
+      text-shadow: 0 0 5px rgba(240, 208, 128, 0.5);
+    }
+  }
+
+  // Footer section with attributes
+  &__footer {
+    height: 60px;
+    background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+    border-top: 1px solid rgba(139, 105, 20, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px 4px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139, 105, 20, 0.5), transparent);
+    }
+  }
+
+  &__attribute {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 30px;
+      background: linear-gradient(to bottom, transparent, rgba(139, 105, 20, 0.4), transparent);
+    }
+  }
+
+  &__attribute-icon {
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle, #8b6914 0%, #6b4f0f 100%);
+    border: 1px solid #b8941b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    i {
+      font-size: 10px;
+      color: #fff;
+      text-shadow: 0 0 3px rgba(240, 208, 128, 0.5);
+    }
+
+    img {
+      width: 12px;
+      height: 12px;
+      opacity: 1;
+    }
+  }
+
+  &__attribute-value {
+    font-size: 1em;
+    font-weight: lighter;
+    color: @color-gold;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    min-height: 14px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+// Pulse animation for the circle ring
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.13);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Container for spell cards
+.spell-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  justify-content: flex-start;
+}
+
+// Add spell button styling
+.spell-card-add-button {
+  width: 180px;
+  height: 240px;
+  margin: 8px;
+  background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+  border: 2px dashed #8b6914;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+    border-color: #b8941b;
+    background: linear-gradient(135deg, #2c1810 0%, #3d261a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  i {
+    font-size: 48px;
+    color: #8b6914;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  span {
+    font-size: 14px;
+    color: @color-gold;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &:hover i {
+    color: #b8941b;
+    transform: scale(1.1);
+  }
+}

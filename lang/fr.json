@@ -174,6 +174,7 @@
         "attributes":                              "TODO: Add translation",
         "biography":                               "TODO: Add translation",
         "castingDifficulty":                       "TODO: Add translation",
+        "circle":                                  "TODO: Add translation",
         "conditions":                              "TODO: Add translation",
         "controlIcons":                            "TODO: Add translation",
         "damage":                                  "TODO: Add translation",
@@ -222,6 +223,7 @@
         "shields":                                 "TODO: Add translation",
         "skills":                                  "TODO: Add translation",
         "specialAbility":                          "TODO: Add translation",
+        "spells":                                  "TODO: Add translation",
         "step":                                    "TODO: Add translation",
         "strain":                                  "TODO: Add translation",
         "talents":                                 "TODO: Add translation",
@@ -295,10 +297,12 @@
         "offHand":                                 "TODO: Add translation",
         "owned":                                   "TODO: Add translation",
         "parentTalent":                            "TODO: Add translation",
+        "reattuneDifficulty":                      "TODO: Add translation",
         "recoveryRestTooltip":                     "TODO: Add translation",
         "standardEffect":                          "TODO: Add translation",
         "tail":                                    "TODO: Add translation",
-        "twoHanded":                               "TODO: Add translation"
+        "twoHanded":                               "TODO: Add translation",
+        "weavingDifficulty":                       "TODO: Add translation"
       }
     },
     "Advancement": {
@@ -629,6 +633,14 @@
         "spirit":                                  "TODO: Add translation",
         "summon":                                  "TODO: Add translation"
       },
+      "TargetDifficulty": {
+        "mystical":                                "TODO: Add translation",
+        "mysticalAbbreviation":                    "TODO: Add translation",
+        "physical":                                "TODO: Add translation",
+        "physicalAbbreviation":                    "TODO: Add translation",
+        "social":                                  "TODO: Add translation",
+        "socialAbbreviation":                      "TODO: Add translation"
+      },
       "Tier": {
         "adherent":                                "TODO: Add translation",
         "exemplar":                                "TODO: Add translation",
@@ -673,12 +685,15 @@
       }
     },
     "Controls": {
+      "addSpell":                                  "TODO: Add translation",
       "delete":                                    "TODO: Add translation",
       "displayItem":                               "TODO: Add translation",
       "downgrade":                                 "TODO: Add translation",
       "edit":                                      "TODO: Add translation",
       "lockHint":                                  "TODO: Add translation",
       "middleClick":                               "TODO: Add translation",
+      "sheetModeEdit":                             "TODO: Add translation",
+      "sheetModePlay":                             "TODO: Add translation",
       "upgrade":                                   "TODO: Add translation"
     },
     "Data": {
@@ -3223,6 +3238,7 @@
         "addLpTransactionProblems":                "TODO: Add translation",
         "attackNoWeaponFound":                     "TODO: Add translation",
         "cannotLearn":                             "TODO: Add translation",
+        "cantCastNoSpellInMatrix":                 "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
         "firstClassViaCharGen":                    "TODO: Add translation",
@@ -3459,7 +3475,11 @@
       }
     },
     "ToolTips": {
+      "addSpell":                                  "TODO: Add translation",
       "addThreadLevel":                            "TODO: Add translation",
+      "attuneMatrix":                              "TODO: Add translation",
+      "castSpell":                                 "TODO: Add translation",
+      "castSpellFromMatrix":                       "TODO: Add translation",
       "deleteThreadLevel":                         "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",

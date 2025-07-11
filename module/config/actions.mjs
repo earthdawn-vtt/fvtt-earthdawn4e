@@ -30,8 +30,17 @@ preLocalize( "groupDifficulty" );
  * @enum {string}
  */
 export const targetDifficulty = {
-  mystical:   "ED.Config.Defenses.mystical",
-  physical:   "ED.Config.Defenses.physical",
-  social:     "ED.Config.Defenses.social",
+  mystical: {
+    "label":        "ED.Config.TargetDifficulty.mystical",
+    "abbreviation": "ED.Config.TargetDifficulty.mysticalAbbreviation",
+  },
+  physical: {
+    "label":        "ED.Config.TargetDifficulty.physical",
+    "abbreviation": "ED.Config.TargetDifficulty.physicalAbbreviation",
+  },
+  social:     {
+    "label":        "ED.Config.TargetDifficulty.social",
+    "abbreviation": "ED.Config.TargetDifficulty.socialAbbreviation",
+  },
 };
-preLocalize( "targetDifficulty" );
+preLocalize( "targetDifficulty", {keys: [ "label", "abbreviation" ]} );

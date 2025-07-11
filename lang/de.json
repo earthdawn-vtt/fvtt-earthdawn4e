@@ -174,6 +174,7 @@
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
         "castingDifficulty":                       "Zauberschwierigkeit",
+        "circle":                                  "Kreis",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
         "damage":                                  "Schaden",
@@ -222,6 +223,7 @@
         "shields":                                 "Schilde",
         "skills":                                  "Fertigkeiten",
         "specialAbility":                          "Sonstige Fähigkeit",
+        "spells":                                  "Zauber",
         "step":                                    "Stufe",
         "strain":                                  "Überanstr.",
         "talents":                                 "Talente",
@@ -295,10 +297,12 @@
         "offHand":                                 "Nebenhand",
         "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
+        "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
-        "twoHanded":                               "Zweihändig"
+        "twoHanded":                               "Zweihändig",
+        "weavingDifficulty":                       "Webschwierigkeit"
       }
     },
     "Advancement": {
@@ -629,6 +633,14 @@
         "spirit":                                  "Geist",
         "summon":                                  "Beschwörung"
       },
+      "TargetDifficulty": {
+        "mystical":                                "Mystische Verteidigung",
+        "mysticalAbbreviation":                    "MVZ",
+        "physical":                                "Körperliche Verteidigung",
+        "physicalAbbreviation":                    "KVZ",
+        "social":                                  "Soziale Verteidigung",
+        "socialAbbreviation":                      "SVZ"
+      },
       "Tier": {
         "adherent":                                "Anhänger",
         "exemplar":                                "Vorbild",
@@ -659,11 +671,11 @@
         "minor":                                   "Kleiner Fluch"
       },
       "spellcastingTypes": {
-        "elementalism":                            "Elementarist",
-        "illusionism":                             "Illusionist",
-        "nethermancy":                             "Geisterbeschwörer",
-        "shamanism":                               "Schamane",
-        "wizardry":                                "Magier"
+        "elementalism":                            "Elementarismus",
+        "illusionism":                             "Illusionismus",
+        "nethermancy":                             "Geisterbeschwörung",
+        "shamanism":                               "Schamanismus",
+        "wizardry":                                "Magie"
       },
       "talentCategory": {
         "discipline":                              "Disziplin",
@@ -673,12 +685,15 @@
       }
     },
     "Controls": {
+      "addSpell":                                  "Zauber hinzufügen",
       "delete":                                    "Lösche Item",
       "displayItem":                               "Zeige Item im Chat",
       "downgrade":                                 "Herabstufen",
       "edit":                                      "Bearbeiten",
       "lockHint":                                  "TODO, hier fehlt die beschreibung für 'lockHint'",
       "middleClick":                               "Mittlere Maustaste (Mausrad)",
+      "sheetModeEdit":                             "Bearbeiten",
+      "sheetModePlay":                             "Spielen",
       "upgrade":                                   "Hochstufen"
     },
     "Data": {
@@ -3241,6 +3256,7 @@
         "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
         "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
@@ -3477,7 +3493,11 @@
       }
     },
     "ToolTips": {
+      "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
+      "attuneMatrix":                              "Matrix&nbsp;abstimmen",
+      "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
+      "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",

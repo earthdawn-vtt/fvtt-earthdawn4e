@@ -33,6 +33,8 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     actions:  {
       attack:           ActorSheetEdSentient._onAttack,
       attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
+      castMatrix:       ActorSheetEdSentient._onCastMatrix,
+      castSpell:        ActorSheetEdSentient._onCastSpell,
       takeDamage:       ActorSheetEdSentient.takeDamage,
       knockDown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
@@ -57,8 +59,15 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         break;
       case "spells":
         foundry.utils.mergeObject( context, {
-          tabsSpells: this._getSpellTabs(),
-          matrices:   this.document.getMatrices(),
+          tabsSpells:         this._getSpellTabs(),
+          matrices:           this.document.getMatrices(),
+          spellcastingColors: {
+            elementalism: "rgb(221, 135, 79)",
+            illusionism:  "rgb(160, 160, 240)",
+            nethermancy:  "rgb(10, 28, 0)",
+            shamanism:    "rgb(98, 145, 17)",
+            wizardry:     "rgb(42, 90, 165)",
+          },
         } );
         break;
       case "equipment":
@@ -127,9 +136,50 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   static async _onAttuneMatrix( event, target ) {
     event.preventDefault();
 
-    const firstMatrixUuid = target.closest( ".item-id" )?.dataset?.uuid;
+    const firstMatrixUuid = target.closest( ".matrix-card" )?.dataset?.uuid;
 
     if ( await this.actor.reattuneSpells( firstMatrixUuid ) ) await this.render();
+  }
+
+  /**
+   * Handle cast spell from matrix events on the actor sheet
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>} - A promise that resolves when the spell is cast.
+   * @protected
+   */
+  static async _onCastMatrix( event, target ) {
+    event.preventDefault();
+
+    const firstMatrixUuid = target.closest( ".matrix-card" )?.dataset?.uuid;
+    const matrix = await fromUuid( firstMatrixUuid );
+
+    if ( !matrix.system?.matrixSpellUuid ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantCastNoSpellInMatrix" ) );
+      return;
+    }
+
+    await this.document.castFromMatrix( matrix, matrix.system.matrixSpell, );
+  }
+
+  /**
+   * Handle cast spell action button on the actor sheet
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>} - A promise that resolves when the spell is cast.
+   * @protected
+   */
+  static async _onCastSpell( event, target ) {
+    event.preventDefault();
+
+    const li = target.closest( "div.action-zone.cast-zone" );
+    const spell = await fromUuid( li?.dataset?.uuid );
+
+    if ( !spell ) {
+      throw new Error( "Could not find spell UUID in cast spell action. This shouldn't happen :(" );
+    }
+
+    await this.document.castSpell( spell );
   }
 
   /**

@@ -18,6 +18,7 @@ import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
+import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -421,6 +422,35 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+  /**
+   * Cast a spell from a matrix.
+   * @param {ItemEd} matrix - The UUID of the matrix to cast the spell from.
+   * @param {ItemEd} spell - The UUID of the spell to cast.
+   * @returns {Promise<*>} A promise that resolves when the spellcasting workflow execution is complete.
+   */
+  async castFromMatrix( matrix, spell ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        castingMethod: "matrix",
+        matrix,
+        spell,
+      } );
+
+    return castingWorkflow.execute();
+  }
+
+  async castSpell( spell, options = {} ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        spell,
+        stopOnWeaving: false,
+      }
+    );
+
+    return castingWorkflow.execute( options );
+  }
 
   /**
    * Reattunes spells by executing an attunement workflow with the provided matrix.

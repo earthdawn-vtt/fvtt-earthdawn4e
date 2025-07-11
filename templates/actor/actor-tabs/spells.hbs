@@ -1,5 +1,6 @@
 <section class="tab {{tabs.spells.cssClass}}" data-group="sheet" data-tab="spells">
-  <div class="input--centered">
+  <h3>{{localize "ED.Actor.Header.spells"}}</h3>
+  <div class="container__block">
     <nav class="tabs navigator__flex" data-group="spellsContent">
       {{#each tabsSpells as |tab|}}
         <a class="navigator__tab {{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
@@ -9,72 +10,58 @@
         </a>
       {{/each}}
     </nav>
-    <div class="main">
-      <!--spells tabs-->
-      <div class="actor-sheet-spell-body">
+    <!--spells tabs-->
 
-        <!-- matrices -->
-        <div class="tab {{tabsSpells.matrix.cssClass}}" data-group="spellsContent" data-tab="matrix">
-          <div class="flexrow">
-            <button class="button" data-action="attuneMatrix">
-              <i class="fas {{icons.attune}}"></i>
-              {{localize "ED.Dialogs.Buttons.attuneMatrices"}}
-            </button>
+    <!-- matrices -->
+    <div class="tab {{tabsSpells.matrix.cssClass}}" data-group="spellsContent" data-tab="matrix">
+      <div class="flexrow">
+        <button class="button-attune-matrix" data-action="attuneMatrix">
+          <i class="fas {{icons.attune}}"></i>
+          {{localize "ED.Dialogs.Buttons.attuneMatrices"}}
+        </button>
+      </div>
+      <div class="matrix-cards" style="flex-wrap: wrap;gap: 1rem;justify-content: space-around;">
+        {{#each matrices}}
+          {{>"systems/ed4e/templates/actor/cards/matrix-card.hbs"}}
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- all spells -->
+    <div class="tab {{tabsSpells.all.cssClass}}" data-group="spellsContent" data-tab="all">
+      <div class="spell-cards-container">
+        {{#if @root.editable}}
+          <div class="spell-card-add-button" data-action="createChild" data-document="Item" data-type="spell" data-tooltip="{{localize 'ED.ToolTips.addSpell'}}">
+            <i class="fas fa-plus"></i>
+            <span>{{localize 'ED.Controls.addSpell'}}</span>
           </div>
-          <div class="flexrow" style="flex-wrap: wrap;gap: 1rem;justify-content: space-around;">
-            {{#each matrices}}
-              <div class="item-id item-name__card" style="cursor:pointer;flex: 1 1 calc(25% - 1rem);max-width: 200px;box-sizing: border-box;" data-uuid="{{this.uuid}}" data-action="attuneMatrix">
-                <div class="flexrow">
-                  <img src="{{this.img}}" alt="{{this.name}}" class="item-id item-name__card" data-uuid="{{this.uuid}}"
-                       data-action="attuneMatrix" height="52" width="52" />
-                  <figcaption class="item-id item-name__card" data-uuid="{{this.uuid}}"
-                              data-action="attuneMatrix" >
-                    {{this.name}}
-                  </figcaption>
-                </div>
-                <span>
-                  {{#each this.system.matrix.spells}}
-                    {{{ed-linkForUuid this}}}
-                  {{/each}}
-                </span>
+        {{/if}}
+        {{#each actor.itemTypes.spell}}
+          {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- spells by spellcasting discipline -->
+    {{#each tabsSpells as |tab|}}
+      {{#unless (or (eq tab.id "matrix") (eq tab.id "all"))}}
+        <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
+          <div class="spell-cards-container">
+            {{#if @root.editable}}
+              <div class="spell-card-add-button" data-action="createChild" data-document="Item" data-type="spell" data-tooltip="{{localize 'ED.ToolTips.addSpell'}}" data-spellcasting-type="{{tab.id}}">
+                <i class="fas fa-plus"></i>
+                <span>{{localize 'ED.Controls.addSpell'}}</span>
               </div>
+            {{/if}}
+            {{#each @root/actor.itemTypes.spell as |spell| }}
+              {{#if (eq spell.system.spellcastingType ../id)}}
+                {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
+              {{/if}}
             {{/each}}
           </div>
         </div>
+      {{/unless}}
+    {{/each}}
 
-        <!-- all spells -->
-        <div class="tab {{tabsSpells.all.cssClass}}" data-group="spellsContent" data-tab="all">
-          <div class="undefined">
-            <p>All Spells</p>
-            <p>show all spells, spell knacks, and binding secrets</p>
-          </div>
-          {{#each actor.itemTypes.spell}}
-            <div class="item-id item-name__card" data-uuid="{{uuid}}">
-              {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-            </div>
-          {{/each}}
-        </div>
-
-        <!-- spells by spellcasting discipline -->
-        {{#each tabsSpells as |tab|}}
-          {{#unless (or (eq tab.id "matrix") (eq tab.id "all"))}}
-            <div class="tab {{tab.cssClass}}" data-group="spellsContent" data-tab="{{tab.id}}">
-              <div class="undefined">
-                <p>{{tab.label}}</p>
-                <p>show all  {{tab.label}} spells, spell knacks and secret bindings</p>
-              </div>
-              {{#each @root/actor.itemTypes.spell as |spell| }}
-                {{#if (eq spell.system.spellcastingType ../id)}}
-                  <div class="item-id item-name__card" data-uuid="{{spell.uuid}}">
-                    {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
-                  </div>
-                {{/if}}
-              {{/each}}
-            </div>
-          {{/unless}}
-        {{/each}}
-
-      </div>
-    </div>
   </div>
 </section>
