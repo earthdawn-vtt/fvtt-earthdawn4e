@@ -246,7 +246,21 @@ export default class EdRollOptions extends SparseDataModel {
         initial:  "arbitrary",
         choices:  ED4E.ROLLS.rollTypes,
       } ),
-
+      successes: new fields.SchemaField( {
+        guaranteed: new fields.NumberField( {
+          nullable:  true,
+          initial:   null,
+          integer:   true,
+        } ),
+        additionalExtra: new fields.NumberField( {
+          nullable:  true,
+          initial:   null,
+          integer:   true,
+        } ),
+      }, {
+        nullable: true,
+        initial:  null,
+      } ),
     };
   }
 
