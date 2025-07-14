@@ -1,9 +1,11 @@
-import ED4E from "../../../../config/_module.mjs";
-import { determineConfigValue } from "../../../../utils.mjs";
+import ED4E from "../../../../../config/_module.mjs";
+import { determineConfigValue } from "../../../../../utils.mjs";
+
+
 
 export default class EdIdMigration {
   
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
     source.system ??= {};
 
     if ( source.system?.edid === undefined ) {
