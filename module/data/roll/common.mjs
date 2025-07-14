@@ -1,6 +1,6 @@
 import { lowerCaseFirstLetter, sum } from "../../utils.mjs";
 import getDice from "../../dice/step-tables.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { EFFECTS } from "../../config/_module.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 
@@ -85,6 +85,14 @@ export default class EdRollOptions extends SparseDataModel {
    * @type {string}
    */
   static ROLL_TYPE = "arbitrary";
+
+  /**
+   * The global bonuses that are applied to the step of all rolls of this type.
+   * @type {[string]}
+   */
+  static GLOBAL_MODIFIERS = [
+    "allTests",
+  ];
 
   // endregion
 
@@ -383,6 +391,7 @@ export default class EdRollOptions extends SparseDataModel {
   /** @inheritDoc */
   _initializeSource( data, options = {} ) {
     data.step ??= this._prepareStepData( data );
+    data.step = this._applyGlobalStepModifiers( data );
     data.target ??= this._prepareTargetDifficulty( data );
     data.strain ??= this._prepareStrainData( data );
     data.testType ??= this.constructor.TEST_TYPE;
@@ -448,7 +457,7 @@ export default class EdRollOptions extends SparseDataModel {
    * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
    */
   _prepareStepData( data ) {
-    return {};
+    return data.step ?? {};
   }
 
   /**
@@ -467,6 +476,26 @@ export default class EdRollOptions extends SparseDataModel {
    */
   _prepareTargetDifficulty( data ) {
     return data.target ?? null;
+  }
+
+  /**
+   * Applies global step modifiers to the step data of the roll.
+   * @param {object} data - The data object with which this model is initialized.
+   * @returns {RollStepData} The modified step data with global bonuses applied.
+   */
+  _applyGlobalStepModifiers( data ) {
+    const stepData = data.step;
+    const actor = fromUuidSync( stepData.rollingActorUuid );
+
+    if ( !actor ) return stepData;
+
+    stepData.modifiers ??= {};
+
+    this.constructor.GLOBAL_MODIFIERS.forEach( bonus => {
+      stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = actor.system.globalBonuses[bonus].value;
+    } );
+
+    return stepData;
   }
 
   // endregion

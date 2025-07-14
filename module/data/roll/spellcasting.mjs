@@ -1,6 +1,5 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
-import { EFFECTS } from "../../config/_module.mjs";
 
 
 export default class SpellcastingRollOptions extends EdRollOptions {
@@ -16,6 +15,14 @@ export default class SpellcastingRollOptions extends EdRollOptions {
 
   /** @inheritdoc */
   static ROLL_TYPE = "spellcasting";
+
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allSpellcasting",
+    "allSpellTests",
+    "allActions",
+    ...super.GLOBAL_MODIFIERS,
+  ];
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -43,15 +50,11 @@ export default class SpellcastingRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   _prepareStepData( data ) {
+    if ( data.step ) return data.step;
+
     const ability = fromUuidSync( data.spellcastingAbility );
-    const actor = fromUuidSync( data.rollingActorUuid );
     return {
       base:      ability.system.rankFinal,
-      modifiers: {
-        [ EFFECTS.globalBonuses.allSpellcasting.label ]: actor.system.globalBonuses.allSpellcasting.value,
-        [ EFFECTS.globalBonuses.allSpellTests.label ]:   actor.system.globalBonuses.allSpellTests.value,
-        [ EFFECTS.globalBonuses.allTests.label ]:        actor.system.globalBonuses.allTests.value,
-      },
     };
   }
 
