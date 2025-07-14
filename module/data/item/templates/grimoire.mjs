@@ -186,6 +186,15 @@ export default class GrimoireTemplate extends SystemDataModel {
   }
 
   /**
+   * Checks if the grimoire belongs to a specific actor.
+   * @param {string} actorUuid The UUID of the actor to check.
+   * @returns {boolean} True if the actor is the owner of the grimoire, false otherwise.
+   */
+  grimoireBelongsTo( actorUuid ) {
+    return this.grimoire?.owner === actorUuid;
+  }
+
+  /**
    * Checks if the grimoire is attuned to a specific spell.
    * @param {string} spellUuid The UUID of the spell to check.
    * @returns {boolean} True if the grimoire is attuned to the spell, false otherwise.

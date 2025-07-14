@@ -120,6 +120,12 @@ export const extraThreadsByCircle = {
   15: 4,
 };
 
+/**
+ * The penalty applied when a grimoire is not owned by the actor casting the spell.
+ * @type {number}
+ */
+export const grimoireNotOwnedPenalty = -2;
+
 export const matrixTypes = {
   "standard": {
     label:         "ED.Config.MatrixTypes.standard",

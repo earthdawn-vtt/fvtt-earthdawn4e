@@ -370,9 +370,11 @@ export default class SpellData extends ItemDataModel.mixin(
    * this does nothing.
    * @param {ItemEd} threadWeavingAbility The ability used for weaving threads to this spell.
    * @param {ItemEd} [matrix] The matrix this spell is attuned to, if any.
+   * @param {object} [options] Additional options for the weaving process.
+   * @param {ItemEd} [options.grimoire] The grimoire this spell is attuned to, if any.
    * @returns {Promise<EdRoll|undefined>} Returns the roll made for weaving threads, or undefined if no roll was made.
    */
-  async weaveThreads( threadWeavingAbility, matrix ) {
+  async weaveThreads( threadWeavingAbility, matrix, options = {} ) {
     let system = this;
     if ( matrix && !matrix?.system?.canWeave() ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
@@ -395,21 +397,20 @@ export default class SpellData extends ItemDataModel.mixin(
     }
 
     if ( system.missingThreads > 0 ) {
-      const abilityRollOptions = threadWeavingAbility.system.baseRollOptions;
-      const weavingRollOptions = new ThreadWeavingRollOptions( {
-        ...abilityRollOptions,
-        target: {
-          base:      system.spellDifficulty.weaving,
-          modifiers: {},
-          public:    true,
+      const weavingRollOptions = ThreadWeavingRollOptions.fromActor(
+        {
+          spellUuid:          system.parent.uuid,
+          spell:              system.parent,
+          weavingAbilityUuid: threadWeavingAbility.uuid,
+          weavingAbility:     threadWeavingAbility,
+          grimoire:           options?.grimoire,
+          threads:            {
+            required: system.threads.required,
+            extra:    system.numChosenExtraThreads,
+          },
         },
-        rollType:   "threadWeaving",
-        spellUuid:  system.parent.uuid,
-        threads:    {
-          required: system.threads.required,
-          extra:    system.numChosenExtraThreads,
-        },
-      } );
+        this.containingActor,
+      );
 
       const roll = await RollPrompt.waitPrompt(
         weavingRollOptions,
@@ -430,6 +431,8 @@ export default class SpellData extends ItemDataModel.mixin(
       }
 
       return roll;
+    } else {
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noWeavingNecessary" ) );
     }
   }
 
