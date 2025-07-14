@@ -3379,8 +3379,8 @@
         "chatAvatarToken":                         "Chat Avatar des Token benutzen"
       },
       "Debug": {
-        "label":                                   "Debugging Einstellungen",
-        "labelHint":                               "Debugging-Informationen in der Konsole anzeigen"
+        "hint":                                    "Debugging-Informationen in der Konsole anzeigen",
+        "label":                                   "Debugging Einstellungen"
       },
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
