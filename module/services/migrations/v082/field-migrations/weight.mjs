@@ -1,8 +1,8 @@
 export default class WeightMigration {
-  static async migrateData( source ) {
-    if ( typeof source.weight !== "object" ) {
+  static async migrateEarthdawnData( source ) {
+    if ( source.system && typeof source.system.weight !== "object" ) {
       // Ensure weight object exists
-      const rawWeight = source.weight ?? 0;
+      const rawWeight = source.system.weight ?? 0;
       
       // Convert weight to a finite number, handling edge cases
       const parsedWeight = typeof rawWeight === "string" || rawWeight instanceof String
@@ -13,7 +13,7 @@ export default class WeightMigration {
         ? parsedWeight
         : 0;
       
-      source.weight = {
+      source.system.weight = {
         value: weightValue
       };
     }
