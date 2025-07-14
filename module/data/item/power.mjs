@@ -85,12 +85,6 @@ export default class PowerData extends ActionTemplate.mixin(
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
-
   /* -------------------------------------------- */
   /*  Getter                                      */
   /* -------------------------------------------- */
@@ -192,5 +186,4 @@ export default class PowerData extends ActionTemplate.mixin(
   async rollEffect() {
     ui.notifications.info( "Effect not done yet" );
   }
-
 }

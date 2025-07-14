@@ -537,17 +537,5 @@ export default class SpellData extends ItemDataModel.mixin(
 
     return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
   }
-
   // endregion
-
-  // region Migration
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
-
-  // endregion
-
 }

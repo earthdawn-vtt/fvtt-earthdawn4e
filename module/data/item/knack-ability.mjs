@@ -61,14 +61,4 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     const attributeStep = ( this.containingActor?.system.attributes[this.attribute]?.step ?? 0 );
     return attributeStep ? this.parentRank + attributeStep : 0;
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

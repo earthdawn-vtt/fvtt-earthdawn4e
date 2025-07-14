@@ -5,12 +5,6 @@ import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
-import AttributeMigration from "./migration/old-system-V082/attribute.mjs";
-import ActionMigration from "./migration/old-system-V082/action.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import DifficultyMigration from "./migration/old-system-V082/difficulty.mjs";
-import LevelMigration from "./migration/old-system-V082/level.mjs";
-import TierMigration from "./migration/old-system-V082/tier.mjs";
 
 /**
  * Data model template with information on talent items.
@@ -309,46 +303,5 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       "system.sourceTalent": item.edid,
     } );
     return true;
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-   
-  static migrateData( source ) {
-
-    // Migrate action
-    ActionMigration.migrateData( source );
-
-    // Migrate Attributes
-    AttributeMigration.migrateData( source );
-
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-
-    // Migrate minDifficulty (only if source.difficulty is not set)
-    DifficultyMigration.migrateData( source );
-
-    // Migrate level
-    LevelMigration.migrateData( source );
-    
-    // // Migrate tier
-    TierMigration.migrateData( source );
-
-    // Migrate rollTypes healing
-    if ( source.healing > 0 ) {
-      source.rollType ??= "recovery";
-    }
-
-    // Migrate Talent category
-    if ( source.talentCategory ) {
-      if ( source.talentCategory?.slugify( { lowercase: true, strict: true } ) === "racial" ) {
-        source.talentCategory = "free";
-      } else {
-        source.talentCategory = source.talentCategory.slugify( { lowercase: true, strict: true } );
-      } 
-    }
   }
 }

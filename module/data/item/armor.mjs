@@ -1,10 +1,5 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import AvailabilityMigration from "./migration/old-system-V082/availability.mjs";
-import PriceMigration from "./migration/old-system-V082/price.mjs";
-import WeightMigration from "./migration/old-system-V082/weight.mjs";
-import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
@@ -92,41 +87,5 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
         nullable: false,
       } ),
     } );
-  }
-
-  /* -------------------------------------------- */
-  /*  Getters                       */
-  /* -------------------------------------------- */
-
-  /* -------------------------------------------- */
-  /*  Migrations                        */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-
-    // Migrate availability
-    AvailabilityMigration.migrateData( source );
-
-    // migrate price
-    PriceMigration.migrateData( source );
-
-    // migrate price
-    WeightMigration.migrateData( source );
-
-    // migrate usable items
-    UsableItemMigration.migrateData( source );
-
-    // migrate armor values
-    source.physical ??= {};
-    source.physical.armor ??= Number( source.Aphysicalarmor ) ? Number( source.Aphysicalarmor ) : 0;
-    source.physical.forgeBonus ??= Number( source.timesForgedPhysical ) ? Number( source.timesForgedPhysical ) : 0;
-    source.mystical ??= {};
-    source.mystical.armor ??= Number( source.Amysticarmor ) ? Number( source.Amysticarmor ) : 0;
-    source.mystical.forgeBonus ??= Number( source.timesForgedMystic ) ? Number( source.timesForgedMystic ) : 0;
-    source.initiativePenalty ??= Number( source.armorPenalty ) ? Number( source.armorPenalty ) : 0;
-    // source.isLiving --> Document
   }
 }

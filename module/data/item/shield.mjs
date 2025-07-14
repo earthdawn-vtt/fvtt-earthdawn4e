@@ -1,10 +1,5 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import AvailabilityMigration from "./migration/old-system-V082/availability.mjs";
-import PriceMigration from "./migration/old-system-V082/price.mjs";
-import WeightMigration from "./migration/old-system-V082/weight.mjs";
-import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
 
 /**
  * Data model template with information on shield items.
@@ -71,33 +66,5 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
         initial:  false,
       } ),
     } );
-  }
-  /* -------------------------------------------- */
-  /*  Migrations                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-
-    // Migrate availability
-    AvailabilityMigration.migrateData( source );
-
-    // migrate price
-    PriceMigration.migrateData( source );
-
-    // migrate price
-    WeightMigration.migrateData( source );
-
-    // migrate usable items
-    UsableItemMigration.migrateData( source );
-    
-    // migrate shield specific data
-    source.defenseBonus ??= {};
-    source.defenseBonus.physical ??= source.physicaldefense;
-    source.defenseBonus.mystical ??= source.mysticdefense;
-    source.initiativePenalty ??= source.initiativepenalty;
-    source.shatterThreshold ??= source.shatterthreshold;
   }
 }
