@@ -2,7 +2,7 @@ import ED4E from "../../../../config/_module.mjs";
 
 export default class DefenseMigration {
 
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
     const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
 
     if ( !source.system.defenseTarget ) {
