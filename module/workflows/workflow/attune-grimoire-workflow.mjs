@@ -54,6 +54,14 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * The grimoire that is being attuned.
+   * @type {ItemEd}
+   */
+  get grimoire() {
+    return this._grimoire;
+  }
+
   // region Steps
 
   async #selectGrimoire() {
