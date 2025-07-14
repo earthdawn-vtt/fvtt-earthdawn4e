@@ -1,9 +1,12 @@
-import ED4E from "../../../../config/_module.mjs";
-import { determineConfigValue } from "../../../../utils.mjs";
+import ED4E from "../../../../../config/_module.mjs";
+import { determineConfigValue } from "../../../../../utils.mjs";
+import ImageMigration from "./image.mjs";
+
+
   
 export default class AbilityMigration {
   
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
 
     // Slugify the name to make it easier to compare
     const slugifiedName = source.name.slugify( { lowercase: true, strict: true } );
@@ -58,6 +61,9 @@ export default class AbilityMigration {
     source.system ??= {};
     source.system.difficulty ??= {};
     source.system.difficulty.group = source.system.difficulty.group ? source.system.difficulty.group : determineConfigValue( slugifiedName, configMappingsGroup );
+
+    // Apply image migration
+    ImageMigration.migrateEarthdawnData( source );
 
     return source;
   }
