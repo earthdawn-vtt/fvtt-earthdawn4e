@@ -422,8 +422,8 @@ export default function registerSystemSettings() {
   /*                                    Debugger                                      */
   /* -------------------------------------------------------------------------------- */
   game.settings.register( "ed4e", "debug", {
-    name:    "ED.Settings.Debug.debug",
-    hint:    "ED.Settings.Debug.debugHint",
+    name:    "ED.Settings.Debug.label",
+    hint:    "ED.Settings.Debug.hint",
     scope:   "world",
     config:  true,
     default: false,
