@@ -1,6 +1,6 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
-import { typeMigrationConfig } from "./migration/item/old-system-V082/_module.mjs";
+import MigrationManager from "../services/migration-manager.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.
@@ -252,16 +252,31 @@ export default class ItemEd extends Item {
 
   // endregion
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
+  // region Migrations
   static migrateData( source ) {
+    // Step 1: Apply Foundry's core migration
     const newSource = super.migrateData( source );
 
-    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( source );
+    // Step 2: Apply our comprehensive migration system to the already-migrated source
+    const migrationResult = MigrationManager.migrateDocument( newSource, "Item" );
 
-    return newSource;
+    // Step 3: ALSO modify the original source in place (workaround for Foundry ignoring return value)
+    // Foundry's document initialization has an architectural issue where it calls migrateData()
+    // but then validates the original not migrated source data instead of using the return value.
+    // This dual approach ensures migrations work by modifying both the return value AND the original source.
+    if ( migrationResult.system ) {
+      source.system = migrationResult.system;
+    }
+    if ( migrationResult.type ) {
+      source.type = migrationResult.type;
+    }
+    if ( migrationResult.img ) {
+      source.img = migrationResult.img;
+    }
+
+    // Step 4: Return the final migrated result
+    return migrationResult;
   }
+  // endregion
 
 }
