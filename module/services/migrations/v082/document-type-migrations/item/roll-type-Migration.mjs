@@ -1,11 +1,13 @@
+import ED4E from "../../../../../config/_module.mjs";
+import { determineConfigValue } from "../../../../../utils.mjs";
+
  
-import ED4E from "../../../../config/_module.mjs";
-import { determineConfigValue } from "../../../../utils.mjs";
+
 
 export default class RollTypeMigration {
 
    
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
     
     // set roll Type based on ability name
     if ( source.system?.rollType === undefined || source.system?.rollType === "" ) {
