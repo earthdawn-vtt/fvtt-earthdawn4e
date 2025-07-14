@@ -369,13 +369,15 @@ export default class SpellData extends ItemDataModel.mixin(
    * Weave threads for this spell using the given ability and matrix. If the spell already has all necessary threads,
    * this does nothing.
    * @param {ItemEd} threadWeavingAbility The ability used for weaving threads to this spell.
-   * @param {ItemEd} [matrix] The matrix this spell is attuned to, if any.
    * @param {object} [options] Additional options for the weaving process.
+   * @param {ItemEd} [options.matrix] The matrix this spell is attuned to, if any.
    * @param {ItemEd} [options.grimoire] The grimoire this spell is attuned to, if any.
    * @returns {Promise<EdRoll|undefined>} Returns the roll made for weaving threads, or undefined if no roll was made.
    */
-  async weaveThreads( threadWeavingAbility, matrix, options = {} ) {
+  async weaveThreads( threadWeavingAbility, options = {} ) {
     let system = this;
+    const matrix = options?.matrix;
+
     if ( matrix && !matrix?.system?.canWeave() ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
       return;
