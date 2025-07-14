@@ -3379,7 +3379,7 @@
         "chatAvatarToken":                         "Chat Avatar des Token benutzen"
       },
       "Debug": {
-        "label":                                   "Debugging",
+        "label":                                   "Debugging Einstellungen",
         "labelHint":                               "Debugging-Informationen in der Konsole anzeigen"
       },
       "Edid": {
