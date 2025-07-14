@@ -1,6 +1,6 @@
 export default class CharacterMigration {
 
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
     source.type = "character";
   
     return source;

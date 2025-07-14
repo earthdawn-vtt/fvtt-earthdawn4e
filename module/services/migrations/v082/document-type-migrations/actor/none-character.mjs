@@ -1,6 +1,6 @@
 export default class NoneCharacterMigration {
 
-  static async migrateData( source ) {
+  static async migrateEarthdawnData( source ) {
 
     if ( source.system?.actorType ) source.type = source.system.actorType;
 
