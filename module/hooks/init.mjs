@@ -2,6 +2,7 @@
 import ED4E from "../config/_module.mjs";
 import  "../tours/ed-tours.mjs";
 import registerHandlebarHelpers from "../handlebar-helpers.mjs";
+import { initializeMigrations } from "../services/migrations/_module.mjs";
 
 // Import submodules
 import * as applications from "../applications/_module.mjs";
@@ -24,6 +25,10 @@ export default function () {
   Hooks.once( "init", () => {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
     console.log( "ED4e | Initializing the ED4e Game System" );
+
+    // Initialize migration system before document configuration
+    initializeMigrations();
+    console.log( "ED4e | Migration system initialized" );
 
     // region Record Configuration Values
 
@@ -67,6 +72,9 @@ export default function () {
     CONFIG.Item.dataModels = data.item.config;
 
     // endregion
+
+    // Initialize migration system
+    initializeMigrations();
 
     // region Register Sheet Application Classes
 
