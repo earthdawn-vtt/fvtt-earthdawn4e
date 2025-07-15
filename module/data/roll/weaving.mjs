@@ -66,11 +66,6 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
   _prepareStepData( data ) {
     if ( data.step ) return data.step;
 
-    const actor = fromUuidSync( data.rollingActorUuid );
-    if ( !actor ) {
-      throw new Error( "ThreadWeavingRollOptions| Missing rolling actor in _prepareStepData" );
-    }
-
     let weavingAbility = data.weavingAbility ?? fromUuidSync( data.weavingAbilityUuid );
 
     const stepData = weavingAbility.system.baseRollOptions.step || {};
