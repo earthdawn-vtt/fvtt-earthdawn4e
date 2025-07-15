@@ -479,13 +479,20 @@ export default class ActorEd extends Actor {
     );
   }
 
-  async selectGrimoire() {
-    const availableGrimoires = this.items.filter( item => item.isGrimoire );
+  async selectGrimoire( spell ) {
+    let availableGrimoires = this.items.filter( item => item.system.isGrimoire );
+    if ( spell ) {
+      availableGrimoires = availableGrimoires.filter(
+        grimoire => grimoire.system.grimoire.spells.has( spell.uuid )
+      );
+    }
+
     if ( availableGrimoires.length === 0 ) {
       ui.notifications.error(
         game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
       );
       return null;
+
     }
 
     return fromUuid(

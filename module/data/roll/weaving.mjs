@@ -79,7 +79,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     ) {
       stepData.modifiers[
         game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" )
-      ] = MAGIC.grimoireNotOwnedPenalty;
+      ] = MAGIC.grimoireModifiers.notOwned;
     }
 
     return stepData;

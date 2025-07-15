@@ -67,7 +67,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
   async #selectGrimoire() {
     if ( this._grimoire ) return;
 
-    const grimoire = await this._actor.selectGrimoire();
+    const grimoire = await this._actor.selectGrimoire( this._spell );
 
     if ( !grimoire ) {
       this.cancel();

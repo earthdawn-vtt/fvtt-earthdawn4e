@@ -121,10 +121,13 @@ export const extraThreadsByCircle = {
 };
 
 /**
- * The penalty applied when a grimoire is not owned by the actor casting the spell.
- * @type {number}
+ * Modifiers applied to spellcasting based on whether the grimoire is owned or not.
+ * @type {{notOwned: number, ownedExtraSuccess: number}}
  */
-export const grimoireNotOwnedPenalty = -2;
+export const grimoireModifiers = {
+  notOwned:          -2,
+  ownedExtraSuccess: 1,
+};
 
 export const matrixTypes = {
   "standard": {

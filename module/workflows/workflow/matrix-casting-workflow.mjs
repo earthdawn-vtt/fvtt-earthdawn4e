@@ -41,8 +41,6 @@ export default class MatrixCastingWorkflow extends BaseCastingWorkflow {
     this._spell = activeSpell;
 
     await super._preWeaveThreads();
-
-    this._weaveThreadsParameters.push( { matrix: this._matrix, } );
   }
 
 }

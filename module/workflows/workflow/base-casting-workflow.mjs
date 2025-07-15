@@ -53,13 +53,6 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
   _threadWeavingRoll;
 
   /**
-   * Parameters for the calling of weaveThreads on the spell
-   * @see SpellData#weaveThreads
-   * @type {[]}
-   */
-  _weaveThreadsParameters = [];
-
-  /**
    * @param {ActorEd} caster - The actor casting the spell
    * @param {WorkflowOptions&BaseCastingWorkflowOptions} [options] - Options for the workflow
    */
@@ -87,7 +80,6 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _preWeaveThreads() {
     this._threadWeavingAbility = this._actor.getThreadWeavingByCastingType( this._spell.system.spellcastingType );
-    this._weaveThreadsParameters.push( this._threadWeavingAbility, );
   }
 
   /**
@@ -98,7 +90,12 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
     if ( this._spell.system.isWeavingComplete ) return;
 
     this._threadWeavingRoll = await this._spell.system.weaveThreads(
-      ...this._weaveThreadsParameters,
+      this._threadWeavingAbility,
+      {
+        caster:   this._actor,
+        grimoire: this._grimoire,
+        matrix:   this._matrix,
+      }
     );
 
     if ( this._stopOnWeaving || !this._spell.system.isWeavingComplete ) {
@@ -122,8 +119,11 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _castSpell() {
     this._spellcastingRoll = await this._spell.system.cast(
-      this._actor,
       this._spellcastingAbility,
+      {
+        caster:   this._actor,
+        grimoire: this._grimoire,
+      },
     );
   }
 

@@ -44,6 +44,18 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   _castingMethod;
 
   /**
+   * If grimoire casting, the grimoire from which the spell is cast
+   * @type {ItemEd}
+   */
+  _grimoire;
+
+  /**
+   * Whether the spell should be attuned to a grimoire before casting
+   * @type {boolean}
+   */
+  _attuneGrimoire;
+
+  /**
    * The matrix the spell is attuned to, if applicable
    * @type {Item}
    */
@@ -138,18 +150,33 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
 
   async #handleAttuneGrimoire() {
     try {
-      const attuneGrimoire = await DialogEd.confirm( {
-        content:     game.i18n.localize( "ED.Dialogs.doYouWantToAttuneGrimoireBeforeCasting" ),
-        rejectClose: true
-      } );
-      if ( attuneGrimoire ) {
-        const attuneGrimoireWorkflow = new AttuneGrimoireWorkflow(
-          this._actor,
-          {
-            spell: this._spell
-          }
-        );
-        await attuneGrimoireWorkflow.execute();
+      const attunedGrimoires = this._spell.system.getAttunedGrimoires( this._actor );
+      if ( attunedGrimoires.length > 0 ) {
+        this._grimoire = attunedGrimoires.length === 1
+          ? attunedGrimoires[0]
+          : await DialogEd.waitButtonSelect(
+            attunedGrimoires,
+            "ed-button-select-attuned-grimoire",
+            {
+              title: game.i18n.localize( "ED.Dialogs.Title.selectAttunedGrimoire" ),
+            }
+          );
+      } else {
+        this._attuneGrimoire = await DialogEd.confirm( {
+          content:     game.i18n.localize( "ED.Dialogs.doYouWantToAttuneGrimoireBeforeCasting" ),
+          rejectClose: true
+        } );
+
+        if ( this._attuneGrimoire ) {
+          const attuneGrimoireWorkflow = new AttuneGrimoireWorkflow(
+            this._actor,
+            {
+              spell: this._spell
+            }
+          );
+          await attuneGrimoireWorkflow.execute();
+          this._grimoire = attuneGrimoireWorkflow.grimoire;
+        }
       }
     } catch ( promiseRejection ) {
       this.cancel();
@@ -180,7 +207,11 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
       );
     }
 
-    this._CastingWorkflow = SpellcastingWorkflow.CASTING_WORKFLOW_TYPES[ this._castingMethod ];
+    if ( !this._attuneGrimoire && this._castingMethod === "grimoire" ) {
+      this._CastingWorkflow = SpellcastingWorkflow.CASTING_WORKFLOW_TYPES.raw;
+    } else {
+      this._CastingWorkflow = SpellcastingWorkflow.CASTING_WORKFLOW_TYPES[this._castingMethod];
+    }
   }
 
   async #executeCastingWorkflow() {
@@ -191,6 +222,7 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     // Create the specialized casting workflow
     const castingWorkflow = new this._CastingWorkflow( this._actor, {
       spell:             this._spell,
+      grimoire:          this._grimoire,
       matrix:            this._matrix,
       stopOnWeaving:     this._stopOnWeaving,
     } );
