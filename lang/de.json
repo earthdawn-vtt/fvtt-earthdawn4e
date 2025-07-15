@@ -3092,10 +3092,12 @@
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
         "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
+        "selectAttunedGrimoire":                   "Wähle ein bereits abgestimmtes Grimoire",
         "selectCastingMethod":                     "Zaubermethode wählen",
         "selectExtraThreads":                      "Wähle zusätzliche Fäden",
         "selectGrimoireToAttune":                  "Wähle Grimoire zum Abstimmen",
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
+        "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie"
@@ -3250,6 +3252,7 @@
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
+        "noWeavingNecessary":                      "Es ist keine Fadenwebenprobe nötig. Der Zauber ist bereit zum Wirken.",
         "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
         "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen."
