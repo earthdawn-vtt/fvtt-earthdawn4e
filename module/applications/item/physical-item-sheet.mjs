@@ -13,9 +13,10 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
-      tailorToNamegiver:  PhysicalItemSheetEd.tailorToNamegiver,
-      addThreadLevel:     PhysicalItemSheetEd.addThreadLevel,
-      deleteThreadLevel:  PhysicalItemSheetEd.deleteThreadLevel,
+      addThreadLevel:     PhysicalItemSheetEd._onAddThreadLevel,
+      castSpell:          PhysicalItemSheetEd._onCastSpell,
+      deleteThreadLevel:  PhysicalItemSheetEd._onDeleteThreadLevel,
+      tailorToNamegiver:  PhysicalItemSheetEd._onTailorToNamegiver,
     },
   };
 
@@ -42,8 +43,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       classes:  [ "general", "scrollable" ]
     },
     "details": {
-      template: "systems/ed4e/templates/item/item-partials/item-details.hbs",
-      classes:  [ "details", "scrollable" ]
+      template:   "systems/ed4e/templates/item/item-partials/item-details.hbs",
+      classes:    [ "details", "scrollable" ],
+      scrollable: [ "" ],
     },
     "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
@@ -85,6 +87,11 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       case "general":
         break;
       case "details":
+        if ( this.document.system.isGrimoire ) {
+          context.grimoireSpells = await Promise.all(
+            this.document.system.grimoire.spells.map( async spellUuid => fromUuid( spellUuid ) )
+          );
+        }
         break;
       case "effects":
         break;
@@ -138,25 +145,61 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       await this.item.system.addSpellToGrimoire( item );
     }
 
-    if ( changed ) this.render();
+    if ( changed ) await this.render();
   }
 
   // endregion
 
-  static async addThreadLevel( event, target ) {
+  // region Event Handlers
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onAddThreadLevel( event, target ) {
     event.preventDefault();
     this.document.system.threadData.addLevel();
     this.render();
   }
 
-  static async deleteThreadLevel( event, target ) {
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onDeleteThreadLevel( event, target ) {
     event.preventDefault();
     this.document.system.threadData.deleteLevel();
     this.render();
   }
 
-  static async tailorToNamegiver( event, target ) {
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onTailorToNamegiver( event, target ) {
     this.document.tailorToNamegiver( this.document.parent.namegiver );
   }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onCastSpell( event, target ) {
+    event.preventDefault();
+
+    const spell = await this._getEmbeddedDocument( target );
+    const actor = this.document.system.containingActor
+      ?? game.user.character
+      ?? canvas.tokens.controlled[0]?.actor;
+
+    if ( !actor ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.castSpellNoActor" ) );
+      return;
+    }
+
+    await actor.castSpell( spell );
+  }
+
+  // endregion
 }
 

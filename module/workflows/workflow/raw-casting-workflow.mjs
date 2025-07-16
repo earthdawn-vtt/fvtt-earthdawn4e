@@ -9,6 +9,7 @@ import HorrorMarkRollOptions from "../../data/roll/horror-mark.mjs";
 /**
  * @typedef {object} RawCastingWorkflowOptions
  * @property {string} [astralSpacePollution="safe"] - The type of astral space (safe, open, tainted, corrupt)
+ * @property {ItemEd} [grimoire] - If provided, the grimoire from which the spell is cast without attuning
  */
 
 /**

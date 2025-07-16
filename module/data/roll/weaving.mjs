@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import { MAGIC } from "../../config/_module.mjs";
 
 
 export default class ThreadWeavingRollOptions extends EdRollOptions {
@@ -10,10 +11,26 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     "ED.Data.Other.ThreadWeavingRollOptions",
   ];
 
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "threadWeaving";
+
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allActions",
+    ...super.GLOBAL_MODIFIERS,
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       spellUuid: new fields.DocumentUUIDField( {
+        type:     "Item",
+        embedded: true,
+      } ),
+      weavingAbilityUuid: new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,
       } ),
@@ -42,6 +59,49 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
       sourceActor: createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
       spell:       createContentAnchor( fromUuidSync( this.spellUuid ) ).outerHTML,
       step:        this.step.total,
+    };
+  }
+
+  /** @inheritDoc */
+  _prepareStepData( data ) {
+    if ( data.step ) return data.step;
+
+    let weavingAbility = data.weavingAbility ?? fromUuidSync( data.weavingAbilityUuid );
+
+    const stepData = weavingAbility.system.baseRollOptions.step || {};
+
+    stepData.base ??= weavingAbility.system.rankFinal;
+
+    stepData.modifiers ??= {};
+    if (
+      data.grimoire?.system.isGrimoire
+      && !data.grimoire.system.grimoireBelongsTo( data.rollingActorUuid )
+    ) {
+      stepData.modifiers[
+        game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" )
+      ] = MAGIC.grimoireModifiers.notOwned;
+    }
+
+    return stepData;
+  }
+
+  _prepareStrainData( data ) {
+    if ( data.strain ) return data.strain;
+
+    let weavingAbility = data.weavingAbility ?? fromUuidSync( data.weavingAbilityUuid );
+
+    return weavingAbility.system.baseRollOptions.strain;
+  }
+
+  _prepareTargetDifficulty( data ) {
+    if ( data.target ) return data.target;
+
+    const spell = data.spell ?? fromUuidSync( data.spellUuid );
+
+    return {
+      base:      spell.system.spellDifficulty.weaving,
+      modifiers: {},
+      public:    true,
     };
   }
 

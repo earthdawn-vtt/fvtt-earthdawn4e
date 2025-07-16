@@ -91,7 +91,11 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
 
     this._threadWeavingRoll = await this._spell.system.weaveThreads(
       this._threadWeavingAbility,
-      this._matrix,
+      {
+        caster:   this._actor,
+        grimoire: this._grimoire,
+        matrix:   this._matrix,
+      }
     );
 
     if ( this._stopOnWeaving || !this._spell.system.isWeavingComplete ) {
@@ -115,8 +119,11 @@ export default class BaseCastingWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _castSpell() {
     this._spellcastingRoll = await this._spell.system.cast(
-      this._actor,
       this._spellcastingAbility,
+      {
+        caster:   this._actor,
+        grimoire: this._grimoire,
+      },
     );
   }
 

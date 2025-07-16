@@ -120,6 +120,23 @@ export const extraThreadsByCircle = {
   15: 4,
 };
 
+/**
+ * Modifiers applied to spellcasting based on whether the grimoire is owned or not.
+ * @type {{notOwned: number, ownedExtraSuccess: number}}
+ */
+export const grimoireModifiers = {
+  notOwned:          -2,
+  ownedExtraSuccess: 1,
+};
+
+export const spellcastingColors = {
+  elementalism: "rgb(221, 135, 79)",
+  illusionism:  "rgb(160, 160, 240)",
+  nethermancy:  "rgb(28,0,0)",
+  shamanism:    "rgb(98, 145, 17)",
+  wizardry:     "rgb(42, 90, 165)",
+};
+
 export const matrixTypes = {
   "standard": {
     label:         "ED.Config.MatrixTypes.standard",

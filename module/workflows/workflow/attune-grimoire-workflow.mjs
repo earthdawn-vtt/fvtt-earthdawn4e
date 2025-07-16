@@ -54,28 +54,20 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
     );
   }
 
+  /**
+   * The grimoire that is being attuned.
+   * @type {ItemEd}
+   */
+  get grimoire() {
+    return this._grimoire;
+  }
+
   // region Steps
 
   async #selectGrimoire() {
     if ( this._grimoire ) return;
 
-    const availableGrimoires = this._attuningActor.items.filter( item => item.isGrimoire );
-    if ( availableGrimoires.length === 0 ) {
-      throw new WorkflowInterruptError(
-        this,
-        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
-      );
-    }
-
-    const grimoire = await fromUuid(
-      await DialogEd.waitButtonSelect(
-        availableGrimoires,
-        "ed-button-select-grimoire",
-        {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
-        },
-      )
-    );
+    const grimoire = await this._actor.selectGrimoire( this._spell );
 
     if ( !grimoire ) {
       this.cancel();

@@ -1,5 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
-import ED4E from "../../config/_module.mjs";
+import { MAGIC } from "../../config/_module.mjs";
 
 
 /**
@@ -61,13 +61,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         foundry.utils.mergeObject( context, {
           tabsSpells:         this._getSpellTabs(),
           matrices:           this.document.getMatrices(),
-          spellcastingColors: {
-            elementalism: "rgb(221, 135, 79)",
-            illusionism:  "rgb(160, 160, 240)",
-            nethermancy:  "rgb(10, 28, 0)",
-            shamanism:    "rgb(98, 145, 17)",
-            wizardry:     "rgb(42, 90, 165)",
-          },
         } );
         break;
       case "equipment":
@@ -101,7 +94,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       spellTabs[ type ] = {
         id:    type,
         group: "spellsContent",
-        label: ED4E.spellcastingTypes[ type ],
+        label: MAGIC.spellcastingTypes[ type ],
       };
     } );
 

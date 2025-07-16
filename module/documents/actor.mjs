@@ -19,6 +19,7 @@ import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
+import DialogEd from "../applications/api/dialog.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -475,6 +476,33 @@ export default class ActorEd extends Actor {
   async emptyAllMatrices() {
     return Promise.all(
       this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
+
+  async selectGrimoire( spell ) {
+    let availableGrimoires = this.items.filter( item => item.system.isGrimoire );
+    if ( spell ) {
+      availableGrimoires = availableGrimoires.filter(
+        grimoire => grimoire.system.grimoire.spells.has( spell.uuid )
+      );
+    }
+
+    if ( availableGrimoires.length === 0 ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
+      );
+      return null;
+
+    }
+
+    return fromUuid(
+      await DialogEd.waitButtonSelect(
+        availableGrimoires,
+        "ed-button-select-grimoire",
+        {
+          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
+        },
+      ),
     );
   }
 

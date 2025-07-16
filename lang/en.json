@@ -3075,10 +3075,12 @@
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
         "selectAstralSpacePollution":              "TODO: Add translation",
+        "selectAttunedGrimoire":                   "TODO: Add translation",
         "selectCastingMethod":                     "TODO: Add translation",
         "selectExtraThreads":                      "TODO: Add translation",
         "selectGrimoireToAttune":                  "TODO: Add translation",
         "selectSpellToAttuneToGrimoire":           "TODO: Add translation",
+        "selectWeavingAbility":                    "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation"
@@ -3233,6 +3235,7 @@
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
+        "noWeavingNecessary":                      "TODO: Add translation",
         "reattuningCancelled":                     "TODO: Add translation",
         "switchWeapon":                            "TODO: Add translation",
         "upcomingSelectHorrorForRawCasting":       "TODO: Add translation"
@@ -3244,6 +3247,7 @@
         "cannotLearn":                             "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
+        "castSpellNoActor":                        "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
         "firstClassViaCharGen":                    "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",

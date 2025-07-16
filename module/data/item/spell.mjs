@@ -310,16 +310,30 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // region Spellcasting
 
-  async cast( caster, spellcastingAbility ) {
+  /**
+   * Cast this spell using the given spellcasting ability.
+   * @param {ItemEd} spellcastingAbility The ability used for casting this spell.
+   * @param {object} [options] Additional options for the casting process.
+   * @param {ActorEd} [options.caster] The actor casting the spell, if different from the containing actor.
+   * @param {ItemEd} [options.grimoire] The grimoire this spell is cast from, if any.
+   * @returns {Promise<EdRoll|undefined>} Returns the roll made for casting the spell, or undefined if no roll was made.
+   */
+  async cast( spellcastingAbility, options = {} ) {
     if ( !this.isWeavingComplete ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.spellNotReadyToCast" ) );
       return;
     }
 
+    const caster = options.caster || this.containingActor;
+    const grimoire = options.grimoire;
+
     const spellcastingRollOptions = SpellcastingRollOptions.fromActor(
       {
-        spell:               this.parent.uuid,
-        spellcastingAbility: spellcastingAbility.uuid,
+        spellUuid:               this.parent.uuid,
+        spell:                   this.parent,
+        spellcastingAbilityUuid: spellcastingAbility.uuid,
+        spellcastingAbility:     spellcastingAbility,
+        grimoire,
       },
       caster,
     );
@@ -327,7 +341,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const roll = await RollPrompt.waitPrompt(
       spellcastingRollOptions,
       {
-        rollData: this.containingActor.getRollData(),
+        rollData: caster.getRollData(),
       },
     );
     await roll.toMessage();
@@ -369,11 +383,17 @@ export default class SpellData extends ItemDataModel.mixin(
    * Weave threads for this spell using the given ability and matrix. If the spell already has all necessary threads,
    * this does nothing.
    * @param {ItemEd} threadWeavingAbility The ability used for weaving threads to this spell.
-   * @param {ItemEd} [matrix] The matrix this spell is attuned to, if any.
+   * @param {object} [options] Additional options for the weaving process.
+   * @param {ActorEd} [options.caster] The actor casting the spell, if different from the containing actor.
+   * @param {ItemEd} [options.matrix] The matrix this spell is attuned to, if any.
+   * @param {ItemEd} [options.grimoire] The grimoire this spell is attuned to, if any.
    * @returns {Promise<EdRoll|undefined>} Returns the roll made for weaving threads, or undefined if no roll was made.
    */
-  async weaveThreads( threadWeavingAbility, matrix ) {
+  async weaveThreads( threadWeavingAbility, options = {} ) {
     let system = this;
+    const { grimoire, matrix } = options;
+    const caster = options.caster || this.containingActor;
+
     if ( matrix && !matrix?.system?.canWeave() ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.matrixBrokenCannotWeave" ) );
       return;
@@ -382,7 +402,7 @@ export default class SpellData extends ItemDataModel.mixin(
     if ( !this.isWeaving ) {
       const chosenExtraThreads = await SelectExtraThreadsPrompt.waitPrompt( {
         spell:  this.parent,
-        caster: this.containingActor,
+        caster,
       } );
       await this.parent.update( {
         "system.isWeaving":     true,
@@ -395,26 +415,25 @@ export default class SpellData extends ItemDataModel.mixin(
     }
 
     if ( system.missingThreads > 0 ) {
-      const abilityRollOptions = threadWeavingAbility.system.baseRollOptions;
-      const weavingRollOptions = new ThreadWeavingRollOptions( {
-        ...abilityRollOptions,
-        target: {
-          base:      system.spellDifficulty.weaving,
-          modifiers: {},
-          public:    true,
+      const weavingRollOptions = ThreadWeavingRollOptions.fromActor(
+        {
+          spellUuid:          system.parent.uuid,
+          spell:              system.parent,
+          weavingAbilityUuid: threadWeavingAbility.uuid,
+          weavingAbility:     threadWeavingAbility,
+          grimoire,
+          threads:            {
+            required: system.threads.required,
+            extra:    system.numChosenExtraThreads,
+          },
         },
-        rollType:   "threadWeaving",
-        spellUuid:  system.parent.uuid,
-        threads:    {
-          required: system.threads.required,
-          extra:    system.numChosenExtraThreads,
-        },
-      } );
+        caster,
+      );
 
       const roll = await RollPrompt.waitPrompt(
         weavingRollOptions,
         {
-          rollData: system.containingActor.getRollData(),
+          rollData: caster.getRollData(),
         },
       );
       await roll.toMessage();
@@ -430,11 +449,17 @@ export default class SpellData extends ItemDataModel.mixin(
       }
 
       return roll;
+    } else {
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noWeavingNecessary" ) );
     }
   }
 
   // endregion
 
+  /**
+   * Returns the attuned matrix for this spell, if it exists.
+   * @returns {ItemEd|undefined} - Returns the attuned matrix item or undefined if not found.
+   */
   getAttunedMatrix() {
     return this.containingActor?.items.find( item => {
       return item.system.matrix?.spells.has( this.parent.uuid );
@@ -442,12 +467,35 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
+   * Returns all grimoires that are attuned to this spell for the given actor.
+   * @param {ActorEd} [actor] - The actor to check for attuned grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that are attuned to this spell.
+   */
+  getAttunedGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return this.actorGrimoires( owner ).filter(
+      grimoire => grimoire.system.isSpellAttuned?.( this.parent.uuid )
+    );
+  }
+
+  /**
+   * Returns all grimoires of the given actor that contain this spell.
+   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that contain this spell.
+   */
+  actorGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+  }
+
+  /**
    * Checks if the spell is in any of the actor's grimoires.
-   * @param {ActorEd} actor - The actor to check for the spell.
+   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
    * @returns {boolean} - Returns true if the spell is in any of the actor's grimoires, false otherwise.
    */
   inActorGrimoires( actor ) {
-    return !!actor.itemTypes.equipment.find( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+    const owner = actor || this.containingActor;
+    return this.actorGrimoires( owner )?.length > 0;
   }
 
   /**
