@@ -1,4 +1,4 @@
-<div class="spell-card" data-uuid="{{this.uuid}}" data-item-id="{{_id}}"
+<div class="spell-card draggable" data-uuid="{{this.uuid}}" data-item-id="{{_id}}"
      style="box-shadow: 0 0 10px {{lookup @root.config.spellcastingColors system.spellcastingType}}; border-color: {{lookup @root.config.spellcastingColors system.spellcastingType}};">
   {{#if @root.editable}}
     <div class="spell-card__delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">

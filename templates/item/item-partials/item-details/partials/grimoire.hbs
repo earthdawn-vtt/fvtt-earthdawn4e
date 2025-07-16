@@ -25,9 +25,11 @@
     localize=true
   }}
 
-  {{#each system.grimoire.spells}}
+  <div class="grimoire-spell-list spell-cards-container">
+  {{#each grimoireSpells}}
     {{> "systems/ed4e/templates/actor/cards/spell-card.hbs"}}
   {{else}}
     <p class="no-spells">{{localize "ED.Item.Grimoire.noSpells"}}</p>
   {{/each}}
+  </div>
 </fieldset>

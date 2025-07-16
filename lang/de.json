@@ -3264,6 +3264,7 @@
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
         "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
+        "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",

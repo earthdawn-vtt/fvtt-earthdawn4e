@@ -4,6 +4,8 @@ import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { DragDrop, TextEditor } = foundry.applications.ux;
+const { HTMLDocumentTagsElement }= foundry.applications.elements;
+
 
 // noinspection JSClosureCompilerSyntax
 /**
@@ -120,11 +122,16 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   /** @inheritDoc */
   async _onRender( context, options ) {
     await super._onRender( context, options );
-    if ( !game.user.isGM ) return;
-    new DragDrop( {
+
+    // Not our name, comes from Foundry API
+    // eslint-disable-next-line new-cap
+    new DragDrop.implementation( {
       dragSelector: ".draggable",
+      permissions:  {
+        dragstart: this._canDragStart.bind( this ),
+        drop:      this._canDragDrop.bind( this ),
+      },
       dropSelector: null,
-      // permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
       callbacks:    {
         dragstart: this._onDragStart.bind( this ),
         dragover:  this._onDragOver.bind( this ),
@@ -132,9 +139,11 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       }
     } ).bind( this.element );
   }
+  
   // endregion
 
   // region Event Handlers
+
   static async _onConfig( event, target ) {
     event.preventDefault();
     event.stopPropagation();
@@ -159,11 +168,40 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     app?.render( { force: true } );
   }
 
+  /**
+   * Helper method to retrieve an embedded document (possibly a grandchild).
+   * @param {HTMLElement} element   An element able to find [data-uuid].
+   * @returns {foundry.abstract.Document}   The embedded document.
+   */
+  async _getEmbeddedDocument( element ) {
+    return fromUuid(
+      element.closest( "[data-uuid]" )?.dataset?.uuid
+    );
+  }
+
   // endregion
 
   // region Drag and Drop
 
   // this is taken and adjusted from Foundry's ActorSheetV2 class
+
+  /**
+   * Define whether a user is able to begin a dragstart workflow for a given drag selector.
+   * @param {string} selector   The candidate HTML selector for dragging.
+   * @returns {boolean}         Can the current user drag this selector?
+   */
+  _canDragStart( selector ) {
+    return true;
+  }
+
+  /**
+   * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector.
+   * @param {string} selector   The candidate HTML selector for the drop target.
+   * @returns {boolean}         Can the current user drop on this selector?
+   */
+  _canDragDrop( selector ) {
+    return this.isEditable;
+  }
 
   /**
    * An event that occurs when a drag workflow begins for a draggable item on the sheet.
@@ -172,14 +210,19 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * @protected
    */
   async _onDragStart( event ) {
-    const li = event.currentTarget;
     if ( "link" in event.target.dataset ) return;
+
+    const currentTarget = event.currentTarget;
     let dragData;
 
     // Active Effect
-    if ( li.dataset.effectId ) {
-      const effect = this.item.effects.get( li.dataset.effectId );
+    if ( currentTarget.dataset.effectId ) {
+      const effect = this.item.effects.get( currentTarget.dataset.effectId );
       dragData = effect.toDragData();
+    } else {
+      // Documents
+      const document = await this._getEmbeddedDocument( currentTarget );
+      dragData = document?.toDragData?.();
     }
 
     // Set data transfer
@@ -223,6 +266,11 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
    * @protected
    */
   async _onDropDocument( event, document ) {
+    // Ignore our handling if dropped on a Foundry document tags element
+    if ( event.target.closest(
+      HTMLDocumentTagsElement.tagName.toLowerCase()
+    )?.contains( event.target ) ) return;
+
     if ( !this.item.system._onDropDocument( event, document ) ) return;
     switch ( document.documentName ) {
       case "ActiveEffect":
