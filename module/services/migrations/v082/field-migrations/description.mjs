@@ -1,4 +1,6 @@
-export default class DescriptionMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class DescriptionMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
   

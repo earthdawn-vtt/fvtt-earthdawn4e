@@ -1,6 +1,7 @@
 import ImageMigration from "./image.mjs";
+import BaseMigration from "../../../common/base-migration.mjs";
 
-export default class MaskMigration {
+export default class MaskMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
     

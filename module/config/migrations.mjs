@@ -2,10 +2,16 @@
  * System configuration for the migration of the system from Version 0.8.2 
  */
 export const systemV0_8_2 = {
-/**
- * Attributes options from the LaPorta System
- * @enum {string}
- */
+  /**
+   * Migration key for earthdawn4e legacy system
+   * @type {string}
+   */
+  legacySystemKey: "earthdawn4e-legacy",
+  
+  /**
+   * Attributes options from the LaPorta System
+   * @enum {string}
+   */
   attributes:
 [ 
   "dexterityStep", 

@@ -2,7 +2,9 @@
  * Migration handler for reputation items from earthdawn4e legacy system
  * Reputation items need to be converted from Items to group Actors
  */
-export default class ReputationMigration {
+import BaseMigration from "../../../common/base-migration.mjs";
+
+export default class ReputationMigration extends BaseMigration {
   /**
    * Migrate reputation item data to group actor format
    * Note: This handles the data structure transformation, but the actual

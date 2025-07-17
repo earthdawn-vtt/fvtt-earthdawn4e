@@ -417,16 +417,4 @@ export default function registerSystemSettings() {
       selectedToken: "ED.Settings.Chat.chatAvatarToken"
     }
   } );
-
-  /* -------------------------------------------------------------------------------- */
-  /*                                    Debugger                                      */
-  /* -------------------------------------------------------------------------------- */
-  game.settings.register( "ed4e", "debug", {
-    name:    "ED.Settings.Debug.label",
-    hint:    "ED.Settings.Debug.hint",
-    scope:   "world",
-    config:  true,
-    default: false,
-    type:    Boolean
-  } );
 }

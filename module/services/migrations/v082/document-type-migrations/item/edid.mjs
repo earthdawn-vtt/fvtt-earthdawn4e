@@ -1,9 +1,8 @@
 import ED4E from "../../../../../config/_module.mjs";
 import { determineConfigValue } from "../../../../../utils.mjs";
+import BaseMigration from "../../../common/base-migration.mjs";
 
-
-
-export default class EdIdMigration {
+export default class EdIdMigration extends BaseMigration {
   
   static async migrateEarthdawnData( source ) {
     source.system ??= {};

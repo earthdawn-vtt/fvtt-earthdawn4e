@@ -1,8 +1,9 @@
 
 import ED4E from "../../../../../config/_module.mjs";
 import ImageMigration from "./image.mjs";
+import BaseMigration from "../../../common/base-migration.mjs";
 
-export default class ShieldMigration {
+export default class ShieldMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
   

@@ -26,10 +26,6 @@ export default function () {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
     console.log( "ED4e | Initializing the ED4e Game System" );
 
-    // Initialize migration system before document configuration
-    initializeMigrations();
-    console.log( "ED4e | Migration system initialized" );
-
     // region Record Configuration Values
 
     // Hook up document classes and collections
@@ -47,7 +43,6 @@ export default function () {
     CONFIG.User.collection = documents.collections.UsersEd;
 
     Object.assign( CONFIG.queries, ED4E.queries );
-
 
     // Register Roll Extensions
     CONFIG.Dice.rolls.splice( 0, 0, dice.EdRoll );

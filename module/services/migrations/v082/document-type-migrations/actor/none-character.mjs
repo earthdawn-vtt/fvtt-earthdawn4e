@@ -1,4 +1,6 @@
-export default class NoneCharacterMigration {
+import BaseMigration from "../../../common/base-migration.mjs";
+
+export default class NoneCharacterMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
 

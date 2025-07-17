@@ -1,4 +1,6 @@
-export default class ActionMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class ActionMigration extends BaseMigration {
 
   static migrateEarthdawnData( source, migrationId = "" ) {
     // Migrate action field in system data

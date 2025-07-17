@@ -1,4 +1,6 @@
-export default class WeightMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class WeightMigration extends BaseMigration {
   static async migrateEarthdawnData( source ) {
     if ( source.system && typeof source.system.weight !== "object" ) {
       // Ensure weight object exists

@@ -1,4 +1,6 @@
-export default class UsableItemMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class UsableItemMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
     if ( source.system?.rollableItem ) {

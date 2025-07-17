@@ -1,3 +1,5 @@
+// Import migration config for system version keys
+import { systemV0_8_2 } from "../../../config/migrations.mjs";
 /**
  * Type transformations for earthdawn4e legacy system (v0.8.2) to ed4e
  * This module handles all type transformations from the old earthdawn4e system (v0.8.2 era)
@@ -9,7 +11,7 @@
  * @param {object} typeTransformationManager - The TypeTransformationManager class to register with
  */
 export function registerV082TypeTransformations( typeTransformationManager ) {
-  const sourceSystem = "earthdawn4e-legacy";
+  const sourceSystem = systemV0_8_2.legacySystemKey;
   // ITEM TYPE TRANSFORMATIONS - Direct mappings
   typeTransformationManager.registerTypeTransform( sourceSystem, "armor", "armor" );
   typeTransformationManager.registerTypeTransform( sourceSystem, "devotion", "devotion" );

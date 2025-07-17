@@ -100,7 +100,7 @@ function applyDocumentTypeMigrations( source ) {
   const itemType = source.type?.toLowerCase();
   
   // Debug: Log the item being processed
-  console.log( `[Migration Debug] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
+  console.log( `[MigrationManager] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
   
   // Map item types to their migration classes
   const itemMigrationMap = {
@@ -128,10 +128,10 @@ function applyDocumentTypeMigrations( source ) {
   // Apply the appropriate migration class if it exists
   const migrationClass = itemMigrationMap[itemType];
   if ( migrationClass ) {
-    console.log( `[Migration Debug] Found migration class for ${itemType}, executing...` );
+    console.log( `[MigrationManager] Found migration class for ${itemType}, executing...` );
     migrationClass.migrateEarthdawnData( source );
   } else {
-    console.log( `[Migration Debug] No migration class found for item type: "${itemType}"` );
+    console.log( `[MigrationManager] No migration class found for item type: "${itemType}"` );
   }
   
   return source;
@@ -157,9 +157,13 @@ function applyActorTypeMigrations( source ) {
   return source;
 }
 
+
+// Import migration config for system version keys
+import { systemV0_8_2 } from "../../../config/migrations.mjs";
+
 // Register this migration handler with the MigrationManager
-// Handle earthdawn4e legacy system migration
-MigrationManager.registerMigration( "earthdawn4e-legacy", "Item", migrateV082Item );
-MigrationManager.registerMigration( "earthdawn4e-legacy", "Actor", migrateV082Actor );
+// Use config variable for legacy system migration key
+MigrationManager.registerMigration( systemV0_8_2.legacySystemKey, "Item", migrateV082Item );
+MigrationManager.registerMigration( systemV0_8_2.legacySystemKey, "Actor", migrateV082Actor );
 
 export { migrateV082Item, migrateV082Actor };

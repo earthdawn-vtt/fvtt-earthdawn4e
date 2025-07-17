@@ -1,4 +1,6 @@
-export default class PriceMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class PriceMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
     if ( source.system?.cost ) {

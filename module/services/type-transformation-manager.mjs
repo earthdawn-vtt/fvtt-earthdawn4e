@@ -61,9 +61,9 @@ export default class TypeTransformationManager {
     const slugifiedType = source.type.slugify( { strict: true, lowercase: true } );
     const targetType = transformMap.get( slugifiedType );
     if ( targetType && targetType !== source.type ) {
-      if ( game.settings.get( "ed4e", "debug" ) === true ) {
-        console.log( `TypeTransformationManager: Transforming "${source.name || "Name-Not-Found-in-available-data"}" type "${source.type}" → "${targetType}" for system "${sourceSystem}"` );
-      }
+
+      console.log( `MigrationManager: Type Transforming "${source.name || "Name-Not-Found-in-available-data"}" type "${source.type}" → "${targetType}" for system "${sourceSystem}"` );
+
       source.type = targetType;
       return true;
     }

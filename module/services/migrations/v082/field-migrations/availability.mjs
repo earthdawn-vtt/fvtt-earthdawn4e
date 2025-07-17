@@ -1,6 +1,7 @@
 import ED4E from "../../../../config/_module.mjs";
+import BaseMigration from "../../common/base-migration.mjs";
 
-export default class AvailabilityMigration {
+export default class AvailabilityMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
   

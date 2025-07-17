@@ -2,9 +2,9 @@ import RollTypeMigration from "./roll-type-Migration.mjs";
 import EdIdMigration from "./edid.mjs";
 import AbilityMigration from "./abilities.mjs";
 import ImageMigration from "./image.mjs";
-// import DefenseMigration from "./defenses.mjs";
+import BaseMigration from "../../../common/base-migration.mjs";
 
-export default class TalentMigration {
+export default class TalentMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {    RollTypeMigration.migrateEarthdawnData( source );
     

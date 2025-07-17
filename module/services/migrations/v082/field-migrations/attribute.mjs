@@ -1,6 +1,7 @@
 import ED4E from "../../../../config/_module.mjs";
+import BaseMigration from "../../common/base-migration.mjs";
 
-export default class AttributeMigration {
+export default class AttributeMigration extends BaseMigration {
 
   static migrateEarthdawnData( source, migrationId = "" ) {
     

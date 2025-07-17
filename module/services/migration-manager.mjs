@@ -1,3 +1,5 @@
+// Import migration config for system version keys
+import { systemV0_8_2 } from "../config/migrations.mjs";
 import TypeTransformationManager from "./type-transformation-manager.mjs";
 
 /**
@@ -65,15 +67,15 @@ export default class MigrationManager {
     // Check for old earthdawn4e v0.8.2 structure patterns
     if ( source.system && typeof source.system === "object" ) {
       // Check for old earthdawn4e Actor patterns
-      if ( this.#isLegacyEarthdawn4eActor( source ) ) return "earthdawn4e-legacy";
+      if ( this.#isLegacyEarthdawn4eActor( source ) ) return systemV0_8_2.legacySystemKey;
       
       // Check for old earthdawn4e Item patterns  
-      if ( this.#isLegacyEarthdawn4eItem( source ) ) return "earthdawn4e-legacy";
+      if ( this.#isLegacyEarthdawn4eItem( source ) ) return systemV0_8_2.legacySystemKey;
     }
 
     // Check for old Foundry .data structure (fallback)
     if ( source.data && typeof source.data === "object" && !source.system ) {
-      return "earthdawn4e-legacy";
+      return systemV0_8_2.legacySystemKey;
     }
 
     // Default to no migration needed
@@ -118,15 +120,15 @@ export default class MigrationManager {
     const sourceSystem = this.detectSourceSystem( source );
     
     if ( !sourceSystem ) {
-      if ( game.settings.get( "ed4e", "debug" ) === true ) {
-        console.warn( "MigrationManager: Could not detect source system, skipping migration" );
-      }
+
+      // console.warn( "MigrationManager: Could not detect source system, skipping migration" );
+
       return source;
     }
 
-    if ( game.settings.get( "ed4e", "debug" ) === true ) {
-      console.log( `MigrationManager: Migrating ${documentClass} "${source.name || "Name-Not-Found-in-available-data"}" from "${sourceSystem}"` );
-    }
+
+    console.log( `MigrationManager: Migrating ${documentClass} "${source.name || "Name-Not-Found-in-available-data"}" from "${sourceSystem}"` );
+
 
     // Create a working copy
     const workingSource = foundry.utils.deepClone( source );
@@ -152,15 +154,11 @@ export default class MigrationManager {
           return workingSource;
         }
       } catch ( error ) {
-        if ( game.settings.get( "ed4e", "debug" ) === true ) {
-          console.error( `MigrationManager: Error during ${sourceSystem} → ed4e migration of ${documentClass} "${source.name || "Unnamed"}":`, error );
-        }
+        console.error( `MigrationManager: Error during ${sourceSystem} → ed4e migration of ${documentClass} "${source.name || "Unnamed"}":`, error );
         return workingSource;
       }
     } else {
-      if ( game.settings.get( "ed4e", "debug" ) === true ) {
-        console.log( `MigrationManager: No migration handler found for ${sourceSystem}/${documentClass}` );
-      }
+      console.log( `MigrationManager: No migration handler found for ${sourceSystem}/${documentClass}` );
       return workingSource;
     }
   }

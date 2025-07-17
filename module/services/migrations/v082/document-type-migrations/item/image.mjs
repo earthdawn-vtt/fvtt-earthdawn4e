@@ -1,4 +1,5 @@
-export default class ImageMigration {
+import BaseMigration from "../../../common/base-migration.mjs";
+export default class ImageMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
     // Only replace old earthdawn4e system paths

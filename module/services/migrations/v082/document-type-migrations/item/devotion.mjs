@@ -4,8 +4,9 @@ import AbilityMigration from "./abilities.mjs";
 import EdIdMigration from "./edid.mjs";
 import ImageMigration from "./image.mjs";
 import RollTypeMigration from "./roll-type-Migration.mjs";
+import BaseMigration from "../../../common/base-migration.mjs";
 
-export default class DevotionMigration {
+export default class DevotionMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {    RollTypeMigration.migrateEarthdawnData( source );
     

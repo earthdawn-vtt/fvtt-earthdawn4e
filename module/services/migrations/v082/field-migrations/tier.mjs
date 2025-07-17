@@ -1,4 +1,6 @@
-export default class TierMigration {
+import BaseMigration from "../../common/base-migration.mjs";
+
+export default class TierMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
   
