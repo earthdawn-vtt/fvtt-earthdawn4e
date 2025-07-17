@@ -28,7 +28,6 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     return this.mergeSchema( super.defineSchema(), {
       spellUuid: new fields.DocumentUUIDField( {
         type:     "Item",
-        embedded: true,
       } ),
       weavingAbilityUuid: new fields.DocumentUUIDField( {
         type:     "Item",
