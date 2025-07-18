@@ -328,6 +328,9 @@ slide-toggle[checked] .slide-toggle-thumb {
   position: absolute;
   left: calc(50% - 64px);
 }
+.standard-form fieldset {
+  margin-bottom: 0.7em;
+}
 .chat-message {
   background-image: url('assets/sheet/background.png');
 }
