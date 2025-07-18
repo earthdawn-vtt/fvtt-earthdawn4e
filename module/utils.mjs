@@ -838,6 +838,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs",
     "systems/ed4e/templates/chat/chat-buttons/roll-effect.hbs",
     "systems/ed4e/templates/chat/chat-buttons/take-damage.hbs",
+    "systems/ed4e/templates/chat/chat-buttons/use-maneuver.hbs",
 
     // chat Flavor
     "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
