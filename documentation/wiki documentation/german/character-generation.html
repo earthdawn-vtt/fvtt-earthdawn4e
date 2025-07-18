@@ -1,0 +1,81 @@
+<h1>Charaktergenerierung</h1>
+    <p>Das Earthdawn System für Foundry VTT bietet eine umfangreiche Charaktererschaffung um Spielern einen schnellen Start ins Spiel zu ermöglichen.</p>
+    <p>Die Charaktererschaffung ist in mehrere Unterpunkte unterteilt:</p>
+    <ol>
+        <li>Auswahl der Namensgeber Rasse</li>
+        <li>Auswahl der Berufung mit Talentpunkte-Verteilung.</li>
+        <li>Verteilung der Attributspunkte</li>
+        <li>Auswahl der Zauber (Optional)</li>
+        <li>Verteilung der Fertigkeitspunkte</li>
+        <li>Auswahl der Sprachen</li>
+        <li>Auswahl der Startausrüstung</li>
+    </ol>
+    &nbsp;
+    <h2>Voraussetzungen</h2>
+        <p>Um einen Charakter im Earthdawn System zu erstellen, sind folgende Voraussetzungen zu beachten.</p>
+        <p>Zu erst benötigen die Spieler das entsprechende Recht einen Akteur in der Welt anzulegen. Dies ist standardmäßig nur für Spielleiter vorgesehen. 
+            Um das Recht an die Spieler zu vergeben sollte der <strong>User Permission Configuration</strong> in den Foundry VTT Systemeinstellungen geöffnet werden 
+            und ein Haken bei <strong>Create Actor</strong> gesetzt werden. Wenn der Spielleiter diese Option in der Regel nicht für Spieler freigeben möchte, 
+            sollte dieses Konfiguration nach der Charaktererschaffung wieder zurückgesetzt werden.</p>
+        <p>Die nächste wichtige Voraussetzungen ist, dass die Spieler Zugriff (mindestens Beobachter Zugriff) auf die entsprechenden Kompendium Pakete oder Welt 
+            Items haben. Damit ist gemeint, dass die Charaktererschaffung nur funktioniert, wenn der Spieler Zugriff auf die Items hat die für die 
+            Charaktererschaffung benötigt werden (z.B. Namensgeber, Disziplinen, Talente, Fertigkeiten, Zauber etc.).</p>
+        <p>Wenn diese beiden Voraussetzungen erfüllt sind, kann ein Spieler die Charaktererschaffung entweder über den Menüpunkt <strong>Akteur erstellen</strong> 
+            im Akteur Verzeichnis, oder über den Chat Befehl <strong>/char</strong> starten.</p>
+        &nbsp;
+    <h2>Charaktererschaffung Konfiguration (Spielleiterinformationen)</h2>
+        <p>Die Charaktererschaffung hat mehrere Systemeinstellungen die angepasst werden können:</p>
+        <h3>Charaktergenerierung an?</h3>
+            <p>Diese Konfiguration ist standardmäßig aktiv. Das führt dazu, dass jedes Mal wenn ein Akteur vom Typ <strong>Charakter</strong> erstellt wird, 
+                die Charaktererschaffung gestartet wird. Wenn diese Konfiguration <i>deaktiviert</i> wird, muss die Charaktererschaffung manuell über den Chat Befehl 
+                <strong>/char</strong> gestartet werden.</p>
+        <h3>Verfügbare Attributspunkte</h3>
+            <p>Diese Konfiguration legt fest, wie viele Attributspunkte den Spielern bei der Charaktererschaffung zur Verfügung stehen. 
+                Standardmäßig sind dies 25 Punkte, wie auch im Spielerhandbuch festgelegt.</p>
+        <h3>Maximale Ränge</h3>
+            <p>Diese Konfiguration legt fest, wie viele Ränge auf Talente oder Fertigkeiten verteilt werden können. 
+                Standardmäßig ist der maximale Rang auf 3 festgelegt.</p>
+        <h3>Maximaler Zauberkreis</h3>
+            <p>Diese Konfiguration legt fest, welche Zauber bei der Charaktererschaffung zur Verfügung stehen. Hier kann der Kreis festgelegt werden. 
+                Standardmäßig ist der maximale Kreis auf 2 festgelegt.</p>
+        &nbsp;
+    <h2>Charaktererschaffung im Detail</h2>
+        <p>Durchd das starten der Charaktererschaffung öffnet sich ein Dialog der den Spieler durch die Charaktererschaffung hindurchführt. Der Charaktererschaffungsdialog beseitzt
+             am unteren Teil Button die durch die einzelnen Schritte der Charaktererschaffung führen. Der Button <strong>Fertigstellen</strong> ist erst aktiv, wenn alle
+             nötigen Schritte der Charaktererschaffung abgeschlossen sind. Wird er ausgelöst ist die Charaktererschaffung abgeschlossen und der Akteur wird angelegt. 
+        </p>
+        <h3>Namensgeber</h3>
+            <p>Im ersten Schritt wählte der Spieler die Namensgebende Rasse seines charakters aus einem Menü am unteren Teil des Dialoges aus. Zusätzlich hier auch eine
+                Übersicht über die einzelnen Schritte der Charaktererschaffung aufgelistet.</p>
+        <h3>Berufung</h3>
+            <p>Im zweigen Schritt wählt der Spieler zu allererst die Berufungsart. Soll es ein Adept werden (standardmäßig voreingestellt) oder soll es ein Questor werden?
+            Der Spieler kann zwischen den beiden Optionen wählen und bekommt entsprechend die Berufungsoptionen angezeigt (Disziplinen oder Questoren).</p>
+            <h4>Disziplinen</h4>
+                <p>Wenn der Spieler einen Adepten spielen will, kann er aus einer Liste von verfügbaren Disziplinen auswählen. Jede Disziplin weißt Disziplin-, Optionale- und ggf. 
+                    Freie-Talente auf. Der Spieler hat die Möglichkeit Talentränge auf die Disziplintalente und ein optionales Talent zu verteilen. </p>
+                    <h5>Namensgebertalente</h5>
+                        <p>Einige Namensgeber besitzten eigene Talente (Menschen haben Vielseitigkeit und Windlinge haben Astralsicht). Diese Talente können zusätzlich zu den 
+                            Disziplin- und Optionalen-Talenten mit Rängen versehen werden.</p>
+            <h4>Questoren</h4>
+                <p>Wenn der Spieler einen Questor spielen will, kann er einen Questor aus der Liste der verfügbaren Questoroptionen auswählen. Anschließend besteht die Möglichkeit eine 
+                    Weihekraft zu wählen und einen Rang auf die Weihekraft zu verteilen. Die Questor-Weihekraft wird nach der Charaktererschaffung autoamtisch angelegt und auf Rang 1 
+                    gesetzt.</p>
+        <h3>Attribute</h3>
+            <p>Im dritten Schritt kann der Spieler die Attributspunkte auf die Attribute verteilen. Die Verteilung der Attributspunkte erfolgt über + & - Buttons jeweils neben dem
+                Attribut. Die Verteilung der Attributspunkte verändert automatisch die Charakteristiken des Charakters. Im unteren Teil des Dialoges wird sowohl der aktuelle Wert
+                als auch der Charakteristikwert angezeigt der sich durch das erhöhen oder das senken des Attributs verändert.</p>
+        <h3>Zauber</h3>
+            <p>Wenn der Spieler eine Disziplin gewählt hat die zaubern kann, müssen hier nun die Zauber ausgewählt werden. Dies geschieht über einfaches anklicken des jeweiligen Zaubers.</p>
+        <h3>Fertigkeiten</h3>
+            <p>Im nächsten Schritt muss der Spieler die Fertigkeiten seines Charakters auswählen. Hier muss der Spieler mindestens einen Rang in ein Kunsthandwerk, 
+                2 Ränge in Wissensfertigkeiten und 3 Ränge in Sprachfertigkeiten verteilen. Die Sprachfertigkeiten sind bereits vorausgewählt und können nur verbessert aber nicht 
+                reduziert oder entfernt werden. Zusätzlich kann der Spieler noch 8 freie Fertigkeitsränge auf beliebige Fertigkeiten verteilen.</p>
+            <p>Zum Verteilen der Ränge wählt der Spieler lediglich das + oder - Symbol neben der Fertigkeit aus.</p>
+        <h3>Sprachen</h3>
+            <p>Im nächsten Schritt kann der Spieler die Sprachen seines Charakters auswählen. Hierbei stehen ihm eine Anzahl an Sprachen zur Verfügung die seinem Rang
+                in der Fertigkeit <strong>Lesen und Schreiben</strong> und der Fertigkeit <strong>Fremdsprachen</strong> entsprechen.</p>
+        <h3>Ausrüstung</h3>
+            <p>Im letzten Schritt kann der Spieler die Ausrüstung seines Charakters auswählen. Hierbei stehen ihm verschiedene Ausrüstungsgegenstände zur Verfügung, die der Grundausrüstung
+                aus dem Kaptiel <strong>Charaktererschaffung</strong> aus dem Spielerhandbuch entsprechen. Zusätzliche Ausrüstung kann der Spieler ausserhalb der Charaktererschaffung 
+                hinzufügen.</p>
+            </p>
