@@ -1,6 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import LearnableTemplate from "./templates/learnable.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { MAGIC } from "../../config/_module.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
@@ -88,11 +88,39 @@ export default class SpellData extends ItemDataModel.mixin(
           initial:  [],
         } ),
       } ),
-      effect: new fields.StringField( {
-        required: true,
-        blank:    true,
-        initial:  "",
-      } ),
+      effect: new fields.SchemaField( {
+        type: new fields.StringField( {
+          required: true,
+          blank:    false,
+          choices:  MAGIC.spellEffectTypes,
+          initial:  "special",
+        } ),
+        details: new fields.SchemaField( {
+          damage:  new fields.SchemaField( {
+            stepModifier: new fields.NumberField( {
+              required: true,
+              nullable: false,
+              initial:  0,
+              integer:  true,
+            } ),
+          }, {} ),
+          effect:  new fields.SchemaField( {}, {} ),
+          macro:   new fields.SchemaField( {
+            macroUuid: new fields.DocumentUUIDField( {
+              type:     "Macro",
+            }, ),
+          }, {} ),
+          special: new fields.SchemaField( {
+            description: new fields.StringField( {
+              required: true,
+              nullable: false,
+              blank:    true,
+              trim:     true,
+              initial:  "",
+            }, ),
+          }, {} ),
+        }, {} ),
+      }, {} ),
       keywords: new fields.SetField( new fields.StringField( {
         required: true,
         nullable: false,

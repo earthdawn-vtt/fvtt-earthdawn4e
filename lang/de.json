@@ -615,6 +615,12 @@
         "inst":                                    "Sofort",
         "special":                                 "Spezial"
       },
+      "SpellEffectTypes": {
+        "damage":                                  "Schaden",
+        "effect":                                  "Effekt",
+        "macro":                                   "Makro",
+        "special":                                 "Spezial"
+      },
       "SpellEnhancements": {
         "area":                                    "Wirkungsbereich",
         "duration":                                "Dauer",
@@ -2093,8 +2099,44 @@
               "label":                             "Dauer"
             },
             "effect": {
+              "details": {
+                "damage": {
+                  "hint":                          "Details zur Schadensstufe",
+                  "label":                         "Schadensdetails",
+                  "stepModifier": {
+                    "hint":                        "Modifikator der auf die Willensstufe addiert wird",
+                    "label":                       "Schadensstufen Modifikator (WIL)"
+                  }
+                },
+                "effect": {
+                  "hint":                          "Der Spruch verursacht einen ActiveEffect",
+                  "label":                         "ActiveEffect"
+                },
+                "hint":                            "Details zum Effekt des Spruches",
+                "label":                           "Effektdetails",
+                "macro": {
+                  "hint":                          "Makro das den Effekt des Spruches ausführt",
+                  "label":                         "Effekt Makro",
+                  "macroUuid": {
+                    "hint":                        "UUID des Makros das den Effekt des Spruches ausführt",
+                    "label":                       "Effekt-Makro"
+                  }
+                },
+                "special": {
+                  "description": {
+                    "hint":                        "Beschreibung des Effekts des Spruches",
+                    "label":                       "Effektbeschreibung"
+                  },
+                  "hint":                          "Eine textuelle Beschreibung des Effekts des Spruches",
+                  "label":                         "Spezial"
+                }
+              },
               "hint":                              "Effekt des Spruches",
-              "label":                             "Spruch Effekt"
+              "label":                             "Spruch Effekt",
+              "type": {
+                "hint":                            "Art des Effektes des Spruches",
+                "label":                           "Effektart"
+              }
             },
             "element": {
               "subType": {
@@ -3167,6 +3209,7 @@
         "grimoireConfiguration":                   "Grimoire Konfiguration",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
+        "spellEffect":                             "Effekt",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
         "talentKnacks":                            "Kniffe",

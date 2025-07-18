@@ -170,6 +170,30 @@ export const spellcastingTypes = {
 };
 preLocalize( "spellcastingTypes" );
 
+/**
+ * The different types of spell effects.
+ * @enum {{label: string, flavorTemplate: string}}
+ */
+export const spellEffectTypes = {
+  damage: {
+    label:            "ED.Config.SpellEffectTypes.damage",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-damage-roll-flavor.hbs",
+  },
+  effect: {
+    label:            "ED.Config.SpellEffectTypes.effect",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-effect-roll-flavor.hbs",
+  },
+  macro: {
+    label:            "ED.Config.SpellEffectTypes.macro",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-macro-roll-flavor.hbs",
+  },
+  special: {
+    label:            "ED.Config.SpellEffectTypes.special",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-special-roll-flavor.hbs",
+  },
+};
+preLocalize( "spellEffectTypes", { key: "label" } );
+
 export const spellEnhancements = {
   area: {
     label:         "ED.Config.SpellEnhancements.area",

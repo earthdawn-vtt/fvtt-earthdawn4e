@@ -615,6 +615,12 @@
         "inst":                                    "TODO: Add translation",
         "special":                                 "TODO: Add translation"
       },
+      "SpellEffectTypes": {
+        "damage":                                  "TODO: Add translation",
+        "effect":                                  "TODO: Add translation",
+        "macro":                                   "TODO: Add translation",
+        "special":                                 "TODO: Add translation"
+      },
       "SpellEnhancements": {
         "area":                                    "TODO: Add translation",
         "duration":                                "TODO: Add translation",
@@ -2078,8 +2084,44 @@
               "label":                             "TODO: Add translation"
             },
             "effect": {
+              "details": {
+                "damage": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation",
+                  "stepModifier": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
+                },
+                "effect": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation",
+                "macro": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation",
+                  "macroUuid": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
+                },
+                "special": {
+                  "description": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "TODO: Add translation",
+              "type": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "element": {
               "subType": {
@@ -3149,6 +3191,7 @@
         "grimoireConfiguration":                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
+        "spellEffect":                             "TODO: Add translation",
         "spellEnhancement":                        "TODO: Add translation",
         "summary":                                 "TODO: Add translation",
         "talentKnacks":                            "TODO: Add translation",

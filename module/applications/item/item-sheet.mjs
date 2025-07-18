@@ -52,8 +52,9 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       classes:  [ "general", "scrollable" ]
     },
     "details": {
-      template: "systems/ed4e/templates/item/item-partials/item-details.hbs",
-      classes:  [ "details", "scrollable" ]
+      template:   "systems/ed4e/templates/item/item-partials/item-details.hbs",
+      classes:    [ "details", "scrollable" ],
+      scrollable: [ "" ],
     },
     "effects": {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
