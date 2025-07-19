@@ -1171,6 +1171,16 @@
                 "label":                           "Aktuell"
               }
             },
+            "knockdown": {
+              "immune": {
+                "hint":                            "Ist der Akteur immun gegen Niederschlag?",
+                "label":                           "Immun gegen Niederschlag"
+              },
+              "step": {
+                "hint":                            "Stufe des Niederschlags des Akteurs",
+                "label":                           "Stufe"
+              }
+            },
             "relations": {
               "attitude": {
                 "hint":                            "Einstellung des Akteurs gegenüber anderen Akteuren",
