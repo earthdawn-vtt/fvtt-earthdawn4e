@@ -128,7 +128,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         label:    game.i18n.localize( "ED.Actor.Buttons.knockDownTest" ),
         cssClass: "knockDownTest",
         icon:     `fas ${ED4E.icons.knockDownTest}`,
-        action:   "knockDownTest",
+        action:   "knockdownTest",
       },
       {
         type:     "button",
