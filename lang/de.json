@@ -2999,9 +2999,6 @@
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
       },
-      "Errors": {
-        "noLp":                                    "Keine Legendenpunkte angegeben!"
-      },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
@@ -3315,6 +3312,7 @@
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
+        "noLp":                                    "Keine Legendenpunkte angegeben!",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
