@@ -2982,9 +2982,6 @@
           "title":                                 "TODO: Add translation"
         }
       },
-      "Errors": {
-        "noLp":                                    "No Legend Points entered!"
-      },
       "Header": {
         "activeUser":                              "Active User",
         "actorsNoUserConfigured":                  "Not Configured, Owned Actors",
@@ -3298,6 +3295,7 @@
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
+        "noLp":                                    "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noRecoveryTestsAvailable":                "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
