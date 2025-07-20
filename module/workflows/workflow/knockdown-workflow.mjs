@@ -28,13 +28,27 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   _difficulty;
 
   /**
+   * Knockdown Ability.
+   * @type {object|null}
+   */
+  _knockdownAbility;
+
+  /**
+   * Knockdown strain.
+   * @type {number}
+   */
+  _strain;
+
+  /**
    * @param {foundry.documents.Actor} actor - The actor that is performing the knockdown.
    * @param {KnockdownWorkflowOptions} options - The options for the knockdown workflow.
    */
   constructor( actor, options ) {
     super( actor, options );
-    this._knockdownStep = actor.system.knockdown.step;
     this._immune = actor.system.knockdown.immune || false;
+    this._knockdownAbility = options.knockdownAbility || null;
+    this._strain = options.knockdownAbility?.system?.strain || 0;
+    this._knockdownStep = this._knockdownAbility ? this._knockdownAbility.system.rankFinal :actor.system.knockdown.step;
     // include option to set difficulty to full damage taken
     this._difficulty = options.difficulty || game.settings.get( "ed4e", "minimumDifficulty" );
 
@@ -57,6 +71,9 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
         step:         {
           base:      this._knockdownStep,
           modifiers: stepModifiers
+        },
+        strain: {
+          base:      this._strain,
         },
         target: {
           base:      this._difficulty,
@@ -89,6 +106,7 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     await this._createRoll();
     await this._roll.evaluate();
     this._result = this._roll;
+    console.log( "Knockdown Roll Result: ", this._result );
   }
 
   /**
@@ -97,16 +115,14 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _processKnockdown() {
+    
     await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
-
-
     const isSuccess = this._result.total >= this._difficulty;
     if ( !isSuccess ) {
-      ui.notifications.warn( "YOU ARE DOWN!" );
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Info.youAreKnockedDown" ) );
       // set status effect for knockdown etc.
-      return;
-    }
-
+      await this._actor.update( { "system.condition.knockedDown": true } ); 
+      this._actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
+    } 
   }
-
 }

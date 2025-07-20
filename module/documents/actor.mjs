@@ -564,56 +564,28 @@ export default class ActorEd extends Actor {
     return this.drawWeapon();
   }
 
+  async knockdownAbility() {
+    const knockdownAbility = await fromUuid(
+      await this.getPrompt( "knockdown" )
+    );
+    return knockdownAbility;
+  }
+  
   async knockdownTest( damageTaken, options = {} ) {
-    if ( this.system.condition.knockedDown === true ) {
-      ui.notifications.warn( "Localize: You are already knocked down." );
+    if ( this.system.condition.knockedDown ) {
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
       return;
     }
-    const { attributes, characteristics } = this.system;
-    let devotionRequired = false;
-    let strain = 0;
-    let knockdownStep = attributes.str.step;
-
-    const knockdownAbility = await fromUuid(
-      await this.getPrompt( "knockDown" )
-    );
-
-    if ( knockdownAbility ) {
-      const { attribute, level, devotionRequired: devotion, strain: abilityStrain } = knockdownAbility.system;
-      knockdownStep = ( attributes[attribute]?.step || knockdownStep ) + level;
-      devotionRequired = !!devotion;
-      strain = { base: abilityStrain };
-    }
-
-    const difficultyFinal = {
-      base: Math.max( damageTaken - characteristics.health.woundThreshold, 0 ),
-    };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.knockdownTest", {
-      sourceActor: this.name,
-      step:        knockdownStep
-    } );
-
-    const knockdownStepFinal = {
-      base:      knockdownStep,
-      modifiers: {
-        "localize: Global Knockdown Bonus": this.system.singleBonuses.knockdownEffects.value,
-      }
-    };
-    const edRollOptions = EdRollOptions.fromActor(
+    const woundThreshold = this.system.characteristics.health.woundThreshold;
+    const knockdownAbility = await this.knockdownAbility();
+    const knockdownWorkflow = new KnockdownWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "knockDown",
-        strain:           strain,
-        target:           difficultyFinal,
-        step:             knockdownStepFinal,
-        devotionRequired: devotionRequired,
-        chatFlavor:       chatFlavor
+        knockdownAbility,
+        difficulty: damageTaken - woundThreshold
       },
-      this
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-
-    this.processRoll( roll );
+    return knockdownWorkflow.execute();
   }
 
   async jumpUp( options = {} ) {
@@ -783,6 +755,18 @@ export default class ActorEd extends Actor {
   }
 
   // endregion
+  
+  /**
+   * Retrieves a specific prompt based on the provided prompt type.
+   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
+   * effectively acting as a proxy to access various prompts defined within the factory.
+   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockdown" )} promptType - The type of prompt to retrieve.
+   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
+   * associated with the given `promptType`. The exact return type depends on promptType.
+   */
+  async getPrompt( promptType ) {
+    return this._promptFactory.getPrompt( promptType );
+  }
 
   // region LP Tracking
 
