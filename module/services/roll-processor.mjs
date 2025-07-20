@@ -111,13 +111,4 @@ export default class RollProcessor {
     }
     return updateData;
   }
-
-  static async _processKnockdown( roll, actor, updateData = {} ) {
-    await roll.evaluate();
-    if ( roll.isFailure ) {
-      updateData["system.condition.knockedDown"] = true;
-      // actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
-    }
-    return updateData;
-  }
 }
