@@ -3306,7 +3306,8 @@
         "noWeavingNecessary":                      "Es ist keine Fadenwebenprobe nötig. Der Zauber ist bereit zum Wirken.",
         "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
-        "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen."
+        "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen.",
+        "youAreKnockedDown":                       "Du wurdest niedergeschlagen!"
       },
       "Warn": {
         "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
