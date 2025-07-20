@@ -2981,9 +2981,6 @@
           "title":                                 "TODO: Add translation"
         }
       },
-      "Errors": {
-        "noLp":                                    "TODO: Add translation"
-      },
       "Header": {
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
@@ -3297,6 +3294,7 @@
         "livingArmorOnly":                         "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
+        "noLp":                                    "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noRecoveryTestsAvailable":                "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
