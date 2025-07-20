@@ -57,8 +57,8 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.jumpUp",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
-  knockDown: {
-    label:            "ED.Config.RollTypes.knockDown",
+  knockdown: {
+    label:            "ED.Config.RollTypes.knockdown",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
   },
   reaction: {

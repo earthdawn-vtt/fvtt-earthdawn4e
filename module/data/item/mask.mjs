@@ -21,7 +21,7 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
  * @property {number} socialDefense             social defense modifications
  * @property {number} physicalArmor             physical armor modifications
  * @property {number} mysticArmor               mystic armor modifications
- * @property {number} knockDownStep             knock down step modifications
+ * @property {number} knockdownStep             knock down step modifications
  * @property {number} recoveryTestsResource             recovery tests modifications
  * @property {number} deathThreshold            death threshold modifications
  * @property {number} unconsciousThreshold      unconscious threshold modifications
@@ -171,7 +171,7 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      knockDownStep: new fields.NumberField( {
+      knockdownStep: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,

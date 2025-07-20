@@ -106,7 +106,7 @@
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDownTest":                           "Niederschlag",
+        "knockdownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
         "tailAttack":                              "Schwanzangriff",
@@ -589,7 +589,7 @@
         "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
         "spellcasting":                            "Spruchzauberei",
@@ -1718,7 +1718,7 @@
               "hint":                              "Stufe der Initiative des Maskenträgers",
               "label":                             "Initiativestufe"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                              "Stufe des Niederschlagens",
               "label":                             "Niederschlagungsstufe"
             },
@@ -3133,7 +3133,7 @@
         "classAdvancement":                        "Klassenaufstieg",
         "drawWeapon":                              "Waffe ziehen",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "learnAbility":                            "Fähigkeit lernen",
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
@@ -3162,7 +3162,7 @@
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
-      "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden"
     },
@@ -3396,8 +3396,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
-        "knockDown":                               "ED-ID für Niederschlag",
-        "knockDownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
+        "knockdown":                               "ED-ID für Niederschlag",
+        "knockdownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",

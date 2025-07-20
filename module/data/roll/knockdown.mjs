@@ -20,7 +20,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
         required: false,
         nullable: true,
         blank:    true,
-        initial:  "knockDown",
+        initial:  "knockdown",
         choices:  ED4E.ROLLS.rollTypes,
       } ),
     } );
@@ -31,7 +31,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
     const rollOptions = super.fromActor( data, actor, options ).toObject();
 
     rollOptions.testType = "action";
-    rollOptions.rollType = "knockDown";
+    rollOptions.rollType = "knockdown";
 
     return new this( rollOptions, actor, options );
   }
