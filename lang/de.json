@@ -902,6 +902,7 @@
           "FIELDS": {
             "characteristics": {
               "armor": {
+                "test"
               },
               "defenses": {
               },
