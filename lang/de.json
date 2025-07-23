@@ -3324,6 +3324,7 @@
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
         "spellAlreadyAttunedInGrimoire":           "Der Zauber ist bereits im Grimoire abgestimmt.",
         "spellNotReadyToCast":                     "Der Zauber ist nicht bereit zum Wirken. Es fehlen noch Fäden.",
+        "versatilityTalentLimit":                  "Das Limit für Vielseitigkeitstalente wurde erreicht.",
         "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
       }
     },

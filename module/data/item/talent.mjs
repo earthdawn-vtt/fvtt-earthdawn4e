@@ -237,6 +237,18 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       category = await promptFactoryItem.getPrompt( "talentCategory" );
     }
 
+    // versatility validation
+    if ( category === "versatility" ) {
+      const versatilityTalents = actor.items.filter(
+        i => i.type === "talent" && i.system.talentCategory === "versatility"
+      );
+      const versatility = actor.items.filter( item => item.type === "talent" && item.system.edid === "versatility" );
+      if ( versatilityTalents.length === versatility[0].system.level ) {
+        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.versatilityTalentLimit" ) );
+        return;
+      }
+    }
+
     // assign the level at which the talent was learned and the source discipline
     if ( !learnedItem.system.source?.class ) {
       const promptFactoryActor = PromptFactory.fromDocument( actor );
@@ -253,7 +265,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // update the learned talent with the new data
     await learnedItem.update( {
       "system.talentCategory":        category ?? learnedItem.system.talentCategory,
-      "system.source.class":          learnedItem.system.source?.class ?? discipline.uuid,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline?.uuid,
       "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
     
