@@ -1,9 +1,7 @@
 /* eslint-disable complexity */
 import EdRollOptions from "../data/roll/common.mjs";
-import ED4E from "../config/_module.mjs";
 import RollPrompt from "../applications/global/roll-prompt.mjs";
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
-
 import LegendPointHistory from "../applications/advancement/lp-history.mjs";
 import LpEarningTransactionData from "../data/advancement/lp-earning-transaction.mjs";
 import LpSpendingTransactionData from "../data/advancement/lp-spending-transaction.mjs";
@@ -14,7 +12,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
-import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
+import { AttributeWorkflow, AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
@@ -511,34 +509,19 @@ export default class ActorEd extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Roll a generic attribute test. Uses {@link RollPrompt} for further input data.
-   * @param {string} attributeId            The 3-letter id for the attribute (e.g. "per").
-   * @param {object} edRollOptionsData      Any {@link EdRollOptions} that will be overwritten with the provided values.
-   * @param {object} options                Any additional options for the {@link EdRoll}.
-   * @returns {Promise<EdRoll>}             The processed Roll.
+   * @description                       Attribute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @param {object} options            Any additional options for the {@link EdRoll}.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
-  async rollAttribute( attributeId, edRollOptionsData = {}, options = {} ) {
-    const attributeStep = this.system.attributes[attributeId].step;
-    const step = { base: attributeStep };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAttribute", {
-      sourceActor: this.name,
-      step:        attributeStep,
-      attribute:   `${ game.i18n.localize( ED4E.attributes[attributeId].label ) }`
-    } );
-    const edRollOptions = EdRollOptions.fromActor(
+  async rollAttribute( attributeId, options = {} ) {
+    const attributeWorkflow = new AttributeWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "attribute",
-        strain:           0,
-        target:           undefined,
-        step:             step,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
-      },
-      this
+        attributeId: attributeId,
+      }
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll, { rollToMessage: true } );
+    return attributeWorkflow.execute();
   }
 
   /**

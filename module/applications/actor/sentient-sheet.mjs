@@ -255,7 +255,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const rollType = target.dataset.rollType;
     if ( rollType === "attribute" ) {
       const attribute = target.dataset.attribute;
-      this.document.rollAttribute( attribute, {}, { event: event } );
+      this.document.rollAttribute( attribute, { event: event } );
     }  else if ( rollType === "equipment" ) {
       const li = target.closest( ".item-id" );
       const equipment = this.document.items.get( li.dataset.itemId );

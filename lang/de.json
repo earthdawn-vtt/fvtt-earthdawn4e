@@ -356,7 +356,7 @@
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
-        "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
+        "rollAttribute":                           "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
