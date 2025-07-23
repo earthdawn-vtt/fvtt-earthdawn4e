@@ -10,6 +10,7 @@ import AvailabilityMigration from "./migration/old-system-V082/availability.mjs"
 import PriceMigration from "./migration/old-system-V082/price.mjs";
 import WeightMigration from "./migration/old-system-V082/weight.mjs";
 import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -334,8 +335,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   /**

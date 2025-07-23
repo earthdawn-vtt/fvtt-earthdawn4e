@@ -6,6 +6,7 @@ import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
+import RollProcessor from "../../../services/roll-processor.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -220,7 +221,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollAttack() {
@@ -261,7 +262,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async _attack() {
