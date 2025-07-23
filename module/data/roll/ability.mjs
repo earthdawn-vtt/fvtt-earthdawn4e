@@ -15,6 +15,13 @@ export default class AbilityRollOptions extends EdRollOptions {
         type:     "Item",
         embedded: true,
       } ),
+      rollType: new fields.StringField( {
+        required: false,
+        nullable: true,
+        blank:    true,
+        initial:  "ability",
+        choices:  ED4E.ROLLS.rollTypes,
+      } ),
     } );
   }
 

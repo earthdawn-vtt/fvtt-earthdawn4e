@@ -9,4 +9,5 @@ export { default as BaseCastingWorkflow } from "./base-casting-workflow.mjs";
 export { default as MatrixCastingWorkflow } from "./matrix-casting-workflow.mjs";
 export { default as GrimoireCastingWorkflow } from "./grimoire-casting-workflow.mjs";
 export { default as RawCastingWorkflow } from "./raw-casting-workflow.mjs";
+export { default as AbilityWorkflow } from "./ability-workflow.mjs";
 export { default as Rollable } from "./rollable.mjs";
