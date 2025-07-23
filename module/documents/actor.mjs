@@ -18,6 +18,8 @@ import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
+import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
+import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -504,9 +506,7 @@ export default class ActorEd extends Actor {
     );
   }
 
-  /* -------------------------------------------- */
-  /*                   Rolls                      */
-  /* -------------------------------------------- */
+  // region Rolls
 
   /**
    * @description                       Attribute Roll.
@@ -515,6 +515,7 @@ export default class ActorEd extends Actor {
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
   async rollAttribute( attributeId, options = {} ) {
+
     const attributeWorkflow = new AttributeWorkflow(
       this,
       {
@@ -522,6 +523,47 @@ export default class ActorEd extends Actor {
       }
     );
     return attributeWorkflow.execute();
+  }
+
+  /**
+   * @description                       Half magic Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @param {object} options            Any additional options for the {@link EdRoll}.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollHalfMagic( attributeId, options = {} ) {
+    let discipline;
+    if ( this.isMultiDiscipline ) {
+      const disciplineUuid = await this.getPrompt( "halfMagicDiscipline" );
+      discipline = await fromUuid( disciplineUuid );
+    } else {
+      discipline = this.highestDiscipline;
+    }
+    
+    const halfMagicWorkflow = new HalfMagicWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+        discipline:  discipline,
+      }
+    );
+    return halfMagicWorkflow.execute();
+  }
+
+  /**
+   * @description                       Substitute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @param {object} options            Any additional options for the {@link EdRoll}.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollSubstitute( attributeId, options = {} ) {
+    const substituteWorkflow = new SubstituteWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+      }
+    );
+    return substituteWorkflow.execute();
   }
 
   /**

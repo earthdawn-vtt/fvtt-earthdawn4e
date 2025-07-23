@@ -1,0 +1,120 @@
+import ActorWorkflow from "./actor-workflow.mjs";
+import Rollable from "./rollable.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
+import EdRollOptions from "../../data/roll/common.mjs";
+import ED4E from "../../config/_module.mjs";
+
+/**
+ * Workflow for handling actor half magic tests
+ */
+export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
+
+  /**
+   * Attribute Id
+   * @type {string}
+   * @private
+   */
+  _attributeId;
+
+  /**
+   * Discipline
+   * @type {ItemED}
+   * @private
+   */
+  _discipline;
+
+  /**
+   * Actor
+   * @type {ActorEd}
+   * @private
+   */
+  _actor;
+
+  /**
+   * @param {ActorEd} actor The actor performing the half magic
+   * @param {HalfMagicWorkflowOptions} [options] Options for the half magic workflow
+   */
+  constructor( actor, options = {} ) {
+    super( actor, options );
+    this._actor = actor;
+    this._discipline = options.discipline;
+    this._attributeId = options.attributeId;
+
+    this._steps = [
+      this._prepareHalfMagicRollOptions.bind( this ),
+      this._performHalfMagicRoll.bind( this ),
+      this._processHalfMagicRoll.bind( this ),
+    ];
+  }
+
+
+  /**
+   * Prepares the half magic roll options
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _prepareHalfMagicRollOptions() {
+    const stepModifiers = {};
+    const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
+    const allActionsModifiers = this._actor.system.globalBonuses?.allActions.value ?? 0;
+    if ( allTestsModifiers ) {
+      stepModifiers[ED4E.EFFECTS.globalBonuses.allTests.label] = allTestsModifiers;
+    }
+    if ( allActionsModifiers ) {
+      stepModifiers[ED4E.EFFECTS.globalBonuses.allActions.label] = allActionsModifiers;
+    }
+    const attribute = this._actor.system.attributes[this._attributeId];
+    const finalStep = attribute.step + this._discipline.system.level;
+    this._rollOptions = EdRollOptions.fromActor(
+      {
+        step:         {
+          base:      finalStep,
+          modifiers: stepModifiers
+        },
+        
+        target:      {
+          base:      undefined,
+        },
+        chatFlavor: game.i18n.format(
+          "ED.Chat.Flavor.rollHalfMagic",
+          {
+            actor:      this._actor.name,
+            step:       finalStep,
+            discipline: this._discipline.name,
+            attribute:  ED4E.attributes[this._attributeId].label,
+          },
+        ),
+        rollType: "attribute",
+        testType: "action",
+      },
+      this._actor,
+    );
+  }
+
+  /**
+   * Performs the half magic roll
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _performHalfMagicRoll() {
+    if ( this._roll === null ) {
+      this._roll = null;
+      this._result = null;
+      return;
+    }
+
+    await this._createRoll();
+    await this._roll.evaluate();
+    this._result = this._roll;
+  }
+
+  /**
+   * Processes the half magic based on the roll result and recovery mode
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _processHalfMagicRoll() {
+    await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
+  }
+
+}

@@ -11,4 +11,6 @@ export { default as GrimoireCastingWorkflow } from "./grimoire-casting-workflow.
 export { default as RawCastingWorkflow } from "./raw-casting-workflow.mjs";
 export { default as AttributeWorkflow } from "./attribute-workflow.mjs";
 export { default as RecoveryWorkflow } from "./recovery-workflow.mjs";
+export { default as SubstituteWorkflow } from "./substitute-workflow.mjs";
+export { default as HalfMagicWorkflow } from "./half-magic-workflow.mjs";
 export { default as Rollable } from "./rollable.mjs";
