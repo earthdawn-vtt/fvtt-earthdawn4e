@@ -17,3 +17,4 @@ export function initializeMigrations() {
 }
 
 export { MigrationManager };
+export { TypeTransformationManager };
