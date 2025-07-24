@@ -3169,6 +3169,7 @@
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
         "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
+        "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie"
       },
