@@ -3,11 +3,15 @@ import Rollable from "./rollable.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
+
+const DialogClass = DialogEd;
 
 /**
  * Workflow for handling actor substituting an Ability with an Attribute
  */
 export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
+
 
   /**
    * attribute Id
@@ -15,6 +19,20 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   _attributeId;
+
+  /**
+   * action
+   * @type {string}
+   * @private
+   */
+  _action;
+
+  /**
+   * attack type, optional parameter from buttons
+   * @type {string}
+   * @private
+   */
+  _attackType;
 
   /**
    * substitute name
@@ -38,15 +56,76 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     super( actor, options );
     this._actor = actor;
     this._attributeId = options.attributeId;
-    this._substituteName = options.substituteName;
 
     this._steps = [
+      this._chooseSubstituteAbility.bind( this ),
+      this._chooseAlternativeWorkflow.bind( this ),
       this._prepareSubstituteRollOptions.bind( this ),
       this._performSubstituteRoll.bind( this ),
       this._processSubstituteRoll.bind( this ),
     ];
   }
 
+  /**
+   * Chooses the substitute ability for the roll
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _chooseSubstituteAbility() {
+    const buttons = await this.#getAbilityButtonByAttribute( this._attributeId );
+    console.log( "SubstituteWorkflow: attributeId", this._attributeId, "buttons", buttons );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "substitute-prompt",
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
+      classes:     [ "earthdawn4e", "substitute-prompt flexcol" ],
+      window:      {
+        title:       "ED.Dialogs.Title.substitute",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: buttons
+    } );
+  }
+
+  async #getAbilityButtonByAttribute( attributeId ) {
+    const modes = ED4E.WORKFLOWS.substituteModes[attributeId];
+    if ( !modes ) return [];
+
+    // Build button data for each mode
+    const buttons = [];
+    for ( const [ key, mode ] of Object.entries( modes ) ) {
+      buttons.push( {
+        action:   `${mode.rollType}:${key}`,
+        label:    game.i18n.localize( mode.label ),
+        icon:     "",
+        class:    `button-standard substitute-ability ${key}`,
+        default:  false,
+        callback: () => {
+        // Set the action and modeKey immediately after click
+          this._action = mode.rollType;
+          this._substituteName = game.i18n.localize( mode.label );
+          if ( mode.attackType ) {
+            this._attackType = mode.attackType;
+          }
+          console.log( `Button clicked: ${mode.rollType}:${key}` );
+        }
+      } );
+    }
+    return buttons;
+  }
+
+  /**
+   * Choose the workflow based on the selected button
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _chooseAlternativeWorkflow( ) {
+    if ( this._action === "attack" ) {
+      return this._actor.attack( this._attackType );
+    } 
+  }
 
   /**
    * Prepares the half magic roll options
@@ -54,6 +133,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _prepareSubstituteRollOptions() {
+    if ( this._action !== "ability" ) return; // Only run for ability
     const stepModifiers = {};
     const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
     const allActionsModifiers = this._actor.system.globalBonuses?.allActions.value ?? 0;
@@ -83,7 +163,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
             substitute:    this._substituteName,
           },
         ),
-        rollType: "attribute",
+        rollType: "ability",
         testType: "action",
       },
       this._actor,
@@ -96,6 +176,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _performSubstituteRoll() {
+    if ( this._action !== "ability" ) return; // Only run for ability
     if ( this._roll === null ) {
       this._roll = null;
       this._result = null;
@@ -113,6 +194,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _processSubstituteRoll() {
+    if ( this._action !== "ability" ) return; // Only run for ability
     await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
   }
 

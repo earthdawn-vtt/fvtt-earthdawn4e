@@ -567,48 +567,6 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * @summary                           Ability rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
-   * @description                       Roll an Ability. use {@link RollPrompt} for further input data.
-   * @param {ItemEd} ability            ability must be of type AbilityTemplate & TargetingTemplate
-   * @param {object} edRollOptionsData  Any {@link EdRollOptions} that will be overwritten with the provided values..
-   * @param {object} options            Any additional options for the {@link EdRoll}.
-   * @returns {Promise<EdRoll>}         The processed Roll.
-   */
-  async rollAbility( ability, edRollOptionsData = {}, options = {} ) {
-    const attributeStep = this.system.attributes[ability.system.attribute].step;
-    const abilityStep = attributeStep + ability.system.level;
-    const difficulty = ability.system.getDifficulty();
-    if ( difficulty === undefined || difficulty === null ) {
-      throw new TypeError( "ability is not part of Targeting Template, please call your Administrator!" );
-    }
-    const difficultyFinal = { base: difficulty };
-    const devotionRequired = !!ability.system.devotionRequired;
-    const strain = { base: ability.system.strain };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAbility", {
-      sourceActor: this.name,
-      ability:     ability.name,
-      step:        abilityStep
-    } );
-    const abilityFinalStep = { base: abilityStep };
-
-    const edRollOptions = EdRollOptions.fromActor(
-      {
-        testType:         "action",
-        rollType:         "ability",
-        strain:           strain,
-        target:           difficultyFinal,
-        step:             abilityFinalStep,
-        devotionRequired: devotionRequired,
-        chatFlavor:       chatFlavor
-      },
-      this
-    );
-    edRollOptions.updateSource( edRollOptionsData );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll );
-  }
-
-  /**
    * @summary                     Equipment rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
    * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate

@@ -263,8 +263,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         this.document.rollHalfMagic( attribute, { event: event } );
       }
       else if ( attributeMode === "rollSubstitute" ) {
-        ui.notifications.warn( "Substitute rolling not implemented yet" );
-        // this.document.rollSubstitute( attribute, { event: event } );
+        this.document.rollSubstitute( attribute, { event: event } );
       }
     }  else if ( rollType === "equipment" ) {
       const li = target.closest( ".item-id" );
