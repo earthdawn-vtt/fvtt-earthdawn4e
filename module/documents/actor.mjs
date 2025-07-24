@@ -538,7 +538,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**
@@ -588,6 +588,7 @@ export default class ActorEd extends Actor {
    * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
    * @param {object} options      Any additional options for the {@link EdRoll}.
+   * @returns {Promise<EdRoll>}   The processed Roll.
    */
   async rollEquipment( equipment, options = {} ) {
     const arbitraryStep = equipment.system.usableItem.arbitraryStep;
@@ -609,7 +610,7 @@ export default class ActorEd extends Actor {
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
-        rollType:         "equipment",
+        rollType:         "arbitrary",
         strain:           0,
         target:           difficultyFinal,
         step:             arbitraryFinalStep,
@@ -619,7 +620,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**

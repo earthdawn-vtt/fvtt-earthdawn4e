@@ -5,6 +5,7 @@ import TargetTemplate from "./templates/targeting.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import AbilityRollOptions from "../roll/ability.mjs";
 import AttackRollOptions from "../roll/attack.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 /**
  * Data model template with information on Power items.
@@ -157,7 +158,7 @@ export default class PowerData extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollAttack() {
@@ -181,7 +182,7 @@ export default class PowerData extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollDamage() {
