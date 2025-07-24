@@ -247,7 +247,9 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       availableRecoveryTests -= 1;
     }
 
-    await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
+    if ( this._roll ) {
+      await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
+    }
 
     await this._actor.update( {
       "system.characteristics": {
@@ -264,6 +266,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
         },
       },
     } );
+    
   }
 
   _canHealWound( availableRecoveryTests ) {
