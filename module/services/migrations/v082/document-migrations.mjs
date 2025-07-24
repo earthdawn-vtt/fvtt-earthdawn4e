@@ -1,4 +1,4 @@
-import MigrationManager from "../../migration-manager.mjs";
+import MigrationManager from "../migration-manager.mjs";
 
 // Import field-level migration classes
 import { ActionMigration, AttributeMigration, DescriptionMigration, DifficultyMigration, LevelMigration, TierMigration, AvailabilityMigration, PriceMigration, WeightMigration, UsableItemMigration } from "./field-migrations/_module.mjs";

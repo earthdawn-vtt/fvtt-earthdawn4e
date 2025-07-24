@@ -1,6 +1,6 @@
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
 import AdvancementLevelData from "../data/advancement/advancement-level.mjs";
-import MigrationManager from "../services/migration-manager.mjs";
+import MigrationManager from "../services/migrations/migration-manager.mjs";
 
 /**
  * Extend the base Item class to implement additional system-specific logic.

@@ -1,5 +1,5 @@
-import MigrationManager from "../migration-manager.mjs";
-import TypeTransformationManager from "../type-transformation-manager.mjs";
+import MigrationManager from "./migration-manager.mjs";
+import TypeTransformationManager from "./type-transformation-manager.mjs";
 import { initializeV082Migrations } from "./v082/_module.mjs";
 
 // Import future migration modules here

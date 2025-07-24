@@ -1,5 +1,5 @@
 // Import migration config for system version keys
-import { systemV0_8_2 } from "../config/migrations.mjs";
+import { systemV0_8_2 } from "../../config/migrations.mjs";
 import TypeTransformationManager from "./type-transformation-manager.mjs";
 
 /**
