@@ -239,13 +239,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
     // versatility validation
     if ( category === "versatility" ) {
-      const versatilityTalents = actor.items.filter(
-        i => i.type === "talent" && i.system.talentCategory === "versatility"
+      const versatilityTalents = actor.itemTypes.talent.filter(
+        item =>  item.system.talentCategory === "versatility"
       );
-      const versatility = actor.items.filter( item => item.type === "talent" && item.system.edid === "versatility" );
+      const versatility = this.containingActor?.getSingleItemByEdid( "versatility" );
       if ( versatilityTalents.length === versatility[0].system.level ) {
         ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.versatilityTalentLimit" ) );
-        return;
       }
     }
 
