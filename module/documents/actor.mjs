@@ -538,7 +538,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return RollProcessor.process( roll, this, { rollToMessage: true } );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**
@@ -620,7 +620,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return RollProcessor.process( roll, this, { rollToMessage: true } );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**
