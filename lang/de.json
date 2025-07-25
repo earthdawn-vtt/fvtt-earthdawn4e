@@ -3139,7 +3139,8 @@
         "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
-        "talentCategory":                          "Talent Kategorie"
+        "talentCategory":                          "Talent Kategorie",
+        "versatilityLimit":                        "Vielseitigkeitslimit erricht"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
@@ -3154,7 +3155,8 @@
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
-      "physical":                                  "Körperlicher Schaden"
+      "physical":                                  "Körperlicher Schaden",
+      "versatilityTalentLimit":                    "Das Maximum an Talente die über Vielseitigkeit gelernt werden können ist bereits erreicht. Das reguläre Maximum entspricht dem Vielseitigkeits Rang.\n Soll das gewählte Talent trotzdem gelernt werden?"
     },
     "Document": {
       "create":                                    "Erstelle {type}",

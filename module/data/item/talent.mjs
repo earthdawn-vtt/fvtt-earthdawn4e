@@ -220,6 +220,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return super.increase();
   }
 
+  // region Learning
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     // dropping an item on the actor has no createData. This is only used when learning a
@@ -242,9 +243,13 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       const versatilityTalents = actor.itemTypes.talent.filter(
         item =>  item.system.talentCategory === "versatility"
       );
-      const versatility = this.containingActor?.getSingleItemByEdid( "versatility" );
-      if ( versatilityTalents.length === versatility[0].system.level ) {
-        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.versatilityTalentLimit" ) );
+      const versatility = actor?.getSingleItemByEdid( "versatility" );
+      if ( versatilityTalents.length >= versatility?.system.level ) {
+        const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
+        const progressRequest = await promptFactoryItem.getPrompt( "versatilityTalentLimit" );
+        if ( !progressRequest ) {
+          return;
+        }
       }
     }
 
