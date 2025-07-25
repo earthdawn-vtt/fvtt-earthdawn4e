@@ -3122,7 +3122,8 @@
         "selectWeavingAbility":                    "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
-        "talentCategory":                          "TODO: Add translation"
+        "talentCategory":                          "TODO: Add translation",
+        "versatilityLimit":                        "TODO: Add translation"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "TODO: Add translation"
@@ -3137,7 +3138,8 @@
       "ignoreArmor":                               "Ignore Armor",
       "knockDownChoice":                           "Chose the Ability to withstand the Knock Down",
       "mystical":                                  "Mystical Damage",
-      "physical":                                  "Physical Damage"
+      "physical":                                  "Physical Damage",
+      "versatilityTalentLimit":                    "TODO: Add translation"
     },
     "Document": {
       "create":                                    "TODO: Add translation",
