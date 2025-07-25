@@ -16,5 +16,7 @@ export function initializeMigrations() {
   // initializeV100Migrations( TypeTransformationManager );  // Future versions
 }
 
-export { MigrationManager };
-export { TypeTransformationManager };
+export { 
+  MigrationManager, 
+  TypeTransformationManager 
+};
