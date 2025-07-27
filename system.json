@@ -218,7 +218,8 @@
       "attack": {},
       "common": {},
       "damage": {},
-      "initiative": {}
+      "initiative": {},
+      "threadWeaving": {}
     },
     "Item": {
       "armor": {},
