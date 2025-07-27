@@ -1,29 +1,33 @@
-<div class="custom-flavor">{{{ customFlavor }}}</div>
+<!--div class="custom-flavor">{{{ customFlavor }}}</div-->
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.threadWeaving.label}}}</div>
 
-<h4>{{ localize "ED.Chat.Header.numThreadsJustWoven" }}</h4>
-<div>
-  {{threads.woven.now}}
+<div class="text--center">{{{spellContentAnchor}}}</div>
+
+<div class="thread-weaving-visualization">
+  <div class="chat-number-indicator threads-just-woven" data-tooltip="{{ localize "ED.ToolTips.numThreadsJustWoven" }}">
+    {{numberFormat threads.woven.now sign=true}}
+  </div>
+
+  <div class="chat-number-indicator threads-woven-total" data-tooltip="{{localize 'ED.ToolTips.numThreadsWovenTotal'}}">
+    {{threads.woven.total}} / {{threads.totalRequired}}
+  </div>
 </div>
 
-<h4>{{ localize "ED.Chat.Header.numThreadsWovenTotal" }}</h4>
-<div>
-  {{threads.woven.total}} / {{threads.totalRequired}}
-</div>
-
-<h4>{{ localize "ED.Chat.Header.extraThreads" }}</h4>
 <div class="extra-threads-list">
-  <ul class="unlist">
+  <ul class="unlist" data-tooltip="{{ localize "ED.ToolTips.extraThreads" }}">
     {{#each spell.system.threads.extra as |thread|}}
-        <li>
-          {{{thread.summaryString}}}
-        </li>
+      <li>
+        {{{thread.summaryString}}}
+      </li>
     {{/each}}
   </ul>
 </div>
 
-{{#if doneWeaving}}
-  {{> "systems/ed4e/templates/chat/chat-buttons/cast-spell.hbs"}}
-{{/if}}
+<div class="message-buttons flexrow">
+  {{#if doneWeaving}}
+    {{> "systems/ed4e/templates/chat/chat-buttons/cast-spell.hbs"}}
+  {{/if}}
+</div>
 
 <!-- Rule of One Check -->
 {{#if (eq ruleOfOne true)}}

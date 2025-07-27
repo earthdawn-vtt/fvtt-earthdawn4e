@@ -109,6 +109,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.spell = await fromUuid( this.spellUuid );
+    newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
     newContext.threads = this.threads;
     newContext.threads.totalRequired = this.threads.required + this.threads.extra;
     newContext.threads.woven = {
