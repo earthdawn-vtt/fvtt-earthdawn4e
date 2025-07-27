@@ -20,14 +20,4 @@ export default class BindingSecretData extends SpellData.mixin(
             
     } );
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

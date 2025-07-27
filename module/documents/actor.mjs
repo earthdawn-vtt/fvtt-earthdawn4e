@@ -12,7 +12,7 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
-import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.mjs";
+import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
@@ -1115,16 +1115,19 @@ export default class ActorEd extends Actor {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
+  // region Migrations
   static migrateData( source ) {
+    // Step 1: Apply Foundry's core migration
     const newSource = super.migrateData( source );
 
-    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( newSource );
+    // Step 2: Apply our comprehensive migration system to the already-migrated source
+    const migrationResult = MigrationManager.migrateDocument( newSource, "Actor" );
 
-    return newSource;
+    if ( migrationResult.type ) {
+      source.type = migrationResult.type;
+    }
+    // Step 3: Return the final migrated result
+    return migrationResult;
   }
-
+  // endregion
 }

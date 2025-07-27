@@ -1,11 +1,6 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import AvailabilityMigration from "./migration/old-system-V082/availability.mjs";
-import PriceMigration from "./migration/old-system-V082/price.mjs";
-import WeightMigration from "./migration/old-system-V082/weight.mjs";
-import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
 
 /**
  * Data model template with information on equipment items.
@@ -46,30 +41,5 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
         integer:  true,
       } ),
     } );
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-
-    // Migrate availability
-    AvailabilityMigration.migrateData( source );
-
-    // migrate price
-    PriceMigration.migrateData( source );
-
-    // migrate price
-    WeightMigration.migrateData( source );
-
-    // migrate usable items
-    UsableItemMigration.migrateData( source );
-
-    // migrate consumable items
-    source.consumable = source.consumable ?? false;
   }
 }

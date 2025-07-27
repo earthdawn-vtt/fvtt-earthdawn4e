@@ -204,14 +204,4 @@ export default class QuestorData extends ClassTemplate.mixin(
     } );
     return true;
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

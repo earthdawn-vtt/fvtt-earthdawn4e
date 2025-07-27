@@ -3,12 +3,6 @@ import ED4E from "../../config/_module.mjs";
 import { createContentLink } from "../../utils.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
-import ActionMigration from "./migration/old-system-V082/action.mjs";
-import AttributeMigration from "./migration/old-system-V082/attribute.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import DifficultyMigration from "./migration/old-system-V082/difficulty.mjs";
-import LevelMigration from "./migration/old-system-V082/level.mjs";
-import TierMigration from "./migration/old-system-V082/tier.mjs";
 
 /**
  * Data model template with information on Devotion items.
@@ -160,34 +154,5 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     const learnedItem = await super.learn( actor, item, createData );
     if ( !learnedItem.system.tier )await learnedItem.system.chooseTier();
     return learnedItem;
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-
-    // Migrate action
-    ActionMigration.migrateData( source );
-    
-    // Migrate Attributes
-    AttributeMigration.migrateData( source );
-    
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-    
-    // Migrate minDifficulty (only if source.difficulty is not set)
-    DifficultyMigration.migrateData( source );
-    
-    // Migrate level
-    LevelMigration.migrateData( source );
-        
-    // // Migrate tier
-    TierMigration.migrateData( source );
-    
-    super.migrateData( source );
-    // specific migration functions
   }
 }

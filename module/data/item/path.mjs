@@ -207,14 +207,4 @@ export default class PathData extends ClassTemplate.mixin(
   
     return this.parent;
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

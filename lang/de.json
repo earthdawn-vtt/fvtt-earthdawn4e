@@ -3378,6 +3378,10 @@
         "chatAvatarHint":                          "Welches Avatarbild soll für Chatnachrichten verwendet werden?",
         "chatAvatarToken":                         "Chat Avatar des Token benutzen"
       },
+      "Debug": {
+        "hint":                                    "Debugging-Informationen in der Konsole anzeigen",
+        "label":                                   "Debugging Einstellungen"
+      },
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",

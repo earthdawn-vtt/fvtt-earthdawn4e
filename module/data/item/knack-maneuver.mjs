@@ -22,14 +22,4 @@ export default class KnackManeuverData extends ManeuverData.mixin(
             
     } );
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

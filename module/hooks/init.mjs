@@ -2,6 +2,7 @@
 import ED4E from "../config/_module.mjs";
 import  "../tours/ed-tours.mjs";
 import registerHandlebarHelpers from "../handlebar-helpers.mjs";
+import { initializeMigrations } from "../services/migrations/_module.mjs";
 
 // Import submodules
 import * as applications from "../applications/_module.mjs";
@@ -43,7 +44,6 @@ export default function () {
 
     Object.assign( CONFIG.queries, ED4E.queries );
 
-
     // Register Roll Extensions
     CONFIG.Dice.rolls.splice( 0, 0, dice.EdRoll );
 
@@ -67,6 +67,9 @@ export default function () {
     CONFIG.Item.dataModels = data.item.config;
 
     // endregion
+
+    // Initialize migration system
+    initializeMigrations();
 
     // region Register Sheet Application Classes
 

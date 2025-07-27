@@ -3360,6 +3360,10 @@
         "chatAvatarHint":                          "TODO: Add translation",
         "chatAvatarToken":                         "TODO: Add translation"
       },
+      "Debug": {
+        "hint":                                    "TODO: Add translation",
+        "label":                                   "TODO: Add translation"
+      },
       "Edid": {
         "creatureAttack":                          "TODO: Add translation",
         "creatureAttackHint":                      "TODO: Add translation",
