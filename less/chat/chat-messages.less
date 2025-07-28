@@ -107,14 +107,16 @@
       }
     }
 
-    .thread-weaving-visualization {
+    &:has(.thread-weaving-visualization) {
       background-image: url('assets/icons/thread-transparent.svg');
       background-repeat: no-repeat;
-      background-size: 80%;
-      background-position: 75%;
     }
 
     .message-buttons {
+      button {
+        background-color: @color-button-chat-message;
+      }
+
       margin: 1em 0;
       &.flexrow {
         button:first-child {
@@ -135,14 +137,21 @@
 
     .modifier-lists {
       margin-bottom: 5px;
-      padding: 0 0.3em;
+      padding: 0.3em 0.5em;
       font-size: medium;
-      background: rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--color-border-light-2);
+      background: @color-button-chat-message;
+      border: 1px solid #999;
       border-radius: 3px;
       box-shadow:  0 0 2px #FFF inset;
+      align-items: start;
+
+      details {
+        cursor: pointer;
+      }
+
       li {
         text-transform: capitalize;
+        font-size: 0.9rem;
       }
     }
   }
