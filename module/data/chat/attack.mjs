@@ -10,7 +10,7 @@ export default class AttackMessageData extends BaseMessageData {
 
   static DEFAULT_OPTIONS = {
     actions: {
-      "apply-effect":  this._onApplyEffect,
+      "applyEffect":  this._onApplyEffect,
       "roll-damage":   this._onRollDamage,
       "maneuver":      this._onUseManeuver,
       "reaction":      this._onUseReaction,
