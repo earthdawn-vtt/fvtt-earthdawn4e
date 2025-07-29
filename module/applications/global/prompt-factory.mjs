@@ -449,7 +449,6 @@ class ItemPromptFactory extends PromptFactory {
     lpIncrease:             this._lpIncreasePrompt.bind( this ),
     learnAbility:           this._learnAbilityPrompt.bind( this ),
     talentCategory:         this._talentCategoryPrompt.bind( this ),
-    versatilityTalentLimit: this._versatilityTalentLimitPrompt.bind( this )
   };
 
   /**
@@ -643,33 +642,6 @@ class ItemPromptFactory extends PromptFactory {
       },
       modal:   false,
       buttons,
-    } );
-  }
-
-  /**
-   * Creates the versatility talent limit dialog.
-   * @returns {Promise<any>} A promise that resolves to the versatility talent limit prompt dialog
-   */
-  async _versatilityTalentLimitPrompt() {
-    const content = `<p>${ game.i18n.localize( "ED.Dialogs.versatilityTalentLimit" ) }</p>`;
-    
-    return DialogClass.wait( {
-      rejectClose: false,
-      id:          "talent-category-prompt",
-      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
-      classes:     [ "earthdawn4e", "talent-category-prompt", "flexcol" ],
-      window:      {
-        title:       game.i18n.format( "ED.Dialogs.Title.versatilityLimit", {
-          abilityName: this.document.name,
-        } ),
-        minimizable: false
-      },
-      modal:   false,
-      content,
-      buttons: [
-        this.constructor.cancelButton,
-        this.constructor.continueButton
-      ]
     } );
   }
 }

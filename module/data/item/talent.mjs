@@ -5,6 +5,9 @@ import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
+
+const DialogClass = DialogEd;
 
 /**
  * Data model template with information on talent items.
@@ -245,8 +248,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       );
       const versatility = actor?.getSingleItemByEdid( "versatility" );
       if ( versatilityTalents.length >= versatility?.system.level ) {
-        const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
-        const progressRequest = await promptFactoryItem.getPrompt( "versatilityTalentLimit" );
+        const progressRequest  = await DialogClass.confirm( {
+          content: `<p>${ game.i18n.localize( "ED.Dialogs.versatilityTalentLimit" ) }</p>`,
+          window:      {
+            title:       game.i18n.format( "ED.Dialogs.Title.versatilityLimit" ),
+          },
+        } );
         if ( !progressRequest ) {
           return;
         }
