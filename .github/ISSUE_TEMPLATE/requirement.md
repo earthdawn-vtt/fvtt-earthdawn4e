@@ -7,10 +7,5 @@ assignees: ''
 
 ---
 
-## Reason description
-
-
-## detail description
-
-
-## Technical notes
+# Requirement:
+The system shall [do X] when [condition], so that [reason/purpose].

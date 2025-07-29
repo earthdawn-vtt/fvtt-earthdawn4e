@@ -7,8 +7,13 @@ assignees: ''
 
 ---
 
-**Description**
-A clear and concise description of what you want to happen.
+# Story
+As a [user], I want to [perform an action], so that [I achieve a goal].
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+# Detailed Description
+(optional)
+
+# Acceptance Criteria
+**Given** [context]  
+**When** [event]  
+**Then** [expected outcome]
