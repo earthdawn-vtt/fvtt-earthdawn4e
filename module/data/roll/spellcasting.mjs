@@ -1,6 +1,7 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import { MAGIC } from "../../config/_module.mjs";
+import * as game from "../../hooks/_module.mjs";
 
 
 export default class SpellcastingRollOptions extends EdRollOptions {
@@ -39,6 +40,8 @@ export default class SpellcastingRollOptions extends EdRollOptions {
       } ),
     } );
   }
+
+  // region Data Initialization
 
   /** @inheritdoc */
   _initializeSource( data, options = {} ) {
@@ -99,5 +102,23 @@ export default class SpellcastingRollOptions extends EdRollOptions {
       base:      spell.system.getDifficulty(),
     };
   }
+
+  // endregion
+
+  // region Rendering
+
+  /** @inheritdoc */
+  async getFlavorTemplateData( context ) {
+    const newContext = await super.getFlavorTemplateData( context );
+
+    newContext.spell = await fromUuid( this.spellUuid );
+    newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
+    newContext.spellcastingAbility = await fromUuid( this.spellcastingAbilityUuid );
+    newContext.spellcastingAbilityContentAnchor = createContentAnchor( newContext.spellcastingAbility ).outerHTML;
+
+    return newContext;
+  }
+
+  // endregion
 
 }

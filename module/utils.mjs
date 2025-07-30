@@ -667,7 +667,8 @@ export function determineConfigValue( slugifiedName, configMappings ) {
  */
 export async function preloadHandlebarsTemplates() {
   const partials = [
-    // Global Templates
+    // region Global Templates
+
     "systems/ed4e/templates/global/editor.hbs",
     "systems/ed4e/templates/global/editor-brief.hbs",
     "systems/ed4e/templates/global/card-options-chat.hbs",
@@ -676,17 +677,26 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/global/effect-card.hbs",
     "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
 
-    // configs
+    // endregion
+
+    // region Configs
+
     "systems/ed4e/templates/configs/configure-button.hbs",
 
-    // Form Inputs and Groups
+    // endregion
+
+    // region Form Inputs and Groups
+
     "systems/ed4e/templates/form/input/area-metric.hbs",
     "systems/ed4e/templates/form/input/base-metric.hbs",
     "systems/ed4e/templates/form/input/base-constraint.hbs",
     "systems/ed4e/templates/form/input/configurable-array-summary.hbs",
     "systems/ed4e/templates/form/group/general.hbs",
 
-    // Character Generation
+    // endregion
+
+    // region Character Generation
+
     "systems/ed4e/templates/actor/generation/namegiver-selection.hbs",
     "systems/ed4e/templates/actor/generation/class-selection.hbs",
     "systems/ed4e/templates/actor/generation/attribute-assignment.hbs",
@@ -695,7 +705,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/generation/language-selection.hbs",
     "systems/ed4e/templates/actor/generation/equipment-selection.hbs",
 
-    // Character details section partials
+    // endregion
+
+    // region Character details section partials
+
     "systems/ed4e/templates/actor/actor-tabs/powers.hbs",
     "systems/ed4e/templates/actor/actor-tabs/talents.hbs",
     "systems/ed4e/templates/actor/actor-tabs/skills.hbs",
@@ -711,7 +724,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
     "systems/ed4e/templates/actor/actor-tabs/description.hbs",
 
-    // Actor partials
+    // endregion
+
+    // region Actor partials
+
     "systems/ed4e/templates/actor/actor-partials/actor-section-navigator.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-trap.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-loot.hbs",
@@ -728,8 +744,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/actor-partials/actor-section-top-pc.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-main.hbs",
 
+    // endregion
 
-    // Actor cards
+    // region Actor cards
+
     "systems/ed4e/templates/actor/cards/ability-card.hbs",
     "systems/ed4e/templates/actor/cards/equipment-card.hbs",
     "systems/ed4e/templates/actor/cards/spell-card.hbs",
@@ -751,15 +769,16 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs",
     "systems/ed4e/templates/actor/cards/matrix-card.hbs",
 
+    // endregion
 
-    // Item partials
+    // region Item partials
+
     "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
     "systems/ed4e/templates/item/item-partials/item-section-navigator.hbs",
     "systems/ed4e/templates/item/item-partials/item-section-main.hbs",
     "systems/ed4e/templates/item/item-partials/item-description.hbs",
     "systems/ed4e/templates/item/item-partials/item-details.hbs",
     "systems/ed4e/templates/item/item-partials/item-section-top.hbs",
-
 
     "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs",
@@ -770,7 +789,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs",
 
-    // Item details
+    // endregion
+
+    // region Item details
+
     "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-armor.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-bindingSecret.hbs",
@@ -826,21 +848,28 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-weapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shipWeapon.hbs",
 
-    // ################################################
-    //                      CHAT
-    // ################################################
+    // endregion
+
+    // region Chat
+
     "systems/ed4e/templates/chat/tooltip.hbs",
 
-    // chat buttons
+    // region Chat Buttons
+
     "systems/ed4e/templates/chat/chat-buttons/apply-damage.hbs",
     "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs",
     "systems/ed4e/templates/chat/chat-buttons/cast-spell.hbs",
     "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs",
     "systems/ed4e/templates/chat/chat-buttons/roll-effect.hbs",
+    "systems/ed4e/templates/chat/chat-buttons/run-macro.hbs",
+    "systems/ed4e/templates/chat/chat-buttons/show-special.hbs",
     "systems/ed4e/templates/chat/chat-buttons/take-damage.hbs",
     "systems/ed4e/templates/chat/chat-buttons/use-maneuver.hbs",
 
-    // chat Flavor
+    // endregion
+
+    // region Chat Flavor
+
     "systems/ed4e/templates/chat/chat-flavor/ability-roll-flavor.hbs",
     "systems/ed4e/templates/chat/chat-flavor/arbitrary-roll-flavor.hbs",
     "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
@@ -853,23 +882,34 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/chat/chat-flavor/spellcasting-roll-flavor.hbs",
     "systems/ed4e/templates/chat/chat-flavor/thread-weaving-roll-flavor.hbs",
 
-    // Dice partials
+    // endregion
+
+    // region Dice Partials
+
     "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs",
     "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs",
 
-    // other tabs
+    // endregion
+
+    // endregion
+
+    // region Other Tabs
+
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs",
 
-    // Build your own Legend
+    // endregion
+
+    // region Build your own Legend
+
     "systems/ed4e/templates/actor/legend-points/history.hbs",
     "systems/ed4e/templates/actor/legend-points/history-earned.hbs",
     "systems/ed4e/templates/actor/legend-points/history-spend.hbs",
 
-    // prompts
+    // endregion
   ];
 
   const paths = {};
