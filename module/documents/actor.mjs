@@ -572,7 +572,12 @@ export default class ActorEd extends Actor {
   }
   
   async knockdownTest( damageTaken, options = {} ) {
-    if ( this.system.condition.knockedDown ) {
+    const isKnockedDown = this.effects.some( eff => eff.statuses?.has?.( "knockedDown" ) );
+    if ( isKnockedDown && !damageTaken ) {
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
+      return;
+    }
+    if ( this.system.condition.knockedDown && !damageTaken ) {
       ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
       return;
     }

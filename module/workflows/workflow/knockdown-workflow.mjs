@@ -5,8 +5,8 @@ import Rollable from "./rollable.mjs";
 
 /**
  * @typedef {object} KnockdownWorkflowOptions
- * @property {number} knockdownStep - The step at which the knockdown occurs.
- * @property {boolean} immune - Whether the target is immune to knockdown effects.
+ * @property {object} [knockdownAbility] - The ability used for the knockdown test (optional).
+ * @property {number} [difficulty] - The difficulty for the knockdown test (optional).
  */
 export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   /**
@@ -106,7 +106,6 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     await this._createRoll();
     await this._roll.evaluate();
     this._result = this._roll;
-    console.log( "Knockdown Roll Result: ", this._result );
   }
 
   /**
@@ -119,10 +118,8 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
     const isSuccess = this._result.total >= this._difficulty;
     if ( !isSuccess ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Info.youAreKnockedDown" ) );
       // set status effect for knockdown etc.
-      await this._actor.update( { "system.condition.knockedDown": true } ); 
-      this._actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
+      await this._actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
     } 
   }
 }
