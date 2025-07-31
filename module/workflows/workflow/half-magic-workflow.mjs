@@ -3,6 +3,7 @@ import Rollable from "./rollable.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
+import PromptFactory from "../../applications/global/prompt-factory.mjs";
 
 /**
  * Workflow for handling actor half magic tests
@@ -15,13 +16,6 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   _attributeId;
-
-  /**
-   * Discipline
-   * @type {ItemED}
-   * @private
-   */
-  _discipline;
 
   /**
    * Actor
@@ -37,7 +31,6 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
   constructor( actor, options = {} ) {
     super( actor, options );
     this._actor = actor;
-    this._discipline = options.discipline;
     this._attributeId = options.attributeId;
 
     this._steps = [
@@ -54,6 +47,14 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _prepareHalfMagicRollOptions() {
+    let discipline;
+    if ( this._actor.isMultiDiscipline ) {
+      const promptFactory = PromptFactory.fromDocument( this._actor );
+      const disciplineUuid = await promptFactory.getPrompt( "halfMagicDiscipline" );
+      discipline = await fromUuid( disciplineUuid );
+    } else {
+      discipline = this._actor.highestDiscipline;
+    }
     const stepModifiers = {};
     const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
     const allActionsModifiers = this._actor.system.globalBonuses?.allActions.value ?? 0;
@@ -64,7 +65,7 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
       stepModifiers[ED4E.EFFECTS.globalBonuses.allActions.label] = allActionsModifiers;
     }
     const attribute = this._actor.system.attributes[this._attributeId];
-    const finalStep = attribute.step + this._discipline.system.level;
+    const finalStep = attribute.step + discipline.system.level;
     this._rollOptions = EdRollOptions.fromActor(
       {
         step:         {
@@ -80,7 +81,7 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
           {
             actor:      this._actor.name,
             step:       finalStep,
-            discipline: this._discipline.name,
+            discipline: discipline.name,
             attribute:  ED4E.attributes[this._attributeId].label,
           },
         ),

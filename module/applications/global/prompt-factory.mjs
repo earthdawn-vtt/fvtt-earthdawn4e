@@ -183,7 +183,7 @@ class ActorPromptFactory extends PromptFactory {
     recovery:              this._recoveryPrompt.bind( this ),
     takeDamage:            this._takeDamagePrompt.bind( this ),
     attribute:             this._attributePrompt.bind( this ),
-    halfMagicDiscipline: this._halfMagicDisciplinePrompt.bind( this ),
+    halfMagicDiscipline:   this._halfMagicDisciplinePrompt.bind( this ),
   };
 
 

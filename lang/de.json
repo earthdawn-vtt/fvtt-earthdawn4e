@@ -3319,7 +3319,8 @@
         "noSpellsAvailableToAttune":               "Das Grimoire enthält keine Zauber, die abgestimmt werden können.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
-        "spellcastingWorkflowFailed":              ""
+        "spellcastingWorkflowFailed":              "Der Zauberwirkungs-Workflow ist fehlgeschlagen.",
+        "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",

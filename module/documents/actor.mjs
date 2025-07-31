@@ -532,19 +532,10 @@ export default class ActorEd extends Actor {
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
   async rollHalfMagic( attributeId, options = {} ) {
-    let discipline;
-    if ( this.isMultiDiscipline ) {
-      const disciplineUuid = await this.getPrompt( "halfMagicDiscipline" );
-      discipline = await fromUuid( disciplineUuid );
-    } else {
-      discipline = this.highestDiscipline;
-    }
-    
     const halfMagicWorkflow = new HalfMagicWorkflow(
       this,
       {
         attributeId: attributeId,
-        discipline:  discipline,
       }
     );
     return halfMagicWorkflow.execute();

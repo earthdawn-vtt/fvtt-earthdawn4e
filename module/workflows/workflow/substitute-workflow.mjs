@@ -55,6 +55,11 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
   constructor( actor, options = {} ) {
     super( actor, options );
     this._actor = actor;
+    if ( !options.attributeId || !( options.attributeId in ED4E.attributes ) ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Dialogs.Error.substituteAttributeNotFound" ),
+      );
+    }
     this._attributeId = options.attributeId;
 
     this._steps = [
@@ -73,7 +78,6 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _chooseSubstituteAbility() {
     const buttons = await this.#getAbilityButtonByAttribute( this._attributeId );
-    console.log( "SubstituteWorkflow: attributeId", this._attributeId, "buttons", buttons );
 
     return DialogClass.wait( {
       rejectClose: false,
