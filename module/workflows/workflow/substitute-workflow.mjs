@@ -57,7 +57,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     this._actor = actor;
     if ( !options.attributeId || !( options.attributeId in ED4E.attributes ) ) {
       ui.notifications.error(
-        game.i18n.localize( "ED.Dialogs.Error.substituteAttributeNotFound" ),
+        game.i18n.localize( "ED.Notifications.Error.substituteAttributeNotFound" ),
       );
     }
     this._attributeId = options.attributeId;
