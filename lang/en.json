@@ -3302,7 +3302,8 @@
         "noSpellsAvailableToAttune":               "TODO: Add translation",
         "singleton":                               "TODO: Add translation",
         "spellNotAttunedToMatrix":                 "TODO: Add translation",
-        "spellcastingWorkflowFailed":              "TODO: Add translation"
+        "spellcastingWorkflowFailed":              "TODO: Add translation",
+        "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
