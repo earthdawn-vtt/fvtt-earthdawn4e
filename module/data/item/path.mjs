@@ -102,12 +102,7 @@ export default class PathData extends ClassTemplate.mixin(
   }
   
   /** @inheritDoc */
-  static async learn( actor, item, createData ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
-      return;
-    }
-
+  static async learn( actor, item, createData = {} ) {
     const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, "knackAbility" );
     const pathKnackLink = pathKnack ? 
       createContentLink( pathKnack.uuid, pathKnack.name ) 
@@ -159,12 +154,16 @@ export default class PathData extends ClassTemplate.mixin(
       }
     }
 
-    const pathItemData = item.toObject();
-    pathItemData.system.level = 0;
-    pathItemData.system.pathTalent = learnedPathTalent?.uuid;
-    pathItemData.system.pathKnack = learnedPathKnack?.uuid;
+    const pathCreateData = foundry.utils.mergeObject(
+      createData,
+      {
+        "system.level":      0,
+        "system.pathTalent": learnedPathTalent?.uuid,
+        "system.pathKnack":  learnedPathKnack?.uuid,
+      }
+    );
 
-    const learnedPath = ( await actor.createEmbeddedDocuments( "Item", [ pathItemData ] ) )?.[0];
+    const learnedPath = await super.learn( actor, item, pathCreateData );
     if ( !learnedPath ) throw new Error(
       "Error learning path item. Could not create embedded Items."
     );
@@ -207,15 +206,5 @@ export default class PathData extends ClassTemplate.mixin(
     }
   
     return this.parent;
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
   }
 }

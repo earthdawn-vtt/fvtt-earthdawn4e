@@ -118,18 +118,9 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
-      );
-      return;
-    }
-    const itemData = foundry.utils.mergeObject(
-      item.toObject(),
-      foundry.utils.expandObject( createData ),
-    );
-    if ( !createData?.system?.level ) itemData.system.level = 0;
-    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+    const learnedItem = await super.learn( actor, item, createData );
+    if ( !createData?.system?.level ) learnedItem.system.level = 0;
+    return learnedItem;
   }
 
   /* -------------------------------------------- */

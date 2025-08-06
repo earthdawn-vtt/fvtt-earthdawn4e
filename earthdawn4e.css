@@ -1,3 +1,48 @@
+/* ---------------------------------- */
+/*  Slide Toggles                     */
+/* ---------------------------------- */
+slide-toggle {
+  --slide-toggle-height: 20px;
+  --slide-toggle-width: 36px;
+  --slide-toggle-padding: 3px;
+  --slide-toggle-track-color-unchecked: black;
+  --slide-toggle-track-color-checked: #3ba55d;
+  --slide-toggle-thumb-color: white;
+  --slide-toggle-thumb-width: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
+  --slide-toggle-thumb-height: var(--slide-toggle-thumb-width);
+  --slide-toggle-transition-time: 250ms;
+  display: inline-block;
+  width: var(--slide-toggle-width);
+  height: var(--slide-toggle-height);
+  cursor: var(--cursor-pointer);
+  /* Checked state */
+}
+slide-toggle .slide-toggle-track {
+  width: 100%;
+  height: 100%;
+  background: var(--slide-toggle-track-color-unchecked);
+  border-radius: calc((var(--slide-toggle-height) * 2) / 3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: var(--slide-toggle-padding);
+}
+slide-toggle .slide-toggle-thumb {
+  width: var(--slide-toggle-thumb-width);
+  height: var(--slide-toggle-thumb-height);
+  border-radius: 100%;
+  background: var(--slide-toggle-thumb-color);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  transition: margin-left var(--slide-toggle-transition-time) ease;
+}
+slide-toggle[checked] .slide-toggle-track {
+  background: var(--slide-toggle-track-color-checked);
+}
+slide-toggle[checked] .slide-toggle-thumb {
+  margin-left: calc(100% - var(--slide-toggle-thumb-width));
+}
 @font-face {
   font-family: 'ArnoPro Bold';
   src: url('fonts/ArnoPro-Bold.otf');
@@ -282,6 +327,9 @@
   opacity: 0.5;
   position: absolute;
   left: calc(50% - 64px);
+}
+.standard-form fieldset {
+  margin-bottom: 0.7em;
 }
 .chat-message {
   background-image: url('assets/sheet/background.png');
@@ -591,15 +639,38 @@
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
 }
-.application.sheet.ed4e .window-header {
-  background: none;
+.application.sheet.ed4e:where(:not(.minimized)) > header {
+  background: transparent;
+  position: relative;
+  z-index: 1;
   border: none;
-  justify-content: flex-end;
-  transform: scale(0.8);
-  transform-origin: top right;
+  /* Edit Mode Toggle */
 }
-.application.sheet.ed4e .window-header .window-title {
+.application.sheet.ed4e:where(:not(.minimized)) > header .window-title {
+  visibility: hidden;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle {
+  flex: none;
+  margin-inline-end: auto;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle .slide-toggle-thumb {
+  line-height: 12px;
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle .slide-toggle-thumb::before {
+  content: "\f0ad";
+  font-family: var(--font-awesome);
+  color: #272727;
+  font-weight: bold;
+  font-size: var(--font-size-9);
+}
+.application.sheet.ed4e:where(:not(.minimized)) > header > slide-toggle[checked] .slide-toggle-thumb::before {
+  color: #ff9800;
+}
+.application.sheet.ed4e.minimized slide-toggle {
   display: none;
+}
+.application.sheet.ed4e slide-toggle {
+  transform: scale(0.9);
 }
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
@@ -652,7 +723,8 @@
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
   column-gap: var(--grid-col-gap);
   text-transform: capitalize;
@@ -673,7 +745,8 @@
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header {
   background-color: var(--color-primary-grey-60);
   text-transform: uppercase;
   line-height: 20px;
@@ -805,6 +878,10 @@
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+}
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
 }
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
   display: grid;
@@ -1065,6 +1142,7 @@
 .attribute-card__grid--item .roll-icon__hover,
 .equipment-card__grid--item .roll-icon__hover,
 .power-card__grid--item .roll-icon__hover,
+.spell-card__grid--item .roll-icon__hover,
 .ability-card__grid--item .roll-icon__hover-fixed,
 .knack-card__grid--item .roll-icon__hover-fixed,
 .maneuver-card__grid--item .roll-icon__hover-fixed,
@@ -1072,18 +1150,21 @@
 .attribute-card__grid--item .roll-icon__hover-fixed,
 .equipment-card__grid--item .roll-icon__hover-fixed,
 .power-card__grid--item .roll-icon__hover-fixed,
+.spell-card__grid--item .roll-icon__hover-fixed,
 .ability-card__grid--item .roll-icon__pointer,
 .knack-card__grid--item .roll-icon__pointer,
 .maneuver-card__grid--item .roll-icon__pointer,
 .knack-maneuver-card__grid--item .roll-icon__pointer,
 .attribute-card__grid--item .roll-icon__pointer,
 .equipment-card__grid--item .roll-icon__pointer,
-.power-card__grid--item .roll-icon__pointer {
+.power-card__grid--item .roll-icon__pointer,
+.spell-card__grid--item .roll-icon__pointer {
   display: none;
 }
 .maneuver-card__grid--container .itemControlGroup,
 .equipment-card__grid--container .itemControlGroup,
-.power-card__grid--container .itemControlGroup {
+.power-card__grid--container .itemControlGroup,
+.spell-card__grid--container .itemControlGroup {
   float: none;
 }
 .roll-icon__hover,
@@ -1094,7 +1175,8 @@
 .power-icon,
 .power-icon__visible,
 .equipment-icon,
-.equipment-icon__visible {
+.equipment-icon__visible,
+.spell-icon {
   border: none;
   display: block;
 }
@@ -1107,7 +1189,8 @@
 .knack-card__grid--container:hover .icons__dice img,
 .attribute-card__grid--container:hover .icons__dice img,
 .power-card__grid--container:hover .icons__dice img,
-.equipment-card__grid--container:hover .icons__dice img {
+.equipment-card__grid--container:hover .icons__dice img,
+.spell-card__grid--container:hover .icons__dice img {
   box-shadow: 0 0 10px var(--color-gold-1);
   border-radius: 50%;
   background-image: radial-gradient(var(--color-gold-5), var(--color-gold-3), var(--color-gold-1));
@@ -1117,21 +1200,31 @@
 .attribute-card__grid--container:hover .roll-icon__hover,
 .power-card__grid--container:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .roll-icon__hover,
+.spell-card__grid--container:hover .roll-icon__hover,
 .ability-card__grid--container:hover .attribute-icon,
 .knack-card__grid--container:hover .attribute-icon,
 .attribute-card__grid--container:hover .attribute-icon,
 .power-card__grid--container:hover .attribute-icon,
 .equipment-card__grid--container:hover .attribute-icon,
+.spell-card__grid--container:hover .attribute-icon,
 .ability-card__grid--container:hover .power-icon,
 .knack-card__grid--container:hover .power-icon,
 .attribute-card__grid--container:hover .power-icon,
 .power-card__grid--container:hover .power-icon,
 .equipment-card__grid--container:hover .power-icon,
+.spell-card__grid--container:hover .power-icon,
 .ability-card__grid--container:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-icon,
-.equipment-card__grid--container:hover .equipment-icon {
+.equipment-card__grid--container:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-icon,
+.ability-card__grid--container:hover .spell-icon,
+.knack-card__grid--container:hover .spell-icon,
+.attribute-card__grid--container:hover .spell-icon,
+.power-card__grid--container:hover .spell-icon,
+.equipment-card__grid--container:hover .spell-icon,
+.spell-card__grid--container:hover .spell-icon {
   margin-top: -4px;
   display: block;
   animation-duration: 3s;
@@ -1143,7 +1236,8 @@
 .knack-card__grid--container:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .roll-icon__hover-fixed,
-.equipment-card__grid--container:hover .roll-icon__hover-fixed {
+.equipment-card__grid--container:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .roll-icon__hover-fixed {
   display: block;
   width: 20px;
   height: 20px;
@@ -1153,16 +1247,25 @@
 .attribute-card__grid--container:hover .ability-icon,
 .power-card__grid--container:hover .ability-icon,
 .equipment-card__grid--container:hover .ability-icon,
+.spell-card__grid--container:hover .ability-icon,
 .ability-card__grid--container:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-icon,
 .equipment-card__grid--container:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-icon,
 .ability-card__grid--container:hover .power-icon,
 .knack-card__grid--container:hover .power-icon,
 .attribute-card__grid--container:hover .power-icon,
 .power-card__grid--container:hover .power-icon,
-.equipment-card__grid--container:hover .power-icon {
+.equipment-card__grid--container:hover .power-icon,
+.spell-card__grid--container:hover .power-icon,
+.ability-card__grid--container:hover .spell-icon,
+.knack-card__grid--container:hover .spell-icon,
+.attribute-card__grid--container:hover .spell-icon,
+.power-card__grid--container:hover .spell-icon,
+.equipment-card__grid--container:hover .spell-icon,
+.spell-card__grid--container:hover .spell-icon {
   display: none;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
@@ -1170,26 +1273,37 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__pointer,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__pointer,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__pointer {
   display: block;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
@@ -1197,101 +1311,145 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .attribute-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .attribute-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .ability-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .ability-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .equipment-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .equipment-icon,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .power-icon,
 .ability-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .knack-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .power-icon,
 .power-card__grid--container:hover .power-card__grid--item:hover .power-icon,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .power-icon {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .power-card__grid--item:hover .power-icon,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.power-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .power-icon,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .power-icon {
   display: none;
 }
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
@@ -1299,51 +1457,73 @@
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
 .equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover,
 .ability-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .ability-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .attribute-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .equipment-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .equipment-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .maneuver-card__grid--item:hover .roll-icon__hover-fixed,
 .ability-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .knack-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .attribute-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
 .power-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
-.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed {
+.equipment-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .power-card__grid--item:hover .roll-icon__hover-fixed,
+.ability-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.knack-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.attribute-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.power-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.equipment-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed,
+.spell-card__grid--container:hover .spell-card__grid--item:hover .roll-icon__hover-fixed {
   display: none;
 }
 .card__description--toggle {
@@ -1400,6 +1580,134 @@
   /* Add ellipsis for overflow text */
   max-width: 100%;
   /* Ensure the paragraph does not exceed the container's width */
+}
+section.spells button.button-attune-matrix {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+section.spells .matrix-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-gap: 0.95rem;
+}
+section.spells .matrix-cards .matrix-card {
+  cursor: pointer;
+  text-align: center;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  justify-content: space-between;
+}
+section.spells .matrix-cards .matrix-card .matrix-img {
+  align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure {
+  position: relative;
+  align-items: center;
+  max-height: 10rem;
+  height: 100%;
+  /* Fill parent height */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* Hover overlay with split actions */
+  /* Left and right action zones */
+  /* Show overlay on image hover with darker base */
+  /* Darken the image itself when hovering */
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure figcaption {
+  position: absolute;
+  top: 38.2%;
+  z-index: 2;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  text-align: center;
+  margin: 0;
+  font-size: larger;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure img {
+  border: none;
+  border-radius: 16px;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  /* Maintain aspect ratio while fitting in container */
+  z-index: 1;
+  display: block;
+  filter: brightness(0.3);
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .matrix-actions-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 3;
+  display: flex;
+  pointer-events: none;
+  /* Initially invisible and doesn't block image */
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  /* Darker base overlay */
+  transition: 0.1s ease;
+  position: relative;
+  pointer-events: auto;
+  /* Make clickable */
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Even darker when hovered */
+  cursor: pointer;
+  /* Create a contrasting effect for the icon */
+  /* Darken the neighboring zone even more for contrast */
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone:hover .custom-icon {
+  filter: brightness(1.8) drop-shadow(0 0 4px #d4a76a);
+  transform: scale(1.2);
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone:hover + .action-zone,
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone:hover:has(+ .action-zone) {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure .action-zone .custom-icon {
+  border: none;
+  border-radius: 0;
+  width: 2rem;
+  height: 2rem;
+  transition: 0.1s ease;
+  filter: brightness(1.2);
+  /* Slightly brighter base state */
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure:hover .matrix-actions-overlay {
+  opacity: 1;
+}
+section.spells .matrix-cards .matrix-card .matrix-img .matrix-card-figure:hover img {
+  filter: brightness(0.7);
+  transition: filter 0.1s ease;
+}
+section.spells .matrix-cards .matrix-card .spell-links-container {
+  width: 100%;
+  overflow-y: auto;
+}
+section.spells .matrix-cards .matrix-card .spell-link {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 .body .actor-section__top {
   height: 158px;
@@ -1622,4 +1930,359 @@
   height: inherit;
   width: 24%;
   float: right;
+}
+.spell-card {
+  position: relative;
+  width: 180px;
+  height: 240px;
+  margin: 8px;
+  background: linear-gradient(135deg, #2c1810 0%, #4a2f1f 50%, #3d261a 100%);
+  border: 2px solid #8b6914;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(139, 105, 20, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.spell-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(139, 105, 20, 0.5), 0 0 20px rgba(139, 105, 20, 0.3);
+}
+.spell-card__delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #8b4914 0%, #6b3414 100%);
+  border: 1px solid #a85c1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.spell-card__delete:hover {
+  background: linear-gradient(135deg, #a85c1a 0%, #8b4914 100%);
+  border-color: #c66d20;
+  transform: scale(1.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.spell-card__delete i {
+  color: #f0d080;
+  font-size: 10px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+.spell-card__header {
+  height: 60px;
+  background: linear-gradient(135deg, #8b6914 0%, #b8941b 50%, #8b6914 100%);
+  border-bottom: 2px solid #6b4f0f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  position: relative;
+  overflow: hidden;
+}
+.spell-card__header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+.spell-card__name-section {
+  flex: 1;
+  padding-right: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+.spell-card__name-section:hover .spell-card__name {
+  color: #f0d080;
+}
+.spell-card__name {
+  margin: 0;
+  font-family: "ArnoPro-Regular", serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  word-break: auto-phrase;
+  hyphens: none;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.spell-card__name:hover {
+  color: #f0d080;
+}
+.spell-card__type {
+  font-size: 9px;
+  color: #f0d080;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.spell-card__circle-container {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+.spell-card__circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #2c1810 30%, #8b6914 70%);
+  border: 3px solid #b8941b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.spell-card__circle-number {
+  font-size: 16px;
+  font-weight: bold;
+  color: #faf6e8;
+  text-shadow: 1px 1px 0 #000000, 0 0 4px rgba(240, 208, 128, 0.8), 0 0 8px rgba(240, 208, 128, 0.4);
+  z-index: 2;
+}
+.spell-card__circle-ring {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid rgba(240, 208, 128, 0.5);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.spell-card__image-section {
+  height: 120px;
+  background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+  border-top: 1px solid rgba(139, 105, 20, 0.3);
+  border-bottom: 1px solid rgba(139, 105, 20, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.spell-card__image-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(139, 105, 20, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(139, 105, 20, 0.1) 0%, transparent 50%);
+}
+.spell-card__actions-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 3;
+  display: flex;
+  pointer-events: none;
+}
+.spell-card__actions-overlay .action-zone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  transition: 0.1s ease;
+  position: relative;
+  pointer-events: auto;
+}
+.spell-card__actions-overlay .action-zone:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+.spell-card__actions-overlay .action-zone:hover .custom-icon {
+  filter: brightness(1.8) drop-shadow(0 0 4px #d4a76a);
+  transform: scale(1.2);
+}
+.spell-card__actions-overlay .action-zone .custom-icon {
+  border: none;
+  border-radius: 0;
+  width: 2rem;
+  height: 2rem;
+  transition: 0.1s ease;
+  filter: brightness(1.2);
+}
+.spell-card__image-section:hover .spell-card__actions-overlay {
+  opacity: 1;
+}
+.spell-card__image-section:hover .spell-card__image {
+  filter: brightness(0.7);
+  transition: filter 0.1s ease;
+}
+.spell-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.spell-card__image:hover {
+  transform: scale(1.05);
+}
+.spell-card__image-placeholder {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #8b6914 0%, #6b4f0f 100%);
+  border: 2px solid #b8941b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.spell-card__image-placeholder i {
+  font-size: 24px;
+  color: #f0d080;
+  text-shadow: 0 0 5px rgba(240, 208, 128, 0.5);
+}
+.spell-card__footer {
+  height: 60px;
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+  border-top: 1px solid rgba(139, 105, 20, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 8px 4px;
+  position: relative;
+}
+.spell-card__footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 105, 20, 0.5), transparent);
+}
+.spell-card__attribute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+}
+.spell-card__attribute:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, rgba(139, 105, 20, 0.4), transparent);
+}
+.spell-card__attribute-icon {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #8b6914 0%, #6b4f0f 100%);
+  border: 1px solid #b8941b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.spell-card__attribute-icon i {
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(240, 208, 128, 0.5);
+}
+.spell-card__attribute-icon img {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+}
+.spell-card__attribute-value {
+  font-size: 1em;
+  font-weight: lighter;
+  color: #f0d080;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  min-height: 14px;
+  display: flex;
+  align-items: center;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.13);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.spell-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  justify-content: flex-start;
+}
+.spell-card-add-button {
+  width: 180px;
+  height: 240px;
+  margin: 8px;
+  background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+  border: 2px dashed #8b6914;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+.spell-card-add-button:hover {
+  opacity: 1;
+  border-color: #b8941b;
+  background: linear-gradient(135deg, #2c1810 0%, #3d261a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.spell-card-add-button i {
+  font-size: 48px;
+  color: #8b6914;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+.spell-card-add-button span {
+  font-size: 14px;
+  color: #f0d080;
+  text-align: center;
+  font-weight: bold;
+}
+.spell-card-add-button:hover i {
+  color: #b8941b;
+  transform: scale(1.1);
 }

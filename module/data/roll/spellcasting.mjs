@@ -1,6 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
-import { EFFECTS } from "../../config/_module.mjs";
+import { MAGIC } from "../../config/_module.mjs";
 
 
 export default class SpellcastingRollOptions extends EdRollOptions {
@@ -17,14 +17,22 @@ export default class SpellcastingRollOptions extends EdRollOptions {
   /** @inheritdoc */
   static ROLL_TYPE = "spellcasting";
 
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allSpellcasting",
+    "allSpellTests",
+    "allActions",
+    ...super.GLOBAL_MODIFIERS,
+  ];
+
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      spell: new fields.DocumentUUIDField( {
+      spellUuid: new fields.DocumentUUIDField( {
         required: true,
         type:     "Item",
       } ),
-      spellcastingAbility: new fields.DocumentUUIDField( {
+      spellcastingAbilityUuid: new fields.DocumentUUIDField( {
         required: true,
         type:     "Item",
         embedded: true,
@@ -32,42 +40,63 @@ export default class SpellcastingRollOptions extends EdRollOptions {
     } );
   }
 
+  /** @inheritdoc */
+  _initializeSource( data, options = {} ) {
+    if ( data.grimoire?.system.grimoireBelongsTo?.( data.rollingActorUuid ) ) {
+      data.successes ??= {};
+      data.successes.additionalExtra ??= 0;
+      data.successes.additionalExtra += MAGIC.grimoireModifiers.ownedExtraSuccess;
+    }
+    return super._initializeSource( data, options );
+  }
+
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
       sourceActor:         createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
-      spell:               createContentAnchor( fromUuidSync( this.spell ) ).outerHTML,
-      spellcastingAbility: createContentAnchor( fromUuidSync( this.spellcastingAbility ) ).outerHTML,
+      spell:               createContentAnchor( fromUuidSync( this.spellUuid ) ).outerHTML,
+      spellcastingAbility: createContentAnchor( fromUuidSync( this.spellcastingAbilityUuid ) ).outerHTML,
     };
   }
 
   /** @inheritDoc */
   _prepareStepData( data ) {
-    const ability = fromUuidSync( data.spellcastingAbility );
-    const actor = fromUuidSync( data.rollingActorUuid );
-    return {
-      base:      ability.system.rankFinal,
-      modifiers: {
-        [ EFFECTS.globalBonuses.allSpellcasting.label ]: actor.system.globalBonuses.allSpellcasting.value,
-        [ EFFECTS.globalBonuses.allSpellTests.label ]:   actor.system.globalBonuses.allSpellTests.value,
-        [ EFFECTS.globalBonuses.allTests.label ]:        actor.system.globalBonuses.allTests.value,
-      },
-    };
+    if ( data.step ) return data.step;
+
+    const castingAbility = data.spellcastingAbility ?? fromUuidSync( data.spellcastingAbilityUuid );
+
+    const stepData = castingAbility.system.baseRollOptions.step || {};
+
+    stepData.base ??= castingAbility.system.rankFinal;
+
+    stepData.modifiers ??= {};
+    if (
+      data.grimoire?.system.isGrimoire
+      && !data.grimoire.system.grimoireBelongsTo( data.rollingActorUuid )
+    ) {
+      stepData.modifiers[
+        game.i18n.localize( "ED.Rolls.Modifiers.grimoirePenalty" )
+      ] = MAGIC.grimoireModifiers.notOwned;
+    }
+
+    return stepData;
   }
 
   /** @inheritDoc */
   _prepareStrainData( data ) {
-    const ability = fromUuidSync( data.spellcastingAbility );
-    return {
-      base: ability.system.strain,
-    };
+    if ( data.strain ) return data.strain;
+
+    const castingAbility = data.spellcastingAbility ?? fromUuidSync( data.spellcastingAbilityUuid );
+    return castingAbility.system.baseRollOptions.strain;
   }
 
   /** @inheritDoc */
   _prepareTargetDifficulty( data ) {
-    const spell = fromUuidSync( data.spell );
+    if ( data.target ) return data.target;
+
+    const spell = data.spell ?? fromUuidSync( data.spellUuid );
     return {
-      base: spell.system.getDifficulty(),
+      base:      spell.system.getDifficulty(),
     };
   }
 

@@ -6,6 +6,7 @@ import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
+import RollProcessor from "../../../services/roll-processor.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -192,17 +193,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
-    if ( !item.system.canBeLearned ) {
-      ui.notifications.warn(
-        game.i18n.format( "ED.Notifications.Warn.cannotLearn", {itemType: item.type} )
-      );
-      return;
-    }
-    const itemData = foundry.utils.mergeObject(
-      item.toObject(),
-      foundry.utils.expandObject( createData ),
-    );
-    return ( await actor.createEmbeddedDocuments( "Item", [ itemData ] ) )?.[0];
+    return await super.learn( actor, item, createData );
   }
 
   /* -------------------------------------------- */
@@ -230,7 +221,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollAttack() {
@@ -271,7 +262,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async _attack() {

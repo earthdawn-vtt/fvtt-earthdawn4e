@@ -8,6 +8,3 @@ export {default as ItemEd} from "./item.mjs";
 export {default as JournalEntryEd} from "./journal.mjs";
 
 export * as collections from "./collections/_module.mjs";
-
-// Migrations
-export * as migration from "./migration/_module.mjs";

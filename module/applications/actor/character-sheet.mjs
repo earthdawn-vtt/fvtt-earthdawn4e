@@ -177,8 +177,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         break;
       case "legend":
         break;
-      case "classes":
-        break;
     }
     return context;
   }

@@ -175,6 +175,7 @@
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
         "castingDifficulty":                       "Zauberschwierigkeit",
+        "circle":                                  "Kreis",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
         "damage":                                  "Schaden",
@@ -223,12 +224,14 @@
         "shields":                                 "Schilde",
         "skills":                                  "Fertigkeiten",
         "specialAbility":                          "Sonstige Fähigkeit",
+        "spells":                                  "Zauber",
         "step":                                    "Stufe",
         "strain":                                  "Überanstr.",
         "talents":                                 "Talente",
         "talentsDiscipline":                       "Disziplintalente",
-        "talentsFreeRacial":                       "Freie- und andere Talente",
+        "talentsFree":                             "Freie Talente",
         "talentsOptional":                         "Optionale Talente",
+        "talentsOther":                            "Andere Talente",
         "talentsVersatility":                      "Vielseitigkeitstalente",
         "threads":                                 "Fäden",
         "vocations":                               "Berufungen",
@@ -296,10 +299,12 @@
         "offHand":                                 "Nebenhand",
         "owned":                                   "Besitz",
         "parentTalent":                            "Rang des Talents",
+        "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
-        "twoHanded":                               "Zweihändig"
+        "twoHanded":                               "Zweihändig",
+        "weavingDifficulty":                       "Webschwierigkeit"
       }
     },
     "Advancement": {
@@ -611,6 +616,12 @@
         "inst":                                    "Sofort",
         "special":                                 "Spezial"
       },
+      "SpellEffectTypes": {
+        "damage":                                  "Schaden",
+        "effect":                                  "Effekt",
+        "macro":                                   "Makro",
+        "special":                                 "Spezial"
+      },
       "SpellEnhancements": {
         "area":                                    "Wirkungsbereich",
         "duration":                                "Dauer",
@@ -630,7 +641,18 @@
         "spirit":                                  "Geist",
         "summon":                                  "Beschwörung"
       },
+      "TargetDifficulty": {
+        "mystical":                                "Mystische Verteidigung",
+        "mysticalAbbreviation":                    "MVZ",
+        "physical":                                "Körperliche Verteidigung",
+        "physicalAbbreviation":                    "KVZ",
+        "social":                                  "Soziale Verteidigung",
+        "socialAbbreviation":                      "SVZ"
+      },
       "Tier": {
+        "adherent":                                "Anhänger",
+        "exemplar":                                "Vorbild",
+        "follower":                                "Jünger",
         "journeyman":                              "Geselle",
         "master":                                  "Meister",
         "novice":                                  "Novize",
@@ -657,26 +679,30 @@
         "minor":                                   "Kleiner Fluch"
       },
       "spellcastingTypes": {
-        "elementalism":                            "Elementarist",
-        "illusionism":                             "Illusionist",
-        "nethermancy":                             "Geisterbeschwörer",
-        "shamanism":                               "Schamane",
-        "wizardry":                                "Magier"
+        "elementalism":                            "Elementarismus",
+        "illusionism":                             "Illusionismus",
+        "nethermancy":                             "Geisterbeschwörung",
+        "shamanism":                               "Schamanismus",
+        "wizardry":                                "Magie"
       },
       "talentCategory": {
         "discipline":                              "Disziplin",
         "free":                                    "Frei",
         "optional":                                "Optional",
+        "other":                                   "Andere",
         "versatility":                             "Vielseitigkeit"
       }
     },
     "Controls": {
+      "addSpell":                                  "Zauber hinzufügen",
       "delete":                                    "Lösche Item",
       "displayItem":                               "Zeige Item im Chat",
       "downgrade":                                 "Herabstufen",
       "edit":                                      "Bearbeiten",
       "lockHint":                                  "TODO, hier fehlt die beschreibung für 'lockHint'",
       "middleClick":                               "Mittlere Maustaste (Mausrad)",
+      "sheetModeEdit":                             "Bearbeiten",
+      "sheetModePlay":                             "Spielen",
       "upgrade":                                   "Hochstufen"
     },
     "Data": {
@@ -1421,13 +1447,33 @@
         },
         "Class": {
           "FIELDS": {
+            "circle": {
+              "hint":                              "Kreis der Disziplin",
+              "label":                             "Kreis"
+            },
             "level": {
               "hint":                              "Kreis/Rang der Berufungs",
               "label":                             "Kreis/Rang"
             },
+            "rankPath": {
+              "hint":                              "Rang des Pfades",
+              "label":                             "Rang"
+            },
+            "rankQuestor": {
+              "hint":                              "Rang des Questors",
+              "label":                             "Rang"
+            },
             "resourceStep": {
               "hint":                              "Karma-/Weihestufe",
               "label":                             "Ressource"
+            },
+            "resourceStepDevotion": {
+              "hint":                              "Weihekraftstufe",
+              "label":                             "Weihekraft"
+            },
+            "resourceStepKarma": {
+              "hint":                              "Karmastufe",
+              "label":                             "Karma"
             },
             "tier": {
               "hint":                              "Grad der Berufung",
@@ -2054,8 +2100,44 @@
               "label":                             "Dauer"
             },
             "effect": {
+              "details": {
+                "damage": {
+                  "hint":                          "Details zur Schadensstufe",
+                  "label":                         "Schadensdetails",
+                  "stepModifier": {
+                    "hint":                        "Modifikator der auf die Willensstufe addiert wird",
+                    "label":                       "Schadensstufen Modifikator (WIL)"
+                  }
+                },
+                "effect": {
+                  "hint":                          "Der Spruch verursacht einen ActiveEffect",
+                  "label":                         "ActiveEffect"
+                },
+                "hint":                            "Details zum Effekt des Spruches",
+                "label":                           "Effektdetails",
+                "macro": {
+                  "hint":                          "Makro das den Effekt des Spruches ausführt",
+                  "label":                         "Effekt Makro",
+                  "macroUuid": {
+                    "hint":                        "UUID des Makros das den Effekt des Spruches ausführt",
+                    "label":                       "Effekt-Makro"
+                  }
+                },
+                "special": {
+                  "description": {
+                    "hint":                        "Beschreibung des Effekts des Spruches",
+                    "label":                       "Effektbeschreibung"
+                  },
+                  "hint":                          "Eine textuelle Beschreibung des Effekts des Spruches",
+                  "label":                         "Spezial"
+                }
+              },
               "hint":                              "Effekt des Spruches",
-              "label":                             "Spruch Effekt"
+              "label":                             "Spruch Effekt",
+              "type": {
+                "hint":                            "Art des Effektes des Spruches",
+                "label":                           "Effektart"
+              }
             },
             "element": {
               "subType": {
@@ -2455,7 +2537,7 @@
             },
             "useRecoveryTest": {
               "hint":                              "Kosten zusätzliche Versuche zu lernen Erholungsproben?",
-              "label":                             "Extra kostet Erholungsprobe"
+              "label":                             "Kostet Erholungsprobe"
             }
           }
         },
@@ -2918,13 +3000,11 @@
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
       },
-      "Errors": {
-        "noLp":                                    "Keine Legendenpunkte angegeben!"
-      },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
         "attuneOnTheFly":                          "Neu abstimmen während des Spiels",
+        "castingLevel":                            "Zauber des Kreises",
         "fieldsetExtraThreads":                    "Zusätzliche Fäden",
         "inactiveUser":                            "Charaktere von inaktiven Spieler",
         "update":                                  "System Update Neuigkeiten"
@@ -2993,7 +3073,8 @@
           "sourceTalentName":                      "Quell-Talent Name",
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
-          "talentOptionLp":                        "Legendenpunkte für Talentoption"
+          "talentOptionLp":                        "Legendenpunkte für Talentoption",
+          "talentsRequirementFailed":              "Die Talente-Anforderung ist fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}"
         },
         "configuration":                           "Konfiguration",
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
@@ -3051,10 +3132,12 @@
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
         "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
+        "selectAttunedGrimoire":                   "Wähle ein bereits abgestimmtes Grimoire",
         "selectCastingMethod":                     "Zaubermethode wählen",
         "selectExtraThreads":                      "Wähle zusätzliche Fäden",
         "selectGrimoireToAttune":                  "Wähle Grimoire zum Abstimmen",
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
+        "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie"
@@ -3124,6 +3207,7 @@
         "grimoireConfiguration":                   "Grimoire Konfiguration",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
+        "spellEffect":                             "Effekt",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
         "talentKnacks":                            "Kniffe",
@@ -3209,6 +3293,7 @@
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
+        "noWeavingNecessary":                      "Es ist keine Fadenwebenprobe nötig. Der Zauber ist bereit zum Wirken.",
         "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
         "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen."
@@ -3218,14 +3303,17 @@
         "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
         "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
+        "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
-        "firstDisciplineViaCharGen":               "Erste Disziplin kann nur während der Charaktererstellung erlernt werden",
+        "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
+        "noLp":                                    "Keine Legendenpunkte angegeben!",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",
         "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
@@ -3256,11 +3344,15 @@
       "formulaExtraStep":                          "{label} (St {step})",
       "formulaKarma":                              "{amount}x Karma (St {step})",
       "formulaStep":                               "Stufe {step}",
+      "numAdditionalExtraSuccesses":               "Zusätzliche Extra: {numAdditionalExtraSuccesses}",
+      "numBasicExtraSuccesses":                    "Extra: {numBasicExtraSuccesses}",
+      "numBasicSuccesses":                         "Erfolg: {numBasicSuccesses}",
+      "numGuaranteedSuccesses":                    "Garantierte: {numGuaranteedSuccesses}",
       "rollResult":                                "Würfelergebnis",
       "ruleOfOne":                                 "Fehlschlag, Regel der Eins",
       "step":                                      "Stufe",
       "stepModifiers":                             "Stufen Modifikatoren",
-      "successesAchieved":                         "Gesamt Erfolge ( {numSuccesses} + {numExtraSuccesses} extra Erfolge )",
+      "successesAchieved":                         "Gesamt Erfolge: {numSuccesses}",
       "targetDifficulty":                          "Schwierigkeit",
       "targetModifiers":                           "Ziel Modifikatoren"
     },
@@ -3286,6 +3378,10 @@
         "chatAvatarConfiguration":                 "Chat Avatar aus der Benutzer-Konfiguration",
         "chatAvatarHint":                          "Welches Avatarbild soll für Chatnachrichten verwendet werden?",
         "chatAvatarToken":                         "Chat Avatar des Token benutzen"
+      },
+      "Debug": {
+        "hint":                                    "Debugging-Informationen in der Konsole anzeigen",
+        "label":                                   "Debugging Einstellungen"
       },
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
@@ -3454,7 +3550,11 @@
       }
     },
     "ToolTips": {
+      "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
+      "attuneMatrix":                              "Matrix&nbsp;abstimmen",
+      "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
+      "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",

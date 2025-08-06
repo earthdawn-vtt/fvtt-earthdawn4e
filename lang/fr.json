@@ -175,6 +175,7 @@
         "attributes":                              "TODO: Add translation",
         "biography":                               "TODO: Add translation",
         "castingDifficulty":                       "TODO: Add translation",
+        "circle":                                  "TODO: Add translation",
         "conditions":                              "TODO: Add translation",
         "controlIcons":                            "TODO: Add translation",
         "damage":                                  "TODO: Add translation",
@@ -223,12 +224,14 @@
         "shields":                                 "TODO: Add translation",
         "skills":                                  "TODO: Add translation",
         "specialAbility":                          "TODO: Add translation",
+        "spells":                                  "TODO: Add translation",
         "step":                                    "TODO: Add translation",
         "strain":                                  "TODO: Add translation",
         "talents":                                 "TODO: Add translation",
         "talentsDiscipline":                       "TODO: Add translation",
-        "talentsFreeRacial":                       "TODO: Add translation",
+        "talentsFree":                             "TODO: Add translation",
         "talentsOptional":                         "TODO: Add translation",
+        "talentsOther":                            "TODO: Add translation",
         "talentsVersatility":                      "TODO: Add translation",
         "threads":                                 "TODO: Add translation",
         "vocations":                               "TODO: Add translation",
@@ -296,10 +299,12 @@
         "offHand":                                 "TODO: Add translation",
         "owned":                                   "TODO: Add translation",
         "parentTalent":                            "TODO: Add translation",
+        "reattuneDifficulty":                      "TODO: Add translation",
         "recoveryRestTooltip":                     "TODO: Add translation",
         "standardEffect":                          "TODO: Add translation",
         "tail":                                    "TODO: Add translation",
-        "twoHanded":                               "TODO: Add translation"
+        "twoHanded":                               "TODO: Add translation",
+        "weavingDifficulty":                       "TODO: Add translation"
       }
     },
     "Advancement": {
@@ -611,6 +616,12 @@
         "inst":                                    "TODO: Add translation",
         "special":                                 "TODO: Add translation"
       },
+      "SpellEffectTypes": {
+        "damage":                                  "TODO: Add translation",
+        "effect":                                  "TODO: Add translation",
+        "macro":                                   "TODO: Add translation",
+        "special":                                 "TODO: Add translation"
+      },
       "SpellEnhancements": {
         "area":                                    "TODO: Add translation",
         "duration":                                "TODO: Add translation",
@@ -630,7 +641,18 @@
         "spirit":                                  "TODO: Add translation",
         "summon":                                  "TODO: Add translation"
       },
+      "TargetDifficulty": {
+        "mystical":                                "TODO: Add translation",
+        "mysticalAbbreviation":                    "TODO: Add translation",
+        "physical":                                "TODO: Add translation",
+        "physicalAbbreviation":                    "TODO: Add translation",
+        "social":                                  "TODO: Add translation",
+        "socialAbbreviation":                      "TODO: Add translation"
+      },
       "Tier": {
+        "adherent":                                "TODO: Add translation",
+        "exemplar":                                "TODO: Add translation",
+        "follower":                                "TODO: Add translation",
         "journeyman":                              "TODO: Add translation",
         "master":                                  "TODO: Add translation",
         "novice":                                  "TODO: Add translation",
@@ -667,16 +689,20 @@
         "discipline":                              "TODO: Add translation",
         "free":                                    "TODO: Add translation",
         "optional":                                "TODO: Add translation",
+        "other":                                   "TODO: Add translation",
         "versatility":                             "TODO: Add translation"
       }
     },
     "Controls": {
+      "addSpell":                                  "TODO: Add translation",
       "delete":                                    "TODO: Add translation",
       "displayItem":                               "TODO: Add translation",
       "downgrade":                                 "TODO: Add translation",
       "edit":                                      "TODO: Add translation",
       "lockHint":                                  "TODO: Add translation",
       "middleClick":                               "TODO: Add translation",
+      "sheetModeEdit":                             "TODO: Add translation",
+      "sheetModePlay":                             "TODO: Add translation",
       "upgrade":                                   "TODO: Add translation"
     },
     "Data": {
@@ -1409,11 +1435,31 @@
         },
         "Class": {
           "FIELDS": {
+            "circle": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "level": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "rankPath": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "rankQuestor": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "resourceStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepDevotion": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "resourceStepKarma": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -2039,8 +2085,44 @@
               "label":                             "TODO: Add translation"
             },
             "effect": {
+              "details": {
+                "damage": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation",
+                  "stepModifier": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
+                },
+                "effect": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation",
+                "macro": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation",
+                  "macroUuid": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
+                },
+                "special": {
+                  "description": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "TODO: Add translation",
+              "type": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "element": {
               "subType": {
@@ -2900,13 +2982,11 @@
           "title":                                 "TODO: Add translation"
         }
       },
-      "Errors": {
-        "noLp":                                    "TODO: Add translation"
-      },
       "Header": {
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
         "attuneOnTheFly":                          "TODO: Add translation",
+        "castingLevel":                            "TODO: Add translation",
         "fieldsetExtraThreads":                    "TODO: Add translation",
         "inactiveUser":                            "TODO: Add translation",
         "update":                                  "TODO: Add translation"
@@ -2975,7 +3055,8 @@
           "sourceTalentName":                      "TODO: Add translation",
           "sourceTalentRank":                      "TODO: Add translation",
           "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
-          "talentOptionLp":                        "TODO: Add translation"
+          "talentOptionLp":                        "TODO: Add translation",
+          "talentsRequirementFailed":              "TODO: Add translation"
         },
         "configuration":                           "TODO: Add translation",
         "increasePathTalentPrompt":                "TODO: Add translation",
@@ -3033,10 +3114,12 @@
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
         "selectAstralSpacePollution":              "TODO: Add translation",
+        "selectAttunedGrimoire":                   "TODO: Add translation",
         "selectCastingMethod":                     "TODO: Add translation",
         "selectExtraThreads":                      "TODO: Add translation",
         "selectGrimoireToAttune":                  "TODO: Add translation",
         "selectSpellToAttuneToGrimoire":           "TODO: Add translation",
+        "selectWeavingAbility":                    "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation"
@@ -3106,6 +3189,7 @@
         "grimoireConfiguration":                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
+        "spellEffect":                             "TODO: Add translation",
         "spellEnhancement":                        "TODO: Add translation",
         "summary":                                 "TODO: Add translation",
         "talentKnacks":                            "TODO: Add translation",
@@ -3191,6 +3275,7 @@
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
+        "noWeavingNecessary":                      "TODO: Add translation",
         "reattuningCancelled":                     "TODO: Add translation",
         "switchWeapon":                            "TODO: Add translation",
         "upcomingSelectHorrorForRawCasting":       "TODO: Add translation"
@@ -3200,14 +3285,17 @@
         "addLpTransactionProblems":                "TODO: Add translation",
         "attackNoWeaponFound":                     "TODO: Add translation",
         "cannotLearn":                             "TODO: Add translation",
+        "cantCastNoSpellInMatrix":                 "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
+        "castSpellNoActor":                        "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
-        "firstDisciplineViaCharGen":               "TODO: Add translation",
+        "firstClassViaCharGen":                    "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
         "invalidRecoveryMode":                     "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
+        "noLp":                                    "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noRecoveryTestsAvailable":                "TODO: Add translation",
         "noSourceTalent":                          "TODO: Add translation",
@@ -3238,6 +3326,10 @@
       "formulaExtraStep":                          "TODO: Add translation",
       "formulaKarma":                              "TODO: Add translation",
       "formulaStep":                               "TODO: Add translation",
+      "numAdditionalExtraSuccesses":               "TODO: Add translation",
+      "numBasicExtraSuccesses":                    "TODO: Add translation",
+      "numBasicSuccesses":                         "TODO: Add translation",
+      "numGuaranteedSuccesses":                    "TODO: Add translation",
       "rollResult":                                "TODO: Add translation",
       "ruleOfOne":                                 "TODO: Add translation",
       "step":                                      "TODO: Add translation",
@@ -3268,6 +3360,10 @@
         "chatAvatarConfiguration":                 "TODO: Add translation",
         "chatAvatarHint":                          "TODO: Add translation",
         "chatAvatarToken":                         "TODO: Add translation"
+      },
+      "Debug": {
+        "hint":                                    "TODO: Add translation",
+        "label":                                   "TODO: Add translation"
       },
       "Edid": {
         "creatureAttack":                          "TODO: Add translation",
@@ -3436,7 +3532,11 @@
       }
     },
     "ToolTips": {
+      "addSpell":                                  "TODO: Add translation",
       "addThreadLevel":                            "TODO: Add translation",
+      "attuneMatrix":                              "TODO: Add translation",
+      "castSpell":                                 "TODO: Add translation",
+      "castSpellFromMatrix":                       "TODO: Add translation",
       "deleteThreadLevel":                         "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",

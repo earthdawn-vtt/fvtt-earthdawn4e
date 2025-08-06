@@ -18,8 +18,8 @@ const DocumentSheetMixinEd = Base => {
      * @enum {number}
      */
     static SHEET_MODES = {
-      EDIT: 0,
-      PLAY: 1,
+      PLAY: 0,
+      EDIT: 1,
     };
 
     /** @inheritdoc */
@@ -83,10 +83,31 @@ const DocumentSheetMixinEd = Base => {
     // region Rendering
 
     /** @inheritdoc */
+    async _renderFrame( options = {} ) {
+      const frame = await super._renderFrame( options );
+      const header = frame.querySelector( ".window-header" );
+
+      // Add edit <-> play slide toggle.
+      if ( this.isEditable ) {
+        const toggle = document.createElement( "slide-toggle" );
+        toggle.checked = this._sheetMode === this.constructor.SHEET_MODES.EDIT;
+        toggle.classList.add( "mode-slider" );
+        toggle.dataset.tooltip = "ED.Controls.sheetModeEdit";
+        toggle.setAttribute( "aria-label", game.i18n.localize( "ED.Controls.sheetModeEdit" ) );
+        toggle.addEventListener( "change", this._onChangeSheetMode.bind( this ) );
+        toggle.addEventListener( "dblclick", event => event.stopPropagation() );
+        header.insertAdjacentElement( "afterbegin", toggle );
+      }
+
+      return frame;
+    }
+
+    /** @inheritdoc */
     async _prepareContext( options ) {
       const context = await super._prepareContext( options );
       foundry.utils.mergeObject( context, {
         config:       CONFIG.ED4E,
+        editable:     this.isEditable && ( this._sheetMode === this.constructor.SHEET_MODES.EDIT ),
         isGM:         game.user.isGM,
         options:      this.options,
         system:       this.document.system,
@@ -110,6 +131,22 @@ const DocumentSheetMixinEd = Base => {
     // region Event Handlers
 
     /**
+     * Handle the user toggling the sheet mode.
+     * @param {Event} event  The triggering event.
+     * @protected
+     */
+    async _onChangeSheetMode( event ) {
+      const { SHEET_MODES } = this.constructor;
+      const toggle = event.currentTarget;
+      const label = game.i18n.localize( `ED.Controls.sheetMode${toggle.checked ? "Play" : "Edit"}` );
+      toggle.dataset.tooltip = label;
+      toggle.setAttribute( "aria-label", label );
+      this._sheetMode = toggle.checked ? SHEET_MODES.EDIT : SHEET_MODES.PLAY;
+      await this.submit();
+      this.render();
+    }
+
+    /**
      * Creates a new embedded document of the specified type.
      * @param {Event} event - The event that triggered the form submission.
      * @param {HTMLElement} target - The HTML element that triggered the action.
@@ -117,7 +154,13 @@ const DocumentSheetMixinEd = Base => {
      * @throws {Error} - If the document type is unknown.
      */
     static async _onCreateChild( event, target ) {
+      const documentType = target.dataset.document;
+      const documentConfig = CONFIG[documentType];
       const type = target.dataset.type;
+
+      const createData = {
+        type,
+      };
 
       switch ( type ) {
         case "effect": {
@@ -137,7 +180,21 @@ const DocumentSheetMixinEd = Base => {
             renderSheet: true,
           } );
         }
+        case "spell": {
+          const spellcastingType = target.dataset.spellcastingType;
+          if ( spellcastingType ) createData[ "system.spellcastingType" ] = spellcastingType;
+        }
         default: {
+          if ( documentConfig && type in documentConfig.dataModels ) {
+            createData.name = game.i18n.localize( documentConfig.typeLabels[ type ] );
+            const createdDocuments = await this.document.createEmbeddedDocuments(
+              documentType,
+              [ createData ],
+            );
+            await createdDocuments[0]?.sheet?.render( { force: true } );
+            return createdDocuments[0];
+          }
+
           throw new Error( `Unknown document type: ${type}` );
         }
       }

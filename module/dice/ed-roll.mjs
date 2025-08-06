@@ -27,65 +27,9 @@ const { renderTemplate } = foundry.applications.handlebars;
  * @property {number} numExtraSuccesses The number of extra successes achieved in the roll
  */
 
-
-/**
- * EdRollOptions for creating an EdRoll instance.
- * @property { object } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
- * @property { number } step.total The final step that is used to determine the dice that are rolled.
- * @property { object } karma Available Karma, Karma dice and used karma.
- * @property { object } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
- * @property { object } target All information of the targets array. Defenses, number, resistance.
- * @property { object } additional Additional, non-standard, additions like extra steps for a separate dice (like flame weapon).
- * @property { number } strain How much strain this roll will cost
- * @property { string } testType Type of roll, action test or effect test.
- * @property { string } rollType Type of roll, like
- *                               damageRanged (Effect), damageMelee (Effect), attackRanged, attackMelee,
- *                               ability,
- *                               resistances (Effect), reaction, opposed
- *                               spellCasting, threadWeaving, spellCastingEffect (Effect)
- *                               Initiative (effect), Recovery (Effect), effects (Effect)
- *                               poison
- *                               etc. TODO: complete list
- */
-
-/**
- * @param { any } formula TODO
- * @param { object } data TODO
- * @param { EdRollOptions } edRollOptions Collection of data, steps, karma, devotions, target and additional.
- * @property { string } flavorTemplate The template to use ofr rendering additional information in this roll's chat messages.
- */
 export default class EdRoll extends Roll {
 
-  /* -------------------------------------------- */
-  /*  Constructor and Fields                      */
-  /* -------------------------------------------- */
-
-  constructor( formula = undefined, data = {}, edRollOptions = {} ) {
-    // us ternary operator to also check for empty strings, nullish coalescing operator (??) only checks null or undefined
-    const baseTerm = formula
-      ? formula
-      : // : ( `${getDice( step )}[${game.i18n.localize( "ED.Rolls.step )} ${step}]` );
-      `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
-        edRollOptions.step.total
-      }]`;
-    super( baseTerm, data, edRollOptions );
-
-    this.flavorTemplate = ED4E.rollTypes[this.options.rollType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
-
-    if ( !this.options.extraDiceAdded ) this.#addExtraDice();
-    if ( !this.options.configured ) this.#configureModifiers();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * @inheritDoc
-   */
-  static TOOLTIP_TEMPLATE = "systems/ed4e/templates/chat/tooltip.hbs";
-
-  /* -------------------------------------------- */
-  /*  Getter and Setter                           */
-  /* -------------------------------------------- */
+  // region Properties
 
   /**
    * Return the total result of the Roll expression if it has been evaluated. This
@@ -98,22 +42,12 @@ export default class EdRoll extends Roll {
       : super.total;
   }
 
-  /**
-   * Is this roll a valid Earthdawn test?
-   * @type {boolean}
-   */
   get validEdRoll() {
     // First term must be a Die
     // return this.terms[0] instanceof Die;
     return true;
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * @description                       Is this roll an automatic fail? True, if at least 2 dice, no effect test, and all dice are 1.
-   * @type { boolean|undefined }
-   */
   get isRuleOfOne() {
     if ( !this.validEdRoll || !this._evaluated ) return undefined;
     // more than one die required
@@ -121,36 +55,23 @@ export default class EdRoll extends Roll {
     return this.total === this.numDice;
   }
 
-  /* -------------------------------------------- */
+  get isBasicSuccess() {
+    if ( !this.canCalculateSuccesses ) return undefined;
+    return this.total >= this.options.target.total;
+  }
 
-  /**
-   * @description                       Is this roll a success? True, if at least one success and arbitrary or action test.
-   * @type { boolean|undefined }
-   */
   get isSuccess() {
     if ( !this.validEdRoll || !this._evaluated || ![ "arbitrary", "action" ].includes( this.options.testType ) ) return undefined;
     if ( this.isRuleOfOne === true ) return false;
     return this.numSuccesses > 0;
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * Is this roll a failure? True, if zero successes and arbitrary or action test.
-   * @type { boolean|undefined }
-   */
   get isFailure() {
     if ( !this.validEdRoll || !this._evaluated || ![ "arbitrary", "action" ].includes( this.options.testType ) ) return undefined;
     if ( this.isRuleOfOne === true ) return true;
     return this.numSuccesses <= 0;
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * @description                    The number of dice in this roll.
-   * @type { number }
-   */
   get numDice() {
     // must be evaluated since dice can explode and add more dice
     if ( !this.validEdRoll || !this._evaluated ) return undefined;
@@ -159,42 +80,55 @@ export default class EdRoll extends Roll {
       .reduce( ( accumulator, currentValue ) => accumulator + currentValue, 0 );
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * @description                     the number of total strain in this roll
-   * @type {number}
-   */
   get totalStrain() {
     if ( !this.validEdRoll ) return undefined;
     return this.options.strain?.total ?? 0;
   }
 
-  /* -------------------------------------------- */
+  get canCalculateSuccesses() {
+    return this.validEdRoll && this._evaluated && this.options.target && this.options.target.total >= 0;
+  }
 
-  /**
-   * @description                     The number of successes in this roll. Only available if a target number is specified and the roll is evaluated.
-   * @type {number}
-   */
   get numSuccesses() {
-    if ( !this.validEdRoll || !this._evaluated || !this.options.target || this.options.target.total < 0 ) return undefined;
-    return this.total < this.options.target?.total
-      ? 0
-      : Math.trunc( ( this.total - this.options.target.total ) / 5 ) + 1;
+    if ( !this.canCalculateSuccesses ) return undefined;
+
+    const numBasicSuccess = this.isBasicSuccess ? 1 : 0;
+    if ( numBasicSuccess < 1 && this.numGuaranteedSuccesses < 1 ) return 0;
+    return (
+      numBasicSuccess
+      + this.numBasicExtraSuccesses
+      + this.numGuaranteedSuccesses
+      + this.numAdditionalExtraSuccesses
+    );
   }
 
-  /* -------------------------------------------- */
+  get numBasicExtraSuccesses() {
+    if ( !this.canCalculateSuccesses ) return undefined;
+    return Math.trunc( ( this.total - this.options.target.total ) / 5 );
+  }
+
+  get numExtraSuccesses() {
+    if ( !this.canCalculateSuccesses ) return undefined;
+    return this.numBasicExtraSuccesses + this.numAdditionalExtraSuccesses;
+  }
 
   /**
-   * @description                     The number of extra successes in this roll. Only available if a target number is specified and the roll is evaluated.
-   * @type {number}
+   * The number of guaranteed successes in this roll. Available even if the roll is not evaluated.
+   * @type {undefined|number}
    */
-  get numExtraSuccesses() {
-    if ( !this.validEdRoll || !this._evaluated || !this.options.target || this.options.target.total < 0 ) return undefined;
-    return this.numSuccesses < 1 ? 0 : this.numSuccesses - 1;
+  get numGuaranteedSuccesses() {
+    if ( !this.validEdRoll ) return undefined;
+    return this.options.successes?.guaranteed ?? 0;
   }
 
-  /* -------------------------------------------- */
+  /**
+   * The number of additional extra successes in this roll. Available even if the roll is not evaluated.
+   * @type {undefined|number}
+   */
+  get numAdditionalExtraSuccesses() {
+    if ( !this.validEdRoll ) return undefined;
+    return this.options.successes?.additionalExtra ?? 0;
+  }
 
   /**
    * @description                     Returns the formula string based on strings instead of dice.
@@ -242,9 +176,37 @@ export default class EdRoll extends Roll {
     return formulaParts.filterJoin( " + " );
   }
 
-  /* -------------------------------------------- */
-  /*  Modifying                                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Constructor
+
+  constructor( formula = undefined, data = {}, edRollOptions = {} ) {
+    // us ternary operator to also check for empty strings, nullish coalescing operator (??) only checks null or undefined
+    const baseTerm = formula
+      ? formula
+      : // : ( `${getDice( step )}[${game.i18n.localize( "ED.Rolls.step )} ${step}]` );
+      `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
+        edRollOptions.step.total
+      }]`;
+    super( baseTerm, data, edRollOptions );
+
+    this.flavorTemplate = ED4E.rollTypes[this.options.rollType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
+
+    if ( !this.options.extraDiceAdded ) this.#addExtraDice();
+    if ( !this.options.configured ) this.#configureModifiers();
+  }
+
+  // endregion
+
+  // region Static Properties
+  /**
+   * @inheritDoc
+   */
+  static TOOLTIP_TEMPLATE = "systems/ed4e/templates/chat/tooltip.hbs";
+
+  // endregion
+
+  // region Modifiers
 
   /**
    * @description           Apply modifiers to make all dice explode.
@@ -261,8 +223,6 @@ export default class EdRoll extends Roll {
     this.options.configured = true;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * @description             Add additional dice in groups, like karma, devotion or elemental damage.
    */
@@ -274,8 +234,6 @@ export default class EdRoll extends Roll {
     // Mark extra dice as complete
     this.options.extraDiceAdded = true;
   }
-
-  /* -------------------------------------------- */
 
   /**
    * @description             Add dice from a given resource step. Currently only karma or devotion.
@@ -298,8 +256,6 @@ export default class EdRoll extends Roll {
     }
   }
 
-  /* -------------------------------------------- */
-
   /**
    * @description                   Add the dice from extra steps (like "Flame Weapon" or "Night's Edge").
    */
@@ -317,9 +273,9 @@ export default class EdRoll extends Roll {
     }
   }
 
-  /* -------------------------------------------- */
-  /*  Chat Messages                               */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Chat Messages
 
   /**
    * @description                     The text that is added to this roll's chat message when calling `toMessage`.
@@ -328,8 +284,6 @@ export default class EdRoll extends Roll {
   async getChatFlavor() {
     return renderTemplate( this.flavorTemplate, await this.getFlavorTemplateData() );
   }
-
-  /* -------------------------------------------- */
 
   /**
    * @description                       Prepare the roll data for rendering the flavor template.
@@ -353,8 +307,13 @@ export default class EdRoll extends Roll {
     templateData.ruleOfOne = this.isRuleOfOne;
     templateData.success = this.isSuccess;
     templateData.failure = this.isFailure;
+    templateData.numBasicSuccesses = this.isBasicSuccess ? 1 : 0;
     templateData.numSuccesses = this.numSuccesses ?? 0;
+    templateData.numBasicExtraSuccesses = this.numBasicExtraSuccesses ?? 0;
     templateData.numExtraSuccesses = this.numExtraSuccesses ?? 0;
+    templateData.numGuaranteedSuccesses = this.numGuaranteedSuccesses ?? 0;
+    templateData.numAdditionalExtraSuccesses = this.numAdditionalExtraSuccesses ?? 0;
+    templateData.successesTooltip = this._getSuccessesTooltip();
 
     // Roll Type specific data
     if ( this.options.getFlavorTemplateData instanceof Function ) templateData = await this.options.getFlavorTemplateData( templateData );
@@ -362,7 +321,46 @@ export default class EdRoll extends Roll {
     return templateData;
   }
 
-  /* -------------------------------------------- */
+  _getSuccessesTooltip() {
+    let tooltip = [ game.i18n.format(
+      "ED.Rolls.successesAchieved",
+      {
+        numSuccesses:      this.numSuccesses ?? 0,
+        numExtraSuccesses: this.numExtraSuccesses ?? 0,
+      },
+    ) ];
+    tooltip.push( "<ul class='successes-tooltip'>" );
+
+    const numBasicSuccesses = this.isBasicSuccess ? 1 : 0;
+    if ( numBasicSuccesses < 1 && this.numGuaranteedSuccesses > 0 ) {
+      tooltip.push( `<li>${ game.i18n.format(
+        "ED.Rolls.numBasicSuccesses",
+        { numBasicSuccesses, },
+      ) }</li>` );
+    }
+    if ( this.numGuaranteedSuccesses > 0 ) {
+      tooltip.push( `<li>${ game.i18n.format(
+        "ED.Rolls.numGuaranteedSuccesses",
+        { numGuaranteedSuccesses: this.numGuaranteedSuccesses, },
+      ) }</li>` );
+    }
+    if ( this.numBasicExtraSuccesses > 0 ) {
+      tooltip.push( `<li>${ game.i18n.format(
+        "ED.Rolls.numBasicExtraSuccesses",
+        { numBasicExtraSuccesses: this.numBasicExtraSuccesses, },
+      ) }</li>` );
+    }
+    if ( this.numAdditionalExtraSuccesses > 0 ) {
+      tooltip.push( `<li>${ game.i18n.format(
+        "ED.Rolls.numAdditionalExtraSuccesses",
+        { numAdditionalExtraSuccesses: this.numAdditionalExtraSuccesses, },
+      ) }</li>` );
+    }
+
+    tooltip.push( "</ul>" );
+
+    return tooltip.join( "\n" );
+  }
 
   /**
    * @description                       Add a success or failure class to the dice total.
@@ -375,8 +373,6 @@ export default class EdRoll extends Roll {
       );
     }
   }
-
-  /* -------------------------------------------- */
 
   /**
    * @description                         Create the `rolls` part of the tooltip for displaying dice icons with results.
@@ -395,8 +391,6 @@ export default class EdRoll extends Roll {
 
     return rolls.flat( Infinity );
   }
-
-  /* -------------------------------------------- */
 
   /** @inheritDoc */
   async getTooltip() {
@@ -427,8 +421,6 @@ export default class EdRoll extends Roll {
     return renderTemplate( this.constructor.TOOLTIP_TEMPLATE, { parts } );
   }
 
-  /* -------------------------------------------- */
-
   /**
    * @description                                   Render a Roll instance to HTML
    * @param {object} [options]                   Options which affect how the Roll is rendered
@@ -449,8 +441,6 @@ export default class EdRoll extends Roll {
     return renderTemplate( template, chatData );
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritDoc */
   async toMessage( messageData = {}, options = {} ) {
     if ( !this._evaluated ) await this.evaluate();
@@ -460,4 +450,5 @@ export default class EdRoll extends Roll {
 
     return super.toMessage( messageData, options );
   }
+  // endregion
 }

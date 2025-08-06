@@ -83,10 +83,6 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
       classes:  [ "tab", "specials" ]
     },
-    classes: {
-      template: "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
-      classes:  [ "tab", "classes" ]
-    },
     configuration: {
       template: "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
       classes:  [ "tab", "configuration" ]
@@ -129,8 +125,6 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       case "specials":
         break;
       case "configuration":
-        break;
-      case "classes":
         break;
     }
     return context;

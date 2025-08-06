@@ -2,9 +2,9 @@
 name: Objective
 about: Project Objective
 title: ''
-labels: Objective
+labels: ''
 assignees: patrickmohrmann
 
 ---
 
-
+The objective is to ...

@@ -120,6 +120,23 @@ export const extraThreadsByCircle = {
   15: 4,
 };
 
+/**
+ * Modifiers applied to spellcasting based on whether the grimoire is owned or not.
+ * @type {{notOwned: number, ownedExtraSuccess: number}}
+ */
+export const grimoireModifiers = {
+  notOwned:          -2,
+  ownedExtraSuccess: 1,
+};
+
+export const spellcastingColors = {
+  elementalism: "rgb(221, 135, 79)",
+  illusionism:  "rgb(160, 160, 240)",
+  nethermancy:  "rgb(28,0,0)",
+  shamanism:    "rgb(98, 145, 17)",
+  wizardry:     "rgb(42, 90, 165)",
+};
+
 export const matrixTypes = {
   "standard": {
     label:         "ED.Config.MatrixTypes.standard",
@@ -152,6 +169,30 @@ export const spellcastingTypes = {
   wizardry:       "ED.Config.spellcastingTypes.wizardry",
 };
 preLocalize( "spellcastingTypes" );
+
+/**
+ * The different types of spell effects.
+ * @enum {{label: string, flavorTemplate: string}}
+ */
+export const spellEffectTypes = {
+  damage: {
+    label:            "ED.Config.SpellEffectTypes.damage",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-damage-roll-flavor.hbs",
+  },
+  effect: {
+    label:            "ED.Config.SpellEffectTypes.effect",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-effect-roll-flavor.hbs",
+  },
+  macro: {
+    label:            "ED.Config.SpellEffectTypes.macro",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-macro-roll-flavor.hbs",
+  },
+  special: {
+    label:            "ED.Config.SpellEffectTypes.special",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spell-effect-special-roll-flavor.hbs",
+  },
+};
+preLocalize( "spellEffectTypes", { key: "label" } );
 
 export const spellEnhancements = {
   area: {

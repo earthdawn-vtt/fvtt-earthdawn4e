@@ -80,9 +80,8 @@ export default class PcData extends NamegiverTemplate {
     return superSchema;
   }
 
-  /* -------------------------------------------- */
-  /*  Character Generation                        */
-  /* -------------------------------------------- */
+
+  // region Character Generation
 
   /**
    *
@@ -112,15 +111,22 @@ export default class PcData extends NamegiverTemplate {
 
     const namegiverDocument = await generation.namegiverDocument;
     const classDocument = await generation.classDocument;
-    const abilities = ( await generation.abilityDocuments ).map(
-      documentData => {
-        if ( documentData.type !== "specialAbility" ) {
-          documentData.system.source ??= {};
-          documentData.system.source.class ??= classDocument.uuid;
+    const allAbilityDocuments = await generation.abilityDocuments;
+    
+    // Filter abilities: include if level > 0 OR if it's an other ability (includes namegiver talents)
+    const abilities = allAbilityDocuments
+      .filter( documentData => 
+        documentData.system.level > 0 || documentData.system.talentCategory === "other"
+      )
+      .map(
+        documentData => {
+          if ( documentData.type !== "specialAbility" ) {
+            documentData.system.source ??= {};
+            documentData.system.source.class ??= classDocument.uuid;
+          }
+          return documentData;
         }
-        return documentData;
-      }
-    );
+      );
 
     if ( classDocument.type === "questor" ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
@@ -182,12 +188,28 @@ export default class PcData extends NamegiverTemplate {
       },
     } );
 
+    // If this is a questor class, set the questorDevotion field to the devotion UUID
+    if ( classAfterCreation.type === "questor" ) {
+      const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
+      const questorDevotionItem = newActor.items.find( item => 
+        item.type === "devotion" && item.system.edid === edidQuestorDevotion 
+      );
+      
+      if ( questorDevotionItem ) {
+        await classAfterCreation.update( {
+          "system.questorDevotion": questorDevotionItem.uuid
+        } );
+      }
+    }
+
     const actorApp = newActor.sheet.render( true, {focus: true} );
     // we have to wait until the app is rendered to activate a tab
     requestAnimationFrame( () => actorApp.activateTab( "actor-notes-tab" ) );
 
     return newActor;
   }
+
+  // endregion
 
 
   // region Properties

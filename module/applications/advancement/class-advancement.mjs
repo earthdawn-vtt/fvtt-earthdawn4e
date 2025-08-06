@@ -147,7 +147,15 @@ export default class ClassAdvancementDialog extends ApplicationEd {
   static async #onFormSubmission( event, form, formData ) {
     const data = foundry.utils.expandObject( formData.object );
     this.selectedOption = data.selectedOption ?? this.selectedOption;
-    this.selectedSpells = new Set( data.selectedSpells ?? this.selectedSpells );
+    
+    // Filter out null values from checkbox array - unchecked checkboxes become null
+    const spells = Array.isArray( data.selectedSpells ) 
+      ? data.selectedSpells.filter( spell => spell !== null )
+      : [];
+    this.selectedSpells = new Set( spells );
+    
+    // Re-render to update the UI with the new selections
+    this.render();
   }
 
   /**
@@ -156,9 +164,10 @@ export default class ClassAdvancementDialog extends ApplicationEd {
    * @param {HTMLElement} target The target element.
    */
   static async _continue( event, target ) {
+    const castingType = this.classItem.system.getCastingType();
     if ( this.currentStep === 0 ) this.currentStep++;
     else if (
-      this.classItem.system.spellcasting
+      castingType
       && game.settings.get( "ed4e", "lpTrackingLearnSpellsOnCircleUp" )
     ) this.currentStep++;
     else this.currentStep = this.STEPS.length - 1;
@@ -173,7 +182,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
    */
   static async _goBack( event, target ) {
     if ( this.currentStep === 1 ) this.currentStep--;
-    else if ( this.classItem.system.spellcasting ) this.currentStep--;
+    else if ( this.classItem.system.getCastingType() ) this.currentStep--;
     else if ( this.currentStep === 3 ) this.currentStep = 1;
     else return;
 
@@ -216,7 +225,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     context.abilityOptionsByTier = this.classItem.system.advancement.availableAbilityOptions;
     context.selectedOption = this.selectedOption;
 
-    context.availableSpells = this.classItem.system.spellcasting ? ( await getAllDocuments(
+    const availableSpells = this.classItem.system.getCastingType() ? ( await getAllDocuments(
       "Item",
       "spell",
       true,
@@ -226,6 +235,30 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     ) ).filter(
       spell => !this.actor.itemTypes.spell.map( s => s.uuid ).includes( spell )
     ) : [];
+    
+    // Group spells by level
+    const spellsByLevel = {};
+    for ( const spellUuid of availableSpells ) {
+      const spell = fromUuidSync( spellUuid );
+      if ( spell?.system?.level !== undefined ) {
+        const level = spell.system.level;
+        if ( !spellsByLevel[level] ) {
+          spellsByLevel[level] = [];
+        }
+        spellsByLevel[level].push( spellUuid );
+      }
+    }
+    
+    // Convert to sorted array of objects for template iteration
+    context.spellsByLevel = Object.keys( spellsByLevel )
+      .sort( ( a, b ) => parseInt( a, 10 ) - parseInt( b, 10 ) )
+      .map( level => ( {
+        level:  parseInt( level, 10 ),
+        spells: spellsByLevel[level]
+      } ) );
+    
+    // Keep the flat list for backwards compatibility
+    context.availableSpells = availableSpells;
     context.selectedSpells = Array.from( this.selectedSpells );
 
     context.nextLevel = this.nextLevel;

@@ -97,6 +97,12 @@ export const icons = {
     tainted:       "fa-regular radiation",
     corrupt:       "fa-regular fa-biohazard",
   },
+  GroupDifficulty: {
+    group:          "fa-users",
+    highest:        "fa-arrow-up",
+    lowest:         "fa-arrow-down",
+    x:              "fa-xmark",
+  },
   Tabs:             {
     lpEarned:        "fa-light fa-hexagon-plus",
     lpSpend:         "fa-light fa-hexagon-minus",

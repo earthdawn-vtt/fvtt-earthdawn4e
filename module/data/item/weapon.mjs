@@ -5,11 +5,7 @@ import ED4E from "../../config/_module.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollableTemplate from "./templates/rollable.mjs";
-import DescriptionMigration from "./migration/old-system-V082/description.mjs";
-import AvailabilityMigration from "./migration/old-system-V082/availability.mjs";
-import PriceMigration from "./migration/old-system-V082/price.mjs";
-import WeightMigration from "./migration/old-system-V082/weight.mjs";
-import UsableItemMigration from "./migration/old-system-V082/usable-items.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -334,8 +330,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         rollData: this.containingActor,
       }
     );
-
-    return this.containingActor.processRoll( roll );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   /**
@@ -364,68 +359,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         return hasTailAttack && size <= 2;
       default:
         return undefined;
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  // eslint-disable-next-line complexity
-  static migrateData( source ) {
-    // Migrate description
-    DescriptionMigration.migrateData( source );
-
-    // Migrate availability
-    AvailabilityMigration.migrateData( source );
-
-    // migrate price
-    PriceMigration.migrateData( source );
-
-    // migrate price
-    WeightMigration.migrateData( source );
-
-    // migrate usable items
-    UsableItemMigration.migrateData( source );
-
-    // migrate weapon data
-    // migrate weapon type
-    if ( source.weapontype ) {
-      source.weaponType = source.weapontype?.slugify( { lowercase: true, strict: true } );
-      if ( ED4E.systemV0_8_2.weaponTypesMelee.includes( source.weaponType ) ) {
-        source.weaponType = Object.keys( ED4E.weaponType )[0];
-      } else if ( ED4E.systemV0_8_2.weaponTypesMissile.includes( source.weaponType ) ) {
-        source.weaponType = Object.keys( ED4E.weaponType )[1];
-      } else if ( ED4E.systemV0_8_2.weaponTypesThrown.includes( source.weaponType ) ) {
-        source.weaponType = Object.keys( ED4E.weaponType )[2];
-      } else if ( ED4E.systemV0_8_2.weaponTypesUnarmed.includes( source.weaponType ) ) {
-        source.weaponType = Object.keys( ED4E.weaponType )[3];
-      }
-    }
-
-    // migrate damage step
-    source.damage ??= {};
-    if ( ED4E.systemV0_8_2.damageAttributes.includes( source.damageattribute ) ) {
-      source.damage.attribute = Object.keys( ED4E.attributes )[ED4E.systemV0_8_2.damageAttributes.indexOf( source.damageattribute )];
-    }
-    source.damage.baseStep ??= Number( source.damagestep ) || 0;
-
-    // migrate strength minimum
-    source.strengthMinimum ??= Number( source.strenghtminimum ) || 1;
-
-    // migrate forge bonus
-    source.forgeBonus ??= Number( source.timesForged ) || 0;
-
-    if ( source.longrange || source.shortrange ) {
-      source.longrange = source.longrange?.slugify( { lowercase: true, strict: true } );  
-      source.shortrange = source.shortrange?.slugify( { lowercase: true, strict: true } );
-
-      source.range ??= {};
-      source.range.shortMin ??= Number( source.shortrange.split( "-" )[0] ) || 0;
-      source.range.shortMax ??= Number( source.shortrange.split( "-" )[1] ) || 0;
-      source.range.longMin ??= Number( source.longrange.split( "-" )[0] ) || 0;
-      source.range.longMax ??= Number( source.longrange.split( "-" )[1] ) || 1;
     }
   }
 }

@@ -1,5 +1,35 @@
 <div>
 
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+
+  {{!-- Effect --}}
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.spellEffect"}}</legend>
+
+    {{!-- Effect Type --}}
+    {{formGroup systemFields.effect.fields.type name="system.effect.type" value=item.system.effect.type localize=true}}
+
+    {{#if (eq item.system.effect.type "damage")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.damage.fields.stepModifier
+        name="system.effect.details.damage.stepModifier"
+        value=item.system.effect.details.damage.stepModifier
+      }}
+    {{else if (eq item.system.effect.type "macro")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.macro.fields.macroUuid
+        name="system.effect.details.macro.macroUuid"
+        value=item.system.effect.details.macro.macroUuid
+      }}
+    {{else if (eq item.system.effect.type "special")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.special.fields.description
+        name="system.effect.details.special.description"
+        value=item.system.effect.details.special.description
+      }}
+    {{/if}}
+  </fieldset>
+
   <fieldset>
     <legend>{{localize "ED.Item.Header.details"}}</legend>
 
@@ -9,7 +39,9 @@
         <label>
           {{localize "ED.Data.Item.Fields.sensingDifficulty"}}
         </label>
-        <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
+        <div class="form-fields">
+          <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
+        </div>
       </div>
     {{/if}}
 
@@ -18,7 +50,9 @@
       <label>
         {{localize "ED.Data.Item.Fields.dispelDifficulty"}}
       </label>
-      <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
+      <div class="form-fields">
+        <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
+      </div>
     </div>
 
     {{> "systems/ed4e/templates/form/group/general.hbs"

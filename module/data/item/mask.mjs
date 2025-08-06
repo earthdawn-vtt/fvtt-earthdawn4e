@@ -241,14 +241,4 @@ export default class MaskData extends ItemDataModel.mixin(
       } ),
     } );
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

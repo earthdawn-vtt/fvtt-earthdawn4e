@@ -45,11 +45,11 @@ export default class RollableTemplate extends SystemDataModel {
       case "attack": rollFunc = this.rollAttack.bind( this ); break;
       case "damage": rollFunc = this.rollDamage.bind( this ); break;
       case "effect": rollFunc = this.rollEffect.bind( this ); break;
-      case "initiative": rollFunc = this.rollInitiative.bind( this ); break;
-      case "reaction": rollFunc = this.rollReaction.bind( this ); break;
-      case "recovery": rollFunc = this.rollRecovery.bind( this ); break;
-      case "spellcasting": rollFunc = this.rollSpellcasting.bind( this ); break;
-      case "threadWeaving": rollFunc = this.rollThreadWeaving.bind( this ); break;
+      case "initiative": rollFunc = this.rollAbility.bind( this ); break;
+      case "reaction": rollFunc = this.rollAbility.bind( this ); break;
+      case "recovery": rollFunc = this.rollAbility.bind( this ); break;
+      case "spellcasting": rollFunc = this.rollAbility.bind( this ); break;
+      case "threadWeaving": rollFunc = this.rollAbility.bind( this ); break;
     }
     return rollFunc();
   }

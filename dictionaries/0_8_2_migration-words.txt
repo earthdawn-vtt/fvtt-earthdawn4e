@@ -22,3 +22,7 @@ shortrange
 shortrange
 longrange
 longrange
+dexterityvalue
+strengthvalue 
+dexterityStep 
+strengthStep

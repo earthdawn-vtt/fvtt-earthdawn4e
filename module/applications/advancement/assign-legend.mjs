@@ -135,7 +135,7 @@ export default class AssignLpPrompt extends ApplicationEd {
    */
   static async _assignLP( event ) {
     event.preventDefault();
-    if ( !this._data.amount ) return ui.notifications.error( game.i18n.localize( "ED.Dialogs.Errors.noLp" ) );
+    if ( !this._data.amount ) return ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noLp" ) );
     // await this.submit( { preventRender: true } );
 
     const { selectedActors, amount, description } = this._data;

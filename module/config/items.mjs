@@ -166,3 +166,32 @@ export const weaponWieldingType = {
 preLocalize( "weaponWieldingType" );
 
 // endregion
+
+
+// region Class Items
+
+/**
+ * Tier configuration for different class types.
+ * Defines which tiers are available for each class type and how they should be displayed.
+ * @type {{[classType: string]: {[tierKey: string]: {value: string, label: string}}}}
+ */
+export const classTierConfig = {
+  discipline: {
+    novice:     { value: "novice", label: "ED.Config.Tier.novice" },
+    journeyman: { value: "journeyman", label: "ED.Config.Tier.journeyman" },
+    warden:     { value: "warden", label: "ED.Config.Tier.warden" },
+    master:     { value: "master", label: "ED.Config.Tier.master" }
+  },
+  path: {
+    journeyman: { value: "journeyman", label: "ED.Config.Tier.journeyman" }, // paths start at journeyman
+    warden:     { value: "warden", label: "ED.Config.Tier.warden" },
+    master:     { value: "master", label: "ED.Config.Tier.master" }
+  },
+  questor: {
+    novice:     { value: "novice", label: "ED.Config.Tier.follower" },     // stored as novice, displayed as follower
+    journeyman: { value: "journeyman", label: "ED.Config.Tier.adherent" }, // stored as journeyman, displayed as adherent
+    warden:     { value: "warden", label: "ED.Config.Tier.exemplar" }      // stored as warden, displayed as exemplar
+  }
+};
+
+// endregion

@@ -12,12 +12,14 @@ import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
-import { typeMigrationConfig } from "./migration/actor/old-system-V082/_module.mjs";
+import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
+import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
+import DialogEd from "../applications/api/dialog.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -421,6 +423,35 @@ export default class ActorEd extends Actor {
     return this.update( { system: { lp: lpUpdateData } } );
   }
 
+  /**
+   * Cast a spell from a matrix.
+   * @param {ItemEd} matrix - The UUID of the matrix to cast the spell from.
+   * @param {ItemEd} spell - The UUID of the spell to cast.
+   * @returns {Promise<*>} A promise that resolves when the spellcasting workflow execution is complete.
+   */
+  async castFromMatrix( matrix, spell ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        castingMethod: "matrix",
+        matrix,
+        spell,
+      } );
+
+    return castingWorkflow.execute();
+  }
+
+  async castSpell( spell, options = {} ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        spell,
+        stopOnWeaving: false,
+      }
+    );
+
+    return castingWorkflow.execute( options );
+  }
 
   /**
    * Reattunes spells by executing an attunement workflow with the provided matrix.
@@ -445,6 +476,33 @@ export default class ActorEd extends Actor {
   async emptyAllMatrices() {
     return Promise.all(
       this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
+
+  async selectGrimoire( spell ) {
+    let availableGrimoires = this.items.filter( item => item.system.isGrimoire );
+    if ( spell ) {
+      availableGrimoires = availableGrimoires.filter(
+        grimoire => grimoire.system.grimoire.spells.has( spell.uuid )
+      );
+    }
+
+    if ( availableGrimoires.length === 0 ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
+      );
+      return null;
+
+    }
+
+    return fromUuid(
+      await DialogEd.waitButtonSelect(
+        availableGrimoires,
+        "ed-button-select-grimoire",
+        {
+          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
+        },
+      ),
     );
   }
 
@@ -480,7 +538,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**
@@ -530,6 +588,7 @@ export default class ActorEd extends Actor {
    * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
    * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
    * @param {object} options      Any additional options for the {@link EdRoll}.
+   * @returns {Promise<EdRoll>}   The processed Roll.
    */
   async rollEquipment( equipment, options = {} ) {
     const arbitraryStep = equipment.system.usableItem.arbitraryStep;
@@ -551,7 +610,7 @@ export default class ActorEd extends Actor {
     const edRollOptions = EdRollOptions.fromActor(
       {
         testType:         "action",
-        rollType:         "equipment",
+        rollType:         "arbitrary",
         strain:           0,
         target:           difficultyFinal,
         step:             arbitraryFinalStep,
@@ -561,7 +620,7 @@ export default class ActorEd extends Actor {
       this
     );
     const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /**
@@ -1056,16 +1115,19 @@ export default class ActorEd extends Actor {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
+  // region Migrations
   static migrateData( source ) {
+    // Step 1: Apply Foundry's core migration
     const newSource = super.migrateData( source );
 
-    typeMigrationConfig[ newSource.type?.toLowerCase() ]?.migrateData( newSource );
+    // Step 2: Apply our comprehensive migration system to the already-migrated source
+    const migrationResult = MigrationManager.migrateDocument( newSource, "Actor" );
 
-    return newSource;
+    if ( migrationResult.type ) {
+      source.type = migrationResult.type;
+    }
+    // Step 3: Return the final migrated result
+    return migrationResult;
   }
-
+  // endregion
 }

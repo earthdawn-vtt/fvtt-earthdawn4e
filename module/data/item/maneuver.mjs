@@ -28,14 +28,4 @@ export default class ManeuverData extends ItemDataModel.mixin(
       } ),
     } );
   }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }
