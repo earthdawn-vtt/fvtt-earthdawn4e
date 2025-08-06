@@ -219,6 +219,7 @@
       "common": {},
       "damage": {},
       "initiative": {},
+      "spellcasting": {},
       "threadWeaving": {}
     },
     "Item": {

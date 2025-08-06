@@ -17,3 +17,11 @@ export const chatCommands = {
   s:        "ED.Chat.Commands.s",
 };
 preLocalize( "chatCommands" );
+
+/**
+ * The available chat flags for messages.
+ * @enum {string}
+ */
+export const flags = {
+  sourceMessageUuid: "sourceMessageUuid",
+};
