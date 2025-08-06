@@ -126,19 +126,37 @@
       <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
     </div>
     <div class="recovery__grid--container">
+      {{#if (eq this.actor.type "character")}}
+        <div class="recovery__grid--item">
+          <input class="input__square-input--centered"
+          name="system.characteristics.recoveryTestsResource.value"
+              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+        </div>
+        <div class="recovery__grid--item">
+          <input class="input__square-input--centered"
+              value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
+        </div>
+        <div class="recovery__grid--item">
+          <input class="input__square-input--centered"
+                value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
+        </div>
+      {{else}}
       <div class="recovery__grid--item">
-        <input class="input__square-input--centered"
-        name="system.characteristics.recoveryTestsResource.value"
-            value="{{actor.system.characteristics.recoveryTestsResource.value}}">
-      </div>
-      <div class="recovery__grid--item">
-        <input class="input__square-input--centered"
-            value="{{actor.system.characteristics.recoveryTestsResource.max}}">
-      </div>
-      <div class="recovery__grid--item">
-        <input class="input__square-input--centered"
-              value="{{actor.system.characteristics.recoveryTestsResource.step}}">
-      </div>
+          <input class="input__square-input--centered"
+          name="system.characteristics.recoveryTestsResource.value"
+              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+        </div>
+        <div class="recovery__grid--item">
+          <input class="input__square-input--centered"
+          name="system.characteristics.recoveryTestsResource.max"
+              value="{{actor.system.characteristics.recoveryTestsResource.max}}">
+        </div>
+        <div class="recovery__grid--item">
+          <input class="input__square-input--centered"
+          name="system.characteristics.recoveryTestsResource.step"
+                value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+        </div>
+      {{/if}}
     </div>
   </div>
 
