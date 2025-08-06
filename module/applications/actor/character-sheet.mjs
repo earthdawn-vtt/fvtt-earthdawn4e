@@ -91,10 +91,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       template: "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
       classes:  [ "tab", "classes" ]
     },
-    footer: {
-      template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      classes:  [ "sheet-footer" ]
-    },
   };
 
   // endregion

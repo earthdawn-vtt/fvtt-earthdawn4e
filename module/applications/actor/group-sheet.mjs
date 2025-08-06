@@ -56,10 +56,6 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
       template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
       classes:  [ "tab", "reputation" ]
     },
-    footer: {
-      template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      classes:  [ "sheet-footer" ]
-    },
   };
 
   // region _prepareContext
