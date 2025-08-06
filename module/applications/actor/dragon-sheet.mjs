@@ -92,10 +92,6 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
       template: "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
       classes:  [ "tab", "configuration" ]
     },
-    footer: {
-      template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      classes:  [ "sheet-footer" ]
-    },
   };
 
   // region _prepareContext

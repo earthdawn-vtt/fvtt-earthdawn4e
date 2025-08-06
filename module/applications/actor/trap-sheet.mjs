@@ -46,10 +46,6 @@ export default class ActorSheetEdTrap extends ActorSheetEd {
       template: "systems/ed4e/templates/actor/actor-tabs/description.hbs",
       classes:  [ "tab", "description" ]
     },
-    footer: {
-      template: "systems/ed4e/templates/actor/actor-partials/actor-section-buttons.hbs",
-      classes:  [ "sheet-footer" ]
-    },
   };
 
   // region _prepareContext
