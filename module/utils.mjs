@@ -717,7 +717,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-loot.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-group.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-namegiver.hbs",
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-sentient.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-vehicle.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
