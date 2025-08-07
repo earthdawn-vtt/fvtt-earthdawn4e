@@ -13,7 +13,11 @@ const LESS_WATCH = [ "less/**/*.less" ];
  */
 function compileLESS() {
   return gulp.src( LESS_SRC )
-    .pipe( less() )
+    .pipe( less().on( "error", function( err ) {
+      console.error( "Error compiling LESS:", err.message );
+      // eslint-disable-next-line no-invalid-this
+      this.emit( "end" ); // End the stream on error
+    } ) )
     .pipe( gulp.dest( LESS_DEST ) );
 }
 export const compile = compileLESS;
