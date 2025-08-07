@@ -3,14 +3,14 @@
 //###########################################################
 
 .layout__row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.95rem;
 }
 .layout__col {
-    flex: 1 1 0;
-    box-sizing: border-box;
-    min-width: 0;
+  flex: 1 1 0;
+  box-sizing: border-box;
+  min-width: 0;
 }
 .layout__col--2 { flex: 0 0 calc(98% / 2); }
 .layout__col--3 { flex: 0 0 calc(98% / 3); }
@@ -19,7 +19,7 @@
 .layout__col--6 { flex: 0 0 calc(98% / 6); }
 
 .standard-form {
-    gap: 0;
+  gap: 0;
 }
 
 //###########################################################
@@ -27,25 +27,39 @@
 //###########################################################
 
 .one-line__vertical-align > *{
-    line-height: 35px;
-    vertical-align: middle;
+  line-height: 35px;
+  vertical-align: middle;
 }
-  
+
 //###########################################################
 // scrolling
 //###########################################################
 
+.highlight-flash {
+  animation: flash-highlight 1.5s ease-in-out;
+}
 
+@keyframes flash-highlight {
+  25%, 75% {
+    border-color: @color-flash-highlight;
+    border-width: 3px;
+    box-shadow: 0 0 10px @color-flash-highlight;
+  }
+
+  50% {
+    border-color: transparent;
+  }
+}
 
 //###########################################################
 // Window header
 //###########################################################
 
 .application .window-header button.header-control {
-    color: var(--color-text-primary)
+  color: var(--color-text-primary)
 }
 .application .controls-dropdown {
-    z-index: 99;
+  z-index: 99;
 }
 
 //###########################################################
@@ -53,35 +67,35 @@
 //###########################################################
 
 .header__no-border {
+  border: none;
+  input {
     border: none;
-    input {
-        border: none;
-        background: transparent;
-    }
+    background: transparent;
+  }
 }
 .input__square-input--centered,
 .input__rectangle-input--centered {
-    background: var(--color-primary);
-    border: var(--border-button);
-    border-radius: 3px;
-    text-align: center;
-    width: 25px;
-    height: 25px;
+  background: var(--color-primary);
+  border: var(--border-button);
+  border-radius: 3px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
 
 }
 .input__rectangle-input--centered {
-    width: 40px;
-    height: 25px;
-    padding-top: 2px;
+  width: 40px;
+  height: 25px;
+  padding-top: 2px;
 }
 .input__circle-input--centered {
-    border: 1px solid;
-    text-align: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding-top: 5px;
-    background: rgba(0, 0, 0, 0.1);
+  border: 1px solid;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding-top: 5px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 //.input--centered {
@@ -99,64 +113,73 @@
 //                       Fonts
 //###########################################################
 .application {
-    .font__bold {
-        font-weight: bold;
-    }
-    .font__no-underline {
-        border-bottom: none;
-    }
-    .font__italic {
-        font-style: italic;
-    }
-    .text-break__auto {
-        word-break: normal;
-    }
-    .h1, h2 {
-        .WarhorseDIY;
-    }
-    h3, h5, h6 {
-        .WarhorseDIY();
-        font-size: 1rem;
-        margin: 0;
-    }
-    h4 {
-        padding: 10px 0 0 0;
-        font-family: revert;
-        font-size: 0.9rem;
-        margin: 0;
-    }
-    .editor p {
-        .ArnoProRegular()
-    }
+  .font__bold {
+    font-weight: bold;
+  }
+  .font__no-underline {
+    border-bottom: none;
+  }
+  .font__italic {
+    font-style: italic;
+  }
+  .text-break__auto {
+    word-break: normal;
+  }
+  .h1, h2 {
+    .WarhorseDIY;
+  }
+  h3, h5, h6 {
+    .WarhorseDIY();
+    font-size: 1rem;
+    margin: 0;
+  }
+  h4 {
+    padding: 10px 0 0 0;
+    font-family: revert;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .editor p {
+    .ArnoProRegular()
+  }
 }
 
 //###########################################################
 //                       Text
 //###########################################################
 .text--center {
-    text-align: center;
+  text-align: center;
+}
+.text--left {
+  text-align: left;
+}
+.text--right {
+  text-align: right;
+}
+.text--justify {
+  text-align: justify;
 }
 
 //###########################################################
 //                       Displays
 //###########################################################
 .display__inline-block {
-    display: inline-block;
+  display: inline-block;
 }
 
 //###########################################################
 //                       spaces
 //###########################################################
 .space__small {
-    padding-top: 5px;
+  padding-top: 5px;
 }
 
 //###########################################################
 //                       undefined areas
 //###########################################################
 .undefined {
-    background-color: red;
-    color: black;
+  background-color: red;
+  color: black;
 }
 
 //###########################################################
@@ -164,18 +187,18 @@
 //###########################################################
 
 .header-bar {
-    background: var(--background-banner-actor);
+  background: var(--background-banner-actor);
 }
 .header-bar {
-    color: var(--color-text-banner);    
-    width: 100%;
-    line-height: 26px;
-    text-align: center;
-    border: var(--border-main);
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    box-shadow: inset 0 0 18px rgba(0, 0, 0, 1);
-    margin: 10px 0 5px 0; 
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 1);
+  margin: 10px 0 5px 0;
 }
 
 //###########################################################
@@ -183,11 +206,11 @@
 //###########################################################
 
 .container__block {
-    margin: -7px 0 0 0;
-    border: var(--border-main);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  margin: -7px 0 0 0;
+  border: var(--border-main);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .container__header {
-    margin: 5px 0;
+  margin: 5px 0;
 }
