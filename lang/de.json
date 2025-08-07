@@ -3281,6 +3281,7 @@
         "grimoireSetActiveNotInGrimoire":          "Der Zauber ist nicht im Grimoire enthalten. Es kann nicht abgestimmt werden.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "invalidRollType":                         "Der Aktionstyp ist ungültig oder nicht gewählt. Bitte überprüfe den Aktionstyp im Details Tab des Items.",
         "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
         "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
