@@ -1117,6 +1117,16 @@ export default class ActorEd extends Actor {
 
   // region Migrations
   static migrateData( source ) {
+    // Skip migration for partial updates or non-complete documents
+    // A complete document should have fundamental properties like name, type, etc.
+    const isPartialUpdate = !source.name || 
+                          !source.type || 
+                          ( source.system && Object.keys( source.system ).length <= 2 );
+                          
+    // Skip if this looks like a partial update rather than a complete document
+    if ( isPartialUpdate ) {
+      return source;
+    }
     // Step 1: Apply Foundry's core migration
     const newSource = super.migrateData( source );
 
