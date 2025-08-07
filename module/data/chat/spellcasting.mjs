@@ -40,10 +40,22 @@ export default class SpellcastingMessageData extends BaseMessageData {
 
   // region Event Handlers
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {SpellcastingMessageData}
+   */
   static async _onRollDamage( event, button ) {}
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {SpellcastingMessageData}
+   */
   static async _onRunMacro( event, button ) {}
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {SpellcastingMessageData}
+   */
   static async _onShowSpecial( event, button ) {
     event.preventDefault();
 
@@ -51,12 +63,14 @@ export default class SpellcastingMessageData extends BaseMessageData {
 
     const specialDescription = spell?.system.effect?.details?.special?.description
       ?? game.i18n.localize( "ED.Chat.Flavor.spellNoSpecialDescription" );
-    const content = `<div class="ed-chat-spell-special">
+    const content = `<div class="flavor-text text--center">
       ${ createContentAnchor( spell ).outerHTML }
       <p>${ specialDescription }</p>
+      ${ this.scrollToSourceLink}
     </div>`;
 
     const message = await CONFIG.ChatMessage.documentClass.create( {
+      type:    "common",
       content,
       speaker: ChatMessage.getSpeaker( { actor: this.caster } ),
     } );
