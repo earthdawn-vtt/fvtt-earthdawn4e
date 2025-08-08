@@ -331,6 +331,11 @@
         "rollDamage":                              "Roll Damage",
         "rollDamageTitle":                         "Roll for Damage",
         "rollEffect":                              "Roll Effect",
+        "runMacro":                                "TODO: Add translation",
+        "runMacroTitle":                           "TODO: Add translation",
+        "scrollToSourceMessage":                   "TODO: Add translation",
+        "showSpecial":                             "TODO: Add translation",
+        "showSpecialTitle":                        "TODO: Add translation",
         "takeDamage":                              "Take Damage",
         "takeDamageTitle":                         "TODO: Add translation"
       },
@@ -362,6 +367,7 @@
         "rollInitiative":                          "TODO: Add translation",
         "rollRecovery":                            "TODO: Add translation",
         "rollUnarmedDamage":                       "TODO: Add translation",
+        "spellNoSpecialDescription":               "TODO: Add translation",
         "spellcastingRollOptions":                 "TODO: Add translation",
         "standardDiceRoll":                        "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
@@ -374,10 +380,7 @@
         "arbitraryTest":                           "arbitrary Test",
         "attackManeuvers":                         "TODO: Add translation",
         "attackReactions":                         "TODO: Add translation",
-        "attackTargets":                           "TODO: Add translation",
-        "extraThreads":                            "TODO: Add translation",
-        "numThreadsJustWoven":                     "TODO: Add translation",
-        "numThreadsWovenTotal":                    "TODO: Add translation"
+        "attackTargets":                           "TODO: Add translation"
       }
     },
     "Conditions": {
@@ -3293,6 +3296,7 @@
         "cantUpdateItemWeight":                    "TODO: Add translation",
         "castSpellNoActor":                        "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
+        "couldNotScrollToSourceMessage":           "TODO: Add translation",
         "firstClassViaCharGen":                    "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
         "invalidRecoveryMode":                     "TODO: Add translation",
@@ -3543,8 +3547,12 @@
       "castSpell":                                 "TODO: Add translation",
       "castSpellFromMatrix":                       "TODO: Add translation",
       "deleteThreadLevel":                         "TODO: Add translation",
+      "extraThreads":                              "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",
+      "numThreadsJustWoven":                       "TODO: Add translation",
+      "numThreadsWovenTotal":                      "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",
+      "scrollToSourceMessage":                     "TODO: Add translation",
       "weaveThreadCheck":                          "TODO: Add translation"
     },
     "Update": {

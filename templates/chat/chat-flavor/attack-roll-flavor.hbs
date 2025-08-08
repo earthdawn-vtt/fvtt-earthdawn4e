@@ -31,9 +31,7 @@
                 <ul class="unlist">
                   {{#each maneuvers as |maneuver|}}
                     <li>
-                      <button class="maneuver-button" data-action="maneuver" data-ability-uuid="{{maneuver.uuid}}">
-                        {{maneuver.name}}
-                      </button>
+                      {{> "systems/ed4e/templates/chat/chat-buttons/use-maneuver.hbs"}}
                     </li>
                   {{/each}}
                 </ul>

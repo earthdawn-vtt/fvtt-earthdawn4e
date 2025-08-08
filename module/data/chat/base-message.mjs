@@ -25,7 +25,9 @@ export default class BaseMessageData extends SystemDataModel {
   static BASE_DATA_MODEL = BaseMessageData;
 
   static DEFAULT_OPTIONS = {
-    actions: {},
+    actions: {
+      scrollToSource: this._onScrollToSource,
+    },
   };
 
   /**
@@ -94,6 +96,21 @@ export default class BaseMessageData extends SystemDataModel {
     return fromUuidSync( this.roll?.options.rollingActorUuid );
   }
 
+  /**
+   * The anchor HTML for scrolling to this message in the chat log.
+   * @type {string}
+   */
+  get scrollToSourceLink() {
+    return `<div class="text--left">
+      <a class="source-message content-anchor"
+              data-uuid="${ this.parent.uuid }" data-id="${ this.parent.id }"
+              data-action="scrollToSource"
+              data-tooltip="${ game.i18n.localize( " ED.ToolTips.scrollToSourceMessage" ) }">
+      ${ game.i18n.localize( "ED.Chat.Button.scrollToSourceMessage" ) }
+      </a>
+    </div>`;
+  }
+
   // endregion
 
   // region Event Handlers
@@ -160,6 +177,10 @@ export default class BaseMessageData extends SystemDataModel {
    */
   _onClickAction( event, target ) {
     console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
+  }
+
+  static async _onScrollToSource( event, button ) {
+    this.parent.scrollToMessage( button.dataset.id );
   }
 
   // endregion

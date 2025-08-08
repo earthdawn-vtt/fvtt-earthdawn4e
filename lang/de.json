@@ -330,6 +330,11 @@
         "rollDamage":                              "Schadenswurf",
         "rollDamageTitle":                         "Würfel den Effekt",
         "rollEffect":                              "Effektwurf",
+        "runMacro":                                "Makro ausführen",
+        "runMacroTitle":                           "Führe das Makro aus",
+        "scrollToSourceMessage":                   "Quelle",
+        "showSpecial":                             "Zeige Extras",
+        "showSpecialTitle":                        "Öffne das zugehörige Item",
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
@@ -361,11 +366,12 @@
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
+        "spellNoSpecialDescription":               "Zauber hat keine Spezialeffekte",
         "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard Würfelwurf",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
-        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell} ({step})",
+        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell}",
         "undoDamage":                              "Setze den Schaden zurück",
         "warpingRollOptions":                      "Verzerrungsprobe<br/>{sourceActor} wirkt rohe Magie in einer Region mit Verunreinigung: {pollution}"
       },
@@ -373,10 +379,7 @@
         "arbitraryTest":                           "Willkürlicher Test",
         "attackManeuvers":                         "Manöver",
         "attackReactions":                         "Reaktionen",
-        "attackTargets":                           "Ziele",
-        "extraThreads":                            "Zusätzliche Fäden",
-        "numThreadsJustWoven":                     "Gerade gewebte Fäden",
-        "numThreadsWovenTotal":                    "Gesamt gewebte Fäden"
+        "attackTargets":                           "Ziele"
       }
     },
     "Conditions": {
@@ -3310,6 +3313,7 @@
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
+        "couldNotScrollToSourceMessage":           "Die Nachricht konnte nicht gefunden werden.",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
@@ -3560,8 +3564,12 @@
       "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
+      "extraThreads":                              "Zusätzliche Fäden",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
+      "numThreadsJustWoven":                       "Gerade gewebte Fäden",
+      "numThreadsWovenTotal":                      "Gesamt gewebte Fäden",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",
+      "scrollToSourceMessage":                     "Scrollt zur Chat-Nachricht die diese erzeugt hat",
       "weaveThreadCheck":                          "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {

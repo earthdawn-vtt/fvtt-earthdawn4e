@@ -218,7 +218,9 @@
       "attack": {},
       "common": {},
       "damage": {},
-      "initiative": {}
+      "initiative": {},
+      "spellcasting": {},
+      "threadWeaving": {}
     },
     "Item": {
       "armor": {},
