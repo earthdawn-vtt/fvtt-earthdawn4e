@@ -5,6 +5,9 @@ import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
+
+const DialogClass = DialogEd;
 
 /**
  * Data model template with information on talent items.
@@ -220,6 +223,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return super.increase();
   }
 
+  // region Learning
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     // dropping an item on the actor has no createData. This is only used when learning a
@@ -235,6 +239,25 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     if ( !learnedItem.system.talentCategory ) {
       const promptFactoryItem = PromptFactory.fromDocument( learnedItem );
       category = await promptFactoryItem.getPrompt( "talentCategory" );
+    }
+
+    // versatility validation
+    if ( category === "versatility" ) {
+      const versatilityTalents = actor.itemTypes.talent.filter(
+        item =>  item.system.talentCategory === "versatility"
+      );
+      const versatility = actor?.getSingleItemByEdid( "versatility" );
+      if ( versatilityTalents.length >= versatility?.system.level ) {
+        const progressRequest  = await DialogClass.confirm( {
+          content: `<p>${ game.i18n.localize( "ED.Dialogs.versatilityTalentLimit" ) }</p>`,
+          window:      {
+            title:       game.i18n.format( "ED.Dialogs.Title.versatilityLimit" ),
+          },
+        } );
+        if ( !progressRequest ) {
+          return;
+        }
+      }
     }
 
     // assign the level at which the talent was learned and the source discipline
@@ -253,7 +276,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // update the learned talent with the new data
     await learnedItem.update( {
       "system.talentCategory":        category ?? learnedItem.system.talentCategory,
-      "system.source.class":          learnedItem.system.source?.class ?? discipline.uuid,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline?.uuid,
       "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
     

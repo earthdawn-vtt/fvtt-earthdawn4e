@@ -3122,7 +3122,8 @@
         "selectWeavingAbility":                    "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
-        "talentCategory":                          "TODO: Add translation"
+        "talentCategory":                          "TODO: Add translation",
+        "versatilityLimit":                        "TODO: Add translation"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "TODO: Add translation"
@@ -3137,7 +3138,8 @@
       "ignoreArmor":                               "TODO: Add translation",
       "knockDownChoice":                           "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
-      "physical":                                  "TODO: Add translation"
+      "physical":                                  "TODO: Add translation",
+      "versatilityTalentLimit":                    "TODO: Add translation"
     },
     "Document": {
       "create":                                    "TODO: Add translation",
@@ -3308,6 +3310,7 @@
         "questorItemNotUpdated":                   "TODO: Add translation",
         "spellAlreadyAttunedInGrimoire":           "TODO: Add translation",
         "spellNotReadyToCast":                     "TODO: Add translation",
+        "versatilityTalentLimit":                  "TODO: Add translation",
         "warningEffectNoActor":                    "TODO: Add translation"
       }
     },

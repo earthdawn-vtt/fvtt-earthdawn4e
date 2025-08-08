@@ -444,11 +444,11 @@ class ActorPromptFactory extends PromptFactory {
 class ItemPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-    chooseTier:     this._chooseTierPrompt.bind( this ),
-    learnKnack:     this._learnKnackPrompt.bind( this ),
-    lpIncrease:     this._lpIncreasePrompt.bind( this ),
-    learnAbility:   this._learnAbilityPrompt.bind( this ),
-    talentCategory: this._talentCategoryPrompt.bind( this ),
+    chooseTier:             this._chooseTierPrompt.bind( this ),
+    learnKnack:             this._learnKnackPrompt.bind( this ),
+    lpIncrease:             this._lpIncreasePrompt.bind( this ),
+    learnAbility:           this._learnAbilityPrompt.bind( this ),
+    talentCategory:         this._talentCategoryPrompt.bind( this ),
   };
 
   /**
