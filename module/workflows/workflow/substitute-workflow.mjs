@@ -8,6 +8,8 @@ const DialogClass = DialogEd;
 
 /**
  * Workflow for handling actor substituting an Ability with an Attribute
+ * @typedef {object} SubstituteWorkflowOptions
+ * @property {string} attributeId - The attribute ID to use for the substitute roll.
  */
 export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
 
@@ -53,14 +55,13 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     this._rollToMessage = true;
     this._attributeId = options.attributeId;
 
-    // if ( this._action === "ability" ) {
-    //   this._steps.push( this._processRoll.bind( this ) );
-    // }
     this._steps = [
       this._chooseSubstituteAbility.bind( this ),
       this._chooseAlternativeWorkflow.bind( this ),
       this._prepareSubstituteRollOptions.bind( this ),
-      this._performSubstituteRoll.bind( this ),
+      this._createRoll.bind( this ),
+      this._evaluateResultRoll.bind( this ),
+      this._processRoll.bind( this ),
     ];
   }
 
@@ -106,7 +107,6 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
           if ( mode.attackType ) {
             this._attackType = mode.attackType;
           }
-          console.log( `Button clicked: ${mode.rollType}:${key}` );
         }
       } );
     }
@@ -165,23 +165,5 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
       },
       this._actor,
     );
-  }
-
-  /**
-   * Performs the half magic roll
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _performSubstituteRoll() {
-    if ( this._action !== "ability" ) return; // Only run for ability
-    if ( this._roll === null ) {
-      this._roll = null;
-      this._result = null;
-      return;
-    }
-
-    await this._createRoll();
-    await this._roll.evaluate();
-    this._result = this._roll;
   }
 }

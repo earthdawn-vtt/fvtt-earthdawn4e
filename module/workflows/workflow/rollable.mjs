@@ -109,5 +109,12 @@ export default function Rollable( WorkflowClass ) {
       } );
     }
 
+    async _evaluateResultRoll() {
+      if ( !this._roll ) return;
+  
+      this._roll = await this._roll.evaluate();
+      this._result = this._roll;
+    }
+
   };
 }

@@ -5,6 +5,8 @@ import ED4E from "../../config/_module.mjs";
 
 /**
  * Workflow for handling actor attribute tests
+ * @typedef {object} AttributeWorkflowOptions
+ * @property {string} attributeId - The attribute ID to use for the attribute roll.
  */
 export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
 
@@ -27,7 +29,8 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
 
     this._steps = [
       this._prepareAttributeRollOptions.bind( this ),
-      this._performAttributeRoll.bind( this ),
+      this._createRoll.bind( this ),
+      this._evaluateResultRoll.bind( this ),
       this._processRoll.bind( this ),
     ];
   }
@@ -71,22 +74,5 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
       },
       this._actor,
     );
-  }
-
-  /**
-   * Performs the attribute roll
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _performAttributeRoll() {
-    if ( this._roll === null ) {
-      this._roll = null;
-      this._result = null;
-      return;
-    }
-
-    await this._createRoll();
-    await this._roll.evaluate();
-    this._result = this._roll;
   }
 }

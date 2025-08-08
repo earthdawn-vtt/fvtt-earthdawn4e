@@ -6,6 +6,8 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
 
 /**
  * Workflow for handling actor half magic tests
+ * @typedef {object} HalfMagicWorkflowOptions
+ * @property {string} attributeId - The attribute ID to use for the half magic roll.
  */
 export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
 
@@ -27,7 +29,8 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
 
     this._steps = [
       this._prepareHalfMagicRollOptions.bind( this ),
-      this._performHalfMagicRoll.bind( this ),
+      this._createRoll.bind( this ),
+      this._evaluateResultRoll.bind( this ),
       this._processRoll.bind( this ),
     ];
   }
@@ -81,22 +84,5 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
       },
       this._actor,
     );
-  }
-
-  /**
-   * Performs the half magic roll
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _performHalfMagicRoll() {
-    if ( this._roll === null ) {
-      this._roll = null;
-      this._result = null;
-      return;
-    }
-
-    await this._createRoll();
-    await this._roll.evaluate();
-    this._result = this._roll;
   }
 }
