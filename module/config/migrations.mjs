@@ -23,6 +23,19 @@ export const systemV0_8_2 = {
 ],
 
   /**
+   * Attribute values from the LaPorta System
+   * @enum {string}
+   */
+  attributeValues: [
+    "dexterityvalue",
+    "strengthvalue",
+    "toughnessvalue",
+    "perceptionvalue",
+    "willpowervalue",
+    "charismavalue"
+  ],
+
+  /**
    * Damage attributes options from the LaPorta System
    * @enum {string}
    */
