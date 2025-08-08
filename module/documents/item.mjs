@@ -254,16 +254,24 @@ export default class ItemEd extends Item {
 
   // region Migrations
   static migrateData( source ) {
+  // Skip migration for partial updates or non-complete documents
+  // A complete document should have fundamental properties like name, type, etc.
+    const isPartialUpdate = !source.name || 
+                          !source.type || 
+                          ( source.system && Object.keys( source.system ).length <= 2 );
+                          
+    // Skip if this looks like a partial update rather than a complete document
+    if ( isPartialUpdate ) {
+      return source;
+    }
+
     // Step 1: Apply Foundry's core migration
     const newSource = super.migrateData( source );
 
     // Step 2: Apply our comprehensive migration system to the already-migrated source
     const migrationResult = MigrationManager.migrateDocument( newSource, "Item" );
 
-    // Step 3: ALSO modify the original source in place (workaround for Foundry ignoring return value)
-    // Foundry's document initialization has an architectural issue where it calls migrateData()
-    // but then validates the original not migrated source data instead of using the return value.
-    // This dual approach ensures migrations work by modifying both the return value AND the original source.
+    // Step 3: ALSO modify the original source...
     if ( migrationResult.system ) {
       source.system = migrationResult.system;
     }
