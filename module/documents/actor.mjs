@@ -128,41 +128,31 @@ export default class ActorEd extends Actor {
   /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
-    // Disposition { FRIENDLY: 1; HOSTILE: -1; NEUTRAL: 0; SECRET: -2 }
-    // Configure prototype token settings
-    if ( this.type === "character" ) {
-      const prototypeToken = {
-        sight:       {enabled: true},
-        actorLink:   true,
-        disposition: 1,   // Friendly
-        displayBars: 50,  // Always Display bar 1 and 2
-        displayName: 30,  // Display nameplate on hover
-        bar1:        {
-          attribute: "healthRate"
-        },
-        bar2: {
-          attribute: "karma"
-        }
-      };
+    await this._tokenSettingUpdate();
+  }
 
-      this.updateSource( { prototypeToken } );
-    } else if ( this.type === "npc" ) {
-      const prototypeToken = {
-        sight:       {enabled: true},
-        actorLink:   false,
-        disposition: 0,   // neutral 
-        displayBars: 50,  // Always Display bar 1 and 2
-        displayName: 30,  // Display nameplate on hover
-        bar1:        {
-          attribute: "healthRate"
-        },
-        bar2: {
-          attribute: "karma"
-        }
-      };
+  async _tokenSettingUpdate () {
+    const actorsTypesWithKarma = [ "character", "npc" ];
+    const prototypeToken = {
+      sight:       {enabled: true},
+      actorLink:   this.type === "character" ? true : false,
+      disposition: await this._getDisposition(),
+      displayBars: 50,  // Always Display bar 1 and 2
+      displayName: 30,  // Display nameplate on hover
+      bar1:        {
+        attribute: "healthRate"
+      },
+      bar2: {
+        attribute: actorsTypesWithKarma.includes( this.type ) ? "karma" : null
+      }
+    };
+    this.updateSource( { prototypeToken } );
+  }
 
-      this.updateSource( { prototypeToken } );
-    }
+  async _getDisposition() {
+    if ( this.type === "character" ) return CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+    if ( this.type === "npc" ) return CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+    return CONST.TOKEN_DISPOSITIONS.UNFRIENDLY;
   }
 
   /**
