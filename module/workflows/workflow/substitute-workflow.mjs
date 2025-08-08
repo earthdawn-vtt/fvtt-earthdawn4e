@@ -1,6 +1,6 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
-import RollProcessor from "../../services/roll-processor.mjs";
+// import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
@@ -11,7 +11,6 @@ const DialogClass = DialogEd;
  * Workflow for handling actor substituting an Ability with an Attribute
  */
 export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
-
 
   /**
    * attribute Id
@@ -42,32 +41,27 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
   _substituteName;
 
   /**
-   * Actor
-   * @type {ActorEd}
-   * @private
-   */
-  _actor;
-
-  /**
    * @param {ActorEd} actor The actor performing the attribute roll to substitute an Ability
    * @param {SubstituteWorkflowOptions} [options] Options for the substitute workflow
    */
   constructor( actor, options = {} ) {
     super( actor, options );
-    this._actor = actor;
     if ( !options.attributeId || !( options.attributeId in ED4E.attributes ) ) {
       ui.notifications.error(
         game.i18n.localize( "ED.Notifications.Error.substituteAttributeNotFound" ),
       );
     }
+    this._rollToMessage = true;
     this._attributeId = options.attributeId;
 
+    // if ( this._action === "ability" ) {
+    //   this._steps.push( this._processRoll.bind( this ) );
+    // }
     this._steps = [
       this._chooseSubstituteAbility.bind( this ),
       this._chooseAlternativeWorkflow.bind( this ),
       this._prepareSubstituteRollOptions.bind( this ),
       this._performSubstituteRoll.bind( this ),
-      this._processSubstituteRoll.bind( this ),
     ];
   }
 
@@ -192,14 +186,14 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     this._result = this._roll;
   }
 
-  /**
-   * Processes the half magic based on the roll result and recovery mode
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _processSubstituteRoll() {
-    if ( this._action !== "ability" ) return; // Only run for ability
-    await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
-  }
+  // /**
+  //  * Processes the half magic based on the roll result and recovery mode
+  //  * @returns {Promise<void>}
+  //  * @private
+  //  */
+  // async _processSubstituteRoll() {
+  //   if ( this._action !== "ability" ) return; // Only run for ability
+  //   await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
+  // }
 
 }

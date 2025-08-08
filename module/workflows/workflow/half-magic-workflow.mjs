@@ -1,6 +1,6 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
-import RollProcessor from "../../services/roll-processor.mjs";
+// import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
@@ -18,25 +18,18 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
   _attributeId;
 
   /**
-   * Actor
-   * @type {ActorEd}
-   * @private
-   */
-  _actor;
-
-  /**
    * @param {ActorEd} actor The actor performing the half magic
    * @param {HalfMagicWorkflowOptions} [options] Options for the half magic workflow
    */
   constructor( actor, options = {} ) {
     super( actor, options );
-    this._actor = actor;
     this._attributeId = options.attributeId;
+    this._rollToMessage = true;
 
     this._steps = [
       this._prepareHalfMagicRollOptions.bind( this ),
       this._performHalfMagicRoll.bind( this ),
-      this._processHalfMagicRoll.bind( this ),
+      this._processRoll.bind( this ),
     ];
   }
 
@@ -109,13 +102,13 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
     this._result = this._roll;
   }
 
-  /**
-   * Processes the half magic based on the roll result and recovery mode
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _processHalfMagicRoll() {
-    await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
-  }
+  // /**
+  //  * Processes the half magic based on the roll result and recovery mode
+  //  * @returns {Promise<void>}
+  //  * @private
+  //  */
+  // async _processHalfMagicRoll() {
+  //   await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
+  // }
 
 }

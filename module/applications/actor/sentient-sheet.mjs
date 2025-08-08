@@ -256,15 +256,13 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     if ( rollType === "attribute" ) {
       const attribute = target.dataset.attribute;
       const attributeMode = await this.document.getPrompt( "attribute" );
-      if ( attributeMode === "rollAttribute" ) {
-        this.document.rollAttribute( attribute, { event: event } );
-      }
-      else if ( attributeMode === "rollHalfMagic" ) {
-        this.document.rollHalfMagic( attribute, { event: event } );
-      }
-      else if ( attributeMode === "rollSubstitute" ) {
-        this.document.rollSubstitute( attribute, { event: event } );
-      }
+      const attributeFunctions = {
+        rollAttribute:   this.document.rollAttribute.bind( this.document ),
+        rollHalfMagic:  this.document.rollHalfMagic.bind( this.document ),
+        rollSubstitute: this.document.rollSubstitute.bind( this.document ),
+      };
+
+      if ( attributeMode ) attributeFunctions[attributeMode]?.( attribute, { event }, );
     }  else if ( rollType === "equipment" ) {
       const li = target.closest( ".item-id" );
       const equipment = this.document.items.get( li.dataset.itemId );

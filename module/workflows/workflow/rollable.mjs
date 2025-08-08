@@ -28,6 +28,12 @@ export default function Rollable( WorkflowClass ) {
     _rollOptions;
 
     /**
+     * Whether the roll result should be sent to the chat as a message.
+     * @type {boolean}
+     */
+    _rollToMessage = false;
+
+    /**
      * The title for the roll prompt application.
      * @type {string}
      * @private
@@ -87,7 +93,7 @@ export default function Rollable( WorkflowClass ) {
         this._roll,
         this._actor,
         {
-          rollToMessage: false,
+          rollToMessage: this._rollToMessage,
         }
       );
     }
