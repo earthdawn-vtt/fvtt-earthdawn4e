@@ -128,14 +128,14 @@ export default class ActorEd extends Actor {
   /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
-    await this._tokenSettingUpdate();
+    await this._updateTokenSettings();
   }
 
-  async _tokenSettingUpdate () {
+  async _updateTokenSettings () {
     const actorsTypesWithKarma = [ "character", "npc" ];
     const prototypeToken = {
       sight:       {enabled: true},
-      actorLink:   this.type === "character" ? true : false,
+      actorLink:   this.type === "character",
       disposition: await this._getDisposition(),
       displayBars: 50,  // Always Display bar 1 and 2
       displayName: 30,  // Display nameplate on hover
@@ -150,9 +150,9 @@ export default class ActorEd extends Actor {
   }
 
   async _getDisposition() {
-    if ( this.type === "character" ) return CONST.TOKEN_DISPOSITIONS.FRIENDLY;
-    if ( this.type === "npc" ) return CONST.TOKEN_DISPOSITIONS.NEUTRAL;
-    return CONST.TOKEN_DISPOSITIONS.UNFRIENDLY;
+    if ( this.type === "character" ) return ED4E.tokenDisposition.friendly;
+    if ( this.type === "npc" ) return ED4E.tokenDisposition.neutral;
+    return ED4E.tokenDisposition.hostile;
   }
 
   /**
