@@ -1,6 +1,5 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
-// import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
@@ -32,7 +31,6 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
       this._processRoll.bind( this ),
     ];
   }
-
 
   /**
    * Prepares the half magic roll options
@@ -101,14 +99,4 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
     await this._roll.evaluate();
     this._result = this._roll;
   }
-
-  // /**
-  //  * Processes the half magic based on the roll result and recovery mode
-  //  * @returns {Promise<void>}
-  //  * @private
-  //  */
-  // async _processHalfMagicRoll() {
-  //   await RollProcessor.process( this._roll, this._actor, { rollToMessage: true, } );
-  // }
-
 }
