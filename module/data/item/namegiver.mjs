@@ -8,7 +8,7 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
  * @property {object} attributeValues                           Attribute Schema Object
  * @property {number} attributeValues.dexterityValue            dexterity value
  * @property {number} attributeValues.strengthValue             strength value
- * @property {number} attributeValues.constitutionValue         constitution value
+ * @property {number} attributeValues.toughnessValue            toughness value
  * @property {number} attributeValues.perceptionValue           perception value
  * @property {number} attributeValues.willpowerValue            willpower value
  * @property {number} attributeValues.charismaValue             charisma value

@@ -26,3 +26,11 @@ dexterityvalue
 strengthvalue 
 dexterityStep 
 strengthStep
+dexterityvalue
+strengthvalue
+toughnessvalue
+perceptionvalue
+willpowervalue
+charismavalue
+karmamodifier
+Abilites
