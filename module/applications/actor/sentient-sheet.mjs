@@ -185,7 +185,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const takeDamage = await this.document.getPrompt( "takeDamage" );
     if ( !takeDamage || takeDamage === "close" ) return;
 
-    this.document.takeDamage( takeDamage.damage, {
+    await this.document.takeDamage( takeDamage.damage, {
       isStrain:     false,
       damageType:   takeDamage.damageType,
       armorType:    takeDamage.armorType,
@@ -214,7 +214,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
   static async rollRecovery( event, target ) {
     event.preventDefault();
     const recoveryMode = await this.document.getPrompt( "recovery" );
-    this.document.rollRecovery( recoveryMode, {event: event} );
+    this.document.rollRecovery( recoveryMode );
   }
 
   /**

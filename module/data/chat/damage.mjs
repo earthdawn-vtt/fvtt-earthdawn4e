@@ -142,7 +142,7 @@ export default class DamageMessageData extends BaseMessageData {
    * @param {ActorEd} targetActor - The Actor to apply damage to
    */
   async applyDamage( targetActor ) {
-    const { damageTaken } = targetActor.takeDamage( this.roll.total, {
+    const { damageTaken } = await targetActor.takeDamage( this.roll.total, {
       isStrain:     false,
       damageType:   this.roll.options.damageType,
       armorType:    this.roll.options.armorType,

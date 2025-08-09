@@ -65,6 +65,6 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
   static async rollHalfMagic( event, target ) {
     event.preventDefault();
     ui.notifications.info( "Half magic not done yet" );
-    this.document.rollHalfMagic( {event: event} );
+    this.document.rollHalfMagic( { event: event } );
   }
 }
