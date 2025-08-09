@@ -2511,6 +2511,10 @@
               "hint":                              "Soll die Rüstung des Ziels ignoriert werden?",
               "label":                             "Rüstung ignorieren"
             },
+            "naturalArmorOnly": {
+              "hint":                              "Soll nur natürliche Rüstung Schaden abwenden können?",
+              "label":                             "Nur natürliche Rüstung zählt"
+            },
             "weaponUuid": {
               "hint":                              "UUID der Waffe auf die sich diese Option bezieht",
               "label":                             "Waffen-UUID"
