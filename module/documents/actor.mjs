@@ -434,6 +434,7 @@ export default class ActorEd extends Actor {
    * @param {("physical"|"mystical")} [options.armorType]               The type of armor that protects from this damage, one of either
    *                                                                    'physical', 'mystical', or 'none'.
    * @param {boolean} [options.ignoreArmor]                             Whether armor should be ignored when applying this damage.
+   * @param {boolean} [options.naturalArmorOnly]                        Whether only natural armor should be considered when applying this damage (this is only relevant for mystical damage).
    * @param {EdRoll|undefined} [options.damageRoll]                     The roll that caused this damage or undefined if not caused by one.
    * @param {ItemEd} [options.strainOrigin]                             The ability causing the strain
    * @returns {Promise<{damageTaken: number, knockdownTest: boolean}>}
@@ -442,16 +443,18 @@ export default class ActorEd extends Actor {
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
   async takeDamage( amount, options = {
-    isStrain:     false,
-    damageType:   "standard",
-    armorType:    "physical",
-    ignoreArmor:  false,
-    damageRoll:   undefined,
-    strainOrigin: undefined
+    isStrain:         false,
+    damageType:       "standard",
+    armorType:        "physical",
+    ignoreArmor:      false,
+    naturalArmorOnly: false,
+    damageRoll:       undefined,
+    strainOrigin:     undefined
   } ) {
     const { isStrain, damageType, armorType, ignoreArmor, damageRoll, strainOrigin } = options;
     const { armor, health } = this.system.characteristics;
-    const damageTaken = amount - ( ignoreArmor || !armorType ? 0 : armor[armorType].value );
+    const armorValue = armor[armorType]?.[options.naturalArmorOnly ? "baseValue" : "value"];
+    const damageTaken = amount - ( ignoreArmor || !armorType ? 0 : armorValue );
     const newDamage = health.damage[damageType] + damageTaken;
 
     const updates = { [`system.characteristics.health.damage.${ damageType }`]: newDamage };
