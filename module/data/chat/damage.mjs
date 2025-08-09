@@ -86,6 +86,10 @@ export default class DamageMessageData extends BaseMessageData {
 
   // region Event Handlers
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {DamageMessageData}
+   */
   static async _onApplyDamage( event, _ ) {
     event.preventDefault();
 
@@ -96,10 +100,14 @@ export default class DamageMessageData extends BaseMessageData {
     }
 
     for ( let targetActor of targets ) {
-      await this.applyDamage( targetActor );
+      await this._applyDamage( targetActor );
     }
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {DamageMessageData}
+   */
   static async _onTakeDamage( event, _ ) {
     event.preventDefault();
 
@@ -109,9 +117,13 @@ export default class DamageMessageData extends BaseMessageData {
       return;
     }
 
-    await this.applyDamage( targetActor );
+    await this._applyDamage( targetActor );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {DamageMessageData}
+   */
   static async _onUndoDamage( event, button ) {
     event.preventDefault();
     const actor = await fromUuid( button.dataset.dealtTo );
@@ -141,13 +153,14 @@ export default class DamageMessageData extends BaseMessageData {
    * Apply damage to a target Actor and record the transaction.
    * @param {ActorEd} targetActor - The Actor to apply damage to
    */
-  async applyDamage( targetActor ) {
+  async _applyDamage( targetActor ) {
     const { damageTaken } = await targetActor.takeDamage( this.roll.total, {
-      isStrain:     false,
-      damageType:   this.roll.options.damageType,
-      armorType:    this.roll.options.armorType,
-      ignoreArmor:  this.roll.options.ignoreArmor,
-      damageRoll:   this.roll,
+      isStrain:         false,
+      damageType:       this.roll.options.damageType,
+      armorType:        this.roll.options.armorType,
+      ignoreArmor:      this.roll.options.ignoreArmor,
+      naturalArmorOnly: this.roll.options.naturalArmorOnly,
+      damageRoll:       this.roll,
     } );
 
     const transaction = {
