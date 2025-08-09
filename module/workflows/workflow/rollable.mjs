@@ -1,5 +1,5 @@
 /**
- * @typedef {object} RollableOptions
+ * @typedef {object} RollableWorkflowOptions
  * @property {EdRoll} [roll] The roll to use for this workflow.
  * @property {EdRollOptions} [rollOptions] The options to use for creating rolls.
  * @property {boolean} [rollToMessage=false] Whether to send the roll result to the chat as a message.
