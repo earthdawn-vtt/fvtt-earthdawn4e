@@ -1,9 +1,7 @@
 /* eslint-disable complexity */
 import EdRollOptions from "../data/roll/common.mjs";
-import ED4E from "../config/_module.mjs";
 import RollPrompt from "../applications/global/roll-prompt.mjs";
 import DocumentCreateDialog from "../applications/global/document-creation.mjs";
-
 import LegendPointHistory from "../applications/advancement/lp-history.mjs";
 import LpEarningTransactionData from "../data/advancement/lp-earning-transaction.mjs";
 import LpSpendingTransactionData from "../data/advancement/lp-spending-transaction.mjs";
@@ -14,12 +12,14 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
-import { AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
+import { AttributeWorkflow, AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
 import { getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
+import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
+import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 
 const futils = foundry.utils;
 const { TextEditor } = foundry.applications.ux;
@@ -506,81 +506,55 @@ export default class ActorEd extends Actor {
     );
   }
 
-  /* -------------------------------------------- */
-  /*                   Rolls                      */
-  /* -------------------------------------------- */
+  // region Rolls
 
   /**
-   * Roll a generic attribute test. Uses {@link RollPrompt} for further input data.
-   * @param {string} attributeId            The 3-letter id for the attribute (e.g. "per").
-   * @param {object} edRollOptionsData      Any {@link EdRollOptions} that will be overwritten with the provided values.
-   * @param {object} options                Any additional options for the {@link EdRoll}.
-   * @returns {Promise<EdRoll>}             The processed Roll.
+   * @description                       Attribute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @param {object} options            Any additional options for the {@link EdRoll}.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
-  async rollAttribute( attributeId, edRollOptionsData = {}, options = {} ) {
-    const attributeStep = this.system.attributes[attributeId].step;
-    const step = { base: attributeStep };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAttribute", {
-      sourceActor: this.name,
-      step:        attributeStep,
-      attribute:   `${ game.i18n.localize( ED4E.attributes[attributeId].label ) }`
-    } );
-    const edRollOptions = EdRollOptions.fromActor(
+  async rollAttribute( attributeId, options = {} ) {
+
+    const attributeWorkflow = new AttributeWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "attribute",
-        strain:           0,
-        target:           undefined,
-        step:             step,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
-      },
-      this
+        attributeId: attributeId,
+      }
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll, { rollToMessage: true } );
+    return attributeWorkflow.execute();
   }
 
   /**
-   * @summary                           Ability rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
-   * @description                       Roll an Ability. use {@link RollPrompt} for further input data.
-   * @param {ItemEd} ability            ability must be of type AbilityTemplate & TargetingTemplate
-   * @param {object} edRollOptionsData  Any {@link EdRollOptions} that will be overwritten with the provided values..
+   * @description                       Half magic Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
    * @param {object} options            Any additional options for the {@link EdRoll}.
-   * @returns {Promise<EdRoll>}         The processed Roll.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
    */
-  async rollAbility( ability, edRollOptionsData = {}, options = {} ) {
-    const attributeStep = this.system.attributes[ability.system.attribute].step;
-    const abilityStep = attributeStep + ability.system.level;
-    const difficulty = ability.system.getDifficulty();
-    if ( difficulty === undefined || difficulty === null ) {
-      throw new TypeError( "ability is not part of Targeting Template, please call your Administrator!" );
-    }
-    const difficultyFinal = { base: difficulty };
-    const devotionRequired = !!ability.system.devotionRequired;
-    const strain = { base: ability.system.strain };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollAbility", {
-      sourceActor: this.name,
-      ability:     ability.name,
-      step:        abilityStep
-    } );
-    const abilityFinalStep = { base: abilityStep };
-
-    const edRollOptions = EdRollOptions.fromActor(
+  async rollHalfMagic( attributeId, options = {} ) {
+    const halfMagicWorkflow = new HalfMagicWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "ability",
-        strain:           strain,
-        target:           difficultyFinal,
-        step:             abilityFinalStep,
-        devotionRequired: devotionRequired,
-        chatFlavor:       chatFlavor
-      },
-      this
+        attributeId: attributeId,
+      }
     );
-    edRollOptions.updateSource( edRollOptionsData );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll );
+    return halfMagicWorkflow.execute();
+  }
+
+  /**
+   * @description                       Substitute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @param {object} options            Any additional options for the {@link EdRoll}.
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollSubstitute( attributeId, options = {} ) {
+    const substituteWorkflow = new SubstituteWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+      }
+    );
+    return substituteWorkflow.execute();
   }
 
   /**

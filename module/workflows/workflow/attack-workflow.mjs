@@ -53,7 +53,7 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
       : [ "mainHand", "offHand", "twoHands" ];
     let weapon = this._actor.itemTypes.weapon.find( item => weaponStatus.includes( item.system.itemStatus ) );
 
-    if ( !weapon && this._attackType !== "tail" ) weapon = this.actor.drawWeapon();
+    if ( !weapon && this._attackType !== "tail" ) weapon = this._actor.drawWeapon();
     if ( !weapon ) throw new WorkflowInterruptError(
       this,
       game.i18n.localize( "ED.Notifications.Warn.attackNoWeaponFound" ),

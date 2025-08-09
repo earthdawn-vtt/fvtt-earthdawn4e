@@ -176,13 +176,60 @@ export default class PromptFactory {
 class ActorPromptFactory extends PromptFactory {
 
   _promptTypeMapping = {
-    chooseDiscipline: this._chooseDisciplinePrompt.bind( this ),
-    drawWeapon:       this._drawWeaponPrompt.bind( this ),
-    jumpUp:           this._jumpUpPrompt.bind( this ),
-    knockDown:        this._knockDownPrompt.bind( this ),
-    recovery:         this._recoveryPrompt.bind( this ),
-    takeDamage:       this._takeDamagePrompt.bind( this ),
+    chooseDiscipline:      this._chooseDisciplinePrompt.bind( this ),
+    drawWeapon:            this._drawWeaponPrompt.bind( this ),
+    jumpUp:                this._jumpUpPrompt.bind( this ),
+    knockDown:             this._knockDownPrompt.bind( this ),
+    recovery:              this._recoveryPrompt.bind( this ),
+    takeDamage:            this._takeDamagePrompt.bind( this ),
+    attribute:             this._attributePrompt.bind( this ),
+    halfMagicDiscipline:   this._halfMagicDisciplinePrompt.bind( this ),
   };
+
+
+
+  /**
+   * Creates the attribute dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the attribute prompt dialog.
+   */
+  async _attributePrompt() {
+    const buttons = [
+      {
+        action:  "rollAttribute",
+        label:   "ED.Dialogs.Buttons.attribute",
+        icon:    "fa-solid fa-dice",
+        class:   "rollAttribute default",
+        default: true
+      },
+      {
+        action:  "rollHalfMagic",
+        label:   "ED.Dialogs.Buttons.halfMagic",
+        icon:    "fa-solid fa-dice-two",
+        class:   "rollHalfMagic",
+        default: false
+      },
+      {
+        action:  "rollSubstitute",
+        label:   "ED.Dialogs.Buttons.substitute",
+        icon:    "fa-solid fa-dice-three",
+        class:   "rollSubstitute",
+        default: false
+      }
+    ];
+    buttons.push( this.constructor.cancelButton );
+
+    return DialogClass.wait( {
+      id:       "attribute-prompt",
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+      classes:  [ "earthdawn4e", "attribute-prompt" ],
+      window:   {
+        title:       "ED.Dialogs.Title.attribute",
+        minimizable: false
+      },
+      modal: false,
+      buttons
+    } );
+  }
 
   /**
    * Creates the recovery dialog.
@@ -379,6 +426,28 @@ class ActorPromptFactory extends PromptFactory {
       classes:     [ "earthdawn4e", "choose-discipline-prompt", "choose-discipline", "flexcol" ],
       window:      {
         title:       "ED.Dialogs.Title.chooseDiscipline",
+        minimizable: false
+      },
+      modal:   false,
+      buttons: buttons
+    } );
+  }
+
+  /**
+   * Creates the choose discipline dialog.
+   * @returns {Promise<Dialog>} A promise that resolves to the choose discipline prompt dialog.
+   */
+  async _halfMagicDisciplinePrompt() {
+
+    const buttons = await this._getItemButtons( this.document.disciplines, "type" );
+
+    return DialogClass.wait( {
+      rejectClose: false,
+      id:          "half-magic-discipline-prompt",
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
+      classes:     [ "earthdawn4e", "half-magic-discipline-prompt", "half-magic-discipline", "flexcol" ],
+      window:      {
+        title:       "ED.Dialogs.Title.halfMagicDiscipline",
         minimizable: false
       },
       modal:   false,

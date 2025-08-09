@@ -364,8 +364,10 @@
         "rollAbility":                             "TODO: Add translation",
         "rollAttribute":                           "TODO: Add translation",
         "rollEquipment":                           "TODO: Add translation",
+        "rollHalfMagic":                           "TODO: Add translation",
         "rollInitiative":                          "TODO: Add translation",
         "rollRecovery":                            "TODO: Add translation",
+        "rollSubstitute":                          "TODO: Add translation",
         "rollUnarmedDamage":                       "TODO: Add translation",
         "spellNoSpecialDescription":               "TODO: Add translation",
         "spellcastingRollOptions":                 "TODO: Add translation",
@@ -644,6 +646,29 @@
         "pack":                                    "Pack",
         "spirit":                                  "Spirit",
         "summon":                                  "Summon"
+      },
+      "SubstituteModes": {
+        "avoidBlow":                               "TODO: Add translation",
+        "awareness":                               "TODO: Add translation",
+        "bribery":                                 "TODO: Add translation",
+        "climbing":                                "TODO: Add translation",
+        "conversation":                            "TODO: Add translation",
+        "distract":                                "TODO: Add translation",
+        "etiquette":                               "TODO: Add translation",
+        "flirting":                                "TODO: Add translation",
+        "haggle":                                  "TODO: Add translation",
+        "handleAnimal":                            "TODO: Add translation",
+        "meleeWeapons":                            "TODO: Add translation",
+        "missileWeapons":                          "TODO: Add translation",
+        "research":                                "TODO: Add translation",
+        "resistTaunt":                             "TODO: Add translation",
+        "seduction":                               "TODO: Add translation",
+        "sloughBlame":                             "TODO: Add translation",
+        "swimming":                                "TODO: Add translation",
+        "throwingWeapons":                         "TODO: Add translation",
+        "tracking":                                "TODO: Add translation",
+        "unarmedCombat":                           "TODO: Add translation",
+        "wildernessSurvival":                      "TODO: Add translation"
       },
       "TargetDifficulty": {
         "mystical":                                "TODO: Add translation",
@@ -2840,6 +2865,7 @@
       },
       "Buttons": {
         "add":                                     "TODO: Add translation",
+        "attribute":                               "TODO: Add translation",
         "attuneMatrices":                          "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
         "cancel":                                  "TODO: Add translation",
@@ -2854,6 +2880,7 @@
         "fullRest":                                "TODO: Add translation",
         "goBack":                                  "TODO: Add translation",
         "grimoireCasting":                         "TODO: Add translation",
+        "halfMagic":                               "TODO: Add translation",
         "learn":                                   "TODO: Add translation",
         "learnSpellPatterncraftTest":              "TODO: Add translation",
         "matrixCastingAlreadyAttuned":             "TODO: Add translation",
@@ -2872,6 +2899,7 @@
         "roundStartRollInitiative":                "TODO: Add translation",
         "save":                                    "TODO: Add translation",
         "spendLp":                                 "TODO: Add translation",
+        "substitute":                              "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "teacherSpellcasting":                     "TODO: Add translation",
         "versatility":                             "TODO: Add translation"
@@ -3101,6 +3129,7 @@
       },
       "Title": {
         "assignLp":                                "TODO: Add translation",
+        "attribute":                               "TODO: Add translation",
         "attributeIncrease":                       "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
         "buttonSelect":                            "TODO: Add translation",
@@ -3109,6 +3138,7 @@
         "chooseTier":                              "TODO: Add translation",
         "classAdvancement":                        "TODO: Add translation",
         "drawWeapon":                              "TODO: Add translation",
+        "halfMagicDiscipline":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockDown":                               "TODO: Add translation",
         "learnAbility":                            "TODO: Add translation",
@@ -3125,6 +3155,7 @@
         "selectSpellToAttuneToGrimoire":           "TODO: Add translation",
         "selectWeavingAbility":                    "TODO: Add translation",
         "startRoundCombatantPrompt":               "TODO: Add translation",
+        "substitute":                              "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation",
         "versatilityLimit":                        "TODO: Add translation"
@@ -3276,7 +3307,8 @@
         "noSpellsAvailableToAttune":               "TODO: Add translation",
         "singleton":                               "TODO: Add translation",
         "spellNotAttunedToMatrix":                 "TODO: Add translation",
-        "spellcastingWorkflowFailed":              "TODO: Add translation"
+        "spellcastingWorkflowFailed":              "TODO: Add translation",
+        "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",

@@ -28,6 +28,12 @@ export default function Rollable( WorkflowClass ) {
     _rollOptions;
 
     /**
+     * Whether the roll result should be sent to the chat as a message.
+     * @type {boolean}
+     */
+    _rollToMessage = false;
+
+    /**
      * The title for the roll prompt application.
      * @type {string}
      * @private
@@ -87,7 +93,7 @@ export default function Rollable( WorkflowClass ) {
         this._roll,
         this._actor,
         {
-          rollToMessage: false,
+          rollToMessage: this._rollToMessage,
         }
       );
     }
@@ -101,6 +107,13 @@ export default function Rollable( WorkflowClass ) {
       await this._roll.toMessage( {
         flavor: this._rollOptions.chatFlavor || "",
       } );
+    }
+
+    async _evaluateResultRoll() {
+      if ( !this._roll ) return;
+  
+      this._roll = await this._roll.evaluate();
+      this._result = this._roll;
     }
 
   };

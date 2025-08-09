@@ -361,10 +361,12 @@
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
-        "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
+        "rollAttribute":                           "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
+        "rollHalfMagic":                           "{actor} würfelt Halbmagie für die Dizipline {discipline}, basierend auf {attribute} mit Stufe {step}",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
+        "rollSubstitute":                          "{actor} würfelt {attribute} ({step}) um {substitute} zu ersetzen",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
         "spellNoSpecialDescription":               "Zauber hat keine Spezialeffekte",
         "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
@@ -643,6 +645,29 @@
         "pack":                                    "Rudel",
         "spirit":                                  "Geist",
         "summon":                                  "Beschwörung"
+      },
+      "SubstituteModes": {
+        "avoidBlow":                               "Hieb ausweichen",
+        "awareness":                               "Aufmerksamkeit",
+        "bribery":                                 "Bestechung",
+        "climbing":                                "Klettern",
+        "conversation":                            "Konversation",
+        "distract":                                "Ablenkung",
+        "etiquette":                               "Etikette",
+        "flirting":                                "Flirten",
+        "haggle":                                  "Feilschen",
+        "handleAnimal":                            "Tierbeherrschung",
+        "meleeWeapons":                            "Nahkampfwaffen",
+        "missileWeapons":                          "Projektilwaffen",
+        "research":                                "Forschen",
+        "resistTaunt":                             "Starrsinn",
+        "seduction":                               "Verführung",
+        "sloughBlame":                             "Schuld abwälzen",
+        "swimming":                                "Schwimmen",
+        "throwingWeapons":                         "Wurfwaffen",
+        "tracking":                                "Spurenlesen",
+        "unarmedCombat":                           "Waffenloser Kampf",
+        "wildernessSurvival":                      "Wildnisüberleben"
       },
       "TargetDifficulty": {
         "mystical":                                "Mystische Verteidigung",
@@ -2857,6 +2882,7 @@
       },
       "Buttons": {
         "add":                                     "Hinzufügen",
+        "attribute":                               "Attribut",
         "attuneMatrices":                          "Matrizen neu abstimmen",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "cancel":                                  "Abbrechen",
@@ -2871,6 +2897,7 @@
         "fullRest":                                "Vollständige Rast",
         "goBack":                                  "Zurück",
         "grimoireCasting":                         "Grimoire",
+        "halfMagic":                               "Halbmagie",
         "learn":                                   "Lernen",
         "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
         "matrixCastingAlreadyAttuned":             "Matrix (abgestimmt)",
@@ -2889,6 +2916,7 @@
         "roundStartRollInitiative":                "Runde Start: Würfle Initiative",
         "save":                                    "Speichern",
         "spendLp":                                 "Legendenpunkte ausgeben",
+        "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "teacherSpellcasting":                     "Lehrer Spruchzauberei",
         "versatility":                             "Vielseitigkeit"
@@ -3118,6 +3146,7 @@
       },
       "Title": {
         "assignLp":                                "Legendenpunkte zuweisen",
+        "attribute":                               "Attribut",
         "attributeIncrease":                       "Attribut steigern",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "buttonSelect":                            "Wähle eine Option",
@@ -3126,6 +3155,7 @@
         "chooseTier":                              "Wähle einen Kreis",
         "classAdvancement":                        "Klassenaufstieg",
         "drawWeapon":                              "Waffe ziehen",
+        "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
         "knockDown":                               "Niederschlag",
         "learnAbility":                            "Fähigkeit lernen",
@@ -3142,6 +3172,7 @@
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
         "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
+        "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie",
         "versatilityLimit":                        "Vielseitigkeitslimit erricht"
@@ -3293,7 +3324,8 @@
         "noSpellsAvailableToAttune":               "Das Grimoire enthält keine Zauber, die abgestimmt werden können.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
-        "spellcastingWorkflowFailed":              ""
+        "spellcastingWorkflowFailed":              "Der Zauberwirkungs-Workflow ist fehlgeschlagen.",
+        "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
