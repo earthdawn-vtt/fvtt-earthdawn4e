@@ -2,6 +2,7 @@
  * @typedef {object} RollableOptions
  * @property {EdRoll} [roll] The roll to use for this workflow.
  * @property {EdRollOptions} [rollOptions] The options to use for creating rolls.
+ * @property {boolean} [rollToMessage=false] Whether to send the roll result to the chat as a message.
  */
 
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
@@ -31,7 +32,7 @@ export default function Rollable( WorkflowClass ) {
      * Whether the roll result should be sent to the chat as a message.
      * @type {boolean}
      */
-    _rollToMessage = false;
+    _rollToMessage;
 
     /**
      * The title for the roll prompt application.
@@ -39,12 +40,6 @@ export default function Rollable( WorkflowClass ) {
      * @private
      */
     _rollPromptTitle;
-
-    /**
-     * Extra roll results (for workflows that may have multiple rolls)
-     * @type {Map<string, EdRoll>}
-     */
-    _extraRolls = new Map();
 
     /**
      * @param {...any} args The constructor arguments
@@ -56,6 +51,7 @@ export default function Rollable( WorkflowClass ) {
       const options = args[args.length - 1] || {};
       if ( options.roll ) this._roll = options.roll;
       if ( options.rollOptions ) this._rollOptions = options.rollOptions;
+      this._rollToMessage = options.rollToMessage ?? false;
     }
 
     /**
