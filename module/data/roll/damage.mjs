@@ -34,6 +34,9 @@ export default class DamageRollOptions extends EdRollOptions {
       ignoreArmor: new fields.BooleanField( {
         initial:  false,
       } ),
+      naturalArmorOnly: new fields.BooleanField( {
+        initial:  false,
+      } ),
       weaponUuid:        new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,
