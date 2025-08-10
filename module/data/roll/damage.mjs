@@ -116,6 +116,9 @@ export default class DamageRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.hasAssignedCharacter = !!game.user.character;
+    newContext.damageSourceHeader = this.weaponUuid ?
+      createContentAnchor( fromUuidSync( this.weaponUuid ) ).outerHTML
+      : this.damageSource;
 
     return newContext;
   }
