@@ -7,7 +7,7 @@ export default class CombatEd extends foundry.documents.Combat {
     // player characters always go first on a tie with NPCs
     const initiativeA = Number.isNumeric( a.initiative ) ? a.initiative : -Infinity;
     const initiativeB = Number.isNumeric( b.initiative ) ? b.initiative : -Infinity;
-    return ( initiativeB - initiativeA ) || ( a.isPC ? 1 : -1 );
+    return ( initiativeB - initiativeA ) || ( a.isPC ? -1 : 1 );
   }
 
   // region Lifecycle Events
