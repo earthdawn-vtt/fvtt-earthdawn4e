@@ -212,6 +212,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    * @protected
    */
   async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
     const actor = this.parent?.actor;
     if ( ( actor?.type !== "character" ) || !this.metadata?.singleton ) return;
     if ( actor.itemTypes[data.type]?.length ) {

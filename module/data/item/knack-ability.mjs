@@ -39,7 +39,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
 
   /** @inheritdoc */
   async _onCreate( data, options, user ) {
-    if ( ( await super._preCreate( data, options, user ) ) === false ) return false;
+    super._onCreate( data, options, user );
 
     // assign the source talent
   }

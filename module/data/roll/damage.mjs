@@ -67,6 +67,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   async _preUpdate( changes, options, user ){
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
     super._preUpdate( changes, options, user );
     await this._addDamageAbilityModifiers( changes );
     await this._removeDamageAbilityModifiers( changes );
