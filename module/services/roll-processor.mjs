@@ -51,7 +51,7 @@ export default class RollProcessor {
 
     // Process strain
     if ( !options.skipStrain && roll.totalStrain ) {
-      actor.takeDamage( roll.totalStrain, {
+      await actor.takeDamage( roll.totalStrain, {
         isStrain:    true,
         damageType:  "standard",
         ignoreArmor: true,

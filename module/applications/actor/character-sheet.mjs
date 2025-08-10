@@ -216,7 +216,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
    * @param {HTMLElement} target - The HTML element that triggered the action.
    */
   static async karmaRitual( event, target ) {
-    this.document.karmaRitual();
+    await this.document.karmaRitual();
   }
 
   /**
@@ -238,7 +238,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     event.preventDefault();
     const li = target.closest( ".item-id" );
     const ability = this.document.items.get( li.dataset.itemId );
-    this.document.takeStrain( 
+    await this.document.takeStrain(
       ability.system.strain,
       ability
     );

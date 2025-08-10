@@ -21,9 +21,6 @@ import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 
-const futils = foundry.utils;
-const { TextEditor } = foundry.applications.ux;
-
 /**
  * Extend the base Actor class to implement additional system-specific logic.
  */
@@ -40,7 +37,7 @@ export default class ActorEd extends Actor {
 
   /**
    * The class items if this actor has any (has to be of type "character" or "npc" for this).
-   * @type {[ItemEd]}
+   * @type {[ItemData]}
    */
   get classes() {
     return this.items.filter( item => item.system instanceof ClassTemplate );
@@ -184,49 +181,7 @@ export default class ActorEd extends Actor {
 
   // endregion
 
-  // region Active Effects
-
-  /**
-   * @inheritDoc
-   * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
-   * @param {object} [options]          Additional options which modify how the effect is created
-   * @param {boolean} [options.active]  Force the effect to be active or inactive regardless of its current state
-   * @param {boolean} [options.overlay] Display the toggled effect as an overlay
-   * @param {number} [options.levels]   A potential level increase.
-   */
-  async toggleStatusEffect( statusId, { active, overlay = false, levels = 1 } ) {
-    // aggressive and defensive stance are mutually exclusive
-    if ( statusId === "aggressive" || statusId === "defensive" ) {
-      const other = statusId === "aggressive" ? "defensive" : "aggressive";
-      if ( this.statuses.has( other ) ) await super.toggleStatusEffect( other, { active: false } );
-    }
-
-    // check for effects with levels
-    const staticId = staticStatusId( statusId );
-    const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
-    const effect = this.effects.get( staticId );
-    // eslint-disable-next-line no-param-reassign
-    active ??= !effect || ( effect && hasLevels );
-
-    if ( active ) {
-      if ( effect && hasLevels ) return effect.system.increase( levels );
-      else if ( hasLevels && ( levels > 1 ) ) {
-        const ActiveEffectCls = futils.getDocumentClass( "ActiveEffect" );
-        const effect = await ActiveEffectCls.fromStatusEffect( statusId );
-        const data = futils.mergeObject( effect.toObject(), {
-          _id:             staticId,
-          "system.levels": levels,
-        } );
-        return ActiveEffectCls.create( data, { keepId: true } );
-      }
-    } else {
-      const decrease = effect && hasLevels && ( effect.system.level > 1 );
-      if ( decrease ) return effect.system.decrease();
-    }
-    return super.toggleStatusEffect( statusId, { active, overlay } );
-  }
-
-  // endregion
+  // region Getters
 
   /**
    * @description                       Returns all ammunition items of the given actor
@@ -240,7 +195,7 @@ export default class ActorEd extends Actor {
   /**
    * Returns an attack ability that matches the combat type and item status of the given weapon, if any.
    * @param {ItemEd} weapon The weapon to get the attack ability for.
-   * @returns {ItemEd|undefined} The attack ability item, or undefined if none was found.
+   * @returns {ItemData|undefined} The attack ability item, or undefined if none was found.
    */
   getAttackAbilityForWeapon( weapon ) {
     const { wieldingType, weaponType, armorType } = weapon.system;
@@ -282,7 +237,7 @@ export default class ActorEd extends Actor {
    * Returns an array of items that match a given EDID and optionally an item type.
    * @param {string} edid           The EDID of the item(s) which you want to retrieve
    * @param {string} [type]           Optionally, a type name to restrict the search
-   * @returns {Item[]|undefined}    An array containing the found items
+   * @returns {ItemEd[]|undefined}    An array containing the found items
    */
   getItemsByEdid( edid, type ) {
     const edidFilter = ( item ) => item.system.edid === edid;
@@ -294,6 +249,11 @@ export default class ActorEd extends Actor {
     return itemTypes[type].filter( edidFilter );
   }
 
+  /**
+   * Returns an array of items that match a given roll type.
+   * @param {string} action The roll type to filter by, e.g. "attack", "spellcasting", etc.
+   * @returns {ItemData[]} An array of items that match the given roll type.
+   */
   getItemsByAction( action ) {
     return this.items.filter(
       item => item.system.rollType === action
@@ -302,7 +262,7 @@ export default class ActorEd extends Actor {
 
   /**
    * Find all items that have a matrix.
-   * @returns {ItemEd[]} An array of items that have a matrix.
+   * @returns {ItemData[]} An array of items that have a matrix.
    */
   getMatrices() {
     return this.items.filter( item => item.system?.hasMatrix );
@@ -313,12 +273,17 @@ export default class ActorEd extends Actor {
    * Fetch an item that matches a given EDID and optionally an item type.
    * @param {string} edid         The EDID of the item(s) which you want to retrieve
    * @param {string} [type]         Optionally, a type name to restrict the search
-   * @returns {Item|undefined}    The matching item, or undefined if none was found.
+   * @returns {ItemEd|undefined}    The matching item, or undefined if none was found.
    */
   getSingleItemByEdid( edid, type ) {
     return this.getItemsByEdid( edid, type )[0];
   }
 
+  /**
+   * Returns the thread weaving ability item for the given spellcasting type.
+   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} [spellcastingType] The spellcasting type key (from {@link spellcastingTypes}), or none if this actor is a horror or spirit.
+   * @returns {ItemEd|null} The thread weaving item, or null if none was found.
+   */
   getThreadWeavingByCastingType( spellcastingType ) {
     if ( [ "horror", "spirit" ].includes( this.type ) ) {
       return this.getSingleItemByEdid(
@@ -336,13 +301,9 @@ export default class ActorEd extends Actor {
     );
   }
 
-  /**
-   * Perform the karma ritual for this actor to set the current karma points to maximum.
-   * Only to be used for namegivers with a discipline.
-   */
-  karmaRitual() {
-    this.update( { "system.karma.value": this.system.karma.max } );
-  }
+  // endregion
+
+  // region Checkers
 
   /**
    * Checks if this actor has at least one matrix that can hold the given spell.
@@ -399,283 +360,63 @@ export default class ActorEd extends Actor {
     }
   }
 
-  /**
-   * Expand Item Cards by clicking on the name span
-   */
-  expandItemCards() {
-    const itemDescriptionDocument = document.getElementsByClassName( "card__description" );
-    const currentItemElement = itemDescriptionDocument.nextElementSibling;
-    currentItemElement.classList.toggle( "d-none" );
-  }
+  // endregion
+
+  // region Active Effects
 
   /**
-   * Triggers a prompt for updating the Legend Point (LP) history of the actor.
-   * Updates the LPTrackingData of the actor based on the input from the prompt.
-   * @returns {Promise<Actor>} A Promise that resolves to the updated Actor instance.
-   * @see ../../documentation/User Functions/UF_LpTracking-legendPointHistory.md
+   * @inheritDoc
+   * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
+   * @param {object} [options]          Additional options which modify how the effect is created
+   * @param {boolean} [options.active]  Force the effect to be active or inactive regardless of its current state
+   * @param {boolean} [options.overlay] Display the toggled effect as an overlay
+   * @param {number} [options.levels]   A potential level increase.
    */
-  async legendPointHistory() {
-    // let history = await getLegendPointHistoryData( actor );
-    const lpUpdateData = await LegendPointHistory.waitPrompt(
-      new LpTrackingData( this.system.lp.toObject() ),
-      { actor: this }
-    );
-    return this.update( { system: { lp: lpUpdateData } } );
-  }
-
-  /**
-   * Cast a spell from a matrix.
-   * @param {ItemEd} matrix - The UUID of the matrix to cast the spell from.
-   * @param {ItemEd} spell - The UUID of the spell to cast.
-   * @returns {Promise<*>} A promise that resolves when the spellcasting workflow execution is complete.
-   */
-  async castFromMatrix( matrix, spell ) {
-    const castingWorkflow = new SpellcastingWorkflow(
-      this,
-      {
-        castingMethod: "matrix",
-        matrix,
-        spell,
-      } );
-
-    return castingWorkflow.execute();
-  }
-
-  async castSpell( spell, options = {} ) {
-    const castingWorkflow = new SpellcastingWorkflow(
-      this,
-      {
-        spell,
-        stopOnWeaving: false,
-      }
-    );
-
-    return castingWorkflow.execute( options );
-  }
-
-  /**
-   * Reattunes spells by executing an attunement workflow with the provided matrix.
-   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
-   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
-   */
-  async reattuneSpells( matrixUuid ) {
-    const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
-      this,
-      {
-        firstMatrix: matrixUuid,
-      },
-    );
-
-    return attuneMatrixWorkflow.execute();
-  }
-
-  /**
-   * Remove all spells from all matrices of this actor.
-   * @returns {Promise<Document|undefined>} The array of changed matrix items, or undefined if nothing changed.
-   */
-  async emptyAllMatrices() {
-    return Promise.all(
-      this.getMatrices().map( matrix => matrix.system.removeSpells() )
-    );
-  }
-
-  async selectGrimoire( spell ) {
-    let availableGrimoires = this.items.filter( item => item.system.isGrimoire );
-    if ( spell ) {
-      availableGrimoires = availableGrimoires.filter(
-        grimoire => grimoire.system.grimoire.spells.has( spell.uuid )
-      );
+  async toggleStatusEffect( statusId, { active, overlay = false, levels = 1 } ) {
+    // aggressive and defensive stance are mutually exclusive
+    if ( statusId === "aggressive" || statusId === "defensive" ) {
+      const other = statusId === "aggressive" ? "defensive" : "aggressive";
+      if ( this.statuses.has( other ) ) await super.toggleStatusEffect( other, { active: false } );
     }
 
-    if ( availableGrimoires.length === 0 ) {
-      ui.notifications.error(
-        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
-      );
-      return null;
+    // check for effects with levels
+    const staticId = staticStatusId( statusId );
+    const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
+    const effect = this.effects.get( staticId );
+    // eslint-disable-next-line no-param-reassign
+    active ??= !effect || ( effect && hasLevels );
 
+    if ( active ) {
+      if ( effect && hasLevels ) return effect.system.increase( levels );
+      else if ( hasLevels && ( levels > 1 ) ) {
+        const ActiveEffectCls = foundry.utils.getDocumentClass( "ActiveEffect" );
+        const effect = await ActiveEffectCls.fromStatusEffect( statusId );
+        const data = foundry.utils.mergeObject( effect.toObject(), {
+          _id:             staticId,
+          "system.levels": levels,
+        } );
+        return ActiveEffectCls.create( data, { keepId: true } );
+      }
+    } else {
+      const decrease = effect && hasLevels && ( effect.system.level > 1 );
+      if ( decrease ) return effect.system.decrease();
     }
-
-    return fromUuid(
-      await DialogEd.waitButtonSelect(
-        availableGrimoires,
-        "ed-button-select-grimoire",
-        {
-          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
-        },
-      ),
-    );
+    return super.toggleStatusEffect( statusId, { active, overlay } );
   }
 
-  // region Rolls
+  // endregion
+
+  // region Damage & Combat
 
   /**
-   * @description                       Attribute Roll.
-   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
-   * @param {object} options            Any additional options for the {@link EdRoll}.
-   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
-   */
-  async rollAttribute( attributeId, options = {} ) {
-
-    const attributeWorkflow = new AttributeWorkflow(
-      this,
-      {
-        attributeId: attributeId,
-      }
-    );
-    return attributeWorkflow.execute();
-  }
-
-  /**
-   * @description                       Half magic Roll.
-   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
-   * @param {object} options            Any additional options for the {@link EdRoll}.
-   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
-   */
-  async rollHalfMagic( attributeId, options = {} ) {
-    const halfMagicWorkflow = new HalfMagicWorkflow(
-      this,
-      {
-        attributeId: attributeId,
-      }
-    );
-    return halfMagicWorkflow.execute();
-  }
-
-  /**
-   * @description                       Substitute Roll.
-   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
-   * @param {object} options            Any additional options for the {@link EdRoll}.
-   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
-   */
-  async rollSubstitute( attributeId, options = {} ) {
-    const substituteWorkflow = new SubstituteWorkflow(
-      this,
-      {
-        attributeId: attributeId,
-      }
-    );
-    return substituteWorkflow.execute();
-  }
-
-  /**
-   * @summary                     Equipment rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
-   * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
-   * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
-   * @param {object} options      Any additional options for the {@link EdRoll}.
-   * @returns {Promise<EdRoll>}   The processed Roll.
-   */
-  async rollEquipment( equipment, options = {} ) {
-    const arbitraryStep = equipment.system.usableItem.arbitraryStep;
-    const difficulty = equipment.system.getDifficulty();
-    if ( !difficulty ) {
-      ui.notifications.error( game.i18n.localize( "X.ability is not part of Targeting Template, please call your Administrator!" ) );
-
-      return;
-    }
-
-    const difficultyFinal = { base: difficulty };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollEquipment", {
-      sourceActor: this.name,
-      equipment:   equipment.name,
-      step:        arbitraryStep
-    } );
-
-    const arbitraryFinalStep = { base: arbitraryStep };
-    const edRollOptions = EdRollOptions.fromActor(
-      {
-        testType:         "action",
-        rollType:         "arbitrary",
-        strain:           0,
-        target:           difficultyFinal,
-        step:             arbitraryFinalStep,
-        devotionRequired: false,
-        chatFlavor:       chatFlavor
-      },
-      this
-    );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-    return this.processRoll( roll, { rollToMessage: true } );
-  }
-
-  /**
-   * @description                     The sequence that is rotated
-   * @param {object}    itemId        Id of the item to rotate the status of
-   * @param {boolean}   backwards     Whether to rotate the status backwards
-   * @returns {Promise<ItemEd[]>}       The updated items
-   */
-  async rotateItemStatus( itemId, backwards = false ) {
-    const item = this.items.get( itemId );
-    const nextStatus = backwards ? item.system.previousItemStatus : item.system.nextItemStatus;
-    return this._updateItemStates( item, nextStatus );
-  }
-
-  async rollRecovery( recoveryMode, options = {} ) {
-    const recoveryWorkflow = new RecoveryWorkflow(
-      this,
-      {
-        recoveryMode: recoveryMode,
-      },
-    );
-    return recoveryWorkflow.execute();
-  }
-
-  async rollUnarmedDamage( rollOptionsData = {} ) {
-    const roll = await RollPrompt.waitPrompt(
-      DamageRollOptions.fromActor(
-        {
-          step:             {
-            base:      this.system.attributes.str.step,
-            modifiers: {},
-          },
-          extraDice:        {},
-          strain:           {
-            base:      0,
-            modifiers: {},
-          },
-          chatFlavor:       game.i18n.format( "ED.Chat.Flavor.rollUnarmedDamage", {sourceActor: this.name} ),
-          testType:         "effect",
-          rollType:         "damage",
-          weaponUuid:       null,
-          damageAbilities:  new Set( [] ),
-          armorType:        "physical",
-          damageType:       "standard",
-          ...rollOptionsData,
-        },
-        this,
-      ),
-      {
-        rollData: this,
-      }
-    );
-
-    return this.processRoll( roll );
-  }
-
-  /** @inheritDoc */
-  getRollData() {
-    let rollData;
-    rollData = { ...super.getRollData() };
-    if ( this.system.getRollData ) Object.assign( rollData, this.system.getRollData() );
-
-    rollData.flags = { ...this.flags };
-    rollData.name = this.name;
-
-    return rollData;
-  }
-
-
-  /* -------------------------------------------- */
-  /*            Damage & Combat                   */
-  /* -------------------------------------------- */
-
-  /**
-   * @summary                           Take the given amount of strain as damage.
+   * Take the given amount of strain as damage.
    * @param {number} strain             The amount of strain damage to take
    * @param {ItemEd} [strainOrigin]     The ability causing the strain
+   * @returns {Promise<{damageTaken: number, knockdownTest: boolean}>} The result of {@link takeDamage}.
    */
-  takeStrain( strain, strainOrigin ) {
-    if ( !strain ) return;
-    this.takeDamage( strain, {
+  async takeStrain( strain, strainOrigin ) {
+    if ( !strain ) throw new Error( "ActorEd.takeStrain: No strain amount provided." );
+    return this.takeDamage( strain, {
       isStrain:     true,
       damageType:   "standard",
       ignoreArmor:  true,
@@ -695,13 +436,12 @@ export default class ActorEd extends Actor {
    * @param {boolean} [options.ignoreArmor]                             Whether armor should be ignored when applying this damage.
    * @param {EdRoll|undefined} [options.damageRoll]                     The roll that caused this damage or undefined if not caused by one.
    * @param {ItemEd} [options.strainOrigin]                             The ability causing the strain
-   * @returns {{damageTaken: number, knockdownTest: boolean}}
+   * @returns {Promise<{damageTaken: number, knockdownTest: boolean}>}
    *                                                                    An object containing:
    *                                                                    - `damageTaken`: the actual amount of damage this actor has taken after armor
    *                                                                    - `knockdownTest`: whether a knockdown test should be made.
    */
-   
-  takeDamage( amount, options = {
+  async takeDamage( amount, options = {
     isStrain:     false,
     damageType:   "standard",
     armorType:    "physical",
@@ -731,7 +471,7 @@ export default class ActorEd extends Actor {
       }
     }
 
-    this.update( updates );
+    await this.update( updates );
 
     let chatFlavor;
     chatFlavor = game.i18n.format( !strainOrigin ? "ED.Chat.Flavor.takeDamage" : "ED.Chat.Flavor.takeStrainDamage", {
@@ -746,11 +486,11 @@ export default class ActorEd extends Actor {
       content: chatFlavor
     };
     if ( ( !damageRoll && isStrain === false ) || ( isStrain && strainOrigin ) ) {
-      ChatMessage.create( messageData );
+      await ChatMessage.create( messageData );
     }
 
     const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5 && !options.isStrain;
-    if ( knockdownTest ) this.knockdownTest( damageTaken );
+    if ( knockdownTest ) await this.knockdownTest( damageTaken );
 
     return {
       damageTaken,
@@ -884,62 +624,12 @@ export default class ActorEd extends Actor {
     this.processRoll( roll );
   }
 
+  // endregion
+
+  // region Inventory
 
   /**
-   * Use a resource (karma, devotion) by deducting the amount. This will always happen, even if not enough is available.
-   * Look out for the return value to see if that was the case.
-   * @param {"karma"|"devotion"|"recovery"} resourceType The type of resource to use. One of either "karma" or "devotion".
-   * @param {number} amount                   The amount to use of the resource.
-   * @returns {boolean}                       Returns `true` if the full amount was deducted (enough available), 'false'
-   *                                          otherwise.
-   */
-  useResource( resourceType, amount ) {
-    const available = this.system[resourceType].value;
-    this.update( { [`system.${ resourceType }.value`]: ( available - amount ) } );
-    return amount <= available;
-  }
-
-  /**
-   * Evaluate a Roll and process its data in this actor. This includes (if applicable):
-   * <ul>
-   *     <li>taking strain damage</li>
-   *     <li>reducing resources (karma, devotion)</li>
-   *     <li>recover from damage</li>
-   * </ul>
-   * @param {EdRoll} roll The prepared Roll.
-   * @param {object} [options] Options for processing the roll.
-   * @returns {EdRoll}    The processed Roll.
-   */
-  async processRoll( roll, options = {} ) {
-    if ( !roll ) {
-      // No roll available, do nothing.
-      return;
-    }
-
-    return RollProcessor.process( roll, this, options );
-  }
-
-  async _enableHTMLEnrichment() {
-    let enrichment = {};
-    enrichment["system.description.value"] = await TextEditor.enrichHTML( this.system.description.value, {
-      async:   true,
-      secrets: this.isOwner
-    } );
-    return futils.expandObject( enrichment );
-  }
-
-  async _enableHTMLEnrichmentEmbeddedItems() {
-    for ( const item of this.items ) {
-      item.system.description.value = futils.expandObject( await TextEditor.enrichHTML( item.system.description.value, {
-        async:   true,
-        secrets: this.isOwner
-      } )
-      );
-    }
-  }
-
-  /**
-   * 
+   *
    * @param {object}    itemToUpdate    The item to update
    * @param {string}    nextStatus      The next status of the item
    * @returns {Promise<ItemEd[]>}       The updated items
@@ -985,7 +675,7 @@ export default class ActorEd extends Actor {
                 // eslint-disable-next-line max-depth
                 if (
                   sum( equippedArmor.map( armor => armor.system.piecemeal.size ) )
-                    + itemToUpdate.system.piecemeal.size > 5
+                  + itemToUpdate.system.piecemeal.size > 5
                 ) {
                   ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.piecemealArmorSizeExceeded" ) );
                   break;
@@ -1055,22 +745,9 @@ export default class ActorEd extends Actor {
     return this.updateEmbeddedDocuments( "Item", updates );
   }
 
-  /**
-   * Retrieves a specific prompt based on the provided prompt type.
-   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
-   * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockDown" )} promptType - The type of prompt to retrieve.
-   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
-   * associated with the given `promptType`. The exact return type depends on promptType.
-   */
-  async getPrompt( promptType ) {
-    return this._promptFactory.getPrompt( promptType );
-  }
+  // endregion
 
-
-  /* -------------------------------------------- */
-  /*            Legend Point Tracking             */
-  /* -------------------------------------------- */
+  // region LP Tracking
 
   /**
    * @description                                 Add a new LP transaction to the actor's system data
@@ -1087,6 +764,328 @@ export default class ActorEd extends Actor {
     return this.update( {
       [`system.lp.${type}`]: oldTransactions.concat( [ transaction ] )
     } );
+  }
+
+  /**
+   * Triggers a prompt for updating the Legend Point (LP) history of the actor.
+   * Updates the LPTrackingData of the actor based on the input from the prompt.
+   * @returns {Promise<Actor>} A Promise that resolves to the updated Actor instance.
+   * @see ../../documentation/User Functions/UF_LpTracking-legendPointHistory.md
+   */
+  async legendPointHistory() {
+    const lpUpdateData = await LegendPointHistory.waitPrompt(
+      new LpTrackingData( this.system.lp.toObject() ),
+      { actor: this }
+    );
+    return this.update( { system: { lp: lpUpdateData } } );
+  }
+
+  // endregion
+
+  // region Magic
+
+  /**
+   * Cast a spell from a matrix.
+   * @param {ItemEd} matrix - The UUID of the matrix to cast the spell from.
+   * @param {ItemEd} spell - The UUID of the spell to cast.
+   * @returns {Promise<*>} A promise that resolves when the spellcasting workflow execution is complete.
+   */
+  async castFromMatrix( matrix, spell ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        castingMethod: "matrix",
+        matrix,
+        spell,
+      } );
+
+    return castingWorkflow.execute();
+  }
+
+  /**
+   * Cast a spell using the spellcasting workflow.
+   * @param {ItemEd} spell - The spell to cast.
+   * @returns {Promise<*>} A promise that resolves when the spellcasting workflow execution is complete.
+   */
+  async castSpell( spell ) {
+    const castingWorkflow = new SpellcastingWorkflow(
+      this,
+      {
+        spell,
+        stopOnWeaving: false,
+      }
+    );
+
+    return castingWorkflow.execute();
+  }
+
+  /**
+   * Remove all spells from all matrices of this actor.
+   * @returns {Promise<Document|undefined>} The array of changed matrix items, or undefined if nothing changed.
+   */
+  async emptyAllMatrices() {
+    return Promise.all(
+      this.getMatrices().map( matrix => matrix.system.removeSpells() )
+    );
+  }
+
+  /**
+   * Perform the karma ritual for this actor to set the current karma points to maximum.
+   * Only to be used for namegivers with a discipline.
+   * @returns {Promise<ActorEd>} The updated actor instance, or `undefined` if not updated.
+   */
+  async karmaRitual() {
+    return this.update( { "system.karma.value": this.system.karma.max } );
+  }
+
+  /**
+   * Selects a grimoire to attune a given spell to.
+   * @param {ItemEd} [spell] - The spell to attune to a grimoire. If not provided, all grimoires will be selectable.
+   * @returns {Promise<Document|null>} A promise that resolves to the selected grimoire item, or null if no grimoire was selected.
+   */
+  async selectGrimoire( spell ) {
+    let availableGrimoires = this.items.filter( item => item.system.isGrimoire );
+    if ( spell ) {
+      availableGrimoires = availableGrimoires.filter(
+        grimoire => grimoire.system.grimoire.spells.has( spell.uuid )
+      );
+    }
+
+    if ( availableGrimoires.length === 0 ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.noGrimoiresAvailableToAttune" ),
+      );
+      return null;
+
+    }
+
+    return fromUuid(
+      await DialogEd.waitButtonSelect(
+        availableGrimoires,
+        "ed-button-select-grimoire",
+        {
+          title: game.i18n.localize( "ED.Dialogs.Title.selectGrimoireToAttune" ),
+        },
+      ),
+    );
+  }
+
+  /**
+   * Reattunes spells by executing an attunement workflow with the provided matrix.
+   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
+   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
+   */
+  async reattuneSpells( matrixUuid ) {
+    const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
+      this,
+      {
+        firstMatrix: matrixUuid,
+      },
+    );
+
+    return attuneMatrixWorkflow.execute();
+  }
+
+  // endregion
+
+  // region Rolls
+
+  /**
+   * @description                       Attribute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollAttribute( attributeId ) {
+
+    const attributeWorkflow = new AttributeWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+      }
+    );
+    return attributeWorkflow.execute();
+  }
+
+  /**
+   * @description                       Half magic Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollHalfMagic( attributeId ) {
+    const halfMagicWorkflow = new HalfMagicWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+      }
+    );
+    return halfMagicWorkflow.execute();
+  }
+
+  /**
+   * @description                       Substitute Roll.
+   * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
+   * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.
+   */
+  async rollSubstitute( attributeId ) {
+    const substituteWorkflow = new SubstituteWorkflow(
+      this,
+      {
+        attributeId: attributeId,
+      }
+    );
+    return substituteWorkflow.execute();
+  }
+
+  /**
+   * @summary                     Equipment rolls are a subset of Action test resembling non-attack actions like Talents, skills etc.
+   * @description                 Roll an Equipment item. use {@link RollPrompt} for further input data.
+   * @param {ItemEd} equipment    Equipment must be of type EquipmentTemplate & TargetingTemplate
+   * @param {object} options      Any additional options for the {@link EdRoll}.
+   * @returns {Promise<EdRoll>}   The processed Roll.
+   */
+  async rollEquipment( equipment, options = {} ) {
+    const arbitraryStep = equipment.system.usableItem.arbitraryStep;
+    const difficulty = equipment.system.getDifficulty();
+    if ( !difficulty ) {
+      throw new Error( "ED | ActorEd.rollEquipment | Ability is not part of Targeting Template, please call your Administrator!" );
+    }
+
+    const difficultyFinal = { base: difficulty };
+    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.rollEquipment", {
+      sourceActor: this.name,
+      equipment:   equipment.name,
+      step:        arbitraryStep
+    } );
+
+    const arbitraryFinalStep = { base: arbitraryStep };
+    const edRollOptions = EdRollOptions.fromActor(
+      {
+        testType:         "action",
+        rollType:         "arbitrary",
+        strain:           0,
+        target:           difficultyFinal,
+        step:             arbitraryFinalStep,
+        devotionRequired: false,
+        chatFlavor:       chatFlavor
+      },
+      this
+    );
+    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
+    return this.processRoll( roll, { rollToMessage: true } );
+  }
+
+  /**
+   * @description                     The sequence that is rotated
+   * @param {object}    itemId        Id of the item to rotate the status of
+   * @param {boolean}   backwards     Whether to rotate the status backwards
+   * @returns {Promise<ItemEd[]>}       The updated items
+   */
+  async rotateItemStatus( itemId, backwards = false ) {
+    const item = this.items.get( itemId );
+    const nextStatus = backwards ? item.system.previousItemStatus : item.system.nextItemStatus;
+    return this._updateItemStates( item, nextStatus );
+  }
+
+  async rollRecovery( recoveryMode ) {
+    const recoveryWorkflow = new RecoveryWorkflow(
+      this,
+      {
+        recoveryMode: recoveryMode,
+      },
+    );
+    return recoveryWorkflow.execute();
+  }
+
+  async rollUnarmedDamage( rollOptionsData = {} ) {
+    const roll = await RollPrompt.waitPrompt(
+      DamageRollOptions.fromActor(
+        {
+          step:             {
+            base:      this.system.attributes.str.step,
+            modifiers: {},
+          },
+          extraDice:        {},
+          strain:           {
+            base:      0,
+            modifiers: {},
+          },
+          chatFlavor:       game.i18n.format( "ED.Chat.Flavor.rollUnarmedDamage", {sourceActor: this.name} ),
+          testType:         "effect",
+          rollType:         "damage",
+          weaponUuid:       null,
+          damageAbilities:  new Set( [] ),
+          armorType:        "physical",
+          damageType:       "standard",
+          ...rollOptionsData,
+        },
+        this,
+      ),
+      {
+        rollData: this,
+      }
+    );
+
+    return this.processRoll( roll );
+  }
+
+  /** @inheritDoc */
+  getRollData() {
+    let rollData;
+    rollData = { ...super.getRollData() };
+    if ( this.system.getRollData ) Object.assign( rollData, this.system.getRollData() );
+
+    rollData.flags = { ...this.flags };
+    rollData.name = this.name;
+
+    return rollData;
+  }
+
+  /**
+   * Evaluate a Roll and process its data in this actor. This includes (if applicable):
+   * <ul>
+   *     <li>taking strain damage</li>
+   *     <li>reducing resources (karma, devotion)</li>
+   *     <li>recover from damage</li>
+   * </ul>
+   * @param {EdRoll} roll The prepared Roll.
+   * @param {object} [options] Options for processing the roll.
+   * @returns {EdRoll}    The processed Roll.
+   */
+  async processRoll( roll, options = {} ) {
+    if ( !roll ) {
+      // No roll available, do nothing.
+      return;
+    }
+
+    return RollProcessor.process( roll, this, options );
+  }
+
+  // endregion
+
+  /**
+   * Use a resource (karma, devotion) by deducting the amount. This will always happen, even if not enough is available.
+   * Look out for the return value to see if that was the case.
+   * @param {"karma"|"devotion"|"recovery"} resourceType The type of resource to use. One of either "karma" or "devotion".
+   * @param {number} amount                   The amount to use of the resource.
+   * @returns {boolean}                       Returns `true` if the full amount was deducted (enough available), 'false'
+   *                                          otherwise.
+   */
+  async useResource( resourceType, amount ) {
+    const available = this.system[resourceType].value;
+    await this.update( { [`system.${ resourceType }.value`]: ( available - amount ) } );
+    return amount <= available;
+  }
+
+  /**
+   * Retrieves a specific prompt based on the provided prompt type.
+   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
+   * effectively acting as a proxy to access various prompts defined within the factory.
+   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockDown" )} promptType - The type of prompt to retrieve.
+   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
+   * associated with the given `promptType`. The exact return type depends on promptType.
+   */
+  async getPrompt( promptType ) {
+    return this._promptFactory.getPrompt( promptType );
   }
 
   // region Migrations
