@@ -1,11 +1,13 @@
 /**
- * @typedef {object} RollableOptions
+ * @typedef {object} RollableWorkflowOptions
  * @property {EdRoll} [roll] The roll to use for this workflow.
  * @property {EdRollOptions} [rollOptions] The options to use for creating rolls.
+ * @property {boolean} [rollToMessage=false] Whether to send the roll result to the chat as a message.
  */
 
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
+import EdRollOptions from "../../data/roll/common.mjs";
 
 /**
  * A mixin that adds roll-related functionality to a workflow.
@@ -31,7 +33,7 @@ export default function Rollable( WorkflowClass ) {
      * Whether the roll result should be sent to the chat as a message.
      * @type {boolean}
      */
-    _rollToMessage = false;
+    _rollToMessage;
 
     /**
      * The title for the roll prompt application.
@@ -39,12 +41,6 @@ export default function Rollable( WorkflowClass ) {
      * @private
      */
     _rollPromptTitle;
-
-    /**
-     * Extra roll results (for workflows that may have multiple rolls)
-     * @type {Map<string, EdRoll>}
-     */
-    _extraRolls = new Map();
 
     /**
      * @param {...any} args The constructor arguments
@@ -56,6 +52,35 @@ export default function Rollable( WorkflowClass ) {
       const options = args[args.length - 1] || {};
       if ( options.roll ) this._roll = options.roll;
       if ( options.rollOptions ) this._rollOptions = options.rollOptions;
+      this._rollToMessage = options.rollToMessage ?? false;
+    }
+
+    /**
+     * Initialize default steps for rollable workflows.
+     *
+     * Prepare roll options -> Create roll -> Evaluate result roll -> Process roll.
+     */
+    _initRollableSteps() {
+      this._steps.push(
+        this._prepareRollOptions.bind( this ),
+        this._createRoll.bind( this ),
+        this._evaluateResultRoll.bind( this ),
+        this._processRoll.bind( this ),
+      );
+
+      if ( this._rollToMessage ) {
+        this._steps.push( this._rollToChat.bind( this ) );
+      }
+    }
+
+    /**
+     * Prepare the roll options for this workflow.
+     * This method should usually be overridden by subclasses to
+     * set specific roll options.
+     * @returns {Promise<void>}
+     */
+    async _prepareRollOptions() {
+      this._rollOptions ??= new EdRollOptions();
     }
 
     /**
@@ -85,6 +110,24 @@ export default function Rollable( WorkflowClass ) {
       );
     }
 
+    /**
+     * Evaluate the result of the roll.
+     * This method will resolve the roll and set the result of this workflow to the resolved roll.
+     * @returns {Promise<void>}
+     */
+    async _evaluateResultRoll() {
+      if ( !this._roll ) return;
+
+      this._roll = await this._roll.evaluate();
+      this._result = this._roll;
+    }
+
+    /**
+     * Process the roll results.
+     * This method can be overridden by subclasses to handle the roll results in a specific way.
+     * By default, it uses the {@link RollProcessor} to process the roll.
+     * @returns {Promise<void>}
+     */
     async _processRoll() {
       if ( !this._roll ) return;
 
@@ -98,6 +141,10 @@ export default function Rollable( WorkflowClass ) {
       );
     }
 
+    /**
+     * Send the roll to the chat as a message.
+     * @returns {Promise<void>}
+     */
     async _rollToChat() {
       if ( !this._roll ) {
         return;
@@ -107,13 +154,6 @@ export default function Rollable( WorkflowClass ) {
       await this._roll.toMessage( {
         flavor: this._rollOptions.chatFlavor || "",
       } );
-    }
-
-    async _evaluateResultRoll() {
-      if ( !this._roll ) return;
-  
-      this._roll = await this._roll.evaluate();
-      this._result = this._roll;
     }
 
   };
