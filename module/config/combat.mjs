@@ -42,6 +42,21 @@ export const combatTypes = {
 preLocalize( "testTypes", { key: "label" } );
 
 /**
+ * The types of damage that can be rolled
+ * @enum {string}
+ */
+export const damageSourceType = {
+  arbitrary: "ED.Config.DamageSource.arbitrary",
+  falling:   "ED.Config.DamageSource.falling",
+  poison:    "ED.Config.DamageSource.poison",
+  spell:     "ED.Config.DamageSource.spell",
+  unarmed:   "ED.Config.DamageSource.unarmed",
+  warping:   "ED.Config.DamageSource.warping",
+  weapon:    "ED.Config.DamageSource.weapon",
+};
+preLocalize( "damageSourceType" );
+
+/**
  * Damage type
  * @enum {string}
  */
