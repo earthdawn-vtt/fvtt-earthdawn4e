@@ -15,6 +15,8 @@ import * as SYSTEM from "./system.mjs";
 import * as MIGRATIONS from "./migrations.mjs";
 import * as WORKFLOWS from "./workflows.mjs";
 
+/** @module config */
+
 export {
   ACTIONS,
   ACTORS,

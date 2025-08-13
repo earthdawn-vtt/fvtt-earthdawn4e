@@ -45,7 +45,9 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 
 /**
- * EdRollOptions for creating an EdRoll instance.
+ * EdRollOptions Options for creating an {@link EdRoll} instance.
+ * If not provided, values for `step`, `target`, and `strain` will be initialized to their automatically.
+ * This should be overridden by subclasses to provide automation. This class only provides the default values.
  * @property { RollStepData } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
  * @property { RollResourceData } karma Available Karma, Karma dice and used karma.
  * @property { RollResourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
@@ -54,15 +56,8 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
  * @property { RollStrainData } strain How much strain this roll will cost
  * @property { string } chatFlavor The text that is added to the ChatMessage when this call is put to chat.
- * @property { ( 'action' | 'effect' ) } testType The type of roll.
- * @property { string } rollType Type of roll, like
- *                               damageRanged (Effect), damageMelee (Effect), attackRanged, attackMelee,
- *                               ability,
- *                               resistances (Effect), reaction, opposed
- *                               spellCasting, threadWeaving, spellCastingEffect (Effect)
- *                               Initiative (effect), Recovery (Effect), effects (Effect)
- *                               poison
- *                               etc. TODO: complete list
+ * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
+ * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
  */
 export default class EdRollOptions extends SparseDataModel {
 
