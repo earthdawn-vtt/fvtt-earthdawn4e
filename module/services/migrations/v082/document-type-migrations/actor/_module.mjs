@@ -8,7 +8,8 @@ export {
 
 
 export const typeMigrationConfig = {
-  pc:       CharacterMigration,
-  npc:      NoneCharacterMigration,
-  creature: NoneCharacterMigration,
+  character: CharacterMigration,
+  pc:        CharacterMigration,
+  npc:       NoneCharacterMigration,
+  creature:  NoneCharacterMigration,
 };
