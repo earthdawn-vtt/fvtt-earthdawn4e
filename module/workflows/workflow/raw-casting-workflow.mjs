@@ -161,10 +161,11 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
           [ this._pollutionData.label ]: this._pollutionData.rawMagic.damageModifier,
         },
       },
-      damageSource: ROLLS.rollTypes.warping.label,
-      armorType:    "mystical", // TODO: only natural mystic armor applies
-      damageType:   "standard",
-      ignoreArmor:  false,
+      damageSource:     ROLLS.rollTypes.warping.label,
+      armorType:        "mystical",
+      damageType:       "standard",
+      ignoreArmor:      false,
+      naturalArmorOnly: true,
     } );
 
     this._damageRoll = await RollPrompt.waitPrompt( damageRollOptions );
