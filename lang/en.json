@@ -174,16 +174,16 @@
         "attacks":                                 "Attacks",
         "attribute":                               "Attribute",
         "attributes":                              "Attributes",
-        "biography":                               "TODO: Add translation",
+        "biography":                               "Biography",
         "castingDifficulty":                       "TODO: Add translation",
-        "circle":                                  "TODO: Add translation",
+        "circle":                                  "Circle",
         "conditions":                              "Conditions",
         "controlIcons":                            "Controls",
         "damage":                                  "Damage",
         "defaultAttacks":                          "Default Attacks",
         "defenses":                                "Defenses",
         "devotion":                                "Devotion",
-        "devotions":                               "TODO: Add translation",
+        "devotions":                               "Devotions",
         "disciplines":                             "Disciplines",
         "duration":                                "Duration",
         "effectsPermanent":                        "Permanent Effects",
@@ -192,7 +192,7 @@
         "equipment":                               "Equipment",
         "equippedStatus":                          "Equipped",
         "extraSuccesses":                          "Extra Successes",
-        "favorites":                               "TODO: Add translation",
+        "favorites":                               "Favorites",
         "healthRating":                            "Health Rating",
         "inactive":                                "Inactive",
         "information":                             "Information",
@@ -211,7 +211,7 @@
         "mysticalArmor":                           "Mystical Armor",
         "mysticalDefense":                         "Mystical Defense",
         "name":                                    "Name",
-        "namegiver":                               "TODO: Add translation",
+        "namegiver":                               "Namegiver",
         "navigator":                               "Navigator",
         "origin":                                  "Origin",
         "paths":                                   "Path",
@@ -223,19 +223,19 @@
         "rank":                                    "Rank",
         "recovery":                                "Recovery",
         "shields":                                 "Shields",
-        "skills":                                  "TODO: Add translation",
+        "skills":                                  "Skills",
         "specialAbility":                          "Special Abilities",
-        "spells":                                  "TODO: Add translation",
+        "spells":                                  "Spells",
         "step":                                    "Step",
         "strain":                                  "Strain",
-        "talents":                                 "TODO: Add translation",
+        "talents":                                 "Talents",
         "talentsDiscipline":                       "Discipline Talents",
-        "talentsFree":                             "TODO: Add translation",
+        "talentsFree":                             "Free Talents",
         "talentsOptional":                         "Optional Talents",
-        "talentsOther":                            "TODO: Add translation",
+        "talentsOther":                            "Other Talents",
         "talentsVersatility":                      "Versatility Talents",
-        "threads":                                 "TODO: Add translation",
-        "vocations":                               "TODO: Add translation",
+        "threads":                                 "Threads",
+        "vocations":                               "Vocations",
         "weapons":                                 "Weapons",
         "weavingDifficulty":                       "TODO: Add translation"
       },
@@ -942,81 +942,81 @@
                 },
                 "damage": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation",
+                  "label":                         "Damage",
                   "standard": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "The amount of normal damage the charater has taken.",
+                    "label":                       "Normal Damage"
                   },
                   "stun": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "The amount of stun damage the charater has taken.",
+                    "label":                       "Stun Damage"
                   },
                   "total": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "The amount of normal damage and stun damage the charater has taken combined.",
+                    "label":                       "Total Damage"
                   }
                 },
                 "death": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "The Death Rating represents the the number of Damage Points needed to kill the character.",
+                  "label":                         "Death Rating"
                 },
                 "maxWounds": {
                   "hint":                          "TODO: Add translation",
                   "label":                         "TODO: Add translation"
                 },
                 "unconscious": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "The Unconsciousness Rating represents the number of Damage Points required to knock the character unconscious.",
+                  "label":                         "Unconciousness Rating"
                 },
                 "woundThreshold": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Any attack that inflicts Damage Points at least equal to a character’s Wound Threshold inflicts a Wound.",
+                  "label":                         "Wound Threshold"
                 },
                 "wounds": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Each Wounds inflicts a -1 Step Penalty to tests, and a -1 to Recovery Test results.",
+                  "label":                         "Wounds"
                 }
               },
               "movement": {
                 "burrow": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Burrow"
                 },
                 "climb": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Climb"
                 },
                 "fly": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Fly"
                 },
                 "swim": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Swim"
                 },
                 "walk": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Walk"
                 }
               },
               "recoveryTestsResource": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation",
                 "max": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Maximum Number of Recovery Tests",
+                  "label":                         "Maximum"
                 },
                 "step": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Recovery Test Step",
+                  "label":                         "Step"
                 },
                 "stunRecoveryAvailable": {
                   "hint":                          "TODO: Add translation",
                   "label":                         "TODO: Add translation"
                 },
                 "value": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Current Number Recovery Tests",
+                  "label":                         "Current"
                 }
               }
             },
@@ -1026,86 +1026,86 @@
             },
             "condition": {
               "aggressiveAttack": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Gain a +3 bonus to close combat Attack and Damage tests, but suffer a –3 penalty to Physical and Mystic Defense for that round. Each attack costs 1 strain.",
+                "label":                           "Aggressive Attack"
               },
               "blindsided": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "When a character cannot see an attacker, subtract –2 from Physical and Mystic Defense against the attack. This can also apply to Social Defense if appropriate",
+                "label":                           "Blindsided"
               },
               "cover": {
                 "full": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Full cover completely obscures a character, and they cannot be attacked without the use of special abilities or talents.",
+                  "label":                         "Full Cover"
                 },
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation",
+                "hint":                            "Characters can take advantage of cover as protection. Cover modifiers are applied against any attacks made against the character",
+                "label":                           "Cover",
                 "partial": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "An attacker can still see enough of a target in cover to attack. Partial cover gives a +2 bonus to Physical and Mystic Defense.",
+                  "label":                         "Partial Cover"
                 }
               },
               "darkness": {
                 "full": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Full darkness is when there is almost no ambient light, and a lot of deep shadows. A character in full darkness suffers a –4 penalty to any sight-based tests.",
+                  "label":                         "Fulll Darkness"
                 },
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation",
+                "hint":                            "If a character in darkness does not possess Heat Sight, Low-Light Vision, or a similar, their actions are impaired. Darkness modifiers are based on the amount of ambient light present.",
+                "label":                           "Darkness",
                 "partial": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Partial darkness has some ambient light, but the environment is dark, with a lot of shadow. A character in partial darkness suffers a –2 penalty to any sight-based tests.",
+                  "label":                         "Partial Darkness"
                 }
               },
               "defensiveStance": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "The character adds +3 to his Physical and Mystic Defense for all attacks directed against them, that they are aware of, that round. The character suffers a –3 penalty to all tests that round, except for Knockdown tests.",
+                "label":                           "Defensive Stance"
               },
               "fury": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Instead of suffering penalties, Wounds grant a bonus to tests. Once the Wounds are greater than the Step of this ability, the bonuses are lost and the normal penalties for Wounds apply.",
+                "label":                           "Fury"
               },
               "harried": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "A character being attacked in close combat by four or more opponents is considered harried, as are those affected by certain abilities. A harried character suffers a -2 penalty to tests, and Physical and Mystic Defense ratings. Opponents behind them benefit from the Blindside modifier.",
+                "label":                           "Harried"
               },
               "impairedMovement": {
                 "full": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Dense underbrush, a packed marketplace, full darkness, waist-deep water, and similar environments could reduce a character’s Movement Rate by 10, or cause a -4 penalty to movement-based tests. In addition, characters might need to pass Dexterity tests to avoid tripping or having their movement halted (this test should not suffer the -4 penalty).",
+                  "label":                         "Heavily Impaired"
                 },
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation",
+                "hint":                            "At the gamemaster’s discretion, characters can suffer movement or test penalties depending on the environment.",
+                "label":                           "Impaired",
                 "partial": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Light brush, narrow alleyways, cramped rooms, partial darkness, and similar environments could reduce a character’s Movement Rate by 5, or cause a -2 penalty to movement-based tests.",
+                  "label":                         "Lightly Impaired"
                 }
               },
               "knockedDown": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "A character who is knocked down can still act but is impaired. While prone characters suffer a –3 penalty to tests, and subtract –3 from Physical and Mystic Defense (this can apply to Social Defense). A Character can crawl at a Movement Rate of 2. These penalties remain in effect until the character stands up, which takes a Standard Action.",
+                "label":                           "Knocked Down"
               },
               "overwhelmed": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Additional distractions disorient an already harried character. A harried character suffers a further –1 penalty to his tests and Defense ratings for each additional harried effect he incurs after the first.",
+                "label":                           "Overwhelmed"
               },
               "surprised": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Characters caught off guard may be surprised. Surprised characters cannot take any actions during the combat round in which they are surprised. They also suffer a –3 penalty to their Physical and Mystic Defense until the end of the Combat Round",
+                "label":                           "Surprised"
               }
             },
             "devotion": {
               "max": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Maximum Devotion Value",
+                "label":                           "Maximum"
               },
               "step": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Devotion Step",
+                "label":                           "Step"
               },
               "value": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Current Devotion Value",
+                "label":                           "Current"
               }
             },
             "encumbrance": {
@@ -1146,20 +1146,20 @@
                 "label":                           "TODO: Add translation"
               },
               "max": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Maximum Karma Value",
+                "label":                           "Maximum"
               },
               "step": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Karma Step",
+                "label":                           "Step"
               },
               "useAlways": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Use Karma on all Rolls",
+                "label":                           "Always Use Karma"
               },
               "value": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Current Karma Value",
+                "label":                           "Current"
               }
             },
             "relations": {
@@ -3530,29 +3530,29 @@
     },
     "Tabs": {
       "ActorSheet": {
-        "classes":                                 "TODO: Add translation",
-        "configuration":                           "TODO: Add translation",
-        "description":                             "TODO: Add translation",
-        "devotions":                               "TODO: Add translation",
-        "equipment":                               "TODO: Add translation",
-        "general":                                 "TODO: Add translation",
-        "legend":                                  "TODO: Add translation",
-        "notes":                                   "TODO: Add translation",
-        "powers":                                  "TODO: Add translation",
-        "reputation":                              "TODO: Add translation",
-        "skills":                                  "TODO: Add translation",
-        "specials":                                "TODO: Add translation",
-        "spells":                                  "TODO: Add translation",
-        "talents":                                 "TODO: Add translation"
+        "classes":                                 "Classes",
+        "configuration":                           "Configuration",
+        "description":                             "Description",
+        "devotions":                               "Devotions",
+        "equipment":                               "Equipment",
+        "general":                                 "General",
+        "legend":                                  "Legend",
+        "notes":                                   "Notes",
+        "powers":                                  "Powers",
+        "reputation":                              "Reputation",
+        "skills":                                  "Skills",
+        "specials":                                "Specials",
+        "spells":                                  "Spells",
+        "talents":                                 "Talents"
       },
       "CharacterGeneration": {
-        "attributes":                              "TODO: Add translation",
-        "classes":                                 "TODO: Add translation",
-        "equipment":                               "TODO: Add translation",
-        "languages":                               "TODO: Add translation",
-        "namegiver":                               "TODO: Add translation",
-        "skills":                                  "TODO: Add translation",
-        "spells":                                  "TODO: Add translation"
+        "attributes":                              "Attributes",
+        "classes":                                 "Classes",
+        "equipment":                               "Equipment",
+        "languages":                               "Languages",
+        "namegiver":                               "Namegiver",
+        "skills":                                  "Skills",
+        "spells":                                  "Spells"
       },
       "EAESheet": {
         "changes":                                 "TODO: Add translation",
