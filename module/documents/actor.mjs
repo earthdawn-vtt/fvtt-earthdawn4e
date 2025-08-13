@@ -128,31 +128,8 @@ export default class ActorEd extends Actor {
   /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
-    await this._updateTokenSettings();
-  }
-
-  async _updateTokenSettings () {
-    const actorsTypesWithKarma = [ "character", "npc" ];
-    const prototypeToken = {
-      sight:       {enabled: true},
-      actorLink:   this.type === "character",
-      disposition: await this._getDisposition(),
-      displayBars: 50,  // Always Display bar 1 and 2
-      displayName: 30,  // Display nameplate on hover
-      bar1:        {
-        attribute: "healthRate"
-      },
-      bar2: {
-        attribute: actorsTypesWithKarma.includes( this.type ) ? "karma" : null
-      }
-    };
-    this.updateSource( { prototypeToken } );
-  }
-
-  async _getDisposition() {
-    if ( this.type === "character" ) return ED4E.tokenDisposition.friendly;
-    if ( this.type === "npc" ) return ED4E.tokenDisposition.neutral;
-    return ED4E.tokenDisposition.hostile;
+    const prototypeToken = ED4E.prototypeToken[this.type];
+    await this.updateSource( { prototypeToken } );
   }
 
   /**

@@ -103,14 +103,3 @@ export const languages = {
   windling:     "ED.Languages.windling",
 };
 preLocalize( "languages" );
-
-/**
- * Token Dispositions
- * @enum {number}
- */
-export const tokenDisposition = {
-  friendly:   CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-  neutral:    CONST.TOKEN_DISPOSITIONS.NEUTRAL,
-  hostile:    CONST.TOKEN_DISPOSITIONS.HOSTILE,
-  secret:     CONST.TOKEN_DISPOSITIONS.SECRET,
-};

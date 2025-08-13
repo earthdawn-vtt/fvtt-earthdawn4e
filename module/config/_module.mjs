@@ -14,6 +14,7 @@ import * as STATUSES from "./statuses.mjs";
 import * as SYSTEM from "./system.mjs";
 import * as MIGRATIONS from "./migrations.mjs";
 import * as WORKFLOWS from "./workflows.mjs";
+import * as TOKEN from "./token.mjs";
 
 export {
   ACTIONS,
@@ -31,7 +32,8 @@ export {
   STATUSES,
   SYSTEM,
   MIGRATIONS,
-  WORKFLOWS
+  WORKFLOWS,
+  TOKEN
 };
 
 // Namespace Configuration Values
@@ -55,6 +57,7 @@ const ED4E = {
   SYSTEM:        {...SYSTEM},
   MIGRATIONS:    {...MIGRATIONS},
   WORKFLOWS:     {...WORKFLOWS},
+  TOKEN:         {...TOKEN},
   ...ACTIONS,
   ...ACTORS,
   ...CHAT,
@@ -71,6 +74,7 @@ const ED4E = {
   ...SYSTEM,
   ...MIGRATIONS,
   ...WORKFLOWS,
+  ...TOKEN
 };
 
 export default ED4E;
