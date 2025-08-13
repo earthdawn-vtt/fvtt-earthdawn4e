@@ -100,7 +100,7 @@ function applyDocumentTypeMigrations( source ) {
   const itemType = source.type?.toLowerCase();
   
   // Debug: Log the item being processed
-  console.log( `[MigrationManager] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
+  // console.log( `[MigrationManager] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
   
   // Map item types to their migration classes
   const itemMigrationMap = {
@@ -128,10 +128,10 @@ function applyDocumentTypeMigrations( source ) {
   // Apply the appropriate migration class if it exists
   const migrationClass = itemMigrationMap[itemType];
   if ( migrationClass ) {
-    console.log( `[MigrationManager] Found migration class for ${itemType}, executing...` );
+    // console.log( `[MigrationManager] Found migration class for ${itemType}, executing...` );
     migrationClass.migrateEarthdawnData( source );
   } else {
-    console.log( `[MigrationManager] No migration class found for item type: "${itemType}"` );
+    // console.log( `[MigrationManager] No migration class found for item type: "${itemType}"` );
   }
   
   return source;

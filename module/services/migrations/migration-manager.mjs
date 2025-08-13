@@ -127,7 +127,7 @@ export default class MigrationManager {
     }
 
 
-    console.log( `MigrationManager: Migrating ${documentClass} "${source.name || "Name-Not-Found-in-available-data"}" from "${sourceSystem}"` );
+    // console.log( `MigrationManager: Migrating ${documentClass} "${source.name || "Name-Not-Found-in-available-data"}" from "${sourceSystem}"` );
 
 
     // Create a working copy

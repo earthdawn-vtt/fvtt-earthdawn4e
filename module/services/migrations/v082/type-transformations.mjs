@@ -88,7 +88,7 @@ function transformItemType( originalType, systemData ) {
     case "discipline":
       return transformDisciplineType( systemData.discipline );
     case "knack":
-      return transformKnackType( systemData.knackType );
+      return transformKnackType( systemData.knackType, systemData );
     case "attack":
       return transformAttackType( systemData.powerType );
     case "thread":
@@ -135,16 +135,25 @@ function transformDisciplineType( disciplineValue ) {
 /**
  * Transform knack type based on knackType property
  * @param {string} knackTypeValue - The knackType system property value
+ * @param {object} systemData - The full system data object for inference fallback
  * @returns {string} - The transformed type
  * @private
  */
-function transformKnackType( knackTypeValue ) {
-  switch ( knackTypeValue ) {
-    case "knack": return "knackAbility";
-    case "karma": return "knackKarma";
-    case "maneuver": return "knackManeuver";
-    case "spell": return "spellKnack";
-    default: return "knackAbility"; // Default fallback
+function transformKnackType( knackTypeValue, systemData = {} ) {
+  // Clean the value to handle potential whitespace or case issues
+  const cleanValue = knackTypeValue?.toString().trim().toLowerCase();
+  
+  switch ( cleanValue ) {
+    case "knack": 
+      return "knackAbility";
+    case "karma": 
+      return "knackKarma";
+    case "maneuver": 
+      return "knackManeuver";
+    case "spell": 
+      return "spellKnack";
+    default: 
+      return "knackAbility"; // Default fallback
   }
 }
 
