@@ -41,15 +41,6 @@ export default class DamageRollOptions extends EdRollOptions {
         type:     "Item",
         embedded: true,
       } ),
-      damageAbilities: new fields.SetField(
-        new fields.DocumentUUIDField( {
-          type:     "Item",
-          embedded: true,
-        } ),
-        {
-          required: false,
-        }
-      ),
       element: new fields.SchemaField(
         {
           type: new fields.StringField( {
@@ -121,16 +112,6 @@ export default class DamageRollOptions extends EdRollOptions {
       : this.damageSource;
 
     return newContext;
-  }
-
-  async _addDamageAbilityModifiers( changes ) {
-    const addedDamageAbilities = changes.system?.damageAbilities?.difference( this.damageAbilities );
-    console.log( "Coming up: addedDamageAbilities", addedDamageAbilities );
-  }
-
-  async _removeDamageAbilityModifiers( changes ) {
-    const removedDamageAbilities = this.damageAbilities?.difference( changes.system?.damageAbilities );
-    console.log( "Coming up: removedDamageAbilities", removedDamageAbilities );
   }
 
 }

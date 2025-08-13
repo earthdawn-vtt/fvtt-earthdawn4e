@@ -1000,7 +1000,6 @@ export default class ActorEd extends Actor {
           testType:         "effect",
           rollType:         "damage",
           weaponUuid:       null,
-          damageAbilities:  new Set( [] ),
           armorType:        "physical",
           damageType:       "standard",
           ...rollOptionsData,

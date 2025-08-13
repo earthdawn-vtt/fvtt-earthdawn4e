@@ -178,7 +178,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         },
         damageSource:    this.parent?.name,
         weaponUuid:      this.parent?.uuid,
-        damageAbilities: new Set( [] ),
         armorType:       this.armorType,
         damageType:      this.damage.type,
       },
