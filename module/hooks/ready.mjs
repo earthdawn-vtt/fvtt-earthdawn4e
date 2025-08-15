@@ -1,38 +1,6 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
-
-/**
- * Function to fix all character actors using ==system AND recursive: false
- * This ensures character actors are properly validated in Foundry V13
- */
-async function fixAllCharacterActors() {
-  const characterActors = game.actors.filter( actor => actor.type === "character" );
-  // Loop through all character actors
-  for ( let i = 0; i < characterActors.length; i++ ) {
-    const actor = characterActors[i];
-    try {
-      // Get the full system data
-      const fullSystemData = foundry.utils.deepClone( actor.system );
-      await actor.update( {
-        type:       "character",
-        "==system": fullSystemData
-      }, {
-        recursive: false,  // This is required for type changes
-        diff:      false,
-        render:    false,
-        broadcast: false
-      } );
-    } catch ( error ) {
-      console.log( `❌ Still failed for ${actor.name}:`, error.message );
-      console.log( "This suggests the actor data is corrupted at database level." );
-    }
-    
-    // Small delay between updates
-    await new Promise( resolve => {
-      setTimeout( resolve, 100 );
-    } );
-  }
-}
+import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**
  * TODO
@@ -49,11 +17,19 @@ export default function () {
 
     
     /* -------------------------------------------- */
-    /*  Fix Character Actors                       */
+    /*  Fix Transformed Documents                   */
     /* -------------------------------------------- */
     
-    // Uncomment the next line to run the character actor fix
-    if ( game.user.isGM ) await fixAllCharacterActors();
+    // Fix all documents that were transformed during migration
+    if ( game.user.isGM ) {
+      const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
+      console.log( "Transformed Documents:", transformedDocuments );
+      
+      const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
+      if ( hasTransformedDocs ) {
+        await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
+      }
+    }
 
 
     /* -------------------------------------------- */

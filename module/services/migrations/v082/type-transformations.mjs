@@ -1,5 +1,7 @@
 // Import migration config for system version keys
 import { systemV0_8_2 } from "../../../config/migrations.mjs";
+import TypeTransformationManager from "../type-transformation-manager.mjs";
+
 /**
  * Type transformations for earthdawn4e legacy system (v0.8.2) to ed4e
  * This module handles all type transformations from the old earthdawn4e system (v0.8.2 era)
@@ -51,10 +53,50 @@ export function transformV082ComplexTypes( source ) {
   // Apply the transformation if we found a new type
   if ( newType && newType !== originalType ) {
     source.type = newType;
+    
+    // Track transformed documents for later fixing
+    if ( source._id ) {
+      // Determine document type and track it
+      const documentType = determineDocumentTypeForTracking( originalType, newType );
+      console.log ( "old and new type", originalType, newType );
+      if ( documentType ) {
+        TypeTransformationManager.addTransformedDocumentId( documentType, source._id );
+      }
+    }
+    
     return true;
   }
 
   return false;
+}
+
+/**
+ * Determine the document type for tracking based on original and new types
+ * @param {string} originalType - The original type
+ * @param {string} newType - The transformed type
+ * @returns {string|null} - The document type ("actors" or "items") or null
+ * @private
+ */
+function determineDocumentTypeForTracking( originalType, newType ) {
+  // Actor types
+  const actorTypes = [ "pc", "character", "creature", "npc", "dragon", "horror", "spirit", "trap" ];
+  
+  // Item types
+  const itemTypes = [ 
+    "armor", "devotion", "equipment", "mask", "namegiver", "shield", "skill", "spell", "talent", "weapon",
+    "discipline", "path", "questor", "knackAbility", "knackKarma", "knackManeuver", "spellKnack",
+    "maneuver", "power", "attack", "knack", "thread"
+  ];
+  
+  if ( actorTypes.includes( originalType ) || actorTypes.includes( newType ) ) {
+    return "actors";
+  }
+  
+  if ( itemTypes.includes( originalType ) || itemTypes.includes( newType ) ) {
+    return "items";
+  }
+  
+  return null;
 }
 
 /**
