@@ -7,6 +7,16 @@ import FormulaField from "../fields/formula-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
+ * @typedef { object } EdRollOptionsInitializationData
+ * @property { RollStepData } [step] The step data for the roll. Can be omitted if to be initialized automatically.
+ * @property { RollTargetData } [target] The target data for the roll. Can be omitted if to be initialized automatically.
+ * @property { RollStrainData } [strain] The strain data for the roll. Can be omitted if to be initialized automatically.
+ * @property { RollResourceData } [karma] The karma data for the roll. Can be omitted if to initialize to default.
+ * @property { RollResourceData } [devotion] The devotion data for the roll. Can be omitted to initialize to default.
+ * @property { Record<string, number> } [extraDice] Extra dice that are added to the roll, see {@link EdRollOptions.extraDice}.
+ */
+
+/**
  * @typedef {import('../../dice/ed-roll.mjs').FlavorTemplateData} FlavorTemplateData
  */
 
@@ -89,7 +99,53 @@ export default class EdRollOptions extends SparseDataModel {
     "allTests",
   ];
 
+  /**
+   * @description Bonus resources to be added globally
+   * @type { RollResourceData }
+   */
+  static get _bonusResource() {
+    const fields = foundry.data.fields;
+    return new fields.SchemaField(
+      {
+        pointsUsed: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        available: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        step: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  this.initResourceStep,
+          min:      1,
+          step:     1,
+          integer:  true,
+        } ),
+        dice: new FormulaField( {
+          required: true,
+          initial:  this.initDiceForStep,
+        } ),
+      },
+      {
+        required: true,
+        nullable: true,
+      },
+    );
+  }
+
   // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -268,56 +324,12 @@ export default class EdRollOptions extends SparseDataModel {
   }
 
   /**
-   * @description Bonus resources to be added globally
-   * @type { RollResourceData }
-   */
-  static get _bonusResource() {
-    const fields = foundry.data.fields;
-    return new fields.SchemaField(
-      {
-        pointsUsed: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        available: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        step: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  this.initResourceStep,
-          min:      1,
-          step:     1,
-          integer:  true,
-        } ),
-        dice: new FormulaField( {
-          required: true,
-          initial:  this.initDiceForStep,
-        } ),
-      },
-      {
-        required: true,
-        nullable: true,
-      },
-    );
-  }
-
-  /**
    * Creates a new instance of EdRollOptions from the provided data and actor. Subclasses may extend this method.
    * This basic implementation initializes the roll with karma and devotion data derived from the actor.
-   * @param {object} data - The data object containing the roll options, see {@link foundry.abstract.DataModel}.
-   * @param {ActorEd} actor - The actor from which to derive additional roll options.
-   * @param {RollOptions} [options] - Additional options for the roll, see {@link foundry.abstract.DataModel}.
-   * @returns {EdRollOptions} A new instance of EdRollOptions initialized with the provided data and actor.
+   * @param { EdRollOptionsInitializationData & Partial<EdRollOptions> } data - The data to initialize the roll options with.
+   * @param { ActorEd } actor - The actor from which to derive additional roll options.
+   * @param { DataModelConstructionContext } [options] - Additional options for the data model, see {@link foundry.abstract.DataModel}.
+   * @returns { EdRollOptions } A new instance of EdRollOptions initialized with the provided data and actor.
    */
   static fromActor( data, actor, options = {} ) {
     data.karma = {
@@ -332,8 +344,26 @@ export default class EdRollOptions extends SparseDataModel {
     };
     data.rollingActorUuid = actor.uuid;
 
+    return this.fromData( data, options );
+  }
+
+  /**
+   * Creates a new instance of EdRollOptions. It uses the provided data to automatically initialize
+   * step, target, and strain data, if possible.
+   * @param { EdRollOptionsInitializationData & Partial<EdRollOptions> } data The data object containing the roll options and/or
+   * additional data for automatic initialization.
+   * @param { DataModelConstructionContext } [options] Additional options for the data model, see {@link foundry.abstract.DataModel}.
+   * @returns { EdRollOptions } A new instance of EdRollOptions initialized with the provided data.
+   */
+  static fromData( data, options = {} ) {
+    data.step ??= this._prepareStepData( data );
+    data.target ??= this._prepareTargetDifficulty( data );
+    data.strain ??= this._prepareStrainData( data );
+
     return new this( data, options );
   }
+
+  // endregion
 
   // region Data Field Initialization
 
@@ -385,10 +415,9 @@ export default class EdRollOptions extends SparseDataModel {
 
   /** @inheritDoc */
   _initializeSource( data, options = {} ) {
-    data.step ??= this._prepareStepData( data );
-    data.step = this._applyGlobalStepModifiers( data );
-    data.target ??= this._prepareTargetDifficulty( data );
-    data.strain ??= this._prepareStrainData( data );
+    const modifiedStepData = this._applyGlobalStepModifiers( data );
+    if ( modifiedStepData ) data.step = modifiedStepData;
+
     data.testType ??= this.constructor.TEST_TYPE;
     data.rollType ??= this.constructor.ROLL_TYPE;
 
@@ -451,7 +480,7 @@ export default class EdRollOptions extends SparseDataModel {
    * @param {object} data The input data object containing relevant ability information.
    * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
    */
-  _prepareStepData( data ) {
+  static _prepareStepData( data ) {
     return data.step ?? {};
   }
 
@@ -460,7 +489,7 @@ export default class EdRollOptions extends SparseDataModel {
    * @param {object} data - The input data object containing relevant information for strain calculation.
    * @returns {RollStrainData|null} The strain data object containing the base strain and any modifiers or null if not applicable.
    */
-  _prepareStrainData( data ) {
+  static _prepareStrainData( data ) {
     return data.strain ?? null;
   }
 
@@ -469,17 +498,18 @@ export default class EdRollOptions extends SparseDataModel {
    * @param {object} data - The data object with which this model is initialized.
    * @returns {RollTargetData|null} The target difficulty containing base and modifiers or null if not applicable (e.g. for effect tests).
    */
-  _prepareTargetDifficulty( data ) {
+  static _prepareTargetDifficulty( data ) {
     return data.target ?? null;
   }
 
   /**
    * Applies global step modifiers to the step data of the roll.
    * @param {object} data - The data object with which this model is initialized.
-   * @returns {RollStepData} The modified step data with global bonuses applied.
+   * @returns {RollStepData|undefined} The modified step data with global bonuses applied, or undefined if no step data is present.
    */
   _applyGlobalStepModifiers( data ) {
     const stepData = data.step;
+    if ( !stepData ) return;
     const actor = fromUuidSync( stepData.rollingActorUuid );
 
     if ( !actor ) return stepData;

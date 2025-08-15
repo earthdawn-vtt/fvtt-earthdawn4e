@@ -2,8 +2,23 @@ import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import { MAGIC } from "../../config/_module.mjs";
 
+/**
+ * @typedef { object } EdThreadWeavingRollOptionsInitializationData
+ * @augments { EdRollOptionsInitializationData }
+ * @property { ItemEd } [weavingAbility] The ability used for thread weaving.
+ * Can be omitted if `weavingAbilityUuid` is provided.
+ * @property { string } [weavingAbilityUuid] The UUID of the ability used for thread weaving.
+ * Can be omitted if `weavingAbility` is provided.
+ * @property { ItemEd } [spell] The spell the threads are woven for.
+ * Can be omitted if `spellUuid` is provided.
+ * @property { string } [spellUuid] The UUID of the spell the threads are woven for.
+ * Can be omitted if `spell` is provided.
+ * @property { ItemEd } [grimoire] The grimoire item, if a grimoire is used to cast the spell.
+ */
 
 export default class ThreadWeavingRollOptions extends EdRollOptions {
+
+  // region Static Properties
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
@@ -22,6 +37,10 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     "allActions",
     ...super.GLOBAL_MODIFIERS,
   ];
+
+  // endregion
+
+  // region Static Methods
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -52,6 +71,28 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     } );
   }
 
+  /**
+   * @inheritDoc
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
+   * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
+   */
+  static fromActor( data, actor, options = {} ) {
+    return /** @type { ThreadWeavingRollOptions } */ super.fromActor( data, actor, options );
+  }
+
+  /**
+   * @inheritDoc
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
+   * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
+   */
+  static fromData( data, options = {} ) {
+    return /** @type { ThreadWeavingRollOptions } */ super.fromData( data, options );
+  }
+
+  // endregion
+
+  // region Data Initialization
+
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
@@ -62,10 +103,13 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
   }
 
   /** @inheritDoc */
-  _prepareStepData( data ) {
+  static _prepareStepData( data ) {
     if ( data.step ) return data.step;
 
     let weavingAbility = data.weavingAbility ?? fromUuidSync( data.weavingAbilityUuid );
+    if ( !weavingAbility ) {
+      throw new Error( "ThreadWeavingRollOptions: No weaving ability found." );
+    }
 
     const stepData = weavingAbility.system.baseRollOptions.step || {};
 
@@ -84,18 +128,26 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     return stepData;
   }
 
-  _prepareStrainData( data ) {
+  /** @inheritDoc */
+  static _prepareStrainData( data ) {
     if ( data.strain ) return data.strain;
 
     let weavingAbility = data.weavingAbility ?? fromUuidSync( data.weavingAbilityUuid );
+    if ( !weavingAbility ) {
+      throw new Error( "ThreadWeavingRollOptions: No weaving ability found." );
+    }
 
     return weavingAbility.system.baseRollOptions.strain;
   }
 
-  _prepareTargetDifficulty( data ) {
+  /** @inheritDoc */
+  static _prepareTargetDifficulty( data ) {
     if ( data.target ) return data.target;
 
     const spell = data.spell ?? fromUuidSync( data.spellUuid );
+    if ( !spell ) {
+      throw new Error( "ThreadWeavingRollOptions: No spell found." );
+    }
 
     return {
       base:      spell.system.spellDifficulty.weaving,
@@ -103,6 +155,10 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
       public:    true,
     };
   }
+
+  // endregion
+
+  // region Rendering
 
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
@@ -127,5 +183,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
 
     return newContext;
   }
+
+  // endregion
 
 }
