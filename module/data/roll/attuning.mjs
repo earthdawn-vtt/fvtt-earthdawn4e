@@ -68,8 +68,8 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdAttuningRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
-   * @returns { AttuningRollOptions } A new instance of ThreadWeavingRollOptions.
+   * @param { EdAttuningRollOptionsInitializationData & Partial<AttuningRollOptions> } data The data to initialize the roll options with.
+   * @returns { AttuningRollOptions } A new instance of AttuningRollOptions.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { AttuningRollOptions } */ super.fromActor( data, actor, options );
@@ -77,7 +77,7 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdAttuningRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
+   * @param { EdAttuningRollOptionsInitializationData & Partial<AttuningRollOptions> } data The data to initialize the roll options with.
    * @returns { AttuningRollOptions } A new instance of AttuningRollOptions.
    */
   static fromData( data, options = {} ) {
