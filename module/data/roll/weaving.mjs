@@ -16,6 +16,13 @@ import { MAGIC } from "../../config/_module.mjs";
  * @property { ItemEd } [grimoire] The grimoire item, if a grimoire is used to cast the spell.
  */
 
+/**
+ * Roll options for weaving threads.
+ * @augments { EdRollOptions }
+ * @property { string } spellUuid The UUID of the spell the threads are woven for.
+ * @property { string } weavingAbilityUuid The UUID of the ability used for thread weaving.
+ * @property { { required: number, extra: number } } threads The number of threads
+ */
 export default class ThreadWeavingRollOptions extends EdRollOptions {
 
   // region Static Properties
