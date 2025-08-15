@@ -80,7 +80,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptions> } data The data to initialize the roll options with.
    * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
    */
   static fromActor( data, actor, options = {} ) {
@@ -89,7 +89,7 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<EdRollOptions> } data The data to initialize the roll options with.
+   * @param { EdThreadWeavingRollOptionsInitializationData & Partial<ThreadWeavingRollOptions> } data The data to initialize the roll options with.
    * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
    */
   static fromData( data, options = {} ) {
