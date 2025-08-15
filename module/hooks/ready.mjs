@@ -23,8 +23,6 @@ export default function () {
     // Fix all documents that were transformed during migration
     if ( game.user.isGM ) {
       const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
-      console.log( "Transformed Documents:", transformedDocuments );
-      
       const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
       if ( hasTransformedDocs ) {
         await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );

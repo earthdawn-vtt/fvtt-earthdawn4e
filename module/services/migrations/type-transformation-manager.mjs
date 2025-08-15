@@ -272,10 +272,7 @@ export default class TypeTransformationManager {
    */
   static async fixAllTransformedDocuments( documentIds = null ) {
     const documentsToFix = documentIds || this.getAllTransformedDocumentIds();
-    
-    console.log( "=== FIXING ALL TRANSFORMED DOCUMENTS ===" );
-    console.log( "Documents to fix:", documentsToFix );
-    
+
     // Fix actors
     if ( documentsToFix.actors && documentsToFix.actors.length > 0 ) {
       await this.#fixDocuments( "actors", documentsToFix.actors );
@@ -301,12 +298,8 @@ export default class TypeTransformationManager {
       .filter( doc => doc ); // Remove any null/undefined documents
     
     if ( documents.length === 0 ) {
-      console.log( `No ${documentType} found to fix.` );
       return;
     }
-    
-    console.log( `Fixing ${documents.length} transformed ${documentType}...` );
-    
     for ( let i = 0; i < documents.length; i++ ) {
       const document = documents[i];
       try {
@@ -322,9 +315,6 @@ export default class TypeTransformationManager {
           render:    false,
           broadcast: false
         } );
-        
-        console.log( `✅ Fixed ${documentType.slice( 0, -1 )}: ${document.name} (${document.type})` );
-        
       } catch ( error ) {
         console.log( `❌ Failed to fix ${document.name}:`, error.message );
         console.log( "This suggests the document data is corrupted at database level." );
@@ -335,8 +325,6 @@ export default class TypeTransformationManager {
         setTimeout( resolve, 50 );
       } );
     }
-    
-    console.log( `Completed fixing ${documents.length} ${documentType}.` );
   }
 
   /**
@@ -353,11 +341,9 @@ export default class TypeTransformationManager {
       characterActors = actorIds
         .map( id => game.actors.get( id ) )
         .filter( actor => actor && actor.type === "character" );
-      console.log( `Fixing ${characterActors.length} specific transformed character actors...` );
     } else {
       // Fix all character actors
       characterActors = game.actors.filter( actor => actor.type === "character" );
-      console.log( `Fixing all ${characterActors.length} character actors...` );
     }
     
     // Loop through character actors
@@ -385,7 +371,5 @@ export default class TypeTransformationManager {
         setTimeout( resolve, 100 );
       } );
     }
-    
-    console.log( `Completed fixing ${characterActors.length} character actors.` );
   }
 }

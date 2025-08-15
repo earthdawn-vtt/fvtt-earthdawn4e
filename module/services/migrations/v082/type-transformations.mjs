@@ -58,7 +58,6 @@ export function transformV082ComplexTypes( source ) {
     if ( source._id ) {
       // Determine document type and track it
       const documentType = determineDocumentTypeForTracking( originalType, newType );
-      console.log ( "old and new type", originalType, newType );
       if ( documentType ) {
         TypeTransformationManager.addTransformedDocumentId( documentType, source._id );
       }
@@ -85,7 +84,7 @@ function determineDocumentTypeForTracking( originalType, newType ) {
   const itemTypes = [ 
     "armor", "devotion", "equipment", "mask", "namegiver", "shield", "skill", "spell", "talent", "weapon",
     "discipline", "path", "questor", "knackAbility", "knackKarma", "knackManeuver", "spellKnack",
-    "maneuver", "power", "attack", "knack", "thread"
+    "maneuver", "power", "attack", "knack", "thread", "spellmatrix"
   ];
   
   if ( actorTypes.includes( originalType ) || actorTypes.includes( newType ) ) {
