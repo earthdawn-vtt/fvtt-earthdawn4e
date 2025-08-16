@@ -68,7 +68,6 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
   /**
    * @inheritDoc
    * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptions> } data The data to initialize the roll options with.
-   * @returns { HorrorMarkRollOptions } A new instance of HorrorMarkRollOptions.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { HorrorMarkRollOptions } */ super.fromActor( data, actor, options );
@@ -77,9 +76,11 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
   /**
    * @inheritDoc
    * @param { EdHorrorMarkRollOptionsInitializationData & Partial<HorrorMarkRollOptions> } data The data to initialize the roll options with.
-   * @returns { HorrorMarkRollOptions } A new instance of HorrorMarkRollOptions.
    */
   static fromData( data, options = {} ) {
+    data.casterUuid ??= data.caster?.uuid;
+    data.horrorUuid ??= data.horror?.uuid;
+    data.spellUuid ??= data.spell?.uuid;
     return /** @type { HorrorMarkRollOptions } */ super.fromData( data, options );
   }
 
