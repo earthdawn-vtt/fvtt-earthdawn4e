@@ -49,18 +49,12 @@ export default class AttackRollOptions extends EdRollOptions {
     } );
   }
 
-  /**
-   * @inheritdoc
-   * @returns { AttackRollOptions } A new instance of AttackRollOptions.
-   */
+  /** @inheritdoc */
   static fromData( data, options = {} ) {
     return /** @type { AttackRollOptions } */ super.fromData( data, options );
   }
 
-  /**
-   * @inheritDoc
-   * @returns { AttackRollOptions } A new instance of AttackRollOptions.
-   */
+  /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
     return /** @type { AttackRollOptions } */ super.fromActor( data, actor, options );
   }
