@@ -1,5 +1,6 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
+import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**
  * TODO
@@ -13,6 +14,20 @@ export default function () {
     /* -------------------------------------------- */
 
     if ( game.user.isGM ) await _createDebugDocuments();
+
+    
+    /* -------------------------------------------- */
+    /*  Fix Transformed Documents                   */
+    /* -------------------------------------------- */
+    
+    // Fix all documents that were transformed during migration
+    if ( game.user.isGM ) {
+      const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
+      const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
+      if ( hasTransformedDocs ) {
+        await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
+      }
+    }
 
 
     /* -------------------------------------------- */
