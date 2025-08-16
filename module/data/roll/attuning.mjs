@@ -3,12 +3,6 @@ import { ED4E } from "../../../earthdawn4e.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
 /**
- * @typedef { object } EdAttuningRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- */
-
-
-/**
  * Roll options for attuning spells to matrices or grimoires.
  * @augments { EdRollOptions }
  * @property { string } attuningType The type of attuning, either "matrixOnTheFly" or "grimoire".
@@ -66,20 +60,12 @@ export default class AttuningRollOptions extends EdRollOptions {
     } );
   }
 
-  /**
-   * @inheritDoc
-   * @param { EdAttuningRollOptionsInitializationData & Partial<AttuningRollOptions> } data The data to initialize the roll options with.
-   * @returns { AttuningRollOptions } A new instance of AttuningRollOptions.
-   */
+  /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
     return /** @type { AttuningRollOptions } */ super.fromActor( data, actor, options );
   }
 
-  /**
-   * @inheritDoc
-   * @param { EdAttuningRollOptionsInitializationData & Partial<AttuningRollOptions> } data The data to initialize the roll options with.
-   * @returns { AttuningRollOptions } A new instance of AttuningRollOptions.
-   */
+  /** @inheritDoc */
   static fromData( data, options = {} ) {
     return /** @type { AttuningRollOptions } */ super.fromData( data, options );
   }
