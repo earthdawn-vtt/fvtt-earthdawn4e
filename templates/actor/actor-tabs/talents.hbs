@@ -1,7 +1,7 @@
 <section class="tab {{tabs.talents.cssClass}}" data-group="sheet" data-tab="talents">
 <h3>{{localize "ED.Actor.Header.talents"}}</h3>
   <div class="container__block">
-
+    {{#if (eq this.actor.type "character")}}
       {{#if splitTalents}}
 
         <!-- Discipline Talents -->
@@ -159,5 +159,10 @@
           {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
         {{/each}}
       {{/if}}
+    {{else}}
+     {{#each actor.itemTypes.talent}}
+          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+        {{/each}}
+    {{/if}}
   </div>
 </section>

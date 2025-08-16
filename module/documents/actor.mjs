@@ -125,25 +125,8 @@ export default class ActorEd extends Actor {
   /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
-
-    // Configure prototype token settings
-    if ( this.type === "character" ) {
-      const prototypeToken = {
-        sight:       {enabled: true},
-        actorLink:   true,
-        disposition: 1,   // Friendly
-        displayBars: 50,  // Always Display bar 1 and 2
-        displayName: 30,  // Display nameplate on hover
-        bar1:        {
-          attribute: "healthRate"
-        },
-        bar2: {
-          attribute: "karma"
-        }
-      };
-
-      this.updateSource( { prototypeToken } );
-    }
+    const prototypeToken = ED4E.prototypeToken[this.type];
+    await this.updateSource( { prototypeToken } );
   }
 
   /**
