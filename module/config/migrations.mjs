@@ -19,7 +19,8 @@ export const systemV0_8_2 = {
   "toughnessStep", 
   "perceptionStep", 
   "willpowerStep", 
-  "charismaStep", 
+  "charismaStep",
+  "initiativeStep",
 ],
 
   /**

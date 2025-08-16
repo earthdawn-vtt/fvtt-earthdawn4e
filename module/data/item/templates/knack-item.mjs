@@ -37,8 +37,6 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         positive: true,
         integer:  true,
       } ),
-      restrictions:     new fields.ArrayField(
-        new fields.TypedSchemaField( ConstraintData.TYPES ) ),
       requirements:     new fields.ArrayField(
         new fields.TypedSchemaField( ConstraintData.TYPES ) ),
     } );

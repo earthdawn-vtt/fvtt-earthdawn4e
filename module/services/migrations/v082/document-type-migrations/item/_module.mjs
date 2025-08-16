@@ -2,7 +2,6 @@ import ArmorMigration from "./armor.mjs";
 import DevotionMigration from "./devotion.mjs";
 import DisciplineMigration from "./discipline.mjs";
 import EquipmentMigration from "./equipment.mjs";
-import KnackMigration from "./knack.mjs";
 import MaskMigration from "./mask.mjs";
 import MatrixMigration from "./matrix.mjs";
 import NamegiverMigration from "./namegiver.mjs";
@@ -13,13 +12,20 @@ import SkillMigration from "./skill.mjs";
 import SpellMigration from "./spell.mjs";
 import TalentMigration from "./talent.mjs";
 import WeaponMigration from "./weapon.mjs";
+import KarmaKnackMigration from "./karma-knack.mjs";
+import AbilityKnackMigration from "./ability-knack.mjs";
+import SpellKnackMigration from "./spell-knack.mjs";
+import ManeuverKnackMigration from "./maneuver-knack.mjs";
 
 export {
   ArmorMigration,
   DevotionMigration,
   DisciplineMigration,
   EquipmentMigration,
-  KnackMigration,
+  AbilityKnackMigration,
+  KarmaKnackMigration,
+  SpellKnackMigration,
+  ManeuverKnackMigration,
   MaskMigration,
   MatrixMigration,
   NamegiverMigration,
@@ -33,19 +39,22 @@ export {
 };
 
 export const typeMigrationConfig = {
-  armor:        ArmorMigration,
-  devotion:     DevotionMigration,
-  discipline:   DisciplineMigration,
-  equipment:    EquipmentMigration,
-  knack:        KnackMigration,
-  mask:         MaskMigration,
-  spellmatrix:  MatrixMigration,
-  namegiver:    NamegiverMigration,
-  attack:       PowerMigration,
-  reputation:   ReputationMigration,
-  shield:       ShieldMigration,
-  skill:        SkillMigration,
-  spell:        SpellMigration,
-  talent:       TalentMigration,
-  weapon:       WeaponMigration,
+  armor:         ArmorMigration,
+  devotion:      DevotionMigration,
+  discipline:    DisciplineMigration,
+  equipment:     EquipmentMigration,
+  abilityknack:  AbilityKnackMigration,
+  karmaknack:    KarmaKnackMigration,
+  spellknack:    SpellKnackMigration,
+  maneuverknack: ManeuverKnackMigration,
+  mask:          MaskMigration,
+  spellmatrix:   MatrixMigration,
+  namegiver:     NamegiverMigration,
+  attack:        PowerMigration,
+  reputation:    ReputationMigration,
+  shield:        ShieldMigration,
+  skill:         SkillMigration,
+  spell:         SpellMigration,
+  talent:        TalentMigration,
+  weapon:        WeaponMigration,
 };

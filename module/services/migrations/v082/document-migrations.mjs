@@ -100,7 +100,7 @@ function applyDocumentTypeMigrations( source ) {
   const itemType = source.type?.toLowerCase();
   
   // Debug: Log the item being processed
-  console.log( `[MigrationManager] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
+  // console.log( `[MigrationManager] Processing item type: "${itemType}" (original: "${source.type}") - Item: "${source.name}"` );
   
   // Map item types to their migration classes
   const itemMigrationMap = {
@@ -108,12 +108,12 @@ function applyDocumentTypeMigrations( source ) {
     devotion:       documentTypeMigrations.item.DevotionMigration,
     discipline:     documentTypeMigrations.item.DisciplineMigration,
     equipment:      documentTypeMigrations.item.EquipmentMigration,
-    knack:          documentTypeMigrations.item.KnackMigration,
+    knack:          documentTypeMigrations.item.AbilityKnackMigration,
     // Handle transformed knack types - they still need knack migration for other transformations
-    knackAbility:   documentTypeMigrations.item.KnackMigration,
-    knackKarma:     documentTypeMigrations.item.KnackMigration,
-    knackManeuver:  documentTypeMigrations.item.KnackMigration,
-    spellKnack:     documentTypeMigrations.item.KnackMigration,
+    knackability:   documentTypeMigrations.item.AbilityKnackMigration,
+    knackkarma:     documentTypeMigrations.item.KarmaKnackMigration,
+    knackmaneuver:  documentTypeMigrations.item.ManeuverKnackMigration,
+    spellknack:     documentTypeMigrations.item.SpellKnackMigration,
     mask:           documentTypeMigrations.item.MaskMigration,
     spellmatrix:    documentTypeMigrations.item.MatrixMigration,
     namegiver:      documentTypeMigrations.item.NamegiverMigration,
@@ -128,10 +128,10 @@ function applyDocumentTypeMigrations( source ) {
   // Apply the appropriate migration class if it exists
   const migrationClass = itemMigrationMap[itemType];
   if ( migrationClass ) {
-    console.log( `[MigrationManager] Found migration class for ${itemType}, executing...` );
+    // console.log( `[MigrationManager] Found migration class for ${itemType}, executing...` );
     migrationClass.migrateEarthdawnData( source );
   } else {
-    console.log( `[MigrationManager] No migration class found for item type: "${itemType}"` );
+    // console.log( `[MigrationManager] No migration class found for item type: "${itemType}"` );
   }
   
   return source;
