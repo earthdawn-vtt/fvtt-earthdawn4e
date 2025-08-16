@@ -20,6 +20,7 @@ import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mj
 import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
+import { TOKEN } from "../config/_module.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -125,7 +126,7 @@ export default class ActorEd extends Actor {
   /** @inheritDoc */
   async _preCreate( data, options, userId ) {
     await super._preCreate( data, options, userId );
-    const prototypeToken = ED4E.prototypeToken[this.type];
+    const prototypeToken = TOKEN.prototypeToken[this.type];
     await this.updateSource( { prototypeToken } );
   }
 
