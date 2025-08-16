@@ -50,18 +50,12 @@ export default class InitiativeRollOptions extends EdRollOptions {
     } );
   }
 
-  /**
-   * @inheritdoc
-   * @returns { InitiativeRollOptions } A new instance of InitiativeRollOptions.
-   */
+  /** @inheritDoc */
   static fromData( data, options = {} ) {
     return /** @type { InitiativeRollOptions } */ super.fromData( data, options );
   }
 
-  /**
-   * @inheritDoc
-   * @returns { InitiativeRollOptions } A new instance of InitiativeRollOptions.
-   */
+  /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
     return /** @type { InitiativeRollOptions } */ super.fromActor( data, actor, options );
   }
