@@ -23,9 +23,9 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
 /**
  * @typedef { object } RollStepData Data for a roll step.
  * @property { number } base The base step that is used to determine the dice that are rolled.
- * @property { Record<string, number> } modifiers All modifiers that are applied to the base step.
+ * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base step.
  *                                              Keys are localized labels. Values are the modifier.
- * @property { number } total The final step that is used to determine the dice that are rolled.
+ * @property { number } [total] The final step that is used to determine the dice that are rolled.
  *                            The sum of all modifiers is added to the base value.
  */
 
@@ -40,18 +40,18 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
 /**
  * @typedef { object } RollTargetData Data for the target number of a roll.
  * @property { number } base The base target number.
- * @property { Record<string, number> } modifiers All modifiers that are applied to the base target number.
+ * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base target number.
  *                                             Keys are localized labels. Values are the modifier.
- * @property { number } total The final target number. The sum of all modifiers is added to the base value.
- * @property { boolean } public Whether the target number is shown in chat or hidden.
+ * @property { number } [total] The final target number. The sum of all modifiers is added to the base value.
+ * @property { boolean } [public] Whether the target number is shown in chat or hidden.
  */
 
 /**
  * @typedef { object } RollStrainData Data for the strain that is taken after a roll.
  * @property { number } base The base strain that is taken.
- * @property { Record<string, number> } modifiers All modifiers that are applied to the base strain.
+ * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base strain.
  *                                            Keys are localized labels. Values are the modifier.
- * @property { number } total The final strain that is taken. The sum of all modifiers is added to the base value.
+ * @property { number } [total] The final strain that is taken. The sum of all modifiers is added to the base value.
  */
 
 /**
