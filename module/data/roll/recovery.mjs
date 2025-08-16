@@ -55,18 +55,12 @@ export default class RecoveryRollOptions extends EdRollOptions {
     } );
   }
 
-  /**
-   * @inheritdoc
-   * @returns { RecoveryRollOptions } A new instance of RecoveryRollOptions.
-   */
+  /** @inheritDoc */
   static fromData( data, options = {} ) {
     return /** @type { RecoveryRollOptions } */ super.fromData( data, options );
   }
 
-  /**
-   * @inheritDoc
-   * @returns { RecoveryRollOptions } A new instance of RecoveryRollOptions.
-   */
+  /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
     return /** @type { RecoveryRollOptions } */ super.fromActor( data, actor, options );
   }
