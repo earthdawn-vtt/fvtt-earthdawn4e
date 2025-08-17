@@ -477,7 +477,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Retrieves step data based on the provided input data.
-   * @param {object} data The input data object containing relevant ability information.
+   * @param {EdRollOptionsInitializationData} data The input data object containing relevant ability information.
    * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
    */
   static _prepareStepData( data ) {
@@ -486,7 +486,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Prepares strain data based on the provided input data.
-   * @param {object} data - The input data object containing relevant information for strain calculation.
+   * @param {EdRollOptionsInitializationData} data - The input data object containing relevant information for strain calculation.
    * @returns {RollStrainData|null} The strain data object containing the base strain and any modifiers or null if not applicable.
    */
   static _prepareStrainData( data ) {
@@ -495,7 +495,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Calculates the target difficulty for a roll based on the input data.
-   * @param {object} data - The data object with which this model is initialized.
+   * @param {EdRollOptionsInitializationData} data - The data object with which this model is initialized.
    * @returns {RollTargetData|null} The target difficulty containing base and modifiers or null if not applicable (e.g. for effect tests).
    */
   static _prepareTargetDifficulty( data ) {
