@@ -7,9 +7,14 @@ import { createContentAnchor } from "../../utils.mjs";
  * @augments { EdRollOptionsInitializationData }
  * @property { ReturnType<ClientDocumentMixin> & Document } [sourceDocument] The source document that caused the damage.
  * Can be omitted if `sourceUuid` in {@link DamageRollOptions} is provided.
+ * @property { ActorEd } [caster] The actor that cast the spell, if applicable.
+ * @property { number } [drowningRound=1] If rolling drowning damage, the round of drowning to roll damage for. This
+ * determines the step number for the roll.
  * @property { number } [fallingHeight] If rolling falling damage, the height of the fall in meters. This only
  * determines the step number for the roll, not the amount of rolls to be done. This means for heights larger than 10
  * yards, this sets the base damage step and the roll must be repeated the corresponding number of times.
+ * @property { string } [fireType] If rolling fire damage, the type of fire source. Must be one of the values defined in
+ * {@link module:config~ENVIRONMENT~fireDamage}. This determines the step number for the roll.
  */
 
 /**
@@ -146,29 +151,87 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareStepData( data ) {
     if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
 
-    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
-    const stepData = {};
+    if ( [ "unarmed", "warping" ].includes( data.damageSourceType ) ) {
+      return {
+        base: 0,
+      };
+    }
+
+    if ( [ "drowning", "falling", "fire",  ].includes( data.damageSourceType ) ) {
+      return this._getStepFromEnvironment( data );
+    }
+
+    return this._getStepFromSource( data );
+  }
+
+  /**
+   * Calculates the damage step for drowning based on the round of drowning.
+   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the step data.
+   * The `drowningRound` property is used to determine the step number.
+   * @returns {number} The calculated damage step for drowning.
+   */
+  static _calculateDrowningStep( data ) {
+    return ENVIRONMENT.drowningBaseDamageStep + (
+      ENVIRONMENT.drowningDamageStepIncrease * ( Math.max( data.drowningRound - 1 || 0, 0 ) )
+    );
+  }
+
+  /**
+   * Gets the step data based on the environmental damage type.
+   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the step data.
+   * @returns {RollStepData} The step data object containing the base step.
+   */
+  static _getStepFromEnvironment( data ) {
     switch ( data.damageSourceType ) {
-      case "arbitrary":
-        stepData.base = sourceDocument?.system?.damageTotal || 1;
-        break;
+      case "drowning":
+        return {
+          base: this._calculateDrowningStep( data ),
+        };
       case "falling":
-        stepData.base = ENVIRONMENT.fallingDamage.lookup( data.fallingHeight || 0 )?.damageStep || 1;
-        break;
-      case "poison":
-      case "spell":
-      case "unarmed":
-      case "warping":
-        stepData.base = 0;
-        break;
-      case "weapon":
-        stepData.base = sourceDocument.system.damageTotal;
-        break;
+        return {
+          base: ENVIRONMENT.fallingDamage.lookup( data.fallingHeight || 0 )?.damageStep || 1,
+        };
+      case "fire":
+        return {
+          base: ENVIRONMENT.fireDamage[ data.fireType ]?.damageStep || 1,
+        };
       default:
         throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
+  }
 
-    return ;
+  /**
+   * Gets the step data based on a source document.
+   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the step data.
+   * The `sourceDocument` or `sourceUuid` property is used to retrieve the source document.
+   * @returns {RollStepData} The step data object containing the base step.
+   */
+  static _getStepFromSource( data ) {
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
+
+    switch ( data.damageSourceType ) {
+      case "arbitrary":
+        return {
+          base: sourceDocument?.system?.damageTotal || 1,
+        };
+      case "poison":
+        return {
+          base: sourceDocument?.system?.effect?.damageStep || 1,
+        };
+      case "spell":
+        return {
+          base: data.caster?.system?.attributes?.wil?.step || 1,
+        };
+      case "weapon":
+        return {
+          base: sourceDocument.system.damageTotal,
+        };
+      default:
+        throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+    }
   }
 
   /** @inheritDoc */
