@@ -177,8 +177,11 @@ export default class DamageRollOptions extends EdRollOptions {
 
     switch ( data.damageSourceType ) {
       case "arbitrary":
+      case "drowning":
       case "falling":
+      case "fire":
       case "poison":
+      case "suffocation":
       case "warping":
         return null;
       case "spell":
@@ -196,39 +199,45 @@ export default class DamageRollOptions extends EdRollOptions {
    * Used when initializing this data model. Retrieves the armor type based on the `damageSourceType`.
    * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the armor type.
-   * @returns { keyof module:config~ACTORS~armor } The armor type to use for the damage roll.
+   * @returns { string | null } The armor type to use for the damage roll as defined in {@link module:config~ACTORS~armor}.
    */
   static _prepareArmorType( data ) {
     if ( data.armorType ) return data.armorType;
 
-    let armorType = "";
     const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
-    if ( sourceDocument ) armorType = sourceDocument.system?.armorType || "";
 
-    switch ( data.damageSourceType ) {
-      case "arbitrary":
-      case "falling":
-      case "poison":
-        armorType = null;
-        break;
-      case "warping":
-        armorType = "mystical";
-        break;
-      case "unarmed":
-        armorType = "physical";
-        break;
-      case "spell":
-        armorType = sourceDocument.system?.effect?.details?.damage?.armorType || "";
-        break;
-      case "weapon":
-        armorType = sourceDocument.system?.armorType || "";
-        break;
-      default:
-        throw new Error( `Invalid damage source type: ${ data.damageSourceType }` );
-
+    const simpleArmorTypes = {
+      "arbitrary":   null,
+      "drowning":    null,
+      "falling":     null,
+      "poison":      null,
+      "suffocation": null,
+      "fire":        "physical",
+      "unarmed":     "physical",
+      "warping":     "mystical"
+    };
+    if ( data.damageSourceType in simpleArmorTypes ) {
+      return simpleArmorTypes[data.damageSourceType];
     }
 
-    return armorType;
+    return this._getArmorTypeFromSource( data.damageSourceType, sourceDocument );
+  }
+
+  /**
+   * Gets armor type for damage source types that require source document analysis.
+   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceType}.
+   * @param { ItemEd } sourceDocument The source document
+   * @returns { string | null } The armor type as defined in {@link module:config~ACTORS~armor}.
+   */
+  static _getArmorTypeFromSource( damageSourceType, sourceDocument ) {
+    switch ( damageSourceType ) {
+      case "spell":
+        return sourceDocument?.system?.effect?.details?.damage?.armorType || "";
+      case "weapon":
+        return sourceDocument?.system?.armorType || "";
+      default:
+        throw new Error( `Invalid damage source type: ${ damageSourceType }` );
+    }
   }
 
   // No need for target difficulty since damage rolls are effect tests
