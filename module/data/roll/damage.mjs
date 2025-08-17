@@ -1,5 +1,5 @@
 import EdRollOptions from "./common.mjs";
-import ED4E, { ACTORS, COMBAT } from "../../config/_module.mjs";
+import ED4E, { ACTORS, COMBAT, ENVIRONMENT } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
 /**
@@ -7,6 +7,9 @@ import { createContentAnchor } from "../../utils.mjs";
  * @augments { EdRollOptionsInitializationData }
  * @property { ReturnType<ClientDocumentMixin> & Document } [sourceDocument] The source document that caused the damage.
  * Can be omitted if `sourceUuid` in {@link DamageRollOptions} is provided.
+ * @property { number } [fallingHeight] If rolling falling damage, the height of the fall in meters. This only
+ * determines the step number for the roll, not the amount of rolls to be done. This means for heights larger than 10
+ * yards, this sets the base damage step and the roll must be repeated the corresponding number of times.
  */
 
 /**
@@ -14,7 +17,7 @@ import { createContentAnchor } from "../../utils.mjs";
  * @augments { EdRollOptions }
  * @property { string } damageSourceType The type of damage source (e.g., weapon, spell). Must be one of the values
  * defined in {@link module:config~COMBAT~damageSourceType}.
- * @property { string } [armorType=""] The type of armor to consider when calculating damage. Must be one of the values
+ * @property { string|null } [armorType=""] The type of armor to consider when calculating damage. Must be one of the values
  * defined in {@link module:config~ACTORS~armor}.
  * @property { string } [damageType="standard"] The type of damage to roll. Must be one of the values defined in
  * {@link module:config~COMBAT~damageType}.
@@ -135,7 +138,11 @@ export default class DamageRollOptions extends EdRollOptions {
     };
   }
 
-  /** @inheritDoc */
+  /**
+   * @inheritDoc
+   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the step data.
+   */
   static _prepareStepData( data ) {
     if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
 
@@ -143,7 +150,11 @@ export default class DamageRollOptions extends EdRollOptions {
     const stepData = {};
     switch ( data.damageSourceType ) {
       case "arbitrary":
+        stepData.base = sourceDocument?.system?.damageTotal || 1;
+        break;
       case "falling":
+        stepData.base = ENVIRONMENT.fallingDamage.lookup( data.fallingHeight || 0 )?.damageStep || 1;
+        break;
       case "poison":
       case "spell":
       case "unarmed":
@@ -183,7 +194,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Used when initializing this data model. Retrieves the armor type based on the `damageSourceType`.
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object containing relevant ability information.
+   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the armor type.
    * @returns { keyof module:config~ACTORS~armor } The armor type to use for the damage roll.
    */
   static _prepareArmorType( data ) {
@@ -197,7 +209,7 @@ export default class DamageRollOptions extends EdRollOptions {
       case "arbitrary":
       case "falling":
       case "poison":
-        armorType = "";
+        armorType = null;
         break;
       case "warping":
         armorType = "mystical";
@@ -206,11 +218,13 @@ export default class DamageRollOptions extends EdRollOptions {
         armorType = "physical";
         break;
       case "spell":
+        armorType = sourceDocument.system?.effect?.details?.damage?.armorType || "";
+        break;
       case "weapon":
         armorType = sourceDocument.system?.armorType || "";
         break;
       default:
-        throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+        throw new Error( `Invalid damage source type: ${ data.damageSourceType }` );
 
     }
 
