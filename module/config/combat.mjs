@@ -46,13 +46,16 @@ preLocalize( "testTypes", { key: "label" } );
  * @enum {string}
  */
 export const damageSourceType = {
-  arbitrary: "ED.Config.DamageSource.arbitrary",
-  falling:   "ED.Config.DamageSource.falling",
-  poison:    "ED.Config.DamageSource.poison",
-  spell:     "ED.Config.DamageSource.spell",
-  unarmed:   "ED.Config.DamageSource.unarmed",
-  warping:   "ED.Config.DamageSource.warping",
-  weapon:    "ED.Config.DamageSource.weapon",
+  arbitrary:   "ED.Config.DamageSourceType.arbitrary",
+  drowning:    "ED.Config.DamageSourceType.drowning",
+  falling:     "ED.Config.DamageSourceType.falling",
+  fire:        "ED.Config.DamageSourceType.fire",
+  poison:      "ED.Config.DamageSourceType.poison",
+  spell:       "ED.Config.DamageSourceType.spell",
+  suffocation: "ED.Config.DamageSourceType.suffocation",
+  unarmed:     "ED.Config.DamageSourceType.unarmed",
+  warping:     "ED.Config.DamageSourceType.warping",
+  weapon:      "ED.Config.DamageSourceType.weapon",
 };
 preLocalize( "damageSourceType" );
 
