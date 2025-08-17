@@ -59,13 +59,13 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * If not provided, values for `step`, `target`, and `strain` will be initialized to their automatically.
  * This should be overridden by subclasses to provide automation. This class only provides the default values.
  * @property { RollStepData } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
- * @property { RollResourceData } karma Available Karma, Karma dice and used karma.
- * @property { RollResourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
+ * @property { RollResourceData | null } karma Available Karma, Karma dice and used karma.
+ * @property { RollResourceData | null } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
  * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
  *                                            Keys are localized labels. Values are the number of dice.
- * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
- * @property { RollStrainData } strain How much strain this roll will cost
- * @property { string } chatFlavor The text that is added to the ChatMessage when this call is put to chat.
+ * @property { RollTargetData | null } target All information of the targets array. Defenses, number, resistance.
+ * @property { RollStrainData | null } strain How much strain this roll will cost
+ * @property { string } [chatFlavor=""] The text that is added to the ChatMessage when this call is put to chat.
  * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
  * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
  */
