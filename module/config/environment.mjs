@@ -33,3 +33,42 @@ export const fallingDamage = {
     return this.table.find( range => distance >= range.min && distance <= range.max ) || null;
   }
 };
+
+/**
+ * @typedef {object} FireDamageData
+ * @property {string} label The localized label for the fire source.
+ * @property {number} damageStep The base damage step for this fire source.
+ * @property {boolean} touch Whether the fire source needs to be touched to cause damage.
+ */
+
+/**
+ * Fire damage data for different fire sources.
+ * @enum {FireDamageData}
+ */
+export const fireDamage = {
+  torch: {
+    label:       "ED.Config.FireDamage.torch",
+    damageStep:  4,
+    touch:       true,
+  },
+  campfireSmall: {
+    label:       "ED.Config.FireDamage.campfireSmall",
+    damageStep:  6,
+    touch:       true,
+  },
+  campfireLarge: {
+    label:       "ED.Config.FireDamage.campfireLarge",
+    damageStep:  8,
+    touch:       true,
+  },
+  houseFire: {
+    label:       "ED.Config.FireDamage.houseFire",
+    damageStep:  10,
+    touch:       false,
+  },
+  forestFire: {
+    label:       "ED.Config.FireDamage.forestFire",
+    damageStep:  12,
+    touch:       false,
+  },
+};
