@@ -1,13 +1,40 @@
 import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
 
+/**
+ * Roll options for attack rolls.
+ * @augments { EdRollOptions }
+ * @property { string } weaponType The type of the weapon used for the attack.
+ * Should be one of the keys in {@link module:config~ITEMS~weaponType}.
+ * @property { string } weaponUuid The UUID of the weapon used for the attack.
+ * This should be an embedded item UUID, i.e. `Actor.<actorId>.Item.<itemId>`.
+ */
 export default class AttackRollOptions extends EdRollOptions {
+
+  // region Static Properties
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Other.AttackRollOptions",
   ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "attack";
+
+  /** @inheritdoc */
+  static GLOBAL_MODIFIERS = [
+    "allActions",
+    "allAttacks",
+    ...super.GLOBAL_MODIFIERS,
+  ];
+
+  // endregion
+
+  // region Static Methods
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -21,6 +48,18 @@ export default class AttackRollOptions extends EdRollOptions {
       } ),
     } );
   }
+
+  /** @inheritdoc */
+  static fromData( data, options = {} ) {
+    return /** @type { AttackRollOptions } */ super.fromData( data, options );
+  }
+
+  /** @inheritDoc */
+  static fromActor( data, actor, options = {} ) {
+    return /** @type { AttackRollOptions } */ super.fromActor( data, actor, options );
+  }
+
+  // endregion
 
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {

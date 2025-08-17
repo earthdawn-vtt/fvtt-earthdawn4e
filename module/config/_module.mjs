@@ -16,6 +16,8 @@ import * as MIGRATIONS from "./migrations.mjs";
 import * as WORKFLOWS from "./workflows.mjs";
 import * as TOKEN from "./token.mjs";
 
+/** @module config */
+
 export {
   ACTIONS,
   ACTORS,

@@ -2,8 +2,19 @@ import EdRollOptions from "./common.mjs";
 import { ED4E } from "../../../earthdawn4e.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
-
+/**
+ * Roll options for attuning spells to matrices or grimoires.
+ * @augments { EdRollOptions }
+ * @property { string } attuningType The type of attuning, either "matrixOnTheFly" or "grimoire".
+ * See {@link module:config~MAGIC~attuningType}.
+ * @property { string } attuningAbility The UUID of the ability used for attuning, usually thread weaving for matrices
+ * or patterncraft for grimoires.
+ * @property { Set<string> } spellsToAttune The UUIDs of the spells to attune.
+ * @property { boolean } grimoirePenalty Whether the penalty for unowned grimoires applies.
+ */
 export default class AttuningRollOptions extends EdRollOptions {
+
+  // region Static Properties
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
@@ -16,6 +27,10 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   /** @inheritdoc */
   static ROLL_TYPE = "attuning";
+
+  // endregion
+
+  // region Static Methods
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -47,16 +62,20 @@ export default class AttuningRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
-    const modifiedData = {
-      ...data,
-      testType: "action",
-      rollType: "attuning",
-    };
-    return super.fromActor( modifiedData, actor, options );
+    return /** @type { AttuningRollOptions } */ super.fromActor( data, actor, options );
   }
 
   /** @inheritDoc */
-  _prepareStepData( data ) {
+  static fromData( data, options = {} ) {
+    return /** @type { AttuningRollOptions } */ super.fromData( data, options );
+  }
+
+  // endregion
+
+  // region Data Initialization
+
+  /** @inheritDoc */
+  static _prepareStepData( data ) {
     const ability = fromUuidSync( data.attuningAbility );
     const stepData = {
       base:      ability.system.rankFinal,
@@ -68,7 +87,7 @@ export default class AttuningRollOptions extends EdRollOptions {
   }
 
   /** @inheritDoc */
-  _prepareStrainData( data ) {
+  static _prepareStrainData( data ) {
     return {
       base:      data.attuningType === "matrixOnTheFly" ? 1 : 0,
       modifiers: {},
@@ -76,7 +95,7 @@ export default class AttuningRollOptions extends EdRollOptions {
   }
 
   /** @inheritDoc */
-  _prepareTargetDifficulty( data ) {
+  static _prepareTargetDifficulty( data ) {
     return  {
       base:      0,
       modifiers: data.spellsToAttune?.reduce( ( acc, spellUuid ) => {
@@ -95,6 +114,8 @@ export default class AttuningRollOptions extends EdRollOptions {
       attuningAbility: createContentAnchor( fromUuidSync( this.attuningAbility ) ).outerHTML,
     };
   }
+
+  // endregion
 
   /**
    * Get the spell items that will be attuned.
