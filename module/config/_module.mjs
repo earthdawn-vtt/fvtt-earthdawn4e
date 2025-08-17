@@ -4,6 +4,7 @@ import * as CHAT from "./chat.mjs";
 import * as COMBAT from "./combat.mjs";
 import * as DOCUMENT_DATA from "./document-data.mjs";
 import * as EFFECTS from "./effects.mjs";
+import * as ENVIRONMENT from "./environment.mjs";
 import * as ITEMS from "./items.mjs";
 import * as LEGEND from "./legend.mjs";
 import * as MAGIC from "./magic.mjs";
@@ -25,6 +26,7 @@ export {
   COMBAT,
   DOCUMENT_DATA,
   EFFECTS,
+  ENVIRONMENT,
   ITEMS,
   LEGEND,
   MAGIC,
@@ -49,6 +51,7 @@ const ED4E = {
   COMBAT:        {...COMBAT},
   DOCUMENT_DATA: {...DOCUMENT_DATA},
   EFFECTS:       {...EFFECTS},
+  ENVIRONMENT:   {...ENVIRONMENT},
   ITEMS:         {...ITEMS},
   LEGEND:        {...LEGEND},
   MAGIC:         {...MAGIC},
@@ -66,6 +69,7 @@ const ED4E = {
   ...COMBAT,
   ...DOCUMENT_DATA,
   ...EFFECTS,
+  ...ENVIRONMENT,
   ...ITEMS,
   ...LEGEND,
   ...MAGIC,
