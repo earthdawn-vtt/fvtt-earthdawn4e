@@ -169,15 +169,10 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   get baseRollOptions() {
     return DamageRollOptions.fromActor(
       {
-        step:            {
-          base:      this.damageTotal,
-          modifiers: {},
-        },
+        sourceDocument: this.parent,
         extraDice:       {
         // this should be the place for things like flame weapon, etc. but still needs to be implemented
         },
-        damageSource:    this.parent?.name,
-        weaponUuid:      this.parent?.uuid,
         armorType:       this.armorType,
         damageType:      this.damage.type,
       },
