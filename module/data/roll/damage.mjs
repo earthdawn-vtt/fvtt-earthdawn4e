@@ -151,7 +151,7 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareStepData( data ) {
     if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
 
-    if ( [ "unarmed", "warping" ].includes( data.damageSourceType ) ) {
+    if ( [ "warping" ].includes( data.damageSourceType ) ) {
       return {
         base: 0,
       };
@@ -212,26 +212,25 @@ export default class DamageRollOptions extends EdRollOptions {
   static _getStepFromSource( data ) {
     const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
 
-    switch ( data.damageSourceType ) {
-      case "arbitrary":
-        return {
-          base: sourceDocument?.system?.damageTotal || 1,
-        };
-      case "poison":
-        return {
-          base: sourceDocument?.system?.effect?.damageStep || 1,
-        };
-      case "spell":
-        return {
-          base: data.caster?.system?.attributes?.wil?.step || 1,
-        };
-      case "weapon":
-        return {
-          base: sourceDocument.system.damageTotal,
-        };
-      default:
-        throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+    const baseSteps = {
+      arbitrary: sourceDocument?.system?.damageTotal || 1,
+      poison:    sourceDocument?.system?.effect?.damageStep,
+      spell:     data.caster?.system?.attributes?.wil?.step,
+      unarmed:   sourceDocument?.system?.attributes?.str?.step,
+      weapon:    sourceDocument?.system?.damageTotal,
+    };
+    if ( !( data.damageSourceType in baseSteps ) ) {
+      throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
+
+    const baseStep = baseSteps[data.damageSourceType];
+    if ( !baseStep ) {
+      throw new Error( `No base step defined for damage source type: ${data.damageSourceType}` );
+    }
+
+    return {
+      base: baseStep,
+    };
   }
 
   /** @inheritDoc */
