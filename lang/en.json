@@ -1668,34 +1668,72 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "Bonus to the mask wearer's attack steps",
-              "label":                             "Attack Step Bonus"
+            "armor": {
+              "mystical": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "physical": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
-            "attacks": {
-              "hint":                              "Attacks the mask wearer can perform",
-              "label":                             "Attacks"
+            "attributes": {
+              "charismaStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "dexterityStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "perceptionStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "strengthStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "toughnessStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "willpowerStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "challengingRate": {
               "hint":                              "Challenge rating of the mask wearer",
               "label":                             "Challenge Rating"
             },
-            "charismaStep": {
-              "hint":                              "Charisma step of the mask wearer",
-              "label":                             "Charisma Step"
-            },
-            "damageStepsBonus": {
-              "hint":                              "Bonus to the mask wearer's damage steps",
-              "label":                             "Damage Step Bonus"
-            },
-            "deathThreshold": {
-              "hint":                              "Death threshold of the mask wearer",
-              "label":                             "Death Threshold"
+            "combatBonuses": {
+              "actions": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "attackStepsBonus": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "damageStepsBonus": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "initiativeStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "knockDownStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "defenses": {
-              "magical": {
-                "hint":                            "Bonus to magical defense",
-                "label":                           "Magical Defense"
+              "mystical": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               },
               "physical": {
                 "hint":                            "Bonus to physical defense",
@@ -1706,21 +1744,23 @@
                 "label":                           "Social Defense"
               }
             },
-            "dexterityStep": {
-              "hint":                              "Dexterity step of the mask wearer",
-              "label":                             "Dexterity Step"
-            },
-            "initiativeStep": {
-              "hint":                              "Initiative step of the mask wearer",
-              "label":                             "Initiative Step"
-            },
-            "knockdownStep": {
-              "hint":                              "Knockdown step of the mask wearer",
-              "label":                             "Knockdown Step"
-            },
-            "magicalArmor": {
-              "hint":                              "Armor rating against magical damage",
-              "label":                             "Magical Armor"
+            "healthBonuses": {
+              "deathThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "recoveryTestsResource": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "unconsciousThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "woundThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "movement": {
               "burrow": {
@@ -1744,41 +1784,43 @@
                 "label":                           "Walk"
               }
             },
-            "perceptionStep": {
-              "hint":                              "Perception step of the mask wearer",
-              "label":                             "Perception Step"
-            },
-            "physicalArmor": {
-              "hint":                              "Armor rating against physical damage",
-              "label":                             "Physical Armor"
-            },
-            "powers": {
-              "hint":                              "Powers the mask wearer possesses",
-              "label":                             "Powers"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "Recovery tests of the mask wearer",
-              "label":                             "Recovery Tests"
-            },
-            "strengthStep": {
-              "hint":                              "Strength step of the mask wearer",
-              "label":                             "Strength Step"
-            },
-            "toughnessStep": {
-              "hint":                              "Toughness step of the mask wearer",
-              "label":                             "Toughness Step"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "Unconscious threshold of the mask wearer",
-              "label":                             "Unconscious Threshold"
-            },
-            "willpowerStep": {
-              "hint":                              "Willpower step of the mask wearer",
-              "label":                             "Willpower Step"
-            },
-            "woundThreshold": {
-              "hint":                              "Wound threshold of the mask wearer",
-              "label":                             "Wound Threshold"
+            "powerItems": {
+              "maneuver": {
+                "bonus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "edid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "step": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "uuid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
+              "power": {
+                "bonus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "edid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "step": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "uuid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              }
             }
           }
         },
@@ -3279,20 +3321,25 @@
       },
       "Header": {
         "actionType":                              "Action Type",
+        "armorValues":                             "TODO: Add translation",
+        "attributes":                              "TODO: Add translation",
+        "challengingRate":                         "TODO: Add translation",
+        "combatValues":                            "TODO: Add translation",
         "damageSettings":                          "Damage Settings",
+        "defenseValues":                           "TODO: Add translation",
         "description":                             "Description",
         "details":                                 "Details",
         "effects":                                 "Effects",
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
-        "grimoireConfiguration":                   "Grimoire Configuration",
-        "knack":                                   "TODO: Add translation",
-        "matrixConfiguration":                     "Matrix Configuration",
+        "grimoireConfiguration":                   "TODO: Add translation",
+        "healthValues":                            "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
+        "matrixConfiguration":                     "TODO: Add translation",
+        "movementTypes":                           "TODO: Add translation",
         "navigator":                               "Navigator",
-        "spell":                                   "TODO: Add translation",
-        "spellDamageStep":                         "TODO: Add translation",
-        "spellEffect":                             "Spell Effect",
-        "spellEffectStep":                         "TODO: Add translation",
+        "powers":                                  "TODO: Add translation",
+        "spellEffect":                             "TODO: Add translation",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
         "talentKnacks":                            "Knacks",
@@ -3379,7 +3426,7 @@
         "singleton":                               "This actor is a singleton. Only one instance can exist.",
         "spellNotAttunedToMatrix":                 "The spell has not been attuned to a matrix.",
         "spellcastingWorkflowFailed":              "The spellcasting workflow failed.",
-        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.", 
+        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
