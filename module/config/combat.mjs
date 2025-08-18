@@ -2,6 +2,12 @@ import { preLocalize } from "../utils.mjs";
 
 
 /**
+ * The bonus to the damage step for each extra success on an attack roll.
+ * @type {number}
+ */
+export const bonusDamagePerExtraSuccess = 2;
+
+/**
  * The available subtypes of (combatTypes) tests
  * @enum {string}
  */
