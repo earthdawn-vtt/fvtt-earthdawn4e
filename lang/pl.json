@@ -1668,32 +1668,70 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+            "armor": {
+              "mystical": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "physical": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
-            "attacks": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+            "attributes": {
+              "charismaStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "dexterityStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "perceptionStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "strengthStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "toughnessStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "willpowerStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "challengingRate": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "charismaStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "damageStepsBonus": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "deathThreshold": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+            "combatBonuses": {
+              "actions": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "attackStepsBonus": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "damageStepsBonus": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "initiativeStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "knockDownStep": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "defenses": {
-              "magical": {
+              "mystical": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -1706,21 +1744,23 @@
                 "label":                           "TODO: Add translation"
               }
             },
-            "dexterityStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "initiativeStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "knockdownStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "magicalArmor": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+            "healthBonuses": {
+              "deathThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "recoveryTestsResource": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "unconsciousThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "woundThreshold": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "movement": {
               "burrow": {
@@ -1744,41 +1784,43 @@
                 "label":                           "TODO: Add translation"
               }
             },
-            "perceptionStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "physicalArmor": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "powers": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "strengthStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "toughnessStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "willpowerStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "woundThreshold": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+            "powerItems": {
+              "maneuver": {
+                "bonus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "edid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "step": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "uuid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
+              "power": {
+                "bonus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "edid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "step": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "uuid": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              }
             }
           }
         },
@@ -3279,16 +3321,25 @@
       },
       "Header": {
         "actionType":                              "TODO: Add translation",
+        "armorValues":                             "TODO: Add translation",
+        "attributes":                              "TODO: Add translation",
+        "challengingRate":                         "TODO: Add translation",
+        "combatValues":                            "TODO: Add translation",
         "damageSettings":                          "TODO: Add translation",
+        "defenseValues":                           "TODO: Add translation",
         "description":                             "TODO: Add translation",
         "details":                                 "TODO: Add translation",
         "effects":                                 "TODO: Add translation",
         "elementSettings":                         "TODO: Add translation",
         "general":                                 "TODO: Add translation",
         "grimoireConfiguration":                   "TODO: Add translation",
+        "healthValues":                            "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
         "knack":                                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
+        "movementTypes":                           "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
+        "powers":                                  "TODO: Add translation",
         "spell":                                   "TODO: Add translation",
         "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "TODO: Add translation",
@@ -3409,6 +3460,7 @@
         "invalidRecoveryMode":                     "TODO: Add translation",
         "learningKnackNoSourceItem":               "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
+        "maskAddAlreadyInMask":                    "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "needTargetsToApplyFromChat":              "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
