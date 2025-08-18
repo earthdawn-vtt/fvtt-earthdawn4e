@@ -2,20 +2,117 @@ import EdRollOptions from "./common.mjs";
 import ED4E, { ACTORS, COMBAT, ENVIRONMENT } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
+
 /**
- * @typedef { object } EdDamageRollOptionsInitializationData
- * @augments { EdRollOptionsInitializationData }
- * @property { ReturnType<ClientDocumentMixin> & Document } [sourceDocument] The source document that caused the damage.
- * Can be omitted if `sourceUuid` in {@link DamageRollOptions} is provided.
- * @property { ActorEd } [caster] The actor that cast the spell, if applicable.
- * @property { number } [drowningRound=1] If rolling drowning damage, the round of drowning to roll damage for. This
- * determines the step number for the roll.
- * @property { number } [fallingHeight] If rolling falling damage, the height of the fall in meters. This only
- * determines the step number for the roll, not the amount of rolls to be done. This means for heights larger than 10
- * yards, this sets the base damage step and the roll must be repeated the corresponding number of times.
- * @property { string } [fireType] If rolling fire damage, the type of fire source. Must be one of the values defined in
- * {@link module:config~ENVIRONMENT~fireDamage}. This determines the step number for the roll.
+ * Base roll options initialization data for all types of damage rolls.
+ * @typedef {object} BaseDamageRollOptionsInitializationData
+ * @property {string} damageSourceType The type of damage source used for {@link DamageRollOptions~damageSourceType}.
+ * @property {ItemEd} [replacementAbility] The ability that will replace the attribute step used for the base damage step.
+ * Examples include "Crushing Blow", "Down Strike", or "Flame Arrow".
+ * This does not include talents like "Body Control" or "Claw Shape", which create a weapon and
+ * should instead be passed as a weapon item.
+ * Can be omitted if `replacementAbilityUuid` in {@link DamageRollOptions} is provided.
  */
+
+/**
+ * Roll options initialization data for arbitrary damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} ArbitraryDamageInitializationData
+ * @property {"arbitrary"} damageSourceType Discriminator for arbitrary damage source.
+ * @property {Document} [sourceDocument] If given, will try to get the base damage step via `document.system.damageTotal`.
+ */
+
+/**
+ * Roll options initialization data for drowning damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} DrowningDamageInitializationData
+ * @property {"drowning"} damageSourceType Discriminator for drowning damage source.
+ * @property {number} [drowningRound=1] The round of drowning to roll damage for. Determines the step number for the
+ * roll.
+ */
+
+/**
+ * Roll options initialization data for falling damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} FallingDamageInitializationData
+ * @property {"falling"} damageSourceType Discriminator for falling damage source.
+ * @property {number} [fallingHeight] The height of the fall in yards.
+ * Determines the step number for the roll, but not the number of rolls (heights >10 yards must repeat).
+ */
+
+/**
+ * Roll options initialization data for fire damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} FireDamageInitializationData
+ * @property {"fire"} damageSourceType Discriminator for fire damage source.
+ * @property {string} fireType The type of fire source. Must be one of the values defined in
+ * {@link module:config~ENVIRONMENT~fireDamage}.
+ */
+
+/**
+ * Roll options initialization data for poison damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} PoisonDamageInitializationData
+ * @property {"poison"} damageSourceType Discriminator for poison damage source.
+ * @property {ItemEd} sourceDocument Item of type "poison". The poison's effect damage step is used as the base
+ * damage step.
+ */
+
+/**
+ * Roll options initialization data for spell damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} SpellDamageInitializationData
+ * @property {"spell"} damageSourceType Discriminator for spell damage source.
+ * @property {ItemEd} sourceDocument Item of type "spell".
+ * @property {ActorEd} caster The actor that cast the spell. The caster's Willpower step is used as the base
+ * damage step.
+ */
+
+/**
+ * Roll options initialization data for suffocation damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} SuffocationDamageInitializationData
+ * @property {"suffocation"} damageSourceType Discriminator for suffocation damage source.
+ */
+
+/**
+ * Roll options initialization data for unarmed damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} UnarmedDamageInitializationData
+ * @property {"unarmed"} damageSourceType Discriminator for unarmed damage source.
+ * @property {ActorEd} sourceDocument Actor of type "sentient". The attacker’s Strength step is used as the base
+ * damage step.
+ * @property {EdRoll} [attackRoll] The attack roll that caused the damage. This is used to determine
+ * the bonus to the damage step from extra successes.
+ */
+
+/**
+ * Roll options initialization data for warping damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} WarpingDamageInitializationData
+ * @property {"warping"} damageSourceType Discriminator for warping damage source.
+ * @property {ItemEd} sourceDocument Item of type "spell". The spell’s circle is used as the base damage step.
+ * @property {string} [astralSpacePollution="safe"] The type of astral space pollution to use for modifying the
+ * step of warping damage.
+ */
+
+/**
+ * Roll options initialization data for weapon damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} WeaponDamageInitializationData
+ * @property {"weapon"} damageSourceType Discriminator for weapon damage source.
+ * @property {ItemEd} sourceDocument Item of type "weapon". The weapon’s total damage step is used as the base
+ * damage step.
+ * @property {EdRoll} [attackRoll] The attack roll that caused the damage. This is used to determine
+ * the bonus to the damage step from extra successes.
+ */
+
+/**
+ * Union of all possible damage roll initialization options.
+ * @typedef {
+ *   ArbitraryDamageInitializationData |
+ *   DrowningDamageInitializationData |
+ *   FallingDamageInitializationData |
+ *   FireDamageInitializationData |
+ *   PoisonDamageInitializationData |
+ *   SpellDamageInitializationData |
+ *   SuffocationDamageInitializationData |
+ *   UnarmedDamageInitializationData |
+ *   WarpingDamageInitializationData |
+ *   WeaponDamageInitializationData
+ * } EdDamageRollOptionsInitializationData
+ */
+
 
 /**
  * Roll options for damage rolls.
@@ -29,6 +126,10 @@ import { createContentAnchor } from "../../utils.mjs";
  * @property { boolean } [ignoreArmor=false] Whether to ignore armor when calculating damage.
  * @property { boolean } [naturalArmorOnly=false] Whether to only consider natural armor when calculating damage.
  * @property { string } [sourceUuid=null] The UUID of the source item or actor that caused the damage, if applicable.
+ * @property { string } [replacementAbilityUuid=null] The UUID of an ability that will replace the attribute step used for
+ * the base damage step. Examples include "Crushing Blow", "Down Strike", or "Flame Arrow".
+ * Note: This does not include talents like "Body Control" or "Claw Shape", which technically create a weapon and
+ * therefore should be passed as a weapon item.
  * @property { object } [element] The element and subtype of the damage, if applicable.
  * @property { string } [element.type] The type of element (e.g., fire, water). Must be one of the values defined in
  * {@link module:config~MAGIC~elements}.
@@ -64,29 +165,30 @@ export default class DamageRollOptions extends EdRollOptions {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      damageSourceType:   new fields.StringField( {
+      damageSourceType:       new fields.StringField( {
         required: true,
         choices:  COMBAT.damageSourceType,
       } ),
-      armorType:          new fields.StringField( {
+      armorType:              new fields.StringField( {
         required: true,
         nullable: true,
         blank:    true,
         initial:  "",
         choices:  ACTORS.armor,
       } ),
-      damageType:         new fields.StringField( {
+      damageType:             new fields.StringField( {
         initial:  "standard",
         choices:  COMBAT.damageType,
       } ),
-      ignoreArmor:        new fields.BooleanField( {
+      ignoreArmor:            new fields.BooleanField( {
         initial:  false,
       } ),
-      naturalArmorOnly:   new fields.BooleanField( {
+      naturalArmorOnly:       new fields.BooleanField( {
         initial:  false,
       } ),
-      sourceUuid:         new fields.DocumentUUIDField( {
-      } ),
+      sourceUuid:             new fields.DocumentUUIDField( {} ),
+      replacementAbilityUuid: new fields.DocumentUUIDField( {} ),
+
       element:            new fields.SchemaField(
         {
           type: new fields.StringField( {
@@ -107,7 +209,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The data to initialize the roll options with.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The data to initialize the roll options with.
    */
   static fromData( data, options = {} ) {
     data.sourceUuid ??= data.sourceDocument?.uuid;
@@ -123,7 +226,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The data to initialize the roll options with.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The data to initialize the roll options with.
    */
   static fromActor( data, actor, options = {} ) {
     return /** @type { DamageRollOptions } */ super.fromActor( data, actor, options );
@@ -145,17 +249,12 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * @inheritDoc
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the step data.
    */
   static _prepareStepData( data ) {
     if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
-
-    if ( [ "warping" ].includes( data.damageSourceType ) ) {
-      return {
-        base: 0,
-      };
-    }
 
     if ( [ "drowning", "falling", "fire",  ].includes( data.damageSourceType ) ) {
       return this._getStepFromEnvironment( data );
@@ -166,7 +265,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Calculates the damage step for drowning based on the round of drowning.
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the step data.
    * The `drowningRound` property is used to determine the step number.
    * @returns {number} The calculated damage step for drowning.
@@ -179,7 +279,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Gets the step data based on the environmental damage type.
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the step data.
    * @returns {RollStepData} The step data object containing the base step.
    */
@@ -204,36 +305,91 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Gets the step data based on a source document.
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the step data.
    * The `sourceDocument` or `sourceUuid` property is used to retrieve the source document.
    * @returns {RollStepData} The step data object containing the base step.
    */
   static _getStepFromSource( data ) {
     const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
+    if ( !sourceDocument ) {
+      throw new Error( `No source document found for damage source type: ${data.damageSourceType}` );
+    }
 
+    return {
+      base:      this._getBaseStepFromSource( sourceDocument, data ),
+      modifiers: this._getModifiersFromSource( sourceDocument, data ),
+    };
+  }
+
+  /**
+   * Gets the base step for the damage roll based on the damage source type and associated source document.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { ItemEd | ActorEd } sourceDocument The source document that caused the damage.
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * @returns { number } The base step for the damage roll.
+   */
+  static _getBaseStepFromSource( sourceDocument, data ) {
     const baseSteps = {
-      arbitrary: sourceDocument?.system?.damageTotal || 1,
-      poison:    sourceDocument?.system?.effect?.damageStep,
-      spell:     data.caster?.system?.attributes?.wil?.step,
-      unarmed:   sourceDocument?.system?.attributes?.str?.step,
-      weapon:    sourceDocument?.system?.damageTotal,
+      arbitrary: sourceDocument.system.damageTotal || 1,
+      poison:    sourceDocument.system.effect.damageStep,
+      spell:     data.caster.system.attributes.wil.step,
+      unarmed:   sourceDocument.system.attributes.str.step,
+      warping:   sourceDocument.system.level,
+      weapon:    sourceDocument.system.damageTotal
     };
     if ( !( data.damageSourceType in baseSteps ) ) {
-      throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+      throw new Error( `Invalid damage source type: ${ data.damageSourceType }` );
     }
 
     const baseStep = baseSteps[data.damageSourceType];
     if ( !baseStep ) {
-      throw new Error( `No base step defined for damage source type: ${data.damageSourceType}` );
+      throw new Error( `No base step defined for damage source type: ${ data.damageSourceType }` );
     }
-
-    return {
-      base: baseStep,
-    };
+    return baseStep;
   }
 
-  /** @inheritDoc */
+  /**
+   * Retrieves modifiers for the step of the damage roll based on the damage source type and associated source document.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { ItemEd | ActorEd } sourceDocument The source document that caused the damage.
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
+   * modifiers are found.
+   */
+  static _getModifiersFromSource( sourceDocument, data ) {
+    if ( [ "arbitrary", "poison", "spell", ].includes( data.damageSourceType ) ) {
+      return undefined;
+    }
+
+    if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
+      const attackRoll = data.attackRoll;
+      if ( !attackRoll ) {
+        throw new Error( `No attack roll provided for damage source type: ${data.damageSourceType}` );
+      }
+
+      const extraSuccesses = attackRoll.numExtraSuccesses || 0;
+      return {
+        [ game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ) ]: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
+      };
+    }
+
+    if ( data.damageSourceType === "warping" ) {
+      return {
+        [ this._pollutionData.label ]: this._pollutionData.rawMagic.damageModifier,
+      };
+    }
+
+    return undefined;
+  }
+
+  /**
+   * @inheritDoc
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the strain data.
+   */
   static _prepareStrainData( data ) {
     const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
 
@@ -259,7 +415,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   /**
    * Used when initializing this data model. Retrieves the armor type based on the `damageSourceType`.
-   * @param { EdDamageRollOptionsInitializationData & Partial<DamageRollOptions> } data The input data object
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
    * with information to automatically determine the armor type.
    * @returns { string | null } The armor type to use for the damage roll as defined in {@link module:config~ACTORS~armor}.
    */
