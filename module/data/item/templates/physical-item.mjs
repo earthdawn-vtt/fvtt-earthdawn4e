@@ -4,6 +4,7 @@ import ThreadTemplate from "./threads.mjs";
 import MatrixTemplate from "./matrix.mjs";
 import GrimoireTemplate from "./grimoire.mjs";
 import ItemDataModel from "../../abstract/item-data-model.mjs";
+import FavoriteTemplate from "./favorite.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -24,6 +25,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   MatrixTemplate,
   TargetTemplate,
   ThreadTemplate,
+  FavoriteTemplate,
 ) {
 
   /** @inheritdoc */

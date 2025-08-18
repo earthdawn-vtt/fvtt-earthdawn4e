@@ -7,6 +7,7 @@ import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
 import RollProcessor from "../../../services/roll-processor.mjs";
+import FavoriteTemplate from "./favorite.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -19,7 +20,8 @@ import RollProcessor from "../../../services/roll-processor.mjs";
  */
 export default class AbilityTemplate extends ActionTemplate.mixin(
   LearnableTemplate,
-  TargetTemplate
+  TargetTemplate,
+  FavoriteTemplate,
 ) {
 
   /** @inheritdoc */

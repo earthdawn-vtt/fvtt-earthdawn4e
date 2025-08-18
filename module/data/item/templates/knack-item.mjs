@@ -5,6 +5,7 @@ import EdIdField from "../../fields/edid-field.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import ED4E from "../../../config/_module.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import FavoriteTemplate from "./favorite.mjs";
 
 /**
  * Data model template for Knacks
@@ -13,6 +14,7 @@ import SystemDataModel from "../../abstract/system-data-model.mjs";
 export default class KnackTemplate extends SystemDataModel.mixin( 
   LearnableTemplate,
   TargetTemplate,
+  FavoriteTemplate,
 ) {
 
   /** @inheritdoc */

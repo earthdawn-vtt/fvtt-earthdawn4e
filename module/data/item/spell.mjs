@@ -9,6 +9,7 @@ import { SelectExtraThreadsPrompt } from "../../applications/workflow/_module.mj
 import ThreadWeavingRollOptions from "../roll/weaving.mjs";
 import { RollPrompt } from "../../applications/global/_module.mjs";
 import SpellcastingRollOptions from "../roll/spellcasting.mjs";
+import FavoriteTemplate from "./templates/favorite.mjs";
 
 
 const { fields } = foundry.data;
@@ -20,7 +21,8 @@ const { fields } = foundry.data;
 export default class SpellData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
   LearnableTemplate,
-  TargetTemplate
+  TargetTemplate,
+  FavoriteTemplate,
 )  {
 
   // region Static Properties
