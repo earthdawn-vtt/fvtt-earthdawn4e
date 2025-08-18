@@ -1668,34 +1668,72 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "Bonus auf die Angriffsstufen des Maskenträgers",
-              "label":                             "Angriffsstufen Bonus"
+            "armor": {
+              "mystical": {
+                "hint":                            "Bonus auf die mystische Rüstung",
+                "label":                           "Mystische Rüstung"
+              },
+              "physical": {
+                "hint":                            "Bonus auf die physische Rüstung",
+                "label":                           "Physische Rüstung"
+              }
             },
-            "attacks": {
-              "hint":                              "Angriffe die der Maskenträger ausführen kann",
-              "label":                             "Angriffe"
+            "attributes": {
+              "charismaStep": {
+                "hint":                            "Charisma-Stufenbonus",
+                "label":                           "Charismastufe"
+              },
+              "dexterityStep": {
+                "hint":                            "Geschicklichkeits-Stufenbonus",
+                "label":                           "Geschick"
+              },
+              "perceptionStep": {
+                "hint":                            "Wahrnehmungs-Stufenbonus",
+                "label":                           "Wahrnehmung"
+              },
+              "strengthStep": {
+                "hint":                            "Stärke-Stufenbonus",
+                "label":                           "Stärke"
+              },
+              "toughnessStep": {
+                "hint":                            "Zähigkeits-Stufenbonus",
+                "label":                           "Zähigkeit"
+              },
+              "willpowerStep": {
+                "hint":                            "Willenskraft-Stufenbonus",
+                "label":                           "Willenskraft"
+              }
             },
             "challengingRate": {
               "hint":                              "Herausforderungsrate des Maskenträgers",
               "label":                             "Herausforderungsrate"
             },
-            "charismaStep": {
-              "hint":                              "Stufe des Charismas des Maskenträgers",
-              "label":                             "Charismastufe"
-            },
-            "damageStepsBonus": {
-              "hint":                              "Bonus auf die Schadensstufen des Maskenträgers",
-              "label":                             "Schadensstufen Bonus"
-            },
-            "deathThreshold": {
-              "hint":                              "Todesgrenze des Maskenträgers",
-              "label":                             "Todesgrenze"
+            "combatBonuses": {
+              "actions": {
+                "hint":                            "Bonus auf die Aktionen",
+                "label":                           "Aktionen"
+              },
+              "attackStepsBonus": {
+                "hint":                            "Bonus auf alle Angriffsstufen",
+                "label":                           "Angriffsstufen Bonus"
+              },
+              "damageStepsBonus": {
+                "hint":                            "Bonus auf alle Schadensstufen",
+                "label":                           "Schadensstufen Bonus"
+              },
+              "initiativeStep": {
+                "hint":                            "Bonus auf die Initiativestufe",
+                "label":                           "Initiative"
+              },
+              "knockDownStep": {
+                "hint":                            "Bonus auf die Niederschlagsstufe",
+                "label":                           "Niederschlagung"
+              }
             },
             "defenses": {
-              "magical": {
-                "hint":                            "Bonus auf die magische Verteidigung",
-                "label":                           "Magische Verteidigung"
+              "mystical": {
+                "hint":                            "Bonus auf die mystische Verteidigung",
+                "label":                           "Mystische Verteidigung"
               },
               "physical": {
                 "hint":                            "Bonus auf die physische Verteidigung",
@@ -1706,79 +1744,83 @@
                 "label":                           "Soziale Verteidigung"
               }
             },
-            "dexterityStep": {
-              "hint":                              "Stufe der Geschicklichkeit des Maskenträgers",
-              "label":                             "Geschicklichkeitsstufe"
-            },
-            "initiativeStep": {
-              "hint":                              "Stufe der Initiative des Maskenträgers",
-              "label":                             "Initiativestufe"
-            },
-            "knockdownStep": {
-              "hint":                              "Stufe des Niederschlagens",
-              "label":                             "Niederschlagungsstufe"
-            },
-            "magicalArmor": {
-              "hint":                              "Rüstungsschutz gegen magischen Schaden",
-              "label":                             "Magischer Rüstungsschutz"
+            "healthBonuses": {
+              "deathThreshold": {
+                "hint":                            "Bonus auf die Todesschwelle",
+                "label":                           "Todesschwelle"
+              },
+              "recoveryTestsResource": {
+                "hint":                            "Zusätzliche Erholungsproben",
+                "label":                           "Erholungsproben"
+              },
+              "unconsciousThreshold": {
+                "hint":                            "Bonus auf die Bewusstlosigkeitsschwelle",
+                "label":                           "Bewusstlosigkeitsschwelle"
+              },
+              "woundThreshold": {
+                "hint":                            "Bonus auf die Wundschwelle",
+                "label":                           "Wundschwelle"
+              }
             },
             "movement": {
               "burrow": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Graben",
+                "hint":                            "Bonus auf die Grabbewegung",
                 "label":                           "Graben"
               },
               "climb": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Klettern",
+                "hint":                            "Bonus auf die Kletterbewegung",
                 "label":                           "Klettern"
               },
               "fly": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Fliegen",
+                "hint":                            "Bonus auf die Flugbewegung",
                 "label":                           "Fliegen"
               },
               "swim": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Schwimmen",
+                "hint":                            "Bonus auf die Schwimmbewegung",
                 "label":                           "Schwimmen"
               },
               "walk": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Gehen",
+                "hint":                            "Bonus auf die normale Bewegung",
                 "label":                           "Gehen"
               }
             },
-            "perceptionStep": {
-              "hint":                              "Stufe der Wahrnehmung des Maskenträgers",
-              "label":                             "Wahrnehmungsstufe"
-            },
-            "physicalArmor": {
-              "hint":                              "Rüstungsschutz gegen physischen Schaden",
-              "label":                             "Physischer Rüstungsschutz"
-            },
-            "powers": {
-              "hint":                              "Fähigkeiten die der Maskenträger besitzt",
-              "label":                             "Fähigkeiten"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "Erholungsproben des Maskenträgers",
-              "label":                             "Erholungsproben"
-            },
-            "strengthStep": {
-              "hint":                              "Stufe der Stärke des Maskenträgers",
-              "label":                             "Stärkestufe"
-            },
-            "toughnessStep": {
-              "hint":                              "Stufe der Zähigkeit des Maskenträgers",
-              "label":                             "Zähigkeitsstufe"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "Bewusstlosigkeitsgrenze des Maskenträgers",
-              "label":                             "Bewusstlosigkeitsgrenze"
-            },
-            "willpowerStep": {
-              "hint":                              "Stufe des Willens des Maskenträgers",
-              "label":                             "Willenskraftstufe"
-            },
-            "woundThreshold": {
-              "hint":                              "Wundgrenze des Maskenträgers",
-              "label":                             "Wundgrenze"
+            "powerItems": {
+              "maneuver": {
+                "bonus": {
+                  "hint":                          "Bonus auf die Stufe der Kraft, wenn diese bereits existiert",
+                  "label":                         "Bonus"
+                },
+                "edid": {
+                  "hint":                          "EDID der Kraft/ des Manövers",
+                  "label":                         "EDID"
+                },
+                "step": {
+                  "hint":                          "Stufe der Kraft",
+                  "label":                         "Stufe"
+                },
+                "uuid": {
+                  "hint":                          "UUID der Kraft/ des Manövers",
+                  "label":                         "Kraft/Manöver UUID"
+                }
+              },
+              "power": {
+                "bonus": {
+                  "hint":                          "Bonus auf die Stufe der Kraft, wenn diese bereits existiert",
+                  "label":                         "Bonus"
+                },
+                "edid": {
+                  "hint":                          "EDID der Kraft/ des Manövers",
+                  "label":                         "EDID"
+                },
+                "step": {
+                  "hint":                          "Stufe der Kraft",
+                  "label":                         "Stufe"
+                },
+                "uuid": {
+                  "hint":                          "UUID der Kraft/ des Manövers",
+                  "label":                         "Kraft/Manöver UUID"
+                }
+              }
             }
           }
         },
@@ -3279,16 +3321,25 @@
       },
       "Header": {
         "actionType":                              "Aktionstyp",
+        "armorValues":                             "Rüstungswerte",
+        "attributes":                              "Attribute",
+        "challengingRate":                         "Herausforderungsrate",
+        "combatValues":                            "Kampfwerte",
         "damageSettings":                          "Schadenseinstellungen",
+        "defenseValues":                           "Verteidigungswerte",
         "description":                             "Beschreibung",
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
+        "healthValues":                            "Gesundheitswerte",
+        "maneuver":                                "Manöver",
         "knack":                                   "Kniff",
         "matrixConfiguration":                     "Matrix Konfiguration",
+        "movementTypes":                           "Bewegungsarten",
         "navigator":                               "Navigator",
+        "powers":                                  "Kräfte",
         "spell":                                   "Zauber",
         "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
@@ -3409,6 +3460,7 @@
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "learningKnackNoSourceItem":               "Das Quell-Item für den Kniff konnte nicht gefunden werden (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
+        "maskAddAlreadyInMask":                    "Die Kraft/das Manöver ist bereits in der Maske enthalten.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",

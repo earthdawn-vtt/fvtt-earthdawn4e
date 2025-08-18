@@ -186,7 +186,7 @@ export default class SentientTemplate extends CommonTemplate {
             min:      0,
             step:     1,
             initial:  0,
-            integer:  true,
+            // integer:  true,
 
           } ),
           max: new fields.NumberField( {
@@ -201,7 +201,7 @@ export default class SentientTemplate extends CommonTemplate {
             nullable: false,
             min:      0,
             step:     1,
-            integer:  true,
+            // integer:  true,
           } ),
           stunRecoveryAvailable: new fields.BooleanField( {
             required: true,
