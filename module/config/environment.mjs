@@ -11,6 +11,18 @@ export const drowningBaseDamageStep = 4;
 export const drowningDamageStepIncrease = 2;
 
 /**
+ * The base step of damage taken in round 1 when suffocating.
+ * @type {number}
+ */
+export const suffocationBaseDamageStep = 2;
+
+/**
+ * The increase in damage step for each subsequent round when suffocating.
+ * @type {number}
+ */
+export const suffocationDamageStepIncrease = 1;
+
+/**
  * @typedef {object} FallingDamageData
  * @property {number} min The minimum distance in yards for this damage range.
  * @property {number} max The maximum distance in yards for this damage range.
