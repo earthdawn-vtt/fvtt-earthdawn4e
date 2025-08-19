@@ -3299,6 +3299,7 @@
       "actorSheetEdVehicle":                       "Transportmittel-Bogen",
       "itemSheetEd":                               "Item-Bogen",
       "itemSheetEdClass":                          "Berufung-Bogen",
+      "itemSheetEdMask":                           "Masken-Bogen",
       "itemSheetEdPhysical":                       "Ausrüstungs-Bogen",
       "journalSheetEd":                            "Journal-Bogen",
       "sceneConfigEd":                             "Szene Konfiguration"
@@ -3423,6 +3424,7 @@
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "invalidRollType":                         "Der Aktionstyp ist ungültig oder nicht gewählt. Bitte überprüfe den Aktionstyp im Details Tab des Items.",
+        "maskAddNotAPower":                        "Das Item ist weder eine Kraft noch ein Manöver.",
         "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
         "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
