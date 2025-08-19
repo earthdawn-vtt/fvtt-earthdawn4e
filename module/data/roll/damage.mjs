@@ -527,6 +527,35 @@ export default class DamageRollOptions extends EdRollOptions {
     }
   }
 
+  /**
+   * Used when initializing this data model. Retrieves whether to ignore armor based on the `damageSourceType`.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine whether to ignore armor.
+   * @returns {boolean} Whether to ignore armor when applying damage.
+   */
+  static _prepareIgnoreArmor( data ) {
+    if ( data.ignoreArmor ) return data.ignoreArmor;
+
+    const simpleIgnoreArmor = {
+      "arbitrary":   false,
+      "drowning":    true,
+      "falling":     true,
+      "fire":        false,
+      "poison":      true,
+      "spell":       false,
+      "suffocation": true,
+      "unarmed":     false,
+      "warping":     false,
+      "weapon":      false,
+    };
+    if ( data.damageSourceType in simpleIgnoreArmor ) {
+      return simpleIgnoreArmor[data.damageSourceType];
+    } else {
+      throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+    }
+  }
+
   // No need for target difficulty since damage rolls are effect tests
 
   // endregion
