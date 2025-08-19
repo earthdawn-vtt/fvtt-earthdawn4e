@@ -16,7 +16,7 @@ export default class FavoriteTemplate extends SystemDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
-      favorite: new fields.BooleanField( {
+      isFavorite: new fields.BooleanField( {
         required: true,
         initial:  false,
       } )
