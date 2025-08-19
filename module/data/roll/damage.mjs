@@ -465,7 +465,7 @@ export default class DamageRollOptions extends EdRollOptions {
   /**
    * Gets armor type for damage source types that require source document analysis.
    * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceType}.
-   * @param { ItemEd } sourceDocument The source document
+   * @param { ItemEd } sourceDocument The source document that caused the damage.
    * @returns { string | null } The armor type as defined in {@link module:config~ACTORS~armor}.
    */
   static _getArmorTypeFromSource( damageSourceType, sourceDocument ) {
@@ -474,6 +474,54 @@ export default class DamageRollOptions extends EdRollOptions {
         return sourceDocument?.system?.effect?.details?.damage?.armorType || "";
       case "weapon":
         return sourceDocument?.system?.armorType || "";
+      default:
+        throw new Error( `Invalid damage source type: ${ damageSourceType }` );
+    }
+  }
+
+  /**
+   * Used when initializing this data model. Retrieves the damage type based on the `damageSourceType`.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the damage type.
+   * @returns {"standard"|"stun"} The damage type to use for the damage roll as defined
+   * in {@link module:config~COMBAT~damageType}.
+   * @private
+   */
+  static _prepareDamageType( data ) {
+    if ( data.damageType ) return data.damageType;
+
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
+
+    const simpleDamageTypes = {
+      "arbitrary":   "standard",
+      "drowning":    "standard",
+      "falling":     "standard",
+      "poison":      "standard",
+      "suffocation": "standard",
+      "fire":        "standard",
+      "unarmed":     "standard",
+      "warping":     "standard",
+    };
+    if ( data.damageSourceType in simpleDamageTypes ) {
+      return simpleDamageTypes[data.damageSourceType];
+    }
+
+    return this._getDamageTypeFromSource( data.damageSourceType, sourceDocument );
+  }
+
+  /**
+   * Gets the damage type for damage source types that require source document analysis.
+   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceType}.
+   * @param { ItemEd } sourceDocument The source document that caused the damage.
+   * @returns {"standard"|"stun"} The damage type as defined in {@link module:config~COMBAT~damageType}.
+   */
+  static _getDamageTypeFromSource( damageSourceType, sourceDocument ) {
+    switch ( damageSourceType ) {
+      case "spell":
+        return sourceDocument.system.effect.details.damage.damageType;
+      case "weapon":
+        return sourceDocument.system.damage.type;
       default:
         throw new Error( `Invalid damage source type: ${ damageSourceType }` );
     }
