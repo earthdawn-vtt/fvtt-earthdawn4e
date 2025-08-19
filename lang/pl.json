@@ -3299,6 +3299,7 @@
       "actorSheetEdVehicle":                       "TODO: Add translation",
       "itemSheetEd":                               "TODO: Add translation",
       "itemSheetEdClass":                          "TODO: Add translation",
+      "itemSheetEdMask":                           "TODO: Add translation",
       "itemSheetEdPhysical":                       "TODO: Add translation",
       "journalSheetEd":                            "TODO: Add translation",
       "sceneConfigEd":                             "TODO: Add translation"
@@ -3423,6 +3424,7 @@
         "identifierError":                         "TODO: Add translation",
         "invalidElementSubtype":                   "TODO: Add translation",
         "invalidRollType":                         "TODO: Add translation",
+        "maskAddNotAPower":                        "TODO: Add translation",
         "matrixCastingSpellNotAttuned":            "TODO: Add translation",
         "noCastingMethodSelected":                 "TODO: Add translation",
         "noGrimoiresAvailableToAttune":            "TODO: Add translation",
