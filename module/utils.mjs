@@ -778,7 +778,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/knack-ability-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-karma-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs",
-    "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs",
     "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs",
     "systems/ed4e/templates/actor/cards/matrix-card.hbs",
 
@@ -801,6 +800,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/favorite.hbs",
 
     // endregion
 
