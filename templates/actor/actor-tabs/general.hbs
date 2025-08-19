@@ -75,29 +75,29 @@
       <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
     </h3>
     <div class="container__block container__custom">
-    <div class="karma-devotion__grid--container container__header">
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
-    </div>
-    <div class="karma-devotion__grid--container">
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.value"
-              value="{{actor.system.devotion.value}}">
+      <div class="karma-devotion__grid--container container__header">
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
       </div>
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.max"
-              value="{{actor.system.devotion.max}}"
-              {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+      <div class="karma-devotion__grid--container">
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered"
+                name="system.devotion.value"
+                value="{{actor.system.devotion.value}}">
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered"
+                name="system.devotion.max"
+                value="{{actor.system.devotion.max}}"
+                {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+        </div>
+        <div class="karma-devotion__grid--item">
+          <input class="input__square-input--centered"
+                name="system.devotion.step"
+                value="{{actor.system.devotion.step}}">
+        </div>
       </div>
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.step"
-              value="{{actor.system.devotion.step}}">
-      </div>
-    </div>
     </div>
   
     <h3 class="recovery__header margin__none one-line__vertical-align">
@@ -120,71 +120,115 @@
 
 
     <div class="container__block container__custom">
-    <div class="recovery__grid--container container__header">
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
+      <div class="recovery__grid--container container__header">
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
+      </div>
+      <div class="recovery__grid--container">
+        {{#if (eq this.actor.type "character")}}
+          <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+            name="system.characteristics.recoveryTestsResource.value"
+                value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+          </div>
+          <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+                value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
+          </div>
+          <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+                  value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
+          </div>
+        {{else}}
+        <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+            name="system.characteristics.recoveryTestsResource.value"
+                value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+          </div>
+          <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+            name="system.characteristics.recoveryTestsResource.max"
+                value="{{actor.system.characteristics.recoveryTestsResource.max}}">
+          </div>
+          <div class="recovery__grid--item">
+            <input class="input__square-input--centered"
+            name="system.characteristics.recoveryTestsResource.step"
+                  value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+          </div>
+        {{/if}}
+      </div>
     </div>
-    <div class="recovery__grid--container">
-      {{#if (eq this.actor.type "character")}}
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.value"
-              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-              value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-                value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
-        </div>
-      {{else}}
-      <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.value"
-              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.max"
-              value="{{actor.system.characteristics.recoveryTestsResource.max}}">
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.step"
-                value="{{actor.system.characteristics.recoveryTestsResource.step}}">
-        </div>
-      {{/if}}
-    </div>
+
   </div>
 
-</div>
-
-    <!-- Right Column -->
-    <div class="layout__col--2">
-
+  <!-- Right Column -->
+  <div class="layout__col--2">
+<h3>{{localize "ED.Actor.Header.favorites"}}</h3>
       <!-- Attacks -->
-      {{#if (eq this.actor.type "character")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
-      {{else if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
+      {{#if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
         {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
       {{/if}}
 
-    <div class="action--buttons">
-        <div class="buttons--left input--centered1">
-            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
-            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-            <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+    {{!-- Favorites --}}
+    <div class="favorites-section">
+      {{#if favoriteItems.length}}
+        <div class="favorites-grid">
+          {{#each favoriteItems}}
+            {{#if (eq this.type "spell")}}
+              <div class="action-zone cast-zone" data-uuid="{{this.uuid}}">
+                <button class="favorite-item-button" 
+                        data-action="castSpell" 
+                        title="{{localize "ED.ToolTips.castSpell" name=this.name}}">
+                  <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
+                  <span class="favorite-item-name">{{this.name}}</span>
+                </button>
+              </div>
+            {{else if (and this.system.usableItem this.system.usableItem.isUsableItem)}}
+              <div class="item-id" data-item-id="{{this.id}}">
+                <button class="favorite-item-button" 
+                        data-action="rollable" 
+                        data-roll-type="equipment"
+                        title="{{localize "ED.Actor.Tooltips.rollEquipment" name=this.name}}">
+                  <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
+                  <span class="favorite-item-name">{{this.name}}</span>
+                </button>
+              </div>
+            {{else}}
+              <button class="favorite-item-button" 
+                      data-action="rollFavoriteItem" 
+                      data-item-id="{{this.id}}"
+                      title="{{localize "ED.Actor.Tooltips.rollFavoriteItem" name=this.name}}">
+                <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
+                <span class="favorite-item-name">{{this.name}}</span>
+              </button>
+            {{/if}}
+          {{/each}}
+            <button class="favorite-item-button" data-action="initiative">
+              <img src="" alt="">
+              <span class="favorite-item-name">{{localize "ED.Actor.Buttons.initiative"}}</span>
+            </button>
+            <button class="favorite-item-button" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+            <button class="favorite-item-button" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+
+            <button class="favorite-item-button" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+            <button class="favorite-item-button" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
+            <button class="favorite-item-button" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
+          {{#if this.actor.namegiver.system.tailAttack}}
+            <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
+            <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
+            <button class="attack-substitute__tail-attack favorite-item-button" data-action="attack" data-attack-type="tail">{{localize "ED.Actor.Buttons.tailAttack"}}</button>
+        {{else}}
+            <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
+            <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
+        {{/if}}
         </div>
-        <div class="buttons--right input--centered1">
-            <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
-            <button class="action-buttons" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
-            <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
-        </div>
+      {{else}}
+        <p class="no-favorites">{{localize "ED.Actor.Messages.noFavorites"}}</p>
+      {{/if}}
     </div>
 
-    </div>
   </div>
+
+  
 </section>
