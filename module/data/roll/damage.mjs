@@ -384,12 +384,7 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
-      const attackRoll = data.attackRoll;
-      if ( !attackRoll ) {
-        throw new Error( `No attack roll provided for damage source type: ${data.damageSourceType}` );
-      }
-
-      const extraSuccesses = attackRoll.numExtraSuccesses || 0;
+      const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
       return {
         [ game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ) ]: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
       };
