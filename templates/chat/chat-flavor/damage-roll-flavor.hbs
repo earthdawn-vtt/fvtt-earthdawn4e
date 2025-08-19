@@ -1,5 +1,5 @@
 {{!--> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" --}}
-<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.damage.label}}}</div>
+<div class="chat-flavor-header">{{{lookup CONFIG.ED4E.COMBAT.damageSourceType rollOptions.damageSourceType}}}</div>
 
 <div class="text--center">{{{ damageSourceHeader }}}</div>
 
