@@ -351,22 +351,35 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { number } The base step for the damage roll.
    */
   static _getBaseStepFromSource( sourceDocument, data ) {
-    const baseSteps = {
-      arbitrary: sourceDocument.system.damageTotal || 1,
-      poison:    sourceDocument.system.effect.damageStep,
-      spell:     data.caster.system.attributes.wil.step,
-      unarmed:   sourceDocument.system.attributes.str.step,
-      warping:   sourceDocument.system.level,
-      weapon:    sourceDocument.system.damageTotal
-    };
-    if ( !( data.damageSourceType in baseSteps ) ) {
-      throw new Error( `Invalid damage source type: ${ data.damageSourceType }` );
+    let baseStep;
+
+    switch ( data.damageSourceType ) {
+      case "arbitrary":
+        baseStep = sourceDocument.system.damageTotal || 1;
+        break;
+      case "poison":
+        baseStep = sourceDocument.system.effect.damageStep;
+        break;
+      case "spell":
+        baseStep = data.caster.system.attributes.wil.step;
+        break;
+      case "unarmed":
+        baseStep = sourceDocument.system.attributes?.str.step;
+        break;
+      case "warping":
+        baseStep = sourceDocument.system.level;
+        break;
+      case "weapon":
+        baseStep = sourceDocument.system.damageTotal;
+        break;
+      default:
+        throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
 
-    const baseStep = baseSteps[data.damageSourceType];
     if ( !baseStep ) {
-      throw new Error( `No base step defined for damage source type: ${ data.damageSourceType }` );
+      throw new Error( `No base step defined for damage source type: ${data.damageSourceType}` );
     }
+
     return baseStep;
   }
 
