@@ -204,28 +204,32 @@
               </button>
             {{/if}}
           {{/each}}
-            <button class="favorite-item-button" data-action="initiative">
-              <img src="" alt="">
-              <span class="favorite-item-name">{{localize "ED.Actor.Buttons.initiative"}}</span>
-            </button>
-            <button class="favorite-item-button" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-            <button class="favorite-item-button" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
-
-            <button class="favorite-item-button" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
-            <button class="favorite-item-button" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
-            <button class="favorite-item-button" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
-          {{#if this.actor.namegiver.system.tailAttack}}
-            <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
-            <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
-            <button class="attack-substitute__tail-attack favorite-item-button" data-action="attack" data-attack-type="tail">{{localize "ED.Actor.Buttons.tailAttack"}}</button>
-        {{else}}
-            <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
-            <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
-        {{/if}}
         </div>
       {{else}}
-        <p class="no-favorites">{{localize "ED.Actor.Messages.noFavorites"}}</p>
+        <p class="no-favorites">{{localize "ED.ToolTips.noFavorites"}}</p>
       {{/if}}
+      
+      {{!-- Always available action buttons --}}
+      <div class="favorites-grid">
+        <button class="favorite-item-button" data-action="initiative">
+          <img src="" alt="">
+          <span class="favorite-item-name">{{localize "ED.Actor.Buttons.initiative"}}</span>
+        </button>
+        <button class="favorite-item-button" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+        <button class="favorite-item-button" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+
+        <button class="favorite-item-button" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+        <button class="favorite-item-button" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
+        <button class="favorite-item-button" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
+        {{#if this.actor.namegiver.system.tailAttack}}
+          <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
+          <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
+          <button class="attack-substitute__tail-attack favorite-item-button" data-action="attack" data-attack-type="tail">{{localize "ED.Actor.Buttons.tailAttack"}}</button>
+        {{else}}
+          <button class="attack-substitute__weapon-attack favorite-item-button" data-action="attack" data-attack-type="weapon">{{localize "ED.Actor.Buttons.weaponAttack"}}</button>
+          <button class="attack-substitute__unarmed-attack favorite-item-button" data-action="attack" data-attack-type="unarmed">{{localize "ED.Actor.Buttons.unarmedAttack"}}</button>
+        {{/if}}
+      </div>
     </div>
 
   </div>
