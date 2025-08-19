@@ -610,6 +610,8 @@ export default class DamageRollOptions extends EdRollOptions {
 
   // endregion
 
+  // region Rendering
+
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
@@ -621,5 +623,7 @@ export default class DamageRollOptions extends EdRollOptions {
 
     return newContext;
   }
+
+  // endregion
 
 }
