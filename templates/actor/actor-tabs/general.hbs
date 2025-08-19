@@ -178,8 +178,7 @@
             {{#if (eq this.type "spell")}}
               <div class="action-zone cast-zone" data-uuid="{{this.uuid}}">
                 <button class="favorite-item-button" 
-                        data-action="castSpell" 
-                        title="{{localize "ED.ToolTips.castSpell" name=this.name}}">
+                        data-action="castSpell">
                   <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
                   <span class="favorite-item-name">{{this.name}}</span>
                 </button>
@@ -188,8 +187,7 @@
               <div class="item-id" data-item-id="{{this.id}}">
                 <button class="favorite-item-button" 
                         data-action="rollable" 
-                        data-roll-type="equipment"
-                        title="{{localize "ED.Actor.Tooltips.rollEquipment" name=this.name}}">
+                        data-roll-type="equipment">
                   <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
                   <span class="favorite-item-name">{{this.name}}</span>
                 </button>
@@ -197,8 +195,7 @@
             {{else}}
               <button class="favorite-item-button" 
                       data-action="rollFavoriteItem" 
-                      data-item-id="{{this.id}}"
-                      title="{{localize "ED.Actor.Tooltips.rollFavoriteItem" name=this.name}}">
+                      data-item-id="{{this.id}}">
                 <img src="{{this.img}}" alt="{{this.name}}" class="favorite-item-icon">
                 <span class="favorite-item-name">{{this.name}}</span>
               </button>
