@@ -457,6 +457,18 @@
         "namegiver":                               "Namensgeber",
         "relation":                                "Beziehung"
       },
+      "DamageSourceType": {
+        "arbitrary":                               "Willkürlicher Schaden",
+        "drowning":                                "Ertrinken-Schaden",
+        "falling":                                 "Fallschaden",
+        "fire":                                    "Feuerschaden",
+        "poison":                                  "Giftschaden",
+        "spell":                                   "Zaubereffekt-Schaden",
+        "suffocation":                             "Ersticken-Schaden",
+        "unarmed":                                 "Unbewaffneter Schaden",
+        "warping":                                 "Verzerrungsschaden",
+        "weapon":                                  "Waffenschaden"
+      },
       "Defenses": {
         "highestOfGroup":                          "Höchste der Gruppe",
         "highestX":                                "Höchste der Gruppe + Ziele",
@@ -503,6 +515,13 @@
         "waterAcid":                               "Säure",
         "waterCold":                               "Kälte",
         "wood":                                    "Holz"
+      },
+      "FireDamage": {
+        "campfireLarge":                           "Großes Lagerfeuer",
+        "campfireSmall":                           "Kleines Lagerfeuer",
+        "forestFire":                              "Waldbrand",
+        "houseFire":                               "Hausbrand",
+        "torch":                                   "Fackel"
       },
       "Health": {
         "damageStandard":                          "Standard",
@@ -857,30 +876,10 @@
             }
           }
         },
-        "Creature": {
-          "FIELDS": {
-          }
-        },
-        "Dragon": {
-          "FIELDS": {
-          }
-        },
         "FIELDS": {
           "description": {
             "hint":                                "Beschreibung",
             "label":                               "Beschreibung"
-          }
-        },
-        "Group": {
-          "FIELDS": {
-          }
-        },
-        "Horror": {
-          "FIELDS": {
-          }
-        },
-        "Loot": {
-          "FIELDS": {
           }
         },
         "Namegiver": {
@@ -915,10 +914,6 @@
             }
           }
         },
-        "Npc": {
-          "FIELDS": {
-          }
-        },
         "Pc": {
           "FIELDS": {
             "durabilityBonus": {
@@ -930,10 +925,6 @@
         "Sentient": {
           "FIELDS": {
             "characteristics": {
-              "armor": {
-              },
-              "defenses": {
-              },
               "health": {
                 "bloodMagic": {
                   "damage": {
@@ -1175,18 +1166,6 @@
                 "label":                           "Einstellung"
               }
             }
-          }
-        },
-        "Spirit": {
-          "FIELDS": {
-          }
-        },
-        "Trap": {
-          "FIELDS": {
-          }
-        },
-        "Vehicle": {
-          "FIELDS": {
           }
         }
       },
@@ -1469,10 +1448,6 @@
             }
           }
         },
-        "BindingSecret": {
-          "FIELDS": {
-          }
-        },
         "Class": {
           "FIELDS": {
             "circle": {
@@ -1585,10 +1560,6 @@
             }
           }
         },
-        "Effect": {
-          "FIELDS": {
-          }
-        },
         "Equipment": {
           "FIELDS": {
             "ammunition": {
@@ -1671,14 +1642,6 @@
               "hint":                              "Wird der Standardeffekt des Herkunfttalents mit ausgelöst?",
               "label":                             "Standardeffekt"
             }
-          }
-        },
-        "Learnable": {
-          "FIELDS": {
-          }
-        },
-        "LpIncrease": {
-          "FIELDS": {
           }
         },
         "Maneuver": {
@@ -2130,6 +2093,14 @@
             "effect": {
               "details": {
                 "damage": {
+                  "armorType": {
+                    "hint":                        "Rüstungstyp der gegen den Schaden des Spruches schützt",
+                    "label":                       "Rüstungstyp"
+                  },
+                  "damageType": {
+                    "hint":                        "Art des Schadens der durch den Spruch verursacht wird",
+                    "label":                       "Schadensart"
+                  },
                   "hint":                          "Details zur Schadensstufe",
                   "label":                         "Schadensdetails",
                   "stepModifier": {
@@ -2231,10 +2202,6 @@
             }
           }
         },
-        "SpellKnack": {
-          "FIELDS": {
-          }
-        },
         "Talent": {
           "FIELDS": {
             "knacks": {
@@ -2269,10 +2236,6 @@
                 "label":                           "Zielwert"
               }
             }
-          }
-        },
-        "Thread": {
-          "FIELDS": {
           }
         },
         "Weapon": {
@@ -2488,10 +2451,6 @@
             "armorType": {
               "hint":                              "Rüstungstyp gegen den der Schaden effektiv ist",
               "label":                             "Rüstungstyp"
-            },
-            "damageAbilities": {
-              "hint":                              "Fähigkeiten die auf den Schaden angewendet werden",
-              "label":                             "Schadenfähigkeiten"
             },
             "damageType": {
               "hint":                              "Art des Schadens",
@@ -2751,10 +2710,6 @@
               "hint":                              "Art des Tests",
               "label":                             "Testtyp"
             }
-          }
-        },
-        "SpellcastingRollOptions": {
-          "FIELDS": {
           }
         },
         "ThreadBase": {
@@ -3379,6 +3334,7 @@
         "effectTestRoll":                          "Effektprobe"
       },
       "Modifiers": {
+        "bonusDamageFromExtraSuccesses":           "+2 pro extra Erfolg von Angriff",
         "grimoirePenalty":                         "Fremdes Grimoire",
         "manual":                                  "Manuelle Anpassung",
         "stunRecoveryWillpower":                   "Willenskraft"
