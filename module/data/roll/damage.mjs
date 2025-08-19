@@ -556,6 +556,20 @@ export default class DamageRollOptions extends EdRollOptions {
     }
   }
 
+  /**
+   * Used when initializing this data model. Retrieves whether to only consider natural armor based on
+   * the `damageSourceType`.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine whether to only consider natural armor.
+   * @returns {boolean} Whether to only consider natural armor when applying damage.
+   */
+  static _prepareNaturalArmorOnly( data ) {
+    if ( data.naturalArmorOnly ) return data.naturalArmorOnly;
+
+    return data.damageSourceType === "warping";
+  }
+
   // No need for target difficulty since damage rolls are effect tests
 
   // endregion
