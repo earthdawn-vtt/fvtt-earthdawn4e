@@ -66,6 +66,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * Roll options initialization data for suffocation damage roll.
  * @typedef {BaseDamageRollOptionsInitializationData} SuffocationDamageInitializationData
  * @property {"suffocation"} damageSourceType Discriminator for suffocation damage source.
+ * @property {number} [suffocationRound=1] The round of suffocation to roll damage for. Determines the step number for
+ * the roll.v
  */
 
 /**
@@ -256,7 +258,7 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareStepData( data ) {
     if ( !foundry.utils.isEmpty( data.step ) ) return data.step;
 
-    if ( [ "drowning", "falling", "fire",  ].includes( data.damageSourceType ) ) {
+    if ( [ "drowning", "falling", "fire", "suffocation", ].includes( data.damageSourceType ) ) {
       return this._getStepFromEnvironment( data );
     }
 
@@ -274,6 +276,20 @@ export default class DamageRollOptions extends EdRollOptions {
   static _calculateDrowningStep( data ) {
     return ENVIRONMENT.drowningBaseDamageStep + (
       ENVIRONMENT.drowningDamageStepIncrease * ( Math.max( data.drowningRound - 1 || 0, 0 ) )
+    );
+  }
+
+  /**
+   * Calculates the damage step for suffocation based on the round of suffocation.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the step data.
+   * The `suffocationRound` property is used to determine the step number.
+   * @returns {number} The calculated damage step for suffocation.
+   */
+  static _calculateSuffocationStep( data ) {
+    return ENVIRONMENT.suffocationBaseDamageStep + (
+      ENVIRONMENT.suffocationDamageStepIncrease * ( Math.max( data.suffocationRound - 1 || 0, 0 ) )
     );
   }
 
@@ -297,6 +313,10 @@ export default class DamageRollOptions extends EdRollOptions {
       case "fire":
         return {
           base: ENVIRONMENT.fireDamage[ data.fireType ]?.damageStep || 1,
+        };
+      case "suffocation":
+        return {
+          base: this._calculateSuffocationStep( data ),
         };
       default:
         throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
