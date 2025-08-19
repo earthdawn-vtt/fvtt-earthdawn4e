@@ -1594,6 +1594,14 @@
             }
           }
         },
+        "Favorite": {
+          "FIELDS": {
+            "isFavorite": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "Fields": {
           "dispelDifficulty":                      "TODO: Add translation",
           "sensingDifficulty":                     "TODO: Add translation"
@@ -3225,6 +3233,7 @@
         "details":                                 "TODO: Add translation",
         "effects":                                 "TODO: Add translation",
         "elementSettings":                         "TODO: Add translation",
+        "favorite":                                "TODO: Add translation",
         "general":                                 "TODO: Add translation",
         "grimoireConfiguration":                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
