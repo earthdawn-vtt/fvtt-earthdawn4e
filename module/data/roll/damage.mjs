@@ -570,6 +570,34 @@ export default class DamageRollOptions extends EdRollOptions {
     return data.damageSourceType === "warping";
   }
 
+  /**
+   * Used when initializing this data model. Retrieves the element and subtype of the damage based on the
+   * `damageSourceType` and `sourceDocument`.
+   * @template { EdDamageRollOptionsInitializationData } T
+   * @param { T & Partial<DamageRollOptions> } data The input data object
+   * with information to automatically determine the element and subtype.
+   * @returns { object | undefined } The element and subtype of the damage, or undefined if not applicable.
+   */
+  static _prepareElement( data ) {
+    if ( data.element ) return data.element;
+
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
+    if ( data.damageSourceType === "spell" ) {
+      if ( sourceDocument.system.element ) {
+        return {
+          type:    sourceDocument.system.element.type,
+          subtype: sourceDocument.system.element.subtype,
+        };
+      }
+    } else if ( data.damageSourceType === "fire" ) {
+      return {
+        type: "fire",
+      };
+    }
+
+    return undefined;
+  }
+
   // No need for target difficulty since damage rolls are effect tests
 
   // endregion
