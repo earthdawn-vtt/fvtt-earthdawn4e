@@ -30,18 +30,19 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     form: {
       submitOnChange: true,
     },
-    actions:  {
-      attack:           ActorSheetEdSentient._onAttack,
-      attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
-      castMatrix:       ActorSheetEdSentient._onCastMatrix,
-      castSpell:        ActorSheetEdSentient._onCastSpell,
-      takeDamage:       ActorSheetEdSentient.takeDamage,
-      knockDown:        ActorSheetEdSentient.knockdownTest,
-      recovery:         ActorSheetEdSentient.rollRecovery,
-      jumpUp:           ActorSheetEdSentient.jumpUp,
-      initiative:       ActorSheetEdSentient.rollInitiative,
-      rollable:         ActorSheetEdSentient.rollable,
-      changeItemStatus: ActorSheetEdSentient.changeItemStatus,
+    actions: {
+      attack:            ActorSheetEdSentient._onAttack,
+      attuneMatrix:      ActorSheetEdSentient._onAttuneMatrix,
+      castMatrix:        ActorSheetEdSentient._onCastMatrix,
+      castSpell:         ActorSheetEdSentient._onCastSpell,
+      takeDamage:        ActorSheetEdSentient.takeDamage,
+      knockDown:         ActorSheetEdSentient.knockdownTest,
+      recovery:          ActorSheetEdSentient.rollRecovery,
+      jumpUp:            ActorSheetEdSentient.jumpUp,
+      initiative:        ActorSheetEdSentient.rollInitiative,
+      rollable:          ActorSheetEdSentient.rollable,
+      changeItemStatus:  ActorSheetEdSentient.changeItemStatus,
+      rollFavoriteItem:  ActorSheetEdSentient._onRollFavoriteItem,
     },
   };
 
@@ -56,6 +57,26 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     switch ( partId ) {
       case "general":
+        // Add favorite items to the general tab context
+        context.favoriteItems = this.document.items.filter( item => {
+          if ( !item.system.isFavorite ) return false;
+          
+          // Check if item has rollable capabilities, is a spell, or is a usable physical item
+          const hasRoll = item.system.rollType && item.system.roll;
+          const isSpell = item.type === "spell";
+          const isUsablePhysical = item.system.usableItem?.isUsableItem === true;
+          
+          return hasRoll || isSpell || isUsablePhysical;
+        } ).map( item => ( {
+          id:       item.id,
+          name:     item.name,
+          uuid:     item.uuid,
+          rollType: item.system.rollType || "spell",
+          type:     item.type,
+          img:      item.img,
+          edid:     item.system.edid || "",
+          system:   item.system  // Preserve the full system object for template access
+        } ) );
         break;
       case "spells":
         foundry.utils.mergeObject( context, {
@@ -248,11 +269,14 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    */
   static async rollable( event, target ) {
     event.preventDefault();
+    
     const li = target.closest( ".item-id" );
     const ability = this.document.items.get( li?.dataset?.itemId );
 
     if ( ability?.system?.roll instanceof Function ) return ability.system.roll();
+    
     const rollType = target.dataset.rollType;
+    
     if ( rollType === "attribute" ) {
       const attribute = target.dataset.attribute;
       const attributeMode = await this.document.getPrompt( "attribute" );
@@ -305,5 +329,34 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     if ( rotate ) return this.document.rotateItemStatus( item.id, backwards ).then( _ => this.render() );
     if ( deposit ) return item.system.deposit()?.then( _ => this.render() );
     return this;
+  }
+
+  /**
+   * Handle rolling a favorite item from the general tab
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>}
+   */
+  static async _onRollFavoriteItem( event, target ) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const itemId = target.dataset.itemId;
+    if ( !itemId ) return;
+
+    const item = this.document.items.get( itemId );
+    if ( !item ) {
+      ui.notifications.error( `Item with ID ${itemId} not found.` );
+      return;
+    }
+
+    // Check if the item has a roll method and is rollable
+    if ( !item.system.roll || typeof item.system.roll !== "function" ) {
+      ui.notifications.warn( `${item.name} is not rollable.` );
+      return;
+    }
+
+    // Roll the item
+    return item.system.roll();
   }
 }
