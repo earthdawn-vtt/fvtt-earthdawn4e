@@ -1,7 +1,144 @@
-// filepath: d:\FoundryVTT_DEV\foundrydata\Data\systems\ed4e\less\global\variables.less
+//###########################################################
+//                       Fonts
+//###########################################################
+
+@font-path: "fonts";
+
+@font-face {
+  font-family: 'ArnoPro-Regular';
+  src: url('@{font-path}/arnopro-regular.woff2') format('woff2'),
+       url('@{font-path}/arnopro-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ArnoPro-Bold';
+  src: url('@{font-path}/arnopro-bold.woff2') format('woff2'),
+       url('@{font-path}/arnopro-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ArnoPro-Italic';
+  src: url('@{font-path}/ArnoPro-Italic.woff2') format('woff2'),
+       url('@{font-path}/ArnoPro-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ArnoPro-BoldItalic';
+  src: url('@{font-path}/arnopro-bolditalic.woff2') format('woff2'),
+       url('@{font-path}/arnopro-bolditalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ArnoPro-SemiboldDisplay';
+  src: url('@{font-path}/arnopro-semibold-display.woff2') format('woff2'),
+       url('@{font-path}/arnopro-semibold-display.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Old-London';
+  src: url('@{font-path}/old-london.woff2') format('woff2'),
+       url('@{font-path}/old-london.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Warhorse-DecoBB';
+  src: url('@{font-path}/warhorse-deco-bb.woff2') format('woff2'),
+       url('@{font-path}/warhorse-deco-bb.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 //###########################################################
-// Colors - Earthdawn Theme
+//                       Font Mixins
+//###########################################################
+
+.ArnoProRegular()     { font-family: 'ArnoPro-Regular', serif; }
+.ArnoProBold()        { font-family: 'ArnoPro-Bold', serif; }
+.ArnoProItalic()      { font-family: 'ArnoPro-Italic', serif; }
+.ArnoProBoldItalic()  { font-family: 'ArnoPro-BoldItalic', serif; }
+.ArnoProDisplay()     { font-family: 'ArnoPro-SemiboldDisplay', serif; }
+.ArnoProDisplay()     { font-family: 'ArnoPro-SemiboldDisplay', serif; }
+.OldLondon()          { font-family: 'Old-london', serif; }
+.WarhorseDeco()       { font-family: 'Warhorse-DecoBB', serif; }
+
+
+//###########################################################
+//                       Sheet Styles
+//###########################################################
+
+:root {
+--font-size-8: 0.5rem;
+  --font-size-9: 0.5625rem;
+  --font-size-17: 1.0625rem;
+  --font-size-19: 1.1875rem;
+  --font-size-21: 1.3125rem;
+  --font-size-22: 1.375rem;
+  --font-size-23: 1.4375rem;
+  --font-size-25: 1.5625rem;
+  --font-size-26: 1.625rem;
+  --font-size-27: 1.6875rem;
+  --font-size-29: 1.8125rem;
+  --font-size-30: 1.875rem;
+  --font-size-31: 1.9375rem;
+  --font-size-33: 2.0625rem;
+  --font-size-34: 2.125rem;
+  --font-size-35: 2.1875rem;
+  --font-size-37: 2.3125rem;
+  --font-size-38: 2.375rem;
+  --font-size-39: 2.4375rem;
+  --font-size-40: 2.5rem;
+  --font-size-42: 2.625rem;
+
+  --font-container-header: 0.8rem;
+  
+  --font-icon-small: 0.6rem;
+  --font-icon-medium: 0.8rem;
+
+  --grid-col-gap: 0.3rem;
+
+  --size-scrollbar-width: 1rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --color-transparent: rgba(0, 0, 0, 0);
+  --color-gold-1: rgb(50, 40, 30);
+  --color-gold-2: rgb(70, 55, 20);
+  --color-gold-3: rgb(109, 79, 26);
+  --color-gold-4: rgb(161, 118, 25);
+  --color-gold-5: rgb(200, 170, 110);
+  --color-meter-1: rgba(238, 227, 103, 0.75);
+  --color-meter-2: rgba(204, 143, 31, 0.75);
+  --color-meter-3: rgba(134, 77, 11, 0.75);
+  --color-meter-4: rgba(155, 16, 16, 0.75);
+  --color-meter-5: rgb(22, 71, 155);
+  --color-primary-grey: rgb(54, 54, 54);
+  --color-text-primary: rgb(230, 210, 200);
+  --color-text-banner: var(--color-text-primary);
+}
+
+//###########################################################
+// Legacy
 //###########################################################
 
 // Primary colors

@@ -17,9 +17,9 @@
               <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
               <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increase"}}</div>
               {{else}}
-              <div class="attribute-card__grid--item"></div>
+
             {{/if}}
-            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
+              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
           </div>
           {{#if (eq this.actor.type "character")}}
             {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
@@ -75,10 +75,10 @@
       <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
     </h3>
     <div class="container__block container__custom">
-    <div class="karma-devotion__grid--container container__header">
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
-      <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
+      <div class="karma-devotion__grid--container container__header">
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
+        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
     </div>
     <div class="karma-devotion__grid--container">
       <div class="karma-devotion__grid--item">
@@ -105,7 +105,6 @@
         {{localize "ED.Actor.Header.recovery"}}
       </span>
       <span class="recovery__header-icons">
-        {{#if (eq this.actor.type "character")}}
           <a class="button__recovery-test">
             <button class="button__recovery-rest"
                     data-action="recovery"
@@ -114,16 +113,13 @@
                 title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
             </button>
           </a>
-        {{/if}}
       </span>
     </h3>
-
-
     <div class="container__block container__custom">
-    <div class="recovery__grid--container container__header">
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
-      <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
+      <div class="recovery__grid--container container__header">
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
+        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
     </div>
     <div class="recovery__grid--container">
       {{#if (eq this.actor.type "character")}}

@@ -12,8 +12,13 @@
         </label>
     </div>
     <div class="attribute-card__grid--item"></div>
-    <div class="attribute-card__grid--item">
-        <input class="input__square-input--centered" name="system.attributes.{{@key}}.step" value="{{this.step}}">
-    </div>
+    <div class="attribute-card__grid--item"></div>
+        <div class="buffer-input">
+            <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                <div class="attribute-card__grid--item">
+                    <input class="input__square-input--centered" name="system.attributes.{{@key}}.step" value="{{this.step}}"readonly>
+                </div>
+            <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+        </div>   
 </div>
 {{/each}}

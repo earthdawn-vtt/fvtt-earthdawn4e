@@ -28,8 +28,8 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
     position: {
       top:    50, 
       left:   220,
-      width:  800, 
-      height: 800,
+      width:  750, 
+      height: 850,
     }
   };
 

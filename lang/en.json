@@ -193,7 +193,7 @@
         "equippedStatus":                          "Equipped",
         "extraSuccesses":                          "Extra Successes",
         "favorites":                               "Favorites",
-        "healthRating":                            "Health Rating",
+        "healthRating":                            "Health",
         "inactive":                                "Inactive",
         "information":                             "Information",
         "initiativePenalty":                       "Initiative Penalty",
@@ -945,20 +945,20 @@
                   "label":                         "Damage",
                   "standard": {
                     "hint":                        "The amount of normal damage the charater has taken.",
-                    "label":                       "Normal Damage"
+                    "label":                       "Lethal"
                   },
                   "stun": {
                     "hint":                        "The amount of stun damage the charater has taken.",
-                    "label":                       "Stun Damage"
+                    "label":                       "Stun"
                   },
                   "total": {
                     "hint":                        "The amount of normal damage and stun damage the charater has taken combined.",
-                    "label":                       "Total Damage"
+                    "label":                       "Total"
                   }
                 },
                 "death": {
                   "hint":                          "The Death Rating represents the the number of Damage Points needed to kill the character.",
-                  "label":                         "Death Rating"
+                  "label":                         "Death"
                 },
                 "maxWounds": {
                   "hint":                          "TODO: Add translation",
@@ -966,7 +966,7 @@
                 },
                 "unconscious": {
                   "hint":                          "The Unconsciousness Rating represents the number of Damage Points required to knock the character unconscious.",
-                  "label":                         "Unconciousness Rating"
+                  "label":                         "Unconsciousness"
                 },
                 "woundThreshold": {
                   "hint":                          "Any attack that inflicts Damage Points at least equal to a character’s Wound Threshold inflicts a Wound.",
