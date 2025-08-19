@@ -292,6 +292,7 @@
       "Tooltips": {
         "carried":                                 "Carried",
         "damagePhysical":                          "Physical",
+        "damageSubdual":                           "Stun",
         "equipped":                                "Equipped",
         "extraSuccesses":                          "TODO: Add translation",
         "karmaAlways":                             "Use Karma always",
