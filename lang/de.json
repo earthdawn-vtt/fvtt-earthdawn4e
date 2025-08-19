@@ -1607,6 +1607,14 @@
             }
           }
         },
+        "Favorite": {
+          "FIELDS": {
+            "isFavorite": {
+              "hint":                              "Ist dieses Item ein Favorit?",
+              "label":                             "Favorit"
+            }
+          }
+        },
         "Fields": {
           "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
@@ -3243,6 +3251,7 @@
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
+        "favorite":                                "Favorit",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
         "matrixConfiguration":                     "Matrix Konfiguration",
