@@ -1,4 +1,6 @@
 <div>
+    {{!-- Favorite --}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/favorite.hbs"}}
     {{formField systemFields.consumable name="system.consumable" value=item.system.consumable localize=true}}
     {{#if (eq item.system.consumable true)}}
         {{!-- ammunition --}}

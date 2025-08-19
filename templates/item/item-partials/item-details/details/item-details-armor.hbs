@@ -1,4 +1,6 @@
 <div>
+    {{!-- Favorite --}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/favorite.hbs"}}
     {{!-- Piecemeal Armor --}}
     {{formField systemFields.piecemeal.fields.isPiecemeal name="system.piecemeal.isPiecemeal" value=item.system.piecemeal.isPiecemeal localize=true}}
     {{#if (eq item.system.piecemeal.isPiecemeal true)}}
