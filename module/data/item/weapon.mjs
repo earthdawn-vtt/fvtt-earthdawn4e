@@ -169,8 +169,9 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   get baseRollOptions() {
     return DamageRollOptions.fromActor(
       {
-        sourceDocument: this.parent,
-        extraDice:       {
+        damageSourceType: "weapon",
+        sourceDocument:   this.parent,
+        extraDice:        {
         // this should be the place for things like flame weapon, etc. but still needs to be implemented
         },
         armorType:       this.armorType,
@@ -178,7 +179,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
       },
       this.containingActor
     );
-
   }
 
   /** @override */
@@ -315,11 +315,31 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     }
   }
 
-  async rollDamage() {
-    const rollData = this.baseRollOptions;
+  /**
+   * Rolls the damage for the weapon.
+   * @param {object} [rollOptionsData] Additional data for the roll options.
+   * @param {EdRoll} [rollOptionsData.attackRoll] The attack roll triggering this damage roll. Necessary to determine
+   * bonus steps from extra successes.
+   * @returns {Promise<EdRoll>} The processed damage roll.
+   * @see {@link DamageRollOptions} for more information on the roll options.
+   */
+  async rollDamage( rollOptionsData = {} ) {
+    const rollData = {
+      damageSourceType: "weapon",
+      sourceDocument:   this.parent,
+    };
+    if ( rollOptionsData.attackRoll ) {
+      rollData.attackRoll = rollOptionsData.attackRoll;
+    }
 
     const roll = await RollPrompt.waitPrompt(
-      new DamageRollOptions( rollData ),
+      DamageRollOptions.fromActor(
+        rollData,
+        this.containingActor,
+        {
+          rollData: this.parent,
+        }
+      ),
       {
         rollData: this.containingActor,
       }
