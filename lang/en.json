@@ -458,6 +458,18 @@
         "namegiver":                               "TODO: Add translation",
         "relation":                                "TODO: Add translation"
       },
+      "DamageSourceType": {
+        "arbitrary":                               "TODO: Add translation",
+        "drowning":                                "TODO: Add translation",
+        "falling":                                 "TODO: Add translation",
+        "fire":                                    "TODO: Add translation",
+        "poison":                                  "TODO: Add translation",
+        "spell":                                   "TODO: Add translation",
+        "suffocation":                             "TODO: Add translation",
+        "unarmed":                                 "TODO: Add translation",
+        "warping":                                 "TODO: Add translation",
+        "weapon":                                  "TODO: Add translation"
+      },
       "Defenses": {
         "highestOfGroup":                          "Highest of Group",
         "highestX":                                "Highest of Group + Targets",
@@ -504,6 +516,13 @@
         "waterAcid":                               "TODO: Add translation",
         "waterCold":                               "TODO: Add translation",
         "wood":                                    "Wood"
+      },
+      "FireDamage": {
+        "campfireLarge":                           "TODO: Add translation",
+        "campfireSmall":                           "TODO: Add translation",
+        "forestFire":                              "TODO: Add translation",
+        "houseFire":                               "TODO: Add translation",
+        "torch":                                   "TODO: Add translation"
       },
       "Health": {
         "damageStandard":                          "Deadly Damage",
@@ -858,26 +877,11 @@
             }
           }
         },
-        "Creature": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Dragon": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "FIELDS": {
           "description": {
             "hint":                                "TODO: Add translation",
             "label":                               "TODO: Add translation"
           }
-        },
-        "Group": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Horror": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Loot": {
-          "FIELDS":                                "TODO: Add translation"
         },
         "Namegiver": {
           "FIELDS": {
@@ -911,9 +915,6 @@
             }
           }
         },
-        "Npc": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "Pc": {
           "FIELDS": {
             "durabilityBonus": {
@@ -925,8 +926,6 @@
         "Sentient": {
           "FIELDS": {
             "characteristics": {
-              "armor":                             "TODO: Add translation",
-              "defenses":                          "TODO: Add translation",
               "health": {
                 "bloodMagic": {
                   "damage": {
@@ -1169,15 +1168,6 @@
               }
             }
           }
-        },
-        "Spirit": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Trap": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Vehicle": {
-          "FIELDS":                                "TODO: Add translation"
         }
       },
       "Fields": {
@@ -1459,9 +1449,6 @@
             }
           }
         },
-        "BindingSecret": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "Class": {
           "FIELDS": {
             "circle": {
@@ -1574,9 +1561,6 @@
             }
           }
         },
-        "Effect": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "Equipment": {
           "FIELDS": {
             "ammunition": {
@@ -1660,12 +1644,6 @@
               "label":                             "TODO: Add translation"
             }
           }
-        },
-        "Learnable": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "LpIncrease": {
-          "FIELDS":                                "TODO: Add translation"
         },
         "Maneuver": {
           "FIELDS": {
@@ -2116,6 +2094,14 @@
             "effect": {
               "details": {
                 "damage": {
+                  "armorType": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "damageType": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "hint":                          "TODO: Add translation",
                   "label":                         "TODO: Add translation",
                   "stepModifier": {
@@ -2217,9 +2203,6 @@
             }
           }
         },
-        "SpellKnack": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "Talent": {
           "FIELDS": {
             "knacks": {
@@ -2255,9 +2238,6 @@
               }
             }
           }
-        },
-        "Thread": {
-          "FIELDS":                                "TODO: Add translation"
         },
         "Weapon": {
           "FIELDS": {
@@ -2470,10 +2450,6 @@
         "DamageRollOptions": {
           "FIELDS": {
             "armorType": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "damageAbilities": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -2736,9 +2712,6 @@
               "label":                             "TODO: Add translation"
             }
           }
-        },
-        "SpellcastingRollOptions": {
-          "FIELDS":                                "TODO: Add translation"
         },
         "ThreadBase": {
           "FIELDS": {
@@ -3362,6 +3335,7 @@
         "effectTestRoll":                          "Effect Test"
       },
       "Modifiers": {
+        "bonusDamageFromExtraSuccesses":           "TODO: Add translation",
         "grimoirePenalty":                         "TODO: Add translation",
         "manual":                                  "TODO: Add translation",
         "stunRecoveryWillpower":                   "TODO: Add translation"
