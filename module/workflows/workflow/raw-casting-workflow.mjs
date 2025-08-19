@@ -1,5 +1,5 @@
 import BaseCastingWorkflow from "./base-casting-workflow.mjs";
-import { MAGIC, ROLLS, SYSTEM } from "../../config/_module.mjs";
+import { MAGIC, SYSTEM } from "../../config/_module.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import WarpingRollOptions from "../../data/roll/warping.mjs";
@@ -154,18 +154,10 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
    * Perform a damage test from raw magic
    */
   async _performDamageTest() {
-    const damageRollOptions = new DamageRollOptions( {
-      step: {
-        base:      this._spellCircle,
-        modifiers: {
-          [ this._pollutionData.label ]: this._pollutionData.rawMagic.damageModifier,
-        },
-      },
-      damageSource:     ROLLS.rollTypes.warping.label,
-      armorType:        "mystical",
-      damageType:       "standard",
-      ignoreArmor:      false,
-      naturalArmorOnly: true,
+    const damageRollOptions = DamageRollOptions.fromData( {
+      damageSourceType:     "warping",
+      sourceDocument:       this._spell,
+      astralSpacePollution: this._astralSpacePollution,
     } );
 
     this._damageRoll = await RollPrompt.waitPrompt( damageRollOptions );
