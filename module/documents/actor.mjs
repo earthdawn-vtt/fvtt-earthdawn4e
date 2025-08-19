@@ -983,25 +983,22 @@ export default class ActorEd extends Actor {
     return recoveryWorkflow.execute();
   }
 
+  /**
+   * Rolls unarmed damage for this actor.
+   * @param {object} [rollOptionsData] Additional data for the roll options, such as extra dice or chat flavor.
+   * @param {object} [rollOptionsData.attackRoll] The attack roll triggering this damage roll. Necessary to determine
+   * bonus steps from extra successes.
+   * @returns {Promise<EdRoll>} The processed damage roll.
+   * @see {@link DamageRollOptions} for more information on the roll options.
+   */
   async rollUnarmedDamage( rollOptionsData = {} ) {
     const roll = await RollPrompt.waitPrompt(
       DamageRollOptions.fromActor(
         {
-          step:             {
-            base:      this.system.attributes.str.step,
-            modifiers: {},
-          },
+          damageSourceType: "unarmed",
+          sourceDocument:   this,
           extraDice:        {},
-          strain:           {
-            base:      0,
-            modifiers: {},
-          },
           chatFlavor:       game.i18n.format( "ED.Chat.Flavor.rollUnarmedDamage", {sourceActor: this.name} ),
-          testType:         "effect",
-          rollType:         "damage",
-          weaponUuid:       null,
-          armorType:        "physical",
-          damageType:       "standard",
           ...rollOptionsData,
         },
         this,
