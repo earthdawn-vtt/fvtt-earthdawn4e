@@ -457,7 +457,7 @@
         "namegiver":                               "Namensgeber",
         "relation":                                "Beziehung"
       },
-      "DamageSourceType": {
+      "DamageSourceConfig": {
         "arbitrary":                               "Willkürlicher Schaden",
         "drowning":                                "Ertrinken-Schaden",
         "falling":                                 "Fallschaden",
