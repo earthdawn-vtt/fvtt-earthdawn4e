@@ -120,7 +120,7 @@ import { createContentAnchor } from "../../utils.mjs";
  * Roll options for damage rolls.
  * @augments { EdRollOptions }
  * @property { string } damageSourceType The type of damage source (e.g., weapon, spell). Must be one of the values
- * defined in {@link module:config~COMBAT~damageSourceType}.
+ * defined in {@link module:config~COMBAT~damageSourceConfig}.
  * @property { string|null } [armorType=""] The type of armor to consider when calculating damage. Must be one of the values
  * defined in {@link module:config~ACTORS~armor}.
  * @property { string } [damageType="standard"] The type of damage to roll. Must be one of the values defined in
@@ -169,7 +169,7 @@ export default class DamageRollOptions extends EdRollOptions {
     return this.mergeSchema( super.defineSchema(), {
       damageSourceType:       new fields.StringField( {
         required: true,
-        choices:  COMBAT.damageSourceType,
+        choices:  COMBAT.damageSourceConfig,
       } ),
       armorType:              new fields.StringField( {
         required: true,
@@ -244,7 +244,7 @@ export default class DamageRollOptions extends EdRollOptions {
     return {
       damageSource: this.sourceUuid ?
         createContentAnchor( fromUuidSync( this.sourceUuid ) ).outerHTML
-        : COMBAT.damageSourceType[ this.damageSourceType ],
+        : COMBAT.damageSourceConfig[ this.damageSourceType ].label,
       armorType:    ACTORS.armor[ this.armorType ] || "",
     };
   }
@@ -451,28 +451,18 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareArmorType( data ) {
     if ( data.armorType ) return data.armorType;
 
-    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
-
-    const simpleArmorTypes = {
-      "arbitrary":   null,
-      "drowning":    null,
-      "falling":     null,
-      "poison":      null,
-      "suffocation": null,
-      "fire":        "physical",
-      "unarmed":     "physical",
-      "warping":     "mystical"
-    };
-    if ( data.damageSourceType in simpleArmorTypes ) {
-      return simpleArmorTypes[data.damageSourceType];
+    const armorType = COMBAT.damageSourceConfig[ data.damageSourceType ]?.armorType;
+    if ( armorType !== undefined ) {
+      return armorType;
     }
 
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
     return this._getArmorTypeFromSource( data.damageSourceType, sourceDocument );
   }
 
   /**
    * Gets armor type for damage source types that require source document analysis.
-   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceType}.
+   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceConfig}.
    * @param { ItemEd } sourceDocument The source document that caused the damage.
    * @returns { string | null } The armor type as defined in {@link module:config~ACTORS~armor}.
    */
@@ -499,28 +489,18 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareDamageType( data ) {
     if ( data.damageType ) return data.damageType;
 
-    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
-
-    const simpleDamageTypes = {
-      "arbitrary":   "standard",
-      "drowning":    "standard",
-      "falling":     "standard",
-      "poison":      "standard",
-      "suffocation": "standard",
-      "fire":        "standard",
-      "unarmed":     "standard",
-      "warping":     "standard",
-    };
-    if ( data.damageSourceType in simpleDamageTypes ) {
-      return simpleDamageTypes[data.damageSourceType];
+    const damageType = COMBAT.damageSourceConfig[ data.damageSourceType ]?.damageType;
+    if ( damageType !== undefined ) {
+      return damageType;
     }
 
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
     return this._getDamageTypeFromSource( data.damageSourceType, sourceDocument );
   }
 
   /**
    * Gets the damage type for damage source types that require source document analysis.
-   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceType}.
+   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceConfig}.
    * @param { ItemEd } sourceDocument The source document that caused the damage.
    * @returns {"standard"|"stun"} The damage type as defined in {@link module:config~COMBAT~damageType}.
    */
@@ -545,20 +525,8 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareIgnoreArmor( data ) {
     if ( data.ignoreArmor ) return data.ignoreArmor;
 
-    const simpleIgnoreArmor = {
-      "arbitrary":   false,
-      "drowning":    true,
-      "falling":     true,
-      "fire":        false,
-      "poison":      true,
-      "spell":       false,
-      "suffocation": true,
-      "unarmed":     false,
-      "warping":     false,
-      "weapon":      false,
-    };
-    if ( data.damageSourceType in simpleIgnoreArmor ) {
-      return simpleIgnoreArmor[data.damageSourceType];
+    if ( data.damageSourceType in COMBAT.damageSourceConfig ) {
+      return COMBAT.damageSourceConfig[ data.damageSourceType ].ignoreArmor;
     } else {
       throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
@@ -619,7 +587,7 @@ export default class DamageRollOptions extends EdRollOptions {
     newContext.hasAssignedCharacter = !!game.user.character;
     newContext.damageSourceHeader = this.sourceUuid ?
       createContentAnchor( fromUuidSync( this.sourceUuid ) ).outerHTML
-      : COMBAT.damageSourceType[ this.damageSourceType ];
+      : COMBAT.damageSourceConfig[ this.damageSourceType ].label;
 
     return newContext;
   }

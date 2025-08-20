@@ -48,22 +48,78 @@ export const combatTypes = {
 preLocalize( "testTypes", { key: "label" } );
 
 /**
- * The types of damage that can be rolled
- * @enum {string}
+ * Configuration for a damage source type
+ * @typedef {object} DamageSourceConfiguration
+ * @property {string} label - Localized label for the damage source.
+ * @property {string} damageType - Type of damage: "standard" or "stun", see {@link damageType}.
+ * @property {boolean} ignoreArmor - Whether this damage type ignores armor.
+ * @property {string|null} armorType - The armor type that protects from this damage, or null if no armor protects.
+ * See {@link module:config~ACTORS~armorType}.
  */
-export const damageSourceType = {
-  arbitrary:   "ED.Config.DamageSourceType.arbitrary",
-  drowning:    "ED.Config.DamageSourceType.drowning",
-  falling:     "ED.Config.DamageSourceType.falling",
-  fire:        "ED.Config.DamageSourceType.fire",
-  poison:      "ED.Config.DamageSourceType.poison",
-  spell:       "ED.Config.DamageSourceType.spell",
-  suffocation: "ED.Config.DamageSourceType.suffocation",
-  unarmed:     "ED.Config.DamageSourceType.unarmed",
-  warping:     "ED.Config.DamageSourceType.warping",
-  weapon:      "ED.Config.DamageSourceType.weapon",
+
+/**
+ * Available damage source types and their configurations for damage rolls.
+ * @enum {DamageSourceConfiguration}
+ */
+export const damageSourceConfig = {
+  arbitrary: {
+    label:       "ED.Config.DamageSourceConfig.arbitrary",
+    damageType:  "standard",
+    ignoreArmor: false,
+    armorType:   null,
+  },
+  drowning: {
+    label:       "ED.Config.DamageSourceConfig.drowning",
+    damageType:  "standard",
+    ignoreArmor: true,
+    armorType:   null,
+  },
+  falling: {
+    label:       "ED.Config.DamageSourceConfig.falling",
+    damageType:  "standard",
+    ignoreArmor: true,
+    armorType:   null,
+  },
+  fire: {
+    label:       "ED.Config.DamageSourceConfig.fire",
+    damageType:  "standard",
+    ignoreArmor: false,
+    armorType:   "physical",
+  },
+  poison: {
+    label:       "ED.Config.DamageSourceConfig.poison",
+    damageType:  "standard",
+    ignoreArmor: true,
+    armorType:   null,
+  },
+  spell: {
+    label:       "ED.Config.DamageSourceConfig.spell",
+    ignoreArmor: false,
+  },
+  suffocation: {
+    label:       "ED.Config.DamageSourceConfig.suffocation",
+    damageType:  "standard",
+    ignoreArmor: true,
+    armorType:   null,
+  },
+  unarmed: {
+    label:       "ED.Config.DamageSourceConfig.unarmed",
+    damageType:  "standard",
+    ignoreArmor: false,
+    armorType:   "physical",
+  },
+  warping: {
+    label:       "ED.Config.DamageSourceConfig.warping",
+    damageType:  "standard",
+    ignoreArmor: false,
+    armorType:   "mystical",
+  },
+  weapon: {
+    label:       "ED.Config.DamageSourceConfig.weapon",
+    ignoreArmor: false,
+  },
 };
-preLocalize( "damageSourceType" );
+preLocalize( "damageSourceConfig", { key: "label" } );
 
 /**
  * Damage type
