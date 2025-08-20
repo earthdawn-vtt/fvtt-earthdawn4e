@@ -52,34 +52,28 @@
     .chat-number-indicator {
       text-align: center;
       padding: 0.3em 0;
-      font-size: 3em;
+      font-size: @font-size-xxlarge;
       font-weight: bold;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     }
 
     .damage-visualization {
       align-items: center;
+      text-align: center;
       margin: 0.8em 0;
-      padding: 1.5em;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 5px;
-      border: 1px solid var(--color-border-light-2);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-      .damage-value {
-        color: #450c08;
-      }
 
       .armor-indicator {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         padding: 0.3em 0.8em;
         border-radius: 4px;
 
+        .fa-stack {
+          font-size: @font-size-xlarge;
+        }
+
         .armor-icon {
-          font-size: 2em;
-          margin-right: 0.5em;
 
           &.fa-shield.fa-solid {
             color: #314939;
@@ -92,6 +86,9 @@
           &.fa-shield-quartered {
             color: #777;
           }
+        }
+
+        .damage-value {
         }
 
         .armor-label {
@@ -120,6 +117,11 @@
 
     &:has(.spellcasting-visualization) {
       background-image: url('assets/icons/cast-transparent.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.damage-visualization) {
+      background-image: url('assets/icons/damage-transparent.svg');
       background-repeat: no-repeat;
     }
 

@@ -21,16 +21,31 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 
 /**
- * @typedef { object } RollStepData Data for a roll step.
+ * @typedef {Record<string, number>} RollModifiers
+ * @description A collection of named modifiers applied to rolls.
+ * Keys are localized label describing the source of the modifier (e.g., "Wounds", "Karma Bonus").
+ * Values are numeric modifier value that will be applied to the roll (positive for bonuses, negative for penalties).
+ * @example
+ * // Example RollModifiers object:
+ * {
+ *   "Wounds": -2,
+ *   "Talent Bonus": 3,
+ *   "Situational Penalty": -1
+ * }
+ */
+
+/**
+ * @typedef { object } RollStepData
+ * @description Data for a roll step.
  * @property { number } base The base step that is used to determine the dice that are rolled.
- * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base step.
- *                                              Keys are localized labels. Values are the modifier.
+ * @property { RollModifiers } [modifiers] All modifiers that are applied to the base step.
  * @property { number } [total] The final step that is used to determine the dice that are rolled.
  *                            The sum of all modifiers is added to the base value.
  */
 
 /**
- * @typedef { object } RollResourceData Data for a roll resource like karma or devotion.
+ * @typedef { object } RollResourceData
+ * @description Data for a roll resource like karma or devotion.
  * @property { number } pointsUsed How many points of this resource should be consumed after rolling.
  * @property { number } available How many points of this resource are available.
  * @property { number } step The step that is used to determine the dice that are rolled for this resource.
@@ -38,19 +53,19 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 
 /**
- * @typedef { object } RollTargetData Data for the target number of a roll.
+ * @typedef { object } RollTargetData
+ * @description Data for the target number of a roll.
  * @property { number } base The base target number.
- * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base target number.
- *                                             Keys are localized labels. Values are the modifier.
+ * @property { RollModifiers } [modifiers] All modifiers that are applied to the base target number.
  * @property { number } [total] The final target number. The sum of all modifiers is added to the base value.
  * @property { boolean } [public] Whether the target number is shown in chat or hidden.
  */
 
 /**
- * @typedef { object } RollStrainData Data for the strain that is taken after a roll.
+ * @typedef { object } RollStrainData
+ * @description Data for the strain that is taken after a roll.
  * @property { number } base The base strain that is taken.
- * @property { Record<string, number> } [modifiers] All modifiers that are applied to the base strain.
- *                                            Keys are localized labels. Values are the modifier.
+ * @property { RollModifiers } [modifiers] All modifiers that are applied to the base strain.
  * @property { number } [total] The final strain that is taken. The sum of all modifiers is added to the base value.
  */
 
@@ -59,13 +74,13 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * If not provided, values for `step`, `target`, and `strain` will be initialized to their automatically.
  * This should be overridden by subclasses to provide automation. This class only provides the default values.
  * @property { RollStepData } step Ever information related to the step of the action, Mods, Bonuses, Mali etc.
- * @property { RollResourceData } karma Available Karma, Karma dice and used karma.
- * @property { RollResourceData } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
+ * @property { RollResourceData | null } karma Available Karma, Karma dice and used karma.
+ * @property { RollResourceData | null } devotion Available Devotions, Devotion die, Devotion die used and used devotion.
  * @property { Record<string, number> } extraDice Extra dice that are added to the roll.
  *                                            Keys are localized labels. Values are the number of dice.
- * @property { RollTargetData } target All information of the targets array. Defenses, number, resistance.
- * @property { RollStrainData } strain How much strain this roll will cost
- * @property { string } chatFlavor The text that is added to the ChatMessage when this call is put to chat.
+ * @property { RollTargetData | null } target All information of the targets array. Defenses, number, resistance.
+ * @property { RollStrainData | null } strain How much strain this roll will cost
+ * @property { string } [chatFlavor=""] The text that is added to the ChatMessage when this call is put to chat.
  * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
  * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
  */
@@ -477,7 +492,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Retrieves step data based on the provided input data.
-   * @param {object} data The input data object containing relevant ability information.
+   * @param {EdRollOptionsInitializationData} data The input data object containing relevant ability information.
    * @returns {RollStepData} The step data object containing the base step and modifiers, if any.
    */
   static _prepareStepData( data ) {
@@ -486,7 +501,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Prepares strain data based on the provided input data.
-   * @param {object} data - The input data object containing relevant information for strain calculation.
+   * @param {EdRollOptionsInitializationData} data - The input data object containing relevant information for strain calculation.
    * @returns {RollStrainData|null} The strain data object containing the base strain and any modifiers or null if not applicable.
    */
   static _prepareStrainData( data ) {
@@ -495,7 +510,7 @@ export default class EdRollOptions extends SparseDataModel {
 
   /**
    * Used when initializing this data model. Calculates the target difficulty for a roll based on the input data.
-   * @param {object} data - The data object with which this model is initialized.
+   * @param {EdRollOptionsInitializationData} data - The data object with which this model is initialized.
    * @returns {RollTargetData|null} The target difficulty containing base and modifiers or null if not applicable (e.g. for effect tests).
    */
   static _prepareTargetDifficulty( data ) {

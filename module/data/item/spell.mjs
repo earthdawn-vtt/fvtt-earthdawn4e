@@ -1,6 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import LearnableTemplate from "./templates/learnable.mjs";
-import ED4E, { MAGIC } from "../../config/_module.mjs";
+import ED4E, { ACTORS, COMBAT, MAGIC } from "../../config/_module.mjs";
 import LearnSpellPrompt from "../../applications/advancement/learn-spell.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import { AreaMetricData, DurationMetricData, MetricData, RangeMetricData } from "../common/metrics.mjs";
@@ -30,6 +30,10 @@ export default class SpellData extends ItemDataModel.mixin(
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Spell",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -103,6 +107,20 @@ export default class SpellData extends ItemDataModel.mixin(
               initial:  0,
               integer:  true,
             } ),
+            damageType: new fields.StringField( {
+              required: true,
+              nullable: false,
+              blank:    false,
+              choices:  COMBAT.damageType,
+              initial:  "standard",
+            }, ),
+            armorType: new fields.StringField( {
+              required: true,
+              nullable: true,
+              blank:    true,
+              initial:  "",
+              choices:  ACTORS.armor,
+            }, ),
           }, {} ),
           effect:  new fields.SchemaField( {}, {} ),
           macro:   new fields.SchemaField( {

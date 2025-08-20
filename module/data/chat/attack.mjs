@@ -45,7 +45,7 @@ export default class AttackMessageData extends BaseMessageData {
 
   /**
    * The Actor that is attacking.
-   * @type {Document | object | null}
+   * @type {ActorEd | null}
    */
   get attacker() {
     return fromUuidSync( this.roll.options.rollingActorUuid );
@@ -84,13 +84,25 @@ export default class AttackMessageData extends BaseMessageData {
   /*  Listeners                                   */
   /* -------------------------------------------- */
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {AttackMessageData}
+   */
   static async _onRollDamage( event, button ) {
     event.preventDefault();
 
-    const weapon = await fromUuid( this.roll.options.weaponUuid );
-    if ( weapon?.system.roll instanceof Function ) return await weapon.system.rollDamage();
+    const weapon = /** @type {ItemEd} */ await fromUuid( this.roll.options.weaponUuid );
+    if ( weapon?.system.roll instanceof Function ) {
+      return await weapon.system.rollDamage( {
+        attackRoll: this.roll,
+      } );
+    }
 
-    if ( this.roll.options.weaponType === "unarmed" ) return this.attacker.rollUnarmedDamage();
+    if ( this.roll.options.weaponType === "unarmed" ) {
+      return this.attacker.rollUnarmedDamage( {
+        attackRoll: this.roll,
+      } );
+    }
   }
 
   static async _onApplyEffect( event, button ) {

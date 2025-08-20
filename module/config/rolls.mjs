@@ -2,46 +2,6 @@ import { preLocalize } from "../utils.mjs";
 
 
 /**
- * The available subtypes of (combatTypes) tests
- * @enum {string}
- */
-export const combatTypes = {
-  Aerial: {
-    label:            "ED.Config.CombatTypes.aerial",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  Close: {
-    label:            "ED.Config.CombatTypes.close",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  melee: {
-    label:            "ED.Config.CombatTypes.melee",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  mounted: {
-    label:            "ED.Config.CombatTypes.mounted",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  projectile: {
-    label:            "ED.Config.CombatTypes.projectile",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  ranged: {
-    label:            "ED.Config.CombatTypes.ranged",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  throwing: {
-    label:            "ED.Config.CombatTypes.throwing",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-  unarmed: {
-    label:            "ED.Config.CombatTypes.unarmed",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
-  },
-};
-preLocalize( "testTypes", { key: "label" } );
-
-/**
  * The minimum difficulty for any test.
  * @type {number}
  */

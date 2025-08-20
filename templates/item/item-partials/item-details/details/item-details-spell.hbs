@@ -15,6 +15,16 @@
         name="system.effect.details.damage.stepModifier"
         value=item.system.effect.details.damage.stepModifier
       }}
+      {{formGroup
+        systemFields.effect.fields.details.fields.damage.fields.damageType
+        name="system.effect.details.damage.damageType"
+        value=item.system.effect.details.damage.damageType
+      }}
+      {{formGroup
+        systemFields.effect.fields.details.fields.damage.fields.armorType
+        name="system.effect.details.damage.armorType"
+        value=item.system.effect.details.damage.armorType
+      }}
     {{else if (eq item.system.effect.type "macro")}}
       {{formGroup
         systemFields.effect.fields.details.fields.macro.fields.macroUuid
