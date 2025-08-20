@@ -94,7 +94,9 @@ export const damageSourceConfig = {
   },
   spell: {
     label:       "ED.Config.DamageSourceConfig.spell",
+    damageType:  undefined,
     ignoreArmor: false,
+    armorType:   undefined,
   },
   suffocation: {
     label:       "ED.Config.DamageSourceConfig.suffocation",
@@ -116,7 +118,9 @@ export const damageSourceConfig = {
   },
   weapon: {
     label:       "ED.Config.DamageSourceConfig.weapon",
+    damageType:  undefined,
     ignoreArmor: false,
+    armorType:   undefined,
   },
 };
 preLocalize( "damageSourceConfig", { key: "label" } );
