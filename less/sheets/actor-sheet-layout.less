@@ -376,113 +376,15 @@
 
     /* ======================= Top ======================= */
     .top {
-      @metric-label-line: 12px;
-      @metric-label-lines: 2;
+      --metric-label-line: 12px;
+      --metric-label-lines: 2;
 
-      .top-columns__grid--container {
-        display: grid;
-        grid-template-columns:
-          minmax(0, 39fr)
-          minmax(0, 59fr);
-        gap: var(--grid-col-gap);
-        align-items: stretch;
-      }
-
-      .top-columns__grid--item {
-        display: grid;
-        row-gap: var(--grid-col-gap);
-      }
-
-      .defenses__block,
-      .armor__block,
-      .health__block {
-        padding: 3px 0;
-        border-radius: 5px;
-        display: grid;
-        grid-auto-rows: min-content;
-        align-content: start;
-        row-gap: var(--grid-col-gap);
-        grid-template-rows: auto 1fr;
-      }
-
-      .health__block {
-        grid-template-columns: repeat(5, minmax(30px, 1fr));
-      }
-
-      .defenses__block > h4,
-      .armor__block > h4,
-      .health__block > h4 {
-        margin: 0;
-        padding: 0;
-        line-height: 1.1;
-        text-transform: uppercase;
-        text-align: center;
-      }
-
-      .health__block > h4 {
-        grid-column: 1 / -1;
-        grid-row: 1;
-      }
-
-      .defenses__grid--container,
-      .armor__grid--container,
-      .health__grid--container {
-        display: grid;
-        gap: var(--grid-col-gap);
-        justify-items: center;
-        align-items: end;
-        text-align: center;
-      }
-
-      .defenses__grid--container {
-        grid-template-columns: repeat(3, minmax(70px, 1fr));
-      }
-
-      .armor__grid--container {
-        grid-template-columns: repeat(2, minmax(70px, 1fr));
-      }
-
-      .defenses__grid--item label,
-      .armor__grid--item label,
-      .health__grid--item label,
-      .damage__grid--item label,
-      .damage__grid--item label {
-        display: block;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        line-height: @metric-label-line;
-        min-height: (@metric-label-line * @metric-label-lines);
-        opacity: 0.85;
-        margin-top: 3px;
-      }
-
-      .health__grid--container,
-      .damage__grid--container {
-        display: contents;
-      }
-
-      .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; padding: 32px 0 0 5px; justify-content: center; align-items: center; }
-      .damage__grid--item.damage__normal { grid-column: 2; grid-row: 2; display: flex; justify-content: center; align-items: center; }
-      .damage__grid--item.damage__stun { grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center; }
-      .damage__grid--item.damage__total { grid-column: 4; grid-row: 2; display: flex; justify-content: center; align-items: center; }
-      .damage__grid--item.wounds__value { grid-column: 5; grid-row: 2; display: flex; justify-content: center; align-items: center; }
-      .damage__grid--item.damage__bar { grid-column: 1 / -1; grid-row: 3; padding-left: 5px; margin-top: -11px; }
-      .health__grid--container > .health__grid--item:nth-child(1) { grid-column: 1 / span 2; grid-row: 4; justify-content: center; align-items: center; }
-      .health__grid--container > .health__grid--item:nth-child(2) { grid-column: 3; grid-row: 4; }
-      .health__grid--container > .health__grid--item:nth-child(3) { grid-column: 4 / span 2; grid-row: 4; justify-content: center; align-items: center; }
-
-      .damage__grid--item.damage-type__normal .input__rectangle-input--centered { border: 1px solid var(--color-meter-4); }
-      .damage__grid--item.damage-type__normal .buffer { color: var(--color-meter-4); }
-
-      .damage__grid--item.damage-type__stun .input__rectangle-input--centered { border: 1px solid var(--color-meter-5); }
-      .damage__grid--item.damage-type__stun .buffer { color: var(--color-meter-5); }
-
-      .damage__grid--item.damage-type__total .input__rectangle-input--centered { border: unset; background-color: none; font-size: var(--font-size-16); }
-
+            /* image + top area */
       .image__grid-item { grid-area: image; }
       .actor-top__grid--item { grid-area: actorTop; }
 
-      .image-characteristics__grid-container {
+      .image-characteristics__grid-container,
+      .image-characteristics-mob__grid-container {
         display: grid;
         grid-template-columns:
           minmax(160px, 160px)
@@ -491,20 +393,146 @@
         margin-left: 4px;
         grid-template-areas:
           'image actorTop actorTop actorTop actorTop actorTop';
-      }
 
-      .image-characteristics__grid-container > div {
-        text-align: center;
-      }
+        .image-characteristics__grid-container > div {
+          text-align: center;
+        }
 
-      .actor-image {
-        width: 160px;
-        border: none;
-      }
-    }
+        .actor-image {
+          width: 160px;
+          border: none;
+        }
 
-    .image-characteristics-mob__grid-container > div {
-      text-align: center;
+
+        .image-characteristics-mob__grid-container > div {
+          text-align: center;
+        }
+
+        /* layout */
+        .top-columns__grid--container {
+          display: grid;
+          grid-template-columns:
+            minmax(0, 39fr)
+            minmax(0, 59fr);
+          gap: var(--grid-col-gap);
+          align-items: stretch;
+        }
+
+        .top-columns__grid--item {
+          display: grid;
+          row-gap: var(--grid-col-gap);
+        }
+
+        /* blocks */
+        .defenses__block,
+        .armor__block,
+        .health__block {
+          padding: 3px 0;
+          border-radius: 5px;
+          display: grid;
+          grid-auto-rows: min-content;
+          align-content: start;
+          row-gap: var(--grid-col-gap);
+          grid-template-rows: auto 1fr;
+        }
+
+        .health__block {
+          grid-template-columns: repeat(5, minmax(30px, 1fr));
+        }
+
+        /* headings */
+        .defenses__block > h4,
+        .armor__block > h4,
+        .health__block > h4 {
+          margin: 0;
+          padding: 0;
+          line-height: 1.1;
+          text-transform: uppercase;
+          text-align: center;
+        }
+
+        .health__block > h4 {
+          grid-column: 1 / -1;
+          grid-row: 1;
+        }
+
+        /* grids */
+        .defenses__grid--container,
+        .armor__grid--container,
+        .health__grid--container {
+          display: grid;
+          gap: var(--grid-col-gap);
+          justify-items: center;
+          align-items: end;
+          text-align: center;
+        }
+
+        .defenses__grid--container {
+          grid-template-columns: repeat(3, minmax(70px, 1fr));
+        }
+
+        .armor__grid--container {
+          grid-template-columns: repeat(2, minmax(70px, 1fr));
+        }
+
+        /* labels */
+        .defenses__grid--item label,
+        .armor__grid--item label,
+        .health__grid--item label,
+        .damage__grid--item label {
+          display: block;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          line-height: var(--metric-label-line);
+          min-height: calc(var(--metric-label-line) * var(--metric-label-lines));
+          opacity: 0.85;
+          margin-top: 3px;
+        }
+
+        /* display contents sections */
+        .health__grid--container,
+        .damage__grid--container {
+          display: contents;
+        }
+
+        /* damage grid placement */
+        .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; padding: 32px 0 0 5px; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__normal { grid-column: 2; grid-row: 2; display: flex; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__stun { grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__total { grid-column: 4; grid-row: 2; display: flex; justify-content: center; align-items: center; }
+        .damage__grid--item.wounds__value { grid-column: 5; grid-row: 2; display: flex; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__bar { grid-column: 1 / -1; grid-row: 3; padding-left: 5px; margin-top: -11px; }
+
+        /* health grid placement */
+        .health__grid--container > .health__grid--item:nth-child(1) { grid-column: 1 / span 2; grid-row: 4; justify-content: center; align-items: center; }
+        .health__grid--container > .health__grid--item:nth-child(2) { grid-column: 3; grid-row: 4; }
+        .health__grid--container > .health__grid--item:nth-child(3) { grid-column: 4 / span 2; grid-row: 4; justify-content: center; align-items: center; }
+
+        /* colors & accents */
+        .damage__grid--item.damage-type__normal .input__rectangle-input--centered { border: 1px solid var(--color-meter-4); }
+        .damage__grid--item.damage-type__normal .buffer { color: var(--color-meter-4); }
+
+        .damage__grid--item.damage-type__stun .input__rectangle-input--centered { border: 1px solid var(--color-meter-5); }
+        .damage__grid--item.damage-type__stun .buffer { color: var(--color-meter-5); }
+
+        .damage__grid--item.damage-type__total .input__rectangle-input--centered {
+          border: unset;
+          background-color: none;
+          font-size: var(--font-size-16);
+        }
+      }
+      .image-characteristics-mob__grid-container {
+
+        .health__grid--container > .health__grid--item,
+        .health__grid--container > .health__grid--item:nth-child(1),
+        .health__grid--container > .health__grid--item:nth-child(2),
+        .health__grid--container > .health__grid--item:nth-child(3) {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
 
     padding: 0px 5px;
