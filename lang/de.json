@@ -291,6 +291,7 @@
       "Tooltips": {
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
+        "damageSubdual":                           "TODO: Add translation",
         "equipped":                                "Ausgerüstet",
         "extraSuccesses":                          "Benötigte extra Erfolge",
         "karmaAlways":                             "Benutze immer Karma",

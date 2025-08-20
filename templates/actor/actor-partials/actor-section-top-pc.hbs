@@ -1,78 +1,113 @@
 <section class="actor-section__top">
-    <div class="top">
-        <div class="image-characteristics__grid-container">
-            <!-- GRID - Image -->
-            <div class="image__grid-item">
-                <img class="actor-image" data-action="editImage" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+  <div class="top">
+    <div class="image-characteristics__grid-container">
+
+      <div class="image__grid-item">
+        <img class="actor-image" data-action="editImage" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+      </div>
+
+      <div class="actor-top__grid--item">
+        <div class="top-columns__grid--container">
+
+          <div class="top-columns__grid--item top-col--left">
+
+            <div class="defenses__block">
+              <h4 class="header--centered label--rail">
+                <span class="label__text">{{localize "ED.Actor.Header.defenses"}}</span>
+              </h4>
+
+              <div class="defenses__grid--container">
+                <div class="defenses__grid--item">
+                  <label for="characteristic-defense-physical">
+                    {{localize "ED.Actor.Characteristics.physicalDefense"}}
+                  </label>
+                  <div class="buffer-input">
+                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    <input id="characteristic-defense-physical"
+                           class="input__rectangle-input--centered"
+                           name="system.characteristics.defenses.physical.value"
+                           value="{{actor.system.characteristics.defenses.physical.value}}">
+                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                  </div>
+                </div>
+
+                <div class="defenses__grid--item">
+                  <label for="characteristic-defense-mystical">
+                    {{localize "ED.Actor.Characteristics.mysticalDefense"}}
+                  </label>
+                  <div class="buffer-input">
+                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    <input id="characteristic-defense-mystical"
+                           class="input__rectangle-input--centered"
+                           name="system.characteristics.defenses.mystical.value"
+                           value="{{actor.system.characteristics.defenses.mystical.value}}">
+                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                  </div>
+                </div>
+
+                <div class="defenses__grid--item">
+                  <label for="characteristic-defense-social">
+                    {{localize "ED.Actor.Characteristics.socialDefense"}}
+                  </label>
+                  <div class="buffer-input">
+                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    <input id="characteristic-defense-social"
+                           class="input__rectangle-input--centered"
+                           name="system.characteristics.defenses.social.value"
+                           value="{{actor.system.characteristics.defenses.social.value}}">
+                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- GRID - Defenses -->
-            <div class="characteristics-defenses-header__grid-item">
-                <h4 class="header--centered">{{localize "ED.Actor.Header.defenses"}}</h4>
-            </div>
-            <div class="characteristics-defenses-physical__grid-item">
-                <label class="">{{localize "ED.Actor.Characteristics.physicalDefense"}}</label>
-                <div>
-                <input id="characteristic-defense-physical" class="input__circle-input--centered"
-                    name="system.characteristics.defenses.physical.value"
-                    value="{{actor.system.characteristics.defenses.physical.value}}">
-                    </div>
-            </div>
-            <div class="characteristics-defenses-mystical__grid-item">
-                <label class="">{{localize "ED.Actor.Characteristics.mysticalDefense"}}</label>
-                <div>
-                <input id="characteristic-defense-mystical" class="input__circle-input--centered"
-                    name="system.characteristics.defenses.mystical.value"
-                    value="{{actor.system.characteristics.defenses.mystical.value}}">
-                    </div>
-            </div>
-            <div class="characteristics-defenses-social__grid-item">
-                <label class="">{{localize "ED.Actor.Characteristics.socialDefense"}}</label>
-                <div>
-                <input id="characteristic-defense-social" class="input__circle-input--centered"
-                    name="system.characteristics.defenses.social.value"
-                    value="{{actor.system.characteristics.defenses.social.value}}">
-                    </div>
-            </div>
+            <!-- ARMOR -->
+            <div class="armor__block">
+              <h4 class="header--centered label--rail">
+                <span class="label__text">{{localize "ED.Actor.Header.armor"}}</span>
+              </h4>
 
-            <!-- GRID - Health -->
+              <div class="armor__grid--container">
+                <div class="armor__grid--item">
+                  <label for="characteristic-armor-physical">
+                    {{localize "ED.Actor.Characteristics.physicalArmor"}}
+                  </label>
+                  <div class="buffer-input">
+                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    <input id="characteristic-armor-physical"
+                           class="input__rectangle-input--centered"
+                           name="system.characteristics.armor.physical.value"
+                           value="{{actor.system.characteristics.armor.physical.value}}">
+                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                  </div>
+                </div>
+
+                <div class="armor__grid--item">
+                  <label for="characteristic-armor-mystical">
+                    {{localize "ED.Actor.Characteristics.mysticalArmor"}}
+                  </label>
+                  <div class="buffer-input">
+                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    <input id="characteristic-armor-mystical"
+                           class="input__rectangle-input--centered"
+                           name="system.characteristics.armor.mystical.value"
+                           value="{{actor.system.characteristics.armor.mystical.value}}">
+                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CENTER COLUMN: HEALTH partial (unchanged name) -->
+          <div class="top-columns__grid--item top-col--center">
             {{> "systems/ed4e/templates/actor/cards/health-character-card.hbs"}}
+          </div>
 
-            <!-- GRID - Armor -->
-            <div class="characteristics-armor-header__grid-item">
-                <h4 class="header--centered">{{localize "ED.Actor.Header.armor"}}</h4>
-            </div>
-            <div class="characteristics-armor-physical__grid-item">
-                <label class="">{{localize "ED.Actor.Characteristics.physicalArmor"}}</label>
-                <div>
-                <input id="characteristic-armor-physical" class="input__circle-input--centered"
-                    name="system.characteristics.armor.physical.value"
-                    value="{{actor.system.characteristics.armor.physical.value}}">
-                    </div>
-            </div>
-            <div class="characteristics-armor-mystical__grid-item">
-                <label class="">{{localize "ED.Actor.Characteristics.mysticalArmor"}}</label>
-                <div>
-                <input id="characteristic-armor-mystic" class="input__circle-input--centered"
-                    name="system.characteristics.armor.mystical.value"
-                    value="{{actor.system.characteristics.armor.mystical.value}}">
-                    </div>
-            </div>
-
-            <!-- GRID - Movement -->
-            <div class="characteristics-movement-header__grid-item">
-                <h4 class="header--centered">{{localize "ED.Actor.Header.movement"}}</h4>
-            </div>
-            <div class="characteristics-movement__grid-item">
-                <label class="">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label"}}</label>
-                <div>
-                <input id="characteristic-movement-run" class="input__circle-input--centered"
-                    name="system.characteristics.movement.walk" value="{{actor.system.characteristics.movement.walk}}">
-                    </div>
-            </div>
-
-            <!-- GRID - Damage & Recovery -->
-                {{> "systems/ed4e/templates/actor/cards/damage-character-card.hbs"}}
         </div>
+      </div>
+      <!-- /actor-top__grid--item -->
+
     </div>
+  </div>
 </section>
