@@ -92,7 +92,11 @@ export default class AttackMessageData extends BaseMessageData {
     event.preventDefault();
 
     const weapon = /** @type {ItemEd} */ await fromUuid( this.roll.options.weaponUuid );
-    if ( weapon?.system.roll instanceof Function ) return await weapon.system.rollDamage();
+    if ( weapon?.system.roll instanceof Function ) {
+      return await weapon.system.rollDamage( {
+        attackRoll: this.roll,
+      } );
+    }
 
     if ( this.roll.options.weaponType === "unarmed" ) {
       return this.attacker.rollUnarmedDamage( {
