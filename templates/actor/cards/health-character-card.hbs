@@ -10,7 +10,7 @@
     </div>
 
     <div class="damage__grid--item damage-type__normal">
-      <label for="characteristic-damage-total">
+      <label for="characteristic-damage-normal">
         {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.standard.label"}}
       </label>
         <input id="characteristic-damage-normal"
@@ -38,14 +38,15 @@
       <input id="characteristic-damage-total"
              class="input__rectangle-input--centered"
              name="system.characteristics.health.damage.total"
-             value="{{actor.system.characteristics.health.damage.total}}" readonly>
+             value="{{actor.system.characteristics.health.damage.total}}"
+             readonly>
     </div>
 
     <div class="damage__grid--item">
       <label for="characteristic-wounds">
         {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}
       </label>
-        <input id="characteristic-wounds"
+         <input id="characteristic-wounds"
                type="number"
                class="input__rectangle-input--centered"
                name="system.characteristics.health.wounds"
