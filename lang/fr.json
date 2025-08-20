@@ -457,7 +457,7 @@
         "namegiver":                               "TODO: Add translation",
         "relation":                                "TODO: Add translation"
       },
-      "DamageSourceType": {
+      "DamageSourceConfig": {
         "arbitrary":                               "TODO: Add translation",
         "drowning":                                "TODO: Add translation",
         "falling":                                 "TODO: Add translation",
