@@ -439,5 +439,17 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return container.children;
   }
 
+  // region Macros
+
+  /**
+   * Get the default command for script macros of the containing item document.
+   * @param {object} [options]  Additional options to modify the command.
+   * @returns {string}                The default command for the macro.
+   */
+  getDefaultMacroCommand( options = {} ) {
+    return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
+  }
+
+  // endregion
 
 }
