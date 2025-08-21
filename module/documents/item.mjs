@@ -176,6 +176,31 @@ export default class ItemEd extends Item {
 
   // endregion
 
+  // region Macros
+
+  /**
+   * Convert this item into a macro.
+   * @param {object} [options] Options to pass to the macro creation.
+   * @returns {Promise<Macro>} The created macro.
+   */
+  async toMacro( options = {} ) {
+    if ( !game.user.isGM && !this.isOwned ) {
+      throw new Error( "ItemEd.toMacro: Only owned items can be converted to macros." );
+    }
+
+    const macroData = {
+      name:       this.name,
+      type:       CONST.MACRO_TYPES.SCRIPT,
+      img:        this.img,
+      command:    this.system.getDefaultMacroCommand(),
+    };
+
+    // TODO: Add macro to folder if it exists, add user specific folder if not
+    return CONFIG.Macro.documentClass.create( macroData, options );
+  }
+
+  // endregion
+
   // region Earthdawn Methods
 
   /**
