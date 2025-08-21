@@ -61,3 +61,20 @@
     &.marker__x { left: 50%; }
     &.marker__x15 { left: 75%; }
 }
+
+/* ======================= Wounds meter ======================= */
+
+.wounds-bar {
+  .meter();
+  width: 100%;
+  --meter-h: 8px;
+  background: var(--color-meter-background);
+}
+.wounds-bar-segment { .meter__segment; }
+.wounds-bar-taken { width: calc(~"min(100%, max(0%, (var(--w-current, 0) / max(var(--w-max, 1), 1)) * 100%))"); background: var(--color-meter-4); }
+.wounds-bar[data-full="1"] {
+  .wounds-bar-taken {
+    background: var(--color-meter-6);
+  }
+}
+

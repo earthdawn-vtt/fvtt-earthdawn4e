@@ -962,7 +962,7 @@
                 },
                 "maxWounds": {
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "Maximum Wounds"
                 },
                 "unconscious": {
                   "hint":                          "The Unconsciousness Rating represents the number of Damage Points required to knock the character unconscious.",
