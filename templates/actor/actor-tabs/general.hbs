@@ -225,6 +225,13 @@
         </div>
       </div>
 
+
+      {{#each favoriteItems as |favorite|}}
+        <div class="container__block container__custom">
+          <button class="action-buttons" data-action="executeFavoriteMacro" data-macro-uuid="{{favorite.uuid}}">{{favorite.name}}</button>
+        </div>
+      {{/each}}
+
     </div>
 
   </div>
