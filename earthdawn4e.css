@@ -78,18 +78,20 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --color-transparent: rgba(0, 0, 0, 0);
+  --color-primary-grey: #363636;
+  --color-text-primary: #e6d2c8;
   --color-gold-1: #32281e;
   --color-gold-2: #463714;
   --color-gold-3: #6d4f1a;
   --color-gold-4: #a17619;
   --color-gold-5: #c8aa6e;
-  --color-meter-1: rgba(238, 227, 103, 0.75);
-  --color-meter-2: rgba(204, 143, 31, 0.75);
-  --color-meter-3: rgba(134, 77, 11, 0.75);
-  --color-meter-4: rgba(155, 16, 16, 0.75);
+  --color-meter-1: rgba(238, 227, 103);
+  --color-meter-2: rgba(204, 143, 31);
+  --color-meter-3: rgba(134, 77, 11);
+  --color-meter-4: rgba(155, 16, 16);
   --color-meter-5: #16479b;
-  --color-primary-grey: #363636;
-  --color-text-primary: #e6d2c8;
+  --color-meter-6: #0b5f1e;
+  --color-meter-background: var(--color-primary-grey);
   --color-text-banner: var(--color-text-primary);
 }
 :root .application.sheet.earthdawn4e.actor,
@@ -536,6 +538,29 @@ h4.label--rail .label__text {
 }
 .encumbrance__marker.marker__x15 {
   left: 75%;
+}
+/* ======================= Wounds meter ======================= */
+.wounds-bar {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  height: var(--meter-h, 7px);
+  background: var(--meter-bg, var(--color-primary-grey-30));
+  border-radius: var(--meter-radius, 5px);
+  width: 100%;
+  --meter-h: 8px;
+  background: var(--color-meter-background);
+}
+.wounds-bar-segment {
+  height: 100%;
+  flex: 0 0 auto;
+}
+.wounds-bar-taken {
+  width: calc(min(100%, max(0%, (var(--w-current, 0) / max(var(--w-max, 1), 1)) * 100%)));
+  background: var(--color-meter-4);
+}
+.wounds-bar[data-full="1"] .wounds-bar-taken {
+  background: var(--color-meter-6);
 }
 .chat-message {
   background-image: url('assets/sheet/background_lighter.PNG');
@@ -1432,14 +1457,48 @@ h4.label--rail .label__text {
   background-color: none;
   font-size: var(--font-size-16);
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__grid--container > .health__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__grid--container > .health__grid--item:nth-child(1),
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__grid--container > .health__grid--item:nth-child(2),
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__grid--container > .health__grid--item:nth-child(3) {
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
+  grid-template-columns: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container {
+  display: grid;
+  height: 83px;
+  grid-template-columns: repeat(3, minmax(70px, 1fr));
+  gap: var(--grid-col-gap);
+  justify-items: center;
+  text-align: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container > .damage__grid--item.wounds__bar {
   grid-column: 1 / -1;
   grid-row: 2;
+  padding-left: 5px;
+  margin-top: 0;
+  justify-self: stretch;
+  align-self: top;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container > .damage__grid--item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
   justify-content: center;
   align-items: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container > .damage__grid--item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: center;
+  align-items: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container > .damage__grid--item:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1;
+  justify-content: center;
+  align-items: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--container > .damage__grid--item.wounds__bar {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  padding-left: 5px;
+  margin-top: 0px;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet__editor,
 .application.sheet.earthdawn4e.actor .window-content .editor {

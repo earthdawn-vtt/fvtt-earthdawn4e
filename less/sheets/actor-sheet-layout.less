@@ -522,18 +522,37 @@
         }
       }
       .image-characteristics-mob__grid-container {
+      
+        .health__block {
+            grid-template-columns: none;
+          }
 
-        .health__grid--container > .health__grid--item,
-        .health__grid--container > .health__grid--item:nth-child(1),
-        .health__grid--container > .health__grid--item:nth-child(2),
-        .health__grid--container > .health__grid--item:nth-child(3) {
+        .damage__grid--container {
+          display: grid;
+          height: 83px;
+          grid-template-columns: repeat(3, minmax(70px, 1fr));
+          gap: var(--grid-col-gap);
+          justify-items: center;
+          text-align: center;
+        }
+
+        .damage__grid--container > .damage__grid--item.wounds__bar {
           grid-column: 1 / -1;
           grid-row: 2;
-          justify-content: center;
-          align-items: center;
+          padding-left: 5px;
+          margin-top: 0;
+          justify-self: stretch;
+          align-self: top;
         }
+
+        .damage__grid--container > .damage__grid--item:nth-child(1) { grid-column: 1; grid-row: 1; justify-content: center; align-items: center; }
+        .damage__grid--container > .damage__grid--item:nth-child(2) { grid-column: 2; grid-row: 1; justify-content: center; align-items: center; }
+        .damage__grid--container > .damage__grid--item:nth-child(3) { grid-column: 3; grid-row: 1; justify-content: center; align-items: center; }
+
+        .damage__grid--container > .damage__grid--item.wounds__bar { grid-column: 1 / -1; grid-row: 2; padding-left: 5px; margin-top: 0px; }
       }
     }
+    
 
     padding: 0px 5px;
     height: 440px;
