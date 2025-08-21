@@ -17,7 +17,6 @@ export default class ItemEd extends Item {
 
   // endregion
 
-
   // region Static Properties
 
   /** @inheritDoc */
@@ -27,20 +26,19 @@ export default class ItemEd extends Item {
 
   // endregion
 
-
   // region Properties
 
   /**
    * Retrieve the list of ActiveEffects that are currently applied to this Item.
-   * @type {ActiveEffect[]}
+   * @type {ActiveEffectData[]}
    */
   get appliedEffects() {
-    return this.appliedEffects.filter( effect => effect.active );
+    return this.effects.filter( effect => effect.active );
   }
 
   /**
    * An array of ActiveEffect instances which are present on the Item which have a limited duration.
-   * @type {ActiveEffect[]}
+   * @type {ActiveEffectData[]}
    */
   get temporaryEffects() {
     return this.appliedEffects.filter( effect => effect.active && effect.isTemporary );
@@ -48,14 +46,21 @@ export default class ItemEd extends Item {
 
   /**
    * An array of ActiveEffect instances which are present on the Item which are permanent.
-   * @type {ActiveEffect[]}
+   * @type {ActiveEffectData[]}
    */
   get permanentEffects() {
     return this.appliedEffects.filter( effect => effect.active && effect.system?.permanent );
   }
 
-  // endregion
+  /**
+   * An array of ActiveEffect instances that are set to transfer to the target of this Item.
+   * @type {ActiveEffectData[]}
+   */
+  get targetEffects() {
+    return this.effects.filter( effect => effect.system.transferToTarget );
+  }
 
+  // endregion
 
   // region Data Preparation
 
@@ -119,11 +124,9 @@ export default class ItemEd extends Item {
 
   // endregion
 
-
   // region Effects
 
   // endregion
-
 
   // region Event Handlers
 
@@ -156,7 +159,6 @@ export default class ItemEd extends Item {
   }
 
   // endregion
-
 
   // region Earthdawn Methods
 
