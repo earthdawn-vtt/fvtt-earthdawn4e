@@ -26,6 +26,11 @@ export default class DisciplineMigration extends BaseMigration {
     // Create default levels and migrate circle-specific talents
     migrateCircleLevels( source );
 
+    // set the circle
+    if ( source.system?.circle ) {
+      source.system.level = source.system.circle;
+    }
+
     /**
      * Migrate legacy description format.
      * @param {object} source - The source data object
