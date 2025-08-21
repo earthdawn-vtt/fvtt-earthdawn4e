@@ -754,6 +754,9 @@
         "versatility":                             "Vielseitigkeit"
       }
     },
+    "ContextMenu": {
+      "favoritable":                               "Zu Favoriten hinzufügen"
+    },
     "Controls": {
       "addSpell":                                  "Zauber hinzufügen",
       "delete":                                    "Lösche Item",
