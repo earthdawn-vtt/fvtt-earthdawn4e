@@ -57,4 +57,13 @@ export default class RollableTemplate extends SystemDataModel {
     return rollFunc();
   }
 
+  // region Macros
+
+  /** @inheritDoc */
+  getDefaultMacroCommand( options = {} ) {
+    return `const item = await fromUuid("${this.parent.uuid}");\nawait item.system.roll()`;
+  }
+
+  // endregion
+
 }
