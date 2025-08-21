@@ -43,7 +43,18 @@ export default class CommonTemplate extends ActorDataModel.mixin(
       } ), {
         initialKeys:     CONFIG.ED4E.singleBonuses,
         initialKeysOnly: true,
-      } )
+      } ),
+      favorites: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          required: false,
+        } ),
+        {
+          initial:         [],
+          nullable:        false,
+          required:        true,
+          initialKeysOnly: true,
+        }
+      ),
     } );
   }
 
