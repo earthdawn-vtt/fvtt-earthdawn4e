@@ -39,8 +39,6 @@ export default class CharacterMigration extends BaseMigration {
   static #migrateAttributes( source ) {
     if ( !source.system?.attributes ) return;
 
-    console.log( "CHAR_MIGRATION: Before attribute migration:", source.name, source.system.attributes );
-
     // Check if migration has already been performed by looking for new format
     const hasNewFormat = Object.keys( source.system.attributes ).some( key => 
       [ "dex", "str", "tou", "per", "wil", "cha" ].includes( key ) && 
