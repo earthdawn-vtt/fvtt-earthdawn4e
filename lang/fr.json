@@ -754,6 +754,9 @@
         "versatility":                             "TODO: Add translation"
       }
     },
+    "ContextMenu": {
+      "favoritable":                               "TODO: Add translation"
+    },
     "Controls": {
       "addSpell":                                  "TODO: Add translation",
       "delete":                                    "TODO: Add translation",
