@@ -14,7 +14,8 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static DEFAULT_OPTIONS = {
     classes:  [ "actor", ],
     actions:  {
-      expandItem:         ActorSheetEd._onCardExpand,
+      expandItem:           ActorSheetEd._onCardExpand,
+      executeFavoriteMacro: ActorSheetEd._executeFavoriteMacro,
     },
   };
 
@@ -65,12 +66,38 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   // region Rendering
 
   /** @inheritdoc */
+  async _onFirstRender( context, options ) {
+    await super._onFirstRender( context, options );
+
+    this._createContextMenu(
+      this._createInitialContextMenu,
+      ".favoritable",
+    );
+  }
+
+  _createInitialContextMenu() {
+    return [
+      {
+        name:      game.i18n.localize( "ED.ContextMenu.favoritable" ),
+        icon:      "<i class='fas fa-star'></i>",
+        callback:  this._onAddToFavorites.bind( this ),
+      },
+    ];
+  }
+
+  /** @inheritdoc */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
+
+    const favoriteItems = await Promise.all(
+      this.document.system.favorites.map( ( uuid ) => fromUuid( uuid ) )
+    );
+
     foundry.utils.mergeObject( context, {
       actor:                  this.document,
       items:                  this.document.items,
       icons:                  ED4E.icons,
+      favoriteItems:          favoriteItems,
     } );
 
     return context;
@@ -100,6 +127,25 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       .children( ".card__description" );
 
     itemDescription.toggleClass( "card__description--toggle" );
+  }
+
+  static async _executeFavoriteMacro( event, target ) {
+    const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
+    macro.execute();
+  }
+
+  async _onAddToFavorites( target ) {
+    const itemUuid = target.closest( ".favoritable" ).dataset.uuid;
+    if ( !itemUuid ) {
+      throw new Error( "ActorSheetEd._onAddToFavorites:  No item UUID found in the target element." );
+    }
+    const item = /** @type {ItemEd} */ await fromUuid( itemUuid );
+    const macro = await item.toMacro();
+
+    const oldFavorites = this.document.system.favorites ?? [];
+    await this.document.update( {
+      "system.favorites": [ ...oldFavorites, macro.uuid ],
+    } );
   }
 
   // endregion
