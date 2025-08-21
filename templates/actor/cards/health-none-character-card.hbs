@@ -121,7 +121,7 @@
   {{else}}
   <div class="damage__grid--container">
 
-    <div class="damage__grid--item">
+    <div class="damage__grid--item wounds__type-current">
         <label for="characteristic-wounds">
           {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}
         </label>
@@ -132,7 +132,7 @@
                 value="{{actor.system.characteristics.health.wounds}}">
       </div>
     
-      <div class="damage__grid--item">
+      <div class="damage__grid--item wounds-type__max">
         <label for="characteristic-max-wounds">
           {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.maxWounds.label"}}
         </label>
@@ -143,7 +143,7 @@
                 value="{{system.characteristics.health.maxWounds}}">
       </div>
 
-      <div class="damage__grid--item">
+      <div class="damage__grid--item" "wounds__type-threshold">
         <label for="characteristic-wound-threshold">
           {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label"}}
         </label>
@@ -165,9 +165,9 @@
                     --w-current: {{actor.system.characteristics.health.wounds}};"
             title="{{actor.system.characteristics.health.wounds}} / {{actor.system.characteristics.health.maxWounds}}">
           <div class="wounds-bar-segment wounds-bar-remaining"
-              title="{{localize 'ED.Actor.Tooltips.woundsRemaining'}}"></div>
+              title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.maxWounds.label"}}"></div>
           <div class="wounds-bar-segment wounds-bar-taken"
-              title="{{localize 'ED.Actor.Tooltips.woundsTaken'}}"></div>
+              title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}"></div>
         </div>
       </div>
 

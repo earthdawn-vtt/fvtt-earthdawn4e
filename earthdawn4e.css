@@ -1255,6 +1255,7 @@ h4.label--rail .label__text {
   grid-template-columns: minmax(160px, 160px) repeat(5, minmax(100px, 1fr));
   grid-column-gap: var(--grid-col-gap);
   margin-left: 4px;
+  text-align: center;
   grid-template-areas: 'image actorTop actorTop actorTop actorTop actorTop';
   /* layout */
   /* blocks */
@@ -1454,7 +1455,7 @@ h4.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage-type__total .input__rectangle-input--centered,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage-type__total .input__rectangle-input--centered {
   border: unset;
-  background-color: none;
+  background-color: unset;
   font-size: var(--font-size-16);
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
@@ -1499,6 +1500,9 @@ h4.label--rail .label__text {
   grid-row: 2;
   padding-left: 5px;
   margin-top: 0px;
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.wounds__type-current .input__rectangle-input--centered {
+  border-color: var(--color-meter-4);
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet__editor,
 .application.sheet.earthdawn4e.actor .window-content .editor {
