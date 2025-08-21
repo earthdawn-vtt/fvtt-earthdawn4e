@@ -2,18 +2,13 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.General.BaseMessage",
   ];
-
-  constructor( data, options ) {
-    super( data, options );
-
-    // Configure Options
-    this.options = Object.freeze( this._initializeOptions( {} ) );
-  }
 
   /**
    * Designates which upstream class in this class' inheritance chain is the base data model.
@@ -30,6 +25,10 @@ export default class BaseMessageData extends SystemDataModel {
     },
   };
 
+  // endregion
+
+  // region Static Methods
+
   /**
    * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
    * @see BaseMessageData.BASE_DATA_MODEL
@@ -44,6 +43,8 @@ export default class BaseMessageData extends SystemDataModel {
       cls = Object.getPrototypeOf( cls );
     }
   }
+
+  // endregion
 
   /**
    * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
@@ -112,6 +113,13 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   // endregion
+
+  constructor( data, options ) {
+    super( data, options );
+
+    // Configure Options
+    this.options = Object.freeze( this._initializeOptions( {} ) );
+  }
 
   // region Event Handlers
 
