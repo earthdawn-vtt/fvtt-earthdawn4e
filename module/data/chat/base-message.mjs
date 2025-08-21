@@ -21,6 +21,7 @@ export default class BaseMessageData extends SystemDataModel {
 
   static DEFAULT_OPTIONS = {
     actions: {
+      applyEffect:    this._onApplyEffect,
       scrollToSource: this._onScrollToSource,
     },
   };
@@ -187,6 +188,35 @@ export default class BaseMessageData extends SystemDataModel {
     console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {BaseMessageData}
+   */
+  static async _onApplyEffect( event, button ) {
+    const itemForEffects = /** @type {ItemEd} */ await fromUuid( button.dataset.itemForEffectsUuid );
+    if ( !itemForEffects ) {
+      throw new Error( `No item found for effects with UUID: ${ button.dataset.itemForEffectsUuid }` );
+    }
+
+    const effects = itemForEffects.targetEffects;
+    const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
+    if ( targets.length === 0 ) {
+      ui.notifications.warn( game.i18n.localize(
+        "ED.Notifications.Warn.needTargetsToApplyFromChat",
+      ) );
+      return;
+    }
+
+    for ( const targetActor of targets ) {
+      await targetActor.createActiveEffects( effects );
+    }
+
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {BaseMessageData}
+   */
   static async _onScrollToSource( event, button ) {
     this.parent.scrollToMessage( button.dataset.id );
   }
