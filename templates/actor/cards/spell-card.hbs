@@ -1,4 +1,4 @@
-<div class="spell-card draggable {{#if (lookup @root.spellKnacks id)}}spell-card--has-knacks{{/if}}" data-uuid="{{this.uuid}}" data-item-id="{{id}}"
+<div class="spell-card draggable favoritable" data-uuid="{{this.uuid}}"  data-item-id="{{_id}}"
      style="box-shadow: 0 0 10px {{lookup @root.config.spellcastingColors system.spellcastingType}}; border-color: {{lookup @root.config.spellcastingColors system.spellcastingType}};">
 
   {{!-- Stack indicators for cards with knacks --}}
