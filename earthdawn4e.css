@@ -276,20 +276,19 @@ slide-toggle[checked] .slide-toggle-thumb {
 .application .editor p {
   font-family: 'ArnoPro-Regular', serif;
 }
-.sheet .h1,
+.sheet h1,
 .sheet h2 {
   font-family: 'Warhorse-DecoBB', serif;
+  margin: 0;
 }
 .sheet h2 {
-  font-family: 'Warhorse-DecoBB', serif;
   font-size: 1rem;
-  margin: 0;
 }
 .sheet h3 {
-  padding: 10px 0 0 0;
-  font-family: revert;
   font-size: 0.9rem;
   margin: 0;
+  padding-top: 10px;
+  font-family: inherit;
 }
 .text--center {
   text-align: center;
