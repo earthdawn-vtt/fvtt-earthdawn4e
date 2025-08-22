@@ -1668,99 +1668,49 @@
         },
         "Mask": {
           "FIELDS": {
-            "armor": {
-              "mystical": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "physical": {
+            "actions": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "challenge": {
+              "rate": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               }
             },
-            "attributes": {
-              "charismaStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "dexterityStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "perceptionStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "strengthStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "toughnessStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "willpowerStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              }
-            },
-            "challengingRate": {
-              "hint":                              "Challenge rating of the mask wearer",
-              "label":                             "Challenge Rating"
-            },
-            "combatBonuses": {
-              "actions": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "attackStepsBonus": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "damageStepsBonus": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "initiativeStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "knockDownStep": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              }
-            },
-            "defenses": {
-              "mystical": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "physical": {
-                "hint":                            "Bonus to physical defense",
-                "label":                           "Physical Defense"
-              },
-              "social": {
-                "hint":                            "Bonus to social defense",
-                "label":                           "Social Defense"
-              }
-            },
-            "healthBonuses": {
-              "deathThreshold": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+            "characteristics": {
+              "health": {
+                "death": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "unconscious": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "woundThreshold": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
               },
               "recoveryTestsResource": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "unconsciousThreshold": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "woundThreshold": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "value": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
               }
+            },
+            "damageStepsBonus": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "initiative": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "knockDownStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "movement": {
               "burrow": {
