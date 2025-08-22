@@ -64,6 +64,7 @@ export default class AbilityRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.ability = await fromUuid( this.abilityUuid );
+    newContext.itemForEffects = newContext.ability;
     newContext.rollingActor = await fromUuid( this.rollingActorUuid );
     newContext.rollingActorTokenDocument = await context.rollingActor?.getTokenDocument();
 

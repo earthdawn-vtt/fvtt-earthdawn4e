@@ -149,6 +149,7 @@ export default class SpellcastingRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.spell = await fromUuid( this.spellUuid );
+    newContext.itemForEffects = newContext.spell;
     newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
     newContext.spellcastingAbility = await fromUuid( this.spellcastingAbilityUuid );
     newContext.spellcastingAbilityContentAnchor = createContentAnchor( newContext.spellcastingAbility ).outerHTML;

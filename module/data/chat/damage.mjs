@@ -95,7 +95,9 @@ export default class DamageMessageData extends BaseMessageData {
 
     const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
     if ( targets.length === 0 ) {
-      ui.notifications.warn( "TODO: You must target at least one token to apply damage." );
+      ui.notifications.warn( game.i18n.localize(
+        "ED.Notifications.Warn.needTargetsToApplyFromChat",
+      ) );
       return;
     }
 

@@ -73,22 +73,6 @@
   <!-- Conditional Section: Success-based Options -->
   {{#if (ne numSuccesses 0)}}
 
-    <!-- Active Effects Section -->
-    {{#if activeEffects}}
-      <details class="effects-section">
-        <summary>{{localize "ED.Chat.Button.applyEffectTitle"}}</summary>
-        <span>
-          <ul>
-            {{#each activeEffects}}
-              <li>
-                {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
-              </li>
-            {{/each}}
-          </ul>
-        </span>
-      </details>
-    {{/if}}
-
     <!-- Roll Damage Button -->
     <div class="damage-section">
       {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}

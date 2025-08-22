@@ -2,18 +2,13 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.General.BaseMessage",
   ];
-
-  constructor( data, options ) {
-    super( data, options );
-
-    // Configure Options
-    this.options = Object.freeze( this._initializeOptions( {} ) );
-  }
 
   /**
    * Designates which upstream class in this class' inheritance chain is the base data model.
@@ -26,9 +21,14 @@ export default class BaseMessageData extends SystemDataModel {
 
   static DEFAULT_OPTIONS = {
     actions: {
+      applyEffect:    this._onApplyEffect,
       scrollToSource: this._onScrollToSource,
     },
   };
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * Iterate over the inheritance chain of this Application. Analogous to {@link ApplicationV2#inheritanceChain}
@@ -44,6 +44,8 @@ export default class BaseMessageData extends SystemDataModel {
       cls = Object.getPrototypeOf( cls );
     }
   }
+
+  // endregion
 
   /**
    * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
@@ -113,6 +115,13 @@ export default class BaseMessageData extends SystemDataModel {
 
   // endregion
 
+  constructor( data, options ) {
+    super( data, options );
+
+    // Configure Options
+    this.options = Object.freeze( this._initializeOptions( {} ) );
+  }
+
   // region Event Handlers
 
   /**
@@ -179,6 +188,35 @@ export default class BaseMessageData extends SystemDataModel {
     console.warn( `The ${ target.dataset.action } action has not been implemented in ${ this.constructor.name }` );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {BaseMessageData}
+   */
+  static async _onApplyEffect( event, button ) {
+    const itemForEffects = /** @type {ItemEd} */ await fromUuid( button.dataset.itemForEffectsUuid );
+    if ( !itemForEffects ) {
+      throw new Error( `No item found for effects with UUID: ${ button.dataset.itemForEffectsUuid }` );
+    }
+
+    const effects = itemForEffects.targetEffects;
+    const targets = Array.from( game.user.targets.map( target => target.document.actor ) );
+    if ( targets.length === 0 ) {
+      ui.notifications.warn( game.i18n.localize(
+        "ED.Notifications.Warn.needTargetsToApplyFromChat",
+      ) );
+      return;
+    }
+
+    for ( const targetActor of targets ) {
+      await targetActor.createActiveEffects( effects );
+    }
+
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {BaseMessageData}
+   */
   static async _onScrollToSource( event, button ) {
     this.parent.scrollToMessage( button.dataset.id );
   }

@@ -349,6 +349,16 @@ export default class ActorEd extends Actor {
   // region Active Effects
 
   /**
+   * Applies the given active effects to the actor.
+   * @param {ActiveEffectData[]} effects The active effects to apply to the actor.
+   * @returns {Promise<Document[]|*>} Returns the created active effects.
+   */
+  async createActiveEffects( effects ) {
+    if ( !effects || effects.length === 0 ) return;
+    return this.createEmbeddedDocuments( "ActiveEffect", effects );
+  }
+
+  /**
    * @inheritDoc
    * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
    * @param {object} [options]          Additional options which modify how the effect is created

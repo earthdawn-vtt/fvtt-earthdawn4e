@@ -103,7 +103,7 @@ export const testTypes = {
   },
   effect: {
     label:            "ED.Rolls.Labels.effectTestRoll",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/arbitrary-roll-flavor.hbs",
   },
 };
 preLocalize( "testTypes", { key: "label" } );
