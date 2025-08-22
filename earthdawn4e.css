@@ -273,14 +273,23 @@ slide-toggle[checked] .slide-toggle-thumb {
   font-size: 1rem;
   margin: 0;
 }
-.application h4 {
+.application .editor p {
+  font-family: 'ArnoPro-Regular', serif;
+}
+.sheet .h1,
+.sheet h2 {
+  font-family: 'Warhorse-DecoBB', serif;
+}
+.sheet h2 {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-size: 1rem;
+  margin: 0;
+}
+.sheet h3 {
   padding: 10px 0 0 0;
   font-family: revert;
   font-size: 0.9rem;
   margin: 0;
-}
-.application .editor p {
-  font-family: 'ArnoPro-Regular', serif;
 }
 .text--center {
   text-align: center;
@@ -377,10 +386,10 @@ slide-toggle[checked] .slide-toggle-thumb {
   visibility: visible;
   pointer-events: auto;
 }
-h4.label--rail {
+h3.label--rail {
   position: relative;
 }
-h4.label--rail::before {
+h3.label--rail::before {
   content: "";
   position: absolute;
   left: 0;
@@ -390,7 +399,7 @@ h4.label--rail::before {
   background: var(--color-gold-3);
   transform: translateY(-80%);
 }
-h4.label--rail .label__text {
+h3.label--rail .label__text {
   position: relative;
   background: transparent;
 }
@@ -966,7 +975,7 @@ h4.label--rail .label__text {
   position: relative;
   z-index: 4;
 }
-.application.sheet.earthdawn4e.actor .window-content .tab h3 {
+.application.sheet.earthdawn4e.actor .window-content .tab h2 {
   background: var(--background-banner-actor);
   color: var(--color-text-banner);
   width: 100%;
@@ -1306,20 +1315,20 @@ h4.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
   grid-template-columns: repeat(5, minmax(30px, 1fr));
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .defenses__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .defenses__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .armor__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .armor__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block > h4 {
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .defenses__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .defenses__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .armor__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .armor__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block > h3 {
   margin: 0;
   padding: 0;
   line-height: 1.1;
   text-transform: uppercase;
   text-align: center;
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__block > h4,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block > h4 {
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__block > h3,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block > h3 {
   grid-column: 1 / -1;
   grid-row: 1;
 }

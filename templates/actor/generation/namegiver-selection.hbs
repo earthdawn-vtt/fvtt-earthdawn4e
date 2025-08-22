@@ -1,10 +1,10 @@
 <section class="tab {{tabs.namegiver.cssClass}} scrollable" data-group="primary" data-tab="namegiver">
-  <h4>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h4>
+  <h3>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h3>
   <div>
     <p>{{{charGenRules}}}</p>
   </div>
   <label for="char-gen-namegiver-select">
-    <h4>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h4>
+    <h3>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h3>
     <select id="char-gen-namegiver-select" name="namegiver">
       <option value="">&ndash;&ndash;&ndash;</option>
       {{selectOptions namegivers selected=namegiver valueAttr="uuid" labelAttr="name"}}
