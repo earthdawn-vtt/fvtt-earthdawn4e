@@ -7,7 +7,7 @@
 
         <!-- Namegiver -->
         {{#unless (or (eq actor.type "dragon") (eq actor.type "horror") (eq actor.type "spirit") (eq actor.type "creature"))}}
-          <h3>{{localize "ED.Actor.Header.namegiver"}}</h3>
+          <h2>{{localize "ED.Actor.Header.namegiver"}}</h2>
 
           <div class="container__block">
             {{#each actor.itemTypes.namegiver}}
@@ -24,7 +24,7 @@
         {{/unless}}
 
         <!-- Circles -->
-        <h3>{{localize "ED.Actor.Header.vocations"}}</h3>
+        <h2>{{localize "ED.Actor.Header.vocations"}}</h2>
         <div class="class-card__grid--body"></div>
 
         <!-- Disciplines Header -->
@@ -78,7 +78,7 @@
 
         <!-- Languages -->
         {{#if systemFields.languages}}
-          <h3>{{localize "ED.Actor.Header.languages"}}</h3>
+          <h2>{{localize "ED.Actor.Header.languages"}}</h2>
           <div class="flexrow">
           <span>
             <div class="container__header">{{localize "ED.Actor.Header.languagesSpoken"}}</div>
@@ -96,7 +96,7 @@
       <!-- Right Column: Biography -->
       <div class="layout__col--2">
 
-        <h3>{{localize "ED.Actor.Header.biography"}}</h3>
+        <h2>{{localize "ED.Actor.Header.biography"}}</h2>
         {{> "systems/ed4e/templates/global/editor.hbs"}}
 
         {{#if (ne actor.type "character")}}

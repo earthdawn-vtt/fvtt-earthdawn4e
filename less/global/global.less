@@ -80,6 +80,7 @@
 //###########################################################
 //                       Fonts
 //###########################################################
+// Legacy
 .application {
   .font__bold {
     font-weight: bold;
@@ -101,16 +102,28 @@
     font-size: 1rem;
     margin: 0;
   }
-  h4 {
-    padding: 10px 0 0 0;
-    font-family: revert;
-    font-size: 0.9rem;
-    margin: 0;
-  }
   .editor p {
     .ArnoProRegular()
   }
 }
+// End legancy
+
+.sheet {
+  h1, h2 {
+    .WarhorseDeco();
+    margin: 0;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h3 {
+    font-size: 0.9rem;
+    margin: 0;
+    padding-top: 10px;
+    font-family: inherit;
+  }
+}
+
 
 //###########################################################
 //                       Text
@@ -238,10 +251,10 @@
 //                       Container Formatting
 //###########################################################
 
-h4.label--rail {
+h3.label--rail {
   position: relative;
 }
-h4.label--rail::before {
+h3.label--rail::before {
   content: "";
   position: absolute;
   left: 0; right: 0; top: 50%;
@@ -249,7 +262,7 @@ h4.label--rail::before {
   background: var(--color-gold-3);
   transform: translateY(-80%);
 }
-h4.label--rail .label__text {
+h3.label--rail .label__text {
   position: relative;
   background: transparent;
 }
