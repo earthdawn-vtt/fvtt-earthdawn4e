@@ -1668,99 +1668,49 @@
         },
         "Mask": {
           "FIELDS": {
-            "armor": {
-              "mystical": {
-                "hint":                            "Bonus auf die mystische Rüstung",
-                "label":                           "Mystische Rüstung"
-              },
-              "physical": {
-                "hint":                            "Bonus auf die physische Rüstung",
-                "label":                           "Physische Rüstung"
+            "actions": {
+              "hint":                              "Bonus auf die Aktionen",
+              "label":                             "Aktionen"
+            },
+            "challenge": {
+              "rate": {
+                "hint":                            "Anpassung der Herausforderungsrate",
+                "label":                           "Herausforderungsrate"
               }
             },
-            "attributes": {
-              "charismaStep": {
-                "hint":                            "Charisma-Stufenbonus",
-                "label":                           "Charismastufe"
-              },
-              "dexterityStep": {
-                "hint":                            "Geschicklichkeits-Stufenbonus",
-                "label":                           "Geschick"
-              },
-              "perceptionStep": {
-                "hint":                            "Wahrnehmungs-Stufenbonus",
-                "label":                           "Wahrnehmung"
-              },
-              "strengthStep": {
-                "hint":                            "Stärke-Stufenbonus",
-                "label":                           "Stärke"
-              },
-              "toughnessStep": {
-                "hint":                            "Zähigkeits-Stufenbonus",
-                "label":                           "Zähigkeit"
-              },
-              "willpowerStep": {
-                "hint":                            "Willenskraft-Stufenbonus",
-                "label":                           "Willenskraft"
-              }
-            },
-            "challengingRate": {
-              "hint":                              "Herausforderungsrate des Maskenträgers",
-              "label":                             "Herausforderungsrate"
-            },
-            "combatBonuses": {
-              "actions": {
-                "hint":                            "Bonus auf die Aktionen",
-                "label":                           "Aktionen"
-              },
-              "attackStepsBonus": {
-                "hint":                            "Bonus auf alle Angriffsstufen",
-                "label":                           "Angriffsstufen Bonus"
-              },
-              "damageStepsBonus": {
-                "hint":                            "Bonus auf alle Schadensstufen",
-                "label":                           "Schadensstufen Bonus"
-              },
-              "initiativeStep": {
-                "hint":                            "Bonus auf die Initiativestufe",
-                "label":                           "Initiative"
-              },
-              "knockDownStep": {
-                "hint":                            "Bonus auf die Niederschlagsstufe",
-                "label":                           "Niederschlagung"
-              }
-            },
-            "defenses": {
-              "mystical": {
-                "hint":                            "Bonus auf die mystische Verteidigung",
-                "label":                           "Mystische Verteidigung"
-              },
-              "physical": {
-                "hint":                            "Bonus auf die physische Verteidigung",
-                "label":                           "Physische Verteidigung"
-              },
-              "social": {
-                "hint":                            "Bonus auf die soziale Verteidigung",
-                "label":                           "Soziale Verteidigung"
-              }
-            },
-            "healthBonuses": {
-              "deathThreshold": {
-                "hint":                            "Bonus auf die Todesschwelle",
-                "label":                           "Todesschwelle"
+            "characteristics": {
+              "health": {
+                "death": {
+                  "hint":                          "Bonus auf die Todesschwelle",
+                  "label":                         "Todesschwelle"
+                },
+                "unconscious": {
+                  "hint":                          "Bonus auf die Bewusstlosigkeitsschwelle",
+                  "label":                         "Bewusstlosigkeitsschwelle"
+                },
+                "woundThreshold": {
+                  "hint":                          "Bonus auf die Wundschwelle",
+                  "label":                         "Wundschwelle"
+                }
               },
               "recoveryTestsResource": {
-                "hint":                            "Zusätzliche Erholungsproben",
-                "label":                           "Erholungsproben"
-              },
-              "unconsciousThreshold": {
-                "hint":                            "Bonus auf die Bewusstlosigkeitsschwelle",
-                "label":                           "Bewusstlosigkeitsschwelle"
-              },
-              "woundThreshold": {
-                "hint":                            "Bonus auf die Wundschwelle",
-                "label":                           "Wundschwelle"
+                "value": {
+                  "hint":                          "Zusätzliche Erholungsproben",
+                  "label":                         "Erholungsproben"
+                }
               }
+            },
+            "damageStepsBonus": {
+              "hint":                              "Bonus auf Schadensstufen",
+              "label":                             "Schadensbonus"
+            },
+            "initiative": {
+              "hint":                              "Bonus auf die Initiative",
+              "label":                             "Initiative"
+            },
+            "knockDownStep": {
+              "hint":                              "Bonus auf den Niederschlagswurf",
+              "label":                             "Niederschlagsstufe"
             },
             "movement": {
               "burrow": {

@@ -1,5 +1,7 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import MappingField from "../fields/mapping-field.mjs";
+import ED4E from "../../config/_module.mjs";
 
 /**
  * Data model template with information on mask items.
@@ -53,202 +55,125 @@ export default class MaskData extends ItemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      attributes: new fields.SchemaField( {
-        dexterityStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
+      attributes: new MappingField( new fields.SchemaField( {
+        step: new fields.NumberField( {
           min:      0,
           initial:  0,
           integer:  true,
-        } ),
-        strengthStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        toughnessStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        perceptionStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        willpowerStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        charismaStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
+        } )
+      } ), {
+        initialKeys:     ED4E.attributes,
+        initialKeysOnly: true,
       } ),
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         fly: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         swim: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         burrow: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         climb: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
-        } ),
+        } )
       } ),
-      defenses: new fields.SchemaField( {
-        physical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+      characteristics: new fields.SchemaField( {
+        defenses: new MappingField( new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+        } ), {
+          initialKeys:     [ "physical", "mystical", "social" ],
+          initialKeysOnly: true,
         } ),
-        mystical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+        armor: new MappingField( new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ) ,
+        } ), {
+          initialKeys:     [ "physical", "mystical" ],
+          initialKeysOnly: true,
         } ),
-        social: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+        health: new fields.SchemaField( {
+          death: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+          unconscious: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+          woundThreshold: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
         } ),
+        recoveryTestsResource: new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+
+          } ),
+        } ),
+      }, ),
+      initiative: new fields.NumberField( {
+        min:      0,
+        initial:  0,
+        integer:  true,
       } ),
-      armor: new fields.SchemaField( {
-        physical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        mystical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-      } ),
-      healthBonuses: new fields.SchemaField( {
-        deathThreshold: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        unconsciousThreshold: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        woundThreshold: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        recoveryTestsResource: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-      } ),
-      combatBonuses: new fields.SchemaField( {
-        attackStepsBonus: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        damageStepsBonus: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        initiativeStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        actions: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-        knockDownStep: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
-          integer:  true,
-        } ),
-      } ),
-      challengingRate: new fields.NumberField( {
+      damageStepsBonus: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
+      } ),
+      actions: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      knockDownStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      challenge: new fields.SchemaField( {
+        rate: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          step:     1,
+          initial:  0,
+          integer:  true,
+        } ),
       } ),
       powerItems: new fields.SchemaField( {
         powers: new fields.ArrayField(

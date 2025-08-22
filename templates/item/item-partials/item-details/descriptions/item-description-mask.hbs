@@ -2,58 +2,52 @@
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     <fieldset>
         <legend>{{localize "ED.Item.Header.attributes"}}</legend>
-        {{!-- Dexterity Step bonus --}}
-        {{formField systemFields.attributes.fields.dexterityStep name="system.attributes.dexterityStep" value=item.system.attributes.dexterityStep localize=true}}
-        {{!-- Strength Step bonus --}}
-        {{formField systemFields.attributes.fields.strengthStep name="system.attributes.strengthStep" value=item.system.attributes.strengthStep localize=true}}
-        {{!-- Toughness Step bonus --}}
-        {{formField systemFields.attributes.fields.toughnessStep name="system.attributes.toughnessStep" value=item.system.attributes.toughnessStep localize=true}}
-        {{!-- Perception Step bonus --}}
-        {{formField systemFields.attributes.fields.perceptionStep name="system.attributes.perceptionStep" value=item.system.attributes.perceptionStep localize=true}}
-        {{!-- Willpower Step bonus --}}
-        {{formField systemFields.attributes.fields.willpowerStep name="system.attributes.willpowerStep" value=item.system.attributes.willpowerStep localize=true}}
-        {{!-- Charisma Step bonus --}}
-        {{formField systemFields.attributes.fields.charismaStep name="system.attributes.charismaStep" value=item.system.attributes.charismaStep localize=true}}
+        {{#each item.system.attributes}}
+        <div class="form-group">
+            <label>{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize "ED.Actor.Attributes.attributeStep"}}</label>
+            <input class="form-field" type="number" name="system.attributes.{{@key}}.step" value="{{this.step}}" />
+        </div>
+        {{/each}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.healthValues"}}</legend>
         {{!-- Wound Threshold bonus --}}
-        {{formField systemFields.healthBonuses.fields.woundThreshold name="system.healthBonuses.woundThreshold" value=item.system.healthBonuses.woundThreshold localize=true}}
+        {{formField systemFields.characteristics.fields.health.fields.woundThreshold name="system.characteristics.health.woundThreshold" value=item.system.characteristics.health.woundThreshold localize=true}}
         {{!-- Unconscious Threshold bonus --}}
-        {{formField systemFields.healthBonuses.fields.unconsciousThreshold name="system.healthBonuses.unconsciousThreshold" value=item.system.healthBonuses.unconsciousThreshold localize=true}}
+        {{formField systemFields.characteristics.fields.health.fields.unconscious name="system.characteristics.health.unconscious" value=item.system.characteristics.health.unconscious localize=true}}
         {{!-- Death Threshold bonus --}}
-        {{formField systemFields.healthBonuses.fields.deathThreshold name="system.healthBonuses.deathThreshold" value=item.system.healthBonuses.deathThreshold localize=true}}
+        {{formField systemFields.characteristics.fields.health.fields.death name="system.characteristics.health.death" value=item.system.characteristics.health.death localize=true}}
         {{!-- Recovery test Resource bonus --}}
-        {{formField systemFields.healthBonuses.fields.recoveryTestsResource name="system.healthBonuses.recoveryTestsResource" value=item.system.healthBonuses.recoveryTestsResource localize=true}}
+        {{formField systemFields.characteristics.fields.recoveryTestsResource.fields.value name="system.characteristics.recoveryTestsResource.value" value=item.system.characteristics.recoveryTestsResource.value localize=true}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.armorValues"}}</legend>
-        {{!-- Physical Armor bonus --}}
-        {{formField systemFields.armor.fields.physical name="system.armor.physical" value=item.system.armor.physical localize=true}}
-        {{!-- Mystic Armor bonus --}}
-        {{formField systemFields.armor.fields.mystical name="system.armor.mystical" value=item.system.armor.mystical localize=true}}
+        {{#each item.system.characteristics.armor}}
+        <div class="form-group">
+            <label>{{#with (lookup ../config.armor @key)}}{{localize this}}{{/with}}</label>
+            <input class="form-field" type="number" name="system.characteristics.armor.{{@key}}.value" value="{{this.value}}" />
+        </div>
+        {{/each}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.defenseValues"}}</legend>
-        {{!-- Physical Defense bonus --}}
-        {{formField systemFields.defenses.fields.physical name="system.defenses.physical" value=item.system.defenses.physical localize=true}}
-        {{!-- Mystical Defense bonus --}}
-        {{formField systemFields.defenses.fields.mystical name="system.defenses.mystical" value=item.system.defenses.mystical localize=true}}
-        {{!-- Social Defense bonus --}}
-        {{formField systemFields.defenses.fields.social name="system.defenses.social" value=item.system.defenses.social localize=true}}
+        {{#each item.system.characteristics.defenses}}
+        <div class="form-group">
+            <label>{{#with (lookup ../config.defense @key)}}{{localize this}}{{/with}}</label>
+            <input class="form-field" type="number" name="system.characteristics.defenses.{{@key}}.value" value="{{this.value}}" />
+        </div>
+        {{/each}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.combatValues"}}</legend>
         {{!-- Knock Down Step bonus --}}
-        {{formField systemFields.combatBonuses.fields.knockDownStep name="system.combatBonuses.knockDownStep" value=item.system.combatBonuses.knockDownStep localize=true}}
-        {{!-- Attack Steps bonus --}}
-        {{formField systemFields.combatBonuses.fields.attackStepsBonus name="system.combatBonuses.attackStepsBonus" value=item.system.combatBonuses.attackStepsBonus localize=true}}
+        {{formField systemFields.knockDownStep name="system.knockDownStep" value=item.system.knockDownStep localize=true}}
         {{!-- Damage Steps bonus --}}
-        {{formField systemFields.combatBonuses.fields.damageStepsBonus name="system.combatBonuses.damageStepsBonus" value=item.system.combatBonuses.damageStepsBonus localize=true}}
+        {{formField systemFields.damageStepsBonus name="system.damageStepsBonus" value=item.system.damageStepsBonus localize=true}}
         {{!-- Initiative Step bonus --}}
-        {{formField systemFields.combatBonuses.fields.initiativeStep name="system.combatBonuses.initiativeStep" value=item.system.combatBonuses.initiativeStep localize=true}}
+        {{formField systemFields.initiative name="system.initiative" value=item.system.initiative localize=true}}
         {{!-- Actions bonus --}}
-        {{formField systemFields.combatBonuses.fields.actions name="system.combatBonuses.actions" value=item.system.combatBonuses.actions localize=true}}
+        {{formField systemFields.actions name="system.actions" value=item.system.actions localize=true}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.movementTypes"}}</legend>
@@ -70,8 +64,8 @@
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.challengingRate"}}</legend>
-        {{!-- Movement Walk bonus --}}
-        {{formField systemFields.challengingRate name="system.challengingRate" value=item.system.challengingRate localize=true}}
+        {{!-- Challenge Rate --}}
+        {{formField systemFields.challenge.fields.rate name="system.challenge.rate" value=item.system.challenge.rate localize=true}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.powers"}}</legend>
@@ -101,7 +95,6 @@
         </div>
         {{/each}}
     </fieldset>
-    </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.maneuver"}}</legend>
         {{#each item.system.powerItems.maneuver}}
@@ -121,7 +114,6 @@
             </div>
         </div>
         {{/each}}
-    </fieldset>
     </fieldset>
 </div>
 <div class="item__right--main sheet__editor">
