@@ -54,6 +54,14 @@ import { createContentAnchor } from "../../utils.mjs";
  */
 
 /**
+ * Roll options initialization data for power damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} PowerDamageInitializationData
+ * @property {"power"} damageSourceType Discriminator for power damage source.
+ * @property {ItemEd} sourceDocument Item of type "power". The power's damage step is used as the base
+ * damage step.
+ */
+
+/**
  * Roll options initialization data for spell damage roll.
  * @typedef {BaseDamageRollOptionsInitializationData} SpellDamageInitializationData
  * @property {"spell"} damageSourceType Discriminator for spell damage source.
@@ -359,6 +367,9 @@ export default class DamageRollOptions extends EdRollOptions {
         break;
       case "poison":
         baseStep = sourceDocument.system.effect.damageStep;
+        break;
+      case "power":
+        baseStep = sourceDocument.system.damageStep;
         break;
       case "spell":
         baseStep = data.caster.system.attributes.wil.step;
