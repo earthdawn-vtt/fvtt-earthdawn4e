@@ -11,5 +11,6 @@
 <fieldset>
     <legend>{{localize "ED.Item.Header.elementSettings"}}</legend>
     {{formField systemFields.element.fields.type name="system.element.type" value=item.system.element.type localize=true}}
-    {{formField systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype localize=true}}
+    {{formField systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype localize=true
+    choices=(lookup config.MAGIC.elementSubtypes item.system.element.type)}}
 </fieldset>
