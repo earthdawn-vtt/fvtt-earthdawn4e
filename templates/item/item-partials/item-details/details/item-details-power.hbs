@@ -2,8 +2,9 @@
 {{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
 <fieldset>
     <legend>{{localize "ED.Item.Header.damageSettings"}}</legend>
-    {{formField systemFields.armorType name="system.armorType" value=item.system.armorType localize=true}}
     {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
+    {{formField systemFields.damage.fields.armorType name="system.damage.armorType" value=item.system.damage.armorType localize=true}}
+    {{formField systemFields.damage.fields.ignoreArmor name="system.damage.ignoreArmor" value=item.system.damage.ignoreArmor localize=true}}
 </fieldset>
 <fieldset>
     <legend>{{localize "ED.Item.Header.elementSettings"}}</legend>
