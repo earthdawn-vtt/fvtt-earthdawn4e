@@ -146,6 +146,21 @@ export default class ItemEd extends Item {
 
   // region Event Handlers
 
+  /** @inheritDoc */
+  _preCreateDescendantDocuments( parent, collection, data, options, userId ) {
+    if ( collection === "effects" ) {
+      const mappedData = data.map( effectData => {
+        if ( !effectData.hasOwnProperty( "system" ) ) effectData.system = {};
+        effectData.system.source = {
+          documentOriginUuid: this.uuid,
+          documentOriginType: this.type,
+        };
+        return effectData;
+      } );
+      return super._preCreateDescendantDocuments( parent, collection, mappedData, options, userId );
+    }
+    return super._preCreateDescendantDocuments( parent, collection, data, options, userId );
+  }
 
   /** @inheritDoc */
   // eslint-disable-next-line max-params
