@@ -466,6 +466,7 @@
         "falling":                                 "TODO: Add translation",
         "fire":                                    "TODO: Add translation",
         "poison":                                  "TODO: Add translation",
+        "power":                                   "TODO: Add translation",
         "spell":                                   "TODO: Add translation",
         "suffocation":                             "TODO: Add translation",
         "unarmed":                                 "TODO: Add translation",
@@ -1967,20 +1968,28 @@
         },
         "Power": {
           "FIELDS": {
-            "armorType": {
+            "damage": {
+              "armorType": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "ignoreArmor": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "label":                             "TODO: Add translation",
+              "type": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             },
             "damageStep": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "damageType": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -3290,6 +3299,7 @@
         "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
+        "damageStepRequiresAttackOrDamage":        "TODO: Add translation",
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",
