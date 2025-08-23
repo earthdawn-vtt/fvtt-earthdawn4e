@@ -465,6 +465,7 @@
         "falling":                                 "Fallschaden",
         "fire":                                    "Feuerschaden",
         "poison":                                  "Giftschaden",
+        "power":                                   "Kreaturenkraft-Schaden",
         "spell":                                   "Zaubereffekt-Schaden",
         "suffocation":                             "Ersticken-Schaden",
         "unarmed":                                 "Unbewaffneter Schaden",
@@ -1966,26 +1967,34 @@
         },
         "Power": {
           "FIELDS": {
-            "armorType": {
-              "hint":                              "Welche Rüstungsart schützt gegne diese Kraft?",
-              "label":                             "Rüstungstyp"
+            "damage": {
+              "armorType": {
+                "hint":                            "Welche Rüstungsart schützt gegen den Schaden dieser Kraft?",
+                "label":                           "Rüstungstyp"
+              },
+              "hint":                              "Konfiguration des Schadens der durch diese Kraft verursacht wird",
+              "ignoreArmor": {
+                "hint":                            "Ignoriert der Schaden dieser Kraft Rüstung?",
+                "label":                           "Rüstung ignorieren"
+              },
+              "label":                             "Schadenskonfiguration",
+              "type": {
+                "hint":                            "Die Art von Schaden die diese Kraft verursacht",
+                "label":                           "Schadensart"
+              }
             },
             "damageStep": {
               "hint":                              "Schadensstufe der Kraft",
               "label":                             "Schadensstufe"
             },
-            "damageType": {
-              "hint":                              "Schadensart der Kraft",
-              "label":                             "Schadensart"
-            },
             "element": {
-              "subType": {
-                "hint":                            "Elementarsubtyp der Kraft",
-                "label":                           "Elementarsubtyp"
+              "subtype": {
+                "hint":                            "Die Unterart des Element dieser Kraft, falls eine vorhanden ist",
+                "label":                           "Element - Unterart"
               },
               "type": {
-                "hint":                            "Elementartyp der Kraft",
-                "label":                           "Elementartyp"
+                "hint":                            "Das Element der Kraft",
+                "label":                           "Element"
               }
             },
             "powerStep": {
@@ -3289,6 +3298,7 @@
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
+        "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
