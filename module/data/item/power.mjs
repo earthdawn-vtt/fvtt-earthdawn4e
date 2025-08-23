@@ -264,7 +264,8 @@ export default class PowerData extends ActionTemplate.mixin(
         base:   this.getDifficulty(),
       },
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",
-      rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+      rollType:         "attack",
+      weaponUuid:      this.parent.uuid,
     };
 
     const roll = await RollPrompt.waitPrompt(
@@ -277,10 +278,16 @@ export default class PowerData extends ActionTemplate.mixin(
   }
 
   async rollDamage() {
-    const rollOptions = DamageRollOptions.fromData( {
-      "damageSourceType": "power",
-      "sourceDocument":   this.parent,
-    } );
+    const rollOptions = DamageRollOptions.fromActor(
+      {
+        "damageSourceType": "power",
+        "sourceDocument":   this.parent,
+      },
+      this.containingActor,
+      {
+        rollData: this.containingActor,
+      }
+    );
 
     const roll = await RollPrompt.waitPrompt(
       rollOptions,
