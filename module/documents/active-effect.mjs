@@ -1,3 +1,5 @@
+import ActorEd from "./actor.mjs";
+
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
@@ -51,6 +53,26 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   // endregion
 
   // region Life Cycle Events
+
+  /** @inheritdoc */
+  _preCreate( data, options, user ) {
+    if ( super._preCreate( data, options, user ) === false ) return false;
+
+    if ( this.parent instanceof ActorEd ) {
+      const effectWithSameSource = this.parent.effects.find( effect => {
+        const effectSourceUuid = effect.system.source?.documentOriginUuid;
+        const effectEdid = effect.system.edid;
+        return effectSourceUuid === this.source?.documentOriginUuid
+          || effectSourceUuid === data.source?.documentOriginUuid
+          || effectEdid === this.edid
+          || effectEdid === data.system?.edid;
+      } );
+      if ( effectWithSameSource ) {
+        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
+        return false;
+      }
+    }
+  }
 
   /** @inheritdoc */
   _onUpdate( changed, options, userId ) {
