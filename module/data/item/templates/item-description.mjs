@@ -7,11 +7,17 @@ import SystemDataModel from "../../abstract/system-data-model.mjs";
  */
 export default class ItemDescriptionTemplate extends SystemDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Description",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritdoc */
   static defineSchema() {
@@ -33,13 +39,34 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
     };
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  _preCreate( data, options, user ) {
+    if ( super._preCreate( data, options, user ) === false ) return false;
+
+    if ( !data.system?.hasOwnProperty( "edid" ) ) {
+      this.parent.updateSource(
+        { "system.edid": data.name.slugify( {
+          strict:    true,
+          lowercase: true,
+        } )
+        }
+      );
+    }
+  }
+
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 }
