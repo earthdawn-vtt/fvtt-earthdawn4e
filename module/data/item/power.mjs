@@ -17,11 +17,17 @@ export default class PowerData extends ActionTemplate.mixin(
   TargetTemplate,
 )  {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Power",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -92,13 +98,9 @@ export default class PowerData extends ActionTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
 
-  /* -------------------------------------------- */
-  /*  Getter                                      */
-  /* -------------------------------------------- */
+  // region Properties
 
   /**
    *@type {boolean}
@@ -138,9 +140,9 @@ export default class PowerData extends ActionTemplate.mixin(
     return new AbilityRollOptions( abilityRollOptions );
   }
 
-  /* -------------------------------------------- */
-  /*                    Rolling                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Rolling
 
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
@@ -197,4 +199,7 @@ export default class PowerData extends ActionTemplate.mixin(
   async rollEffect() {
     ui.notifications.info( "Effect not done yet" );
   }
+
+  // endregion
+
 }
