@@ -52,22 +52,38 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   // endregion
 
+  // region Checkers
+
+  /**
+   * Check whether this effect has the same source as another effect. This is true if either the source UUIDs
+   * are the same, or if both effects have the same name and the same source document type and name.
+   * @param {object} otherEffect - The other effect to compare against.
+   * @returns {Promise<boolean>} True if both effects have the same source, false otherwise.
+   */
+  async hasSameSourceAs( otherEffect ) {
+    const thisDocumentOrigin = await fromUuid( this.system?.source?.documentOriginUuid );
+    const otherDocumentOrigin = await fromUuid( otherEffect.system?.source?.documentOriginUuid );
+    const thisSourceUuid = this.system.source?.documentOriginUuid;
+    const otherSourceUuid = otherEffect.system?.source?.documentOriginUuid;
+
+    const sameSourceUuid = thisSourceUuid && otherSourceUuid && thisSourceUuid === otherSourceUuid;
+    const sameNameAndType = this.name === otherEffect.name
+      && thisDocumentOrigin?.name === otherDocumentOrigin?.name
+      && this.system.source?.documentOriginType === otherEffect.system?.source?.documentOriginType;
+
+    return sameSourceUuid || sameNameAndType;
+  }
+
+  // endregion
+
   // region Life Cycle Events
 
   /** @inheritdoc */
-  _preCreate( data, options, user ) {
+  async _preCreate( data, options, user ) {
     if ( super._preCreate( data, options, user ) === false ) return false;
 
     if ( this.parent instanceof ActorEd ) {
-      const effectWithSameSource = this.parent.effects.find( effect => {
-        const effectSourceUuid = effect.system.source?.documentOriginUuid;
-        const effectEdid = effect.system.edid;
-        return effectSourceUuid === this.source?.documentOriginUuid
-          || effectSourceUuid === data.source?.documentOriginUuid
-          || effectEdid === this.edid
-          || effectEdid === data.system?.edid;
-      } );
-      if ( effectWithSameSource ) {
+      if ( this.parent.effects.some( effect => this.hasSameSourceAs( effect ) ) ) {
         ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
         return false;
       }
