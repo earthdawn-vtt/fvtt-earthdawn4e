@@ -1,5 +1,5 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { ACTORS } from "../../config/_module.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
@@ -53,6 +53,18 @@ export default class PowerData extends ActionTemplate.mixin(
           initial:  "standard",
           choices:  ED4E.damageType,
         } ),
+        armorType: new fields.StringField( {
+          required: true,
+          nullable: true,
+          blank:    true,
+          initial:  "",
+          choices:  ACTORS.armor,
+        } ),
+        ignoreArmor: new fields.BooleanField( {
+          required: true,
+          nullable: false,
+          initial:  false,
+        } ),
       } ),
       element: new fields.SchemaField( {
         type: new fields.StringField( {
@@ -95,7 +107,7 @@ export default class PowerData extends ActionTemplate.mixin(
   get isCreatureAttack() {
     return this.rollType === "attack";
   }
-  
+
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
@@ -123,7 +135,7 @@ export default class PowerData extends ActionTemplate.mixin(
       testType:        "action",
       rollType:        "",
     };
-  
+
     return new AbilityRollOptions( abilityRollOptions );
   }
 
@@ -133,19 +145,19 @@ export default class PowerData extends ActionTemplate.mixin(
 
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
-  
+
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
       rollingActorUuid: this.containingActor.uuid,
-      target:           { 
+      target:           {
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
       },
       chatFlavor:       "AbilityTemplate: Ability ROLL",
-      rollType:         "ability", 
+      rollType:         "ability",
     };
-  
+
     const roll = await RollPrompt.waitPrompt(
       new AbilityRollOptions( rollOptionsUpdate ),
       {
@@ -157,19 +169,19 @@ export default class PowerData extends ActionTemplate.mixin(
 
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
-  
+
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
       rollingActorUuid: this.containingActor.uuid,
-      target:           { 
+      target:           {
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
       },
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",
       rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
     };
-  
+
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
