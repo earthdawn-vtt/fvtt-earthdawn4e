@@ -142,6 +142,89 @@ export default class PowerData extends ActionTemplate.mixin(
 
   // endregion
 
+  // region Life Cycle Events
+
+  /** @inheritDoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    const systemChanges = changes.system;
+    if ( !systemChanges ) return;
+
+    // Extract validation logic to reduce complexity
+    this._validateDamageStepRules( changes );
+  }
+
+  /**
+   * Validates and enforces damage step business rules
+   * @param {object} changes - The changes object being applied
+   * @private
+   */
+  _validateDamageStepRules( changes ) {
+    const systemChanges = changes.system;
+    const isAttackOrDamage = rollType => [ "attack", "damage" ].includes( rollType );
+
+    // Get current and new values
+    const currentRollType = this.rollType;
+    const newRollType = systemChanges.rollType ?? currentRollType;
+    const currentDamageStep = this.damageStep;
+    const newDamageStep = systemChanges.hasOwnProperty( "damageStep" ) ? systemChanges.damageStep : currentDamageStep;
+    const currentPowerStep = this.powerStep;
+    const newPowerStep = systemChanges.hasOwnProperty( "powerStep" ) ? systemChanges.powerStep : currentPowerStep;
+
+    // if rollType is being changed away from attack/damage, clear damage step
+    if ( systemChanges.hasOwnProperty( "rollType" ) &&
+      !isAttackOrDamage( newRollType ) &&
+      Number.isNumeric( currentDamageStep ) ) {
+      changes.system.damageStep = null;
+      return;
+    }
+
+    // if damageStep is being cleared and rollType is attack, set damageStep to powerStep
+    if ( systemChanges.damageStep === null && newRollType === "attack" ) {
+      changes.system.damageStep = newPowerStep;
+      return;
+    }
+
+    // handle damage roll type validation and synchronization
+    if ( newRollType === "damage" ) {
+      this._synchronizeDamageSteps( changes, systemChanges, newDamageStep, newPowerStep );
+      return;
+    }
+
+    // if power has a damage step, rollType must be "attack" or "damage"
+    if ( Number.isNumeric( newDamageStep ) && !isAttackOrDamage( newRollType ) ) {
+      ui.notifications.info(
+        game.i18n.localize( "ED.Notifications.Info.damageStepRequiresAttackOrDamage" )
+      );
+      changes.system.rollType = "attack";
+      return;
+    }
+
+  }
+
+
+  /**
+   * Synchronizes power step and damage step for damage roll types
+   * @param {object} changes - The changes object
+   * @param {object} systemChanges - System changes
+   * @param {number} newDamageStep - New damage step value
+   * @param {number} newPowerStep - New power step value
+   * @private
+   */
+  _synchronizeDamageSteps( changes, systemChanges, newDamageStep, newPowerStep ) {
+    if ( systemChanges.hasOwnProperty( "damageStep" ) && !systemChanges.hasOwnProperty( "powerStep" ) ) {
+      changes.system.powerStep = newDamageStep;
+    } else if ( systemChanges.hasOwnProperty( "powerStep" ) && !systemChanges.hasOwnProperty( "damageStep" ) ) {
+      changes.system.damageStep = newPowerStep;
+    } else if ( newDamageStep !== newPowerStep ) {
+      // If both are being changed but to different values, sync them to damageStep
+      changes.system.powerStep = newDamageStep;
+    }
+  }
+
+  // endregion
+
   // region Rolling
 
   async rollAbility() {
