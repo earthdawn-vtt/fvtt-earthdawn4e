@@ -92,6 +92,12 @@ export const damageSourceConfig = {
     ignoreArmor: true,
     armorType:   null,
   },
+  power: {
+    label:       "ED.Config.DamageSourceConfig.power",
+    damageType:  undefined,
+    ignoreArmor: undefined,
+    armorType:   undefined,
+  },
   spell: {
     label:       "ED.Config.DamageSourceConfig.spell",
     damageType:  undefined,

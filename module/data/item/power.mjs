@@ -1,11 +1,12 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { ACTORS } from "../../config/_module.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import TargetTemplate from "./templates/targeting.mjs";
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import AbilityRollOptions from "../roll/ability.mjs";
 import AttackRollOptions from "../roll/attack.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
+import DamageRollOptions from "../roll/damage.mjs";
 
 /**
  * Data model template with information on Power items.
@@ -17,11 +18,17 @@ export default class PowerData extends ActionTemplate.mixin(
   TargetTemplate,
 )  {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Power",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -36,9 +43,8 @@ export default class PowerData extends ActionTemplate.mixin(
       } ),
       damageStep: new fields.NumberField( {
         required: false,
-        nullable: false,
+        nullable: true,
         min:      0,
-        initial:  0,
         integer:  true,
       } ),
       armorType: new fields.StringField( {
@@ -52,6 +58,18 @@ export default class PowerData extends ActionTemplate.mixin(
         type: new fields.StringField( {
           initial:  "standard",
           choices:  ED4E.damageType,
+        } ),
+        armorType: new fields.StringField( {
+          required: true,
+          nullable: true,
+          blank:    true,
+          initial:  "",
+          choices:  ACTORS.armor,
+        } ),
+        ignoreArmor: new fields.BooleanField( {
+          required: true,
+          nullable: false,
+          initial:  false,
         } ),
       } ),
       element: new fields.SchemaField( {
@@ -81,13 +99,9 @@ export default class PowerData extends ActionTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
 
-  /* -------------------------------------------- */
-  /*  Getter                                      */
-  /* -------------------------------------------- */
+  // region Properties
 
   /**
    *@type {boolean}
@@ -95,7 +109,7 @@ export default class PowerData extends ActionTemplate.mixin(
   get isCreatureAttack() {
     return this.rollType === "attack";
   }
-  
+
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
@@ -123,29 +137,112 @@ export default class PowerData extends ActionTemplate.mixin(
       testType:        "action",
       rollType:        "",
     };
-  
+
     return new AbilityRollOptions( abilityRollOptions );
   }
 
-  /* -------------------------------------------- */
-  /*                    Rolling                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Life Cycle Events
+
+  /** @inheritDoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    const systemChanges = changes.system;
+    if ( !systemChanges ) return;
+
+    // Extract validation logic to reduce complexity
+    this._validateDamageStepRules( changes );
+  }
+
+  /**
+   * Validates and enforces damage step business rules
+   * @param {object} changes - The changes object being applied
+   * @private
+   */
+  _validateDamageStepRules( changes ) {
+    const systemChanges = changes.system;
+    const isAttackOrDamage = rollType => [ "attack", "damage" ].includes( rollType );
+
+    // Get current and new values
+    const currentRollType = this.rollType;
+    const newRollType = systemChanges.rollType ?? currentRollType;
+    const currentDamageStep = this.damageStep;
+    const newDamageStep = systemChanges.hasOwnProperty( "damageStep" ) ? systemChanges.damageStep : currentDamageStep;
+    const currentPowerStep = this.powerStep;
+    const newPowerStep = systemChanges.hasOwnProperty( "powerStep" ) ? systemChanges.powerStep : currentPowerStep;
+
+    // if rollType is being changed away from attack/damage, clear damage step
+    if ( systemChanges.hasOwnProperty( "rollType" ) &&
+      !isAttackOrDamage( newRollType ) &&
+      Number.isNumeric( currentDamageStep ) ) {
+      changes.system.damageStep = null;
+      return;
+    }
+
+    // if damageStep is being cleared and rollType is attack, set damageStep to powerStep
+    if ( systemChanges.damageStep === null && newRollType === "attack" ) {
+      changes.system.damageStep = newPowerStep;
+      return;
+    }
+
+    // handle damage roll type validation and synchronization
+    if ( newRollType === "damage" ) {
+      this._synchronizeDamageSteps( changes, systemChanges, newDamageStep, newPowerStep );
+      return;
+    }
+
+    // if power has a damage step, rollType must be "attack" or "damage"
+    if ( Number.isNumeric( newDamageStep ) && !isAttackOrDamage( newRollType ) ) {
+      ui.notifications.info(
+        game.i18n.localize( "ED.Notifications.Info.damageStepRequiresAttackOrDamage" )
+      );
+      changes.system.rollType = "attack";
+      return;
+    }
+
+  }
+
+
+  /**
+   * Synchronizes power step and damage step for damage roll types
+   * @param {object} changes - The changes object
+   * @param {object} systemChanges - System changes
+   * @param {number} newDamageStep - New damage step value
+   * @param {number} newPowerStep - New power step value
+   * @private
+   */
+  _synchronizeDamageSteps( changes, systemChanges, newDamageStep, newPowerStep ) {
+    if ( systemChanges.hasOwnProperty( "damageStep" ) && !systemChanges.hasOwnProperty( "powerStep" ) ) {
+      changes.system.powerStep = newDamageStep;
+    } else if ( systemChanges.hasOwnProperty( "powerStep" ) && !systemChanges.hasOwnProperty( "damageStep" ) ) {
+      changes.system.damageStep = newPowerStep;
+    } else if ( newDamageStep !== newPowerStep ) {
+      // If both are being changed but to different values, sync them to damageStep
+      changes.system.powerStep = newDamageStep;
+    }
+  }
+
+  // endregion
+
+  // region Rolling
 
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
-  
+
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
       rollingActorUuid: this.containingActor.uuid,
-      target:           { 
+      target:           {
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
       },
       chatFlavor:       "AbilityTemplate: Ability ROLL",
-      rollType:         "ability", 
+      rollType:         "ability",
     };
-  
+
     const roll = await RollPrompt.waitPrompt(
       new AbilityRollOptions( rollOptionsUpdate ),
       {
@@ -157,19 +254,20 @@ export default class PowerData extends ActionTemplate.mixin(
 
   async rollAttack() {
     if ( !this.isActorEmbedded ) return;
-  
+
     const rollOptions = this.baseRollOptions;
     const rollOptionsUpdate = {
       ...rollOptions.toObject(),
       rollingActorUuid: this.containingActor.uuid,
-      target:           { 
+      target:           {
         tokens: game.user.targets.map( token => token.document.uuid ),
         base:   this.getDifficulty(),
       },
       chatFlavor:       "AbilityTemplate: ATTACK ROLL",
-      rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
+      rollType:         "attack",
+      weaponUuid:      this.parent.uuid,
     };
-  
+
     const roll = await RollPrompt.waitPrompt(
       new AttackRollOptions( rollOptionsUpdate ),
       {
@@ -180,10 +278,30 @@ export default class PowerData extends ActionTemplate.mixin(
   }
 
   async rollDamage() {
-    ui.notifications.info( "Damage not done yet" );
+    const rollOptions = DamageRollOptions.fromActor(
+      {
+        "damageSourceType": "power",
+        "sourceDocument":   this.parent,
+      },
+      this.containingActor,
+      {
+        rollData: this.containingActor,
+      }
+    );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      {
+        rollData: this.containingActor,
+      }
+    );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollEffect() {
     ui.notifications.info( "Effect not done yet" );
   }
+
+  // endregion
+
 }

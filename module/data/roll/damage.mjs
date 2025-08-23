@@ -54,6 +54,14 @@ import { createContentAnchor } from "../../utils.mjs";
  */
 
 /**
+ * Roll options initialization data for power damage roll.
+ * @typedef {BaseDamageRollOptionsInitializationData} PowerDamageInitializationData
+ * @property {"power"} damageSourceType Discriminator for power damage source.
+ * @property {ItemEd} sourceDocument Item of type "power". The power's damage step is used as the base
+ * damage step.
+ */
+
+/**
  * Roll options initialization data for spell damage roll.
  * @typedef {BaseDamageRollOptionsInitializationData} SpellDamageInitializationData
  * @property {"spell"} damageSourceType Discriminator for spell damage source.
@@ -360,6 +368,9 @@ export default class DamageRollOptions extends EdRollOptions {
       case "poison":
         baseStep = sourceDocument.system.effect.damageStep;
         break;
+      case "power":
+        baseStep = sourceDocument.system.damageStep;
+        break;
       case "spell":
         baseStep = data.caster.system.attributes.wil.step;
         break;
@@ -430,6 +441,7 @@ export default class DamageRollOptions extends EdRollOptions {
       case "suffocation":
       case "warping":
         return null;
+      case "power":
       case "spell":
       case "unarmed":
       case "weapon":
@@ -468,10 +480,12 @@ export default class DamageRollOptions extends EdRollOptions {
    */
   static _getArmorTypeFromSource( damageSourceType, sourceDocument ) {
     switch ( damageSourceType ) {
+      case "power":
+        return sourceDocument.system.damage?.armorType ?? "";
       case "spell":
-        return sourceDocument?.system?.effect?.details?.damage?.armorType || "";
+        return sourceDocument.system.effect.details.damage?.armorType ?? "";
       case "weapon":
-        return sourceDocument?.system?.armorType || "";
+        return sourceDocument.system.armorType ?? "";
       default:
         throw new Error( `Invalid damage source type: ${ damageSourceType }` );
     }
@@ -506,6 +520,8 @@ export default class DamageRollOptions extends EdRollOptions {
    */
   static _getDamageTypeFromSource( damageSourceType, sourceDocument ) {
     switch ( damageSourceType ) {
+      case "power":
+        return sourceDocument.system.damage?.type ?? "standard";
       case "spell":
         return sourceDocument.system.effect.details.damage.damageType;
       case "weapon":
@@ -525,10 +541,29 @@ export default class DamageRollOptions extends EdRollOptions {
   static _prepareIgnoreArmor( data ) {
     if ( data.ignoreArmor ) return data.ignoreArmor;
 
+    const sourceDocument = data.sourceDocument || fromUuidSync( data.sourceUuid );
+    const ignoreArmor = this._getIgnoreArmorFromSource( data.damageSourceType, sourceDocument );
+    if ( ignoreArmor !== undefined ) return ignoreArmor;
+
     if ( data.damageSourceType in COMBAT.damageSourceConfig ) {
       return COMBAT.damageSourceConfig[ data.damageSourceType ].ignoreArmor;
     } else {
       throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
+    }
+  }
+
+  /**
+   * Gets whether to ignore armor for damage source types that require source document analysis.
+   * @param { string } damageSourceType The damage source type as defined in {@link module:config~COMBAT~damageSourceConfig}.
+   * @param { ItemEd } sourceDocument The source document that caused the damage.
+   * @returns {boolean|undefined} Whether to ignore armor, or undefined if not applicable.
+   */
+  static _getIgnoreArmorFromSource( damageSourceType, sourceDocument ) {
+    switch ( damageSourceType ) {
+      case "power":
+        return sourceDocument.system.damage?.ignoreArmor || false;
+      default:
+        return undefined;
     }
   }
 

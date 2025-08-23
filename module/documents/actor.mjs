@@ -124,8 +124,8 @@ export default class ActorEd extends Actor {
   }
 
   /** @inheritDoc */
-  async _preCreate( data, options, userId ) {
-    await super._preCreate( data, options, userId );
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
     const prototypeToken = TOKEN?.prototypeToken?.[this.type] ?? {};
     await this.updateSource( { prototypeToken } );
   }
