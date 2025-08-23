@@ -36,9 +36,8 @@ export default class PowerData extends ActionTemplate.mixin(
       } ),
       damageStep: new fields.NumberField( {
         required: false,
-        nullable: false,
+        nullable: true,
         min:      0,
-        initial:  0,
         integer:  true,
       } ),
       armorType: new fields.StringField( {
