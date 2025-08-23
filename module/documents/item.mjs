@@ -73,7 +73,14 @@ export default class ItemEd extends Item {
    * @type {ActiveEffectData[]}
    */
   get targetEffects() {
-    return this.effects.filter( effect => effect.system.transferToTarget );
+    const relevantEffects = this.effects.filter( effect => effect.system.transferToTarget );
+    return relevantEffects.map( effect => {
+      effect.system.source = {
+        documentOriginUuid: effect.system.source.documentOriginUuid || this.uuid,
+        documentOriginType: effect.system.source.documentOriginType || this.type,
+      };
+      return effect;
+    } );
   }
 
   // endregion
