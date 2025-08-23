@@ -6,6 +6,7 @@ import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import AbilityRollOptions from "../roll/ability.mjs";
 import AttackRollOptions from "../roll/attack.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
+import DamageRollOptions from "../roll/damage.mjs";
 
 /**
  * Data model template with information on Power items.
@@ -276,7 +277,18 @@ export default class PowerData extends ActionTemplate.mixin(
   }
 
   async rollDamage() {
-    ui.notifications.info( "Damage not done yet" );
+    const rollOptions = DamageRollOptions.fromData( {
+      "damageSourceType": "power",
+      "sourceDocument":   this.parent,
+    } );
+
+    const roll = await RollPrompt.waitPrompt(
+      rollOptions,
+      {
+        rollData: this.containingActor,
+      }
+    );
+    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
   }
 
   async rollEffect() {
