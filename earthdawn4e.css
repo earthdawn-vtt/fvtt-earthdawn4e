@@ -1143,30 +1143,23 @@ h3.label--rail .label__text {
   color: var(--color-text-inverse);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 1fr) minmax(25px, 1fr) minmax(25px, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .karma-devotion__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container .karma-devotion__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container .recovery__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container .initiative__grid--item {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container {
   display: grid;
   grid-template-columns: minmax(37px, 1fr) minmax(37px, 1fr);
 }
