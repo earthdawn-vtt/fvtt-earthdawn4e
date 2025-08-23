@@ -1099,10 +1099,20 @@ export default class ActorEd extends Actor {
     // Step 2: Apply our comprehensive migration system to the already-migrated source
     const migrationResult = MigrationManager.migrateDocument( newSource, "Actor" );
 
+    // Step 3: ALSO modify the original source...
+    if ( migrationResult.system ) {
+      source.system = migrationResult.system;
+    }
+
     if ( migrationResult.type ) {
       source.type = migrationResult.type;
     }
-    // Step 3: Return the final migrated result
+
+    if ( migrationResult.img ) {
+      source.img = migrationResult.img;
+    }
+    
+    // Step 4: Return the final migrated result
     return migrationResult;
   }
   // endregion

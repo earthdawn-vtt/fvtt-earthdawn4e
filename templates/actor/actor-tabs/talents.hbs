@@ -35,134 +35,133 @@
         {{/each}}
 
         <!-- Optional Talents -->
-          <div class="ability-card__grid--container container__header text-break__auto">
-              <div class="ability-card__grid--item"></div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsOptional"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
-              <div class="ability-card__grid--item"></div>
-          </div>
-          {{#each (ed-getTalentCategory actor.itemTypes.talent "optional") as |talent i|}}
-            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-            {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
-              {{/if}}
-            {{/each}}
+        <div class="ability-card__grid--container container__header text-break__auto">
+            <div class="ability-card__grid--item"></div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsOptional"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
+            <div class="ability-card__grid--item"></div>
+        </div>
+        {{#each (ed-getTalentCategory actor.itemTypes.talent "optional") as |talent i|}}
+          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+          {{#each actor.itemTypes.knackAbility}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
+            {{/if}}
           {{/each}}
-
-      <!-- Free Talents -->
-          <div class="ability-card__grid--container container__header text-break__auto">
-              <div class="ability-card__grid--item"></div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsFree"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
-              <div class="ability-card__grid--item"></div>
-          </div>
-          {{#each (ed-getTalentCategory actor.itemTypes.talent "free") as |talent i|}}
-            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-            {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
-              {{/if}}
-            {{/each}}
+          {{#each actor.itemTypes.knackManeuver}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
+            {{/if}}
           {{/each}}
-
-          <!-- Other Talents -->
-          <div class="ability-card__grid--container container__header text-break__auto">
-              <div class="ability-card__grid--item"></div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsOther"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
-              <div class="ability-card__grid--item"></div>
-          </div>
-          {{#each (ed-getTalentCategory actor.itemTypes.talent "other") as |talent i|}}
-            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-            {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
-              {{/if}}
-            {{/each}}
+          {{#each actor.itemTypes.knackKarma}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
+            {{/if}}
           {{/each}}
+        {{/each}}
 
-          <!-- Versatility Talents -->
-          <div class="ability-card__grid--container container__header text-break__auto">
-              <div class="ability-card__grid--item"></div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsVersatility"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
-              <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
-              <div class="ability-card__grid--item"></div>
-          </div>
-          {{#each (ed-getTalentCategory actor.itemTypes.talent "versatility") as |talent i|}}
-            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-            {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
-              {{/if}}
-            {{/each}}
-            {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
-                {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
-              {{/if}}
-            {{/each}}
+        <!-- Free Talents -->
+        <div class="ability-card__grid--container container__header text-break__auto">
+            <div class="ability-card__grid--item"></div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsFree"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
+            <div class="ability-card__grid--item"></div>
+        </div>
+        {{#each (ed-getTalentCategory actor.itemTypes.talent "free") as |talent i|}}
+          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+          {{#each actor.itemTypes.knackAbility}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
+            {{/if}}
           {{/each}}
+          {{#each actor.itemTypes.knackManeuver}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
+            {{/if}}
+          {{/each}}
+          {{#each actor.itemTypes.knackKarma}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
+            {{/if}}
+          {{/each}}
+        {{/each}}
 
+        <!-- Other Talents -->
+        <div class="ability-card__grid--container container__header text-break__auto">
+            <div class="ability-card__grid--item"></div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsOther"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
+            <div class="ability-card__grid--item"></div>
+        </div>
+        {{#each (ed-getTalentCategory actor.itemTypes.talent "other") as |talent i|}}
+          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+          {{#each actor.itemTypes.knackAbility}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
+            {{/if}}
+          {{/each}}
+          {{#each actor.itemTypes.knackManeuver}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
+            {{/if}}
+          {{/each}}
+          {{#each actor.itemTypes.knackKarma}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
+            {{/if}}
+          {{/each}}
+        {{/each}}
+
+        <!-- Versatility Talents -->
+        <div class="ability-card__grid--container container__header text-break__auto">
+            <div class="ability-card__grid--item"></div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.talentsVersatility"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.action"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.step"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
+            <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
+            <div class="ability-card__grid--item"></div>
+        </div>
+        {{#each (ed-getTalentCategory actor.itemTypes.talent "versatility") as |talent i|}}
+          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+          {{#each actor.itemTypes.knackAbility}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
+            {{/if}}
+          {{/each}}
+          {{#each actor.itemTypes.knackManeuver}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
+            {{/if}}
+          {{/each}}
+          {{#each actor.itemTypes.knackKarma}}
+            {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
+            {{/if}}
+          {{/each}}
+        {{/each}}
       {{else}}
         {{#each actor.itemTypes.talent}}
           {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
         {{/each}}
       {{/if}}
     {{else}}
-     {{#each actor.itemTypes.talent}}
-          {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
-        {{/each}}
+      {{#each actor.itemTypes.talent}}
+        {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
+      {{/each}}
     {{/if}}
   </div>
 </section>

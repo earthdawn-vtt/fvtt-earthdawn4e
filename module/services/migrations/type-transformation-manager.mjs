@@ -291,39 +291,94 @@ export default class TypeTransformationManager {
    * @private
    */
   static async #fixDocuments( documentType, documentIds ) {
-    const collection = documentType === "actors" ? game.actors : game.items;
-    
-    const documents = documentIds
-      .map( id => collection.get( id ) )
-      .filter( doc => doc ); // Remove any null/undefined documents
-    
-    if ( documents.length === 0 ) {
-      return;
-    }
-    for ( let i = 0; i < documents.length; i++ ) {
-      const document = documents[i];
-      try {
-        // Get the full system data
-        const fullSystemData = foundry.utils.deepClone( document.system );
+    if ( documentType === "actors" ) {
+      const collection = game.actors;
+      const documents = documentIds
+        .map( id => collection.get( id ) )
+        .filter( doc => doc );
+      
+      if ( documents.length === 0 ) return;
+      
+      for ( let i = 0; i < documents.length; i++ ) {
+        const document = documents[i];
+        try {
+          const fullSystemData = foundry.utils.deepClone( document.system );
+          
+          await document.update( {
+            type:       document.type,
+            "==system": fullSystemData
+          }, {
+            recursive: false,
+            diff:      false,
+            render:    false,
+            broadcast: false
+          } );
+        } catch ( error ) {
+          console.log( `❌ Failed to fix ${document.name}:`, error.message );
+        }
         
-        await document.update( {
-          type:       document.type, // Keep the current (transformed) type
-          "==system": fullSystemData
-        }, {
-          recursive: false,  // This is required for type changes
-          diff:      false,
-          render:    false,
-          broadcast: false
+        await new Promise( resolve => {
+          setTimeout( resolve, 50 );
         } );
-      } catch ( error ) {
-        console.log( `❌ Failed to fix ${document.name}:`, error.message );
-        console.log( "This suggests the document data is corrupted at database level." );
+      }
+    } else if ( documentType === "items" ) {
+      // Handle both top-level items AND embedded items
+      const topLevelItems = documentIds
+        .map( id => game.items.get( id ) )
+        .filter( doc => doc );
+      
+      // Find embedded items in actors
+      const embeddedItems = [];
+      for ( const actor of game.actors ) {
+        for ( const itemId of documentIds ) {
+          const embeddedItem = actor.items.get( itemId );
+          if ( embeddedItem ) {
+            embeddedItems.push( embeddedItem );
+          }
+        }
       }
       
-      // Small delay between updates
-      await new Promise( resolve => {
-        setTimeout( resolve, 50 );
-      } );
+      // Fix top-level items
+      for ( const item of topLevelItems ) {
+        try {
+          const fullSystemData = foundry.utils.deepClone( item.system );
+          await item.update( {
+            type:       item.type,
+            "==system": fullSystemData
+          }, {
+            recursive: false,
+            diff:      false,
+            render:    false,
+            broadcast: false
+          } );
+        } catch ( error ) {
+          console.log( `❌ Failed to fix top-level item ${item.name}:`, error.message );
+        }
+        await new Promise( resolve => {
+          setTimeout( resolve, 50 );
+        } );
+      }
+      
+      // Fix embedded items
+      for ( const item of embeddedItems ) {
+        try {
+          const fullSystemData = foundry.utils.deepClone( item.system );
+          await item.update( {
+            type:       item.type,
+            "==system": fullSystemData
+          }, {
+            recursive: false,
+            diff:      false,
+            render:    false,
+            broadcast: false
+          } );
+        } catch ( error ) {
+          console.log( `❌ Failed to fix embedded item ${item.name}:`, error.message );
+        }
+        await new Promise( resolve => {
+          setTimeout( resolve, 50 );
+        } );
+      }
     }
   }
 
