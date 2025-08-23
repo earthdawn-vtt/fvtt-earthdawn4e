@@ -773,7 +773,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/maneuver-card.hbs",
     "systems/ed4e/templates/actor/cards/health-character-card.hbs",
     "systems/ed4e/templates/actor/cards/health-none-character-card.hbs",
-    "systems/ed4e/templates/actor/cards/damage-character-card.hbs",
     "systems/ed4e/templates/actor/cards/damage-none-character-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-ability-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-karma-card.hbs",
