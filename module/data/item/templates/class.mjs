@@ -207,44 +207,66 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _addPermanentEffects( nextLevelData ) {
-    const newEffects = /** @type {EarthdawnActiveEffect[]} */ Array.from( nextLevelData.effects );
+    const newEffects = Array.from( nextLevelData.effects );
 
-    const mappedExisting = this.containingActor.classEffects.reduce(
-      ( mappedEffects, effect ) => {
-        if ( effect.changes.length !== 1 ) {
-          throw new Error( "ClassTemplate._addPermanentEffects: existing class effect has more than one change" );
-        }
-        const currentKey = effect.changes[0].key;
-        const currentValue = effect.changes[0].value;
+    const existingEffectsByKey = this._mapExistingEffects();
 
-        if ( mappedEffects[currentKey] ) {
-          mappedEffects[currentKey].effects.push( effect );
-          mappedEffects[currentKey].value += currentValue;
-        } else {
-          mappedEffects[currentKey] = {
-            effects: [ effect ],
-            value:   currentValue,
-          };
-        }
+    const { effectsToAdd, effectsToRemove } = this._determineEffectChanges( newEffects, existingEffectsByKey );
 
-        return mappedEffects;
-      },
-      {}
-    ) ;
+    await this._updateEffectsForPermanentUse( effectsToAdd );
 
+    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effectsToAdd );
+    await this.containingActor.deleteEmbeddedDocuments( "ActiveEffect", effectsToRemove.map( e => e.id ) );
+  }
+
+  /**
+   * Map existing effects to an object for later comparison with new effects.
+   * The format of the returned object depends on which class implements this method.
+   * @returns {{}} An object containing existing effects.
+   * @protected
+   */
+  _mapExistingEffects() {
+    return this.containingActor.classEffects.reduce( ( mapped, effect ) => {
+      this._validateSingleChange( effect, "existing" );
+
+      const key = effect.changes[0].key;
+      const value = effect.changes[0].value;
+
+      if ( mapped[key] ) {
+        mapped[key].effects.push( effect );
+        mapped[key].value += value;
+      } else {
+        mapped[key] = { effects: [ effect ], value };
+      }
+
+      return mapped;
+    }, {} );
+  }
+
+  /**
+   * Determine which effects need to be added and which need to be removed based on the new
+   * and the existing effects.
+   * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to consider adding.
+   * @param {object} existingEffects An object containing existing effects. The format depends on which class
+   * implements this method.
+   * @returns {{effectsToAdd: EarthdawnActiveEffect[], effectsToRemove: string[]}} The effects to add and the IDs of
+   * the effects to remove.
+   * @protected
+   */
+  _determineEffectChanges( newEffects, existingEffects ) {
     const effectsToAdd = [];
     const effectsToRemove = [];
 
     newEffects.forEach( newEffect => {
-      if ( newEffect.changes.length !== 1 ) {
-        throw new Error( "ClassTemplate._addPermanentEffects: new class effect has more than one change" );
-      }
-      const newKey = newEffect.changes[0].key;
-      const newValue = newEffect.changes[0].value;
+      this._validateSingleChange( newEffect, "new" );
 
-      if ( mappedExisting[newKey] ) {
-        if ( mappedExisting[newKey].value < newValue ) {
-          effectsToRemove.push( ...mappedExisting[newKey].effects );
+      const key = newEffect.changes[0].key;
+      const value = newEffect.changes[0].value;
+
+      const existing = existingEffects[key];
+      if ( existing ) {
+        if ( existing.value < value ) {
+          effectsToRemove.push( ...existing.effects );
           effectsToAdd.push( newEffect );
         }
       } else {
@@ -252,24 +274,39 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       }
     } );
 
-    for ( const effect of effectsToAdd ) {
-      await effect.update( {
-        disabled: false,
-        system:   {
-          duration: {
-            type: "permanent",
-          },
-          transferToTarget: false,
-          source:           {
-            documentOriginUuid: this.parent.uuid,
-            documentOriginType: this.parent.type,
-          },
-        },
-      } );
-    }
+    return { effectsToAdd, effectsToRemove };
+  }
 
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effectsToAdd );
-    await this.containingActor.deleteEmbeddedDocuments( "ActiveEffect", effectsToRemove.map( e => e.id ) );
+  /**
+   * Validate that the effect has only one change.
+   * @param {EarthdawnActiveEffect} effect The effect to validate.
+   * @param {string} type A string indicating whether the effect is "new" or
+   * "existing" for error messages.
+   * @throws {Error} If the effect has more than one change or no changes at all.
+   * @protected
+   */
+  _validateSingleChange( effect, type ) {
+    if ( effect.changes.length !== 1 ) {
+      throw new Error( `ClassTemplate._addPermanentEffects: ${type} class effect has more than one change` );
+    }
+  }
+
+  async _updateEffectsForPermanentUse( effects ) {
+    const permanentSettings = {
+      disabled: false,
+      system:   {
+        duration:         { type: "permanent" },
+        transferToTarget: false,
+        source:           {
+          documentOriginUuid: this.parent.uuid,
+          documentOriginType: this.parent.type,
+        },
+      },
+    };
+
+    for ( const effect of effects ) {
+      await effect.update( permanentSettings );
+    }
   }
 
   async _addFreeAbilities( nextLevelData, systemSourceData ) {
