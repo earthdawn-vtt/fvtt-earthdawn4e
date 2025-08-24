@@ -130,8 +130,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return threadWeavingAbility?.system?.castingType;
   }
 
+  // region LP Increase
+
   /** @inheritDoc */
-  // eslint-disable-next-line complexity
+   
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
@@ -147,13 +149,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( !proceed ) return;
 
     // update the class first
-    if ( !(
-      ( await this.parent.update( { "system.level": nextLevel } ) ).system.level === nextLevel
-    ) )
+    const updatedClass = await this.parent.update( { "system.level": nextLevel } );
+    if ( updatedClass.system.level !== nextLevel ) {
       ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
+    }
 
-
-    // learn everything that potentially costs lp
     const systemSourceData = {
       system: {
         tier:   nextTier,
@@ -165,43 +165,54 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       },
     };
 
-    const abilityChoiceItem = await fromUuid( abilityChoice );
-    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
-      this.containingActor,
-      abilityChoiceItem,
-      foundry.utils.mergeObject(
-        systemSourceData,
-        {
-          "system.source.class":    this.parent.uuid,
-          "system.source.atLevel":  nextLevel,
-          "system.talentCategory":  "optional",
-          "system.tier":            nextTier,
-        },
-        { inplace: false },
-      )
+    await this._learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier );
+    await this._learnSpells( spells, systemSourceData );
+    await this._learnAbilities( nextLevelData, systemSourceData );
+
+    await this._addFreeAbilities( nextLevelData, systemSourceData );
+    await this._addPermanentEffects( nextLevelData );
+
+    await this._increaseResourceStep( nextLevelData );
+    await this._increaseFreeAbilities( nextLevel );
+
+    // we only land here if the class increase was successful
+    return this.parent;
+  }
+
+  async _increaseFreeAbilities( nextLevel ) {
+    // increase all abilities of category "free" to new circle, if lower
+    const freeAbilities = this.containingActor.items.filter(
+      i => i.system.talentCategory === "free"
+        && i.system.source?.class === this.parent.uuid
+        && i.system.level < nextLevel
     );
-    await learnedAbilityChoice?.system?.increase();
+    // TODO: check if there are any free abilities already on this level or higher
+    // if so, add new earnings lp transaction to refund the spent lp to raise
+    // the free talent
 
-
-    for ( const spellUuid of spells ) {
-      const spell = await fromUuid( spellUuid );
-      await spell?.system?.constructor?.learn(
-        this.containingActor,
-        spell,
-        systemSourceData,
-      );
+    for ( const ability of freeAbilities ) {
+      await ability.update( { "system.level": nextLevel } );
     }
+  }
 
-    for ( const abilityUuid of nextLevelData.abilities.class ) {
-      const ability = await fromUuid( abilityUuid );
-      await ability?.system?.constructor?.learn(
-        this.containingActor,
-        ability,
-        systemSourceData,
-      );
+  async _increaseResourceStep( nextLevelData ) {
+    const highestDiscipline = this.containingActor.highestDiscipline;
+
+    const resourceStep = nextLevelData.resourceStep;
+    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
+      await this.containingActor.update( { "system.karma.step": resourceStep } );
+    } else if ( this.parent.type === "questor" ) {
+      await this.containingActor.update( { "system.devotion.step": resourceStep } );
     }
+  }
 
-    // add everything that's free
+  async _addPermanentEffects( nextLevelData ) {
+    const effects = Array.from( nextLevelData.effects );
+    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effects );
+    // TODO: activate permanent effects immediately
+  }
+
+  async _addFreeAbilities( nextLevelData, systemSourceData ) {
     const freeAbilityData = await Promise.all(
       nextLevelData.abilities.free.map(
         async uuid => {
@@ -217,39 +228,51 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       nextLevelData.abilities.special.map( ability => fromUuid( ability ) )
     );
 
-    const effects = Array.from( nextLevelData.effects );
-
     await this.containingActor.createEmbeddedDocuments( "Item", [ ...freeAbilityData, ...specialAbilityData ] );
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effects );
-    // TODO: activate permanent effects immediately
-
-    // increase resource step of the discipline
-    const highestDiscipline = this.containingActor.highestDiscipline;
-    
-    const resourceStep = nextLevelData.resourceStep;
-    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
-      await this.containingActor.update( { "system.karma.step": resourceStep } );
-    } else if ( this.parent.type === "questor" ) {
-      await this.containingActor.update( { "system.devotion.step": resourceStep } );
-    }
-
-    // increase all abilities of category "free" to new circle, if lower
-    const freeAbilities = this.containingActor.items.filter(
-      i => i.system.talentCategory === "free"
-        && i.system.source?.class === this.parent.uuid
-        && i.system.level < nextLevel
-    );
-    // TODO: check if there are any free abilities already on this level or higher
-    // if so, add new earnings lp transaction to refund the spent lp to raise
-    // the free talent
-
-    for ( const ability of freeAbilities ) {
-      await ability.update( { "system.level": nextLevel } );
-    }
-
-    // we only land here if the class increase was successful
-    return this.parent;
   }
+
+  async _learnAbilities( nextLevelData, systemSourceData ) {
+    for ( const abilityUuid of nextLevelData.abilities.class ) {
+      const ability = await fromUuid( abilityUuid );
+      await ability?.system?.constructor?.learn(
+        this.containingActor,
+        ability,
+        systemSourceData
+      );
+    }
+  }
+
+  async _learnSpells( spells, systemSourceData ) {
+    for ( const spellUuid of spells ) {
+      const spell = await fromUuid( spellUuid );
+      await spell?.system?.constructor?.learn(
+        this.containingActor,
+        spell,
+        systemSourceData
+      );
+    }
+  }
+
+  async _learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier ) {
+    const abilityChoiceItem = await fromUuid( abilityChoice );
+    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
+      this.containingActor,
+      abilityChoiceItem,
+      foundry.utils.mergeObject(
+        systemSourceData,
+        {
+          "system.source.class":   this.parent.uuid,
+          "system.source.atLevel": nextLevel,
+          "system.talentCategory": "optional",
+          "system.tier":           nextTier
+        },
+        { inplace: false }
+      )
+    );
+    await learnedAbilityChoice?.system?.increase();
+  }
+
+  // endregion
 
   // endregion
 
