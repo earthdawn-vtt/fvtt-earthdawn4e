@@ -1,6 +1,7 @@
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
   background: var(--background-sheet-actor);
+  max-height: 100vh;
 
   .tab {
     overflow: auto;
@@ -45,9 +46,11 @@
     .maneuver-card__grid--container,
     .karma-devotion__grid--container,
     .recovery__grid--container,
+    .initiative__grid--container,
+    .initiative-npc__grid--container,
     .spell-card__grid--container {
       display: grid;
-      column-gap: var(--grid-col-gap);
+      column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
       line-height: 25px;
@@ -149,18 +152,25 @@
       }
     }
 
-    /* ======================= Recovery & Karma headers ======================= */
+    /* ======================= Recovery/Karma/Devotion/Initiative headers ======================= */
+    .tab[data-tab="general"] .layout__row {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
     .karma-devotion__header,
-    .recovery__header {
+    .recovery__header,
+    .initiative__header {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 30px;
-      gap: var(--grid-col-gap);
+      gap: var(--grid-col-gap-sm);
     }
 
     .karma-devotion__header-icons,
-    .recovery__header-icons {
+    .recovery__header-icons,
+    .initiative__header-icons {
       display: flex;
       align-items: center;
 
@@ -169,7 +179,7 @@
       }
 
       button {
-        background: none;
+        background: unset;
         border: none;
         height: 20px;
         width: 20px;
@@ -186,12 +196,21 @@
         minmax(25px, 1fr);
 
       .karma-devotion__grid--item,
-      .recovery__grid--item {
+      .recovery__grid--item,
+      .initiative__grid--item {
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
       }
+    }
+
+    .initiative__grid--container,
+    .initiative-npc__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(37px, 1fr)
+        minmax(37px, 1fr);
     }
 
     /* ======================= Notes tab ======================= */
@@ -299,10 +318,9 @@
       }
     }
 
-
     /* ======================= Navigation Tabs ======================= */
     .sheet-tabs.tabs.tabs-navigation {
-      gap: var(--grid-col-gap);
+      gap: var(--grid-col-gap-sm);
       line-height: 1.2rem;
       padding: 5px 0px;
       margin: 5px 0 0 0;
@@ -320,7 +338,7 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      padding: var(--grid-col-gap) 0;
+      padding: var(--grid-col-gap-sm) 0;
       border: var(--border-main);
       border-radius: 4px;
       cursor: pointer;
@@ -330,7 +348,7 @@
       background-color: var(--color-primary);
 
       &:nth-child(13) {
-        gap: var(--grid-col-gap);
+        gap: var(--grid-col-gap-sm);
         flex-direction: row;
         height: 35px;
         border: none;
@@ -368,7 +386,7 @@
 
     /* ======================= Tabs ======================= */
     .sheet-tabs.tabs.tabs-navigation {
-      gap: var(--grid-col-gap);
+      gap: var(--grid-col-gap-sm);
       line-height: 1.2rem;
       padding: 5px 0px;
       margin: 5px 0 0 0;
@@ -389,7 +407,7 @@
         grid-template-columns:
           minmax(160px, 160px)
           repeat(5, minmax(100px, 1fr));
-        grid-column-gap: var(--grid-col-gap);
+        grid-column-gap: var(--grid-col-gap-sm);
         margin-left: 4px;
         text-align: center;
         grid-template-areas:
@@ -415,13 +433,13 @@
           grid-template-columns:
             minmax(0, 39fr)
             minmax(0, 59fr);
-          gap: var(--grid-col-gap);
+          gap: var(--grid-col-gap-sm);
           align-items: stretch;
         }
 
         .top-columns__grid--item {
           display: grid;
-          row-gap: var(--grid-col-gap);
+          row-gap: var(--grid-col-gap-sm);
         }
 
         /* blocks */
@@ -433,7 +451,7 @@
           display: grid;
           grid-auto-rows: min-content;
           align-content: start;
-          row-gap: var(--grid-col-gap);
+          row-gap: var(--grid-col-gap-sm);
           grid-template-rows: auto 1fr;
         }
 
@@ -462,7 +480,7 @@
         .armor__grid--container,
         .health__grid--container {
           display: grid;
-          gap: var(--grid-col-gap);
+          gap: var(--grid-col-gap-sm);
           justify-items: center;
           align-items: end;
           text-align: center;
@@ -532,7 +550,7 @@
           display: grid;
           height: 83px;
           grid-template-columns: repeat(3, minmax(70px, 1fr));
-          gap: var(--grid-col-gap);
+          gap: var(--grid-col-gap-sm);
           justify-items: center;
           text-align: center;
         }
@@ -557,10 +575,8 @@
         }
       }
     }
-    
-
+  
     padding: 0px 5px;
-    height: 440px;
     overflow-y: auto;
 
     .sheet__editor,

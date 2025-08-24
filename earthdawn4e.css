@@ -72,7 +72,8 @@
   --font-container-header: 0.8rem;
   --font-icon-small: 0.6rem;
   --font-icon-medium: 0.8rem;
-  --grid-col-gap: 0.3rem;
+  --grid-col-gap-sm: 0.3rem;
+  --grid-col-gap-lg: 0.75rem;
   --size-scrollbar-width: 1rem;
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -185,7 +186,7 @@ slide-toggle[checked] .slide-toggle-thumb {
 .layout__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.905rem;
+  gap: var(--grid-col-gap-lg);
 }
 .layout__col {
   flex: 1 1 0;
@@ -947,6 +948,7 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
   background: var(--background-sheet-actor);
+  max-height: 100vh;
 }
 .application.sheet.earthdawn4e.actor .tab {
   overflow: auto;
@@ -956,7 +958,7 @@ h3.label--rail .label__text {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
   /* ======================= General tab ======================= */
-  /* ======================= Recovery & Karma headers ======================= */
+  /* ======================= Recovery/Karma/Devotion/Initiative headers ======================= */
   /* ======================= Notes tab ======================= */
   /* ======================= Abilities tab ======================= */
   /* ======================= Spells tab ======================= */
@@ -967,7 +969,6 @@ h3.label--rail .label__text {
   /* ======================= Tabs ======================= */
   /* ======================= Top ======================= */
   padding: 0px 5px;
-  height: 440px;
   overflow-y: auto;
 }
 .application.sheet.earthdawn4e.actor .window-content .section__name {
@@ -1008,9 +1009,11 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
-  column-gap: var(--grid-col-gap);
+  column-gap: var(--grid-col-gap-sm);
   text-transform: capitalize;
   font-weight: normal;
   line-height: 25px;
@@ -1030,6 +1033,8 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header {
   background-color: var(--color-primary-grey-tr);
   text-transform: uppercase;
@@ -1104,26 +1109,34 @@ h3.label--rail .label__text {
   display: flex;
   gap: 0.1em;
 }
+.application.sheet.earthdawn4e.actor .window-content .tab[data-tab="general"] .layout__row {
+  display: flex;
+  flex-wrap: nowrap;
+}
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
-.application.sheet.earthdawn4e.actor .window-content .recovery__header {
+.application.sheet.earthdawn4e.actor .window-content .recovery__header,
+.application.sheet.earthdawn4e.actor .window-content .initiative__header {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons,
-.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons {
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons,
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons {
   display: flex;
   align-items: center;
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons input[type='checkbox'],
-.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons input[type='checkbox'] {
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons input[type='checkbox'],
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons input[type='checkbox'] {
   margin: 6px 0 0 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons button,
-.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button {
-  background: none;
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button,
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons button {
+  background: unset;
   border: none;
   height: 20px;
   width: 20px;
@@ -1137,11 +1150,18 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .initiative__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container {
+  display: grid;
+  grid-template-columns: minmax(37px, 1fr) minmax(37px, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;
@@ -1187,7 +1207,7 @@ h3.label--rail .label__text {
   transform: scaleX(-1);
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   line-height: 1.2rem;
   padding: 5px 0px;
   margin: 5px 0 0 0;
@@ -1202,7 +1222,7 @@ h3.label--rail .label__text {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: var(--grid-col-gap) 0;
+  padding: var(--grid-col-gap-sm) 0;
   border: var(--border-main);
   border-radius: 4px;
   cursor: pointer;
@@ -1212,7 +1232,7 @@ h3.label--rail .label__text {
   background-color: var(--color-primary);
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   flex-direction: row;
   height: 35px;
   border: none;
@@ -1237,7 +1257,7 @@ h3.label--rail .label__text {
   height: 30px;
 }
 .application.sheet.earthdawn4e.actor .window-content .sheet-tabs.tabs.tabs-navigation {
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   line-height: 1.2rem;
   padding: 5px 0px;
   margin: 5px 0 0 0;
@@ -1257,7 +1277,7 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container {
   display: grid;
   grid-template-columns: minmax(160px, 160px) repeat(5, minmax(100px, 1fr));
-  grid-column-gap: var(--grid-col-gap);
+  grid-column-gap: var(--grid-col-gap-sm);
   margin-left: 4px;
   text-align: center;
   grid-template-areas: 'image actorTop actorTop actorTop actorTop actorTop';
@@ -1288,13 +1308,13 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .top-columns__grid--container {
   display: grid;
   grid-template-columns: minmax(0, 39fr) minmax(0, 59fr);
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   align-items: stretch;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .top-columns__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .top-columns__grid--item {
   display: grid;
-  row-gap: var(--grid-col-gap);
+  row-gap: var(--grid-col-gap-sm);
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .defenses__block,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .defenses__block,
@@ -1307,7 +1327,7 @@ h3.label--rail .label__text {
   display: grid;
   grid-auto-rows: min-content;
   align-content: start;
-  row-gap: var(--grid-col-gap);
+  row-gap: var(--grid-col-gap-sm);
   grid-template-rows: auto 1fr;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__block,
@@ -1338,7 +1358,7 @@ h3.label--rail .label__text {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .health__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__grid--container {
   display: grid;
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   justify-items: center;
   align-items: end;
   text-align: center;
@@ -1469,7 +1489,7 @@ h3.label--rail .label__text {
   display: grid;
   height: 83px;
   grid-template-columns: repeat(3, minmax(70px, 1fr));
-  gap: var(--grid-col-gap);
+  gap: var(--grid-col-gap-sm);
   justify-items: center;
   text-align: center;
 }

@@ -196,6 +196,7 @@
         "healthRating":                            "Health",
         "inactive":                                "Inactive",
         "information":                             "Information",
+        "initiative":                              "Initiative",
         "initiativePenalty":                       "Initiative Penalty",
         "karma":                                   "Karma",
         "languages":                               "Languages",
@@ -239,6 +240,11 @@
         "vocations":                               "Vocations",
         "weapons":                                 "Weapons",
         "weavingDifficulty":                       "TODO: Add translation"
+      },
+      "Initiative": {
+        "penalty":                                 "Penalty",
+        "roll":                                    "Initiative Roll",
+        "step":                                    "Step"
       },
       "Karma": {
         "current":                                 "Current",
@@ -903,8 +909,8 @@
         "NoneCharacter": {
           "FIELDS": {
             "actions": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Some creatures are able to make more than one Standard action per round. A creature with multiple actions is able to attack multiple times, but certain types of attacks (and movement) are limited.",
+              "label":                             "Actions"
             },
             "challenge": {
               "rate": {

@@ -1,34 +1,33 @@
-<section class="tab {{tabs.general.cssClass}}" data-group="sheet" data-tab="general">
+<section class="tab general {{tabs.general.cssClass}}" data-group="sheet" data-tab="general">
+
   <div class="layout__row">
 
     <!-- Left Column -->
     <div class="layout__col--2">
 
       <!-- Attributes -->
-      
       <h2>
         <label>{{localize "ED.Actor.Header.attributes"}}</label>
       </h2>
-        <div class="container__block container__custom">
-          <div class="attribute-card__grid--container container__header">
-            <div class="attribute-card__grid--item"></div>
-            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
-            {{#if (eq this.actor.type "character")}}
-              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
-              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increase"}}</div>
-              {{else}}
-              <div class="attribute-card__grid--item"></div>
-              <div class="attribute-card__grid--item"></div>
-            {{/if}}
-              <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
-          </div>
+      <div class="container__block container__custom">
+        <div class="attribute-card__grid--container container__header">
+          <div class="attribute-card__grid--item"></div>
+          <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
           {{#if (eq this.actor.type "character")}}
-            {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
+            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
+            <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increase"}}</div>
           {{else}}
-            {{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
+            <div class="attribute-card__grid--item"></div>
+            <div class="attribute-card__grid--item"></div>
           {{/if}}
+          <div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
         </div>
-
+        {{#if (eq this.actor.type "character")}}
+          {{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
+        {{else}}
+          {{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
+        {{/if}}
+      </div>
 
       <!-- Karma -->
       <h2 class="karma-devotion__header margin__none one-line__vertical-align">
@@ -37,151 +36,201 @@
         </span>
         <span class="karma-devotion__header-icons">
           <input type="checkbox"
-                name="system.karma.useAlways"
-                {{checked actor.system.karma.useAlways}}
-                title="{{localize "ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint"}}">
+                 name="system.karma.useAlways"
+                 {{checked actor.system.karma.useAlways}}
+                 title="{{localize "ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint"}}">
           {{#if (eq this.actor.type "character")}}
             <a class="karma__ritual">
               <button class="button__Karma-refresh"
                       data-action="karmaRitual"
                       title="Karma-Ritual">
                 <i class="fa-solid fa-person-rays"
-                  title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
+                   title="{{localize "ED.Actor.Tooltips.karmaRitualTooltip"}}"></i>
               </button>
             </a>
           {{/if}}
         </span>
       </h2>
-    <div class="container__block container__custom">
-      <div class="karma-devotion__grid--container container__header">
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.value.label"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.max.label"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.step.label"}}</div>
+      <div class="container__block container__custom">
+        <div class="karma-devotion__grid--container container__header">
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.value.label"}}</div>
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.max.label"}}</div>
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.step.label"}}</div>
+        </div>
+        <div class="karma-devotion__grid--container">
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
+          </div>
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+          </div>
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
+          </div>
+        </div>
       </div>
-      <div class="karma-devotion__grid--container">
-        <div class="karma-devotion__grid--item">
-          <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
-        </div>
-        <div class="karma-devotion__grid--item">
-          <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-        </div>
-        <div class="karma-devotion__grid--item">
-          <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
-        </div>
-      </div>
-    </div>
 
-    <!-- Devotion -->
-    <h2 class="karma-devotion__header one-line__vertical-align margin__none">
-      <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
-    </h2>
-    <div class="container__block container__custom">
-      <div class="karma-devotion__grid--container container__header">
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
-        <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
-    </div>
-    <div class="karma-devotion__grid--container">
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.value"
-              value="{{actor.system.devotion.value}}">
+      <!-- Devotion -->
+      <h2 class="karma-devotion__header one-line__vertical-align margin__none">
+        <span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
+      </h2>
+      <div class="container__block container__custom">
+        <div class="karma-devotion__grid--container container__header">
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
+          <div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
+        </div>
+        <div class="karma-devotion__grid--container">
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered"
+                   name="system.devotion.value"
+                   value="{{actor.system.devotion.value}}">
+          </div>
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered"
+                   name="system.devotion.max"
+                   value="{{actor.system.devotion.max}}"
+                   {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+          </div>
+          <div class="karma-devotion__grid--item">
+            <input class="input__square-input--centered"
+                   name="system.devotion.step"
+                   value="{{actor.system.devotion.step}}">
+          </div>
+        </div>
       </div>
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.max"
-              value="{{actor.system.devotion.max}}"
-              {{#if (eq this.actor.type "character")}}readonly{{/if}}>
-      </div>
-      <div class="karma-devotion__grid--item">
-        <input class="input__square-input--centered"
-              name="system.devotion.step"
-              value="{{actor.system.devotion.step}}">
-      </div>
-    </div>
-    </div>
-  
-    <h2 class="recovery__header margin__none one-line__vertical-align">
-      <span class="recovery__header-label">
-        {{localize "ED.Actor.Header.recovery"}}
-      </span>
-      <span class="recovery__header-icons">
+
+      <!-- Recovery -->
+      <h2 class="recovery__header margin__none one-line__vertical-align">
+        <span class="recovery__header-label">
+          {{localize "ED.Actor.Header.recovery"}}
+        </span>
+        <span class="recovery__header-icons">
           <a class="button__recovery-test">
             <button class="button__recovery-rest"
                     data-action="recovery"
                     title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}">
               <i class="fa-solid fa-bed"
-                title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
+                 title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
             </button>
           </a>
-      </span>
-    </h2>
-    <div class="container__block container__custom">
-      <div class="recovery__grid--container container__header">
-        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
-        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
-        <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
-    </div>
-    <div class="recovery__grid--container">
-      {{#if (eq this.actor.type "character")}}
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.value"
-              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+        </span>
+      </h2>
+      <div class="container__block container__custom">
+        <div class="recovery__grid--container container__header">
+          <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
+          <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
+          <div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
         </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-              value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
+        <div class="recovery__grid--container">
+          {{#if (eq this.actor.type "character")}}
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.characteristics.recoveryTestsResource.value"
+                     value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+            </div>
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
+            </div>
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
+            </div>
+          {{else}}
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.characteristics.recoveryTestsResource.value"
+                     value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+            </div>
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.characteristics.recoveryTestsResource.max"
+                     value="{{actor.system.characteristics.recoveryTestsResource.max}}">
+            </div>
+            <div class="recovery__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.characteristics.recoveryTestsResource.step"
+                     value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+            </div>
+          {{/if}}
         </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-                value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
-        </div>
-      {{else}}
-      <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.value"
-              value="{{actor.system.characteristics.recoveryTestsResource.value}}">
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.max"
-              value="{{actor.system.characteristics.recoveryTestsResource.max}}">
-        </div>
-        <div class="recovery__grid--item">
-          <input class="input__square-input--centered"
-          name="system.characteristics.recoveryTestsResource.step"
-                value="{{actor.system.characteristics.recoveryTestsResource.step}}">
-        </div>
-      {{/if}}
-    </div>
-  </div>
+      </div>
 
-</div>
+      <!-- Initiative -->
+      <h2 class="initiative__header margin__none one-line__vertical-align">
+        <span class="initiative__header-label">{{localize "ED.Actor.Header.initiative"}}</span>
+        <span class="initiative__header-icons">
+          <a class="button__initiative-test">
+            <button class="button__initiative" data-action="initiative" title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}">
+              <i class="fa-solid fa-swords" title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}"></i>
+            </button>
+          </a>
+        </span>
+      </h2>
 
-    <!-- Right Column -->
+      <div class="container__block container__custom">
+        {{#if (eq this.actor.type "character")}}
+          <!-- Header -->
+          <div class="initiative__grid--container container__header">
+            <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
+            <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.penalty"}}</div>
+          </div>
+          <!-- Body -->
+          <div class="initiative__grid--container">
+            <div class="initiative__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.initiative"
+                     value="{{actor.system.initiative}}">
+            </div>
+            <div class="initiative__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.initiativePenalty"
+                     value="{{actor.system.initiativePenalty}}" readonly>
+            </div>
+          </div>
+        {{else}}
+          <!-- Header -->
+          <div class="initiative-npc__grid--container container__header">
+            <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
+            <div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
+          </div>
+          <!-- Body -->
+          <div class="initiative-npc__grid--container">
+            <div class="initiative__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.initiative"
+                     value="{{actor.system.initiative}}">
+            </div>
+            <div class="initiative__grid--item">
+              <input class="input__square-input--centered"
+                     name="system.actions"
+                     value="{{actor.system.actions}}">
+            </div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
     <div class="layout__col--2">
 
-      <!-- Attacks -->
-      {{#if (eq this.actor.type "character")}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
-      {{else if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
+    {{#if (eq this.actor.type "character")}}
+      {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
+    {{else}}
+      {{#if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
         {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
       {{/if}}
+    {{/if}}
 
-    <div class="action--buttons">
+
+      <div class="action--buttons">
         <div class="buttons--left input--centered1">
-            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
-            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-            <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+          <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+          <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
         </div>
-        <div class="buttons--right input--centered1">
-            <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
-            <button class="action-buttons" data-action="halfMagic">{{localize "ED.Actor.Buttons.halfMagic"}}</button>
-            <button class="action-buttons" data-action="recovery">{{localize "ED.Actor.Buttons.recovery"}}</button>
-        </div>
-    </div>
+      </div>
 
     </div>
+
   </div>
 </section>

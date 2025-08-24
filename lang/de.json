@@ -195,6 +195,7 @@
         "healthRating":                            "Gesundheit",
         "inactive":                                "Ausgeschaltet?",
         "information":                             "Informationen",
+        "initiative":                              "TODO: Add translation",
         "initiativePenalty":                       "Initiative Malus",
         "karma":                                   "Karma",
         "languages":                               "Sprachen",
@@ -238,6 +239,11 @@
         "vocations":                               "Berufungen",
         "weapons":                                 "Waffen",
         "weavingDifficulty":                       "Webschwierigkeit"
+      },
+      "Initiative": {
+        "penalty":                                 "TODO: Add translation",
+        "roll":                                    "TODO: Add translation",
+        "step":                                    "TODO: Add translation"
       },
       "Karma": {
         "current":                                 "Aktuell",
