@@ -312,6 +312,7 @@
         "parentTalent":                            "TODO: Add translation",
         "reattuneDifficulty":                      "TODO: Add translation",
         "recoveryRestTooltip":                     "TODO: Add translation",
+        "removeFromFavorites":                     "TODO: Add translation",
         "standardEffect":                          "TODO: Add translation",
         "tail":                                    "TODO: Add translation",
         "twoHanded":                               "TODO: Add translation",
@@ -3058,6 +3059,9 @@
           "hint":                                  "TODO: Add translation",
           "title":                                 "TODO: Add translation"
         }
+      },
+      "DeleteFavorite": {
+        "favorite":                                "TODO: Add translation"
       },
       "Header": {
         "activeUser":                              "TODO: Add translation",
