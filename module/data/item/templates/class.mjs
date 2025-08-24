@@ -20,11 +20,17 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   LpIncreaseTemplate
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Class",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -46,6 +52,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     } );
   }
 
+  // endregion
+
+  // region Properties
+
   /**
    * The tier of the current level. Returns an empty string if no level is found.
    * @type {string}
@@ -53,10 +63,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   get currentTier() {
     return this.advancement?.levels[this.level - 1]?.tier ?? "";
   }
-
-  /* -------------------------------------------- */
-  /*  Legend Building                             */
-  /* -------------------------------------------- */
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -68,14 +74,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return true;
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritDoc */
   get learnable() {
     return true;
   }
-
-  /* -------------------------------------------- */
 
   /** @inheritDoc */
   get requiredLpForIncrease() {
@@ -90,15 +92,19 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     ];
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritDoc */
   get requiredLpToLearn() {
     return 0;
   }
 
-  /* -------------------------------------------- */
+  // endregion
 
+  // region LP Tracking
+
+  /**
+   * Get all ability UUIDs referenced in this class's advancement data.
+   * @returns {string[]} A flat array of all ability UUIDs referenced in this class's advancement data.
+   */
   getAllAbilityUuids() {
     return this.advancement.levels
       .flatMap( level => Array.from( level.abilities.class ) )
@@ -245,13 +251,16 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return this.parent;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }
