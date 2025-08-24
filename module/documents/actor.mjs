@@ -36,6 +36,12 @@ export default class ActorEd extends Actor {
 
   // region Properties
 
+  get classEffects() {
+    return this.effects.filter(
+      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.type )
+    );
+  }
+
   /**
    * How many more improved spell knacks this actor can learn. The maximum is the rank of patterncraft * the number of
    * "Learn Improved Spell" knacks the actor has.
