@@ -56,22 +56,24 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   /**
    * Check whether this effect has the same source as another effect. This is true if either the source UUIDs
-   * are the same, or if both effects have the same name and the same source document type and name.
+   * and the effect names are the same, or if both effects have the same name, source uuid and source document type.
    * @param {object} otherEffect - The other effect to compare against.
    * @returns {Promise<boolean>} True if both effects have the same source, false otherwise.
    */
   async hasSameSourceAs( otherEffect ) {
-    const thisDocumentOrigin = await fromUuid( this.system?.source?.documentOriginUuid );
-    const otherDocumentOrigin = await fromUuid( otherEffect.system?.source?.documentOriginUuid );
-    const thisSourceUuid = this.system.source?.documentOriginUuid;
-    const otherSourceUuid = otherEffect.system?.source?.documentOriginUuid;
+    const thisSource = this.system?.source;
+    const otherSource = otherEffect.system?.source;
 
-    const sameSourceUuid = thisSourceUuid && otherSourceUuid && thisSourceUuid === otherSourceUuid;
-    const sameNameAndType = this.name === otherEffect.name
-      && thisDocumentOrigin?.name === otherDocumentOrigin?.name
-      && this.system.source?.documentOriginType === otherEffect.system?.source?.documentOriginType;
+    const thisDocumentOrigin = await fromUuid( thisSource?.documentOriginUuid );
+    const otherDocumentOrigin = await fromUuid( otherSource?.documentOriginUuid );
 
-    return sameSourceUuid || sameNameAndType;
+    const sameEffectName = this.name === otherEffect.name;
+    const sameSourceUuid = thisSource?.documentOriginUuid === otherSource?.documentOriginUuid;
+    const sameSourceName = thisDocumentOrigin?.name === otherDocumentOrigin?.name;
+    const sameSourceType = thisSource?.documentOriginType === otherSource?.documentOriginType;
+
+
+    return ( sameEffectName && sameSourceUuid ) || ( sameEffectName && sameSourceName && sameSourceType );
   }
 
   // endregion
