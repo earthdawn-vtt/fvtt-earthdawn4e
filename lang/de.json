@@ -312,6 +312,7 @@
         "parentTalent":                            "Rang des Talents",
         "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
+        "removeFromFavorites":                     "Aus Favoriten entfernen",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
         "twoHanded":                               "Zweihändig",
@@ -960,20 +961,20 @@
                   "label":                         "Schaden",
                   "standard": {
                     "hint":                        "Standard Schaden des Akteurs",
-                    "label":                       "Standard Schaden"
+                    "label":                       "Tödlich"
                   },
                   "stun": {
                     "hint":                        "Betäubungsschaden des Akteurs",
-                    "label":                       "Betäubungsschaden"
+                    "label":                       "Betäubung"
                   },
                   "total": {
                     "hint":                        "Gesamtschaden des Akteurs",
-                    "label":                       "Gesamtschaden"
+                    "label":                       "Gesamt"
                   }
                 },
                 "death": {
                   "hint":                          "Todesrate des Akteurs",
-                  "label":                         "Todesschwelle"
+                  "label":                         "Tod"
                 },
                 "maxWounds": {
                   "hint":                          "Maximale Wunden des Akteurs",
@@ -3058,6 +3059,9 @@
           "hint":                                  "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)",
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
+      },
+      "DeleteFavorite": {
+        "favorite":                                "Favorit"
       },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
