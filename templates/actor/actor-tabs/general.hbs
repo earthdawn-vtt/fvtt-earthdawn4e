@@ -180,12 +180,13 @@
           <div class="initiative__grid--container">
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
-                     name="system.characteristics.recoveryTestsResource.value"
-                     value="{{actor.system.characteristics.recoveryTestsResource.value}}">
+                     name="system.initiative"
+                     value="{{actor.system.initiative}}">
             </div>
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
-                     value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
+                     name="system.initiativePenalty"
+                     value="{{actor.system.initiativePenalty}}" readonly>
             </div>
           </div>
         {{else}}
@@ -199,7 +200,7 @@
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
                      name="system.initiative"
-                     value="{{system.initiative}}">
+                     value="{{actor.system.initiative}}">
             </div>
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
