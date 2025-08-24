@@ -207,9 +207,69 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _addPermanentEffects( nextLevelData ) {
-    const effects = Array.from( nextLevelData.effects );
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effects );
-    // TODO: activate permanent effects immediately
+    const newEffects = /** @type {EarthdawnActiveEffect[]} */ Array.from( nextLevelData.effects );
+
+    const mappedExisting = this.containingActor.classEffects.reduce(
+      ( mappedEffects, effect ) => {
+        if ( effect.changes.length !== 1 ) {
+          throw new Error( "ClassTemplate._addPermanentEffects: existing class effect has more than one change" );
+        }
+        const currentKey = effect.changes[0].key;
+        const currentValue = effect.changes[0].value;
+
+        if ( mappedEffects[currentKey] ) {
+          mappedEffects[currentKey].effects.push( effect );
+          mappedEffects[currentKey].value += currentValue;
+        } else {
+          mappedEffects[currentKey] = {
+            effects: [ effect ],
+            value:   currentValue,
+          };
+        }
+
+        return mappedEffects;
+      },
+      {}
+    ) ;
+
+    const effectsToAdd = [];
+    const effectsToRemove = [];
+
+    newEffects.forEach( newEffect => {
+      if ( newEffect.changes.length !== 1 ) {
+        throw new Error( "ClassTemplate._addPermanentEffects: new class effect has more than one change" );
+      }
+      const newKey = newEffect.changes[0].key;
+      const newValue = newEffect.changes[0].value;
+
+      if ( mappedExisting[newKey] ) {
+        if ( mappedExisting[newKey].value < newValue ) {
+          effectsToRemove.push( ...mappedExisting[newKey].effects );
+          effectsToAdd.push( newEffect );
+        }
+      } else {
+        effectsToAdd.push( newEffect );
+      }
+    } );
+
+    for ( const effect of effectsToAdd ) {
+      await effect.update( {
+        disabled: false,
+        system:   {
+          duration: {
+            type: "permanent",
+          },
+          transferToTarget: false,
+          source:           {
+            documentOriginUuid: this.parent.uuid,
+            documentOriginType: this.parent.type,
+          },
+        },
+      } );
+    }
+
+    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effectsToAdd );
+    await this.containingActor.deleteEmbeddedDocuments( "ActiveEffect", effectsToRemove.map( e => e.id ) );
   }
 
   async _addFreeAbilities( nextLevelData, systemSourceData ) {
