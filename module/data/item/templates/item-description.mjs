@@ -49,7 +49,7 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
 
     if ( !data.system?.hasOwnProperty( "edid" ) ) {
       this.parent.updateSource(
-        { "system.edid": data.name.slugify( {
+        { "system.edid": `item - ${ this.type } - ${ data.name }`.slugify( {
           strict:    true,
           lowercase: true,
         } )
