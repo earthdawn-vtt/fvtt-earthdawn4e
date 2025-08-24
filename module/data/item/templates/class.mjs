@@ -209,9 +209,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async _addPermanentEffects( nextLevelData ) {
     const newEffects = Array.from( nextLevelData.effects );
 
-    const existingEffectsByKey = this._mapExistingEffects();
+    const existingEffectsByKey = await this._mapExistingEffects();
 
-    const { effectsToAdd, effectsToRemove } = this._determineEffectChanges( newEffects, existingEffectsByKey );
+    const { effectsToAdd, effectsToRemove } = await this._determineEffectChanges( newEffects, existingEffectsByKey );
 
     await this._updateEffectsForPermanentUse( effectsToAdd );
 
@@ -222,11 +222,13 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   /**
    * Map existing effects to an object for later comparison with new effects.
    * The format of the returned object depends on which class implements this method.
-   * @returns {{}} An object containing existing effects.
+   * @returns {Promise<{}>} An object containing existing effects.
    * @protected
    */
-  _mapExistingEffects() {
-    return this.containingActor.classEffects.reduce( ( mapped, effect ) => {
+  async _mapExistingEffects() {
+    const mapped = {};
+
+    for ( const effect of this.containingActor.classEffects ) {
       this._validateSingleChange( effect, "existing" );
 
       const key = effect.changes[0].key;
@@ -238,9 +240,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       } else {
         mapped[key] = { effects: [ effect ], value };
       }
+    }
 
-      return mapped;
-    }, {} );
+    return mapped;
   }
 
   /**
@@ -249,11 +251,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to consider adding.
    * @param {object} existingEffects An object containing existing effects. The format depends on which class
    * implements this method.
-   * @returns {{effectsToAdd: EarthdawnActiveEffect[], effectsToRemove: string[]}} The effects to add and the IDs of
+   * @returns {Promise<{effectsToAdd: EarthdawnActiveEffect[], effectsToRemove: string[]}>} The effects to add and the IDs of
    * the effects to remove.
    * @protected
    */
-  _determineEffectChanges( newEffects, existingEffects ) {
+  async _determineEffectChanges( newEffects, existingEffects ) {
     const effectsToAdd = [];
     const effectsToRemove = [];
 
