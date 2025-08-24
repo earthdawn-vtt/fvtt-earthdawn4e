@@ -164,7 +164,11 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
-        "abilities":                               "Fähigkeiten",
+        "Favorites": {
+          "brokenReference":                       "Defekter Favorit",
+          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
+        },
+        "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "Dieser Favorit verweist auf ein Makro, das nicht mehr existiert. Sie können diesen Favoriten löschen.",
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
         "damageSubdual":                           "TODO: Add translation",
