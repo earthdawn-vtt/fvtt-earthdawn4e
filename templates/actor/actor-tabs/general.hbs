@@ -228,7 +228,14 @@
 
       {{#each favoriteItems as |favorite|}}
         <div class="container__block container__custom">
-          <button class="action-buttons" data-action="executeFavoriteMacro" data-macro-uuid="{{favorite.uuid}}">{{favorite.name}}</button>
+          <div class="favorite-item-row">
+            <button class="action-buttons favorite-execute-btn" data-action="executeFavoriteMacro" data-macro-uuid="{{favorite.uuid}}">{{favorite.name}}</button>
+            {{#if @root.editable}}
+              <a class="item-control item-delete favorite-delete-btn" data-action="deleteFavorite" data-macro-uuid="{{favorite.uuid}}" title="{{localize "ED.Actor.Tooltips.removeFromFavorites"}}">
+                <i class="fas fa-trash"></i>
+              </a>
+            {{/if}}
+          </div>
         </div>
       {{/each}}
 
