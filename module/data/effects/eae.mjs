@@ -50,8 +50,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     } );
   }
 
-
-  //  region CRUD
+  //  region Life Cycle Events
 
   /** @inheritDoc */
   async _preUpdate( changes, options, user ) {
@@ -60,7 +59,16 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( changes.system?.changes && !changes.changes ) {
       changes.changes = await this._prepareChangesData( changes.system.changes );
     }
-    if ( changes.system?.source?.documentOriginUuid ) {
+    if ( !this.source && this.parent?.actor ) {
+      const containingActor = await fromUuid( this.parent.actor.uuid );
+
+      changes.system = changes.system ?? {};
+      changes.system.source = {
+        documentOriginUuid:  containingActor.uuid,
+        documentOriginType:  containingActor.type,
+      };
+    }
+    if ( changes.system?.source?.documentOriginUuid && !changes.system.source.documentOriginType ) {
       changes.system.source.documentOriginType = (
         await fromUuid( changes.system.source.documentOriginUuid )
       )?.type;
@@ -103,7 +111,6 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   }
 
   // endregion
-
 
   // region Properties
 
