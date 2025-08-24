@@ -91,15 +91,23 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
 
-    const favoriteItems = await Promise.all(
-      this.document.system.favorites.map( ( uuid ) => fromUuid( uuid ) )
+    const favoriteResults = await Promise.all(
+      this.document.system.favorites.map( async ( uuid ) => {
+        const macro = await fromUuid( uuid );
+        return {
+          uuid:    uuid,
+          name:    macro?.name || game.i18n.localize( "ED.Actor.Header.Favorites.brokenReference" ),
+          isValid: !!macro,
+          macro:   macro
+        };
+      } )
     );
 
     foundry.utils.mergeObject( context, {
       actor:                  this.document,
       items:                  this.document.items,
       icons:                  ED4E.icons,
-      favoriteItems:          favoriteItems,
+      favoriteItems:          favoriteResults,
     } );
 
     return context;
@@ -133,6 +141,10 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
   static async _executeFavoriteMacro( event, target ) {
     const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
+    if ( !macro ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Actor.Header.Favorites.macroNotFound" ) );
+      return;
+    }
     macro.execute();
   }
 
