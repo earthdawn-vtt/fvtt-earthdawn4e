@@ -54,6 +54,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   // region Checkers
 
+  hasSameChangesKeys( otherEffect ) {
+    if ( this.changes.length !== otherEffect.changes.length ) return false;
+
+    const thisKeys = this.changes.map( c => c.key ).sort();
+    const otherKeys = otherEffect.changes.map( c => c.key ).sort();
+    return thisKeys.every( ( key, index ) => key === otherKeys[index] );
+  }
+
   /**
    * Check whether this effect has the same source as another effect. This is true if either the source UUIDs
    * and the effect names are the same, or if both effects have the same name, source uuid and source document type.
