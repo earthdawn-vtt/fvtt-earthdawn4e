@@ -164,6 +164,10 @@
         "allTests":                                "All Tests"
       },
       "Header": {
+        "Favorites": {
+          "brokenReference":                       "TODO: Add translation",
+          "macroNotFound":                         "TODO: Add translation"
+        },
         "abilities":                               "Abilities",
         "action":                                  "Action",
         "active":                                  "Active",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "TODO: Add translation",
         "carried":                                 "Carried",
         "damagePhysical":                          "Physical",
         "damageSubdual":                           "Stun",
