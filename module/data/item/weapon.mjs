@@ -375,4 +375,11 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         return undefined;
     }
   }
+
+  /** @inheritDoc */
+  getDefaultMacroCommand( options = {} ) {
+    console.log( "ShieldData.getDefaultMacroCommand called for:", this.parent.name );
+    // Shield items should use actor.rollEquipment() instead of item.system.roll()
+    return `const item = await fromUuid("${this.parent.uuid}");\nif (item?.isOwned) {\n  await item.actor.rollEquipment(item);\n} else {\n  ui.notifications.warn("Equipment must be owned by an actor to be rolled.");\n}`;
+  }
 }

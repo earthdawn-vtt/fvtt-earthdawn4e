@@ -1,5 +1,5 @@
-<div class="card__equipment">
-    <div class="equipment-card__grid--container item-id" data-item-id="{{_id}}">
+<div class="card__equipment {{#if (eq this.system.usableItem.isUsableItem true)}}favoritable{{/if}}" data-uuid="{{uuid}}">
+    <div class="equipment-card__grid--container" data-item-id="{{_id}}">
         {{#if (eq this.system.usableItem.isUsableItem true)}}
         <div class="equipment-card__grid--item icons__dice">
             <img class="equipment-icon" src="{{img}}" alt="{{name}}">
