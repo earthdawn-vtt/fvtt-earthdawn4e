@@ -307,7 +307,7 @@
         "mainHand":                                "Main Hand",
         "offHand":                                 "Off Hand",
         "owned":                                   "Owned",
-        "parentTalent":                            "🔎Talent Rank",
+        "parentTalent":                            "Talent Rank",
         "reattuneDifficulty":                      "Reattune Difficulty ",
         "recoveryRestTooltip":                     "Rest",
         "standardEffect":                          "Standard Effect",
@@ -3218,7 +3218,7 @@
       "CreateData": {
         "nameQuestorDevotion":                     "Questor Devotion",
         "nameReadWriteLanguage":                   "Read/Write Language",
-        "nameSpeakLanguage":                       "TODO: Spoken Language"
+        "nameSpeakLanguage":                       "Spoken Language"
       },
       "Discipline": {
         "addLevel":                                "Add Circle",
@@ -3227,7 +3227,7 @@
       },
       "Grimoire": {
         "noSpells":                                "No spells in this Grimoire. Drag spells here to add them.",
-        "otherGrimoire":                           "TODO: Not the Own Grimoire",
+        "otherGrimoire":                           "Not your own Grimoire",
         "ownGrimoire":                             "Own Grimoire"
       },
       "Header": {
@@ -3614,10 +3614,10 @@
   },
   "EFFECT": {
     "TABS": {
-      "changes":                                   "🔎Changes",
+      "changes":                                   "Changes",
       "details":                                   "Details",
       "duration":                                  "Duration",
-      "execution":                                 "🔎Execution"
+      "execution":                                 "Execution"
     }
   },
   "SETTINGS": {
