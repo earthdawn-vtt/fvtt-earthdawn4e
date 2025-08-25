@@ -476,7 +476,8 @@
         "spell":                                   "Spell",
         "suffocation":                             "Suffocation",
         "unarmed":                                 "Unarmed",
-        "warping":                                 "Warping"
+        "warping":                                 "Warping",
+        "weapon":                                  "Weapon"
       },
       "Defenses": {
         "highestOfGroup":                          "Highest of Group",
@@ -3325,6 +3326,7 @@
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
+        "damageStepRequiresAttackOrDamage":        "Power test type set to 'Attack'.\nIf a power has a damage step, the test type must be set to 'Attack' or 'Damage'.",
         "noDamageNoRecoveryNeeded":                "You are unharmed. No recovery test needed.",
         "noFullRestRecoveryNeeded":                "You are fine. No wounds or damage. No recovery test needed after rest.",
         "noWeaponAvailable":                       "No weapon available to equip.",
@@ -3348,6 +3350,7 @@
         "invalidRecoveryMode":                     "Invalid recovery mode. Please check settings.",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
+        "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
         "noActiveSpellSelected":                   "The matrix has no active spell selected.",
         "noLp":                                    "No Legend Points specified!",
         "noMoreClassLevelsToIncrease":             "No more circles or levels available to increase.",
@@ -3372,6 +3375,7 @@
         "effectTestRoll":                          "Effect Test"
       },
       "Modifiers": {
+        "bonusDamageFromExtraSuccesses":           "Bonus Damage from Extra Successes",
         "grimoirePenalty":                         "Foreign Grimoire",
         "manual":                                  "Manual Adjustment",
         "stunRecoveryWillpower":                   "Willpower"
