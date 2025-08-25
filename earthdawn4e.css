@@ -75,6 +75,8 @@
   --grid-col-gap-sm: 0.3rem;
   --grid-col-gap-lg: 0.75rem;
   --size-scrollbar-width: 1rem;
+  --size-rail-thickness: 2px;
+  --size-rail-fade: 24px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
@@ -107,8 +109,6 @@
   --border-main: 2px solid var(--color-gold-3);
   --border-button: 1px solid var(--color-gold-2);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
-  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center / auto repeat;
-  --focus-ring: 0 0 0 2px rgba(255, 255, 255, 0.8), 0 0 0 4px rgba(109, 79, 26, 0.9);
 }
 :root .application.sheet.earthdawn4e.actor.character,
 :root .theme-dark.application.sheet.earthdawn4e.actor.character {
@@ -121,8 +121,7 @@
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center / auto repeat;
 }
-:root .application.sheet.earthdawn4e.actor .theme-light.application.sheet.earthdawn4e.actor,
-:root .theme-dark.application.sheet.earthdawn4e.actor .theme-light.application.sheet.earthdawn4e.actor {
+:root .theme-light.application.sheet.earthdawn4e.actor {
   --color-primary: #ffffff;
   --color-primary-tr: rgba(255, 255, 255, 0.35);
   --color-secondary: #2e3680;
@@ -388,20 +387,33 @@ slide-toggle[checked] .slide-toggle-thumb {
 }
 h3.label--rail {
   position: relative;
-}
-h3.label--rail::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 2px;
-  background: var(--color-gold-3);
-  transform: translateY(-80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 h3.label--rail .label__text {
   position: relative;
-  background: transparent;
+  z-index: 1;
+  padding: 0 var(--size-rail-gap);
+}
+h3.label--rail .label__text::before,
+h3.label--rail .label__text::after {
+  content: "";
+  position: absolute;
+  top: 6.5px;
+  height: var(--size-rail-thickness);
+  width: 100vmax;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+h3.label--rail .label__text::before {
+  right: 100%;
+  background: linear-gradient(to left, transparent 0, var(--color-gold-3) var(--size-rail-fade), var(--color-gold-3) 100%);
+}
+h3.label--rail .label__text::after {
+  left: 100%;
+  background: linear-gradient(to right, transparent 0, var(--color-gold-3) var(--size-rail-fade), var(--color-gold-3) 100%);
 }
 .itemControlGroup,
 .icon__position--right {
@@ -1247,8 +1259,8 @@ h3.label--rail .label__text {
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
-  background-color: var(--color-tertiary);
-  border-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
   color: var(--color-text-inverse);
 }
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container {
