@@ -253,16 +253,42 @@
 
 h3.label--rail {
   position: relative;
-}
-h3.label--rail::before {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; top: 50%;
-  height: 2px;
-  background: var(--color-gold-3);
-  transform: translateY(-80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
 }
 h3.label--rail .label__text {
   position: relative;
-  background: transparent;
+  z-index: 1;
+  padding: 0 var(--size-rail-gap);
+}
+h3.label--rail .label__text::before,
+h3.label--rail .label__text::after {
+  content: "";
+  position: absolute;
+  top: 6.5px;
+  height: var(--size-rail-thickness);
+  width: 100vmax;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+h3.label--rail .label__text::before {
+  right: 100%;
+  background: linear-gradient(
+    to left,
+    transparent 0,
+    var(--color-gold-3) var(--size-rail-fade),
+    var(--color-gold-3) 100%
+  );
+}
+h3.label--rail .label__text::after {
+  left: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    var(--color-gold-3) var(--size-rail-fade),
+    var(--color-gold-3) 100%
+  );
 }
