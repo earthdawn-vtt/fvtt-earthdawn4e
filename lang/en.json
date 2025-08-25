@@ -466,6 +466,18 @@
         "namegiver":                               "Namegiver",
         "relation":                                "Relation"
       },
+      "DamageSourceConfig": {
+        "arbitrary":                               "Arbitrary",
+        "drowning":                                "Drowning",
+        "falling":                                 "Falling",
+        "fire":                                    "Fire",
+        "poison":                                  "Poison",
+        "power":                                   "Power",
+        "spell":                                   "Spell",
+        "suffocation":                             "Suffocation",
+        "unarmed":                                 "Unarmed",
+        "warping":                                 "Warping"
+      },
       "Defenses": {
         "highestOfGroup":                          "Highest of Group",
         "highestX":                                "Highest of Group + Targets",
