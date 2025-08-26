@@ -1189,18 +1189,6 @@
               }
             }
           }
-        },
-        "Spirit": {
-          "FIELDS": {
-          }
-        },
-        "Trap": {
-          "FIELDS": {
-          }
-        },
-        "Vehicle": {
-          "FIELDS": {
-          }
         }
       },
       "Fields": {
@@ -1678,14 +1666,6 @@
             }
           }
         },
-        "Learnable": {
-          "FIELDS": {
-          }
-        },
-        "LpIncrease": {
-          "FIELDS": {
-          }
-        },
         "Maneuver": {
           "FIELDS": {
             "extraSuccesses": {
@@ -2006,9 +1986,21 @@
         },
         "Power": {
           "FIELDS": {
-            "armorType": {
-              "hint":                              "Armor type effective against this power",
-              "label":                             "Armor Type"
+            "damage": {
+              "armorType": {
+                "hint":                            "Armor type effective against this power",
+                "label":                           "Armor Type"
+              },
+              "hint":                              "Configuration of the damage caused by this power",
+              "ignoreArmor": {
+                "hint":                            "Does the damage of this power ignore armor?",
+                "label":                           "Ignore Armor"
+              },
+              "label":                             "Damage Configuration",
+              "type": {
+                "hint":                            "The type of damage this power causes",
+                "label":                           "Damage Type"
+              }
             },
             "damageStep": {
               "hint":                              "Damage step of the power",
@@ -2017,7 +2009,7 @@
             "damageType": {
               "hint":                              "Damage type of the power",
               "label":                             "Damage Type"
-            },
+            },            
             "element": {
               "subType": {
                 "hint":                            "Elemental subtype of the power",
@@ -2135,11 +2127,19 @@
             "effect": {
               "details": {
                 "damage": {
-                  "hint":                          "Details of the damage step",
+                  "armorType": {
+                    "hint":                        "Armor type that protects against the spell's damage",
+                    "label":                       "Armor Type"
+                  },
+                  "damageType": {
+                    "hint":                        "Type of damage caused by the spell",
+                    "label":                       "Damage Type"
+                  },
+                  "hint":                          "Details about the damage step",
                   "label":                         "Damage Details",
                   "stepModifier": {
-                    "hint":                        "Modifier applied to the step",
-                    "label":                       "Damage Step Modifier"
+                    "hint":                        "Modifier added to the Willpower step",
+                    "label":                       "Damage Step Modifier (WIL)"
                   }
                 },
                 "effect": {
