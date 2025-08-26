@@ -163,7 +163,18 @@ export async function getAllDocuments(
     } ),
   ).then( p => p.flat() );
 
-  const allDocuments = [ ...documents, ...indices ].filter( predicate );
+  // ensure, that all indices are actual documents
+  const hydratedIndices = await Promise.all(
+    indices.map( async index => {
+    // Find the pack this index came from
+      const pack = packs.find( p => p.index.has( index._id ) );
+      if ( !pack ) return undefined;
+      const uuid = `Compendium.${pack.collection}.${index._id}`;
+      return fromUuid( uuid );
+    } )
+  );
+
+  const allDocuments = [ ...documents, ...hydratedIndices ].filter( predicate );
 
   return asUuid
     ? allDocuments.map( doc => doc.uuid )
