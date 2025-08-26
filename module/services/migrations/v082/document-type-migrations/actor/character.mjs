@@ -67,8 +67,16 @@ export default class CharacterMigration extends BaseMigration {
       // Only migrate if we have old data and the new format doesn't already exist
       if ( oldValue !== undefined && !source.system.attributes[newName]?.hasOwnProperty( "initialValue" ) ) {
         source.system.attributes[newName] ??= {};
-        source.system.attributes[newName].initialValue = oldValue;
-        source.system.attributes[newName].timesIncreased = oldPromotions ?? 0;
+        if ( typeof oldValue === "object" && oldValue.hasOwnProperty( "initialValue" ) ) {
+          source.system.attributes[newName].initialValue = oldValue.initialValue;
+        } else {
+          source.system.attributes[newName].initialValue = oldValue;
+        }
+        if ( typeof oldPromotions === "object" && oldPromotions.hasOwnProperty( "timesIncreased" ) ) {
+          source.system.attributes[newName].timesIncreased = oldPromotions.timesIncreased;
+        } else {
+          source.system.attributes[newName].timesIncreased = oldPromotions ?? 0;
+        }
       }
     }
   }
