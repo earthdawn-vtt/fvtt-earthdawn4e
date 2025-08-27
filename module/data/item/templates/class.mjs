@@ -207,7 +207,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _addPermanentEffects( nextLevelData ) {
-    const newEffects = Array.from( nextLevelData.effects );
+    const newEffects = await Promise.all(
+      Array.from( nextLevelData.effects ).map(
+        async uuid => fromUuidSync( uuid ),
+      )
+    );
 
     const existingEffectsByKey = await this._mapExistingEffects();
 
