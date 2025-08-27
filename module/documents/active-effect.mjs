@@ -1,3 +1,5 @@
+import ClassTemplate from "../data/item/templates/class.mjs";
+
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
@@ -111,6 +113,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
       return false;
     }
+
+    this._configureCreateData( data, options, user );
+  }
+
+  async _preUpdate( changes, options, user ) {
+    if ( super._preUpdate( changes, options, user ) === false ) return false;
+
+    this._configureUpdateData( changes, options, user );
   }
 
   /** @inheritdoc */
@@ -119,6 +129,38 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     if ( options.statusLevelDifference ) {
       // When a status condition has its level changed, display scrolling status text.
       this._displayScrollingStatus( options.statusLevelDifference > 0 );
+    }
+  }
+
+  /**
+   * Configure data when creating an Active Effect.
+   * @param {object} data The initial data object provided to the document creation request.
+   * @param {object} options Additional options which modify the creation request.
+   * @param {BaseUser} user The user requesting the document creation.
+   * @returns {Promise<void>}
+   */
+  async _configureCreateData( data, options, user ) {
+    if ( this.parent.system instanceof ClassTemplate ) {
+      // until Active Effects are their own document, the effects for advancement need to be stored on the class
+      // itself. since it modifies actor stats, the "apply to actor" has to be true. in order for the effects not
+      // to be applied twice, the effects need to be disabled on the class
+      this.updateSource( {
+        disabled: true,
+      } );
+    }
+  }
+
+  /**
+   * Configure data when updating an Active Effect.
+   * @param {object} changes The candidate changes to the document.
+   * @param {object} options Additional options which modify the update request.
+   * @param {BaseUser} user The user requesting the document update.
+   * @returns {Promise<void>}
+   */
+  async _configureUpdateData( changes, options, user ) {
+    if ( this.parent.system instanceof ClassTemplate ) {
+      // see _configureCreateData
+      changes.disabled = true;
     }
   }
 
