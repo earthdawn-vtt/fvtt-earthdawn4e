@@ -1,6 +1,7 @@
 import { getEdIds } from "../../settings.mjs";
 import FormulaField from "../../data/fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import ClassTemplate from "../../data/item/templates/class.mjs";
 
 const { ActiveEffectConfig } = foundry.applications.sheets;
 
@@ -131,6 +132,8 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     // filter out submit button
     context.buttons = context.buttons.filter( b => b.type !== "submit" );
 
+    context.tooltips = {};
+
     return context;
   }
 
@@ -148,6 +151,8 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
           context.hasLevels = effectLevels > 0;
           if ( context.hasLevels ) context.levelInput = this.document.system.levelsToFormGroup();
         }
+        context.disabledReadOnly = this.document.parent?.system instanceof ClassTemplate;
+        context.tooltips.disabled = game.i18n.localize( "ED.ToolTips.activeEffectCantBeEnabledOnClassItems" );
         break;
       case "duration":
         break;
