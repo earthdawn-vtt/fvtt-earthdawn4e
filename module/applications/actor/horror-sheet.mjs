@@ -28,7 +28,7 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 885,
+      height: 890,
     }
   };
 

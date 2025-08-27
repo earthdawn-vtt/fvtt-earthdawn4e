@@ -29,7 +29,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 885,
+      height: 890,
     }
   };
 
