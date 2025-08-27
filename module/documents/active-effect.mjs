@@ -1,5 +1,3 @@
-import ActorEd from "./actor.mjs";
-
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
@@ -84,6 +82,23 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return ( sameEffectName && sameSourceUuid ) || ( sameEffectName && sameSourceName && sameSourceType );
   }
 
+  async _shouldPreventCreation( data ) {
+    let sameSource = false;
+    for ( const effect of this.parent.effects ) {
+      if ( await this.hasSameSourceAs( effect ) ) {
+        sameSource = true;
+        break;
+      }
+    }
+
+    // class effects are handled in the class data classes
+    const isClassEffect = [ "discipline", "questor", "path", ].includes(
+      data.system?.source?.documentOriginType
+    );
+
+    return sameSource && !isClassEffect;
+  }
+
   // endregion
 
   // region Life Cycle Events
@@ -92,11 +107,9 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   async _preCreate( data, options, user ) {
     if ( super._preCreate( data, options, user ) === false ) return false;
 
-    if ( this.parent instanceof ActorEd ) {
-      if ( this.parent.effects.some( effect => this.hasSameSourceAs( effect ) ) ) {
-        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
-        return false;
-      }
+    if ( await this._shouldPreventCreation( data ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
+      return false;
     }
   }
 
