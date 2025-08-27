@@ -25,7 +25,7 @@ export default class ActorSheetEdCreature extends ActorSheetEdSentient {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 880,
+      height: 885,
     }
   };
 

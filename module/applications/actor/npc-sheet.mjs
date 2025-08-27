@@ -24,7 +24,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 880,
+      height: 885,
     }
   };
 
