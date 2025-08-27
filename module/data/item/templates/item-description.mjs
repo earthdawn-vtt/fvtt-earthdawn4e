@@ -1,5 +1,6 @@
 import EdIdField from "../../fields/edid-field.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import { SYSTEM } from "../../../config/_module.mjs";
 
 /**
  * Data model template with item description
@@ -47,9 +48,10 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
   _preCreate( data, options, user ) {
     if ( super._preCreate( data, options, user ) === false ) return false;
 
-    if ( !data.system?.hasOwnProperty( "edid" ) ) {
+    if ( !data.system?.hasOwnProperty( "edid" )
+      || data.system.edid === SYSTEM.reservedEdid.DEFAULT ) {
       this.parent.updateSource(
-        { "system.edid": `item - ${ this.type } - ${ data.name }`.slugify( {
+        { "system.edid": `item - ${ data.type } - ${ data.name }`.slugify( {
           strict:    true,
           lowercase: true,
         } )
