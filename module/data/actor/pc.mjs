@@ -685,7 +685,8 @@ export default class PcData extends NamegiverTemplate {
     const penaltyEquipment = this.parent.items.filter( item =>
       [ "armor", "shield" ].includes( item.type ) && item.system.equipped
     );
-    this.initiative -= sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
+    this.initiativePenalty = sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
+    this.initiative -= this.initiativePenalty;
   }
 
   /**

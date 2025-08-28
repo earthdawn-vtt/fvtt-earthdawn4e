@@ -164,7 +164,7 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
-        "abilities":                               "TODO: Add translation",
+        "abilities":                               "Fähigkeiten",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
@@ -195,7 +195,7 @@
         "healthRating":                            "Gesundheit",
         "inactive":                                "Ausgeschaltet?",
         "information":                             "Informationen",
-        "initiative":                              "TODO: Add translation",
+        "initiative":                              "Initiative",
         "initiativePenalty":                       "Initiative Malus",
         "karma":                                   "Karma",
         "languages":                               "Sprachen",
@@ -241,9 +241,9 @@
         "weavingDifficulty":                       "Webschwierigkeit"
       },
       "Initiative": {
-        "penalty":                                 "TODO: Add translation",
-        "roll":                                    "TODO: Add translation",
-        "step":                                    "TODO: Add translation"
+        "penalty":                                 "Malus",
+        "roll":                                    "Initiativewurf",
+        "step":                                    "Stufe"
       },
       "Karma": {
         "current":                                 "Aktuell",
