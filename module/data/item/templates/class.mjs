@@ -263,7 +263,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const effectsToAdd = [];
     const effectsToRemove = [];
 
-    newEffects.forEach( newEffect => {
+    for ( const newEffect of newEffects ) {
       this._validateSingleChange( newEffect, "new" );
 
       const key = newEffect.changes[0].key;
@@ -278,7 +278,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       } else {
         effectsToAdd.push( newEffect );
       }
-    } );
+    }
 
     return { effectsToAdd, effectsToRemove };
   }
