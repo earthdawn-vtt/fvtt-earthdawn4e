@@ -36,9 +36,13 @@ export default class ActorEd extends Actor {
 
   // region Properties
 
+  /**
+   * The class effects, permanent changes from disciplines, questors or paths, if any.
+   * @type {EarthdawnActiveEffect[]}
+   */
   get classEffects() {
     return this.effects.filter(
-      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.type )
+      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.documentOriginType )
     );
   }
 
