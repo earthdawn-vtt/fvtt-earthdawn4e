@@ -217,9 +217,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
     const { effectsToAdd, effectsToRemove } = await this._determineEffectChanges( newEffects, existingEffectsByKey );
 
-    await this._updateEffectsForPermanentUse( effectsToAdd );
+    const newEffectData = await this._getEffectsForPermanentUse( effectsToAdd );
 
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effectsToAdd );
+    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", newEffectData );
     await this.containingActor.deleteEmbeddedDocuments( "ActiveEffect", effectsToRemove.map( e => e.id ) );
   }
 
@@ -297,7 +297,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     }
   }
 
-  async _updateEffectsForPermanentUse( effects ) {
+  /**
+   * Get effects updated to be permanent, enabled, and not transferred to the target.
+   * @param {EarthdawnActiveEffect[]} effects The effects to update.
+   * @returns {Promise<object[]>} The updated effects data.
+   */
+  async _getEffectsForPermanentUse( effects ) {
     const permanentSettings = {
       disabled: false,
       system:   {
@@ -310,9 +315,18 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       },
     };
 
+    const updatedEffects = [];
     for ( const effect of effects ) {
-      await effect.update( permanentSettings );
+      updatedEffects.push(
+        foundry.utils.mergeObject(
+          effect.toObject(),
+          permanentSettings,
+          { inplace: false }
+        )
+      );
     }
+
+    return updatedEffects;
   }
 
   async _addFreeAbilities( nextLevelData, systemSourceData ) {
