@@ -293,6 +293,68 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
+  // region Getters
+
+  /**
+   * Returns the attuned matrix for this spell, if it exists.
+   * @returns {ItemEd|undefined} - Returns the attuned matrix item or undefined if not found.
+   */
+  getAttunedMatrix() {
+    return this.containingActor?.items.find( item => {
+      return item.system.matrix?.spells.has( this.parent.uuid );
+    } );
+  }
+
+  /**
+   * Returns all grimoires that are attuned to this spell for the given actor.
+   * @param {ActorEd} [actor] - The actor to check for attuned grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that are attuned to this spell.
+   */
+  getAttunedGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return this.actorGrimoires( owner ).filter(
+      grimoire => grimoire.system.isSpellAttuned?.( this.parent.uuid )
+    );
+  }
+
+  /**
+   * Returns all grimoires of the given actor that contain this spell.
+   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that contain this spell.
+   */
+  actorGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+  }
+
+  // endregion
+
+  // region Checkers
+
+  /**
+   * Checks if the spell is in any of the actor's grimoires.
+   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {boolean} - Returns true if the spell is in any of the actor's grimoires, false otherwise.
+   */
+  inActorGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return this.actorGrimoires( owner )?.length > 0;
+  }
+
+  /**
+   * Checks if the spell is learned by the given actor. This is defined as the spell being present in the actor's
+   * items of type "spell".
+   * @param {ActorEd} actor - The actor to check for the spell.
+   * @returns {boolean} - Returns the spell item if it is learned by the actor, false otherwise.
+   */
+  learnedBy( actor ) {
+    if ( !actor ) return undefined;
+
+    return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
+  }
+
+  // endregion
+
   // region Methods
 
   // region LP Tracking
@@ -502,58 +564,27 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
-  /**
-   * Returns the attuned matrix for this spell, if it exists.
-   * @returns {ItemEd|undefined} - Returns the attuned matrix item or undefined if not found.
-   */
-  getAttunedMatrix() {
-    return this.containingActor?.items.find( item => {
-      return item.system.matrix?.spells.has( this.parent.uuid );
-    } );
-  }
+  // region Spell Effects
 
   /**
-   * Returns all grimoires that are attuned to this spell for the given actor.
-   * @param {ActorEd} [actor] - The actor to check for attuned grimoires. If not provided, uses the containing actor of this spell.
-   * @returns {ItemEd[]} - Returns an array of grimoires that are attuned to this spell.
+   * Run the macro associated with this spell's effect, if any.
+   * @param {object} [scope] The scope to pass to the macro when executing it. Can be expanded
+   * on the `scope` parameter in {@link Macro#execute}.
+   * @returns {Promise<*>} See {@link Macro#execute} for details.
    */
-  getAttunedGrimoires( actor ) {
-    const owner = actor || this.containingActor;
-    return this.actorGrimoires( owner ).filter(
-      grimoire => grimoire.system.isSpellAttuned?.( this.parent.uuid )
-    );
+  async runMacro( scope = {} ) {
+    if ( this.effect?.type !== "macro" || !this.effect?.details?.macro?.macroUuid ) return;
+
+    const macro = /** @type {Macro} */ await fromUuid( this.effect.details.macro.macroUuid );
+    if ( !macro ) {
+      throw new Error( "Spell macro not found" );
+    }
+
+    // Execute the macro with the provided options
+    return await macro.execute( scope );
   }
 
-  /**
-   * Returns all grimoires of the given actor that contain this spell.
-   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
-   * @returns {ItemEd[]} - Returns an array of grimoires that contain this spell.
-   */
-  actorGrimoires( actor ) {
-    const owner = actor || this.containingActor;
-    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
-  }
+  // endregion
 
-  /**
-   * Checks if the spell is in any of the actor's grimoires.
-   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
-   * @returns {boolean} - Returns true if the spell is in any of the actor's grimoires, false otherwise.
-   */
-  inActorGrimoires( actor ) {
-    const owner = actor || this.containingActor;
-    return this.actorGrimoires( owner )?.length > 0;
-  }
-
-  /**
-   * Checks if the spell is learned by the given actor. This is defined as the spell being present in the actor's
-   * items of type "spell".
-   * @param {ActorEd} actor - The actor to check for the spell.
-   * @returns {boolean} - Returns the spell item if it is learned by the actor, false otherwise.
-   */
-  learnedBy( actor ) {
-    if ( !actor ) return undefined;
-
-    return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
-  }
   // endregion
 }
