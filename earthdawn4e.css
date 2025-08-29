@@ -741,6 +741,98 @@ h3.label--rail .label__text::after {
   padding-top: 5px;
   text-align: center;
 }
+/* Journal Sheet Headerless */
+.journal-sheet .window-header,
+.journal-entry-page .window-header {
+  font-size: 0px;
+  background-color: transparent;
+  border-right: 0;
+}
+.journal-sheet .journal-entry-pages,
+.journal-entry-page .journal-entry-pages {
+  margin-top: 30px;
+  padding: 0;
+}
+.journal-entry-page .journal-header {
+  margin: 0 1rem;
+}
+/* Journal Index */
+aside.journal-sidebar nav.toc {
+  /* Journal Level Formatting */
+  /* Journal Active Highlight */
+}
+aside.journal-sidebar nav.toc li.page .page-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 22px;
+}
+aside.journal-sidebar nav.toc .page-index {
+  width: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+aside.journal-sidebar nav.toc li.page,
+aside.journal-sidebar nav.toc li.page:first-child,
+aside.journal-sidebar nav.toc li.page.active + :not(.active) {
+  border: 0;
+}
+aside.journal-sidebar nav.toc .page-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 5px 1px 20px;
+  line-height: 22px;
+  z-index: 0;
+}
+aside.journal-sidebar nav.toc li.page.level1 .page-title,
+aside.journal-sidebar nav.toc li.page.level1 .page-title * {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-size: var(--font-size-16);
+  font-weight: 700;
+  color: var(--color-gold-5);
+  --level-indent: 0px;
+}
+aside.journal-sidebar nav.toc li.page.level2 .page-title,
+aside.journal-sidebar nav.toc li.page.level2 .page-title * {
+  font-family: 'ArnoPro-Bold', serif;
+  font-size: var(--font-size-17);
+  --level-indent: 5px;
+}
+aside.journal-sidebar nav.toc li.page.level3 .page-title,
+aside.journal-sidebar nav.toc li.page.level3 .page-title * {
+  font-family: 'ArnoPro-Regular', serif;
+  font-size: var(--font-size-16);
+  --level-indent: 10px;
+}
+aside.journal-sidebar nav.toc li.page .page-title {
+  position: relative;
+  z-index: 0;
+}
+aside.journal-sidebar nav.toc li.page .page-title > * {
+  position: relative;
+  z-index: 1;
+}
+aside.journal-sidebar nav.toc li.page.active .page-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 15px;
+  --fade: 18%;
+  background: linear-gradient(to right, transparent 0, var(--color-gold-2) var(--fade), var(--color-gold-2) calc(100% - var(--fade)), transparent 100%);
+}
+/* Journal Sheet Background */
+.sheet.journal-entry .journal-entry-content,
+.sheet.journal-entry .journal-entry-page {
+  background-image: url("assets/sheet/parchment.webp");
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: auto;
+}
 .application.ed4e.roll-prompt i.window-icon {
   font-size: large;
 }
