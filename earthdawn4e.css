@@ -84,7 +84,9 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --color-transparent: rgba(0, 0, 0, 0);
+  --color-white-tr: rgba(255, 255, 255, 0.3);
   --color-primary-grey: #363636;
+  --color-primary-grey-tr: rgba(54, 54, 54, 0.3);
   --color-text-primary: #e6d2c8;
   --color-gold-1: #32281e;
   --color-gold-2: #463714;
@@ -288,7 +290,6 @@ slide-toggle[checked] .slide-toggle-thumb {
 .sheet h3 {
   font-size: 0.9rem;
   margin: 0;
-  padding-top: 10px;
   font-family: inherit;
 }
 .text--center {
@@ -744,13 +745,12 @@ h3.label--rail .label__text::after {
 /* Journal Sheet Headerless */
 .journal-sheet .window-header,
 .journal-entry-page .window-header {
-  font-size: 0px;
-  background-color: transparent;
+  font-size: 0;
+  background: transparent;
   border-right: 0;
 }
 .journal-sheet .journal-entry-pages,
 .journal-entry-page .journal-entry-pages {
-  margin-top: 30px;
   padding: 0;
 }
 .journal-entry-page .journal-header {
@@ -763,9 +763,7 @@ aside.journal-sidebar nav.toc {
 }
 aside.journal-sidebar nav.toc li.page .page-heading {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 22px;
+  height: 25px;
 }
 aside.journal-sidebar nav.toc .page-index {
   width: 0;
@@ -783,35 +781,41 @@ aside.journal-sidebar nav.toc .page-title {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 4px 5px 1px 20px;
-  line-height: 22px;
+  height: 25px;
+  padding-left: 20px;
   z-index: 0;
+}
+aside.journal-sidebar nav.toc ol.headings,
+aside.journal-sidebar nav.toc ul.headings {
+  display: none;
+}
+aside.journal-sidebar nav.toc li.page.level1 {
+  margin-top: 20px;
 }
 aside.journal-sidebar nav.toc li.page.level1 .page-title,
 aside.journal-sidebar nav.toc li.page.level1 .page-title * {
   font-family: 'Warhorse-DecoBB', serif;
-  font-size: var(--font-size-16);
+  font-size: var(--font-size-17);
   font-weight: 700;
   color: var(--color-gold-5);
+  padding-top: 1px;
   --level-indent: 0px;
 }
 aside.journal-sidebar nav.toc li.page.level2 .page-title,
 aside.journal-sidebar nav.toc li.page.level2 .page-title * {
   font-family: 'ArnoPro-Bold', serif;
-  font-size: var(--font-size-17);
+  font-size: var(--font-size-18);
+  padding-top: 5px;
   --level-indent: 5px;
 }
 aside.journal-sidebar nav.toc li.page.level3 .page-title,
 aside.journal-sidebar nav.toc li.page.level3 .page-title * {
   font-family: 'ArnoPro-Regular', serif;
-  font-size: var(--font-size-16);
+  font-size: var(--font-size-17);
+  padding-top: 5px;
   --level-indent: 10px;
 }
-aside.journal-sidebar nav.toc li.page .page-title {
-  position: relative;
-  z-index: 0;
-}
-aside.journal-sidebar nav.toc li.page .page-title > * {
+aside.journal-sidebar nav.toc .page-title > * {
   position: relative;
   z-index: 1;
 }
@@ -826,12 +830,510 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   background: linear-gradient(to right, transparent 0, var(--color-gold-2) var(--fade), var(--color-gold-2) calc(100% - var(--fade)), transparent 100%);
 }
 /* Journal Sheet Background */
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyXsovBJ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyWyovBJ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyVVpfBJ.ttf) format('truetype');
+}
+.journal-sheet .journal-header {
+  margin-top: 10px;
+}
 .sheet.journal-entry .journal-entry-content,
-.sheet.journal-entry .journal-entry-page {
+.sheet.journal-entry .journal-entry-page,
+.journal-sheet .editor .editor-content {
   background-image: url("assets/sheet/parchment.webp");
   background-repeat: repeat;
   background-position: top left;
   background-size: auto;
+  padding: 0 5px;
+  /* journal Typesetting */
+  /* Page Spacing */
+  /* Page Split */
+  /* Inline Formatting */
+}
+.sheet.journal-entry .journal-entry-content :is(h1, h2, h3, h4, h5, h6):not(:first-child),
+.sheet.journal-entry .journal-entry-page :is(h1, h2, h3, h4, h5, h6):not(:first-child),
+.journal-sheet .editor .editor-content :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
+  margin: 0;
+}
+.sheet.journal-entry .journal-entry-content .title,
+.sheet.journal-entry .journal-entry-page .title,
+.journal-sheet .editor .editor-content .title {
+  font-family: 'ArnoPro-Bold', serif;
+  display: inline-block;
+  font-size: var(--font-size-28);
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding-top: 5px;
+}
+.sheet.journal-entry .journal-entry-content .title input[type="text"],
+.sheet.journal-entry .journal-entry-page .title input[type="text"],
+.journal-sheet .editor .editor-content .title input[type="text"] {
+  padding: 0;
+}
+.sheet.journal-entry .journal-entry-content h1,
+.sheet.journal-entry .journal-entry-page h1,
+.journal-sheet .editor .editor-content h1,
+.sheet.journal-entry .journal-entry-content h2,
+.sheet.journal-entry .journal-entry-page h2,
+.journal-sheet .editor .editor-content h2 {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-size: var(--font-size-40);
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  border: 0;
+}
+.sheet.journal-entry .journal-entry-content h1,
+.sheet.journal-entry .journal-entry-page h1,
+.journal-sheet .editor .editor-content h1 {
+  margin-bottom: 25px;
+}
+.sheet.journal-entry .journal-entry-content h2,
+.sheet.journal-entry .journal-entry-page h2,
+.journal-sheet .editor .editor-content h2 {
+  font-size: var(--font-size-27);
+  text-align: revert;
+  border-bottom: 2px solid black;
+}
+.sheet.journal-entry .journal-entry-content h3,
+.sheet.journal-entry .journal-entry-page h3,
+.journal-sheet .editor .editor-content h3 {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-weight: 700;
+  color: black;
+  font-size: var(--font-size-24);
+  text-transform: uppercase;
+  padding-bottom: 2px;
+}
+.sheet.journal-entry .journal-entry-content h4,
+.sheet.journal-entry .journal-entry-page h4,
+.journal-sheet .editor .editor-content h4 {
+  font-family: 'ArnoPro-Bold', serif;
+  font-weight: 700;
+  color: black;
+  font-size: var(--font-size-22);
+  letter-spacing: 0.01rem;
+  padding-top: 2px;
+}
+.sheet.journal-entry .journal-entry-content p,
+.sheet.journal-entry .journal-entry-page p,
+.journal-sheet .editor .editor-content p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: var(--font-size-15);
+  color: black;
+}
+.sheet.journal-entry .journal-entry-content .half,
+.sheet.journal-entry .journal-entry-page .half,
+.journal-sheet .editor .editor-content .half {
+  float: left;
+  width: 50%;
+  margin: 0 1rem 0.5rem 0;
+}
+.sheet.journal-entry .journal-entry-content .half.right,
+.sheet.journal-entry .journal-entry-page .half.right,
+.journal-sheet .editor .editor-content .half.right {
+  float: right;
+  margin: 0 0 0.5rem 1rem;
+}
+.sheet.journal-entry .journal-entry-content .half > :last-child,
+.sheet.journal-entry .journal-entry-page .half > :last-child,
+.journal-sheet .editor .editor-content .half > :last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 800px) {
+  .sheet.journal-entry .journal-entry-content .half,
+  .sheet.journal-entry .journal-entry-page .half,
+  .journal-sheet .editor .editor-content .half,
+  .sheet.journal-entry .journal-entry-content .half.right,
+  .sheet.journal-entry .journal-entry-page .half.right,
+  .journal-sheet .editor .editor-content .half.right {
+    float: none;
+    width: 100%;
+    margin: 0 0 0.75rem 0;
+  }
+}
+.sheet.journal-entry .journal-entry-content .content-link,
+.sheet.journal-entry .journal-entry-page .content-link,
+.journal-sheet .editor .editor-content .content-link,
+.sheet.journal-entry .journal-entry-content .inline-roll,
+.sheet.journal-entry .journal-entry-page .inline-roll,
+.journal-sheet .editor .editor-content .inline-roll {
+  background: none;
+  border: 0;
+  color: black;
+  text-decoration: underline;
+}
+.sheet.journal-entry .journal-entry-content .content-link .fa-solid,
+.sheet.journal-entry .journal-entry-page .content-link .fa-solid,
+.journal-sheet .editor .editor-content .content-link .fa-solid,
+.sheet.journal-entry .journal-entry-content .inline-roll .fa-solid,
+.sheet.journal-entry .journal-entry-page .inline-roll .fa-solid,
+.journal-sheet .editor .editor-content .inline-roll .fa-solid {
+  color: black;
+}
+.sheet.journal-entry .journal-entry-content,
+.sheet.journal-entry .journal-entry-page,
+.journal-sheet .ProseMirror,
+.journal-sheet .editor .editor-content {
+  /* Table Contents */
+  /* Table Justification */
+  /* Table Indent Code */
+}
+.sheet.journal-entry .journal-entry-content .table-panel,
+.sheet.journal-entry .journal-entry-page .table-panel,
+.journal-sheet .ProseMirror .table-panel,
+.journal-sheet .editor .editor-content .table-panel {
+  border: 5px solid #000;
+  margin: 5px 0;
+}
+.sheet.journal-entry .journal-entry-content .table-panel p,
+.sheet.journal-entry .journal-entry-page .table-panel p,
+.journal-sheet .ProseMirror .table-panel p,
+.journal-sheet .editor .editor-content .table-panel p {
+  margin: 1px 5px;
+}
+.sheet.journal-entry .journal-entry-content .table-panel__title,
+.sheet.journal-entry .journal-entry-page .table-panel__title,
+.journal-sheet .ProseMirror .table-panel__title,
+.journal-sheet .editor .editor-content .table-panel__title {
+  margin: 0;
+  background: #000;
+  min-height: 30px;
+  line-height: 30px;
+}
+.sheet.journal-entry .journal-entry-content .table-panel__title p,
+.sheet.journal-entry .journal-entry-page .table-panel__title p,
+.journal-sheet .ProseMirror .table-panel__title p,
+.journal-sheet .editor .editor-content .table-panel__title p {
+  font-family: 'ArnoPro-Bold', serif;
+  color: #fff;
+  font-size: var(--font-size-18);
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.sheet.journal-entry .journal-entry-content table,
+.sheet.journal-entry .journal-entry-page table,
+.journal-sheet .ProseMirror table,
+.journal-sheet .editor .editor-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #000;
+  font-size: var(--font-size-15);
+  background: transparent;
+  --row-h: 28px;
+}
+.sheet.journal-entry .journal-entry-content table thead,
+.sheet.journal-entry .journal-entry-page table thead,
+.journal-sheet .ProseMirror table thead,
+.journal-sheet .editor .editor-content table thead {
+  font-family: 'ArnoPro-Bold', serif;
+  font-size: var(--font-size-16);
+  letter-spacing: 0.05em;
+  background: var(--color-white-tr);
+}
+.sheet.journal-entry .journal-entry-content table th,
+.sheet.journal-entry .journal-entry-page table th,
+.journal-sheet .ProseMirror table th,
+.journal-sheet .editor .editor-content table th,
+.sheet.journal-entry .journal-entry-content table td,
+.sheet.journal-entry .journal-entry-page table td,
+.journal-sheet .ProseMirror table td,
+.journal-sheet .editor .editor-content table td {
+  font-family: 'ArnoPro-Regular', serif;
+  border: 0;
+  line-height: 1.2;
+  padding: 8px 0 3px 0;
+  padding-inline: 10px;
+  vertical-align: middle;
+}
+.sheet.journal-entry .journal-entry-content table thead th,
+.sheet.journal-entry .journal-entry-page table thead th,
+.journal-sheet .ProseMirror table thead th,
+.journal-sheet .editor .editor-content table thead th {
+  background: none;
+}
+.sheet.journal-entry .journal-entry-content table tbody tr:nth-child(odd) > *,
+.sheet.journal-entry .journal-entry-page table tbody tr:nth-child(odd) > *,
+.journal-sheet .ProseMirror table tbody tr:nth-child(odd) > *,
+.journal-sheet .editor .editor-content table tbody tr:nth-child(odd) > * {
+  background-color: var(--color-primary-grey-tr);
+}
+.sheet.journal-entry .journal-entry-content table tbody tr:nth-child(even) > *,
+.sheet.journal-entry .journal-entry-page table tbody tr:nth-child(even) > *,
+.journal-sheet .ProseMirror table tbody tr:nth-child(even) > *,
+.journal-sheet .editor .editor-content table tbody tr:nth-child(even) > * {
+  background-color: var(--color-white-tr);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(1),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(1),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(1),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(1) {
+  text-align: var(--col1, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(2),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(2),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(2),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(2) {
+  text-align: var(--col2, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(3),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(3),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(3),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(3) {
+  text-align: var(--col3, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(4),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(4),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(4),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(4) {
+  text-align: var(--col4, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(5),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(5),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(5),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(5) {
+  text-align: var(--col5, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(6),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(6),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(6),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(6) {
+  text-align: var(--col6, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(7),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(7),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(7),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(7) {
+  text-align: var(--col7, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align :is(thead, tbody) tr > *:nth-child(8),
+.sheet.journal-entry .journal-entry-page table.align :is(thead, tbody) tr > *:nth-child(8),
+.journal-sheet .ProseMirror table.align :is(thead, tbody) tr > *:nth-child(8),
+.journal-sheet .editor .editor-content table.align :is(thead, tbody) tr > *:nth-child(8) {
+  text-align: var(--col8, inherit);
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="1l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="1l"],
+.journal-sheet .ProseMirror table.align[class~="1l"],
+.journal-sheet .editor .editor-content table.align[class~="1l"] {
+  --col1: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="1c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="1c"],
+.journal-sheet .ProseMirror table.align[class~="1c"],
+.journal-sheet .editor .editor-content table.align[class~="1c"] {
+  --col1: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="1r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="1r"],
+.journal-sheet .ProseMirror table.align[class~="1r"],
+.journal-sheet .editor .editor-content table.align[class~="1r"] {
+  --col1: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="2l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="2l"],
+.journal-sheet .ProseMirror table.align[class~="2l"],
+.journal-sheet .editor .editor-content table.align[class~="2l"] {
+  --col2: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="2c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="2c"],
+.journal-sheet .ProseMirror table.align[class~="2c"],
+.journal-sheet .editor .editor-content table.align[class~="2c"] {
+  --col2: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="2r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="2r"],
+.journal-sheet .ProseMirror table.align[class~="2r"],
+.journal-sheet .editor .editor-content table.align[class~="2r"] {
+  --col2: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="3l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="3l"],
+.journal-sheet .ProseMirror table.align[class~="3l"],
+.journal-sheet .editor .editor-content table.align[class~="3l"] {
+  --col3: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="3c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="3c"],
+.journal-sheet .ProseMirror table.align[class~="3c"],
+.journal-sheet .editor .editor-content table.align[class~="3c"] {
+  --col3: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="3r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="3r"],
+.journal-sheet .ProseMirror table.align[class~="3r"],
+.journal-sheet .editor .editor-content table.align[class~="3r"] {
+  --col3: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="4l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="4l"],
+.journal-sheet .ProseMirror table.align[class~="4l"],
+.journal-sheet .editor .editor-content table.align[class~="4l"] {
+  --col4: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="4c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="4c"],
+.journal-sheet .ProseMirror table.align[class~="4c"],
+.journal-sheet .editor .editor-content table.align[class~="4c"] {
+  --col4: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="4r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="4r"],
+.journal-sheet .ProseMirror table.align[class~="4r"],
+.journal-sheet .editor .editor-content table.align[class~="4r"] {
+  --col4: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="5l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="5l"],
+.journal-sheet .ProseMirror table.align[class~="5l"],
+.journal-sheet .editor .editor-content table.align[class~="5l"] {
+  --col5: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="5c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="5c"],
+.journal-sheet .ProseMirror table.align[class~="5c"],
+.journal-sheet .editor .editor-content table.align[class~="5c"] {
+  --col5: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="5r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="5r"],
+.journal-sheet .ProseMirror table.align[class~="5r"],
+.journal-sheet .editor .editor-content table.align[class~="5r"] {
+  --col5: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="6l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="6l"],
+.journal-sheet .ProseMirror table.align[class~="6l"],
+.journal-sheet .editor .editor-content table.align[class~="6l"] {
+  --col6: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="6c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="6c"],
+.journal-sheet .ProseMirror table.align[class~="6c"],
+.journal-sheet .editor .editor-content table.align[class~="6c"] {
+  --col6: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="6r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="6r"],
+.journal-sheet .ProseMirror table.align[class~="6r"],
+.journal-sheet .editor .editor-content table.align[class~="6r"] {
+  --col6: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="7l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="7l"],
+.journal-sheet .ProseMirror table.align[class~="7l"],
+.journal-sheet .editor .editor-content table.align[class~="7l"] {
+  --col7: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="7c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="7c"],
+.journal-sheet .ProseMirror table.align[class~="7c"],
+.journal-sheet .editor .editor-content table.align[class~="7c"] {
+  --col7: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="7r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="7r"],
+.journal-sheet .ProseMirror table.align[class~="7r"],
+.journal-sheet .editor .editor-content table.align[class~="7r"] {
+  --col7: right;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="8l"],
+.sheet.journal-entry .journal-entry-page table.align[class~="8l"],
+.journal-sheet .ProseMirror table.align[class~="8l"],
+.journal-sheet .editor .editor-content table.align[class~="8l"] {
+  --col8: left;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="8c"],
+.sheet.journal-entry .journal-entry-page table.align[class~="8c"],
+.journal-sheet .ProseMirror table.align[class~="8c"],
+.journal-sheet .editor .editor-content table.align[class~="8c"] {
+  --col8: center;
+}
+.sheet.journal-entry .journal-entry-content table.align[class~="8r"],
+.sheet.journal-entry .journal-entry-page table.align[class~="8r"],
+.journal-sheet .ProseMirror table.align[class~="8r"],
+.journal-sheet .editor .editor-content table.align[class~="8r"] {
+  --col8: right;
+}
+.sheet.journal-entry .journal-entry-content table.align th,
+.sheet.journal-entry .journal-entry-page table.align th,
+.journal-sheet .ProseMirror table.align th,
+.journal-sheet .editor .editor-content table.align th,
+.sheet.journal-entry .journal-entry-content table.align td,
+.sheet.journal-entry .journal-entry-page table.align td,
+.journal-sheet .ProseMirror table.align td,
+.journal-sheet .editor .editor-content table.align td {
+  padding-left: calc(10px + var(--indent, 0rem));
+}
+.sheet.journal-entry .journal-entry-content table.align th.sm,
+.sheet.journal-entry .journal-entry-page table.align th.sm,
+.journal-sheet .ProseMirror table.align th.sm,
+.journal-sheet .editor .editor-content table.align th.sm,
+.sheet.journal-entry .journal-entry-content table.align td.sm,
+.sheet.journal-entry .journal-entry-page table.align td.sm,
+.journal-sheet .ProseMirror table.align td.sm,
+.journal-sheet .editor .editor-content table.align td.sm {
+  --indent: 0.3rem;
+}
+.sheet.journal-entry .journal-entry-content table.align th.md,
+.sheet.journal-entry .journal-entry-page table.align th.md,
+.journal-sheet .ProseMirror table.align th.md,
+.journal-sheet .editor .editor-content table.align th.md,
+.sheet.journal-entry .journal-entry-content table.align td.md,
+.sheet.journal-entry .journal-entry-page table.align td.md,
+.journal-sheet .ProseMirror table.align td.md,
+.journal-sheet .editor .editor-content table.align td.md {
+  --indent: 0.6rem;
+}
+.sheet.journal-entry .journal-entry-content table.align th.lg,
+.sheet.journal-entry .journal-entry-page table.align th.lg,
+.journal-sheet .ProseMirror table.align th.lg,
+.journal-sheet .editor .editor-content table.align th.lg,
+.sheet.journal-entry .journal-entry-content table.align td.lg,
+.sheet.journal-entry .journal-entry-page table.align td.lg,
+.journal-sheet .ProseMirror table.align td.lg,
+.journal-sheet .editor .editor-content table.align td.lg {
+  --indent: 0.9rem;
+}
+.sheet.journal-entry .journal-entry-content table.align tr.sm > *,
+.sheet.journal-entry .journal-entry-page table.align tr.sm > *,
+.journal-sheet .ProseMirror table.align tr.sm > *,
+.journal-sheet .editor .editor-content table.align tr.sm > * {
+  --indent: 0.3rem;
+}
+.sheet.journal-entry .journal-entry-content table.align tr.md > *,
+.sheet.journal-entry .journal-entry-page table.align tr.md > *,
+.journal-sheet .ProseMirror table.align tr.md > *,
+.journal-sheet .editor .editor-content table.align tr.md > * {
+  --indent: 0.6rem;
+}
+.sheet.journal-entry .journal-entry-content table.align tr.lg > *,
+.sheet.journal-entry .journal-entry-page table.align tr.lg > *,
+.journal-sheet .ProseMirror table.align tr.lg > *,
+.journal-sheet .editor .editor-content table.align tr.lg > * {
+  --indent: 0.9rem;
 }
 .application.ed4e.roll-prompt i.window-icon {
   font-size: large;

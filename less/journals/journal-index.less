@@ -1,57 +1,58 @@
 /* Journal Index */
-aside.journal-sidebar nav.toc {
-    li.page .page-heading {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        min-height: 22px;
-    }
-    .page-index {
-        width: 0;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-        display: inline-block;
-    }
 
-/* Journal Level Formatting */
+aside.journal-sidebar nav.toc {
+    li.page .page-heading { display: flex; height: 25px; }
+    .page-index { width: 0; padding: 0; margin: 0; overflow: hidden; display: inline-block; }
+
+    /* Journal Level Formatting */
+
     li.page,
     li.page:first-child,
-    li.page.active + :not(.active) {
-        border: 0;
-    }
+    li.page.active + :not(.active) { border: 0; }
+
     .page-title {
         position: relative;
         display: inline-flex;
         align-items: center;
-        padding: 4px 5px 1px 20px;
-        line-height: 22px;
+        height: 25px;
+        padding-left: 20px;
         z-index: 0;
     }
+
+    ol.headings,
+    ul.headings { display: none; }
+
+    li.page.level1 { margin-top: 20px; }
+
     li.page.level1 .page-title,
     li.page.level1 .page-title * {
         .WarhorseDeco();
-        font-size: var(--font-size-16);
+        font-size: var(--font-size-17);
         font-weight: 700;
         color: var(--color-gold-5);
+        padding-top: 1px;
         --level-indent: 0px;
     }
+
     li.page.level2 .page-title,
     li.page.level2 .page-title * {
         .ArnoProBold();
-        font-size: var(--font-size-17);
+        font-size: var(--font-size-18);
+        padding-top: 5px;
         --level-indent: 5px;
     }
+
     li.page.level3 .page-title,
     li.page.level3 .page-title * {
         .ArnoProRegular();
-        font-size: var(--font-size-16);
+        font-size: var(--font-size-17);
+        padding-top: 5px;
         --level-indent: 10px;
     }
 
-/* Journal Active Highlight */
-    li.page .page-title { position: relative; z-index: 0; }
-    li.page .page-title > * { position: relative; z-index: 1; }
+    /* Journal Active Highlight */
+
+    .page-title > * { position: relative; z-index: 1; }
     li.page.active .page-title::before {
         content: "";
         position: absolute;
@@ -61,11 +62,11 @@ aside.journal-sidebar nav.toc {
         border-radius: 15px;
         --fade: 18%;
         background: linear-gradient(
-            to right,
-            transparent 0,
-            var(--color-gold-2) var(--fade),
-            var(--color-gold-2) calc(100% - var(--fade)),
-            transparent 100%
+        to right,
+        transparent 0,
+        var(--color-gold-2) var(--fade),
+        var(--color-gold-2) calc(100% - var(--fade)),
+        transparent 100%
         );
     }
 }

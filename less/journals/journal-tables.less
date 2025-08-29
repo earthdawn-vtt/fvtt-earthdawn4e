@@ -1,0 +1,119 @@
+.sheet.journal-entry .journal-entry-content,
+.sheet.journal-entry .journal-entry-page,
+.journal-sheet .ProseMirror,
+.journal-sheet .editor .editor-content {
+
+    .table-panel {
+        border: 5px solid #000;
+        margin: 5px 0;
+
+        p { margin: 1px 5px; }
+    }
+
+    .table-panel__title {
+        margin: 0;
+        background: #000;
+        min-height: 30px;
+        line-height: 30px;
+
+        p {
+        .ArnoProBold();
+        color: #fff;
+        font-size: var(--font-size-18);
+        margin: 0;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        }
+    }
+
+    /* Table Contents */
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        color: #000;
+        font-size: var(--font-size-15);
+        background: transparent;
+        --row-h: 28px;
+    }
+
+    table thead {
+        .ArnoProBold();
+        font-size: var(--font-size-16);
+        letter-spacing: 0.05em;
+        background: var(--color-white-tr);
+    }
+
+    table th,
+    table td {
+        .ArnoProRegular();
+        border: 0;
+        line-height: 1.2;
+        padding: 8px 0 3px 0;
+        padding-inline: 10px;
+        vertical-align: middle;
+    }
+
+    table thead th { background: none; }
+
+    table tbody tr:nth-child(odd)  > * { background-color: var(--color-primary-grey-tr); }
+    table tbody tr:nth-child(even) > * { background-color: var(--color-white-tr); }
+
+    /* Table Justification */
+
+    table.align :is(thead, tbody) tr > *:nth-child(1) { text-align: var(--col1, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(2) { text-align: var(--col2, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(3) { text-align: var(--col3, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(4) { text-align: var(--col4, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(5) { text-align: var(--col5, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(6) { text-align: var(--col6, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(7) { text-align: var(--col7, inherit); }
+    table.align :is(thead, tbody) tr > *:nth-child(8) { text-align: var(--col8, inherit); }
+
+    table.align[class~="1l"] { --col1: left; }
+    table.align[class~="1c"] { --col1: center; }
+    table.align[class~="1r"] { --col1: right;  }
+
+    table.align[class~="2l"] { --col2: left; }
+    table.align[class~="2c"] { --col2: center; }
+    table.align[class~="2r"] { --col2: right;  }
+
+    table.align[class~="3l"] { --col3: left; }
+    table.align[class~="3c"] { --col3: center; }
+    table.align[class~="3r"] { --col3: right;  }
+
+    table.align[class~="4l"] { --col4: left; }
+    table.align[class~="4c"] { --col4: center; }
+    table.align[class~="4r"] { --col4: right;  }
+
+    table.align[class~="5l"] { --col5: left; }
+    table.align[class~="5c"] { --col5: center; }
+    table.align[class~="5r"] { --col5: right;  }
+
+    table.align[class~="6l"] { --col6: left; }
+    table.align[class~="6c"] { --col6: center; }
+    table.align[class~="6r"] { --col6: right;  }
+
+    table.align[class~="7l"] { --col7: left; }
+    table.align[class~="7c"] { --col7: center; }
+    table.align[class~="7r"] { --col7: right;  }
+
+    table.align[class~="8l"] { --col8: left; }
+    table.align[class~="8c"] { --col8: center; }
+    table.align[class~="8r"] { --col8: right;  }
+
+    /* Table Indent Code */
+
+    table.align th,
+    table.align td { padding-left: calc(10px + var(--indent, 0rem)); }
+
+    table.align th.sm, table.align td.sm { --indent: 0.3rem; }
+    table.align th.md, table.align td.md { --indent: 0.6rem; }
+    table.align th.lg, table.align td.lg { --indent: 0.9rem; }
+
+    table.align tr.sm > * { --indent: 0.3rem; }
+    table.align tr.md > * { --indent: 0.6rem; }
+    table.align tr.lg > * { --indent: 0.9rem; }
+}
