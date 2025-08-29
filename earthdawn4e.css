@@ -207,9 +207,6 @@ slide-toggle[checked] .slide-toggle-thumb {
 .layout__col--6 {
   flex: 0 0 calc(98% / 6);
 }
-.standard-form {
-  gap: 0;
-}
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
@@ -964,6 +961,9 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .tab {
   overflow: auto;
+  gap: 0;
+}
+.application.sheet.earthdawn4e.actor .standard-form {
   gap: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content {
