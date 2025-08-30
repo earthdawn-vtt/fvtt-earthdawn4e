@@ -1152,7 +1152,12 @@ h3.label--rail .label__text::after {
   border: none;
   height: 20px;
   width: 20px;
-  color: var(--color-text-inverse);
+  color: var(--color-gold-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons button:hover,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button:hover,
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons button:hover {
+  color: var(--color-gold-5);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
