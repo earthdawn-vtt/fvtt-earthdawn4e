@@ -1505,6 +1505,7 @@ h3.label--rail .label__text::after {
   font-size: var(--font-size-9);
   text-transform: uppercase;
   transition: background-color 0.15s;
+  padding-top: 2px;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage__title button:hover,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage__title button:hover {
