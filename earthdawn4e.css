@@ -114,7 +114,7 @@
   --color-blue-lt: #373d75;
   --color-blue-lt-tr: rgba(55, 61, 117, 0.35);
   --background-mottle-green: var(--color-green-md) url(assets/sheet/mottle.png) center center / auto repeat;
-  --background-mottle-blue: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue: var(--color-blue-lt) url(assets/sheet/mottle.png) center center / auto repeat;
 }
 :root .application.sheet.earthdawn4e.actor,
 :root .theme-dark.application.sheet.earthdawn4e.actor {
@@ -765,7 +765,8 @@ h3.label--rail .label__text::after {
 }
 .journal-sheet .journal-entry-pages,
 .journal-entry-page .journal-entry-pages {
-  padding: 0;
+  padding: 0 5px 0 0;
+  margin-right: 3px;
 }
 .application .window-content {
   backdrop-filter: none;
@@ -865,7 +866,7 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
 .sheet.journal-entry .journal-entry-content :is(h1, h2, h3, h4, h5, h6):not(:first-child),
 .sheet.journal-entry .journal-entry-page :is(h1, h2, h3, h4, h5, h6):not(:first-child),
 .journal-sheet .editor .editor-content :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
-  margin: 0;
+  margin: 10px 0;
 }
 .sheet.journal-entry .journal-entry-content .title,
 .sheet.journal-entry .journal-entry-page .title,
@@ -892,19 +893,18 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   font-size: var(--font-size-40);
   font-weight: 700;
   color: black;
-  text-align: center;
   border: 0;
 }
 .sheet.journal-entry .journal-entry-content h1,
 .sheet.journal-entry .journal-entry-page h1,
 .journal-sheet .editor .editor-content h1 {
+  text-align: center;
   margin-bottom: 25px;
 }
 .sheet.journal-entry .journal-entry-content h2,
 .sheet.journal-entry .journal-entry-page h2,
 .journal-sheet .editor .editor-content h2 {
   font-size: var(--font-size-27);
-  text-align: revert;
   border-bottom: 2px solid black;
 }
 .sheet.journal-entry .journal-entry-content h3,
@@ -922,8 +922,9 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   font-family: 'ArnoPro-Bold', serif;
   font-weight: 700;
   color: black;
-  font-size: var(--font-size-22);
+  font-size: var(--font-size-20);
   letter-spacing: 0.01rem;
+  height: 17px;
 }
 .sheet.journal-entry .journal-entry-content p,
 .sheet.journal-entry .journal-entry-page p,
@@ -1001,6 +1002,7 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
 .sheet.journal-entry .journal-entry-page .table-panel p,
 .journal-sheet .ProseMirror .table-panel p,
 .journal-sheet .editor .editor-content .table-panel p {
+  font-size: var(--font-size-13);
   margin: 1px 5px;
 }
 .sheet.journal-entry .journal-entry-content .table-panel__title,

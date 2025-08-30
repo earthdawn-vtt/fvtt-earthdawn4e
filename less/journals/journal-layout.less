@@ -12,7 +12,7 @@
 
     /* journal Typesetting */
 
-    :is(h1, h2, h3, h4, h5, h6):not(:first-child) { margin: 0; }
+    :is(h1, h2, h3, h4, h5, h6):not(:first-child) { margin: 10px 0; }
 
     .title {
         .ArnoProBold();
@@ -31,15 +31,16 @@
         font-size: var(--font-size-40);
         font-weight: 700;
         color: black;
-        text-align: center;
         border: 0;
     }
 
-    h1 { margin-bottom: 25px; }
+    h1 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
     h2 {
         font-size: var(--font-size-27);
-        text-align: revert;
         border-bottom: 2px solid black;
     }
 
@@ -55,8 +56,9 @@
         .ArnoProBold();
         font-weight: 700;
         color: black;
-        font-size: var(--font-size-22);
+        font-size: var(--font-size-20);
         letter-spacing: 0.01rem;
+        height: 17px;
     }
 
     p {
