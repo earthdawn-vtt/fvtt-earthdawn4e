@@ -403,7 +403,7 @@ export default class DamageRollOptions extends EdRollOptions {
    * modifiers are found.
    */
   static _getModifiersFromSource( sourceDocument, data ) {
-    if ( [ "arbitrary", "poison", "spell", ].includes( data.damageSourceType ) ) {
+    if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
       return undefined;
     }
 
@@ -411,6 +411,14 @@ export default class DamageRollOptions extends EdRollOptions {
       const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
       return {
         [ game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ) ]: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
+      };
+    }
+
+    if ( data.damageSourceType === "spell" ) {
+      return {
+        [ game.i18n.localize(
+          "ED.Data.Item.Spell.FIELDS.effect.details.damage.stepModifier.label"
+        ) ]: sourceDocument.system.effect.details.damage.stepModifier || 0,
       };
     }
 
