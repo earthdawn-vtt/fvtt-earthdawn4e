@@ -891,6 +891,15 @@
             "label":                               "Beschreibung"
           }
         },
+        "Group": {
+          "FIELDS":                                "TODO: Add translation"
+        },
+        "Horror": {
+          "FIELDS":                                "TODO: Add translation"
+        },
+        "Loot": {
+          "FIELDS":                                "TODO: Add translation"
+        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -1993,10 +2002,14 @@
               "hint":                              "Schadensstufe der Kraft",
               "label":                             "Schadensstufe"
             },
+            "damageType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "element": {
-              "subtype": {
-                "hint":                            "Die Unterart des Element dieser Kraft, falls eine vorhanden ist",
-                "label":                           "Element - Unterart"
+              "subType": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               },
               "type": {
                 "hint":                            "Das Element der Kraft",
@@ -2468,6 +2481,10 @@
             "armorType": {
               "hint":                              "Rüstungstyp gegen den der Schaden effektiv ist",
               "label":                             "Rüstungstyp"
+            },
+            "damageAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "damageType": {
               "hint":                              "Art des Schadens",
