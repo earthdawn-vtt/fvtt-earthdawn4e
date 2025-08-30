@@ -532,7 +532,7 @@
         "forestFire":                              "Forest Fire",
         "houseFire":                               "House Fire",
         "torch":                                   "Torch"
-      },      
+      },
       "Health": {
         "damageStandard":                          "Deadly Damage",
         "damageStun":                              "Stun Damage"
@@ -965,20 +965,20 @@
                   "label":                         "Damage",
                   "standard": {
                     "hint":                        "Normal damage taken by the actor",
-                    "label":                       "Normal Damage"
+                    "label":                       "Normal"
                   },
                   "stun": {
                     "hint":                        "Stun damage of the actor",
-                    "label":                       "Stun Damage"
+                    "label":                       "Stun"
                   },
                   "total": {
                     "hint":                        "Combined total of normal and stun damage",
-                    "label":                       "Total Damage"
+                    "label":                       "Total"
                   }
                 },
                 "death": {
                   "hint":                          "Death Rating of the actor",
-                  "label":                         "Death Rating"
+                  "label":                         "Death"
                 },
                 "maxWounds": {
                   "hint":                          "Maximum wounds of the actor",
@@ -2009,7 +2009,7 @@
             "damageType": {
               "hint":                              "Damage type of the power",
               "label":                             "Damage Type"
-            },            
+            },
             "element": {
               "subType": {
                 "hint":                            "Elemental subtype of the power",
@@ -3116,7 +3116,6 @@
         "questorDevotionNotFound":                 "Questor Devotion not found",
         "writtenRules":                            "Written Rules"
       },
-
       "Placeholder": {
         "lpDescription":                           "Description of Legend Award"
       },
