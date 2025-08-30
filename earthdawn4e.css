@@ -101,20 +101,34 @@
   --color-meter-6: #0b5f1e;
   --color-meter-background: var(--color-primary-grey);
   --color-text-banner: var(--color-text-primary);
+  --color-green-dk: #020300;
+  --color-green-dk-tr: rgba(2, 3, 0, 0.35);
+  --color-green-md: #162e1c;
+  --color-green-md-tr: rgba(22, 46, 28, 0.35);
+  --color-green-lt: #3a763e;
+  --color-green-lt-tr: rgba(58, 118, 62, 0.35);
+  --color-blue-dk: #03040a;
+  --color-blue-dk-tr: rgba(3, 4, 10, 0.35);
+  --color-blue-md: #151236;
+  --color-blue-md-tr: rgba(21, 18, 54, 0.35);
+  --color-blue-lt: #373d75;
+  --color-blue-lt-tr: rgba(55, 61, 117, 0.35);
+  --background-mottle-green: var(--color-green-md) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
 }
 :root .application.sheet.earthdawn4e.actor,
 :root .theme-dark.application.sheet.earthdawn4e.actor {
-  --color-primary: #03040a;
-  --color-primary-tr: rgba(3, 4, 10, 0.35);
-  --color-secondary: #151236;
-  --color-secondary-tr: rgba(21, 18, 54, 0.35);
-  --color-tertiary: #373d75;
-  --color-tertiary-tr: rgba(55, 61, 117, 0.35);
+  --color-primary: var(--color-blue-dk);
+  --color-primary-tr: var(--color-blue-dk-tr);
+  --color-secondary: var(--color-blue-md);
+  --color-secondary-tr: var(--color-blue-md-tr);
+  --color-tertiary: var(--color-blue-lt-tr);
+  --color-tertiary-tr: var(--color-blue-lt-tr);
   --color-primary-grey-tr: rgba(54, 54, 54, 0.6);
   --border-main: 2px solid var(--color-gold-3);
   --border-button: 1px solid var(--color-gold-2);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
-  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-banner-actor: var(--background-mottle-blue);
 }
 :root .application.sheet.earthdawn4e.actor.character,
 :root .theme-dark.application.sheet.earthdawn4e.actor.character {
@@ -125,7 +139,7 @@
   --color-tertiary: #3a763e;
   --color-tertiary-tr: rgba(58, 118, 62, 0.35);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
-  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-banner-actor: var(--background-mottle-green);
 }
 :root .theme-light.application.sheet.earthdawn4e.actor {
   --color-primary: #ffffff;
@@ -141,7 +155,7 @@
   --border-main: 2px solid var(--color-gold-3);
   --border-button: 2px solid var(--color-gold-4);
   --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
-  --background-banner-actor: var(--color-secondary) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-banner-actor: var(--background-mottle-blue);
 }
 /* ---------------------------------- */
 /*  Slide Toggles                     */
@@ -753,6 +767,9 @@ h3.label--rail .label__text::after {
 .journal-entry-page .journal-entry-pages {
   padding: 0;
 }
+.application .window-content {
+  backdrop-filter: none;
+}
 .journal-entry-page .journal-header {
   margin: 0 1rem;
 }
@@ -830,27 +847,6 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   background: linear-gradient(to right, transparent 0, var(--color-gold-2) var(--fade), var(--color-gold-2) calc(100% - var(--fade)), transparent 100%);
 }
 /* Journal Sheet Background */
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyXsovBJ.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyWyovBJ.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/robotocondensed/v30/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyVVpfBJ.ttf) format('truetype');
-}
 .journal-sheet .journal-header {
   margin-top: 10px;
 }
@@ -861,7 +857,6 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   background-repeat: repeat;
   background-position: top left;
   background-size: auto;
-  padding: 0 5px;
   /* journal Typesetting */
   /* Page Spacing */
   /* Page Split */
@@ -881,7 +876,6 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   border-radius: 0;
-  padding-top: 5px;
 }
 .sheet.journal-entry .journal-entry-content .title input[type="text"],
 .sheet.journal-entry .journal-entry-page .title input[type="text"],
@@ -921,7 +915,6 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   color: black;
   font-size: var(--font-size-24);
   text-transform: uppercase;
-  padding-bottom: 2px;
 }
 .sheet.journal-entry .journal-entry-content h4,
 .sheet.journal-entry .journal-entry-page h4,
@@ -931,7 +924,6 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   color: black;
   font-size: var(--font-size-22);
   letter-spacing: 0.01rem;
-  padding-top: 2px;
 }
 .sheet.journal-entry .journal-entry-content p,
 .sheet.journal-entry .journal-entry-page p,
@@ -980,6 +972,7 @@ aside.journal-sidebar nav.toc li.page.active .page-title::before {
   border: 0;
   color: black;
   text-decoration: underline;
+  padding: 0;
 }
 .sheet.journal-entry .journal-entry-content .content-link .fa-solid,
 .sheet.journal-entry .journal-entry-page .content-link .fa-solid,
