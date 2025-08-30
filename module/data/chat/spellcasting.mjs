@@ -111,7 +111,8 @@ export default class SpellcastingMessageData extends BaseMessageData {
     const spell = await this.getSpell();
 
     const specialDescription = spell?.system.effect?.details?.special?.description
-      ?? game.i18n.localize( "ED.Chat.Flavor.spellNoSpecialDescription" );
+      || spell?.system.description?.value
+      || game.i18n.localize( "ED.Chat.Flavor.spellNoSpecialDescription" );
     const content = `<div class="flavor-text text--center">
       ${ createContentAnchor( spell ).outerHTML }
       <p>${ specialDescription }</p>
