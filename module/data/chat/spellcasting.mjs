@@ -1,6 +1,9 @@
 import BaseMessageData from "./base-message.mjs";
 import { CHAT } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import DamageRollOptions from "../roll/damage.mjs";
+import RollPrompt from "../../applications/global/roll-prompt.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 export default class SpellcastingMessageData extends BaseMessageData {
 
@@ -34,6 +37,14 @@ export default class SpellcastingMessageData extends BaseMessageData {
   // region Getters
 
   /**
+   * Get the actor that casts the spell from the roll options.
+   * @returns {Promise<ActorEd|null>} The spellcaster, or null if it cannot be found.
+   */
+  async getCaster() {
+    return fromUuid( this.roll.options.rollingActorUuid );
+  }
+
+  /**
    * Get the spell being cast from the roll options.
    * @returns {Promise<ItemEd|null>} The spell being cast, or null if it cannot be found.
    */
@@ -49,7 +60,24 @@ export default class SpellcastingMessageData extends BaseMessageData {
    * @type {ApplicationClickAction}
    * @this {SpellcastingMessageData}
    */
-  static async _onRollDamage( event, button ) {}
+  static async _onRollDamage( event, button ) {
+    const caster = await this.getCaster();
+    const spell = await this.getSpell();
+
+    const rollOptions = DamageRollOptions.fromActor(
+      {
+        damageSourceType: "spell",
+        sourceDocument:   spell,
+        caster,
+      },
+      caster,
+      {
+        rollData: caster.getRollData(),
+      }
+    );
+    const roll = await RollPrompt.waitPrompt( rollOptions );
+    await RollProcessor.process( roll, caster, { rollToMessage: true, } );
+  }
 
   /**
    * @type {ApplicationClickAction}
