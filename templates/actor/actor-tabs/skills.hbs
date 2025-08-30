@@ -1,6 +1,8 @@
 <section class="tab {{tabs.skills.cssClass}}" data-group="sheet" data-tab="skills">
 <h2>{{localize "ED.Actor.Header.skills"}}</h2>
-    <div class="container__block">
+
+<div class="container__block">
+    <div class="container__section">
         <div class="ability-card__grid--container container__header text-break__auto">
             <div class="ability-card__grid--item"></div>
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
@@ -10,13 +12,10 @@
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
         </div>
-
         {{#each actor.itemTypes.skill}}
-        {{> "systems/ed4e/templates/actor/cards/ability-card.hbs"}}
+            {{> "systems/ed4e/templates/actor/cards/ability-card.hbs"}}
         {{/each}}
-
-        <div class="undefined">
-            <p>include type separation</p>
-        </div>
+    </div>
 </div>
+    
 </section>

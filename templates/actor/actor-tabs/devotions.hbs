@@ -1,6 +1,8 @@
 <section class="tab {{tabs.devotions.cssClass}}" data-group="sheet" data-tab="devotions">
 <h2>{{localize "ED.Actor.Header.devotions"}}</h2>
-    <div class="container__block">
+
+<div class="container__block">
+    <div class="container__section">
         <div class="ability-card__grid--container container__header text-break__auto">
             <div class="ability-card__grid--item"></div>
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
@@ -10,9 +12,11 @@
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.strain"}}</div>
             <div class="ability-card__grid--item">{{localize "ED.Actor.Header.attribute"}}</div>
             <div class="ability-card__grid--item"></div>
-        </div>
-    {{#each actor.itemTypes.devotion}}
-    {{> "systems/ed4e/templates/actor/cards/ability-card.hbs"}}
-    {{/each}}
+        </div>            
+        {{#each actor.itemTypes.devotion}}
+           {{> "systems/ed4e/templates/actor/cards/ability-card.hbs"}}
+        {{/each}}
+    </div>
 </div>
+
 </section>
