@@ -891,6 +891,15 @@
             "label":                               "TODO: Add translation"
           }
         },
+        "Group": {
+          "FIELDS":                                "TODO: Add translation"
+        },
+        "Horror": {
+          "FIELDS":                                "TODO: Add translation"
+        },
+        "Loot": {
+          "FIELDS":                                "TODO: Add translation"
+        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -1993,8 +2002,12 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "damageType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "element": {
-              "subtype": {
+              "subType": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -2466,6 +2479,10 @@
         "DamageRollOptions": {
           "FIELDS": {
             "armorType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "damageAbilities": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
