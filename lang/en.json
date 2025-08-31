@@ -377,6 +377,7 @@
         "rollRecovery":                            "{sourceActor} uses a recovery test for {recoveryMode}",
         "rollSubstitute":                          "{actor} rolls {attribute} ({step}) to replace {substitute}",
         "rollUnarmedDamage":                       "{sourceActor} rolls unarmed damage",
+        "spellEffectRollOptions":                  "TODO: Add translation",
         "spellNoSpecialDescription":               "Spell has no special effects",
         "spellcastingRollOptions":                 "{sourceActor} casts<br>{spell} with<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard roll",
@@ -619,7 +620,6 @@
         "attribute":                               "Attribute",
         "attuning":                                "Attuning",
         "damage":                                  "Damage",
-        "effect":                                  "Effect",
         "halfmagic":                               "Half-Magic",
         "horrorMark":                              "Horror Mark",
         "initiative":                              "Initiative",
@@ -627,6 +627,7 @@
         "knockDown":                               "Knockdown",
         "reaction":                                "Reaction",
         "recovery":                                "Recovery",
+        "spellEffect":                             "TODO: Add translation",
         "spellcasting":                            "Spellcasting",
         "threadWeaving":                           "Thread Weaving",
         "warping":                                 "Warping"
@@ -2115,9 +2116,17 @@
             "effect": {
               "details": {
                 "damage": {
+                  "addCircle": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "armorType": {
                     "hint":                        "Armor type that protects against the spell's damage",
                     "label":                       "Armor Type"
+                  },
+                  "attribute": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
                   },
                   "damageType": {
                     "hint":                        "Type of damage caused by the spell",
@@ -2131,8 +2140,20 @@
                   }
                 },
                 "effect": {
+                  "addCircle": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "attribute": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "hint":                          "The spell causes an Active Effect",
-                  "label":                         "Active Effect"
+                  "label":                         "Active Effect",
+                  "stepModifier": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
                 },
                 "hint":                            "Details of the spell effect",
                 "label":                           "Effect Details",
@@ -2473,10 +2494,6 @@
             "armorType": {
               "hint":                              "Armor type the damage is effective against",
               "label":                             "Armor Type"
-            },
-            "damageAbilities": {
-              "hint":                              "Abilities applied to the damage",
-              "label":                             "Damage Abilities"
             },
             "damageType": {
               "hint":                              "Type of damage",
@@ -3160,6 +3177,7 @@
         "substitute":                              "Substitute Ability",
         "takeDamage":                              "Take Damage",
         "talentCategory":                          "Talent Category",
+        "useWillpower":                            "TODO: Add translation",
         "versatilityLimit":                        "Versatility Limit Reached"
       },
       "ToolTips": {
@@ -3172,6 +3190,7 @@
       "damageStun":                                "Stun Damage",
       "damageType":                                "Damage Type",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
+      "doYouWantToUseWillpower":                   "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
       "knockDownChoice":                           "Choose the Ability to resist Knock Down",
       "mystical":                                  "Mystical Damage",
@@ -3228,7 +3247,9 @@
         "grimoireConfiguration":                   "Grimoire Configuration",
         "matrixConfiguration":                     "Matrix Configuration",
         "navigator":                               "Navigator",
+        "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "Spell Effect",
+        "spellEffectStep":                         "TODO: Add translation",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
         "talentKnacks":                            "Knacks",
@@ -3365,6 +3386,7 @@
         "bonusDamageFromExtraSuccesses":           "Bonus Damage from Extra Successes",
         "grimoirePenalty":                         "Foreign Grimoire",
         "manual":                                  "Manual Adjustment",
+        "spellEffectOrDamageStepCircle":           "TODO: Add translation",
         "stunRecoveryWillpower":                   "Willpower"
       },
       "baseValue":                                 "Base Step",

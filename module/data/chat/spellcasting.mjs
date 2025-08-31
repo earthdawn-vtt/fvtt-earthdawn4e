@@ -15,6 +15,7 @@ export default class SpellcastingMessageData extends BaseMessageData {
   static DEFAULT_OPTIONS = {
     actions: {
       rollDamage:  this._onRollDamage,
+      rollEffect:  this._onRollEffect,
       runMacro:    this._onRunMacro,
       showSpecial: this._onShowSpecial,
     },
@@ -28,12 +29,24 @@ export default class SpellcastingMessageData extends BaseMessageData {
 
   // region Properties
 
+  // endregion
+
+  // region Getters
+
   /**
-   * The spell being cast during the thread weaving.
-   * @type {ItemEd|null}
+   * Get the actor that casts the spell from the roll options.
+   * @returns {Promise<ActorEd|null>} The spellcaster, or null if it cannot be found.
    */
-  get spell() {
-    return fromUuidSync( this.roll.options.spellUuid );
+  async getCaster() {
+    return fromUuid( this.roll.options.rollingActorUuid );
+  }
+
+  /**
+   * Get the spell being cast from the roll options.
+   * @returns {Promise<ItemEd|null>} The spell being cast, or null if it cannot be found.
+   */
+  async getSpell() {
+    return fromUuid( this.roll.options.spellUuid );
   }
 
   // endregion
@@ -44,13 +57,39 @@ export default class SpellcastingMessageData extends BaseMessageData {
    * @type {ApplicationClickAction}
    * @this {SpellcastingMessageData}
    */
-  static async _onRollDamage( event, button ) {}
+  static async _onRollDamage( event, button ) {
+    event.preventDefault();
+
+    const spell = await this.getSpell();
+    await spell.system.rollDamage();
+  }
 
   /**
    * @type {ApplicationClickAction}
    * @this {SpellcastingMessageData}
    */
-  static async _onRunMacro( event, button ) {}
+  static async _onRollEffect( event, button ) {
+    event.preventDefault();
+
+    const spell = await this.getSpell();
+    await spell.system.rollEffect();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {SpellcastingMessageData}
+   */
+  static async _onRunMacro( event, button ) {
+    event.preventDefault();
+
+    const actor = await fromUuid( this.roll.options.rollingActorUuid );
+    const spell = await this.getSpell();
+    spell.system.runMacro( {
+      event,
+      actor,
+      spell,
+    } );
+  }
 
   /**
    * @type {ApplicationClickAction}
@@ -59,10 +98,11 @@ export default class SpellcastingMessageData extends BaseMessageData {
   static async _onShowSpecial( event, button ) {
     event.preventDefault();
 
-    const spell = this.spell;
+    const spell = await this.getSpell();
 
     const specialDescription = spell?.system.effect?.details?.special?.description
-      ?? game.i18n.localize( "ED.Chat.Flavor.spellNoSpecialDescription" );
+      || spell?.system.description?.value
+      || game.i18n.localize( "ED.Chat.Flavor.spellNoSpecialDescription" );
     const content = `<div class="flavor-text text--center">
       ${ createContentAnchor( spell ).outerHTML }
       <p>${ specialDescription }</p>

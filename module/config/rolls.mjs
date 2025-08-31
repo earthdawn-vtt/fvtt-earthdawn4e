@@ -41,10 +41,6 @@ export const rollTypes = {
     label:            "ED.Config.RollTypes.damage",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/damage-roll-flavor.hbs",
   },
-  effect: {
-    label:            "ED.Config.RollTypes.effect",
-    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
-  },
   halfmagic: {
     label:            "ED.Config.RollTypes.halfmagic",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/halfmagic-roll-flavor.hbs",
@@ -76,6 +72,10 @@ export const rollTypes = {
   spellcasting: {
     label:            "ED.Config.RollTypes.spellcasting",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/spellcasting-roll-flavor.hbs",
+  },
+  spellEffect: {
+    label:            "ED.Config.RollTypes.spellEffect",
+    flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/effect-roll-flavor.hbs",
   },
   threadWeaving: {
     label:            "ED.Config.RollTypes.threadWeaving",

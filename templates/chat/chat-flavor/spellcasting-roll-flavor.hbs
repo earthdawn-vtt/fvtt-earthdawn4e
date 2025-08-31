@@ -11,6 +11,9 @@
     {{#if (eq spell.system.effect.type "damage")}}
       {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
     {{/if}}
+    {{#if (eq spell.system.effect.type "effect")}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/roll-effect.hbs"}}
+    {{/if}}
     {{#if (ed-hasItems spell.effects)}}
       {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
     {{/if}}

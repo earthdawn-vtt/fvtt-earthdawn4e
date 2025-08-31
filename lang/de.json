@@ -376,6 +376,7 @@
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollSubstitute":                          "{actor} würfelt {attribute} ({step}) um {substitute} zu ersetzen",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
+        "spellEffectRollOptions":                  "{sourceActor} wirkt {spell}",
         "spellNoSpecialDescription":               "Zauber hat keine Spezialeffekte",
         "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard Würfelwurf",
@@ -618,7 +619,6 @@
         "attribute":                               "Attribute",
         "attuning":                                "Abstimmung",
         "damage":                                  "Schaden",
-        "effect":                                  "Effekt",
         "halfmagic":                               "Halbmagie",
         "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
@@ -626,6 +626,7 @@
         "knockDown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
+        "spellEffect":                             "Zauber-Effekt",
         "spellcasting":                            "Spruchzauberei",
         "threadWeaving":                           "Fadenweben",
         "warping":                                 "Verzerrung"
@@ -651,7 +652,7 @@
       },
       "SpellEffectTypes": {
         "damage":                                  "Schaden",
-        "effect":                                  "Effekt",
+        "effect":                                  "Effektwurf",
         "macro":                                   "Makro",
         "special":                                 "Spezial"
       },
@@ -2114,9 +2115,17 @@
             "effect": {
               "details": {
                 "damage": {
+                  "addCircle": {
+                    "hint":                        "Fügt den Kreis der Disziplin des Actors zur Schadensstufe hinzu",
+                    "label":                       "Kreis hinzufügen"
+                  },
                   "armorType": {
                     "hint":                        "Rüstungstyp der gegen den Schaden des Spruches schützt",
                     "label":                       "Rüstungstyp"
+                  },
+                  "attribute": {
+                    "hint":                        "Attribut auf dem die Schadensstufe basiert",
+                    "label":                       "Attribut"
                   },
                   "damageType": {
                     "hint":                        "Art des Schadens der durch den Spruch verursacht wird",
@@ -2130,8 +2139,20 @@
                   }
                 },
                 "effect": {
-                  "hint":                          "Der Spruch verursacht einen ActiveEffect",
-                  "label":                         "ActiveEffect"
+                  "addCircle": {
+                    "hint":                        "Fügt den Kreis der Disziplin des Actors zum Effektwurf hinzu",
+                    "label":                       "Kreis hinzufügen"
+                  },
+                  "attribute": {
+                    "hint":                        "Attribut auf dem die Stufe des Effektwurf basiert",
+                    "label":                       "Attribut"
+                  },
+                  "hint":                          "Details zur Stufe des Effektwurf",
+                  "label":                         "Effektstufe",
+                  "stepModifier": {
+                    "hint":                        "Modifikator der auf Willenskraft-Stufe addiert wird",
+                    "label":                       "Effektstufen Modifikator (WIL)"
+                  }
                 },
                 "hint":                            "Details zum Effekt des Spruches",
                 "label":                           "Effektdetails",
@@ -3159,7 +3180,8 @@
         "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie",
-        "versatilityLimit":                        "Vielseitigkeitslimit erricht"
+        "useWillpower":                            "Willenskraft einsetzen",
+        "versatilityLimit":                        "Vielseitigkeitslimit erreicht"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
@@ -3171,6 +3193,7 @@
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
+      "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
@@ -3227,7 +3250,9 @@
         "grimoireConfiguration":                   "Grimoire Konfiguration",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
+        "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
+        "spellEffectStep":                         "Effektstufe",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
         "talentKnacks":                            "Kniffe",
@@ -3364,6 +3389,7 @@
         "bonusDamageFromExtraSuccesses":           "+2 pro extra Erfolg von Angriff",
         "grimoirePenalty":                         "Fremdes Grimoire",
         "manual":                                  "Manuelle Anpassung",
+        "spellEffectOrDamageStepCircle":           "Kreis ({discipline})",
         "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",
