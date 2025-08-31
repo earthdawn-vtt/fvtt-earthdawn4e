@@ -7,5 +7,6 @@ export {default as HorrorMarkRollData} from "./horror-mark.mjs";
 export {default as InitiativeRollData} from "./initiative.mjs";
 export {default as RecoveryRollData} from "./recovery.mjs";
 export {default as SpellcastingRollData} from "./spellcasting.mjs";
+export {default as SpellEffectRollData} from "./spelleffect.mjs";
 export {default as WarpingRollData} from "./warping.mjs";
 export {default as WeavingRollData} from "./weaving.mjs";
