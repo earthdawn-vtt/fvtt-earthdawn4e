@@ -1,14 +1,9 @@
-<div class="custom-flavor">{{ customFlavor }}</div>
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.spellEffect.label}}}</div>
+
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
 {{else}}
-<div class="flexrow message-buttons effect-roll-buttons" data-roll-total={{ result }}>
-  {{> "systems/ed4e/templates/chat/chat-buttons/roll-effect.hbs"}}
-</div>
 <div class="modifier-lists flexrow">
   {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-</div>
-<div class="message-buttons flexrow">
-  {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
 </div>
 {{/if}}
