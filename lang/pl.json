@@ -1993,6 +1993,10 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "damageType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "element": {
               "subtype": {
                 "hint":                            "TODO: Add translation",
@@ -2466,6 +2470,10 @@
         "DamageRollOptions": {
           "FIELDS": {
             "armorType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "damageAbilities": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },

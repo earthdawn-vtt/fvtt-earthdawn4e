@@ -1993,6 +1993,10 @@
               "hint":                              "Schadensstufe der Kraft",
               "label":                             "Schadensstufe"
             },
+            "damageType": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "element": {
               "subtype": {
                 "hint":                            "Die Unterart des Element dieser Kraft, falls eine vorhanden ist",
@@ -2468,6 +2472,10 @@
             "armorType": {
               "hint":                              "Rüstungstyp gegen den der Schaden effektiv ist",
               "label":                             "Rüstungstyp"
+            },
+            "damageAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "damageType": {
               "hint":                              "Art des Schadens",
