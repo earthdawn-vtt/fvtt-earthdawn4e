@@ -1502,22 +1502,20 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button {
-  display: content;
   background: none;
   border: 0;
   padding: 0;
-  margin-top: -8px;
+  margin: -4px 0 0 13px;
   cursor: pointer;
   color: var(--color-gold-4);
-  align-items: revert;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button:hover,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button:hover {
   color: var(--color-gold-5);
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container a.button button,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container a.button button {
-  display: contents;
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container button,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container button {
+  display: flex;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
   grid-template-columns: none;
