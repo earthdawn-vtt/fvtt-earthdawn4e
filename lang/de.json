@@ -1999,8 +1999,8 @@
             },
             "element": {
               "subtype": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Die Unterart des Element dieser Kraft, falls eine vorhanden ist",
+                "label":                           "Element - Unterart"
               },
               "type": {
                 "hint":                            "Das Element der Kraft",
