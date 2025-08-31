@@ -892,18 +892,6 @@
             "label":                               "Description"
           }
         },
-        "Group": {
-          "FIELDS": {
-          }
-        },
-        "Horror": {
-          "FIELDS": {
-          }
-        },
-        "Loot": {
-          "FIELDS": {
-          }
-        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -2011,7 +1999,7 @@
               "label":                             "Damage Type"
             },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "Elemental subtype of the power",
                 "label":                           "Element Subtype"
               },
