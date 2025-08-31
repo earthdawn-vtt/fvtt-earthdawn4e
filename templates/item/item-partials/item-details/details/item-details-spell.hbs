@@ -11,11 +11,6 @@
 
     {{#if (eq item.system.effect.type "damage")}}
       {{formGroup
-        systemFields.effect.fields.details.fields.damage.fields.stepModifier
-        name="system.effect.details.damage.stepModifier"
-        value=item.system.effect.details.damage.stepModifier
-      }}
-      {{formGroup
         systemFields.effect.fields.details.fields.damage.fields.damageType
         name="system.effect.details.damage.damageType"
         value=item.system.effect.details.damage.damageType
@@ -25,12 +20,31 @@
         name="system.effect.details.damage.armorType"
         value=item.system.effect.details.damage.armorType
       }}
+      <fieldset>
+        <legend>{{localize "ED.Item.Header.spellDamageStep"}}</legend>
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.attribute
+          name="system.effect.details.damage.attribute"
+          value=item.system.effect.details.damage.attribute
+        }}
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.stepModifier
+          name="system.effect.details.damage.stepModifier"
+          value=item.system.effect.details.damage.stepModifier
+        }}
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.addCircle
+          name="system.effect.details.damage.addCircle"
+          value=item.system.effect.details.damage.addCircle
+        }}
+      </fieldset>
     {{else if (eq item.system.effect.type "effect")}}
+      <fieldset>
+        <legend>{{localize "ED.Item.Header.spellEffectStep"}}</legend>
       {{formGroup
         systemFields.effect.fields.details.fields.effect.fields.attribute
         name="system.effect.details.effect.attribute"
         value=item.system.effect.details.effect.attribute
-        disabled=true
       }}
       {{formGroup
         systemFields.effect.fields.details.fields.effect.fields.stepModifier
@@ -42,6 +56,7 @@
         name="system.effect.details.effect.addCircle"
         value=item.system.effect.details.effect.addCircle
       }}
+      </fieldset>
     {{else if (eq item.system.effect.type "macro")}}
       {{formGroup
         systemFields.effect.fields.details.fields.macro.fields.macroUuid
