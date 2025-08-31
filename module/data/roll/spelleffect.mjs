@@ -96,16 +96,24 @@ export default class SpellEffectRollOptions extends EdRollOptions {
 
     const caster = data.caster ?? fromUuidSync( data.rollingActorUuid );
     const willpower = data.willpower ?? fromUuidSync( data.willpowerUuid );
+    const spell = data.spell ?? fromUuidSync( data.spellUuid );
 
-    if ( willpower ) {
-      return willpower.system.baseRollOptions.step || {};
-    } else {
-      const spell = data.spell ?? fromUuidSync( data.spellUuid );
+    return spell.system.getEffectDetailsRollStepData( {
+      actor: caster,
+      willpower
+    } );
+  }
 
-      return {
-        base: spell.system.getEffectStepTotal( caster ),
-      };
-    }
+  /** @inheritdoc */
+  static _prepareStrainData( data ) {
+    if ( data.strain ) return data.strain;
+
+    const willpower = data.willpower ?? fromUuidSync( data.willpowerUuid );
+    if ( !willpower ) return null;
+
+    return {
+      base: willpower.system.strain,
+    };
   }
 
   // endregion
