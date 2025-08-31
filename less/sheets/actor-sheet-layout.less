@@ -181,7 +181,11 @@
         border: none;
         height: 20px;
         width: 20px;
-        color: var(--color-text-inverse);
+        color: var(--color-gold-4);
+
+        &:hover {
+          color: var(--color-gold-5);
+        }
       }
     }
 
@@ -513,7 +517,7 @@
         }
 
         /* damage grid placement */
-        .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; padding: 32px 0 0 5px; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; padding: 23px 0 0 5px; justify-content: center; align-items: center; }
         .damage__grid--item.damage__normal { grid-column: 2; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.damage__stun { grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.damage__total { grid-column: 4; grid-row: 2; display: flex; justify-content: center; align-items: center; }
@@ -537,6 +541,24 @@
           background-color: unset;
           font-size: var(--font-size-16);
         }
+
+        /* Take Damage Button */
+      .icon-button {
+        background:none;
+        border:0;
+        padding:0;
+        margin: -4px 0 0 13px;
+        cursor:pointer;
+        color: var(--color-gold-4);
+      }
+      .icon-button:hover {
+        color: var(--color-gold-5);
+      }
+      button {
+        display: flex;
+      }
+
+
       }
       .image-characteristics-mob__grid-container {
       

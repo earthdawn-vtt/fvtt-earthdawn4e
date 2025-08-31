@@ -1161,7 +1161,12 @@ h3.label--rail .label__text::after {
   border: none;
   height: 20px;
   width: 20px;
-  color: var(--color-text-inverse);
+  color: var(--color-gold-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons button:hover,
+.application.sheet.earthdawn4e.actor .window-content .recovery__header-icons button:hover,
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons button:hover {
+  color: var(--color-gold-5);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
@@ -1311,6 +1316,7 @@ h3.label--rail .label__text::after {
   /* damage grid placement */
   /* health grid placement */
   /* colors & accents */
+  /* Take Damage Button */
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .image-characteristics__grid-container > div,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .image-characteristics__grid-container > div {
@@ -1419,7 +1425,7 @@ h3.label--rail .label__text::after {
   grid-column: 1;
   grid-row: 2;
   text-align: left;
-  padding: 32px 0 0 5px;
+  padding: 23px 0 0 5px;
   justify-content: center;
   align-items: center;
 }
@@ -1502,6 +1508,23 @@ h3.label--rail .label__text::after {
   border: unset;
   background-color: unset;
   font-size: var(--font-size-16);
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: -4px 0 0 13px;
+  cursor: pointer;
+  color: var(--color-gold-4);
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button:hover,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button:hover {
+  color: var(--color-gold-5);
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container button,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container button {
+  display: flex;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
   grid-template-columns: none;
