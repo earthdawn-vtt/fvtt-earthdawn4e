@@ -122,7 +122,26 @@ export default class SpellData extends ItemDataModel.mixin(
               choices:  ACTORS.armor,
             }, ),
           }, {} ),
-          effect:  new fields.SchemaField( {}, {} ),
+          effect:  new fields.SchemaField( {
+            attribute:    new fields.StringField( {
+              required: true,
+              nullable: false,
+              blank:    true,
+              choices:  ACTORS.attributes,
+              initial:  "wil",
+            } ),
+            stepModifier: new fields.NumberField( {
+              required: true,
+              nullable: false,
+              initial:  0,
+              integer:  true,
+            } ),
+            addCircle: new fields.BooleanField( {
+              required: true,
+              nullable: false,
+              initial:  false,
+            } ),
+          }, {} ),
           macro:   new fields.SchemaField( {
             macroUuid: new fields.DocumentUUIDField( {
               type:     "Macro",
@@ -317,6 +336,18 @@ export default class SpellData extends ItemDataModel.mixin(
     );
   }
 
+  getEffectStepTotal() {
+    const effectDetails = this.effect?.details.effect;
+    const caster = this.containingActor;
+    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
+
+    return caster.system.attributes[ effectDetails.attribute ]?.step
+      + ( effectDetails.stepModifier )
+      + ( effectDetails.addCircle
+        ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
+        : 0 );
+  }
+
   /**
    * Returns all grimoires of the given actor that contain this spell.
    * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
@@ -351,6 +382,19 @@ export default class SpellData extends ItemDataModel.mixin(
     if ( !actor ) return undefined;
 
     return !!actor.itemTypes.spell.find( i => i.uuid === this.parent.uuid );
+  }
+
+  // endregion
+
+  // region Data Preparation
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+
+    if ( this.effect?.type === "effect" ) {
+      this.effect.details.effect.totalStep = this.getEffectStepTotal();
+    }
   }
 
   // endregion
