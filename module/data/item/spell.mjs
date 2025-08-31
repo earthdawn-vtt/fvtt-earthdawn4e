@@ -104,11 +104,23 @@ export default class SpellData extends ItemDataModel.mixin(
         } ),
         details: new fields.SchemaField( {
           damage:  new fields.SchemaField( {
+            attribute:    new fields.StringField( {
+              required: true,
+              nullable: false,
+              blank:    true,
+              choices:  ACTORS.attributes,
+              initial:  "wil",
+            } ),
             stepModifier: new fields.NumberField( {
               required: true,
               nullable: false,
               initial:  0,
               integer:  true,
+            } ),
+            addCircle: new fields.BooleanField( {
+              required: true,
+              nullable: false,
+              initial:  false,
             } ),
             damageType: new fields.StringField( {
               required: true,
@@ -358,6 +370,66 @@ export default class SpellData extends ItemDataModel.mixin(
         ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
         : 0 );
   }
+
+  /**
+   * Prepares the roll step data for this spell's effect, if it is of type "damage" or "effect".
+   * This includes the base step and any applicable modifiers.
+   * @param {object} options Options for the calculation.
+   * @param {ActorEd} [options.actor] The actor to use for the calculation. If not provided,
+   * uses the containing actor of this spell.
+   * @param {ItemEd} [options.willpower] The willpower item to consider for the roll, if any.
+   * This is only applied if the effect attribute is "wil".
+   * @returns {RollStepData} The prepared roll step data.
+   * @throws {Error} If the effect type is not "damage" or "effect", or if effect details or caster are not available.
+   */
+  getEffectDetailsRollStepData( options = {} ) {
+    if ( ![ "damage", "effect" ].includes( this.effect?.type ) ) throw new Error( "Effect roll step data can only be prepared for effects of type 'damage' or 'effect'." );
+
+    const { actor, willpower } = options;
+    const effectDetails = this.effect?.details[ this.effect.type ];
+    const caster = actor || this.containingActor;
+    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
+
+    const attribute = effectDetails.attribute;
+    const attributeStep = caster.system.attributes[ attribute ]?.step;
+    const stepModifier = this.effect.details[ this.effect.type ].stepModifier;
+    const circle = effectDetails.addCircle
+      ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
+      : undefined;
+    
+    const modifiers = {};
+    const stepModifierLabel = game.i18n.localize(
+      `ED.Data.Item.Spell.FIELDS.effect.details.${ this.effect.type }.stepModifier.label`
+    );
+    const disciplineName = MAGIC.spellcastingTypes[ this.spellcastingType ];
+    const circleLabel = game.i18n.format(
+      "ED.Rolls.Modifiers.spellEffectOrDamageStepCircle",
+      { discipline: disciplineName }
+    );
+
+    if ( Number.isNumeric( attributeStep ) ) {
+      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
+      if ( effectDetails.addCircle ) modifiers[ circleLabel ] = circle;
+      if ( willpower && attribute === "wil" ) modifiers[ willpower.name ] = willpower.system.level;
+      return {
+        base:      attributeStep,
+        modifiers,
+      };
+    } else if ( effectDetails.addCircle ) {
+      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
+      return {
+        base:      circle,
+        modifiers,
+      };
+    } else {
+      return {
+        base:      stepModifier,
+        modifiers,
+      };
+    }
+  }
+
+
 
   /**
    * Returns all grimoires of the given actor that contain this spell.
