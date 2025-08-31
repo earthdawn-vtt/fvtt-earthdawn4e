@@ -376,6 +376,7 @@
         "rollRecovery":                            "TODO: Add translation",
         "rollSubstitute":                          "TODO: Add translation",
         "rollUnarmedDamage":                       "TODO: Add translation",
+        "spellEffectRollOptions":                  "TODO: Add translation",
         "spellNoSpecialDescription":               "TODO: Add translation",
         "spellcastingRollOptions":                 "TODO: Add translation",
         "standardDiceRoll":                        "TODO: Add translation",
@@ -618,7 +619,6 @@
         "attribute":                               "TODO: Add translation",
         "attuning":                                "TODO: Add translation",
         "damage":                                  "TODO: Add translation",
-        "effect":                                  "TODO: Add translation",
         "halfmagic":                               "TODO: Add translation",
         "horrorMark":                              "TODO: Add translation",
         "initiative":                              "TODO: Add translation",
@@ -626,6 +626,7 @@
         "knockDown":                               "TODO: Add translation",
         "reaction":                                "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
+        "spellEffect":                             "TODO: Add translation",
         "spellcasting":                            "TODO: Add translation",
         "threadWeaving":                           "TODO: Add translation",
         "warping":                                 "TODO: Add translation"
@@ -2110,7 +2111,15 @@
             "effect": {
               "details": {
                 "damage": {
+                  "addCircle": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "armorType": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "attribute": {
                     "hint":                        "TODO: Add translation",
                     "label":                       "TODO: Add translation"
                   },
@@ -2126,8 +2135,20 @@
                   }
                 },
                 "effect": {
+                  "addCircle": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
+                  "attribute": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  },
                   "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "label":                         "TODO: Add translation",
+                  "stepModifier": {
+                    "hint":                        "TODO: Add translation",
+                    "label":                       "TODO: Add translation"
+                  }
                 },
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation",
@@ -3151,6 +3172,7 @@
         "substitute":                              "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation",
+        "useWillpower":                            "TODO: Add translation",
         "versatilityLimit":                        "TODO: Add translation"
       },
       "ToolTips": {
@@ -3163,6 +3185,7 @@
       "damageStun":                                "TODO: Add translation",
       "damageType":                                "TODO: Add translation",
       "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
+      "doYouWantToUseWillpower":                   "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
       "knockDownChoice":                           "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
@@ -3219,7 +3242,9 @@
         "grimoireConfiguration":                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
+        "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "TODO: Add translation",
+        "spellEffectStep":                         "TODO: Add translation",
         "spellEnhancement":                        "TODO: Add translation",
         "summary":                                 "TODO: Add translation",
         "talentKnacks":                            "TODO: Add translation",
@@ -3356,6 +3381,7 @@
         "bonusDamageFromExtraSuccesses":           "TODO: Add translation",
         "grimoirePenalty":                         "TODO: Add translation",
         "manual":                                  "TODO: Add translation",
+        "spellEffectOrDamageStepCircle":           "TODO: Add translation",
         "stunRecoveryWillpower":                   "TODO: Add translation"
       },
       "baseValue":                                 "TODO: Add translation",
