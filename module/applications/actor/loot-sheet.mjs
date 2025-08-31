@@ -23,7 +23,7 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 850,
+      height: 890,
     }
   };
 

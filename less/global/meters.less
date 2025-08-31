@@ -3,9 +3,9 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  height: var(--meter-h, 7px);
-  background: var(--meter-bg, var(--color-primary-grey-30));
-  border-radius: var(--meter-radius, 5px);
+  height: var(--size-meter-height-sm);
+  background: var(--color-meter-background);
+  border-radius: var(--size-meter-radius);
 }
 .meter__segment { height: 100%; flex: 0 0 auto; }
 .meter__marker  { position: absolute; top: 0; width: 2px; height: 100%; background-color: var(--color-primary); pointer-events: none; }
@@ -20,14 +20,11 @@
 .damage-bar__marker--unconscious { left: calc(~"(var(--u, 0) / max(var(--d-max, 1), 1)) * 100%"); transform: translateX(-50%); }
 
 /* ======================= Encumbrance meter ======================= */
-.encumbrance__container {
-    margin-top: 0.5rem;
-}
 .encumbrance__row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 0.6rem 0;
+    margin: 0.2rem 0 0.6rem 0;
 }
 .encumbrance__label {
     white-space: nowrap;
@@ -38,12 +35,12 @@
     position: relative;
     overflow: hidden;
     flex: 1;
-    height: 12px;
+    height: var(--size-meter-height-md);
     background: var(--color-primary-grey);
 }
 .encumbrance__fill {
     height: 100%;
-    width: var(--fill-width, 0%);
+    width: 0%;
     transition: width 0.3s ease, background-color 0.3s ease;
     background-color: grey;
     &.low { background-color: var(--color-meter-1); }

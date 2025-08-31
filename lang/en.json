@@ -954,20 +954,20 @@
                   "label":                         "Damage",
                   "standard": {
                     "hint":                        "Normal damage taken by the actor",
-                    "label":                       "Normal Damage"
+                    "label":                       "Normal"
                   },
                   "stun": {
                     "hint":                        "Stun damage of the actor",
-                    "label":                       "Stun Damage"
+                    "label":                       "Stun"
                   },
                   "total": {
                     "hint":                        "Combined total of normal and stun damage",
-                    "label":                       "Total Damage"
+                    "label":                       "Total"
                   }
                 },
                 "death": {
                   "hint":                          "Death Rating of the actor",
-                  "label":                         "Death Rating"
+                  "label":                         "Death"
                 },
                 "maxWounds": {
                   "hint":                          "Maximum wounds of the actor",
@@ -1995,10 +1995,14 @@
               "hint":                              "Damage step of the power",
               "label":                             "Damage Step"
             },
+            "damageType": {
+              "hint":                              "Damage type of the power",
+              "label":                             "Damage Type"
+            },
             "element": {
               "subtype": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Elemental subtype of the power",
+                "label":                           "Element Subtype"
               },
               "type": {
                 "hint":                            "Element type of the power",

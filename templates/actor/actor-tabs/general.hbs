@@ -2,13 +2,11 @@
 
   <div class="layout__row">
 
-    <!-- Left Column -->
     <div class="layout__col--2">
 
-      <!-- Attributes -->
-      <h2>
-        <label>{{localize "ED.Actor.Header.attributes"}}</label>
-      </h2>
+      <!-- Attributes -->      
+      <h2><label>{{localize "ED.Actor.Header.attributes"}}</label></h2>
+
       <div class="container__block container__custom">
         <div class="attribute-card__grid--container container__header">
           <div class="attribute-card__grid--item"></div>
@@ -29,7 +27,7 @@
         {{/if}}
       </div>
 
-      <!-- Karma -->
+      <!-- Karma -->      
       <h2 class="karma-devotion__header margin__none one-line__vertical-align">
         <span class="karma-devotion__header-label">
           {{localize "ED.Actor.Header.karma"}}
@@ -171,12 +169,10 @@
 
       <div class="container__block container__custom">
         {{#if (eq this.actor.type "character")}}
-          <!-- Header -->
           <div class="initiative__grid--container container__header">
             <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
             <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.penalty"}}</div>
           </div>
-          <!-- Body -->
           <div class="initiative__grid--container">
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
@@ -190,12 +186,10 @@
             </div>
           </div>
         {{else}}
-          <!-- Header -->
           <div class="initiative-npc__grid--container container__header">
             <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
             <div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
           </div>
-          <!-- Body -->
           <div class="initiative-npc__grid--container">
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
@@ -227,6 +221,7 @@
         <div class="buttons--left input--centered1">
           <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
           <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
+          <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
         </div>
       </div>
 

@@ -183,17 +183,34 @@
 //###########################################################
 
 .container__block {
-  margin: -7px 0 0 0;
+  margin: -7px 0 5px 0;
   border: var(--border-main);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  padding: 5px 5px 3px 5px;
+  background-clip: padding-box;
+  overflow: auto;
+  position: relative;
 }
+
 .container__header {
-  margin: 5px 0;
+  position: sticky;
+  margin-bottom: 5px;
+  top: 0;
+  z-index: 2;
+}
+
+.container__section {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+* {
+  scrollbar-color: var(--color-tertiary) var(--color-transparent);
 }
 
 //###########################################################
-//                       Container Formatting
+//                       Buffer Formatting
 //###########################################################
 
 .buffer-input {
@@ -244,7 +261,7 @@
 }
 
 //###########################################################
-//                       Container Formatting
+//                       Header Rail Formatting
 //###########################################################
 
 h3.label--rail {
@@ -288,3 +305,4 @@ h3.label--rail .label__text::after {
     var(--color-gold-3) 100%
   );
 }
+

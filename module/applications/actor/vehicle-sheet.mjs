@@ -23,7 +23,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
       top:    50, 
       left:   220,
       width:  750, 
-      height: 880,
+      height: 890,
     }
   };
 
