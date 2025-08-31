@@ -704,11 +704,15 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll damage without a caster." );
 
+    const willpower = await this._getWillpowerForRoll( caster );
+    if ( willpower === null ) return;
+
     const rollOptions = DamageRollOptions.fromActor(
       {
         damageSourceType: "spell",
         sourceDocument:   this.parent,
         caster,
+        willpower,
       },
       caster,
       {
@@ -730,10 +734,8 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll effect without a caster." );
 
-    let willpower = await caster.getPrompt( "useWillpower" );
-    // closing dialogs via "x" should always cancel whatever is going on
+    const willpower = await this._getWillpowerForRoll( caster );
     if ( willpower === null ) return;
-    if ( willpower === false ) willpower = undefined;
 
     const rollOptions = SpellEffectRollOptions.fromActor(
       {
@@ -765,6 +767,25 @@ export default class SpellData extends ItemDataModel.mixin(
 
     // Execute the macro with the provided options
     return await macro.execute( scope );
+  }
+
+  /**
+   * Helper to get willpower for effect/damage rolls.
+   * @param {ActorEd} [actor] The actor to get willpower for. If not provided, uses the containing actor of this spell.
+   * @returns {Promise<ItemEd|undefined|null>} The willpower item if used, undefined if not used,
+   * or null if the prompt was closed.
+   * @throws {Error} If there is no caster available.
+   */
+  async _getWillpowerForRoll( actor ) {
+    const caster = actor || this.containingActor;
+    if ( !caster ) throw new Error( "Cannot get willpower without a caster." );
+
+    let willpower;
+    if ( this.effect.details[ this.effect.type ].attribute === "wil" ) {
+      willpower = await caster.getPrompt( "useWillpower" );
+      if ( willpower === false ) willpower = undefined;
+    }
+    return willpower;
   }
 
   // endregion

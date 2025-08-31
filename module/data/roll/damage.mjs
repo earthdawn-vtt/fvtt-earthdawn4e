@@ -67,7 +67,7 @@ import { createContentAnchor } from "../../utils.mjs";
  * @property {"spell"} damageSourceType Discriminator for spell damage source.
  * @property {ItemEd} sourceDocument Item of type "spell".
  * @property {ActorEd} caster The actor that cast the spell. The caster's Willpower step is used as the base
- * damage step.
+ * @property {ItemEd} [willpower] The willpower ability of the spell's caster, if used for the damage roll.
  */
 
 /**
@@ -362,27 +362,38 @@ export default class DamageRollOptions extends EdRollOptions {
     let baseStep;
 
     switch ( data.damageSourceType ) {
-      case "arbitrary":
+      case "arbitrary": {
         baseStep = sourceDocument.system.damageTotal || 1;
         break;
-      case "poison":
+      }
+      case "poison": {
         baseStep = sourceDocument.system.effect.damageStep;
         break;
-      case "power":
+      }
+      case "power": {
         baseStep = sourceDocument.system.damageStep;
         break;
-      case "spell":
-        baseStep = data.caster.system.attributes.wil.step;
+      }
+      case "spell": {
+        const caster = data.caster || fromUuidSync( data.rollingActorUuid );
+        baseStep = sourceDocument.system.getEffectDetailsRollStepData( {
+          caster,
+          willpower: data.willpower
+        } ).base;
         break;
-      case "unarmed":
+      }
+      case "unarmed": {
         baseStep = sourceDocument.system.attributes?.str.step;
         break;
-      case "warping":
+      }
+      case "warping": {
         baseStep = sourceDocument.system.level;
         break;
-      case "weapon":
+      }
+      case "weapon": {
         baseStep = sourceDocument.system.damageTotal;
         break;
+      }
       default:
         throw new Error( `Invalid damage source type: ${data.damageSourceType}` );
     }
@@ -415,11 +426,12 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     if ( data.damageSourceType === "spell" ) {
-      return {
-        [ game.i18n.localize(
-          "ED.Data.Item.Spell.FIELDS.effect.details.damage.stepModifier.label"
-        ) ]: sourceDocument.system.effect.details.damage.stepModifier || 0,
-      };
+      const caster = data.caster || fromUuidSync( data.rollingActorUuid );
+
+      return sourceDocument.system.getEffectDetailsRollStepData( {
+        caster,
+        willpower: data.willpower
+      } ).modifiers;
     }
 
     if ( data.damageSourceType === "warping" ) {
