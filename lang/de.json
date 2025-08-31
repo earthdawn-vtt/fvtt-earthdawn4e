@@ -891,15 +891,6 @@
             "label":                               "Beschreibung"
           }
         },
-        "Group": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Horror": {
-          "FIELDS":                                "TODO: Add translation"
-        },
-        "Loot": {
-          "FIELDS":                                "TODO: Add translation"
-        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -2007,7 +1998,7 @@
               "label":                             "TODO: Add translation"
             },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
