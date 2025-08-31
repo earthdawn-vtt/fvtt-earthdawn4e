@@ -207,9 +207,6 @@ slide-toggle[checked] .slide-toggle-thumb {
 .layout__col--6 {
   flex: 0 0 calc(98% / 6);
 }
-.standard-form {
-  gap: 0;
-}
 .one-line__vertical-align > * {
   line-height: 35px;
   vertical-align: middle;
@@ -966,6 +963,9 @@ h3.label--rail .label__text::after {
   overflow: auto;
   gap: 0;
 }
+.application.sheet.earthdawn4e.actor .standard-form {
+  gap: 0;
+}
 .application.sheet.earthdawn4e.actor .window-content {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
@@ -1500,21 +1500,24 @@ h3.label--rail .label__text::after {
   background-color: unset;
   font-size: var(--font-size-16);
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage__title button,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage__title button {
-  width: 50px;
-  height: 25px;
-  border: 2px solid var(--color-gold-2);
-  background-color: var(--color-secondary);
-  box-shadow: inset 0 0 10px black;
-  font-size: var(--font-size-9);
-  text-transform: uppercase;
-  transition: background-color 0.15s;
-  padding-top: 2px;
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button {
+  display: content;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-top: -8px;
+  cursor: pointer;
+  color: var(--color-gold-4);
+  align-items: revert;
 }
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage__title button:hover,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage__title button:hover {
-  background-color: var(--color-tertiary);
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .icon-button:hover,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .icon-button:hover {
+  color: var(--color-gold-5);
+}
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container a.button button,
+.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container a.button button {
+  display: contents;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
   grid-template-columns: none;

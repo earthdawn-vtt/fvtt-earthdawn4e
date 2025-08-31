@@ -5,8 +5,23 @@
 
   <div class="damage__grid--container">
 
-    <div class="damage__grid--item damage__title">
-      <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+    <div class="damage__grid--item damage-type__take">
+      <label for="characteristic-take-damage">
+        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.label"}}
+      </label>
+      <button type="button"
+              class="action-buttons icon-button"
+              data-action="takeDamage"
+              data-tooltip aria-label="{{localize 'ED.Actor.Buttons.takeDamage'}}">
+        <svg class="icon" width="40" height="40" viewBox="0 0 40 40">
+          <defs>
+            <mask id="mask-punch-{{actor._id}}" maskUnits="userSpaceOnUse">
+              <image href="systems/ed4e/assets/icons/punch-blast.svg" width="40" height="40"/>
+            </mask>
+          </defs>
+          <rect width="40" height="40" fill="currentColor" mask="url(#mask-punch-{{actor._id}})"/>
+        </svg>
+      </button>
     </div>
 
     <div class="damage__grid--item damage-type__normal">
