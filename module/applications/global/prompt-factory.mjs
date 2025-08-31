@@ -4,6 +4,7 @@ import ItemEd from "../../documents/item.mjs";
 import LearnableTemplate from "../../data/item/templates/learnable.mjs";
 import ED4E from "../../config/_module.mjs";
 import DialogEd from "../api/dialog.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 
 const DialogClass = DialogEd;
@@ -184,6 +185,7 @@ class ActorPromptFactory extends PromptFactory {
     takeDamage:            this._takeDamagePrompt.bind( this ),
     attribute:             this._attributePrompt.bind( this ),
     halfMagicDiscipline:   this._halfMagicDisciplinePrompt.bind( this ),
+    useWillpower:          this._useWillpowerPrompt.bind( this ),
   };
 
 
@@ -477,6 +479,34 @@ class ActorPromptFactory extends PromptFactory {
       modal:   false,
       buttons: buttons
     } );
+  }
+
+  /**
+   * Creates the use willpower dialog.
+   * @returns {Promise<boolean|ItemEd|null>} A promise that resolves to:
+   * <ul>
+   *   <li>the willpower item, if willpower should be used,</li>
+   *   <li>false, if willpower should not be used,</li>
+   *   <li>null, if the dialog was closed without a choice.</li>
+   *   <li>undefined, if no willpower item was found.</li>
+   * </ul>
+   */
+  async _useWillpowerPrompt() {
+    const willpower = this.document.getSingleItemByEdid(
+      game.settings.get( "ed4e", "edidWillpower" ),
+    );
+    if ( !willpower ) return;
+
+    const useWillpower = await DialogClass.confirm( {
+      rejectClose: false,
+      content:     game.i18n.format(
+        "ED.Dialogs.doYouWantToUseWillpower",
+        {
+          contentLinkWillpower: createContentAnchor( willpower ).outerHTML
+        }
+      ),
+    } );
+    return useWillpower === true ? willpower : useWillpower;
   }
 
   /**
