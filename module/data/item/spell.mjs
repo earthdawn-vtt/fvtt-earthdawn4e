@@ -11,6 +11,7 @@ import { RollPrompt } from "../../applications/global/_module.mjs";
 import SpellcastingRollOptions from "../roll/spellcasting.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
+import SpellEffectRollOptions from "../roll/spelleffect.mjs";
 
 
 const { fields } = foundry.data;
@@ -636,6 +637,36 @@ export default class SpellData extends ItemDataModel.mixin(
         damageSourceType: "spell",
         sourceDocument:   this.parent,
         caster,
+      },
+      caster,
+      {
+        rollData: caster.getRollData(),
+      }
+    );
+    const roll = await RollPrompt.waitPrompt( rollOptions );
+    return RollProcessor.process( roll, caster, { rollToMessage: true, } );
+  }
+
+  /**
+   * Roll the effect test for this spell's effect, if any.
+   * @returns {Promise<EdRoll|undefined>} The processed effect roll, or undefined if no roll was made.
+   * @throws {Error} If there is no caster available.
+   */
+  async rollEffect() {
+    if ( this.effect?.type !== "effect" ) return;
+
+    const caster = this.containingActor;
+    if ( !caster ) throw new Error( "Cannot roll effect without a caster." );
+
+    let willpower = await caster.getPrompt( "useWillpower" );
+    // closing dialogs via "x" should always cancel whatever is going on
+    if ( willpower === null ) return;
+    if ( willpower === false ) willpower = undefined;
+
+    const rollOptions = SpellEffectRollOptions.fromActor(
+      {
+        spell:           this.parent,
+        willpower,
       },
       caster,
       {

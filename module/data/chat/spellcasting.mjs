@@ -58,6 +58,8 @@ export default class SpellcastingMessageData extends BaseMessageData {
    * @this {SpellcastingMessageData}
    */
   static async _onRollDamage( event, button ) {
+    event.preventDefault();
+
     const spell = await this.getSpell();
     await spell.system.rollDamage();
   }
@@ -66,7 +68,12 @@ export default class SpellcastingMessageData extends BaseMessageData {
    * @type {ApplicationClickAction}
    * @this {SpellcastingMessageData}
    */
-  static async _onRollEffect( event, button ) {}
+  static async _onRollEffect( event, button ) {
+    event.preventDefault();
+
+    const spell = await this.getSpell();
+    await spell.system.rollEffect();
+  }
 
   /**
    * @type {ApplicationClickAction}
