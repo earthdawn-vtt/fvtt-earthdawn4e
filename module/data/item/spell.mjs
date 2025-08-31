@@ -9,6 +9,8 @@ import { SelectExtraThreadsPrompt } from "../../applications/workflow/_module.mj
 import ThreadWeavingRollOptions from "../roll/weaving.mjs";
 import { RollPrompt } from "../../applications/global/_module.mjs";
 import SpellcastingRollOptions from "../roll/spellcasting.mjs";
+import DamageRollOptions from "../roll/damage.mjs";
+import RollProcessor from "../../services/roll-processor.mjs";
 
 
 const { fields } = foundry.data;
@@ -336,9 +338,17 @@ export default class SpellData extends ItemDataModel.mixin(
     );
   }
 
-  getEffectStepTotal() {
+  /**
+   * Calculates the total effect step for this spell's effect, based on the
+   * effect details and the caster's attributes.
+   * @param {ActorEd} [actor] - The actor to use for the calculation. If not provided,
+   * uses the containing actor of this spell.
+   * @returns {number} - The total effect step.
+   * @throws {Error} - Throws an error if effect details or caster are not available.
+   */
+  getEffectStepTotal( actor ) {
     const effectDetails = this.effect?.details.effect;
-    const caster = this.containingActor;
+    const caster = actor || this.containingActor;
     if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
 
     return caster.system.attributes[ effectDetails.attribute ]?.step
@@ -609,6 +619,32 @@ export default class SpellData extends ItemDataModel.mixin(
   // endregion
 
   // region Spell Effects
+
+  /**
+   * Roll damage for this spell's effect, if any.
+   * @returns {Promise<EdRoll|undefined>} The processed damage roll, or undefined if no roll was made.
+   * @throws {Error} If there is no caster available.
+   */
+  async rollDamage() {
+    if ( this.effect?.type !== "damage" ) return;
+
+    const caster = this.containingActor;
+    if ( !caster ) throw new Error( "Cannot roll damage without a caster." );
+
+    const rollOptions = DamageRollOptions.fromActor(
+      {
+        damageSourceType: "spell",
+        sourceDocument:   this.parent,
+        caster,
+      },
+      caster,
+      {
+        rollData: caster.getRollData(),
+      }
+    );
+    const roll = await RollPrompt.waitPrompt( rollOptions );
+    return RollProcessor.process( roll, caster, { rollToMessage: true, } );
+  }
 
   /**
    * Run the macro associated with this spell's effect, if any.
