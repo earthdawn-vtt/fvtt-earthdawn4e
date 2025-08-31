@@ -47,3 +47,4 @@ uncon
 physical
 mystical
 Social
+spelleffect
