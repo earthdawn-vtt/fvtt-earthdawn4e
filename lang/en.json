@@ -2245,6 +2245,26 @@
             }
           }
         },
+        "SpellKnack": {
+          "FIELDS": {
+            "bloodMagic": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "linkable": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "linkableKnacks": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "strain": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "Talent": {
           "FIELDS": {
             "knacks": {
