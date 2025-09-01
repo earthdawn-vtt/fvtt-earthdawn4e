@@ -57,3 +57,8 @@ toughnesspromotions
 perceptionpromotions
 willpowerpromotions
 charismapromotions
+socialdefense
+physicalarmor
+mysticarmor
+recoverytestscurrent
+recoverytestsrefresh

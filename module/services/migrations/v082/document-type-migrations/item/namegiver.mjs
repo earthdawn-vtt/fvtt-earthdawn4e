@@ -11,19 +11,21 @@ export default class NamegiverMigration extends BaseMigration {
 
     if ( source.system ) {
       // Migrate attributes
-      if (
-        Object.keys( source.system.attributes )
-          .some( attr => ED4E.MIGRATIONS.systemV0_8_2.attributeValues.includes( attr ) )
-      ) {
-        const old = source.system.attributes;
-        source.system.attributeValues = {
-          dex:     old.dexterityvalue ?? 10,
-          str:     old.strengthvalue ?? 10,
-          tou:     old.toughnessvalue ?? 10,
-          per:     old.perceptionvalue ?? 10,
-          wil:     old.willpowervalue ?? 10,
-          cha:     old.charismavalue ?? 10,
-        };
+      if ( !source.system.attributeValues ) {
+        if (
+          Object.keys( source.system.attributes )
+            .some( attr => ED4E.MIGRATIONS.systemV0_8_2.attributeValues.includes( attr ) )
+        ) {
+          const old = source.system.attributes;
+          source.system.attributeValues = {
+            dex:     old.dexterityvalue ?? 10,
+            str:     old.strengthvalue ?? 10,
+            tou:     old.toughnessvalue ?? 10,
+            per:     old.perceptionvalue ?? 10,
+            wil:     old.willpowervalue ?? 10,
+            cha:     old.charismavalue ?? 10,
+          };
+        }
       }
    
       // Migrate karma modifier
