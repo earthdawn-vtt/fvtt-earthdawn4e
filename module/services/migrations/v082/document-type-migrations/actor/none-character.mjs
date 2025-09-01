@@ -11,15 +11,19 @@ export default class NoneCharacterMigration extends BaseMigration {
     if ( source.system ) {
       this.#migrateAttributes( source );
       if ( !source.system.characteristics ) {
-        this.#migrateDefenses( source );
-        this.#migrateArmor( source );
-        this.#migrateHealth( source );
-        this.#migrateMovement( source );
-        this.#migrateRecoveryTests( source );
-        this.#migrateDamage( source );
-        this.#migrateWounds( source );
+        // Initialize characteristics once and work with a reference
+        source.system.characteristics = {};
+        const characteristics = source.system.characteristics;
+      
+        this.#migrateDefenses( source, characteristics );
+        this.#migrateArmor( source, characteristics );
+        this.#migrateHealth( source, characteristics );
+        this.#migrateMovement( source, characteristics );
+        this.#migrateRecoveryTests( source, characteristics );
+        this.#migrateDamage( source, characteristics );
+        this.#migrateWounds( source, characteristics );
       }
-      if ( !source.system.knockdown.step ) {
+      if ( !source.system.knockdown?.step ) {
         this.#migrateKnockdown( source );
       }
       if ( !source.system.actions ) {
@@ -63,54 +67,57 @@ export default class NoneCharacterMigration extends BaseMigration {
   /**
    * Migrate characteristic data from old to new format
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    * @private
    */
-  static #migrateDefenses( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.defenses ??= {};
-    source.system.characteristics.defenses.physical ??= {};
-    source.system.characteristics.defenses.physical.value = source.system.physicaldefense || 0;
-    source.system.characteristics.defenses.mystical ??= {};
-    source.system.characteristics.defenses.mystical.value = source.system.mysticdefense || 0;
-    source.system.characteristics.defenses.social ??= {};
-    source.system.characteristics.defenses.social.value = source.system.socialdefense || 0;
+  static #migrateDefenses( source, characteristics ) {
+    characteristics.defenses ??= {};
+    const defenses = characteristics.defenses;
+    defenses.physical ??= {};
+    defenses.physical.value = source.system.physicaldefense || 0;
+    defenses.mystical ??= {};
+    defenses.mystical.value = source.system.mysticdefense || 0;
+    defenses.social ??= {};
+    defenses.social.value = source.system.socialdefense || 0;
   }
 
   /**
    * Migrate characteristic data from old to new format
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    * @private
    */
-  static #migrateArmor( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.armor ??= {};
-    source.system.characteristics.armor.physical ??= {};
-    source.system.characteristics.armor.physical.value = source.system.physicalarmor || 0;
-    source.system.characteristics.armor.mystical ??= {};
-    source.system.characteristics.armor.mystical.value = source.system.mysticarmor || 0;
+  static #migrateArmor( source, characteristics ) {
+    characteristics.armor ??= {};
+    const armor = characteristics.armor;
+    armor.physical ??= {};
+    armor.physical.value = source.system.physicalarmor || 0;
+    armor.mystical ??= {};
+    armor.mystical.value = source.system.mysticarmor || 0;
   }
 
   /**
    * Migrate characteristic data from old to new format
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    * @private
    */
-  static #migrateHealth( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.health ??= {};
-    source.system.characteristics.health.death = source.system.deathThreshold || 0;
-    source.system.characteristics.health.unconscious = source.system.unconsciousThreshold || 0;
-    source.system.characteristics.health.woundThreshold = source.system.woundThreshold || 0;
+  static #migrateHealth( source, characteristics ) {
+    const health = characteristics.health ??= {};
+    health.death = source.system.deathThreshold || 0;
+    health.unconscious = source.system.unconsciousThreshold || 0;
+    health.woundThreshold = source.system.woundThreshold || 0;
   }
 
   /**
    * Migrate Actor Movement
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
+   * @private
    */
-  static #migrateMovement( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.movement ??= {};
-    source.system.characteristics.movement.walk = source.system.movement || 0;
+  static #migrateMovement( source, characteristics ) {
+    characteristics.movement ??= {};
+    characteristics.movement.walk = source.system.movement || 0;
   }
 
   /**
@@ -134,39 +141,39 @@ export default class NoneCharacterMigration extends BaseMigration {
   /**
    * Migrate Actor Recovery Tests
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    */
-  static #migrateRecoveryTests( source ) {
+  static #migrateRecoveryTests( source, characteristics ) {
     // NOTE: The old system did not support an individual recovery step, 
     // NPCs used toughness and creatures did not have the option to recover at all
     const toughnessStep = source.system?.attributes?.tou.step || 1;
-    source.system.characteristics ??= {};
-    source.system.characteristics.recoveryTestsResource ??= {};
-    source.system.characteristics.recoveryTestsResource.value = source.system.recoverytestscurrent || 0;
-    source.system.characteristics.recoveryTestsResource.max = source.system.recoverytestsrefresh || 0;
-    source.system.characteristics.recoveryTestsResource.step = toughnessStep;
+    const recoveryTestsResource = characteristics.recoveryTestsResource ??= {};
+    recoveryTestsResource.value = source.system.recoverytestscurrent || 0;
+    recoveryTestsResource.max = source.system.recoverytestsrefresh || 0;
+    recoveryTestsResource.step = toughnessStep;
   }
 
   /**
    * Migrate Actor Damage
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    */
-  static #migrateDamage( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.damage ??= {};
-    source.system.characteristics.damage.health ??= {};
-    source.system.characteristics.damage.health.standard = source.system.damage || 0;
-    source.system.characteristics.damage.health.stun = source.system.damageStun || 0;
+  static #migrateDamage( source, characteristics ) {
+    characteristics.damage ??= {};
+    const health = characteristics.damage.health ??= {};
+    health.standard = source.system.damage || 0;
+    health.stun = source.system.damageStun || 0;
   }
 
   /**
    * Migrate Actor Wounds
    * @param {object} source - The source data object
+   * @param {string} characteristics - predefined characteristics path
    */
-  static #migrateWounds( source ) {
-    source.system.characteristics ??= {};
-    source.system.characteristics.damage ??= {};
-    source.system.characteristics.damage.health ??= {};
-    source.system.characteristics.damage.health.wounds = source.system.wounds || 0;
+  static #migrateWounds( source, characteristics ) {
+    characteristics.damage ??= {};
+    characteristics.damage.health ??= {};
+    characteristics.damage.health.wounds = source.system.wounds || 0;
   }
 
   /** 
