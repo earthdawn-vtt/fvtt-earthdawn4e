@@ -29,7 +29,10 @@ export default class TalentMigration extends BaseMigration {
       } else {
         source.system.talentCategory = source.system.talentCategory.slugify( { lowercase: true, strict: true } );
       } 
+    } else if ( !source.system.talentCategory ) {
+      source.system.talentCategory = "other";
     }
+
     return source;
   }
 }
