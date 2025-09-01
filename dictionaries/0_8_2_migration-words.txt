@@ -57,6 +57,7 @@ toughnesspromotions
 perceptionpromotions
 willpowerpromotions
 charismapromotions
+attackstep
 socialdefense
 physicalarmor
 mysticarmor
