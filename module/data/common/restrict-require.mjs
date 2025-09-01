@@ -30,6 +30,7 @@ export class ConstraintData extends SparseDataModel {
       [LanguageConstraintData.TYPE]:   LanguageConstraintData,
       [NamegiverConstraintData.TYPE]:  NamegiverConstraintData,
       [RelationConstraintData.TYPE]:   RelationConstraintData,
+      [SpellConstraintData.TYPE]:      SpellConstraintData,
     } );
   }
 
@@ -172,6 +173,21 @@ export class RelationConstraintData extends ConstraintData {
   static defineSchema() {
     return this.mergeSchema( super.defineSchema(), {
       relation: new fields.StringField(),
+    } );
+  }
+
+}
+
+export class SpellConstraintData extends ConstraintData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "spell", } );
+  }
+
+  /** @inheritdoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+      spell: new EdIdField(),
     } );
   }
 

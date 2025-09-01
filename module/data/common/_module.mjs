@@ -16,6 +16,7 @@ import {
   LanguageConstraintData,
   NamegiverConstraintData,
   RelationConstraintData,
+  SpellConstraintData,
 } from "./restrict-require.mjs";
 
 export {
@@ -33,5 +34,6 @@ export {
   RelationConstraintData,
   SectionMetricData,
   SpecialMetricData,
+  SpellConstraintData,
   TargetMetricData,
 };
