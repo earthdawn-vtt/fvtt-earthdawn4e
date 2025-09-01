@@ -15,11 +15,17 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   TargetTemplate,
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Knack",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -46,9 +52,25 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Checkers
+
+  /**
+   * Check whether the creation or update data changes the source item of the knack.
+   * @param {object} update The create or update data
+   * @returns {boolean} True if the source item is changed, false otherwise
+   */
+  _isChangingSourceItem( update ) {
+    const data = foundry.utils.expandObject( update );
+    const newEdid = data?.system?.sourceItem;
+
+    return newEdid && newEdid !== this.sourceItem;
+  }
+
+  // endregion
+
+  // region LP Tracking
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -192,13 +214,15 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     return learnedItem;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 }

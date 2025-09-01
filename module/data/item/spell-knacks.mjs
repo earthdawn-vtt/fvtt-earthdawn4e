@@ -59,15 +59,19 @@ export default class SpellKnackData extends SpellData.mixin(
   async _preCreate( data, options, user ) {
     if ( await super._preCreate( data, options, user ) === false ) return false;
 
-    await this._copySourceSpellData( data );
-    this.updateSource( data );
+    if ( this._isChangingSourceItem( data ) ) {
+      await this._copySourceSpellData( data );
+      this.updateSource( data );
+    }
   }
 
   /** @inheritDoc */
   async _preUpdate( changes, options, user ) {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    await this._copySourceSpellData( changes );
+    if ( this._isChangingSourceItem( changes ) ) {
+      await this._copySourceSpellData( changes );
+    }
   }
 
   /**
