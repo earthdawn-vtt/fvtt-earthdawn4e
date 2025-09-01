@@ -4,7 +4,7 @@ import KnackTemplate from "./templates/knack-item.mjs";
 
 /**
  * Data model template with information on Knack items.
- * @property {string} sourceTalent          talent the knack is derived from
+ * @property {string} sourceItem          talent the knack is derived from
  * @property {string} restrictions          restrictions of the knack
  * @property {object} requirements          requirement of the knack
  * @property {boolean} standardEffect       standard effect used
@@ -49,7 +49,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
    * @type {number}
    */
   get parentRank() {
-    const parentTalent = this.containingActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent );
+    const parentTalent = this.containingActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceItem );
     return parentTalent?.system.level;
   }
   

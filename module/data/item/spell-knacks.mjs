@@ -79,8 +79,8 @@ export default class SpellKnackData extends SpellData.mixin(
   async _copySourceSpellData( data ) {
     const actor = this.containingActor;
     const sourceSpell = actor
-      ? await actor.getSingleItemByEdid( this.sourceTalent, "spell" )
-      : await getSingleGlobalItemByEdid( this.sourceTalent, "spell" );
+      ? await actor.getSingleItemByEdid( this.sourceItem, "spell" )
+      : await getSingleGlobalItemByEdid( this.sourceItem, "spell" );
     if ( !sourceSpell ) return;
 
     // Ensure edid is not changed

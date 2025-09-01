@@ -25,7 +25,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceTalent: new EdIdField(),
+      sourceItem: new EdIdField(),
       minLevel:         new fields.NumberField( {
         required: true,
         positive: true,
@@ -64,7 +64,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     const actor = this.parent._actor;
 
     return {
-      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent ),
+      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceItem ),
       requiredLp: this.requiredLpForLearning,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -144,9 +144,9 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       return;
     }
 
-    const parentTalent = actor.itemTypes.talent.find( ( talent ) => talent.system.edid === item.system.sourceTalent );
+    const parentTalent = actor.itemTypes.talent.find( ( talent ) => talent.system.edid === item.system.sourceItem );
     if ( !parentTalent ) {
-      const talentSourceEdid = item.system.sourceTalent;
+      const talentSourceEdid = item.system.sourceItem;
       ui.notifications.warn( game.i18n.format(
         "ED.Notifications.Warn.noSourceTalent",
         { talentSourceEdid: talentSourceEdid },
