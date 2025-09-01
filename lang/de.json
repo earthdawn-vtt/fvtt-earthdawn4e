@@ -2244,6 +2244,26 @@
             }
           }
         },
+        "SpellKnack": {
+          "FIELDS": {
+            "bloodMagic": {
+              "hint":                              "Ist die Überanstrung Blutmagieschaden?",
+              "label":                             "Blutmagie"
+            },
+            "linkable": {
+              "hint":                              "Kann dieser Kniff mit anderen Kniffen verknüpft gewirkt werden?",
+              "label":                             "Verknüpfbar"
+            },
+            "linkableKnacks": {
+              "hint":                              "Kniffe mit denen dieser Kniff verknüpft werden kann",
+              "label":                             "Verknüpfbare Kniffe"
+            },
+            "strain": {
+              "hint":                              "Überanstrengungsschaden der durch das Wirken dieses Kniffs verursacht wird",
+              "label":                             "Überanstrengung"
+            }
+          }
+        },
         "Talent": {
           "FIELDS": {
             "knacks": {
