@@ -131,7 +131,7 @@ function transformItemType( originalType, systemData ) {
     case "knack":
       return transformKnackType( systemData.knackType, systemData );
     case "attack":
-      return transformAttackType( systemData.powerType );
+      return transformAttackType( systemData.powerType.slugify( { lowercase: true, strict: true } ) );
     case "thread":
       return transformThreadType( systemData );
     // Note: reputation items need document-level transformation (Item→Actor)
