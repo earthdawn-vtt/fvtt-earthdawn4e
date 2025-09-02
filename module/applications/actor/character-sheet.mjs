@@ -226,7 +226,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
    */
   static async legendPointHistory( event, target ) {
     event.preventDefault();
-    this.document.legendPointHistory( this.document );
+    this.document.legendPointHistory();
   }
 
   /**
