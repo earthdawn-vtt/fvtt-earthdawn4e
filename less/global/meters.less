@@ -4,18 +4,18 @@
   overflow: hidden;
   display: flex;
   height: var(--size-meter-height-sm);
-  background: var(--color-meter-background);
+
   border-radius: var(--size-meter-radius);
 }
 .meter__segment { height: 100%; flex: 0 0 auto; }
-.meter__marker  { position: absolute; top: 0; width: 2px; height: 100%; background-color: var(--color-primary); pointer-events: none; }
+.meter__marker  { position: absolute; top: 0; width: 2px; height: 100%; background-color: var(--color-meter-divide); pointer-events: none; }
 
 /* ======================= Damage meter ======================= */
 .damage-bar { .meter(); }
 .damage-bar__segment   { .meter__segment; }
 .damage-bar__standard  { width: calc(~"min(100%, (var(--d-std, 0)  / max(var(--d-max, 1), 1)) * 100%)"); background: var(--color-danger,  var(--color-meter-4)); }
 .damage-bar__stun      { width: calc(~"min(100%, (var(--d-stun, 0) / max(var(--d-max, 1), 1)) * 100%)"); background: var(--color-accent,  var(--color-meter-5)); }
-.damage-bar__remainder { flex: 1 1 auto; background: var(--color-primary-grey); }
+.damage-bar__remainder { flex: 1 1 auto; background: var(--color-meter-background); }
 .damage-bar__marker    { .meter__marker; }
 .damage-bar__marker--unconscious { left: calc(~"(var(--u, 0) / max(var(--d-max, 1), 1)) * 100%"); transform: translateX(-50%); }
 
@@ -36,13 +36,13 @@
     overflow: hidden;
     flex: 1;
     height: var(--size-meter-height-md);
-    background: var(--color-primary-grey);
+    background: var(--color-meter-background);
 }
 .encumbrance__fill {
     height: 100%;
     width: 0%;
     transition: width 0.3s ease, background-color 0.3s ease;
-    background-color: grey;
+    background-color: var(--color-meter-background);
     &.low { background-color: var(--color-meter-1); }
     &.medium { background-color: var(--color-meter-2); }
     &.high { background-color: var(--color-meter-3); }
@@ -51,9 +51,9 @@
 .encumbrance__marker {
     position: absolute;
     top: 0;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--color-meter-divide);
     pointer-events: none;
     &.marker__x { left: 50%; }
     &.marker__x15 { left: 75%; }

@@ -37,9 +37,11 @@
                  name="system.karma.useAlways"
                  {{checked actor.system.karma.useAlways}}
                  title="{{localize "ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint"}}">
+        </span>
+        <span class="karma-devotion__header-icons">
           {{#if (eq this.actor.type "character")}}
             <a class="karma__ritual">
-              <button class="button__Karma-refresh"
+              <button class="button__Karma-refresh icon--button"
                       data-action="karmaRitual"
                       title="Karma-Ritual">
                 <i class="fa-solid fa-person-rays"
@@ -105,7 +107,7 @@
         </span>
         <span class="recovery__header-icons">
           <a class="button__recovery-test">
-            <button class="button__recovery-rest"
+            <button class="button__recovery-rest icon--button"
                     data-action="recovery"
                     title="{{localize "ED.Actor.Tooltips.recoveryRestTooltip"}}">
               <i class="fa-solid fa-bed"
@@ -160,7 +162,7 @@
         <span class="initiative__header-label">{{localize "ED.Actor.Header.initiative"}}</span>
         <span class="initiative__header-icons">
           <a class="button__initiative-test">
-            <button class="button__initiative" data-action="initiative" title="{{localize "ED.Actor.Initiative.roll"}}">
+            <button class="button__initiative icon--button" data-action="initiative" title="{{localize "ED.Actor.Initiative.roll"}}">
               <i class="fa-solid fa-swords" title="{{localize "ED.Actor.Initiative.roll"}}"></i>
             </button>
           </a>
@@ -215,7 +217,6 @@
         {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
       {{/if}}
     {{/if}}
-
 
       <div class="action--buttons">
         <div class="buttons--left input--centered1">
