@@ -106,6 +106,9 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       {
         item:                   this.document,
         options:                this.options,
+      },
+      {
+        recursive: false,
       }
     );
 

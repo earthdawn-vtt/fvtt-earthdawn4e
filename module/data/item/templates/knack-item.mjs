@@ -15,17 +15,23 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   TargetTemplate,
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Knack",
   ];
 
+  // endregion
+
+  // region Static Methods
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceTalent: new EdIdField(),
+      sourceItem: new EdIdField(),
       minLevel:         new fields.NumberField( {
         required: true,
         positive: true,
@@ -38,13 +44,33 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         integer:  true,
       } ),
       requirements:     new fields.ArrayField(
-        new fields.TypedSchemaField( ConstraintData.TYPES ) ),
+        new fields.TypedSchemaField( ConstraintData.TYPES )
+      ),
+      restrictions:   new fields.ArrayField(
+        new fields.TypedSchemaField( ConstraintData.TYPES )
+      ),
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Checkers
+
+  /**
+   * Check whether the creation or update data changes the source item of the knack.
+   * @param {object} update The create or update data
+   * @returns {boolean} True if the source item is changed, false otherwise
+   */
+  _isChangingSourceItem( update ) {
+    const data = foundry.utils.expandObject( update );
+    const newEdid = data?.system?.sourceItem;
+
+    return newEdid && newEdid !== this.sourceItem;
+  }
+
+  // endregion
+
+  // region LP Tracking
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -64,7 +90,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     const actor = this.parent._actor;
 
     return {
-      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceTalent ),
+      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceItem ),
       requiredLp: this.requiredLpForLearning,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -144,9 +170,9 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       return;
     }
 
-    const parentTalent = actor.itemTypes.talent.find( ( talent ) => talent.system.edid === item.system.sourceTalent );
+    const parentTalent = actor.itemTypes.talent.find( ( talent ) => talent.system.edid === item.system.sourceItem );
     if ( !parentTalent ) {
-      const talentSourceEdid = item.system.sourceTalent;
+      const talentSourceEdid = item.system.sourceItem;
       ui.notifications.warn( game.i18n.format(
         "ED.Notifications.Warn.noSourceTalent",
         { talentSourceEdid: talentSourceEdid },
@@ -188,13 +214,15 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     return learnedItem;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 }

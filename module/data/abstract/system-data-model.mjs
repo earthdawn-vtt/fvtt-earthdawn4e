@@ -112,7 +112,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /**
    * Get the actor that contains this data model or undefined if it is not embedded.
-   * @type {*|undefined}
+   * @type {ActorEd|undefined}
    */
   get containingActor() {
     if ( !this.parent ) return undefined;
