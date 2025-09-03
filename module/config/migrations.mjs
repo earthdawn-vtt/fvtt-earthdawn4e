@@ -580,7 +580,7 @@ export const systemV0_8_2 = {
    * System ability names for Sum matrix
    * @enum {string}
    */
-  sumMatrixNames: [
+  sumMatrixNames: [ 
     "Summenmatrix",
     "Shared Matrix",
   ],
