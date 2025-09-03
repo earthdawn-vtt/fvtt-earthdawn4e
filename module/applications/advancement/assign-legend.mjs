@@ -41,7 +41,7 @@ export default class AssignLpPrompt extends ApplicationEd {
       assignLP: AssignLpPrompt._assignLP,
     },
     form: {
-      submitOnChange: true,
+      submitOnChange: false,
     },
     position: {
       width:  350,
@@ -135,10 +135,17 @@ export default class AssignLpPrompt extends ApplicationEd {
    */
   static async _assignLP( event ) {
     event.preventDefault();
+    await this.submit( { preventRender: true } );
+    
     if ( !this._data.amount ) return ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noLp" ) );
-    // await this.submit( { preventRender: true } );
 
-    const { selectedActors, amount, description } = this._data;
+    // Ensure selectedActors is always an array
+    const amount = this._data.amount;
+    const description = this._data.description;
+    const selectedActors = Array.isArray( this._data.selectedActors ) 
+      ? this._data.selectedActors 
+      : ( this._data.selectedActors ? [ this._data.selectedActors ] : [] );
+    
     const transactionData = selectedActors.reduce( ( obj, actorId ) => {
       if ( !actorId ) return obj; // Skip if actorId is null
       const actor = game.actors.get( actorId );
