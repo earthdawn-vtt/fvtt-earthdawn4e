@@ -9,7 +9,7 @@
 
 # spell check
 "**/*.{js,mjs,md}":
-  - "cspell --no-progress --no-summary"
+  - "cspell --no-summary --no-progress --no-must-find-files"
 
 
 
