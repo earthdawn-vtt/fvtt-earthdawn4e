@@ -90,22 +90,27 @@ export default class MatrixMigration extends BaseMigration {
     matrixPath.level = source.system.circle || 1;
     source.system.level = matrixPath.level;
     if ( standardMatrixNamesSlugified.includes( slugifiedName ) ) {
-      matrixPath.deathRating = 10;
-      
-    } else if ( enhancedMatrixNamesSlugified.includes( slugifiedName ) ) {
-      matrixPath.deathRating = 15;
+      matrixPath.deathRating = ED4E.MAGIC.matrixTypes.standard.deathRating;
       matrixPath.threads ??= {};
       matrixPath.threads.hold ??= {};
-      matrixPath.threads.hold.value = 1;
+      matrixPath.threads.hold.value = ED4E.MAGIC.matrixTypes.standard.maxHoldThread;
+    } else if ( enhancedMatrixNamesSlugified.includes( slugifiedName ) ) {
+      matrixPath.deathRating = ED4E.MAGIC.matrixTypes.enhanced.deathRating;
+      matrixPath.threads ??= {};
+      matrixPath.threads.hold ??= {};
+      matrixPath.threads.hold.value = ED4E.MAGIC.matrixTypes.enhanced.maxHoldThread;
 
     } else if ( armoredMatrixNamesSlugified.includes( slugifiedName ) ) {
-      matrixPath.deathRating = 25;
+      matrixPath.deathRating = ED4E.MAGIC.matrixTypes.armored.deathRating;
       matrixPath.threads ??= {};
       matrixPath.threads.hold ??= {};
-      matrixPath.threads.hold.value = 1;
+      matrixPath.threads.hold.value = ED4E.MAGIC.matrixTypes.armored.maxHoldThread;
 
     } else if ( sumMatrixNamesSlugified.includes( slugifiedName ) ) {
-      matrixPath.deathRating = 20;
+      matrixPath.deathRating = ED4E.MAGIC.matrixTypes.shared.deathRating;
+      matrixPath.threads ??= {};
+      matrixPath.threads.hold ??= {};
+      matrixPath.threads.hold.value = ED4E.MAGIC.matrixTypes.shared.maxHoldThread;
 
     }
     
