@@ -2495,6 +2495,10 @@
               "hint":                              "Armor type the damage is effective against",
               "label":                             "Armor Type"
             },
+            "damageAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "damageType": {
               "hint":                              "Type of damage",
               "label":                             "Damage Type"
@@ -3309,6 +3313,11 @@
       "troll":                                     "Troll",
       "tskrang":                                   "T'skrang",
       "windling":                                  "Windling"
+    },
+    "Migrations": {
+      "setSpellDuration":                          "TODO: Add translation",
+      "setSpellEffect":                            "TODO: Add translation",
+      "setSpellRange":                             "TODO: Add translation"
     },
     "Notifications": {
       "Error": {
