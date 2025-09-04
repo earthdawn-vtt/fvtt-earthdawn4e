@@ -1637,9 +1637,9 @@
               "hint":                              "Restrictions for learning this knack",
               "label":                             "Restrictions"
             },
-            "sourceTalent": {
-              "hint":                              "Talent this knack is based on",
-              "label":                             "Source Talent"
+            "sourceItem": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
@@ -2255,10 +2255,6 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "linkableKnacks": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
             "strain": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
@@ -2514,6 +2510,10 @@
             "armorType": {
               "hint":                              "Armor type the damage is effective against",
               "label":                             "Armor Type"
+            },
+            "damageAbilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "damageType": {
               "hint":                              "Type of damage",
@@ -3265,8 +3265,10 @@
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
         "grimoireConfiguration":                   "Grimoire Configuration",
+        "knack":                                   "TODO: Add translation",
         "matrixConfiguration":                     "Matrix Configuration",
         "navigator":                               "Navigator",
+        "spell":                                   "TODO: Add translation",
         "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "Spell Effect",
         "spellEffectStep":                         "TODO: Add translation",
