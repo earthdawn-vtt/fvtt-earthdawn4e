@@ -538,5 +538,54 @@ export const systemV0_8_2 = {
   // missing Translations thread weaving names 
   // polish
   // french];
+
+  
+
+  /**
+   * System ability names for standard Matrix
+   * @enum {string}
+   */
+  standardMatrixNames: [
+    "Standard Matrix",
+  ],
+  // missing Translations for standard matrix names
+  // polish
+  // french
+
+  /**
+   * System ability names for enhanced Matrix
+   * @enum {string}
+   */
+  enhancedMatrixNames: [
+    "Erweiterte Matrix",
+    "Enhanced Matrix",
+  ],
+  // missing Translations for enhanced matrix names
+  // polish
+  // french
+
+  /**
+   * System ability names for armored matrix
+   * @enum {string}
+   */
+  armoredMatrixNames: [
+    "gepanzerte Matrix",
+    "Armored Matrix",
+  ],
+  // missing Translations for armored matrix names
+  // polish
+  // french
+
+  /**
+   * System ability names for Sum matrix
+   * @enum {string}
+   */
+  sumMatrixNames: [ 
+    "Summenmatrix",
+    "Shared Matrix",
+  ],
+  // missing Translations for Sum matrix names
+  // polish
+  // french
 };
 
