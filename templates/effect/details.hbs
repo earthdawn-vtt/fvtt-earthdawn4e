@@ -15,7 +15,7 @@
   <fieldset>
     {{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff"}}
     {{formGroup fields.disabled value=source.disabled rootId=rootId readonly=disabledReadOnly
-                hint=tooltips.disabled
+                hint=(ifThen disabledReadOnly tooltips.disabled "")
     }}
 
     {{#if isActorEffect}}
