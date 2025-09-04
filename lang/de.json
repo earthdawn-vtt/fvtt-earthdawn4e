@@ -3313,6 +3313,11 @@
       "tskrang":                                   "T'skrang",
       "windling":                                  "Windling"
     },
+    "Migrations": {
+      "setSpellDuration":                          "|| Bitte überarbeite die Zauberdauer für diesen Zauber.",
+      "setSpellEffect":                            "|| Bitte überarbeite den Zaubereffekt für diesen Zauber.",
+      "setSpellRange":                             "|| Bitte überarbeite die Zauberreichweite für diesen Zauber."
+    },
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",

@@ -63,3 +63,8 @@ physicalarmor
 mysticarmor
 recoverytestscurrent
 recoverytestsrefresh
+elementarism
+reattunedifficulty
+weavingdifficulty
+threadsrequired
+areaofeffect

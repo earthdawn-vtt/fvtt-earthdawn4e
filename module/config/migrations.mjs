@@ -538,5 +538,16 @@ export const systemV0_8_2 = {
   // missing Translations thread weaving names 
   // polish
   // french];
+
+  /**
+   * spellcasting types
+   */
+  spellcastingTypes: [
+    [ "Elementalist", "elementalism" ],
+    [ "Illusionist", "illusionism" ],
+    [ "Nethermancer", "nethermancy" ],
+    [ "Shaman", "shamanism" ],
+    [ "Wizard", "wizardry" ]
+  ]
 };
 
