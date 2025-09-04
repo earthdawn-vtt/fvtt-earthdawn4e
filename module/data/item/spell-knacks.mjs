@@ -1,6 +1,5 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SpellData from "./spell.mjs";
-import EdIdField from "../fields/edid-field.mjs";
 import { getSingleGlobalItemByEdid } from "../../utils.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 
@@ -36,12 +35,6 @@ export default class SpellKnackData extends SpellData.mixin(
         required: true,
         initial:  false,
       } ),
-      linkableKnacks: new fields.ArrayField(
-        new EdIdField(),
-        {
-          initial: [],
-        }
-      ),
       strain: new fields.NumberField( {
         required: true,
         min:      0,
@@ -83,13 +76,9 @@ export default class SpellKnackData extends SpellData.mixin(
   async _copySourceSpellData( data ) {
     const actor = this.containingActor;
     const sourceSpell = actor
-      ? await actor.getSingleItemByEdid( this.sourceItem, "spell" )
-      : await getSingleGlobalItemByEdid( this.sourceItem, "spell" );
+      ? await actor.getSingleItemByEdid( data.system.sourceItem, "spell" )
+      : await getSingleGlobalItemByEdid( data.system.sourceItem, "spell" );
     if ( !sourceSpell ) return;
-
-    // Ensure edid is not changed
-    data.system ??= {};
-    data.system.edid = this.edid;
 
     foundry.utils.mergeObject(
       data.system,
@@ -98,10 +87,13 @@ export default class SpellKnackData extends SpellData.mixin(
         inplace:          true,
         insertKeys:       true,
         insertValues:     true,
-        overwrite:        false,
+        overwrite:        true,
         performDeletions: false,
       }
     );
+
+    // Ensure edid is not changed
+    data.system.edid = this.edid;
   }
 
   // endregion
