@@ -56,21 +56,31 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   async _preUpdate( changes, options, user ) {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    if ( changes.system?.changes && !changes.changes ) {
-      changes.changes = await this._prepareChangesData( changes.system.changes );
+    await this._prepareSystemData( changes );
+  }
+
+  /**
+   * Prepare the system data for creation or update. This includes setting up the source, preparing the changes data,
+   * and ensuring the document origin type is set if the document origin uuid is set.
+   * @param {object} data - The data being created or updated
+   * @returns {Promise<void>}
+   */
+  async _prepareSystemData( data ) {
+    if ( data.system?.changes && !data.changes ) {
+      data.changes = await this._prepareChangesData( data.system.changes );
     }
     if ( !this.source && this.parent?.actor ) {
       const containingActor = await fromUuid( this.parent.actor.uuid );
 
-      changes.system = changes.system ?? {};
-      changes.system.source = {
-        documentOriginUuid:  containingActor.uuid,
-        documentOriginType:  containingActor.type,
+      data.system = data.system ?? {};
+      data.system.source = {
+        documentOriginUuid: containingActor.uuid,
+        documentOriginType: containingActor.type
       };
     }
-    if ( changes.system?.source?.documentOriginUuid && !changes.system.source.documentOriginType ) {
-      changes.system.source.documentOriginType = (
-        await fromUuid( changes.system.source.documentOriginUuid )
+    if ( data.system?.source?.documentOriginUuid && !data.system.source.documentOriginType ) {
+      data.system.source.documentOriginType = (
+        await fromUuid( data.system.source.documentOriginUuid )
       )?.type;
     }
   }
@@ -88,12 +98,12 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
       const { key, value, mode, priority } = change;
       try {
         const finalValue = FormulaField.evaluate( value, evalData );
-        return {
-          key,
-          value: finalValue,
-          mode,
-          priority
-        };
+        const change = {};
+        if ( key ) change.key = key;
+        if ( Number.isNumeric( finalValue ) ) change.value = finalValue;
+        if ( mode ) change.mode = mode;
+        if ( Number.isNumeric( priority ) ) change.priority = priority;
+        return change;
       } catch {
         return change;
       }
