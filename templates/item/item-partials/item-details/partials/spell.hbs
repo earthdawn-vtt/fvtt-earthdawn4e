@@ -1,0 +1,34 @@
+{{!-- Spellcasting Type --}}
+{{formGroup systemFields.spellcastingType name="system.spellcastingType" value=item.system.spellcastingType localize=true}}
+{{!-- Circle --}}
+{{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
+{{!-- Required Threads --}}
+{{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
+{{!-- Weaving Difficulty --}}
+{{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
+{{!-- Reattune Difficulty --}}
+{{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+{{!-- Spellcasting Difficulty --}}
+{{!--formGroup systemFields.spellcastingDifficulty name="system.spellcastingDifficulty" value=item.system.spellcastingDifficulty localize=true--}}
+{{!-- effect --}}
+
+{{!-- keywords --}}
+{{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
+{{!-- duration --}}
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.duration
+  inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+  data=item.system.duration
+  fields=item.system.duration.schema.fields
+  fieldPath=systemFields.duration.fieldPath
+  config=config
+}}
+{{!-- range --}}
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.range
+  inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+  data=item.system.range
+  fields=item.system.range.schema.fields
+  fieldPath=systemFields.range.fieldPath
+  config=config
+}}

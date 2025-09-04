@@ -1636,9 +1636,9 @@
               "hint":                              "Einschränkungen für das Lernen dieses Kniffs",
               "label":                             "Einschränkungen"
             },
-            "sourceTalent": {
-              "hint":                              "Talent auf dem dieses Kniffs basiert",
-              "label":                             "Basis Talent"
+            "sourceItem": {
+              "hint":                              "Die ED-ID der Fähigkeit auf dem dieser Kniff basiert",
+              "label":                             "ED-ID Basisfähigkeit"
             }
           }
         },
@@ -2253,10 +2253,6 @@
             "linkable": {
               "hint":                              "Kann dieser Kniff mit anderen Kniffen verknüpft gewirkt werden?",
               "label":                             "Verknüpfbar"
-            },
-            "linkableKnacks": {
-              "hint":                              "Kniffe mit denen dieser Kniff verknüpft werden kann",
-              "label":                             "Verknüpfbare Kniffe"
             },
             "strain": {
               "hint":                              "Überanstrengungsschaden der durch das Wirken dieses Kniffs verursacht wird",
@@ -3268,8 +3264,10 @@
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
+        "knack":                                   "Kniff",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
+        "spell":                                   "Zauber",
         "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
         "spellEffectStep":                         "Effektstufe",
