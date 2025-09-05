@@ -242,10 +242,14 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     const content = Object.values( groupedData ).map(
       group => {
         const category = group[0]?.category;
+        // Show raw category name when sorting by "item", but localized when sorting by "type"
+        const displayCategory = categoryType === "name" 
+          ? category 
+          : game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + category );
         return `
         <thead>
           <tr class="group-header" data-group="${category}" data-action="toggleDetail">
-            <th colspan="5">${game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + category )}</th>
+            <th colspan="5">${displayCategory}</th>
           </tr>
         </thead>
         <tbody class="group-body ${ sessionStorage.getItem( `ed4e.lpGroup.${category}` ) ?? "hidden" }" data-group="${category}">
