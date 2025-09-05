@@ -45,8 +45,8 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
   // region Life Cycle Events
 
   /** @inheritdoc */
-  _preCreate( data, options, user ) {
-    if ( super._preCreate( data, options, user ) === false ) return false;
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
 
     if ( !data.system?.hasOwnProperty( "edid" )
       || data.system.edid === SYSTEM.reservedEdid.DEFAULT ) {

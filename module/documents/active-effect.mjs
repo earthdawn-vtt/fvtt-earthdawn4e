@@ -107,20 +107,20 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   /** @inheritdoc */
   async _preCreate( data, options, user ) {
-    if ( super._preCreate( data, options, user ) === false ) return false;
+    if ( await super._preCreate( data, options, user ) === false ) return false;
 
     if ( await this._shouldPreventCreation( data ) ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
       return false;
     }
 
-    this._configureCreateData( data, options, user );
+    await this._configureCreateData( data, options, user );
   }
 
   async _preUpdate( changes, options, user ) {
-    if ( super._preUpdate( changes, options, user ) === false ) return false;
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    this._configureUpdateData( changes, options, user );
+    await this._configureUpdateData( changes, options, user );
   }
 
   /** @inheritdoc */

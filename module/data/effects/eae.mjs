@@ -57,6 +57,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
     await this._prepareSystemData( changes );
+    console.log( "Prepared changes:", changes );
   }
 
   /**
@@ -72,7 +73,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( !this.source && this.parent?.actor ) {
       const containingActor = await fromUuid( this.parent.actor.uuid );
 
-      data.system = data.system ?? {};
+      data.system ??= {};
       data.system.source = {
         documentOriginUuid: containingActor.uuid,
         documentOriginType: containingActor.type
