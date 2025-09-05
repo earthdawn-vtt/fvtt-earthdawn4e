@@ -96,7 +96,10 @@ function stepFromAttributeValue( attributeValue ) {
  * @returns {Array[ItemEd]} - The talents that match the given category.
  */
 function getTalentCategory( talents, type ) {
-  return talents.filter( ( talent ) => talent.system.talentCategory === type );
+  return talents.filter( ( talent ) => {
+    const category = talent.system.talentCategory || "other";
+    return category === type;
+  } );
 }
 
 /**

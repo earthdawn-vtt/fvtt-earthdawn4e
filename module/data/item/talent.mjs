@@ -30,8 +30,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return this.mergeSchema( super.defineSchema(), {
       talentCategory: new fields.StringField( {
         required: true,
-        blank:    true,
-        initial:  "",
+        blank:    false,
+        initial:  "other",
         trim:     true,
         choices:  ED4E.talentCategory,
       } ),
