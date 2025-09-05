@@ -3332,6 +3332,11 @@
       "tskrang":                                   "T'skrang",
       "windling":                                  "Windling"
     },
+    "Migrations": {
+      "setSpellDuration":                          "TODO: Add translation",
+      "setSpellEffect":                            "TODO: Add translation",
+      "setSpellRange":                             "TODO: Add translation"
+    },
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "This actor is a singleton. Only one instance can exist.",

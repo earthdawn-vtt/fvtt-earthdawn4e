@@ -539,7 +539,16 @@ export const systemV0_8_2 = {
   // polish
   // french];
 
-  
+  /**
+   * spellcasting types
+   */
+  spellcastingTypes: [
+    [ "Elementalist", "elementalism" ],
+    [ "Illusionist", "illusionism" ],
+    [ "Nethermancer", "nethermancy" ],
+    [ "Shaman", "shamanism" ],
+    [ "Wizard", "wizardry" ]
+  ]
 
   /**
    * System ability names for standard Matrix
