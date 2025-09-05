@@ -70,16 +70,6 @@ export default class LpSpendingTransactionData extends LpTransactionData {
    * @inheritDoc
    */
   getHtmlRow( index, classes, dataGroup ) {
-    // Generate a user-friendly description if the current one is a localization key
-    let displayDescription = this.description;
-    if ( displayDescription === "ED.Actor.LpTracking.Spendings" && this.value?.before !== undefined && this.value?.after !== undefined ) {
-      // Generate a description similar to what learnable items use
-      displayDescription = game.i18n.format( "ED.Actor.LpTracking.Spendings.spendingTransactionDescription", {
-        previousLevel: this.value.before,
-        newLevel:      this.value.after
-      } );
-    }
-    
     return `
         <tr class="${ classes?.join( " " ) ?? "" }" data-group="${ dataGroup ?? "" }" data-id="${ this.id }">
           <td class="lp-history__date">
@@ -97,7 +87,7 @@ export default class LpSpendingTransactionData extends LpTransactionData {
           <td>
             ${ this.schema.fields.description.toInput( {
     name:    `spendings.${ index }.description`,
-    value:   displayDescription,
+    value:   this.description,
     dataset: { index },
   } ).outerHTML }
           </td>
