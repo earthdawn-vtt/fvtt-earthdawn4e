@@ -202,7 +202,7 @@ export default class PcData extends NamegiverTemplate {
       }
     }
 
-    newActor.sheet.render( true, {focus: true} );
+    await newActor.sheet.render( true, {focus: true} );
 
     return newActor;
   }
