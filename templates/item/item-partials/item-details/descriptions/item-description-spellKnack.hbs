@@ -1,0 +1,27 @@
+<div class="item__left--main">
+  <h3>{{localize "ED.Item.Header.general"}}</h3>
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.knack"}}</legend>
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
+    {{formGroup
+      systemFields.bloodMagic
+      name="system.bloodMagic"
+      value=item.system.bloodMagic
+    }}
+    {{formGroup
+      systemFields.linkable
+      name="system.linkable"
+      value=item.system.linkable
+    }}
+    {{formGroup
+      systemFields.strain
+      name="system.strain"
+      value=item.system.strain
+    }}
+  </fieldset>
+</div>
+<div class="item__right--main sheet__editor">
+  {{!-- Description --}}
+  <h3>{{localize "ED.Item.Header.description"}}</h3>
+  {{> "systems/ed4e/templates/global/editor.hbs"}}
+</div>
