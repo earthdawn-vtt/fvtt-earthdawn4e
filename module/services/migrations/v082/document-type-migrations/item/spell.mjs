@@ -58,12 +58,6 @@ export default class SpellMigration extends BaseMigration {
       source.system.range.special = oldRange + " " + game.i18n.localize( "ED.Migrations.setSpellRange" );
     }
 
-    // if ( typeof source.system?.area !== "object" ) {
-    //   const oldArea = source.system.areaofeffect;
-    //   source.system.area = {};
-    //   source.system.area.areaType = "cone";
-    //   // source.system.area.special = oldArea + " " 
-    // }
     return source;
   }
 }
