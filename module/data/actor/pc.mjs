@@ -323,13 +323,16 @@ export default class PcData extends NamegiverTemplate {
     const attributeUpdate = await actor.update( {
       [`system.attributes.${attribute}.timesIncreased`]: currentIncrease + 1
     } );
-    const lpTransaction = actor.addLpTransaction(
+    const lpTransaction = await actor.addLpTransaction(
       "spendings",
       {
         amount:      spendLp === "spendLp" ? lpCost : 0,
-        description: game.i18n.format( "ED.Actor.LpTracking.Spendings", {} ),
         entityType:  "attribute",
         name:        ED4E.attributes[attribute].label,
+        description: game.i18n.format( "ED.Actor.LpTracking.Spendings.attributeIncrease", {
+          name:           ED4E.attributes[attribute].label,
+          timesIncreased: currentIncrease + 1
+        } ),
         value:       {
           before: currentIncrease,
           after:  currentIncrease + 1,

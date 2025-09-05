@@ -270,6 +270,9 @@
           "thread":                                "Faden"
         },
         "Spendings": {
+          "attributeIncrease":                     "{name} wurde das {timesIncreased}. mal erhöht",
+          "learnKnack":                            "Der Kniff {name} wurde gelernt",
+          "learnSpell":                            "Der Zauber {name} wurde gelernt",
           "learningTransactionDescription":        "Hat {itemType} '{itemName}' gelernt.",
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         }

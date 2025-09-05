@@ -205,7 +205,11 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpForLearning : 0,
-        description: learnedItem.lpLearningDescription,
+        description: game.i18n.format(
+          "ED.Actor.LpTracking.Spendings.learnKnack", {
+            name: item.name,
+          }
+        ),
         entityType:  learnedItem.type,
         name:        learnedItem.name,
         itemUuid:    learnedItem.uuid,
