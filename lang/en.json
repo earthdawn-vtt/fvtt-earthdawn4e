@@ -1637,9 +1637,9 @@
               "hint":                              "Restrictions for learning this knack",
               "label":                             "Restrictions"
             },
-            "sourceTalent": {
-              "hint":                              "Talent this knack is based on",
-              "label":                             "Source Talent"
+            "sourceItem": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
@@ -2242,6 +2242,22 @@
                 "hint":                            "Number of woven threads",
                 "label":                           "Woven Threads"
               }
+            }
+          }
+        },
+        "SpellKnack": {
+          "FIELDS": {
+            "bloodMagic": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "linkable": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "strain": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
@@ -3249,8 +3265,10 @@
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
         "grimoireConfiguration":                   "Grimoire Configuration",
+        "knack":                                   "TODO: Add translation",
         "matrixConfiguration":                     "Matrix Configuration",
         "navigator":                               "Navigator",
+        "spell":                                   "TODO: Add translation",
         "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "Spell Effect",
         "spellEffectStep":                         "TODO: Add translation",

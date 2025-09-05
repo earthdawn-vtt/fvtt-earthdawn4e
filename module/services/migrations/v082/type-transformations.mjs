@@ -25,6 +25,7 @@ export function registerV082TypeTransformations( typeTransformationManager ) {
   typeTransformationManager.registerTypeTransform( sourceSystem, "spell", "spell" );
   typeTransformationManager.registerTypeTransform( sourceSystem, "talent", "talent" );
   typeTransformationManager.registerTypeTransform( sourceSystem, "weapon", "weapon" );
+  typeTransformationManager.registerTypeTransform( sourceSystem, "spellmatrix", "talent" );
   
   // Legacy items with complex transformations (handled by document-type migrations)
   // spellmatrix and knack have complex type transformations based on their properties

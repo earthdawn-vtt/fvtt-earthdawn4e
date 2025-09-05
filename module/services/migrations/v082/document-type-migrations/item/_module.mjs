@@ -48,7 +48,7 @@ export const typeMigrationConfig = {
   spellknack:    SpellKnackMigration,
   maneuverknack: ManeuverKnackMigration,
   mask:          MaskMigration,
-  spellmatrix:   MatrixMigration,
+  matrix:        MatrixMigration,
   namegiver:     NamegiverMigration,
   attack:        PowerMigration,
   reputation:    ReputationMigration,

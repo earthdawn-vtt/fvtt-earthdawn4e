@@ -51,9 +51,9 @@ export function getAllEdIds( type ) {
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
  * Returns an array of items that match a given EDID and optionally an item type.
  * Searched documents are world and compendium items.
- * @param {string} edid           The EDID of the item(s) which you want to retrieve
- * @param {string} type           Optionally, a type name to restrict the search
- * @returns {Item[]|undefined}    An array containing the found items
+ * @param {string} edid                    The EDID of the item(s) which you want to retrieve
+ * @param {string} type                    Optionally, a type name to restrict the search
+ * @returns {Promise<Item[]|undefined>}    An array containing the found items
  */
 export async function getGlobalItemsByEdid( edid, type ) {
   return getAllDocuments(
@@ -70,9 +70,9 @@ export async function getGlobalItemsByEdid( edid, type ) {
  * Adapted from ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
  * Fetch an item that matches a given EDID and optionally an item type.
  * Searched documents are world and compendium items.
- * @param {string} edid         The EDID of the item(s) which you want to retrieve
- * @param {string} type         Optionally, a type name to restrict the search
- * @returns {Item|undefined}    The matching item, or undefined if none was found.
+ * @param {string} edid                  The EDID of the item(s) which you want to retrieve
+ * @param {string} type                  Optionally, a type name to restrict the search
+ * @returns {Promise<Item|undefined>}    The matching item, or undefined if none was found.
  */
 export async function getSingleGlobalItemByEdid( edid, type ) {
   return getGlobalItemsByEdid( edid, type ).then( item => item[0] );
@@ -800,6 +800,8 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/partials/spell.hbs",
 
     // endregion
 

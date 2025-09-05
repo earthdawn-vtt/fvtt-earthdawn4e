@@ -1636,7 +1636,7 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "sourceTalent": {
+            "sourceItem": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
@@ -2241,6 +2241,22 @@
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               }
+            }
+          }
+        },
+        "SpellKnack": {
+          "FIELDS": {
+            "bloodMagic": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "linkable": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "strain": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
@@ -3248,8 +3264,10 @@
         "elementSettings":                         "TODO: Add translation",
         "general":                                 "TODO: Add translation",
         "grimoireConfiguration":                   "TODO: Add translation",
+        "knack":                                   "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
+        "spell":                                   "TODO: Add translation",
         "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "TODO: Add translation",
         "spellEffectStep":                         "TODO: Add translation",

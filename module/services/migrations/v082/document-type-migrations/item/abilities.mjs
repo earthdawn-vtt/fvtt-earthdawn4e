@@ -1,6 +1,5 @@
 import ED4E from "../../../../../config/_module.mjs";
 import { determineConfigValue } from "../../../../../utils.mjs";
-import ImageMigration from "./image.mjs";
 import BaseMigration from "../../../common/base-migration.mjs";
 
 export default class AbilityMigration extends BaseMigration {
@@ -60,9 +59,6 @@ export default class AbilityMigration extends BaseMigration {
     source.system ??= {};
     source.system.difficulty ??= {};
     source.system.difficulty.group = source.system.difficulty.group ? source.system.difficulty.group : determineConfigValue( slugifiedName, configMappingsGroup );
-
-    // Apply image migration
-    ImageMigration.migrateEarthdawnData( source );
 
     return source;
   }
