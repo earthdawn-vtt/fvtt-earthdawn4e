@@ -548,7 +548,7 @@ export const systemV0_8_2 = {
     [ "Nethermancer", "nethermancy" ],
     [ "Shaman", "shamanism" ],
     [ "Wizard", "wizardry" ]
-  ]
+  ],
 
   /**
    * System ability names for standard Matrix
