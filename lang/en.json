@@ -3091,7 +3091,19 @@
           "teacherBonusModifier":                  "Teacher Bonus Modifier"
         },
         "LpHistory": {
-          "addEarning":                            "Add Legend Points"
+          "addEarning":                            "Add Legend Points",
+          "attribute":                             "TODO: Add translation",
+          "devotion":                              "TODO: Add translation",
+          "earnings":                              "TODO: Add translation",
+          "knackAbility":                          "TODO: Add translation",
+          "knackKarma":                            "TODO: Add translation",
+          "knackManeuver":                         "TODO: Add translation",
+          "knackSpell":                            "TODO: Add translation",
+          "skill":                                 "TODO: Add translation",
+          "spell":                                 "TODO: Add translation",
+          "spendings":                             "TODO: Add translation",
+          "talent":                                "TODO: Add translation",
+          "thread":                                "TODO: Add translation"
         },
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Only one attribute can be increased at a time.</li>\n<li>The character must train for {learningTime} days.</li>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>Attribute training costs money: {trainingCost} silver per day.</li>\n<li>The character must have enough Legend Points.</li>\n<li>The character must wait {trainingsTimeAttribute} weeks before training another attribute.</li>\n</ul>",
