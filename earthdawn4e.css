@@ -2324,16 +2324,18 @@ section.spells .matrix-cards .matrix-card .spell-link {
   width: 180px;
   height: 240px;
   margin: 8px;
-  background: linear-gradient(135deg, #2c1810 0%, #4a2f1f 50%, #3d261a 100%);
+  background: url(assets/sheet/mottle.png) 10% 10% / 40% repeat, linear-gradient(135deg, #2c1810 0%, #4a2f1f 50%, #3d261a 100%);
   border: 2px solid #8b6914;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(139, 105, 20, 0.3);
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.3s ease;
+  z-index: 1;
 }
 .spell-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(139, 105, 20, 0.5), 0 0 20px rgba(139, 105, 20, 0.3);
+  z-index: 2;
 }
 .spell-card__delete {
   position: absolute;
@@ -2365,8 +2367,10 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .spell-card__header {
   height: 60px;
-  background: linear-gradient(135deg, #8b6914 0%, #b8941b 50%, #8b6914 100%);
+  background: url(assets/sheet/mottle.png) 10% 10% / 40% repeat, linear-gradient(135deg, #2e2307 0%, #4c3c0b 50%, #2e2307 100%);
   border-bottom: 2px solid #6b4f0f;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2550,8 +2554,10 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .spell-card__footer {
   height: 60px;
-  background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+  background: url(assets/sheet/mottle.png) 10% 10% / 40% repeat, linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
   border-top: 1px solid rgba(139, 105, 20, 0.3);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -2615,6 +2621,118 @@ section.spells .matrix-cards .matrix-card .spell-link {
   display: flex;
   align-items: center;
 }
+.spell-card--has-knacks {
+  margin-right: 24px;
+  margin-bottom: 16px;
+}
+.spell-card__stack-indicator {
+  position: absolute;
+  width: 180px;
+  height: 240px;
+  background: url(assets/sheet/mottle.png) 10% 10% / 40% repeat, linear-gradient(135deg, #2c1810 0%, #4a2f1f 50%, #3d261a 100%);
+  border: 2px solid #8b6914;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+.spell-card__stack-indicator--1 {
+  top: 7px;
+  right: -7px;
+  opacity: 0.7;
+}
+.spell-card__stack-indicator--2 {
+  top: 14px;
+  right: -14px;
+  opacity: 0.4;
+}
+.spell-card:hover .spell-card__stack-indicator--1 {
+  transform: translateX(8px) translateY(-2px) rotate(2deg);
+  opacity: 0.9;
+}
+.spell-card:hover .spell-card__stack-indicator--2 {
+  transform: translateX(16px) translateY(-4px) rotate(4deg);
+  opacity: 0.6;
+}
+.spell-card__knacks-container {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 8px 0 8px 16px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+.spell-card:hover .spell-card__knacks-container {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.spell-card__knack {
+  background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+  border: 1px solid #8b6914;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+.spell-card__knack:last-child {
+  margin-bottom: 0;
+}
+.spell-card__knack:hover {
+  background: linear-gradient(135deg, #2c1810 0%, #3d261a 100%);
+  border-color: #b8941b;
+  transform: translateX(4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.spell-card__knack-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: #f0d080;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.spell-card__knack-delete {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #8b4914 0%, #6b3414 100%);
+  border: 1px solid #a85c1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 8px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+.spell-card__knack-delete:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, #a85c1a 0%, #8b4914 100%);
+  transform: scale(1.1);
+}
+.spell-card__knack-delete i {
+  color: #f0d080;
+  font-size: 8px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -2674,3 +2792,23 @@ section.spells .matrix-cards .matrix-card .spell-link {
   color: #b8941b;
   transform: scale(1.1);
 }
+/*.spell-knacks-container {
+  display: none;
+}
+
+.spell-container:hover > .spell-knacks-container {
+  display: flex;
+  flex-wrap: wrap;
+  //gap: 12px;
+  padding: 16px;
+  justify-content: flex-start;
+  border-radius: @border-radius-lg;
+}*/
+/*
+.spell-knack-card {
+
+  .spell-card__header {
+    height: auto;
+    border: inherit;
+  }
+}*/

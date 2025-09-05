@@ -1,5 +1,12 @@
-<div class="spell-card draggable" data-uuid="{{this.uuid}}" data-item-id="{{_id}}"
+<div class="spell-card draggable {{#if (lookup @root.spellKnacks id)}}spell-card--has-knacks{{/if}}" data-uuid="{{this.uuid}}" data-item-id="{{id}}"
      style="box-shadow: 0 0 10px {{lookup @root.config.spellcastingColors system.spellcastingType}}; border-color: {{lookup @root.config.spellcastingColors system.spellcastingType}};">
+
+  {{!-- Stack indicators for cards with knacks --}}
+  {{#if (lookup @root.spellKnacks id)}}
+    <div class="spell-card__stack-indicator spell-card__stack-indicator--1"></div>
+    <div class="spell-card__stack-indicator spell-card__stack-indicator--2"></div>
+  {{/if}}
+
   {{#if @root.editable}}
     <div class="spell-card__delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
       <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
@@ -66,4 +73,20 @@
       <div class="spell-card__attribute-value">{{{system.difficultyLabel}}}</div>
     </div>
   </div>
+
+  {{!-- Knacks container that slides out on hover --}}
+  {{#if (lookup @root.spellKnacks id)}}
+    <div class="spell-card__knacks-container">
+      {{#each (lookup @root.spellKnacks id)}}
+        <div class="spell-card__knack" data-action="editChild" data-uuid="{{this.uuid}}">
+          <span class="spell-card__knack-name">{{this.name}}</span>
+          {{#if @root.editable}}
+            <div class="spell-card__knack-delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
+              <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
+            </div>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
 </div>

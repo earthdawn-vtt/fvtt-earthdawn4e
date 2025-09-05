@@ -764,6 +764,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/ability-card.hbs",
     "systems/ed4e/templates/actor/cards/equipment-card.hbs",
     "systems/ed4e/templates/actor/cards/spell-card.hbs",
+    "systems/ed4e/templates/actor/cards/spell-knack-card.hbs",
     "systems/ed4e/templates/actor/cards/class-card.hbs",
     "systems/ed4e/templates/actor/cards/legend-point-history-earned.hbs",
     "systems/ed4e/templates/actor/cards/attribute-card.hbs",

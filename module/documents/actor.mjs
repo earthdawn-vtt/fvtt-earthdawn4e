@@ -119,15 +119,27 @@ export default class ActorEd extends Actor {
     return this.itemTypes.namegiver[0];
   }
 
+  /**
+   * Returns all reaction items of the given actor.
+   * @returns {ItemEd[]} An array of reaction items
+   */
   get reactions() {
-    return this.items.filter( item => item.system.rollType === "reaction" );
+    return /** @type {ItemEd} */ this.items.filter( item => item.system.rollType === "reaction" );
   }
 
-  /** @inheritDoc */
-  async _preCreate( data, options, user ) {
-    if ( await super._preCreate( data, options, user ) === false ) return false;
-    const prototypeToken = TOKEN?.prototypeToken?.[this.type] ?? {};
-    await this.updateSource( { prototypeToken } );
+  /**
+   * A mapping of spell IDs to arrays of spell knacks that are linked to that spell.
+   * @returns {{string: ItemEd}} A mapping of spell IDs to arrays of spell knacks.
+   */
+  get spellKnacksBySpellId() {
+    const spellKnacks = {};
+    for ( const spellKnack of this.itemTypes.spellKnack ) {
+      const spellId = this.getSingleItemByEdid( spellKnack.system.sourceItem, "spell" )?.id;
+      if ( !spellId ) continue;
+      spellKnacks[spellId] ??= [];
+      spellKnacks[spellId].push( spellKnack );
+    }
+    return spellKnacks;
   }
 
   /**
@@ -138,6 +150,17 @@ export default class ActorEd extends Actor {
    */
   get wearsPiecemealArmor() {
     return this.itemTypes.armor.some( armor => armor.system.piecemeal.isPiecemeal );
+  }
+
+  // endregion
+
+  // region Life Cycle Events
+
+  /** @inheritDoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+    const prototypeToken = TOKEN?.prototypeToken?.[this.type] ?? {};
+    await this.updateSource( { prototypeToken } );
   }
 
   // endregion
