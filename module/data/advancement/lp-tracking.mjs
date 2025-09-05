@@ -118,13 +118,19 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
 
   get htmlChronological() {
     const rows = this.chronologically.map( transaction => {
+      // Determine if this transaction has a name (spending transactions have names)
+      const itemName = transaction.name ? transaction.name : "";
+      
       return `
       <tr class="" data-group="" data-id="${ transaction.id }">
           <td>
              ${ ( new Date( transaction.date ) ).toLocaleDateString() }
           </td>
           <td>
-            ${ game.i18n.localize( "ED.Dialogs.LpHistory." + transaction.type ) }
+            ${ game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + transaction.type ) }
+          </td>
+          <td>
+            ${ itemName }
           </td>
           <td>
             ${ transaction.description }
@@ -148,6 +154,9 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
             </th>
             <th class="lp-history__type">
               ${ game.i18n.localize( "ED.Actor.LpTracking.Header.type" ) }
+            </th>
+            <th class="lp-history__name">
+              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.name" ) }
             </th>
             <th class="lp-history__description">
               ${ game.i18n.localize( "ED.Actor.LpTracking.Header.description" ) }
@@ -236,7 +245,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
         return `
         <thead>
           <tr class="group-header" data-group="${category}" data-action="toggleDetail">
-            <th colspan="5">${game.i18n.localize( "ED.Dialogs.LpHistory." + category )}</th>
+            <th colspan="5">${game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + category )}</th>
           </tr>
         </thead>
         <tbody class="group-body ${ sessionStorage.getItem( `ed4e.lpGroup.${category}` ) ?? "hidden" }" data-group="${category}">

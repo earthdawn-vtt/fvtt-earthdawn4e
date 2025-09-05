@@ -3091,7 +3091,19 @@
           "teacherBonusModifier":                  "Lehrer Bonus Modifikator"
         },
         "LpHistory": {
-          "addEarning":                            "Füge Legendenpunkte hinzu"
+          "addEarning":                            "Füge Legendenpunkte hinzu",
+          "attribute":                             "Attribute",
+          "devotion":                              "Weihekräfte",
+          "earnings":                              "Einnahme",
+          "knackAbility":                          "Kniffe",
+          "knackKarma":                            "Karmakniffe",
+          "knackManeuver":                         "Manöverkniffe",
+          "knackSpell":                            "Zauber",
+          "skill":                                 "Fertigkeit",
+          "spell":                                 "Zauber",
+          "spendings":                             "Ausgabe",
+          "talent":                                "Talente",
+          "thread":                                "Fäden"
         },
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
