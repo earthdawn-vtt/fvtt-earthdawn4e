@@ -99,6 +99,10 @@
       --icon-mask: url("/icons/svg/blood.svg");
       mask-mode: alpha;
       color: var(--color-meter-4);
+      &:hover,
+      &:focus-visible {
+        color: var(--color-text-lt);     
+      }
     }
   }
 
@@ -168,21 +172,19 @@
       --icon-size: 25px;
     }
 
-    /* Center the status icons column (backpack/house/etc.) */
     .equipment-card__grid--item[data-action="changeItemStatus"] {
-      display: flex;            /* or: display:grid; place-items:center; */
+      display: flex;
       align-items: center;
       justify-content: center;
 
       .item__status {
-        display: inline-block;  /* avoid baseline alignment quirks */
-        line-height: 1;         /* don't inherit row line-height */
+        display: inline-block;
+        line-height: 1;
         margin: 0;
       }
     }
   }
 
-  /* ======================= Attributes ======================= */
   .attribute-card__grid--container {
     .icon--button.icon {
       --icon-size: 20px;

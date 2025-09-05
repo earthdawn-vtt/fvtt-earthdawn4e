@@ -106,7 +106,7 @@
   --color-grey-lt-tr: rgba(167, 167, 167, 0.3);
   --color-green-dk: #020300;
   --color-green-dk-tr: rgba(2, 3, 0, 0.35);
-  --color-green-md: #1c3b24;
+  --color-green-md: #1e3f27;
   --color-green-md-tr: rgba(28, 59, 36, 0.35);
   --color-green-lt: #3a763e;
   --color-green-lt-tr: rgba(58, 118, 62, 0.35);
@@ -118,9 +118,12 @@
   --color-blue-lt-tr: rgba(55, 61, 117, 0.35);
   --color-basic-text-dk: #2e2730;
   --color-basic-text-lt: #f5e5de;
-  --background-mottle-green: var(--color-green-md) url(assets/sheet/mottle.png) center center / auto repeat;
-  --background-mottle-blue: var(--color-blue-lt) url(assets/sheet/mottle.png) center center / auto repeat;
-  --checkbox-background-color: var(--color-grey-md);
+  --background-mottle-green-lt: var(--color-green-lt) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-green-md: var(--color-green-md) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-green-dk: var(--color-green-dk) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue-lt: var(--color-blue-lt) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue-md: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue-dk: var(--color-blue-dk) url(assets/sheet/mottle.png) center center / auto repeat;
 }
 :root .application.sheet.earthdawn4e.actor,
 :root .theme-dark.application.sheet.earthdawn4e.actor {
@@ -157,7 +160,7 @@
   --border-main: 2px solid var(--color-gold-3);
   --border-button: 1px solid var(--color-gold-2);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
-  --background-banner-actor: var(--background-mottle-blue);
+  --background-banner-actor: var(--background-mottle-blue-lt);
 }
 :root .application.sheet.earthdawn4e.actor.character,
 :root .theme-dark.application.sheet.earthdawn4e.actor.character {
@@ -168,7 +171,7 @@
   --color-tertiary: var(--color-green-lt);
   --color-tertiary-tr: var(--color-green-lt-tr);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
-  --background-banner-actor: var(--background-mottle-green);
+  --background-banner-actor: var(--background-mottle-green-lt);
 }
 :root .theme-light.application.sheet.earthdawn4e.actor {
   --color-primary: var(--color-blue-lt);
@@ -204,7 +207,7 @@
   --border-main: 2px solid var(--color-gold-2);
   --border-button: 2px solid var(--color-gold-3);
   --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
-  --background-banner-actor: var(--background-mottle-blue);
+  --background-banner-actor: var(--background-mottle-blue-lt);
 }
 :root .theme-light.application.sheet.earthdawn4e.actor.character {
   --color-primary: var(--color-green-lt);
@@ -214,7 +217,7 @@
   --color-tertiary: var(--color-green-dk);
   --color-tertiary-tr: var(--color-green-dk-tr);
   --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
-  --background-banner-actor: var(--background-mottle-green);
+  --background-banner-actor: var(--background-mottle-green-lt);
 }
 /* ---------------------------------- */
 /*  Slide Toggles                     */
@@ -508,7 +511,6 @@ h3.label--rail .label__text::after {
   /* generic icon button */
   /* ======================= Abilities ======================= */
   /* ======================= Equipment ======================= */
-  /* ======================= Attributes ======================= */
 }
 .actor input[type='checkbox'] {
   margin: 6px 0 0 0;
@@ -562,6 +564,10 @@ h3.label--rail .label__text::after {
   mask-mode: alpha;
   color: var(--color-meter-4);
 }
+.actor .icon--button.icon.icon--blood:hover,
+.actor .icon--button.icon.icon--blood:focus-visible {
+  color: var(--color-text-lt);
+}
 .actor .ability-card__grid--container .icons__dice {
   --icon-cell: 25px;
   position: relative;
@@ -601,9 +607,6 @@ h3.label--rail .label__text::after {
 .actor .ability-card__grid--container:hover .icons__dice.has-overlay .item__image--visible,
 .actor .ability-card__grid--container .icons__dice.has-overlay:hover .item__image--visible {
   opacity: 0;
-}
-.actor .equipment-card__grid--container {
-  /* Center the status icons column (backpack/house/etc.) */
 }
 .actor .equipment-card__grid--container .icons__dice,
 .actor .equipment-card__grid--container .icons__equipment {
@@ -653,15 +656,12 @@ h3.label--rail .label__text::after {
 }
 .actor .equipment-card__grid--container .equipment-card__grid--item[data-action="changeItemStatus"] {
   display: flex;
-  /* or: display:grid; place-items:center; */
   align-items: center;
   justify-content: center;
 }
 .actor .equipment-card__grid--container .equipment-card__grid--item[data-action="changeItemStatus"] .item__status {
   display: inline-block;
-  /* avoid baseline alignment quirks */
   line-height: 1;
-  /* don't inherit row line-height */
   margin: 0;
 }
 .actor .attribute-card__grid--container .icon--button.icon {
@@ -1272,17 +1272,13 @@ h3.label--rail .label__text::after {
   line-height: 19px;
   height: 19px;
 }
-.application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4),
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(8),
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(9),
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(7),
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(7),
-.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5) {
-  font-size: var(--font-icon-small);
-  padding: 0 4px 0 0;
-}
+.application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5),
+.application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4),
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6) {
-  font-size: var(--font-icon-medium);
   padding: 0 4px 0 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--item:nth-child(2),
@@ -1376,7 +1372,7 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .prosemirror .editor-content,
 .application.sheet.earthdawn4e.actor .window-content prose-mirror .editor-content {
@@ -1384,7 +1380,7 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2) {
   text-align: left;
@@ -1392,19 +1388,19 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(50px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(120px, 120px) minmax(175px, 175px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container {
   display: grid;
