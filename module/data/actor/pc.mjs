@@ -202,9 +202,7 @@ export default class PcData extends NamegiverTemplate {
       }
     }
 
-    const actorApp = newActor.sheet.render( true, {focus: true} );
-    // we have to wait until the app is rendered to activate a tab
-    requestAnimationFrame( () => actorApp.activateTab( "actor-notes-tab" ) );
+    await newActor.sheet.render( true, {focus: true} );
 
     return newActor;
   }
