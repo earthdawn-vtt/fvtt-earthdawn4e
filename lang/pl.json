@@ -270,6 +270,9 @@
           "thread":                                "TODO: Add translation"
         },
         "Spendings": {
+          "attributeIncrease":                     "TODO: Add translation",
+          "learnKnack":                            "TODO: Add translation",
+          "learnSpell":                            "TODO: Add translation",
           "learningTransactionDescription":        "TODO: Add translation",
           "spendingTransactionDescription":        "TODO: Add translation"
         }
