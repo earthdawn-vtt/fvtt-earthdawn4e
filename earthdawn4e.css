@@ -401,7 +401,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   border: var(--border-main);
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  box-shadow: inset 0 0 18px #000000;
+  box-shadow: inset 0 0 12px 6px #000000;
   margin: 7px 0 5px 0;
 }
 .container__block {
@@ -1229,7 +1229,7 @@ h3.label--rail .label__text::after {
   border: var(--border-main);
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
-  box-shadow: inset 0 0 18px #000000;
+  box-shadow: inset 0 0 12px 6px #000000;
   margin: 7px 0 5px 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .item__image {
