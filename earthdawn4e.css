@@ -427,56 +427,6 @@ slide-toggle[checked] .slide-toggle-thumb {
 * {
   scrollbar-color: var(--color-tertiary) var(--color-transparent);
 }
-.buffer-input {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-}
-.buffer {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  font-weight: 700;
-  font-size: 16px;
-  width: 15px;
-  height: auto;
-}
-.buffer--minus {
-  justify-content: left;
-}
-.buffer--plus {
-  justify-content: right;
-}
-.buffer--minus::before {
-  content: "−";
-}
-.buffer--plus::before {
-  content: "+";
-}
-.buffer-input {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  height: 25px;
-  position: relative;
-}
-.buffer {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 160ms ease;
-}
-.buffer-input:hover .buffer,
-.buffer-input:focus-within .buffer {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
 h3.label--rail {
   position: relative;
   display: flex;
@@ -666,6 +616,61 @@ h3.label--rail .label__text::after {
 }
 .actor .attribute-card__grid--container .icon--button.icon {
   --icon-size: 20px;
+}
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+.buffer {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 16px;
+  width: 15px;
+  height: auto;
+}
+.buffer--minus {
+  justify-content: left;
+}
+.buffer--plus {
+  justify-content: right;
+}
+.buffer--minus::before {
+  content: "−";
+  color: var(--color-button-icon);
+}
+.buffer--plus::before {
+  content: "+";
+  color: var(--color-button-icon);
+}
+.buffer:hover::before {
+  color: var(--color-button-icon-hover);
+}
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 25px;
+  position: relative;
+}
+.buffer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.buffer-input:hover .buffer,
+.buffer-input:focus-within .buffer {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 #logo {
   content: url('assets/foundry/earthdawn-logo.png');
