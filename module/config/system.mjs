@@ -115,3 +115,11 @@ export const icons = {
 };
 
 // endregion
+
+// region Flags
+
+export const FLAGS = {
+  learnedSpellKnackThroughPath: "learnedSpellKnackThroughPath",
+};
+
+// endregion

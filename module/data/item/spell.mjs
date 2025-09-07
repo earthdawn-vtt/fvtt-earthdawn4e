@@ -524,12 +524,10 @@ export default class SpellData extends ItemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpToLearn : 0,
-        description: game.i18n.format(
-          "ED.Actor.LpTracking.Spendings",
-        ),
+        description: learnedItem.lpLearningDescription,
         entityType:  learnedItem.type,
-        name:       learnedItem.name,
-        itemUuid:   learnedItem.uuid,
+        name:        learnedItem.name,
+        itemUuid:    learnedItem.uuid,
       },
     );
 

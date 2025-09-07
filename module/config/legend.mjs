@@ -46,6 +46,7 @@ export const validationCategories = {
   base:               "ED.Config.LpTracking.Validation.titleBase",
   health:             "ED.Config.LpTracking.Validation.titleHealth",
   resources:          "ED.Config.LpTracking.Validation.titleResources",
+  spellRequirement:   "ED.Config.LpTracking.Validation.titleSpellRequirement",
   talentsRequirement: "ED.Config.LpTracking.Validation.titleTalentsRequirement",
   newAbilityLp:       "ED.Config.LpTracking.Validation.titleNewAbilityLp",
 };

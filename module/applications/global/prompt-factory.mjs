@@ -6,6 +6,8 @@ import ED4E from "../../config/_module.mjs";
 import DialogEd from "../api/dialog.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
+const { renderTemplate } = foundry.applications.handlebars;
+
 
 const DialogClass = DialogEd;
 const fields = foundry.data.fields;
@@ -596,12 +598,12 @@ class ItemPromptFactory extends PromptFactory {
     } );
   }
 
-  // Knacks do not have increase, thats why it makes sense to separate the learn method from the abilities.
   /**
    * Creates the learn knack dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the learn knack prompt dialog.
    */
   async _learnKnackPrompt() {
+    // Knacks do not have increase, that's why it makes sense to separate the learn method from the abilities.
     const validationTemplate = "systems/ed4e/templates/advancement/learn-knack-requirements.hbs";
     const content = await renderTemplate(
       validationTemplate,

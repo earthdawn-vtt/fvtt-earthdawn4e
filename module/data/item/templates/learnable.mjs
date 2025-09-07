@@ -61,8 +61,12 @@ export default class LearnableTemplate extends SystemDataModel {
    * @type {string}
    */
   get lpLearningDescription() {
-    return game.i18n.localize(
+    return game.i18n.format(
       "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
+      {
+        itemName: this.parent?.name ?? game.i18n.localize( "ED.Data.Item.Learnable.unknownItem" ),
+        itemType: game.i18n.localize( `TYPES.Item.${ this.parent?.type }` ) || "",
+      }
     );
   }
 
