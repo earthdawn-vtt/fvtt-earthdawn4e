@@ -3105,7 +3105,7 @@
           "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
         },
         "Validation": {
-          "availableLearnImprovedSpellSlots":      "Frei Ränge<br>('Struktur Verstehen' * 'Lerne Verbesserte Zauber')",
+          "availableLearnImprovedSpellSlots":      "Frei Ränge (Knifflimit)",
           "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
           "availableMoney":                        "Ist ausreichend Silber vorhanden?",
           "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
