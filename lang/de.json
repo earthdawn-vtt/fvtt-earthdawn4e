@@ -270,7 +270,7 @@
           "thread":                                "Faden"
         },
         "Spendings": {
-          "learningTransactionDescription":        "TODO: WO IST DAS?",
+          "learningTransactionDescription":        "Hat {itemType} '{itemName}' gelernt.",
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         }
       },
@@ -559,6 +559,7 @@
           "titleHealth":                           "Gesundheit",
           "titleNewAbilityLp":                     "LP für neue Fähigkeit",
           "titleResources":                        "Ressourcen",
+          "titleSpellKnackRequirement":            "Zauberkniff",
           "titleTalentsRequirement":               "Erforderliche Talente"
         }
       },
@@ -3104,6 +3105,7 @@
           "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
         },
         "Validation": {
+          "availableLearnImprovedSpellSlots":      "Frei Ränge<br>('Struktur Verstehen' * 'Lerne Verbesserte Zauber')",
           "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
           "availableMoney":                        "Ist ausreichend Silber vorhanden?",
           "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
@@ -3122,6 +3124,7 @@
           "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
           "pathTalent":                            "Pfad-Talent",
           "requiredPathRank":                      "Erforderlicher Pfad-Rang",
+          "sourceSpellName":                       "Quell-Zauber Name",
           "sourceTalentName":                      "Quell-Talent Name",
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
@@ -3374,6 +3377,7 @@
         "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
         "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "cannotLearnSpellKnack":                   "Der Zauber-Kniff kann nicht erlernt werden. Es fehlt eine ED-ID für den Zauber auf den sich der Kniff bezieht.",
         "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
@@ -3382,6 +3386,7 @@
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
+        "learningKnackNoSourceItem":               "Das Quell-Item für den Kniff konnte nicht gefunden werden (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
@@ -3389,7 +3394,6 @@
         "noLp":                                    "Keine Legendenpunkte angegeben!",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",
-        "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
         "notEnoughDevotionUsedAll":                "Nicht genug Weihepunkte. Es wurden alle genutzt die verfügbar waren.",
         "notEnoughKarmaUsedAll":                   "Nicht genug Karma. Es wurden alles genutzt das verfügbar war.",
