@@ -1,10 +1,13 @@
 {{#each actor.system.attributes}}
   <div class="attribute-card__grid--container attribute__roll">
-    <div class="attribute-card__grid--item icons__dice">
-      <img class="attribute-icon" src="icons/svg/d20-grey.svg">
-      <img class="roll-icon__pointer rollable" data-action="rollable" data-roll-type="attribute"
-           src="icons/svg/d20-black.svg" data-attribute="{{@key}}">
-    </div>
+    <button type="button"
+        class="action-buttons icon--button icon icon--d20 rollable"
+        data-action="rollable"
+        data-roll-type="attribute"
+        data-attribute="{{@key}}"
+        data-tooltip=""
+        aria-label="{{localize 'ED.Roll.Attribute'}}">
+    </button>
 
     <div class="attribute-card__grid--item attribute__name">
       <label>

@@ -1,29 +1,192 @@
-// icons
+//###########################################################
+//               Checkboxes Styles
+//###########################################################
 
-.itemControlGroup, 
-.icon__position--right {
-    float: right;
+.actor {
+  input[type='checkbox'] {
+    margin: 6px 0 0 0;
+    &::before {
+      color: var(--color-button-check-off);
+    }
+    &:checked::before {
+      content: none;
+    }
+    &:checked::after {
+      color: var(--color-button-check-on);
+    }
+  }
+
+//###########################################################
+//               FA and SVG Buttons/Checkboxes Styles
+//###########################################################
+
+
+  /* generic icon button */
+  .icon--button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-button-icon);
+    min-height: 0;
+  }
+
+  .icon--button:hover {
+    color: var(--color-button-icon-hover);
+  }
+
+  .icon--button.icon {
+    --icon-size: 25px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    line-height: 0;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    vertical-align: middle;
+    background: var(--icon-fill, currentColor);
+
+    -webkit-mask-image: var(--icon-mask);
+            mask-image: var(--icon-mask);
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            mask-mode: alpha;
+  }
+
+  .iconCell(@size: 25px) {
+    --icon-cell: @size;
+    position: relative;
+    width: var(--icon-cell);
+    height: var(--icon-cell);
+    display: grid;
+    place-items: center;
+    line-height: 0;
+  }
+
+  .baseArt() {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: 0;
+    z-index: 1;
+    transition: opacity 120ms linear;
+  }
+
+  .overlay() {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms linear;
+    z-index: 2;
+  }
+
+  .icon--button.icon {
+    &.icon--d20 {
+      --icon-mask: url("/icons/svg/d20-black.svg");
+      mask-mode: alpha;
+    }
+    &.icon--blood {
+      --icon-mask: url("/icons/svg/blood.svg");
+      mask-mode: alpha;
+      color: var(--color-meter-4);
+      &:hover,
+      &:focus-visible {
+        color: var(--color-text-lt);     
+      }
+    }
+  }
+
+  /* ======================= Abilities ======================= */
+  .ability-card__grid--container {
+    .icons__dice {
+      .iconCell(25px);
+
+      .ability-icon,
+      .item__image--visible {
+        .baseArt();
+      }
+
+      .icon--overlay {
+        .overlay();
+      }
+    }
+
+    &:hover .icons__dice.has-overlay .icon--overlay,
+    .icons__dice.has-overlay:hover .icon--overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &:hover .icons__dice.has-overlay .ability-icon,
+    .icons__dice.has-overlay:hover .ability-icon,
+    &:hover .icons__dice.has-overlay .item__image--visible,
+    .icons__dice.has-overlay:hover .item__image--visible {
+      opacity: 0;
+    }
+  }
+
+  /* ======================= Equipment ======================= */
+  .equipment-card__grid--container {
+    .icons__dice,
+    .icons__equipment {
+      .iconCell(25px);
+    }
+
+    .icons__dice {
+      .equipment-icon,
+      .item__image--visible {
+        .baseArt();
+        cursor: pointer;
+        min-height: 0;
+      }
+
+      .icon--overlay {
+        .overlay();
+      }
+    }
+
+    &:hover .icons__dice:has(.icon--overlay) .icon--overlay,
+    .icons__dice:has(.icon--overlay):hover .icon--overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &:hover .icons__dice:has(.icon--overlay) .equipment-icon,
+    .icons__dice:has(.icon--overlay):hover .equipment-icon,
+    &:hover .icons__dice:has(.icon--overlay) .item__image--visible,
+    .icons__dice:has(.icon--overlay):hover .item__image--visible {
+      opacity: 0;
+    }
+
+    .icon--button.icon {
+      --icon-size: 25px;
+    }
+
+    .equipment-card__grid--item[data-action="changeItemStatus"] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .item__status {
+        display: inline-block;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  .attribute-card__grid--container {
+    .icon--button.icon {
+      --icon-size: 20px;
+    }
+  }
 }
 
-.icons__small svg,
-.icons__small i,
-.icons__small img {
-  font-size: small;
-  width: 16px;
-  height: 16px;
-}
-
-.icons__xsmall svg,
-.icons__xsmall i,
-.icons__xsmall img {
-  font-size: x-small;
-  width: 11px;
-  height: 11px;
-}
-
-.roll-icon__hover,
-.roll-icon__pointer,
-.attribute-icon,
-.equipment-icon {
-    width: 25px;
-}

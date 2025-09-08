@@ -2,13 +2,18 @@
     <div class="equipment-card__grid--container item-id" data-item-id="{{_id}}">
         {{#if (eq this.system.usableItem.isUsableItem true)}}
         <div class="equipment-card__grid--item icons__dice">
-            <img class="equipment-icon" src="{{img}}" />
-            <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
-            <img class="roll-icon__pointer rollable" data-action="rollable" data-roll-type="equipment" src="icons/svg/d20-black.svg">
+            <img class="equipment-icon" src="{{img}}" alt="{{name}}">
+            <button
+                type="button"
+                class="icon--button icon icon--d20 rollable icon--overlay"
+                data-action="rollable"
+                data-roll-type="equipment"
+                aria-label="{{localize 'ED.Roll.Equipment'}}">
+            </button>
         </div>
         {{else}}
         <div class="equipment-card__grid--item icons__equipment">
-            <img class="equipment-icon__visible" src="{{img}}" height="25" width="25" />
+            <img class="equipment-icon__visible" src="{{img}}" alt="{{name}}">
         </div>
         {{/if}}
         <div class="equipment-card__grid--item">{{name}}</div>
@@ -16,7 +21,7 @@
         <div class="equipment-card__grid--item">{{ed-add system.physical.armor system.physical.forgeBonus}}</div>
         <div class="equipment-card__grid--item">{{ed-add system.mystical.armor system.mystical.forgeBonus}}</div>
         <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
@@ -35,7 +40,7 @@
         <div class="equipment-card__grid--item">{{system.amount}}</div>
         <div class="equipment-card__grid--item"></div>
         <div class="equipment-card__grid--item"></div>
-        <div class="equipment-card__grid--item" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
@@ -54,7 +59,7 @@
         <div class="equipment-card__grid--item">{{system.defenseBonus.physical}}</div>
         <div class="equipment-card__grid--item">{{system.defenseBonus.mystical}}</div>
         <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
-        <div class="equipment-card__grid--item" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
         
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
@@ -84,7 +89,7 @@
             <div class="equipment-card__grid--item">{{system.range.longMax}}</div>
             <div class="equipment-card__grid--item">{{system.amount}}</div>
         {{/if}}
-        <div class="equipment-card__grid--item" data-action="changeItemStatus">
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
             {{#if (eq this.system.itemStatus "carried" )}}
             {{!-- carried --}}
             <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>

@@ -5,48 +5,108 @@
     --color-primary-tr: var(--color-blue-dk-tr);
     --color-secondary: var(--color-blue-md);
     --color-secondary-tr: var(--color-blue-md-tr);
-    --color-tertiary: var(--color-blue-lt-tr);
+    --color-tertiary: var(--color-blue-lt);
     --color-tertiary-tr: var(--color-blue-lt-tr);
-    --color-primary-grey-tr: rgba(54, 54, 54, 0.60);
+    --color-primary-grey: var(--color-grey-lt);
+    --color-primary-grey-tr: var(--color-grey-lt-tr);
+    --color-secondary-grey: var(--color-grey-md);
+    --color-secondary-grey-tr: var(--color-grey-md-tr);
+    --color-tertiary-grey: var(--color-grey-dk);
+    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+  
+    --color-text-primary: var(--color-basic-text-lt);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-input-square: var(--color-primary);
+
+    --color-button-icon: var(--color-gold-5);
+    --color-button-icon-hover: var(--color-basic-text-lt);
+    --color-button-panel-on: var(--color-secondary);
+    --color-button-panel-off: var(--color-primary);
+    --color-button-panel-text-on: var(--color-basic-text-lt);
+    --color-button-panel-text-off: var(--color-basic-text-lt);
+    --color-button-check-on: var(--color-button-icon);
+    --color-button-check-off: var(--color-grey-md);
+    --color-button-slide-thumb: var(--color-button-icon);
+    --color-button-slide-icon-on: ;
+    --color-button-slide--icon-off: ;
+    --color-button-slide-background-on: var(--color-tertiary);
+    --color-button-slide-background-off: var(--color-primary);
+
+    --color-meter-background: var(--color-grey-lt-tr);
+    --color-meter-divide: var(--color-primary);
 
     --border-main: 2px solid var(--color-gold-3);
     --border-button: 1px solid var(--color-gold-2);
 
     --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
-    --background-banner-actor: var(--background-mottle-blue);
+    --background-banner-actor: var(--background-mottle-blue-lt);
 
-    // Character variant
     &.character {
-      --color-primary: rgb(2, 3, 0);
-      --color-primary-tr: rgba(2, 3, 0, 0.35);
-      --color-secondary: rgb(22, 46, 28);
-      --color-secondary-tr: rgba(22, 46, 28, 0.35);
-      --color-tertiary: rgb(58, 118, 62);
-      --color-tertiary-tr: rgba(58, 118, 62, 0.35);
+      --color-primary: var(--color-green-dk);
+      --color-primary-tr: var(--color-green-dk-tr);
+      --color-secondary: var(--color-green-md);
+      --color-secondary-tr: var(--color-green-md-tr);
+      --color-tertiary: var(--color-green-lt);
+      --color-tertiary-tr: var(--color-green-lt-tr);
 
       --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
-      --background-banner-actor: var(--background-mottle-green);
+      --background-banner-actor: var(--background-mottle-green-lt);
     }
   }
 
   // Light theme
   .theme-light.application.sheet.earthdawn4e.actor {
-    --color-primary: rgb(255, 255, 255);
-    --color-primary-tr: rgba(255, 255, 255, 0.35);
-    --color-secondary: rgb(46, 54, 128);
-    --color-secondary-tr: rgba(46, 54, 128, 0.35);
-    --color-tertiary: rgb(70, 70, 70);
-    --color-tertiary-tr: rgba(70, 70, 70, 0.35);
-    --color-primary-grey: rgb(143, 143, 143);
-    --color-primary-grey-tr: rgba(54, 54, 54, 0.30);
+    --color-primary: var(--color-blue-lt);
+    --color-primary-tr: var(--color-blue-lt-tr);
+    --color-secondary: var(--color-blue-md);
+    --color-secondary-tr: var(--color-blue-md-tr);
+    --color-tertiary: var(--color-blue-dk);
+    --color-tertiary-tr: var(--color-blue-dk-tr);
+    --color-primary-grey: var(--color-grey-lt);
+    --color-primary-grey-tr: var(--color-grey-lt-tr);
+    --color-secondary-grey: var(--color-grey-md);
+    --color-secondary-grey-tr: var(--color-grey-md-tr);
+    --color-tertiary-grey: var(--color-grey-dk);
+    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
 
-    --color-text-primary: rgb(46, 39, 48);
-    --color-text-banner: rgb(245, 229, 222);
+    --color-text-primary: var(--color-basic-text-dk);
+    --color-text-banner: var(--color-basic-text-lt);
+    --color-input-square: var(--color-primary-grey-tr);
 
-    --border-main: 2px solid var(--color-gold-3);
-    --border-button: 2px solid var(--color-gold-4);
+    --color-button-icon: var(--color-gold-4);
+    --color-button-icon-hover: var(--color-gold-5);
+    --color-button-panel-on: var(--color-primary);
+    --color-button-panel-off: var(--color-primary-tr);
+    --color-button-panel-text-on: var(--color-basic-text-lt);
+    --color-button-panel-text-off: var(--color-basic-text-dk);
+    --color-button-check-on: var(--color-button-icon);
+    --color-button-check-off: var(--color-grey-md);
+    --color-button-slide-thumb: var(--color-button-icon);
+    --color-button-slide-icon-on: ;
+    --color-button-slide--icon-off: ;
+    --color-button-slide-background-on: var(--color-secondary);
+    --color-button-slide-background-off: var(--color-secondary-grey);
+
+    --color-meter-background: var(--color-grey-md-tr);
+    --color-meter-divide: rgb(192, 192, 192);
+
+    --border-main: 2px solid var(--color-gold-2);
+    --border-button: 2px solid var(--color-gold-3);
 
     --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
-    --background-banner-actor: var(--background-mottle-blue);
+    --background-banner-actor: var(--background-mottle-blue-lt);
+
+    &.character {
+      --color-primary: var(--color-green-lt);
+      --color-primary-tr: var(--color-green-lt-tr);
+      --color-secondary: var(--color-green-md);
+      --color-secondary-tr: var(--color-green-md-tr);
+      --color-tertiary: var(--color-green-dk);
+      --color-tertiary-tr: var(--color-green-dk-tr);
+
+      --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
+      --background-banner-actor: var(--background-mottle-green-lt);
+    }
   }
 }

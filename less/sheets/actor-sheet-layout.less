@@ -25,8 +25,6 @@
     }
 
     .item__image {
-      width: 25px;
-      height: 25px;
       object-fit: cover;
     }
 
@@ -46,35 +44,30 @@
     .initiative__grid--container,
     .initiative-npc__grid--container,
     .spell-card__grid--container {
-      display: grid;
       column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
-      line-height: 25px;
       text-align: center;
       align-items: center;
       justify-content: center;
+      padding-bottom: 1px;
 
       &.container__header {
-        background-color: var(--color-primary-grey);
+        background-color: var(--color-secondary-grey);
+        color: var(--color-text-banner);
         text-transform: uppercase;
         line-height: 19px;
         height: 19px;
       }
     }
 
-    .class-card__grid--item:nth-child(4),
     .ability-card__grid--item:nth-child(8),
     .knack-card__grid--item:nth-child(9),
     .equipment-card__grid--item:nth-child(7),
     .power-card__grid--item:nth-child(7),
-    .maneuver-card__grid--item:nth-child(5) {
-      font-size: var(--font-icon-small);
-      padding: 0 4px 0 0;
-    }
-
+    .maneuver-card__grid--item:nth-child(5),
+    .class-card__grid--item:nth-child(4),
     .effect-card__grid--item:nth-child(6) {
-      font-size: var(--font-icon-medium);
       padding: 0 4px 0 0;
     }
 
@@ -96,12 +89,8 @@
     .item__image--visible,
     .equipment-icon__visible,
     .power-icon__visible {
-      width: 25px;
-      height: 25px;
       border: none;
     }
-
-
 
     /* ======================= General tab ======================= */
     .general .layout__col--2:first-of-type {
@@ -116,6 +105,7 @@
 
     .attribute-card__grid--container {
       display: grid;
+      overflow: hidden;
       grid-template-columns:
         minmax(20px, 20px)
         minmax(30px, 1fr)
@@ -123,12 +113,6 @@
         minmax(35px, 35px)
         minmax(55px, 55px);
       grid-auto-flow: row;
-
-      .attribute-icon {
-        height: 20px;
-        width: 20px;
-        padding: 1px;
-      }
 
       .circle {
         display: inline-block;
@@ -171,22 +155,6 @@
     .initiative__header-icons {
       display: flex;
       align-items: center;
-
-      input[type='checkbox'] {
-        margin: 6px 0 0 0;
-      }
-
-      button {
-        background: unset;
-        border: none;
-        height: 20px;
-        width: 20px;
-        color: var(--color-gold-4);
-
-        &:hover {
-          color: var(--color-gold-5);
-        }
-      }
     }
 
     .karma-devotion__grid--container,
@@ -222,44 +190,42 @@
         minmax(25px, 25px)
         minmax(100px, 1fr)
         minmax(40px, 40px)
-        minmax(60px, 60px);
+        minmax(80px, 80px);
     }
     .prosemirror .editor-content, prose-mirror .editor-content {
       font-size: var(--font-size-15);
     }
 
     /* ======================= Abilities tab ======================= */
-    .ability-card__grid--container {
-      display: grid;
-      grid-template-columns:
-        minmax(25px, 25px)
-        minmax(200px, 1fr)
-        minmax(60px, 60px)
-        minmax(40px, 40px)
-        minmax(40px, 40px)
-        minmax(60px, 60px)
-        minmax(60px, 60px)
-        minmax(60px, 60px);
-    }
+.ability-card__grid--container {
+  display: grid;
+  grid-template-columns:
+    minmax(25px, 25px)
+    minmax(200px, 1fr)
+    minmax(60px, 60px)
+    minmax(40px, 40px)
+    minmax(40px, 40px)
+    minmax(60px, 60px)
+    minmax(60px, 60px)
+    minmax(80px, 80px);
+  }
 
-    .ability-card__grid--item:nth-child(2) {
-      text-align: left;
-    }
+  .ability-card__grid--item:nth-child(2) { text-align: left; }
 
-    .knack-maneuver-card__grid--container,
-    .knack-card__grid--container {
-      display: grid;
-      grid-template-columns:
-        minmax(25px, 50px)
-        minmax(150px, 1fr)
-        minmax(20px, 20px)
-        minmax(60px, 60px)
-        minmax(40px, 40px)
-        minmax(40px, 40px)
-        minmax(60px, 60px)
-        minmax(60px, 60px)
-        minmax(60px, 60px);
-    }
+  .knack-maneuver-card__grid--container,
+  .knack-card__grid--container {
+    display: grid;
+    grid-template-columns:
+      minmax(25px, 50px)
+      minmax(150px, 1fr)
+      minmax(20px, 20px)
+      minmax(60px, 60px)
+      minmax(40px, 40px)
+      minmax(40px, 40px)
+      minmax(60px, 60px)
+      minmax(60px, 60px)
+      minmax(80px, 80px);
+  }
 
     /* ======================= Spells tab ======================= */
     .spell-card__grid--container {
@@ -272,7 +238,7 @@
         minmax(40px, 40px)
         minmax(60px, 60px)
         minmax(60px, 60px)
-        minmax(60px, 60px);
+        minmax(80px, 80px);
     }
 
     /* ======================= Powers tab ======================= */
@@ -285,7 +251,7 @@
         minmax(40px, 40px)
         minmax(60px, 60px)
         minmax(60px, 60px)
-        minmax(60px, 60px);
+        minmax(80px, 80px);
     }
 
     .maneuver-card__grid--container {
@@ -295,7 +261,7 @@
         minmax(200px, 1fr)
         minmax(120px, 120px)
         minmax(175px, 175px)
-        minmax(60px, 60px);
+        minmax(80px, 80px);
     }
 
     /* ======================= Equipment tab ======================= */
@@ -311,7 +277,6 @@
         minmax(60px, 60px);
 
       .item__status {
-        height: 20px;
         width: 20px;
 
         &.flipped {
@@ -347,7 +312,7 @@
       text-align: center;
       text-transform: uppercase;
       transition: background-color 0.3s ease;
-      background-color: var(--color-primary);
+      background-color: var(--color-button-panel-off);
 
       &:nth-child(13) {
         gap: var(--grid-col-gap-sm);
@@ -368,9 +333,9 @@
 
       &:has(input:checked),
       &.active {
-        background-color: var(--color-secondary);
-        border-color: var(--color-secondary);
-        color: var(--color-text-inverse);
+        background-color: var(--color-button-panel-on);
+        border-color: var(--color-button-panel-on);
+        color: var(--color-button-panel-text-on);
       }
     }
 
@@ -396,8 +361,8 @@
 
     /* ======================= Top ======================= */
     .top {
-      --metric-label-line: 12px;
-      --metric-label-lines: 2;
+      --meter-label-line: 12px;
+      --meter-label-lines: 2;
 
             /* image + top area */
       .image__grid-item { grid-area: image; }
@@ -423,7 +388,6 @@
           width: 160px;
           border: none;
         }
-
 
         .image-characteristics-mob__grid-container > div {
           text-align: center;
@@ -504,8 +468,8 @@
           display: block;
           text-transform: uppercase;
           font-size: 0.75rem;
-          line-height: var(--metric-label-line);
-          min-height: calc(var(--metric-label-line) * var(--metric-label-lines));
+          line-height: var(--meter-label-line);
+          min-height: calc(var(--meter-label-line) * var(--meter-label-lines));
           opacity: 0.85;
           margin-top: 3px;
         }
@@ -522,7 +486,7 @@
         .damage__grid--item.damage__stun { grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.damage__total { grid-column: 4; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.wounds__value { grid-column: 5; grid-row: 2; display: flex; justify-content: center; align-items: center; }
-        .damage__grid--item.damage__bar { grid-column: 1 / -1; grid-row: 3; padding-left: 5px; margin-top: -11px; }
+        .damage__grid--item.damage__bar { grid-column: 1 / -1; grid-row: 3; padding-left: 5px; margin-top: -13px; }
 
         /* health grid placement */
         .health__grid--container > .health__grid--item:nth-child(1) { grid-column: 1 / span 2; grid-row: 4; justify-content: center; align-items: center; }
@@ -541,24 +505,6 @@
           background-color: unset;
           font-size: var(--font-size-16);
         }
-
-        /* Take Damage Button */
-      .icon-button {
-        background:none;
-        border:0;
-        padding:0;
-        margin: -4px 0 0 13px;
-        cursor:pointer;
-        color: var(--color-gold-4);
-      }
-      .icon-button:hover {
-        color: var(--color-gold-5);
-      }
-      button {
-        display: flex;
-      }
-
-
       }
       .image-characteristics-mob__grid-container {
       
@@ -593,6 +539,12 @@
         .damage__grid--item.wounds__type-current .input__rectangle-input--centered {
           border-color: var(--color-meter-4);
         }
+      }
+      .icon--button.icon.icon--punch {
+        --icon-size: 40px;
+        --icon-mask: url("/systems/ed4e/assets/icons/punch-blast.svg");
+        mask-mode: luminance;
+        margin-top: -10px;
       }
     }
   

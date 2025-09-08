@@ -10,20 +10,11 @@
       <label for="characteristic-take-damage">
         {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.label"}}
       </label>
-      <button type="button"
-              class="action-buttons icon-button"
-              data-action="takeDamage"
-              data-tooltip="{{localize 'ED.Actor.Buttons.takeDamage'}}"
-              aria-label="{{localize 'ED.Actor.Buttons.takeDamage'}}">
-        <svg class="icon" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-          <defs>
-            <mask id="mask-punch" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
-              <image href="systems/ed4e/assets/icons/punch-blast.svg"
-                    width="40" height="40" preserveAspectRatio="xMidYMid meet"/>
-            </mask>
-          </defs>
-          <rect width="40" height="40" fill="currentColor" mask="url(#mask-punch)"/>
-        </svg>
+        <button type="button"
+          class="action-buttons icon--button icon icon--punch"
+          data-action="takeDamage"
+          data-tooltip=""
+          aria-label="{{localize 'ED.Actor.Buttons.takeDamage'}}">
       </button>
     </div>
 
