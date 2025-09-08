@@ -2,7 +2,8 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SpellData from "./spell.mjs";
 import { getSingleGlobalItemByEdid } from "../../utils.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
-import { LEGEND } from "../../config/_module.mjs";
+import { LEGEND, } from "../../config/_module.mjs";
+import { getDefaultEdid, } from "../../settings.mjs";
 
 /**
  * Data model template with information on Spell items.
@@ -119,11 +120,20 @@ export default class SpellKnackData extends SpellData.mixin(
     const actor = this.parent._actor;
 
     return {
-      spell:      actor.getSingleItemByEdid( this.sourceItem, "spell" ),
-      requiredLp: this.requiredLpForLearning,
-      hasDamage:  actor.hasDamage( "standard" ),
-      hasWounds:  actor.hasWounds( "standard" ),
-      actor:      actor,
+      spell:        actor.getSingleItemByEdid( this.sourceItem, "spell" ),
+      patterncraft: actor.getSingleItemByEdid(
+        getDefaultEdid( "patterncraft" ),
+        "talent",
+      ),
+      learnImprovedSpells: actor.getSingleItemByEdid(
+        getDefaultEdid( "learnImprovedSpells" ),
+        "knackAbility",
+      ),
+      requiredMoney: this.requiredMoneyForLearning,
+      requiredLp:    this.requiredLpForLearning,
+      hasDamage:     actor.hasDamage( "standard" ),
+      hasWounds:     actor.hasWounds( "standard" ),
+      actor:         actor,
     };
   }
 
@@ -132,11 +142,16 @@ export default class SpellKnackData extends SpellData.mixin(
 
     const learnData = this.learnData;
     return {
-      [LEGEND.validationCategories.spellRequirement]: [
+      [LEGEND.validationCategories.spellKnackRequirement]: [
         {
           name:      "ED.Dialogs.Legend.Validation.sourceSpellName",
           value:     learnData.spell.name,
           fulfilled: learnData.spell.isEmbedded
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableLearnImprovedSpellSlots",
+          value:     learnData.actor.availableLearnImprovedSpells,
+          fulfilled: learnData.actor.availableLearnImprovedSpells > 0,
         },
       ],
       [LEGEND.validationCategories.resources]: [

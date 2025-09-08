@@ -43,12 +43,12 @@ export const spellCostRules = {
 preLocalize( "spellCostRules" );
 
 export const validationCategories = {
-  base:               "ED.Config.LpTracking.Validation.titleBase",
-  health:             "ED.Config.LpTracking.Validation.titleHealth",
-  resources:          "ED.Config.LpTracking.Validation.titleResources",
-  spellRequirement:   "ED.Config.LpTracking.Validation.titleSpellRequirement",
-  talentsRequirement: "ED.Config.LpTracking.Validation.titleTalentsRequirement",
-  newAbilityLp:       "ED.Config.LpTracking.Validation.titleNewAbilityLp",
+  base:                  "ED.Config.LpTracking.Validation.titleBase",
+  health:                "ED.Config.LpTracking.Validation.titleHealth",
+  resources:             "ED.Config.LpTracking.Validation.titleResources",
+  spellKnackRequirement: "ED.Config.LpTracking.Validation.titleSpellKnackRequirement",
+  talentsRequirement:    "ED.Config.LpTracking.Validation.titleTalentsRequirement",
+  newAbilityLp:          "ED.Config.LpTracking.Validation.titleNewAbilityLp",
 };
 preLocalize( "validationCategories" );
 

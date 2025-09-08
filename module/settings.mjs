@@ -34,7 +34,18 @@ export function getEdIds() {
   return Object.keys(
     ED4E.defaultEdIds
   ).map(
-    edid => getSetting( getEdidSettingKey( edid ) )
+    edid => getDefaultEdid( edid )
+  );
+}
+
+/**
+ * Get the default edid from settings for a given key.
+ * @param {string} defaultKey - The key of the default edid to retrieve, as defined in {@link SYSTEM.defaultEdIds}.
+ * @returns {string} The default edid associated with the provided key.
+ */
+export function getDefaultEdid( defaultKey ) {
+  return getSetting(
+    getEdidSettingKey( defaultKey )
   );
 }
 
@@ -43,7 +54,7 @@ export function getEdIds() {
  * @param {string} edidName - The name of the EDID to be formatted into a key.
  * @returns {string} The formatted EDID setting key.
  */
-function getEdidSettingKey( edidName ) {
+export function getEdidSettingKey( edidName ) {
   return `edid${ edidName.capitalize() }`;
 }
 
