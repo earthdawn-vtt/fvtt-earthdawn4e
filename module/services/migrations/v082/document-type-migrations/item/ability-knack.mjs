@@ -4,6 +4,7 @@ import BaseMigration from "../../../common/base-migration.mjs";
 import EdIdMigration from "./edid.mjs";
 import AbilityMigration from "./abilities.mjs";
 import KnackSourceTalentMigration from "../../field-migrations/knack-source.mjs";
+import RequirementsMigration from "../../field-migrations/knack-requirements.mjs";
 
 export default class AbilityKnackMigration extends BaseMigration {
 
@@ -17,6 +18,8 @@ export default class AbilityKnackMigration extends BaseMigration {
     ImageMigration.migrateEarthdawnData( source );
 
     RestrictionMigration.migrateEarthdawnData( source );
+
+    RequirementsMigration.migrateEarthdawnData( source );
 
     KnackSourceTalentMigration.migrateEarthdawnData( source );
 
