@@ -1,7 +1,7 @@
 import ImageMigration from "./image.mjs";
 import BaseMigration from "../../../common/base-migration.mjs";
 
-export default class DisciplineMigration extends BaseMigration {
+export default class ClassMigration extends BaseMigration {
 
   static async migrateEarthdawnData( source ) {
 
@@ -124,7 +124,7 @@ export default class DisciplineMigration extends BaseMigration {
         migrateLevelTalents( source, levelData, i );
         source.system.advancement.levels.push( levelData );
       }
-      console.log( `[DisciplineMigration] Created ${source.system.advancement.levels.length} levels` );
+      console.log( `[ClassMigration] Created ${source.system.advancement.levels.length} levels` );
     }
 
     /**
