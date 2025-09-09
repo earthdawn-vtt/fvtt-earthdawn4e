@@ -11,6 +11,22 @@ export default class TalentMigration extends BaseMigration {
     if ( source.type !== "talent" ) {
       return source;
     }
+
+    // Check for specific values that would cause a talent to be marked incomplete
+    const hasIncompleteAttributes = this.checkForIncompleteValues( source );
+
+    // If the talent has attributes that make it incomplete, add it to incomplete migrations
+    if ( hasIncompleteAttributes.hasIssues ) {
+      const migrationData = {
+        name:      source.name || "Unknown Talent",
+        uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
+        type:      source.type,
+        id:        source._id
+      };
+      this.addIncompleteMigration( migrationData, hasIncompleteAttributes.reason );
+      
+      // Continue with migration anyway to do as much as possible
+    }
     
     try {
       // Perform all migrations
@@ -41,14 +57,18 @@ export default class TalentMigration extends BaseMigration {
         source.system.talentCategory = "other";
       }
 
-      // Migration was successful - add to successful migrations
-      const migrationData = {
-        name:      source.name || "Unknown Talent",
-        uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
-        type:      source.type,
-        id:        source._id
-      };
-      this.addSuccessfulMigration( migrationData );
+      // If we haven't already marked this as incomplete due to attributes,
+      // mark it as successfully migrated
+      if ( !hasIncompleteAttributes.hasIssues ) {
+        // Migration was successful - add to successful migrations
+        const migrationData = {
+          name:      source.name || "Unknown Talent",
+          uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
+          type:      source.type,
+          id:        source._id
+        };
+        this.addSuccessfulMigration( migrationData );
+      }
     } catch ( error ) {
       // If any error occurs, consider it an incomplete migration
       const migrationData = {
@@ -61,5 +81,21 @@ export default class TalentMigration extends BaseMigration {
     }
 
     return source;
+  }
+
+  /**
+   * Check for attributes that would make a talent incomplete
+   * @param {object} source - The talent source data
+   * @returns {object} Object with hasIssues boolean and reason string
+   */
+  static checkForIncompleteValues( source ) {
+    const result = {
+      hasIssues: false,
+      reason:    ""
+    };
+
+    // Add more conditions as needed 
+
+    return result;
   }
 }
