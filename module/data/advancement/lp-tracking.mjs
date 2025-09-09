@@ -118,8 +118,6 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
 
   get htmlChronological() {
     const rows = this.chronologically.map( transaction => {
-      transaction.name ??= "";
-      
       return `
       <tr class="" data-group="" data-id="${ transaction.id }">
           <td>
@@ -129,7 +127,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
             ${ game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + transaction.type ) }
           </td>
           <td>
-            ${ transaction.name }
+            ${ transaction.name ?? "" }
           </td>
           <td>
             ${ transaction.description }
