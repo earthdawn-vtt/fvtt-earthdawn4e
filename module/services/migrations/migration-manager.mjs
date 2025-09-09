@@ -1,6 +1,7 @@
 // Import migration config for system version keys
 import { systemV0_8_2 } from "../../config/migrations.mjs";
 import TypeTransformationManager from "./type-transformation-manager.mjs";
+import BaseMigration from "./common/base-migration.mjs";
 
 /**
  * Central Migration Manager for handling all data migrations between different system versions.
@@ -182,6 +183,51 @@ export default class MigrationManager {
       registeredSystems: systems,
       registeredTypes:   types,
       ...typeTransformInfo
+    };
+  }
+  
+  /**
+   * Finalize all migrations and log a summary of the results
+   * This should be called after all migrations are complete
+   * @returns {void}
+   */
+  static finalizeMigrations() {
+    // Log a comprehensive summary of all migrations
+    console.group( "Migration Summary" );
+    
+    // Get migration statistics from BaseMigration
+    const successful = BaseMigration.getSuccessfulMigrations();
+    const incomplete = BaseMigration.getIncompleteMigrations();
+    
+    // Log overall statistics
+    console.log( `Total migrations processed: ${successful.length + incomplete.length}` );
+    console.log( `Successful migrations: ${successful.length}` );
+    console.log( `Incomplete migrations: ${incomplete.length}` );
+    
+    // Log details about successful migrations
+    if ( successful.length > 0 ) {
+      console.group( "Successfully migrated items:" );
+      successful.forEach( item => {
+        console.log( `${item.name} (${item.type}): ${item.uuid || "No UUID"}` );
+      } );
+      console.groupEnd();
+    }
+    
+    // Log details about incomplete migrations
+    if ( incomplete.length > 0 ) {
+      console.group( "Incompletely migrated items:" );
+      incomplete.forEach( item => {
+        console.log( `${item.name} (${item.type}): ${item.uuid || "No UUID"} - Reason: ${item.reason || "Unknown"}` );
+      } );
+      console.groupEnd();
+    }
+    
+    console.groupEnd();
+    
+    return {
+      successful,
+      incomplete,
+      total: successful.length + incomplete.length
     };
   }
 }
