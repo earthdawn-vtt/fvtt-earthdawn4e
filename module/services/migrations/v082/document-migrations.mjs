@@ -106,7 +106,7 @@ function applyDocumentTypeMigrations( source ) {
   const itemMigrationMap = {
     armor:          documentTypeMigrations.item.ArmorMigration,
     devotion:       documentTypeMigrations.item.DevotionMigration,
-    discipline:     documentTypeMigrations.item.DisciplineMigration,
+    discipline:     documentTypeMigrations.item.ClassMigration,
     equipment:      documentTypeMigrations.item.EquipmentMigration,
     knack:          documentTypeMigrations.item.AbilityKnackMigration,
     // Handle transformed knack types - they still need knack migration for other transformations
@@ -117,6 +117,8 @@ function applyDocumentTypeMigrations( source ) {
     mask:           documentTypeMigrations.item.MaskMigration,
     spellmatrix:    documentTypeMigrations.item.MatrixMigration,
     namegiver:      documentTypeMigrations.item.NamegiverMigration,
+    path:           documentTypeMigrations.item.ClassMigration,
+    questor:        documentTypeMigrations.item.ClassMigration,
     power:          documentTypeMigrations.item.PowerMigration,
     shield:         documentTypeMigrations.item.ShieldMigration,
     skill:          documentTypeMigrations.item.SkillMigration,

@@ -1,6 +1,6 @@
 import ArmorMigration from "./armor.mjs";
 import DevotionMigration from "./devotion.mjs";
-import DisciplineMigration from "./discipline.mjs";
+import ClassMigration from "./class.mjs";
 import EquipmentMigration from "./equipment.mjs";
 import MaskMigration from "./mask.mjs";
 import MatrixMigration from "./matrix.mjs";
@@ -20,7 +20,7 @@ import ManeuverKnackMigration from "./maneuver-knack.mjs";
 export {
   ArmorMigration,
   DevotionMigration,
-  DisciplineMigration,
+  ClassMigration,
   EquipmentMigration,
   AbilityKnackMigration,
   KarmaKnackMigration,
@@ -41,7 +41,7 @@ export {
 export const typeMigrationConfig = {
   armor:         ArmorMigration,
   devotion:      DevotionMigration,
-  discipline:    DisciplineMigration,
+  discipline:    ClassMigration,
   equipment:     EquipmentMigration,
   abilityknack:  AbilityKnackMigration,
   karmaknack:    KarmaKnackMigration,

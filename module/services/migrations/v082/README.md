@@ -42,7 +42,7 @@ Contains complex document-type-specific migration classes:
 Item-type-specific migration classes:
 - `armor.mjs` - Armor-specific migrations (image migration, etc.)
 - `weapon.mjs` - Weapon-specific migrations (subtype detection, ammunition setup, etc.)
-- `discipline.mjs` - Discipline-specific migrations (advancement structure creation, tier mapping, talent parsing)
+- `class.mjs` - Discipline-specific migrations (advancement structure creation, tier mapping, talent parsing)
 - `talent.mjs` - Talent-specific migrations (image migration, etc.)
 - `spell.mjs` - Spell-specific migrations (image migration, etc.)
 - `matrix.mjs` - Spell matrix-specific migrations (spellmatrix → talent transformation)
