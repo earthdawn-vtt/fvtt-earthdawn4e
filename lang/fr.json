@@ -559,6 +559,7 @@
           "titleHealth":                           "TODO: Add translation",
           "titleNewAbilityLp":                     "TODO: Add translation",
           "titleResources":                        "TODO: Add translation",
+          "titleSpellKnackRequirement":            "",
           "titleTalentsRequirement":               "TODO: Add translation"
         }
       },
@@ -3104,6 +3105,7 @@
           "talentIncreaseShortRequirements":       "TODO: Add translation"
         },
         "Validation": {
+          "availableLearnImprovedSpellSlots":      "TODO: Add translation",
           "availableLp":                           "TODO: Add translation",
           "availableMoney":                        "TODO: Add translation",
           "enoughTalentsOfTier":                   "TODO: Add translation",
@@ -3122,6 +3124,7 @@
           "notEnoughTalentsOnMinRank":             "TODO: Add translation",
           "pathTalent":                            "TODO: Add translation",
           "requiredPathRank":                      "TODO: Add translation",
+          "sourceSpellName":                       "TODO: Add translation",
           "sourceTalentName":                      "TODO: Add translation",
           "sourceTalentRank":                      "TODO: Add translation",
           "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
@@ -3374,6 +3377,7 @@
         "addLpTransactionProblems":                "TODO: Add translation",
         "attackNoWeaponFound":                     "TODO: Add translation",
         "cannotLearn":                             "TODO: Add translation",
+        "cannotLearnSpellKnack":                   "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
         "castSpellNoActor":                        "TODO: Add translation",
@@ -3382,6 +3386,7 @@
         "firstClassViaCharGen":                    "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
         "invalidRecoveryMode":                     "TODO: Add translation",
+        "learningKnackNoSourceItem":               "TODO: Add translation",
         "livingArmorOnly":                         "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "needTargetsToApplyFromChat":              "TODO: Add translation",
@@ -3389,7 +3394,6 @@
         "noLp":                                    "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noRecoveryTestsAvailable":                "TODO: Add translation",
-        "noSourceTalent":                          "TODO: Add translation",
         "noWeaponToAttackWith":                    "TODO: Add translation",
         "notEnoughDevotionUsedAll":                "TODO: Add translation",
         "notEnoughKarmaUsedAll":                   "TODO: Add translation",

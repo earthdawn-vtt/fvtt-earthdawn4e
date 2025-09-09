@@ -23,6 +23,13 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     "ED.Data.Item.Knack",
   ];
 
+  /**
+   * The type of knack this template is used for.
+   * @type {string}
+   * @abstract
+   */
+  static SOURCE_ITEM_TYPE;
+
   // endregion
 
   // region Static Methods
@@ -90,7 +97,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     const actor = this.parent._actor;
 
     return {
-      talent:     actor.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceItem ),
+      talent:     actor.getSingleItemByEdid( this.sourceItem, "talent" ),
       requiredLp: this.requiredLpForLearning,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -170,12 +177,13 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       return;
     }
 
-    const parentTalent = actor.itemTypes.talent.find( ( talent ) => talent.system.edid === item.system.sourceItem );
-    if ( !parentTalent ) {
-      const talentSourceEdid = item.system.sourceItem;
+    if ( !actor.getSingleItemByEdid(
+      item.system.sourceItem,
+      this.SOURCE_ITEM_TYPE ?? "talent",
+    ) ) {
       ui.notifications.warn( game.i18n.format(
-        "ED.Notifications.Warn.noSourceTalent",
-        { talentSourceEdid: talentSourceEdid },
+        "ED.Notifications.Warn.learningKnackNoSourceItem",
+        { sourceItemEdid: item.system.sourceItem },
       ) );
       return;
     }
@@ -197,12 +205,10 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       "spendings",
       {
         amount:      learn === "spendLp" ? item.system.requiredLpForLearning : 0,
-        description: game.i18n.format(
-          "ED.Actor.LpTracking.Spendings",
-        ),
+        description: learnedItem.lpLearningDescription,
         entityType:  learnedItem.type,
-        name:       learnedItem.name,
-        itemUuid:   learnedItem.uuid,
+        name:        learnedItem.name,
+        itemUuid:    learnedItem.uuid,
       },
     );
 

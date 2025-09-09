@@ -83,8 +83,7 @@
       "placeholderBlankSelectOption":              "---"
     },
     "Actor": {
-      "Abilities": {
-      },
+      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attributeName":                           "Attribute",
         "attributeStep":                           "Step",
@@ -560,6 +559,7 @@
           "titleHealth":                           "Health",
           "titleNewAbilityLp":                     "LP for New Ability",
           "titleResources":                        "Resources",
+          "titleSpellKnackRequirement":            "",
           "titleTalentsRequirement":               "Required Talents"
         }
       },
@@ -3105,6 +3105,7 @@
           "talentIncreaseShortRequirements":       "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>"
         },
         "Validation": {
+          "availableLearnImprovedSpellSlots":      "TODO: Add translation",
           "availableLp":                           "Are enough Legend Points available?",
           "availableMoney":                        "Is enough silver available?",
           "enoughTalentsOfTier":                   "Not all {required} of {current} talents have reached the minimum rank {nextLevel}",
@@ -3123,6 +3124,7 @@
           "notEnoughTalentsOnMinRank":             "Not enough talents at minimum rank {nextLevel}",
           "pathTalent":                            "Path Talent",
           "requiredPathRank":                      "Required Path Rank",
+          "sourceSpellName":                       "TODO: Add translation",
           "sourceTalentName":                      "Source Talent Name",
           "sourceTalentRank":                      "Source Talent Rank",
           "talentFromCurrentCircleOnNewLevel":     "Talent from the {circle} Circle at the new rank",
@@ -3375,6 +3377,7 @@
         "addLpTransactionProblems":                "Legend Points could not be added.",
         "attackNoWeaponFound":                     "No weapon found to perform the attack.",
         "cannotLearn":                             "An item of type \"{itemType}\" cannot be learned.",
+        "cannotLearnSpellKnack":                   "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "The matrix has no spell selected to cast.",
         "cantUpdateItemWeight":                    "Item weight could not be updated.",
         "castSpellNoActor":                        "No actor found to cast the spell.",
@@ -3383,6 +3386,7 @@
         "firstClassViaCharGen":                    "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
         "grimoireAddAlreadyInGrimoire":            "The spell is already in the Grimoire.",
         "invalidRecoveryMode":                     "Invalid recovery mode. Please check settings.",
+        "learningKnackNoSourceItem":               "TODO: Add translation",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
         "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
@@ -3390,7 +3394,6 @@
         "noLp":                                    "No Legend Points specified!",
         "noMoreClassLevelsToIncrease":             "No more circles or levels available to increase.",
         "noRecoveryTestsAvailable":                "No recovery tests available.",
-        "noSourceTalent":                          "No talent with ED-ID {talentSourceEdid} found.",
         "noWeaponToAttackWith":                    "No weapon available to attack with.",
         "notEnoughDevotionUsedAll":                "Not enough devotion points. All available points have been used.",
         "notEnoughKarmaUsedAll":                   "Not enough karma. All available points have been used.",

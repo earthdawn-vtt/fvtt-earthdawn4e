@@ -37,6 +37,22 @@ export default class ItemEd extends Item {
   }
 
   /**
+   * A description of the transaction that is created when the item is learned, if applicable.
+   * @type {string}
+   */
+  get lpLearningDescription() {
+    return this.system.learnable ?
+      game.i18n.format(
+        "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
+        {
+          itemName: this.name,
+          itemType: game.i18n.localize( `TYPES.Item.${ this.type }` ),
+        }
+      )
+      : "";
+  }
+
+  /**
    * An array of ActiveEffect instances which are present on the Item which have a limited duration.
    * @type {ActiveEffectData[]}
    */

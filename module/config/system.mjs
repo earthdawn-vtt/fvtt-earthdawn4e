@@ -1,3 +1,5 @@
+export const SYSTEM_ID = "ed4";
+
 export const ASCII = `_______________________________
 ________  _____       _____ _______
 |  _____| |    \     / _  | |  ____|
@@ -23,18 +25,19 @@ export const reservedEdid = {
  * @enum {string}
  */
 export const defaultEdIds = {
-  creatureAttack:  "creature-attack",
-  grimoire:        "grimoire",
-  languageRW:      "language-rw",
-  languageSpeak:   "language-speak",
-  patterncraft:    "patterncraft",
-  questorDevotion: "questor-devotion",
-  spellMatrix:     "matrix",
-  spellcasting:    "spellcasting",
-  threadWeaving:   "thread-weaving",
-  unarmedCombat:   "unarmed-combat",
-  versatility:     "versatility",
-  willpower:       "willpower",
+  creatureAttack:      "creature-attack",
+  grimoire:            "grimoire",
+  learnImprovedSpells: "learn-improved-spells",
+  languageRW:          "language-rw",
+  languageSpeak:       "language-speak",
+  patterncraft:        "patterncraft",
+  questorDevotion:     "questor-devotion",
+  spellMatrix:         "matrix",
+  spellcasting:        "spellcasting",
+  threadWeaving:       "thread-weaving",
+  unarmedCombat:       "unarmed-combat",
+  versatility:         "versatility",
+  willpower:           "willpower",
 };
 
 // endregion
@@ -109,6 +112,14 @@ export const icons = {
     lpSpend:         "fa-light fa-hexagon-minus",
     lpChronological: "fa-light fa-timeline-arrow",
   },
+};
+
+// endregion
+
+// region Flags
+
+export const FLAGS = {
+  learnedSpellKnackThroughPath: "learnedSpellKnackThroughPath",
 };
 
 // endregion

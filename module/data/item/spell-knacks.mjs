@@ -2,6 +2,8 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SpellData from "./spell.mjs";
 import { getSingleGlobalItemByEdid } from "../../utils.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
+import { LEGEND, } from "../../config/_module.mjs";
+import { getDefaultEdid, } from "../../settings.mjs";
 
 /**
  * Data model template with information on Spell items.
@@ -18,6 +20,9 @@ export default class SpellKnackData extends SpellData.mixin(
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.SpellKnack",
   ];
+
+  /** @inheritdoc */
+  static SOURCE_ITEM_TYPE = "spell";
 
   // endregion
 
@@ -94,6 +99,106 @@ export default class SpellKnackData extends SpellData.mixin(
 
     // Ensure edid is not changed
     data.system.edid = this.edid;
+  }
+
+  // endregion
+
+  // region LP Tracking
+
+  /** @inheritDoc */
+  get canBeLearned() {
+    return true;
+  }
+
+  /** @inheritDoc */
+  get learnable() {
+    return true;
+  }
+
+  /** @inheritDoc */
+  get learnData() {
+    const actor = this.parent._actor;
+
+    return {
+      spell:        actor.getSingleItemByEdid( this.sourceItem, "spell" ),
+      patterncraft: actor.getSingleItemByEdid(
+        getDefaultEdid( "patterncraft" ),
+        "talent",
+      ),
+      learnImprovedSpells: actor.getSingleItemByEdid(
+        getDefaultEdid( "learnImprovedSpells" ),
+        "knackAbility",
+      ),
+      requiredMoney: this.requiredMoneyForLearning,
+      requiredLp:    this.requiredLpForLearning,
+      hasDamage:     actor.hasDamage( "standard" ),
+      hasWounds:     actor.hasWounds( "standard" ),
+      actor:         actor,
+    };
+  }
+
+  /** @inheritdoc */
+  get learnValidationData () {
+
+    const learnData = this.learnData;
+    return {
+      [LEGEND.validationCategories.spellKnackRequirement]: [
+        {
+          name:      "ED.Dialogs.Legend.Validation.sourceSpellName",
+          value:     learnData.spell.name,
+          fulfilled: learnData.spell.isEmbedded
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableLearnImprovedSpellSlots",
+          value:     learnData.actor.availableLearnImprovedSpells,
+          fulfilled: learnData.actor.availableLearnImprovedSpells > 0,
+        },
+      ],
+      [LEGEND.validationCategories.resources]: [
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableLp",
+          value:     this.requiredLpForLearning,
+          fulfilled: this.requiredLpForLearning <= learnData.actor.currentLp,
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableMoney",
+          value:     this.requiredMoneyForLearning,
+          fulfilled: this.requiredMoneyForLearning <= learnData.actor.currentSilver,
+        },
+      ],
+      [LEGEND.validationCategories.health]:    [
+        {
+          name:      "ED.Dialogs.Legend.Validation.hasDamage",
+          value:     learnData.hasDamage,
+          fulfilled: !learnData.hasDamage,
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.hasWounds",
+          value:     learnData.hasWounds,
+          fulfilled: !learnData.hasWounds,
+        },
+      ],
+    };
+  }
+
+  /** @inheritDoc */
+  get requiredLpForLearning() {
+    return LEGEND.legendPointsCost[ this.level ];
+  }
+
+  /** @inheritDoc */
+  get requiredMoneyForLearning() {
+    return ( this.level ) * 100;
+  }
+
+  /** @inheritDoc */
+  static async learn( actor, item, createData = {} ) {
+    if ( !item.system.canBeLearned ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearnSpellKnack" ) );
+      return;
+    }
+
+    return super.learn( actor, item, createData );
   }
 
   // endregion

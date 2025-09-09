@@ -13,7 +13,7 @@ import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttributeWorkflow, AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
-import { getSetting } from "../settings.mjs";
+import { getDefaultEdid, getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
@@ -35,6 +35,23 @@ export default class ActorEd extends Actor {
   }
 
   // region Properties
+
+  /**
+   * How many more improved spell knacks this actor can learn. The maximum is the rank of patterncraft * the number of
+   * "Learn Improved Spell" knacks the actor has.
+   * @type {number}
+   */
+  get availableLearnImprovedSpells() {
+    const rankPatterncraft = this.getSingleItemByEdid(
+      getDefaultEdid( "patterncraft" ), "talent"
+    )?.system.level || 0;
+    const numLearnImprovedSpellKnack = this.getItemsByEdid(
+      getDefaultEdid( "learnImprovedSpells" ), "knackAbility"
+    )?.length || 0;
+    const numLearnedSpellKnacks = this.itemTypes.spellKnack.length;
+
+    return ( rankPatterncraft * numLearnImprovedSpellKnack ) - numLearnedSpellKnacks;
+  }
 
   /**
    * The class items if this actor has any (has to be of type "character" or "npc" for this).
