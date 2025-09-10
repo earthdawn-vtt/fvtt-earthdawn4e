@@ -1,5 +1,5 @@
 {{#each actor.system.attributes }}
-<div class="attribute-card__grid--container attribute__roll">
+<div class="attribute-card__grid--container attribute__roll" data-editable="{{@root.editable}}">
     <button type="button"
         class="action-buttons icon--button icon icon--d20 rollable"
         data-action="rollable"
@@ -19,18 +19,40 @@
         <input class="input__square-input--centered" name="system.attributes.{{@key}}.value" value="{{value}}">
     </div>
     <div class="attribute-card__grid--item attribute__increases">
+    <span style="display:inline-flex;align-items:center;gap:.25em;flex-wrap:nowrap;white-space:nowrap;">
         <span class="circle {{#if (gte timesIncreased 1)}}filled{{/if}}"></span>
         <span class="circle {{#if (gte timesIncreased 2)}}filled{{/if}}"></span>
         <span class="circle {{#if (gte timesIncreased 3)}}filled{{/if}}"></span>
+        {{#if @root.editable}}
+            <button type="button"
+                    class="circle item-control action-buttons icon--button icon rollable"
+                    data-action="upgradeItem"
+                    data-attribute="{{@key}}"
+                    title="{{localize 'ED.Controls.upgrade'}}"
+                    aria-label="{{localize 'ED.Controls.upgrade'}}">
+                <i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
+            </button>
+        {{/if}}
+    </span>
     </div>
 
+    
+    {{#unless @root.editable}}
     <div class="attribute-card__grid--item">
         <div class="buffer-input">
-            <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+            <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>            
                 <input class="input__square-input--centered" name="system.attributes.{{@key}}.step" value="{{this.step}}"readonly>
             <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
         </div>        
     </div>
+    {{/unless}}
+    {{#if @root.editable}}
+    <div class="attribute-card__grid--item ">
+        <div class="buffer-input">
+            <input class="input__square-input--centered" name="system.attributes.{{@key}}.step" value="{{this.step}}"readonly>
+        </div>        
+    </div>
+    {{/if}}
 </div>
 {{/each}}
 

@@ -43,7 +43,6 @@
           {{/each}}
 
           <!-- Paths -->
-
           {{#if actor.itemTypes.path.length}}
             <div class="class-card__grid--container container__header text-break__auto paths__grid">
               <div class="class-card__grid--item"></div>
@@ -75,6 +74,50 @@
             {{/each}}
           {{/if}}
         </div>
+
+        <!-- Legend -->
+        {{#if (eq this.actor.type "character")}}
+          <h2 class="legend__header one-line__vertical-align margin__none">
+            <span class="legend__header-label">Legend</span>
+            <span class="legend__header-icons">
+              <button class="legend-point__history icon--button"
+                  data-action="legendPointHistory">
+                  <i class="fa-solid fa-scroll"
+                  title="{{localize "ED.Actor.Buttons.legendHistory"}}"></i>
+              </button>
+            </span>
+          </h2>
+          <div class="container__block container__custom">
+            <div class="legend__grid--container container__header">
+              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendCurrent"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendSpend"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendTotal"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendStatus"}}</div>
+            </div>
+            <div class="legend__grid--container">
+              <div class="legend__grid--item">
+                <input class="input__square-input--centered"
+                      name="system.lp.current"
+                      value="{{actor.system.lp.current}}">
+              </div>
+              <div class="legend__grid--item">
+                <input class="input__square-input--centered"
+                      name="system.lp.spend"
+                      value="{{actor.system.lp.spend}}">
+              </div>
+              <div class="legend__grid--item">
+                <input class="input__square-input--centered"
+                      name="system.lp.total"
+                      value="{{actor.system.lp.total}}">
+              </div>
+              <div class="legend__grid--item">
+                <input class="input__square-input--centered"
+                      name="system.lp.status"
+                      value="{{actor.system.lp.status}}">
+              </div>
+            </div>
+          </div>
+        {{/if}}
 
         <!-- Languages -->
         {{#if systemFields.languages}}

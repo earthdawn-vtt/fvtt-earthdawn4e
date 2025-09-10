@@ -457,6 +457,61 @@ h3.label--rail .label__text::after {
   left: 100%;
   background: linear-gradient(to right, transparent 0, var(--color-gold-3) var(--size-rail-fade), var(--color-gold-3) 100%);
 }
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+.buffer {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 16px;
+  width: 15px;
+  height: auto;
+}
+.buffer--minus {
+  justify-content: left;
+}
+.buffer--plus {
+  justify-content: right;
+}
+.buffer--minus::before {
+  content: "−";
+  color: var(--color-button-icon);
+}
+.buffer--plus::before {
+  content: "+";
+  color: var(--color-button-icon);
+}
+.buffer:hover::before {
+  color: var(--color-button-icon-hover);
+}
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 25px;
+  position: relative;
+}
+.buffer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.buffer-input:hover .buffer,
+.buffer-input:focus-within .buffer {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 .actor {
   /* generic icon button */
   /* ======================= Abilities ======================= */
@@ -616,61 +671,6 @@ h3.label--rail .label__text::after {
 }
 .actor .attribute-card__grid--container .icon--button.icon {
   --icon-size: 20px;
-}
-.buffer-input {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-}
-.buffer {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  font-weight: 700;
-  font-size: 16px;
-  width: 15px;
-  height: auto;
-}
-.buffer--minus {
-  justify-content: left;
-}
-.buffer--plus {
-  justify-content: right;
-}
-.buffer--minus::before {
-  content: "−";
-  color: var(--color-button-icon);
-}
-.buffer--plus::before {
-  content: "+";
-  color: var(--color-button-icon);
-}
-.buffer:hover::before {
-  color: var(--color-button-icon-hover);
-}
-.buffer-input {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  height: 25px;
-  position: relative;
-}
-.buffer {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 160ms ease;
-}
-.buffer-input:hover .buffer,
-.buffer-input:focus-within .buffer {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
 }
 #logo {
   content: url('assets/foundry/earthdawn-logo.png');
@@ -1201,7 +1201,7 @@ h3.label--rail .label__text::after {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
   /* ======================= General tab ======================= */
-  /* ======================= Recovery/Karma/Devotion/Initiative headers ======================= */
+  /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
   /* ======================= Notes tab ======================= */
   /* ======================= Abilities tab ======================= */
   /* ======================= Spells tab ======================= */
@@ -1243,6 +1243,7 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
@@ -1265,6 +1266,7 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header,
@@ -1316,17 +1318,20 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container {
   display: grid;
   overflow: hidden;
-  grid-template-columns: minmax(20px, 20px) minmax(30px, 1fr) minmax(40px, 40px) minmax(35px, 35px) minmax(55px, 55px);
+  grid-template-columns: minmax(20px, 20px) minmax(70px, 1fr) minmax(35px, 35px) minmax(45px, 45px) minmax(55px, 55px);
   grid-auto-flow: row;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .circle {
   display: inline-block;
-  width: 0.8em;
+  width: 0.85em;
   height: 0.85em;
   border: 1px solid currentColor;
   border-radius: 50%;
   background: transparent;
   margin-right: 0.01em;
+}
+.application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .circle.icon--button {
+  border: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container .circle.filled {
   background: currentColor;
@@ -1341,7 +1346,8 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header,
-.application.sheet.earthdawn4e.actor .window-content .initiative__header {
+.application.sheet.earthdawn4e.actor .window-content .initiative__header,
+.application.sheet.earthdawn4e.actor .window-content .legend__header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1350,21 +1356,29 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header-icons,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header-icons,
-.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons {
+.application.sheet.earthdawn4e.actor .window-content .initiative__header-icons,
+.application.sheet.earthdawn4e.actor .window-content .legend__header-icons {
   display: flex;
   align-items: center;
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 1fr) minmax(25px, 1fr) minmax(25px, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .karma-devotion__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container .karma-devotion__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item {
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container .initiative__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .legend__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .legend__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container .legend__grid--item {
   text-align: center;
   display: flex;
   align-items: center;
@@ -1374,6 +1388,10 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container {
   display: grid;
   grid-template-columns: minmax(37px, 1fr) minmax(37px, 1fr);
+}
+.application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
+  display: grid;
+  grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(30px, 1fr) minmax(30px, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;

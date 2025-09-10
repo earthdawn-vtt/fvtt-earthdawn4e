@@ -38,6 +38,7 @@
     .effect-card__grid--container,
     .attribute-card__grid--container,
     .power-card__grid--container,
+    .legend__grid--container,
     .maneuver-card__grid--container,
     .karma-devotion__grid--container,
     .recovery__grid--container,
@@ -108,20 +109,23 @@
       overflow: hidden;
       grid-template-columns:
         minmax(20px, 20px)
-        minmax(30px, 1fr)
-        minmax(40px, 40px)
+        minmax(70px, 1fr)
         minmax(35px, 35px)
+        minmax(45px, 45px)
         minmax(55px, 55px);
       grid-auto-flow: row;
 
       .circle {
         display: inline-block;
-        width: 0.8em;
+        width: 0.85em;
         height: 0.85em;
         border: 1px solid currentColor;
         border-radius: 50%;
         background: transparent;
         margin-right: 0.01em;
+        &.icon--button {
+          border: 0;
+        }
       }
 
       .circle.filled {
@@ -134,7 +138,7 @@
       }
     }
 
-    /* ======================= Recovery/Karma/Devotion/Initiative headers ======================= */
+    /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
     .tab[data-tab="general"] .layout__row {
       display: flex;
       flex-wrap: nowrap;
@@ -142,7 +146,8 @@
 
     .karma-devotion__header,
     .recovery__header,
-    .initiative__header {
+    .initiative__header,
+    .legend__header {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,13 +157,15 @@
 
     .karma-devotion__header-icons,
     .recovery__header-icons,
-    .initiative__header-icons {
+    .initiative__header-icons,
+    .legend__header-icons {
       display: flex;
       align-items: center;
     }
 
     .karma-devotion__grid--container,
-    .recovery__grid--container {
+    .recovery__grid--container,
+    .legend__grid--container {
       display: grid;
       grid-template-columns:
         minmax(25px, 1fr)
@@ -167,7 +174,8 @@
 
       .karma-devotion__grid--item,
       .recovery__grid--item,
-      .initiative__grid--item {
+      .initiative__grid--item,
+      .legend__grid--item {
         text-align: center;
         display: flex;
         align-items: center;
@@ -181,6 +189,15 @@
       grid-template-columns:
         minmax(37px, 1fr)
         minmax(37px, 1fr);
+    }
+
+    .legend__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(30px, 1fr)
+        minmax(30px, 1fr)
+        minmax(30px, 1fr)
+        minmax(30px, 1fr);
     }
 
     /* ======================= Notes tab ======================= */
