@@ -3363,6 +3363,7 @@
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
+        "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "Power test type set to 'Attack'.\nIf a power has a damage step, the test type must be set to 'Attack' or 'Damage'.",
         "noDamageNoRecoveryNeeded":                "You are unharmed. No recovery test needed.",
         "noFullRestRecoveryNeeded":                "You are fine. No wounds or damage. No recovery test needed after rest.",
