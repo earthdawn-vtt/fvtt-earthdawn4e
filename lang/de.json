@@ -106,7 +106,7 @@
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockdownTest":                           "Niederschlag",
+        "knockDownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
         "tailAttack":                              "Schwanzangriff",
@@ -164,6 +164,7 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
+        "abilities":                               "Fähigkeiten",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
@@ -194,6 +195,7 @@
         "healthRating":                            "Gesundheit",
         "inactive":                                "Ausgeschaltet?",
         "information":                             "Informationen",
+        "initiative":                              "Initiative",
         "initiativePenalty":                       "Initiative Malus",
         "karma":                                   "Karma",
         "languages":                               "Sprachen",
@@ -232,10 +234,16 @@
         "talentsOptional":                         "Optionale Talente",
         "talentsOther":                            "Andere Talente",
         "talentsVersatility":                      "Vielseitigkeitstalente",
+        "talentsWithoutCategory":                  "Talente ohne Kategorie",
         "threads":                                 "Fäden",
         "vocations":                               "Berufungen",
         "weapons":                                 "Waffen",
         "weavingDifficulty":                       "Webschwierigkeit"
+      },
+      "Initiative": {
+        "penalty":                                 "Malus",
+        "roll":                                    "Initiativewurf",
+        "step":                                    "Stufe"
       },
       "Karma": {
         "current":                                 "Aktuell",
@@ -262,7 +270,7 @@
           "thread":                                "Faden"
         },
         "Spendings": {
-          "learningTransactionDescription":        "TODO: WO IST DAS?",
+          "learningTransactionDescription":        "Hat {itemType} '{itemName}' gelernt.",
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         }
       },
@@ -290,6 +298,7 @@
       "Tooltips": {
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
+        "damageSubdual":                           "TODO: Add translation",
         "equipped":                                "Ausgerüstet",
         "extraSuccesses":                          "Benötigte extra Erfolge",
         "karmaAlways":                             "Benutze immer Karma",
@@ -329,6 +338,11 @@
         "rollDamage":                              "Schadenswurf",
         "rollDamageTitle":                         "Würfel den Effekt",
         "rollEffect":                              "Effektwurf",
+        "runMacro":                                "Makro ausführen",
+        "runMacroTitle":                           "Führe das Makro aus",
+        "scrollToSourceMessage":                   "Quelle",
+        "showSpecial":                             "Zeige Extras",
+        "showSpecialTitle":                        "Öffne das zugehörige Item",
         "takeDamage":                              "Schaden nehmen",
         "takeDamageTitle":                         "Füge den Schaden deinem zugewiesenen Charakter zu"
       },
@@ -352,19 +366,23 @@
         "ignoresArmor":                            "Ignoriert Rüstung",
         "invalidDiceFormula":                      "Ungültige Würfelformel",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
-        "knockdownTest":                           "{actor} macht eine Niederschlagsprobe mit Stufe {step}.",
+        "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
-        "rollAttribute":                           "{sourceActor} würfelt {attribute} ({step})",
+        "rollAttribute":                           "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
+        "rollHalfMagic":                           "{actor} würfelt Halbmagie für die Dizipline {discipline}, basierend auf {attribute} mit Stufe {step}",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
+        "rollSubstitute":                          "{actor} würfelt {attribute} ({step}) um {substitute} zu ersetzen",
         "rollUnarmedDamage":                       "{sourceActor} würfelt waffenlosen Schaden",
+        "spellEffectRollOptions":                  "{sourceActor} wirkt {spell}",
+        "spellNoSpecialDescription":               "Zauber hat keine Spezialeffekte",
         "spellcastingRollOptions":                 "{sourceActor} wirkt<br>{spell} mit<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard Würfelwurf",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
-        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell} ({step})",
+        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell}",
         "undoDamage":                              "Setze den Schaden zurück",
         "warpingRollOptions":                      "Verzerrungsprobe<br/>{sourceActor} wirkt rohe Magie in einer Region mit Verunreinigung: {pollution}"
       },
@@ -372,10 +390,7 @@
         "arbitraryTest":                           "Willkürlicher Test",
         "attackManeuvers":                         "Manöver",
         "attackReactions":                         "Reaktionen",
-        "attackTargets":                           "Ziele",
-        "extraThreads":                            "Zusätzliche Fäden",
-        "numThreadsJustWoven":                     "Gerade gewebte Fäden",
-        "numThreadsWovenTotal":                    "Gesamt gewebte Fäden"
+        "attackTargets":                           "Ziele"
       }
     },
     "Conditions": {
@@ -451,6 +466,19 @@
         "namegiver":                               "Namensgeber",
         "relation":                                "Beziehung"
       },
+      "DamageSourceConfig": {
+        "arbitrary":                               "Willkürlicher Schaden",
+        "drowning":                                "Ertrinken-Schaden",
+        "falling":                                 "Fallschaden",
+        "fire":                                    "Feuerschaden",
+        "poison":                                  "Giftschaden",
+        "power":                                   "Kreaturenkraft-Schaden",
+        "spell":                                   "Zaubereffekt-Schaden",
+        "suffocation":                             "Ersticken-Schaden",
+        "unarmed":                                 "Unbewaffneter Schaden",
+        "warping":                                 "Verzerrungsschaden",
+        "weapon":                                  "Waffenschaden"
+      },
       "Defenses": {
         "highestOfGroup":                          "Höchste der Gruppe",
         "highestX":                                "Höchste der Gruppe + Ziele",
@@ -498,6 +526,13 @@
         "waterCold":                               "Kälte",
         "wood":                                    "Holz"
       },
+      "FireDamage": {
+        "campfireLarge":                           "Großes Lagerfeuer",
+        "campfireSmall":                           "Kleines Lagerfeuer",
+        "forestFire":                              "Waldbrand",
+        "houseFire":                               "Hausbrand",
+        "torch":                                   "Fackel"
+      },
       "Health": {
         "damageStandard":                          "Standard",
         "damageStun":                              "Betäubung"
@@ -524,6 +559,7 @@
           "titleHealth":                           "Gesundheit",
           "titleNewAbilityLp":                     "LP für neue Fähigkeit",
           "titleResources":                        "Ressourcen",
+          "titleSpellKnackRequirement":            "Zauberkniff",
           "titleTalentsRequirement":               "Erforderliche Talente"
         }
       },
@@ -584,14 +620,14 @@
         "attribute":                               "Attribute",
         "attuning":                                "Abstimmung",
         "damage":                                  "Schaden",
-        "effect":                                  "Effekt",
         "halfmagic":                               "Halbmagie",
         "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockdown":                               "Niederschlag",
+        "knockDown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
+        "spellEffect":                             "Zauber-Effekt",
         "spellcasting":                            "Spruchzauberei",
         "threadWeaving":                           "Fadenweben",
         "warping":                                 "Verzerrung"
@@ -617,7 +653,7 @@
       },
       "SpellEffectTypes": {
         "damage":                                  "Schaden",
-        "effect":                                  "Effekt",
+        "effect":                                  "Effektwurf",
         "macro":                                   "Makro",
         "special":                                 "Spezial"
       },
@@ -639,6 +675,29 @@
         "pack":                                    "Rudel",
         "spirit":                                  "Geist",
         "summon":                                  "Beschwörung"
+      },
+      "SubstituteModes": {
+        "avoidBlow":                               "Hieb ausweichen",
+        "awareness":                               "Aufmerksamkeit",
+        "bribery":                                 "Bestechung",
+        "climbing":                                "Klettern",
+        "conversation":                            "Konversation",
+        "distract":                                "Ablenkung",
+        "etiquette":                               "Etikette",
+        "flirting":                                "Flirten",
+        "haggle":                                  "Feilschen",
+        "handleAnimal":                            "Tierbeherrschung",
+        "meleeWeapons":                            "Nahkampfwaffen",
+        "missileWeapons":                          "Projektilwaffen",
+        "research":                                "Forschen",
+        "resistTaunt":                             "Starrsinn",
+        "seduction":                               "Verführung",
+        "sloughBlame":                             "Schuld abwälzen",
+        "swimming":                                "Schwimmen",
+        "throwingWeapons":                         "Wurfwaffen",
+        "tracking":                                "Spurenlesen",
+        "unarmedCombat":                           "Waffenloser Kampf",
+        "wildernessSurvival":                      "Wildnisüberleben"
       },
       "TargetDifficulty": {
         "mystical":                                "Mystische Verteidigung",
@@ -828,30 +887,10 @@
             }
           }
         },
-        "Creature": {
-          "FIELDS": {
-          }
-        },
-        "Dragon": {
-          "FIELDS": {
-          }
-        },
         "FIELDS": {
           "description": {
             "hint":                                "Beschreibung",
             "label":                               "Beschreibung"
-          }
-        },
-        "Group": {
-          "FIELDS": {
-          }
-        },
-        "Horror": {
-          "FIELDS": {
-          }
-        },
-        "Loot": {
-          "FIELDS": {
           }
         },
         "Namegiver": {
@@ -886,10 +925,6 @@
             }
           }
         },
-        "Npc": {
-          "FIELDS": {
-          }
-        },
         "Pc": {
           "FIELDS": {
             "durabilityBonus": {
@@ -901,10 +936,6 @@
         "Sentient": {
           "FIELDS": {
             "characteristics": {
-              "armor": {
-              },
-              "defenses": {
-              },
               "health": {
                 "bloodMagic": {
                   "damage": {
@@ -1140,34 +1171,12 @@
                 "label":                           "Aktuell"
               }
             },
-            "knockdown": {
-              "immune": {
-                "hint":                            "Ist der Akteur immun gegen Niederschlag?",
-                "label":                           "Immun gegen Niederschlag"
-              },
-              "step": {
-                "hint":                            "Stufe des Niederschlags des Akteurs",
-                "label":                           "Stufe"
-              }
-            },
             "relations": {
               "attitude": {
                 "hint":                            "Einstellung des Akteurs gegenüber anderen Akteuren",
                 "label":                           "Einstellung"
               }
             }
-          }
-        },
-        "Spirit": {
-          "FIELDS": {
-          }
-        },
-        "Trap": {
-          "FIELDS": {
-          }
-        },
-        "Vehicle": {
-          "FIELDS": {
           }
         }
       },
@@ -1450,10 +1459,6 @@
             }
           }
         },
-        "BindingSecret": {
-          "FIELDS": {
-          }
-        },
         "Class": {
           "FIELDS": {
             "circle": {
@@ -1566,10 +1571,6 @@
             }
           }
         },
-        "Effect": {
-          "FIELDS": {
-          }
-        },
         "Equipment": {
           "FIELDS": {
             "ammunition": {
@@ -1636,9 +1637,9 @@
               "hint":                              "Einschränkungen für das Lernen dieses Kniffs",
               "label":                             "Einschränkungen"
             },
-            "sourceTalent": {
-              "hint":                              "Talent auf dem dieses Kniffs basiert",
-              "label":                             "Basis Talent"
+            "sourceItem": {
+              "hint":                              "Die ED-ID der Fähigkeit auf dem dieser Kniff basiert",
+              "label":                             "ED-ID Basisfähigkeit"
             }
           }
         },
@@ -1652,14 +1653,6 @@
               "hint":                              "Wird der Standardeffekt des Herkunfttalents mit ausgelöst?",
               "label":                             "Standardeffekt"
             }
-          }
-        },
-        "Learnable": {
-          "FIELDS": {
-          }
-        },
-        "LpIncrease": {
-          "FIELDS": {
           }
         },
         "Maneuver": {
@@ -1718,7 +1711,7 @@
               "hint":                              "Stufe der Initiative des Maskenträgers",
               "label":                             "Initiativestufe"
             },
-            "knockdownStep": {
+            "knockDownStep": {
               "hint":                              "Stufe des Niederschlagens",
               "label":                             "Niederschlagungsstufe"
             },
@@ -1982,26 +1975,38 @@
         },
         "Power": {
           "FIELDS": {
-            "armorType": {
-              "hint":                              "Welche Rüstungsart schützt gegne diese Kraft?",
-              "label":                             "Rüstungstyp"
+            "damage": {
+              "armorType": {
+                "hint":                            "Welche Rüstungsart schützt gegen den Schaden dieser Kraft?",
+                "label":                           "Rüstungstyp"
+              },
+              "hint":                              "Konfiguration des Schadens der durch diese Kraft verursacht wird",
+              "ignoreArmor": {
+                "hint":                            "Ignoriert der Schaden dieser Kraft Rüstung?",
+                "label":                           "Rüstung ignorieren"
+              },
+              "label":                             "Schadenskonfiguration",
+              "type": {
+                "hint":                            "Die Art von Schaden die diese Kraft verursacht",
+                "label":                           "Schadensart"
+              }
             },
             "damageStep": {
               "hint":                              "Schadensstufe der Kraft",
               "label":                             "Schadensstufe"
             },
             "damageType": {
-              "hint":                              "Schadensart der Kraft",
-              "label":                             "Schadensart"
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "element": {
-              "subType": {
-                "hint":                            "Elementarsubtyp der Kraft",
-                "label":                           "Elementarsubtyp"
+              "subtype": {
+                "hint":                            "Die Unterart des Element dieser Kraft, falls eine vorhanden ist",
+                "label":                           "Element - Unterart"
               },
               "type": {
-                "hint":                            "Elementartyp der Kraft",
-                "label":                           "Elementartyp"
+                "hint":                            "Das Element der Kraft",
+                "label":                           "Element"
               }
             },
             "powerStep": {
@@ -2111,6 +2116,22 @@
             "effect": {
               "details": {
                 "damage": {
+                  "addCircle": {
+                    "hint":                        "Fügt den Kreis der Disziplin des Actors zur Schadensstufe hinzu",
+                    "label":                       "Kreis hinzufügen"
+                  },
+                  "armorType": {
+                    "hint":                        "Rüstungstyp der gegen den Schaden des Spruches schützt",
+                    "label":                       "Rüstungstyp"
+                  },
+                  "attribute": {
+                    "hint":                        "Attribut auf dem die Schadensstufe basiert",
+                    "label":                       "Attribut"
+                  },
+                  "damageType": {
+                    "hint":                        "Art des Schadens der durch den Spruch verursacht wird",
+                    "label":                       "Schadensart"
+                  },
                   "hint":                          "Details zur Schadensstufe",
                   "label":                         "Schadensdetails",
                   "stepModifier": {
@@ -2119,8 +2140,20 @@
                   }
                 },
                 "effect": {
-                  "hint":                          "Der Spruch verursacht einen ActiveEffect",
-                  "label":                         "ActiveEffect"
+                  "addCircle": {
+                    "hint":                        "Fügt den Kreis der Disziplin des Actors zum Effektwurf hinzu",
+                    "label":                       "Kreis hinzufügen"
+                  },
+                  "attribute": {
+                    "hint":                        "Attribut auf dem die Stufe des Effektwurf basiert",
+                    "label":                       "Attribut"
+                  },
+                  "hint":                          "Details zur Stufe des Effektwurf",
+                  "label":                         "Effektstufe",
+                  "stepModifier": {
+                    "hint":                        "Modifikator der auf Willenskraft-Stufe addiert wird",
+                    "label":                       "Effektstufen Modifikator (WIL)"
+                  }
                 },
                 "hint":                            "Details zum Effekt des Spruches",
                 "label":                           "Effektdetails",
@@ -2214,6 +2247,18 @@
         },
         "SpellKnack": {
           "FIELDS": {
+            "bloodMagic": {
+              "hint":                              "Ist die Überanstrung Blutmagieschaden?",
+              "label":                             "Blutmagie"
+            },
+            "linkable": {
+              "hint":                              "Kann dieser Kniff mit anderen Kniffen verknüpft gewirkt werden?",
+              "label":                             "Verknüpfbar"
+            },
+            "strain": {
+              "hint":                              "Überanstrengungsschaden der durch das Wirken dieses Kniffs verursacht wird",
+              "label":                             "Überanstrengung"
+            }
           }
         },
         "Talent": {
@@ -2250,10 +2295,6 @@
                 "label":                           "Zielwert"
               }
             }
-          }
-        },
-        "Thread": {
-          "FIELDS": {
           }
         },
         "Weapon": {
@@ -2471,8 +2512,8 @@
               "label":                             "Rüstungstyp"
             },
             "damageAbilities": {
-              "hint":                              "Fähigkeiten die auf den Schaden angewendet werden",
-              "label":                             "Schadenfähigkeiten"
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "damageType": {
               "hint":                              "Art des Schadens",
@@ -2491,6 +2532,10 @@
             "ignoreArmor": {
               "hint":                              "Soll die Rüstung des Ziels ignoriert werden?",
               "label":                             "Rüstung ignorieren"
+            },
+            "naturalArmorOnly": {
+              "hint":                              "Soll nur natürliche Rüstung Schaden abwenden können?",
+              "label":                             "Nur natürliche Rüstung zählt"
             },
             "weaponUuid": {
               "hint":                              "UUID der Waffe auf die sich diese Option bezieht",
@@ -2730,10 +2775,6 @@
             }
           }
         },
-        "SpellcastingRollOptions": {
-          "FIELDS": {
-          }
-        },
         "ThreadBase": {
           "FIELDS": {
             "characteristics": {
@@ -2863,6 +2904,7 @@
       },
       "Buttons": {
         "add":                                     "Hinzufügen",
+        "attribute":                               "Attribut",
         "attuneMatrices":                          "Matrizen neu abstimmen",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "cancel":                                  "Abbrechen",
@@ -2877,6 +2919,7 @@
         "fullRest":                                "Vollständige Rast",
         "goBack":                                  "Zurück",
         "grimoireCasting":                         "Grimoire",
+        "halfMagic":                               "Halbmagie",
         "learn":                                   "Lernen",
         "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
         "matrixCastingAlreadyAttuned":             "Matrix (abgestimmt)",
@@ -2895,6 +2938,7 @@
         "roundStartRollInitiative":                "Runde Start: Würfle Initiative",
         "save":                                    "Speichern",
         "spendLp":                                 "Legendenpunkte ausgeben",
+        "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "teacherSpellcasting":                     "Lehrer Spruchzauberei",
         "versatility":                             "Vielseitigkeit"
@@ -3061,6 +3105,7 @@
           "talentIncreaseShortRequirements":       "<ul>\n<li>Der Adept ist ausgeruht und hat weder Schaden noch Wunden.</li>\n<li>Der Adept muss acht Stunden lang ununterbrochen Meditieren</li>\n<li>Das Talent darf an diesem Tag nicht bereits gesteigert worden sein.</li>\n<li>Der Adept hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n</ul>\n"
         },
         "Validation": {
+          "availableLearnImprovedSpellSlots":      "Frei Ränge (Knifflimit)",
           "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
           "availableMoney":                        "Ist ausreichend Silber vorhanden?",
           "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
@@ -3079,6 +3124,7 @@
           "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
           "pathTalent":                            "Pfad-Talent",
           "requiredPathRank":                      "Erforderlicher Pfad-Rang",
+          "sourceSpellName":                       "Quell-Zauber Name",
           "sourceTalentName":                      "Quell-Talent Name",
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
@@ -3124,6 +3170,7 @@
       },
       "Title": {
         "assignLp":                                "Legendenpunkte zuweisen",
+        "attribute":                               "Attribut",
         "attributeIncrease":                       "Attribut steigern",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "buttonSelect":                            "Wähle eine Option",
@@ -3132,8 +3179,9 @@
         "chooseTier":                              "Wähle einen Kreis",
         "classAdvancement":                        "Klassenaufstieg",
         "drawWeapon":                              "Waffe ziehen",
+        "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
-        "knockdown":                               "Niederschlag",
+        "knockDown":                               "Niederschlag",
         "learnAbility":                            "Fähigkeit lernen",
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
@@ -3148,8 +3196,11 @@
         "selectSpellToAttuneToGrimoire":           "Wähle Zauber mit dem das Grimoire abgestimmt wird",
         "selectWeavingAbility":                    "Wähle Fadenweben Fähigkeit",
         "startRoundCombatantPrompt":               "Rundenstart: Kampfbeteiligte",
+        "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
-        "talentCategory":                          "Talent Kategorie"
+        "talentCategory":                          "Talent Kategorie",
+        "useWillpower":                            "Willenskraft einsetzen",
+        "versatilityLimit":                        "Vielseitigkeitslimit erreicht"
       },
       "ToolTips": {
         "resetAbilityRanks":                       "Setzt alle Ränge auf 0 zurück"
@@ -3161,10 +3212,12 @@
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
+      "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
-      "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
-      "physical":                                  "Körperlicher Schaden"
+      "physical":                                  "Körperlicher Schaden",
+      "versatilityTalentLimit":                    "Das Maximum an Talente die über Vielseitigkeit gelernt werden können ist bereits erreicht. Das reguläre Maximum entspricht dem Vielseitigkeits Rang.\n Soll das gewählte Talent trotzdem gelernt werden?"
     },
     "Document": {
       "create":                                    "Erstelle {type}",
@@ -3214,9 +3267,13 @@
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
+        "knack":                                   "Kniff",
         "matrixConfiguration":                     "Matrix Konfiguration",
         "navigator":                               "Navigator",
+        "spell":                                   "Zauber",
+        "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
+        "spellEffectStep":                         "Effektstufe",
         "spellEnhancement":                        "Zauber Verstärkung",
         "summary":                                 "Zusammenfassung",
         "talentKnacks":                            "Kniffe",
@@ -3277,6 +3334,11 @@
       "tskrang":                                   "T'skrang",
       "windling":                                  "Windling"
     },
+    "Migrations": {
+      "setSpellDuration":                          "|| Bitte überarbeite die Zauberdauer für diesen Zauber.",
+      "setSpellEffect":                            "|| Bitte überarbeite den Zaubereffekt für diesen Zauber.",
+      "setSpellRange":                             "|| Bitte überarbeite die Zauberreichweite für diesen Zauber."
+    },
     "Notifications": {
       "Error": {
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
@@ -3290,44 +3352,48 @@
         "grimoireSetActiveNotInGrimoire":          "Der Zauber ist nicht im Grimoire enthalten. Es kann nicht abgestimmt werden.",
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
+        "invalidRollType":                         "Der Aktionstyp ist ungültig oder nicht gewählt. Bitte überprüfe den Aktionstyp im Details Tab des Items.",
         "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
         "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
         "noSpellsAvailableToAttune":               "Das Grimoire enthält keine Zauber, die abgestimmt werden können.",
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
-        "spellcastingWorkflowFailed":              ""
+        "spellcastingWorkflowFailed":              "Der Zauberwirkungs-Workflow ist fehlgeschlagen.",
+        "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
-        "alreadyKnockedDown":                      "Du bist bereits niedergeschlagen.",
+        "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
         "noWeavingNecessary":                      "Es ist keine Fadenwebenprobe nötig. Der Zauber ist bereit zum Wirken.",
         "reattuningCancelled":                     "Die Abstimmung wurde abgebrochen.",
         "switchWeapon":                            "Waffe wird gewechselt. Andere Waffe(n) abgelegt.",
-        "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen.",
-        "youAreKnockedDown":                       "Du wurdest niedergeschlagen!"
+        "upcomingSelectHorrorForRawCasting":       "Leider haben wir diese Funktion noch nicht. Aber wir arbeiten dran :). Hier kannst du dann bald optional einen Horror auswählen, um den Dämonenmal-Test zu machen."
       },
       "Warn": {
         "abilityIncreaseProblems":                 "Rang konnte nicht aktualisiert werden",
         "addLpTransactionProblems":                "Legendenpunkte konnten nicht hinzugefügt werden",
         "attackNoWeaponFound":                     "Es wurde keine Waffe gefunden, die für den Angriff verwendet werden kann.",
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
+        "cannotLearnSpellKnack":                   "Der Zauber-Kniff kann nicht erlernt werden. Es fehlt eine ED-ID für den Zauber auf den sich der Kniff bezieht.",
         "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
+        "couldNotScrollToSourceMessage":           "Die Nachricht konnte nicht gefunden werden.",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
+        "learningKnackNoSourceItem":               "Das Quell-Item für den Kniff konnte nicht gefunden werden (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
+        "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
         "noLp":                                    "Keine Legendenpunkte angegeben!",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",
-        "noSourceTalent":                          "Kein Talent mit ED-ID {talentSourceEdid} gefunden",
         "noWeaponToAttackWith":                    "Keine Waffe zum Angreifen verfügbar :(",
         "notEnoughDevotionUsedAll":                "Nicht genug Weihepunkte. Es wurden alle genutzt die verfügbar waren.",
         "notEnoughKarmaUsedAll":                   "Nicht genug Karma. Es wurden alles genutzt das verfügbar war.",
@@ -3336,6 +3402,7 @@
         "questorItemNotUpdated":                   "Questor-Item konnte nicht aktualisiert werden",
         "spellAlreadyAttunedInGrimoire":           "Der Zauber ist bereits im Grimoire abgestimmt.",
         "spellNotReadyToCast":                     "Der Zauber ist nicht bereit zum Wirken. Es fehlen noch Fäden.",
+        "versatilityTalentLimit":                  "Das Limit für Vielseitigkeitstalente wurde erreicht.",
         "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
       }
     },
@@ -3346,8 +3413,10 @@
         "effectTestRoll":                          "Effektprobe"
       },
       "Modifiers": {
+        "bonusDamageFromExtraSuccesses":           "+2 pro extra Erfolg von Angriff",
         "grimoirePenalty":                         "Fremdes Grimoire",
         "manual":                                  "Manuelle Anpassung",
+        "spellEffectOrDamageStepCircle":           "Kreis ({discipline})",
         "stunRecoveryWillpower":                   "Willenskraft"
       },
       "baseValue":                                 "Basis Stufe",
@@ -3397,8 +3466,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
-        "knockdown":                               "ED-ID für Niederschlag",
-        "knockdownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
+        "knockDown":                               "ED-ID für Niederschlag",
+        "knockDownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",
@@ -3567,8 +3636,12 @@
       "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
+      "extraThreads":                              "Zusätzliche Fäden",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
+      "numThreadsJustWoven":                       "Gerade gewebte Fäden",
+      "numThreadsWovenTotal":                      "Gesamt gewebte Fäden",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",
+      "scrollToSourceMessage":                     "Scrollt zur Chat-Nachricht die diese erzeugt hat",
       "weaveThreadCheck":                          "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {
