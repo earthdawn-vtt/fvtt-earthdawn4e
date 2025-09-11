@@ -307,7 +307,8 @@ slide-toggle[checked] .slide-toggle-thumb {
   background: transparent;
 }
 .input__square-input--centered,
-.input__rectangle-input--centered {
+.input__rectangle-input--centered,
+.input__rectangle-lp-input--centered {
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -317,7 +318,10 @@ slide-toggle[checked] .slide-toggle-thumb {
 }
 .input__rectangle-input--centered {
   width: 40px;
-  height: 25px;
+  padding-top: 2px;
+}
+.input__rectangle-lp-input--centered {
+  width: 80%;
   padding-top: 2px;
 }
 .input__circle-input--centered {
@@ -1392,7 +1396,7 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
   display: grid;
-  grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(30px, 1fr) minmax(30px, 1fr);
+  grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(100px, 20%);
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;
