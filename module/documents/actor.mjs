@@ -12,7 +12,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
-import { AttributeWorkflow, AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
+import { AttributeWorkflow, AttuneMatrixWorkflow, KnockdownWorkflow } from "../workflows/workflow/_module.mjs";
 import { getDefaultEdid, getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
@@ -1084,18 +1084,6 @@ export default class ActorEd extends Actor {
     const available = this.system[resourceType].value;
     await this.update( { [`system.${ resourceType }.value`]: ( available - amount ) } );
     return amount <= available;
-  }
-
-  /**
-   * Retrieves a specific prompt based on the provided prompt type.
-   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
-   * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockDown" )} promptType - The type of prompt to retrieve.
-   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
-   * associated with the given `promptType`. The exact return type depends on promptType.
-   */
-  async getPrompt( promptType ) {
-    return this._promptFactory.getPrompt( promptType );
   }
 
   // region Migrations
