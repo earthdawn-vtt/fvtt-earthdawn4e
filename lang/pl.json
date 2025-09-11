@@ -3363,6 +3363,7 @@
         "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
+        "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "TODO: Add translation",
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
