@@ -3363,6 +3363,7 @@
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
+        "alreadyKnockedDown":                      "Der Charakter ist bereits niedergeschlagen.",
         "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
