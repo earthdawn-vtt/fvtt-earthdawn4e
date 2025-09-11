@@ -572,22 +572,10 @@ export default class ActorEd extends Actor {
   }
   
   async knockdownTest( damageTaken, options = {} ) {
-    const isKnockedDown = this.effects.some( eff => eff.statuses?.has?.( "knockedDown" ) );
-    if ( isKnockedDown && !damageTaken ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
-      return;
-    }
-    if ( this.system.condition.knockedDown && !damageTaken ) {
-      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
-      return;
-    }
-    const woundThreshold = this.system.characteristics.health.woundThreshold;
-    const knockdownAbility = await this.knockdownAbility();
     const knockdownWorkflow = new KnockdownWorkflow(
       this,
       {
-        knockdownAbility,
-        difficulty: damageTaken - woundThreshold
+        damageTaken
       },
     );
     return knockdownWorkflow.execute();

@@ -8,12 +8,19 @@ import Rollable from "./rollable.mjs";
  * @property {object} [knockdownAbility] - The ability used for the knockdown test (optional).
  * @property {number} [difficulty] - The difficulty for the knockdown test (optional).
  */
+
 export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   /**
    * The step used to withstand the knockdown.
    * @type {number}
    */
   _knockdownStep;
+
+  /**
+   * The wound threshold of the Actor.
+   * @type {number}
+   */
+  _woundThreshold;
 
   /**
    * Whether the target is immune to knockdown effects.
@@ -26,6 +33,12 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
    * @type {number}
    */
   _difficulty;
+
+  /**
+   * Damage taken.
+   * @type {number}
+   */
+  _damageTaken;
 
   /**
    * Knockdown Ability.
@@ -41,25 +54,39 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * @param {foundry.documents.Actor} actor - The actor that is performing the knockdown.
-   * @param {KnockdownWorkflowOptions} options - The options for the knockdown workflow.
+   * @param {KnockdownWorkflowOptions} [options] - The options for the knockdown workflow.
    */
-  constructor( actor, options ) {
+  constructor( actor, options = {} ) {
     super( actor, options );
     this._immune = actor.system.knockdown.immune || false;
-    this._knockdownAbility = options.knockdownAbility || null;
+    this._damageTaken = options.damageTaken || 0;
+    this._woundThreshold = actor.system.characteristics.health.woundThreshold;
     this._strain = options.knockdownAbility?.system?.strain || 0;
     this._knockdownStep = this._knockdownAbility ? this._knockdownAbility.system.rankFinal :actor.system.knockdown.step;
     // include option to set difficulty to full damage taken
     this._difficulty = options.difficulty || game.settings.get( "ed4e", "minimumDifficulty" );
 
     this._steps = [
+      this._checkKnockdownStatus.bind( this ),
+      this.getKnockdownAbility.bind( this ),
       this._prepareKnockdownRollOptions.bind( this ),
       this._performKnockdownRoll.bind( this ),
       this._processKnockdown.bind( this ),
       this._rollToChat.bind( this ),
     ];
   }
-  
+
+  async _checkKnockdownStatus() {
+    if ( this._actor.statuses.has( "knockedDown" ) ) {
+      ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
+      this.cancel();
+    }
+  }
+
+  async getKnockdownAbility() {
+    this._knockdownAbility = await this._actor.knockdownAbility();
+  }
+
   async _prepareKnockdownRollOptions() {
     const stepModifiers = {};
     const knockdownModifier = this._actor.system.globalBonuses?.allKnockdownTests.value ?? 0;
