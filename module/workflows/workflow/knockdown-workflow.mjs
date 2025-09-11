@@ -120,8 +120,8 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   async _processKnockdown() {
     
     await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
-    const isSuccess = this._result.total >= this._difficulty;
-    if ( !isSuccess ) {
+  
+    if ( !this._result.isSuccess ) {
       // set status effect for knockdown etc.
       await this._actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
     } 
