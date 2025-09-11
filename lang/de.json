@@ -3466,6 +3466,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
+        "knockdown":                               "TODO: Add translation",
+        "knockdownHint":                           "TODO: Add translation",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",
