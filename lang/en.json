@@ -106,7 +106,7 @@
         "halfMagic":                               "Half Magic",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Jump Up",
-        "knockDownTest":                           "Knock down",
+        "knockdownTest":                           "Knock down",
         "legendHistory":                           "LP History",
         "recovery":                                "Recovery",
         "tailAttack":                              "Tail Attack",
@@ -624,7 +624,7 @@
         "horrorMark":                              "Horror Mark",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Jump Up",
-        "knockDown":                               "Knockdown",
+        "knockdown":                               "Knockdown",
         "reaction":                                "Reaction",
         "recovery":                                "Recovery",
         "spellEffect":                             "TODO: Add translation",
@@ -1711,7 +1711,7 @@
               "hint":                              "Initiative step of the mask wearer",
               "label":                             "Initiative Step"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                              "Knockdown step of the mask wearer",
               "label":                             "Knockdown Step"
             },
@@ -3181,7 +3181,7 @@
         "drawWeapon":                              "Draw Weapon",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
-        "knockDown":                               "Knock Down",
+        "knockdown":                               "Knock Down",
         "learnAbility":                            "Learn Ability",
         "learnSpell":                              "Learn Spell",
         "lpIncrease":                              "Increase Legend Points",
@@ -3214,7 +3214,7 @@
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
       "doYouWantToUseWillpower":                   "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
-      "knockDownChoice":                           "Choose the Ability to resist Knock Down",
+      "knockdownChoice":                           "Choose the Ability to resist Knock Down",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage",
       "versatilityTalentLimit":                    "The maximum number of talents that can be learned through Versatility has already been reached. The normal maximum equals the Versatility rank.\nShould the selected talent still be learned?"
@@ -3466,8 +3466,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID for Creature Attack",
         "creatureAttackHint":                      "Identifies the ability as Creature Attack",
-        "knockDown":                               "ED-ID for Knock Down",
-        "knockDownHint":                           "Identifies the Knock Down ability",
+        "knockdown":                               "ED-ID for Knock Down",
+        "knockdownHint":                           "Identifies the Knock Down ability",
         "languageRW":                              "ED-ID for Read/Write",
         "languageRWHint":                          "Identifies the Read/Write ability",
         "languageSpeak":                           "ED-ID for Speak Language",
