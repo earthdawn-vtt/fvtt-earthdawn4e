@@ -23,12 +23,6 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
   _woundThreshold;
 
   /**
-   * Whether the target is immune to knockdown effects.
-   * @type {boolean}
-   */
-  _immune;  
-
-  /**
    * Knockdown test difficulty.
    * @type {number}
    */
@@ -58,11 +52,10 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
    */
   constructor( actor, options = {} ) {
     super( actor, options );
-    this._immune = actor.system.knockdown.immune || false;
     this._damageTaken = options.damageTaken || 0;
     this._woundThreshold = actor.system.characteristics.health.woundThreshold;
     this._strain = options.knockdownAbility?.system?.strain || 0;
-    this._knockdownStep = this._knockdownAbility ? this._knockdownAbility.system.rankFinal :actor.system.knockdown.step;
+    this._knockdownStep = this._knockdownAbility ? this._knockdownAbility.system.rankFinal : actor.system.knockdownStep;
     // include option to set difficulty to full damage taken
     this._difficulty = options.difficulty || game.settings.get( "ed4e", "minimumDifficulty" );
 
@@ -95,24 +88,8 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     }
     this._rollOptions = KnockdownRollOptions.fromActor(
       {
-        step:         {
-          base:      this._knockdownStep,
-          modifiers: stepModifiers
-        },
-        strain: {
-          base:      this._strain,
-        },
-        target: {
-          base:      this._difficulty,
-        },
-        // KnockdownAbilityUuid: to be done 
-        chatFlavor: game.i18n.format ( 
-          "ED.Chat.Flavor.knockdownTest",
-          {
-            actor: this._actor.name,
-            step:  this._knockdownStep,
-          }
-        )
+        knockdownAbility: this._knockdownAbility,
+        damageTaken:       this._damageTaken,
       },
       this._actor,
     );

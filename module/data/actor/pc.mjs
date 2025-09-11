@@ -537,7 +537,7 @@ export default class PcData extends NamegiverTemplate {
   }
 
   #prepareKnockdown() {
-    this.knockdown.step = this.attributes.str.step;
+    this.knockdownStep = this.attributes.str.step;
   }
   /**
    * Prepare the derived movement values based on namegiver items.

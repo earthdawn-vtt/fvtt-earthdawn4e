@@ -1,0 +1,20 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.knockdown.label}}}</div>
+
+{{#if knockdownAbilityContentAnchor}}
+  <div class="text--center">{{{knockdownAbilityContentAnchor}}}</div>
+{{/if}}
+
+
+{{#if (eq ruleOfOne true)}}
+  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
+{{else}}
+  {{#if (ne target.total 0)}}
+  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
+  {{/if}}
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+      {{#if target.public}}
+        {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+      {{/if}}
+  </div>
+{{/if}}

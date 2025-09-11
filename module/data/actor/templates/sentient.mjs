@@ -386,19 +386,13 @@ export default class SentientTemplate extends CommonTemplate {
           integer:  true,
         } ),
       } ),
-      knockdown: new fields.SchemaField( {
-        step: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
-        } ),
-        immune: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
+      knockdownStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        step:     1,
+        initial:  0,
+        integer:  true,
       } ),
       relations: new MappingField( new fields.SchemaField( {
         attitude: new fields.StringField( {
