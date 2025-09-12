@@ -265,6 +265,62 @@ export default class MigrationManager {
     }, {} );
   }
 
+  /**
+   * Try to find an item in the world by UUID or ID, even if embedded in an actor
+   * @param {object} itemData - The item data with potential UUID and ID
+   * @returns {Promise<string|null>} - Valid UUID or null if not found
+   * @private
+   */
+  static async #tryFindItemInWorld( itemData ) {
+    // If no UUID is provided, we can't look it up directly
+    if ( !itemData.uuid && !itemData.id ) return null;
+    
+    // First try the direct UUID if it exists
+    if ( itemData.uuid ) {
+      try {
+        const item = await fromUuid( itemData.uuid );
+        if ( item ) return itemData.uuid;
+      } catch ( e ) {
+        // UUID not valid, we'll try other methods
+        console.debug( `Invalid UUID ${itemData.uuid} for item ${itemData.name}, searching by ID` );
+      }
+    }
+    
+    // Extract the ID from either the UUID or use the explicit ID
+    let itemId = null;
+    if ( itemData.uuid ) {
+      const uuidMatch = itemData.uuid.match( /^Item\.([a-zA-Z0-9]+)$/ );
+      if ( uuidMatch && uuidMatch[1] ) {
+        itemId = uuidMatch[1];
+      }
+    }
+    
+    // If we couldn't extract ID from UUID, use the explicit ID
+    if ( !itemId && itemData.id ) {
+      itemId = itemData.id;
+    }
+    
+    // If we still don't have an ID, we can't proceed
+    if ( !itemId ) return null;
+    
+    // First check if it exists directly in the world items
+    const worldItem = game.items.get( itemId );
+    if ( worldItem ) {
+      return worldItem.uuid;
+    }
+    
+    // If not found in world items, look through all actors for embedded items
+    for ( const actor of game.actors ) {
+      const embeddedItem = actor.items.find( i => i.id === itemId );
+      if ( embeddedItem ) {
+        return embeddedItem.uuid; // Return the proper Actor.X.Item.Y format UUID
+      }
+    }
+    
+    // Item not found anywhere in the world
+    return null;
+  }
+
   static async #createMigrationJournal( successful, incomplete ) {
     try {
       const timestamp = new Date().toLocaleString();
@@ -300,13 +356,14 @@ export default class MigrationManager {
           const typeTitle = type.charAt( 0 ).toUpperCase() + type.slice( 1 );
           content += `<h3>${typeTitle} (${items.length})</h3><ol>`;
           
-          items.forEach( item => {
-            if ( item.uuid ) {
-              content += `<li>@UUID[${item.uuid}]{${item.name}} (${item.type})</li>`;
+          for ( const item of items ) {
+            const validUuid = await this.#tryFindItemInWorld( item );
+            if ( validUuid ) {
+              content += `<li>@UUID[${validUuid}]{${item.name}} (${item.type})</li>`;
             } else {
-              content += `<li>${item.name} - <code>No UUID available</code></li>`;
+              content += `<li>${item.name} (${item.type}) - <code>Not found in world</code></li>`;
             }
-          } );
+          }
           
           content += "</ol>";
         }
@@ -317,12 +374,13 @@ export default class MigrationManager {
         content += "<h2>Incomplete Migrations</h2>";
         content += "<p>The following items had issues during migration:</p><ol>";
         
-        incomplete.forEach( item => {
+        for ( const item of incomplete ) {
           content += "<li>";
           
           // Item name with UUID link if available
-          if ( item.uuid ) {
-            content += `@UUID[${item.uuid}]{${item.name}} (${item.type})<br>`;
+          const validUuid = await this.#tryFindItemInWorld( item );
+          if ( validUuid ) {
+            content += `@UUID[${validUuid}]{${item.name}} (${item.type})<br>`;
           } else {
             content += `<strong>${item.name} (${item.type})</strong><br>`;
           }
@@ -331,7 +389,7 @@ export default class MigrationManager {
           content += `<span style="color: #d32f2f;">${item.reason || "Unknown reason"}</span>`;
           
           content += "</li>";
-        } );
+        }
         
         content += "</ol>";
       }
