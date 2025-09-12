@@ -122,18 +122,7 @@
           <div class="container__block">
             {{!-- Spoken --}}
             <div class="language-card__grid--container container__header">
-              <span class="language__header-label">{{localize "ED.Actor.Header.languagesSpoken"}}
-                {{#if @root.editable}}
-                  <button type="button"
-                          class="item-control action-buttons icon--button rollable"
-                          data-action="open-language-select"
-                          data-select="system.languages.speak"
-                          title="{{localize 'ED.Actor.Header.languagesSpoken'}}"
-                          aria-label="{{localize 'ED.Actor.Header.languagesSpoken'}}">
-                    <i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
-                  </button>
-                {{/if}}
-              </span>
+              <span class="language__header-label">{{localize "ED.Actor.Header.languagesSpoken"}}</span>
             </div>
             <span class="languages__control" data-field="system.languages.speak">
               {{formField systemFields.languages.fields.speak value=actor.system.languages.speak}}
@@ -141,18 +130,7 @@
 
             {{!-- Written --}}
             <div class="language-card__grid--container container__header">
-              <span class="language__header-label">{{localize "ED.Actor.Header.languagesWritten"}}
-                {{#if @root.editable}}
-                  <button type="button"
-                          class="item-control action-buttons icon--button rollable"
-                          data-action="open-language-select"
-                          data-select="system.languages.readWrite"
-                          title="{{localize 'ED.Actor.Header.languagesWritten'}}"
-                          aria-label="{{localize 'ED.Actor.Header.languagesWritten'}}">
-                    <i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
-                  </button>
-                {{/if}}
-              </span>
+              <span class="language__header-label">{{localize "ED.Actor.Header.languagesWritten"}}</span>
             </div>
             <span class="languages__control" data-field="system.languages.readWrite">
               {{formField systemFields.languages.fields.readWrite value=actor.system.languages.readWrite}}
