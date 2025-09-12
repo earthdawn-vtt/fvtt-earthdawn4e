@@ -270,6 +270,9 @@
           "thread":                                "TODO: Add translation"
         },
         "Spendings": {
+          "attributeIncrease":                     "TODO: Add translation",
+          "learnKnack":                            "TODO: Add translation",
+          "learnSpell":                            "TODO: Add translation",
           "learningTransactionDescription":        "TODO: Add translation",
           "spendingTransactionDescription":        "TODO: Add translation"
         }
@@ -3091,7 +3094,19 @@
           "teacherBonusModifier":                  "TODO: Add translation"
         },
         "LpHistory": {
-          "addEarning":                            "TODO: Add translation"
+          "addEarning":                            "TODO: Add translation",
+          "attribute":                             "TODO: Add translation",
+          "devotion":                              "TODO: Add translation",
+          "earnings":                              "TODO: Add translation",
+          "knackAbility":                          "TODO: Add translation",
+          "knackKarma":                            "TODO: Add translation",
+          "knackManeuver":                         "TODO: Add translation",
+          "knackSpell":                            "TODO: Add translation",
+          "skill":                                 "TODO: Add translation",
+          "spell":                                 "TODO: Add translation",
+          "spendings":                             "TODO: Add translation",
+          "talent":                                "TODO: Add translation",
+          "thread":                                "TODO: Add translation"
         },
         "Rules": {
           "attributeIncreaseShortRequirements":    "TODO: Add translation",

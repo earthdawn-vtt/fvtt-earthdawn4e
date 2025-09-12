@@ -124,7 +124,10 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
              ${ ( new Date( transaction.date ) ).toLocaleDateString() }
           </td>
           <td>
-            ${ game.i18n.localize( "ED.Dialogs.LpHistory." + transaction.type ) }
+            ${ game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + transaction.type ) }
+          </td>
+          <td>
+            ${ transaction.name ?? "" }
           </td>
           <td>
             ${ transaction.description }
@@ -148,6 +151,9 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
             </th>
             <th class="lp-history__type">
               ${ game.i18n.localize( "ED.Actor.LpTracking.Header.type" ) }
+            </th>
+            <th class="lp-history__name">
+              ${ game.i18n.localize( "ED.Actor.LpTracking.Header.name" ) }
             </th>
             <th class="lp-history__description">
               ${ game.i18n.localize( "ED.Actor.LpTracking.Header.description" ) }
@@ -233,10 +239,14 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
     const content = Object.values( groupedData ).map(
       group => {
         const category = group[0]?.category;
+        // Show raw category name when sorting by "item", but localized when sorting by "type"
+        const displayCategory = categoryType === "name" 
+          ? category 
+          : game.i18n.localize( "ED.Dialogs.Legend.LpHistory." + category );
         return `
         <thead>
           <tr class="group-header" data-group="${category}" data-action="toggleDetail">
-            <th colspan="5">${game.i18n.localize( "ED.Dialogs.LpHistory." + category )}</th>
+            <th colspan="5">${displayCategory}</th>
           </tr>
         </thead>
         <tbody class="group-body ${ sessionStorage.getItem( `ed4e.lpGroup.${category}` ) ?? "hidden" }" data-group="${category}">
