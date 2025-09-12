@@ -189,18 +189,21 @@ export default class MigrationManager {
   /**
    * Finalize all migrations and log a summary of the results
    * This should be called after all migrations are complete
-   * @returns {void}
+   * @param {boolean} createJournal - Whether to create a journal entry with the migration results
+   * @returns {Promise<object>} Migration statistics and created journal entry including successful migrations, 
+   *                            incomplete migrations, total count, and journal reference if created
    */
-  static finalizeMigrations() {
+  static async finalizeMigrations( createJournal = true ) {
     // Log a comprehensive summary of all migrations
     console.group( "Migration Summary" );
     
     // Get migration statistics from BaseMigration
     const successful = BaseMigration.getSuccessfulMigrations();
     const incomplete = BaseMigration.getIncompleteMigrations();
+    const total = successful.length + incomplete.length;
     
     // Log overall statistics
-    console.log( `Total migrations processed: ${successful.length + incomplete.length}` );
+    console.log( `Total migrations processed: ${total}` );
     console.log( `Successful migrations: ${successful.length}` );
     console.log( `Incomplete migrations: ${incomplete.length}` );
     
@@ -224,10 +227,143 @@ export default class MigrationManager {
     
     console.groupEnd();
     
+    // Create a journal entry with the migration results if requested
+    let journal = null;
+    if ( createJournal && game.user.isGM && total > 0 ) {
+      journal = await this.#createMigrationJournal( successful, incomplete );
+    }
+    
     return {
       successful,
       incomplete,
-      total: successful.length + incomplete.length
+      total,
+      journal
     };
+  }
+  
+  /**
+   * Create a journal entry with migration results
+   * @param {Array} successful - List of successful migrations
+   * @param {Array} incomplete - List of incomplete migrations
+   * @returns {Promise<JournalEntry>} The created journal entry
+   * @private
+   */
+  /**
+   * Helper method for organizing migrations by their type
+   * @param {Array} migrations - Array of migration objects to be grouped by their type property
+   * @returns {object} Object with types as keys and arrays of migrations as values
+   * @private
+   */
+  static #groupByType( migrations ) {
+    return migrations.reduce( ( acc, migration ) => {
+      const type = migration.type || "unknown";
+      if ( !acc[type] ) {
+        acc[type] = [];
+      }
+      acc[type].push( migration );
+      return acc;
+    }, {} );
+  }
+
+  static async #createMigrationJournal( successful, incomplete ) {
+    try {
+      const timestamp = new Date().toLocaleString();
+      const journalName = `Migration Results - ${timestamp}`;
+      
+      // Prepare ownership - default is NONE, GMs get OWNER access
+      const ownership = { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE };
+      
+      // Add ownership for all GM users
+      game.users.filter( u => u.isGM ).forEach( gmUser => {
+        ownership[gmUser.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+      } );
+      
+      // Generate HTML content for the journal
+      let content = "<h1>Migration Results</h1>";
+      
+      // Summary section
+      content += "<h2>Summary</h2><ul>" +
+        `<li><strong>Timestamp:</strong> ${timestamp}</li>` +
+        `<li><strong>Total migrations:</strong> ${successful.length + incomplete.length}</li>` +
+        `<li><strong>Successful migrations:</strong> ${successful.length}</li>` +
+        `<li><strong>Incomplete migrations:</strong> ${incomplete.length}</li>` +
+        "</ul>";
+      
+      // Successful migrations section
+      if ( successful.length > 0 ) {
+        content += "<h2>Successful Migrations</h2>";
+        
+        // Group by type
+        const groupedSuccessful = this.#groupByType( successful );
+        
+        for ( const [ type, items ] of Object.entries( groupedSuccessful ) ) {
+          const typeTitle = type.charAt( 0 ).toUpperCase() + type.slice( 1 );
+          content += `<h3>${typeTitle} (${items.length})</h3><ol>`;
+          
+          items.forEach( item => {
+            if ( item.uuid ) {
+              content += `<li>@UUID[${item.uuid}]{${item.name}} (${item.type})</li>`;
+            } else {
+              content += `<li>${item.name} - <code>No UUID available</code></li>`;
+            }
+          } );
+          
+          content += "</ol>";
+        }
+      }
+      
+      // Incomplete migrations section
+      if ( incomplete.length > 0 ) {
+        content += "<h2>Incomplete Migrations</h2>";
+        content += "<p>The following items had issues during migration:</p><ol>";
+        
+        incomplete.forEach( item => {
+          content += "<li>";
+          
+          // Item name with UUID link if available
+          if ( item.uuid ) {
+            content += `@UUID[${item.uuid}]{${item.name}} (${item.type})<br>`;
+          } else {
+            content += `<strong>${item.name} (${item.type})</strong><br>`;
+          }
+          
+          // Error reason
+          content += `<span style="color: #d32f2f;">${item.reason || "Unknown reason"}</span>`;
+          
+          content += "</li>";
+        } );
+        
+        content += "</ol>";
+      }
+      
+      // Create journal pages data
+      const pages = [ {
+        name:  "Migration Results",
+        type:  "text",
+        text:  {
+          content:  content,
+          format:   CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML
+        }
+      } ];
+      
+      // Create the journal entry
+      const journalEntry = await JournalEntry.create( {
+        name:       journalName,
+        pages:      pages,
+        ownership:  ownership
+      } );
+      
+      // Render the journal sheet
+      if ( journalEntry ) {
+        journalEntry.sheet.render( true );
+      }
+      
+      return journalEntry;
+      
+    } catch ( error ) {
+      console.error( "Failed to create migration journal:", error );
+      ui.notifications.error( `Failed to create migration journal: ${error.message}` );
+      return null;
+    }
   }
 }
