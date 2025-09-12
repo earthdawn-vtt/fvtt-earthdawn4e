@@ -130,6 +130,21 @@ export default class WeaponMigration extends BaseMigration {
       reason:    ""
     };
 
+    if ( !source.system.weaponType ) {
+      result.hasIssues = true;
+      result.reason += "Missing weapon type, please check. ";
+    }
+
+    if ( !source.system.damage ) {
+      result.hasIssues = true;
+      result.reason += "Missing damage attribute or base step, please check. ";
+    }
+
+    if ( source.system.weaponType === "missile" && !source.system.ammunition?.type ) {
+      result.hasIssues = true;
+      result.reason += "Missing ammunition type for missile weapon, please check. ";
+    }
+
     // Add more conditions as needed
 
     return result;

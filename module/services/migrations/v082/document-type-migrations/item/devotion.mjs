@@ -99,7 +99,7 @@ export default class DevotionMigration extends BaseMigration {
     }
 
     // check for missing attributes
-    if ( !source.system.attributes || source.system.attributes.length === 0 ) {
+    if ( !source.system.attribute ) {
       result.hasIssues = true;
       result.reason += "Missing attributes, please check. ";
     }

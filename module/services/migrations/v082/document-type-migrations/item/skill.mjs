@@ -90,6 +90,36 @@ export default class SkillMigration extends BaseMigration {
       reason:    ""
     };
 
+    // check for missing rolltype
+    if ( !source.system.rollType ) {
+      result.hasIssues = true;
+      result.reason += "Missing rollType, please check. ";
+    }
+
+    // check for rolltype "attack" but missing weaponType
+    if ( source.system.rollType === "attack" && !source.system.weaponType ) {
+      result.hasIssues = true;
+      result.reason += "Missing weapon Types for attack rollType, please check. ";
+    }
+
+    // check for missing attributes
+    if ( !source.system.attribute ) {
+      result.hasIssues = true;
+      result.reason += "Missing attributes, please check. ";
+    }
+
+    // difficulty setting
+    if ( !source.system.difficulty ) {
+      result.hasIssues = true;
+      result.reason += "Missing difficulty setting, please check. ";
+    }
+
+    // check for missing edid
+    if ( !source.system.edid || source.system.edid === "none" ) {
+      result.hasIssues = true;
+      result.reason += "Missing or undefined edid, please check. ";
+    }
+
     // Add more conditions as needed
 
     return result;

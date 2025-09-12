@@ -71,6 +71,12 @@ export default class KarmaKnackMigration extends BaseMigration {
       reason:    ""
     };
 
+    // check for missing edid
+    if ( !source.system.edid || source.system.edid === "none" ) {
+      result.hasIssues = true;
+      result.reason += "Missing or undefined edid, please check. ";
+    }
+
     // Add more conditions as needed
 
     return result;

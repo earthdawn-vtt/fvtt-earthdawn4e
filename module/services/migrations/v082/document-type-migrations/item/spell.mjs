@@ -116,6 +116,36 @@ export default class SpellMigration extends BaseMigration {
       reason:    ""
     };
 
+    if ( !source.system.spellDifficulty.reattune ) {
+      result.hasIssues = true;
+      result.reason += "Missing reattune difficulty, please check. ";
+    }
+
+    if ( !source.system.spellDifficulty.weaving ) {
+      result.hasIssues = true;
+      result.reason += "Missing weaving difficulty, please check. ";
+    }
+
+    if ( !source.system.threads.required ) {
+      result.hasIssues = true;
+      result.reason += "Missing required threads, please check. ";
+    } 
+
+    if ( source.system.effect.details.special.description ) {
+      result.hasIssues = true;
+      result.reason += source.system.effect.details.special.description + " ";
+    } 
+
+    if ( source.system.duration.special ) {
+      result.hasIssues = true;
+      result.reason += source.system.duration.special + " ";
+    }
+
+    if ( source.system.range.special ) {
+      result.hasIssues = true;
+      result.reason += source.system.range.special + " ";
+    }
+
     // Add more conditions as needed
 
     return result;

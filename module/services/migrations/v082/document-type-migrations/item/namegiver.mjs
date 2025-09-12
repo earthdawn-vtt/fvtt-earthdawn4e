@@ -101,6 +101,10 @@ export default class NamegiverMigration extends BaseMigration {
       reason:    ""
     };
 
+    if ( !source.system.karmaModifier ) {
+      result.hasIssues = true;
+      result.reason += "Missing karma modifier, please check. ";
+    }
     // Add more conditions as needed
 
     return result;

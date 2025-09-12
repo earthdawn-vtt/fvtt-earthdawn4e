@@ -89,6 +89,22 @@ export default class PowerMigration extends BaseMigration {
       reason:    ""
     };
 
+    if ( !source.system.powerType ) {
+      result.hasIssues = true;
+      result.reason += "Missing power type, please check. ";
+    }
+    
+    // check for rolltype "attack" but missing damageStep
+    if ( source.system.rollType === "attack" && !source.system.damageStep ) {
+      result.hasIssues = true;
+      result.reason += "Missing damage step for attack power, please check. ";
+    }
+
+    // check for missing rolltype
+    if ( !source.system.rollType ) {
+      result.hasIssues = true;
+      result.reason += "Missing rollType, please check. ";
+    }
     // Add more conditions as needed
 
     return result;

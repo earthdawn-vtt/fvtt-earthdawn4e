@@ -292,6 +292,26 @@ export default class ClassMigration extends BaseMigration {
       }
     }
 
+    // check for missing vocation talents
+    if ( source.type === "discipline" ) {
+      for ( let circle = 1; circle <= 15; circle++ ) {
+        const level = source.system?.advancement?.levels?.find( lvl => lvl.level === circle );
+        if ( level.level === 1 && level.abilities.class.length < 5 ) {
+          result.hasIssues = true;
+          result.reason += `Probably missing Discipline talents for circle ${circle}, please check. `;
+        }
+        if ( level.abilities.class.length === 0 ) {
+          result.hasIssues = true;
+          result.reason += `Missing Discipline talents for circle ${circle}, please check. `;
+        }
+      }
+
+      if ( !source.system.durability ) {
+        result.hasIssues = true;
+        result.reason += "Missing durability value, please check. ";
+      }
+    }
+
     // Add more conditions as needed
 
     return result;
