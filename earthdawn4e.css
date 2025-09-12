@@ -477,7 +477,7 @@ h3.label--rail .label__text::after {
   line-height: 1;
   font-weight: 700;
   font-size: 16px;
-  width: 15px;
+  width: 14px;
   height: auto;
 }
 .buffer--minus {
@@ -1645,7 +1645,6 @@ h3.label--rail .label__text::after {
   grid-column: 1;
   grid-row: 2;
   text-align: left;
-  padding: 23px 0 0 5px;
   justify-content: center;
   align-items: center;
 }
