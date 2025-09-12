@@ -209,78 +209,44 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async _addPermanentEffects( nextLevelData ) {
     const newEffects = await Promise.all(
       Array.from( nextLevelData.effects ).map(
-        async uuid => fromUuidSync( uuid ),
+        async uuid => fromUuid( uuid ),
       )
     );
 
-    const existingEffectsByKey = await this._mapExistingEffects();
-
-    const { effectsToAdd, effectsToRemove } = await this._determineEffectChanges( newEffects, existingEffectsByKey );
-
-    const newEffectData = await this._getEffectsForPermanentUse( effectsToAdd );
-
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", newEffectData );
-    await this.containingActor.deleteEmbeddedDocuments( "ActiveEffect", effectsToRemove.map( e => e.id ) );
+    await this._replacePreviousClassEffects( newEffects );
+    await this.containingActor.updateClassEffectStates();
   }
 
   /**
-   * Map existing effects to an object for later comparison with new effects.
-   * The format of the returned object depends on which class implements this method.
-   * @returns {Promise<{}>} An object containing existing effects.
-   * @protected
+   * Remove class effects from previous levels of this class that are replaced by effects
+   * from the new level. This only replaces old effects that apply changes to the same change key
+   * as an effect from the new level.
+   * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to add.
+   * @returns {Promise<void>}
    */
-  async _mapExistingEffects() {
-    const mapped = {};
+  async _replacePreviousClassEffects( newEffects ) {
+    const newChangeKeys = newEffects.map( effect => {
+      this._validateSingleChange( effect, "new" );
+      return effect.changes[0].key;
+    } );
 
-    for ( const effect of this.containingActor.classEffects ) {
+    if ( newChangeKeys.length === 0 ) return;
+
+    const effectsToRemove = this.containingActor.classEffects.filter( effect => {
+      if ( effect.system.source?.documentOriginUuid !== this.parent.uuid ) return false;
       this._validateSingleChange( effect, "existing" );
+      return newChangeKeys.includes( effect.changes[0].key );
+    } );
 
-      const key = effect.changes[0].key;
-      const value = effect.changes[0].value;
-
-      if ( mapped[key] ) {
-        mapped[key].effects.push( effect );
-        mapped[key].value += value;
-      } else {
-        mapped[key] = { effects: [ effect ], value };
-      }
-    }
-
-    return mapped;
-  }
-
-  /**
-   * Determine which effects need to be added and which need to be removed based on the new
-   * and the existing effects.
-   * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to consider adding.
-   * @param {object} existingEffects An object containing existing effects. The format depends on which class
-   * implements this method.
-   * @returns {Promise<{effectsToAdd: EarthdawnActiveEffect[], effectsToRemove: string[]}>} The effects to add and the IDs of
-   * the effects to remove.
-   * @protected
-   */
-  async _determineEffectChanges( newEffects, existingEffects ) {
-    const effectsToAdd = [];
-    const effectsToRemove = [];
-
-    for ( const newEffect of newEffects ) {
-      this._validateSingleChange( newEffect, "new" );
-
-      const key = newEffect.changes[0].key;
-      const value = newEffect.changes[0].value;
-
-      const existing = existingEffects[key];
-      if ( existing ) {
-        if ( existing.value < value ) {
-          effectsToRemove.push( ...existing.effects );
-          effectsToAdd.push( newEffect );
-        }
-      } else {
-        effectsToAdd.push( newEffect );
-      }
-    }
-
-    return { effectsToAdd, effectsToRemove };
+    await this.containingActor.deleteEmbeddedDocuments(
+      "ActiveEffect",
+      effectsToRemove.map( e => e.id )
+    );
+    const permanentNewEffects = await this._getEffectsForPermanentUse( newEffects, true );
+    await this.containingActor.createEmbeddedDocuments(
+      "ActiveEffect",
+      permanentNewEffects
+    );
   }
 
   /**
@@ -300,11 +266,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   /**
    * Get effects updated to be permanent, enabled, and not transferred to the target.
    * @param {EarthdawnActiveEffect[]} effects The effects to update.
+   * @param {boolean} [disabled] Whether the effects should be disabled.
    * @returns {Promise<object[]>} The updated effects data.
    */
-  async _getEffectsForPermanentUse( effects ) {
+  async _getEffectsForPermanentUse( effects, disabled = false ) {
     const permanentSettings = {
-      disabled: false,
+      disabled: disabled,
       system:   {
         duration:         { type: "permanent" },
         transferToTarget: false,
