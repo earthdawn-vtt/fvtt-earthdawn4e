@@ -57,7 +57,6 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
     await this._prepareSystemData( changes );
-    console.log( "Prepared changes:", changes );
   }
 
   /**
