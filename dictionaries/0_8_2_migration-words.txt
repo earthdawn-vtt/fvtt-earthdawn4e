@@ -68,3 +68,4 @@ reattunedifficulty
 weavingdifficulty
 threadsrequired
 areaofeffect
+rolltype

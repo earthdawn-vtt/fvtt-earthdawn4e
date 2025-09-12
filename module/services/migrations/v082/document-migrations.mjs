@@ -120,6 +120,8 @@ function applyDocumentTypeMigrations( source ) {
     path:           documentTypeMigrations.item.ClassMigration,
     questor:        documentTypeMigrations.item.ClassMigration,
     power:          documentTypeMigrations.item.PowerMigration,
+    path:           documentTypeMigrations.item.ClassMigration,
+    questor:        documentTypeMigrations.item.ClassMigration,
     shield:         documentTypeMigrations.item.ShieldMigration,
     skill:          documentTypeMigrations.item.SkillMigration,
     spell:          documentTypeMigrations.item.SpellMigration,

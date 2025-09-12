@@ -11,22 +11,6 @@ export default class TalentMigration extends BaseMigration {
     if ( source.type !== "talent" ) {
       return source;
     }
-
-    // Check for specific values that would cause a talent to be marked incomplete
-    const hasIncompleteAttributes = this.checkForIncompleteValues( source );
-
-    // If the talent has attributes that make it incomplete, add it to incomplete migrations
-    if ( hasIncompleteAttributes.hasIssues ) {
-      const migrationData = {
-        name:      source.name || "Unknown Talent",
-        uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
-        type:      source.type,
-        id:        source._id
-      };
-      this.addIncompleteMigration( migrationData, hasIncompleteAttributes.reason );
-      
-      // Continue with migration anyway to do as much as possible
-    }
     
     try {
       // Perform all migrations
@@ -37,8 +21,6 @@ export default class TalentMigration extends BaseMigration {
       AbilityMigration.migrateEarthdawnData( source );
       
       ImageMigration.migrateEarthdawnData( source );
-      
-      // DefenseMigration.migrateEarthdawnData( source );
 
       // Additional talent-specific migration logic
       // Migrate rollTypes healing
@@ -57,23 +39,42 @@ export default class TalentMigration extends BaseMigration {
         source.system.talentCategory = "other";
       }
 
+      // region Migration completeness check
+
+      // Check for specific values that would cause a talent to be marked incomplete
+      const hasIncompleteAttributes =  await this.checkForIncompleteValues( source );
+
+      // If the talent has attributes that make it incomplete, add it to incomplete migrations
+      if ( hasIncompleteAttributes.hasIssues ) {
+        const migrationData = {
+          name:      source.name || "Unknown Talent",
+          uuid:      `Item.${source._id}`,
+          type:      source.type,
+          id:        source._id
+        };
+        this.addIncompleteMigration( migrationData, hasIncompleteAttributes.reason );
+      
+      // Continue with migration anyway to do as much as possible
+      }
+
       // If we haven't already marked this as incomplete due to attributes,
       // mark it as successfully migrated
       if ( !hasIncompleteAttributes.hasIssues ) {
         // Migration was successful - add to successful migrations
         const migrationData = {
           name:      source.name || "Unknown Talent",
-          uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
+          uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
         };
         this.addSuccessfulMigration( migrationData );
       }
+      // endregion
     } catch ( error ) {
       // If any error occurs, consider it an incomplete migration
       const migrationData = {
         name:      source.name || "Unknown Talent",
-        uuid:      source._stats?.compendiumSource || `Item.${source._id}`,
+        uuid:      `Item.${source._id}`,
         type:      source.type,
         id:        source._id
       };
@@ -94,7 +95,43 @@ export default class TalentMigration extends BaseMigration {
       reason:    ""
     };
 
-    // Add more conditions as needed 
+    // check for missing rolltype
+    if ( !source.system.rollType ) {
+      result.hasIssues = true;
+      result.reason += "Missing rollType, please check. ";
+    }
+
+    // check for rolltype "attack" but missing weaponType
+    if ( source.system.rollType === "attack" && !source.system.weaponType ) {
+      result.hasIssues = true;
+      result.reason += "Missing weapon Types for attack rollType, please check. ";
+    }
+
+    // check for missing attributes
+    if ( !source.system.attributes || source.system.attributes.length === 0 ) {
+      result.hasIssues = true;
+      result.reason += "Missing attributes, please check. ";
+    }
+
+    // difficulty setting
+    if ( !source.system.difficulty ) {
+      result.hasIssues = true;
+      result.reason += "Missing difficulty setting, please check. ";
+    }
+
+    // check for missing edid
+    if ( !source.system.edid || source.system.edid === "none" ) {
+      result.hasIssues = true;
+      result.reason += "Missing or undefined edid, please check. ";
+    }
+
+    // check for missing talent category
+    if ( !source.system.talentCategory ) {
+      result.hasIssues = true;
+      result.reason += "Missing talent category, please check. ";
+    }
+
+    // Add more conditions as needed
 
     return result;
   }
