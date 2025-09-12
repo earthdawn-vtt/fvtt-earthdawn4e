@@ -533,21 +533,28 @@ h3.label--rail .label__text::after {
 .actor input[type='checkbox']:checked::after {
   color: var(--color-button-check-on);
 }
-.actor .icon--button {
+.actor .icon--button,
+.actor .item-control {
+  --icon-height: 100%;
+  --icon-width: 25px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: inline-flex;
   background: none;
   border: 0;
   padding: 0;
   cursor: pointer;
   color: var(--color-button-icon);
+  font-size: var(--font-size-13);
   min-height: 0;
+  align-items: center;
 }
-.actor .icon--button:hover {
+.actor .icon--button:hover,
+.actor .item-control:hover {
   color: var(--color-button-icon-hover);
+  text-shadow: none;
 }
 .actor .icon--button.icon {
-  --icon-size: 25px;
-  width: var(--icon-size);
-  height: var(--icon-size);
   line-height: 0;
   display: inline-block;
   padding: 0;
@@ -1253,7 +1260,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container {
   column-gap: var(--grid-col-gap-sm);
   text-transform: capitalize;
   font-weight: normal;
@@ -1276,7 +1284,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container.container__header {
   background-color: var(--color-secondary-grey);
   color: var(--color-text-banner);
   text-transform: uppercase;
@@ -1401,6 +1410,10 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(40px, 40px) minmax(80px, 80px);
+}
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(1fr, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .prosemirror .editor-content,
 .application.sheet.earthdawn4e.actor .window-content prose-mirror .editor-content {

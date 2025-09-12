@@ -1,7 +1,9 @@
 <div class="itemControlGroup" data-item-id="{{_id}}">
-  <a class="item-control item-upgrade__class" data-action="upgradeItem" title="{{localize 'ED.Controls.upgrade'}}">
-    <i class="fas fa-arrow-circle-up"></i>
-  </a>
+  {{#if @root.editable}}
+    <a class="item-control item-upgrade__class" data-action="upgradeItem" title="{{localize 'ED.Controls.upgrade'}}">
+      <i class="fas fa-arrow-circle-up"></i>
+    </a>
+  {{/if}}
   {{!-- <a class="item-control item-downgrade" data-action="displayChild" title="{{localize 'ED.Controls.downgrade'}}">
     <i class="fas fa-arrow-circle-down"></i>
   </a> --}}
