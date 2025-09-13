@@ -128,51 +128,6 @@ const DocumentSheetMixinEd = Base => {
 
     // endregion
 
-    /**
-     * Override the default render method to preserve the active tab state
-     * @inheritdoc
-     */
-    async render( force, options ) {
-      // Store the current tabGroups state before re-rendering
-      this._lastTabGroups = this.tabGroups ? foundry.utils.deepClone( this.tabGroups ) : null;
-      
-      // Call the parent render method
-      const result = await super.render( force, options );
-      
-      // Restore the tab state if it exists
-      if ( this._lastTabGroups ) {
-        this.tabGroups = this._lastTabGroups;
-        
-        // Also update the DOM to reflect the correct active tab
-        if ( this.element ) {
-          for ( const [ group, tabId ] of Object.entries( this._lastTabGroups ) ) {
-            // Activate the tab in the UI
-            const tabs = this.element.querySelectorAll( `[data-tab][data-group="${group}"]` );
-            for ( const tab of tabs ) {
-              // Remove active class from all tabs
-              tab.classList.remove( "active" );
-              
-              // Add active class to the active tab
-              if ( tab.dataset.tab === tabId ) {
-                tab.classList.add( "active" );
-              }
-            }
-            
-            // Activate the tab content
-            const contents = this.element.querySelectorAll( `[data-group="${group}"]` );
-            for ( const content of contents ) {
-              content.classList.remove( "active" );
-              if ( content.dataset.tab === tabId ) {
-                content.classList.add( "active" );
-              }
-            }
-          }
-        }
-      }
-      
-      return result;
-    }
-
     // region Event Handlers
 
     /**
