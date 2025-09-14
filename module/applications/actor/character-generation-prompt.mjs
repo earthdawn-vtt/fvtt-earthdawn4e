@@ -694,7 +694,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       skillLanguageSpeak = await ItemEd.create(
         foundry.utils.mergeObject(
           ED4E.documentData.Item.skill.languageSpeak,
-          { system: { level: ED4E.availableRanks.speak, edid: edidLanguageSpeak } },
+          { system: { level: ED4E.availableRanks.speak, edid: edidLanguageSpeak, tier: "novice" }  },
           { inplace: false } ),
       );
       docCollections.skills.push( skillLanguageSpeak );
@@ -703,7 +703,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       skillLanguageRW = await ItemEd.create(
         foundry.utils.mergeObject(
           ED4E.documentData.Item.skill.languageRW,
-          { system: { level: ED4E.availableRanks.readWrite, edid: edidLanguageRW } },
+          { system: { level: ED4E.availableRanks.readWrite, edid: edidLanguageRW, tier: "novice" } },
           { inplace: false } ),
       );
       docCollections.skills.push( skillLanguageRW );
