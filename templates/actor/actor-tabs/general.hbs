@@ -62,7 +62,7 @@
             <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
           </div>
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.karma.max" value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+            <input class="input__square-input--centered" {{#unless (eq this.actor.type "character")}}name="system.karma.max"{{/unless}} value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
           </div>
           <div class="karma-devotion__grid--item">
             <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
@@ -88,7 +88,7 @@
           </div>
           <div class="karma-devotion__grid--item">
             <input class="input__square-input--centered"
-                   name="system.devotion.max"
+                   {{#unless (eq this.actor.type "character")}}name="system.devotion.max"{{/unless}}
                    value="{{actor.system.devotion.max}}"
                    {{#if (eq this.actor.type "character")}}readonly{{/if}}>
           </div>
@@ -183,7 +183,6 @@
             </div>
             <div class="initiative__grid--item">
               <input class="input__square-input--centered"
-                     name="system.initiativePenalty"
                      value="{{actor.system.initiativePenalty}}" readonly>
             </div>
           </div>

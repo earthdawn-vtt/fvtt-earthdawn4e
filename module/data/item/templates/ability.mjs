@@ -22,11 +22,17 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   TargetTemplate
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Ability",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -109,9 +115,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Getters                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Getters
 
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
@@ -167,9 +173,9 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return true;
   }
 
-  /* -------------------------------------------- */
-  /*  Legend                                      */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region LP Tracking
 
   async chooseTier( ) {
     const promptFactory = PromptFactory.fromDocument( this.parent );
@@ -191,14 +197,18 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return updatedItem;
   }
 
+  // region LP Learning
+
   /** @inheritDoc */
   static async learn( actor, item, createData ) {
     return await super.learn( actor, item, createData );
   }
 
-  /* -------------------------------------------- */
-  /*                    Rolling                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // endregion
+
+  // region Rolling
 
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
@@ -303,14 +313,15 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return "_drawWeapon";
   }
 
+  // endregion
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 }
