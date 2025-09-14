@@ -44,7 +44,8 @@
     .recovery__grid--container,
     .initiative__grid--container,
     .initiative-npc__grid--container,
-    .spell-card__grid--container {
+    .spell-card__grid--container,
+    .language-card__grid--container {
       column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
@@ -70,7 +71,7 @@
     .class-card__grid--item:nth-child(4),
     .effect-card__grid--item:nth-child(6) {
       padding: 0 4px 0 0;
-      color: var(--color-button-icon)
+      color: var(--color-button-icon);
     }
 
     .attribute-card__grid--item:nth-child(2),
@@ -209,23 +210,30 @@
         minmax(40px, 40px)
         minmax(80px, 80px);
     }
+
+    .language-card__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(1fr, 1fr);
+    }
+
     .prosemirror .editor-content, prose-mirror .editor-content {
       font-size: var(--font-size-15);
     }
 
     /* ======================= Abilities tab ======================= */
-.ability-card__grid--container {
-  display: grid;
-  grid-template-columns:
-    minmax(25px, 25px)
-    minmax(200px, 1fr)
-    minmax(60px, 60px)
-    minmax(40px, 40px)
-    minmax(40px, 40px)
-    minmax(60px, 60px)
-    minmax(60px, 60px)
-    minmax(80px, 80px);
-  }
+    .ability-card__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(25px, 25px)
+        minmax(200px, 1fr)
+        minmax(60px, 60px)
+        minmax(40px, 40px)
+        minmax(40px, 40px)
+        minmax(60px, 60px)
+        minmax(60px, 60px)
+        minmax(80px, 80px);
+      }
 
   .ability-card__grid--item:nth-child(2) { text-align: left; }
 
@@ -498,7 +506,7 @@
         }
 
         /* damage grid placement */
-        .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; padding: 23px 0 0 5px; justify-content: center; align-items: center; }
+        .damage__grid--item.damage__title { grid-column: 1; grid-row: 2; text-align: left; justify-content: center; align-items: center; }
         .damage__grid--item.damage__normal { grid-column: 2; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.damage__stun { grid-column: 3; grid-row: 2; display: flex; justify-content: center; align-items: center; }
         .damage__grid--item.damage__total { grid-column: 4; grid-row: 2; display: flex; justify-content: center; align-items: center; }

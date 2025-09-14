@@ -22,23 +22,31 @@
 
 
   /* generic icon button */
-  .icon--button {
+
+  .icon--button,
+  .item-control {
+    --icon-height: 100%;
+    --icon-width: 25px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: inline-flex;
     background: none;
     border: 0;
     padding: 0;
     cursor: pointer;
     color: var(--color-button-icon);
+    font-size: var(--font-size-13);
     min-height: 0;
+    align-items: center;
   }
 
-  .icon--button:hover {
+  .icon--button:hover,
+  .item-control:hover {
     color: var(--color-button-icon-hover);
+    text-shadow: none;
   }
 
   .icon--button.icon {
-    --icon-size: 25px;
-    width: var(--icon-size);
-    height: var(--icon-size);
     line-height: 0;
     display: inline-block;
     padding: 0;
