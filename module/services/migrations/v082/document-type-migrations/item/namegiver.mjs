@@ -9,7 +9,7 @@ export default class NamegiverMigration extends BaseMigration {
     // Apply image migration
     ImageMigration.migrateEarthdawnData( source );
 
-    if ( source.system ) {
+    if ( source.system && source.system.edid === undefined ) {
       // Migrate attributes
       if ( !source.system.attributeValues ) {
         if (
