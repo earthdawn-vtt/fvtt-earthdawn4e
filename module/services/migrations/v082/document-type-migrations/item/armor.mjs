@@ -74,26 +74,6 @@ export default class ArmorMigration extends BaseMigration {
       reason:    ""
     };
 
-    if ( !source.system.physical.armor ) {
-      result.hasIssues = true;
-      result.reason += "Missing physical armor value, please check. ";
-    }
-
-    if ( !source.system.mystical.armor ) {
-      result.hasIssues = true;
-      result.reason += "Missing mystical armor value, please check. ";
-    }
-
-    if ( !source.system.physical.forgeBonus ) {
-      result.hasIssues = true;
-      result.reason += "Physical forge bonus cannot be negative, please check. ";
-    }
-
-    if ( !source.system.mystical.forgeBonus ) {
-      result.hasIssues = true;
-      result.reason += "Mystical forge bonus cannot be negative, please check. ";
-    }
-
     // Add more conditions as needed
 
     return result;

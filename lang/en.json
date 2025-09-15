@@ -3350,6 +3350,8 @@
       "windling":                                  "Windling"
     },
     "Migrations": {
+      "PersistComplete":                           "Migration persistence complete. Updated items and actors are now saved to the database.",
+      "StartingPersistProcess":                    "Persisting migrated documents to database. This may take a moment...",
       "setSpellDuration":                          "TODO: Add translation",
       "setSpellEffect":                            "TODO: Add translation",
       "setSpellRange":                             "TODO: Add translation"
