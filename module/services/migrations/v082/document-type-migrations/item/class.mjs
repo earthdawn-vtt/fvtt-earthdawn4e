@@ -16,12 +16,35 @@ export default class ClassMigration extends BaseMigration {
   }
   
   /**
+   * Validate a talent UUID and check if it looks like a valid UUID
+   * @param {string} talent - The talent UUID to validate
+   * @param {string} tier - The tier name for error reporting
+   * @param {object} source - The source data object for adding error info
+   * @returns {boolean} - Whether the talent looks like a valid UUID
+   */
+  static validateTalentUuid( talent, tier, source ) {
+    // Regular expression to check if a string looks like a UUID reference
+    const uuidPattern = /^(Compendium\.|UUID\.Compendium\.)[^.]+\.[^.]+\.Item\.[a-zA-Z0-9]{16}$/;
+    
+    if ( uuidPattern.test( talent ) ) {
+      return true;
+    } else {
+      // Add to migration report if it doesn't look like a UUID
+      source.description ??= {};
+      source.description.value ??= "";
+      source.description.value += `<p><strong>Invalid talent UUID format in ${tier} tier:</strong></p><p>${talent}</p>`;
+      return false;
+    }
+  }
+
+  /**
    * Migrate tier-based talent pools from legacy format.
    * @param {object} source - The source data object
    */
   static migrateTierTalentPools( source ) {
     if ( !source?.system?.descriptionNovice ) return;
 
+    // Parse talent links from descriptions
     const novicePoolTalents = this.parseTalentLinks( source.system.descriptionNovice );
     let journeymanPoolTalents = this.parseTalentLinks( source.system.descriptionJourneyman );
     journeymanPoolTalents = journeymanPoolTalents.filter( talent => !novicePoolTalents.includes( talent ) );
@@ -30,15 +53,22 @@ export default class ClassMigration extends BaseMigration {
     let masterPoolTalents = this.parseTalentLinks( source.system.descriptionMaster );
     masterPoolTalents = masterPoolTalents.filter( talent => !novicePoolTalents.includes( talent ) && !journeymanPoolTalents.includes( talent ) && !wardenPoolTalents.includes( talent ) );
   
+    // Filter and validate each tier's talent pool
+    const validatedNoviceTalents = novicePoolTalents.filter( talent => this.validateTalentUuid( talent, "novice", source ) );
+    const validatedJourneymanTalents = journeymanPoolTalents.filter( talent => this.validateTalentUuid( talent, "journeyman", source ) );
+    const validatedWardenTalents = wardenPoolTalents.filter( talent => this.validateTalentUuid( talent, "warden", source ) );
+    const validatedMasterTalents = masterPoolTalents.filter( talent => this.validateTalentUuid( talent, "master", source ) );
+    
+    // Initialize necessary objects
     source.system ??= {};
     source.system.advancement ??= {};
     source.system.advancement.abilityOptions ??= {};
   
     // Assign talent pools to their respective tiers
-    this.assignTalentsToTier( source, "novice", novicePoolTalents );
-    this.assignTalentsToTier( source, "journeyman", journeymanPoolTalents );
-    this.assignTalentsToTier( source, "warden", wardenPoolTalents );
-    this.assignTalentsToTier( source, "master", masterPoolTalents );
+    this.assignTalentsToTier( source, "novice", validatedNoviceTalents );
+    this.assignTalentsToTier( source, "journeyman", validatedJourneymanTalents );
+    this.assignTalentsToTier( source, "warden", validatedWardenTalents );
+    this.assignTalentsToTier( source, "master", validatedMasterTalents );
   }
 
   /**
@@ -128,7 +158,6 @@ export default class ClassMigration extends BaseMigration {
     const circleDescriptionKey = `descriptionCircle${circleNumber}`;
     if ( source.system?.[circleDescriptionKey] ) {
       const classTalents = this.parseTalentLinks( source.system[circleDescriptionKey] );
-      console.log ("classTalents", classTalents);
       levelData.abilities.class = this.validateAndFilterTalents( classTalents, circleNumber, source );
     }
   }
@@ -142,7 +171,6 @@ export default class ClassMigration extends BaseMigration {
    */
   static validateAndFilterTalents( talentUuids, circleNumber, source ) {
     const validTalents = [];
-    console.log ("talentUuids", talentUuids);
     
     // Regular expression to check if a string looks like a UUID reference
     const uuidPattern = /^(Compendium\.|UUID\.Compendium\.)[^.]+\.[^.]+\.Item\.[a-zA-Z0-9]{16}$/;
@@ -153,7 +181,7 @@ export default class ClassMigration extends BaseMigration {
         if ( item ) {
           // Successfully resolved UUID
           validTalents.push( item.uuid );
-        } else if ( uuidPattern.test(talent) ) {
+        } else if ( uuidPattern.test( talent ) ) {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
@@ -168,7 +196,7 @@ export default class ClassMigration extends BaseMigration {
         }
       } catch ( error ) {
         // If fromUuidSync fails, check if it looks like a UUID
-        if ( uuidPattern.test(talent) ) {
+        if ( uuidPattern.test( talent ) ) {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
@@ -183,7 +211,7 @@ export default class ClassMigration extends BaseMigration {
         }
       }
     }
-    console.log ("validTalents", validTalents);
+    console.log ( "validTalents", validTalents );
     return validTalents;
   }
 
