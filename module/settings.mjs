@@ -82,7 +82,7 @@ export default function registerSystemSettings() {
     scope:   "user",
     type:    Boolean,
     config:  true,
-    default: false
+    default: true
   } );
 
   /* -------------------------------------------------------------------------------- */
