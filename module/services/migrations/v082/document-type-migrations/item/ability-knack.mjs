@@ -4,6 +4,7 @@ import BaseMigration from "../../../common/base-migration.mjs";
 import EdIdMigration from "./edid.mjs";
 import AbilityMigration from "./abilities.mjs";
 import KnackSourceTalentMigration from "../../field-migrations/knack-source.mjs";
+import RequirementsMigration from "../../field-migrations/knack-requirements.mjs";
 
 export default class AbilityKnackMigration extends BaseMigration {
 
@@ -19,6 +20,8 @@ export default class AbilityKnackMigration extends BaseMigration {
       ImageMigration.migrateEarthdawnData( source );
 
       RestrictionMigration.migrateEarthdawnData( source );
+
+      RequirementsMigration.migrateEarthdawnData( source );
 
       KnackSourceTalentMigration.migrateEarthdawnData( source );
 
@@ -113,6 +116,18 @@ export default class AbilityKnackMigration extends BaseMigration {
     if ( !source.system.edid || source.system.edid === "none" ) {
       result.hasIssues = true;
       result.reason += "Missing or undefined edid, please check. ";
+    }
+
+    // Add error message for Restrictions if empty
+    if ( !source.system.restrictions || source.system.restrictions.length === 0 ) {
+      result.hasIssues = true;
+      result.reason += "No restrictions defined, please check. ";
+    }
+
+    // Add error message for Requirements if empty
+    if ( !source.system.requirements || source.system.requirements.length === 0 ) {
+      result.hasIssues = true;
+      result.reason += "No requirements defined, please check. ";
     }
 
     // Add more conditions as needed
