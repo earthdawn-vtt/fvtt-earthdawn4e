@@ -142,24 +142,48 @@ export default class ClassMigration extends BaseMigration {
    */
   static validateAndFilterTalents( talentUuids, circleNumber, source ) {
     const validTalents = [];
+    console.log ("talentUuids", talentUuids);
+    
+    // Regular expression to check if a string looks like a UUID reference
+    const uuidPattern = /^(Compendium\.|UUID\.Compendium\.)[^.]+\.[^.]+\.Item\.[a-zA-Z0-9]{16}$/;
+    
     for ( const talent of talentUuids ) {
       try {
         const item = fromUuidSync( talent );
         if ( item ) {
+          // Successfully resolved UUID
           validTalents.push( item.uuid );
+        } else if ( uuidPattern.test(talent) ) {
+          // String looks like a UUID but couldn't be resolved - add it anyway
+          validTalents.push( talent );
+          // Also note in description that this might be a module issue
+          source.description ??= {};
+          source.description.value ??= "";
+          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
         } else { 
-        // Add migration error info to description
+          // Not a valid UUID format
           source.description ??= {};
           source.description.value ??= "";
           source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>unsolved migration objects:</strong></p><p> ${talent}</p>`;
         }
       } catch ( error ) {
-      // If fromUuidSync fails, add to description for manual review
-        source.description ??= {};
-        source.description.value ??= "";
-        source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>unsolved migration objects:</strong></p><p> ${talent}</p>`;
+        // If fromUuidSync fails, check if it looks like a UUID
+        if ( uuidPattern.test(talent) ) {
+          // String looks like a UUID but couldn't be resolved - add it anyway
+          validTalents.push( talent );
+          // Also note in description that this might be a module issue
+          source.description ??= {};
+          source.description.value ??= "";
+          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
+        } else {
+          // Not a valid UUID format or other error
+          source.description ??= {};
+          source.description.value ??= "";
+          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>unsolved migration objects:</strong></p><p> ${talent}</p>`;
+        }
       }
     }
+    console.log ("validTalents", validTalents);
     return validTalents;
   }
 
