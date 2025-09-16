@@ -106,7 +106,13 @@ export default class ClassItemSheetEd extends ItemSheetEd {
         label: "ED.Item.Tabs.talentOptions",
       },
     };
-    for ( let levelIndex = 1; levelIndex <= this.document.system.advancement.levels.length; levelIndex++ ) {
+    
+    // Get levels from the document
+    const levels = this.document.system.advancement.levels || [];
+    
+    // Add sequential tabs regardless of level numbers for consistency
+    for ( let levelIndex = 1; levelIndex <= levels.length; levelIndex++ ) {
+      // Always use sequential tab IDs
       classTabs[`level${levelIndex}`] = {
         id:    `level${levelIndex}`,
         group: "classAdvancements",

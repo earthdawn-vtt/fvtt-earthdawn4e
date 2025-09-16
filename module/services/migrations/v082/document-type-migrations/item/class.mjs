@@ -93,7 +93,14 @@ export default class ClassMigration extends BaseMigration {
 
     // Skip if levels already exist - never overwrite existing level data
     if ( source.system?.advancement?.levels?.length > 0 ) {
-      return; // Already has levels, don't overwrite
+      // Even if levels exist, ensure they have the proper 'level' property
+      source.system.advancement.levels = source.system.advancement.levels.map( ( levelData, i ) => {
+        if ( !levelData.level || typeof levelData.level !== "number" ) {
+          levelData.level = i + 1;
+        }
+        return this.ensureLevelDataSerializable( levelData );
+      } );
+      return; // Already has levels with proper level numbers, don't recreate
     }
 
     // Create advancement structure even if no legacy fields (for new disciplines)
@@ -120,12 +127,60 @@ export default class ClassMigration extends BaseMigration {
       15: "master",
     };
   
-    // Create 15 levels
+    // Create 15 levels, ensuring we have the proper data structure with explicit level numbers
     for ( let i = 1; i <= 15; i++ ) {
       const levelData = this.createLevelData( i, tierByCircle[i] );
       this.migrateLevelTalents( source, levelData, i );
-      source.system.advancement.levels.push( levelData );
+      
+      // Ensure data is properly serialized (convert any Sets to Arrays)
+      // and that level number is explicitly set
+      const serializedLevel = this.ensureLevelDataSerializable( levelData );
+      // Explicitly ensure the level property is set
+      serializedLevel.level = i;
+      source.system.advancement.levels.push( serializedLevel );
     }
+    
+    // Convert ability options to ensure they're properly serialized
+    if ( source.system.advancement.abilityOptions ) {
+      for ( const [ tier, talents ] of Object.entries( source.system.advancement.abilityOptions ) ) {
+        // Convert Sets or other collection types to plain arrays
+        if ( talents && typeof talents !== "string" ) {
+          source.system.advancement.abilityOptions[tier] = 
+            Array.isArray( talents ) ? talents : Array.from( talents );
+        }
+      }
+    }
+  }
+  
+  /**
+   * Ensure level data is properly serializable by converting Sets to Arrays
+   * @param {object} levelData - The level data to serialize
+   * @returns {object} - Serializable level data
+   */
+  static ensureLevelDataSerializable( levelData ) {
+    // Create a fresh copy to avoid modifying the original
+    const serialized = foundry.utils.deepClone( levelData );
+    
+    // Ensure level property is set and is a number
+    if ( !serialized.level || typeof serialized.level !== "number" ) {
+      console.warn( "Level data is missing level number or it's not a number", serialized );
+    }
+    
+    // Convert ability collections to arrays
+    if ( serialized.abilities ) {
+      for ( const [ key, collection ] of Object.entries( serialized.abilities ) ) {
+        if ( collection && typeof collection !== "string" ) {
+          serialized.abilities[key] = Array.isArray( collection ) ? collection : Array.from( collection );
+        }
+      }
+    }
+    
+    // Convert effects to array if needed
+    if ( serialized.effects && typeof serialized.effects !== "string" ) {
+      serialized.effects = Array.isArray( serialized.effects ) ? serialized.effects : Array.from( serialized.effects );
+    }
+    
+    return serialized;
   }
 
   /**
@@ -172,10 +227,22 @@ export default class ClassMigration extends BaseMigration {
   static validateAndFilterTalents( talentUuids, circleNumber, source ) {
     const validTalents = [];
     
+    // Skip if we don't have a valid array of talent UUIDs
+    if ( !Array.isArray( talentUuids ) || !talentUuids.length ) {
+      return [];
+    }
+    
     // Regular expression to check if a string looks like a UUID reference
     const uuidPattern = /^(Compendium\.|UUID\.Compendium\.)[^.]+\.[^.]+\.Item\.[a-zA-Z0-9]{16}$/;
     
+    // Initialize description if needed
+    source.description ??= {};
+    source.description.value ??= "";
+    
     for ( const talent of talentUuids ) {
+      // Skip undefined or null entries
+      if ( !talent ) continue;
+      
       try {
         const item = fromUuidSync( talent );
         if ( item ) {
@@ -185,14 +252,10 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description ??= {};
-          source.description.value ??= "";
           source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
         } else { 
           // Not a valid UUID format
-          source.description ??= {};
-          source.description.value ??= "";
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>unsolved migration objects:</strong></p><p> ${talent}</p>`;
+          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Unsolved migration object:</strong></p><p>${talent}</p>`;
         }
       } catch ( error ) {
         // If fromUuidSync fails, check if it looks like a UUID
@@ -200,18 +263,14 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description ??= {};
-          source.description.value ??= "";
           source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
         } else {
           // Not a valid UUID format or other error
-          source.description ??= {};
-          source.description.value ??= "";
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>unsolved migration objects:</strong></p><p> ${talent}</p>`;
+          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Unsolved migration object:</strong></p><p>${talent}</p>`;
         }
       }
     }
-    console.log ( "validTalents", validTalents );
+    console.log( "validTalents", validTalents );
     return validTalents;
   }
 
@@ -298,6 +357,45 @@ export default class ClassMigration extends BaseMigration {
   }
 
   /**
+   * Ensure all source data is properly serializable and doesn't contain complex objects
+   * @param {object} source - The source data to prepare
+   * @returns {object} - The prepared source data
+   */
+  static prepareSourceData( source ) {
+    // Create a deep copy to avoid modifying the original
+    const prepared = foundry.utils.deepClone( source );
+    
+    // Ensure advancement structure exists
+    if ( !prepared.system?.advancement ) return prepared;
+    
+    // Process levels
+    if ( Array.isArray( prepared.system.advancement.levels ) ) {
+      prepared.system.advancement.levels = prepared.system.advancement.levels.map( 
+        ( level, index ) => {
+          const serializedLevel = this.ensureLevelDataSerializable( level );
+          // Always ensure level number is set, using index+1 if necessary
+          if ( !serializedLevel.level || typeof serializedLevel.level !== "number" ) {
+            serializedLevel.level = index + 1;
+          }
+          return serializedLevel;
+        }
+      );
+    }
+    
+    // Process ability options
+    if ( prepared.system.advancement.abilityOptions ) {
+      for ( const [ tier, talents ] of Object.entries( prepared.system.advancement.abilityOptions ) ) {
+        if ( talents && typeof talents !== "string" ) {
+          prepared.system.advancement.abilityOptions[tier] = 
+            Array.isArray( talents ) ? talents : Array.from( talents );
+        }
+      }
+    }
+    
+    return prepared;
+  }
+  
+  /**
    * Migrate Earthdawn data
    * @param {object} source - The source data object
    * @returns {object} - The migrated source data object
@@ -313,7 +411,7 @@ export default class ClassMigration extends BaseMigration {
 
       // Skip migration if already properly migrated (has levels)
       if ( source?.system?.advancement?.levels?.length > 0 ) {
-        return source;
+        return this.prepareSourceData( source );
       }
 
       // Migrate basic description data
@@ -329,6 +427,12 @@ export default class ClassMigration extends BaseMigration {
       if ( source.system?.circle ) {
         source.system.level = source.system.circle;
       }
+
+      // Ensure all data is properly serializable
+      const preparedSource = this.prepareSourceData( source );
+      
+      // Update source with prepared data
+      Object.assign( source, preparedSource );
 
       // region Migration completeness check
 

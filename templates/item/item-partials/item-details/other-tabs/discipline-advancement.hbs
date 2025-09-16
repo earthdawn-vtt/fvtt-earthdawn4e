@@ -44,8 +44,8 @@
         <!-- Level Contents -->
 
         {{#each item.system.advancement.levels}}
-          <div id="level-{{this.level}}" class="tab {{lookup (lookup @root/tabs.classAdvancements (concat "level" this.level)) "cssClass"}} item-id advancement-level" name="system.advancement.level.{{@index}}.id"
-               data-tab="level{{this.level}}" data-group="classAdvancements" data-value="{{@index}}" data-level-index="{{@index}}"
+          <div id="level-{{ed-add @index 1}}" class="tab {{lookup (lookup @root/tabs.classAdvancements (concat "level" (ed-add @index 1))) "cssClass"}} item-id advancement-level" name="system.advancement.level.{{@index}}.id"
+               data-tab="level{{ed-add @index 1}}" data-group="classAdvancements" data-value="{{@index}}" data-level-index="{{@index}}"
                data-level="{{this.level}}">
 
             <!-- Level Number -->
