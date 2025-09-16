@@ -3571,8 +3571,14 @@
         "troubleshooting":                         "Fehlermeldung"
       },
       "Update": {
-        "updateNewsHint":                          "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
-        "updateNewsName":                          "Verstecke Update Nachrichten"
+        "updateNews": {                             
+          "hint":                                    "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
+          "label":                          "Verstecke Update Nachrichten"
+        },
+        "migrationReport": {
+          "hint":                                    "Wenn das Setting aktiv ist, wird der Migrationsbericht nicht mehr angezeigt.",
+          "label":                          "Verstecke Migrationsbericht"
+        }
       },
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"

@@ -64,12 +64,21 @@ export function getEdidSettingKey( edidName ) {
 export default function registerSystemSettings() {
 
   /* -------------------------------------------------------------------------------- */
-  /*                                      ED-IDs                                      */
+  /*                             Update & Migration                                   */
   /* -------------------------------------------------------------------------------- */
 
   game.settings.register( "ed4e", "updateNews", {
-    name:    "ED.Settings.Update.updateNewsName",
-    hint:    "ED.Settings.Update.updateNewsHint",
+    name:    "ED.Settings.Update.updateNews.label",
+    hint:    "ED.Settings.Update.updateNews.hint",
+    scope:   "user",
+    type:    Boolean,
+    config:  true,
+    default: false
+  } );
+
+  game.settings.register( "ed4e", "migrationReport", {
+    name:    "ED.Settings.Update.migrationReport.label",
+    hint:    "ED.Settings.Update.migrationReport.hint",
     scope:   "user",
     type:    Boolean,
     config:  true,
