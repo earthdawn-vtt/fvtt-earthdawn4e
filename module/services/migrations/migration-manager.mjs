@@ -356,43 +356,10 @@ export default class MigrationManager {
       ui.notifications.info( game.i18n.localize( "ED.Migration.StartingPersistProcess" ) );
     }
     
-    // Create a progress bar element
-    if ( interactive ) {
-      const progressBar = document.createElement( "div" );
-      progressBar.id = "migration-progress";
-      progressBar.className = "migration-progress";
-      progressBar.style.position = "fixed";
-      progressBar.style.top = "60px";
-      progressBar.style.left = "0";
-      progressBar.style.width = "100%";
-      progressBar.style.height = "5px";
-      progressBar.style.zIndex = "1000";
-      
-      const bar = document.createElement( "div" );
-      bar.className = "progress-bar";
-      bar.style.height = "100%";
-      bar.style.width = "0%";
-      bar.style.backgroundColor = "#4b7fd1";
-      bar.style.transition = "width 0.3s";
-      
-      progressBar.appendChild( bar );
-      document.body.appendChild( progressBar );
-    }
-    
-    const updateProgressBar = ( current, total ) => {
-      if ( interactive ) {
-        const percentage = Math.round( ( current / total ) * 100 );
-        const bar = document.querySelector( "#migration-progress .progress-bar" );
-        if ( bar ) bar.style.width = `${percentage}%`;
-      }
-    };
-    
     try {
-      // Count total documents for progress tracking
+      // Get all documents to process
       const items = game.items.contents;
       const actors = game.actors.contents;
-      const totalDocuments = items.length + actors.length;
-      let processedCount = 0;
       
       // Process all items in the world
       for ( const item of items ) {
@@ -411,9 +378,6 @@ export default class MigrationManager {
           console.error( `Failed to persist migrated item ${item.name}:`, error );
           stats.errors++;
         }
-        
-        processedCount++;
-        updateProgressBar( processedCount, totalDocuments );
       }
       
       // Process all actors in the world
@@ -450,9 +414,6 @@ export default class MigrationManager {
           console.error( `Failed to persist migrated actor ${actor.name}:`, error );
           stats.errors++;
         }
-        
-        processedCount++;
-        updateProgressBar( processedCount, totalDocuments );
       }
       
       // Process tokens in scenes if needed (for unlinked tokens)
@@ -477,13 +438,7 @@ export default class MigrationManager {
       }
       
     } finally {
-      // Clean up progress bar
       if ( interactive ) {
-        setTimeout( () => {
-          const progressBar = document.getElementById( "migration-progress" );
-          if ( progressBar ) progressBar.remove();
-        }, 1000 );
-        
         ui.notifications.info( game.i18n.localize( "ED.Migration.PersistComplete" ) );
       }
     }
