@@ -364,15 +364,25 @@ export default class MigrationManager {
       // Process all items in the world
       for ( const item of items ) {
         try {
-          // Use the Foundry v13 syntax for complete system data replacement with ==system
+          // Get existing flags to preserve them
+          const existingFlags = foundry.utils.deepClone(item.flags || {});
+          
+          // Ensure ed4e namespace exists
+          if (!existingFlags.ed4e) existingFlags.ed4e = {};
+          
+          // Add migration version without overwriting other flags
+          existingFlags.ed4e.migratedVersion = game.system.version;
+          
+          // Update system data and restore all flags
           await item.update({
             "==system": item.system.toObject(),
-            "flags.ed4e.migratedVersion": game.system.version
+            "flags": existingFlags
           }, {
             diff: false,
             recursive: false,
             noHook: false // We want hooks to fire for proper updating
           });
+          
           stats.items++;
         } catch ( error ) {
           console.error( `Failed to persist migrated item ${item.name}:`, error );
@@ -383,10 +393,19 @@ export default class MigrationManager {
       // Process all actors in the world
       for ( const actor of actors ) {
         try {
-          // Use the Foundry v13 syntax for complete system data replacement with ==system
+          // Get existing flags to preserve them
+          const existingFlags = foundry.utils.deepClone(actor.flags || {});
+          
+          // Ensure ed4e namespace exists
+          if (!existingFlags.ed4e) existingFlags.ed4e = {};
+          
+          // Add migration version without overwriting other flags
+          existingFlags.ed4e.migratedVersion = game.system.version;
+          
+          // Update system data and restore all flags
           await actor.update({
             "==system": actor.system.toObject(),
-            "flags.ed4e.migratedVersion": game.system.version
+            "flags": existingFlags
           }, {
             diff: false,
             recursive: false,
@@ -396,14 +415,27 @@ export default class MigrationManager {
           // Also update embedded items within actors
           if (actor.items?.size > 0) {
             const embeddedUpdates = [];
+            
+            // Handle each embedded item
             for (const embeddedItem of actor.items) {
+              // Get existing flags from the embedded item
+              const existingItemFlags = foundry.utils.deepClone(embeddedItem.flags || {});
+              
+              // Ensure ed4e namespace exists
+              if (!existingItemFlags.ed4e) existingItemFlags.ed4e = {};
+              
+              // Add migration version without overwriting other flags
+              existingItemFlags.ed4e.migratedVersion = game.system.version;
+              
+              // Create update with preserved flags
               embeddedUpdates.push({
                 _id: embeddedItem.id,
                 "==system": embeddedItem.system.toObject(),
-                "flags.ed4e.migratedVersion": game.system.version
+                "flags": existingItemFlags
               });
             }
             
+            // Apply updates if we have any
             if (embeddedUpdates.length > 0) {
               await actor.updateEmbeddedDocuments("Item", embeddedUpdates);
             }
