@@ -175,28 +175,6 @@ export default class MigrationManager {
       return workingSource;
     }
   }
-
-  /**
-   * Get debugging information about registered migrations
-   * @returns {object} - Debug information
-   */
-  static getDebugInfo() {
-    const systems = Array.from( this.#migrationRegistry.keys() );
-    const types = {};
-    
-    for ( const [ system, handlers ] of this.#migrationRegistry ) {
-      types[ system ] = Array.from( handlers.keys() );
-    }
-
-    // Get type transformation info from TypeTransformationManager
-    const typeTransformInfo = TypeTransformationManager.getDebugInfo();
-
-    return {
-      registeredSystems: systems,
-      registeredTypes:   types,
-      ...typeTransformInfo
-    };
-  }
   
   /**
    * Finalize all migrations and log a summary of the results
@@ -209,38 +187,11 @@ export default class MigrationManager {
     if ( game.settings.get( "ed4e", "migrationReport" ) === false ) {
       createJournal = false;
     }
-    // Log a comprehensive summary of all migrations
-    console.group( "Migration Summary" );
     
     // Get migration statistics from BaseMigration
     const successful = BaseMigration.getSuccessfulMigrations();
     const incomplete = BaseMigration.getIncompleteMigrations();
     const total = successful.length + incomplete.length;
-    
-    // Log overall statistics
-    console.log( `Total migrations processed: ${total}` );
-    console.log( `Successful migrations: ${successful.length}` );
-    console.log( `Incomplete migrations: ${incomplete.length}` );
-    
-    // Log details about successful migrations
-    if ( successful.length > 0 ) {
-      console.group( "Successfully migrated items:" );
-      successful.forEach( item => {
-        console.log( `${item.name} (${item.type}): ${item.uuid || "No UUID"}` );
-      } );
-      console.groupEnd();
-    }
-    
-    // Log details about incomplete migrations
-    if ( incomplete.length > 0 ) {
-      console.group( "Incompletely migrated items:" );
-      incomplete.forEach( item => {
-        console.log( `${item.name} (${item.type}): ${item.uuid || "No UUID"} - Reason: ${item.reason || "Unknown"}` );
-      } );
-      console.groupEnd();
-    }
-    
-    console.groupEnd();
     
     // Create a journal entry with the migration results if requested
     let journal = null;
@@ -292,43 +243,38 @@ export default class MigrationManager {
    * @private
    */
   static async #tryFindItemInWorld( itemData ) {
-    // If no UUID is provided, we can't look it up directly
+  // If no identifiers are provided, we can't look anything up
     if ( !itemData.uuid && !itemData.id ) return null;
-    
-    // First try the direct UUID if it exists
-    if ( itemData.uuid ) {
-      try {
-        const item = await fromUuid( itemData.uuid );
-        if ( item ) return itemData.uuid;
-      } catch ( e ) {
-        // UUID not valid, we'll try other methods
-        console.debug( `Invalid UUID ${itemData.uuid} for item ${itemData.name}, searching by ID` );
-      }
-    }
-    
-    // Extract the ID from either the UUID or use the explicit ID
+  
     let itemId = null;
+  
+    // First check UUID if available
     if ( itemData.uuid ) {
+    // First try direct UUID lookup
+      const item = await fromUuid( itemData.uuid );
+      if ( item ) return itemData.uuid;
+    
+      // If direct lookup failed, extract the ID from the UUID
       const uuidMatch = itemData.uuid.match( /^Item\.([a-zA-Z0-9]+)$/ );
       if ( uuidMatch && uuidMatch[1] ) {
         itemId = uuidMatch[1];
       }
     }
-    
+  
     // If we couldn't extract ID from UUID, use the explicit ID
     if ( !itemId && itemData.id ) {
       itemId = itemData.id;
     }
-    
+  
     // If we still don't have an ID, we can't proceed
     if ( !itemId ) return null;
-    
+  
     // First check if it exists directly in the world items
     const worldItem = game.items.get( itemId );
     if ( worldItem ) {
       return worldItem.uuid;
     }
-    
+  
     // If not found in world items, look through all actors for embedded items
     for ( const actor of game.actors ) {
       const embeddedItem = actor.items.find( i => i.id === itemId );
@@ -336,7 +282,7 @@ export default class MigrationManager {
         return embeddedItem.uuid; // Return the proper Actor.X.Item.Y format UUID
       }
     }
-    
+  
     // Item not found anywhere in the world
     return null;
   }
@@ -344,35 +290,15 @@ export default class MigrationManager {
   /**
    * Persist all migrated documents to the database to ensure changes are saved
    * This forces an update of all items in the world, applying the migration changes
-   * @param {boolean} [interactive=true] - Whether to show UI notifications and progress
    * @returns {Promise<object>} Stats about the persistence operation
    */
-  /**
-   * Persist all migrated documents to the database to ensure changes are saved
-   * This forces an update of all items and actors in the world, applying the migration changes
-   * @param {boolean} [interactive] - Whether to show UI notifications and progress
-   * @returns {Promise<object>} Stats about the persistence operation
-   */
-  static async persistMigratedDocuments( interactive = true ) {
-    const stats = { items: 0, actors: 0, errors: 0, scenes: 0 };
-    
-    if ( interactive ) {
-      ui.notifications.info( game.i18n.localize( "ED.Migration.StartingPersistProcess" ) );
-    }
-    
-    try {
-      // Process all documents by type
-      await this.#persistItems( stats );
-      await this.#persistActors( stats );
-      await this.#persistSceneTokens( stats );
-      
-    } finally {
-      if ( interactive ) {
-        ui.notifications.info( game.i18n.localize( "ED.Migration.PersistComplete" ) );
-      }
-    }
-    
-    console.log( "Migration persistence complete:", stats );
+  static async persistMigratedDocuments( ) {
+    const stats = { items: 0, actors: 0, errors: 0 };   
+  
+    // Process all documents by type
+    await this.#persistItems( stats );
+    await this.#persistActors( stats );
+
     return stats;
   }
 
@@ -487,35 +413,6 @@ export default class MigrationManager {
     // Apply updates if we have any
     if ( embeddedUpdates.length > 0 ) {
       await actor.updateEmbeddedDocuments( "Item", embeddedUpdates );
-    }
-  }
-  
-  /**
-   * Persist unlinked tokens in scenes
-   * @param {object} stats - Statistics object to update
-   * @returns {Promise<void>}
-   * @private
-   */
-  static async #persistSceneTokens( stats ) {
-    // Process tokens in scenes if needed (for unlinked tokens)
-    for ( const scene of game.scenes ) {
-      let updated = false;
-      const tokenUpdates = [];
-      
-      for ( const token of scene.tokens ) {
-        if ( token.actorData ) { // Only process unlinked tokens with actor data
-          tokenUpdates.push( {
-            _id:       token.id,
-            actorData: foundry.utils.deepClone( token.actorData )
-          } );
-          updated = true;
-        }
-      }
-      
-      if ( updated && tokenUpdates.length > 0 ) {
-        await scene.updateEmbeddedDocuments( "Token", tokenUpdates );
-        stats.scenes++;
-      }
     }
   }
   
