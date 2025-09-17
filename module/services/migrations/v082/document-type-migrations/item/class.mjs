@@ -32,7 +32,7 @@ export default class ClassMigration extends BaseMigration {
       // Add to migration report if it doesn't look like a UUID
       source.description ??= {};
       source.description.value ??= "";
-      source.description.value += `<p><strong>Invalid talent UUID format in ${tier} tier:</strong></p><p>${talent}</p>`;
+      source.description.value += `<p><strong>${game.i18n.format( "ED.Migration.Class.invalidTalentUuidTier", { tier } )}</strong></p><p>${talent}</p>`;
       return false;
     }
   }
@@ -252,10 +252,10 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migration.UnresolvedTalent", { talent } )}</p>`;
         } else { 
           // Not a valid UUID format
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Unsolved migration object:</strong></p><p>${talent}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
         }
       } catch ( error ) {
         // If fromUuidSync fails, check if it looks like a UUID
@@ -263,10 +263,10 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Potential module dependency:</strong></p><p>Talent ${talent} could not be resolved. It will be included, but requires the corresponding module to be activated.</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migration.UnresolvedTalent", { talent } )}</p>`;
         } else {
           // Not a valid UUID format or other error
-          source.description.value += `<h3>Circle${circleNumber}</h3><p><strong>Unsolved migration object:</strong></p><p>${talent}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
         }
       }
     }
@@ -324,7 +324,7 @@ export default class ClassMigration extends BaseMigration {
       for ( const [ key, value ] of Object.entries( pools ) ) {
         if ( !value || value === "none" ) {
           result.hasIssues = true;
-          result.reason += `Missing or undefined ability option '${key}', please check. `;
+          result.reason += game.i18n.format( "ED.Migration.Class.missingAbilityOption", { key } ) + "<br>";
         }
       }
     }
@@ -336,18 +336,18 @@ export default class ClassMigration extends BaseMigration {
         if ( level ) {
           if ( level.level === 1 && level.abilities.class.length < 5 ) {
             result.hasIssues = true;
-            result.reason += `Probably missing Discipline talents for circle ${circle}, please check. `;
+            result.reason += game.i18n.format( "ED.Migrations.Class.missingDisciplineTalentsProbably", { circle } ) + "<br>";
           }
           if ( level.abilities.class.length === 0 ) {
             result.hasIssues = true;
-            result.reason += `Missing Discipline talents for circle ${circle}, please check. `;
+            result.reason += game.i18n.format( "ED.Migrations.Class.missingDisciplineTalents", { circle } ) + "<br>";
           }
         }
       }
 
       if ( !source.system.durability ) {
         result.hasIssues = true;
-        result.reason += "Missing durability value, please check. ";
+        result.reason += game.i18n.localize( "ED.Migrations.Class.missingDurability" ) + "<br>";
       }
     }
 

@@ -3368,7 +3368,18 @@
         "totalMigrations":                        "Gesamtanzahl der Migrationen",
         "successfulMigrations":                   "Erfolgreiche Migrationen",
         "incompleteMigrations":                   "Unvollständige Migrationen"
-      }
+      },
+      "Class": {
+        "invalidTalentUuidTier": "Ungültiges Talent UUID-Format in {tier} Stufe:",
+        "circleHeader": "Kreis {circle}",
+        "missingDisciplineTalentsProbably": "Vermutlich fehlende Disziplin-Talente für Kreis {circle}, bitte überprüfen.",
+        "missingDisciplineTalents": "Fehlende Disziplin-Talente für Kreis {circle}, bitte überprüfen.",
+        "missingDurability": "Fehlender Haltbarkeitswert, bitte überprüfen.",
+        "missingAbilityOption": "Fehlende oder undefinierte Fähigkeitsoption '{key}', bitte überprüfen."
+      },
+      "ModuleDependency": "Potenzielle Modulabhängigkeit:",
+      "UnresolvedTalent": "Talent {talent} konnte nicht aufgelöst werden. Es wird einbezogen, erfordert jedoch die Aktivierung des entsprechenden Moduls.",
+      "UnsolvedObject": "Ungelöstes Migrationsobjekt:"
     },
     "Notifications": {
       "Error": {

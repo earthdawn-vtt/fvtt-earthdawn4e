@@ -3368,7 +3368,18 @@
   "totalMigrations":                        "TODO: Add translation",
   "successfulMigrations":                   "TODO: Add translation",
   "incompleteMigrations":                   "TODO: Add translation"
-}
+},
+      "Class": {
+        "invalidTalentUuidTier":               "Invalid talent UUID format in {tier} tier:",
+        "circleHeader":                        "Circle {circle}",
+        "missingDisciplineTalentsProbably":    "Possibly missing discipline talents for circle {circle}, please check.",
+        "missingDisciplineTalents":            "Missing discipline talents for circle {circle}, please check.",
+        "missingDurability":                   "Missing durability value, please check.",
+        "missingAbilityOption":                "Missing or undefined ability option '{key}', please check."
+      },
+      "ModuleDependency":                      "Potential module dependency:",
+      "UnresolvedTalent":                      "Could not resolve talent {talent}. It will be included but requires the appropriate module to be enabled.",
+      "UnsolvedObject":                        "Unsolved migration object:"
     },
     "Notifications": {
       "Error": {

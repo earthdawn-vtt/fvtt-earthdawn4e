@@ -3364,11 +3364,22 @@
       "migrationIssuesDescription":           "TODO: Add translation",
       "unknownErrorReason":                     "TODO: Add translation",
       "Stats": {
-  "timestamp":                              "TODO: Add translation",
-  "totalMigrations":                        "TODO: Add translation",
-  "successfulMigrations":                   "TODO: Add translation",
-  "incompleteMigrations":                   "TODO: Add translation"
-      }
+        "timestamp":                              "TODO: Add translation",
+        "totalMigrations":                        "TODO: Add translation",
+        "successfulMigrations":                   "TODO: Add translation",
+        "incompleteMigrations":                   "TODO: Add translation"
+        },
+      "Class": {
+        "invalidTalentUuidTier":               "TODO: Add translation",
+        "circleHeader":                        "TODO: Add translation",
+        "missingDisciplineTalentsProbably":    "TODO: Add translation",
+        "missingDisciplineTalents":            "TODO: Add translation",
+        "missingDurability":                   "TODO: Add translation",
+        "missingAbilityOption":                "TODO: Add translation"
+        },
+      "ModuleDependency":                      "TODO: Add translation",
+      "UnresolvedTalent":                      "TODO: Add translation",
+      "UnsolvedObject":                        "TODO: Add translation"
     },
     "Notifications": {
       "Error": {
