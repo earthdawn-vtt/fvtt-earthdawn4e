@@ -3573,8 +3573,14 @@
         "troubleshooting":                         "Report a Bug"
       },
       "Update": {
-        "updateNewsHint":                          "If enabled, update news will no longer be displayed.",
-        "updateNewsName":                          "Hide Update News"
+        "updateNews": {                             
+          "hint":                                    "If enabled, update news will no longer be displayed.",
+          "label":                          "Hide Update News"
+        },
+        "migrationReport": {
+          "hint":                                    "TODO: Add translation",
+          "label":                          "TODO: Add translation"
+        }
       },
       "talentsSplit":                              "Group Talents by Category",
       "talentsSplitHint":                          "Group Talents"
