@@ -3571,8 +3571,14 @@
         "troubleshooting":                         "TODO: Add translation"
       },
       "Update": {
-        "updateNewsHint":                          "TODO: Add translation",
-        "updateNewsName":                          "TODO: Add translation"
+        "updateNews": {                             
+          "hint":                                    "TODO: Add translation",
+          "label":                          "TODO: Add translation"
+        },
+        "migrationReport": {
+          "hint":                                    "TODO: Add translation",
+          "label":                          "TODO: Add translation"
+        }
       },
       "talentsSplit":                              "TODO: Add translation",
       "talentsSplitHint":                          "TODO: Add translation"
