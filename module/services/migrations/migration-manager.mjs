@@ -2,6 +2,7 @@
 import { systemV0_8_2 } from "../../config/migrations.mjs";
 import TypeTransformationManager from "./type-transformation-manager.mjs";
 import BaseMigration from "./common/base-migration.mjs";
+import JournalService from "../../services/journal-service.mjs";
 
 /**
  * Central Migration Manager for handling all data migrations between different system versions.
@@ -520,6 +521,7 @@ export default class MigrationManager {
   
   static async #createMigrationJournal( successful, incomplete ) {
     try {
+      // Use directly imported JournalService class
       const timestamp = new Date().toLocaleString();
       const journalName = `Migration Results - ${timestamp}`;
       
@@ -531,88 +533,75 @@ export default class MigrationManager {
         ownership[gmUser.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
       } );
       
-      // Generate HTML content for the journal
-      let content = "<h1>Migration Results</h1>";
+      // Create a new journal using JournalService directly
+      const journalService = new JournalService( journalName, { ownership } );
       
-      // Summary section
-      content += "<h2>Summary</h2><ul>" +
-        `<li><strong>Timestamp:</strong> ${timestamp}</li>` +
-        `<li><strong>Total migrations:</strong> ${successful.length + incomplete.length}</li>` +
-        `<li><strong>Successful migrations:</strong> ${successful.length}</li>` +
-        `<li><strong>Incomplete migrations:</strong> ${incomplete.length}</li>` +
-        "</ul>";
+      // Add summary page
+      journalService.startPage( "Migration Results" );
+      
+      // Add summary statistics
+      const summaryStats = {
+        timestamp:            timestamp,
+        totalMigrations:      successful.length + incomplete.length,
+        successfulMigrations: successful.length,
+        incompleteMigrations: incomplete.length
+      };
+      journalService.addSummary( summaryStats, "Migration Summary" );
       
       // Successful migrations section
       if ( successful.length > 0 ) {
-        content += "<h2>Successful Migrations</h2>";
-        
         // Group by type
         const groupedSuccessful = this.#groupByType( successful );
         
         for ( const [ type, items ] of Object.entries( groupedSuccessful ) ) {
           const typeTitle = type.charAt( 0 ).toUpperCase() + type.slice( 1 );
-          content += `<h3>${typeTitle} (${items.length})</h3><ol>`;
           
-          for ( const item of items ) {
+          // Create a collapsible section for each type
+          journalService.addContent( `<h3>${typeTitle} (${items.length})</h3>` );
+          
+          // Process items and create links
+          const itemList = await Promise.all( items.map( async item => {
             const validUuid = await this.#tryFindItemInWorld( item );
             if ( validUuid ) {
-              content += `<li>@UUID[${validUuid}]{${item.name}} (${item.type})</li>`;
+              return `@UUID[${validUuid}]{${item.name}} (${item.type})`;
             } else {
-              content += `<li>${item.name} (${item.type}) - <code>Not found in world</code></li>`;
+              return `${item.name} (${item.type}) - <code>Not found in world</code>`;
             }
-          }
+          } ) );
           
-          content += "</ol>";
+          // Add as ordered list
+          journalService.addList( itemList, { ordered: true } );
         }
       }
       
       // Incomplete migrations section
       if ( incomplete.length > 0 ) {
-        content += "<h2>Incomplete Migrations</h2>";
-        content += "<p>The following items had issues during migration:</p><ol>";
+        journalService.startPage( "Incomplete Migrations" );
+        journalService.addWarning(
+          "Migration Issues", 
+          "The following items had issues during migration:"
+        );
         
-        for ( const item of incomplete ) {
-          content += "<li>";
-          
-          // Item name with UUID link if available
+        // Process items for the list
+        const incompleteItems = await Promise.all( incomplete.map( async item => {
           const validUuid = await this.#tryFindItemInWorld( item );
+          let content = "";
+          
           if ( validUuid ) {
-            content += `@UUID[${validUuid}]{${item.name}} (${item.type})<br>`;
+            content = `@UUID[${validUuid}]{${item.name}} (${item.type})`;
           } else {
-            content += `<strong>${item.name} (${item.type})</strong><br>`;
+            content = `<strong>${item.name} (${item.type})</strong>`;
           }
           
-          // Error reason
-          content += `<span style="color: #d32f2f;">${item.reason || "Unknown reason"}</span>`;
-          
-          content += "</li>";
-        }
+          content += `<br><span style="color: #d32f2f;">${item.reason || "Unknown reason"}</span>`;
+          return { content };
+        } ) );
         
-        content += "</ol>";
+        journalService.addList( incompleteItems, { ordered: true } );
       }
       
-      // Create journal pages data
-      const pages = [ {
-        name:  "Migration Results",
-        type:  "text",
-        text:  {
-          content:  content,
-          format:   CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML
-        }
-      } ];
-      
-      // Create the journal entry
-      const journalEntry = await JournalEntry.create( {
-        name:       journalName,
-        pages:      pages,
-        ownership:  ownership
-      } );
-      
-      // Render the journal sheet
-      if ( journalEntry ) {
-        journalEntry.sheet.render( true );
-      }
-      
+      // Commit and render the journal
+      const journalEntry = await journalService.commit( { render: true } );
       return journalEntry;
       
     } catch ( error ) {
