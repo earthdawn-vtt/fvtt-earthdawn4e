@@ -60,38 +60,6 @@ export default class BaseMigration {
   }
 
   /**
-   * Log a summary of all migrations
-   */
-  static logMigrationSummary() {
-    const successful = this.successfulMigrations.length;
-    const incomplete = this.incompleteMigrations.length;
-    const total = successful + incomplete;
-    
-    console.group( "Migration Summary" );
-    console.log( `Total migrations processed: ${total}` );
-    console.log( `Successful migrations: ${successful}` );
-    console.log( `Incomplete migrations: ${incomplete}` );
-    
-    if ( successful > 0 ) {
-      console.group( "Successfully migrated items:" );
-      this.successfulMigrations.forEach( item => {
-        console.log( `${item.name} (${item.type}): ${item.uuid}` );
-      } );
-      console.groupEnd();
-    }
-    
-    if ( incomplete > 0 ) {
-      console.group( "Incompletely migrated items:" );
-      this.incompleteMigrations.forEach( item => {
-        console.log( `${item.name} (${item.type}): ${item.uuid} - Reason: ${item.reason}` );
-      } );
-      console.groupEnd();
-    }
-    
-    console.groupEnd();
-  }
-
-  /**
    * Migrate data from earthdawn4e legacy to ed4e.
    * @param {object} source - The source document data.
    * @abstract
