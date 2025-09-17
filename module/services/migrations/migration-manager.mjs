@@ -420,21 +420,14 @@ export default class MigrationManager {
     try {
       // Use directly imported JournalService class
       const timestamp = new Date().toLocaleString();
-      const journalName = `Migration Results - ${timestamp}`;
-      
-      // Prepare ownership - default is NONE, GMs get OWNER access
-      const ownership = { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE };
-      
-      // Add ownership for all GM users
-      game.users.filter( u => u.isGM ).forEach( gmUser => {
-        ownership[gmUser.id] = CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
-      } );
+      const journalName = `${game.i18n.localize( "ED.Migrations.report" )} - ${timestamp}`;
       
       // Create a new journal using JournalService directly
-      const journalService = new JournalService( journalName, { ownership } );
+      const journalService = new JournalService( journalName, { } );
       
       // Add summary page
-      journalService.startPage( "Migration Results" );
+      const startPageName = game.i18n.localize( "ED.Migrations.Pages.migrationResults" );
+      journalService.startPage( startPageName );
       
       // Add summary statistics
       const summaryStats = {
@@ -443,16 +436,27 @@ export default class MigrationManager {
         successfulMigrations: successful.length,
         incompleteMigrations: incomplete.length
       };
-      journalService.addSummary( summaryStats, "Migration Summary" );
+      const summaryPageName = game.i18n.localize( "ED.Migrations.Pages.migrationSummary" );
+      journalService.addSummary( summaryStats, summaryPageName );
       
       // Successful migrations section
       if ( successful.length > 0 ) {
         // Group by type
         const groupedSuccessful = this.#groupByType( successful );
-        
+
         for ( const [ type, items ] of Object.entries( groupedSuccessful ) ) {
-          const typeTitle = type.charAt( 0 ).toUpperCase() + type.slice( 1 );
-          
+          // Use CONFIG.Item.typeLabels for localization if available, or fall back to game.i18n
+          let typeTitle;
+  
+          // Try to get localized type from CONFIG.Item.typeLabels
+          if ( game.i18n.has( `TYPES.Item.${type}` ) ) {
+            typeTitle = game.i18n.localize( `TYPES.Item.${type}` );
+          }
+          // Fall back to capitalized type name if no localization exists
+          else {
+            typeTitle = type.charAt( 0 ).toUpperCase() + type.slice( 1 );
+          }
+  
           // Create a collapsible section for each type
           journalService.addContent( `<h3>${typeTitle} (${items.length})</h3>` );
           
@@ -462,7 +466,7 @@ export default class MigrationManager {
             if ( validUuid ) {
               return `@UUID[${validUuid}]{${item.name}} (${item.type})`;
             } else {
-              return `${item.name} (${item.type}) - <code>Not found in world</code>`;
+              return `${item.name} (${item.type}) - <code>${game.i18n.localize( "ED.Migrations.notFound" )}</code>`;
             }
           } ) );
           
@@ -473,10 +477,11 @@ export default class MigrationManager {
       
       // Incomplete migrations section
       if ( incomplete.length > 0 ) {
-        journalService.startPage( "Incomplete Migrations" );
+        const startPageName = game.i18n.localize( "ED.Migrations.Pages.incompleteMigrationResults" );
+        journalService.startPage( startPageName );
         journalService.addWarning(
-          "Migration Issues", 
-          "The following items had issues during migration:"
+          game.i18n.localize( "ED.Migrations.migrationIssues" ), 
+          game.i18n.localize( "ED.Migrations.migrationIssuesDescription" )
         );
         
         // Process items for the list
@@ -490,7 +495,7 @@ export default class MigrationManager {
             content = `<strong>${item.name} (${item.type})</strong>`;
           }
           
-          content += `<br><span style="color: #d32f2f;">${item.reason || "Unknown reason"}</span>`;
+          content += `<br><span style="color: #d32f2f;">${item.reason || game.i18n.localize( "ED.Migrations.unknownErrorReason" )}</span>`;
           return { content };
         } ) );
         

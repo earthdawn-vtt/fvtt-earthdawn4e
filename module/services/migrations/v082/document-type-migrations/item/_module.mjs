@@ -57,5 +57,4 @@ export const typeMigrationConfig = {
   spell:         SpellMigration,
   talent:        TalentMigration,
   weapon:        WeaponMigration,
-
 };
