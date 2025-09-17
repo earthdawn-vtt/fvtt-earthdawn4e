@@ -30,10 +30,7 @@ export default function () {
       }
       
       // Log a summary of all migrations and create a journal entry
-      setTimeout( async () => {
-        const result = await MigrationManager.finalizeMigrations( true );
-        console.log( "Migration report complete:", result );
-      }, 5000 ); // 5 second delay to ensure all migrations are complete
+      await MigrationManager.finalizeMigrations( true );
     }
 
 
