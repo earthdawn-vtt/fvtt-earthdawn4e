@@ -200,7 +200,6 @@ export default class MigrationManager {
   /**
    * Finalize all migrations and log a summary of the results
    * This should be called after all migrations are complete
-   * @param {boolean} createJournal - Whether to create a journal entry with the migration results
    * @returns {Promise<object>} Migration statistics and created journal entry including successful migrations, 
    *                            incomplete migrations, total count, and journal reference if created
    */
@@ -361,117 +360,10 @@ export default class MigrationManager {
     }
     
     try {
-      // Get all documents to process
-      const items = game.items.contents;
-      const actors = game.actors.contents;
-      
-      // Process all items in the world
-      for ( const item of items ) {
-        try {
-          // Get existing flags to preserve them
-          const existingFlags = foundry.utils.deepClone( item.flags || {} );
-          
-          // Ensure ed4e namespace exists
-          if ( !existingFlags.ed4e ) existingFlags.ed4e = {};
-          
-          // Add migration version without overwriting other flags
-          existingFlags.ed4e.migratedVersion = game.system.version;
-          
-          // Update system data and restore all flags
-          await item.update( {
-            "==system": item.system.toObject(),
-            "flags":    existingFlags
-          }, {
-            diff:      false,
-            recursive: false,
-            noHook:    false // We want hooks to fire for proper updating
-          } );
-          
-          stats.items++;
-        } catch ( error ) {
-          console.error( `Failed to persist migrated item ${item.name}:`, error );
-          stats.errors++;
-        }
-      }
-      
-      // Process all actors in the world
-      for ( const actor of actors ) {
-        try {
-          // Get existing flags to preserve them
-          const existingFlags = foundry.utils.deepClone( actor.flags || {} );
-          
-          // Ensure ed4e namespace exists
-          if ( !existingFlags.ed4e ) existingFlags.ed4e = {};
-          
-          // Add migration version without overwriting other flags
-          existingFlags.ed4e.migratedVersion = game.system.version;
-          
-          // Update system data and restore all flags
-          await actor.update( {
-            "==system": actor.system.toObject(),
-            "flags":    existingFlags
-          }, {
-            diff:      false,
-            recursive: false,
-            noHook:    false
-          } );
-          
-          // Also update embedded items within actors
-          if ( actor.items?.size > 0 ) {
-            const embeddedUpdates = [];
-            
-            // Handle each embedded item
-            for ( const embeddedItem of actor.items ) {
-              // Get existing flags from the embedded item
-              const existingItemFlags = foundry.utils.deepClone( embeddedItem.flags || {} );
-              
-              // Ensure ed4e namespace exists
-              if ( !existingItemFlags.ed4e ) existingItemFlags.ed4e = {};
-              
-              // Add migration version without overwriting other flags
-              existingItemFlags.ed4e.migratedVersion = game.system.version;
-              
-              // Create update with preserved flags
-              embeddedUpdates.push( {
-                _id:        embeddedItem.id,
-                "==system": embeddedItem.system.toObject(),
-                "flags":    existingItemFlags
-              } );
-            }
-            
-            // Apply updates if we have any
-            if ( embeddedUpdates.length > 0 ) {
-              await actor.updateEmbeddedDocuments( "Item", embeddedUpdates );
-            }
-          }
-          
-          stats.actors++;
-        } catch ( error ) {
-          console.error( `Failed to persist migrated actor ${actor.name}:`, error );
-          stats.errors++;
-        }
-      }
-      
-      // Process tokens in scenes if needed (for unlinked tokens)
-      for ( const scene of game.scenes ) {
-        let updated = false;
-        const tokenUpdates = [];
-        
-        for ( const token of scene.tokens ) {
-          if ( token.actorData ) { // Only process unlinked tokens with actor data
-            tokenUpdates.push( {
-              _id:       token.id,
-              actorData: foundry.utils.deepClone( token.actorData )
-            } );
-            updated = true;
-          }
-        }
-        
-        if ( updated && tokenUpdates.length > 0 ) {
-          await scene.updateEmbeddedDocuments( "Token", tokenUpdates );
-          stats.scenes++;
-        }
-      }
+      // Process all documents by type
+      await this.#persistItems( stats );
+      await this.#persistActors( stats );
+      await this.#persistSceneTokens( stats );
       
     } finally {
       if ( interactive ) {
@@ -481,6 +373,149 @@ export default class MigrationManager {
     
     console.log( "Migration persistence complete:", stats );
     return stats;
+  }
+
+  /**
+   * Persist all world items
+   * @param {object} stats - Statistics object to update
+   * @returns {Promise<void>}
+   * @private
+   */
+  static async #persistItems( stats ) {
+    // Get all items to process
+    const items = game.items.contents;
+    
+    // Process all items in the world
+    for ( const item of items ) {
+      try {
+        await this.#persistDocument( item );
+        stats.items++;
+      } catch ( error ) {
+        console.error( `Failed to persist migrated item ${item.name}:`, error );
+        stats.errors++;
+      }
+    }
+  }
+  
+  /**
+   * Persist all actors and their embedded items
+   * @param {object} stats - Statistics object to update
+   * @returns {Promise<void>}
+   * @private
+   */
+  static async #persistActors( stats ) {
+    // Get all actors to process
+    const actors = game.actors.contents;
+    
+    // Process all actors in the world
+    for ( const actor of actors ) {
+      try {
+        // Update actor document
+        await this.#persistDocument( actor );
+        
+        // Update embedded items
+        await this.#persistEmbeddedItems( actor );
+        
+        stats.actors++;
+      } catch ( error ) {
+        console.error( `Failed to persist migrated actor ${actor.name}:`, error );
+        stats.errors++;
+      }
+    }
+  }
+  
+  /**
+   * Persist a single document (item or actor)
+   * @param {Document} document - The document to persist
+   * @returns {Promise<void>}
+   * @private
+   */
+  static async #persistDocument( document ) {
+    // Get existing flags to preserve them
+    const existingFlags = foundry.utils.deepClone( document.flags || {} );
+    
+    // Ensure ed4e namespace exists
+    if ( !existingFlags.ed4e ) existingFlags.ed4e = {};
+    
+    // Add migration version without overwriting other flags
+    existingFlags.ed4e.migratedVersion = game.system.version;
+    
+    // Update system data and restore all flags
+    await document.update( {
+      "==system": document.system.toObject(),
+      "img":      document.img, // Include image path in the update
+      "flags":    existingFlags
+    }, {
+      diff:      false,
+      recursive: false,
+      noHook:    false // We want hooks to fire for proper updating
+    } );
+  }
+  
+  /**
+   * Persist embedded items within an actor
+   * @param {Actor} actor - The actor containing embedded items
+   * @returns {Promise<void>}
+   * @private
+   */
+  static async #persistEmbeddedItems( actor ) {
+    // Skip if no items
+    if ( !actor.items?.size ) return;
+    
+    const embeddedUpdates = [];
+    
+    // Handle each embedded item
+    for ( const embeddedItem of actor.items ) {
+      // Get existing flags from the embedded item
+      const existingItemFlags = foundry.utils.deepClone( embeddedItem.flags || {} );
+      
+      // Ensure ed4e namespace exists
+      if ( !existingItemFlags.ed4e ) existingItemFlags.ed4e = {};
+      
+      // Add migration version without overwriting other flags
+      existingItemFlags.ed4e.migratedVersion = game.system.version;
+      
+      // Create update with preserved flags
+      embeddedUpdates.push( {
+        _id:        embeddedItem.id,
+        "==system": embeddedItem.system.toObject(),
+        "flags":    existingItemFlags
+      } );
+    }
+    
+    // Apply updates if we have any
+    if ( embeddedUpdates.length > 0 ) {
+      await actor.updateEmbeddedDocuments( "Item", embeddedUpdates );
+    }
+  }
+  
+  /**
+   * Persist unlinked tokens in scenes
+   * @param {object} stats - Statistics object to update
+   * @returns {Promise<void>}
+   * @private
+   */
+  static async #persistSceneTokens( stats ) {
+    // Process tokens in scenes if needed (for unlinked tokens)
+    for ( const scene of game.scenes ) {
+      let updated = false;
+      const tokenUpdates = [];
+      
+      for ( const token of scene.tokens ) {
+        if ( token.actorData ) { // Only process unlinked tokens with actor data
+          tokenUpdates.push( {
+            _id:       token.id,
+            actorData: foundry.utils.deepClone( token.actorData )
+          } );
+          updated = true;
+        }
+      }
+      
+      if ( updated && tokenUpdates.length > 0 ) {
+        await scene.updateEmbeddedDocuments( "Token", tokenUpdates );
+        stats.scenes++;
+      }
+    }
   }
   
   static async #createMigrationJournal( successful, incomplete ) {
