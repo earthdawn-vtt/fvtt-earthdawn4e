@@ -3362,7 +3362,13 @@
       "notFound":                                  "Item oder Akteur nicht gefunden",
       "migrationIssues":                        "Migrations Probleme",
       "migrationIssuesDescription":           "Die folgenden Probleme sind während der Migration aufgetreten.",
-      "unknownErrorReason":                     "Unbekannter Fehlergrund"
+      "unknownErrorReason":                     "Unbekannter Fehlergrund",
+      "Stats": {
+        "timestamp":                              "Zeitstempel",
+        "totalMigrations":                        "Gesamtanzahl der Migrationen",
+        "successfulMigrations":                   "Erfolgreiche Migrationen",
+        "incompleteMigrations":                   "Unvollständige Migrationen"
+      }
     },
     "Notifications": {
       "Error": {

@@ -3362,7 +3362,13 @@
       "notFound":                                  "TODO: Add translation",
       "migrationIssues":                        "TODO: Add translation",
       "migrationIssuesDescription":           "TODO: Add translation",
-      "unknownErrorReason":                     "TODO: Add translation"
+      "unknownErrorReason":                     "TODO: Add translation",
+      "Stats": {
+  "timestamp":                              "TODO: Add translation",
+  "totalMigrations":                        "TODO: Add translation",
+  "successfulMigrations":                   "TODO: Add translation",
+  "incompleteMigrations":                   "TODO: Add translation"
+}
     },
     "Notifications": {
       "Error": {

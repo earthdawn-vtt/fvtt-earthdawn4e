@@ -431,10 +431,10 @@ export default class MigrationManager {
       
       // Add summary statistics
       const summaryStats = {
-        timestamp:            timestamp,
-        totalMigrations:      successful.length + incomplete.length,
-        successfulMigrations: successful.length,
-        incompleteMigrations: incomplete.length
+        [game.i18n.localize( "ED.Migrations.Stats.timestamp" )]:            timestamp,
+        [game.i18n.localize( "ED.Migrations.Stats.totalMigrations" )]:      successful.length + incomplete.length,
+        [game.i18n.localize( "ED.Migrations.Stats.successfulMigrations" )]: successful.length,
+        [game.i18n.localize( "ED.Migrations.Stats.incompleteMigrations" )]: incomplete.length
       };
       const summaryPageName = game.i18n.localize( "ED.Migrations.Pages.migrationSummary" );
       journalService.addSummary( summaryStats, summaryPageName );
