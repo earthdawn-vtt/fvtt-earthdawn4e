@@ -3352,7 +3352,17 @@
     "Migrations": {
       "setSpellDuration":                          "TODO: Add translation",
       "setSpellEffect":                            "TODO: Add translation",
-      "setSpellRange":                             "TODO: Add translation"
+      "setSpellRange":                             "TODO: Add translation",
+      "report":                                    "TODO: Add translation",
+      "Pages": {
+        "migrationResults":                    "TODO: Add translation",
+        "migrationSummary":                    "TODO: Add translation",
+        "incompleteMigrationResults":        "TODO: Add translation"
+      },
+      "notFound":                                  "TODO: Add translation",
+      "migrationIssues":                        "TODO: Add translation",
+      "migrationIssuesDescription":           "TODO: Add translation",
+      "unknownErrorReason":                     "TODO: Add translation"
     },
     "Notifications": {
       "Error": {
