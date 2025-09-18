@@ -98,37 +98,37 @@ export default class TalentMigration extends BaseMigration {
     // check for missing rolltype
     if ( !source.system.rollType ) {
       result.hasIssues = true;
-      result.reason += "Missing rollType, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingRollType" ) + " ";
     }
 
     // check for rolltype "attack" but missing weaponType
-    if ( source.system.rollType === "attack" && !source.system.weaponType ) {
+    if ( source.system.rollType === "attack" && !source.system.rollTypeDetails.attack.weaponType ) {
       result.hasIssues = true;
-      result.reason += "Missing weapon Types for attack rollType, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingWeaponTypesAttack" ) + " ";
     }
 
     // check for missing attributes
     if ( !source.system.attribute ) {
       result.hasIssues = true;
-      result.reason += "Missing attributes, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingAttributes" ) + " ";
     }
 
     // difficulty setting
     if ( !source.system.difficulty ) {
       result.hasIssues = true;
-      result.reason += "Missing difficulty setting, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingDifficulty" ) + " ";
     }
 
     // check for missing edid
     if ( !source.system.edid || source.system.edid === "none" ) {
       result.hasIssues = true;
-      result.reason += "Missing or undefined edid, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingEdid" ) + " ";
     }
 
     // check for missing talent category
     if ( !source.system.talentCategory ) {
       result.hasIssues = true;
-      result.reason += "Missing talent category, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingTalentCategory" ) + " ";
     }
 
     // Add more conditions as needed

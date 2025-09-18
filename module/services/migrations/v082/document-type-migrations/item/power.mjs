@@ -38,7 +38,7 @@ export default class PowerMigration extends BaseMigration {
       // If the talent has attributes that make it incomplete, add it to incomplete migrations
       if ( hasIncompleteAttributes.hasIssues ) {
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -53,7 +53,7 @@ export default class PowerMigration extends BaseMigration {
       if ( !hasIncompleteAttributes.hasIssues ) {
         // Migration was successful - add to successful migrations
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -64,7 +64,7 @@ export default class PowerMigration extends BaseMigration {
     } catch ( error ) {
       // If any error occurs, consider it an incomplete migration
       const migrationData = {
-        name:      source.name || "Unknown Talent",
+        name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
         uuid:      `Item.${source._id}`,
         type:      source.type,
         id:        source._id
@@ -91,19 +91,19 @@ export default class PowerMigration extends BaseMigration {
 
     if ( !source.system.powerType ) {
       result.hasIssues = true;
-      result.reason += "Missing power type, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingPowerType" ) + " ";
     }
     
     // check for rolltype "attack" but missing damageStep
     if ( source.system.rollType === "attack" && !source.system.damageStep ) {
       result.hasIssues = true;
-      result.reason += "Missing damage step for attack power, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingDamageStepAttackPower" ) + " ";
     }
 
     // check for missing rolltype
     if ( !source.system.rollType ) {
       result.hasIssues = true;
-      result.reason += "Missing rollType, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingRollType" ) + " ";
     }
     // Add more conditions as needed
 

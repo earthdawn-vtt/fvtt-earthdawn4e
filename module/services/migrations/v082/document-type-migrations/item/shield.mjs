@@ -84,25 +84,25 @@ export default class ShieldMigration extends BaseMigration {
     // check for missing physical defense
     if ( !source.system.defenseBonus.physical ) {
       result.hasIssues = true;
-      result.reason += "Missing physical defense bonus, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingPhysicalDefenseBonus" ) + " ";
     }
 
     // check for missing mystical defense
     if ( !source.system.defenseBonus.mystical ) {
       result.hasIssues = true;
-      result.reason += "Missing mystical defense bonus, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingMysticalDefenseBonus" ) + " ";
     } 
 
     // check for missing initiative penalty
     if ( !source.system.initiativePenalty ) {
       result.hasIssues = true;
-      result.reason += "Missing initiative penalty, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingInitiativePenalty" ) + " ";
     }
 
     // check for missing shatter threshold
     if ( !source.system.shatterThreshold ) {
       result.hasIssues = true;
-      result.reason += "Missing shatter threshold, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingShatterThreshold" ) + " ";
     }
 
     // Add more conditions as needed

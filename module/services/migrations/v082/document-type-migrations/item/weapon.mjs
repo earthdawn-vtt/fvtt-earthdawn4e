@@ -130,19 +130,19 @@ export default class WeaponMigration extends BaseMigration {
       reason:    ""
     };
 
-    if ( !source.system.weaponType ) {
+    if ( !source.system.attack.weaponType ) {
       result.hasIssues = true;
-      result.reason += "Missing weapon type, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingWeaponType" ) + " ";
     }
 
     if ( !source.system.damage ) {
       result.hasIssues = true;
-      result.reason += "Missing damage attribute or base step, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingDamageAttribute" ) + " ";
     }
 
-    if ( source.system.weaponType === "missile" && !source.system.ammunition?.type ) {
+    if ( source.system.attack.weaponType === "missile" && !source.system.ammunition?.type ) {
       result.hasIssues = true;
-      result.reason += "Missing ammunition type for missile weapon, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingAmmunitionType" ) + " ";
     }
 
     // Add more conditions as needed

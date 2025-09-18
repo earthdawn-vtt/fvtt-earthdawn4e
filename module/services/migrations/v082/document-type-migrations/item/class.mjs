@@ -32,7 +32,7 @@ export default class ClassMigration extends BaseMigration {
       // Add to migration report if it doesn't look like a UUID
       source.description ??= {};
       source.description.value ??= "";
-      source.description.value += `<p><strong>${game.i18n.format( "ED.Migration.Class.invalidTalentUuidTier", { tier } )}</strong></p><p>${talent}</p>`;
+      source.description.value += `<p><strong>${game.i18n.format( "ED.Migrations.Class.invalidTalentUuidTier", { tier } )}</strong></p><p>${talent}</p>`;
       return false;
     }
   }
@@ -252,10 +252,10 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migration.UnresolvedTalent", { talent } )}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migrations.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migrations.UnresolvedTalent", { talent } )}</p>`;
         } else { 
           // Not a valid UUID format
-          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migrations.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
         }
       } catch ( error ) {
         // If fromUuidSync fails, check if it looks like a UUID
@@ -263,10 +263,10 @@ export default class ClassMigration extends BaseMigration {
           // String looks like a UUID but couldn't be resolved - add it anyway
           validTalents.push( talent );
           // Also note in description that this might be a module issue
-          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migration.UnresolvedTalent", { talent } )}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migrations.ModuleDependency" )}</strong></p><p>${game.i18n.format( "ED.Migrations.UnresolvedTalent", { talent } )}</p>`;
         } else {
           // Not a valid UUID format or other error
-          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migration.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
+          source.description.value += `<h3>${game.i18n.format( "ED.Migrations.Class.circleHeader", { circle: circleNumber } )}</h3><p><strong>${game.i18n.localize( "ED.Migrations.UnsolvedObject" )}</strong></p><p>${talent}</p>`;
         }
       }
     }
@@ -324,7 +324,7 @@ export default class ClassMigration extends BaseMigration {
       for ( const [ key, value ] of Object.entries( pools ) ) {
         if ( !value || value === "none" ) {
           result.hasIssues = true;
-          result.reason += game.i18n.format( "ED.Migration.Class.missingAbilityOption", { key } ) + "<br>";
+          result.reason += game.i18n.format( "ED.Migrations.Class.missingAbilityOption", { key } ) + "<br>";
         }
       }
     }
@@ -442,7 +442,7 @@ export default class ClassMigration extends BaseMigration {
       // If the talent has attributes that make it incomplete, add it to incomplete migrations
       if ( hasIncompleteAttributes.hasIssues ) {
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -457,7 +457,7 @@ export default class ClassMigration extends BaseMigration {
       if ( !hasIncompleteAttributes.hasIssues ) {
         // Migration was successful - add to successful migrations
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -468,7 +468,7 @@ export default class ClassMigration extends BaseMigration {
     } catch ( error ) {
       // If any error occurs, consider it an incomplete migration
       const migrationData = {
-        name:      source.name || "Unknown Talent",
+        name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
         uuid:      `Item.${source._id}`,
         type:      source.type,
         id:        source._id

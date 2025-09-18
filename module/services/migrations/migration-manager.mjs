@@ -463,10 +463,16 @@ export default class MigrationManager {
           // Process items and create links
           const itemList = await Promise.all( items.map( async item => {
             const validUuid = await this.#tryFindItemInWorld( item );
+            // Get localized item type
+            let localizedType = item.type;
+            if ( game.i18n.has( `TYPES.Item.${item.type}` ) ) {
+              localizedType = game.i18n.localize( `TYPES.Item.${item.type}` );
+            }
+            
             if ( validUuid ) {
-              return `@UUID[${validUuid}]{${item.name}} (${item.type})`;
+              return `@UUID[${validUuid}]{${item.name}}`;
             } else {
-              return `${item.name} (${item.type}) - <code>${game.i18n.localize( "ED.Migrations.notFound" )}</code>`;
+              return `${item.name} (${localizedType}) - <code>${game.i18n.localize( "ED.Migrations.notFound" )}</code>`;
             }
           } ) );
           
@@ -489,10 +495,16 @@ export default class MigrationManager {
           const validUuid = await this.#tryFindItemInWorld( item );
           let content = "";
           
+          // Get localized item type
+          let localizedType = item.type;
+          if ( game.i18n.has( `TYPES.Item.${item.type}` ) ) {
+            localizedType = game.i18n.localize( `TYPES.Item.${item.type}` );
+          }
+          
           if ( validUuid ) {
-            content = `@UUID[${validUuid}]{${item.name}} (${item.type})`;
+            content = `@UUID[${validUuid}]{${item.name}} (${localizedType})`;
           } else {
-            content = `<strong>${item.name} (${item.type})</strong>`;
+            content = `<strong>${item.name} (${localizedType})</strong>`;
           }
           
           content += `<br><span style="color: #d32f2f;">${item.reason || game.i18n.localize( "ED.Migrations.unknownErrorReason" )}</span>`;

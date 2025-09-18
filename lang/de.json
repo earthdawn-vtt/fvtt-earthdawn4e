@@ -3363,6 +3363,7 @@
       "migrationIssues":                        "Migrations Probleme",
       "migrationIssuesDescription":           "Die folgenden Probleme sind während der Migration aufgetreten.",
       "unknownErrorReason":                     "Unbekannter Fehlergrund",
+      "unknownTalent":                         "Unbekanntes Talent",
       "Stats": {
         "timestamp":                              "Zeitstempel",
         "totalMigrations":                        "Gesamtanzahl der Migrationen",
@@ -3377,9 +3378,31 @@
         "missingDurability": "Fehlender Haltbarkeitswert, bitte überprüfen.",
         "missingAbilityOption": "Fehlende oder undefinierte Fähigkeitsoption '{key}', bitte überprüfen."
       },
-      "ModuleDependency": "Potenzielle Modulabhängigkeit:",
+      "missingDurability": "Fehlender Haltbarkeitswert, bitte überprüfen.",
+      "ModuleDependency": "Potenzielle Modulabhängigkeit: ",
       "UnresolvedTalent": "Talent {talent} konnte nicht aufgelöst werden. Es wird einbezogen, erfordert jedoch die Aktivierung des entsprechenden Moduls.",
-      "UnsolvedObject": "Ungelöstes Migrationsobjekt:"
+      "UnsolvedObject": "Ungelöstes Migrationsobjekt: ",
+      "missingRollType": "Fehlender rollType, bitte überprüfen.",
+      "missingWeaponType": "Fehlender Waffentyp, bitte überprüfen.",
+      "missingWeaponTypesAttack": "Fehlende Waffentypen für Angriffs-rollType, bitte überprüfen.",
+      "missingAttributes": "Fehlende Attribute, bitte überprüfen.",
+      "missingDifficulty": "Fehlende Schwierigkeitseinstellung, bitte überprüfen.",
+      "missingEdid": "Fehlende oder undefinierte EDID, bitte überprüfen.",
+      "missingRestrictions": "Keine Einschränkungen definiert, bitte überprüfen.",
+      "missingRequirements": "Keine Anforderungen definiert, bitte überprüfen.",
+      "missingReattuneDifficulty": "Fehlende Neu-Abstimmungsschwierigkeit, bitte überprüfen.",
+      "missingWeavingDifficulty": "Fehlende Fadenweben-Schwierigkeit, bitte überprüfen.",
+      "missingRequiredThreads": "Fehlende erforderliche Fäden, bitte überprüfen.",
+      "missingTalentCategory": "Fehlende Talent-Kategorie, bitte überprüfen.",
+      "missingDamageAttribute": "Fehlende Schadensattribute oder Basisschritt, bitte überprüfen.",
+      "missingShatterThreshold": "Fehlender Zerbrechlichkeitswert, bitte überprüfen.",
+      "missingPowerType": "Fehlender Krafttyp, bitte überprüfen.",
+      "missingDamageStepAttackPower": "Fehlender Schadensschritt für Angriffskraft, bitte überprüfen.",
+      "missingKarmaModifier": "Fehlender Karmamodifikator, bitte überprüfen.",
+      "missingAmmunitionType": "Fehlender Munitionstyp für Schusswaffe, bitte überprüfen.",
+      "missingPhysicalDefenseBonus": "Fehlender physischer Verteidigungsbonus, bitte überprüfen.",
+      "missingMysticalDefenseBonus": "Fehlender mystischer Verteidigungsbonus, bitte überprüfen.",
+      "missingInitiativePenalty": "Fehlender Initiativeabzug, bitte überprüfen."
     },
     "Notifications": {
       "Error": {

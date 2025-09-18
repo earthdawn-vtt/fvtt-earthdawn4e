@@ -39,7 +39,7 @@ export default class AbilityKnackMigration extends BaseMigration {
       // If the talent has attributes that make it incomplete, add it to incomplete migrations
       if ( hasIncompleteAttributes.hasIssues ) {
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -54,7 +54,7 @@ export default class AbilityKnackMigration extends BaseMigration {
       if ( !hasIncompleteAttributes.hasIssues ) {
         // Migration was successful - add to successful migrations
         const migrationData = {
-          name:      source.name || "Unknown Talent",
+          name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
           uuid:      `Item.${source._id}`,
           type:      source.type,
           id:        source._id
@@ -65,7 +65,7 @@ export default class AbilityKnackMigration extends BaseMigration {
     } catch ( error ) {
       // If any error occurs, consider it an incomplete migration
       const migrationData = {
-        name:      source.name || "Unknown Talent",
+        name:      source.name || game.i18n.localize( "ED.Migrations.unknownTalent" ),
         uuid:      `Item.${source._id}`,
         type:      source.type,
         id:        source._id
@@ -91,43 +91,43 @@ export default class AbilityKnackMigration extends BaseMigration {
     // check for missing rolltype
     if ( !source.system.rollType ) {
       result.hasIssues = true;
-      result.reason += "Missing rollType, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingRollType" ) + " ";
     }
 
     // check for rolltype "attack" but missing weaponType
-    if ( source.system.rollType === "attack" && !source.system.weaponType ) {
+    if ( source.system.rollType === "attack" && !source.system.rollTypeDetails.attack.weaponType ) {
       result.hasIssues = true;
-      result.reason += "Missing weapon Types for attack rollType, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingWeaponTypesAttack" ) + " ";
     }
 
     // check for missing attributes
     if ( !source.system.attributes || source.system.attributes.length === 0 ) {
       result.hasIssues = true;
-      result.reason += "Missing attributes, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingAttributes" ) + " ";
     }
 
     // difficulty setting
     if ( !source.system.difficulty ) {
       result.hasIssues = true;
-      result.reason += "Missing difficulty setting, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingDifficulty" ) + " ";
     }
 
     // check for missing edid
     if ( !source.system.edid || source.system.edid === "none" ) {
       result.hasIssues = true;
-      result.reason += "Missing or undefined edid, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingEdid" ) + " ";
     }
 
     // Add error message for Restrictions if empty
     if ( !source.system.restrictions || source.system.restrictions.length === 0 ) {
       result.hasIssues = true;
-      result.reason += "No restrictions defined, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingRestrictions" ) + " ";
     }
 
     // Add error message for Requirements if empty
     if ( !source.system.requirements || source.system.requirements.length === 0 ) {
       result.hasIssues = true;
-      result.reason += "No requirements defined, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingRequirements" ) + " ";
     }
 
     // Add more conditions as needed

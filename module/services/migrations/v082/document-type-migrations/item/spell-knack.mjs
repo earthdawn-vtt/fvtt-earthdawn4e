@@ -69,7 +69,7 @@ export default class SpellKnackMigration extends BaseMigration {
     // check for missing edid
     if ( !source.system.edid || source.system.edid === "none" ) {
       result.hasIssues = true;
-      result.reason += "Missing or undefined edid, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingEdid" ) + " ";
     }
     // Add more conditions as needed
 

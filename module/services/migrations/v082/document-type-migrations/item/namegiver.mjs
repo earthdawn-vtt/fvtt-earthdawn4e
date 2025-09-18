@@ -103,7 +103,7 @@ export default class NamegiverMigration extends BaseMigration {
 
     if ( !source.system.karmaModifier ) {
       result.hasIssues = true;
-      result.reason += "Missing karma modifier, please check. ";
+      result.reason += game.i18n.localize( "ED.Migrations.missingKarmaModifier" ) + " ";
     }
     // Add more conditions as needed
 
