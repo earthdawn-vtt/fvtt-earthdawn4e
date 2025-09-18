@@ -564,6 +564,10 @@ export default class ActorEd extends Actor {
     return this.drawWeapon();
   }
 
+  /**
+   * Returns the knockdown ability item for this actor, if any.
+   * @returns {Promise<ItemEd|undefined>} The knockdown ability item, or undefined if none was found.
+   */
   async knockdownAbility() {
     const knockdownAbility = await fromUuid(
       await this.getPrompt( "knockdown" )
@@ -571,6 +575,12 @@ export default class ActorEd extends Actor {
     return knockdownAbility;
   }
   
+  /**
+   * Perform a knockdown test for this actor.
+   * @param {number} damageTaken The amount of damage that triggered the knockdown test.
+   * @param {object} [options] Additional options for the knockdown test.
+   * @returns {Promise<EdRoll|null>} The result of the knockdown test roll, or null if the test was not performed.
+   */
   async knockdownTest( damageTaken, options = {} ) {
     const knockdownWorkflow = new KnockdownWorkflow(
       this,

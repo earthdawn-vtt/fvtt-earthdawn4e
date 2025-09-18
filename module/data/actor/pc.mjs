@@ -536,6 +536,10 @@ export default class PcData extends NamegiverTemplate {
     this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
   }
 
+  /**
+   * Prepare the knockdown step based on the strength attribute.
+   * @private
+   */
   #prepareKnockdown() {
     this.knockdownStep = this.attributes.str.step;
   }

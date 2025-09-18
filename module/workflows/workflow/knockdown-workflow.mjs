@@ -1,5 +1,4 @@
 import KnockdownRollOptions from "../../data/roll/knockdown.mjs";
-import RollProcessor from "../../services/roll-processor.mjs";
 import { ActorWorkflow } from "./_module.mjs";
 import Rollable from "./rollable.mjs";
 
@@ -63,12 +62,18 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
       this._checkKnockdownStatus.bind( this ),
       this.getKnockdownAbility.bind( this ),
       this._prepareKnockdownRollOptions.bind( this ),
-      this._performKnockdownRoll.bind( this ),
-      this._processKnockdown.bind( this ),
+      this._createRoll.bind( this ),
+      this._evaluateResultRoll.bind( this ),
+      this._processRoll.bind( this ),
       this._rollToChat.bind( this ),
     ];
   }
 
+  /**
+   * Check if the actor is already knocked down.
+   * @returns {Promise<void>}
+   * @private
+   */
   async _checkKnockdownStatus() {
     if ( this._actor.statuses.has( "knockedDown" ) ) {
       ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.alreadyKnockedDown" ) );
@@ -76,10 +81,20 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
+  /**
+   * Fetch the knockdown ability item for the actor.
+   * @returns {Promise<void>}
+   * @private
+   */
   async getKnockdownAbility() {
     this._knockdownAbility = await this._actor.knockdownAbility();
   }
 
+  /**
+   * Prepare the roll options for the knockdown test.
+   * @returns {Promise<void>}
+   * @private
+   */
   async _prepareKnockdownRollOptions() {
     const stepModifiers = {};
     const knockdownModifier = this._actor.system.globalBonuses?.allKnockdownTests.value ?? 0;
@@ -93,37 +108,5 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
       },
       this._actor,
     );
-  }
-
-  /**
-   * Performs the knockdown roll.
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _performKnockdownRoll() {
-    if ( this._roll === null ) {
-      this._roll = null;
-      this._result = null;
-      return;
-    }
-
-    await this._createRoll();
-    await this._roll.evaluate();
-    this._result = this._roll;
-  }
-
-  /**
-   * Processes the knockdown result.
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _processKnockdown() {
-    
-    await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
-  
-    if ( !this._result.isSuccess ) {
-      // set status effect for knockdown etc.
-      await this._actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true, }, );
-    } 
   }
 }

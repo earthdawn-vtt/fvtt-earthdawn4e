@@ -39,6 +39,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
     "allKnockdownTests",
   ];
 
+  /** @inheritdoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -67,6 +68,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
     return /** @type {KnockdownRollOptions} */ super.fromActor( data, actor, options );
   }
 
+  /** @inheritdoc */
   static _prepareStepData( data ) {
     const knockdownAbility = data.knockdownAbility ?? fromUuidSync( data.knockdownAbilityUuid );
     if ( knockdownAbility ) {
@@ -81,6 +83,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
     }
   }
 
+  /** @inheritdoc */
   static _prepareTargetDifficulty( data ) {
     const actor = data.actor ?? fromUuidSync( data.rollingActorUuid );
     const woundThreshold = actor.system.characteristics.health.woundThreshold;
@@ -89,6 +92,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
     };
   }
 
+  /** @inheritdoc */
   static _prepareStrainData( data ) {
     const knockdownAbility = data.knockdownAbility ?? fromUuidSync( data.knockdownAbilityUuid );
     return {
