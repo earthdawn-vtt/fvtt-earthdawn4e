@@ -44,9 +44,6 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
       this.#createRollOptions.bind( this ),
       this.#createAttackRoll.bind( this ),
       this.#rollAttack.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
-      this._rollToChat.bind( this ),
     );
   }
 
