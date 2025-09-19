@@ -1058,7 +1058,7 @@ export default class ActorEd extends Actor {
       }
     );
 
-    return this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /** @inheritDoc */
