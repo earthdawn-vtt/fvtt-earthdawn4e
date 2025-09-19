@@ -1545,6 +1545,7 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .actor-image,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .actor-image {
   width: 160px;
+  height: 160px;
   border: none;
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .image-characteristics-mob__grid-container > div,
