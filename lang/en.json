@@ -3144,6 +3144,9 @@
           "sourceTalentRank":                      "Source Talent Rank",
           "talentFromCurrentCircleOnNewLevel":     "Talent from the {circle} Circle at the new rank",
           "talentOptionLp":                        "Legend Points for Talent Option",
+          "talentsRequirementFulfilled":           "TODO: Add translation",
+          "hasNoDamage":                           "TODO: Add translation",
+          "hasNoWounds":                           "TODO: Add translation",
           "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}"
         },
         "configuration":                           "Configuration",

@@ -3144,6 +3144,9 @@
           "sourceTalentRank":                      "TODO: Add translation",
           "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
           "talentOptionLp":                        "TODO: Add translation",
+          "talentsRequirementFulfilled":           "TODO: Add translation",
+          "hasNoDamage":                           "TODO: Add translation",
+          "hasNoWounds":                           "TODO: Add translation",
           "talentsRequirementFailed":              "TODO: Add translation"
         },
         "configuration":                           "TODO: Add translation",

@@ -3144,6 +3144,9 @@
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
           "talentOptionLp":                        "Legendenpunkte für Talentoption",
+          "talentsRequirementFulfilled":           "Die Talente-Anforderung für den Kreisaufstieg ist erfüllt.",
+          "hasNoDamage":                           "Hat keinen Schaden",
+          "hasNoWounds":                           "Hat keine Wunden",
           "talentsRequirementFailed":              "Die Talente-Anforderung ist fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}"
         },
         "configuration":                           "Konfiguration",
