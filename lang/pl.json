@@ -3081,6 +3081,7 @@
           "learningClass":                         "TODO: Add translation",
           "optionalAbilityGained":                 "TODO: Add translation",
           "resourceStepIncreased":                 "TODO: Add translation",
+          "classAbilitiesGained":                  "TODO: Add translation",
           "spellsGained":                          "TODO: Add translation"
         },
         "LearnSpell": {
