@@ -166,8 +166,7 @@
       "Header": {
         "Favorites": {
           "brokenReference":                       "Defekter Favorit",
-          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden.",
-          "test":                                  "Test"
+          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
         },
         "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
