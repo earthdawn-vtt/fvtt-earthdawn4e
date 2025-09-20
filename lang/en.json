@@ -3081,6 +3081,7 @@
           "learningClass":                         "Learning Vocation",
           "optionalAbilityGained":                 "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                 "Resource Step Increased",
+          "classAbilitiesGained":                  "Gained Discipline Talents",
           "spellsGained":                          "Spells Gained"
         },
         "LearnSpell": {
