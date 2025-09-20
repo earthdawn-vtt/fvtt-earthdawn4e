@@ -1734,42 +1734,10 @@
                 "label":                           "TODO: Add translation"
               }
             },
-            "powerItems": {
-              "maneuver": {
-                "bonus": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "edid": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "step": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "uuid": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                }
-              },
-              "power": {
-                "bonus": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "edid": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "step": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
-                "uuid": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                }
+            "power": {
+              "step": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               }
             }
           }
