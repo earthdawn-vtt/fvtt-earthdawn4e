@@ -106,7 +106,7 @@
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDownTest":                           "Niederschlag",
+        "knockdownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
         "tailAttack":                              "Schwanzangriff",
@@ -627,7 +627,7 @@
         "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
         "spellEffect":                             "Zauber-Effekt",
@@ -1714,7 +1714,7 @@
               "hint":                              "Stufe der Initiative des Maskenträgers",
               "label":                             "Initiativestufe"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                              "Stufe des Niederschlagens",
               "label":                             "Niederschlagungsstufe"
             },
@@ -3197,7 +3197,7 @@
         "drawWeapon":                              "Waffe ziehen",
         "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "learnAbility":                            "Fähigkeit lernen",
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
@@ -3230,7 +3230,7 @@
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
-      "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden",
       "versatilityTalentLimit":                    "Das Maximum an Talente die über Vielseitigkeit gelernt werden können ist bereits erreicht. Das reguläre Maximum entspricht dem Vielseitigkeits Rang.\n Soll das gewählte Talent trotzdem gelernt werden?"
@@ -3380,6 +3380,7 @@
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
+        "alreadyKnockedDown":                      "Der Charakter ist bereits niedergeschlagen.",
         "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
@@ -3483,8 +3484,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
-        "knockDown":                               "ED-ID für Niederschlag",
-        "knockDownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
+        "knockdown":                               "TODO: Add translation",
+        "knockdownHint":                           "TODO: Add translation",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",

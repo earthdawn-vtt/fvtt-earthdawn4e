@@ -106,7 +106,7 @@
         "halfMagic":                               "TODO: Add translation",
         "initiative":                              "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
-        "knockDownTest":                           "TODO: Add translation",
+        "knockdownTest":                           "TODO: Add translation",
         "legendHistory":                           "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "tailAttack":                              "TODO: Add translation",
@@ -562,7 +562,7 @@
           "titleHealth":                           "TODO: Add translation",
           "titleNewAbilityLp":                     "TODO: Add translation",
           "titleResources":                        "TODO: Add translation",
-          "titleSpellKnackRequirement":            "",
+          "titleSpellKnackRequirement":            "TODO: Add translation",
           "titleTalentsRequirement":               "TODO: Add translation"
         }
       },
@@ -627,7 +627,7 @@
         "horrorMark":                              "TODO: Add translation",
         "initiative":                              "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
-        "knockDown":                               "TODO: Add translation",
+        "knockdown":                               "TODO: Add translation",
         "reaction":                                "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "spellEffect":                             "TODO: Add translation",
@@ -1714,7 +1714,7 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "knockDownStep": {
+            "knockdownStep": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -3197,7 +3197,7 @@
         "drawWeapon":                              "TODO: Add translation",
         "halfMagicDiscipline":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
-        "knockDown":                               "TODO: Add translation",
+        "knockdown":                               "TODO: Add translation",
         "learnAbility":                            "TODO: Add translation",
         "learnSpell":                              "TODO: Add translation",
         "lpIncrease":                              "TODO: Add translation",
@@ -3230,7 +3230,7 @@
       "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
       "doYouWantToUseWillpower":                   "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
-      "knockDownChoice":                           "TODO: Add translation",
+      "knockdownChoice":                           "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
       "physical":                                  "TODO: Add translation",
       "versatilityTalentLimit":                    "TODO: Add translation"
@@ -3380,6 +3380,7 @@
         "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
+        "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "TODO: Add translation",
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
@@ -3483,8 +3484,8 @@
       "Edid": {
         "creatureAttack":                          "TODO: Add translation",
         "creatureAttackHint":                      "TODO: Add translation",
-        "knockDown":                               "TODO: Add translation",
-        "knockDownHint":                           "TODO: Add translation",
+        "knockdown":                               "TODO: Add translation",
+        "knockdownHint":                           "TODO: Add translation",
         "languageRW":                              "TODO: Add translation",
         "languageRWHint":                          "TODO: Add translation",
         "languageSpeak":                           "TODO: Add translation",

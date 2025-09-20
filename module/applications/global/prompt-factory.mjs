@@ -182,7 +182,7 @@ class ActorPromptFactory extends PromptFactory {
     chooseDiscipline:      this._chooseDisciplinePrompt.bind( this ),
     drawWeapon:            this._drawWeaponPrompt.bind( this ),
     jumpUp:                this._jumpUpPrompt.bind( this ),
-    knockDown:             this._knockDownPrompt.bind( this ),
+    knockdown:             this._knockdownPrompt.bind( this ),
     recovery:              this._recoveryPrompt.bind( this ),
     takeDamage:            this._takeDamagePrompt.bind( this ),
     attribute:             this._attributePrompt.bind( this ),
@@ -392,8 +392,8 @@ class ActorPromptFactory extends PromptFactory {
    * Creates the knock down dialog.
    * @returns {Promise<Dialog>} A promise that resolves to the knock down prompt dialog.
    */
-  async _knockDownPrompt() {
-    const buttons = await this._getAbilityButtonByAction( "knockDown" );
+  async _knockdownPrompt() {
+    const buttons = await this._getAbilityButtonByAction( "knockdown" );
 
     const noAbilityButton = this.constructor.cancelButton;
     noAbilityButton.label = "ED.Dialogs.Buttons.noAbility";
@@ -405,7 +405,7 @@ class ActorPromptFactory extends PromptFactory {
       uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
       classes:     [ "earthdawn4e", "knock-down-prompt knockdown flexcol" ],
       window:      {
-        title:       "ED.Dialogs.Title.knockDown",
+        title:       "ED.Dialogs.Title.knockdown",
         minimizable: false
       },
       modal:   false,

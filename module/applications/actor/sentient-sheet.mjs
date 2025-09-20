@@ -36,7 +36,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       castMatrix:       ActorSheetEdSentient._onCastMatrix,
       castSpell:        ActorSheetEdSentient._onCastSpell,
       takeDamage:       ActorSheetEdSentient.takeDamage,
-      knockDown:        ActorSheetEdSentient.knockdownTest,
+      knockdown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
       jumpUp:           ActorSheetEdSentient.jumpUp,
       initiative:       ActorSheetEdSentient.rollInitiative,
