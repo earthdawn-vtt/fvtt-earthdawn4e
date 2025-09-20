@@ -19,13 +19,7 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "discipline") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-            {{log "knack" this}}
-            {{log "sourceItem" this.system.sourceItem}}
-              {{log "talent" talent.system.edid}}
               {{#if (eq this.system.sourceItem talent.system.edid)}}
-              {{log "this inside" this}}
-              {{log "sourceItem" this.system.sourceItem}}
-              {{log "talent" talent.system.edid}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs"}}
               {{/if}}
             {{/each}}
