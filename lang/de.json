@@ -1712,24 +1712,6 @@
               "hint":                              "Bonus auf den Niederschlagswurf",
               "label":                             "Niederschlagsstufe"
             },
-            "maneuver": {
-              "bonus": {
-                "hint":                            "Bonus auf die Stufe der Kraft, wenn diese bereits existiert",
-                "label":                           "Bonus"
-              },
-              "edid": {
-                "hint":                            "EDID der Kraft/ des Manövers",
-                "label":                           "EDID"
-              },
-              "step": {
-                "hint":                            "Stufe der Kraft",
-                "label":                           "Stufe"
-              },
-              "uuid": {
-                "hint":                            "UUID der Kraft/ des Manövers",
-                "label":                           "Kraft/Manöver UUID"
-              }
-            },
             "movement": {
               "burrow": {
                 "hint":                            "Bonus auf die Grabbewegung",
@@ -1753,21 +1735,9 @@
               }
             },
             "power": {
-              "bonus": {
-                "hint":                            "Bonus auf die Stufe der Kraft, wenn diese bereits existiert",
-                "label":                           "Bonus"
-              },
-              "edid": {
-                "hint":                            "EDID der Kraft/ des Manövers",
-                "label":                           "EDID"
-              },
               "step": {
                 "hint":                            "Stufe der Kraft",
                 "label":                           "Stufe"
-              },
-              "uuid": {
-                "hint":                            "UUID der Kraft/ des Manövers",
-                "label":                           "Kraft/Manöver UUID"
               }
             }
           }
