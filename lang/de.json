@@ -166,7 +166,8 @@
       "Header": {
         "Favorites": {
           "brokenReference":                       "Defekter Favorit",
-          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
+          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden.",
+          "tested":                                "Getestet"
         },
         "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
@@ -3087,13 +3088,13 @@
           "SelectedSpells":                        "Ausgewählte Zauber",
           "YouCanChooseSpells":                    "Du kannst Zauber auswählen",
           "chooseAbilityOption":                   "Wähle eine Fähigkeit",
+          "classAbilitiesGained":                  "Erhaltene Disziplintalente",
           "classIncreasedTier":                    "WO IST DAS??? CONTEXT Die Klasse wurde auf {newTier} erhöht",
           "effectsGained":                         "Erhaltene Effekte",
           "increaseClassTo":                       "Berufung auf {increaseClassToLevel} erhöhen",
           "learningClass":                         "Lerne Berufung",
           "optionalAbilityGained":                 "Du hast eine optionale Fähigkeit erhalten, die du später steigern kannst.",
           "resourceStepIncreased":                 "Die Stufe der Ressourcen wurde erhöht. Dies kann die Stufe der Ressourcen erhöhen, die du verwenden kannst.",
-          "classAbilitiesGained":                  "Erhaltene Disziplintalente",
           "spellsGained":                          "Erhaltene Zauber"
         },
         "LearnSpell": {
@@ -3369,6 +3370,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "Die Fähigkeit kann nicht gesteigert werden, es fehlt eine Gradzuordnung (Novize, Geselle, Wächter oder Meister).",
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
@@ -3388,7 +3390,6 @@
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
         "spellcastingWorkflowFailed":              "Der Zauberwirkungs-Workflow ist fehlgeschlagen.",
-        "abilityIncreaseNoTier":                   "Die Fähigkeit kann nicht gesteigert werden, es fehlt eine Gradzuordnung (Novize, Geselle, Wächter oder Meister).",
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
