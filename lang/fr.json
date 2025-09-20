@@ -3375,6 +3375,7 @@
         "singleton":                               "TODO: Add translation",
         "spellNotAttunedToMatrix":                 "TODO: Add translation",
         "spellcastingWorkflowFailed":              "TODO: Add translation",
+        "abilityIncreaseNoTier":                   "TODO: Add translation",
         "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {

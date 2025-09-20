@@ -3375,6 +3375,7 @@
         "singleton":                               "This actor is a singleton. Only one instance can exist.",
         "spellNotAttunedToMatrix":                 "The spell has not been attuned to a matrix.",
         "spellcastingWorkflowFailed":              "The spellcasting workflow failed.",
+        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.", 
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {

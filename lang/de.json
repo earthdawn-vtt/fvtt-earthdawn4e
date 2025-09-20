@@ -3375,6 +3375,7 @@
         "singleton":                               "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "spellNotAttunedToMatrix":                 "Der Zauber wurde nicht auf eine Matrix abgestimmt.",
         "spellcastingWorkflowFailed":              "Der Zauberwirkungs-Workflow ist fehlgeschlagen.",
+        "abilityIncreaseNoTier":                   "Die Fähigkeit kann nicht gesteigert werden, es fehlt eine Gradzuordnung (Novize, Geselle, Wächter oder Meister).",
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
