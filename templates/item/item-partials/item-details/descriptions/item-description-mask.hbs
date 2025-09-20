@@ -43,7 +43,10 @@
         {{!-- Knock Down Step bonus --}}
         {{formField systemFields.knockDownStep name="system.knockDownStep" value=item.system.knockDownStep localize=true}}
         {{!-- Damage Steps bonus --}}
-        {{formField systemFields.damageStepsBonus name="system.damageStepsBonus" value=item.system.damageStepsBonus localize=true}}
+        {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep localize=true}}
+        {{!-- Attack Steps bonus --}}
+        {{formField systemFields.attackStep name="system.attackStep" value=item.system.attackStep localize=true}}
+
         {{!-- Initiative Step bonus --}}
         {{formField systemFields.initiative name="system.initiative" value=item.system.initiative localize=true}}
         {{!-- Actions bonus --}}
@@ -69,48 +72,23 @@
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.powers"}}</legend>
-        {{#each item.system.powerItems.powers}}
+        {{#each powerItems}}
         <div class="power-item">
-            {{#with (lookup ../powerItems @index)}}
-            <div class="power-name">{{{this.enrichedLink}}}</div>
-            {{/with}}
-            <input type="hidden" name="system.powerItems.powers.{{@index}}.uuid" value="{{this.uuid}}" />
-            <input type="hidden" name="system.powerItems.powers.{{@index}}.edid" value="{{this.edid}}" />
+            <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
             <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.power.uuid.label"}}</label>
-            <span class="form-field">{{this.uuid}}</span>
-            </div>
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.power.edid.label"}}</label>
-            <span class="form-field">{{this.edid}}</span>
-            </div>
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.power.bonus.label"}}</label>
-            <input class="form-field" type="number" name="system.powerItems.powers.{{@index}}.bonus" value="{{this.bonus}}" />
-            </div>
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.power.step.label"}}</label>
-            <input class="form-field" type="number" name="system.powerItems.powers.{{@index}}.step" value="{{this.step}}" />
+            <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
+            <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
             </div>
         </div>
         {{/each}}
     </fieldset>
     <fieldset>
         <legend>{{localize "ED.Item.Header.maneuver"}}</legend>
-        {{#each item.system.powerItems.maneuver}}
-        <div class="power-item">
-            {{#with (lookup ../maneuverItems @index)}}
-            <div class="maneuver-name">{{{this.enrichedLink}}}</div>
-            {{/with}}
-            <input type="hidden" name="system.powerItems.maneuver.{{@index}}.uuid" value="{{this.uuid}}" />
-            <input type="hidden" name="system.powerItems.maneuver.{{@index}}.edid" value="{{this.edid}}" />
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.maneuver.uuid.label"}}</label>
-            <span class="form-field">{{this.uuid}}</span>
-            </div>
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.powerItems.maneuver.edid.label"}}</label>
-            <span class="form-field">{{this.edid}}</span>
+        {{#each maneuverItems}}
+        <div class="maneuver-item">
+            {{log this}}
+            <div class="maneuver-item">
+                <div class="maneuver-name">{{{this.enrichedLink.outerHTML}}}</div>
             </div>
         </div>
         {{/each}}

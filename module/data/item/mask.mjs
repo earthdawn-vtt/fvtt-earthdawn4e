@@ -31,15 +31,16 @@ import ED4E from "../../config/_module.mjs";
  * @property {number} healthBonuses.unconsciousThreshold      unconscious threshold modifications
  * @property {number} healthBonuses.woundThreshold            wound threshold modifications
  * @property {object} combatBonuses              Combat bonuses group object
- * @property {number} combatBonuses.attackStepsBonus          attack steps modifications
- * @property {number} combatBonuses.damageStepsBonus          damage steps modification
+ * @property {number} combatBonuses.attackStep          attack steps modifications
+ * @property {number} combatBonuses.damageStep          damage steps modification
  * @property {number} combatBonuses.knockDownStep             knock down step modifications
  * @property {number} combatBonuses.actions                   number of attacks
  * @property {number} combatBonuses.initiativeStep            initiative step modifications
  * @property {number} challengingRate           changes to the challenging rate
- * @property {object} powerItems                Object of powers and maneuvers
- * @property {object} powerItems.powers                    Object of powers
- * @property {object} powerItems.maneuvers                 Object of maneuvers
+ * @property {object[]} powers                    Object of powers to be added to the mask target
+ * @property {string} powers.uuid               UUID of the power item
+ * @property {number} powers.step               Step of the power item
+ * @property {object[]} maneuvers                 Object of maneuvers to be added to the mask target
  */
 export default class MaskData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
@@ -144,7 +145,14 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      damageStepsBonus: new fields.NumberField( {
+      damageStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      attackStep: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
@@ -175,52 +183,32 @@ export default class MaskData extends ItemDataModel.mixin(
           integer:  true,
         } ),
       } ),
-      powerItems: new fields.SchemaField( {
-        powers: new fields.ArrayField(
-          new fields.SchemaField( {
-            uuid: new fields.DocumentUUIDField( {
-              type: "Item"
-            } ),
-            edid: new fields.StringField( {
-              required: true,
-              nullable: false,
-              initial:  "none"
-            } ),
-            bonus: new fields.NumberField( {
-              required: true,
-              nullable: false,
-              initial:  0,
-              integer:  true
-            } ),
-            step: new fields.NumberField( {
-              required: true,
-              nullable: false,
-              initial:  0,
-              integer:  true
-            } )
+      powers: new fields.ArrayField(
+        new fields.SchemaField( {
+          uuid: new fields.DocumentUUIDField( {
+            type:     "Item",
+            embedded: false
           } ),
-          {
+          step: new fields.NumberField( {
             required: true,
-            initial:  []
-          }
-        ),
-        maneuver: new fields.ArrayField(
-          new fields.SchemaField( {
-            uuid: new fields.DocumentUUIDField( {
-              type: "Item"
-            } ),
-            edid: new fields.StringField( {
-              required: true,
-              nullable: false,
-              initial:  "none"
-            } ),
-          } ),
-          {
-            required: true,
-            initial:  []
-          }
-        )
-      } ),
+            nullable: false,
+            initial:  0,
+            integer:  true
+          } )
+        } ),
+        {
+          required: true,
+          initial:  []
+        }
+      ),
+      maneuvers: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: false
+        } ), {
+          required:        true,
+          initial:         [],
+        } ),
     } );
   }
 
@@ -228,8 +216,8 @@ export default class MaskData extends ItemDataModel.mixin(
 
   /**
    * Adds a power to the mask.
-   * @param {Item} power The power to add to the mask.
-   * @returns {Promise<Item|undefined>} The updated mask item or undefined if the power was not added.
+   * @param {ItemEd} power The power to add to the mask.
+   * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if the power was not added.
    */
   async addPowerToMask( power ) {
     if ( power.type !== "power" ) {
@@ -239,37 +227,23 @@ export default class MaskData extends ItemDataModel.mixin(
       return;
     }
 
-    let currentPowers = this.powerItems.powers;
-    if ( currentPowers instanceof Set ) {
-      currentPowers = Array.from( currentPowers ).map( uuid => ( {
-        uuid:  uuid,
-        bonus: 0,
-        step:  0
-      } ) );
-    } else if ( !Array.isArray( currentPowers ) ) {
-      currentPowers = [];
-    }
-
-    // Check if the power is already in the mask
-    const existingPower = currentPowers.find( existingPower => existingPower.uuid === power.uuid );
-    if ( existingPower ) {
+    if ( this.powers.some( entry => entry.uuid === power.uuid ) ) {
       ui.notifications.warn(
         game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
       return;
+    } else {
+      const newPowers = [
+        ...this.powers,
+        {
+          uuid: power.uuid,
+          step: 0,
+        },
+      ];
+      return this.parent.update( {
+        "system.powers": newPowers,
+      } );
     }
-
-    // Add the power to the mask with default bonus and step values
-    const newPowers = [ ...currentPowers, {
-      uuid:  power.uuid,
-      edid:  power.system.edid,
-      bonus: 0,
-      step:  0
-    } ];
-
-    return this.parent.update( {
-      "system.powerItems.powers": newPowers,
-    } );
   }
 
   /**
@@ -285,34 +259,15 @@ export default class MaskData extends ItemDataModel.mixin(
       return;
     }
 
-    // Migrate old data format if needed
-    let currentManeuvers = this.powerItems.maneuver;
-    if ( currentManeuvers instanceof Set ) {
-      // Convert old Set format to new Array format
-      currentManeuvers = Array.from( currentManeuvers ).map( uuid => ( {
-        uuid:  uuid,
-      } ) );
-    } else if ( !Array.isArray( currentManeuvers ) ) {
-      currentManeuvers = [];
-    }
-
-    // Check if the maneuver is already in the mask
-    const existingManeuver = currentManeuvers.find( existingManeuver => existingManeuver.uuid === power.uuid );
-    if ( existingManeuver ) {
+    if ( !this.maneuvers.has( power.uuid ) ) {
+      const newManeuvers = Array.from( this.maneuvers );
+      newManeuvers.push( power.uuid );
+      return this.parent.update( {"system.maneuvers": newManeuvers } );
+    } else  {
       ui.notifications.warn(
         game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
       return;
     }
-
-    // Add the maneuver to the mask with default bonus and step values
-    const newManeuvers = [ ...currentManeuvers, {
-      uuid:  power.uuid,
-      edid:  power.system.edid,
-    } ];
-
-    return this.parent.update( {
-      "system.powerItems.maneuver": newManeuvers,
-    } );
   }
 }

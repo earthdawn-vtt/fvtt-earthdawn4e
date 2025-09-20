@@ -1,11 +1,9 @@
 import ED4E from "../../config/_module.mjs";
+import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
-/**
- * Extend the basic ActorSheet with modifications
- */
 export default class MaskItemSheetEd extends ItemSheetEd {
 
   // region Static Properties
@@ -69,40 +67,26 @@ export default class MaskItemSheetEd extends ItemSheetEd {
         break;
       case "general": {
         // Process powers
-        const powerItems = await Promise.all(
-          ( this.document.system.powerItems?.powers ?? [] ).map( async power => {
-            const item = await fromUuid( power.uuid );
-            if ( item ) {
-              // Create enriched HTML link for the item
-              const enrichedLink = await TextEditor.enrichHTML( `@UUID[${power.uuid}]{${item.name}}` );
-              return {
-                ...item,
-                enrichedLink
-              };
-            }
-            return null;
+        const powers = await Promise.all(
+          ( this.document.system.powers ?? [] ).map( async power => {
+            const data = {...power};
+            data.enrichedLink = await linkForUuid( power.uuid );
+            return data;
           } )
         );
         
         // Process maneuvers
-        const maneuverItems = await Promise.all(
-          ( this.document.system.powerItems?.maneuver ?? [] ).map( async maneuver => {
-            const item = await fromUuid( maneuver.uuid );
-            if ( item ) {
-              // Create enriched HTML link for the item
-              const enrichedLink = await TextEditor.enrichHTML( `@UUID[${maneuver.uuid}]{${item.name}}` );
-              return {
-                ...item,
-                enrichedLink
-              };
-            }
-            return null;
+        const maneuvers = await Promise.all(
+          ( this.document.system.maneuvers ?? [] ).map( async maneuver => {
+            const data = {uuid: maneuver};
+            data.enrichedLink = await linkForUuid( maneuver );
+            return data;
           } )
         );
         
         // Filter out any null values and assign to context
-        context.powerItems = powerItems.filter( item => item !== null );
-        context.maneuverItems = maneuverItems.filter( item => item !== null );
+        context.powerItems = powers;
+        context.maneuverItems = maneuvers;
         break;
       }
       case "details":
