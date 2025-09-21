@@ -3126,6 +3126,8 @@
           "enoughTalentsOfTier":                   "TODO: Add translation",
           "enoughTalentsOnMinRank":                "TODO: Add translation",
           "hasDamage":                             "TODO: Add translation",
+          "hasNoDamage":                           "TODO: Add translation",
+          "hasNoWounds":                           "TODO: Add translation",
           "hasRequiredJourneymanTalents":          "TODO: Add translation",
           "hasRequiredMasterTalents":              "TODO: Add translation",
           "hasRequiredNoviceTalents":              "TODO: Add translation",
@@ -3144,10 +3146,8 @@
           "sourceTalentRank":                      "TODO: Add translation",
           "talentFromCurrentCircleOnNewLevel":     "TODO: Add translation",
           "talentOptionLp":                        "TODO: Add translation",
-          "talentsRequirementFulfilled":           "TODO: Add translation",
-          "hasNoDamage":                           "TODO: Add translation",
-          "hasNoWounds":                           "TODO: Add translation",
-          "talentsRequirementFailed":              "TODO: Add translation"
+          "talentsRequirementFailed":              "TODO: Add translation",
+          "talentsRequirementFulfilled":           "TODO: Add translation"
         },
         "configuration":                           "TODO: Add translation",
         "increasePathTalentPrompt":                "TODO: Add translation",
