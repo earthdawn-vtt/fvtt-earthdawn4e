@@ -42,14 +42,4 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
       } ),
     } );
   }
-
-  // region Macros
-
-  // /** @inheritDoc */
-  // getDefaultMacroCommand( options = {} ) {
-  //   // Equipment items should use actor.rollEquipment() instead of item.system.roll()
-  //   return `const item = await fromUuid("${this.parent.uuid}");\nif (item?.isOwned) {\n  await item.actor.rollEquipment(item);\n} else {\n  ui.notifications.warn("Equipment must be owned by an actor to be rolled.");\n}`;
-  // }
-
-  // endregion
 }
