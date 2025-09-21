@@ -192,7 +192,7 @@ export default class ItemEd extends Item {
       name:       this.name,
       type:       CONST.MACRO_TYPES.SCRIPT,
       img:        this.img,
-      command:    this.system.getDefaultMacroCommand(),
+      command:    this.system.getDefaultMacroCommand( this ),
     };
 
     // TODO: Add macro to folder if it exists, add user specific folder if not

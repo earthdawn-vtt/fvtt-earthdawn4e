@@ -60,8 +60,14 @@ export default class RollableTemplate extends SystemDataModel {
   // region Macros
 
   /** @inheritDoc */
-  getDefaultMacroCommand( options = {} ) {
-    return `const item = await fromUuid("${this.parent.uuid}");\nawait item.system.roll()`;
+  getDefaultMacroCommand( item, options = {} ) {
+    const physicalItemTypes = [ "armor", "equipment", "shield", "weapon" ];
+    if ( physicalItemTypes.includes( item.type ) ) {
+      // Physical items have to use actor.rollEquipment() instead of item.system.roll()
+      return `const item = await fromUuid("${this.parent.uuid}");\nawait item.actor.rollEquipment(item);`;
+    } else {
+      return `const item = await fromUuid("${this.parent.uuid}");\nawait item.system.roll()`;
+    }
   }
 
   // endregion
