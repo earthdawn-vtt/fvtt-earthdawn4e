@@ -150,21 +150,35 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
   static async _deleteFavorite( event, target ) {
     const macroUuid = target.dataset.macroUuid;
+  
     // Use shift-click for quick delete like deleteChild does
     if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
       const currentFavorites = this.document.system.favorites || [];
       const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
+    
+      // Delete the macro from the world
+      const macro = await fromUuid( macroUuid );
+      if ( macro ) await macro.delete();
+    
       return this.document.update( {
         "system.favorites": updatedFavorites
       } );
     }
+  
     const type = `${game.i18n.localize( "ED.Dialogs.DeleteFavorite.favorite" )}`;
     return Dialog.confirm( {
-      title:   `${game.i18n.localize( "DOCUMENT.Delete" )}`,
-      content: `<h4>${game.i18n.localize( "AreYouSure" )}</h4><p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>`,
-      yes:     async () => {
+      title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
+      content: `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
+              <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>
+              <p>${game.i18n.localize( "ED.Dialogs.DeleteFavorite.alsoDeletesMacro" )}</p>`,
+      yes: async () => {
         const currentFavorites = this.document.system.favorites || [];
         const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
+      
+        // Delete the macro from the world
+        const macro = await fromUuid( macroUuid );
+        if ( macro ) await macro.delete();
+      
         await this.document.update( {
           "system.favorites": updatedFavorites
         } );

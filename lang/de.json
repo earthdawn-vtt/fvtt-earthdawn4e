@@ -3066,6 +3066,7 @@
         }
       },
       "DeleteFavorite": {
+        "alsoDeletesMacro":                        "Das Löschen des Favoriten löscht auch das zugehörige Makro.",
         "favorite":                                "Favorit"
       },
       "Header": {
