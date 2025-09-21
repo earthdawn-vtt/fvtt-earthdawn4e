@@ -3126,6 +3126,8 @@
           "enoughTalentsOfTier":                   "Not all {required} of {current} talents have reached the minimum rank {nextLevel}",
           "enoughTalentsOnMinRank":                "All {required} talents are present",
           "hasDamage":                             "Has Damage",
+          "hasNoDamage":                           "TODO: Add translation",
+          "hasNoWounds":                           "TODO: Add translation",
           "hasRequiredJourneymanTalents":          "Has the required Journeyman Talents",
           "hasRequiredMasterTalents":              "Has the required Master Talents",
           "hasRequiredNoviceTalents":              "Has the required Novice Talents",
@@ -3144,10 +3146,8 @@
           "sourceTalentRank":                      "Source Talent Rank",
           "talentFromCurrentCircleOnNewLevel":     "Talent from the {circle} Circle at the new rank",
           "talentOptionLp":                        "Legend Points for Talent Option",
-          "talentsRequirementFulfilled":           "TODO: Add translation",
-          "hasNoDamage":                           "TODO: Add translation",
-          "hasNoWounds":                           "TODO: Add translation",
-          "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}"
+          "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "TODO: Add translation"
         },
         "configuration":                           "Configuration",
         "increasePathTalentPrompt":                "Choose a Path Talent to increase",
