@@ -3066,6 +3066,7 @@
         }
       },
       "DeleteFavorite": {
+        "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
       },
       "Header": {
@@ -3087,13 +3088,13 @@
           "SelectedSpells":                        "Selected Spells",
           "YouCanChooseSpells":                    "You Can Choose Spells",
           "chooseAbilityOption":                   "Choose an Ability",
+          "classAbilitiesGained":                  "Gained Discipline Talents",
           "classIncreasedTier":                    "The class has been raised to {newTier}",
           "effectsGained":                         "Effects Gained",
           "increaseClassTo":                       "Increase vocation to {increaseClassToLevel}",
           "learningClass":                         "Learning Vocation",
           "optionalAbilityGained":                 "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                 "Resource Step Increased",
-          "classAbilitiesGained":                  "Gained Discipline Talents",
           "spellsGained":                          "Spells Gained"
         },
         "LearnSpell": {
@@ -3369,6 +3370,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",
         "actorWarningSingleton":                   "This actor is a singleton. Only one instance can exist.",
         "formulaMalformedError":                   "The formula is malformed. Please check the formula.",
         "formulaMissingReferenceWarn":             "The formula references a missing value {missingReferences}. Please check the formula.",
@@ -3388,7 +3390,6 @@
         "singleton":                               "This actor is a singleton. Only one instance can exist.",
         "spellNotAttunedToMatrix":                 "The spell has not been attuned to a matrix.",
         "spellcastingWorkflowFailed":              "The spellcasting workflow failed.",
-        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.", 
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
