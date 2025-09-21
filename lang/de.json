@@ -3126,6 +3126,8 @@
           "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
           "enoughTalentsOnMinRank":                "Alle {required} Talente haben vorhanden",
           "hasDamage":                             "Hat Schaden",
+          "hasNoDamage":                           "Hat keinen Schaden",
+          "hasNoWounds":                           "Hat keine Wunden",
           "hasRequiredJourneymanTalents":          "Hat die erforderlichen Gesellen-Talente",
           "hasRequiredMasterTalents":              "Hat die erforderlichen Meister-Talente",
           "hasRequiredNoviceTalents":              "Hat die erforderlichen Novizen-Talente",
@@ -3144,10 +3146,8 @@
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
           "talentOptionLp":                        "Legendenpunkte für Talentoption",
-          "talentsRequirementFulfilled":           "Die Talente-Anforderung für den Kreisaufstieg ist erfüllt.",
-          "hasNoDamage":                           "Hat keinen Schaden",
-          "hasNoWounds":                           "Hat keine Wunden",
-          "talentsRequirementFailed":              "Die Talente-Anforderung ist fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}"
+          "talentsRequirementFailed":              "Die Trainingsvoraussetzungen sind fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "Die Trainingsvoraussetzungen für den Kreisaufstieg sind erfüllt."
         },
         "configuration":                           "Konfiguration",
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
