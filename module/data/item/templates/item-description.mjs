@@ -50,13 +50,7 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
 
     if ( !data.system?.hasOwnProperty( "edid" )
       || data.system.edid === SYSTEM.reservedEdid.DEFAULT ) {
-      this.parent.updateSource(
-        { "system.edid": `${ data.type } - ${ data.name }`.slugify( {
-          strict:    true,
-          lowercase: true,
-        } )
-        }
-      );
+      this.parent.updateSource( { "system.edid": EdIdField.generateEdId( data ), } );
     }
   }
 

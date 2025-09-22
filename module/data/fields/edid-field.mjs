@@ -1,4 +1,4 @@
-import ED4E from "../../config/_module.mjs";
+import ED4E, { SYSTEM } from "../../config/_module.mjs";
 import { getAllEdIds, validateEdid } from "../../utils.mjs";
 import { getEdIds } from "../../settings.mjs";
 
@@ -7,6 +7,8 @@ import { getEdIds } from "../../settings.mjs";
  * A special case string field that represents a strictly slugged string.
  */
 export default class EdIdField extends foundry.data.fields.StringField {
+
+  // region Static Properties
 
   /** @inheritdoc */
   static get _defaults() {
@@ -17,6 +19,29 @@ export default class EdIdField extends foundry.data.fields.StringField {
       documentSubtype: "",
     } );
   }
+
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * Generates a default edid based on an item
+   * @param {ItemEd|object} item The item or item-like object to generate the edid for.
+   * @param {string} item.name The name of the item
+   * @param {string} item.type The document subtype of the item
+   * @returns {string} A generated edid in the form type-name (e.g. "armor-padded-leather"). If the item is missing,
+   * returns the default reserved edid from {@link SYSTEM.reservedEdid.DEFAULT}.
+   */
+  static generateEdId( item ) {
+    if ( !item?.name || !item?.type ) return SYSTEM.reservedEdid.DEFAULT;
+    return `${ item.type } - ${ item.name }`.slugify( {
+      strict:    true,
+      lowercase: true,
+    } );
+  }
+
+
+  // endregion
 
   /**
    * @override
