@@ -1,0 +1,32 @@
+<div>
+  <fieldset>
+    <legend>{{localize "ED.Data.Other.ImportApp.FIELDS.folder.label"}}</legend>
+    <p class="hint">{{localize "ED.Data.Other.ImportApp.FIELDS.folder.hint"}}</p>
+    <div class="form-group">
+      <label>{{localize "ED.Data.Other.ImportApp.FIELDS.folder.path.label"}}</label>
+      <div class="form-fields">
+        {{{folderFilePickerElement.outerHTML}}}
+        <!--<file-picker name="folder.path" type="folder">
+          <input class="image" type="folder" placeholder="path/to/file.ext">
+          <button class="fa-solid fa-file-import fa-fw icon" type="button" data-tooltip="FILES.BrowseTooltip"
+                  aria-label="FILES.BrowseTooltip" tabindex="-1" style=""></button>
+        </file-picker>-->
+      </div>
+      <!--<p class="hint">{{localize "ED.Data.Other.ImportApp.FIELDS.folder.path.hint"}}</p>-->
+    </div>
+    {{#if data.folder.path}}
+      {{formGroup folderFields.documentTypes value=data.folder.documentTypes}}
+    {{/if}}
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "ED.Data.Other.ImportApp.FIELDS.actor.label"}}</legend>
+    <p class="hint">{{localize "ED.Data.Other.ImportApp.FIELDS.actor.hint"}}</p>
+    {{formGroup actorFields.path value=data.actor.path hint=""}}
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "ED.Data.Other.ImportApp.FIELDS.item.label"}}</legend>
+    <p class="hint">{{localize "ED.Data.Other.ImportApp.FIELDS.item.hint"}}</p>
+    {{formGroup itemFields.path value=data.item.path hint=""}}
+  </fieldset>
+</div>
+

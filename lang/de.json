@@ -2568,6 +2568,38 @@
             }
           }
         },
+        "ImportApp": {
+          "FIELDS": {
+            "actor": {
+              "hint":                              "Einzelner Actor der importiert werden soll",
+              "label":                             "Charakter",
+              "path": {
+                "hint":                            "Pfad des exportierten Actors der importiert werden soll",
+                "label":                           "Pfad"
+              }
+            },
+            "folder": {
+              "documentTypes": {
+                "hint":                            "Dokumenttypen die importiert werden sollen",
+                "label":                           "Dokumenttypen"
+              },
+              "hint":                              "Ordner aus dem alle Dokumente importiert werden sollen",
+              "label":                             "Ordner",
+              "path": {
+                "hint":                            "Pfad des Ordners aus dem alle Dokumente importiert werden sollen",
+                "label":                           "Pfad"
+              }
+            },
+            "item": {
+              "hint":                              "Einzelnes Item das importiert werden soll",
+              "label":                             "Item",
+              "path": {
+                "hint":                            "Pfad des exportierten Items das importiert werden soll",
+                "label":                           "Pfad"
+              }
+            }
+          }
+        },
         "InitiativeRollOptions": {
           "FIELDS": {
             "increaseAbilities": {
