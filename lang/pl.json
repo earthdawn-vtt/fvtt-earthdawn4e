@@ -2568,6 +2568,38 @@
             }
           }
         },
+        "ImportApp": {
+          "FIELDS": {
+            "actor": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation",
+              "path": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "folder": {
+              "documentTypes": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              },
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation",
+              "path": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            },
+            "item": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation",
+              "path": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
+            }
+          }
+        },
         "InitiativeRollOptions": {
           "FIELDS": {
             "increaseAbilities": {
