@@ -896,6 +896,18 @@
             "label":                               "Description"
           }
         },
+        "Group": {
+          "FIELDS": {
+          }
+        },
+        "Horror": {
+          "FIELDS": {
+          }
+        },
+        "Loot": {
+          "FIELDS": {
+          }
+        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -3400,6 +3412,7 @@
         "cannotLearn":                             "An item of type \"{itemType}\" cannot be learned.",
         "cannotLearnSpellKnack":                   "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "The matrix has no spell selected to cast.",
+        "cantHaveEffectFromSameSource":            "TODO: Add translation",
         "cantUpdateItemWeight":                    "Item weight could not be updated.",
         "castSpellNoActor":                        "No actor found to cast the spell.",
         "classIncreaseProblems":                   "Circle or rank could not be updated.",
@@ -3651,6 +3664,7 @@
       }
     },
     "ToolTips": {
+      "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
       "addSpell":                                  "Create a new spell and add it to this character's Grimoire.",
       "addThreadLevel":                            "Add a thread rank.",
       "attuneMatrix":                              "Attune Matrix",

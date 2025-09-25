@@ -15,11 +15,22 @@ export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Questor",
   ];
+
+  /** @inheritdoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
+    hasLinkedItems: true,
+  }, {inplace: false} ) );
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -39,17 +50,12 @@ export default class QuestorData extends ClassTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    hasLinkedItems: true,
-  }, {inplace: false} ) );
+  // endregion
 
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // region LP Tracking
+
+  // region LP Learning
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -80,6 +86,65 @@ export default class QuestorData extends ClassTemplate.mixin(
     // Questor devotion is treated as a journeyman talent
     return ED4E.legendPointsCost[ this.level + 1 + ED4E.lpIndexModForTier[1].journeyman ];
   }
+
+  /** @inheritDoc */
+  static async learn( actor, item, createData = {} ) {
+    if ( isEmpty ( actor.itemTypes.discipline ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
+    }
+
+    // get the questor devotion
+    const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
+    let questorDevotion = await fromUuid( item.system.questorDevotion );
+    questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
+    questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
+
+    await questorDevotion.update( {
+      system: {
+        edid: edidQuestorDevotion,
+      },
+    } );
+
+    // "Do you want to become a questor of <passion>? This will grant you the following devotion automatically:"
+    const questorDevotionLink = questorDevotion
+      ? createContentLink( questorDevotion.uuid, questorDevotion.name )
+      : game.i18n.format( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
+    const content = ` 
+      <p>${game.i18n.format( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
+      <p>${ questorDevotionLink }</p>
+      `;
+
+    const learn = await DialogEd.confirm( {
+      rejectClose: false,
+      content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
+    } );
+
+    if ( !learn ) return;
+
+    const questorDevotionData = questorDevotion?.toObject();
+    questorDevotionData.name = `${questorDevotion.name} - ${item.name}`;
+    questorDevotionData.system.level = 1;
+    const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
+
+    const questorCreateData = foundry.utils.mergeObject(
+      createData,
+      {
+        "system.level":           1,
+        "system.questorDevotion": learnedDevotion?.uuid,
+      }
+    );
+
+    const learnedQuestor = await super.learn( actor, item, questorCreateData );
+    if ( !learnedDevotion || !learnedQuestor ) throw new Error(
+      "Error learning questor item. Could not create embedded Items."
+    );
+
+    return learnedQuestor;
+  }
+
+  // endregion
+
+  // region LP Increase
 
   /** @inheritDoc */
   async increase() {
@@ -129,7 +194,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       `;
     const increaseDevotion = await DialogEd.confirm( {
       rejectClose: false,
-      content:     await TextEditor.enrichHTML( content ),
+      content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
     } );
     if ( increaseDevotion && !(
       await questorDevotion.update( { "system.level": nextLevel } )
@@ -138,64 +203,11 @@ export default class QuestorData extends ClassTemplate.mixin(
     return this.parent;
   }
 
-  /** @inheritDoc */
-  static async learn( actor, item, createData = {} ) {
-    if ( isEmpty ( actor.itemTypes.discipline ) ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
-    }
+  // endregion
 
-    // get the questor devotion
-    const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
-    let questorDevotion = await fromUuid( item.system.questorDevotion );
-    questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
-    questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
+  // endregion
 
-    await questorDevotion.update( {
-      system: {
-        edid: edidQuestorDevotion,
-      },
-    } );
-
-    // "Do you want to become a questor of <passion>? This will grant you the following devotion automatically:"
-    const questorDevotionLink = questorDevotion
-      ? createContentLink( questorDevotion.uuid, questorDevotion.name )
-      : game.i18n.format( "ED.Dialogs.Legend.questorDevotionNotFound", { edid: edidQuestorDevotion } );
-    const content = ` 
-      <p>${game.i18n.format( "ED.Dialogs.Legend.learnQuestorPrompt", {passion: item.name,} ) }</p>
-      <p>${ questorDevotionLink }</p>
-      `;
-
-    const learn = await DialogEd.confirm( {
-      rejectClose: false,
-      content:     await TextEditor.enrichHTML( content ),
-    } );
-
-    if ( !learn ) return;
-
-    const questorDevotionData = questorDevotion?.toObject();
-    questorDevotionData.name = `${questorDevotion.name} - ${item.name}`;
-    questorDevotionData.system.level = 1;
-    const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
-
-    const questorCreateData = foundry.utils.mergeObject(
-      createData,
-      {
-        "system.level":           1,
-        "system.questorDevotion": learnedDevotion?.uuid,
-      }
-    );
-
-    const learnedQuestor = await super.learn( actor, item, questorCreateData );
-    if ( !learnedDevotion || !learnedQuestor ) throw new Error(
-      "Error learning questor item. Could not create embedded Items."
-    );
-
-    return learnedQuestor;
-  }
-
-  /* -------------------------------------------- */
-  /*  Drop Events                                 */
-  /* -------------------------------------------- */
+  // region Drag and Drop
 
   async _onDropDevotion( event, document ) {
     const questorItem = this.parent;
@@ -204,4 +216,6 @@ export default class QuestorData extends ClassTemplate.mixin(
     } );
     return true;
   }
+
+  // endregion
 }

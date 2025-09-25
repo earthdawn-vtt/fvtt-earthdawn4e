@@ -3400,6 +3400,7 @@
         "cannotLearn":                             "TODO: Add translation",
         "cannotLearnSpellKnack":                   "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "TODO: Add translation",
+        "cantHaveEffectFromSameSource":            "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
         "castSpellNoActor":                        "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
@@ -3651,6 +3652,7 @@
       }
     },
     "ToolTips": {
+      "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
       "addSpell":                                  "TODO: Add translation",
       "addThreadLevel":                            "TODO: Add translation",
       "attuneMatrix":                              "TODO: Add translation",

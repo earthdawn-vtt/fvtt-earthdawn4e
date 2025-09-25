@@ -20,11 +20,17 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   LpIncreaseTemplate
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Class",
   ];
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static defineSchema() {
@@ -46,6 +52,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     } );
   }
 
+  // endregion
+
+  // region Properties
+
   /**
    * The tier of the current level. Returns an empty string if no level is found.
    * @type {string}
@@ -53,10 +63,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   get currentTier() {
     return this.advancement?.levels[this.level - 1]?.tier ?? "";
   }
-
-  /* -------------------------------------------- */
-  /*  Legend Building                             */
-  /* -------------------------------------------- */
 
   /** @inheritDoc */
   get canBeLearned() {
@@ -68,14 +74,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return true;
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritDoc */
   get learnable() {
     return true;
   }
-
-  /* -------------------------------------------- */
 
   /** @inheritDoc */
   get requiredLpForIncrease() {
@@ -90,15 +92,19 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     ];
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritDoc */
   get requiredLpToLearn() {
     return 0;
   }
 
-  /* -------------------------------------------- */
+  // endregion
 
+  // region LP Tracking
+
+  /**
+   * Get all ability UUIDs referenced in this class's advancement data.
+   * @returns {string[]} A flat array of all ability UUIDs referenced in this class's advancement data.
+   */
   getAllAbilityUuids() {
     return this.advancement.levels
       .flatMap( level => Array.from( level.abilities.class ) )
@@ -124,8 +130,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     return threadWeavingAbility?.system?.castingType;
   }
 
+  // region LP Increase
+
   /** @inheritDoc */
-  // eslint-disable-next-line complexity
+   
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
@@ -141,13 +149,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( !proceed ) return;
 
     // update the class first
-    if ( !(
-      ( await this.parent.update( { "system.level": nextLevel } ) ).system.level === nextLevel
-    ) )
+    const updatedClass = await this.parent.update( { "system.level": nextLevel } );
+    if ( updatedClass.system.level !== nextLevel ) {
       ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
+    }
 
-
-    // learn everything that potentially costs lp
     const systemSourceData = {
       system: {
         tier:   nextTier,
@@ -159,43 +165,138 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       },
     };
 
-    const abilityChoiceItem = await fromUuid( abilityChoice );
-    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
-      this.containingActor,
-      abilityChoiceItem,
-      foundry.utils.mergeObject(
-        systemSourceData,
-        {
-          "system.source.class":    this.parent.uuid,
-          "system.source.atLevel":  nextLevel,
-          "system.talentCategory":  "optional",
-          "system.tier":            nextTier,
-        },
-        { inplace: false },
+    await this._learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier );
+    await this._learnSpells( spells, systemSourceData );
+    await this._learnAbilities( nextLevelData, systemSourceData );
+
+    await this._addFreeAbilities( nextLevelData, systemSourceData );
+    await this._addPermanentEffects( nextLevelData );
+
+    await this._increaseResourceStep( nextLevelData );
+    await this._increaseFreeAbilities( nextLevel );
+
+    // we only land here if the class increase was successful
+    return this.parent;
+  }
+
+  async _increaseFreeAbilities( nextLevel ) {
+    // increase all abilities of category "free" to new circle, if lower
+    const freeAbilities = this.containingActor.items.filter(
+      i => i.system.talentCategory === "free"
+        && i.system.source?.class === this.parent.uuid
+        && i.system.level < nextLevel
+    );
+    // TODO: check if there are any free abilities already on this level or higher
+    // if so, add new earnings lp transaction to refund the spent lp to raise
+    // the free talent
+
+    for ( const ability of freeAbilities ) {
+      await ability.update( { "system.level": nextLevel } );
+    }
+  }
+
+  async _increaseResourceStep( nextLevelData ) {
+    const highestDiscipline = this.containingActor.highestDiscipline;
+
+    const resourceStep = nextLevelData.resourceStep;
+    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
+      await this.containingActor.update( { "system.karma.step": resourceStep } );
+    } else if ( this.parent.type === "questor" ) {
+      await this.containingActor.update( { "system.devotion.step": resourceStep } );
+    }
+  }
+
+  async _addPermanentEffects( nextLevelData ) {
+    const newEffects = await Promise.all(
+      Array.from( nextLevelData.effects ).map(
+        async uuid => fromUuid( uuid ),
       )
     );
-    await learnedAbilityChoice?.system?.increase();
 
+    await this._replacePreviousClassEffects( newEffects );
+    await this.containingActor.updateClassEffectStates();
+  }
 
-    for ( const spellUuid of spells ) {
-      const spell = await fromUuid( spellUuid );
-      await spell?.system?.constructor?.learn(
-        this.containingActor,
-        spell,
-        systemSourceData,
+  /**
+   * Remove class effects from previous levels of this class that are replaced by effects
+   * from the new level. This only replaces old effects that apply changes to the same change key
+   * as an effect from the new level.
+   * @param {EarthdawnActiveEffect[]} newEffects An array of new effects to add.
+   * @returns {Promise<void>}
+   */
+  async _replacePreviousClassEffects( newEffects ) {
+    const newChangeKeys = newEffects.map( effect => {
+      this._validateSingleChange( effect, "new" );
+      return effect.changes[0].key;
+    } );
+
+    if ( newChangeKeys.length === 0 ) return;
+
+    const effectsToRemove = this.containingActor.classEffects.filter( effect => {
+      if ( effect.system.source?.documentOriginUuid !== this.parent.uuid ) return false;
+      this._validateSingleChange( effect, "existing" );
+      return newChangeKeys.includes( effect.changes[0].key );
+    } );
+
+    await this.containingActor.deleteEmbeddedDocuments(
+      "ActiveEffect",
+      effectsToRemove.map( e => e.id )
+    );
+    const permanentNewEffects = await this._getEffectsForPermanentUse( newEffects, true );
+    await this.containingActor.createEmbeddedDocuments(
+      "ActiveEffect",
+      permanentNewEffects
+    );
+  }
+
+  /**
+   * Validate that the effect has only one change.
+   * @param {EarthdawnActiveEffect} effect The effect to validate.
+   * @param {string} type A string indicating whether the effect is "new" or
+   * "existing" for error messages.
+   * @throws {Error} If the effect has more than one change or no changes at all.
+   * @protected
+   */
+  _validateSingleChange( effect, type ) {
+    if ( effect.changes.length !== 1 ) {
+      throw new Error( `ClassTemplate._addPermanentEffects: ${type} class effect has more than one change` );
+    }
+  }
+
+  /**
+   * Get effects updated to be permanent, enabled, and not transferred to the target.
+   * @param {EarthdawnActiveEffect[]} effects The effects to update.
+   * @param {boolean} [disabled] Whether the effects should be disabled.
+   * @returns {Promise<object[]>} The updated effects data.
+   */
+  async _getEffectsForPermanentUse( effects, disabled = false ) {
+    const permanentSettings = {
+      disabled: disabled,
+      system:   {
+        duration:         { type: "permanent" },
+        transferToTarget: false,
+        source:           {
+          documentOriginUuid: this.parent.uuid,
+          documentOriginType: this.parent.type,
+        },
+      },
+    };
+
+    const updatedEffects = [];
+    for ( const effect of effects ) {
+      updatedEffects.push(
+        foundry.utils.mergeObject(
+          effect.toObject(),
+          permanentSettings,
+          { inplace: false }
+        )
       );
     }
 
-    for ( const abilityUuid of nextLevelData.abilities.class ) {
-      const ability = await fromUuid( abilityUuid );
-      await ability?.system?.constructor?.learn(
-        this.containingActor,
-        ability,
-        systemSourceData,
-      );
-    }
+    return updatedEffects;
+  }
 
-    // add everything that's free
+  async _addFreeAbilities( nextLevelData, systemSourceData ) {
     const freeAbilityData = await Promise.all(
       nextLevelData.abilities.free.map(
         async uuid => {
@@ -211,47 +312,62 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       nextLevelData.abilities.special.map( ability => fromUuid( ability ) )
     );
 
-    const effects = Array.from( nextLevelData.effects );
-
     await this.containingActor.createEmbeddedDocuments( "Item", [ ...freeAbilityData, ...specialAbilityData ] );
-    await this.containingActor.createEmbeddedDocuments( "ActiveEffect", effects );
-    // TODO: activate permanent effects immediately
-
-    // increase resource step of the discipline
-    const highestDiscipline = this.containingActor.highestDiscipline;
-    
-    const resourceStep = nextLevelData.resourceStep;
-    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
-      await this.containingActor.update( { "system.karma.step": resourceStep } );
-    } else if ( this.parent.type === "questor" ) {
-      await this.containingActor.update( { "system.devotion.step": resourceStep } );
-    }
-
-    // increase all abilities of category "free" to new circle, if lower
-    const freeAbilities = this.containingActor.items.filter(
-      i => i.system.talentCategory === "free"
-        && i.system.source?.class === this.parent.uuid
-        && i.system.level < nextLevel
-    );
-    // TODO: check if there are any free abilities already on this level or higher
-    // if so, add new earnings lp transaction to refund the spent lp to raise
-    // the free talent
-
-    for ( const ability of freeAbilities ) {
-      await ability.update( { "system.level": nextLevel } );
-    }
-
-    // we only land here if the class increase was successful
-    return this.parent;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  async _learnAbilities( nextLevelData, systemSourceData ) {
+    for ( const abilityUuid of nextLevelData.abilities.class ) {
+      const ability = await fromUuid( abilityUuid );
+      await ability?.system?.constructor?.learn(
+        this.containingActor,
+        ability,
+        systemSourceData
+      );
+    }
+  }
+
+  async _learnSpells( spells, systemSourceData ) {
+    for ( const spellUuid of spells ) {
+      const spell = await fromUuid( spellUuid );
+      await spell?.system?.constructor?.learn(
+        this.containingActor,
+        spell,
+        systemSourceData
+      );
+    }
+  }
+
+  async _learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier ) {
+    const abilityChoiceItem = await fromUuid( abilityChoice );
+    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
+      this.containingActor,
+      abilityChoiceItem,
+      foundry.utils.mergeObject(
+        systemSourceData,
+        {
+          "system.source.class":   this.parent.uuid,
+          "system.source.atLevel": nextLevel,
+          "system.talentCategory": "optional",
+          "system.tier":           nextTier
+        },
+        { inplace: false }
+      )
+    );
+    await learnedAbilityChoice?.system?.increase();
+  }
+
+  // endregion
+
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }

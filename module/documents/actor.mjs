@@ -37,6 +37,16 @@ export default class ActorEd extends Actor {
   // region Properties
 
   /**
+   * The class effects, permanent changes from disciplines, questors or paths, if any.
+   * @type {EarthdawnActiveEffect[]}
+   */
+  get classEffects() {
+    return this.effects.filter(
+      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.documentOriginType )
+    );
+  }
+
+  /**
    * How many more improved spell knacks this actor can learn. The maximum is the rank of patterncraft * the number of
    * "Learn Improved Spell" knacks the actor has.
    * @type {number}
@@ -399,6 +409,34 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Groups the given effects by their change keys.
+   * @param {EarthdawnActiveEffect[]} [effects] The effects to group by change key. If not given,
+   * all effects of this actor are used.
+   * @returns {Map<string, object>} A map of change keys to arrays of objects containing the effect, change,
+   * source type, source uuid, and value.
+   */
+  getEffectsByChangeKey( effects ) {
+    const effectsByChangeKey = new Map();
+
+    for ( const effect of effects ) {
+      for ( const change of effect.changes ) {
+        if ( !effectsByChangeKey.has( change.key ) ) {
+          effectsByChangeKey.set( change.key, [] );
+        }
+        effectsByChangeKey.get( change.key ).push( {
+          effect,
+          change,
+          sourceType: effect.system.source?.documentOriginType,
+          sourceUuid: effect.system.source?.documentOriginUuid,
+          value:      Number( change.value ) || 0
+        } );
+      }
+    }
+
+    return effectsByChangeKey;
+  }
+
+  /**
    * @inheritDoc
    * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
    * @param {object} [options]          Additional options which modify how the effect is created
@@ -436,6 +474,104 @@ export default class ActorEd extends Actor {
       if ( decrease ) return effect.system.decrease();
     }
     return super.toggleStatusEffect( statusId, { active, overlay } );
+  }
+
+  async updateClassEffectStates() {
+    const classEffects = this.classEffects;
+    if ( classEffects.length === 0 ) return;
+
+    const effectsByChangeKey = this.getEffectsByChangeKey( classEffects );
+
+    const updates = [];
+    const shouldBeActive = new Set();
+
+    for ( const effectData of effectsByChangeKey.values() ) {
+      // Separate by source type
+      const disciplines = effectData.filter( e => e.sourceType === "discipline" );
+      const questors = effectData.filter( e => e.sourceType === "questor" );
+      const paths = effectData.filter( e => e.sourceType === "path" );
+
+      // Find the highest discipline bonus
+      let highestDisciplineValue = 0;
+      let disciplinePathBonuses = new Map(); // Track path bonuses per discipline
+
+      // Calculate discipline base values and associated path bonuses
+      for ( const disciplineData of disciplines ) {
+        if ( disciplineData.value > highestDisciplineValue ) {
+          highestDisciplineValue = disciplineData.value;
+        }
+      }
+
+      // Add path bonuses to their source disciplines
+      for ( const pathData of paths ) {
+        const pathItem = await fromUuid( pathData.sourceUuid );
+        if ( pathItem?.system.sourceDiscipline ) {
+          const sourceDisciplineUuid = pathItem.system.sourceDiscipline;
+          if ( !disciplinePathBonuses.has( sourceDisciplineUuid ) ) {
+            disciplinePathBonuses.set( sourceDisciplineUuid, 0 );
+          }
+          disciplinePathBonuses.set( sourceDisciplineUuid,
+            disciplinePathBonuses.get( sourceDisciplineUuid ) + pathData.value );
+        }
+      }
+
+      // Find the discipline with the highest total (base + paths)
+      let highestTotalDisciplinePathValue = 0;
+      let winningDisciplineUuid = null;
+
+      for ( const disciplineData of disciplines ) {
+        const pathBonus = disciplinePathBonuses.get( disciplineData.sourceUuid ) || 0;
+        const totalValue = disciplineData.value + pathBonus;
+        if ( totalValue > highestTotalDisciplinePathValue ) {
+          highestTotalDisciplinePathValue = totalValue;
+          winningDisciplineUuid = disciplineData.sourceUuid;
+        }
+      }
+
+      // Find the highest questor bonus
+      let highestQuestorValue = 0;
+      let highestQuestorEffect = null;
+      for ( const questorData of questors ) {
+        if ( questorData.value > highestQuestorValue ) {
+          highestQuestorValue = questorData.value;
+          highestQuestorEffect = questorData.effect;
+        }
+      }
+
+      // Only the highest between discipline total and questor applies
+      if ( ( highestTotalDisciplinePathValue >= highestQuestorValue ) && winningDisciplineUuid ) {
+        // Discipline wins - enable winning discipline and its paths
+        for ( const disciplineData of disciplines ) {
+          if ( disciplineData.sourceUuid === winningDisciplineUuid ) {
+            shouldBeActive.add( disciplineData.effect.id );
+          }
+        }
+        // Enable paths for the winning discipline
+        for ( const pathData of paths ) {
+          const pathItem = await fromUuid( pathData.sourceUuid );
+          if ( pathItem?.system.sourceDiscipline === winningDisciplineUuid ) {
+            shouldBeActive.add( pathData.effect.id );
+          }
+        }
+      } else if ( highestQuestorEffect ) {
+        // Questor wins
+        shouldBeActive.add( highestQuestorEffect.id );
+      }
+    }
+
+    for ( const effectData of classEffects ) {
+      const shouldEnable = shouldBeActive.has( effectData.id );
+      if ( effectData.disabled === shouldEnable ) {
+        updates.push( {
+          _id:      effectData.id,
+          disabled: !shouldEnable
+        } );
+      }
+    }
+
+    if ( updates.length > 0 ) {
+      await this.updateEmbeddedDocuments( "ActiveEffect", updates );
+    }
   }
 
   // endregion

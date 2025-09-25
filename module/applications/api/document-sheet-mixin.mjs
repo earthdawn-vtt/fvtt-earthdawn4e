@@ -174,6 +174,10 @@ const DocumentSheetMixinEd = Base => {
                 type: target.dataset.effectPermanent ? "permanent" : "combat",
               },
               changes: [ {} ],
+              source:  {
+                documentOriginUuid: this.document.uuid,
+                documentOriginType: this.document.type,
+              },
             },
           }, {
             parent:      this.document,

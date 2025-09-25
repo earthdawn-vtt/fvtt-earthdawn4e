@@ -3400,6 +3400,7 @@
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
         "cannotLearnSpellKnack":                   "Der Zauber-Kniff kann nicht erlernt werden. Es fehlt eine ED-ID für den Zauber auf den sich der Kniff bezieht.",
         "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
+        "cantHaveEffectFromSameSource":            "Diesen Effekt gibt es schon. Es kann nicht mehr als einen Effekt von der gleichen Quelle geben.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
@@ -3651,6 +3652,7 @@
       }
     },
     "ToolTips": {
+      "activeEffectCantBeEnabledOnClassItems":     "Dieser Effekt kann nicht aktiviert werden, da er bei Kreisaufstieg hinzugefügt wird (automatisch/manuell).",
       "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",
