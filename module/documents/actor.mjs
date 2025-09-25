@@ -483,6 +483,7 @@ export default class ActorEd extends Actor {
     const effectsByChangeKey = this.getEffectsByChangeKey( classEffects );
 
     const updates = [];
+    const shouldBeActive = new Set();
 
     for ( const effectData of effectsByChangeKey.values() ) {
       // Separate by source type
@@ -537,8 +538,6 @@ export default class ActorEd extends Actor {
         }
       }
 
-      const shouldBeActive = new Set();
-
       // Only the highest between discipline total and questor applies
       if ( ( highestTotalDisciplinePathValue >= highestQuestorValue ) && winningDisciplineUuid ) {
         // Discipline wins - enable winning discipline and its paths
@@ -558,15 +557,15 @@ export default class ActorEd extends Actor {
         // Questor wins
         shouldBeActive.add( highestQuestorEffect.id );
       }
+    }
 
-      for ( const effectData of classEffects ) {
-        const shouldEnable = shouldBeActive.has( effectData.id );
-        if ( effectData.disabled === shouldEnable ) {
-          updates.push( {
-            _id:      effectData.id,
-            disabled: !shouldEnable
-          } );
-        }
+    for ( const effectData of classEffects ) {
+      const shouldEnable = shouldBeActive.has( effectData.id );
+      if ( effectData.disabled === shouldEnable ) {
+        updates.push( {
+          _id:      effectData.id,
+          disabled: !shouldEnable
+        } );
       }
     }
 
