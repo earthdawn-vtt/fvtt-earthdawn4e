@@ -79,6 +79,7 @@ export const icons = {
   effect:           "fa-biohazard",
   effectExecution:  "fa-light fa-arrow-progress",
   emptyMatrices:    "fa-empty-set",
+  favoritable:      "fa-star",
   halfmagic:        "fa-hat-wizard",
   initiative:       "fa-running",
   itemHistory:      "fa-history",

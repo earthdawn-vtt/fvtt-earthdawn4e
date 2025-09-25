@@ -164,7 +164,11 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
-        "abilities":                               "Fähigkeiten",
+        "Favorites": {
+          "brokenReference":                       "Defekter Favorit",
+          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
+        },
+        "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "Dieser Favorit verweist auf ein Makro, das nicht mehr existiert. Sie können diesen Favoriten löschen.",
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
         "damageSubdual":                           "TODO: Add translation",
@@ -312,6 +317,7 @@
         "parentTalent":                            "Rang des Talents",
         "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
+        "removeFromFavorites":                     "Aus Favoriten entfernen",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
         "twoHanded":                               "Zweihändig",
@@ -754,6 +760,9 @@
         "versatility":                             "Vielseitigkeit"
       }
     },
+    "ContextMenu": {
+      "favoritable":                               "Zu Favoriten hinzufügen"
+    },
     "Controls": {
       "addSpell":                                  "Zauber hinzufügen",
       "delete":                                    "Lösche Item",
@@ -957,20 +966,20 @@
                   "label":                         "Schaden",
                   "standard": {
                     "hint":                        "Standard Schaden des Akteurs",
-                    "label":                       "Standard Schaden"
+                    "label":                       "Tödlich"
                   },
                   "stun": {
                     "hint":                        "Betäubungsschaden des Akteurs",
-                    "label":                       "Betäubungsschaden"
+                    "label":                       "Betäubung"
                   },
                   "total": {
                     "hint":                        "Gesamtschaden des Akteurs",
-                    "label":                       "Gesamtschaden"
+                    "label":                       "Gesamt"
                   }
                 },
                 "death": {
                   "hint":                          "Todesrate des Akteurs",
-                  "label":                         "Todesschwelle"
+                  "label":                         "Tod"
                 },
                 "maxWounds": {
                   "hint":                          "Maximale Wunden des Akteurs",
@@ -3019,6 +3028,10 @@
           "hint":                                  "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)",
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
+      },
+      "DeleteFavorite": {
+        "alsoDeletesMacro":                        "Das Löschen des Favoriten löscht auch das zugehörige Makro.",
+        "favorite":                                "Favorit"
       },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",

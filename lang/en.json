@@ -164,6 +164,10 @@
         "allTests":                                "All Tests"
       },
       "Header": {
+        "Favorites": {
+          "brokenReference":                       "TODO: Add translation",
+          "macroNotFound":                         "TODO: Add translation"
+        },
         "abilities":                               "Abilities",
         "action":                                  "Action",
         "active":                                  "Active",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "TODO: Add translation",
         "carried":                                 "Carried",
         "damagePhysical":                          "Physical",
         "damageSubdual":                           "Stun",
@@ -308,11 +313,12 @@
         "karmaRitualTooltip":                      "Karma Ritual",
         "mainHand":                                "Main Hand",
         "offHand":                                 "Off Hand",
-        "owned":                                   "Owned",
-        "parentTalent":                            "Talent Rank",
-        "reattuneDifficulty":                      "Reattune Difficulty ",
-        "recoveryRestTooltip":                     "Rest",
-        "standardEffect":                          "Standard Effect",
+        "owned":                                   "TODO: Add translation",
+        "parentTalent":                            "TODO: Add translation",
+        "reattuneDifficulty":                      "TODO: Add translation",
+        "recoveryRestTooltip":                     "TODO: Add translation",
+        "removeFromFavorites":                     "TODO: Add translation",
+        "standardEffect":                          "TODO: Add translation",
         "tail":                                    "Tail",
         "twoHanded":                               "Two Handed",
         "weavingDifficulty":                       "Weaving Difficulty"
@@ -753,6 +759,9 @@
         "other":                                   "Other",
         "versatility":                             "Versatility"
       }
+    },
+    "ContextMenu": {
+      "favoritable":                               "TODO: Add translation"
     },
     "Controls": {
       "addSpell":                                  "Add Spell",
@@ -3031,6 +3040,10 @@
           "hint":                                  "To add an enhancement, drag it from the list below. (Not yet implemented, coming in V13)",
           "title":                                 "Configuration: Spell Enhancement"
         }
+      },
+      "DeleteFavorite": {
+        "alsoDeletesMacro":                        "TODO: Add translation",
+        "favorite":                                "TODO: Add translation"
       },
       "Header": {
         "activeUser":                              "Active User Characters",
