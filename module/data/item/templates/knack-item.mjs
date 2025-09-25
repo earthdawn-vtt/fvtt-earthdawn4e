@@ -158,12 +158,12 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       [ED4E.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
-          value:     learnData.hasDamage,
+          value:     learnData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
           fulfilled: !learnData.hasDamage,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.hasWounds",
-          value:     learnData.hasWounds,
+          value:     learnData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
           fulfilled: !learnData.hasWounds,
         },
       ],
