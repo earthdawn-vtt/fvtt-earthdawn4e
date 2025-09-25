@@ -1684,6 +1684,10 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "attackStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "challenge": {
               "rate": {
                 "hint":                            "TODO: Add translation",
@@ -1712,7 +1716,7 @@
                 }
               }
             },
-            "damageStepsBonus": {
+            "damageStep": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -3047,13 +3051,13 @@
           "SelectedSpells":                        "Selected Spells",
           "YouCanChooseSpells":                    "You Can Choose Spells",
           "chooseAbilityOption":                   "Choose an Ability",
+          "classAbilitiesGained":                  "Gained Discipline Talents",
           "classIncreasedTier":                    "The class has been raised to {newTier}",
           "effectsGained":                         "Effects Gained",
           "increaseClassTo":                       "Increase vocation to {increaseClassToLevel}",
           "learningClass":                         "Learning Vocation",
           "optionalAbilityGained":                 "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                 "Resource Step Increased",
-          "classAbilitiesGained":                  "Gained Discipline Talents",
           "spellsGained":                          "Spells Gained"
         },
         "LearnSpell": {
@@ -3229,6 +3233,7 @@
       "actorSheetEdVehicle":                       "Vehicle Sheet",
       "itemSheetEd":                               "Item Sheet",
       "itemSheetEdClass":                          "Discipline Sheet",
+      "itemSheetEdMask":                           "TODO: Add translation",
       "itemSheetEdPhysical":                       "Equipment Sheet",
       "journalSheetEd":                            "Journal Sheet",
       "sceneConfigEd":                             "Scene Configuration"
@@ -3264,12 +3269,16 @@
         "general":                                 "General",
         "grimoireConfiguration":                   "TODO: Add translation",
         "healthValues":                            "TODO: Add translation",
+        "knack":                                   "TODO: Add translation",
         "maneuver":                                "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "movementTypes":                           "TODO: Add translation",
         "navigator":                               "Navigator",
         "powers":                                  "TODO: Add translation",
+        "spell":                                   "TODO: Add translation",
+        "spellDamageStep":                         "TODO: Add translation",
         "spellEffect":                             "TODO: Add translation",
+        "spellEffectStep":                         "TODO: Add translation",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
         "talentKnacks":                            "Knacks",
@@ -3337,6 +3346,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",
         "actorWarningSingleton":                   "This actor is a singleton. Only one instance can exist.",
         "formulaMalformedError":                   "The formula is malformed. Please check the formula.",
         "formulaMissingReferenceWarn":             "The formula references a missing value {missingReferences}. Please check the formula.",
@@ -3349,6 +3359,7 @@
         "identifierError":                         "The identifier is invalid. Please check the identifier.",
         "invalidElementSubtype":                   "Invalid element subtype. Please check the subtype.",
         "invalidRollType":                         "Invalid or missing roll type. Please check the item's details tab.",
+        "maskAddNotAPower":                        "TODO: Add translation",
         "matrixCastingSpellNotAttuned":            "The spell is not attuned to the matrix.",
         "noCastingMethodSelected":                 "No casting method selected.",
         "noGrimoiresAvailableToAttune":            "No Grimoires available to attune.",
@@ -3356,7 +3367,6 @@
         "singleton":                               "This actor is a singleton. Only one instance can exist.",
         "spellNotAttunedToMatrix":                 "The spell has not been attuned to a matrix.",
         "spellcastingWorkflowFailed":              "The spellcasting workflow failed.",
-        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
@@ -3387,6 +3397,7 @@
         "invalidRecoveryMode":                     "Invalid recovery mode. Please check settings.",
         "learningKnackNoSourceItem":               "TODO: Add translation",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
+        "maskAddAlreadyInMask":                    "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
         "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
         "noActiveSpellSelected":                   "The matrix has no active spell selected.",
