@@ -1672,6 +1672,10 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "attackStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "challenge": {
               "rate": {
                 "hint":                            "TODO: Add translation",
@@ -1700,7 +1704,7 @@
                 }
               }
             },
-            "damageStepsBonus": {
+            "damageStep": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -3035,13 +3039,13 @@
           "SelectedSpells":                        "TODO: Add translation",
           "YouCanChooseSpells":                    "TODO: Add translation",
           "chooseAbilityOption":                   "TODO: Add translation",
+          "classAbilitiesGained":                  "TODO: Add translation",
           "classIncreasedTier":                    "TODO: Add translation",
           "effectsGained":                         "TODO: Add translation",
           "increaseClassTo":                       "TODO: Add translation",
           "learningClass":                         "TODO: Add translation",
           "optionalAbilityGained":                 "TODO: Add translation",
           "resourceStepIncreased":                 "TODO: Add translation",
-          "classAbilitiesGained":                  "TODO: Add translation",
           "spellsGained":                          "TODO: Add translation"
         },
         "LearnSpell": {
@@ -3253,8 +3257,8 @@
         "general":                                 "TODO: Add translation",
         "grimoireConfiguration":                   "TODO: Add translation",
         "healthValues":                            "TODO: Add translation",
-        "maneuver":                                "TODO: Add translation",
         "knack":                                   "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
         "matrixConfiguration":                     "TODO: Add translation",
         "movementTypes":                           "TODO: Add translation",
         "navigator":                               "TODO: Add translation",
@@ -3330,6 +3334,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "TODO: Add translation",
         "actorWarningSingleton":                   "TODO: Add translation",
         "formulaMalformedError":                   "TODO: Add translation",
         "formulaMissingReferenceWarn":             "TODO: Add translation",
@@ -3350,7 +3355,6 @@
         "singleton":                               "TODO: Add translation",
         "spellNotAttunedToMatrix":                 "TODO: Add translation",
         "spellcastingWorkflowFailed":              "TODO: Add translation",
-        "abilityIncreaseNoTier":                   "TODO: Add translation",
         "substituteAttributeNotFound":             "TODO: Add translation"
       },
       "Info": {
