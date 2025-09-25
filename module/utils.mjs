@@ -503,7 +503,7 @@ export function multiplyArray( arr, times ) {
  * @returns {string}     Link to the item or empty string if item wasn't found.
  */
 export async function linkForUuid( uuid ) {
-  return TextEditor._createContentLink( [ "", "UUID", uuid ] );
+  return foundry.applications.ux.TextEditor.implementation._createContentLink( [ "", "UUID", uuid ] );
 }
 
 /**

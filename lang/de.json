@@ -1668,117 +1668,77 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "Bonus auf die Angriffsstufen des Maskenträgers",
-              "label":                             "Angriffsstufen Bonus"
+            "actions": {
+              "hint":                              "Bonus auf die Aktionen",
+              "label":                             "Aktionen"
             },
-            "attacks": {
-              "hint":                              "Angriffe die der Maskenträger ausführen kann",
-              "label":                             "Angriffe"
-            },
-            "challengingRate": {
-              "hint":                              "Herausforderungsrate des Maskenträgers",
-              "label":                             "Herausforderungsrate"
-            },
-            "charismaStep": {
-              "hint":                              "Stufe des Charismas des Maskenträgers",
-              "label":                             "Charismastufe"
-            },
-            "damageStepsBonus": {
-              "hint":                              "Bonus auf die Schadensstufen des Maskenträgers",
-              "label":                             "Schadensstufen Bonus"
-            },
-            "deathThreshold": {
-              "hint":                              "Todesgrenze des Maskenträgers",
-              "label":                             "Todesgrenze"
-            },
-            "defenses": {
-              "magical": {
-                "hint":                            "Bonus auf die magische Verteidigung",
-                "label":                           "Magische Verteidigung"
-              },
-              "physical": {
-                "hint":                            "Bonus auf die physische Verteidigung",
-                "label":                           "Physische Verteidigung"
-              },
-              "social": {
-                "hint":                            "Bonus auf die soziale Verteidigung",
-                "label":                           "Soziale Verteidigung"
+            "challenge": {
+              "rate": {
+                "hint":                            "Anpassung der Herausforderungsrate",
+                "label":                           "Herausforderungsrate"
               }
             },
-            "dexterityStep": {
-              "hint":                              "Stufe der Geschicklichkeit des Maskenträgers",
-              "label":                             "Geschicklichkeitsstufe"
+            "characteristics": {
+              "health": {
+                "death": {
+                  "hint":                          "Bonus auf die Todesschwelle",
+                  "label":                         "Todesschwelle"
+                },
+                "unconscious": {
+                  "hint":                          "Bonus auf die Bewusstlosigkeitsschwelle",
+                  "label":                         "Bewusstlosigkeitsschwelle"
+                },
+                "woundThreshold": {
+                  "hint":                          "Bonus auf die Wundschwelle",
+                  "label":                         "Wundschwelle"
+                }
+              },
+              "recoveryTestsResource": {
+                "value": {
+                  "hint":                          "Zusätzliche Erholungsproben",
+                  "label":                         "Erholungsproben"
+                }
+              }
             },
-            "initiativeStep": {
-              "hint":                              "Stufe der Initiative des Maskenträgers",
-              "label":                             "Initiativestufe"
+            "damageStepsBonus": {
+              "hint":                              "Bonus auf Schadensstufen",
+              "label":                             "Schadensbonus"
             },
-            "knockdownStep": {
-              "hint":                              "Stufe des Niederschlagens",
-              "label":                             "Niederschlagungsstufe"
+            "initiative": {
+              "hint":                              "Bonus auf die Initiative",
+              "label":                             "Initiative"
             },
-            "magicalArmor": {
-              "hint":                              "Rüstungsschutz gegen magischen Schaden",
-              "label":                             "Magischer Rüstungsschutz"
+            "knockDownStep": {
+              "hint":                              "Bonus auf den Niederschlagswurf",
+              "label":                             "Niederschlagsstufe"
             },
             "movement": {
               "burrow": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Graben",
+                "hint":                            "Bonus auf die Grabbewegung",
                 "label":                           "Graben"
               },
               "climb": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Klettern",
+                "hint":                            "Bonus auf die Kletterbewegung",
                 "label":                           "Klettern"
               },
               "fly": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Fliegen",
+                "hint":                            "Bonus auf die Flugbewegung",
                 "label":                           "Fliegen"
               },
               "swim": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Schwimmen",
+                "hint":                            "Bonus auf die Schwimmbewegung",
                 "label":                           "Schwimmen"
               },
               "walk": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Gehen",
+                "hint":                            "Bonus auf die normale Bewegung",
                 "label":                           "Gehen"
               }
             },
-            "perceptionStep": {
-              "hint":                              "Stufe der Wahrnehmung des Maskenträgers",
-              "label":                             "Wahrnehmungsstufe"
-            },
-            "physicalArmor": {
-              "hint":                              "Rüstungsschutz gegen physischen Schaden",
-              "label":                             "Physischer Rüstungsschutz"
-            },
-            "powers": {
-              "hint":                              "Fähigkeiten die der Maskenträger besitzt",
-              "label":                             "Fähigkeiten"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "Erholungsproben des Maskenträgers",
-              "label":                             "Erholungsproben"
-            },
-            "strengthStep": {
-              "hint":                              "Stufe der Stärke des Maskenträgers",
-              "label":                             "Stärkestufe"
-            },
-            "toughnessStep": {
-              "hint":                              "Stufe der Zähigkeit des Maskenträgers",
-              "label":                             "Zähigkeitsstufe"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "Bewusstlosigkeitsgrenze des Maskenträgers",
-              "label":                             "Bewusstlosigkeitsgrenze"
-            },
-            "willpowerStep": {
-              "hint":                              "Stufe des Willens des Maskenträgers",
-              "label":                             "Willenskraftstufe"
-            },
-            "woundThreshold": {
-              "hint":                              "Wundgrenze des Maskenträgers",
-              "label":                             "Wundgrenze"
+            "power": {
+              "step": {
+                "hint":                            "Stufe der Kraft",
+                "label":                           "Stufe"
+              }
             }
           }
         },
@@ -3257,6 +3217,7 @@
       "actorSheetEdVehicle":                       "Transportmittel-Bogen",
       "itemSheetEd":                               "Item-Bogen",
       "itemSheetEdClass":                          "Berufung-Bogen",
+      "itemSheetEdMask":                           "Masken-Bogen",
       "itemSheetEdPhysical":                       "Ausrüstungs-Bogen",
       "journalSheetEd":                            "Journal-Bogen",
       "sceneConfigEd":                             "Szene Konfiguration"
@@ -3279,16 +3240,25 @@
       },
       "Header": {
         "actionType":                              "Aktionstyp",
+        "armorValues":                             "Rüstungswerte",
+        "attributes":                              "Attribute",
+        "challengingRate":                         "Herausforderungsrate",
+        "combatValues":                            "Kampfwerte",
         "damageSettings":                          "Schadenseinstellungen",
+        "defenseValues":                           "Verteidigungswerte",
         "description":                             "Beschreibung",
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
+        "healthValues":                            "Gesundheitswerte",
+        "maneuver":                                "Manöver",
         "knack":                                   "Kniff",
         "matrixConfiguration":                     "Matrix Konfiguration",
+        "movementTypes":                           "Bewegungsarten",
         "navigator":                               "Navigator",
+        "powers":                                  "Kräfte",
         "spell":                                   "Zauber",
         "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
@@ -3372,6 +3342,7 @@
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "invalidRollType":                         "Der Aktionstyp ist ungültig oder nicht gewählt. Bitte überprüfe den Aktionstyp im Details Tab des Items.",
+        "maskAddNotAPower":                        "Das Item ist weder eine Kraft noch ein Manöver.",
         "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
         "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
@@ -3410,6 +3381,7 @@
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "learningKnackNoSourceItem":               "Das Quell-Item für den Kniff konnte nicht gefunden werden (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
+        "maskAddAlreadyInMask":                    "Die Kraft/das Manöver ist bereits in der Maske enthalten.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
