@@ -1,0 +1,45 @@
+<div>
+  <h2 class="movement__header margin__none one-line__vertical-align">
+    <span class="movement__header-label">
+      {{localize "ED.Actor.Header.movement"}}
+    </span>
+  </h2>
+
+  <div class="container__block container__custom">
+    <div class="movement__grid--container">
+      <div class="movement__grid--item">Movement Type</div>
+
+      <div class="movement__grid--item">
+        <div class="buffer-input">
+          {{#unless @root.editable}}
+            <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+          {{/unless}}
+          <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
+          {{#unless @root.editable}}
+            <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+          {{/unless}}
+        </div>
+      </div>
+
+      <div class="movement__grid--item">
+        <button
+          type="button"
+          class="action-buttons icon--button icon icon--falling"
+          data-action="knockDown"
+          data-tooltip="{{localize 'ED.Actor.Buttons.knockDownTest'}}"
+          aria-label="{{localize 'ED.Actor.Buttons.knockDownTest'}}">
+        </button>
+      </div>
+
+      <div class="movement__grid--item">
+        <button
+          type="button"
+          class="action-buttons icon--button icon icon--acrobatic"
+          data-action="jumpUp"
+          data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
+          aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

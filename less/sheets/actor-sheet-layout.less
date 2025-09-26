@@ -45,7 +45,8 @@
     .initiative__grid--container,
     .initiative-npc__grid--container,
     .spell-card__grid--container,
-    .language-card__grid--container {
+    .language-card__grid--container,
+    .movement-card__grid--container {
       column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
@@ -140,7 +141,7 @@
       }
     }
 
-    /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
+    /* ======================= Recovery/Karma/Devotion/Initiative/Legend/Movement headers ======================= */
     .tab[data-tab="general"] .layout__row {
       display: flex;
       flex-wrap: nowrap;
@@ -149,7 +150,8 @@
     .karma-devotion__header,
     .recovery__header,
     .initiative__header,
-    .legend__header {
+    .legend__header,
+    .movement__header {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -199,6 +201,34 @@
         minmax(30px, 1fr)
         minmax(30px, 1fr)
         minmax(100px, 20%);
+    }
+
+    .movement__grid--container {
+      display: grid;
+      margin-top: -3px;
+      grid-template-columns:
+        minmax(20px, 1fr)
+        minmax(20px, 1fr)
+        minmax(50px, 10%)
+        minmax(50px, 10%);
+
+      .movement__grid--item {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon--button.icon.icon--acrobatic {
+        --icon-size: 40px;
+        --icon-mask: url("/systems/ed4e/assets/icons/acrobatic.svg");
+        mask-mode: luminance;
+      }
+      .icon--button.icon.icon--falling {
+        --icon-size: 40px;
+        --icon-mask: url("/icons/svg/falling.svg");
+        mask-mode: luminance;
+      }
     }
 
     /* ======================= Notes tab ======================= */

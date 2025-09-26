@@ -1253,7 +1253,7 @@ h3.label--rail .label__text::after {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
   /* ======================= General tab ======================= */
-  /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
+  /* ======================= Recovery/Karma/Devotion/Initiative/Legend/Movement headers ======================= */
   /* ======================= Notes tab ======================= */
   /* ======================= Abilities tab ======================= */
   /* ======================= Spells tab ======================= */
@@ -1302,7 +1302,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .movement-card__grid--container {
   column-gap: var(--grid-col-gap-sm);
   text-transform: capitalize;
   font-weight: normal;
@@ -1326,7 +1327,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .movement-card__grid--container.container__header {
   background-color: var(--color-secondary-grey);
   color: var(--color-text-banner);
   text-transform: uppercase;
@@ -1402,7 +1404,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative__header,
-.application.sheet.earthdawn4e.actor .window-content .legend__header {
+.application.sheet.earthdawn4e.actor .window-content .legend__header,
+.application.sheet.earthdawn4e.actor .window-content .movement__header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1447,6 +1450,27 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
   display: grid;
   grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(100px, 20%);
+}
+.application.sheet.earthdawn4e.actor .window-content .movement__grid--container {
+  display: grid;
+  margin-top: -3px;
+  grid-template-columns: minmax(20px, 1fr) minmax(20px, 1fr) minmax(50px, 10%) minmax(50px, 10%);
+}
+.application.sheet.earthdawn4e.actor .window-content .movement__grid--container .movement__grid--item {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.application.sheet.earthdawn4e.actor .window-content .movement__grid--container .icon--button.icon.icon--acrobatic {
+  --icon-size: 40px;
+  --icon-mask: url("/systems/ed4e/assets/icons/acrobatic.svg");
+  mask-mode: luminance;
+}
+.application.sheet.earthdawn4e.actor .window-content .movement__grid--container .icon--button.icon.icon--falling {
+  --icon-size: 40px;
+  --icon-mask: url("/icons/svg/falling.svg");
+  mask-mode: luminance;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container {
   display: grid;

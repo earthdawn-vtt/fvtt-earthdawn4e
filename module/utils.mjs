@@ -778,7 +778,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/knack-ability-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-karma-card.hbs",
     "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs",
-    "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs",
+    "systems/ed4e/templates/actor/cards/movement-card.hbs",
     "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs",
     "systems/ed4e/templates/actor/cards/matrix-card.hbs",
 
