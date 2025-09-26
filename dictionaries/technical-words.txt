@@ -2,3 +2,4 @@ nonoctal
 nonconstructor
 socketlib
 Mohrmann
+favoritable

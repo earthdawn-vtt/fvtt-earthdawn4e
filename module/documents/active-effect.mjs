@@ -1,3 +1,5 @@
+import ClassTemplate from "../data/item/templates/class.mjs";
+
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
@@ -50,7 +52,76 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   // endregion
 
+  // region Checkers
+
+  hasSameChangesKeys( otherEffect ) {
+    if ( this.changes.length !== otherEffect.changes.length ) return false;
+
+    const thisKeys = this.changes.map( c => c.key ).sort();
+    const otherKeys = otherEffect.changes.map( c => c.key ).sort();
+    return thisKeys.every( ( key, index ) => key === otherKeys[index] );
+  }
+
+  /**
+   * Check whether this effect has the same source as another effect. This is true if either the source UUIDs
+   * and the effect names are the same, or if both effects have the same name, source uuid and source document type.
+   * @param {object} otherEffect - The other effect to compare against.
+   * @returns {Promise<boolean>} True if both effects have the same source, false otherwise.
+   */
+  async hasSameSourceAs( otherEffect ) {
+    const thisSource = this.system?.source;
+    const otherSource = otherEffect.system?.source;
+
+    const thisDocumentOrigin = await fromUuid( thisSource?.documentOriginUuid );
+    const otherDocumentOrigin = await fromUuid( otherSource?.documentOriginUuid );
+
+    const sameEffectName = this.name === otherEffect.name;
+    const sameSourceUuid = thisSource?.documentOriginUuid === otherSource?.documentOriginUuid;
+    const sameSourceName = thisDocumentOrigin?.name === otherDocumentOrigin?.name;
+    const sameSourceType = thisSource?.documentOriginType === otherSource?.documentOriginType;
+
+
+    return ( sameEffectName && sameSourceUuid ) || ( sameEffectName && sameSourceName && sameSourceType );
+  }
+
+  async _shouldPreventCreation( data ) {
+    let sameSource = false;
+    for ( const effect of this.parent.effects ) {
+      if ( await this.hasSameSourceAs( effect ) ) {
+        sameSource = true;
+        break;
+      }
+    }
+
+    // class effects are handled in the class data classes
+    const isClassEffect = [ "discipline", "questor", "path", ].includes(
+      data.system?.source?.documentOriginType
+    );
+
+    return sameSource && !isClassEffect;
+  }
+
+  // endregion
+
   // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    if ( await this._shouldPreventCreation( data ) ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
+      return false;
+    }
+
+    await this._configureCreateData( data, options, user );
+  }
+
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    await this._configureUpdateData( changes, options, user );
+  }
 
   /** @inheritdoc */
   _onUpdate( changed, options, userId ) {
@@ -58,6 +129,38 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     if ( options.statusLevelDifference ) {
       // When a status condition has its level changed, display scrolling status text.
       this._displayScrollingStatus( options.statusLevelDifference > 0 );
+    }
+  }
+
+  /**
+   * Configure data when creating an Active Effect.
+   * @param {object} data The initial data object provided to the document creation request.
+   * @param {object} options Additional options which modify the creation request.
+   * @param {BaseUser} user The user requesting the document creation.
+   * @returns {Promise<void>}
+   */
+  async _configureCreateData( data, options, user ) {
+    if ( this.parent.system instanceof ClassTemplate ) {
+      // until Active Effects are their own document, the effects for advancement need to be stored on the class
+      // itself. since it modifies actor stats, the "apply to actor" has to be true. in order for the effects not
+      // to be applied twice, the effects need to be disabled on the class
+      this.updateSource( {
+        disabled: true,
+      } );
+    }
+  }
+
+  /**
+   * Configure data when updating an Active Effect.
+   * @param {object} changes The candidate changes to the document.
+   * @param {object} options Additional options which modify the update request.
+   * @param {BaseUser} user The user requesting the document update.
+   * @returns {Promise<void>}
+   */
+  async _configureUpdateData( changes, options, user ) {
+    if ( this.parent.system instanceof ClassTemplate ) {
+      // see _configureCreateData
+      changes.disabled = true;
     }
   }
 

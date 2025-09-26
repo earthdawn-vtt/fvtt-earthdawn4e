@@ -400,6 +400,7 @@ export default class PcData extends NamegiverTemplate {
 
     // attribute dependent data
     this.#prepareCharacteristics();
+    this.#prepareKnockdown();
   }
 
   /**
@@ -538,6 +539,13 @@ export default class PcData extends NamegiverTemplate {
     this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;
   }
 
+  /**
+   * Prepare the knockdown step based on the strength attribute.
+   * @private
+   */
+  #prepareKnockdown() {
+    this.knockdownStep = this.attributes.str.step;
+  }
   /**
    * Prepare the derived movement values based on namegiver items.
    * @private

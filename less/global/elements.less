@@ -44,3 +44,52 @@ slide-toggle {
   &[checked] .slide-toggle-track { background: var(--slide-toggle-track-color-checked); }
   &[checked] .slide-toggle-thumb { margin-left: calc(100% - var(--slide-toggle-thumb-width)); }
 }
+
+/* ---------------------------------- */
+/*  Favorite Items                    */
+/* ---------------------------------- */
+
+.favorite-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .favorite-execute-btn {
+    flex: 1;
+  }
+
+  .favorite-broken-btn {
+    opacity: 0.6;
+    font-style: italic;
+    text-decoration: line-through;
+  }
+
+  .favorite-broken {
+    opacity: 0.7;
+  }
+
+  .favorite-delete-btn {
+    flex-shrink: 0;
+    min-width: auto;
+    padding: 0.25rem 0.5rem;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+      color: white;
+      text-decoration: none;
+    }
+
+    i {
+      margin: 0;
+    }
+  }
+}

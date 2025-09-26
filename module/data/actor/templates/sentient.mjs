@@ -386,6 +386,14 @@ export default class SentientTemplate extends CommonTemplate {
           integer:  true,
         } ),
       } ),
+      knockdownStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        step:     1,
+        initial:  0,
+        integer:  true,
+      } ),
       relations: new MappingField( new fields.SchemaField( {
         attitude: new fields.StringField( {
           choices: [ "config stuff" ]

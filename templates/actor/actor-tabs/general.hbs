@@ -219,11 +219,29 @@
 
       <div class="action--buttons">
         <div class="buttons--left input--centered1">
-          <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-          <button class="action-buttons" data-action="knockDown">{{localize "ED.Actor.Buttons.knockDownTest"}}</button>
-          <button class="action-buttons" data-action="takeDamage">{{localize "ED.Actor.Buttons.takeDamage"}}</button>
+            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
+            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+            <button class="action-buttons" data-action="knockdown">{{localize "ED.Actor.Buttons.knockdownTest"}}</button>
         </div>
       </div>
+
+
+      {{#each favoriteItems as |favorite|}}
+        <div class="container__block container__custom">
+          <div class="favorite-item-row {{#unless favorite.isValid}}favorite-broken{{/unless}}">
+            {{#if favorite.isValid}}
+              <button class="action-buttons favorite-execute-btn" data-action="executeFavoriteMacro" data-macro-uuid="{{favorite.uuid}}">{{favorite.name}}</button>
+            {{else}}
+              <button class="action-buttons favorite-execute-btn favorite-broken-btn" disabled title="{{localize "ED.Actor.Tooltips.brokenFavoriteReference"}}">{{favorite.name}}</button>
+            {{/if}}
+            {{#if @root.editable}}
+              <a class="item-control item-delete favorite-delete-btn" data-action="deleteFavorite" data-macro-uuid="{{favorite.uuid}}" title="{{localize "ED.Actor.Tooltips.removeFromFavorites"}}">
+                <i class="fas fa-trash"></i>
+              </a>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
 
     </div>
 

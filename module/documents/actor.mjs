@@ -12,7 +12,7 @@ import ClassTemplate from "../data/item/templates/class.mjs";
 import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
-import { AttributeWorkflow, AttuneMatrixWorkflow } from "../workflows/workflow/_module.mjs";
+import { AttributeWorkflow, AttuneMatrixWorkflow, KnockdownWorkflow } from "../workflows/workflow/_module.mjs";
 import { getDefaultEdid, getSetting } from "../settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
@@ -35,6 +35,16 @@ export default class ActorEd extends Actor {
   }
 
   // region Properties
+
+  /**
+   * The class effects, permanent changes from disciplines, questors or paths, if any.
+   * @type {EarthdawnActiveEffect[]}
+   */
+  get classEffects() {
+    return this.effects.filter(
+      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.documentOriginType )
+    );
+  }
 
   /**
    * How many more improved spell knacks this actor can learn. The maximum is the rank of patterncraft * the number of
@@ -399,6 +409,34 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Groups the given effects by their change keys.
+   * @param {EarthdawnActiveEffect[]} [effects] The effects to group by change key. If not given,
+   * all effects of this actor are used.
+   * @returns {Map<string, object>} A map of change keys to arrays of objects containing the effect, change,
+   * source type, source uuid, and value.
+   */
+  getEffectsByChangeKey( effects ) {
+    const effectsByChangeKey = new Map();
+
+    for ( const effect of effects ) {
+      for ( const change of effect.changes ) {
+        if ( !effectsByChangeKey.has( change.key ) ) {
+          effectsByChangeKey.set( change.key, [] );
+        }
+        effectsByChangeKey.get( change.key ).push( {
+          effect,
+          change,
+          sourceType: effect.system.source?.documentOriginType,
+          sourceUuid: effect.system.source?.documentOriginUuid,
+          value:      Number( change.value ) || 0
+        } );
+      }
+    }
+
+    return effectsByChangeKey;
+  }
+
+  /**
    * @inheritDoc
    * @param {string} statusId           A status effect ID defined in CONFIG.statusEffects
    * @param {object} [options]          Additional options which modify how the effect is created
@@ -436,6 +474,104 @@ export default class ActorEd extends Actor {
       if ( decrease ) return effect.system.decrease();
     }
     return super.toggleStatusEffect( statusId, { active, overlay } );
+  }
+
+  async updateClassEffectStates() {
+    const classEffects = this.classEffects;
+    if ( classEffects.length === 0 ) return;
+
+    const effectsByChangeKey = this.getEffectsByChangeKey( classEffects );
+
+    const updates = [];
+    const shouldBeActive = new Set();
+
+    for ( const effectData of effectsByChangeKey.values() ) {
+      // Separate by source type
+      const disciplines = effectData.filter( e => e.sourceType === "discipline" );
+      const questors = effectData.filter( e => e.sourceType === "questor" );
+      const paths = effectData.filter( e => e.sourceType === "path" );
+
+      // Find the highest discipline bonus
+      let highestDisciplineValue = 0;
+      let disciplinePathBonuses = new Map(); // Track path bonuses per discipline
+
+      // Calculate discipline base values and associated path bonuses
+      for ( const disciplineData of disciplines ) {
+        if ( disciplineData.value > highestDisciplineValue ) {
+          highestDisciplineValue = disciplineData.value;
+        }
+      }
+
+      // Add path bonuses to their source disciplines
+      for ( const pathData of paths ) {
+        const pathItem = await fromUuid( pathData.sourceUuid );
+        if ( pathItem?.system.sourceDiscipline ) {
+          const sourceDisciplineUuid = pathItem.system.sourceDiscipline;
+          if ( !disciplinePathBonuses.has( sourceDisciplineUuid ) ) {
+            disciplinePathBonuses.set( sourceDisciplineUuid, 0 );
+          }
+          disciplinePathBonuses.set( sourceDisciplineUuid,
+            disciplinePathBonuses.get( sourceDisciplineUuid ) + pathData.value );
+        }
+      }
+
+      // Find the discipline with the highest total (base + paths)
+      let highestTotalDisciplinePathValue = 0;
+      let winningDisciplineUuid = null;
+
+      for ( const disciplineData of disciplines ) {
+        const pathBonus = disciplinePathBonuses.get( disciplineData.sourceUuid ) || 0;
+        const totalValue = disciplineData.value + pathBonus;
+        if ( totalValue > highestTotalDisciplinePathValue ) {
+          highestTotalDisciplinePathValue = totalValue;
+          winningDisciplineUuid = disciplineData.sourceUuid;
+        }
+      }
+
+      // Find the highest questor bonus
+      let highestQuestorValue = 0;
+      let highestQuestorEffect = null;
+      for ( const questorData of questors ) {
+        if ( questorData.value > highestQuestorValue ) {
+          highestQuestorValue = questorData.value;
+          highestQuestorEffect = questorData.effect;
+        }
+      }
+
+      // Only the highest between discipline total and questor applies
+      if ( ( highestTotalDisciplinePathValue >= highestQuestorValue ) && winningDisciplineUuid ) {
+        // Discipline wins - enable winning discipline and its paths
+        for ( const disciplineData of disciplines ) {
+          if ( disciplineData.sourceUuid === winningDisciplineUuid ) {
+            shouldBeActive.add( disciplineData.effect.id );
+          }
+        }
+        // Enable paths for the winning discipline
+        for ( const pathData of paths ) {
+          const pathItem = await fromUuid( pathData.sourceUuid );
+          if ( pathItem?.system.sourceDiscipline === winningDisciplineUuid ) {
+            shouldBeActive.add( pathData.effect.id );
+          }
+        }
+      } else if ( highestQuestorEffect ) {
+        // Questor wins
+        shouldBeActive.add( highestQuestorEffect.id );
+      }
+    }
+
+    for ( const effectData of classEffects ) {
+      const shouldEnable = shouldBeActive.has( effectData.id );
+      if ( effectData.disabled === shouldEnable ) {
+        updates.push( {
+          _id:      effectData.id,
+          disabled: !shouldEnable
+        } );
+      }
+    }
+
+    if ( updates.length > 0 ) {
+      await this.updateEmbeddedDocuments( "ActiveEffect", updates );
+    }
   }
 
   // endregion
@@ -564,56 +700,31 @@ export default class ActorEd extends Actor {
     return this.drawWeapon();
   }
 
-  async knockdownTest( damageTaken, options = {} ) {
-    if ( this.system.condition.knockedDown === true ) {
-      ui.notifications.warn( "Localize: You are already knocked down." );
-      return;
-    }
-    const { attributes, characteristics } = this.system;
-    let devotionRequired = false;
-    let strain = 0;
-    let knockdownStep = attributes.str.step;
-
+  /**
+   * Returns the knockdown ability item for this actor, if any.
+   * @returns {Promise<ItemEd|undefined>} The knockdown ability item, or undefined if none was found.
+   */
+  async knockdownAbility() {
     const knockdownAbility = await fromUuid(
-      await this.getPrompt( "knockDown" )
+      await this.getPrompt( "knockdown" )
     );
-
-    if ( knockdownAbility ) {
-      const { attribute, level, devotionRequired: devotion, strain: abilityStrain } = knockdownAbility.system;
-      knockdownStep = ( attributes[attribute]?.step || knockdownStep ) + level;
-      devotionRequired = !!devotion;
-      strain = { base: abilityStrain };
-    }
-
-    const difficultyFinal = {
-      base: Math.max( damageTaken - characteristics.health.woundThreshold, 0 ),
-    };
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.knockdownTest", {
-      sourceActor: this.name,
-      step:        knockdownStep
-    } );
-
-    const knockdownStepFinal = {
-      base:      knockdownStep,
-      modifiers: {
-        "localize: Global Knockdown Bonus": this.system.singleBonuses.knockdownEffects.value,
-      }
-    };
-    const edRollOptions = EdRollOptions.fromActor(
+    return knockdownAbility;
+  }
+  
+  /**
+   * Perform a knockdown test for this actor.
+   * @param {number} damageTaken The amount of damage that triggered the knockdown test.
+   * @param {object} [options] Additional options for the knockdown test.
+   * @returns {Promise<EdRoll|null>} The result of the knockdown test roll, or null if the test was not performed.
+   */
+  async knockdownTest( damageTaken, options = {} ) {
+    const knockdownWorkflow = new KnockdownWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "knockDown",
-        strain:           strain,
-        target:           difficultyFinal,
-        step:             knockdownStepFinal,
-        devotionRequired: devotionRequired,
-        chatFlavor:       chatFlavor
+        damageTaken
       },
-      this
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-
-    this.processRoll( roll );
+    return knockdownWorkflow.execute();
   }
 
   async jumpUp( options = {} ) {
@@ -783,6 +894,18 @@ export default class ActorEd extends Actor {
   }
 
   // endregion
+  
+  /**
+   * Retrieves a specific prompt based on the provided prompt type.
+   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
+   * effectively acting as a proxy to access various prompts defined within the factory.
+   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockdown" )} promptType - The type of prompt to retrieve.
+   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
+   * associated with the given `promptType`. The exact return type depends on promptType.
+   */
+  async getPrompt( promptType ) {
+    return this._promptFactory.getPrompt( promptType );
+  }
 
   // region LP Tracking
 
@@ -1058,7 +1181,7 @@ export default class ActorEd extends Actor {
       }
     );
 
-    return this.processRoll( roll );
+    return this.processRoll( roll, { rollToMessage: true } );
   }
 
   /** @inheritDoc */
@@ -1107,18 +1230,6 @@ export default class ActorEd extends Actor {
     const available = this.system[resourceType].value;
     await this.update( { [`system.${ resourceType }.value`]: ( available - amount ) } );
     return amount <= available;
-  }
-
-  /**
-   * Retrieves a specific prompt based on the provided prompt type.
-   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
-   * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockDown" )} promptType - The type of prompt to retrieve.
-   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
-   * associated with the given `promptType`. The exact return type depends on promptType.
-   */
-  async getPrompt( promptType ) {
-    return this._promptFactory.getPrompt( promptType );
   }
 
   // region Migrations

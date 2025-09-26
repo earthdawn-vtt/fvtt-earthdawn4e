@@ -73,7 +73,14 @@ export default class ItemEd extends Item {
    * @type {ActiveEffectData[]}
    */
   get targetEffects() {
-    return this.effects.filter( effect => effect.system.transferToTarget );
+    const relevantEffects = this.effects.filter( effect => effect.system.transferToTarget );
+    return relevantEffects.map( effect => {
+      effect.system.source = {
+        documentOriginUuid: effect.system.source.documentOriginUuid || this.uuid,
+        documentOriginType: effect.system.source.documentOriginType || this.type,
+      };
+      return effect;
+    } );
   }
 
   // endregion
@@ -146,6 +153,21 @@ export default class ItemEd extends Item {
 
   // region Event Handlers
 
+  /** @inheritDoc */
+  _preCreateDescendantDocuments( parent, collection, data, options, userId ) {
+    if ( collection === "effects" ) {
+      const mappedData = data.map( effectData => {
+        if ( !effectData.hasOwnProperty( "system" ) ) effectData.system = {};
+        effectData.system.source = {
+          documentOriginUuid: this.uuid,
+          documentOriginType: this.type,
+        };
+        return effectData;
+      } );
+      return super._preCreateDescendantDocuments( parent, collection, mappedData, options, userId );
+    }
+    return super._preCreateDescendantDocuments( parent, collection, data, options, userId );
+  }
 
   /** @inheritDoc */
   // eslint-disable-next-line max-params
@@ -172,6 +194,31 @@ export default class ItemEd extends Item {
     // super which will invoke sheet re-rendering.
     if ( collection === "effects" ) this.reset();
     return super._onDeleteDescendantDocuments( parent, collection, documents, data, options, userId );
+  }
+
+  // endregion
+
+  // region Macros
+
+  /**
+   * Convert this item into a macro.
+   * @param {object} [options] Options to pass to the macro creation.
+   * @returns {Promise<Macro>} The created macro.
+   */
+  async toMacro( options = {} ) {
+    if ( !game.user.isGM && !this.isOwned ) {
+      throw new Error( "ItemEd.toMacro: Only owned items can be converted to macros." );
+    }
+
+    const macroData = {
+      name:       this.name,
+      type:       CONST.MACRO_TYPES.SCRIPT,
+      img:        this.img,
+      command:    this.system.getDefaultMacroCommand( this ),
+    };
+
+    // TODO: Add macro to folder if it exists, add user specific folder if not
+    return CONFIG.Macro.documentClass.create( macroData, options );
   }
 
   // endregion

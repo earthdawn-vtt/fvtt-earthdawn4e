@@ -10,7 +10,7 @@ prosemirror
 explodify
 slugify
 slugified
-
+hotbar
 dtype
 crosshairs
 unlist

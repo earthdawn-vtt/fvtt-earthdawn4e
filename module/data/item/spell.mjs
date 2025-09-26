@@ -793,4 +793,13 @@ export default class SpellData extends ItemDataModel.mixin(
   // endregion
 
   // endregion
+
+  // region Macros
+
+  /** @inheritDoc */
+  getDefaultMacroCommand( options = {} ) {
+    return `const spell = await fromUuid("${this.parent.uuid}");\nawait spell.system.containingActor.castSpell( spell );`;
+  }
+
+  // endregion
 }

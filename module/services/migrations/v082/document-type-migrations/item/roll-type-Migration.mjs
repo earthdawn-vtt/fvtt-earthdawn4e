@@ -41,7 +41,7 @@ export default class RollTypeMigration extends BaseMigration {
         { names: combinedPhysicalAttackNames, targetValue: "attack" },
         { names: ED4E.systemV0_8_2.threadWeavingNames, targetValue: "threadWeaving" },
         { names: ED4E.systemV0_8_2.spellcastingNames, targetValue: "spellcasting" },
-        { names: ED4E.systemV0_8_2.resistKnockDownNames, targetValue: "knockDown" }, 
+        { names: ED4E.systemV0_8_2.resistKnockDownNames, targetValue: "knockdown" }, 
       ];
 
       // mapping for subcategories of the roll type (reactionType, combatType)

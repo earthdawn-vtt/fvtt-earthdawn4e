@@ -1,35 +1,46 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import MappingField from "../fields/mapping-field.mjs";
+import ED4E from "../../config/_module.mjs";
 
 /**
  * Data model template with information on mask items.
- * @property {number} dexterityStep             dexterity step modifications
- * @property {number} strengthStep              strength step modifications
- * @property {number} toughnessStep             toughness step modifications
- * @property {number} perceptionStep            perception step modifications
- * @property {number} willpowerStep             willpower step modifications
- * @property {number} charismaStep              charisma step modifications
- * @property {number} initiativeStep            initiative step modifications
+ * @property {object} attributes                  Attributes group object
+ * @property {number} attributes.dexterityStep             dexterity step modifications
+ * @property {number} attributes.strengthStep              strength step modifications
+ * @property {number} attributes.toughnessStep             toughness step modifications
+ * @property {number} attributes.perceptionStep            perception step modifications
+ * @property {number} attributes.willpowerStep             willpower step modifications
+ * @property {number} attributes.charismaStep              charisma step modifications
  * @property {object} movement                  movement group object
  * @property {number} movement.walk             movement type walk modifications
  * @property {number} movement.fly              movement type fly modifications
  * @property {number} movement.swim             movement type swim modifications
  * @property {number} movement.burrow           movement type burrow modifications
  * @property {number} movement.climb            movement type climb modifications
- * @property {number} physicalDefense           physical defense modifications
- * @property {number} mysticalDefense             mystical defense modifications
- * @property {number} socialDefense             social defense modifications
- * @property {number} physicalArmor             physical armor modifications
- * @property {number} mysticArmor               mystic armor modifications
- * @property {number} knockDownStep             knock down step modifications
- * @property {number} recoveryTestsResource             recovery tests modifications
- * @property {number} deathThreshold            death threshold modifications
- * @property {number} unconsciousThreshold      unconscious threshold modifications
- * @property {number} woundThreshold            wound threshold modifications
- * @property {number} attackStepsBonus          attack steps modifications
- * @property {number} damageStepsBonus          damage steps modification
+ * @property {object} defenses                  Defenses group object
+ * @property {number} defenses.physical           physical defense modifications
+ * @property {number} defenses.mystical           mystical defense modifications
+ * @property {number} defenses.social            social defense modifications
+ * @property {object} armor                     Armor group object
+ * @property {number} armor.physical            physical armor modifications
+ * @property {number} armor.mystical              mystic armor modifications
+ * @property {object} healthBonuses               Health bonuses group object
+ * @property {number} healthBonuses.recoveryTestsResource     recovery tests modifications
+ * @property {number} healthBonuses.deathThreshold            death threshold modifications
+ * @property {number} healthBonuses.unconsciousThreshold      unconscious threshold modifications
+ * @property {number} healthBonuses.woundThreshold            wound threshold modifications
+ * @property {object} combatBonuses              Combat bonuses group object
+ * @property {number} combatBonuses.attackStep          attack steps modifications
+ * @property {number} combatBonuses.damageStep          damage steps modification
+ * @property {number} combatBonuses.knockDownStep             knock down step modifications
+ * @property {number} combatBonuses.actions                   number of attacks
+ * @property {number} combatBonuses.initiativeStep            initiative step modifications
  * @property {number} challengingRate           changes to the challenging rate
- * @property {object} powers                    array of powers
+ * @property {object[]} powers                    Object of powers to be added to the mask target
+ * @property {string} powers.uuid               UUID of the power item
+ * @property {number} powers.step               Step of the power item
+ * @property {object[]} maneuvers                 Object of maneuvers to be added to the mask target
  */
 export default class MaskData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
@@ -45,126 +56,110 @@ export default class MaskData extends ItemDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      dexterityStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ), 
-      strengthStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      toughnessStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      perceptionStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      willpowerStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      charismaStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      initiativeStep: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
+      attributes: new MappingField( new fields.SchemaField( {
+        step: new fields.NumberField( {
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } )
+      } ), {
+        initialKeys:     ED4E.attributes,
+        initialKeysOnly: true,
       } ),
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         fly: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         swim: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         burrow: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
         } ),
         climb: new fields.NumberField( {
           required: true,
-          nullable: false,
-          min:      0,
-          initial:  0,
+          nullable: true,
           integer:  true,
-        } ),
+        } )
       } ),
-      defenses: new fields.SchemaField( {
-        physical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+      characteristics: new fields.SchemaField( {
+        defenses: new MappingField( new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+        } ), {
+          initialKeys:     [ "physical", "mystical", "social" ],
+          initialKeysOnly: true,
         } ),
-        mystical: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+        armor: new MappingField( new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ) ,
+        } ), {
+          initialKeys:     [ "physical", "mystical" ],
+          initialKeysOnly: true,
         } ),
-        social: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
+        health: new fields.SchemaField( {
+          death: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+          unconscious: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
+          woundThreshold: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+          } ),
         } ),
+        recoveryTestsResource: new fields.SchemaField( {
+          value: new fields.NumberField( {
+            min:      0,
+            initial:  0,
+            integer:  true,
+
+          } ),
+        } ),
+      }, ),
+      initiative: new fields.NumberField( {
+        min:      0,
+        initial:  0,
+        integer:  true,
       } ),
-      physicalArmor: new fields.NumberField( {
+      damageStep: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
       } ),
-      mysticalArmor: new fields.NumberField( {
+      attackStep: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      actions: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
@@ -178,67 +173,101 @@ export default class MaskData extends ItemDataModel.mixin(
         initial:  0,
         integer:  true,
       } ),
-      recoveryTestsResource: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
+      challenge: new fields.SchemaField( {
+        rate: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          step:     1,
+          initial:  0,
+          integer:  true,
+        } ),
       } ),
-      deathThreshold: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      unconsciousThreshold: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      woundThreshold: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      attacks: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      attackStepsBonus: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      damageStepsBonus: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      challengingRate: new fields.NumberField( {
-        required: true,
-        nullable: false,
-        min:      0,
-        initial:  0,
-        integer:  true,
-      } ),
-      powers: new fields.StringField( {
-        required: true,
-        blank:    true,
-        initial:  "",
-      } ),
+      powers: new fields.ArrayField(
+        new fields.SchemaField( {
+          uuid: new fields.DocumentUUIDField( {
+            type:     "Item",
+            embedded: false
+          } ),
+          step: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            initial:  0,
+            integer:  true
+          } )
+        } ),
+        {
+          required: true,
+          initial:  []
+        }
+      ),
+      maneuvers: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+          embedded: false
+        } ), {
+          required:        true,
+          initial:         [],
+        } ),
     } );
+  }
+
+  // Methods
+
+  /**
+   * Adds a power to the mask.
+   * @param {ItemEd} power The power to add to the mask.
+   * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if the power was not added.
+   */
+  async addPowerToMask( power ) {
+    if ( power.type !== "power" ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.maskAddNotAPower" ),
+      );
+      return;
+    }
+
+    if ( this.powers.some( entry => entry.uuid === power.uuid ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+      );
+      return;
+    } else {
+      const newPowers = [
+        ...this.powers,
+        {
+          uuid: power.uuid,
+          step: 0,
+        },
+      ];
+      return this.parent.update( {
+        "system.powers": newPowers,
+      } );
+    }
+  }
+
+  /**
+   * Adds a power to the mask.
+   * @param {Item} power The power to add to the mask.
+   * @returns {Promise<Item|undefined>} The updated mask item or undefined if the power was not added.
+   */
+  async addManeuverToMask( power ) {
+    if ( power.type !== "maneuver" ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+      );
+      return;
+    }
+
+    if ( !this.maneuvers.has( power.uuid ) ) {
+      const newManeuvers = Array.from( this.maneuvers );
+      newManeuvers.push( power.uuid );
+      return this.parent.update( {"system.maneuvers": newManeuvers } );
+    } else  {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
+      );
+      return;
+    }
   }
 }

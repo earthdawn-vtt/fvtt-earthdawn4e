@@ -106,7 +106,7 @@
         "halfMagic":                               "Half Magic",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Jump Up",
-        "knockDownTest":                           "Knock down",
+        "knockdownTest":                           "Knock down",
         "legendHistory":                           "LP History",
         "recovery":                                "Recovery",
         "tailAttack":                              "Tail Attack",
@@ -164,6 +164,10 @@
         "allTests":                                "All Tests"
       },
       "Header": {
+        "Favorites": {
+          "brokenReference":                       "TODO: Add translation",
+          "macroNotFound":                         "TODO: Add translation"
+        },
         "abilities":                               "Abilities",
         "action":                                  "Action",
         "active":                                  "Active",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "TODO: Add translation",
         "carried":                                 "Carried",
         "damagePhysical":                          "Physical",
         "damageSubdual":                           "Stun",
@@ -308,11 +313,12 @@
         "karmaRitualTooltip":                      "Karma Ritual",
         "mainHand":                                "Main Hand",
         "offHand":                                 "Off Hand",
-        "owned":                                   "Owned",
-        "parentTalent":                            "Talent Rank",
-        "reattuneDifficulty":                      "Reattune Difficulty ",
-        "recoveryRestTooltip":                     "Rest",
-        "standardEffect":                          "Standard Effect",
+        "owned":                                   "TODO: Add translation",
+        "parentTalent":                            "TODO: Add translation",
+        "reattuneDifficulty":                      "TODO: Add translation",
+        "recoveryRestTooltip":                     "TODO: Add translation",
+        "removeFromFavorites":                     "TODO: Add translation",
+        "standardEffect":                          "TODO: Add translation",
         "tail":                                    "Tail",
         "twoHanded":                               "Two Handed",
         "weavingDifficulty":                       "Weaving Difficulty"
@@ -627,7 +633,7 @@
         "horrorMark":                              "Horror Mark",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Jump Up",
-        "knockDown":                               "Knockdown",
+        "knockdown":                               "Knockdown",
         "reaction":                                "Reaction",
         "recovery":                                "Recovery",
         "spellEffect":                             "TODO: Add translation",
@@ -753,6 +759,9 @@
         "other":                                   "Other",
         "versatility":                             "Versatility"
       }
+    },
+    "ContextMenu": {
+      "favoritable":                               "TODO: Add translation"
     },
     "Controls": {
       "addSpell":                                  "Add Spell",
@@ -894,6 +903,18 @@
           "description": {
             "hint":                                "Description",
             "label":                               "Description"
+          }
+        },
+        "Group": {
+          "FIELDS": {
+          }
+        },
+        "Horror": {
+          "FIELDS": {
+          }
+        },
+        "Loot": {
+          "FIELDS": {
           }
         },
         "Namegiver": {
@@ -1668,59 +1689,53 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "Bonus to the mask wearer's attack steps",
-              "label":                             "Attack Step Bonus"
+            "actions": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
-            "attacks": {
-              "hint":                              "Attacks the mask wearer can perform",
-              "label":                             "Attacks"
+            "attackStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
-            "challengingRate": {
-              "hint":                              "Challenge rating of the mask wearer",
-              "label":                             "Challenge Rating"
-            },
-            "charismaStep": {
-              "hint":                              "Charisma step of the mask wearer",
-              "label":                             "Charisma Step"
-            },
-            "damageStepsBonus": {
-              "hint":                              "Bonus to the mask wearer's damage steps",
-              "label":                             "Damage Step Bonus"
-            },
-            "deathThreshold": {
-              "hint":                              "Death threshold of the mask wearer",
-              "label":                             "Death Threshold"
-            },
-            "defenses": {
-              "magical": {
-                "hint":                            "Bonus to magical defense",
-                "label":                           "Magical Defense"
-              },
-              "physical": {
-                "hint":                            "Bonus to physical defense",
-                "label":                           "Physical Defense"
-              },
-              "social": {
-                "hint":                            "Bonus to social defense",
-                "label":                           "Social Defense"
+            "challenge": {
+              "rate": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               }
             },
-            "dexterityStep": {
-              "hint":                              "Dexterity step of the mask wearer",
-              "label":                             "Dexterity Step"
+            "characteristics": {
+              "health": {
+                "death": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "unconscious": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "woundThreshold": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
+              "recoveryTestsResource": {
+                "value": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              }
             },
-            "initiativeStep": {
-              "hint":                              "Initiative step of the mask wearer",
-              "label":                             "Initiative Step"
+            "damageStep": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "initiative": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "knockDownStep": {
-              "hint":                              "Knockdown step of the mask wearer",
-              "label":                             "Knockdown Step"
-            },
-            "magicalArmor": {
-              "hint":                              "Armor rating against magical damage",
-              "label":                             "Magical Armor"
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "movement": {
               "burrow": {
@@ -1744,41 +1759,11 @@
                 "label":                           "Walk"
               }
             },
-            "perceptionStep": {
-              "hint":                              "Perception step of the mask wearer",
-              "label":                             "Perception Step"
-            },
-            "physicalArmor": {
-              "hint":                              "Armor rating against physical damage",
-              "label":                             "Physical Armor"
-            },
-            "powers": {
-              "hint":                              "Powers the mask wearer possesses",
-              "label":                             "Powers"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "Recovery tests of the mask wearer",
-              "label":                             "Recovery Tests"
-            },
-            "strengthStep": {
-              "hint":                              "Strength step of the mask wearer",
-              "label":                             "Strength Step"
-            },
-            "toughnessStep": {
-              "hint":                              "Toughness step of the mask wearer",
-              "label":                             "Toughness Step"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "Unconscious threshold of the mask wearer",
-              "label":                             "Unconscious Threshold"
-            },
-            "willpowerStep": {
-              "hint":                              "Willpower step of the mask wearer",
-              "label":                             "Willpower Step"
-            },
-            "woundThreshold": {
-              "hint":                              "Wound threshold of the mask wearer",
-              "label":                             "Wound Threshold"
+            "power": {
+              "step": {
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
+              }
             }
           }
         },
@@ -3056,6 +3041,10 @@
           "title":                                 "Configuration: Spell Enhancement"
         }
       },
+      "DeleteFavorite": {
+        "alsoDeletesMacro":                        "TODO: Add translation",
+        "favorite":                                "TODO: Add translation"
+      },
       "Header": {
         "activeUser":                              "Active User Characters",
         "actorsNoUserConfigured":                  "Characters Without Player",
@@ -3075,6 +3064,7 @@
           "SelectedSpells":                        "Selected Spells",
           "YouCanChooseSpells":                    "You Can Choose Spells",
           "chooseAbilityOption":                   "Choose an Ability",
+          "classAbilitiesGained":                  "Gained Discipline Talents",
           "classIncreasedTier":                    "The class has been raised to {newTier}",
           "effectsGained":                         "Effects Gained",
           "increaseClassTo":                       "Increase vocation to {increaseClassToLevel}",
@@ -3126,6 +3116,8 @@
           "enoughTalentsOfTier":                   "Not all {required} of {current} talents have reached the minimum rank {nextLevel}",
           "enoughTalentsOnMinRank":                "All {required} talents are present",
           "hasDamage":                             "Has Damage",
+          "hasNoDamage":                           "TODO: Add translation",
+          "hasNoWounds":                           "TODO: Add translation",
           "hasRequiredJourneymanTalents":          "Has the required Journeyman Talents",
           "hasRequiredMasterTalents":              "Has the required Master Talents",
           "hasRequiredNoviceTalents":              "Has the required Novice Talents",
@@ -3144,7 +3136,8 @@
           "sourceTalentRank":                      "Source Talent Rank",
           "talentFromCurrentCircleOnNewLevel":     "Talent from the {circle} Circle at the new rank",
           "talentOptionLp":                        "Legend Points for Talent Option",
-          "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}"
+          "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "TODO: Add translation"
         },
         "configuration":                           "Configuration",
         "increasePathTalentPrompt":                "Choose a Path Talent to increase",
@@ -3196,7 +3189,7 @@
         "drawWeapon":                              "Draw Weapon",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
-        "knockDown":                               "Knock Down",
+        "knockdown":                               "Knock Down",
         "learnAbility":                            "Learn Ability",
         "learnSpell":                              "Learn Spell",
         "lpIncrease":                              "Increase Legend Points",
@@ -3229,7 +3222,7 @@
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
       "doYouWantToUseWillpower":                   "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
-      "knockDownChoice":                           "Choose the Ability to resist Knock Down",
+      "knockdownChoice":                           "Choose the Ability to resist Knock Down",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage",
       "versatilityTalentLimit":                    "The maximum number of talents that can be learned through Versatility has already been reached. The normal maximum equals the Versatility rank.\nShould the selected talent still be learned?"
@@ -3253,6 +3246,7 @@
       "actorSheetEdVehicle":                       "Vehicle Sheet",
       "itemSheetEd":                               "Item Sheet",
       "itemSheetEdClass":                          "Discipline Sheet",
+      "itemSheetEdMask":                           "TODO: Add translation",
       "itemSheetEdPhysical":                       "Equipment Sheet",
       "journalSheetEd":                            "Journal Sheet",
       "sceneConfigEd":                             "Scene Configuration"
@@ -3275,19 +3269,28 @@
       },
       "Header": {
         "actionType":                              "Action Type",
+        "armorValues":                             "TODO: Add translation",
+        "attributes":                              "TODO: Add translation",
+        "challengingRate":                         "TODO: Add translation",
+        "combatValues":                            "TODO: Add translation",
         "damageSettings":                          "Damage Settings",
+        "defenseValues":                           "TODO: Add translation",
         "description":                             "Description",
         "details":                                 "Details",
         "effects":                                 "Effects",
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
-        "grimoireConfiguration":                   "Grimoire Configuration",
+        "grimoireConfiguration":                   "TODO: Add translation",
+        "healthValues":                            "TODO: Add translation",
         "knack":                                   "TODO: Add translation",
-        "matrixConfiguration":                     "Matrix Configuration",
+        "maneuver":                                "TODO: Add translation",
+        "matrixConfiguration":                     "TODO: Add translation",
+        "movementTypes":                           "TODO: Add translation",
         "navigator":                               "Navigator",
+        "powers":                                  "TODO: Add translation",
         "spell":                                   "TODO: Add translation",
         "spellDamageStep":                         "TODO: Add translation",
-        "spellEffect":                             "Spell Effect",
+        "spellEffect":                             "TODO: Add translation",
         "spellEffectStep":                         "TODO: Add translation",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
@@ -3356,6 +3359,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "The ability cannot be increased, a tier mapping (Novice, Journeyman, Warden, or Master) is missing.",
         "actorWarningSingleton":                   "This actor is a singleton. Only one instance can exist.",
         "formulaMalformedError":                   "The formula is malformed. Please check the formula.",
         "formulaMissingReferenceWarn":             "The formula references a missing value {missingReferences}. Please check the formula.",
@@ -3368,6 +3372,7 @@
         "identifierError":                         "The identifier is invalid. Please check the identifier.",
         "invalidElementSubtype":                   "Invalid element subtype. Please check the subtype.",
         "invalidRollType":                         "Invalid or missing roll type. Please check the item's details tab.",
+        "maskAddNotAPower":                        "TODO: Add translation",
         "matrixCastingSpellNotAttuned":            "The spell is not attuned to the matrix.",
         "noCastingMethodSelected":                 "No casting method selected.",
         "noGrimoiresAvailableToAttune":            "No Grimoires available to attune.",
@@ -3378,6 +3383,7 @@
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
+        "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "Power test type set to 'Attack'.\nIf a power has a damage step, the test type must be set to 'Attack' or 'Damage'.",
         "noDamageNoRecoveryNeeded":                "You are unharmed. No recovery test needed.",
         "noFullRestRecoveryNeeded":                "You are fine. No wounds or damage. No recovery test needed after rest.",
@@ -3394,6 +3400,7 @@
         "cannotLearn":                             "An item of type \"{itemType}\" cannot be learned.",
         "cannotLearnSpellKnack":                   "TODO: Add translation",
         "cantCastNoSpellInMatrix":                 "The matrix has no spell selected to cast.",
+        "cantHaveEffectFromSameSource":            "TODO: Add translation",
         "cantUpdateItemWeight":                    "Item weight could not be updated.",
         "castSpellNoActor":                        "No actor found to cast the spell.",
         "classIncreaseProblems":                   "Circle or rank could not be updated.",
@@ -3403,6 +3410,7 @@
         "invalidRecoveryMode":                     "Invalid recovery mode. Please check settings.",
         "learningKnackNoSourceItem":               "TODO: Add translation",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
+        "maskAddAlreadyInMask":                    "TODO: Add translation",
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
         "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
         "noActiveSpellSelected":                   "The matrix has no active spell selected.",
@@ -3481,8 +3489,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID for Creature Attack",
         "creatureAttackHint":                      "Identifies the ability as Creature Attack",
-        "knockDown":                               "ED-ID for Knock Down",
-        "knockDownHint":                           "Identifies the Knock Down ability",
+        "knockdown":                               "ED-ID for Knock Down",
+        "knockdownHint":                           "Identifies the Knock Down ability",
         "languageRW":                              "ED-ID for Read/Write",
         "languageRWHint":                          "Identifies the Read/Write ability",
         "languageSpeak":                           "ED-ID for Speak Language",
@@ -3645,6 +3653,7 @@
       }
     },
     "ToolTips": {
+      "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
       "addSpell":                                  "Create a new spell and add it to this character's Grimoire.",
       "addThreadLevel":                            "Add a thread rank.",
       "attuneMatrix":                              "Attune Matrix",

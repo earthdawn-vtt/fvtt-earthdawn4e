@@ -200,7 +200,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       },
     );
 
-    context.enrichedDescription = await TextEditor.enrichHTML(
+    context.enrichedDescription = await foundry.applications.ux.TextEditor.enrichHTML(
       this.document.system.description.value,
       {
         // Only show secret blocks to owner

@@ -1,5 +1,6 @@
 import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 import { ED4E } from "../../../earthdawn4e.mjs";
+import { getSetting } from "../../settings.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -14,7 +15,9 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static DEFAULT_OPTIONS = {
     classes:  [ "actor", ],
     actions:  {
-      expandItem:         ActorSheetEd._onCardExpand,
+      expandItem:           ActorSheetEd._onCardExpand,
+      executeFavoriteMacro: ActorSheetEd._executeFavoriteMacro,
+      deleteFavorite:       ActorSheetEd._deleteFavorite,
     },
   };
 
@@ -65,12 +68,46 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   // region Rendering
 
   /** @inheritdoc */
+  async _onFirstRender( context, options ) {
+    await super._onFirstRender( context, options );
+
+    this._createContextMenu(
+      this._createInitialContextMenu,
+      ".favoritable",
+    );
+  }
+
+  _createInitialContextMenu() {
+    return [
+      {
+        name:      game.i18n.localize( "ED.ContextMenu.favoritable" ),
+        icon:      "<i class='fas fa-star'></i>",
+        callback:  this._onAddToFavorites.bind( this ),
+      },
+    ];
+  }
+
+  /** @inheritdoc */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
+
+    const favoriteResults = await Promise.all(
+      this.document.system.favorites.map( async ( uuid ) => {
+        const macro = await fromUuid( uuid );
+        return {
+          uuid:    uuid,
+          name:    macro?.name || game.i18n.localize( "ED.Actor.Header.Favorites.brokenReference" ),
+          isValid: !!macro,
+          macro:   macro
+        };
+      } )
+    );
+
     foundry.utils.mergeObject( context, {
       actor:                  this.document,
       items:                  this.document.items,
       icons:                  ED4E.icons,
+      favoriteItems:          favoriteResults,
     } );
 
     return context;
@@ -100,6 +137,72 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       .children( ".card__description" );
 
     itemDescription.toggleClass( "card__description--toggle" );
+  }
+
+  static async _executeFavoriteMacro( event, target ) {
+    const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
+    if ( !macro ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Actor.Header.Favorites.macroNotFound" ) );
+      return;
+    }
+    macro.execute();
+  }
+
+  static async _deleteFavorite( event, target ) {
+    const macroUuid = target.dataset.macroUuid;
+  
+    // Use shift-click for quick delete like deleteChild does
+    if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
+      const currentFavorites = this.document.system.favorites || [];
+      const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
+    
+      // Delete the macro from the world
+      const macro = await fromUuid( macroUuid );
+      if ( macro ) await macro.delete();
+    
+      return this.document.update( {
+        "system.favorites": updatedFavorites
+      } );
+    }
+  
+    const type = `${game.i18n.localize( "ED.Dialogs.DeleteFavorite.favorite" )}`;
+    return Dialog.confirm( {
+      title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
+      content: `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
+              <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>
+              <p>${game.i18n.localize( "ED.Dialogs.DeleteFavorite.alsoDeletesMacro" )}</p>`,
+      yes: async () => {
+        const currentFavorites = this.document.system.favorites || [];
+        const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
+      
+        // Delete the macro from the world
+        const macro = await fromUuid( macroUuid );
+        if ( macro ) await macro.delete();
+      
+        await this.document.update( {
+          "system.favorites": updatedFavorites
+        } );
+      },
+      options: {
+        top:   Math.min( event.clientY - 80, window.innerHeight - 350 ),
+        left:  window.innerWidth - 720,
+        width: 400
+      }
+    } );
+  }
+
+  async _onAddToFavorites( target ) {
+    const itemUuid = target.closest( ".favoritable" ).dataset.uuid;
+    if ( !itemUuid ) {
+      throw new Error( "ActorSheetEd._onAddToFavorites:  No item UUID found in the target element." );
+    }
+    const item = /** @type {ItemEd} */ await fromUuid( itemUuid );
+    const macro = await item.toMacro();
+
+    const oldFavorites = this.document.system.favorites ?? [];
+    await this.document.update( {
+      "system.favorites": [ ...oldFavorites, macro.uuid ],
+    } );
   }
 
   // endregion

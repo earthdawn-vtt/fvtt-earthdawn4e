@@ -19,17 +19,17 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "discipline") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
               {{/if}}
             {{/each}}
@@ -51,17 +51,17 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "optional") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
               {{/if}}
             {{/each}}
@@ -83,17 +83,17 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "free") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
               {{/if}}
             {{/each}}
@@ -115,17 +115,17 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "other") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
               {{/if}}
             {{/each}}
@@ -147,17 +147,17 @@
           {{#each (ed-getTalentCategory actor.itemTypes.talent "versatility") as |talent i|}}
             {{> "systems/ed4e/templates/actor/cards/ability-card.hbs" }}
             {{#each actor.itemTypes.knackAbility}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-ability-card.hbs" knack=this talent=talent}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackManeuver}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-maneuver-card.hbs"}}
               {{/if}}
             {{/each}}
             {{#each actor.itemTypes.knackKarma}}
-              {{#if (eq this.system.sourceTalent talent.system.edid)}}
+              {{#if (eq this.system.sourceItem talent.system.edid)}}
                 {{> "systems/ed4e/templates/actor/cards/knack-karma-card.hbs"}}
               {{/if}}
             {{/each}}

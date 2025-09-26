@@ -106,7 +106,7 @@
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDownTest":                           "Niederschlag",
+        "knockdownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
         "tailAttack":                              "Schwanzangriff",
@@ -164,7 +164,11 @@
         "allTests":                                "Alle Proben"
       },
       "Header": {
-        "abilities":                               "Fähigkeiten",
+        "Favorites": {
+          "brokenReference":                       "Defekter Favorit",
+          "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
+        },
+        "abilities":                               "TODO: Add translation",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
@@ -299,6 +303,7 @@
         }
       },
       "Tooltips": {
+        "brokenFavoriteReference":                 "Dieser Favorit verweist auf ein Makro, das nicht mehr existiert. Sie können diesen Favoriten löschen.",
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
         "damageSubdual":                           "TODO: Add translation",
@@ -312,6 +317,7 @@
         "parentTalent":                            "Rang des Talents",
         "reattuneDifficulty":                      "Neuabstimmungs-Schwierigkeit",
         "recoveryRestTooltip":                     "Erholung",
+        "removeFromFavorites":                     "Aus Favoriten entfernen",
         "standardEffect":                          "Standard Effekt",
         "tail":                                    "Schwanz",
         "twoHanded":                               "Zweihändig",
@@ -627,7 +633,7 @@
         "horrorMark":                              "Dämonenmal",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "reaction":                                "Reaktion",
         "recovery":                                "Erholung",
         "spellEffect":                             "Zauber-Effekt",
@@ -753,6 +759,9 @@
         "other":                                   "Andere",
         "versatility":                             "Vielseitigkeit"
       }
+    },
+    "ContextMenu": {
+      "favoritable":                               "Zu Favoriten hinzufügen"
     },
     "Controls": {
       "addSpell":                                  "Zauber hinzufügen",
@@ -957,20 +966,20 @@
                   "label":                         "Schaden",
                   "standard": {
                     "hint":                        "Standard Schaden des Akteurs",
-                    "label":                       "Standard Schaden"
+                    "label":                       "Tödlich"
                   },
                   "stun": {
                     "hint":                        "Betäubungsschaden des Akteurs",
-                    "label":                       "Betäubungsschaden"
+                    "label":                       "Betäubung"
                   },
                   "total": {
                     "hint":                        "Gesamtschaden des Akteurs",
-                    "label":                       "Gesamtschaden"
+                    "label":                       "Gesamt"
                   }
                 },
                 "death": {
                   "hint":                          "Todesrate des Akteurs",
-                  "label":                         "Todesschwelle"
+                  "label":                         "Tod"
                 },
                 "maxWounds": {
                   "hint":                          "Maximale Wunden des Akteurs",
@@ -1668,117 +1677,81 @@
         },
         "Mask": {
           "FIELDS": {
-            "attackStepsBonus": {
-              "hint":                              "Bonus auf die Angriffsstufen des Maskenträgers",
-              "label":                             "Angriffsstufen Bonus"
+            "actions": {
+              "hint":                              "Bonus auf die Aktionen",
+              "label":                             "Aktionen"
             },
-            "attacks": {
-              "hint":                              "Angriffe die der Maskenträger ausführen kann",
-              "label":                             "Angriffe"
+            "attackStep": {
+              "hint":                              "Bonus auf die Angriffsstufe",
+              "label":                             "Angriffsstufe"
             },
-            "challengingRate": {
-              "hint":                              "Herausforderungsrate des Maskenträgers",
-              "label":                             "Herausforderungsrate"
-            },
-            "charismaStep": {
-              "hint":                              "Stufe des Charismas des Maskenträgers",
-              "label":                             "Charismastufe"
-            },
-            "damageStepsBonus": {
-              "hint":                              "Bonus auf die Schadensstufen des Maskenträgers",
-              "label":                             "Schadensstufen Bonus"
-            },
-            "deathThreshold": {
-              "hint":                              "Todesgrenze des Maskenträgers",
-              "label":                             "Todesgrenze"
-            },
-            "defenses": {
-              "magical": {
-                "hint":                            "Bonus auf die magische Verteidigung",
-                "label":                           "Magische Verteidigung"
-              },
-              "physical": {
-                "hint":                            "Bonus auf die physische Verteidigung",
-                "label":                           "Physische Verteidigung"
-              },
-              "social": {
-                "hint":                            "Bonus auf die soziale Verteidigung",
-                "label":                           "Soziale Verteidigung"
+            "challenge": {
+              "rate": {
+                "hint":                            "Anpassung der Herausforderungsrate",
+                "label":                           "Herausforderungsrate"
               }
             },
-            "dexterityStep": {
-              "hint":                              "Stufe der Geschicklichkeit des Maskenträgers",
-              "label":                             "Geschicklichkeitsstufe"
+            "characteristics": {
+              "health": {
+                "death": {
+                  "hint":                          "Bonus auf die Todesschwelle",
+                  "label":                         "Todesschwelle"
+                },
+                "unconscious": {
+                  "hint":                          "Bonus auf die Bewusstlosigkeitsschwelle",
+                  "label":                         "Bewusstlosigkeitsschwelle"
+                },
+                "woundThreshold": {
+                  "hint":                          "Bonus auf die Wundschwelle",
+                  "label":                         "Wundschwelle"
+                }
+              },
+              "recoveryTestsResource": {
+                "value": {
+                  "hint":                          "Zusätzliche Erholungsproben",
+                  "label":                         "Erholungsproben"
+                }
+              }
             },
-            "initiativeStep": {
-              "hint":                              "Stufe der Initiative des Maskenträgers",
-              "label":                             "Initiativestufe"
+            "damageStep": {
+              "hint":                              "Bonus auf die Schadensstufe",
+              "label":                             "Schadensstufe"
+            },
+            "initiative": {
+              "hint":                              "Bonus auf die Initiative",
+              "label":                             "Initiative"
             },
             "knockDownStep": {
-              "hint":                              "Stufe des Niederschlagens",
-              "label":                             "Niederschlagungsstufe"
-            },
-            "magicalArmor": {
-              "hint":                              "Rüstungsschutz gegen magischen Schaden",
-              "label":                             "Magischer Rüstungsschutz"
+              "hint":                              "Bonus auf den Niederschlagswurf",
+              "label":                             "Niederschlagsstufe"
             },
             "movement": {
               "burrow": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Graben",
+                "hint":                            "Bonus auf die Grabbewegung",
                 "label":                           "Graben"
               },
               "climb": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Klettern",
+                "hint":                            "Bonus auf die Kletterbewegung",
                 "label":                           "Klettern"
               },
               "fly": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Fliegen",
+                "hint":                            "Bonus auf die Flugbewegung",
                 "label":                           "Fliegen"
               },
               "swim": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Schwimmen",
+                "hint":                            "Bonus auf die Schwimmbewegung",
                 "label":                           "Schwimmen"
               },
               "walk": {
-                "hint":                            "Bewegungsgeschwindigkeit des Maskenträgers beim Gehen",
+                "hint":                            "Bonus auf die normale Bewegung",
                 "label":                           "Gehen"
               }
             },
-            "perceptionStep": {
-              "hint":                              "Stufe der Wahrnehmung des Maskenträgers",
-              "label":                             "Wahrnehmungsstufe"
-            },
-            "physicalArmor": {
-              "hint":                              "Rüstungsschutz gegen physischen Schaden",
-              "label":                             "Physischer Rüstungsschutz"
-            },
-            "powers": {
-              "hint":                              "Fähigkeiten die der Maskenträger besitzt",
-              "label":                             "Fähigkeiten"
-            },
-            "recoveryTestsResource": {
-              "hint":                              "Erholungsproben des Maskenträgers",
-              "label":                             "Erholungsproben"
-            },
-            "strengthStep": {
-              "hint":                              "Stufe der Stärke des Maskenträgers",
-              "label":                             "Stärkestufe"
-            },
-            "toughnessStep": {
-              "hint":                              "Stufe der Zähigkeit des Maskenträgers",
-              "label":                             "Zähigkeitsstufe"
-            },
-            "unconsciousThreshold": {
-              "hint":                              "Bewusstlosigkeitsgrenze des Maskenträgers",
-              "label":                             "Bewusstlosigkeitsgrenze"
-            },
-            "willpowerStep": {
-              "hint":                              "Stufe des Willens des Maskenträgers",
-              "label":                             "Willenskraftstufe"
-            },
-            "woundThreshold": {
-              "hint":                              "Wundgrenze des Maskenträgers",
-              "label":                             "Wundgrenze"
+            "power": {
+              "step": {
+                "hint":                            "Stufe der Kraft",
+                "label":                           "Stufe"
+              }
             }
           }
         },
@@ -3056,6 +3029,10 @@
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
       },
+      "DeleteFavorite": {
+        "alsoDeletesMacro":                        "Das Löschen des Favoriten löscht auch das zugehörige Makro.",
+        "favorite":                                "Favorit"
+      },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
@@ -3075,6 +3052,7 @@
           "SelectedSpells":                        "Ausgewählte Zauber",
           "YouCanChooseSpells":                    "Du kannst Zauber auswählen",
           "chooseAbilityOption":                   "Wähle eine Fähigkeit",
+          "classAbilitiesGained":                  "Erhaltene Disziplintalente",
           "classIncreasedTier":                    "WO IST DAS??? CONTEXT Die Klasse wurde auf {newTier} erhöht",
           "effectsGained":                         "Erhaltene Effekte",
           "increaseClassTo":                       "Berufung auf {increaseClassToLevel} erhöhen",
@@ -3111,8 +3089,8 @@
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Es kann nur ein Attribute zur Zeit gesteigert werden.</li>\n<li>Der Charakter muss {learningTime} Tagen trainieren.</li>\n<li>Der Charakter ist ausgeruht und hat weder Schaden noch Wunden während der Lehrphase.</li>\n<li>Attributstraining kostet Geld. Jeder Trainingstag kostet durchschnittlich {trainingCost} Silber</li>\n<li>Der Charakter hat ausreichend Legendenpunkte.</li>\n<li>Der Charakter muss {trainingsTimeAttribute} Wochen warten bis er erneut ein Attribut steigern darf.</li>\n</ul>\n",
           "devotionIncreaseShortRequirements":     "<ul>\n<li>Der Questor kann pro Tag nur eine Weihekraft um einen Rang steigern.</li>\n<li>Der neue Rang darf nicht höher sein als der Rang der Questor-Weihekraft</li>\n</ul>\n",
-          "disciplineIncreaseShortRequirements":   "<ul>\n<li>Studiere mit einem Adept der gewünschten Discipline (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden training innerhalb einer Woche absolvieren</li>\n</ul>\n",
-          "disciplineLearnShortRequirements":      "TODO: Add translation",
+          "disciplineIncreaseShortRequirements":   "<ul>\n<li>Lerne das mindestens das Disziplintalent des nächsten Kreises von einem Adepten eines höheren Kreises.</li></ul>\n",
+          "disciplineLearnShortRequirements":      "<ul>\n<li>Studiere mit einem Adept der gewünschten Disziplin (fünfter Kreis oder höher)</li>\n<li>Die Basiskosten in Silber entspricht der Summe aus allen Kreisen die der Student in anderen Disziplinen erreicht hat, multipliziert mit 100</li>\n<li>Lerne alle Talente des Ersten Kreises die bisher nicht bekannt sind.</li>\n<li>Es müssen ausreichend Legendenpunkte zur Verfügung stehen um alle Talente des ersten Kreises auf einmal zu lernen</li>\n<li>Der niedrigste Kreis aller bisherigen Disziplinen bestimmt die Kosten für Rang 1 der Talente der neuen Disziplin</li>\n<li>Talent Optionen des ersten Kreises können wie gewohnt später gelernt werden.</li>\n<li>Der Student muss für jedes Talent 40 Stunden Training innerhalb einer Woche absolvieren</li>\n</ul>\n",
           "pathIncreaseShortRequirements":         "Um einen Rang zu steigern ist es erforderlich:<ul>\n<li>Die entsprechende Pfadprüfung zu absolvieren</li>\n<li>Die Erlaubnis von ranghöheren Anhängern des Pfades einzuholen</li>\n<li>Das Rangaufstiegsritual durchzuführen</li>\n</ul>\n",
           "pathLearnShortRequirements":            "<ul>\n<li>Der Charakter muss die Pfadprüfung absolviert haben.</li>\n<li>Der Charakter muss mit der Erlaubnis eines Ranghöheren Mitglieds das Aufstiegsritual vollzogen haben.</li>\n<li>Der Charakter hat ausreichend Legendenpunkte für den nächsten Rang.</li>\n<li>Der Charakter muss eine erfolgreiche Fadenwebenprobe geschafft haben.</li>\n</ul>\n",
           "questorClassIncreaseShortRequirements": "<ul>\n<li>mit Schutzpassion kommunizieren, indem die Questor-Weihekraft verwendet wird</li>\n<li>keine Probe erforderlich</li>\n<li>pro Tag kann nur eine Weihekraft erworben oder gesteigert werde, und pro Weihekraft kann nicht mehr als ein Rang auf einmal gesteigert werden</li>\n<li>abgesehen von den Legendenpunktekosten und dem Zeitaufwand für die Legende gibt es keine Einschränkungen, um den Rang der Questor-Weihekraft innerhalb der gleichen Kategorie zu steigern</li>\n<li>Wechsel von einer Kategorie in die nächste (z. B. vom Jünger zum Anhänger) erfordert, dass eine Aufgabe (Queste) im Namen seiner Passion übernommen\nund erfüllt wird</li>\n<li>eine Weihekraft aus einer früheren Kategorie kann gewählt werden</li>\n<li>Legendenpunktekosten einer gewährten Weihekraft basieren darauf, wann sie verfügbar wird, selbst wenn sie erst später erlernt wird</li>\n</ul>\n",
@@ -3126,6 +3104,8 @@
           "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
           "enoughTalentsOnMinRank":                "Alle {required} Talente haben vorhanden",
           "hasDamage":                             "Hat Schaden",
+          "hasNoDamage":                           "Hat keinen Schaden",
+          "hasNoWounds":                           "Hat keine Wunden",
           "hasRequiredJourneymanTalents":          "Hat die erforderlichen Gesellen-Talente",
           "hasRequiredMasterTalents":              "Hat die erforderlichen Meister-Talente",
           "hasRequiredNoviceTalents":              "Hat die erforderlichen Novizen-Talente",
@@ -3144,7 +3124,8 @@
           "sourceTalentRank":                      "Quell-Talent Rang",
           "talentFromCurrentCircleOnNewLevel":     "Talent des {circle} Kreises auf dem neuen Rang",
           "talentOptionLp":                        "Legendenpunkte für Talentoption",
-          "talentsRequirementFailed":              "Die Talente-Anforderung ist fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}"
+          "talentsRequirementFailed":              "Die Trainingsvoraussetzungen sind fehlgeschlagen. Die folgenden Talente müssen mindestens den Rang {requiredLevel} erreicht haben:\n{unfulfilledTalents}",
+          "talentsRequirementFulfilled":           "Die Trainingsvoraussetzungen für den Kreisaufstieg sind erfüllt."
         },
         "configuration":                           "Konfiguration",
         "increasePathTalentPrompt":                "Wähle ein Pfad-Talent um es zu steigern",
@@ -3196,7 +3177,7 @@
         "drawWeapon":                              "Waffe ziehen",
         "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
-        "knockDown":                               "Niederschlag",
+        "knockdown":                               "Niederschlag",
         "learnAbility":                            "Fähigkeit lernen",
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
@@ -3229,7 +3210,7 @@
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
       "ignoreArmor":                               "Ignoriere Rüstung",
-      "knockDownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden",
       "versatilityTalentLimit":                    "Das Maximum an Talente die über Vielseitigkeit gelernt werden können ist bereits erreicht. Das reguläre Maximum entspricht dem Vielseitigkeits Rang.\n Soll das gewählte Talent trotzdem gelernt werden?"
@@ -3253,6 +3234,7 @@
       "actorSheetEdVehicle":                       "Transportmittel-Bogen",
       "itemSheetEd":                               "Item-Bogen",
       "itemSheetEdClass":                          "Berufung-Bogen",
+      "itemSheetEdMask":                           "Masken-Bogen",
       "itemSheetEdPhysical":                       "Ausrüstungs-Bogen",
       "journalSheetEd":                            "Journal-Bogen",
       "sceneConfigEd":                             "Szene Konfiguration"
@@ -3275,16 +3257,25 @@
       },
       "Header": {
         "actionType":                              "Aktionstyp",
+        "armorValues":                             "Rüstungswerte",
+        "attributes":                              "Attribute",
+        "challengingRate":                         "Herausforderungsrate",
+        "combatValues":                            "Kampfwerte",
         "damageSettings":                          "Schadenseinstellungen",
+        "defenseValues":                           "Verteidigungswerte",
         "description":                             "Beschreibung",
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "elementSettings":                         "Elementeinstellungen",
         "general":                                 "Allgemein",
         "grimoireConfiguration":                   "Grimoire Konfiguration",
+        "healthValues":                            "Gesundheitswerte",
         "knack":                                   "Kniff",
+        "maneuver":                                "Manöver",
         "matrixConfiguration":                     "Matrix Konfiguration",
+        "movementTypes":                           "Bewegungsarten",
         "navigator":                               "Navigator",
+        "powers":                                  "Kräfte",
         "spell":                                   "Zauber",
         "spellDamageStep":                         "Schadenstufe",
         "spellEffect":                             "Effekt",
@@ -3356,6 +3347,7 @@
     },
     "Notifications": {
       "Error": {
+        "abilityIncreaseNoTier":                   "Die Fähigkeit kann nicht gesteigert werden, es fehlt eine Gradzuordnung (Novize, Geselle, Wächter oder Meister).",
         "actorWarningSingleton":                   "Der Actor ist ein Singleton. Es kann nur eine Instanz dieses Actors geben.",
         "formulaMalformedError":                   "Die Formel ist fehlerhaft. Bitte überprüfe die Formel.",
         "formulaMissingReferenceWarn":             "Die Formel verweist auf eine nicht existierende Referenz {missingReferences}. Bitte überprüfe die Formel.",
@@ -3368,6 +3360,7 @@
         "identifierError":                         "Der Identifikator ist fehlerhaft. Bitte überprüfe den Identifikator.",
         "invalidElementSubtype":                   "Der Element Untertyp ist ungültig. Bitte überprüfe den Untertyp.",
         "invalidRollType":                         "Der Aktionstyp ist ungültig oder nicht gewählt. Bitte überprüfe den Aktionstyp im Details Tab des Items.",
+        "maskAddNotAPower":                        "Das Item ist weder eine Kraft noch ein Manöver.",
         "matrixCastingSpellNotAttuned":            "Der Zauber ist nicht auf die Matrix abgestimmt.",
         "noCastingMethodSelected":                 "Es wurde keine Methode zur Spruchzauberei ausgewählt.",
         "noGrimoiresAvailableToAttune":            "Es sind keine Grimoire verfügbar, die abgestimmt werden können.",
@@ -3378,6 +3371,7 @@
         "substituteAttributeNotFound":             "Es ist kein Attribut gefunden worden."
       },
       "Info": {
+        "alreadyKnockedDown":                      "Der Charakter ist bereits niedergeschlagen.",
         "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
@@ -3394,6 +3388,7 @@
         "cannotLearn":                             "Ein Item vom Typ \"{itemType}\" kann nicht erlernt werden.",
         "cannotLearnSpellKnack":                   "Der Zauber-Kniff kann nicht erlernt werden. Es fehlt eine ED-ID für den Zauber auf den sich der Kniff bezieht.",
         "cantCastNoSpellInMatrix":                 "Die Matrix hat keinen Zauber ausgewählt, der gewirkt werden kann.",
+        "cantHaveEffectFromSameSource":            "Diesen Effekt gibt es schon. Es kann nicht mehr als einen Effekt von der gleichen Quelle geben.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
@@ -3403,6 +3398,7 @@
         "invalidRecoveryMode":                     "Ungültiger Erholungsmodus. Bitte überprüfe die Einstellungen.",
         "learningKnackNoSourceItem":               "Das Quell-Item für den Kniff konnte nicht gefunden werden (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "Es kann nur nur lebendige Rüstung getragen werden.",
+        "maskAddAlreadyInMask":                    "Die Kraft/das Manöver ist bereits in der Maske enthalten.",
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
@@ -3481,8 +3477,8 @@
       "Edid": {
         "creatureAttack":                          "ED-ID für Kreaturenangriff",
         "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
-        "knockDown":                               "ED-ID für Niederschlag",
-        "knockDownHint":                           "Identifiziert die Fähigkeit Niederschlag zu verwenden",
+        "knockdown":                               "TODO: Add translation",
+        "knockdownHint":                           "TODO: Add translation",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",
@@ -3645,6 +3641,7 @@
       }
     },
     "ToolTips": {
+      "activeEffectCantBeEnabledOnClassItems":     "Dieser Effekt kann nicht aktiviert werden, da er bei Kreisaufstieg hinzugefügt wird (automatisch/manuell).",
       "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",

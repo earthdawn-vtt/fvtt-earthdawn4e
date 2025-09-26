@@ -1,17 +1,18 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import DisciplineData from "./discipline.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on path items.
- * @property {string} sourceDiscipline source discipline related to the path
+ * @property {string} sourceDiscipline ED-ID for source discipline related to the path
  */
 export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
+
+  // region Static Properties
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
@@ -19,12 +20,17 @@ export default class PathData extends ClassTemplate.mixin(
     "ED.Data.Item.Path",
   ];
 
+  // endregion
+
+  // region Static Methods
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceDiscipline: new fields.ForeignDocumentField( DisciplineData, {
-        idOnly: true,
+      sourceDiscipline: new fields.DocumentUUIDField( {
+        type:     "Item",
+        embedded: true,
       } ),
       bloodMagicDamage: new fields.NumberField( {
         required: true,
@@ -46,9 +52,9 @@ export default class PathData extends ClassTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Properties
 
   /** @inheritDoc */
   get increaseData() {
@@ -67,9 +73,7 @@ export default class PathData extends ClassTemplate.mixin(
     };
   }
 
-  /**
-   * @inheritDoc
-   */
+  /** @inheritDoc */
   get increaseRules() {
     return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
   }
@@ -79,7 +83,7 @@ export default class PathData extends ClassTemplate.mixin(
     if ( !this.isActorEmbedded ) return undefined;
 
     const {  talentRequirements } = this.increaseData;
-    const validationData = {
+    return {
       [ED4E.validationCategories.talentsRequirement]: [
         {
           name:      "ED.Dialogs.Legend.Validation.pathTalent",
@@ -93,14 +97,19 @@ export default class PathData extends ClassTemplate.mixin(
         },
       ]
     };
-    return validationData;
   }
 
   /** @inheritDoc */
   get learnRules() {
     return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathLearnShortRequirements" );
   }
-  
+
+  // endregion
+
+  // region LP Tracking
+
+  // region LP Learning
+
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, "knackAbility" );
@@ -127,7 +136,7 @@ export default class PathData extends ClassTemplate.mixin(
 
       const learn = await DialogEd.confirm( {
         rejectClose: false,
-        content:     await TextEditor.enrichHTML( content ),
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
       } );
       if ( !learn ) return;
 
@@ -145,7 +154,7 @@ export default class PathData extends ClassTemplate.mixin(
 
       const learn = await DialogEd.confirm( {
         rejectClose: false,
-        content:     await TextEditor.enrichHTML( content ),
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
       } );
       if ( !learn ) return;
 
@@ -173,6 +182,10 @@ export default class PathData extends ClassTemplate.mixin(
     return learnedPath;
   }
 
+  // endregion
+
+  // region LP Increase
+
   /** @inheritDoc */
   async increase() {
     if ( !this.isActorEmbedded ) return;
@@ -190,7 +203,7 @@ export default class PathData extends ClassTemplate.mixin(
         `;
       const increasePathTalent = await DialogEd.confirm( {
         rejectClose: false,
-        content:     await TextEditor.enrichHTML( content ),
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
       } );
       if ( increasePathTalent ) {
         await pathTalent.system.increase();
@@ -207,4 +220,8 @@ export default class PathData extends ClassTemplate.mixin(
   
     return this.parent;
   }
+
+  // endregion
+
+  // endregion
 }

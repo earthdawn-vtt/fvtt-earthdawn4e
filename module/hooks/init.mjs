@@ -161,6 +161,11 @@ export default function () {
       makeDefault: true,
       label:       "ED.Documents.itemSheetEdPhysical"
     } );
+    Items.registerSheet( "earthdawn4e", applications.item.MaskItemSheetEd, { 
+      types:       [ "mask" ],
+      makeDefault: true,
+      label:       "ED.Documents.itemSheetEdMask"
+    } );
 
     Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {

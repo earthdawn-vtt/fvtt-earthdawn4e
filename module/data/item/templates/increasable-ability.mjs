@@ -80,6 +80,14 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
     if ( !this.isActorEmbedded ) return;
 
     const promptFactory = PromptFactory.fromDocument( this.parent );
+
+    if ( !this.tier ) {
+      ui.notifications.error(
+        game.i18n.localize( "ED.Notifications.Error.abilityIncreaseNoTier" )
+      );
+      return;
+    }
+
     const spendLp = await promptFactory.getPrompt( "lpIncrease" );
 
     if ( !spendLp

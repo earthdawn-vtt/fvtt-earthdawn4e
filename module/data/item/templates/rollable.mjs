@@ -46,6 +46,7 @@ export default class RollableTemplate extends SystemDataModel {
       case "damage": rollFunc = this.rollDamage.bind( this ); break;
       case "effect": rollFunc = this.rollEffect.bind( this ); break;
       case "initiative": rollFunc = this.rollAbility.bind( this ); break;
+      case "knockdown": rollFunc = this.rollAbility.bind( this ); break;
       case "reaction": rollFunc = this.rollAbility.bind( this ); break;
       case "recovery": rollFunc = this.rollAbility.bind( this ); break;
       case "spellcasting": rollFunc = this.rollAbility.bind( this ); break;
@@ -56,5 +57,20 @@ export default class RollableTemplate extends SystemDataModel {
     }
     return rollFunc();
   }
+
+  // region Macros
+
+  /** @inheritDoc */
+  getDefaultMacroCommand( item, options = {} ) {
+    const physicalItemTypes = [ "armor", "equipment", "shield", "weapon" ];
+    if ( physicalItemTypes.includes( item.type ) ) {
+      // Physical items have to use actor.rollEquipment() instead of item.system.roll()
+      return `const item = await fromUuid("${this.parent.uuid}");\nawait item.actor.rollEquipment(item);`;
+    } else {
+      return `const item = await fromUuid("${this.parent.uuid}");\nawait item.system.roll()`;
+    }
+  }
+
+  // endregion
 
 }

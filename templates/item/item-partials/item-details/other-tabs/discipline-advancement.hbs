@@ -51,11 +51,11 @@
             <!-- Level Number -->
             <div class="title-level-number">
               {{#if (eq @root.item.type "discipline")}}
-              {{formField this.schema.fields.level value=this.level readonly=true label="ED.Data.Item.Class.FIELDS.circle.label" hint="ED.Data.Item.Class.FIELDS.circle.hint" localize=true}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.circle.label" hint="ED.Data.Item.Class.FIELDS.circle.hint" localize=true}}
               {{else if (eq @root.item.type "path")}}
-              {{formField this.schema.fields.level value=this.level readonly=true label="ED.Data.Item.Class.FIELDS.rankPath.label" hint="ED.Data.Item.Class.FIELDS.rankPath.hint" localize=true}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.rankPath.label" hint="ED.Data.Item.Class.FIELDS.rankPath.hint" localize=true}}
               {{else if (eq @root.item.type "questor")}}
-              {{formField this.schema.fields.level value=this.level readonly=true label="ED.Data.Item.Class.FIELDS.rankQuestor.label" hint="ED.Data.Item.Class.FIELDS.rankQuestor.hint" localize=true}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.rankQuestor.label" hint="ED.Data.Item.Class.FIELDS.rankQuestor.hint" localize=true}}
               {{else if (eq @root.item.type "path")}}
               {{else if (eq @root.item.type "questor")}}
               {{/if}}
