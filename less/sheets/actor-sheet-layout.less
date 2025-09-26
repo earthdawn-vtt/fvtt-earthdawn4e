@@ -140,7 +140,57 @@
       }
     }
 
-    /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
+    .favorite-item-row {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .favorite-item-row.has-delete {
+      .favorite-execute-btn {
+        position: relative;
+        padding-right: 1.6rem;
+      }
+
+      .favorite-delete-btn {
+        position: absolute;
+        right: 6px;
+        width: 1rem;
+        border: 0;
+        color: var(--color-basic-text-dk);
+        pointer-events: auto;
+
+        i { line-height: 1; }
+      }
+    }
+
+    .favorite-execute-btn {
+      text-transform: uppercase;
+      font-weight: bold;
+      background-color: var(--color-button-icon);
+      border: 1px solid var(--color-button-icon);
+      color: var(--color-basic-text-dk);
+      transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+
+      .label { pointer-events: none; }
+
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled) {
+        background-color: var(--color-button-icon-hover);
+        border-color:     var(--color-button-icon-hover);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(1px);
+      }
+    }
+
+    .favorite__grid--container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
     .tab[data-tab="general"] .layout__row {
       display: flex;
       flex-wrap: nowrap;
@@ -149,7 +199,8 @@
     .karma-devotion__header,
     .recovery__header,
     .initiative__header,
-    .legend__header {
+    .legend__header,
+    .favorite__header {
       display: flex;
       align-items: center;
       justify-content: center;
