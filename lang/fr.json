@@ -362,6 +362,7 @@
         "group":                                   "TODO: Add translation",
         "help":                                    "TODO: Add translation",
         "helpHeader":                              "TODO: Add translation",
+        "import":                                  "TODO: Add translation",
         "lp":                                      "TODO: Add translation",
         "r":                                       "TODO: Add translation",
         "roll":                                    "TODO: Add translation",
@@ -3014,6 +3015,7 @@
         "goBack":                                  "TODO: Add translation",
         "grimoireCasting":                         "TODO: Add translation",
         "halfMagic":                               "TODO: Add translation",
+        "import":                                  "TODO: Add translation",
         "learn":                                   "TODO: Add translation",
         "learnSpellPatterncraftTest":              "TODO: Add translation",
         "matrixCastingAlreadyAttuned":             "TODO: Add translation",
@@ -3192,6 +3194,10 @@
         "fieldsetExtraThreads":                    "TODO: Add translation",
         "inactiveUser":                            "TODO: Add translation",
         "update":                                  "TODO: Add translation"
+      },
+      "ImportDocument": {
+        "importDataHint1":                         "TODO: Add translation",
+        "importDataHint2":                         "TODO: Add translation"
       },
       "IniPrompt": {
         "configuration":                           "TODO: Add translation"
