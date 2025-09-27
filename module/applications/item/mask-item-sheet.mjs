@@ -138,7 +138,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
   // region Event Handlers
 
   static async _deleteEmbeddedItem( event, target ) {
-    const item = target.closest( ".power-item" );
+    const item = target.closest( ".embedded-item" );
     if ( item ) {
       await this.item.system.removeItemFromMask( item );
     } else return;
