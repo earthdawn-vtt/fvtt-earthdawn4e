@@ -362,6 +362,7 @@
         "group":                                   "Calculate group challenge step",
         "help":                                    "Show help on chat commands",
         "helpHeader":                              "Available chat commands",
+        "import":                                  "TODO: Add translation",
         "lp":                                      "Award legend points",
         "r":                                       "Roll standard dice (e.g. 1d6, 2D10+3)",
         "roll":                                    "Roll standard dice (e.g. 1d6, 2D10+3)",
@@ -3014,6 +3015,7 @@
         "goBack":                                  "Go Back",
         "grimoireCasting":                         "Grimoire",
         "halfMagic":                               "Half Magic",
+        "import":                                  "TODO: Add translation",
         "learn":                                   "Learn",
         "learnSpellPatterncraftTest":              "Learn Spell with Patterncraft",
         "matrixCastingAlreadyAttuned":             "Matrix (Attuned)",
@@ -3192,6 +3194,10 @@
         "fieldsetExtraThreads":                    "Extra Threads",
         "inactiveUser":                            "Inactive User Characters",
         "update":                                  "System Update News"
+      },
+      "ImportDocument": {
+        "importDataHint1":                         "TODO: Add translation",
+        "importDataHint2":                         "TODO: Add translation"
       },
       "IniPrompt": {
         "configuration":                           "Configuration"
