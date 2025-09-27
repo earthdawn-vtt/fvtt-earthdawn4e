@@ -6,6 +6,14 @@ const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 export default class MaskItemSheetEd extends ItemSheetEd {
 
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    classes:  [ "mask" ],
+    actions:  {
+      deleteEmbeddedItem:   MaskItemSheetEd._deleteEmbeddedItem,         
+    },
+  };
+
   // region Static Properties
 
   /** @inheritDoc */
@@ -99,6 +107,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /** @inheritdoc */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -125,6 +134,16 @@ export default class MaskItemSheetEd extends ItemSheetEd {
   }
 
   // endregion
+
+  // region Event Handlers
+
+  static async _deleteEmbeddedItem( event, target ) {
+    const item = target.closest( ".power-item" );
+    if ( item ) {
+      await this.item.system.removeItemFromMask( item );
+    } else return;
+  } 
+  
 
   // region Drag and Drop
 
