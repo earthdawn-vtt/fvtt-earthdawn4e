@@ -73,13 +73,29 @@
     <fieldset>
         <legend>{{localize "ED.Item.Header.powers"}}</legend>
         {{#each powerItems}}
-        <div class="power-item">
-            <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
-            <div class="form-group">
-            <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
-            <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
+        {{log powerItems}}
+        {{#if @root.editable}}
+            <div class="power-item embedded-item" data-index="{{@index}}">
+                <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
+                <div class="form-group">
+                <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
+                <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
             </div>
-        </div>
+            <a class="item-control power-delete-btn"
+                  data-action="deleteEmbeddedItem"
+                  title="{{localize 'ED.Actor.Tooltips.deletePower'}}">
+                  <i class="fas fa-trash"></i>
+                </a>
+            </div>
+            {{else}}
+                <div class="power-item">
+                    <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
+                    <div class="form-group">
+                    <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
+                    <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
+                    </div>
+                </div>
+            {{/if}}
         {{/each}}
     </fieldset>
     <fieldset>

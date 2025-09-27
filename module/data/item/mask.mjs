@@ -2,6 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import { getSetting } from "../../settings.mjs";
 
 /**
  * Data model template with information on mask items.
@@ -269,5 +270,70 @@ export default class MaskData extends ItemDataModel.mixin(
       );
       return;
     }
+  }
+
+  async removeItemFromMask( item, event = null ) {
+    const powerIndex = Number( item.dataset.index );
+    console.log( "PowerIndex: ", powerIndex );
+    if ( isNaN( powerIndex ) || powerIndex < 0 || !item ) return;
+
+    if ( event && getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
+      // Create a new array without the specified power
+      const newPowers = [ ...this.powers ];
+      newPowers.splice( powerIndex, 1 );
+      return this.parent.update( {"system.powers": newPowers} );
+    } 
+  
+    // Import the DialogEd class
+    const DialogEd = ( await import( "../../applications/api/dialog.mjs" ) ).default;
+      
+    const type = `${game.i18n.localize( "ED.Dialogs.DeletePower.power" )}`;
+      
+    const content = `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
+                       <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>`;
+      
+    // Create buttons similar to other dialogs in PromptFactory
+    const buttons = [
+      {
+        action:  "yes",
+        label:   game.i18n.localize( "Yes" ),
+        icon:    "fa-light fa-check",
+        class:   "yes default",
+        default: true
+      },
+      {
+        action:  "no",
+        label:   game.i18n.localize( "No" ),
+        icon:    "fa-light fa-times",
+        class:   "no button-cancel",
+        default: false
+      }
+    ];
+      
+    // Use DialogEd.wait like in your PromptFactory
+    const result = await DialogEd.wait( {
+      id:       "delete-power-prompt",
+      uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+      classes:  [ "earthdawn4e", "delete-power-prompt" ],
+      window:   {
+        title:       `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
+        minimizable: false
+      },
+      content:     content,
+      modal:       false,
+      buttons:     buttons,
+      rejectClose: false,
+      
+    } );
+      
+    // Handle the dialog result
+    if ( result === "yes" ) {
+      // Create a new array without the specified power
+      const newPowers = [ ...this.powers ];
+      newPowers.splice( powerIndex, 1 );
+      return this.parent.update( {"system.powers": newPowers} );
+    }
+
+
   }
 }
