@@ -1253,7 +1253,7 @@ h3.label--rail .label__text::after {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
   /* ======================= General tab ======================= */
-  /* ======================= Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
+  /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
   /* ======================= Notes tab ======================= */
   /* ======================= Abilities tab ======================= */
   /* ======================= Spells tab ======================= */
@@ -1395,6 +1395,49 @@ h3.label--rail .label__text::after {
   display: flex;
   gap: 0.1em;
 }
+.application.sheet.earthdawn4e.actor .window-content .favorite-item-row {
+  position: relative;
+  display: inline-flex;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-item-row.has-delete .favorite-execute-btn {
+  position: relative;
+  padding-right: 1.6rem;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-item-row.has-delete .favorite-delete-btn {
+  position: absolute;
+  right: 6px;
+  width: 1rem;
+  border: 0;
+  color: var(--color-basic-text-dk);
+  pointer-events: auto;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-item-row.has-delete .favorite-delete-btn i {
+  line-height: 1;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-execute-btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--color-button-icon);
+  border: 1px solid var(--color-button-icon);
+  color: var(--color-basic-text-dk);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-execute-btn .label {
+  pointer-events: none;
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-execute-btn:hover:not(:disabled),
+.application.sheet.earthdawn4e.actor .window-content .favorite-execute-btn:focus-visible:not(:disabled) {
+  background-color: var(--color-button-icon-hover);
+  border-color: var(--color-button-icon-hover);
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite-execute-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.application.sheet.earthdawn4e.actor .window-content .favorite__grid--container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
 .application.sheet.earthdawn4e.actor .window-content .tab[data-tab="general"] .layout__row {
   display: flex;
   flex-wrap: nowrap;
@@ -1402,7 +1445,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__header,
 .application.sheet.earthdawn4e.actor .window-content .recovery__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative__header,
-.application.sheet.earthdawn4e.actor .window-content .legend__header {
+.application.sheet.earthdawn4e.actor .window-content .legend__header,
+.application.sheet.earthdawn4e.actor .window-content .favorite__header {
   display: flex;
   align-items: center;
   justify-content: center;

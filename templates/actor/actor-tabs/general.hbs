@@ -209,41 +209,46 @@
 
     <div class="layout__col--2">
 
-    {{#if (eq this.actor.type "character")}}
-      {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
-    {{else}}
-      {{#if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
-        {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
-      {{/if}}
-    {{/if}}
+      <h2 class="favorite__header margin__none one-line__vertical-align">
+        <span class="favorite__header-label">{{localize "ED.Actor.Header.favorites"}}</span>
+      </h2>
+      <div class="container__block container__custom">
+        <div class="favorite__grid--container">  {{!-- keep this OPEN --}}
+          {{#each favoriteItems as |favorite|}}
+            <div class="favorite-item-row {{#if @root.editable}}has-delete{{/if}} {{#unless favorite.isValid}}favorite-broken{{/unless}}">
+              {{#if favorite.isValid}}          
+                <button class="action-buttons favorite-execute-btn"
+                        data-action="executeFavoriteMacro"
+                        data-macro-uuid="{{favorite.uuid}}">
+                  <span class="label">{{favorite.name}}</span>
+                </button>
+              {{else}}
+                <button class="action-buttons favorite-execute-btn favorite-broken-btn"
+                        disabled
+                        title="{{localize 'ED.Actor.Tooltips.brokenFavoriteReference'}}">
+                  <span class="label">{{favorite.name}}</span>
+                </button>
+              {{/if}}
 
-      <div class="action--buttons">
-        <div class="buttons--left input--centered1">
-            <button class="action-buttons" data-action="initiative">{{localize "ED.Actor.Buttons.initiative"}}</button>
-            <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-            <button class="action-buttons" data-action="knockdown">{{localize "ED.Actor.Buttons.knockdownTest"}}</button>
+              {{#if @root.editable}}
+                <a class="item-control item-delete favorite-delete-btn"
+                  data-action="deleteFavorite"
+                  data-macro-uuid="{{favorite.uuid}}"
+                  title="{{localize 'ED.Actor.Tooltips.removeFromFavorites'}}">
+                  <i class="fas fa-trash"></i>
+                </a>
+              {{/if}}
+            </div>
+          {{/each}}
         </div>
       </div>
-
-
-      {{#each favoriteItems as |favorite|}}
-        <div class="container__block container__custom">
-          <div class="favorite-item-row {{#unless favorite.isValid}}favorite-broken{{/unless}}">
-            {{#if favorite.isValid}}
-              <button class="action-buttons favorite-execute-btn" data-action="executeFavoriteMacro" data-macro-uuid="{{favorite.uuid}}">{{favorite.name}}</button>
-            {{else}}
-              <button class="action-buttons favorite-execute-btn favorite-broken-btn" disabled title="{{localize "ED.Actor.Tooltips.brokenFavoriteReference"}}">{{favorite.name}}</button>
-            {{/if}}
-            {{#if @root.editable}}
-              <a class="item-control item-delete favorite-delete-btn" data-action="deleteFavorite" data-macro-uuid="{{favorite.uuid}}" title="{{localize "ED.Actor.Tooltips.removeFromFavorites"}}">
-                <i class="fas fa-trash"></i>
-              </a>
-            {{/if}}
+        <div class="action--buttons">
+          <div class="buttons--left input--centered1">
+              <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
+              <button class="action-buttons" data-action="knockdown">{{localize "ED.Actor.Buttons.knockdownTest"}}</button>
           </div>
         </div>
-      {{/each}}
-
+      </div>
     </div>
-
   </div>
 </section>
