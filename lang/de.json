@@ -362,6 +362,7 @@
         "group":                                   "Gruppen-Herausforderungsgrad berechnen",
         "help":                                    "Zeige Hilfe zu Chat-Befehlen",
         "helpHeader":                              "Verfügbare Chat-Befehle",
+        "import":                                  "Importiere Foundry-Document aus JSON",
         "lp":                                      "Legendenpunkte vergeben",
         "r":                                       "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
         "roll":                                    "Standard Würfelwurf (z.B. 1d6, 2d10+3)",
@@ -3014,6 +3015,7 @@
         "goBack":                                  "Zurück",
         "grimoireCasting":                         "Grimoire",
         "halfMagic":                               "Halbmagie",
+        "import":                                  "Importieren",
         "learn":                                   "Lernen",
         "learnSpellPatterncraftTest":              "Lerne den Zauber mit Struktur Verstehen",
         "matrixCastingAlreadyAttuned":             "Matrix (abgestimmt)",
@@ -3192,6 +3194,10 @@
         "fieldsetExtraThreads":                    "Zusätzliche Fäden",
         "inactiveUser":                            "Charaktere von inaktiven Spieler",
         "update":                                  "System Update Neuigkeiten"
+      },
+      "ImportDocument": {
+        "importDataHint1":                         "Hier kannst du Dokumente importieren die du aus einer anderen Earthdawn Welt exportiert hast.",
+        "importDataHint2":                         "Es wird ein neues Dokument erstellt. Wenn du einen Ordner wählst, werden alle Dokumente in diesem Ordner importiert."
       },
       "IniPrompt": {
         "configuration":                           "Konfiguration"

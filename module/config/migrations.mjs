@@ -2,6 +2,14 @@
  * System configuration for the migration of the system from Version 0.8.2 
  */
 export const systemV0_8_2 = {
+
+  documentTypeMapping: {
+    "pc":          "character",
+    "spellmatrix": "talent",
+  },
+
+  // ==============================
+
   /**
    * Migration key for earthdawn4e legacy system
    * @type {string}

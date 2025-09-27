@@ -1,18 +1,20 @@
 import EdRollOptions from "../data/roll/common.mjs";
 import PcData from "../data/actor/pc.mjs";
 import LpTransactionData from "../data/advancement/lp-transaction.mjs";
+import EdImporter from "../services/data-exchange/imports/importer.mjs";
 
 
 const cmdMapping = {
-  char:  triggerCharGen,
-  coin:  triggerCoinAward,
-  group: triggerCrCalc,
-  h:     triggerHelp,
-  help:  triggerHelp,
-  lp:    triggerLpAward,
-  r:     triggerRollDice,
-  roll:  triggerRollDice,
-  s:     triggerRollStep,
+  char:   triggerCharGen,
+  coin:   triggerCoinAward,
+  group:  triggerCrCalc,
+  h:      triggerHelp,
+  help:   triggerHelp,
+  import: triggerImport,
+  lp:     triggerLpAward,
+  r:      triggerRollDice,
+  roll:   triggerRollDice,
+  s:      triggerRollStep,
 };
 
 /**
@@ -69,8 +71,6 @@ function triggerCharGen( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
-
 /**
  * Trigger the coin award process with /coin.
  * @param {string} argString - The argument string from the original chat message passed to the command.
@@ -81,8 +81,6 @@ function triggerCoinAward( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
-
 /**
  * Trigger the challenge rating calculation process with /group.
  * @param {string} argString - The argument string from the original chat message passed to the command.
@@ -92,8 +90,6 @@ function triggerCrCalc( argString ) {
   ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.notImplementedYet" ) );
   return false;
 }
-
-/* -------------------------------------------- */
 
 /**
  * Trigger the help command to display a list of available chat commands with /help or /h.
@@ -121,7 +117,16 @@ function triggerHelp( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
+/**
+ * Triggers the import process with /import.
+ * @param {string} argString - The argument string from the original chat message passed to the command.
+ * @returns {boolean} Always returns false to prevent further processing.
+ */
+function triggerImport( argString ) {
+  EdImporter.fromFileSelectDialog().then( importer => importer.import() );
+  return false;
+}
+
 /**
  * Triggers the legend point award process with /lp.
  * @param {string} argString - The argument string from the original chat message passed to the command.
@@ -133,7 +138,6 @@ function triggerLpAward( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
 /**
  * Triggers a step roll with /s.
  * @param {string} argString - The argument string from the original chat message passed to the command.
@@ -160,7 +164,6 @@ function triggerRollStep( argString ) {
   return false;
 }
 
-/* -------------------------------------------- */
 /**
  * Triggers a standard dice roll with /r or /roll.
  * @param {string} argString - The argument string from the original chat message passed to the command.

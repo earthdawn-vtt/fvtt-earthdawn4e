@@ -9,7 +9,7 @@ import LpTrackingData from "../data/advancement/lp-tracking.mjs";
 import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
-import MigrationManager from "../services/migrations/migration-manager.mjs";
+import DamageRollOptions from "../data/roll/damage.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttributeWorkflow, AttuneMatrixWorkflow, KnockdownWorkflow } from "../workflows/workflow/_module.mjs";
 import { getDefaultEdid, getSetting } from "../settings.mjs";
@@ -1328,41 +1328,4 @@ export default class ActorEd extends Actor {
     return amount <= available;
   }
 
-  // endregion
-
-  // region Migrations
-  static migrateData( source ) {
-    // Skip migration for partial updates or non-complete documents
-    // A complete document should have fundamental properties like name, type, etc.
-    const isPartialUpdate = !source.name
-      || !source.type
-      || ( source.system && Object.keys( source.system ).length <= 2 );
-
-    // Skip if this looks like a partial update rather than a complete document
-    if ( isPartialUpdate ) {
-      return source;
-    }
-    // Step 1: Apply Foundry's core migration
-    const newSource = super.migrateData( source );
-
-    // Step 2: Apply our comprehensive migration system to the already-migrated source
-    const migrationResult = MigrationManager.migrateDocument( newSource, "Actor" );
-
-    // Step 3: ALSO modify the original source...
-    if ( migrationResult.system ) {
-      source.system = migrationResult.system;
-    }
-
-    if ( migrationResult.type ) {
-      source.type = migrationResult.type;
-    }
-
-    if ( migrationResult.img ) {
-      source.img = migrationResult.img;
-    }
-
-    // Step 4: Return the final migrated result
-    return migrationResult;
-  }
-  // endregion
 }

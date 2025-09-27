@@ -111,6 +111,7 @@ export const icons = {
   favoritable:       "fa-star",
   finishCharGen:     "fa-thin fa-check-double",
   halfmagic:         "fa-hat-wizard",
+  import:            "fa-file-import",
   initiative:        "fa-running",
   itemHistory:       "fa-history",
   nextCharGen:       "fa-thin fa-arrow-right",

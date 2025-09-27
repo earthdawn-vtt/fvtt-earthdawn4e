@@ -4,7 +4,6 @@ export * as api from "./api/_module.mjs";
 export * as combat from "./combat/_module.mjs";
 export * as components from "./components/_module.mjs";
 export * as configs from "./configs/_module.mjs";
-export * as dataExchange from "./data-exchange/_module.mjs";
 export * as effect from "./effect/_module.mjs";
 export * as global from "./global/_module.mjs";
 export * as hud from "./hud/_module.mjs";
