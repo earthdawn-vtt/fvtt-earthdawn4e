@@ -3,14 +3,11 @@
  * Coordinates all migrations from earthdawn4e legacy system (v0.8.2) to current ed4e system
  */
 
-import { registerV082TypeTransformations } from "./type-transformations.mjs";
-import "./document-migrations.mjs"; // Auto-registers with MigrationManager
+import * as documentTypeMigrations from "./document-type-migrations/_module.mjs";
+import * as fieldMigrations from "./field-migrations/_module.mjs";
 
-/**
- * Initialize all v0.8.2 migration components
- * @param {object} typeTransformationManager - The TypeTransformationManager instance
- */
-export function initializeV082Migrations( typeTransformationManager ) {
-  // Register type transformations
-  registerV082TypeTransformations( typeTransformationManager );
-}
+
+export {
+  documentTypeMigrations,
+  fieldMigrations,
+};
