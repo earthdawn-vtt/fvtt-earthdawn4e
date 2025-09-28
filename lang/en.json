@@ -905,18 +905,6 @@
             "label":                               "Description"
           }
         },
-        "Group": {
-          "FIELDS": {
-          }
-        },
-        "Horror": {
-          "FIELDS": {
-          }
-        },
-        "Loot": {
-          "FIELDS": {
-          }
-        },
         "Namegiver": {
           "FIELDS": {
             "languages": {
@@ -3044,6 +3032,10 @@
       "DeleteFavorite": {
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
+      },
+      "DeletePower": {
+        "maneuver":                                "TODO: Add translation",
+        "power":                                   "TODO: Add translation"
       },
       "Header": {
         "activeUser":                              "Active User Characters",
