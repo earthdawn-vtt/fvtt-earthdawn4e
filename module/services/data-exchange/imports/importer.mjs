@@ -1,5 +1,6 @@
-import DialogEd from "../../../applications/api/dialog.mjs";
-import { SYSTEM } from "../../../config/_module.mjs";
+import { determineDocumentType } from "./_module.mjs";
+import ImportDataApp from "../../../applications/data-exchange/import-data.mjs";
+import ImportMigration from "../../migrations/import-migration.mjs";
 
 export default class EdImporter {
 
@@ -22,35 +23,7 @@ export default class EdImporter {
    * @returns {Promise<EdImporter>} The created importer instance.
    */
   static async fromFileSelectDialog( options = {} ) {
-    return DialogEd.wait( {
-      window:  {
-        title:   game.i18n.localize( "DOCUMENT.ImportData" ),
-      },
-      content: await foundry.applications.handlebars.renderTemplate(
-        "templates/apps/import-data.hbs",
-        {
-          hint1: game.i18n.localize( "ED.Dialogs.ImportDocument.importDataHint1" ),
-          hint2: game.i18n.localize( "ED.Dialogs.ImportDocument.importDataHint2" ),
-        },
-      ),
-      buttons: [ {
-        action:   "import",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.import" ),
-        icon:     `fa-solid ${ SYSTEM.icons.import }`,
-        default:  true,
-        callback: ( event, button ) => {
-          const form = button.form;
-          if ( !form.data.files.length ) {
-            return ui.notifications.error( "DOCUMENT.ImportDataError", {localize: true} );
-          }
-          return new this( form.data.files[0], options );
-        },
-      }, {
-        action: "no",
-        label:  game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
-        icon:   `fa-solid ${ SYSTEM.icons.cancel }`,
-      } ],
-    } );
+    return ImportDataApp.waitPrompt( { importerOptions: options } );
   }
 
   /**
@@ -64,13 +37,19 @@ export default class EdImporter {
    * @param {string} path    The path to import from.
    * @param {ImportOptions} options Import options.
    * @param {string} options.documentType The type of document to import, one of Foundry's {@link CONST.PRIMARY_DOCUMENT_TYPES}.
-   * @param {object} options.documentData The data the new document should be created with.
-   * @returns {Promise<void>}
+   * @param {object[]} options.documentData The data the new document should be created with.
+   * @returns {Promise<Document>} The created document.
    */
   static async import( path, options ) {
     const documentType = options.documentType?.toLowerCase().capitalize();
     try {
-      return CONFIG[options.documentType].documentClass.create( options.documentData, { renderSheet: true } );
+      let createData = options.documentData;
+      if ( options.documentData[0]._stats?.exportSource?.systemVersion === "0.8.2.2" ) {
+        const migration = new ImportMigration( createData, { documentType: options.documentType} );
+        createData = await migration.migrate();
+      }
+
+      return CONFIG[options.documentType].documentClass.create( createData, { renderSheet: true } );
     } catch ( error ) {
       console.error( `Failed to create document of type ${ documentType } from path ${ path }:`, error );
       throw error;
@@ -84,7 +63,7 @@ export default class EdImporter {
   /**
    * Any kind of data that should be imported. This is subclass-specific, e.g. an object with document data from an
    * export Actor JSON file.
-   * @type {*}
+   * @type {*[]}
    */
   _data;
 
@@ -95,23 +74,23 @@ export default class EdImporter {
   _documentType;
 
   /**
-   * The file to import from.
-   * @type {File}
+   * The files to import from.
+   * @type {File[]}
    */
-  _file;
+  _files;
 
   // endregion
 
   /**
    * Create a new importer instance.
-   * @param {File} file           The file to import from.
+   * @param {File[]} files           The files to import from. The must all have the same `documentType`.
    * @param {object} options      Additional options for the importer.
    * @param {string} [options.documentType]  The type of document to import, one of Foundry's {@link CONST.PRIMARY_DOCUMENT_TYPES}.
-   * @param {*} [options.data]    Any kind of data that should be imported. This is subclass-specific, e.g. an object with document data from an
+   * @param {*[]} [options.data]    Any kind of data that should be imported. This is subclass-specific, e.g. an object with document data from an
    *                              export Actor JSON file.
    */
-  constructor( file, options ) {
-    this._file = file;
+  constructor( files, options ) {
+    this._files = files;
     const { data, documentType } = options;
     this._data = data;
     this._documentType = documentType?.toLowerCase().capitalize();
@@ -119,11 +98,15 @@ export default class EdImporter {
 
   // region Methods
 
+  /**
+   * Import the data from the file into the current world.
+   * @returns {Promise<Document>} The created document.
+   */
   async import() {
     if ( !this._data )await this._readDataFromPath();
     if ( !this._documentType )this._determineDocumentType();
     return this.constructor.import(
-      this._file,
+      this._files,
       {
         documentType: this._documentType,
         documentData: this._data,
@@ -131,15 +114,12 @@ export default class EdImporter {
     );
   }
 
+  /**
+   * Determine the document type from the data read from the file and store it as `_documentType`.
+   * @throws {Error} If the document type is invalid or missing.
+   */
   _determineDocumentType() {
-    let documentType = foundry.utils.parseUuid(
-      this._data?._stats?.exportSource?.uuid
-    )?.type;
-
-    if ( typeof documentType !== "string" || !CONST.WORLD_DOCUMENT_TYPES.includes( documentType ) ) {
-      throw new Error( `Invalid or missing document type: ${ documentType }` );
-    }
-    this._documentType = documentType;
+    this._documentType = determineDocumentType( this._data[0] );
   }
 
   /**
@@ -149,16 +129,16 @@ export default class EdImporter {
    */
   async _readDataFromPath() {
     try {
-      this._data = await foundry.utils.readTextFromFile( this._file );
-      this._data = JSON.parse( this._data );
+      this._data = await Promise.all(
+        Array.from( this._files ).map(
+          file => foundry.utils.readTextFromFile( file )
+        )
+      );
+      this._data = this._data.map( data => JSON.parse( data ) );
     } catch ( error ) {
-      console.error( `Failed to parse JSON from file at path ${ this._file }:`, error );
+      console.error( `Failed to parse JSON from file at path ${ this._files }:`, error );
       throw error;
     }
-    /* for ( const [ key, value ] of Object.entries( this._data ) ) {
-      if ( foundry.utils.isEmpty( value ) ) delete this._data[key];
-    }
-    if ( this._data._steps ) delete this._data._steps; */
   }
 
   // endregion

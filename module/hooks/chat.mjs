@@ -123,7 +123,10 @@ function triggerHelp( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerImport( argString ) {
-  EdImporter.fromFileSelectDialog().then( importer => importer.import() );
+  EdImporter.fromFileSelectDialog().then(
+    importer => importer.import(),
+    () => {}
+  );
   return false;
 }
 

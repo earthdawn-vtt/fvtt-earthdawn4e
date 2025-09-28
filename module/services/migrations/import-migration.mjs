@@ -24,12 +24,6 @@ export default class ImportMigration {
    */
   _documentType;
 
-  /**
-   * The subtype of the document to import, e.g. "talent" for items.
-   * @type {string}
-   */
-  _documentSubtype;
-
   // endregion
 
   /**
@@ -43,7 +37,6 @@ export default class ImportMigration {
     const { documentType } = options;
     this._documentType = documentType?.toLowerCase().capitalize()
       || determineDocumentType( data );
-    this._documentSubtype = data.type?.toLowerCase();
   }
 
   // region Methods
@@ -70,20 +63,32 @@ export default class ImportMigration {
    * subtype.
    */
   async migrate() {
-    /** @type {typeof BaseMigration} */ const MigrationClass = typeMigrationRegistry[
-      this._documentType.toLowerCase()
-    ][
-      this._documentSubtype
-    ];
-    if ( !MigrationClass ) {
-      throw new Error(
-        `No migration class found for document type ${ this._documentType } and subtype ${ this._documentSubtype }`
-      );
-    }
-
     return Promise.all(
       this._data.map(
-        source => MigrationClass.migrateEarthdawnData( source )
+        source => {
+          /** @type {typeof BaseMigration} */ const MigrationClass = typeMigrationRegistry[
+            this._documentType.toLowerCase()
+          ][
+            source.type.toLowerCase()
+          ];
+
+          if ( !MigrationClass ) {
+            throw new Error(
+              `No migration class found for document type ${ this._documentType } and subtype ${ this._documentSubtype }`
+            );
+          }
+
+          if ( source.items ) {
+            source.items = source.items.map( item => {
+              const ItemMigrationClass = typeMigrationRegistry.item[item.type.toLowerCase()];
+              if ( ItemMigrationClass ) {
+                ItemMigrationClass.migrateEarthdawnData( item );
+              }
+              return item;
+            } );
+          }
+          return MigrationClass.migrateEarthdawnData( source );
+        }
       )
     );
   }
