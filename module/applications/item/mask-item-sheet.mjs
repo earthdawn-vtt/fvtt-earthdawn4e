@@ -137,6 +137,12 @@ export default class MaskItemSheetEd extends ItemSheetEd {
 
   // region Event Handlers
 
+  /**
+   * Handle the deletion of an embedded item from the mask.
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>} - A promise that resolves when the item is deleted.
+   */
   static async _deleteEmbeddedItem( event, target ) {
     const item = target.closest( ".embedded-item" );
     if ( item ) {
@@ -144,7 +150,8 @@ export default class MaskItemSheetEd extends ItemSheetEd {
     } else return;
   } 
   
-
+  // endregion
+  
   // region Drag and Drop
 
   /** @inheritDoc */
