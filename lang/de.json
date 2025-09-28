@@ -3033,6 +3033,10 @@
         "alsoDeletesMacro":                        "Das Löschen des Favoriten löscht auch das zugehörige Makro.",
         "favorite":                                "Favorit"
       },
+      "DeletePower": {
+        "maneuver":                                "Manöver",
+        "power":                                   "Kraft"
+      },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
