@@ -146,12 +146,12 @@ export default class MaskItemSheetEd extends ItemSheetEd {
   static async _deleteEmbeddedItem( event, target ) {
     const item = target.closest( ".embedded-item" );
     if ( item ) {
-      await this.item.system.removeItemFromMask( item );
+      await this.item.system.removeItemFromMask( item, event );
     } else return;
   } 
   
   // endregion
-  
+
   // region Drag and Drop
 
   /** @inheritDoc */
