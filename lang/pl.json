@@ -3033,6 +3033,10 @@
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
       },
+      "DeletePower": {
+        "maneuver":                                "TODO: Add translation",
+        "power":                                   "TODO: Add translation"
+      },
       "Header": {
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
