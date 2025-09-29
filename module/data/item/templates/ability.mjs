@@ -87,7 +87,17 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             choices:  ED4E.weaponType,
           } ),
         } ),
-        damage:        new fields.SchemaField( {}, {} ),
+        damage:        new fields.SchemaField( {
+          combatType: new fields.SetField( new fields.StringField( {
+            required: true,
+            nullable: true,
+            blank:    false,
+            choices:  ED4E.weaponType,
+          } ), {
+            required: true,
+            initial:  [],
+          } ),
+        }, {} ),
         effect:        new fields.SchemaField( {}, {} ),
         initiative:    new fields.SchemaField( {}, {} ),
         reaction:      new fields.SchemaField( {
