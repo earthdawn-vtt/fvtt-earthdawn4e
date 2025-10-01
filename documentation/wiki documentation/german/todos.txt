@@ -10,6 +10,8 @@
         Feature: split funktionen im false mode alphabetisch.
         Feature: add language trigger speak Language | read-/write Language falls die anzahl der Sprachen <= dem Rang ist.
         Feature: Initiative Roll via button on char sheet shall trigger combat encounter roll, if a running encounter is active.
+        Feature: add "Increased as Tier" information to the talents detail tab, calculated from current tier + sourceDiscipline order
+        Feature: Dropping Skills shall prompt a tier setting...
         Refactor: add knacks to none-split mode of talents (ich glaub das ist nicht drin)
         Refactor: move legend tab to notes (not the attribute increase) || rename notes Tab to legend
         Refactor: move the attribute increase to the edit mode of the attributes secion in the general tab itself.
