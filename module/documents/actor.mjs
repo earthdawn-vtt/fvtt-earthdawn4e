@@ -218,6 +218,26 @@ export default class ActorEd extends Actor {
   // region Getters
 
   /**
+   * Returns all adder and replacement abilities of the given roll type.
+   * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
+   * @returns {[ItemEd[], ItemEd[]]} An array containing two arrays: the first with all adder abilities,
+   * the second with all replacement abilities.
+   */
+  getAdderAndReplacementAbilities( rollType ) {
+    return this.items.filter(
+      item => item.system.rollType === rollType
+    ).map( item => {
+      return {
+        key:           item.uuid,
+        label:         item.name,
+        isReplacement: item.system.isReplacementAbility,
+      };
+    } ).partition(
+      item => item.isReplacement
+    );
+  }
+
+  /**
    * @description                       Returns all ammunition items of the given actor
    * @param {string} type               The type of ammunition to get
    * @returns {ItemEd[]}                An array of ammunition items

@@ -183,6 +183,15 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
     return true;
   }
 
+  /**
+   * Whether this ability is a replacement ability (i.e., it replaces an attribute step in a roll).
+   * For this to be true, the ability must have no attribute assigned to it.
+   * @returns {boolean} True if this is a replacement ability (no attribute set), false otherwise.
+   */
+  get isReplacementAbility() {
+    return !!this.attribute;
+  }
+
   // endregion
 
   // region LP Tracking

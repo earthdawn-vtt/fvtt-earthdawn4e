@@ -115,16 +115,10 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
           status.active = this.combatant.actor.statuses.has( status.id );
         } );
 
-        [ partContext.initiativeReplacementEffects, partContext.initiativeIncreaseAbilities ] =
-          this.combatant.actor.items.filter(
-            item => item.system.rollType === "initiative"
-          ).map( item => {
-            return {
-              key:           item.uuid,
-              label:         item.name,
-              isReplacement: !!item.system.attribute,
-            };
-          } ).partition( item => !item.isReplacement );
+        [
+          partContext.initiativeIncreaseAbilities,
+          partContext.initiativeReplacementEffects,
+        ] = this.combatant.actor.getAdderAndReplacementAbilities( "initiative" );
         break;
       }
       case "footer": {
