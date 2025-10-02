@@ -12,6 +12,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * This does not include talents like "Body Control" or "Claw Shape", which create a weapon and
  * should instead be passed as a weapon item.
  * Can be omitted if `replacementAbilityUuid` in {@link DamageRollOptions} is provided.
+ * @property {ItemEd[]} [increaseAbilities] Abilities that increase the damage step.
+ * Can be omitted if `increaseAbilityUuids` in {@link DamageRollOptions} is provided.
  */
 
 /**
@@ -140,6 +142,7 @@ import { createContentAnchor } from "../../utils.mjs";
  * the base damage step. Examples include "Crushing Blow", "Down Strike", or "Flame Arrow".
  * Note: This does not include talents like "Body Control" or "Claw Shape", which technically create a weapon and
  * therefore should be passed as a weapon item.
+ * @property { string[] } [increaseAbilityUuids=[]] An array of UUIDs of abilities that increase the damage step.
  * @property { object } [element] The element and subtype of the damage, if applicable.
  * @property { string } [element.type] The type of element (e.g., fire, water). Must be one of the values defined in
  * {@link module:config~MAGIC~elements}.
@@ -167,6 +170,14 @@ export default class DamageRollOptions extends EdRollOptions {
     "allDamage",
     ...super.GLOBAL_MODIFIERS,
   ];
+
+  static _SYSTEM_KEYS_BASE_STEP = {
+    poison:    "effect.damageStep",
+    power:     "damageStep",
+    unarmed:   "attributes.str.step",
+    warping:   "level",
+    weapon:    "damageTotal",
+  };
 
   // endregion
 
@@ -198,8 +209,8 @@ export default class DamageRollOptions extends EdRollOptions {
       } ),
       sourceUuid:             new fields.DocumentUUIDField( {} ),
       replacementAbilityUuid: new fields.DocumentUUIDField( {} ),
-
-      element:            new fields.SchemaField(
+      increaseAbilityUuids:   new fields.ArrayField( new fields.DocumentUUIDField( {} ), {} ),
+      element:                new fields.SchemaField(
         {
           type: new fields.StringField( {
             required: false,
@@ -360,18 +371,11 @@ export default class DamageRollOptions extends EdRollOptions {
    */
   static _getBaseStepFromSource( sourceDocument, data ) {
     let baseStep;
+    const systemKey = this._SYSTEM_KEYS_BASE_STEP[ data.damageSourceType ];
 
     switch ( data.damageSourceType ) {
       case "arbitrary": {
         baseStep = sourceDocument.system.damageTotal || 1;
-        break;
-      }
-      case "poison": {
-        baseStep = sourceDocument.system.effect.damageStep;
-        break;
-      }
-      case "power": {
-        baseStep = sourceDocument.system.damageStep;
         break;
       }
       case "spell": {
@@ -382,16 +386,12 @@ export default class DamageRollOptions extends EdRollOptions {
         } ).base;
         break;
       }
-      case "unarmed": {
-        baseStep = sourceDocument.system.attributes?.str.step;
-        break;
-      }
-      case "warping": {
-        baseStep = sourceDocument.system.level;
-        break;
-      }
+      case "poison":
+      case "power":
+      case "unarmed":
+      case "warping":
       case "weapon": {
-        baseStep = sourceDocument.system.damageTotal;
+        baseStep = foundry.utils.getProperty( sourceDocument.system, systemKey );
         break;
       }
       default:
@@ -400,6 +400,11 @@ export default class DamageRollOptions extends EdRollOptions {
 
     if ( !baseStep ) {
       throw new Error( `No base step defined for damage source type: ${data.damageSourceType}` );
+    }
+
+    const replacementAbility = data.replacementAbility || fromUuidSync( data.replacementAbilityUuid );
+    if ( replacementAbility ) {
+      baseStep = replacementAbility.system.rankFinal;
     }
 
     return baseStep;
@@ -640,8 +645,10 @@ export default class DamageRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.hasAssignedCharacter = !!game.user.character;
-    newContext.damageSourceHeader = this.sourceUuid ?
-      createContentAnchor( fromUuidSync( this.sourceUuid ) ).outerHTML
+
+    const item = fromUuidSync( this.replacementAbilityUuid ?? this.sourceUuid );
+    newContext.damageSourceHeader = item ?
+      createContentAnchor( item ).outerHTML
       : COMBAT.damageSourceConfig[ this.damageSourceType ].label;
 
     return newContext;
