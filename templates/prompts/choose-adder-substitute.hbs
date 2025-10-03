@@ -2,7 +2,7 @@
   <div class="form-group replacement-abilities">
     <label>{{localize "ED.Dialogs.ChooseAdderSubstitute.replacementLabel"}}</label>
     <div class="form-fields">
-      <select name="replacementAbility">
+      <select name="replacementAbilityUuid">
         <option value=""></option>
         {{selectOptions substitutes valueAttr="key" labelAttr="label"}}
       </select>
@@ -13,8 +13,7 @@
   <div class="form-group adder-abilities">
     <label>{{localize "ED.Dialogs.ChooseAdderSubstitute.adderLabel"}}</label>
     <div class="form-fields">
-      <multi-select name="adderAbilities">
-        <option value=""></option>
+      <multi-select name="increaseAbilityUuids">
         {{selectOptions adders valueAttr="key" labelAttr="label"}}
       </multi-select>
     </div>

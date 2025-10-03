@@ -220,11 +220,12 @@ export default class ActorEd extends Actor {
   /**
    * Returns all adder and replacement abilities of the given roll type.
    * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
-   * @returns {[ItemEd[], ItemEd[]]} An array containing two arrays: the first with all adder abilities,
-   * the second with all replacement abilities.
+   * @returns {{adders: {key: string, label: string, isReplacement: boolean}[], substitutes: {key: string, label: string, isReplacement: boolean}[]}} An object containing two arrays:
+   * - `adders`: An array of adder abilities.
+   * - `substitutes`: An array of replacement abilities.
    */
   getAdderAndReplacementAbilities( rollType ) {
-    return this.items.filter(
+    const abilities = this.items.filter(
       item => item.system.rollType === rollType
     ).map( item => {
       return {
@@ -235,6 +236,10 @@ export default class ActorEd extends Actor {
     } ).partition(
       item => item.isReplacement
     );
+    return {
+      adders:      abilities[0],
+      substitutes: abilities[1],
+    };
   }
 
   /**
