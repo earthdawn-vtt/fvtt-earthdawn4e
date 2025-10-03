@@ -424,10 +424,22 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
+      const modifiers = {};
+      const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
+
+      if ( increaseAbilities.length > 0 ) {
+        for ( const ability of increaseAbilities ) {
+          if ( !ability ) throw new Error( "DamageRollOptions | _getModifiersFromSource: One of the increase abilities could not be found." );
+          if ( ability?.system?.rankFinal ) {
+            modifiers[ability.name] = ability.system.rankFinal;
+          }
+        }
+      }
+
       const extraSuccesses = data.attackRoll?.numExtraSuccesses || 0;
-      return {
-        [ game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" ) ]: extraSuccesses * COMBAT.bonusDamagePerExtraSuccess,
-      };
+      modifiers[game.i18n.localize( "ED.Rolls.Modifiers.bonusDamageFromExtraSuccesses" )] = extraSuccesses * COMBAT.bonusDamagePerExtraSuccess;
+
+      return modifiers;
     }
 
     if ( data.damageSourceType === "spell" ) {
@@ -441,7 +453,7 @@ export default class DamageRollOptions extends EdRollOptions {
 
     if ( data.damageSourceType === "warping" ) {
       return {
-        [ this._pollutionData.label ]: this._pollutionData.rawMagic.damageModifier,
+        [this._pollutionData.label]: this._pollutionData.rawMagic.damageModifier,
       };
     }
 
