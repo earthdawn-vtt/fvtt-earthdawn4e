@@ -1369,6 +1369,10 @@
                 }
               },
               "damage": {
+                "combatType": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -3019,6 +3023,12 @@
         "unconsciousDeathRate":                    "TODO: Add translation",
         "woundThreshold":                          "TODO: Add translation"
       },
+      "ChooseAdderSubstitute": {
+        "adderHint":                               "TODO: Add translation",
+        "adderLabel":                              "TODO: Add translation",
+        "replacementHint":                         "TODO: Add translation",
+        "replacementLabel":                        "TODO: Add translation"
+      },
       "Configs": {
         "Constraints": {
           "hint":                                  "TODO: Add translation",
@@ -3144,7 +3154,8 @@
       },
       "RollPrompt": {
         "Title": {
-          "attuneGrimoire":                        "TODO: Add translation"
+          "attuneGrimoire":                        "TODO: Add translation",
+          "damage":                                "TODO: Add translation"
         },
         "devotion":                                "TODO: Add translation",
         "devotionStep":                            "TODO: Add translation",
@@ -3171,6 +3182,7 @@
         "attuneMatrix":                            "TODO: Add translation",
         "buttonSelect":                            "TODO: Add translation",
         "characterGeneration":                     "TODO: Add translation",
+        "chooseAdderSubstitute":                   "TODO: Add translation",
         "chooseDiscipline":                        "TODO: Add translation",
         "chooseTier":                              "TODO: Add translation",
         "classAdvancement":                        "TODO: Add translation",
