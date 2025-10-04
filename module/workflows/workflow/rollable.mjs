@@ -25,6 +25,13 @@ import EdRollOptions from "../../data/roll/common.mjs";
  */
 export default function Rollable( WorkflowClass ) {
   return class RollableWorkflow extends WorkflowClass {
+
+    /**
+     * The evaluated roll created for this workflow.
+     * @type {EdRoll}
+     */
+    _result;
+
     /**
      * The roll object associated with this workflow.
      * @type {EdRoll}
