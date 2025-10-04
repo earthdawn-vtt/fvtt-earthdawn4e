@@ -5,6 +5,7 @@ import LearnableTemplate from "../../data/item/templates/learnable.mjs";
 import ED4E from "../../config/_module.mjs";
 import DialogEd from "../api/dialog.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import ChooseAdderSubstitutePrompt from "./choose-adder-substitute.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
@@ -178,6 +179,12 @@ export default class PromptFactory {
 
 class ActorPromptFactory extends PromptFactory {
 
+  /**
+   * @typedef {"chooseDiscipline" | "drawWeapon" | "jumpUp" | "knockdown" | "recovery" | "takeDamage" | "attribute" | "halfMagicDiscipline" | "useWillpower" | "chooseDamageModifier"
+   *   | "chooseTier" | "learnKnack" | "lpIncrease" | "learnAbility" | "talentCategory"
+   * } ActorPromptType
+   */
+
   _promptTypeMapping = {
     chooseDiscipline:      this._chooseDisciplinePrompt.bind( this ),
     drawWeapon:            this._drawWeaponPrompt.bind( this ),
@@ -188,6 +195,7 @@ class ActorPromptFactory extends PromptFactory {
     attribute:             this._attributePrompt.bind( this ),
     halfMagicDiscipline:   this._halfMagicDisciplinePrompt.bind( this ),
     useWillpower:          this._useWillpowerPrompt.bind( this ),
+    chooseDamageModifier:  this._chooseDamageModifierPrompt.bind( this ),
   };
 
 
@@ -509,6 +517,18 @@ class ActorPromptFactory extends PromptFactory {
       ),
     } );
     return useWillpower === true ? willpower : useWillpower;
+  }
+
+  /**
+   * Creates the choose damage modifier dialog.
+   * @returns {Promise<ChooseAdderSubstitutePromptResult|null>} A promise that resolves to the chosen damage modifiers
+   * or null if the dialog was closed without a choice.
+   */
+  async _chooseDamageModifierPrompt() {
+    return ChooseAdderSubstitutePrompt.waitPromptIfAbilitiesAvailable(
+      this.document,
+      "damage",
+    );
   }
 
   /**
