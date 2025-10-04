@@ -119,7 +119,7 @@ export default function Rollable( WorkflowClass ) {
       this._roll = await RollPrompt.waitPrompt(
         this._rollOptions,
         {
-          rollData: this._actor.getRollData(),
+          rollData: this._actor?.getRollData() ?? this._item?.getRollData() ?? {},
           options:  applicationOptions,
         }
       );
@@ -151,7 +151,7 @@ export default function Rollable( WorkflowClass ) {
         this._roll,
         this._actor,
         {
-          rollToMessage: this._rollToMessage,
+          rollToMessage: false, // Handled in _rollToChat if needed
         }
       );
     }
