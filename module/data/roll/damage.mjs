@@ -103,8 +103,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * Roll options initialization data for weapon damage roll.
  * @typedef {BaseDamageRollOptionsInitializationData} WeaponDamageInitializationData
  * @property {"weapon"} damageSourceType Discriminator for weapon damage source.
- * @property {ItemEd} sourceDocument Item of type "weapon". The weapon’s total damage step is used as the base
- * damage step.
+ * @property {ItemEd} sourceDocument The document that is causing the damage, e.g. a weapon, an attack power, or an
+ * actor.
  * @property {EdRoll} [attackRoll] The attack roll that caused the damage. This is used to determine
  * the bonus to the damage step from extra successes.
  */
