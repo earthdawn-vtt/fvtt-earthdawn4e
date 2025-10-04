@@ -706,7 +706,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll damage without a caster." );
 
-    const willpower = await this._getWillpowerForRoll( caster );
+    const willpower = await this.getWillpowerForRoll( caster );
     if ( willpower === null ) return;
 
     const rollOptions = DamageRollOptions.fromActor(
@@ -736,7 +736,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll effect without a caster." );
 
-    const willpower = await this._getWillpowerForRoll( caster );
+    const willpower = await this.getWillpowerForRoll( caster );
     if ( willpower === null ) return;
 
     const rollOptions = SpellEffectRollOptions.fromActor(
@@ -778,7 +778,7 @@ export default class SpellData extends ItemDataModel.mixin(
    * or null if the prompt was closed.
    * @throws {Error} If there is no caster available.
    */
-  async _getWillpowerForRoll( actor ) {
+  async getWillpowerForRoll( actor ) {
     const caster = actor || this.containingActor;
     if ( !caster ) throw new Error( "Cannot get willpower without a caster." );
 
