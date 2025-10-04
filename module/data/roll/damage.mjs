@@ -20,7 +20,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * Roll options initialization data for arbitrary damage roll.
  * @typedef {BaseDamageRollOptionsInitializationData} ArbitraryDamageInitializationData
  * @property {"arbitrary"} damageSourceType Discriminator for arbitrary damage source.
- * @property {Document} [sourceDocument] If given, will try to get the base damage step via `document.system.damageTotal`.
+ * @property {Document} [sourceDocument] If given, will try to get the base damage step via `system.rankFinal`, or 1 if
+ * not found.
  */
 
 /**
@@ -375,7 +376,7 @@ export default class DamageRollOptions extends EdRollOptions {
 
     switch ( data.damageSourceType ) {
       case "arbitrary": {
-        baseStep = sourceDocument.system.damageTotal || 1;
+        baseStep = sourceDocument.system.rankFinal || 1;
         break;
       }
       case "spell": {
