@@ -7,6 +7,7 @@ import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
 import RollProcessor from "../../../services/roll-processor.mjs";
+import CombatDamageWorkflow from "../../../workflows/workflow/damage-workflow.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -292,6 +293,20 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       }
     );
     return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
+  }
+
+  async rollDamage() {
+    if ( !this.isActorEmbedded ) return;
+
+    const damageWorkflow = new CombatDamageWorkflow(
+      this.containingActor,
+      {
+        sourceDocument:             this.parent,
+        promptForModifierAbilities: false,
+      },
+    );
+
+    return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
   async _attack() {
