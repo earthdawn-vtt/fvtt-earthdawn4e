@@ -2,7 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import ED4E from "../../config/_module.mjs";
-import { getSetting } from "../../settings.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on mask items.
@@ -275,98 +275,31 @@ export default class MaskData extends ItemDataModel.mixin(
   /**
    * Removes a power or maneuver from the mask.
    * @param {HTMLElement} item - The DOM element representing the item to remove
-   * @param {Event|null} event - Optional event object for checking modifier keys
+   * @param {boolean} quickDelete - If true, skips confirmation dialog
    * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if no action was taken
    */
-  async removeItemFromMask( item, event = null ) {
-    // Get item type and validate index
-    const itemType = item.dataset.type;
+  async removeItemFromMask( item, quickDelete ) {
     const itemIndex = Number( item.dataset.index );
-    
-    // Validation checks
-    if ( !itemType || isNaN( itemIndex ) || itemIndex < 0 || !item ) return;
-    
-    // Quick delete with shift key if the setting is enabled
-    if ( event?.shiftKey && getSetting( "quickDeleteEmbeddedOnShiftClick" ) ) {
-      return this._removeItemWithoutConfirmation( itemType, itemIndex );
+    const itemType = item.dataset.type;
+    let confirmedDeletion = false;
+    if ( quickDelete === false ) {
+      confirmedDeletion = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     `<p>${game.i18n.format( "ED.Dialogs.DeletePower.confirmRemove", { type: game.i18n.localize( `ED.Dialogs.DeletePower.${itemType}` ) } ) }</p>`,
+      } );
+      if ( !confirmedDeletion ) return;
     }
-    
-    // Show confirmation dialog
-    const confirmed = await this._showRemoveConfirmationDialog( itemType );
-    if ( confirmed ) {
-      return this._removeItemWithoutConfirmation( itemType, itemIndex );
-    }
-  }
-  
-  /**
-   * Helper method to remove an item without confirmation
-   * @private
-   * @param {string} itemType - Type of item to remove ("power" or "maneuver")
-   * @param {number} itemIndex - Index of the item in its respective array
-   * @returns {Promise<ItemEd>} The updated mask item
-   */
-  async _removeItemWithoutConfirmation( itemType, itemIndex ) {
-    if ( itemType === "power" ) {
-      const newPowers = [ ...this.powers ];
-      newPowers.splice( itemIndex, 1 );
-      return this.parent.update( { "system.powers": newPowers } );
-    } else if ( itemType === "maneuver" ) {
-      const newManeuvers = Array.from( this.maneuvers );
-      newManeuvers.splice( itemIndex, 1 );
-      return this.parent.update( { "system.maneuvers": newManeuvers } );
-    }
-  }
-  
-  /**
-   * Shows a confirmation dialog for removing an item
-   * @private
-   * @param {string} itemType - Type of item being removed ("power" or "maneuver")
-   * @returns {Promise<boolean>} True if the user confirmed, false otherwise
-   */
-  async _showRemoveConfirmationDialog( itemType ) {
-    // Import the DialogEd class
-    const DialogEd = ( await import( "../../applications/api/dialog.mjs" ) ).default;
-    
-    // Get localized type name
-    const type = game.i18n.localize( `ED.Dialogs.DeletePower.${itemType}` );
-    
-    // Create dialog content
-    const content = `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
-                     <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>`;
-    
-    // Define buttons for the dialog
-    const buttons = [
-      {
-        action:  "yes",
-        label:   game.i18n.localize( "Yes" ),
-        icon:    "fa-light fa-check",
-        class:   "yes default",
-        default: true
-      },
-      {
-        action:  "no",
-        label:   game.i18n.localize( "No" ),
-        icon:    "fa-light fa-times",
-        class:   "no button-cancel",
-        default: false
+
+    if ( quickDelete === true || confirmedDeletion === true ) {
+      if ( itemType === "power" ) {
+        const newPowers = [ ...this.powers ];
+        newPowers.splice( itemIndex, 1 );
+        return this.parent.update( { "system.powers": newPowers } );
+      } else if ( itemType === "maneuver" ) {
+        const newManeuvers = Array.from( this.maneuvers );
+        newManeuvers.splice( itemIndex, 1 );
+        return this.parent.update( { "system.maneuvers": newManeuvers } );
       }
-    ];
-    
-    // Show the dialog and return the result
-    const result = await DialogEd.wait( {
-      id:           `delete-${itemType}-prompt`,
-      uniqueId:     String( ++foundry.applications.api.ApplicationV2._appId ),
-      classes:      [ "earthdawn4e", `delete-${itemType}-prompt` ],
-      window:       {
-        title:       `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
-        minimizable: false
-      },
-      content:      content,
-      modal:        false,
-      buttons:      buttons,
-      rejectClose:  false,
-    } );
-    
-    return result === "yes";
+    }
   }
 }

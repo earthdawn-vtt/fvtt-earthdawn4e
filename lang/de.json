@@ -3034,8 +3034,9 @@
         "favorite":                                "Favorit"
       },
       "DeletePower": {
-        "maneuver":                                "Manöver",
-        "power":                                   "Kraft"
+        "confirmRemove":                           "Bist du sicher, dass du {type} entfernen möchtest?",
+        "maneuver":                                "dieses Manöver",
+        "power":                                   "diese Kraft"
       },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",

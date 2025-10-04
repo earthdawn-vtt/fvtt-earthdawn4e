@@ -1,4 +1,5 @@
 import ED4E from "../../config/_module.mjs";
+import { getSetting } from "../../settings.mjs";
 import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 
@@ -145,9 +146,14 @@ export default class MaskItemSheetEd extends ItemSheetEd {
    */
   static async _deleteEmbeddedItem( event, target ) {
     const item = target.closest( ".embedded-item" );
-    if ( item ) {
-      await this.item.system.removeItemFromMask( item, event );
-    } else return;
+    let quickDelete = false;
+    if ( !item ) return;
+
+    // Use shift-click for quick delete like deleteChild does
+    if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
+      quickDelete = true;
+    }
+    await this.item.system.removeItemFromMask( item, quickDelete );
   } 
   
   // endregion
