@@ -224,7 +224,7 @@ export default class ActorEd extends Actor {
    * - `adders`: An array of adder abilities.
    * - `substitutes`: An array of replacement abilities.
    */
-  getAdderAndReplacementAbilities( rollType ) {
+  getDamageModifierAbilities( rollType ) {
     const abilities = this.items.filter(
       item => item.system.rollType === rollType
     ).map( item => {
@@ -924,7 +924,7 @@ export default class ActorEd extends Actor {
    * Retrieves a specific prompt based on the provided prompt type.
    * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
    * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockdown" )} promptType - The type of prompt to retrieve.
+   * @param {ActorPromptType} promptType - The type of prompt to retrieve.
    * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
    * associated with the given `promptType`. The exact return type depends on promptType.
    */

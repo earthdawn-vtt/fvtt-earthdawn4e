@@ -118,7 +118,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
         [
           partContext.initiativeIncreaseAbilities,
           partContext.initiativeReplacementEffects,
-        ] = this.combatant.actor.getAdderAndReplacementAbilities( "initiative" );
+        ] = this.combatant.actor.getDamageModifierAbilities( "initiative" );
         break;
       }
       case "footer": {

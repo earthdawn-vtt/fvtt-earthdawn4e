@@ -66,7 +66,7 @@ export default class ChooseAdderSubstitutePrompt extends ApplicationEd {
   static async waitPromptIfAbilitiesAvailable( actor, rollType, options = {} ) {
     if ( !actor ) throw new TypeError( "ED4E | Cannot call ChooseAdderSubstitutePrompt.waitPromptIfAbilitiesAvailable without an actor." );
 
-    const { adders, substitutes } = actor.getAdderAndReplacementAbilities( rollType );
+    const { adders, substitutes } = actor.getDamageModifierAbilities( rollType );
     if ( adders.length === 0 && substitutes.length === 0 ) return null;
     options.abilities = { adders, substitutes };
     return this.waitPrompt( actor, rollType, options );
@@ -91,7 +91,7 @@ export default class ChooseAdderSubstitutePrompt extends ApplicationEd {
     this._actor = actor;
     this._rollType = rollType;
 
-    const { adders, substitutes } = options.abilities ?? this._actor.getAdderAndReplacementAbilities( this._rollType );
+    const { adders, substitutes } = options.abilities ?? this._actor.getDamageModifierAbilities( this._rollType );
     this._adders = adders;
     this._substitutes = substitutes;
   }
