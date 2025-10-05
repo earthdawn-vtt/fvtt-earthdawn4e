@@ -1,6 +1,5 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import ED4E from "../../config/_module.mjs";
-import { arrayInsert } from "../../utils.mjs";
 import ThreadItemLevelData from "./thread-item-level.mjs";
 
 export default class TruePatternData extends SparseDataModel {
@@ -103,29 +102,27 @@ export default class TruePatternData extends SparseDataModel {
 
   // region Methods
 
-  addLevel( levelData = {}, index = -1 ) {}
-
-  addEffect( description = "", activeEffects = [], index = -1 ) {
-    const effects = [ ...this.effects ];
-    const newEffect = { description, activeEffects };
-    this.effects = arrayInsert( effects, newEffect, index );
+  async addThreadItemLevel( levelData = {} ) {
+    return this._updateLastThreadItemLevel( "add", levelData );
   }
 
-  /**
-   * Adds a new key knowledge to the true pattern at the given index/level/rank.
-   * @param {string} question The question for the key knowledge.
-   * @param {string} answer The answer for the key knowledge.
-   * @param {number} index The index at which to add the key knowledge. If -1 or omitted, adds to the end.
-   */
-  addKeyKnowledge( question = "", answer = "", index = -1 ) {
-    const keyKnowledges = [ ...this.keyKnowledges ];
-    const newKnowledge = { question, answer };
-    this.keyKnowledges = arrayInsert( keyKnowledges, newKnowledge, index );
-  }
+  async removeLastThreadItemLevel() {
+    return this._updateLastThreadItemLevel( "remove" );
+  };
 
-  addDeed( description = "", index = -1 ) {
-    const deeds = [ ...this.deeds ];
-    this.deeds = arrayInsert( deeds, description, index );
+  async _updateLastThreadItemLevel( operation = "add", levelData = {} ) {
+    const parentDocument = this.parentDocument;
+    if ( ![ "add", "remove" ].includes( operation ) ) {
+      throw new Error( `Invalid operation: ${operation}. Must be "add" or "remove".` );
+    }
+
+    const updatePath = this.schema.fields.threadItemLevels.fieldPath;
+    const newData = operation === "add"
+      ? [ ...this.threadItemLevels, new ThreadItemLevelData( levelData ) ]
+      : this.threadItemLevels.slice( 0, -1 );
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newData } );
+    return parentDocument.update( { [ updatePath ]: newData, } );
   }
 
   // endregion
