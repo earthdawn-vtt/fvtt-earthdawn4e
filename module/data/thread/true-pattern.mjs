@@ -9,7 +9,7 @@ export default class TruePatternData extends SparseDataModel {
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.TruePattern",
+    "ED.Data.Other.TruePattern",
   ];
 
   // endregion
