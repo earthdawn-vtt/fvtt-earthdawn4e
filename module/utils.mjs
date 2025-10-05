@@ -498,6 +498,23 @@ export function multiplyArray( arr, times ) {
 }
 
 /**
+ * Inserts an element into an array at the specified index. If the index is out of bounds,
+ * the element is appended to the end of the array.
+ * @param {Array} arr The array into which the element should be inserted. Will be mutated.
+ * @param {any} element The element to insert into the array.
+ * @param {number} [index] The index at which to insert the element. If -1 or omitted, the element is appended.
+ * @returns {Array} The modified array with the new element inserted.
+ */
+export function arrayInsert( arr, element, index = -1 ) {
+  if ( index < 0 || index >= arr.length ) {
+    arr.push( element );
+  } else {
+    arr.splice( index, 0, element );
+  }
+  return arr;
+}
+
+/**
  * Creates an HTML document link for the provided UUID.
  * @param {string} uuid  UUID for which to produce the link.
  * @returns {string}     Link to the item or empty string if item wasn't found.

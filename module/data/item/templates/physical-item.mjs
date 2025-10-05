@@ -1,9 +1,9 @@
 import TargetTemplate from "./targeting.mjs";
 import ED4E from "../../../config/_module.mjs";
-import ThreadTemplate from "./threads.mjs";
 import MatrixTemplate from "./matrix.mjs";
 import GrimoireTemplate from "./grimoire.mjs";
 import ItemDataModel from "../../abstract/item-data-model.mjs";
+import TruePatternData from "../../thread/true-pattern.mjs";
 
 /**
  * Data model template with information on physical items.
@@ -23,7 +23,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   GrimoireTemplate,
   MatrixTemplate,
   TargetTemplate,
-  ThreadTemplate,
 ) {
 
   /** @inheritdoc */
@@ -137,6 +136,7 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
         initial:  "owned",
         choices:  ED4E.itemStatus,
       } ),
+      truePattern: TruePatternData.asEmbeddedDataField(),
     } );
   }
 
