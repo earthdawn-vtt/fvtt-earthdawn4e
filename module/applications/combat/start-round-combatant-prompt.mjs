@@ -115,10 +115,9 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
           status.active = this.combatant.actor.statuses.has( status.id );
         } );
 
-        [
-          partContext.initiativeIncreaseAbilities,
-          partContext.initiativeReplacementEffects,
-        ] = this.combatant.actor.getDamageModifierAbilities( "initiative" );
+        const { adders, substitutes } = this.combatant.actor.getModifierAbilities( "initiative" );
+        partContext.initiativeIncreaseAbilities = adders;
+        partContext.initiativeReplacementEffects = substitutes;
         break;
       }
       case "footer": {

@@ -224,7 +224,7 @@ export default class ActorEd extends Actor {
    * - `adders`: An array of adder abilities.
    * - `substitutes`: An array of replacement abilities.
    */
-  getDamageModifierAbilities( rollType ) {
+  getModifierAbilities( rollType ) {
     const abilities = this.items.filter(
       item => item.system.rollType === rollType
     ).map( item => {
