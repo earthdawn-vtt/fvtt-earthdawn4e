@@ -20,27 +20,13 @@ export default class TruePatternData extends SparseDataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      characteristics:    new fields.SchemaField( {
-        defenses: new fields.SchemaField( {
-          mystical: new fields.SchemaField( {
-            baseValue: new fields.NumberField( {
-              required: true,
-              nullable: false,
-              min:      0,
-              step:     1,
-              initial:  0,
-              integer:  true,
-            } ),
-            value: new fields.NumberField( {
-              required: true,
-              nullable: false,
-              min:      0,
-              step:     1,
-              initial:  0,
-              integer:  true,
-            } ),
-          } ),
-        } ),
+      mysticalDefense: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        step:     1,
+        initial:  2,
+        integer:  true,
       } ),
       maxThreads:         new fields.NumberField( {
         required: true,
@@ -74,15 +60,13 @@ export default class TruePatternData extends SparseDataModel {
           initial:  [],
         },
       ),
-
-      attachedThreads:    new fields.ArrayField(
+      attachedThreads:    new fields.SetField(
         new fields.DocumentUUIDField( {
           type:     "Item",
-          nullable: true,
         } ),
         {
           required: true,
-          initial:  [ null, ],
+          initial:  [],
         },
       ),
     } );
@@ -93,7 +77,8 @@ export default class TruePatternData extends SparseDataModel {
       this,
       {
         required: false,
-        nullable: false,
+        nullable: true,
+        initial:  null,
       }
     );
   }
@@ -103,6 +88,7 @@ export default class TruePatternData extends SparseDataModel {
   // region Methods
 
   async addThreadItemLevel( levelData = {} ) {
+    levelData.level = this.threadItemLevels.length + 1;
     return this._updateLastThreadItemLevel( "add", levelData );
   }
 
