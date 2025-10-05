@@ -39,6 +39,18 @@
   {{#each item.system.truePattern.threadItemLevels}}
     <fieldset>
       <legend>{{localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level}}</legend>
+
+      <fieldset>
+        <legend>{{localize this.schema.fields.keyKnowledge.label}}</legend>
+        {{formGroup this.schema.fields.keyKnowledge.fields.question name=(concat "system.truePattern.threadItemLevels." @index ".keyKnowledge.question") value=this.keyKnowledge.question disabled=(not @root/editable)}}
+        {{formGroup this.schema.fields.keyKnowledge.fields.answer name=(concat "system.truePattern.threadItemLevels." @index ".keyKnowledge.answer") value=this.keyKnowledge.answer disabled=(not @root/editable)}}
+        {{#if @root/isGM}}
+        {{formGroup this.schema.fields.keyKnowledge.fields.isKnown name=(concat "system.truePattern.threadItemLevels." @index ".keyKnowledge.isKnown") value=this.keyKnowledge.isKnown disabled=(not @root/editable)}}
+        {{/if}}
+      </fieldset>
+      {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @index ".deed") value=this.deed disabled=(not @root/editable)}}
+      {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @index ".effect") value=this.effect disabled=(not @root/editable)}}
+      {{formGroup this.schema.fields.activeEffects name=(concat "system.truePattern.threadItemLevels." @index ".activeEffects") value=this.activeEffects disabled=(not @root/editable)}}
     </fieldset>
   {{/each}}
 

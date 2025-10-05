@@ -46,7 +46,7 @@ export default class ThreadItemLevelData extends SparseDataModel {
         nullable: false,
         initial:  "",
       } ),
-      activeEffect: new fields.SetField(
+      activeEffects: new fields.SetField(
         new fields.DocumentUUIDField( {
           type:     "ActiveEffect",
         } ),

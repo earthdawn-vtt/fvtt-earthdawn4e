@@ -88,7 +88,8 @@ export default class TruePatternData extends SparseDataModel {
   // region Methods
 
   async addThreadItemLevel( levelData = {} ) {
-    levelData.level = this.threadItemLevels.length + 1;
+    const currentLevels = this.threadItemLevels?.length || 0;
+    levelData.level = currentLevels + 1;
     return this._updateLastThreadItemLevel( "add", levelData );
   }
 
