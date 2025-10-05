@@ -9,7 +9,6 @@ import LpTrackingData from "../data/advancement/lp-tracking.mjs";
 import { staticStatusId, sum } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
-import DamageRollOptions from "../data/roll/damage.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
 import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import { AttributeWorkflow, AttuneMatrixWorkflow, KnockdownWorkflow } from "../workflows/workflow/_module.mjs";
@@ -21,6 +20,7 @@ import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 import { TOKEN } from "../config/_module.mjs";
+import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -216,6 +216,31 @@ export default class ActorEd extends Actor {
   // endregion
 
   // region Getters
+
+  /**
+   * Returns all adder and replacement abilities of the given roll type.
+   * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
+   * @returns {{adders: {key: string, label: string, isReplacement: boolean}[], substitutes: {key: string, label: string, isReplacement: boolean}[]}} An object containing two arrays:
+   * - `adders`: An array of adder abilities.
+   * - `substitutes`: An array of replacement abilities.
+   */
+  getModifierAbilities( rollType ) {
+    const abilities = this.items.filter(
+      item => item.system.rollType === rollType
+    ).map( item => {
+      return {
+        key:           item.uuid,
+        label:         item.name,
+        isReplacement: item.system.isReplacementAbility,
+      };
+    } ).partition(
+      item => item.isReplacement
+    );
+    return {
+      adders:      abilities[0],
+      substitutes: abilities[1],
+    };
+  }
 
   /**
    * @description                       Returns all ammunition items of the given actor
@@ -899,7 +924,7 @@ export default class ActorEd extends Actor {
    * Retrieves a specific prompt based on the provided prompt type.
    * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
    * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {( "recovery" | "takeDamage" | "jumpUp" | "knockdown" )} promptType - The type of prompt to retrieve.
+   * @param {ActorPromptType} promptType - The type of prompt to retrieve.
    * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
    * associated with the given `promptType`. The exact return type depends on promptType.
    */
@@ -1165,23 +1190,14 @@ export default class ActorEd extends Actor {
    * @see {@link DamageRollOptions} for more information on the roll options.
    */
   async rollUnarmedDamage( rollOptionsData = {} ) {
-    const roll = await RollPrompt.waitPrompt(
-      DamageRollOptions.fromActor(
-        {
-          damageSourceType: "unarmed",
-          sourceDocument:   this,
-          extraDice:        {},
-          chatFlavor:       game.i18n.format( "ED.Chat.Flavor.rollUnarmedDamage", {sourceActor: this.name} ),
-          ...rollOptionsData,
-        },
-        this,
-      ),
+    const damageWorkflow = new CombatDamageWorkflow(
+      this,
       {
-        rollData: this,
-      }
+        sourceDocument: this,
+        attackRoll:     rollOptionsData.attackRoll,
+      },
     );
-
-    return this.processRoll( roll, { rollToMessage: true } );
+    return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
   /** @inheritDoc */

@@ -7,6 +7,7 @@ import RollPrompt from "../../../applications/global/roll-prompt.mjs";
 import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
 import RollProcessor from "../../../services/roll-processor.mjs";
+import CombatDamageWorkflow from "../../../workflows/workflow/damage-workflow.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -87,7 +88,17 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             choices:  ED4E.weaponType,
           } ),
         } ),
-        damage:        new fields.SchemaField( {}, {} ),
+        damage:        new fields.SchemaField( {
+          combatType: new fields.SetField( new fields.StringField( {
+            required: true,
+            nullable: true,
+            blank:    false,
+            choices:  ED4E.weaponType,
+          } ), {
+            required: true,
+            initial:  [],
+          } ),
+        }, {} ),
         effect:        new fields.SchemaField( {}, {} ),
         initiative:    new fields.SchemaField( {}, {} ),
         reaction:      new fields.SchemaField( {
@@ -171,6 +182,15 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   /** @inheritDoc */
   get canBeLearned() {
     return true;
+  }
+
+  /**
+   * Whether this ability is a replacement ability (i.e., it replaces an attribute step in a roll).
+   * For this to be true, the ability must have no attribute assigned to it.
+   * @returns {boolean} True if this is a replacement ability (no attribute set), false otherwise.
+   */
+  get isReplacementAbility() {
+    return !!this.attribute;
   }
 
   // endregion
@@ -273,6 +293,20 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       }
     );
     return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
+  }
+
+  async rollDamage() {
+    if ( !this.isActorEmbedded ) return;
+
+    const damageWorkflow = new CombatDamageWorkflow(
+      this.containingActor,
+      {
+        sourceDocument:             this.parent,
+        promptForModifierAbilities: false,
+      },
+    );
+
+    return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
   async _attack() {

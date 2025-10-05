@@ -10,13 +10,28 @@ import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 
 /**
+ * @typedef {object} RollableWorkflowOptions
+ * @property {EdRoll} [roll] The roll to use for this workflow.
+ * @property {EdRollOptions} [rollOptions] The options to use for creating rolls.
+ * @property {boolean} [rollToMessage=false] Whether to send the roll result to the chat as a message.
+ */
+
+/**
  * A mixin that adds roll-related functionality to a workflow.
  * This mixin can be applied to any workflow that needs to perform dice rolls.
  * @param {typeof Workflow} WorkflowClass The workflow class to mix into
  * @returns {typeof Workflow} A new class with the Rollable functionality mixed in
+ * @mixin
  */
 export default function Rollable( WorkflowClass ) {
   return class RollableWorkflow extends WorkflowClass {
+
+    /**
+     * The evaluated roll created for this workflow.
+     * @type {EdRoll}
+     */
+    _result;
+
     /**
      * The roll object associated with this workflow.
      * @type {EdRoll}
@@ -104,7 +119,7 @@ export default function Rollable( WorkflowClass ) {
       this._roll = await RollPrompt.waitPrompt(
         this._rollOptions,
         {
-          rollData: this._actor.getRollData(),
+          rollData: this._actor?.getRollData() ?? this._item?.getRollData() ?? {},
           options:  applicationOptions,
         }
       );
@@ -136,7 +151,7 @@ export default function Rollable( WorkflowClass ) {
         this._roll,
         this._actor,
         {
-          rollToMessage: this._rollToMessage,
+          rollToMessage: false, // Handled in _rollToChat if needed
         }
       );
     }

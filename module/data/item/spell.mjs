@@ -9,9 +9,9 @@ import { SelectExtraThreadsPrompt } from "../../applications/workflow/_module.mj
 import ThreadWeavingRollOptions from "../roll/weaving.mjs";
 import { RollPrompt } from "../../applications/global/_module.mjs";
 import SpellcastingRollOptions from "../roll/spellcasting.mjs";
-import DamageRollOptions from "../roll/damage.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import SpellEffectRollOptions from "../roll/spelleffect.mjs";
+import CombatDamageWorkflow from "../../workflows/workflow/damage-workflow.mjs";
 
 
 const { fields } = foundry.data;
@@ -706,23 +706,15 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll damage without a caster." );
 
-    const willpower = await this._getWillpowerForRoll( caster );
-    if ( willpower === null ) return;
-
-    const rollOptions = DamageRollOptions.fromActor(
-      {
-        damageSourceType: "spell",
-        sourceDocument:   this.parent,
-        caster,
-        willpower,
-      },
+    const damageWorkflow = new CombatDamageWorkflow(
       caster,
       {
-        rollData: caster.getRollData(),
+        sourceDocument:             this.parent,
+        promptForModifierAbilities: false,
       }
     );
-    const roll = await RollPrompt.waitPrompt( rollOptions );
-    return RollProcessor.process( roll, caster, { rollToMessage: true, } );
+
+    return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
   /**
@@ -736,7 +728,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll effect without a caster." );
 
-    const willpower = await this._getWillpowerForRoll( caster );
+    const willpower = await this.getWillpowerForRoll( caster );
     if ( willpower === null ) return;
 
     const rollOptions = SpellEffectRollOptions.fromActor(
@@ -778,7 +770,7 @@ export default class SpellData extends ItemDataModel.mixin(
    * or null if the prompt was closed.
    * @throws {Error} If there is no caster available.
    */
-  async _getWillpowerForRoll( actor ) {
+  async getWillpowerForRoll( actor ) {
     const caster = actor || this.containingActor;
     if ( !caster ) throw new Error( "Cannot get willpower without a caster." );
 

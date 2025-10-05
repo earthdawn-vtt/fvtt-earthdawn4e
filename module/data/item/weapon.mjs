@@ -2,10 +2,9 @@ import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { filterObject, inRange, sum } from "../../utils.mjs";
 import ED4E from "../../config/_module.mjs";
-import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollableTemplate from "./templates/rollable.mjs";
-import RollProcessor from "../../services/roll-processor.mjs";
+import CombatDamageWorkflow from "../../workflows/workflow/damage-workflow.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -324,27 +323,14 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
    * @see {@link DamageRollOptions} for more information on the roll options.
    */
   async rollDamage( rollOptionsData = {} ) {
-    const rollData = {
-      damageSourceType: "weapon",
-      sourceDocument:   this.parent,
-    };
-    if ( rollOptionsData.attackRoll ) {
-      rollData.attackRoll = rollOptionsData.attackRoll;
-    }
-
-    const roll = await RollPrompt.waitPrompt(
-      DamageRollOptions.fromActor(
-        rollData,
-        this.containingActor,
-        {
-          rollData: this.parent,
-        }
-      ),
+    const damageWorkflow = new CombatDamageWorkflow(
+      this.containingActor,
       {
-        rollData: this.containingActor,
-      }
-    );
-    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
+        sourceDocument: this.parent,
+        attackRoll:     rollOptionsData.attackRoll,
+      } );
+
+    return /** @type {EdRoll} */ damageWorkflow.execute();
   }
 
   /**
