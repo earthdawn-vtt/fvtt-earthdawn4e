@@ -2,7 +2,6 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import ED4E from "../../config/_module.mjs";
-import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * Data model template with information on mask items.
@@ -274,32 +273,19 @@ export default class MaskData extends ItemDataModel.mixin(
 
   /**
    * Removes a power or maneuver from the mask.
-   * @param {HTMLElement} item - The DOM element representing the item to remove
-   * @param {boolean} quickDelete - If true, skips confirmation dialog
+   * @param {string} itemUuid The UUID of the item to remove from the mask
+   * @param {string} itemType The type of the item to remove from the mask ("power" or "maneuver")
    * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if no action was taken
    */
-  async removeItemFromMask( item, quickDelete ) {
-    const itemIndex = Number( item.dataset.index );
-    const itemType = item.dataset.type;
-    let confirmedDeletion = false;
-    if ( quickDelete === false ) {
-      confirmedDeletion = await DialogEd.confirm( {
-        rejectClose: false,
-        content:     `<p>${game.i18n.format( "ED.Dialogs.DeletePower.confirmRemove", { type: game.i18n.localize( `ED.Dialogs.DeletePower.${itemType}` ) } ) }</p>`,
-      } );
-      if ( !confirmedDeletion ) return;
-    }
+  async removeItemFromMask( itemUuid, itemType ) {
+    if ( ![ "power", "maneuver" ].includes( itemType ) ) return;
 
-    if ( quickDelete === true || confirmedDeletion === true ) {
-      if ( itemType === "power" ) {
-        const newPowers = [ ...this.powers ];
-        newPowers.splice( itemIndex, 1 );
-        return this.parent.update( { "system.powers": newPowers } );
-      } else if ( itemType === "maneuver" ) {
-        const newManeuvers = Array.from( this.maneuvers );
-        newManeuvers.splice( itemIndex, 1 );
-        return this.parent.update( { "system.maneuvers": newManeuvers } );
-      }
-    }
+    const isPower = itemType === "power";
+    const oldData = isPower ? this.powers : this.maneuvers;
+    const newData = isPower
+      ? oldData.filter( entry => entry.uuid !== itemUuid )
+      : oldData.filter( entry => entry !== itemUuid );
+
+    return this.parent.update( { [`system.${itemType}s`]: newData } );
   }
 }

@@ -81,7 +81,9 @@
                         <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
                     </div>
                     <a class="item-control power-delete-btn"
-                        data-action="deleteEmbeddedItem"
+                        data-action="deleteChild"
+                       data-uuid="{{this.uuid}}"
+                       data-type="power"
                         title="{{localize 'ED.ToolTips.deletePower'}}">
                         <i class="fas fa-trash"></i>
                     </a>
@@ -104,8 +106,10 @@
             <div class="maneuver-item embedded-item" data-index="{{@index}}" data-type="maneuver">
                 <div class="maneuver-name">{{{this.enrichedLink.outerHTML}}}</div>
                 <a class="item-control maneuver-delete-btn"
-                    data-action="deleteEmbeddedItem"
-                    title="{{localize 'ED.ToolTips.deleteManeuver'}}">
+                    data-action="deleteChild"
+                   data-type="maneuver"
+                   data-uuid="{{this.uuid}}"
+                   title="{{localize 'ED.ToolTips.deleteManeuver'}}">
                     <i class="fas fa-trash"></i>
                 </a>
             </div>
