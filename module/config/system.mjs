@@ -66,6 +66,7 @@ export const typeGroups = {
 
 export const icons = {
   ability:          "fa-bolt",
+  add:              "fa-plus",
   attack:           "fa-crosshairs",
   attribute:        "fa-dice-d20",
   attune:           "fa-thin fa-chart-network",
