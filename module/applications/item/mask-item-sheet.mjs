@@ -2,6 +2,7 @@ import ED4E from "../../config/_module.mjs";
 import { getSetting } from "../../settings.mjs";
 import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
+import DialogEd from "../api/dialog.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
@@ -11,7 +12,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
   static DEFAULT_OPTIONS = {
     classes:  [ "mask" ],
     actions:  {
-      deleteEmbeddedItem:   MaskItemSheetEd._deleteEmbeddedItem,         
+      deleteChild:        MaskItemSheetEd._onDeleteChild,
     },
   };
 
@@ -139,22 +140,27 @@ export default class MaskItemSheetEd extends ItemSheetEd {
   // region Event Handlers
 
   /**
-   * Handle the deletion of an embedded item from the mask.
+   * Deletes a child document.
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
-   * @returns {Promise<void>} - A promise that resolves when the item is deleted.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
    */
-  static async _deleteEmbeddedItem( event, target ) {
-    const item = target.closest( ".embedded-item" );
-    let quickDelete = false;
-    if ( !item ) return;
-
-    // Use shift-click for quick delete like deleteChild does
-    if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
-      quickDelete = true;
+  static async _onDeleteChild( event, target ) {
+    if ( !( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) ) {
+      const confirmDelete = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     `<p>${
+          game.i18n.format(
+            "ED.Dialogs.DeletePower.confirmRemove",
+            { type: game.i18n.localize( `ED.Dialogs.DeletePower.${ target.dataset.type }` ) }
+          )
+        }</p>`,
+      } );
+      if ( !confirmDelete ) return;
     }
-    await this.item.system.removeItemFromMask( item, quickDelete );
-  } 
+
+    await this.item.system.removeItemFromMask( target.dataset.uuid, target.dataset.type );
+  }
   
   // endregion
 
