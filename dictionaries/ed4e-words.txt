@@ -48,4 +48,3 @@ physical
 mystical
 Social
 spelleffect
-knowledges
