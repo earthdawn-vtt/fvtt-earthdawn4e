@@ -167,6 +167,21 @@ export default class PromptFactory {
     return new FactoryClass( document );
   }
 
+
+  static async genericDeleteConfirmationPrompt( name ) {
+    const question = game.i18n.localize( "AreYouSure" );
+    const warning = game.i18n.format( "SIDEBAR.DeleteWarning", { type: name } );
+    const content = `<p><strong>${question}</strong><br>${warning}</p>`;
+    return DialogClass.confirm( {
+      rejectClose: false,
+      content,
+      window:      {
+        icon:  "fa-solid fa-trash",
+        title: game.i18n.format( "DOCUMENT.Delete", { type: name } ),
+      }
+    } );
+  }
+
   /**
    * Retrieves a prompt based on the specified type.
    * @param {string} type - The type of prompt to retrieve.
