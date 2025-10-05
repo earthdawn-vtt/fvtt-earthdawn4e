@@ -3043,6 +3043,11 @@
         "alsoDeletesMacro":                        "Das Löschen des Favoriten löscht auch das zugehörige Makro.",
         "favorite":                                "Favorit"
       },
+      "DeletePower": {
+        "confirmRemove":                           "Bist du sicher, dass du {type} entfernen möchtest?",
+        "maneuver":                                "dieses Manöver",
+        "power":                                   "diese Kraft"
+      },
       "Header": {
         "activeUser":                              "Charaktere von aktiven Spieler",
         "actorsNoUserConfigured":                  "Charaktere ohne Spieler",
@@ -3659,6 +3664,8 @@
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",
       "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
+      "deleteManeuver":                            "Lösche dieses Manöver von der Maske.",
+      "deletePower":                               "Lösche diese Kraft von der Maske.",
       "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
       "extraThreads":                              "Zusätzliche Fäden",
       "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",

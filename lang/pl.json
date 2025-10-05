@@ -3043,6 +3043,11 @@
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
       },
+      "DeletePower": {
+        "confirmRemove":                           "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
+        "power":                                   "TODO: Add translation"
+      },
       "Header": {
         "activeUser":                              "TODO: Add translation",
         "actorsNoUserConfigured":                  "TODO: Add translation",
@@ -3659,6 +3664,8 @@
       "attuneMatrix":                              "TODO: Add translation",
       "castSpell":                                 "TODO: Add translation",
       "castSpellFromMatrix":                       "TODO: Add translation",
+      "deleteManeuver":                            "TODO: Add translation",
+      "deletePower":                               "TODO: Add translation",
       "deleteThreadLevel":                         "TODO: Add translation",
       "extraThreads":                              "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",

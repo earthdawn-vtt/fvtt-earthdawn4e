@@ -3043,6 +3043,11 @@
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
       },
+      "DeletePower": {
+        "confirmRemove":                           "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
+        "power":                                   "TODO: Add translation"
+      },
       "Header": {
         "activeUser":                              "Active User Characters",
         "actorsNoUserConfigured":                  "Characters Without Player",
@@ -3659,6 +3664,8 @@
       "attuneMatrix":                              "Attune Matrix",
       "castSpell":                                 "Cast spell freely",
       "castSpellFromMatrix":                       "Cast spell using a matrix",
+      "deleteManeuver":                            "TODO: Add translation",
+      "deletePower":                               "TODO: Add translation",
       "deleteThreadLevel":                         "Remove the last (highest) thread rank.",
       "extraThreads":                              "Extra Threads",
       "itemHistoryCheck":                          "Roll Item History for this thread item.",

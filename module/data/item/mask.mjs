@@ -270,4 +270,22 @@ export default class MaskData extends ItemDataModel.mixin(
       return;
     }
   }
+
+  /**
+   * Removes a power or maneuver from the mask.
+   * @param {string} itemUuid The UUID of the item to remove from the mask
+   * @param {string} itemType The type of the item to remove from the mask ("power" or "maneuver")
+   * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if no action was taken
+   */
+  async removeItemFromMask( itemUuid, itemType ) {
+    if ( ![ "power", "maneuver" ].includes( itemType ) ) return;
+
+    const isPower = itemType === "power";
+    const oldData = isPower ? this.powers : this.maneuvers;
+    const newData = isPower
+      ? oldData.filter( entry => entry.uuid !== itemUuid )
+      : oldData.filter( entry => entry !== itemUuid );
+
+    return this.parent.update( { [`system.${itemType}s`]: newData } );
+  }
 }

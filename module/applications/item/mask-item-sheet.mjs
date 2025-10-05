@@ -1,10 +1,20 @@
 import ED4E from "../../config/_module.mjs";
+import { getSetting } from "../../settings.mjs";
 import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
+import DialogEd from "../api/dialog.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
 export default class MaskItemSheetEd extends ItemSheetEd {
+
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    classes:  [ "mask" ],
+    actions:  {
+      deleteChild:        MaskItemSheetEd._onDeleteChild,
+    },
+  };
 
   // region Static Properties
 
@@ -99,6 +109,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /** @inheritdoc */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -124,6 +135,33 @@ export default class MaskItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  // endregion
+
+  // region Event Handlers
+
+  /**
+   * Deletes a child document.
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<foundry.abstract.Document>} - A promise that resolves when the child is deleted.
+   */
+  static async _onDeleteChild( event, target ) {
+    if ( !( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) ) {
+      const confirmDelete = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     `<p>${
+          game.i18n.format(
+            "ED.Dialogs.DeletePower.confirmRemove",
+            { type: game.i18n.localize( `ED.Dialogs.DeletePower.${ target.dataset.type }` ) }
+          )
+        }</p>`,
+      } );
+      if ( !confirmDelete ) return;
+    }
+
+    await this.item.system.removeItemFromMask( target.dataset.uuid, target.dataset.type );
+  }
+  
   // endregion
 
   // region Drag and Drop
