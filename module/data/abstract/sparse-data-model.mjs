@@ -54,6 +54,15 @@ export default class SparseDataModel extends foundry.abstract.DataModel {
     return this.parent.isActorEmbedded ?? false;
   }
 
+  /**
+   * A reference to the parent Document of this data model, or undefined if one does not exist.
+   * @type {Document|undefined}
+   */
+  get parentDocument() {
+    if ( !this.parent ) return undefined;
+    return this.parent instanceof foundry.abstract.Document ? this.parent : this.parent.parentDocument;
+  }
+
   // endregion
 
 }
