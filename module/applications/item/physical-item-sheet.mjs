@@ -185,7 +185,8 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   static async _onDeleteThreadItemLevel( event, target ) {
     event.preventDefault();
     const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
-      this.document.system.schema.fields.truePattern.fields.threadItemLevels.label
+      this.document.system.schema.fields.truePattern.fields.threadItemLevels.label,
+      event.shiftKey,
     );
     if ( !confirmedDelete ) return;
 
@@ -200,8 +201,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   static async _onDeleteTruePattern( event, target ) {
     event.preventDefault();
     const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
-      this.document.system.schema.fields.truePattern.label
-      || game.i18n.localize( "ED.Tabs.ItemSheet.true-pattern" ),
+      this.document.system.schema.fields.truePattern.label,
+      event.shiftKey,
+
     );
     if ( !confirmedDelete ) return;
 
