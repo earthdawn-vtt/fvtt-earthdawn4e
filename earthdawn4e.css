@@ -2145,46 +2145,38 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .window-content .top .sheet__editor {
   min-height: 160px;
 }
-.application.sheet.earthdawn4e.item .tab.general,
-.application.sheet.earthdawn4e.item .tab.details,
-.application.sheet.earthdawn4e.item .tab.effects,
-.application.sheet.earthdawn4e.item .tab.advancements {
+.application.sheet.earthdawn4e.item .window-content .tab.general,
+.application.sheet.earthdawn4e.item .window-content .tab.details,
+.application.sheet.earthdawn4e.item .window-content .tab.effects,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements {
   overflow-y: auto;
 }
-.application.sheet.earthdawn4e.item .tab.general .item__left--main,
-.application.sheet.earthdawn4e.item .tab.details .item__left--main,
-.application.sheet.earthdawn4e.item .tab.effects .item__left--main,
-.application.sheet.earthdawn4e.item .tab.advancements .item__left--main {
-  width: 38%;
+.application.sheet.earthdawn4e.item .window-content .tab.general .item__left--main,
+.application.sheet.earthdawn4e.item .window-content .tab.details .item__left--main,
+.application.sheet.earthdawn4e.item .window-content .tab.effects .item__left--main,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements .item__left--main {
   float: left;
 }
-.application.sheet.earthdawn4e.item .tab.general .item__left--main div.form-group label,
-.application.sheet.earthdawn4e.item .tab.details .item__left--main div.form-group label,
-.application.sheet.earthdawn4e.item .tab.effects .item__left--main div.form-group label,
-.application.sheet.earthdawn4e.item .tab.advancements .item__left--main div.form-group label {
-  flex-basis: 50%;
-}
-.application.sheet.earthdawn4e.item .tab.general .item__left--main div.form-group .hint,
-.application.sheet.earthdawn4e.item .tab.details .item__left--main div.form-group .hint,
-.application.sheet.earthdawn4e.item .tab.effects .item__left--main div.form-group .hint,
-.application.sheet.earthdawn4e.item .tab.advancements .item__left--main div.form-group .hint {
+.application.sheet.earthdawn4e.item .window-content .tab.general .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .window-content .tab.details .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .window-content .tab.effects .item__left--main div.form-group .hint,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements .item__left--main div.form-group .hint {
   display: none;
 }
-.application.sheet.earthdawn4e.item .tab.general .item__right--main,
-.application.sheet.earthdawn4e.item .tab.details .item__right--main,
-.application.sheet.earthdawn4e.item .tab.effects .item__right--main,
-.application.sheet.earthdawn4e.item .tab.advancements .item__right--main {
-  width: 60%;
+.application.sheet.earthdawn4e.item .window-content .tab.general .item__right--main,
+.application.sheet.earthdawn4e.item .window-content .tab.details .item__right--main,
+.application.sheet.earthdawn4e.item .window-content .tab.effects .item__right--main,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements .item__right--main {
   float: right;
 }
-.application.sheet.earthdawn4e.item .tab.general .item__right--main .editor,
-.application.sheet.earthdawn4e.item .tab.details .item__right--main .editor,
-.application.sheet.earthdawn4e.item .tab.effects .item__right--main .editor,
-.application.sheet.earthdawn4e.item .tab.advancements .item__right--main .editor,
-.application.sheet.earthdawn4e.item .tab.general .item__right--main .prosemirror,
-.application.sheet.earthdawn4e.item .tab.details .item__right--main .prosemirror,
-.application.sheet.earthdawn4e.item .tab.effects .item__right--main .prosemirror,
-.application.sheet.earthdawn4e.item .tab.advancements .item__right--main .prosemirror {
+.application.sheet.earthdawn4e.item .window-content .tab.general .item__right--main .editor,
+.application.sheet.earthdawn4e.item .window-content .tab.details .item__right--main .editor,
+.application.sheet.earthdawn4e.item .window-content .tab.effects .item__right--main .editor,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements .item__right--main .editor,
+.application.sheet.earthdawn4e.item .window-content .tab.general .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .window-content .tab.details .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .window-content .tab.effects .item__right--main .prosemirror,
+.application.sheet.earthdawn4e.item .window-content .tab.advancements .item__right--main .prosemirror {
   height: 430px;
 }
 .item-image {
