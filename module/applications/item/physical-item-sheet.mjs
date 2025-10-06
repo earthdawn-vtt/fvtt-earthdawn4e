@@ -184,6 +184,11 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
    */
   static async _onDeleteThreadItemLevel( event, target ) {
     event.preventDefault();
+    const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
+      this.document.system.schema.fields.truePattern.fields.threadItemLevels.label
+    );
+    if ( !confirmedDelete ) return;
+
     await this.document.system.truePattern.removeLastThreadItemLevel();
     await this.render();
   }
