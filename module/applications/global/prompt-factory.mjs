@@ -6,6 +6,7 @@ import ED4E from "../../config/_module.mjs";
 import DialogEd from "../api/dialog.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import ChooseAdderSubstitutePrompt from "./choose-adder-substitute.mjs";
+import { getSetting } from "../../settings.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
@@ -168,12 +169,21 @@ export default class PromptFactory {
   }
 
 
-  static async genericDeleteConfirmationPrompt( name ) {
+  /**
+   * Displays a generic delete confirmation prompt.
+   * @param {string} name - The name of the item to be deleted.
+   * @param {boolean} [checkQuickDelete] - Whether to check for quick delete setting. If true and the setting
+   * is enabled, the prompt will be skipped.
+   * @returns {Promise<boolean>} - A promise that resolves to true if the user confirms the deletion or quick delete
+   * is enabled, false otherwise.
+   */
+  static async genericDeleteConfirmationPrompt( name, checkQuickDelete = false ) {
+    if ( checkQuickDelete && getSetting( "quickDeleteEmbeddedOnShiftClick" ) ) return true;
+
     const question = game.i18n.localize( "AreYouSure" );
     const warning = game.i18n.format( "SIDEBAR.DeleteWarning", { type: name } );
     const content = `<p><strong>${question}</strong><br>${warning}</p>`;
     return DialogClass.confirm( {
-      rejectClose: false,
       content,
       window:      {
         icon:  "fa-solid fa-trash",
