@@ -2162,7 +2162,7 @@
               }
             },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
