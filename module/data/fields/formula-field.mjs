@@ -31,6 +31,9 @@ export default class FormulaField extends foundry.data.fields.StringField {
 
   /** @inheritDoc */
   _validateType( value ) {
+    // Skip validation if the formula contains @ symbols (references to data properties)
+    if ( typeof value === "string" && value.includes( "@" ) ) return;
+    
     if ( this.options.deterministic ) {
       const roll = new Roll( value );
       if ( !roll.isDeterministic ) throw new Error( "must not contain dice terms" );

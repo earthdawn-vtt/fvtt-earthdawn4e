@@ -1,4 +1,5 @@
 import ClassTemplate from "../data/item/templates/class.mjs";
+import FormulaField from "../data/fields/formula-field.mjs";
 
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
@@ -107,6 +108,16 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   /** @inheritdoc */
   async _preCreate( data, options, user ) {
+    // Handle formula in duration.rounds before validation
+    if ( data.duration?.rounds && typeof data.duration.rounds === "string" && data.duration.rounds.includes( "@" ) ) {
+      // Store the formula in system data
+      data.system = data.system || {};
+      data.system.formulaRounds = data.duration.rounds;
+      
+      // Set a valid integer for core validation
+      data.duration.rounds = 1;
+    }
+    
     if ( await super._preCreate( data, options, user ) === false ) return false;
 
     if ( await this._shouldPreventCreation( data ) ) {
@@ -118,6 +129,16 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   async _preUpdate( changes, options, user ) {
+    // Handle formula in duration.rounds before validation
+    if ( changes.duration?.rounds && typeof changes.duration.rounds === "string" && changes.duration.rounds.includes( "@" ) ) {
+      // Store the formula in system data
+      changes.system = changes.system || {};
+      changes.system.formulaRounds = changes.duration.rounds;
+      
+      // Set a valid integer for core validation
+      changes.duration.rounds = 1;
+    }
+    
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
     await this._configureUpdateData( changes, options, user );
@@ -197,5 +218,26 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   // endregion
+
+  /**
+   * Gets the actual rounds value by evaluating formulas if present
+   * @param {object} context Data context for formula evaluation
+   * @returns {number} The evaluated rounds value
+   */
+  getRoundsValue( context = {} ) {
+    // If we have a formula stored, evaluate it
+    if ( this.system?.formulaRounds ) {
+      const formula = this.system.formulaRounds;
+      try {
+        return FormulaField.evaluate( formula, context );
+      } catch( err ) {
+        console.error( `Error evaluating rounds formula "${formula}"`, err );
+        return this.duration?.rounds || 1;
+      }
+    }
+    
+    // Otherwise return the standard rounds value
+    return this.duration?.rounds || 0;
+  }
 
 }
