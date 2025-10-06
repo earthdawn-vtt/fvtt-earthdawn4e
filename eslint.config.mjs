@@ -359,6 +359,7 @@ export default [
       "object-shorthand":                "off",
       "one-var":                         [ "error", "never" ],
       "operator-assignment":             "off",
+      "operator-linebreak":              [ "error", "before" ],
       "padding-line-between-statements": "off",
       "prefer-arrow-callback":           "error",
       "prefer-const":                    "off",
