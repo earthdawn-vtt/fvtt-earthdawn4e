@@ -19,6 +19,10 @@ export default class ThreadItemLevelData extends SparseDataModel {
         positive: true,
         initial:  1,
       } ),
+      knownToPlayer: new fields.BooleanField( {
+        required: true,
+        initial:  false,
+      } ),
       keyKnowledge: new fields.SchemaField( {
         question: new fields.StringField( {
           required: true,
@@ -66,5 +70,13 @@ export default class ThreadItemLevelData extends SparseDataModel {
       ),
     };
   }
+
+  // region Getters
+
+  get isVisible() {
+    return game.user.isGM || this.knownToPlayer;
+  }
+
+  // endregion
 
 }

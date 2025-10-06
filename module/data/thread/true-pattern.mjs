@@ -69,6 +69,10 @@ export default class TruePatternData extends SparseDataModel {
           initial:  [],
         },
       ),
+      knownToPlayer:    new fields.BooleanField( {
+        required: true,
+        initial:  false,
+      } ),
     } );
   }
 
