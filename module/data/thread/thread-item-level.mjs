@@ -55,6 +55,15 @@ export default class ThreadItemLevelData extends SparseDataModel {
           initial:  [],
         },
       ),
+      abilities: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+        } ),
+        {
+          required: true,
+          initial:  [],
+        },
+      ),
     };
   }
 

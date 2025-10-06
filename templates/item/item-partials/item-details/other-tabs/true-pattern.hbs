@@ -51,6 +51,7 @@
       {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @index ".deed") value=this.deed disabled=(not @root/editable)}}
       {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @index ".effect") value=this.effect disabled=(not @root/editable)}}
       {{formGroup this.schema.fields.activeEffects name=(concat "system.truePattern.threadItemLevels." @index ".activeEffects") value=this.activeEffects disabled=(not @root/editable)}}
+      {{formGroup this.schema.fields.abilities name=(concat "system.truePattern.threadItemLevels." @index ".abilities") value=this.abilities disabled=(not @root/editable)}}
     </fieldset>
   {{/each}}
 
