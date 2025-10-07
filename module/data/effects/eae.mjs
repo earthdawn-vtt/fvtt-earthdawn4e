@@ -4,6 +4,7 @@ import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
+import { mapObject } from "../../utils.mjs";
 
 
 /**
@@ -69,6 +70,9 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( data.system?.changes && !data.changes ) {
       data.changes = await this._prepareChangesData( data.system.changes );
     }
+    if ( data.system?.duration && !data.duration ) {
+      data.duration = await this._prepareDurationData( data.system.duration );
+    }
     if ( !this.source && this.parent?.actor ) {
       const containingActor = await fromUuid( this.parent.actor.uuid );
 
@@ -108,6 +112,23 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         return change;
       }
     } );
+  }
+
+
+  async _prepareDurationData( systemDuration ) {
+    const evalData = await this._getFormulaData();
+    return mapObject(
+      systemDuration,
+      ( fieldName, fieldValue ) => {
+        if ( !( EarthdawnActiveEffectDurationData.schema.fields[fieldName] instanceof FormulaField ) ) return [ fieldName, fieldValue ];
+        try {
+          const finalValue = FormulaField.evaluate( fieldValue, evalData );
+          return [ fieldName, Number.isNumeric( finalValue ) ? finalValue : fieldValue ];
+        } catch {
+          return [ fieldName, fieldValue ];
+        }
+      }
+    );
   }
 
   /**
