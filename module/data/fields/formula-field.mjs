@@ -60,7 +60,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
    * @param {object} options  Additional options for {@link Roll#replaceFormulaData}
    * @returns {number}        The evaluated result
    */
-  static evaluate( formula, data= {}, options={} ) {
+  static evaluate( formula, data= {}, options={ warn: true, } ) {
     return Roll.safeEval(
       Roll.replaceFormulaData( formula, data , options )
     );

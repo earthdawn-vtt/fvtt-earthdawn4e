@@ -4,6 +4,7 @@ import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
+import { mapObject } from "../../utils.mjs";
 
 
 /**
@@ -69,6 +70,9 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( data.system?.changes && !data.changes ) {
       data.changes = await this._prepareChangesData( data.system.changes );
     }
+    if ( data.system?.duration && !data.duration ) {
+      data.duration = await this._prepareDurationData( data.system.duration );
+    }
     if ( !this.source && this.parent?.actor ) {
       const containingActor = await fromUuid( this.parent.actor.uuid );
 
@@ -110,6 +114,23 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     } );
   }
 
+
+  async _prepareDurationData( systemDuration ) {
+    const evalData = await this._getFormulaData();
+    return mapObject(
+      systemDuration,
+      ( fieldName, fieldValue ) => {
+        if ( !( EarthdawnActiveEffectDurationData.schema.fields[fieldName] instanceof FormulaField ) ) return [ fieldName, fieldValue ];
+        try {
+          const finalValue = FormulaField.evaluate( fieldValue, evalData );
+          return [ fieldName, Number.isNumeric( finalValue ) ? finalValue : fieldValue ];
+        } catch {
+          return [ fieldName, fieldValue ];
+        }
+      }
+    );
+  }
+
   /**
    * Retrieve the formula data for the formula fields within this effect.
    * @returns {Promise<object>} A promise that resolves to the roll data object of this effect's target.
@@ -117,6 +138,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    */
   async _getFormulaData() {
     if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
+    if ( this.parent?.isItemEffect ) return ( await fromUuid( this.source.documentOriginUuid ) )?.getRollData() ?? {};
     return this.parent?.target?.getRollData() ?? {};
   }
 
@@ -172,7 +194,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    * @type {Document | object | null | *}
    */
   get documentOrigin() {
-    return fromUuidSync( this.documentOriginUuid );
+    return fromUuidSync( this.source.documentOriginUuid );
   }
 
   // endregion
