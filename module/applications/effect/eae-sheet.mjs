@@ -1,5 +1,4 @@
 import { getEdIds } from "../../settings.mjs";
-import FormulaField from "../../data/fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
 import ClassTemplate from "../../data/item/templates/class.mjs";
 
@@ -68,33 +67,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   // region Form Handling
 
   /** @inheritDoc */
-  _prepareSubmitData( event, form, formData ) {
-    const submitData = super._prepareSubmitData( event, form, formData );
-    submitData.duration = submitData.system.duration;
-    // submitData.changes = this._prepareChangesSubmitData( submitData.system.changes );
-    return submitData;
-  }
-
-  /** @inheritDoc */
   _processFormData( event, form, formData ) {
     const data = super._processFormData( event, form, formData );
     return this._toggleTransfer( event, data );
   }
-
-  /**
-   * Prepares the changes data for submission by evaluating the formula fields.
-   * @param {object[]} changes - The changes data to be prepared.
-   * @returns {object[]} The prepared changes data with evaluated formulas.
-   */
-  _prepareChangesSubmitData( changes ) {
-    return changes.map( change => {
-      return {
-        ...change,
-        value: FormulaField.evaluate( change.value, this.document.system.formulaData, { warn: true } ),
-      };
-    } );
-  }
-
 
   /**
    * Toggles the transfer property based on the changed property in the form.
