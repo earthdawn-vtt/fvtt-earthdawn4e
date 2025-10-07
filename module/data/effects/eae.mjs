@@ -117,6 +117,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    */
   async _getFormulaData() {
     if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
+    if ( this.parent?.isItemEffect ) return ( await fromUuid( this.source.documentOriginUuid ) )?.getRollData() ?? {};
     return this.parent?.target?.getRollData() ?? {};
   }
 
@@ -172,7 +173,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
    * @type {Document | object | null | *}
    */
   get documentOrigin() {
-    return fromUuidSync( this.documentOriginUuid );
+    return fromUuidSync( this.source.documentOriginUuid );
   }
 
   // endregion
