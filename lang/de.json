@@ -2162,7 +2162,7 @@
               }
             },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "Elementarsubtyp des Spruches",
                 "label":                           "Elementarsubtyp"
               },
