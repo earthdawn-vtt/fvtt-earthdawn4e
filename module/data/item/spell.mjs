@@ -482,6 +482,17 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
   // region Methods
 
   // region LP Tracking

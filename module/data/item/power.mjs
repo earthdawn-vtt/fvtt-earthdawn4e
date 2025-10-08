@@ -228,6 +228,13 @@ export default class PowerData extends ActionTemplate.mixin(
 
   // region Rolling
 
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
 

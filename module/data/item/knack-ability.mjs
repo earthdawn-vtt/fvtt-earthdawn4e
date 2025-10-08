@@ -14,11 +14,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.KnackAbility",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -35,14 +31,15 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritdoc */
-  async _onCreate( data, options, user ) {
-    super._onCreate( data, options, user );
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.KnackAbility",
+  ];
 
-    // assign the source talent
-  }
+  // endregion
+
+  // region Getters
 
   /**
    * The final rank of the parent ability.
@@ -52,7 +49,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     const parentTalent = this.containingActor?.itemTypes.talent.find( ( talent ) => talent.system.edid === this.sourceItem );
     return parentTalent?.system.level;
   }
-  
+
   /**
    * The final rank of this ability (e.g. attribute + parent talent rank).
    * @type {number}
@@ -61,4 +58,29 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
     const attributeStep = ( this.containingActor?.system.attributes[this.attribute]?.step ?? 0 );
     return attributeStep ? this.parentRank + attributeStep : 0;
   }
+
+  // endregion
+
+  // region Life Cycle Events
+
+  /** @inheritdoc */
+  async _onCreate( data, options, user ) {
+    super._onCreate( data, options, user );
+
+    // assign the source talent
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

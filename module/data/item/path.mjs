@@ -12,17 +12,7 @@ export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Path",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -51,6 +41,16 @@ export default class PathData extends ClassTemplate.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Path",
+  ];
 
   // endregion
 
@@ -224,4 +224,16 @@ export default class PathData extends ClassTemplate.mixin(
   // endregion
 
   // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

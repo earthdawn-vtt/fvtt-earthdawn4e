@@ -20,4 +20,15 @@ export default class BindingSecretData extends SpellData.mixin(
             
     } );
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
 }

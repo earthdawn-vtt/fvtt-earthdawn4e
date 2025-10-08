@@ -16,11 +16,7 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Armor",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -33,7 +29,7 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
         forgeBonus: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -88,4 +84,36 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Armor",
+  ];
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {
+      physicalArmor:      this.physical.armor + this.physical.forgeBonus,
+      mysticalArmor:      this.mystical.armor + this.mystical.forgeBonus,
+      physicalBaseArmor:  this.physical.armor,
+      mysticalBaseArmor:  this.mystical.armor,
+      physicalForgeBonus: this.physical.forgeBonus,
+      mysticalForgeBonus: this.mystical.forgeBonus,
+      piecemealSize:      this.piecemeal.size,
+    } );
+  }
+
+  // endregion
+
 }

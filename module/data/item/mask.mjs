@@ -288,4 +288,16 @@ export default class MaskData extends ItemDataModel.mixin(
 
     return this.parent.update( { [`system.${itemType}s`]: newData } );
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

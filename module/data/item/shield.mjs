@@ -67,4 +67,15 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
       } ),
     } );
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
 }
