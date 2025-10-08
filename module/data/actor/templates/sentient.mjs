@@ -533,6 +533,7 @@ export default class SentientTemplate extends CommonTemplate {
       // armor values
       // pa, ma
       // physicalArmor, mysticArmor
+      // using toLowerCase function to avoid grammar check issues
       {
         pa:                                 this.characteristics.armor.physical.value,
         physicalArmor:                      this.characteristics.armor.physical.value,
