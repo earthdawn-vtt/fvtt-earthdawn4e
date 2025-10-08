@@ -223,6 +223,21 @@ export default class ItemEd extends Item {
 
   // endregion
 
+  // region Rolls
+
+  /** @inheritDoc */
+  getRollData() {
+    let rollData = { ...super.getRollData() };
+    if ( this.system.getRollData instanceof Function ) Object.assign( rollData, this.system.getRollData() );
+
+    rollData.flags = { ...this.flags };
+    rollData.name = this.name;
+
+    return rollData;
+  }
+
+  // endregion
+
   // region Earthdawn Methods
 
   /**
