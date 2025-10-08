@@ -399,6 +399,11 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // region Rolling
 
+  /** @inheritdoc */
+  getRollData() {
+    return {};
+  }
+
   getTemplatesRollData() {
     const rollData = {};
 
