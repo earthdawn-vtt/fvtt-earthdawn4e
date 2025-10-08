@@ -25,6 +25,8 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
   TargetTemplate,
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -38,6 +40,10 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
    * @protected
    */
   static _itemStatusOrder = [ "owned", "carried", "equipped" ];
+
+  // endregion
+
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -140,19 +146,9 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
 
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
-
-  /* -------------------------------------------- */
-  /*  Getters                                     */
-  /* -------------------------------------------- */
+  // region Getters
 
   /**
    * Properties displayed in chat.
@@ -213,6 +209,8 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
     return statusOrder[ ( prevIndex < 0 ? ( statusOrder.length - 1 ) : prevIndex ) % statusOrder.length ];
   }
 
+  // endregion
+
   // region Life Cycle Events
 
   /** @inheritdoc */
@@ -233,10 +231,21 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
 
   // endregion
 
-  /* -------------------------------------------- */
-  /*  Methods                                     */
-  /* -------------------------------------------- */
+  // region Rolling
 
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      price:                 this.price.value,
+      weight:                this.weight.value * this.weight.multiplier,
+      amount:                this.amount,
+      bloodMagicDamage:      this.bloodMagicDamage,
+    };
+  }
+
+  // endregion
+
+  // region Methods
 
   /**
    * Set the item status to "carried".
@@ -257,4 +266,17 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
       "system.itemStatus": "owned"
     } );
   }
+
+  // endregion
+
+  // region Migration
+
+  /** @inheritDoc */
+  static migrateData( source ) {
+    super.migrateData( source );
+    // specific migration functions
+  }
+
+  // endregion
+
 }

@@ -9,11 +9,17 @@ const { fields } = foundry.data;
 
 export default class MatrixTemplate extends SystemDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.General.Matrix",
   ];
+
+  // endregion
+
+  // region Schema
 
   /** @inheritdoc */
   static defineSchema() {
@@ -85,7 +91,9 @@ export default class MatrixTemplate extends SystemDataModel {
     } );
   }
 
-  // region Properties
+  // endregion
+
+  // region Getters
 
   /**
    * Whether this item has a matrix.
@@ -257,6 +265,24 @@ export default class MatrixTemplate extends SystemDataModel {
 
   // endregion
 
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      matrixLevel:        this.matrix?.level,
+      matrixRank:         this.matrix?.level,
+      matrixDeathRating:  this.matrix?.deathRating,
+      matrixDamage:       this.matrix?.damage,
+      matrixThreadsWoven: this.matrix?.threads?.hold?.value,
+      matrixThreadsMax:   this.matrix?.threads?.hold?.max,
+      matrixThreadsHeld:  this.matrix?.threads?.hold?.max,
+      matrixHeldThreads:  this.matrix?.threads?.hold?.max,
+    };
+  }
+
+  // endregion
+
   // region Methods
 
   /**
@@ -287,7 +313,7 @@ export default class MatrixTemplate extends SystemDataModel {
 
   /**
    * Looks up the death rating of the matrix based on its type.
-   * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link matrixTypes}.
    * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
    */
   _lookupMatrixDeathRating( matrixType = "standard" ) {
@@ -296,7 +322,7 @@ export default class MatrixTemplate extends SystemDataModel {
 
   /**
    * Looks up the maximum thread hold of the matrix based on its type.
-   * @param {string} matrixType The type of the matrix to look up, as defined in {@link ED4E.matrixTypes}.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link matrixTypes}.
    * @returns {number|undefined} The maximum thread hold of the matrix, or undefined if not found.
    */
   _lookupMatrixMaxHoldThread( matrixType = "standard" ) {

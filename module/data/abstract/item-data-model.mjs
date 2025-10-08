@@ -8,12 +8,6 @@ const { TextEditor } = foundry.applications.ux;
  */
 export default class ItemDataModel extends SystemDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item"
-  ];
-
   /**
    * @typedef {SystemDataModelMetadata} ItemDataModelMetadata
    * @property {boolean} enchantable    Can this item be modified by enchantment effects?
@@ -22,6 +16,14 @@ export default class ItemDataModel extends SystemDataModel {
    * @property {number} inventoryOrder  Order this item appears in the actor's inventory, smaller numbers are earlier.
    * @property {boolean} singleton      Should only a single item of this type be allowed on an actor?
    */
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item"
+  ];
 
   /** @type {ItemDataModelMetadata} */
   static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
@@ -41,20 +43,18 @@ export default class ItemDataModel extends SystemDataModel {
    */
   static ITEM_TOOLTIP_TEMPLATE = "systems/ed4e/templates/item/item-partials/item-tooltip.hbs";
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
+  // endregion
 
-  /* -------------------------------------------- */
+  // region Getters
 
   /** @override */
   get embeddedDescriptionKeyPath() {
     return game.user.isGM || ( this.identified !== false ) ? "description.value" : "unidentified.description";
   }
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
+  // endregion
 
-  /* -------------------------------------------- */
+  // region Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
@@ -66,11 +66,9 @@ export default class ItemDataModel extends SystemDataModel {
     }
   }
 
+  // endregion
 
-  /* -------------------------------------------- */
-  /*  Drop Events                                 */
-
-  /* -------------------------------------------- */
+  // region Drag and Drop
 
   /**
    * Handle a dropped document on the ItemSheet belonging to this data models parent document.
@@ -93,6 +91,8 @@ export default class ItemDataModel extends SystemDataModel {
     ) ?? true;
   }
 
+  // endregion
+
   // region Rolling
 
   /**
@@ -105,11 +105,7 @@ export default class ItemDataModel extends SystemDataModel {
 
   // endregion
 
-
-  /* -------------------------------------------- */
-  /*  Helpers                                     */
-
-  /* -------------------------------------------- */
+  // region Methods
 
   /**
    * Render a rich tooltip for this item.
@@ -124,8 +120,6 @@ export default class ItemDataModel extends SystemDataModel {
       classes: [ "earthdawn4e", "earthdawn4e-tooltip", "item-tooltip" ]
     };
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Prepare item card template data.
@@ -178,8 +172,6 @@ export default class ItemDataModel extends SystemDataModel {
     return context;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * Prepare type-specific data for the Item sheet.
    * @param {object} context  Sheet context data.
@@ -187,5 +179,7 @@ export default class ItemDataModel extends SystemDataModel {
    */
   async getSheetData( context ) {
   }
+
+  // endregion
 
 }

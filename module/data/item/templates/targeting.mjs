@@ -12,11 +12,31 @@ import SystemDataModel from "../../abstract/system-data-model.mjs";
  */
 export default class TargetTemplate extends SystemDataModel {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Target",
   ];
+
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * @param { Array } targets array of all targets
+   * @param { string } targetDefenseType defense
+   * @param { any } aggregate ???
+   * @returns { number} return
+   */
+  static _getAggregatedDefense( targets, targetDefenseType, aggregate = Math.max ) {
+    return targets.length > 0 ? aggregate( ...targets.map( ( t ) => t.system.characteristics.defenses[targetDefenseType].value ) ) : 0;
+  }
+
+  // endregion
+
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -44,6 +64,10 @@ export default class TargetTemplate extends SystemDataModel {
       } ),
     } );
   }
+
+  // endregion
+
+  // region Getters
 
   /**
    * Returns a short string representation of the difficulty setting.
@@ -96,6 +120,20 @@ export default class TargetTemplate extends SystemDataModel {
     }
   }
 
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      difficulty: this.getDifficulty(),
+    };
+  }
+
+  // endregion
+
+  // region Methods
 
   /**
    *
@@ -136,23 +174,16 @@ export default class TargetTemplate extends SystemDataModel {
     return Math.max( difficulty, game.settings.get( "ed4e", "minimumDifficulty" ) );
   }
 
-  /**
-   * @param { Array } targets array of all targets
-   * @param { string } targetDefenseType defense
-   * @param { any } aggregate ???
-   * @returns { number} return
-   */
-  static _getAggregatedDefense( targets, targetDefenseType, aggregate = Math.max ) {
-    return targets.length > 0 ? aggregate( ...targets.map( ( t ) => t.system.characteristics.defenses[targetDefenseType].value ) ) : 0;
-  }
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
+  // endregion
 
-  /* -------------------------------------------- */
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }

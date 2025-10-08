@@ -21,6 +21,13 @@ const { TextEditor } = foundry.applications.ux;
  */
 export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
+  /**
+   * @typedef {object} SystemDataModelMetadata
+   * @property {typeof DataModel} [systemFlagsModel]  Model that represents flags data within the ed4e namespace.
+   */
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     "ED.Data.General",
@@ -32,16 +39,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _systemType;
 
-  /* -------------------------------------------- */
-
   /**
    * Base templates used for construction.
    * @type {*[]}
    * @private
    */
   static _schemaTemplates = [];
-
-  /* -------------------------------------------- */
 
   /**
    * The field names of the base templates used for construction.
@@ -58,8 +61,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return fieldNames;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * A list of properties that should not be mixed-in to the final type.
    * @type {Set<string>}
@@ -69,13 +70,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     "_initializationOrder", "validateJoint", "_validateJoint", "migrateData", "_migrateData",
     "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES" ] );
 
-  /* -------------------------------------------- */
-
-  /**
-   * @typedef {object} SystemDataModelMetadata
-   * @property {typeof DataModel} [systemFlagsModel]  Model that represents flags data within the ed4e namespace.
-   */
-
   /**
    * Metadata that describes this DataModel.
    * @type {SystemDataModelMetadata}
@@ -84,21 +78,58 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     systemFlagsModel: null
   } );
 
+  // endregion
+
+  // Static Methods
+
+  /** @inheritdoc */
+  static *_initializationOrder() {
+    for ( const template of this._schemaTemplates ) {
+      for ( const entry of template._initializationOrder() ) {
+        entry[1] = this.schema.get( entry[0] );
+        yield entry;
+      }
+    }
+    for ( const entry of this.schema.entries() ) {
+      if ( this._schemaTemplateFields.has( entry[0] ) ) continue;
+      yield entry;
+    }
+  }
+
+  // endregion
+
+  // region Schema
+
+  /** @inheritdoc */
+  static defineSchema() {
+    const schema = {};
+    for ( const template of this._schemaTemplates ) {
+      if (  !template.defineSchema ) {
+        throw new Error( `Invalid ed4e template mixin ${template} defined on class ${this.constructor}` );
+      }
+      this.mergeSchema( schema, template.defineSchema(  ) );
+    }
+    return schema;
+  }
+
+  /**
+   * Merge two schema definitions together as well as possible.
+   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
+   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
+   * @returns {DataModel}  Fully merged schema.
+   */
+  static mergeSchema( a, b ) {
+    Object.assign( a, b );
+    return a;
+  }
+
+  // endregion
+
+  // region Getters
+
   get metadata() {
     return this.constructor.metadata;
   }
-
-  /* -------------------------------------------- */
-
-  /*   /!**
-   * Filters available for this item type when using the compendium browser.
-   * @returns {CompendiumBrowserFilterDefinition}
-   *!/
-  static get compendiumBrowserFilters() {
-    return new Map();
-  } */
-
-  /* -------------------------------------------- */
 
   /**
    * Key path to the description used for default embeds.
@@ -107,8 +138,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   get embeddedDescriptionKeyPath() {
     return null;
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Get the actor that contains this data model or undefined if it is not embedded.
@@ -138,223 +167,9 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return this.parent instanceof foundry.abstract.Document ? this.parent : this.parent.parentDocument;
   }
 
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static defineSchema(  ) {
-    const schema = {};
-    for ( const template of this._schemaTemplates ) {
-      if (  !template.defineSchema ) {
-        throw new Error( `Invalid ed4e template mixin ${template} defined on class ${this.constructor}` );
-      }
-      this.mergeSchema( schema, template.defineSchema(  ) );
-    }
-    return schema;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Merge two schema definitions together as well as possible.
-   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
-   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
-   * @returns {DataModel}  Fully merged schema.
-   */
-  static mergeSchema( a, b ) {
-    Object.assign( a, b );
-    return a;
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Cleaning                               */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static cleanData( source, options ) {
-    this._cleanData( source, options );
-    return super.cleanData( source, options );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs cleaning without calling DataModel.cleanData.
-   * @param {object} [source]         The source data
-   * @param {object} [options]     Additional options (see DataModel.cleanData)
-   * @protected
-   */
-  static _cleanData( source, options ) {
-    for ( const template of this._schemaTemplates ) {
-      template._cleanData( source, options );
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Initialization                         */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static *_initializationOrder() {
-    for ( const template of this._schemaTemplates ) {
-      for ( const entry of template._initializationOrder() ) {
-        entry[1] = this.schema.get( entry[0] );
-        yield entry;
-      }
-    }
-    for ( const entry of this.schema.entries() ) {
-      if ( this._schemaTemplateFields.has( entry[0] ) ) continue;
-      yield entry;
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Socket Event Handlers                       */
-  /* -------------------------------------------- */
-
-  /**
-   * Pre-creation logic for this system data.
-   * @param {object} data               The initial data object provided to the document creation request.
-   * @param {object} options            Additional options which modify the creation request.
-   * @param {User} user                 The User requesting the document creation.
-   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
-   * @see {Document#_preCreate}
-   * @protected
-   */
-  async _preCreate( data, options, user ) {
-    if ( await super._preCreate( data, options, user ) === false ) return false;
-    const actor = this.parent?.actor;
-    if ( ( actor?.type !== "character" ) || !this.metadata?.singleton ) return;
-    if ( actor.itemTypes[data.type]?.length ) {
-      ui.notifications.error( game.i18n.format( "ED.Notifications.Error.actorWarningSingleton", {
-        itemType:  game.i18n.localize( CONFIG.Item.typeLabels[data.type] ),
-        actorType: game.i18n.localize( CONFIG.Actor.typeLabels[actor.type] )
-      } ) );
-      return false;
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Validation                             */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  validate( options={} ) {
-    return super.validate( options );
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static validateJoint( data ) {
-    this._validateJoint( data );
-    return super.validateJoint( data );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs joint validation without calling DataModel.validateJoint.
-   * @param {object} data     The source data
-   * @throws                  An error if a validation failure is detected
-   * @protected
-   */
-  static _validateJoint( data ) {
-    for ( const template of this._schemaTemplates ) {
-      template._validateJoint( data );
-    }
-  }
-
-
-  // region Data Preparation
-
-
-  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
-    if ( !this.parent ) return;
-
-    this.parent.statuses.clear();
-
-    const changes = Array.from( this.parent.allApplicableEffects()
-      .filter( effect => effect.active )
-      .flatMap( effect => {
-        effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
-        return effect.changes.map( change => ( {
-          ...foundry.utils.deepClone( change ),
-          effect,
-          priority: change.priority ?? ( change.mode * 10 )
-        } ) );
-      } ) )
-      .sort( ( a, b ) => a.priority - b.priority );
-
-    const overrides = changes.reduce( ( acc, change ) => {
-      if ( keys.includes( change.key ) !== ignore ) {
-        Object.assign( acc, change.effect.apply( this.parent, change ) );
-      }
-      return acc;
-    }, {} );
-
-    this.overrides = foundry.utils.expandObject( overrides );
-  }
-
-  /**
-   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
-   * but before active effects are applied.
-   * Meant for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {}
-
   // endregion
 
-
-  /* -------------------------------------------- */
-  /*  Data Migration                              */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static migrateData( source ) {
-    this._migrateData( source );
-    return super.migrateData( source );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs migration without calling DataModel.migrateData.
-   * @param {object} source     The source data
-   * @protected
-   */
-  static _migrateData( source ) {
-    for ( const template of this._schemaTemplates ) {
-      template._migrateData( source );
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static shimData( data, options ) {
-    this._shimData( data, options );
-    return super.shimData( data, options );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs shimming without calling DataModel.shimData.
-   * @param {object} data         The source data
-   * @param {object} [options]    Additional options (see DataModel.shimData)
-   * @protected
-   */
-  static _shimData( data, options ) {
-    for ( const template of this._schemaTemplates ) {
-      template._shimData( data, options );
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Mixins                                      */
-  /* -------------------------------------------- */
+  // region Mixins
 
   /**
    * Mix multiple templates with the base type.
@@ -409,8 +224,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return Base;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * Test whether a SystemDataModel includes a certain template.
    * @param {SystemDataModel} template  The template to test.
@@ -419,8 +232,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   static hasMixin( template ) {
     return this._schemaTemplates.includes( template ) || false;
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Test whether this SystemDataModel includes a certain template.
@@ -431,9 +242,181 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return this.constructor.hasMixin( template );
   }
 
+  // endregion
+
+  // region Life Cycle Events
+
+  /**
+   * Pre-creation logic for this system data.
+   * @param {object} data               The initial data object provided to the document creation request.
+   * @param {object} options            Additional options which modify the creation request.
+   * @param {User} user                 The User requesting the document creation.
+   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
+   * @see {Document#_preCreate}
+   * @protected
+   */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+    const actor = this.parent?.actor;
+    if ( ( actor?.type !== "character" ) || !this.metadata?.singleton ) return;
+    if ( actor.itemTypes[data.type]?.length ) {
+      ui.notifications.error( game.i18n.format( "ED.Notifications.Error.actorWarningSingleton", {
+        itemType:  game.i18n.localize( CONFIG.Item.typeLabels[data.type] ),
+        actorType: game.i18n.localize( CONFIG.Actor.typeLabels[actor.type] )
+      } ) );
+      return false;
+    }
+  }
+
+  // endregion
+
+  // region Data Cleaning
+
+  /** @inheritdoc */
+  static cleanData( source, options ) {
+    this._cleanData( source, options );
+    return super.cleanData( source, options );
+  }
+
+  /**
+   * Performs cleaning without calling DataModel.cleanData.
+   * @param {object} [source]         The source data
+   * @param {object} [options]     Additional options (see DataModel.cleanData)
+   * @protected
+   */
+  static _cleanData( source, options ) {
+    for ( const template of this._schemaTemplates ) {
+      template._cleanData( source, options );
+    }
+  }
+
+  // endregion
+
+  // region Data Validation
+
+  /** @inheritdoc */
+  validate( options={} ) {
+    return super.validate( options );
+  }
+
+  /** @inheritdoc */
+  static validateJoint( data ) {
+    this._validateJoint( data );
+    return super.validateJoint( data );
+  }
+
+  /**
+   * Performs joint validation without calling DataModel.validateJoint.
+   * @param {object} data     The source data
+   * @throws                  An error if a validation failure is detected
+   * @protected
+   */
+  static _validateJoint( data ) {
+    for ( const template of this._schemaTemplates ) {
+      template._validateJoint( data );
+    }
+  }
+
+  // endregion
+
+  // region Data Preparation
+
+
+  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
+    if ( !this.parent ) return;
+
+    this.parent.statuses.clear();
+
+    const changes = Array.from( this.parent.allApplicableEffects()
+      .filter( effect => effect.active )
+      .flatMap( effect => {
+        effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
+        return effect.changes.map( change => ( {
+          ...foundry.utils.deepClone( change ),
+          effect,
+          priority: change.priority ?? ( change.mode * 10 )
+        } ) );
+      } ) )
+      .sort( ( a, b ) => a.priority - b.priority );
+
+    const overrides = changes.reduce( ( acc, change ) => {
+      if ( keys.includes( change.key ) !== ignore ) {
+        Object.assign( acc, change.effect.apply( this.parent, change ) );
+      }
+      return acc;
+    }, {} );
+
+    this.overrides = foundry.utils.expandObject( overrides );
+  }
+
+  /**
+   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
+   * but before active effects are applied.
+   * Meant for data/fields that depend on information of embedded documents.
+   * Apply transformations or derivations to the values of the source data object.
+   * Compute data fields whose values are not stored to the database.
+   */
+  prepareDocumentDerivedData() {}
+
+  // endregion
+
+  // region Data Shimming
+
+  /** @inheritdoc */
+  static shimData( data, options ) {
+    this._shimData( data, options );
+    return super.shimData( data, options );
+  }
+
   /* -------------------------------------------- */
-  /*  Helpers                                     */
-  /* -------------------------------------------- */
+
+  /**
+   * Performs shimming without calling DataModel.shimData.
+   * @param {object} data         The source data
+   * @param {object} [options]    Additional options (see DataModel.shimData)
+   * @protected
+   */
+  static _shimData( data, options ) {
+    for ( const template of this._schemaTemplates ) {
+      template._shimData( data, options );
+    }
+  }
+
+  // endregion
+
+  // region Macros
+
+  /**
+   * Get the default command for script macros of the containing item document.
+   * @param {object} [options]  Additional options to modify the command.
+   * @returns {string}                The default command for the macro.
+   */
+  getDefaultMacroCommand( options = {} ) {
+    return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
+  }
+
+  // endregion
+
+  // region Rolling
+
+  getTemplatesRollData() {
+    const rollData = {};
+
+    for ( const template of this.constructor._schemaTemplates ) {
+      if ( template.prototype.hasOwnProperty( "getRollData" ) ) {
+        Object.assign(
+          rollData,
+          template.prototype.getRollData.call( this ) || {},
+        );
+      }
+    }
+
+    return rollData;
+  }
+
+  // endregion
+
+  // region Methods
 
   /** @override */
   async toEmbed( config, options={} ) {
@@ -448,15 +431,27 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return container.children;
   }
 
-  // region Macros
+  // endregion
+
+  // region Migration
+
+  /** @inheritdoc */
+  static migrateData( source ) {
+    this._migrateData( source );
+    return super.migrateData( source );
+  }
+
+  /* -------------------------------------------- */
 
   /**
-   * Get the default command for script macros of the containing item document.
-   * @param {object} [options]  Additional options to modify the command.
-   * @returns {string}                The default command for the macro.
+   * Performs migration without calling DataModel.migrateData.
+   * @param {object} source     The source data
+   * @protected
    */
-  getDefaultMacroCommand( options = {} ) {
-    return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
+  static _migrateData( source ) {
+    for ( const template of this._schemaTemplates ) {
+      template._migrateData( source );
+    }
   }
 
   // endregion

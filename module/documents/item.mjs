@@ -228,6 +228,7 @@ export default class ItemEd extends Item {
   /** @inheritDoc */
   getRollData() {
     let rollData = { ...super.getRollData() };
+
     if ( this.system.getRollData instanceof Function ) Object.assign( rollData, this.system.getRollData() );
 
     rollData.flags = { ...this.flags };
