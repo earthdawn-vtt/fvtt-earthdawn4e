@@ -68,7 +68,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _immiscible = new Set( [ "length", "mixed", "name", "prototype", "cleanData", "_cleanData",
     "_initializationOrder", "validateJoint", "_validateJoint", "migrateData", "_migrateData",
-    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES" ] );
+    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES", "getRollData" ] );
 
   /**
    * Metadata that describes this DataModel.
@@ -210,7 +210,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
       // take all instance methods and fields from template and mix in to base class
       for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template.prototype ) ) ) {
-        if (  [ "constructor" ].includes( key )  ) continue;
+        if (  [ "constructor" ].includes( key ) || this._immiscible.has( key )  ) continue;
         Object.defineProperty( Base.prototype, key, descriptor );
       }
     }
