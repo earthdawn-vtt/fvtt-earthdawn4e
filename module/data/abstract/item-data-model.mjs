@@ -100,12 +100,7 @@ export default class ItemDataModel extends SystemDataModel {
    * @returns {object} An object to evaluate rolls and {@link FormulaField}s against.
    */
   getRollData() {
-    return {
-      ...super.getRollData(),
-      extras:         0,
-      extraS:         0,
-      extraSuccesses: 0,
-    };
+    return super.getRollData();
   }
 
   // endregion
