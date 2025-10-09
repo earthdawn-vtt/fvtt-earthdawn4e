@@ -1369,10 +1369,6 @@
                 }
               },
               "damage": {
-                "combatType": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
-                },
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -2162,7 +2158,7 @@
               }
             },
             "element": {
-              "subtype": {
+              "subType": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -2797,35 +2793,21 @@
             }
           }
         },
-        "ThreadLevel": {
+        "ThreadItemLevel": {
           "FIELDS": {
+            "abilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "activeEffects": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
             "deed": {
-              "description": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "isCompleted": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
-              "isRequired": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              }
-            },
-            "effects": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "isActive": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
-            "isAnalyzed": {
+            "effect": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -2834,18 +2816,20 @@
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
+              "hint":                              "TODO: Add translation",
               "isKnown": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
-              "isRequired": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
-              },
+              "label":                             "TODO: Add translation",
               "question": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               }
+            },
+            "knownToPlayer": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "level": {
               "hint":                              "TODO: Add translation",
@@ -2868,6 +2852,38 @@
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               }
+            }
+          }
+        },
+        "TruePattern": {
+          "FIELDS": {
+            "attachedThreads": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "enchantmentPattern": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "knownToPlayer": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "maxThreads": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "mysticalDefense": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "threadItemLevels": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         }
@@ -3023,12 +3039,6 @@
         "unconsciousDeathRate":                    "TODO: Add translation",
         "woundThreshold":                          "TODO: Add translation"
       },
-      "ChooseAdderSubstitute": {
-        "adderHint":                               "TODO: Add translation",
-        "adderLabel":                              "TODO: Add translation",
-        "replacementHint":                         "TODO: Add translation",
-        "replacementLabel":                        "TODO: Add translation"
-      },
       "Configs": {
         "Constraints": {
           "hint":                                  "TODO: Add translation",
@@ -3042,11 +3052,6 @@
       "DeleteFavorite": {
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
-      },
-      "DeletePower": {
-        "confirmRemove":                           "TODO: Add translation",
-        "maneuver":                                "TODO: Add translation",
-        "power":                                   "TODO: Add translation"
       },
       "Header": {
         "activeUser":                              "TODO: Add translation",
@@ -3159,8 +3164,7 @@
       },
       "RollPrompt": {
         "Title": {
-          "attuneGrimoire":                        "TODO: Add translation",
-          "damage":                                "TODO: Add translation"
+          "attuneGrimoire":                        "TODO: Add translation"
         },
         "devotion":                                "TODO: Add translation",
         "devotionStep":                            "TODO: Add translation",
@@ -3187,10 +3191,10 @@
         "attuneMatrix":                            "TODO: Add translation",
         "buttonSelect":                            "TODO: Add translation",
         "characterGeneration":                     "TODO: Add translation",
-        "chooseAdderSubstitute":                   "TODO: Add translation",
         "chooseDiscipline":                        "TODO: Add translation",
         "chooseTier":                              "TODO: Add translation",
         "classAdvancement":                        "TODO: Add translation",
+        "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "TODO: Add translation",
         "halfMagicDiscipline":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
@@ -3322,11 +3326,16 @@
         "sourceDiscipline":                        "TODO: Add translation"
       },
       "PhysicalItems": {
-        "addThreadLevel":                          "TODO: Add translation",
-        "deleteThreadLevel":                       "TODO: Add translation",
+        "addThreadItemLevel":                      "TODO: Add translation",
+        "addTruePattern":                          "TODO: Add translation",
+        "createThreadItemThread":                  "TODO: Add translation",
+        "deleteThreadItemLevel":                   "TODO: Add translation",
+        "deleteTruePattern":                       "TODO: Add translation",
         "hasTruePattern":                          "TODO: Add translation",
         "itemHistoryCheck":                        "TODO: Add translation",
         "researchCheck":                           "TODO: Add translation",
+        "threadItemLevelHeader":                   "TODO: Add translation",
+        "truePatternBaseInformation":              "TODO: Add translation",
         "weaveThreadCheck":                        "TODO: Add translation"
       },
       "Spell": {
@@ -3646,7 +3655,7 @@
         "details":                                 "TODO: Add translation",
         "effects":                                 "TODO: Add translation",
         "general":                                 "TODO: Add translation",
-        "thread":                                  "TODO: Add translation"
+        "true-pattern":                            "TODO: Add translation"
       },
       "LpHistory": {
         "chronological":                           "TODO: Add translation",
@@ -3660,19 +3669,20 @@
     "ToolTips": {
       "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
       "addSpell":                                  "TODO: Add translation",
-      "addThreadLevel":                            "TODO: Add translation",
+      "addThreadItemLevel":                        "TODO: Add translation",
       "attuneMatrix":                              "TODO: Add translation",
       "castSpell":                                 "TODO: Add translation",
       "castSpellFromMatrix":                       "TODO: Add translation",
-      "deleteManeuver":                            "TODO: Add translation",
-      "deletePower":                               "TODO: Add translation",
-      "deleteThreadLevel":                         "TODO: Add translation",
+      "deleteThreadItemLevel":                     "TODO: Add translation",
       "extraThreads":                              "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",
       "numThreadsJustWoven":                       "TODO: Add translation",
       "numThreadsWovenTotal":                      "TODO: Add translation",
       "researchCheck":                             "TODO: Add translation",
       "scrollToSourceMessage":                     "TODO: Add translation",
+      "threadItemAddTruePattern":                  "TODO: Add translation",
+      "threadItemDeleteTruePattern":               "TODO: Add translation",
+      "threadItemWeaveNewThread":                  "TODO: Add translation",
       "weaveThreadCheck":                          "TODO: Add translation"
     },
     "Update": {
