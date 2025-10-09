@@ -2799,6 +2799,10 @@
         },
         "ThreadItemLevel": {
           "FIELDS": {
+            "abilities": {
+              "hint":                              "Fähigkeiten die auf dieser Stufe freigeschaltet werden",
+              "label":                             "Fähigkeiten"
+            },
             "activeEffects": {
               "hint":                              "Active Effects die auf dieser Stufe aktiv sind",
               "label":                             "Active Effects"
@@ -2826,6 +2830,10 @@
                 "hint":                            "Frage die gestellt werden muss um einen Faden zu weben",
                 "label":                           "Frage"
               }
+            },
+            "knownToPlayer": {
+              "hint":                              "Werden die Daten aus diesem Rang nicht-GMs angezeigt?",
+              "label":                             "Rang bekannt"
             },
             "level": {
               "hint":                              "Rang auf dem ein Faden sein muss um die Effekte zu nutzen",
@@ -2860,6 +2868,10 @@
             "enchantmentPattern": {
               "hint":                              "Struktur zur Erstellung von Verzauberungen",
               "label":                             "Verzauberungsstruktur"
+            },
+            "knownToPlayer": {
+              "hint":                              "Werden die Daten dieser Wahren Struktur nicht-GMs angezeigt?",
+              "label":                             "Wahre Struktur bekannt"
             },
             "maxThreads": {
               "hint":                              "Maximale Anzahl an Fäden die zur wahren Struktur gewoben werden können",
