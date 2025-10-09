@@ -167,4 +167,15 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     if ( !learnedItem.system.tier )await learnedItem.system.chooseTier();
     return learnedItem;
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
 }

@@ -361,4 +361,16 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
         return undefined;
     }
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

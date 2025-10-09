@@ -13,11 +13,17 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
   LpIncreaseTemplate,
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.IncreasableAbility",
   ];
+
+  // endregion
+
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -33,9 +39,9 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Getters                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Getters
 
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
@@ -53,25 +59,21 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
     return super.rankFinal + this.level;
   }
 
-  /* -------------------------------------------- */
-  /*  Legend                                      */
-  /* -------------------------------------------- */
+  // endregion
 
-  async adjustLevel( amount ) {
-    const currentLevel = this.level;
-    const updatedItem = await this.parent.update( {
-      "system.level": currentLevel + amount,
-    } );
+  // region Rolling
 
-    if ( isEmpty( updatedItem ) ) {
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
-      );
-      return;
-    }
-
-    return updatedItem;
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      level: this.level,
+      rank:  this.rankFinal,
+    };
   }
+
+  // endregion
+
+  // region LP Tracking
 
   /**
    * @inheritDoc
@@ -131,13 +133,40 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
     return learnedItem;
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Methods
+
+  /**
+   * Adjusts the level of the ability by adding the specified amount (positive or negative).
+   * @param {number} amount The amount to adjust the level by (positive or negative).
+   * @returns {Promise<ItemEd|undefined>} The updated item if successful, otherwise undefined.
+   */
+  async adjustLevel( amount ) {
+    const currentLevel = this.level;
+    const updatedItem = await this.parent.update( {
+      "system.level": currentLevel + amount,
+    } );
+
+    if ( isEmpty( updatedItem ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    return updatedItem;
+  }
+
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
 }

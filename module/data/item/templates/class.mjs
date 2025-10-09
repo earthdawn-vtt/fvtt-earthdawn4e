@@ -54,7 +54,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   // endregion
 
-  // region Properties
+  // region Getters
 
   /**
    * The tier of the current level. Returns an empty string if no level is found.
@@ -95,6 +95,18 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   /** @inheritDoc */
   get requiredLpToLearn() {
     return 0;
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      level:  this.level,
+      circle: this.level,
+    };
   }
 
   // endregion

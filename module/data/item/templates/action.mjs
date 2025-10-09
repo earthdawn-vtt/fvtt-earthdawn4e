@@ -11,11 +11,17 @@ export default class ActionTemplate extends ItemDataModel.mixin(
   RollableTemplate,
 ) {
 
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
     "ED.Data.Item.Action",
   ];
+
+  // endregion
+
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -37,13 +43,29 @@ export default class ActionTemplate extends ItemDataModel.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      strain:       this.strain,
+      strainAmount: this.strain,
+      strainDamage: this.strain,
+    };
+  }
+
+  // endregion
+
+  // region Migration
 
   /** @inheritDoc */
   static migrateData( source ) {
     super.migrateData( source );
     // specific migration functions
   }
+
+  // endregion
+
 }

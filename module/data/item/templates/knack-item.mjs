@@ -32,13 +32,13 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
   // endregion
 
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceItem: new EdIdField(),
+      sourceItem:       new EdIdField(),
       minLevel:         new fields.NumberField( {
         required: true,
         positive: true,
@@ -53,7 +53,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
       requirements:     new fields.ArrayField(
         new fields.TypedSchemaField( ConstraintData.TYPES )
       ),
-      restrictions:   new fields.ArrayField(
+      restrictions:     new fields.ArrayField(
         new fields.TypedSchemaField( ConstraintData.TYPES )
       ),
     } );
@@ -73,6 +73,19 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     const newEdid = data?.system?.sourceItem;
 
     return newEdid && newEdid !== this.sourceItem;
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      knackMinLevel:   this.minLevel,
+      knackMinRank:    this.minLevel,
+      knackLpCost:     this.lpCost,
+    };
   }
 
   // endregion

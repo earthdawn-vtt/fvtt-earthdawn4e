@@ -93,7 +93,18 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
         required: true,
         initial:  false,
       } ),
-            
     } );
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

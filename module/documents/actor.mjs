@@ -1204,7 +1204,7 @@ export default class ActorEd extends Actor {
   getRollData() {
     let rollData;
     rollData = { ...super.getRollData() };
-    if ( this.system.getRollData ) Object.assign( rollData, this.system.getRollData() );
+    if ( this.system.getRollData instanceof Function ) Object.assign( rollData, this.system.getRollData() );
 
     rollData.flags = { ...this.flags };
     rollData.name = this.name;

@@ -13,11 +13,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Discipline",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -42,9 +38,28 @@ export default class DisciplineData extends ClassTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Discipline",
+  ];
+
+  // endregion
+
+  // region Getters
+
+  /**
+   * Whether this discipline is a spellcasting discipline.
+   * Automatically determined by checking if the discipline has a casting type.
+   * @type {boolean}
+   */
+  get isSpellcasting() {
+    return !!this.getCastingType();
+  }
 
   /** @inheritDoc */
   get increaseData() {
@@ -291,6 +306,10 @@ export default class DisciplineData extends ClassTemplate.mixin(
     ];
   }
 
+  // endregion
+
+  // region LP Tracking
+
   /**
    * Get all talents associated with this discipline that are of the given category.
    * @param {keyof typeof ED4E.talentCategory} category   The category to filter for.
@@ -307,15 +326,6 @@ export default class DisciplineData extends ClassTemplate.mixin(
    */
   getTalentsByTier( tier ) {
     return this.talentsFromDiscipline.filter( talent => talent.system.tier === tier );
-  }
-
-  /**
-   * Whether this discipline is a spellcasting discipline.
-   * Automatically determined by checking if the discipline has a casting type.
-   * @type {boolean}
-   */
-  get isSpellcasting() {
-    return !!this.getCastingType();
   }
 
   /** @inheritDoc */
@@ -341,4 +351,17 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
     return learnedDiscipline;
   }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
 }

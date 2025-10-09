@@ -203,4 +203,15 @@ export default class SpellKnackData extends SpellData.mixin(
 
   // endregion
 
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

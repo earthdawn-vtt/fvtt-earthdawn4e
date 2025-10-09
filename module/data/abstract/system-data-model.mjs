@@ -21,6 +21,13 @@ const { TextEditor } = foundry.applications.ux;
  */
 export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
+  /**
+   * @typedef {object} SystemDataModelMetadata
+   * @property {typeof DataModel} [systemFlagsModel]  Model that represents flags data within the ed4e namespace.
+   */
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     "ED.Data.General",
@@ -32,16 +39,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _systemType;
 
-  /* -------------------------------------------- */
-
   /**
    * Base templates used for construction.
    * @type {*[]}
    * @private
    */
   static _schemaTemplates = [];
-
-  /* -------------------------------------------- */
 
   /**
    * The field names of the base templates used for construction.
@@ -58,8 +61,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return fieldNames;
   }
 
-  /* -------------------------------------------- */
-
   /**
    * A list of properties that should not be mixed-in to the final type.
    * @type {Set<string>}
@@ -67,14 +68,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   static _immiscible = new Set( [ "length", "mixed", "name", "prototype", "cleanData", "_cleanData",
     "_initializationOrder", "validateJoint", "_validateJoint", "migrateData", "_migrateData",
-    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES" ] );
-
-  /* -------------------------------------------- */
-
-  /**
-   * @typedef {object} SystemDataModelMetadata
-   * @property {typeof DataModel} [systemFlagsModel]  Model that represents flags data within the ed4e namespace.
-   */
+    "shimData", "_shimData", "defineSchema", "LOCALIZATION_PREFIXES", "getRollData" ] );
 
   /**
    * Metadata that describes this DataModel.
@@ -84,21 +78,58 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     systemFlagsModel: null
   } );
 
+  // endregion
+
+  // Static Methods
+
+  /** @inheritdoc */
+  static *_initializationOrder() {
+    for ( const template of this._schemaTemplates ) {
+      for ( const entry of template._initializationOrder() ) {
+        entry[1] = this.schema.get( entry[0] );
+        yield entry;
+      }
+    }
+    for ( const entry of this.schema.entries() ) {
+      if ( this._schemaTemplateFields.has( entry[0] ) ) continue;
+      yield entry;
+    }
+  }
+
+  // endregion
+
+  // region Schema
+
+  /** @inheritdoc */
+  static defineSchema() {
+    const schema = {};
+    for ( const template of this._schemaTemplates ) {
+      if (  !template.defineSchema ) {
+        throw new Error( `Invalid ed4e template mixin ${template} defined on class ${this.constructor}` );
+      }
+      this.mergeSchema( schema, template.defineSchema(  ) );
+    }
+    return schema;
+  }
+
+  /**
+   * Merge two schema definitions together as well as possible.
+   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
+   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
+   * @returns {DataModel}  Fully merged schema.
+   */
+  static mergeSchema( a, b ) {
+    Object.assign( a, b );
+    return a;
+  }
+
+  // endregion
+
+  // region Getters
+
   get metadata() {
     return this.constructor.metadata;
   }
-
-  /* -------------------------------------------- */
-
-  /*   /!**
-   * Filters available for this item type when using the compendium browser.
-   * @returns {CompendiumBrowserFilterDefinition}
-   *!/
-  static get compendiumBrowserFilters() {
-    return new Map();
-  } */
-
-  /* -------------------------------------------- */
 
   /**
    * Key path to the description used for default embeds.
@@ -107,8 +138,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   get embeddedDescriptionKeyPath() {
     return null;
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Get the actor that contains this data model or undefined if it is not embedded.
@@ -138,78 +167,84 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return this.parent instanceof foundry.abstract.Document ? this.parent : this.parent.parentDocument;
   }
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /** @inheritdoc */
-  static defineSchema(  ) {
-    const schema = {};
-    for ( const template of this._schemaTemplates ) {
-      if (  !template.defineSchema ) {
-        throw new Error( `Invalid ed4e template mixin ${template} defined on class ${this.constructor}` );
-      }
-      this.mergeSchema( schema, template.defineSchema(  ) );
-    }
-    return schema;
-  }
-
-  /* -------------------------------------------- */
+  // region Mixins
 
   /**
-   * Merge two schema definitions together as well as possible.
-   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
-   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
-   * @returns {DataModel}  Fully merged schema.
+   * Mix multiple templates with the base type.
+   * @param {...*} templates            Template classes to mix.
+   * @returns {typeof SystemDataModel}  Final prepared type.
    */
-  static mergeSchema( a, b ) {
-    Object.assign( a, b );
-    return a;
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Cleaning                               */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static cleanData( source, options ) {
-    this._cleanData( source, options );
-    return super.cleanData( source, options );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs cleaning without calling DataModel.cleanData.
-   * @param {object} [source]         The source data
-   * @param {object} [options]     Additional options (see DataModel.cleanData)
-   * @protected
-   */
-  static _cleanData( source, options ) {
-    for ( const template of this._schemaTemplates ) {
-      template._cleanData( source, options );
-    }
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Initialization                         */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static *_initializationOrder() {
-    for ( const template of this._schemaTemplates ) {
-      for ( const entry of template._initializationOrder() ) {
-        entry[1] = this.schema.get( entry[0] );
-        yield entry;
+  static mixin( ...templates ) {
+    for ( const template of templates ) {
+      if ( !( template.prototype instanceof SystemDataModel ) ) {
+        throw new Error( `${template.name} is not a subclass of SystemDataModel` );
       }
     }
-    for ( const entry of this.schema.entries() ) {
-      if ( this._schemaTemplateFields.has( entry[0] ) ) continue;
-      yield entry;
+
+    // create a new empty base class to mix in all templates
+    const Base = class extends this {};
+
+    // add the immutable information which templates the new class is made of
+    Object.defineProperty( Base, "_schemaTemplates", {
+      value:        Object.seal( [ ...this._schemaTemplates, ...templates ] ),
+      writable:     false,
+      configurable: false
+    } );
+
+    // Special handling for LOCALIZATION_PREFIXES to ensure they're combined rather than overwritten
+    const allPrefixes = new Set( [ ...( this.LOCALIZATION_PREFIXES || [] ) ] );
+
+    for ( const template of templates ) {
+      // take all static methods and fields from template and mix in to base class
+      for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template ) ) ) {
+        if ( this._immiscible.has( key ) ) continue;
+        Object.defineProperty( Base, key, descriptor );
+      }
+
+      // Collect all localization prefixes for consolidation
+      if ( template.LOCALIZATION_PREFIXES ) {
+        template.LOCALIZATION_PREFIXES.forEach( prefix => allPrefixes.add( prefix ) );
+      }
+
+      // take all instance methods and fields from template and mix in to base class
+      for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template.prototype ) ) ) {
+        if (  [ "constructor" ].includes( key ) || this._immiscible.has( key )  ) continue;
+        Object.defineProperty( Base.prototype, key, descriptor );
+      }
     }
+
+    Object.defineProperty( Base, "LOCALIZATION_PREFIXES", {
+      value:        [ ...allPrefixes ],
+      writable:     true,
+      configurable: true
+    } );
+
+    return Base;
   }
 
-  /* -------------------------------------------- */
-  /*  Socket Event Handlers                       */
-  /* -------------------------------------------- */
+  /**
+   * Test whether a SystemDataModel includes a certain template.
+   * @param {SystemDataModel} template  The template to test.
+   * @returns {boolean}                 True if the template is included, false otherwise.
+   */
+  static hasMixin( template ) {
+    return this._schemaTemplates.includes( template ) || false;
+  }
+
+  /**
+   * Test whether this SystemDataModel includes a certain template.
+   * @param {SystemDataModel} template  The template to test.
+   * @returns {boolean}                  True if the template is included, false otherwise.
+   */
+  hasMixin( template ) {
+    return this.constructor.hasMixin( template );
+  }
+
+  // endregion
+
+  // region Life Cycle Events
 
   /**
    * Pre-creation logic for this system data.
@@ -233,24 +268,42 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  /* -------------------------------------------- */
-  /*  Data Validation                             */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Data Cleaning
+
+  /** @inheritdoc */
+  static cleanData( source, options ) {
+    this._cleanData( source, options );
+    return super.cleanData( source, options );
+  }
+
+  /**
+   * Performs cleaning without calling DataModel.cleanData.
+   * @param {object} [source]         The source data
+   * @param {object} [options]     Additional options (see DataModel.cleanData)
+   * @protected
+   */
+  static _cleanData( source, options ) {
+    for ( const template of this._schemaTemplates ) {
+      template._cleanData( source, options );
+    }
+  }
+
+  // endregion
+
+  // region Data Validation
 
   /** @inheritdoc */
   validate( options={} ) {
     return super.validate( options );
   }
 
-  /* -------------------------------------------- */
-
   /** @inheritdoc */
   static validateJoint( data ) {
     this._validateJoint( data );
     return super.validateJoint( data );
   }
-
-  /* -------------------------------------------- */
 
   /**
    * Performs joint validation without calling DataModel.validateJoint.
@@ -264,6 +317,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
+  // endregion
 
   // region Data Preparation
 
@@ -306,31 +360,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // endregion
 
-
-  /* -------------------------------------------- */
-  /*  Data Migration                              */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  static migrateData( source ) {
-    this._migrateData( source );
-    return super.migrateData( source );
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Performs migration without calling DataModel.migrateData.
-   * @param {object} source     The source data
-   * @protected
-   */
-  static _migrateData( source ) {
-    for ( const template of this._schemaTemplates ) {
-      template._migrateData( source );
-    }
-  }
-
-  /* -------------------------------------------- */
+  // region Data Shimming
 
   /** @inheritdoc */
   static shimData( data, options ) {
@@ -352,88 +382,46 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  /* -------------------------------------------- */
-  /*  Mixins                                      */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Macros
 
   /**
-   * Mix multiple templates with the base type.
-   * @param {...*} templates            Template classes to mix.
-   * @returns {typeof SystemDataModel}  Final prepared type.
+   * Get the default command for script macros of the containing item document.
+   * @param {object} [options]  Additional options to modify the command.
+   * @returns {string}                The default command for the macro.
    */
-  static mixin( ...templates ) {
-    for ( const template of templates ) {
-      if ( !( template.prototype instanceof SystemDataModel ) ) {
-        throw new Error( `${template.name} is not a subclass of SystemDataModel` );
+  getDefaultMacroCommand( options = {} ) {
+    return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritdoc */
+  getRollData() {
+    return {};
+  }
+
+  getTemplatesRollData() {
+    const rollData = {};
+
+    for ( const template of this.constructor._schemaTemplates ) {
+      if ( template.prototype.hasOwnProperty( "getRollData" ) ) {
+        Object.assign(
+          rollData,
+          template.prototype.getRollData.call( this ) || {},
+        );
       }
     }
 
-    // create a new empty base class to mix in all templates
-    const Base = class extends this {};
-
-    // add the immutable information which templates the new class is made of
-    Object.defineProperty( Base, "_schemaTemplates", {
-      value:        Object.seal( [ ...this._schemaTemplates, ...templates ] ),
-      writable:     false,
-      configurable: false
-    } );
-
-    // Special handling for LOCALIZATION_PREFIXES to ensure they're combined rather than overwritten
-    const allPrefixes = new Set( [ ...( this.LOCALIZATION_PREFIXES || [] ) ] );
-
-    for ( const template of templates ) {
-      // take all static methods and fields from template and mix in to base class
-      for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template ) ) ) {
-        if ( this._immiscible.has( key ) ) continue;
-        Object.defineProperty( Base, key, descriptor );
-      }
-
-      // Collect all localization prefixes for consolidation
-      if ( template.LOCALIZATION_PREFIXES ) {
-        template.LOCALIZATION_PREFIXES.forEach( prefix => allPrefixes.add( prefix ) );
-      }
-
-      // take all instance methods and fields from template and mix in to base class
-      for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template.prototype ) ) ) {
-        if (  [ "constructor" ].includes( key )  ) continue;
-        Object.defineProperty( Base.prototype, key, descriptor );
-      }
-    }
-
-    Object.defineProperty( Base, "LOCALIZATION_PREFIXES", {
-      value:        [ ...allPrefixes ],
-      writable:     true,
-      configurable: true
-    } );
-
-    return Base;
+    return rollData;
   }
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /**
-   * Test whether a SystemDataModel includes a certain template.
-   * @param {SystemDataModel} template  The template to test.
-   * @returns {boolean}                 True if the template is included, false otherwise.
-   */
-  static hasMixin( template ) {
-    return this._schemaTemplates.includes( template ) || false;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Test whether this SystemDataModel includes a certain template.
-   * @param {SystemDataModel} template  The template to test.
-   * @returns {boolean}                  True if the template is included, false otherwise.
-   */
-  hasMixin( template ) {
-    return this.constructor.hasMixin( template );
-  }
-
-  /* -------------------------------------------- */
-  /*  Helpers                                     */
-  /* -------------------------------------------- */
+  // region Methods
 
   /** @override */
   async toEmbed( config, options={} ) {
@@ -448,15 +436,27 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     return container.children;
   }
 
-  // region Macros
+  // endregion
+
+  // region Migration
+
+  /** @inheritdoc */
+  static migrateData( source ) {
+    this._migrateData( source );
+    return super.migrateData( source );
+  }
+
+  /* -------------------------------------------- */
 
   /**
-   * Get the default command for script macros of the containing item document.
-   * @param {object} [options]  Additional options to modify the command.
-   * @returns {string}                The default command for the macro.
+   * Performs migration without calling DataModel.migrateData.
+   * @param {object} source     The source data
+   * @protected
    */
-  getDefaultMacroCommand( options = {} ) {
-    return `await foundry.applications.ui.Hotbar.toggleDocumentSheet("${this.parent.uuid}");`;
+  static _migrateData( source ) {
+    for ( const template of this._schemaTemplates ) {
+      template._migrateData( source );
+    }
   }
 
   // endregion

@@ -1,4 +1,3 @@
- 
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
@@ -326,4 +325,16 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     } );
     return true;
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

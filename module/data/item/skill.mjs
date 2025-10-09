@@ -141,4 +141,16 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
   async increase() {
     return super.increase();
   }
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

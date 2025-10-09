@@ -41,8 +41,8 @@ export default class ItemEd extends Item {
    * @type {string}
    */
   get lpLearningDescription() {
-    return this.system.learnable ?
-      game.i18n.format(
+    return this.system.learnable
+      ? game.i18n.format(
         "ED.Actor.LpTracking.Spendings.learningTransactionDescription",
         {
           itemName: this.name,
@@ -223,6 +223,27 @@ export default class ItemEd extends Item {
 
   // endregion
 
+  // region Rolls
+
+  /** @inheritDoc */
+  getRollData() {
+    let rollData = {
+      ...super.getRollData(),
+      extras:         0,
+      extraS:         0,
+      extraSuccesses: 0,
+    };
+
+    if ( this.system.getRollData instanceof Function ) Object.assign( rollData, this.system.getRollData() );
+
+    rollData.flags = { ...this.flags };
+    rollData.name = this.name;
+
+    return rollData;
+  }
+
+  // endregion
+
   // region Earthdawn Methods
 
   /**
@@ -321,9 +342,9 @@ export default class ItemEd extends Item {
   static migrateData( source ) {
   // Skip migration for partial updates or non-complete documents
   // A complete document should have fundamental properties like name, type, etc.
-    const isPartialUpdate = !source.name || 
-                          !source.type || 
-                          ( source.system && Object.keys( source.system ).length <= 2 );
+    const isPartialUpdate = !source.name 
+                          || !source.type 
+                          || ( source.system && Object.keys( source.system ).length <= 2 );
                           
     // Skip if this looks like a partial update rather than a complete document
     if ( isPartialUpdate ) {

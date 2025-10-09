@@ -218,4 +218,15 @@ export default class QuestorData extends ClassTemplate.mixin(
   }
 
   // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
 }
