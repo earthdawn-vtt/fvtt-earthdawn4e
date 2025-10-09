@@ -83,7 +83,6 @@
       "placeholderBlankSelectOption":              "---"
     },
     "Actor": {
-      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attributeName":                           "Attribute",
         "attributeStep":                           "Step",
@@ -2797,59 +2796,47 @@
             }
           }
         },
-        "ThreadLevel": {
+        "ThreadItemLevel": {
           "FIELDS": {
+            "abilities": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "activeEffects": {
-              "hint":                              "Active effects at this thread level",
-              "label":                             "Active Thread Effects"
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "deed": {
-              "description": {
-                "hint":                            "Description of the deed required to unlock the thread",
-                "label":                           "Deed Description"
-              },
-              "isCompleted": {
-                "hint":                            "Is this deed completed?",
-                "label":                           "Deed Completed"
-              },
-              "isRequired": {
-                "hint":                            "Is this deed required to use the thread?",
-                "label":                           "Required Deed"
-              }
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
-            "effects": {
-              "hint":                              "Effects unlocked at this thread level",
-              "label":                             "Thread Effects"
-            },
-            "isActive": {
-              "hint":                              "Is this thread level active?",
-              "label":                             "Active"
-            },
-            "isAnalyzed": {
-              "hint":                              "Is this thread level analyzed?",
-              "label":                             "Analyzed"
+            "effect": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "keyKnowledge": {
               "answer": {
-                "hint":                            "Answer required to bind the thread",
-                "label":                           "Thread Answer"
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               },
+              "hint":                              "TODO: Add translation",
               "isKnown": {
-                "hint":                            "Is this knowledge known?",
-                "label":                           "Knowledge Known"
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               },
-              "isRequired": {
-                "hint":                            "Is this knowledge required?",
-                "label":                           "Required Knowledge"
-              },
+              "label":                             "TODO: Add translation",
               "question": {
-                "hint":                            "Question that must be answered to bind the thread",
-                "label":                           "Thread Question"
+                "hint":                            "TODO: Add translation",
+                "label":                           "TODO: Add translation"
               }
             },
+            "knownToPlayer": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "level": {
-              "hint":                              "Level of the thread",
-              "label":                             "Thread Level"
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         },
@@ -2868,6 +2855,38 @@
                 "hint":                            "Number of threads required for the spell",
                 "label":                           "Required Threads"
               }
+            }
+          }
+        },
+        "TruePattern": {
+          "FIELDS": {
+            "attachedThreads": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "enchantmentPattern": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "knownToPlayer": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "maxThreads": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "mysticalDefense": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "threadItemLevels": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "tier": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             }
           }
         }
@@ -3191,6 +3210,7 @@
         "chooseDiscipline":                        "Choose Discipline",
         "chooseTier":                              "Choose Circle",
         "classAdvancement":                        "Class Advancement",
+        "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "Draw Weapon",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
@@ -3322,11 +3342,16 @@
         "sourceDiscipline":                        "Source Discipline"
       },
       "PhysicalItems": {
-        "addThreadLevel":                          "Add a Thread Rank",
-        "deleteThreadLevel":                       "Remove the Last (Highest) Thread Rank",
+        "addThreadItemLevel":                      "TODO: Add translation",
+        "addTruePattern":                          "TODO: Add translation",
+        "createThreadItemThread":                  "TODO: Add translation",
+        "deleteThreadItemLevel":                   "TODO: Add translation",
+        "deleteTruePattern":                       "TODO: Add translation",
         "hasTruePattern":                          "This item has a true magical pattern",
         "itemHistoryCheck":                        "Item History Check",
         "researchCheck":                           "Research Check",
+        "threadItemLevelHeader":                   "TODO: Add translation",
+        "truePatternBaseInformation":              "TODO: Add translation",
         "weaveThreadCheck":                        "Weave Thread Check"
       },
       "Spell": {
@@ -3646,7 +3671,7 @@
         "details":                                 "Details",
         "effects":                                 "Effects",
         "general":                                 "General",
-        "thread":                                  "Threads"
+        "true-pattern":                            "TODO: Add translation"
       },
       "LpHistory": {
         "chronological":                           "Chronological",
@@ -3660,19 +3685,22 @@
     "ToolTips": {
       "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
       "addSpell":                                  "Create a new spell and add it to this character's Grimoire.",
-      "addThreadLevel":                            "Add a thread rank.",
+      "addThreadItemLevel":                        "TODO: Add translation",
       "attuneMatrix":                              "Attune Matrix",
       "castSpell":                                 "Cast spell freely",
       "castSpellFromMatrix":                       "Cast spell using a matrix",
       "deleteManeuver":                            "TODO: Add translation",
       "deletePower":                               "TODO: Add translation",
-      "deleteThreadLevel":                         "Remove the last (highest) thread rank.",
+      "deleteThreadItemLevel":                     "TODO: Add translation",
       "extraThreads":                              "Extra Threads",
       "itemHistoryCheck":                          "Roll Item History for this thread item.",
       "numThreadsJustWoven":                       "Threads just woven",
       "numThreadsWovenTotal":                      "Total threads woven",
       "researchCheck":                             "Roll Research to uncover secrets of this thread item.",
       "scrollToSourceMessage":                     "Scroll to the chat message that generated this",
+      "threadItemAddTruePattern":                  "TODO: Add translation",
+      "threadItemDeleteTruePattern":               "TODO: Add translation",
+      "threadItemWeaveNewThread":                  "TODO: Add translation",
       "weaveThreadCheck":                          "Roll Thread Weaving to increase the thread rank."
     },
     "Update": {

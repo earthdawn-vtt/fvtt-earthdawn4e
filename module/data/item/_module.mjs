@@ -62,7 +62,6 @@ export {default as LpIncreaseTemplate} from "./templates/lp-increase.mjs";
 export {default as MatrixTemplate} from "./templates/matrix.mjs";
 export {default as PhysicalItemTemplate} from "./templates/physical-item.mjs";
 export {default as TargetTemplate} from "./templates/targeting.mjs";
-export {default as ThreadTemplate} from "./templates/threads.mjs";
 
 export const config = {
   armor:          ArmorData,

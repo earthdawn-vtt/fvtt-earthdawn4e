@@ -1,5 +1,7 @@
 import ED4E from "../../config/_module.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
+import TruePatternData from "../../data/thread/true-pattern.mjs";
+import PromptFactory from "../global/prompt-factory.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
@@ -13,10 +15,12 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
-      addThreadLevel:     PhysicalItemSheetEd._onAddThreadLevel,
-      castSpell:          PhysicalItemSheetEd._onCastSpell,
-      deleteThreadLevel:  PhysicalItemSheetEd._onDeleteThreadLevel,
-      tailorToNamegiver:  PhysicalItemSheetEd._onTailorToNamegiver,
+      addThreadItemLevel:    PhysicalItemSheetEd._onAddThreadItemLevel,
+      addTruePattern:        PhysicalItemSheetEd._onAddTruePattern,
+      castSpell:             PhysicalItemSheetEd._onCastSpell,
+      deleteThreadItemLevel: PhysicalItemSheetEd._onDeleteThreadItemLevel,
+      deleteTruePattern:     PhysicalItemSheetEd._onDeleteTruePattern,
+      tailorToNamegiver:     PhysicalItemSheetEd._onTailorToNamegiver,
     },
   };
 
@@ -51,11 +55,11 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
       classes:  [ "effects", "scrollable" ]
     },
-    "thread": {
-      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/threads.hbs",
-      id:         "-thread",
-      classes:    [ "thread", "scrollable" ],
-      scrollable: [ "" ],
+    "true-pattern": {
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/true-pattern.hbs",
+      id:         "-true-pattern",
+      classes:    [ "true-pattern", "scrollable" ],
+      scrollable: [ "", "div.truePatternInputs", ],
     },
   };
 
@@ -66,7 +70,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         { id:    "general", },
         { id:    "details", },
         { id:    "effects", },
-        { id:    "thread", },
+        { id:    "true-pattern", },
       ],
       initial:     "general",
       labelPrefix: "ED.Tabs.ItemSheet",
@@ -95,7 +99,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
         break;
       case "effects":
         break;
-      case "thread":
+      case "true-pattern":
+        context.showTruePattern = this.document.system.truePattern !== null
+          && ( game.user.isGM || this.document.system.truePattern?.knownToPlayer );
         break;
     }
     return context;
@@ -156,20 +162,57 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
    * @type {ApplicationClickAction}
    * @this {PhysicalItemSheetEd}
    */
-  static async _onAddThreadLevel( event, target ) {
+  static async _onAddThreadItemLevel( event, target ) {
     event.preventDefault();
-    this.document.system.threadData.addLevel();
-    this.render();
+    await this.document.system.truePattern.addThreadItemLevel();
+    await this.render();
   }
 
   /**
    * @type {ApplicationClickAction}
    * @this {PhysicalItemSheetEd}
    */
-  static async _onDeleteThreadLevel( event, target ) {
+  static async _onAddTruePattern( event, target ) {
     event.preventDefault();
-    this.document.system.threadData.deleteLevel();
-    this.render();
+    await this.document.update( {
+      "system.truePattern": new TruePatternData(),
+    } );
+    await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onDeleteThreadItemLevel( event, target ) {
+    event.preventDefault();
+    const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
+      this.document.system.schema.fields.truePattern.fields.threadItemLevels.label,
+      event.shiftKey,
+    );
+    if ( !confirmedDelete ) return;
+
+    await this.document.system.truePattern.removeLastThreadItemLevel();
+    await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onDeleteTruePattern( event, target ) {
+    event.preventDefault();
+    const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
+      this.document.system.schema.fields.truePattern.label,
+      event.shiftKey,
+
+    );
+    if ( !confirmedDelete ) return;
+
+    await this.document.update( {
+      "system.truePattern": null,
+    } );
+    await this.render();
   }
 
   /**

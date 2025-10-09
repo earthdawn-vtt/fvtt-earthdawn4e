@@ -1,5 +1,5 @@
 import ED4E from "../../config/_module.mjs";
-import ThreadLevelData from "./thread-level.mjs";
+import ThreadItemLevelData from "./thread-item-level.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 export default class ThreadBaseData extends SparseDataModel {
@@ -66,7 +66,7 @@ export default class ThreadBaseData extends SparseDataModel {
       } ),
       levels:     new fields.ArrayField(
         new fields.EmbeddedDataField(
-          ThreadLevelData,
+          ThreadItemLevelData,
           {
             required: false,
             nullable: true,
@@ -88,7 +88,7 @@ export default class ThreadBaseData extends SparseDataModel {
   addLevel( data = {} ) {
     this.parent.parent.update( {
       "system.threadData.levels": this.levels.concat(
-        new ThreadLevelData(
+        new ThreadItemLevelData(
           {
             ...data,
             level: this.levels.length + 1

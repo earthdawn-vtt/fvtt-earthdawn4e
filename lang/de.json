@@ -83,7 +83,6 @@
       "placeholderBlankSelectOption":              "---"
     },
     "Actor": {
-      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attributeName":                           "Attribut",
         "attributeStep":                           "Stufe",
@@ -2797,59 +2796,47 @@
             }
           }
         },
-        "ThreadLevel": {
+        "ThreadItemLevel": {
           "FIELDS": {
+            "abilities": {
+              "hint":                              "Fähigkeiten die auf dieser Stufe freigeschaltet werden",
+              "label":                             "Fähigkeiten"
+            },
             "activeEffects": {
-              "hint":                              "Aktive Effekte die auf dieser Stufe des Fadens aktiv sind",
-              "label":                             "Aktive Fadeneffekte"
+              "hint":                              "Active Effects die auf dieser Stufe aktiv sind",
+              "label":                             "Active Effects"
             },
             "deed": {
-              "description": {
-                "hint":                            "Beschreibung der Tat die erforderlich ist um den Faden zu nutzen",
-                "label":                           "Tatbeschreibung"
-              },
-              "isCompleted": {
-                "hint":                            "Ist diese Tat abgeschlossen?",
-                "label":                           "Tat abgeschlossen"
-              },
-              "isRequired": {
-                "hint":                            "Ist diese Tat erforderlich um den Faden zu nutzen?",
-                "label":                           "Erforderliche Tat"
-              }
+              "hint":                              "Beschreibung der Tat die erforderlich ist um den Rang zu nutzen",
+              "label":                             "Tat"
             },
-            "effects": {
-              "hint":                              "Effekte die auf dieser Stufe des Fadens freigeschaltet werden",
-              "label":                             "Fadeneffekte"
-            },
-            "isActive": {
-              "hint":                              "Ist dieser Faden aktiv?",
-              "label":                             "Aktiv"
-            },
-            "isAnalyzed": {
-              "hint":                              "Ist dieser Faden analysiert?",
-              "label":                             "Analysiert"
+            "effect": {
+              "hint":                              "Beschreibung der Effekte die auf diesem Rang freigeschaltet werden",
+              "label":                             "Effekte"
             },
             "keyKnowledge": {
               "answer": {
-                "hint":                            "Antwort die gegeben werden muss um den Faden zu nutzen",
-                "label":                           "Fadenantwort"
+                "hint":                            "Antwort die gegeben werden muss um einen Faden zu weben",
+                "label":                           "Antwort"
               },
+              "hint":                              "Das Wissen das benötigt wird um einen Faden zu weben",
               "isKnown": {
                 "hint":                            "Ist dieses Wissen bekannt?",
                 "label":                           "Wissen bekannt"
               },
-              "isRequired": {
-                "hint":                            "Ist dieses Wissen erforderlich um den Faden zu nutzen?",
-                "label":                           "Erforderliches Wissen"
-              },
+              "label":                             "Schlüsselwissen",
               "question": {
-                "hint":                            "Frage die gestellt werden muss um den Faden zu nutzen",
-                "label":                           "Fadenfrage"
+                "hint":                            "Frage die gestellt werden muss um einen Faden zu weben",
+                "label":                           "Frage"
               }
             },
+            "knownToPlayer": {
+              "hint":                              "Werden die Daten aus diesem Rang nicht-GMs angezeigt?",
+              "label":                             "Rang bekannt"
+            },
             "level": {
-              "hint":                              "Stufe des Fadens",
-              "label":                             "Fadenstufe"
+              "hint":                              "Rang auf dem ein Faden sein muss um die Effekte zu nutzen",
+              "label":                             "Rang"
             }
           }
         },
@@ -2868,6 +2855,38 @@
                 "hint":                            "Anzahl der benötigten Fäden für den Spruch",
                 "label":                           "Benötigte Fäden"
               }
+            }
+          }
+        },
+        "TruePattern": {
+          "FIELDS": {
+            "attachedThreads": {
+              "hint":                              "Fäden die aktuell zu dieser Wahren Struktur gewebt sind",
+              "label":                             "Gewebte Fäden"
+            },
+            "enchantmentPattern": {
+              "hint":                              "Struktur zur Erstellung von Verzauberungen",
+              "label":                             "Verzauberungsstruktur"
+            },
+            "knownToPlayer": {
+              "hint":                              "Werden die Daten dieser Wahren Struktur nicht-GMs angezeigt?",
+              "label":                             "Wahre Struktur bekannt"
+            },
+            "maxThreads": {
+              "hint":                              "Maximale Anzahl an Fäden die zur wahren Struktur gewoben werden können",
+              "label":                             "Maximale Fäden"
+            },
+            "mysticalDefense": {
+              "hint":                              "Mystische Verteidigung der wahren Struktur",
+              "label":                             "Mystische Verteidigung"
+            },
+            "threadItemLevels": {
+              "hint":                              "Ränge zur wahren Struktur von Fadengegenständen gehören",
+              "label":                             "Ränge für Fadengegenstände"
+            },
+            "tier": {
+              "hint":                              "Kategorie der wahren Struktur",
+              "label":                             "Kategorie"
             }
           }
         }
@@ -3191,6 +3210,7 @@
         "chooseDiscipline":                        "Wähle eine Disziplin",
         "chooseTier":                              "Wähle einen Kreis",
         "classAdvancement":                        "Klassenaufstieg",
+        "confirmDelete":                           "Löschen bestätigen",
         "drawWeapon":                              "Waffe ziehen",
         "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
@@ -3322,11 +3342,16 @@
         "sourceDiscipline":                        "Herkunftsdisziplin"
       },
       "PhysicalItems": {
-        "addThreadLevel":                          "Füge einen Fadenrang hinzu.",
-        "deleteThreadLevel":                       "Entferne den letzten (höchsten) Fadenrang.",
+        "addThreadItemLevel":                      "Rang hinzufügen",
+        "addTruePattern":                          "Erstelle wahre Struktur",
+        "createThreadItemThread":                  "Neuer Faden",
+        "deleteThreadItemLevel":                   "Rang entfernen",
+        "deleteTruePattern":                       "Entferne wahre Struktur",
         "hasTruePattern":                          "Dieser Gegenstand hat eine wahre magische Struktur",
-        "itemHistoryCheck":                        "Artefaktgeschichte ",
+        "itemHistoryCheck":                        "Artefaktgeschichte",
         "researchCheck":                           "Forschen ",
+        "threadItemLevelHeader":                   "Rang {level}",
+        "truePatternBaseInformation":              "Wahre Struktur",
         "weaveThreadCheck":                        "Fadenweben "
       },
       "Spell": {
@@ -3646,7 +3671,7 @@
         "details":                                 "Details",
         "effects":                                 "Effekte",
         "general":                                 "Allgemein",
-        "thread":                                  "Fäden"
+        "true-pattern":                            "Wahre Struktur"
       },
       "LpHistory": {
         "chronological":                           "Zeitlich",
@@ -3660,19 +3685,22 @@
     "ToolTips": {
       "activeEffectCantBeEnabledOnClassItems":     "Dieser Effekt kann nicht aktiviert werden, da er bei Kreisaufstieg hinzugefügt wird (automatisch/manuell).",
       "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
-      "addThreadLevel":                            "Füge einen Fadenrang hinzu.",
+      "addThreadItemLevel":                        "Füge einen neuen Rang hinzu.",
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",
       "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
       "deleteManeuver":                            "Lösche dieses Manöver von der Maske.",
       "deletePower":                               "Lösche diese Kraft von der Maske.",
-      "deleteThreadLevel":                         "Entferne den letzten (höchsten) Fadenrang.",
+      "deleteThreadItemLevel":                     "Entferne den letzten (höchsten) Rang.",
       "extraThreads":                              "Zusätzliche Fäden",
-      "itemHistoryCheck":                          "Würfle Artefaktgeschichte für diesen Fadengegenstand.",
+      "itemHistoryCheck":                          "Würfel Artefaktgeschichte für diesen Fadengegenstand.",
       "numThreadsJustWoven":                       "Gerade gewebte Fäden",
       "numThreadsWovenTotal":                      "Gesamt gewebte Fäden",
       "researchCheck":                             "Würfle Forschen um die Geheimnisse des Fadengegenstandes zu erforschen.",
       "scrollToSourceMessage":                     "Scrollt zur Chat-Nachricht die diese erzeugt hat",
+      "threadItemAddTruePattern":                  "Füge diesem Gegenstand eine wahre magische Struktur hinzu.",
+      "threadItemDeleteTruePattern":               "Entferne die wahre magische Struktur von diesem Gegenstand.",
+      "threadItemWeaveNewThread":                  "Webe einen neuen Faden zu diesem Gegenstand.",
       "weaveThreadCheck":                          "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {
