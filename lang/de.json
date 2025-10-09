@@ -83,7 +83,6 @@
       "placeholderBlankSelectOption":              "---"
     },
     "Actor": {
-      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attributeName":                           "Attribut",
         "attributeStep":                           "Stufe",
