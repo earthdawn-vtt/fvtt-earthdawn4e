@@ -4,23 +4,13 @@ import ThreadItemLevelData from "./thread-item-level.mjs";
 
 export default class TruePatternData extends SparseDataModel {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.TruePattern",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      mysticalDefense: new fields.NumberField( {
+      mysticalDefense:    new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
@@ -47,7 +37,7 @@ export default class TruePatternData extends SparseDataModel {
         nullable: true,
         initial:  null,
       } ),
-      threadItemLevels:            new fields.ArrayField(
+      threadItemLevels:   new fields.TypedObjectField(
         new fields.EmbeddedDataField(
           ThreadItemLevelData,
           {
@@ -57,7 +47,6 @@ export default class TruePatternData extends SparseDataModel {
         ),
         {
           required: true,
-          initial:  [],
         },
       ),
       attachedThreads:    new fields.SetField(
@@ -69,12 +58,26 @@ export default class TruePatternData extends SparseDataModel {
           initial:  [],
         },
       ),
-      knownToPlayer:    new fields.BooleanField( {
+      knownToPlayer:      new fields.BooleanField( {
         required: true,
         initial:  false,
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.TruePattern",
+  ];
+
+  // endregion
+
+  // region Static Methods
 
   static asEmbeddedDataField() {
     return new foundry.data.fields.EmbeddedDataField(
@@ -89,32 +92,61 @@ export default class TruePatternData extends SparseDataModel {
 
   // endregion
 
-  // region Methods
+  // region Getters
 
-  async addThreadItemLevel( levelData = {} ) {
-    const currentLevels = this.threadItemLevels?.length || 0;
-    levelData.level = currentLevels + 1;
-    return this._updateLastThreadItemLevel( "add", levelData );
+  /**
+   * The number of ranks/levels this thread item has. Undefined if not a thread item.
+   * @type {number|undefined}
+   */
+  get numberOfLevels() {
+    const levels = this.threadItemLevels;
+    if ( levels ) return Object.keys( levels ).length;
+    return undefined;
   }
 
-  async removeLastThreadItemLevel() {
-    return this._updateLastThreadItemLevel( "remove" );
-  };
+  /**
+   * The next level number for a new ThreadItemLevel. Starts at 1 if no levels exist.
+   * @type {number}
+   */
+  get newLevelNumber() {
+    return ( this.numberOfLevels ?? 0 ) + 1;
+  }
 
-  async _updateLastThreadItemLevel( operation = "add", levelData = {} ) {
+  // endregion
+
+  // region Methods
+
+  /**
+   * Adds a new ThreadItemLevel to the threadItemLevels array with the next sequential level number.
+   * @param {object} levelData The data for the new level. See {@link ThreadItemLevelData} for structure.
+   * @param {number} [levelData.level] The level number. This will be overridden to ensure sequential numbering.
+   * @returns {Promise<Document|undefined>} The updated parent document, or undefined if no parent.
+   */
+  async addThreadItemLevel( levelData = {} ) {
+    const level = levelData.level ?? this.newLevelNumber;
     const parentDocument = this.parentDocument;
-    if ( ![ "add", "remove" ].includes( operation ) ) {
-      throw new Error( `Invalid operation: ${operation}. Must be "add" or "remove".` );
-    }
 
-    const updatePath = this.schema.fields.threadItemLevels.fieldPath;
-    const newData = operation === "add"
-      ? [ ...this.threadItemLevels, new ThreadItemLevelData( levelData ) ]
-      : this.threadItemLevels.slice( 0, -1 );
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }`;
+    const newData = new ThreadItemLevelData( { ...levelData, level, } );
 
     if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newData } );
     return parentDocument.update( { [ updatePath ]: newData, } );
   }
+
+  /**
+   * Removes the last ThreadItemLevel. Does nothing if there are no levels.
+   * @returns {Promise<Document|object|undefined>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent, or undefined if no levels existed.
+   */
+  async removeLastThreadItemLevel() {
+    if ( this.numberOfLevels === undefined || this.numberOfLevels === 0 ) return;
+    const parentDocument = this.parentDocument;
+
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.-=${ this.numberOfLevels }`;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: null } );
+    return parentDocument.update( { [ updatePath ]: null, } );
+  };
 
   // endregion
 

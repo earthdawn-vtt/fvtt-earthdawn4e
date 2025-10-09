@@ -100,8 +100,8 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       case "effects":
         break;
       case "true-pattern":
-        context.showTruePattern = game.user.isGM
-          || this.document.system.truePattern.knownToPlayer;
+        context.showTruePattern = this.document.system.truePattern !== null
+          && ( game.user.isGM || this.document.system.truePattern?.knownToPlayer );
         break;
     }
     return context;
