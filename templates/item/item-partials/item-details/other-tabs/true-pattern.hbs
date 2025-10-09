@@ -1,4 +1,4 @@
-<section class="tab {{tabs.true-pattern.cssClass}} scrollable" data-group="sheet" data-tab="true-pattern">
+<section class="tab {{tabs.true-pattern.cssClass}}" data-group="sheet" data-tab="true-pattern">
   {{#if showTruePattern}}
 
   <!-- Button controls -->
@@ -26,49 +26,67 @@
     </button>
   </div>
   {{/if}}
-
-  <!-- basic information -->
-  <fieldset>
-    <legend>{{localize "ED.Item.PhysicalItems.truePatternBaseInformation"}}</legend>
-    {{formGroup systemFields.truePattern.fields.maxThreads value=item.system.truePattern.maxThreads disabled=(not editable)}}
-    {{formGroup systemFields.truePattern.fields.mysticalDefense value=item.system.truePattern.mysticalDefense disabled=(not editable)}}
-    {{formGroup systemFields.truePattern.fields.tier value=item.system.truePattern.tier disabled=(not editable)}}
-    {{formGroup systemFields.truePattern.fields.attachedThreads value=item.system.truePattern.attachedThreads disabled=(not editable)}}
-    {{formGroup systemFields.truePattern.fields.knownToPlayer value=item.system.truePattern.knownToPlayer disabled=(not editable)}}
-
-  </fieldset>
-
-  <!--thread item levels-->
-  {{#each item.system.truePattern.threadItemLevels}}
-    <!--    This needs to be included because otherwise the level value won't be submitted with the form and the field will be initialized to default 1 for some reason :rolling_eyes:-->
-    <!--input type="hidden" name="system.truePattern.threadItemLevels.{{@key}}.level" value="{{this.level}}"-->
-
-    {{#if this.isVisible}}
-    <fieldset>
-      <legend>{{localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level}}</legend>
-
-      {{#if @root/isGM}}
-      {{formGroup this.schema.fields.knownToPlayer name=(concat "system.truePattern.threadItemLevels." @key ".knownToPlayer") value=this.knownToPlayer disabled=(not @root/editable)}}
-      {{/if}}
+    <div class="truePatternInputs scrollable">
+      <!-- basic information -->
       <fieldset>
-        <legend>{{localize this.schema.fields.keyKnowledge.label}}</legend>
-        {{formGroup this.schema.fields.keyKnowledge.fields.question name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.question") value=this.keyKnowledge.question disabled=(not @root/editable)}}
-        {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
-          {{formGroup this.schema.fields.keyKnowledge.fields.answer name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.answer") value=this.keyKnowledge.answer disabled=(not @root/editable)}}
-        {{/if}}
-        {{#if @root/isGM}}
-        {{formGroup this.schema.fields.keyKnowledge.fields.isKnown name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.isKnown") value=this.keyKnowledge.isKnown disabled=(not @root/editable)}}
-        {{/if}}
+        <legend>{{localize "ED.Item.PhysicalItems.truePatternBaseInformation"}}</legend>
+        {{formGroup systemFields.truePattern.fields.maxThreads value=item.system.truePattern.maxThreads
+                    disabled=(not editable)}}
+        {{formGroup systemFields.truePattern.fields.mysticalDefense value=item.system.truePattern.mysticalDefense
+                    disabled=(not editable)}}
+        {{formGroup systemFields.truePattern.fields.tier value=item.system.truePattern.tier disabled=(not editable)}}
+        {{formGroup systemFields.truePattern.fields.attachedThreads value=item.system.truePattern.attachedThreads
+                    disabled=(not editable)}}
+        {{formGroup systemFields.truePattern.fields.knownToPlayer value=item.system.truePattern.knownToPlayer
+                    disabled=(not editable)}}
+
       </fieldset>
-      {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @key ".deed") value=this.deed disabled=(not @root/editable)}}
-      {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @key ".effect") value=this.effect disabled=(not @root/editable)}}
-      {{formGroup this.schema.fields.activeEffects name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects") value=this.activeEffects disabled=(not @root/editable)}}
-      {{formGroup this.schema.fields.abilities name=(concat "system.truePattern.threadItemLevels." @key ".abilities") value=this.abilities disabled=(not @root/editable)}}
-    </fieldset>
-    {{/if}}
 
-  {{/each}}
+      <!--thread item levels-->
+      {{#each item.system.truePattern.threadItemLevels}}
+        <!--    This needs to be included because otherwise the level value won't be submitted with the form and the field will be initialized to default 1 for some reason :rolling_eyes:-->
+        <!--input type="hidden" name="system.truePattern.threadItemLevels.{{@key}}.level" value="{{this.level}}"-->
 
+        {{#if this.isVisible}}
+          <fieldset>
+            <legend>{{localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level}}</legend>
+
+            {{#if @root/isGM}}
+              {{formGroup this.schema.fields.knownToPlayer
+                          name=(concat "system.truePattern.threadItemLevels." @key ".knownToPlayer")
+                          value=this.knownToPlayer disabled=(not @root/editable)}}
+            {{/if}}
+            <fieldset>
+              <legend>{{localize this.schema.fields.keyKnowledge.label}}</legend>
+              {{formGroup this.schema.fields.keyKnowledge.fields.question
+                          name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.question")
+                          value=this.keyKnowledge.question disabled=(not @root/editable)}}
+              {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
+                {{formGroup this.schema.fields.keyKnowledge.fields.answer
+                            name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.answer")
+                            value=this.keyKnowledge.answer disabled=(not @root/editable)}}
+              {{/if}}
+              {{#if @root/isGM}}
+                {{formGroup this.schema.fields.keyKnowledge.fields.isKnown
+                            name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.isKnown")
+                            value=this.keyKnowledge.isKnown disabled=(not @root/editable)}}
+              {{/if}}
+            </fieldset>
+            {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @key ".deed")
+                        value=this.deed disabled=(not @root/editable)}}
+            {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @key ".effect")
+                        value=this.effect disabled=(not @root/editable)}}
+            {{formGroup this.schema.fields.activeEffects
+                        name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                        value=this.activeEffects disabled=(not @root/editable)}}
+            {{formGroup this.schema.fields.abilities
+                        name=(concat "system.truePattern.threadItemLevels." @key ".abilities") value=this.abilities
+                        disabled=(not @root/editable)}}
+          </fieldset>
+        {{/if}}
+
+      {{/each}}
+    </div>
 {{else}}
 
   {{#if editable}}
