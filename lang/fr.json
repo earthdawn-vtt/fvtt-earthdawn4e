@@ -83,7 +83,6 @@
       "placeholderBlankSelectOption":              "TODO: Add translation"
     },
     "Actor": {
-      "Abilities":                                 "TODO: Add translation",
       "Attributes": {
         "attributeName":                           "TODO: Add translation",
         "attributeStep":                           "TODO: Add translation",
@@ -1369,6 +1368,10 @@
                 }
               },
               "damage": {
+                "combatType": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -2158,7 +2161,7 @@
               }
             },
             "element": {
-              "subType": {
+              "subtype": {
                 "hint":                            "TODO: Add translation",
                 "label":                           "TODO: Add translation"
               },
@@ -3039,6 +3042,12 @@
         "unconsciousDeathRate":                    "TODO: Add translation",
         "woundThreshold":                          "TODO: Add translation"
       },
+      "ChooseAdderSubstitute": {
+        "adderHint":                               "TODO: Add translation",
+        "adderLabel":                              "TODO: Add translation",
+        "replacementHint":                         "TODO: Add translation",
+        "replacementLabel":                        "TODO: Add translation"
+      },
       "Configs": {
         "Constraints": {
           "hint":                                  "TODO: Add translation",
@@ -3052,6 +3061,11 @@
       "DeleteFavorite": {
         "alsoDeletesMacro":                        "TODO: Add translation",
         "favorite":                                "TODO: Add translation"
+      },
+      "DeletePower": {
+        "confirmRemove":                           "TODO: Add translation",
+        "maneuver":                                "TODO: Add translation",
+        "power":                                   "TODO: Add translation"
       },
       "Header": {
         "activeUser":                              "TODO: Add translation",
@@ -3164,7 +3178,8 @@
       },
       "RollPrompt": {
         "Title": {
-          "attuneGrimoire":                        "TODO: Add translation"
+          "attuneGrimoire":                        "TODO: Add translation",
+          "damage":                                "TODO: Add translation"
         },
         "devotion":                                "TODO: Add translation",
         "devotionStep":                            "TODO: Add translation",
@@ -3191,6 +3206,7 @@
         "attuneMatrix":                            "TODO: Add translation",
         "buttonSelect":                            "TODO: Add translation",
         "characterGeneration":                     "TODO: Add translation",
+        "chooseAdderSubstitute":                   "TODO: Add translation",
         "chooseDiscipline":                        "TODO: Add translation",
         "chooseTier":                              "TODO: Add translation",
         "classAdvancement":                        "TODO: Add translation",
@@ -3673,6 +3689,8 @@
       "attuneMatrix":                              "TODO: Add translation",
       "castSpell":                                 "TODO: Add translation",
       "castSpellFromMatrix":                       "TODO: Add translation",
+      "deleteManeuver":                            "TODO: Add translation",
+      "deletePower":                               "TODO: Add translation",
       "deleteThreadItemLevel":                     "TODO: Add translation",
       "extraThreads":                              "TODO: Add translation",
       "itemHistoryCheck":                          "TODO: Add translation",
