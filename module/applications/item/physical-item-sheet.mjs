@@ -81,6 +81,18 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
   // region Rendering
 
+  /** @inheritDoc */
+  _configureRenderParts( options ) {
+    const parts = super._configureRenderParts( options );
+
+    // Only show the true pattern tab for allowed types
+    if ( !TruePatternData.isAllowedInDocument( this.document ) ) {
+      delete parts["true-pattern"];
+    }
+    return parts;
+  }
+
+  /** @inheritDoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -107,6 +119,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /** @inheritDoc */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
