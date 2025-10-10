@@ -166,6 +166,11 @@ export default function () {
       makeDefault: true,
       label:       "ED.Documents.itemSheetEdMask"
     } );
+    Items.registerSheet( "earthdawn4e", applications.item.ThreadItemSheetEd, {
+      types:       [ "thread" ],
+      makeDefault: true,
+      label:       "ED.Documents.itemSheetEdThread"
+    } );
 
     Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
