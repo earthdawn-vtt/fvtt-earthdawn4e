@@ -75,10 +75,40 @@ export default class TruePatternData extends SparseDataModel {
     "ED.Data.Other.TruePattern",
   ];
 
+  /**
+   * The types of parent document this embedded document type is allowed to
+   * be used in.
+   */
+  static ALLOWED_TYPES = {
+    "Actor": [
+      "character",
+      "npc",
+      "creature",
+      "spirit",
+      "horror",
+      "dragon",
+      "group",
+      "vehicle",
+    ],
+    "Item":  [
+      "armor",
+      "equipment",
+      "path",
+      "shield",
+      "weapon",
+      "shipWeapon",
+    ],
+  };
+
   // endregion
 
   // region Static Methods
 
+  /**
+   * Create a field definition which defines this embedded document type.
+   * @returns {EmbeddedDataField} A field definition which defines this
+   * embedded document type.
+   */
   static asEmbeddedDataField() {
     return new foundry.data.fields.EmbeddedDataField(
       this,
@@ -88,6 +118,19 @@ export default class TruePatternData extends SparseDataModel {
         initial:  null,
       }
     );
+  }
+
+  /**
+   * Checks whether this embedded document type is allowed in the given parent document.
+   * @param {Document} document The parent document to check.
+   * @returns {boolean} Whether this embedded document type is allowed in
+   * the given parent document.
+   */
+  static isAllowedInDocument( document ) {
+    const allowedTypes = this.ALLOWED_TYPES[ document.documentName ];
+    if ( !allowedTypes ) return false;
+    if ( allowedTypes.length === 0 ) return true;
+    return allowedTypes.includes( document.type );
   }
 
   // endregion
