@@ -849,6 +849,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-spell.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-spellKnack.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-talent.hbs",
+    "systems/ed4e/templates/item/item-partials/item-details/details/item-details-thread.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-weapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-shipWeapon.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs",
