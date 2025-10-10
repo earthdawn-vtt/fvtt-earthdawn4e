@@ -429,7 +429,23 @@ export default class SpellData extends ItemDataModel.mixin(
     }
   }
 
-
+  /**
+   * Returns the spellcasting rank of the actor if it is embedded.
+   * @returns {number} - The spellcasting rank of the actor.
+   */
+  getSpellcastingRank( ) {
+    let spellcastingRank;
+    if ( !this.isEmbedded ) {
+      spellcastingRank = 0;
+    } else {
+      const spellcasting = this.actor.getSingleItemByEdid(
+        game.settings.get( "ed4e", "edidSpellcasting" ),
+        "talent",
+      );
+      spellcastingRank = spellcasting?.system?.rank || 0;
+    }
+    return spellcastingRank;
+  }
 
   /**
    * Returns all grimoires of the given actor that contain this spell.
@@ -488,7 +504,9 @@ export default class SpellData extends ItemDataModel.mixin(
   getRollData() {
     const rollData = super.getRollData();
     Object.assign( rollData, super.getTemplatesRollData() );
-    return Object.assign( rollData, {} );
+    return Object.assign( rollData, {
+      castingRank: this.getSpellcastingRank(),
+    } );
   }
 
   // endregion
