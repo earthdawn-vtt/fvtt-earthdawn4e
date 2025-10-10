@@ -138,6 +138,14 @@ export default class TruePatternData extends SparseDataModel {
   // region Getters
 
   /**
+   * Whether this data represents a thread item (has thread item levels).
+   * @type {boolean}
+   */
+  get isThreadItem() {
+    return this.numberOfLevels >= 0;
+  }
+
+  /**
    * The number of ranks/levels this thread item has. Undefined if not a thread item.
    * @type {number|undefined}
    */
