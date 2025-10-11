@@ -1,5 +1,39 @@
+<div class="item-controls flexrow">
+
+  <!-- actions -->
+
+  {{> "systems/ed4e/templates/global/button.hbs"
+    type="button"
+    name="TEESSSTTNAME"
+    cssClass="item-control"
+    action="itemHistoryCheck"
+    label="ED.Item.PhysicalItems.itemHistoryCheck"
+    title="ED.ToolTips.itemHistoryCheck"
+    icon=(concat "fa-thin " config.icons.itemHistory)
+  }}
+
+  {{> "systems/ed4e/templates/global/button.hbs"
+    type="button"
+    cssClass="item-control"
+    action="researchCheck"
+    label="ED.Item.PhysicalItems.researchCheck"
+    title="ED.ToolTips.researchCheck"
+    icon=config.icons.research
+  }}
+
+  {{> "systems/ed4e/templates/global/button.hbs"
+    type="button"
+    cssClass="item-control"
+    action="weaveThreadCheck"
+    label="ED.Item.PhysicalItems.weaveThreadCheck"
+    title="ED.ToolTips.weaveThreadCheck"
+    icon=config.icons.threadWeaving
+  }}
+
+</div>
+
 <div class="item__left--main">
-  
+
   <h3>{{localize "ED.Item.Header.general"}}</h3>
   {{formGroup systemFields.wovenToUuid value=system.wovenToUuid disabled=(not editable)}}
   {{formGroup systemFields.level value=system.level disabled=(not editable)}}
