@@ -15,12 +15,14 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
-      addThreadItemLevel:    PhysicalItemSheetEd._onAddThreadItemLevel,
-      addTruePattern:        PhysicalItemSheetEd._onAddTruePattern,
-      castSpell:             PhysicalItemSheetEd._onCastSpell,
-      deleteThreadItemLevel: PhysicalItemSheetEd._onDeleteThreadItemLevel,
-      deleteTruePattern:     PhysicalItemSheetEd._onDeleteTruePattern,
-      tailorToNamegiver:     PhysicalItemSheetEd._onTailorToNamegiver,
+      addThreadItemLevel:               PhysicalItemSheetEd._onAddThreadItemLevel,
+      addTruePattern:                   PhysicalItemSheetEd._onAddTruePattern,
+      castSpell:                        PhysicalItemSheetEd._onCastSpell,
+      deleteThreadItemLevel:            PhysicalItemSheetEd._onDeleteThreadItemLevel,
+      deleteTruePattern:                PhysicalItemSheetEd._onDeleteTruePattern,
+      tailorToNamegiver:                PhysicalItemSheetEd._onTailorToNamegiver,
+      toggleRankKnowledgeKnownToPlayer: PhysicalItemSheetEd._onToggleRankKnowledgeKnownToPlayer,
+      toggleRankKnownToPlayer:          PhysicalItemSheetEd._onToggleRankKnownToPlayer,
     },
   };
 
@@ -243,6 +245,28 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     }
 
     await actor.castSpell( spell );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleRankKnowledgeKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const level = target.closest( "fieldset[data-level]" ).dataset.level;
+
+    await this.document.system.truePattern.toggleRankKnowledgeKnownToPlayer( level );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleRankKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const level = target.closest( "fieldset[data-level]" ).dataset.level;
+
+    await this.document.system.truePattern.toggleRankKnownToPlayer( level );
   }
 
   // endregion
