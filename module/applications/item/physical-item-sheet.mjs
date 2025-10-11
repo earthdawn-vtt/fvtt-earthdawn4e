@@ -20,9 +20,12 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       castSpell:                        PhysicalItemSheetEd._onCastSpell,
       deleteThreadItemLevel:            PhysicalItemSheetEd._onDeleteThreadItemLevel,
       deleteTruePattern:                PhysicalItemSheetEd._onDeleteTruePattern,
+      itemHistoryCheck:                 PhysicalItemSheetEd._onItemHistoryCheck,
+      researchCheck:                    PhysicalItemSheetEd._onResearchCheck,
       tailorToNamegiver:                PhysicalItemSheetEd._onTailorToNamegiver,
       toggleRankKnowledgeKnownToPlayer: PhysicalItemSheetEd._onToggleRankKnowledgeKnownToPlayer,
       toggleRankKnownToPlayer:          PhysicalItemSheetEd._onToggleRankKnownToPlayer,
+      weaveThreadCheck:                 PhysicalItemSheetEd._onWeaveThreadCheck,
     },
   };
 
@@ -267,6 +270,30 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     const level = target.closest( "fieldset[data-level]" ).dataset.level;
 
     await this.document.system.truePattern.toggleRankKnownToPlayer( level );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onItemHistoryCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onResearchCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onWeaveThreadCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
   }
 
   // endregion
