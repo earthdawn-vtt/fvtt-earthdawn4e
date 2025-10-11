@@ -1,9 +1,8 @@
 <div class="item__left--main">
-{{log this}}
+  
   <h3>{{localize "ED.Item.Header.general"}}</h3>
-
-  {{formGroup systemFields.wovenToUuid value=system.wovenToUuid}}
-  {{formGroup systemFields.level value=system.level}}
+  {{formGroup systemFields.wovenToUuid value=system.wovenToUuid disabled=(not editable)}}
+  {{formGroup systemFields.level value=system.level disabled=(not editable)}}
 
 </div>
 
