@@ -706,6 +706,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/global/card-options-enhance.hbs",
     "systems/ed4e/templates/global/effect-card.hbs",
     "systems/ed4e/templates/global/card-options-class-upgrade.hbs",
+    "systems/ed4e/templates/global/button.hbs",
 
     // endregion
 
