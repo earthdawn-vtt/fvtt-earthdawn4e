@@ -97,6 +97,8 @@ export const icons = {
   effect:           "fa-biohazard",
   effectExecution:  "fa-light fa-arrow-progress",
   emptyMatrices:    "fa-empty-set",
+  eye:              "fa-eye",
+  eyeSlash:         "fa-eye-slash",
   favoritable:      "fa-star",
   finishCharGen:    "fa-thin fa-check-double",
   halfmagic:        "fa-hat-wizard",
