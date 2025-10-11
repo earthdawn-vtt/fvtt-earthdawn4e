@@ -18,9 +18,9 @@ export default class ThreadData extends ItemDataModel.mixin(
         required: true,
         nullable: false,
         step:     1,
-        positive: true,
         integer:  true,
-        initial:  1,
+        min:      0,
+        initial:  0,
       } ),
     } );
   }
