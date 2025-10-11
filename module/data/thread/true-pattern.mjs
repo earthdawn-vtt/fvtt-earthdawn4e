@@ -199,6 +199,42 @@ export default class TruePatternData extends SparseDataModel {
     return parentDocument.update( { [ updatePath ]: null, } );
   };
 
+  /**
+   * Toggles whether the given rank/level is known to the player.
+   * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
+   * @returns {Promise<Document|object>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent.
+   */
+  async toggleRankKnownToPlayer( level ) {
+    if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
+      throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
+    }
+
+    const levelData = this.threadItemLevels[ level ];
+    if ( !levelData ) throw new Error( `Level data for level ${ level } not found.` );
+
+    const parentDocument = this.parentDocument;
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.knownToPlayer`;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.knownToPlayer } );
+    return parentDocument.update( { [ updatePath ]: !levelData.knownToPlayer, } );
+  }
+
+  async toggleRankKnowledgeKnownToPlayer( level ) {
+    if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
+      throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
+    }
+
+    const levelData = this.threadItemLevels[ level ];
+    if ( !levelData ) throw new Error( `Level data for level ${ level } not found.` );
+
+    const parentDocument = this.parentDocument;
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.keyKnowledge.isKnown`;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.keyKnowledge.isKnown } );
+    return parentDocument.update( { [ updatePath ]: !levelData.keyKnowledge.isKnown, } );
+  }
+
   // endregion
 
 }
