@@ -25,6 +25,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       tailorToNamegiver:                PhysicalItemSheetEd._onTailorToNamegiver,
       toggleRankKnowledgeKnownToPlayer: PhysicalItemSheetEd._onToggleRankKnowledgeKnownToPlayer,
       toggleRankKnownToPlayer:          PhysicalItemSheetEd._onToggleRankKnownToPlayer,
+      toggleTruePatternKnownToPlayer:   PhysicalItemSheetEd._onToggleTruePatternKnownToPlayer,
       weaveThreadCheck:                 PhysicalItemSheetEd._onWeaveThreadCheck,
     },
   };
@@ -270,6 +271,19 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     const level = target.closest( "fieldset[data-level]" ).dataset.level;
 
     await this.document.system.truePattern.toggleRankKnownToPlayer( level );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleTruePatternKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const currentValue = this.document.system.truePattern?.knownToPlayer;
+
+    if ( foundry.utils.getType( currentValue ) === "boolean" ) await this.document.update( {
+      "system.truePattern.knownToPlayer": !currentValue,
+    } );
   }
 
   /**
