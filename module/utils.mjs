@@ -799,6 +799,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs",
     "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs",
     "systems/ed4e/templates/actor/cards/matrix-card.hbs",
+    "systems/ed4e/templates/actor/cards/thread-card.hbs",
 
     // endregion
 
