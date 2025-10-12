@@ -1,7 +1,15 @@
 import ItemDataModel from "../abstract/item-data-model.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import LpIncreaseTemplate from "./templates/lp-increase.mjs";
+import ED4E, { MAGIC } from "../../config/_module.mjs";
 
+/**
+ * Data model for thread items.
+ * @property {string|null} wovenToUuid The UUID of the item this thread is woven to, if any.
+ * @property {number} level The rank of this thread.
+ * @mixes ItemDescriptionTemplate
+ * @mixes LpIncreaseTemplate
+ */
 export default class ThreadData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
   LpIncreaseTemplate,
@@ -22,6 +30,13 @@ export default class ThreadData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
       } ),
+      threadType:  new fields.StringField( {
+        required:  true,
+        nullable:  true,
+        empty:     false,
+        initial:   null,
+        choices:   MAGIC.threadTypes,
+      } ),
     } );
   }
 
@@ -37,7 +52,32 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   // endregion
 
-  // region Rendering
+  // region Life Cycle Events
+
+  /** @inheritDoc */
+  async _preCreate( data, options, user ) {
+    if ( await super._preCreate( data, options, user ) === false ) return false;
+
+    const updates = {};
+    if ( !data.system?.threadType && !data[ "system.threadType" ] ) {
+      updates.system ??= {};
+      updates.threadType = await this._determineThreadType();
+    }
+
+    this.updateSource( updates );
+  }
+
+  /** @inheritDoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    if ( changes.system?.wovenToUuid || changes[ "system.wovenToUuid" ] ) {
+      changes.system ??= {};
+      changes.system.threadType = await this._determineThreadType(
+        changes.system?.wovenToUuid ?? changes[ "system.wovenToUuid" ]
+      );
+    }
+  }
 
   // endregion
 
@@ -52,7 +92,114 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   // endregion
 
+  // region LP Tracking
+
+  /** @inheritdoc */
+  get canBeIncreased() {
+    return this.isActorEmbedded
+      && Object.values(
+        this.increaseValidationData
+      ).every( Boolean );
+  }
+
+  /** @inheritdoc */
+  get increaseData() {
+    if ( !this.isActorEmbedded ) return undefined;
+    const actor = this.containingActor;
+
+    return {
+      newLevel:   this.level + 1,
+      requiredLp: this.requiredLpForIncrease,
+      hasDamage:  actor.hasDamage( "standard" ),
+      hasWounds:  actor.hasWounds( "standard" ),
+    };
+  }
+
+  /** @inheritdoc */
+  get increaseRules() {
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.threadItemIncreaseShortRequirements" );
+  }
+
+  /** @inheritdoc */
+  get increaseValidationData() {
+    if ( !this.isActorEmbedded ) return undefined;
+    const increaseData = this.increaseData;
+    return {
+      [ED4E.validationCategories.resources]: [
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableLp",
+          value:     this.requiredLpForIncrease,
+          fulfilled: this.requiredLpForIncrease <= this.parent.actor.currentLp,
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableMoney",
+          value:     this.requiredMoneyForIncrease,
+          fulfilled: this.requiredMoneyForIncrease <= this.parent.actor.currentSilver,
+        },
+      ],
+      [ED4E.validationCategories.health]:    [
+        {
+          name:      "ED.Dialogs.Legend.Validation.hasDamage",
+          value:     increaseData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
+          fulfilled: !increaseData.hasDamage,
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.hasWounds",
+          value:     increaseData.hasWounds ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasWounds" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoWounds" ),
+          fulfilled: !increaseData.hasWounds,
+        },
+      ],
+    };
+  }
+
+  /** @inheritdoc */
+  get requiredLpForIncrease() {
+    return undefined;
+  }
+
+  /** @inheritdoc */
+  get requiredMoneyForIncrease() {
+    return 0;
+  }
+
+  /** @inheritdoc */
+  async getRequiredLpForLevel( level ) {
+    // const newLevel = level ?? this.level + 1;
+
+  }
+
+  /** @inheritdoc */
+  async increase() {}
+
+  // endregion
+
   // region Methods
+
+  /**
+   * Get the document this thread is woven to, if any.
+   * @returns {Promise<Document|null>} The document this thread is woven to, or null if not woven to any document.
+   */
+  async getConnectedDocument() {
+    return fromUuid( this.wovenToUuid );
+  }
+
+  /**
+   * Determine the type of thread this is based on the document it is woven to.
+   * This is automatically determined on creation and update of the thread item and stored in the
+   * `threadType` field.
+   * @param {string} [wovenToUuid] The UUID of the document this thread is woven to. If not provided, the current
+   * value of `this.wovenToUuid` will be used.
+   * @returns {Promise<string|null>} The type of thread, as defined in {@link MAGIC.threadTypes}, or null if it
+   * cannot be determined.
+   */
+  async _determineThreadType( wovenToUuid ) {
+    const connectedDocument = wovenToUuid ? await fromUuid( wovenToUuid ) : await this.getConnectedDocument();
+    if ( !connectedDocument ) return null;
+
+    if ( connectedDocument.system?.truePattern?.isThreadItem ) return "threadItem";
+    if ( connectedDocument.type === "group" ) return "groupPattern";
+    return "patternItem";
+  }
 
   /**
    * Add an active effect to the thread or create a new one. There can always ever be only one active effect on
