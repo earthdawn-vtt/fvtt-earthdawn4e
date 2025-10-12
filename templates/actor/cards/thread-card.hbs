@@ -1,0 +1,25 @@
+<div class="card__thread flexrow" data-uuid="{{uuid}}">
+  <div class="thread-card item-id flexrow" data-item-id="{{_id}}">
+    <span class="thread-card__grid--item icons__thread">
+      <img class="thread-icon__visible" src="" alt="{{name}}">
+    </span>
+    <span class="thread-card__grid--item">{{name}}</span>
+    <span class="thread-card__grid--item">{{system.level}}</span>
+    <span class="thread-card__grid--item">{{lookup @root/config.threadTypes system.threadType}}</span>
+    <span class="thread-card__grid--item">{{{lookup @root/threadConnectedItems id}}}</span>
+
+    <span class="thread-card__grid--item">
+      {{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}
+    </span>
+  </div>
+  <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+          {{{system.description.value}}}
+        </span>
+    <span>
+      {{#each this.effects as |effects id|}}
+        {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+      {{/each}}
+    </span>
+  </div>
+</div>
