@@ -506,6 +506,7 @@ export default class SpellData extends ItemDataModel.mixin(
     return Object.assign( rollData, {
       castingRank:      this.getSpellcastingRank(),
       spellcastingRank: this.getSpellcastingRank(),
+      rank:             this.getSpellcastingRank(),
     } );
   }
 
