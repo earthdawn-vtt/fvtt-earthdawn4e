@@ -15,6 +15,8 @@ export default class LpIncreaseTemplate extends SystemDataModel {
     "ED.Data.Item.LpIncrease",
   ];
 
+  // region Getters
+
   /**
    * @description Whether the entity fulfills all requirements to be increased.
    * @type {boolean}
@@ -71,8 +73,9 @@ export default class LpIncreaseTemplate extends SystemDataModel {
   }
 
   /**
-   * @description The amount of legend points required to increase the level of the entity.
-   * @type {number}
+   * The amount of legend points required to increase the level of the entity, or `undefined` if the amount cannot be
+   * retrieved synchronously (
+   * @type {number|undefined}
    */
   get requiredLpForIncrease() {
     throw new Error( "A subclass of the LpIncreaseTemplate must implement the requiredLpForIncrease getter." );
@@ -86,6 +89,20 @@ export default class LpIncreaseTemplate extends SystemDataModel {
     throw new Error( "A subclass of the LpIncreaseTemplate must implement the requiredMoneyForIncrease getter." );
   }
 
+  // endregion
+
+  // region Methods
+
+  /**
+   * Get the amount of legend points required to increase the entity to the given level.
+   * @param {number} [level] The level to get the required legend points for. Defaults to the next level.
+   * @returns {Promise<number|undefined>} The amount of legend points required to increase the entity to the given
+   * level. Or `undefined` if the amount cannot be determined.
+   */
+  async getRequiredLpForLevel( level ) {
+    throw new Error( "A subclass of the LpIncreaseTemplate must implement the requiredLpForIncrease getter." );
+  }
+
   /**
    * Increase the level of the entity by one, spend the required legend points and persist the transaction. Do
    * validation if settings are set to do so.
@@ -95,6 +112,7 @@ export default class LpIncreaseTemplate extends SystemDataModel {
     throw new Error( "A subclass of the LpIncreaseTemplate must implement the increase method." );
   }
 
+  // endregion
 
   /* -------------------------------------------- */
   /*  Migrations                                  */
