@@ -255,3 +255,9 @@ export const threadTypes = {
   groupPattern: "ED.Config.ThreadTypes.groupPattern",
 };
 preLocalize( "threadTypes" );
+
+/**
+ * The types of true patterns, as defined in {@link threadTypes}.
+ * @enum {string}
+ */
+export const truePatternTypes = threadTypes;
