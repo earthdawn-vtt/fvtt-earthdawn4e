@@ -262,7 +262,7 @@ export const eaeChangeKeysActor = [
   },
   {
     value:          "system.characteristics.health.bloodMagic.damage",
-    label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health..bloodMagic.damage.label",
+    label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.bloodMagic.damage.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
   },
   {
@@ -288,7 +288,7 @@ export const eaeChangeKeysActor = [
   // recovery
   {
     value:          "system.characteristics.recoveryTestsResource.value",
-    label:          "ED.Data.Actor.Sentient.FIELDS.characteristics..recoveryTestsResource.value.label",
+    label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
   },
   {
