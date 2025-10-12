@@ -174,7 +174,9 @@ export default class ThreadData extends ItemDataModel.mixin(
   }
 
   /** @inheritdoc */
-  async increase() {}
+  async increase() {
+    ui.notifications.info( "Increasing threads is not implemented yet." );
+  }
 
   // endregion
 
