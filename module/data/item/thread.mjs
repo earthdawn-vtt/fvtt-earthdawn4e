@@ -71,7 +71,8 @@ export default class ThreadData extends ItemDataModel.mixin(
   async _preUpdate( changes, options, user ) {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    if ( changes.system?.wovenToUuid || changes[ "system.wovenToUuid" ] ) {
+    const wovenToUuid = changes.system?.wovenToUuid ?? changes[ "system.wovenToUuid" ];
+    if ( wovenToUuid ) {
       changes.system ??= {};
       changes.system.threadType = await this._determineThreadType(
         changes.system?.wovenToUuid ?? changes[ "system.wovenToUuid" ]
@@ -164,8 +165,12 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   async getRequiredLpForLevel( level ) {
-    // const newLevel = level ?? this.level + 1;
+    const connectedDocument = await this.getConnectedDocument();
+    if ( !connectedDocument ) return undefined;
 
+    const newLevel = level ?? this.level + 1;
+    if ( newLevel <= 0 ) return 0;
+    return connectedDocument.system.truePattern.getRequiredLpForLevel( newLevel );
   }
 
   /** @inheritdoc */
@@ -194,11 +199,7 @@ export default class ThreadData extends ItemDataModel.mixin(
    */
   async _determineThreadType( wovenToUuid ) {
     const connectedDocument = wovenToUuid ? await fromUuid( wovenToUuid ) : await this.getConnectedDocument();
-    if ( !connectedDocument ) return null;
-
-    if ( connectedDocument.system?.truePattern?.isThreadItem ) return "threadItem";
-    if ( connectedDocument.type === "group" ) return "groupPattern";
-    return "patternItem";
+    return connectedDocument?.system?.truePattern.truePatternType ?? null;
   }
 
   /**

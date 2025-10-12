@@ -1,5 +1,5 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { LEGEND } from "../../config/_module.mjs";
 import ThreadItemLevelData from "./thread-item-level.mjs";
 
 export default class TruePatternData extends SparseDataModel {
@@ -161,6 +161,49 @@ export default class TruePatternData extends SparseDataModel {
    */
   get newLevelNumber() {
     return ( this.numberOfLevels ?? 0 ) + 1;
+  }
+
+  /**
+   * The type of this true pattern, as defined in {@link MAGIC.truePatternTypes}.
+   * @type {string}
+   */
+  get truePatternType() {
+    if ( this.isThreadItem ) return "threadItem";
+    if ( this.parentDocument === "group" ) return "groupPattern";
+    return "patternItem";
+  }
+
+  // endregion
+
+  // region LP Tracking
+
+  /**
+   * The amount of legend points required to increase the level of the thread
+   * item, or `undefined` if the amount cannot be retrieved synchronously.
+   * @type {number|undefined}
+   */
+  get requiredLpForIncrease() {
+    /* PG p. 229: "The Legend Point cost of Thread Ranks woven to the True
+        Patterns of people and places is the same as for improving Ranks of
+        a Novice talent" */
+    /* PG p. 224: "The Legend Point cost of a thread item usually follows the
+        progressions used to increase talent Ranks, but exactly which
+        progression (Novice, Journeyman, Warden, or Master) depends on the item." */
+    const level = this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ level + tierModifier ];
+  }
+
+  /**
+   * Get the amount of legend points required to increase the entity to the given level.
+   * @param {number} [level] The level to get the required legend points for. Defaults to the next level.
+   * @returns {Promise<number|undefined>} The amount of legend points required to increase the entity to the given
+   * level. Or `undefined` if the amount cannot be determined.
+   */
+  async getRequiredLpForLevel( level ) {
+    const newLevel = level ?? this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ newLevel + tierModifier ];
   }
 
   // endregion
