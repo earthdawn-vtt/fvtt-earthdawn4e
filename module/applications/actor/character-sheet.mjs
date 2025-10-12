@@ -1,5 +1,6 @@
 import ED4E from "../../config/_module.mjs";
 import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 /**
  * An actor sheet application designed for actors of type "PC"
@@ -176,6 +177,14 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       case "specials":
         break;
       case "legend":
+        context.threadConnectedItems = await this.document.itemTypes.thread.reduce(
+          async ( acc, thread ) => {
+            const connectedItem = await thread.system.getConnectedDocument();
+            acc[ thread.id ] = createContentAnchor( connectedItem ).outerHTML;
+            return acc;
+          },
+          {},
+        );
         break;
     }
     return context;
