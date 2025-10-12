@@ -715,6 +715,11 @@
         "social":                                  "TODO: Add translation",
         "socialAbbreviation":                      "TODO: Add translation"
       },
+      "ThreadTypes": {
+        "groupPattern":                            "TODO: Add translation",
+        "patternItem":                             "TODO: Add translation",
+        "threadItem":                              "TODO: Add translation"
+      },
       "Tier": {
         "adherent":                                "TODO: Add translation",
         "exemplar":                                "TODO: Add translation",
@@ -2754,6 +2759,18 @@
             }
           }
         },
+        "Thread": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "wovenToUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "ThreadBase": {
           "FIELDS": {
             "characteristics": {
@@ -3129,7 +3146,8 @@
           "pathLearnShortRequirements":            "TODO: Add translation",
           "questorClassIncreaseShortRequirements": "TODO: Add translation",
           "skillIncreaseShortRequirements":        "TODO: Add translation",
-          "talentIncreaseShortRequirements":       "TODO: Add translation"
+          "talentIncreaseShortRequirements":       "TODO: Add translation",
+          "threadItemIncreaseShortRequirements":   "TODO: Add translation"
         },
         "Validation": {
           "availableLearnImprovedSpellSlots":      "TODO: Add translation",
@@ -3273,6 +3291,7 @@
       "itemSheetEdClass":                          "TODO: Add translation",
       "itemSheetEdMask":                           "TODO: Add translation",
       "itemSheetEdPhysical":                       "TODO: Add translation",
+      "itemSheetEdThread":                         "TODO: Add translation",
       "journalSheetEd":                            "TODO: Add translation",
       "sceneConfigEd":                             "TODO: Add translation"
     },
@@ -3700,6 +3719,12 @@
       "scrollToSourceMessage":                     "TODO: Add translation",
       "threadItemAddTruePattern":                  "TODO: Add translation",
       "threadItemDeleteTruePattern":               "TODO: Add translation",
+      "threadItemHideRankFromPlayer":              "TODO: Add translation",
+      "threadItemHideRankKnowledgeToPlayer":       "TODO: Add translation",
+      "threadItemHideTruePatternFromPlayer":       "TODO: Add translation",
+      "threadItemShowRankKnowledgeToPlayer":       "TODO: Add translation",
+      "threadItemShowRankToPlayer":                "TODO: Add translation",
+      "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
       "weaveThreadCheck":                          "TODO: Add translation"
     },
@@ -3775,6 +3800,7 @@
       "spell":                                     "TODO: Add translation",
       "spellKnack":                                "TODO: Add translation",
       "talent":                                    "TODO: Add translation",
+      "thread":                                    "TODO: Add translation",
       "weapon":                                    "TODO: Add translation"
     },
     "JournalEntryPage": {
