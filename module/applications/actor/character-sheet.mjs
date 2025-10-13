@@ -180,7 +180,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         context.threadConnectedItems = await this.document.itemTypes.thread.reduce(
           async ( acc, thread ) => {
             const connectedItem = await thread.system.getConnectedDocument();
-            acc[ thread.id ] = createContentAnchor( connectedItem ).outerHTML;
+            acc[ thread.id ] = connectedItem ? createContentAnchor( connectedItem ).outerHTML : null;
             return acc;
           },
           {},
