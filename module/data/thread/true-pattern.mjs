@@ -1,5 +1,5 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { LEGEND } from "../../config/_module.mjs";
 import ThreadItemLevelData from "./thread-item-level.mjs";
 
 export default class TruePatternData extends SparseDataModel {
@@ -75,10 +75,40 @@ export default class TruePatternData extends SparseDataModel {
     "ED.Data.Other.TruePattern",
   ];
 
+  /**
+   * The types of parent document this embedded document type is allowed to
+   * be used in.
+   */
+  static ALLOWED_TYPES = {
+    "Actor": [
+      "character",
+      "npc",
+      "creature",
+      "spirit",
+      "horror",
+      "dragon",
+      "group",
+      "vehicle",
+    ],
+    "Item":  [
+      "armor",
+      "equipment",
+      "path",
+      "shield",
+      "weapon",
+      "shipWeapon",
+    ],
+  };
+
   // endregion
 
   // region Static Methods
 
+  /**
+   * Create a field definition which defines this embedded document type.
+   * @returns {EmbeddedDataField} A field definition which defines this
+   * embedded document type.
+   */
   static asEmbeddedDataField() {
     return new foundry.data.fields.EmbeddedDataField(
       this,
@@ -90,9 +120,30 @@ export default class TruePatternData extends SparseDataModel {
     );
   }
 
+  /**
+   * Checks whether this embedded document type is allowed in the given parent document.
+   * @param {Document} document The parent document to check.
+   * @returns {boolean} Whether this embedded document type is allowed in
+   * the given parent document.
+   */
+  static isAllowedInDocument( document ) {
+    const allowedTypes = this.ALLOWED_TYPES[ document.documentName ];
+    if ( !allowedTypes ) return false;
+    if ( allowedTypes.length === 0 ) return true;
+    return allowedTypes.includes( document.type );
+  }
+
   // endregion
 
   // region Getters
+
+  /**
+   * Whether this data represents a thread item (has thread item levels).
+   * @type {boolean}
+   */
+  get isThreadItem() {
+    return this.numberOfLevels >= 0;
+  }
 
   /**
    * The number of ranks/levels this thread item has. Undefined if not a thread item.
@@ -110,6 +161,49 @@ export default class TruePatternData extends SparseDataModel {
    */
   get newLevelNumber() {
     return ( this.numberOfLevels ?? 0 ) + 1;
+  }
+
+  /**
+   * The type of this true pattern, as defined in {@link MAGIC.truePatternTypes}.
+   * @type {string}
+   */
+  get truePatternType() {
+    if ( this.isThreadItem ) return "threadItem";
+    if ( this.parentDocument === "group" ) return "groupPattern";
+    return "patternItem";
+  }
+
+  // endregion
+
+  // region LP Tracking
+
+  /**
+   * The amount of legend points required to increase the level of the thread
+   * item, or `undefined` if the amount cannot be retrieved synchronously.
+   * @type {number|undefined}
+   */
+  get requiredLpForIncrease() {
+    /* PG p. 229: "The Legend Point cost of Thread Ranks woven to the True
+        Patterns of people and places is the same as for improving Ranks of
+        a Novice talent" */
+    /* PG p. 224: "The Legend Point cost of a thread item usually follows the
+        progressions used to increase talent Ranks, but exactly which
+        progression (Novice, Journeyman, Warden, or Master) depends on the item." */
+    const level = this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ level + tierModifier ];
+  }
+
+  /**
+   * Get the amount of legend points required to increase the entity to the given level.
+   * @param {number} [level] The level to get the required legend points for. Defaults to the next level.
+   * @returns {Promise<number|undefined>} The amount of legend points required to increase the entity to the given
+   * level. Or `undefined` if the amount cannot be determined.
+   */
+  async getRequiredLpForLevel( level ) {
+    const newLevel = level ?? this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ newLevel + tierModifier ];
   }
 
   // endregion
@@ -147,6 +241,42 @@ export default class TruePatternData extends SparseDataModel {
     if ( !parentDocument ) return this.updateSource( { [ updatePath ]: null } );
     return parentDocument.update( { [ updatePath ]: null, } );
   };
+
+  /**
+   * Toggles whether the given rank/level is known to the player.
+   * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
+   * @returns {Promise<Document|object>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent.
+   */
+  async toggleRankKnownToPlayer( level ) {
+    if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
+      throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
+    }
+
+    const levelData = this.threadItemLevels[ level ];
+    if ( !levelData ) throw new Error( `Level data for level ${ level } not found.` );
+
+    const parentDocument = this.parentDocument;
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.knownToPlayer`;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.knownToPlayer } );
+    return parentDocument.update( { [ updatePath ]: !levelData.knownToPlayer, } );
+  }
+
+  async toggleRankKnowledgeKnownToPlayer( level ) {
+    if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
+      throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
+    }
+
+    const levelData = this.threadItemLevels[ level ];
+    if ( !levelData ) throw new Error( `Level data for level ${ level } not found.` );
+
+    const parentDocument = this.parentDocument;
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.keyKnowledge.isKnown`;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.keyKnowledge.isKnown } );
+    return parentDocument.update( { [ updatePath ]: !levelData.keyKnowledge.isKnown, } );
+  }
 
   // endregion
 

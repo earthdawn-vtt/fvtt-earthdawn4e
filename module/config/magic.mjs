@@ -244,3 +244,20 @@ export const spellKeywords = {
   summon:         "ED.Config.SpellKeywords.summon",
 };
 preLocalize( "spellKeywords" );
+
+/**
+ * The different types of patterns a thread can be woven to, determining its type.
+ * @enum {string}
+ */
+export const threadTypes = {
+  threadItem:   "ED.Config.ThreadTypes.threadItem",
+  patternItem:  "ED.Config.ThreadTypes.patternItem",
+  groupPattern: "ED.Config.ThreadTypes.groupPattern",
+};
+preLocalize( "threadTypes" );
+
+/**
+ * The types of true patterns, as defined in {@link threadTypes}.
+ * @enum {string}
+ */
+export const truePatternTypes = threadTypes;

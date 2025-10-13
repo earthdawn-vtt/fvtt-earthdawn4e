@@ -15,12 +15,18 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     actions:  {
-      addThreadItemLevel:    PhysicalItemSheetEd._onAddThreadItemLevel,
-      addTruePattern:        PhysicalItemSheetEd._onAddTruePattern,
-      castSpell:             PhysicalItemSheetEd._onCastSpell,
-      deleteThreadItemLevel: PhysicalItemSheetEd._onDeleteThreadItemLevel,
-      deleteTruePattern:     PhysicalItemSheetEd._onDeleteTruePattern,
-      tailorToNamegiver:     PhysicalItemSheetEd._onTailorToNamegiver,
+      addThreadItemLevel:               PhysicalItemSheetEd._onAddThreadItemLevel,
+      addTruePattern:                   PhysicalItemSheetEd._onAddTruePattern,
+      castSpell:                        PhysicalItemSheetEd._onCastSpell,
+      deleteThreadItemLevel:            PhysicalItemSheetEd._onDeleteThreadItemLevel,
+      deleteTruePattern:                PhysicalItemSheetEd._onDeleteTruePattern,
+      itemHistoryCheck:                 PhysicalItemSheetEd._onItemHistoryCheck,
+      researchCheck:                    PhysicalItemSheetEd._onResearchCheck,
+      tailorToNamegiver:                PhysicalItemSheetEd._onTailorToNamegiver,
+      toggleRankKnowledgeKnownToPlayer: PhysicalItemSheetEd._onToggleRankKnowledgeKnownToPlayer,
+      toggleRankKnownToPlayer:          PhysicalItemSheetEd._onToggleRankKnownToPlayer,
+      toggleTruePatternKnownToPlayer:   PhysicalItemSheetEd._onToggleTruePatternKnownToPlayer,
+      weaveThreadCheck:                 PhysicalItemSheetEd._onWeaveThreadCheck,
     },
   };
 
@@ -81,6 +87,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
   // region Rendering
 
+  /** @inheritDoc */
   async _preparePartContext( partId, contextInput, options ) {
     const context = await super._preparePartContext( partId, contextInput, options );
     switch ( partId ) {
@@ -107,6 +114,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     return context;
   }
 
+  /** @inheritDoc */
   async _prepareContext( options ) {
     const context = super._prepareContext( options );
     foundry.utils.mergeObject(
@@ -241,6 +249,65 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     }
 
     await actor.castSpell( spell );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleRankKnowledgeKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const level = target.closest( "fieldset[data-level]" ).dataset.level;
+
+    await this.document.system.truePattern.toggleRankKnowledgeKnownToPlayer( level );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleRankKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const level = target.closest( "fieldset[data-level]" ).dataset.level;
+
+    await this.document.system.truePattern.toggleRankKnownToPlayer( level );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleTruePatternKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const currentValue = this.document.system.truePattern?.knownToPlayer;
+
+    if ( foundry.utils.getType( currentValue ) === "boolean" ) await this.document.update( {
+      "system.truePattern.knownToPlayer": !currentValue,
+    } );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onItemHistoryCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onResearchCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onWeaveThreadCheck( event, target ) {
+    ui.notifications.info( "Not implemented yet." );
   }
 
   // endregion

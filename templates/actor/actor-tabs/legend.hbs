@@ -1,68 +1,98 @@
 <section class="tab {{tabs.legend.cssClass}}" data-group="sheet" data-tab="legend" data-editable="{{@root.editable}}">
-<div>
-    <div class="legend-card__grid--container font__bold text-break__auto">
-        <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendCurrent"}}</div>
-        <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendSpend"}}</div>
-        <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendTotal"}}</div>
-        <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendStatus"}}</div>
-        <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendHistory"}}</div>
-    </div>
-    <div class="legend-card__grid--container font__bold text-break__auto">
-        <div class="legend-card__grid--item text__alignment--center">
-            <input class="input__number-input--wide" type="text" name="system.lp.current"
-                value="{{actor.system.lp.current}}">
-        </div>
-        <div class="legend-card__grid--item text__alignment--center">
-            <input class="input__number-input--wide" type="text" name="system.lp.spend"
-                value="{{actor.system.lp.spend}}">
-        </div>
-        <div class="legend-card__grid--item text__alignment--center">
-            <input class="input__number-input--wide" type="text" name="system.lp.total"
-                value="{{actor.system.lp.total}}">
-        </div>
-        <div class="legend-card__grid--item text__alignment--center">
-            <input class="input__number-input--wide" type="text" name="system.lp.status"
-                value="{{actor.system.lp.status}}">
-        </div>
-        <div class="legend-card__grid--item text__alignment--center">
-            <button class="legend-point__history" data-action="legendPointHistory">{{localize "ED.Actor.Buttons.legendHistory"}}</button>
-        </div>
-    </div>
-</div>
+  <h2>Threads (temp)</h2>
+  <div class="header flexrow" data-uuid="{{uuid}}">
+    <div class="thread-card flexrow" data-item-id="{{_id}}">
+    <span class="thread-card__grid--item icons__thread">
+      IMAGE
+    </span>
+      <span class="thread-card__grid--item">NAME</span>
+      <span class="thread-card__grid--item">LEVEL</span>
+      <span class="thread-card__grid--item">TYPE</span>
+      <span class="thread-card__grid--item">CONNECTED ITEM</span>
 
-<div class="undefined">
+      <span class="thread-card__grid--item">ITEM CONTROLS</span>
+    </div>
+    <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+          {{{system.description.value}}}
+        </span>
+      <span>
+        {{#each this.effects as |effects id|}}
+          {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+        {{/each}}
+      </span>
+    </div>
+  </div>
+  <div class="threads flexcol">
+    {{#each actor.itemTypes.thread}}
+      {{> "systems/ed4e/templates/actor/cards/thread-card.hbs" this}}
+    {{/each}}
+  </div>
+  <h2>TODO</h2>
+  <div>
+    <div class="legend-card__grid--container font__bold text-break__auto">
+      <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendCurrent"}}</div>
+      <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendSpend"}}</div>
+      <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendTotal"}}</div>
+      <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendStatus"}}</div>
+      <div class="legend-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.legendHistory"}}</div>
+    </div>
+    <div class="legend-card__grid--container font__bold text-break__auto">
+      <div class="legend-card__grid--item text__alignment--center">
+        <input class="input__number-input--wide" type="text" name="system.lp.current"
+               value="{{actor.system.lp.current}}">
+      </div>
+      <div class="legend-card__grid--item text__alignment--center">
+        <input class="input__number-input--wide" type="text" name="system.lp.spend"
+               value="{{actor.system.lp.spend}}">
+      </div>
+      <div class="legend-card__grid--item text__alignment--center">
+        <input class="input__number-input--wide" type="text" name="system.lp.total"
+               value="{{actor.system.lp.total}}">
+      </div>
+      <div class="legend-card__grid--item text__alignment--center">
+        <input class="input__number-input--wide" type="text" name="system.lp.status"
+               value="{{actor.system.lp.status}}">
+      </div>
+      <div class="legend-card__grid--item text__alignment--center">
+        <button class="legend-point__history" data-action="legendPointHistory">{{localize "ED.Actor.Buttons.legendHistory"}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="undefined">
     <h3>
-        Attributes
+      Attributes
     </h3>
     <div>
-        <table>
-            <tr>
-                <th>
-                    Attribute
-                </th>
-                <th>
-                    increase
-                </th>
-            </tr>
-            {{#each actor.system.attributes }}
-            <tr>
-                <td class="attribute__name--content">
-                    <a>
-                        <label>{{@key}}</label>
-                    </a>
-                </td>
-                <td>
-                    <input class="input__number-input" type="text" name="system.attributes.{{@key}}.timesIncreased"
-                        value="{{timesIncreased}}">
-                </td>
-                <td>
-                     <a class="item-control item-upgrade__attribute" data-action="upgradeItem" data-attribute="{{@key}}" title="{{localize 'ED.Controls.upgrade'}}">
-                        <i class="fas fa-arrow-circle-up"></i>
-                    </a>
-                </td>
-            </tr>
-            {{/each}}
-        </table>
+      <table>
+        <tr>
+          <th>
+            Attribute
+          </th>
+          <th>
+            increase
+          </th>
+        </tr>
+        {{#each actor.system.attributes }}
+          <tr>
+            <td class="attribute__name--content">
+              <a>
+                <label>{{@key}}</label>
+              </a>
+            </td>
+            <td>
+              <input class="input__number-input" type="text" name="system.attributes.{{@key}}.timesIncreased"
+                     value="{{timesIncreased}}">
+            </td>
+            <td>
+              <a class="item-control item-upgrade__attribute" data-action="upgradeItem" data-attribute="{{@key}}" title="{{localize 'ED.Controls.upgrade'}}">
+                <i class="fas fa-arrow-circle-up"></i>
+              </a>
+            </td>
+          </tr>
+        {{/each}}
+      </table>
     </div>
-</div>
+  </div>
 </section>

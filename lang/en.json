@@ -715,6 +715,11 @@
         "social":                                  "Social Defense",
         "socialAbbreviation":                      "SD"
       },
+      "ThreadTypes": {
+        "groupPattern":                            "TODO: Add translation",
+        "patternItem":                             "TODO: Add translation",
+        "threadItem":                              "TODO: Add translation"
+      },
       "Tier": {
         "adherent":                                "Adherent",
         "exemplar":                                "Exemplar",
@@ -2754,6 +2759,18 @@
             }
           }
         },
+        "Thread": {
+          "FIELDS": {
+            "level": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "wovenToUuid": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            }
+          }
+        },
         "ThreadBase": {
           "FIELDS": {
             "characteristics": {
@@ -3129,7 +3146,8 @@
           "pathLearnShortRequirements":            "<ul>\n<li>The character must have passed the path test.</li>\n<li>The character must perform the advancement ritual with approval from a higher-ranked member.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n</ul>",
           "questorClassIncreaseShortRequirements": "<ul>\n<li>Communicate with the Passion using Questor Devotion.</li>\n<li>No test required.</li>\n<li>Only one Devotion may be gained or raised per day, per Devotion.</li>\n<li>Legend Point cost and time are the only requirements for increasing a Questor Devotion within the same category.</li>\n<li>Changing to the next category (e.g., from Disciple to Follower) requires completing a quest for the Passion.</li>\n<li>A Devotion from an earlier category may be chosen.</li>\n<li>Legend Point cost is determined by when the Devotion becomes available, even if learned later.</li>\n</ul>",
           "skillIncreaseShortRequirements":        "<ul>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>The character must train for a number of weeks equal to the new skill rank.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>Training costs usually 10 silver × the new rank per week.</li>\n<li>The previous increase must be at least {trainingTime} weeks ago.</li>\n</ul>",
-          "talentIncreaseShortRequirements":       "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>"
+          "talentIncreaseShortRequirements":       "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>",
+          "threadItemIncreaseShortRequirements":   "TODO: Add translation"
         },
         "Validation": {
           "availableLearnImprovedSpellSlots":      "TODO: Add translation",
@@ -3273,6 +3291,7 @@
       "itemSheetEdClass":                          "Discipline Sheet",
       "itemSheetEdMask":                           "TODO: Add translation",
       "itemSheetEdPhysical":                       "Equipment Sheet",
+      "itemSheetEdThread":                         "TODO: Add translation",
       "journalSheetEd":                            "Journal Sheet",
       "sceneConfigEd":                             "Scene Configuration"
     },
@@ -3700,6 +3719,12 @@
       "scrollToSourceMessage":                     "Scroll to the chat message that generated this",
       "threadItemAddTruePattern":                  "TODO: Add translation",
       "threadItemDeleteTruePattern":               "TODO: Add translation",
+      "threadItemHideRankFromPlayer":              "TODO: Add translation",
+      "threadItemHideRankKnowledgeToPlayer":       "TODO: Add translation",
+      "threadItemHideTruePatternFromPlayer":       "TODO: Add translation",
+      "threadItemShowRankKnowledgeToPlayer":       "TODO: Add translation",
+      "threadItemShowRankToPlayer":                "TODO: Add translation",
+      "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
       "weaveThreadCheck":                          "Roll Thread Weaving to increase the thread rank."
     },
@@ -3775,6 +3800,7 @@
       "spell":                                     "Spell",
       "spellKnack":                                "Spell Knack",
       "talent":                                    "Talent",
+      "thread":                                    "TODO: Add translation",
       "weapon":                                    "Weapon"
     },
     "JournalEntryPage": {
