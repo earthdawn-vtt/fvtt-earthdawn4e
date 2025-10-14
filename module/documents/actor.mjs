@@ -484,6 +484,26 @@ export default class ActorEd extends Actor {
     return createdEffects?.[0] ?? null;
   }
 
+  async manualOverride( changeKey, changeValue ) {
+    let effect = this.getManualOverrideEffect();
+    if ( !effect ) effect = await this.initializeManualOverrideEffect();
+    if ( !effect ) throw new Error( "ActorEd.manualOverride: Could not create manual override effect." );
+
+    const newValue = ( Number( effect.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
+    return effect.updateSystemChange( changeKey, newValue );
+  }
+
+  /**
+   * Creates a new manual override effect and updates the system data to reference its ID.
+   * @returns {Promise<EarthdawnActiveEffect|null>} The created manual override effect or
+   * null if it couldn't be created.
+   */
+  async initializeManualOverrideEffect() {
+    const effect = await this.createManualOverrideEffect();
+    await this.update( { "system.manualOverrideEffectId": effect.id } );
+    return effect;
+  }
+
   // endregion
 
   // region Damage & Combat
