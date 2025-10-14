@@ -83,13 +83,13 @@
         {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label"}}
       </label>
       <div class="buffer-input">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+        {{#if @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/if}}
         <input id="characteristic-health-unconscious"
                type="number"
                class="input__rectangle-input--centered"
                name="system.characteristics.health.unconscious"
                value="{{actor.system.characteristics.health.unconscious}}">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+        {{#if @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/if}}
       </div>
     </div>
 
@@ -98,13 +98,13 @@
         {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label"}}
       </label>
       <div class="buffer-input">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+        {{#if @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/if}}
         <input id="characteristic-health-death"
                type="number"
                class="input__rectangle-input--centered"
                name="system.characteristics.health.death"
                value="{{actor.system.characteristics.health.death}}">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+        {{#if @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/if}}
       </div>
     </div>
 
