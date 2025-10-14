@@ -19,7 +19,7 @@ import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mj
 import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
-import { TOKEN } from "../config/_module.mjs";
+import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 
 /**
@@ -458,6 +458,30 @@ export default class ActorEd extends Actor {
     if ( updates.length > 0 ) {
       await this.updateEmbeddedDocuments( "ActiveEffect", updates );
     }
+  }
+
+  /**
+   * Returns the manual override effect if it exists.
+   * @returns {EarthdawnActiveEffect|undefined} The manual override effect or undefined if it doesn't exist.
+   */
+  getManualOverrideEffect() {
+    return this.effects.get( this.system.manualOverrideEffectId );
+  }
+
+  /**
+   * Creates a new manual override effect for this actor.
+   * @returns {Promise<EarthdawnActiveEffect|null>} The created manual override effect or null if it couldn't be created.
+   */
+  async createManualOverrideEffect() {
+    const createData = foundry.utils.deepClone( DOCUMENT_DATA.documentData.ActiveEffect.base.manualOverride );
+    createData.origin = this.uuid;
+    createData.system.source = {
+      documentOriginUuid: this.uuid,
+      documentOriginType: this.type,
+    };
+
+    const createdEffects = await this.createActiveEffects( [ createData, ] );
+    return createdEffects?.[0] ?? null;
   }
 
   // endregion
