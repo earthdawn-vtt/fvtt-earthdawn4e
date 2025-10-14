@@ -114,7 +114,7 @@ export default class ActorEd extends Actor {
   /**
    * Returns the highest discipline of an actor
    * @type {Item|undefined}
-   */ 
+   */
   get highestDiscipline() {
     return this.disciplines.reduce( ( highest, discipline ) => {
       if ( !highest || discipline.system.level > highest.system.level ) return discipline;
@@ -735,7 +735,7 @@ export default class ActorEd extends Actor {
     );
     return knockdownAbility;
   }
-  
+
   /**
    * Perform a knockdown test for this actor.
    * @param {number} damageTaken The amount of damage that triggered the knockdown test.
@@ -919,7 +919,7 @@ export default class ActorEd extends Actor {
   }
 
   // endregion
-  
+
   /**
    * Retrieves a specific prompt based on the provided prompt type.
    * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
@@ -1252,10 +1252,10 @@ export default class ActorEd extends Actor {
   static migrateData( source ) {
     // Skip migration for partial updates or non-complete documents
     // A complete document should have fundamental properties like name, type, etc.
-    const isPartialUpdate = !source.name || 
-                          !source.type || 
-                          ( source.system && Object.keys( source.system ).length <= 2 );
-                          
+    const isPartialUpdate = !source.name
+      || !source.type
+      || ( source.system && Object.keys( source.system ).length <= 2 );
+
     // Skip if this looks like a partial update rather than a complete document
     if ( isPartialUpdate ) {
       return source;
@@ -1278,7 +1278,7 @@ export default class ActorEd extends Actor {
     if ( migrationResult.img ) {
       source.img = migrationResult.img;
     }
-    
+
     // Step 4: Return the final migrated result
     return migrationResult;
   }
