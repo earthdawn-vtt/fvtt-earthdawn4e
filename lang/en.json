@@ -39,6 +39,10 @@
           "weaponRange":                           "Weapon Range"
         }
       },
+      "CreateData": {
+        "descriptionManualOverride":               "TODO: Add translation",
+        "nameManualOverride":                      "TODO: Add translation"
+      },
       "Header": {
         "applyToAbility":                          "Apply to Ability"
       },
