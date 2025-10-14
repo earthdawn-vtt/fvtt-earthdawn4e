@@ -285,8 +285,8 @@ export default class ActorEd extends Actor {
   // region Active Effects
 
   /**
-   * Applies the given active effects to the actor.
-   * @param {ActiveEffectData[]} effects The active effects to apply to the actor.
+   * Creates the given active effects as embedded documents of this actor.
+   * @param {ActiveEffectData[]} effects The active effects to create.
    * @returns {Promise<Document[]|*>} Returns the created active effects.
    */
   async createActiveEffects( effects ) {
