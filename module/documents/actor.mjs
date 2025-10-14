@@ -19,7 +19,7 @@ import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mj
 import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
-import { TOKEN } from "../config/_module.mjs";
+import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 
 /**
@@ -27,14 +27,22 @@ import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
  */
 export default class ActorEd extends Actor {
 
-  _promptFactory = PromptFactory.fromDocument( this );
+  // region Static Methods
 
   /** @inheritDoc */
   static async createDialog( data = {}, { parent = null, pack = null, ...options } = {} ) {
     return DocumentCreateDialog.waitPrompt( data, { documentCls: Actor, parent, pack, options } );
   }
 
+  // endregion
+
   // region Properties
+
+  _promptFactory = PromptFactory.fromDocument( this );
+
+  // endregion
+
+  // region Getters
 
   /**
    * The class effects, permanent changes from disciplines, questors or paths, if any.
@@ -114,7 +122,7 @@ export default class ActorEd extends Actor {
   /**
    * Returns the highest discipline of an actor
    * @type {Item|undefined}
-   */ 
+   */
   get highestDiscipline() {
     return this.disciplines.reduce( ( highest, discipline ) => {
       if ( !highest || discipline.system.level > highest.system.level ) return discipline;
@@ -215,153 +223,6 @@ export default class ActorEd extends Actor {
 
   // endregion
 
-  // region Getters
-
-  /**
-   * Returns all adder and replacement abilities of the given roll type.
-   * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
-   * @returns {{adders: {key: string, label: string, isReplacement: boolean}[], substitutes: {key: string, label: string, isReplacement: boolean}[]}} An object containing two arrays:
-   * - `adders`: An array of adder abilities.
-   * - `substitutes`: An array of replacement abilities.
-   */
-  getModifierAbilities( rollType ) {
-    const abilities = this.items.filter(
-      item => item.system.rollType === rollType
-    ).map( item => {
-      return {
-        key:           item.uuid,
-        label:         item.name,
-        isReplacement: item.system.isReplacementAbility,
-      };
-    } ).partition(
-      item => item.isReplacement
-    );
-    return {
-      adders:      abilities[0],
-      substitutes: abilities[1],
-    };
-  }
-
-  /**
-   * @description                       Returns all ammunition items of the given actor
-   * @param {string} type               The type of ammunition to get
-   * @returns {ItemEd[]}                An array of ammunition items
-   */
-  getAmmo ( type ) {
-    return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
-  }
-
-  /**
-   * Returns an attack ability that matches the combat type and item status of the given weapon, if any.
-   * @param {ItemEd} weapon The weapon to get the attack ability for.
-   * @returns {ItemData|undefined} The attack ability item, or undefined if none was found.
-   */
-  getAttackAbilityForWeapon( weapon ) {
-    const { wieldingType, weaponType, armorType } = weapon.system;
-    return this.items.find(
-      item => item.system.rollType === "attack"
-        && item.system.rollTypeDetails?.attack?.weaponType === weaponType
-        && item.system.rollTypeDetails?.attack?.weaponItemStatus.has( wieldingType )
-        && item.system.difficulty?.target === armorType
-    );
-  }
-
-  /**
-   * Returns the discipline item that is associated with the given spell's spellcasting type.
-   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} spellcastingType The spellcasting type key (from config.spellcastingTypes).
-   * @returns {ItemEd|null} The discipline item, or null if none was found.
-   */
-  getDisciplineForSpellcastingType( spellcastingType ) {
-    const threadWeavingTalent = this.getThreadWeavingByCastingType( spellcastingType );
-    if ( !threadWeavingTalent ) return null;
-
-    return fromUuidSync( threadWeavingTalent.system.source?.class );
-  }
-
-  /**
-   * Finds and returns this PC's class of the given type with the highest circle.
-   * If multiple, only the first found will be returned.
-   * @param {string} type The type of class to be searched for. One of discipline, path, questor.
-   * @returns {Item} A discipline item with the highest circle.
-   * @private
-   */
-  getHighestClass( type ) {
-    return this.itemTypes[ type ].sort(     // sort descending by circle/rank
-      ( a, b ) => a.system.level > b.system.level ? -1 : 1
-    )[0];
-  }
-
-  /**
-   * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
-   * Returns an array of items that match a given EDID and optionally an item type.
-   * @param {string} edid           The EDID of the item(s) which you want to retrieve
-   * @param {string} [type]           Optionally, a type name to restrict the search
-   * @returns {ItemEd[]|undefined}    An array containing the found items
-   */
-  getItemsByEdid( edid, type ) {
-    const edidFilter = ( item ) => item.system.edid === edid;
-    if ( !type ) return this.items.filter( edidFilter );
-
-    const itemTypes = this.itemTypes;
-    if ( !Object.hasOwn( itemTypes, type ) ) throw new Error( `Type ${ type } is invalid!` );
-
-    return itemTypes[type].filter( edidFilter );
-  }
-
-  /**
-   * Returns an array of items that match a given roll type.
-   * @param {string} action The roll type to filter by, e.g. "attack", "spellcasting", etc.
-   * @returns {ItemData[]} An array of items that match the given roll type.
-   */
-  getItemsByAction( action ) {
-    return this.items.filter(
-      item => item.system.rollType === action
-    );
-  }
-
-  /**
-   * Find all items that have a matrix.
-   * @returns {ItemData[]} An array of items that have a matrix.
-   */
-  getMatrices() {
-    return this.items.filter( item => item.system?.hasMatrix );
-  }
-
-  /**
-   * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
-   * Fetch an item that matches a given EDID and optionally an item type.
-   * @param {string} edid         The EDID of the item(s) which you want to retrieve
-   * @param {string} [type]         Optionally, a type name to restrict the search
-   * @returns {ItemEd|undefined}    The matching item, or undefined if none was found.
-   */
-  getSingleItemByEdid( edid, type ) {
-    return this.getItemsByEdid( edid, type )[0];
-  }
-
-  /**
-   * Returns the thread weaving ability item for the given spellcasting type.
-   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} [spellcastingType] The spellcasting type key (from {@link spellcastingTypes}), or none if this actor is a horror or spirit.
-   * @returns {ItemEd|null} The thread weaving item, or null if none was found.
-   */
-  getThreadWeavingByCastingType( spellcastingType ) {
-    if ( [ "horror", "spirit" ].includes( this.type ) ) {
-      return this.getSingleItemByEdid(
-        getSetting( "edidSpellcasting" )
-      ) ?? this.itemTypes.power.find( power => power.system.rollType === "spellcasting" );
-    }
-
-    return this.getItemsByEdid(
-      getSetting( "edidThreadWeaving" ),
-    ).find(
-      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
-    ) ?? this.items.find(
-      item => item.system.rollType === "threadWeaving"
-        && item.system.rollTypeDetails?.threadWeaving?.castingType === spellcastingType
-    );
-  }
-
-  // endregion
-
   // region Checkers
 
   /**
@@ -424,8 +285,8 @@ export default class ActorEd extends Actor {
   // region Active Effects
 
   /**
-   * Applies the given active effects to the actor.
-   * @param {ActiveEffectData[]} effects The active effects to apply to the actor.
+   * Creates the given active effects as embedded documents of this actor.
+   * @param {ActiveEffectData[]} effects The active effects to create.
    * @returns {Promise<Document[]|*>} Returns the created active effects.
    */
   async createActiveEffects( effects ) {
@@ -599,6 +460,50 @@ export default class ActorEd extends Actor {
     }
   }
 
+  /**
+   * Returns the manual override effect if it exists.
+   * @returns {EarthdawnActiveEffect|undefined} The manual override effect or undefined if it doesn't exist.
+   */
+  getManualOverrideEffect() {
+    return this.effects.get( this.system.manualOverrideEffectId );
+  }
+
+  /**
+   * Creates a new manual override effect for this actor.
+   * @returns {Promise<EarthdawnActiveEffect|null>} The created manual override effect or null if it couldn't be created.
+   */
+  async createManualOverrideEffect() {
+    const createData = foundry.utils.deepClone( DOCUMENT_DATA.documentData.ActiveEffect.base.manualOverride );
+    createData.origin = this.uuid;
+    createData.system.source = {
+      documentOriginUuid: this.uuid,
+      documentOriginType: this.type,
+    };
+
+    const createdEffects = await this.createActiveEffects( [ createData, ] );
+    return createdEffects?.[0] ?? null;
+  }
+
+  async manualOverride( changeKey, changeValue ) {
+    let effect = this.getManualOverrideEffect();
+    if ( !effect ) effect = await this.initializeManualOverrideEffect();
+    if ( !effect ) throw new Error( "ActorEd.manualOverride: Could not create manual override effect." );
+
+    const newValue = ( Number( effect.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
+    return effect.updateSystemChange( changeKey, newValue );
+  }
+
+  /**
+   * Creates a new manual override effect and updates the system data to reference its ID.
+   * @returns {Promise<EarthdawnActiveEffect|null>} The created manual override effect or
+   * null if it couldn't be created.
+   */
+  async initializeManualOverrideEffect() {
+    const effect = await this.createManualOverrideEffect();
+    await this.update( { "system.manualOverrideEffectId": effect.id } );
+    return effect;
+  }
+
   // endregion
 
   // region Damage & Combat
@@ -735,7 +640,7 @@ export default class ActorEd extends Actor {
     );
     return knockdownAbility;
   }
-  
+
   /**
    * Perform a knockdown test for this actor.
    * @param {number} damageTaken The amount of damage that triggered the knockdown test.
@@ -919,18 +824,6 @@ export default class ActorEd extends Actor {
   }
 
   // endregion
-  
-  /**
-   * Retrieves a specific prompt based on the provided prompt type.
-   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
-   * effectively acting as a proxy to access various prompts defined within the factory.
-   * @param {ActorPromptType} promptType - The type of prompt to retrieve.
-   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
-   * associated with the given `promptType`. The exact return type depends on promptType.
-   */
-  async getPrompt( promptType ) {
-    return this._promptFactory.getPrompt( promptType );
-  }
 
   // region LP Tracking
 
@@ -1234,6 +1127,163 @@ export default class ActorEd extends Actor {
 
   // endregion
 
+  // region Methods
+
+  /**
+   * Returns all adder and replacement abilities of the given roll type.
+   * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
+   * @returns {{adders: {key: string, label: string, isReplacement: boolean}[], substitutes: {key: string, label: string, isReplacement: boolean}[]}} An object containing two arrays:
+   * - `adders`: An array of adder abilities.
+   * - `substitutes`: An array of replacement abilities.
+   */
+  getModifierAbilities( rollType ) {
+    const abilities = this.items.filter(
+      item => item.system.rollType === rollType
+    ).map( item => {
+      return {
+        key:           item.uuid,
+        label:         item.name,
+        isReplacement: item.system.isReplacementAbility,
+      };
+    } ).partition(
+      item => item.isReplacement
+    );
+    return {
+      adders:      abilities[0],
+      substitutes: abilities[1],
+    };
+  }
+
+  /**
+   * @description                       Returns all ammunition items of the given actor
+   * @param {string} type               The type of ammunition to get
+   * @returns {ItemEd[]}                An array of ammunition items
+   */
+  getAmmo ( type ) {
+    return this.itemTypes.equipment.filter( item => item.system.ammunition.type === type );
+  }
+
+  /**
+   * Returns an attack ability that matches the combat type and item status of the given weapon, if any.
+   * @param {ItemEd} weapon The weapon to get the attack ability for.
+   * @returns {ItemData|undefined} The attack ability item, or undefined if none was found.
+   */
+  getAttackAbilityForWeapon( weapon ) {
+    const { wieldingType, weaponType, armorType } = weapon.system;
+    return this.items.find(
+      item => item.system.rollType === "attack"
+        && item.system.rollTypeDetails?.attack?.weaponType === weaponType
+        && item.system.rollTypeDetails?.attack?.weaponItemStatus.has( wieldingType )
+        && item.system.difficulty?.target === armorType
+    );
+  }
+
+  /**
+   * Returns the discipline item that is associated with the given spell's spellcasting type.
+   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} spellcastingType The spellcasting type key (from config.spellcastingTypes).
+   * @returns {ItemEd|null} The discipline item, or null if none was found.
+   */
+  getDisciplineForSpellcastingType( spellcastingType ) {
+    const threadWeavingTalent = this.getThreadWeavingByCastingType( spellcastingType );
+    if ( !threadWeavingTalent ) return null;
+
+    return fromUuidSync( threadWeavingTalent.system.source?.class );
+  }
+
+  /**
+   * Finds and returns this PC's class of the given type with the highest circle.
+   * If multiple, only the first found will be returned.
+   * @param {string} type The type of class to be searched for. One of discipline, path, questor.
+   * @returns {Item} A discipline item with the highest circle.
+   * @private
+   */
+  getHighestClass( type ) {
+    return this.itemTypes[ type ].sort(     // sort descending by circle/rank
+      ( a, b ) => a.system.level > b.system.level ? -1 : 1
+    )[0];
+  }
+
+  /**
+   * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
+   * Returns an array of items that match a given EDID and optionally an item type.
+   * @param {string} edid           The EDID of the item(s) which you want to retrieve
+   * @param {string} [type]           Optionally, a type name to restrict the search
+   * @returns {ItemEd[]|undefined}    An array containing the found items
+   */
+  getItemsByEdid( edid, type ) {
+    const edidFilter = ( item ) => item.system.edid === edid;
+    if ( !type ) return this.items.filter( edidFilter );
+
+    const itemTypes = this.itemTypes;
+    if ( !Object.hasOwn( itemTypes, type ) ) throw new Error( `Type ${ type } is invalid!` );
+
+    return itemTypes[type].filter( edidFilter );
+  }
+
+  /**
+   * Returns an array of items that match a given roll type.
+   * @param {string} action The roll type to filter by, e.g. "attack", "spellcasting", etc.
+   * @returns {ItemData[]} An array of items that match the given roll type.
+   */
+  getItemsByAction( action ) {
+    return this.items.filter(
+      item => item.system.rollType === action
+    );
+  }
+
+  /**
+   * Find all items that have a matrix.
+   * @returns {ItemData[]} An array of items that have a matrix.
+   */
+  getMatrices() {
+    return this.items.filter( item => item.system?.hasMatrix );
+  }
+
+  /**
+   * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
+   * Fetch an item that matches a given EDID and optionally an item type.
+   * @param {string} edid         The EDID of the item(s) which you want to retrieve
+   * @param {string} [type]         Optionally, a type name to restrict the search
+   * @returns {ItemEd|undefined}    The matching item, or undefined if none was found.
+   */
+  getSingleItemByEdid( edid, type ) {
+    return this.getItemsByEdid( edid, type )[0];
+  }
+
+  /**
+   * Returns the thread weaving ability item for the given spellcasting type.
+   * @param {keyof typeof import("../config/magic.mjs").spellcastingTypes} [spellcastingType] The spellcasting type key (from {@link spellcastingTypes}), or none if this actor is a horror or spirit.
+   * @returns {ItemEd|null} The thread weaving item, or null if none was found.
+   */
+  getThreadWeavingByCastingType( spellcastingType ) {
+    if ( [ "horror", "spirit" ].includes( this.type ) ) {
+      return this.getSingleItemByEdid(
+        getSetting( "edidSpellcasting" )
+      ) ?? this.itemTypes.power.find( power => power.system.rollType === "spellcasting" );
+    }
+
+    return this.getItemsByEdid(
+      getSetting( "edidThreadWeaving" ),
+    ).find(
+      item => spellcastingType === item.system.rollTypeDetails?.threadWeaving?.castingType
+    ) ?? this.items.find(
+      item => item.system.rollType === "threadWeaving"
+        && item.system.rollTypeDetails?.threadWeaving?.castingType === spellcastingType
+    );
+  }
+
+  /**
+   * Retrieves a specific prompt based on the provided prompt type.
+   * This method delegates the call to the `_promptFactory` instance's `getPrompt` method,
+   * effectively acting as a proxy to access various prompts defined within the factory.
+   * @param {ActorPromptType} promptType - The type of prompt to retrieve.
+   * @returns {Promise<any>} - A promise that resolves to the specific prompt instance or logic
+   * associated with the given `promptType`. The exact return type depends on promptType.
+   */
+  async getPrompt( promptType ) {
+    return this._promptFactory.getPrompt( promptType );
+  }
+
   /**
    * Use a resource (karma, devotion) by deducting the amount. This will always happen, even if not enough is available.
    * Look out for the return value to see if that was the case.
@@ -1248,14 +1298,16 @@ export default class ActorEd extends Actor {
     return amount <= available;
   }
 
+  // endregion
+
   // region Migrations
   static migrateData( source ) {
     // Skip migration for partial updates or non-complete documents
     // A complete document should have fundamental properties like name, type, etc.
-    const isPartialUpdate = !source.name || 
-                          !source.type || 
-                          ( source.system && Object.keys( source.system ).length <= 2 );
-                          
+    const isPartialUpdate = !source.name
+      || !source.type
+      || ( source.system && Object.keys( source.system ).length <= 2 );
+
     // Skip if this looks like a partial update rather than a complete document
     if ( isPartialUpdate ) {
       return source;
@@ -1278,7 +1330,7 @@ export default class ActorEd extends Actor {
     if ( migrationResult.img ) {
       source.img = migrationResult.img;
     }
-    
+
     // Step 4: Return the final migrated result
     return migrationResult;
   }

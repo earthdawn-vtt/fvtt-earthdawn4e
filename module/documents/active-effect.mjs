@@ -174,9 +174,9 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
     const actor = this.target;
     const tokens = actor.getActiveTokens( true );
-    const text = ( this.parent.effects.has( this.id ) && Number.isInteger( this.system.level ) ) ?
-      this.name :
-      `${enabled ? "+" : "-"} ${this.name}`;
+    const text = ( this.parent.effects.has( this.id ) && Number.isInteger( this.system.level ) )
+      ? this.name
+      : `${enabled ? "+" : "-"} ${this.name}`;
 
     for ( let token of tokens ) {
       if ( !token.visible || token.document.isSecret ) continue;
@@ -194,6 +194,53 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
         },
       );
     }
+  }
+
+  // endregion
+
+  // region Methods
+
+  async addSystemChange( changeKey, changeValue, changeMode = CONST.ACTIVE_EFFECT_MODES.ADD, priority = null ) {
+    if ( !changeKey || changeValue === undefined || changeValue === null ) {
+      throw new Error( "Both changeKey and changeValue are required to add a system change." );
+    }
+
+    const newChange = {
+      key:      changeKey,
+      value:    changeValue,
+      mode:     changeMode,
+      priority: priority,
+    };
+
+    const updatedChanges = [ ...this.system.changes, newChange ];
+    return this.update( {
+      system: {
+        changes: updatedChanges,
+      },
+    } );
+  }
+
+  async updateSystemChange( changeKey, changeValue, changeMode = CONST.ACTIVE_EFFECT_MODES.ADD, priority = null ) {
+    if ( !changeKey || changeValue === undefined || changeValue === null ) {
+      throw new Error( "changeKey and changeValue are required to update a system change." );
+    }
+
+    const existingChange = this.system.changes.find( c => c.key === changeKey );
+    if ( !existingChange ) return this.addSystemChange( changeKey, changeValue, changeMode, priority );
+
+    const newChange = {
+      key:      changeKey,
+      value:    changeValue,
+      mode:     changeMode,
+      priority: priority,
+    };
+
+    const updatedChanges = this.system.changes.map( c => ( c.key === changeKey ? newChange : c ) );
+    return this.update( {
+      system: {
+        changes: updatedChanges,
+      },
+    } );
   }
 
   // endregion

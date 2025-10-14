@@ -2,7 +2,21 @@ import { preLocalize } from "../utils.mjs";
 
 
 export const documentData = {
-  Item: {
+  ActiveEffect: {
+    base: {
+      manualOverride: {
+        name:        "ED.ActiveEffect.CreateData.nameManualOverride",
+        description: "ED.ActiveEffect.CreateData.descriptionManualOverride",
+        type:        "eae",
+        system:      {
+          duration: {
+            type: "permanent",
+          },
+        },
+      },
+    },
+  },
+  Item:         {
     skill: {
       languageSpeak: {
         name:   "ED.Item.CreateData.nameSpeakLanguage",
@@ -42,6 +56,7 @@ export const documentData = {
     },
   },
 };
+preLocalize( "documentData.ActiveEffect.base.manualOverride", { keys: [ "name", "description", ], } );
 preLocalize( "documentData.Item.skill.languageSpeak", { key: "name" } );
 preLocalize( "documentData.Item.skill.languageSpeak.system.description", { key: "value" } );
 preLocalize( "documentData.Item.skill.languageRW", { key: "name" } );

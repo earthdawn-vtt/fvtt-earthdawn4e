@@ -39,6 +39,10 @@
           "weaponRange":                           "Waffenreichweite"
         }
       },
+      "CreateData": {
+        "descriptionManualOverride":               "<p>Änderungen an diversen Werten die direkt über den Bearbeitungsmodus des Charakterbogens vorgenommen werden.</p>\n<p><span style=\"font-family: Courier New\"><strong>Achtung</strong>: <em>Dieser Effekt ist vom System automatisch erstellt und verwaltet.</em></span></p>",
+        "nameManualOverride":                      "Manuelle Anpassungen"
+      },
       "Header": {
         "applyToAbility":                          "Auf Fähigkeit anwenden"
       },
