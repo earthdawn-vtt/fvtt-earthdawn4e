@@ -54,7 +54,7 @@ Item-type-specific migration classes:
 - `namegiver.mjs` - Namegiver-specific migrations (image migration, etc.)
 - `shield.mjs` - Shield-specific migrations (image migration, etc.)
 - `skill.mjs` - Skill-specific migrations (image migration, etc.)
-- `reputation.mjs` - Reputation-specific migrations
+- `connections.mjs` - connections-specific migrations
 - `image.mjs` - Shared image migration utility (replaces earthdawn4e paths with generic icons)
 - `abilities.mjs` - Abilities-specific migrations
 - `defenses.mjs` - Defenses-specific migrations

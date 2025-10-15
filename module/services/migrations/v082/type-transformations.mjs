@@ -135,7 +135,7 @@ function transformItemType( originalType, systemData ) {
       return transformAttackType( systemData.powerType.slugify( { lowercase: true, strict: true } ) );
     case "thread":
       return transformThreadType( systemData );
-    // Note: reputation items need document-level transformation (Item→Actor)
+    // Note: connections items need document-level transformation (Item→Actor)
     // This is handled in the migration system, not here
     default:
       return null;

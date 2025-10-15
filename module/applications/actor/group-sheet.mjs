@@ -9,7 +9,7 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
     this.addSheetTabs( [
       { id: "description", },
       { id: "equipment", },
-      { id: "reputation", },
+      { id: "connections", },
     ] );
   }
 
@@ -52,9 +52,9 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
       template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
       classes:  [ "tab", "equipment" ]
     },
-    reputation: {
-      template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      classes:  [ "tab", "reputation" ]
+    connections: {
+      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:  [ "tab", "connections" ]
     },
   };
 
@@ -77,7 +77,7 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
         break;
       case "equipment":
         break;  
-      case "reputation":
+      case "connections":
         break;
     }
     return context;

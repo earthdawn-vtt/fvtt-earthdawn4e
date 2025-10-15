@@ -25,17 +25,11 @@
             <div class="tab tab__notes" data-tab="actor-notes-tab">
                 {{> "systems/ed4e/templates/actor/actor-tabs/notes.hbs"}}
             </div>
-            <div class="tab tab__reputation" data-tab="actor-familiar-tab">
-                {{> "systems/ed4e/templates/actor/actor-tabs/reputation.hbs"}}
+            <div class="tab tab__connections" data-tab="actor-familiar-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/connections.hbs"}}
             </div>
             <div class="tab tab__specials" data-tab="actor-specials-tab">
                 {{> "systems/ed4e/templates/actor/actor-tabs/specials.hbs"}}
-            </div>
-            <div class="tab tab__legend" data-tab="actor-legend-tab">
-                {{> "systems/ed4e/templates/actor/actor-tabs/legend.hbs"}}
-            </div>
-            <div class="tab tab__class" data-tab="actor-class-tab">
-                {{> "systems/ed4e/templates/actor/actor-tabs/classes.hbs"}}
             </div>
             {{#if (eq this.data.type "npc")}}
             <div class="tab tab__configuration" data-tab="actor-configuration-tab">
