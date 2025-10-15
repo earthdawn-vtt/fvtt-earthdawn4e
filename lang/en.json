@@ -284,21 +284,6 @@
           "spendingTransactionDescription":        "Increased from {PreviousLevel} to {newlevel}"
         }
       },
-      "Navigator": {
-        "classes":                                 "Vocation",
-        "configuration":                           "Configuration",
-        "devotions":                               "Devotions",
-        "equipment":                               "Equipment",
-        "general":                                 "General",
-        "information":                             "Information",
-        "legend":                                  "Legend",
-        "power":                                   "Powers",
-        "reputation":                              "Reputation",
-        "skills":                                  "skills",
-        "specials":                                "Specials",
-        "spells":                                  "Spells",
-        "talents":                                 "Talents"
-      },
       "Tabs": {
         "Spells": {
           "all":                                   "All",
@@ -3638,37 +3623,15 @@
       "talentsSplit":                              "Group Talents by Category",
       "talentsSplitHint":                          "Group Talents"
     },
-    "Sheet": {
-      "Tabs": {
-        "advancement":                             "Advancement",
-        "classes":                                 "Classes",
-        "details":                                 "Details",
-        "devotions":                               "Devotions",
-        "effects":                                 "Effects",
-        "equipment":                               "Equipment",
-        "general":                                 "General",
-        "legend":                                  "Legend",
-        "notes":                                   "Notes",
-        "reputation":                              "Reputation",
-        "skills":                                  "Skills",
-        "specials":                                "Specials",
-        "spells":                                  "Spells",
-        "talents":                                 "Talents",
-        "thread":                                  "Threads"
-      }
-    },
     "Tabs": {
       "ActorSheet": {
-        "classes":                                 "Classes",
         "configuration":                           "Configuration",
-        "description":                             "Description",
+        "connections":                             "connections",
         "devotions":                               "Devotions",
         "equipment":                               "Equipment",
         "general":                                 "General",
-        "legend":                                  "Legend",
         "notes":                                   "Notes",
         "powers":                                  "Powers",
-        "reputation":                              "Reputation",
         "skills":                                  "Skills",
         "specials":                                "Specials",
         "spells":                                  "Spells",
