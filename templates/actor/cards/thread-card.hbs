@@ -5,9 +5,6 @@
   <div class="thread-card__grid--item">{{name}}</div>
   <div class="thread-card__grid--item">{{system.level}}</div>
   <div class="thread-card__grid--item">{{lookup @root/config.threadTypes system.threadType}}</div>
-  {{log this}}
-  {{log @root/threadConnectedItems}}
-  {{log id}}
   <div class="thread-card__grid--item">{{{lookup @root/threadConnectedItems id}}}</div>
   <div class="thread-card__grid--item">
     {{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}

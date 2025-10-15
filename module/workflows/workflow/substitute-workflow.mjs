@@ -94,6 +94,11 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     // Build button data for each mode
     const buttons = [];
     for ( const [ key, mode ] of Object.entries( modes ) ) {
+      // check for namegiver item with tail attack
+      if ( key === "tailAttack" ) {     
+        const namegivers = this._actor.items.filter( i => i.type === "namegiver" );
+        if ( namegivers[0]?.system.tailAttack !== true ) continue;
+      }
       buttons.push( {
         action:   `${mode.rollType}:${key}`,
         label:    game.i18n.localize( mode.label ),

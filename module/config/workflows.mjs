@@ -37,6 +37,11 @@ export const substituteModes = {
       rollType:   "attack",
       attackType: "unarmed",
     },
+    tailAttack: {
+      label:      "ED.Config.SubstituteModes.tailAttack",
+      rollType:   "attack",
+      attackType: "tail",
+    },
   },
   str: {
     climbing: {
