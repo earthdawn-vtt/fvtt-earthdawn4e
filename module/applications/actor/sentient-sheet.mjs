@@ -299,7 +299,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     // if right click is used, rotate status backwards
     const backwards = event.button === 2;
 
-    const li = target.closest( ".item-id" );
+    const li = target.closest( "[data-item-id]" );
     const item = this.document.items.get( li.dataset.itemId );
 
     if ( unequip ) return item.system.carry()?.then( _ => this.render() );
