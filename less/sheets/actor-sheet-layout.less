@@ -45,7 +45,8 @@
     .initiative__grid--container,
     .initiative-npc__grid--container,
     .spell-card__grid--container,
-    .language-card__grid--container {
+    .language-card__grid--container,
+    .thread-card__grid--container {
       column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
@@ -69,7 +70,8 @@
     .power-card__grid--item:nth-child(7),
     .maneuver-card__grid--item:nth-child(5),
     .class-card__grid--item:nth-child(4),
-    .effect-card__grid--item:nth-child(6) {
+    .effect-card__grid--item:nth-child(6),
+    .thread-card__grid--item:nth-child(6) {
       padding: 0 4px 0 0;
       color: var(--color-button-icon);
     }
@@ -81,7 +83,9 @@
     .maneuver-card__grid--item:nth-child(2),
     .class-card__grid--item:nth-child(2),
     .equipment-card__grid--item:nth-child(2),
-    .knack-card__grid--item:nth-child(2) {
+    .knack-card__grid--item:nth-child(2),
+    .thread-card__grid--item:nth-child(2),
+    .thread-card__grid--item:nth-child(5) {
       text-align: left;
     }
 
@@ -367,6 +371,19 @@
       line-height: 1.2rem;
       padding: 5px 0px;
       margin: 5px 0 0 0;
+    }
+
+    /* ======================= Threads tab ======================= */
+    .thread-card__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(25px, 25px)
+        minmax(100px, 1fr)
+        minmax(50px, 50px)
+        minmax(50px, 50px)
+        minmax(100px, 1fr)
+        minmax(75px, 75px);
+      grid-auto-flow: row;
     }
 
     /* ======================= Effects tab ======================= */
