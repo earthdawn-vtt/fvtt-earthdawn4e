@@ -1552,7 +1552,7 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-content .thread-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(50px, 50px) minmax(50px, 50px) minmax(100px, 1fr) minmax(75px, 75px);
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(50px, 50px) minmax(150px, 150px) minmax(150px, 150px) minmax(75px, 75px);
   grid-auto-flow: row;
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
