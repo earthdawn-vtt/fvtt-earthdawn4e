@@ -287,21 +287,6 @@
           "spendingTransactionDescription":        "TODO: Add translation"
         }
       },
-      "Navigator": {
-        "classes":                                 "TODO: Add translation",
-        "configuration":                           "TODO: Add translation",
-        "devotions":                               "TODO: Add translation",
-        "equipment":                               "TODO: Add translation",
-        "general":                                 "TODO: Add translation",
-        "information":                             "TODO: Add translation",
-        "legend":                                  "TODO: Add translation",
-        "power":                                   "TODO: Add translation",
-        "reputation":                              "TODO: Add translation",
-        "skills":                                  "TODO: Add translation",
-        "specials":                                "TODO: Add translation",
-        "spells":                                  "TODO: Add translation",
-        "talents":                                 "TODO: Add translation"
-      },
       "Tabs": {
         "Spells": {
           "all":                                   "TODO: Add translation",
@@ -3641,37 +3626,15 @@
       "talentsSplit":                              "TODO: Add translation",
       "talentsSplitHint":                          "TODO: Add translation"
     },
-    "Sheet": {
-      "Tabs": {
-        "advancement":                             "TODO: Add translation",
-        "classes":                                 "TODO: Add translation",
-        "details":                                 "TODO: Add translation",
-        "devotions":                               "TODO: Add translation",
-        "effects":                                 "TODO: Add translation",
-        "equipment":                               "TODO: Add translation",
-        "general":                                 "TODO: Add translation",
-        "legend":                                  "TODO: Add translation",
-        "notes":                                   "TODO: Add translation",
-        "reputation":                              "TODO: Add translation",
-        "skills":                                  "TODO: Add translation",
-        "specials":                                "TODO: Add translation",
-        "spells":                                  "TODO: Add translation",
-        "talents":                                 "TODO: Add translation",
-        "thread":                                  "TODO: Add translation"
-      }
-    },
     "Tabs": {
       "ActorSheet": {
-        "classes":                                 "TODO: Add translation",
         "configuration":                           "TODO: Add translation",
-        "description":                             "TODO: Add translation",
+        "connections":                             "TODO: Add translation",
         "devotions":                               "TODO: Add translation",
         "equipment":                               "TODO: Add translation",
         "general":                                 "TODO: Add translation",
-        "legend":                                  "TODO: Add translation",
         "notes":                                   "TODO: Add translation",
         "powers":                                  "TODO: Add translation",
-        "reputation":                              "TODO: Add translation",
         "skills":                                  "TODO: Add translation",
         "specials":                                "TODO: Add translation",
         "spells":                                  "TODO: Add translation",
