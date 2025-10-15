@@ -757,7 +757,6 @@ export async function preloadHandlebarsTemplates() {
 
     // region Actor partials
 
-    "systems/ed4e/templates/actor/actor-partials/actor-section-navigator.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-trap.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-loot.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-group.hbs",
