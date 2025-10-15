@@ -75,9 +75,9 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
       template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
       classes:  [ "tab", "notes" ]
     },
-    reputation: {
-      template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      classes:  [ "tab", "reputation" ]
+    connections: {
+      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:  [ "tab", "connections" ]
     },
     specials: {
       template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
@@ -120,7 +120,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
         break;
       case "notes":
         break;
-      case "reputation":
+      case "connections":
         break;
       case "specials":
         break;

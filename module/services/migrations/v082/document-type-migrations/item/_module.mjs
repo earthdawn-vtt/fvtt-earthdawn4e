@@ -6,7 +6,7 @@ import MaskMigration from "./mask.mjs";
 import MatrixMigration from "./matrix.mjs";
 import NamegiverMigration from "./namegiver.mjs";
 import PowerMigration from "./power.mjs";
-import ReputationMigration from "./reputation.mjs";
+import connectionsMigration from "./connections.mjs";
 import ShieldMigration from "./shield.mjs";
 import SkillMigration from "./skill.mjs";
 import SpellMigration from "./spell.mjs";
@@ -30,7 +30,7 @@ export {
   MatrixMigration,
   NamegiverMigration,
   PowerMigration,
-  ReputationMigration,
+  connectionsMigration,
   ShieldMigration,
   SkillMigration,
   SpellMigration,
@@ -51,7 +51,7 @@ export const typeMigrationConfig = {
   matrix:        MatrixMigration,
   namegiver:     NamegiverMigration,
   attack:        PowerMigration,
-  reputation:    ReputationMigration,
+  connections:    connectionsMigration,
   shield:        ShieldMigration,
   skill:         SkillMigration,
   spell:         SpellMigration,

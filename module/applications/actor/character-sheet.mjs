@@ -7,12 +7,6 @@ import { createContentAnchor } from "../../utils.mjs";
  */
 export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
 
-  static {
-    this.addSheetTabs( [
-      { id: "legend", },
-    ] );
-  }
-
   // region Static Properties
 
   /** @override */
@@ -77,21 +71,13 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
       classes:  [ "tab", "notes" ]
     },
-    reputation: {
-      template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      classes:  [ "tab", "reputation" ]
+    connections: {
+      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:  [ "tab", "connections" ]
     },
     specials: {
       template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
       classes:  [ "tab", "specials" ]
-    },
-    legend: {
-      template: "systems/ed4e/templates/actor/actor-tabs/legend.hbs",
-      classes:  [ "tab", "legend" ]
-    },
-    classes: {
-      template: "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
-      classes:  [ "tab", "classes" ]
     },
   };
 
@@ -173,11 +159,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         break;  
       case "notes":
         break;
-      case "reputation":
-        break;
-      case "specials":
-        break;
-      case "legend":
+      case "connections":
         context.threadConnectedItems = await this.document.itemTypes.thread.reduce(
           async ( acc, thread ) => {
             const connectedItem = await thread.system.getConnectedDocument();
@@ -186,6 +168,8 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
           },
           {},
         );
+        break;
+      case "specials":
         break;
     }
     return context;

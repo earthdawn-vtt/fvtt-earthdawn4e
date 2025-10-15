@@ -11,7 +11,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
       { id: "powers", },
       { id: "skills", },
       { id: "devotions", },
-      { id: "reputation", },
+      { id: "connections", },
       { id: "specials", },
       { id: "configuration", },
     ] );
@@ -80,9 +80,9 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
       template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
       classes:  [ "tab", "notes" ]
     },
-    reputation: {
-      template: "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
-      classes:  [ "tab", "reputation" ]
+    connections: {
+      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:  [ "tab", "connections" ]
     },
     specials: {
       template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
@@ -125,7 +125,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
         break;  
       case "notes":
         break;
-      case "reputation":
+      case "connections":
         break;
       case "specials":
         break;

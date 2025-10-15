@@ -747,11 +747,9 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
     "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
     "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
-    "systems/ed4e/templates/actor/actor-tabs/reputation.hbs",
+    "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
     "systems/ed4e/templates/actor/actor-tabs/general.hbs",
     "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
-    "systems/ed4e/templates/actor/actor-tabs/legend.hbs",
-    "systems/ed4e/templates/actor/actor-tabs/classes.hbs",
     "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
     "systems/ed4e/templates/actor/actor-tabs/description.hbs",
 

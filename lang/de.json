@@ -287,21 +287,6 @@
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         }
       },
-      "Navigator": {
-        "classes":                                 "Berufung",
-        "configuration":                           "Konfiguration",
-        "devotions":                               "Weihekräfte",
-        "equipment":                               "Ausrüstung",
-        "general":                                 "Allgemein",
-        "information":                             "Informationen",
-        "legend":                                  "Legende",
-        "power":                                   "Kräfte",
-        "reputation":                              "Ruf",
-        "skills":                                  "Fertigkeiten",
-        "specials":                                "Effekte",
-        "spells":                                  "Zauber",
-        "talents":                                 "Talente"
-      },
       "Tabs": {
         "Spells": {
           "all":                                   "Alle",
@@ -3641,37 +3626,15 @@
       "talentsSplit":                              "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                          "Talente Gruppieren"
     },
-    "Sheet": {
-      "Tabs": {
-        "advancement":                             "Fortschritt",
-        "classes":                                 "Berufung",
-        "details":                                 "Details",
-        "devotions":                               "Weihekräfte",
-        "effects":                                 "Effekte",
-        "equipment":                               "Ausrüstung",
-        "general":                                 "Allgemein",
-        "legend":                                  "Legende",
-        "notes":                                   "Notizen",
-        "reputation":                              "Ruf",
-        "skills":                                  "Fertigkeiten",
-        "specials":                                "Effekte",
-        "spells":                                  "Zauber",
-        "talents":                                 "Talente",
-        "thread":                                  "Fäden"
-      }
-    },
     "Tabs": {
       "ActorSheet": {
-        "classes":                                 "Berufung",
         "configuration":                           "Konfiguration",
-        "description":                             "Beschreibung",
+        "connections":                             "Verknüpfungen",
         "devotions":                               "Weihekräfte",
         "equipment":                               "Ausrüstung",
         "general":                                 "Allgemein",
-        "legend":                                  "Legende",
-        "notes":                                   "Notizen",
+        "notes":                                   "Legende",
         "powers":                                  "Kräfte",
-        "reputation":                              "Ansehen",
         "skills":                                  "Fertigkeiten",
         "specials":                                "Extra",
         "spells":                                  "Zauber",
