@@ -1260,6 +1260,7 @@ h3.label--rail .label__text::after {
   /* ======================= Powers tab ======================= */
   /* ======================= Equipment tab ======================= */
   /* ======================= Navigation Tabs ======================= */
+  /* ======================= Threads tab ======================= */
   /* ======================= Effects tab ======================= */
   /* ======================= Tabs ======================= */
   /* ======================= Top ======================= */
@@ -1302,7 +1303,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--container {
   column-gap: var(--grid-col-gap-sm);
   text-transform: capitalize;
   font-weight: normal;
@@ -1326,7 +1328,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container.container__header,
-.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container.container__header {
+.application.sheet.earthdawn4e.actor .window-content .language-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--container.container__header {
   background-color: var(--color-secondary-grey);
   color: var(--color-text-banner);
   text-transform: uppercase;
@@ -1339,7 +1342,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(7),
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5),
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4),
-.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6) {
+.application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6),
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--item:nth-child(6) {
   padding: 0 4px 0 0;
   color: var(--color-button-icon);
 }
@@ -1350,7 +1354,9 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--item:nth-child(2),
-.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(2) {
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--item:nth-child(5) {
   text-align: left;
 }
 .application.sheet.earthdawn4e.actor .window-content .ability-icon,
@@ -1543,6 +1549,11 @@ h3.label--rail .label__text::after {
   line-height: 1.2rem;
   padding: 5px 0px;
   margin: 5px 0 0 0;
+}
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(100px, 1fr) minmax(50px, 50px) minmax(150px, 150px) minmax(150px, 150px) minmax(75px, 75px);
+  grid-auto-flow: row;
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--container {
   display: grid;
