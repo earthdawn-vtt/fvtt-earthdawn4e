@@ -61,13 +61,13 @@
         </div>
         <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
+            <input class="input__rectangle-input--centered" name="system.karma.value" value="{{actor.system.karma.value}}">
           </div>
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" {{#unless (eq this.actor.type "character")}}name="system.karma.max"{{/unless}} value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
+            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}" {{#unless (eq this.actor.type "character")}}name="system.karma.max"{{/unless}} value="{{actor.system.karma.max}}" {{#if (eq this.actor.type "character")}}readonly{{/if}}>
           </div>
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered" name="system.karma.step" value="{{actor.system.karma.step}}">
+            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}" name="system.karma.step" value="{{actor.system.karma.step}}">
           </div>
         </div>
       </div>
@@ -84,18 +84,18 @@
         </div>
         <div class="karma-devotion__grid--container">
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered"
+            <input class="input__rectangle-input--centered"
                    name="system.devotion.value"
                    value="{{actor.system.devotion.value}}">
           </div>
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered"
+            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                    {{#unless (eq this.actor.type "character")}}name="system.devotion.max"{{/unless}}
                    value="{{actor.system.devotion.max}}"
                    {{#if (eq this.actor.type "character")}}readonly{{/if}}>
           </div>
           <div class="karma-devotion__grid--item">
-            <input class="input__square-input--centered"
+            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                    name="system.devotion.step"
                    value="{{actor.system.devotion.step}}">
           </div>
@@ -127,16 +127,16 @@
         <div class="recovery__grid--container">
           {{#if (eq this.actor.type "character")}}
             <div class="recovery__grid--item">
-              <input class="input__square-input--centered"
+              <input class="input__rectangle-input--centered"
                      name="system.characteristics.recoveryTestsResource.value"
                      value="{{actor.system.characteristics.recoveryTestsResource.value}}">
             </div>
             <div class="recovery__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      value="{{actor.system.characteristics.recoveryTestsResource.max}}" readonly>
             </div>
             <div class="recovery__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      value="{{actor.system.characteristics.recoveryTestsResource.step}}" readonly>
             </div>
           {{else}}
@@ -146,12 +146,12 @@
                      value="{{actor.system.characteristics.recoveryTestsResource.value}}">
             </div>
             <div class="recovery__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      name="system.characteristics.recoveryTestsResource.max"
                      value="{{actor.system.characteristics.recoveryTestsResource.max}}">
             </div>
             <div class="recovery__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      name="system.characteristics.recoveryTestsResource.step"
                      value="{{actor.system.characteristics.recoveryTestsResource.step}}">
             </div>
@@ -179,12 +179,12 @@
           </div>
           <div class="initiative__grid--container">
             <div class="initiative__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      name="system.initiative"
                      value="{{actor.system.initiative}}">
             </div>
             <div class="initiative__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      value="{{actor.system.initiativePenalty}}" readonly>
             </div>
           </div>
@@ -195,12 +195,17 @@
           </div>
           <div class="initiative-npc__grid--container">
             <div class="initiative__grid--item">
-              <input class="input__square-input--centered"
-                     name="system.initiative"
-                     value="{{actor.system.initiative}}">
+              <div class="buffer-input">
+                {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+                <input id="characteristic-initiative"
+                      class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                      name="system.initiative"
+                      value="{{actor.system.initiative}}">
+                {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+              </div>
             </div>
             <div class="initiative__grid--item">
-              <input class="input__square-input--centered"
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                      name="system.actions"
                      value="{{actor.system.actions}}">
             </div>
@@ -322,27 +327,6 @@
 
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <h2 class="favorite__header margin__none one-line__vertical-align">
         <span class="favorite__header-label">{{localize "ED.Actor.Header.favorites"}}</span>

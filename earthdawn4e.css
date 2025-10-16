@@ -380,6 +380,12 @@ slide-toggle[checked] .slide-toggle-thumb {
   background-color: transparent;
   text-align: center;
   padding: 0.2em;
+  width: 30px;
+  height: 25px;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: none;
 }
 .application .font__bold {
   font-weight: bold;
@@ -1401,6 +1407,14 @@ h3.label--rail .label__text::after {
   display: flex;
   align-items: center;
 }
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--item {
+  display: grid;
+  grid-template-columns: 25px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
@@ -1413,9 +1427,6 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .recovery__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container .recovery__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .initiative__grid--item,
-.application.sheet.earthdawn4e.actor .window-content .legend__grid--container .initiative__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .karma-devotion__grid--container .legend__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .recovery__grid--container .legend__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container .legend__grid--item {
