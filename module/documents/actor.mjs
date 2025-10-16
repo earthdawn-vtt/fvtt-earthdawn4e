@@ -21,6 +21,7 @@ import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
+import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -965,7 +966,13 @@ export default class ActorEd extends Actor {
   }
 
   async weaveThread( document ) {
-    ui.notifications.info( "Not yet implemented." );
+    const weaveThreadWorkflow = new WeaveThreadWorkflow(
+      this,
+      {
+        target: document,
+      }
+    );
+    return weaveThreadWorkflow.execute();
   }
 
   // endregion
