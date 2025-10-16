@@ -26,7 +26,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       toggleRankKnowledgeKnownToPlayer: PhysicalItemSheetEd._onToggleRankKnowledgeKnownToPlayer,
       toggleRankKnownToPlayer:          PhysicalItemSheetEd._onToggleRankKnownToPlayer,
       toggleTruePatternKnownToPlayer:   PhysicalItemSheetEd._onToggleTruePatternKnownToPlayer,
-      weaveThreadCheck:                 PhysicalItemSheetEd._onWeaveThreadCheck,
+      weaveThread:                      PhysicalItemSheetEd._onWeaveThread,
     },
   };
 
@@ -306,8 +306,19 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
    * @type {ApplicationClickAction}
    * @this {ThreadItemSheet}
    */
-  static async _onWeaveThreadCheck( event, target ) {
-    ui.notifications.info( "Not implemented yet." );
+  static async _onWeaveThread( event, target ) {
+    event.preventDefault();
+
+    const actor = this.document.system.containingActor
+      ?? game.user.character
+      ?? canvas.tokens.controlled[0]?.actor
+      ?? await PromptFactory.chooseActorPrompt( [], "character", {} );
+    if ( !actor ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
+      return;
+    }
+
+    await actor.weaveThread( this.document );
   }
 
   // endregion

@@ -964,6 +964,10 @@ export default class ActorEd extends Actor {
     return attuneMatrixWorkflow.execute();
   }
 
+  async weaveThread( document ) {
+    ui.notifications.info( "Not yet implemented." );
+  }
+
   // endregion
 
   // region Rolls
