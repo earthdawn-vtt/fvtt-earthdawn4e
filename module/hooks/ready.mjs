@@ -1,6 +1,7 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
 import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
+import MigrationManager from "../services/migrations/migration-manager.mjs";
 
 /**
  * TODO
@@ -27,6 +28,9 @@ export default function () {
       if ( hasTransformedDocs ) {
         await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
       }
+      
+      // Log a summary of all migrations and create a journal entry
+      await MigrationManager.finalizeMigrations( true );
     }
 
 

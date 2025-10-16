@@ -3411,7 +3411,57 @@
     "Migrations": {
       "setSpellDuration":                          "TODO: Add translation",
       "setSpellEffect":                            "TODO: Add translation",
-      "setSpellRange":                             "TODO: Add translation"
+      "setSpellRange":                             "TODO: Add translation",
+      "report":                                    "TODO: Add translation",
+      "Pages": {
+        "migrationResults":                    "TODO: Add translation",
+        "migrationSummary":                    "TODO: Add translation",
+        "incompleteMigrationResults":        "TODO: Add translation"
+      },
+      "notFound":                                  "TODO: Add translation",
+      "migrationIssues":                        "TODO: Add translation",
+      "migrationIssuesDescription":           "TODO: Add translation",
+      "unknownErrorReason":                     "TODO: Add translation",
+      "unknownTalent":                         "TODO: Add translation",
+      "Stats": {
+        "timestamp":                              "TODO: Add translation",
+        "totalMigrations":                        "TODO: Add translation",
+        "successfulMigrations":                   "TODO: Add translation",
+        "incompleteMigrations":                   "TODO: Add translation"
+        },
+      "Class": {
+        "invalidTalentUuidTier":               "TODO: Add translation",
+        "circleHeader":                        "TODO: Add translation",
+        "missingDisciplineTalentsProbably":    "TODO: Add translation",
+        "missingDisciplineTalents":            "TODO: Add translation",
+        "missingDurability":                   "TODO: Add translation",
+        "missingAbilityOption":                "TODO: Add translation"
+        },
+        "missingDurability":                     "TODO: Add translation",
+      "missingRollType":                       "TODO: Add translation",
+      "missingWeaponType":                     "TODO: Add translation",
+      "missingWeaponTypesAttack":              "TODO: Add translation",
+      "missingAttributes":                     "TODO: Add translation",
+      "missingDifficulty":                     "TODO: Add translation",
+      "missingEdid":                           "TODO: Add translation",
+      "missingRestrictions":                   "TODO: Add translation",
+      "missingRequirements":                   "TODO: Add translation",
+      "missingReattuneDifficulty":             "TODO: Add translation",
+      "missingWeavingDifficulty":              "TODO: Add translation",
+      "missingRequiredThreads":                "TODO: Add translation",
+      "missingTalentCategory":                 "TODO: Add translation",
+      "missingDamageAttribute":                "TODO: Add translation",
+      "missingAmmunitionType":                 "TODO: Add translation",
+      "missingPhysicalDefenseBonus":           "TODO: Add translation",
+      "missingMysticalDefenseBonus":           "TODO: Add translation",
+      "missingShatterThreshold":            "TODO: Add translation",
+      "missingPowerType":                   "TODO: Add translation",
+      "missingDamageStepAttackPower":       "TODO: Add translation",
+      "missingKarmaModifier":               "TODO: Add translation",
+      "missingInitiativePenalty":              "TODO: Add translation",
+      "ModuleDependency":                      "TODO: Add translation",
+      "UnresolvedTalent":                      "TODO: Add translation",
+      "UnsolvedObject":                        "TODO: Add translation"
     },
     "Notifications": {
       "Error": {
@@ -3635,8 +3685,14 @@
         "troubleshooting":                         "TODO: Add translation"
       },
       "Update": {
-        "updateNewsHint":                          "TODO: Add translation",
-        "updateNewsName":                          "TODO: Add translation"
+        "updateNews": {                             
+          "hint":                                    "TODO: Add translation",
+          "label":                          "TODO: Add translation"
+        },
+        "migrationReport": {
+          "hint":                                    "TODO: Add translation",
+          "label":                          "TODO: Add translation"
+        }
       },
       "talentsSplit":                              "TODO: Add translation",
       "talentsSplitHint":                          "TODO: Add translation"

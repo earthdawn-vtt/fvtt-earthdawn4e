@@ -238,24 +238,6 @@ export default class TypeTransformationManager {
   }
 
   /**
-   * Get debugging information about registered transformations
-   * @returns {object} - Debug information
-   */
-  static getDebugInfo() {
-    const transforms = {};
-    for ( const [ system, transformMap ] of this.#typeTransformRegistry ) {
-      transforms[ system ] = Object.fromEntries( transformMap );
-    }
-
-    const complexTransforms = Array.from( this.#complexTypeTransformRegistry.keys() );
-
-    return {
-      typeTransforms:              transforms,
-      complexTypeTransformSystems: complexTransforms
-    };
-  }
-
-  /**
    * Clear all registered transformations (mainly for testing)
    */
   static clearAll() {

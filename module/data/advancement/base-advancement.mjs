@@ -96,12 +96,23 @@ export default class AdvancementData extends SparseDataModel {
    * @param {object} [data]    If provided, will initialize the new level with the given data.
    */
   async addLevel( data = {} ) {
+    // Find the highest existing level number
+    let maxLevelNumber = 0;
+    for ( const level of this.levels ) {
+      if ( level.level && typeof level.level === "number" && level.level > maxLevelNumber ) {
+        maxLevelNumber = level.level;
+      }
+    }
+    
+    // Use either the next sequential level or the levels.length + 1
+    const nextLevel = Math.max( maxLevelNumber + 1, this.levels.length + 1 );
+    
     await this.parent.parent.update( {
       "system.advancement.levels": this.levels.concat(
         new AdvancementLevelData(
           {
             ...data,
-            level: this.levels.length + 1
+            level: nextLevel
           }
         )
       )
