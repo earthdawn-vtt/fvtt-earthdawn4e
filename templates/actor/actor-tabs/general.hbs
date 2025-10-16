@@ -220,31 +220,31 @@
           <label class="movement-type__grid--item">
             <input type="radio" class="input__checkbox" name="system.movement.mode" value="walk"
                   {{checked (eq actor.system.movement.mode "walk")}}>
-            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label"}}</span>
+            <i class="fa-solid fa-person-walking" title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label"}}"></i>
           </label>
 
           <label class="movement-type__grid--item">
             <input type="radio" class="input__checkbox" name="system.movement.mode" value="climb"
                   {{checked (eq actor.system.movement.mode "climb")}}>
-            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label"}}</span>
+            <i class="fa-solid fa-person-through-window" title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label"}}"></i>
           </label>
 
           <label class="movement-type__grid--item">
             <input type="radio" class="input__checkbox" name="system.movement.mode" value="fly"
                   {{checked (eq actor.system.movement.mode "fly")}}>
-            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label"}}</span>
+            <i class="fa-solid fa-person-fairy" title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label"}}"></i>
           </label>
 
           <label class="movement-type__grid--item">
             <input type="radio" class="input__checkbox" name="system.movement.mode" value="swim"
                   {{checked (eq actor.system.movement.mode "swim")}}>
-            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label"}}</span>
+            <i class="fa-solid fa-person-swimming" title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label"}}"></i>
           </label>
 
           <label class="movement-type__grid--item">
             <input type="radio" class="input__checkbox" name="system.movement.mode" value="burrow"
                   {{checked (eq actor.system.movement.mode "burrow")}}>
-            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label"}}</span>
+            <i class="fa-solid fa-person-digging" title="{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label"}}"></i>
           </label>
 
           <div class="movement__grid--item">
@@ -257,53 +257,54 @@
 
           <div class="buffer-input">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-             <input id="movement-walk"
-                class="input__rectangle-input--centered"
-                name="system.characteristics.movement.walk"
-                type="number"
-                value="{{actor.system.characteristics.movement.walk}}">
+            <input id="movement-walk"
+                  class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                  name="system.characteristics.movement.walk"
+                  type="number"
+                  value="{{actor.system.characteristics.movement.walk}}">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
 
           <div class="buffer-input">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
             <input id="movement-climb"
-                class="input__rectangle-input--centered"
-                name="system.characteristics.movement.climb"
-                type="number"
-                value="{{actor.system.characteristics.movement.climb}}">
+                  class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                  name="system.characteristics.movement.climb"
+                  type="number"
+                  value="{{actor.system.characteristics.movement.climb}}">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
 
           <div class="buffer-input">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
             <input id="movement-fly"
-                class="input__rectangle-input--centered"
-                name="system.characteristics.movement.fly"
-                type="number"
-                value="{{actor.system.characteristics.movement.fly}}">
+                  class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                  name="system.characteristics.movement.fly"
+                  type="number"
+                  value="{{actor.system.characteristics.movement.fly}}">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
 
           <div class="buffer-input">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
             <input id="movement-swim"
-                class="input__rectangle-input--centered"
-                name="system.characteristics.movement.swim"
-                type="number"
-                value="{{actor.system.characteristics.movement.swim}}">
+                  class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                  name="system.characteristics.movement.swim"
+                  type="number"
+                  value="{{actor.system.characteristics.movement.swim}}">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
 
           <div class="buffer-input">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-             <input id="movement-burrow"
-                class="input__rectangle-input--centered"
-                name="system.characteristics.movement.burrow"
-                type="number"
-                value="{{actor.system.characteristics.movement.burrow}}">
+            <input id="movement-burrow"
+                  class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                  name="system.characteristics.movement.burrow"
+                  type="number"
+                  value="{{actor.system.characteristics.movement.burrow}}">
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
+
 
           <button type="button"
               class="action-buttons icon--button icon icon--jump-up"
