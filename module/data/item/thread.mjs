@@ -80,6 +80,14 @@ export default class ThreadData extends ItemDataModel.mixin(
     }
   }
 
+  /** @inheritDoc */
+  _onDelete( options, user ) {
+    this.getConnectedDocument().then(
+      connectedDocument =>
+        connectedDocument.system.truePattern.removeAttachedThread( this.parentDocument.uuid  ),
+    );
+  }
+
   // endregion
 
   // region Rolling
@@ -175,7 +183,14 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   async increase() {
-    ui.notifications.info( "Increasing threads is not implemented yet." );
+    const actor = this.containingActor;
+    if ( !actor ) throw new Error( "Cannot increase thread level of a thread not embedded in an actor." );
+
+    const connectedDocument = await this.getConnectedDocument();
+    if ( !connectedDocument ) throw new Error( "Cannot increase thread level of a thread not woven to any document." );
+
+    // const newLevel = this.level + 1;
+
   }
 
   // endregion
