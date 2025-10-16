@@ -350,6 +350,7 @@ slide-toggle[checked] .slide-toggle-thumb {
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
+  color: white;
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -373,6 +374,12 @@ slide-toggle[checked] .slide-toggle-thumb {
   border-radius: 50%;
   padding-top: 5px;
   background: rgba(0, 0, 0, 0.1);
+}
+.input__clear-input--centered {
+  font-size: 16px;
+  background-color: transparent;
+  text-align: center;
+  padding: 0.2em;
 }
 .application .font__bold {
   font-weight: bold;
