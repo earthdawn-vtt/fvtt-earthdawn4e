@@ -13,7 +13,7 @@
         - Devotion: containing all Devotions. Items can be sorted by drag and drop, and a System Setting shall split devotions by Tier.
         - Disciplines: containing all discipline, questor, Path items
         - Equipment: containing all Equipment, weapons, shields and armor items. Each Item can be either held in one or two hands, be equipped, carried or owned.
-        - Familiars and Reputation: containing all Familiars, mounts or other actors which are somehow linked to the Actor. like Horrors, follower or people owning Favors
+        - Familiars and connections: containing all Familiars, mounts or other actors which are somehow linked to the Actor. like Horrors, follower or people owning Favors
         - General: containing attributes. Karma, devotions, conditions and special abilities
         - Legends: everything regarding to Legend points tracking as well as Legend Status and the option to link Legend journals.
         - notes: containing Personal Notes and basic descriptive elements like eye color etc.
