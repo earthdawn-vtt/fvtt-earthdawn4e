@@ -48,6 +48,7 @@
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
+  color: white;
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -71,6 +72,18 @@
   border-radius: 50%;
   padding-top: 5px;
   background: rgba(0, 0, 0, 0.1);
+}
+.input__clear-input--centered {
+  font-size: 16px;
+  background-color: transparent;
+  text-align: center;
+  padding: 0.2em;
+  width: 30px;
+  height: 25px;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: none;  
 }
 
 //###########################################################
@@ -267,7 +280,7 @@ h3.label--rail .label__text::after {
 .buffer {
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0 6px;
   margin: 0;
   display: inline-flex;
   align-items: center;

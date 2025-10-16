@@ -46,7 +46,8 @@
     .initiative-npc__grid--container,
     .spell-card__grid--container,
     .language-card__grid--container,
-    .thread-card__grid--container {
+    .thread-card__grid--container,
+    .movement-card__grid--container {
       column-gap: var(--grid-col-gap-sm);
       text-transform: capitalize;
       font-weight: normal;
@@ -97,6 +98,78 @@
     .equipment-icon__visible,
     .power-icon__visible {
       border: none;
+    }
+
+       /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend/Movement ======================= */
+    .tab[data-tab="general"] .layout__row {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .attribute__header,
+    .karma-devotion__header,
+    .recovery__header,
+    .initiative__header,
+    .legend__header,
+    .favorite__header,
+    .movement__header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      gap: var(--grid-col-gap-sm);
+    }
+
+    .karma-devotion__header-icons,
+    .recovery__header-icons,
+    .initiative__header-icons,
+    .legend__header-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .initiative__grid--item {
+      display: grid;
+      grid-template-columns: 25px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .karma-devotion__grid--container,
+    .recovery__grid--container,
+    .legend__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(25px, 1fr)
+        minmax(25px, 1fr)
+        minmax(25px, 1fr);
+
+      .karma-devotion__grid--item,
+      .recovery__grid--item,
+      .legend__grid--item {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .initiative__grid--container,
+    .initiative-npc__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(37px, 1fr)
+        minmax(37px, 1fr);
+    }
+
+    .legend__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(30px, 1fr)
+        minmax(30px, 1fr)
+        minmax(100px, 20%);
     }
 
     /* ======================= General tab ======================= */
@@ -167,6 +240,70 @@
       }
     }
 
+    .movement__grid--container {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(60px, 1fr));
+      gap: 3px;
+      place-items: center;
+      margin-bottom: 1px;
+
+      .icon--button.icon.icon--knockdown {
+        --icon-size: 40px;
+        --icon-mask: url("/systems/ed4e/assets/icons/knockdown.svg");
+        margin-top: -10px;
+      }
+
+      .icon--button.icon.icon--jump-up {
+        --icon-size: 40px;
+        --icon-mask: url("/systems/ed4e/assets/icons/jump-up.svg");
+        margin-top: -10px;
+      }
+
+      h3 {
+        text-transform: uppercase;
+        font-size: 0.6rem;
+        font-weight: normal;
+        margin-top: -10px;
+        opacity: 0.85;
+      }
+    }
+
+    .movement-type__grid--item {
+      display: flex;
+      text-transform: uppercase;
+      align-items: center;
+      flex-direction: column;
+      padding: 4px 10px;
+      border: var(--border-main);
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      background-color: var(--color-button-panel-off);
+      width: 100%;
+
+      input[type='radio'] {
+        display: none;
+      }
+
+      input[type='number'] {
+        width: 3rem;
+        margin-bottom: 0.25rem;
+      }
+
+      &:has(input:checked),
+      &.active {
+        background-color: var(--color-button-panel-on);
+        border-color: var(--color-button-panel-on);
+        color: var(--color-button-panel-text-on);
+      }
+
+      &:has(input:focus-visible) {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 2px;
+      }
+    }
+
     .favorite-execute-btn {
       text-transform: uppercase;
       font-weight: bold;
@@ -192,68 +329,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2px;
-    }
-
-    /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend headers ======================= */
-    .tab[data-tab="general"] .layout__row {
-      display: flex;
-      flex-wrap: nowrap;
-    }
-
-    .karma-devotion__header,
-    .recovery__header,
-    .initiative__header,
-    .legend__header,
-    .favorite__header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 30px;
-      gap: var(--grid-col-gap-sm);
-    }
-
-    .karma-devotion__header-icons,
-    .recovery__header-icons,
-    .initiative__header-icons,
-    .legend__header-icons {
-      display: flex;
-      align-items: center;
-    }
-
-    .karma-devotion__grid--container,
-    .recovery__grid--container,
-    .legend__grid--container {
-      display: grid;
-      grid-template-columns:
-        minmax(25px, 1fr)
-        minmax(25px, 1fr)
-        minmax(25px, 1fr);
-
-      .karma-devotion__grid--item,
-      .recovery__grid--item,
-      .initiative__grid--item,
-      .legend__grid--item {
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-
-    .initiative__grid--container,
-    .initiative-npc__grid--container {
-      display: grid;
-      grid-template-columns:
-        minmax(37px, 1fr)
-        minmax(37px, 1fr);
-    }
-
-    .legend__grid--container {
-      display: grid;
-      grid-template-columns:
-        minmax(30px, 1fr)
-        minmax(30px, 1fr)
-        minmax(100px, 20%);
     }
 
     /* ======================= Notes tab ======================= */
