@@ -168,6 +168,52 @@ export default class PromptFactory {
     return new FactoryClass( document );
   }
 
+  /**
+   * Displays a prompt to choose an actor from a list of actors.
+   * @param {ActorEd[]} [actors] - The list of actors to choose from. If not provided, all owned actors
+   * will be used.
+   * @param {string} [type] - The type of actor to filter by. If not provided, all types will be included.
+   * @param {object} [dialogOptions] - Additional options to pass to the dialog.
+   * @returns {Promise<ActorEd|null>} - A promise that resolves to the chosen actor or null if the prompt was
+   * closed without a choice.
+   */
+  static async chooseActorPrompt( actors = [], type = "", dialogOptions = {} ) {
+    const availableActors = foundry.utils.isEmpty( actors )
+      ? game.actors.filter( ( actor ) => actor.isOwner && ( type ? actor.type === type : true ) )
+      : actors;
+
+    if ( availableActors.length === 0 ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.chooseActorPromptNoActorAvailable" ) );
+      return null;
+    }
+
+    const buttons = availableActors.map( ( actor ) => {
+      return {
+        action:  actor.id,
+        label:   actor.name,
+        icon:    "",
+        class:   `button-${ actor.type } ${ actor.name }`,
+        default: false
+      };
+    } );
+
+    const options = {
+      rejectClose: false,
+      id:          "choose-actor-prompt",
+      uniqueId:    String( ++foundry.applications.api.ApplicationV2._appId ),
+      classes:     [ "earthdawn4e", "choose-actor-prompt", "flexcol" ],
+      window:      {
+        title:       game.i18n.localize( "ED.Dialogs.Title.chooseActor" ),
+        minimizable: false
+      },
+      modal:   false,
+      buttons,
+      ...dialogOptions,
+    };
+    const chosenActorId = await DialogClass.wait( options );
+
+    return availableActors.find( ( actor ) => actor.id === chosenActorId ) ?? null;
+  }
 
   /**
    * Displays a generic delete confirmation prompt.
