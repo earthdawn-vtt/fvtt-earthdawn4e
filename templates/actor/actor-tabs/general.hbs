@@ -4,8 +4,10 @@
 
     <div class="layout__col--2">
 
-      <!-- Attributes -->      
-      <h2><label>{{localize "ED.Actor.Header.attributes"}}</label></h2>
+      <!-- Attributes --> 
+      <h2 class="attribute__header margin__none one-line__vertical-align">
+        {{localize "ED.Actor.Header.attributes"}}
+      </h2>
 
       <div class="container__block container__custom">
         <div class="attribute-card__grid--container container__header">
@@ -209,6 +211,138 @@
 
     <div class="layout__col--2">
 
+      <h2 class="movement__header margin__none one-line__vertical-align">
+        <span class="movement__header-label">{{localize "ED.Actor.Header.movement"}}</span>
+      </h2>
+      <div class="container__block container__custom">
+        <div class="movement__grid--container">
+
+          <label class="movement-type__grid--item">
+            <input type="radio" class="input__checkbox" name="system.movement.mode" value="walk"
+                  {{checked (eq actor.system.movement.mode "walk")}}>
+            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label"}}</span>
+          </label>
+
+          <label class="movement-type__grid--item">
+            <input type="radio" class="input__checkbox" name="system.movement.mode" value="climb"
+                  {{checked (eq actor.system.movement.mode "climb")}}>
+            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label"}}</span>
+          </label>
+
+          <label class="movement-type__grid--item">
+            <input type="radio" class="input__checkbox" name="system.movement.mode" value="fly"
+                  {{checked (eq actor.system.movement.mode "fly")}}>
+            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label"}}</span>
+          </label>
+
+          <label class="movement-type__grid--item">
+            <input type="radio" class="input__checkbox" name="system.movement.mode" value="swim"
+                  {{checked (eq actor.system.movement.mode "swim")}}>
+            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label"}}</span>
+          </label>
+
+          <label class="movement-type__grid--item">
+            <input type="radio" class="input__checkbox" name="system.movement.mode" value="burrow"
+                  {{checked (eq actor.system.movement.mode "burrow")}}>
+            <span>{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label"}}</span>
+          </label>
+
+          <div class="movement__grid--item">
+            <h3>{{localize "ED.Actor.Buttons.jumpUp"}}</label>
+          </div>
+
+          <div class="movement__grid--item">
+            <h3>{{localize "ED.Actor.Buttons.knockdownTest"}}</h3>
+          </div>
+
+          <div class="buffer-input">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+             <input id="movement-walk"
+                class="input__rectangle-input--centered"
+                name="system.characteristics.movement.walk"
+                type="number"
+                value="{{actor.system.characteristics.movement.walk}}">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          </div>
+
+          <div class="buffer-input">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+            <input id="movement-climb"
+                class="input__rectangle-input--centered"
+                name="system.characteristics.movement.climb"
+                type="number"
+                value="{{actor.system.characteristics.movement.climb}}">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          </div>
+
+          <div class="buffer-input">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+            <input id="movement-fly"
+                class="input__rectangle-input--centered"
+                name="system.characteristics.movement.fly"
+                type="number"
+                value="{{actor.system.characteristics.movement.fly}}">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          </div>
+
+          <div class="buffer-input">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+            <input id="movement-swim"
+                class="input__rectangle-input--centered"
+                name="system.characteristics.movement.swim"
+                type="number"
+                value="{{actor.system.characteristics.movement.swim}}">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          </div>
+
+          <div class="buffer-input">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+             <input id="movement-burrow"
+                class="input__rectangle-input--centered"
+                name="system.characteristics.movement.burrow"
+                type="number"
+                value="{{actor.system.characteristics.movement.burrow}}">
+            {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          </div>
+
+          <button type="button"
+              class="action-buttons icon--button icon icon--jump-up"
+              data-action="jumpUp"
+              data-tooltip=""
+              aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
+          </button>
+
+          <button type="button"
+              class="action-buttons icon--button icon icon--knockdown"
+              data-action="knockdown"
+              data-tooltip=""
+              aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
+          </button>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <h2 class="favorite__header margin__none one-line__vertical-align">
         <span class="favorite__header-label">{{localize "ED.Actor.Header.favorites"}}</span>
       </h2>
@@ -241,14 +375,6 @@
             </div>
           {{/each}}
         </div>
-      </div>
-        <div class="action--buttons">
-          <div class="buttons--left input--centered1">
-              <button class="action-buttons" data-action="jumpUp">{{localize "ED.Actor.Buttons.jumpUp"}}</button>
-              <button class="action-buttons" data-action="knockdown">{{localize "ED.Actor.Buttons.knockdownTest"}}</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
