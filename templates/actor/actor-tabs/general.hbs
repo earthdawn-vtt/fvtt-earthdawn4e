@@ -179,9 +179,13 @@
           </div>
           <div class="initiative__grid--container">
             <div class="initiative__grid--item">
-              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                     name="system.initiative"
-                     value="{{actor.system.initiative}}">
+              <div class="buffer-input">
+                  {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+                  <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                        name="system.initiative"
+                        value="{{actor.system.initiative}}">
+                  {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}     
+              </div>    
             </div>
             <div class="initiative__grid--item">
               <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
@@ -193,22 +197,22 @@
             <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
             <div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
           </div>
-          <div class="initiative-npc__grid--container">
-            <div class="initiative__grid--item">
-              <div class="buffer-input">
-                {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                <input id="characteristic-initiative"
-                      class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                      name="system.initiative"
-                      value="{{actor.system.initiative}}">
-                {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-              </div>
+           <div class="initiative-npc__grid--container">
+
+            <div class="buffer-input">
+              {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+              <input id="characteristic-initiative"
+                    class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                    name="system.initiative"
+                    value="{{actor.system.initiative}}">
+              {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
             </div>
-            <div class="initiative__grid--item">
-              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                     name="system.actions"
-                     value="{{actor.system.actions}}">
-            </div>
+
+            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                    name="system.actions"
+                    value="{{actor.system.actions}}">
+
+           </div>
           </div>
         {{/if}}
       </div>

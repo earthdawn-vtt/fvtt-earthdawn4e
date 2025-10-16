@@ -1440,6 +1440,13 @@ h3.label--rail .label__text::after {
   display: grid;
   grid-template-columns: minmax(37px, 1fr) minmax(37px, 1fr);
 }
+.application.sheet.earthdawn4e.actor .window-content .initiative__grid--container .initiative__grid--item,
+.application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container .initiative__grid--item {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
   display: grid;
   grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(100px, 20%);
