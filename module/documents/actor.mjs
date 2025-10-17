@@ -967,11 +967,19 @@ export default class ActorEd extends Actor {
     return attuneMatrixWorkflow.execute();
   }
 
-  async weaveThread( document ) {
+  /**
+   * Weave a thread to a true pattern, either creating a new thread or increasing the rank of an existing one.
+   * @param {Document} document The document with the true pattern to weave the thread to.
+   * @param {ItemEd|null} thread The thread item to weave, or null to create a new one.
+   * @returns {Promise<ItemEd|undefined>} A promise that resolves to the woven thread, or undefined if weaving failed.
+   */
+  async weaveThread( document, thread = null ) {
     const weaveThreadWorkflow = new WeaveThreadWorkflow(
       this,
       {
-        target: document,
+        thread:               thread,
+        target:               document,
+        threadWeavingAbility: this.getSingleItemByEdid( getSetting( "edidThreadWeaving" ) ),
       }
     );
     return weaveThreadWorkflow.execute();
