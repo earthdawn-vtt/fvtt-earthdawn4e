@@ -261,3 +261,9 @@ preLocalize( "threadTypes" );
  * @enum {string}
  */
 export const truePatternTypes = threadTypes;
+
+/**
+ * The base difficulties for thread weaving tests based on the rank of the thread being woven.
+ * @type {number[]}
+ */
+export const threadWeavingDifficulty = [ undefined, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ];
