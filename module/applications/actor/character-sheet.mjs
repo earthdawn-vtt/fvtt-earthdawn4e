@@ -189,6 +189,10 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     if ( target.dataset.attribute ) {
       const attribute = target.dataset.attribute;
       await this.document.system.increaseAttribute( attribute );
+    } else if ( target.closest( "div.thread-card__grid--container" )?.dataset.itemType === "thread" ) {
+      const thread = this.document.items.get( target.parentElement.dataset.itemId );
+      const connectedDocument = await thread.system.getConnectedDocument();
+      await this.document.weaveThread( connectedDocument, thread  );
     } else if ( target.parentElement.dataset.itemId ) {
       const parentId = target.parentElement.dataset.itemId;
       const parent = await this.document.items.get( parentId );
@@ -201,7 +205,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         const classItem = this.document.items.get( li.dataset.itemId );
         classItem.system.increase();
       }
-    }  
+    }
   }
 
   /**
