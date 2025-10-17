@@ -350,7 +350,6 @@ slide-toggle[checked] .slide-toggle-thumb {
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
-  color: white;
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -376,6 +375,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
 .input__clear-input--centered {
+  color: white;
   font-size: 16px;
   background-color: transparent;
   text-align: center;
@@ -1901,12 +1901,6 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage-type__stun .buffer,
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage-type__stun .buffer {
   color: var(--color-meter-5);
-}
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics__grid-container .damage__grid--item.damage-type__total .input__rectangle-input--centered,
-.application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .damage__grid--item.damage-type__total .input__rectangle-input--centered {
-  border: unset;
-  background-color: unset;
-  font-size: var(--font-size-16);
 }
 .application.sheet.earthdawn4e.actor .window-content .top .image-characteristics-mob__grid-container .health__block {
   grid-template-columns: none;
