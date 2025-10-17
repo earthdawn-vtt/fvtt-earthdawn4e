@@ -284,6 +284,7 @@
           "learnKnack":                            "TODO: Add translation",
           "learnSpell":                            "TODO: Add translation",
           "learningTransactionDescription":        "TODO: Add translation",
+          "newThread":                             "TODO: Add translation",
           "spendingTransactionDescription":        "Increased from {PreviousLevel} to {newlevel}"
         }
       },
@@ -3190,7 +3191,8 @@
       "RollPrompt": {
         "Title": {
           "attuneGrimoire":                        "Patterncraft to Attune Grimoire",
-          "damage":                                "TODO: Add translation"
+          "damage":                                "TODO: Add translation",
+          "weaveThread":                           "TODO: Add translation"
         },
         "devotion":                                "Devotion",
         "devotionStep":                            "Devotion Step",
@@ -3216,13 +3218,16 @@
         "attributeIncrease":                       "Increase Attribute",
         "attuneMatrix":                            "Reattune Matrix",
         "buttonSelect":                            "Select an Option",
+        "cannotWeaveMoreThreadsConfirm":           "TODO: Add translation",
         "characterGeneration":                     "Character Generation",
+        "chooseActor":                             "TODO: Add translation",
         "chooseAdderSubstitute":                   "TODO: Add translation",
         "chooseDiscipline":                        "Choose Discipline",
         "chooseTier":                              "Choose Circle",
         "classAdvancement":                        "Class Advancement",
         "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "Draw Weapon",
+        "failedWeavingRollConfirm":                "TODO: Add translation",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
         "knockdown":                               "Knock Down",
@@ -3230,6 +3235,7 @@
         "learnSpell":                              "Learn Spell",
         "lpIncrease":                              "Increase Legend Points",
         "lpLearnKnack":                            "Learn Knack",
+        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
         "recovery":                                "Recovery",
         "rollPrompt":                              "Roll Dialog",
         "selectAstralSpacePollution":              "Select Astral Pollution",
@@ -3243,6 +3249,8 @@
         "substitute":                              "Substitute Ability",
         "takeDamage":                              "Take Damage",
         "talentCategory":                          "Talent Category",
+        "threadRankExceedsWeavingAbilityConfirm":  "TODO: Add translation",
+        "unknownPatternKeyKnowledgeConfirm":       "TODO: Add translation",
         "useWillpower":                            "TODO: Add translation",
         "versatilityLimit":                        "Versatility Limit Reached"
       },
@@ -3251,16 +3259,21 @@
       },
       "armor":                                     "Armor",
       "armorType":                                 "Armor Type",
+      "cannotWeaveMoreThreadsConfirm":             "TODO: Add translation",
       "damage":                                    "Damage",
       "damageStandard":                            "Deadly Damage",
       "damageStun":                                "Stun Damage",
       "damageType":                                "Damage Type",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
       "doYouWantToUseWillpower":                   "TODO: Add translation",
+      "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
       "knockdownChoice":                           "Choose the Ability to resist Knock Down",
+      "missingThreadWeavingAbilityConfirm":        "TODO: Add translation",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage",
+      "threadRankExceedsWeavingAbilityConfirm":    "TODO: Add translation",
+      "unknownPatternKeyKnowledgeConfirm":         "TODO: Add translation",
       "versatilityTalentLimit":                    "The maximum number of talents that can be learned through Versatility has already been reached. The normal maximum equals the Versatility rank.\nShould the selected talent still be learned?"
     },
     "Document": {
@@ -3364,7 +3377,7 @@
         "researchCheck":                           "Research Check",
         "threadItemLevelHeader":                   "TODO: Add translation",
         "truePatternBaseInformation":              "TODO: Add translation",
-        "weaveThreadCheck":                        "Weave Thread Check"
+        "weaveThread":                             "Weave Thread Check"
       },
       "Spell": {
         "binding":                                 "Binding",
@@ -3377,6 +3390,9 @@
       "Tabs": {
         "level":                                   "Circle {circle}",
         "talentOptions":                           "Optional Talents"
+      },
+      "Thread": {
+        "defaultName":                             "TODO: Add translation"
       }
     },
     "Journal": {
@@ -3445,6 +3461,7 @@
         "cantHaveEffectFromSameSource":            "TODO: Add translation",
         "cantUpdateItemWeight":                    "Item weight could not be updated.",
         "castSpellNoActor":                        "No actor found to cast the spell.",
+        "chooseActorPromptNoActorAvailable":       "TODO: Add translation",
         "classIncreaseProblems":                   "Circle or rank could not be updated.",
         "couldNotScrollToSourceMessage":           "Could not find the source message.",
         "firstClassViaCharGen":                    "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
@@ -3468,7 +3485,8 @@
         "spellAlreadyAttunedInGrimoire":           "The spell is already attuned in the Grimoire.",
         "spellNotReadyToCast":                     "The spell is not ready to cast. Threads still required.",
         "versatilityTalentLimit":                  "The versatility talent limit has been reached.",
-        "warningEffectNoActor":                    "This effect has no actor assigned. Please assign one."
+        "warningEffectNoActor":                    "This effect has no actor assigned. Please assign one.",
+        "weaveThreadNoActor":                      "TODO: Add translation"
       }
     },
     "Rolls": {
@@ -3697,7 +3715,7 @@
       "threadItemShowRankToPlayer":                "TODO: Add translation",
       "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
-      "weaveThreadCheck":                          "Roll Thread Weaving to increase the thread rank."
+      "weaveThread":                               "Roll Thread Weaving to increase the thread rank."
     },
     "Update": {
       "contact":                                   "If you have questions or problems, please contact us on the <a href=\"https://discord.gg/earthdawn-foundry\" target=\"_blank\">Earthdawn Foundry Discord</a>.",
