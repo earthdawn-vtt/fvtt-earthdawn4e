@@ -2,9 +2,10 @@
 <div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.threadWeaving.label}}}</div>
 
 <div class="text--center">{{{weavingAbilityContentAnchor}}}</div>
-<div class="text--center">{{{spellContentAnchor}}}</div>
+<div class="text--center">{{{ifThen spellContentAnchor spellContentAnchor truePatternContentAnchor}}}</div>
 
 <div class="thread-weaving-visualization">
+{{#if spell}}
   <div class="chat-number-indicator threads-just-woven" data-tooltip="{{ localize "ED.ToolTips.numThreadsJustWoven" }}">
     {{numberFormat threads.woven.now sign=true}}
   </div>
@@ -28,6 +29,7 @@
   {{#if doneWeaving}}
     {{> "systems/ed4e/templates/chat/chat-buttons/cast-spell.hbs"}}
   {{/if}}
+{{/if}}
 </div>
 
 <!-- Rule of One Check -->

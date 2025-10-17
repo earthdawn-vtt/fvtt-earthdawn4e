@@ -14,14 +14,22 @@ import { MAGIC } from "../../config/_module.mjs";
  * @property { string } [spellUuid] The UUID of the spell the threads are woven for.
  * Can be omitted if `spell` is provided.
  * @property { ItemEd } [grimoire] The grimoire item, if a grimoire is used to cast the spell.
+ * @property { ItemEd } [truePattern] The document that holds the true pattern the thread is woven to.
+ * Can be omitted if `truePatternUuid` is provided.
+ * @property { string } [truePatternUuid] The UUID of the document that holds the true pattern the thread
+ * is woven to. Can be omitted if `truePattern` is provided.
+ * @property { number } [newThreadRank=1] The rank of the new thread being created, if any.
  */
 
 /**
- * Roll options for weaving threads.
+ * Roll options for weaving threads to spells and true patterns.
  * @augments { EdRollOptions }
- * @property { string } spellUuid The UUID of the spell the threads are woven for.
  * @property { string } weavingAbilityUuid The UUID of the ability used for thread weaving.
- * @property { { required: number, extra: number } } threads The number of threads
+ * @property { string } spellUuid The UUID of the spell the threads are woven for, if any.
+ * @property { { required: number, extra: number } } threads The number of threads for the spell, if any.
+ * @property { number } [newThreadRank] The rank of the new thread being created, if any.
+ * @property { string } [truePatternUuid] The UUID of the document that holds the true pattern the thread
+ * is woven to, if any.
  */
 export default class ThreadWeavingRollOptions extends EdRollOptions {
 
@@ -55,6 +63,12 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
       spellUuid: new fields.DocumentUUIDField( {
         type:     "Item",
       } ),
+      truePatternUuid:    new fields.DocumentUUIDField( {} ),
+      newThreadRank:    new fields.NumberField( {
+        required: false,
+        nullable: false,
+        min:      1,
+      } ),
       weavingAbilityUuid: new fields.DocumentUUIDField( {
         type:     "Item",
         embedded: true,
@@ -74,6 +88,9 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
           initial:  0,
           integer:  true,
         } ),
+      }, {
+        nullable: true,
+        initial:  null,
       } ),
     } );
   }
@@ -93,6 +110,10 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
    * @returns { ThreadWeavingRollOptions } A new instance of ThreadWeavingRollOptions.
    */
   static fromData( data, options = {} ) {
+    if ( data.weavingAbility && !data.weavingAbilityUuid ) data.weavingAbilityUuid = data.weavingAbility.uuid;
+    if ( data.spell && !data.spellUuid ) data.spellUuid = data.spell.uuid;
+    if ( data.truePattern && !data.truePatternUuid ) data.truePatternUuid = data.truePattern.uuid;
+
     return /** @type { ThreadWeavingRollOptions } */ super.fromData( data, options );
   }
 
@@ -103,9 +124,9 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
-      sourceActor: createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
-      spell:       createContentAnchor( fromUuidSync( this.spellUuid ) ).outerHTML,
-      step:        this.step.total,
+      sourceActor:  createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
+      threadTarget: createContentAnchor( fromUuidSync( this.spellUuid ?? this.truePatternUuid ) )?.outerHTML,
+      step:         this.step.total,
     };
   }
 
@@ -152,15 +173,25 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     if ( data.target ) return data.target;
 
     const spell = data.spell ?? fromUuidSync( data.spellUuid );
-    if ( !spell ) {
-      throw new Error( "ThreadWeavingRollOptions: No spell found." );
+    if ( spell ) {
+      return {
+        base:      spell.system.spellDifficulty.weaving,
+        modifiers: {},
+        public:    true,
+      };
     }
 
-    return {
-      base:      spell.system.spellDifficulty.weaving,
-      modifiers: {},
-      public:    true,
-    };
+    const truePatternDocument = data.truePattern ?? fromUuidSync( data.truePatternUuid );
+    if ( !data.newThreadRank ) data.newThreadRank = 1;
+    if ( truePatternDocument ) {
+      return {
+        base:      MAGIC.threadWeavingDifficulty[ data.newThreadRank ],
+        modifiers: {},
+        public:    true,
+      };
+    }
+
+    throw new Error( "ThreadWeavingRollOptions: No spell or true pattern found for target difficulty." );
   }
 
   // endregion
@@ -172,19 +203,31 @@ export default class ThreadWeavingRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.spell = await fromUuid( this.spellUuid );
-    newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
+    newContext.spellContentAnchor = newContext.spell
+      ? createContentAnchor( newContext.spell ).outerHTML
+      : undefined;
+
+    newContext.truePattern = await fromUuid( this.truePatternUuid );
+    newContext.truePatternContentAnchor = newContext.truePattern
+      ? createContentAnchor( newContext.truePattern ).outerHTML
+      : undefined;
+
     newContext.weavingAbility = await fromUuid( this.weavingAbilityUuid );
     newContext.weavingAbilityContentAnchor = createContentAnchor( newContext.weavingAbility ).outerHTML;
+
     newContext.threads = this.threads;
-    newContext.threads.totalRequired = this.threads.required + this.threads.extra;
-    newContext.threads.woven = {
-      now: Math.min(
-        newContext.numSuccesses,
-        newContext.spell.system.missingThreads
-      ),
-    };
-    newContext.threads.woven.total = newContext.threads.woven.now + newContext.spell.system.threads.woven;
-    newContext.doneWeaving = newContext.threads.woven.total >= newContext.threads.totalRequired;
+    if ( newContext.threads ) {
+      newContext.threads.totalRequired = this.threads.required + this.threads.extra;
+      newContext.threads.woven = {
+        now: Math.min(
+          newContext.numSuccesses,
+          newContext.spell.system.missingThreads
+        )
+      };
+      newContext.threads.woven.total = newContext.threads.woven.now + newContext.spell.system.threads.woven;
+      newContext.doneWeaving = newContext.threads.woven.total >= newContext.threads.totalRequired;
+    }
+
     newContext.rollingActor = await fromUuid( this.rollingActorUuid );
     newContext.rollingActorTokenDocument = await context.rollingActor?.getTokenDocument();
 
