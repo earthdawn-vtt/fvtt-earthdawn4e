@@ -284,6 +284,7 @@
           "learnKnack":                            "Der Kniff {name} wurde gelernt",
           "learnSpell":                            "Der Zauber {name} wurde gelernt",
           "learningTransactionDescription":        "Hat {itemType} '{itemName}' gelernt.",
+          "newThread":                             "Neuer Faden zu {threadTarget} wurde gewebt",
           "spendingTransactionDescription":        "Erhöht von {previousLevel} auf {newLevel}"
         }
       },
@@ -382,7 +383,7 @@
         "standardDiceRoll":                        "Standard Würfelwurf",
         "takeDamage":                              "Schaden nehmen",
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
-        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {spell}",
+        "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {threadTarget}",
         "undoDamage":                              "Setze den Schaden zurück",
         "warpingRollOptions":                      "Verzerrungsprobe<br/>{sourceActor} wirkt rohe Magie in einer Region mit Verunreinigung: {pollution}"
       },
@@ -3190,7 +3191,8 @@
       "RollPrompt": {
         "Title": {
           "attuneGrimoire":                        "Struktur Verstehen um Grimoire abzustimmen",
-          "damage":                                "Schaden würfeln ({damageSourceType})"
+          "damage":                                "Schaden würfeln ({damageSourceType})",
+          "weaveThread":                           "Faden weben"
         },
         "devotion":                                "Weihepunkt",
         "devotionStep":                            "Weihepunkt Stufe",
@@ -3216,13 +3218,16 @@
         "attributeIncrease":                       "Attribut steigern",
         "attuneMatrix":                            "Matrix neu abstimmen",
         "buttonSelect":                            "Wähle eine Option",
+        "cannotWeaveMoreThreadsConfirm":           "Keine weitere Fäden verfügbar",
         "characterGeneration":                     "Charaktererschaffung",
+        "chooseActor":                             "Wähle einen Actor",
         "chooseAdderSubstitute":                   "Fähigkeiten zum Erhöhen/Ersetzen",
         "chooseDiscipline":                        "Wähle eine Disziplin",
         "chooseTier":                              "Wähle einen Kreis",
         "classAdvancement":                        "Klassenaufstieg",
         "confirmDelete":                           "Löschen bestätigen",
         "drawWeapon":                              "Waffe ziehen",
+        "failedWeavingRollConfirm":                "Fadenweben Probe fehlgeschlagen",
         "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
         "knockdown":                               "Niederschlag",
@@ -3230,6 +3235,7 @@
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
         "lpLearnKnack":                            "Lerne Kniff",
+        "missingThreadWeavingAbilityConfirm":      "Fehlende Fadenweben Fähigkeit",
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
         "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
@@ -3243,6 +3249,8 @@
         "substitute":                              "Fähigkeit ersetzen",
         "takeDamage":                              "Schaden nehmen",
         "talentCategory":                          "Talent Kategorie",
+        "threadRankExceedsWeavingAbilityConfirm":  "Faden Rang übersteigt Fadenweben Fähigkeit",
+        "unknownPatternKeyKnowledgeConfirm":       "Unbekanntes Schlüsselwissen",
         "useWillpower":                            "Willenskraft einsetzen",
         "versatilityLimit":                        "Vielseitigkeitslimit erreicht"
       },
@@ -3251,16 +3259,21 @@
       },
       "armor":                                     "Rüstung",
       "armorType":                                 "Rüstungsart",
+      "cannotWeaveMoreThreadsConfirm":             "<p>Es können keine weiteren Fäden zu dieser wahren Struktur gewebt werden. Das Maximum ist erreicht.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "damage":                                    "Schaden",
       "damageStandard":                            "Tödlicher Schaden",
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
+      "failedWeavingRollConfirm":                  "<p>Die Fadenweben Probe ist fehlgeschlagen.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "missingThreadWeavingAbilityConfirm":        "<p>Du besitzt nicht die erforderliche Fadenweben Fähigkeit um diesen Faden zu weben.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden",
+      "threadRankExceedsWeavingAbilityConfirm":    "<p>Der Rang des Fadens übersteigt deine Fadenweben Fähigkeit.</p><p>Möchtest du trotzdem fortfahren?</p>",
+      "unknownPatternKeyKnowledgeConfirm":         "<p>Du besitzt nicht das erforderliche Schlüsselwissen um diesen Zauber zu erlernen.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "versatilityTalentLimit":                    "Das Maximum an Talente die über Vielseitigkeit gelernt werden können ist bereits erreicht. Das reguläre Maximum entspricht dem Vielseitigkeits Rang.\n Soll das gewählte Talent trotzdem gelernt werden?"
     },
     "Document": {
@@ -3364,7 +3377,7 @@
         "researchCheck":                           "Forschen ",
         "threadItemLevelHeader":                   "Rang {level}",
         "truePatternBaseInformation":              "Wahre Struktur",
-        "weaveThreadCheck":                        "Fadenweben "
+        "weaveThread":                             "Fadenweben "
       },
       "Spell": {
         "binding":                                 "Bindung",
@@ -3377,6 +3390,9 @@
       "Tabs": {
         "level":                                   "Kreis {circle}",
         "talentOptions":                           "Optionale Talente"
+      },
+      "Thread": {
+        "defaultName":                             "Faden von {fromActor} zu {threadTarget}"
       }
     },
     "Journal": {
@@ -3445,6 +3461,7 @@
         "cantHaveEffectFromSameSource":            "Diesen Effekt gibt es schon. Es kann nicht mehr als einen Effekt von der gleichen Quelle geben.",
         "cantUpdateItemWeight":                    "Das Gewicht des Items kann nicht aktualisiert werden.",
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
+        "chooseActorPromptNoActorAvailable":       "Es sind keine Actor verfügbar, die ausgewählt werden können.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
         "couldNotScrollToSourceMessage":           "Die Nachricht konnte nicht gefunden werden.",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
@@ -3468,7 +3485,8 @@
         "spellAlreadyAttunedInGrimoire":           "Der Zauber ist bereits im Grimoire abgestimmt.",
         "spellNotReadyToCast":                     "Der Zauber ist nicht bereit zum Wirken. Es fehlen noch Fäden.",
         "versatilityTalentLimit":                  "Das Limit für Vielseitigkeitstalente wurde erreicht.",
-        "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu."
+        "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu.",
+        "weaveThreadNoActor":                      "Es konnte kein Actor gefunden werden, der den Faden weben kann."
       }
     },
     "Rolls": {
@@ -3697,7 +3715,7 @@
       "threadItemShowRankToPlayer":                "Zeige diesen Fadenrang für Spielende an.",
       "threadItemShowTruePatternToPlayer":         "Zeige die wahre Strukture für Spielende an.",
       "threadItemWeaveNewThread":                  "Webe einen neuen Faden zu diesem Gegenstand.",
-      "weaveThreadCheck":                          "Würfle Fadenweben um den Fadenrang zu erhöhen."
+      "weaveThread":                               "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {
       "contact":                                   "Bei Fragen oder Problemen kontaktiert uns bitte im <a href=\"https://discord.gg/earthdawn-foundry\" target=\"_blank\">Earthdawn Foundry Discord</a>.",
