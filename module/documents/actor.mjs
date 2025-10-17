@@ -836,6 +836,8 @@ export default class ActorEd extends Actor {
    * @see                             ../../documentation/User Functions/UF_LpTracking-addLpTransaction.md
    */
   async addLpTransaction( type, transactionData ) {
+    if ( ![ "earnings", "spendings" ].includes( type ) ) throw new Error( `ActorEd.addLpTransaction: Invalid transaction type '${ type }' provided.` );
+    
     const oldTransactions = this.system.lp[type];
     const TransactionModel = type === "earnings" ? LpEarningTransactionData : LpSpendingTransactionData;
     const transaction = new TransactionModel( transactionData );
