@@ -570,7 +570,10 @@ export default class ActorEd extends Actor {
           updates["system.characteristics.health.wounds"] = health.wounds + 1;
           break;
         case "stun":
-          updates["system.condition.harried"] = true;
+          await this.toggleStatusEffect(
+            "harried",
+            { active: true },
+          );
           break;
         // Add more cases here for other damage types
       }
@@ -594,7 +597,7 @@ export default class ActorEd extends Actor {
       await ChatMessage.create( messageData );
     }
 
-    const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5 && !options.isStrain;
+    const knockdownTest = !this.statuses.has( "knockedDown" ) && damageTaken >= health.woundThreshold + 5 && !options.isStrain;
     if ( knockdownTest ) await this.knockdownTest( damageTaken );
 
     return {
