@@ -3194,6 +3194,7 @@
         "Title": {
           "attuneGrimoire":                        "Patterncraft to Attune Grimoire",
           "damage":                                "TODO: Add translation",
+          "jumpUp":                                "TODO: Add translation",
           "weaveThread":                           "TODO: Add translation"
         },
         "devotion":                                "Devotion",
@@ -3488,7 +3489,8 @@
         "spellNotReadyToCast":                     "The spell is not ready to cast. Threads still required.",
         "versatilityTalentLimit":                  "The versatility talent limit has been reached.",
         "warningEffectNoActor":                    "This effect has no actor assigned. Please assign one.",
-        "weaveThreadNoActor":                      "TODO: Add translation"
+        "weaveThreadNoActor":                      "TODO: Add translation",
+        "youAreNotKnockedDown":                    "TODO: Add translation"
       }
     },
     "Rolls": {
@@ -3579,6 +3581,10 @@
         "encumbranceHint":                         "Should encumbrance be tracked?"
       },
       "GameMechanics": {
+        "jumpUpBaseDifficulty":                    "TODO: Add translation",
+        "jumpUpBaseDifficultyHint":                "TODO: Add translation",
+        "jumpUpStrainCost":                        "TODO: Add translation",
+        "jumpUpStrainCostHint":                    "TODO: Add translation",
         "languages":                               "Languages",
         "languagesHint":                           "Which languages should be used?",
         "minimumDifficulty":                       "Minimum Difficulty",
@@ -3717,6 +3723,7 @@
       "threadItemShowRankToPlayer":                "TODO: Add translation",
       "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
+      "toggleConditionFromSheet":                  "TODO: Add translation",
       "weaveThread":                               "Roll Thread Weaving to increase the thread rank."
     },
     "Update": {
