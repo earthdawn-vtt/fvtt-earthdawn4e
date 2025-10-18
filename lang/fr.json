@@ -1748,10 +1748,12 @@
                 "label":                           "TODO: Add translation"
               }
             },
-            "power": {
-              "step": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+            "powers": {
+              "element": {
+                "step": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
               }
             }
           }
