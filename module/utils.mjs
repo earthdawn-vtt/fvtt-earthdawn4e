@@ -517,7 +517,7 @@ export function arrayInsert( arr, element, index = -1 ) {
 /**
  * Creates an HTML document link for the provided UUID.
  * @param {string} uuid  UUID for which to produce the link.
- * @returns {string}     Link to the item or empty string if item wasn't found.
+ * @returns {Promise<HTMLAnchorElement>}     Link to the item or empty string if item wasn't found.
  */
 export async function linkForUuid( uuid ) {
   return foundry.applications.ux.TextEditor.implementation._createContentLink( [ "", "UUID", uuid ] );
