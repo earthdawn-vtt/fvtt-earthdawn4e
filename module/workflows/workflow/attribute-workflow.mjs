@@ -8,6 +8,11 @@ import ED4E from "../../config/_module.mjs";
  * @typedef {object} AttributeWorkflowOptions
  * @property {string} attributeId - The attribute ID to use for the attribute roll.
  */
+
+/**
+ * Workflow for handling actor attribute tests
+ * @mixes Rollable
+ */
 export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -19,28 +24,21 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * @param {ActorEd} actor The actor performing the attribute
-   * @param {AttributeWorkflowOptions} [options] Options for the attribute workflow
+   * @param {AttributeWorkflowOptions & RollableWorkflowOptions & WorkflowOptions} [options] Options for the attribute workflow
    */
   constructor( actor, options = {} ) {
     super( actor, options );
 
-    this._rollToMessage = true;
     this._attributeId = options.attributeId;
 
-    this._steps = [
-      this._prepareAttributeRollOptions.bind( this ),
-      this._createRoll.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
-    ];
+    this._rollToMessage = options.rollToMessage ?? true;
+    this._rollPromptTitle = "TODO: Localize";
+
+    this._initRollableSteps();
   }
 
-  /**
-   * Prepares the attribute roll options
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _prepareAttributeRollOptions() {
+  /** @inheritDoc */
+  async _prepareRollOptions() {
     const stepModifiers = {};
     const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
     const allActionsModifiers = this._actor.system.globalBonuses?.allActions.value ?? 0;
