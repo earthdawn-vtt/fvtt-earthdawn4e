@@ -11,6 +11,11 @@ const DialogClass = DialogEd;
  * @typedef {object} SubstituteWorkflowOptions
  * @property {string} attributeId - The attribute ID to use for the substitute roll.
  */
+
+/**
+ * Workflow for handling actor substituting an ability with an attribute roll
+ * @mixes Rollable
+ */
 export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -58,11 +63,9 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     this._steps = [
       this._chooseSubstituteAbility.bind( this ),
       this._chooseAlternativeWorkflow.bind( this ),
-      this._prepareSubstituteRollOptions.bind( this ),
-      this._createRoll.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
     ];
+
+    this._initRollableSteps();
   }
 
   /**
@@ -125,16 +128,13 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _chooseAlternativeWorkflow( ) {
     if ( this._action === "attack" ) {
-      return this._actor.attack( this._attackType );
+      this.cancel();
+      await this._actor.attack( this._attackType );
     } 
   }
 
-  /**
-   * Prepares the half magic roll options
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _prepareSubstituteRollOptions() {
+  /** @inheritDoc */
+  async _prepareRollOptions() {
     if ( this._action !== "ability" ) return; // Only run for ability
     const stepModifiers = {};
     const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
