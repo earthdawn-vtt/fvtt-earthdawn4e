@@ -53,7 +53,7 @@
         "attuningOnTheFly":                        "Matrix auf die Schnelle abstimmen",
         "blindness":                               "Geblendet",
         "blindsided":                              "Angriff aus dem Toten Winkel",
-        "calledShot":                              "Geziehlter Schuss",
+        "calledShot":                              "Gezielter Schuss",
         "concentrating":                           "Konzentration",
         "cover":                                   "Deckung",
         "coverFull":                               "Volle Deckung",
@@ -3194,6 +3194,7 @@
         "Title": {
           "attuneGrimoire":                        "Struktur Verstehen um Grimoire abzustimmen",
           "damage":                                "Schaden würfeln ({damageSourceType})",
+          "jumpUp":                                "Aufspringen würfeln",
           "weaveThread":                           "Faden weben"
         },
         "devotion":                                "Weihepunkt",
@@ -3488,7 +3489,8 @@
         "spellNotReadyToCast":                     "Der Zauber ist nicht bereit zum Wirken. Es fehlen noch Fäden.",
         "versatilityTalentLimit":                  "Das Limit für Vielseitigkeitstalente wurde erreicht.",
         "warningEffectNoActor":                    "Der Effekt hat keinen Actor zugewiesen. Bitte weise einen Actor zu.",
-        "weaveThreadNoActor":                      "Es konnte kein Actor gefunden werden, der den Faden weben kann."
+        "weaveThreadNoActor":                      "Es konnte kein Actor gefunden werden, der den Faden weben kann.",
+        "youAreNotKnockedDown":                    "Der Charakter ist nicht niedergeschlagen."
       }
     },
     "Rolls": {
@@ -3579,6 +3581,10 @@
         "encumbranceHint":                         "Soll Belastung berücksichtigt werden?"
       },
       "GameMechanics": {
+        "jumpUpBaseDifficulty":                    "Schwierigkeit für Aufspringen",
+        "jumpUpBaseDifficultyHint":                "Was ist die Basis Schwierigkeit für Aufspringen-Tests?",
+        "jumpUpStrainCost":                        "Überanstrengungsschaden für Aufspringen",
+        "jumpUpStrainCostHint":                    "Wie viel Überanstrengungsschaden verursacht das Aufspringen?",
         "languages":                               "Sprachen",
         "languagesHint":                           "Welche Sprachen sollen verwendet werden?",
         "minimumDifficulty":                       "Minimale Schwierigkeit",
@@ -3719,6 +3725,7 @@
       "threadItemShowRankToPlayer":                "Zeige diesen Fadenrang für Spielende an.",
       "threadItemShowTruePatternToPlayer":         "Zeige die wahre Strukture für Spielende an.",
       "threadItemWeaveNewThread":                  "Webe einen neuen Faden zu diesem Gegenstand.",
+      "toggleConditionFromSheet":                  "<p>Aktiviere/deaktiviere diesen Status für den Actor.</p><p>Ein Status mit mehreren Leveln kann mit Linksklick erhöht und Rechtsklick verringert werden.</p>",
       "weaveThread":                               "Würfle Fadenweben um den Fadenrang zu erhöhen."
     },
     "Update": {
