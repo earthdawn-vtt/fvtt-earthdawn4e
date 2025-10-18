@@ -183,7 +183,7 @@ export default class MaskData extends ItemDataModel.mixin(
           integer:  true,
         } ),
       } ),
-      powers: new fields.ArrayField(
+      powers: new fields.TypedObjectField(
         new fields.SchemaField( {
           uuid: new fields.DocumentUUIDField( {
             type:     "Item",
@@ -196,10 +196,6 @@ export default class MaskData extends ItemDataModel.mixin(
             integer:  true
           } )
         } ),
-        {
-          required: true,
-          initial:  []
-        }
       ),
       maneuvers: new fields.SetField(
         new fields.DocumentUUIDField( {
@@ -211,6 +207,19 @@ export default class MaskData extends ItemDataModel.mixin(
         } ),
     } );
   }
+
+  // Checkers
+
+  /**
+   * Checks if the mask has a power with the given UUID.
+   * @param {string} powerUuid The UUID of the power to check.
+   * @returns {boolean} True if the mask has the power, false otherwise.
+   */
+  hasPower( powerUuid ) {
+    return Object.values( this.powers ).some( power => power.uuid === powerUuid );
+  }
+
+  // endregion
 
   // Methods
 
@@ -227,21 +236,13 @@ export default class MaskData extends ItemDataModel.mixin(
       return;
     }
 
-    if ( this.powers.some( entry => entry.uuid === power.uuid ) ) {
+    if ( this.hasPower( power.uuid ) ) {
       ui.notifications.warn(
         game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
-      return;
     } else {
-      const newPowers = [
-        ...this.powers,
-        {
-          uuid: power.uuid,
-          step: 0,
-        },
-      ];
-      return this.parent.update( {
-        "system.powers": newPowers,
+      return this.parentDocument.update( {
+        [`system.powers.${ power.id }`]: { uuid: power.uuid, },
       } );
     }
   }
@@ -267,7 +268,6 @@ export default class MaskData extends ItemDataModel.mixin(
       ui.notifications.warn(
         game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
-      return;
     }
   }
 
@@ -282,11 +282,16 @@ export default class MaskData extends ItemDataModel.mixin(
 
     const isPower = itemType === "power";
     const oldData = isPower ? this.powers : this.maneuvers;
-    const newData = isPower
-      ? oldData.filter( entry => entry.uuid !== itemUuid )
-      : oldData.filter( entry => entry !== itemUuid );
 
-    return this.parent.update( { [`system.${itemType}s`]: newData } );
+    if ( isPower && this.hasPower( itemUuid ) ) {
+      return this.parentDocument.update( {
+        [ `system.powers.-=${ foundry.utils.parseUuid( itemUuid )?.id }` ]: null,
+      } );
+    }
+
+    return this.parent.update( {
+      [`system.${itemType}s`]: oldData.filter( entry => entry !== itemUuid )
+    } );
   }
 
   // region Rolling

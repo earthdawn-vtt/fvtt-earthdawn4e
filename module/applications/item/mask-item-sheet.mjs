@@ -78,8 +78,9 @@ export default class MaskItemSheetEd extends ItemSheetEd {
       case "general": {
         // Process powers
         const powers = await Promise.all(
-          ( this.document.system.powers ?? [] ).map( async power => {
+          ( Object.values( this.document.system.powers ) ?? [] ).map( async power => {
             const data = {...power};
+            data.id = foundry.utils.parseUuid( power.uuid )?.id;
             data.enrichedLink = await linkForUuid( power.uuid );
             return data;
           } )
