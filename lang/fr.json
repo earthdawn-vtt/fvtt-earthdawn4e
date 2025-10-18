@@ -3194,6 +3194,7 @@
         "Title": {
           "attuneGrimoire":                        "TODO: Add translation",
           "damage":                                "TODO: Add translation",
+          "jumpUp":                                "TODO: Add translation",
           "weaveThread":                           "TODO: Add translation"
         },
         "devotion":                                "TODO: Add translation",
@@ -3488,7 +3489,8 @@
         "spellNotReadyToCast":                     "TODO: Add translation",
         "versatilityTalentLimit":                  "TODO: Add translation",
         "warningEffectNoActor":                    "TODO: Add translation",
-        "weaveThreadNoActor":                      "TODO: Add translation"
+        "weaveThreadNoActor":                      "TODO: Add translation",
+        "youAreNotKnockedDown":                    "TODO: Add translation"
       }
     },
     "Rolls": {
@@ -3579,6 +3581,10 @@
         "encumbranceHint":                         "TODO: Add translation"
       },
       "GameMechanics": {
+        "jumpUpBaseDifficulty":                    "TODO: Add translation",
+        "jumpUpBaseDifficultyHint":                "TODO: Add translation",
+        "jumpUpStrainCost":                        "TODO: Add translation",
+        "jumpUpStrainCostHint":                    "TODO: Add translation",
         "languages":                               "TODO: Add translation",
         "languagesHint":                           "TODO: Add translation",
         "minimumDifficulty":                       "TODO: Add translation",
@@ -3717,6 +3723,7 @@
       "threadItemShowRankToPlayer":                "TODO: Add translation",
       "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
+      "toggleConditionFromSheet":                  "TODO: Add translation",
       "weaveThread":                               "TODO: Add translation"
     },
     "Update": {
