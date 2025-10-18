@@ -214,74 +214,6 @@ export default class SentientTemplate extends CommonTemplate {
         required: false,
         empty:    false,
       } ),
-      condition: new fields.SchemaField( {
-        aggressiveAttack: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        blindsided: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        cover: new fields.SchemaField( {
-          partial: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-          full: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-        } ),
-        darkness: new fields.SchemaField( {
-          partial: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-          full: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-        } ),
-        defensiveStance: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        fury: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        harried: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        impairedMovement: new fields.SchemaField( {
-          partial: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-          full: new fields.BooleanField( {
-            required: true,
-            initial:  false,
-          } ),
-        } ),
-        knockedDown: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } ),
-        overwhelmed: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          min:      0,
-          step:     1,
-          initial:  0,
-          integer:  true,
-        } ),
-        surprised: new fields.BooleanField( {
-          required: true,
-          initial:  false,
-        } )
-      } ),
       devotion: new fields.SchemaField( {
         value: new fields.NumberField( {
           required: true,
@@ -466,8 +398,8 @@ export default class SentientTemplate extends CommonTemplate {
    * @protected
    */
   _prepareDamage() {
-    this.characteristics.health.damage.total =
-      this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
+    this.characteristics.health.damage.total
+      = this.characteristics.health.damage.stun + this.characteristics.health.damage.standard;
   }
 
   /**
