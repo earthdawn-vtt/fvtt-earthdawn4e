@@ -1,5 +1,6 @@
 import ActorSheetEd from "./common-sheet.mjs";
-import { MAGIC } from "../../config/_module.mjs";
+import { MAGIC, STATUSES } from "../../config/_module.mjs";
+import { staticStatusId } from "../../utils.mjs";
 
 
 /**
@@ -35,6 +36,10 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       attuneMatrix:     ActorSheetEdSentient._onAttuneMatrix,
       castMatrix:       ActorSheetEdSentient._onCastMatrix,
       castSpell:        ActorSheetEdSentient._onCastSpell,
+      changeCondition:  {
+        handler: ActorSheetEdSentient._onChangeCondition,
+        buttons: [ 0, 2 ],
+      },
       takeDamage:       ActorSheetEdSentient.takeDamage,
       knockdown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
@@ -69,6 +74,15 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       case "notes":
         break;
       case "specials":
+        context.statusEffects = {};
+        for ( const status of STATUSES.statusEffects ) {
+          context.statusEffects[status.id] = {
+            name: this.document.effects.get(
+              staticStatusId( status.id )
+            )?.name ?? status.name,
+            active: this.document.statuses.has( status.id ),
+          };
+        }
         break;
     }
 
@@ -286,7 +300,6 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
    * @returns {ApplicationV2}   The rendered item sheet.
    * @private
    */
-   
   static async changeItemStatus( event, target ) {
     event.preventDefault();
 
@@ -306,5 +319,21 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     if ( rotate ) return this.document.rotateItemStatus( item.id, backwards ).then( _ => this.render() );
     if ( deposit ) return item.system.deposit()?.then( _ => this.render() );
     return this;
+  }
+
+  /**
+   * Handle change status effects from the sheet
+   * @type {ApplicationClickAction}#
+   * @this {ActorSheetEdSentient}
+   */
+  static async _onChangeCondition( event, target ) {
+    event.preventDefault();
+
+    const options = {};
+    if ( event.button === 2 ) options.active = false;
+    await this.document.toggleStatusEffect(
+      target.name,
+      options,
+    );
   }
 }
