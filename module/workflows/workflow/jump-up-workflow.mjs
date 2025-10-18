@@ -39,7 +39,7 @@ export default class JumpUpWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   async #validate() {
-    if ( !this._actor.system.condition.knockedDown ) {
+    if ( !this._actor.statuses.has( "knockedDown" ) ) {
       ui.notifications.warn(
         "ED.Notifications.Warn.youAreNotKnockedDown",
         { localize: true }
