@@ -34,6 +34,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
       } ),
       executionScript:  new fields.JavaScriptField( {
         required: false,
+        gmOnly:   true,
         initial:  "/**\n* This scope has the following variables available:\n* - effect: The \`EarthdawnActiveEffect\` document instance this script lives on\n* - parent: The parent document of this effect, either an \`ActorEd\` or an \`ItemEd\`\n*/\n\n",
       } ),
       transferToTarget: new fields.BooleanField( {
