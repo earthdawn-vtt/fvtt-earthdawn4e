@@ -116,6 +116,7 @@ export const icons = {
   threadWeaving:    "fa-thin fa-chart-network",
   undo:             "fa-arrow-rotate-left",
   unknown:          "fa-question",
+  x:                "fa-x",
 };
 
 // endregion
