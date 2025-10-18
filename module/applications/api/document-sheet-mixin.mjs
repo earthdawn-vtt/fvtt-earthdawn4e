@@ -44,6 +44,7 @@ const DocumentSheetMixinEd = Base => {
         editChild:    DocumentSheetEd._onEditChild,
         editImage:    DocumentSheetEd._onEditImage,
       },
+      scrollable: [ ".scrollable" ],
     };
 
     // region Properties
