@@ -427,6 +427,22 @@ export default function registerSystemSettings() {
     } ),
   } );
 
+  // Base difficulty for jump up tests
+  game.settings.register( "ed4e", "jumpUpBaseDifficulty", {
+    scope:   "world",
+    config:  true,
+    type:    new NumberField( {
+      required: true,
+      nullable: false,
+      min:      1,
+      initial:  6,
+      step:     1,
+      integer:  true,
+      label:    "ED.Settings.GameMechanics.jumpUpBaseDifficulty",
+      hint:     "ED.Settings.GameMechanics.jumpUpBaseDifficultyHint",
+    } ),
+  } );
+
   /* -------------------------------------------------------------------------------- */
   /*                                  GM Chat Avatar                                     */
   /* -------------------------------------------------------------------------------- */
