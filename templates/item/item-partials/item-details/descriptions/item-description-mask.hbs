@@ -82,22 +82,23 @@
     <legend>{{localize "ED.Item.Header.powers"}}</legend>
     {{#each powerItems}}
       <div class="power-item embedded-item flexrow" data-item-id="{{id}}" data-type="power">
-        <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
+        <div class="power-name">
+          {{{this.enrichedLink.outerHTML}}}
+          {{#if @root.editable}}
+            <a class="remove item-control maneuver-delete-btn"
+               data-action="deleteChild"
+               data-type="power"
+               data-uuid="{{this.uuid}}"
+               data-tooltip="{{localize 'ED.ToolTips.deletePower'}}">
+              <i class="fas {{@root.config.icons.x}}"></i>
+            </a>
+          {{/if}}
+        </div>
         {{formGroup
           @root/systemFields.powers.element.fields.step
           name=(concat "system.powers." id ".step")
           value=this.step disabled=(not @root/editable)
-
         }}
-        {{#if @root.editable}}
-          <a class="item-control power-delete-btn"
-             data-action="deleteChild"
-             data-uuid="{{this.uuid}}"
-             data-type="power"
-             title="{{localize 'ED.ToolTips.deletePower'}}">
-            <i class="fas fa-trash"></i>
-          </a>
-        {{/if}}
       </div>
     {{/each}}
   </fieldset>
@@ -105,18 +106,20 @@
   <fieldset>
     <legend>{{localize "ED.Item.Header.maneuver"}}</legend>
     {{#each maneuverItems}}
-        <div class="maneuver-item embedded-item" data-index="{{@index}}" data-type="maneuver">
-          <div class="maneuver-name">{{{this.enrichedLink.outerHTML}}}</div>
+        <span class="maneuver-item embedded-item" data-index="{{@index}}" data-type="maneuver">
+          <div class="maneuver-name">
+            {{{this.enrichedLink.outerHTML}}}
           {{#if @root.editable}}
-          <a class="item-control maneuver-delete-btn"
-             data-action="deleteChild"
-             data-type="maneuver"
-             data-uuid="{{this.uuid}}"
-             title="{{localize 'ED.ToolTips.deleteManeuver'}}">
-            <i class="fas fa-trash"></i>
-          </a>
+            <a class="remove item-control maneuver-delete-btn"
+               data-action="deleteChild"
+               data-type="maneuver"
+               data-uuid="{{this.uuid}}"
+               data-tooltip="{{localize 'ED.ToolTips.deleteManeuver'}}">
+                <i class="fas {{@root.config.icons.x}}"></i>
+            </a>
           {{/if}}
-        </div>
+          </div>
+        </span>
     {{/each}}
   </fieldset>
 </div>
