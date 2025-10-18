@@ -9,6 +9,11 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
  * @typedef {object} HalfMagicWorkflowOptions
  * @property {string} attributeId - The attribute ID to use for the half magic roll.
  */
+
+/**
+ * Workflow for handling actor half magic tests
+ * @mixes Rollable
+ */
 export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
@@ -20,27 +25,19 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
 
   /**
    * @param {ActorEd} actor The actor performing the half magic
-   * @param {HalfMagicWorkflowOptions} [options] Options for the half magic workflow
+   * @param {HalfMagicWorkflowOptions & WorkflowOptions & RollableWorkflowOptions} [options] Options for the half magic workflow
    */
   constructor( actor, options = {} ) {
     super( actor, options );
     this._attributeId = options.attributeId;
-    this._rollToMessage = true;
 
-    this._steps = [
-      this._prepareHalfMagicRollOptions.bind( this ),
-      this._createRoll.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
-    ];
+    this._rollToMessage = options.rollToMessage ?? true;
+
+    this._initRollableSteps();
   }
 
-  /**
-   * Prepares the half magic roll options
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _prepareHalfMagicRollOptions() {
+  /** @inheritDoc */
+  async _prepareRollOptions() {
     let discipline;
     if ( this._actor.isMultiDiscipline ) {
       const promptFactory = PromptFactory.fromDocument( this._actor );
