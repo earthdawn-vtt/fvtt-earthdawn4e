@@ -485,28 +485,15 @@
       border-radius: 4px;
       cursor: pointer;
       text-align: center;
-      text-transform: uppercase;
+      text-transform: capitalize;
       transition: background-color 0.3s ease;
       background-color: var(--color-button-panel-off);
 
-      &:nth-child(13) {
-        gap: var(--grid-col-gap-sm);
-        flex-direction: row;
-        height: 35px;
-        border: none;
-        background-color: transparent;
+      span {
+        font-size: smaller;
+        color: var(--color-text-primary);
       }
 
-      input[type='checkbox'] {
-        display: none;
-      }
-
-      input[type='number'] {
-        width: 3rem;
-        margin-bottom: 0.25rem;
-      }
-
-      &:has(input:checked),
       &.active {
         background-color: var(--color-button-panel-on);
         border-color: var(--color-button-panel-on);
