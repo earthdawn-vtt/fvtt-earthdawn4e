@@ -151,8 +151,6 @@
   --color-button-check-on: var(--color-button-icon);
   --color-button-check-off: var(--color-grey-md);
   --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-icon-on: ;
-  --color-button-slide--icon-off: ;
   --color-button-slide-background-on: var(--color-tertiary);
   --color-button-slide-background-off: var(--color-primary);
   --color-meter-background: var(--color-grey-lt-tr);
@@ -198,8 +196,6 @@
   --color-button-check-on: var(--color-button-icon);
   --color-button-check-off: var(--color-grey-md);
   --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-icon-on: ;
-  --color-button-slide--icon-off: ;
   --color-button-slide-background-on: var(--color-secondary);
   --color-button-slide-background-off: var(--color-secondary-grey);
   --color-meter-background: var(--color-grey-md-tr);
@@ -1654,25 +1650,14 @@ h3.label--rail .label__text::after {
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   transition: background-color 0.3s ease;
   background-color: var(--color-button-panel-off);
 }
-.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:nth-child(13) {
-  gap: var(--grid-col-gap-sm);
-  flex-direction: row;
-  height: 35px;
-  border: none;
-  background-color: transparent;
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item span {
+  font-size: smaller;
+  color: var(--color-text-primary);
 }
-.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type='checkbox'] {
-  display: none;
-}
-.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item input[type='number'] {
-  width: 3rem;
-  margin-bottom: 0.25rem;
-}
-.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item:has(input:checked),
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
   background-color: var(--color-button-panel-on);
   border-color: var(--color-button-panel-on);
