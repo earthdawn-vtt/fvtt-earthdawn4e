@@ -11,3 +11,4 @@ export {default as SpellEffectRollData} from "./spelleffect.mjs";
 export {default as WarpingRollData} from "./warping.mjs";
 export {default as WeavingRollData} from "./weaving.mjs";
 export {default as KnockdownRollOptions} from "./knockdown.mjs";
+export {default as JumpUpRollOptions} from "./jump-up.mjs";
