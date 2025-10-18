@@ -133,9 +133,9 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
    * Perform a warping test
    */
   async _performWarpingTest() {
-    const warpingRollOptions = new WarpingRollOptions( {
-      astralSpacePollution: this._astralSpacePollution,
+    const warpingRollOptions = WarpingRollOptions.fromData( {
       rollingActorUuid:     null,
+      astralSpacePollution: this._astralSpacePollution,
       casterUuid:           this._actor.uuid,
       spellUuid:            this._spell.uuid,
       caster:               this._actor,
@@ -173,7 +173,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
    * Perform a horror mark test
    */
   async _performHorrorMarkTest() {
-    const horrorMarkRollOptions = new HorrorMarkRollOptions( {
+    const horrorMarkRollOptions = HorrorMarkRollOptions.fromData( {
       casterUuid:           this._actor.uuid,
       caster:               this._actor,
       spellUuid:            this._spell.uuid,
