@@ -288,6 +288,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     if ( await super._preCreate( data, options, user ) === false ) return false;
 
     this._prepareMatrixData( data );
+
+    this.updateSource( data );
   }
 
   /** @inheritdoc */
@@ -299,16 +301,6 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   // endregion
 
-  /* -------------------------------------------- */
-  /*  Socket Events                               */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _onCreate( data, options, user ) {
-    if ( ( await super._preCreate( data, options, user ) ) === false ) return false;
-
-    // assign the source talent
-  }
 
   /* -------------------------------------------- */
   /*  Drop Events                                 */
