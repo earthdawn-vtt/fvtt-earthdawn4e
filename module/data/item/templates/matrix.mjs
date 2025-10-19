@@ -166,11 +166,16 @@ export default class MatrixTemplate extends SystemDataModel {
   // region Life Cycle Events
 
   /**
-   * Prepares the matrix data for creation or update.
+   * Prepares the matrix data for creation or update. Modifies the given data object.
    * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   * @returns {object} The prepared data.
    */
   _prepareMatrixData( data ) {
     const edidMatrix = getSetting( "edidSpellMatrix" );
+
+    if ( !this._isLosingMatrix( data, edidMatrix ) ) {
+      this._prepareMatrixLevel( data );
+    }
 
     if ( !this.matrixHasMultipleSpells && this.matrixSpellUuid && !this.matrix.activeSpell ) {
       // If the matrix has only one spell attuned, only that one can be active
@@ -189,6 +194,14 @@ export default class MatrixTemplate extends SystemDataModel {
     } else if ( this._isMatrixTypeChanging( data ) ) {
       this._updateMatrixTypeData( data );
     }
+
+    return data;
+  }
+
+  _prepareMatrixLevel( data ) {
+    const parentLevel = data.system?.level;
+    if ( foundry.utils.getType( parentLevel ) === "number" && data.system?.matrix )
+      data.system.matrix.level = parentLevel;
   }
 
   /**
@@ -247,8 +260,8 @@ export default class MatrixTemplate extends SystemDataModel {
    */
   _isMatrixTypeChanging( data ) {
     return (
-      String( data.system?.matrix?.matrixType ) !== String( this.matrix?.matrixType ) &&
-      data.system?.matrix?.matrixType in ED4E.matrixTypes
+      String( data.system?.matrix?.matrixType ) !== String( this.matrix?.matrixType )
+      && data.system?.matrix?.matrixType in ED4E.matrixTypes
     );
   }
 
