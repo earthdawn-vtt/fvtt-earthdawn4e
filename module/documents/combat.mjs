@@ -10,6 +10,15 @@ export default class CombatEd extends foundry.documents.Combat {
     return ( initiativeB - initiativeA ) || ( a.isPC ? -1 : 1 );
   }
 
+  /** @inheritDoc */
+  async nextRound() {
+    await this.resetInitiatives();
+    await this.#promptAllInitiatives();
+    await this.rollAll( { updateTurn: false, } );
+
+    return super.nextRound();
+  }
+
   // region Lifecycle Events
 
   /** @inheritdoc */
@@ -24,6 +33,9 @@ export default class CombatEd extends foundry.documents.Combat {
   /** @inheritdoc */
   async startCombat() {
     await this.#executeEffectsForAll( "combatStart" );
+    await this.#promptAllInitiatives();
+    await this.rollAll( { updateTurn: false, } );
+
     return super.startCombat();
   }
 
@@ -37,11 +49,6 @@ export default class CombatEd extends foundry.documents.Combat {
   async _onStartRound( context ) {
     await super._onStartRound( context );
     await this.#executeEffectsForAll( "roundStart" );
-
-    await this.resetInitiatives();
-    await this.#promptAllInitiatives();
-    await this.rollAll();
-    await this.update( { turn: 0 } );
   }
 
   /** @inheritdoc */
