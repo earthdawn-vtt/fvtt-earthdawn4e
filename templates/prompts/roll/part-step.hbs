@@ -5,16 +5,13 @@
     value=step.base
     hint=""
     autofocus=true
-    localize=true
   }}
   {{formGroup
     optionsFields.step.fields.total
     value=step.total
     hint=""
     disabled=true
-    data-tooltip=""
   }}
-
   {{#if ( ne testType "arbitrary") }}
     <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
     {{#each step.modifiers as |modifier|}}

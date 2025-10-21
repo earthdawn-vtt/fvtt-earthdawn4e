@@ -378,6 +378,36 @@ export default class EdRollOptions extends SparseDataModel {
     return new this( data, options );
   }
 
+  /**
+   * Calculates the total value from the provided step data by summing the base value and all modifiers.
+   * @param { RollStepData } stepData The step data containing the base value and modifiers.
+   * @returns { number } The total calculated from the base and modifiers.
+   */
+  static getTotalFromStepData( stepData ) {
+    return ( stepData.base ?? 0 ) + sum( Object.values( stepData.modifiers ?? {} ) );
+  }
+
+  /**
+   * Calculates the total value from the provided target data by summing the base value and all modifiers.
+   * @param { RollTargetData } targetData The target data containing the base value and modifiers.
+   * @returns {number} The total calculated from the base and modifiers, constrained by the minimum difficulty setting.
+   */
+  static getTotalFromTargetData( targetData ) {
+    return Math.max(
+      ( targetData.base ?? 0 ) + sum( Object.values( targetData.modifiers ?? {} ) ),
+      game.settings.get( "ed4e", "minimumDifficulty" ),
+    );
+  }
+
+  /**
+   * Calculates the total value from the provided strain data by summing the base value and all modifiers.
+   * @param { RollStrainData } strainData The strain data containing the base value and modifiers.
+   * @returns { number } The total calculated from the base and modifiers.
+   */
+  static getTotalFromStrainData( strainData ) {
+    return ( strainData.base ?? 0 ) + sum( Object.values( strainData.modifiers ?? {} ) );
+  }
+
   // endregion
 
   // region Data Field Initialization
@@ -443,7 +473,21 @@ export default class EdRollOptions extends SparseDataModel {
       data.devotion.dice = getDice( data[ "devotion.step" ] ?? data.devotion?.step );
     }
 
+    this._initializeTotals( data );
+
     return super._initializeSource( data, options );
+  }
+
+  _initializeTotals( data ) {
+    if ( data.step && !data.step.total ) {
+      data.step.total = this.constructor.getTotalFromStepData( data.step );
+    }
+    if ( data.target && !data.target.total ) {
+      data.target.total = this.constructor.getTotalFromTargetData( data.target );
+    }
+    if ( data.strain && !data.strain.total ) {
+      data.strain.total = this.constructor.getTotalFromStrainData( data.strain );
+    }
   }
 
   /** @inheritDoc */
@@ -460,10 +504,21 @@ export default class EdRollOptions extends SparseDataModel {
       foundry.utils.mergeObject( changes, resourceUpdates, ),
       options
     );
+
+    this._updateTotalStep( updates );
+    this._updateTotalTarget( updates );
+
+    return super.updateSource( updates, options );
+  }
+
+  _updateTotalStep( updates ) {
     updates.step ??= {};
     updates.step.total = this.step.total = this.totalStep;
-    if ( updates.target?.total ) updates.target.total = this.target.total = this.totalTarget;
-    return super.updateSource( updates, options );
+    return updates;
+  }
+
+  _updateTotalTarget( updates ) {
+    if ( updates.target && !updates.target.total ) updates.target.total = this.target.total = this.totalTarget;
   }
 
   // endregion
