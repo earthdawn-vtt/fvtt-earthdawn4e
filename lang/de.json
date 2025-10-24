@@ -2171,7 +2171,7 @@
                 "label":                           "Elementartyp"
               }
             },
-            "extraSuccesses": {
+            "extraSuccess": {
               "hint":                              "Bonuseffekte die durch zusätzliche Erfolge erzielt werden können",
               "label":                             "Zusätzliche Erfolge"
             },
@@ -3067,7 +3067,7 @@
           "title":                                 "Konfiguration: Einschränkungen"
         },
         "SpellEnhancement": {
-          "hint":                                  "Um eine Verstärkung hinzuzufügen, ziehe sie aus der Liste in den unteren Bereich. (noch nicht implementiert, kommt mit V13)",
+          "hint":                                  "Um eine Verstärkung hinzuzufügen, klicke auf den entsprechenden Button.)",
           "title":                                 "Konfiguration: Zauber Verstärkung"
         }
       },
@@ -3699,6 +3699,8 @@
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",
       "castSpell":                                 "Zauber&nbsp;beliebig&nbsp;wirken",
       "castSpellFromMatrix":                       "Zauber&nbsp;mit&nbsp;Matrix&nbsp;wirken",
+      "delete":                                    "Lösche dieses Item.",
+      "deleteEnhancement":                         "Lösche diese Verstärkung.",
       "deleteManeuver":                            "Lösche dieses Manöver von der Maske.",
       "deletePower":                               "Lösche diese Kraft von der Maske.",
       "deleteThreadItemLevel":                     "Entferne den letzten (höchsten) Rang.",
