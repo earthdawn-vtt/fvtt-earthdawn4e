@@ -1,5 +1,5 @@
 import EdRollOptions from "./common.mjs";
-import ED4E, { ACTORS, COMBAT, ENVIRONMENT } from "../../config/_module.mjs";
+import ED4E, { ACTORS, COMBAT, ENVIRONMENT, MAGIC } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 
 
@@ -262,8 +262,8 @@ export default class DamageRollOptions extends EdRollOptions {
   /** @inheritDoc */
   _getChatFlavorData() {
     return {
-      damageSource: this.sourceUuid ?
-        createContentAnchor( fromUuidSync( this.sourceUuid ) ).outerHTML
+      damageSource: this.sourceUuid
+        ? createContentAnchor( fromUuidSync( this.sourceUuid ) ).outerHTML
         : COMBAT.damageSourceConfig[ this.damageSourceType ].label,
       armorType:    ACTORS.armor[ this.armorType ] || "",
     };
@@ -453,8 +453,9 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     if ( data.damageSourceType === "warping" ) {
+      const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
       return {
-        [this._pollutionData.label]: this._pollutionData.rawMagic.damageModifier,
+        [pollutionData.label]: pollutionData.rawMagic.damageModifier,
       };
     }
 
@@ -660,8 +661,8 @@ export default class DamageRollOptions extends EdRollOptions {
     newContext.hasAssignedCharacter = !!game.user.character;
 
     const item = fromUuidSync( this.replacementAbilityUuid ?? this.sourceUuid );
-    newContext.damageSourceHeader = item ?
-      createContentAnchor( item ).outerHTML
+    newContext.damageSourceHeader = item
+      ? createContentAnchor( item ).outerHTML
       : COMBAT.damageSourceConfig[ this.damageSourceType ].label;
 
     return newContext;
