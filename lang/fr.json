@@ -2168,7 +2168,7 @@
                 "label":                           "TODO: Add translation"
               }
             },
-            "extraSuccesses": {
+            "extraSuccess": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -3679,6 +3679,8 @@
       "attuneMatrix":                              "TODO: Add translation",
       "castSpell":                                 "TODO: Add translation",
       "castSpellFromMatrix":                       "TODO: Add translation",
+      "delete":                                    "TODO: Add translation",
+      "deleteEnhancement":                         "TODO: Add translation",
       "deleteManeuver":                            "TODO: Add translation",
       "deletePower":                               "TODO: Add translation",
       "deleteThreadItemLevel":                     "TODO: Add translation",
