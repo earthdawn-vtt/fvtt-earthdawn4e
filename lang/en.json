@@ -2171,9 +2171,9 @@
                 "label":                           "Element Type"
               }
             },
-            "extraSuccesses": {
-              "hint":                              "Bonus effects from extra successes",
-              "label":                             "Extra Successes"
+            "extraSuccess": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "extraThreads": {
               "hint":                              "Bonus effects from extra threads",
@@ -3699,6 +3699,8 @@
       "attuneMatrix":                              "Attune Matrix",
       "castSpell":                                 "Cast spell freely",
       "castSpellFromMatrix":                       "Cast spell using a matrix",
+      "delete":                                    "TODO: Add translation",
+      "deleteEnhancement":                         "TODO: Add translation",
       "deleteManeuver":                            "TODO: Add translation",
       "deletePower":                               "TODO: Add translation",
       "deleteThreadItemLevel":                     "TODO: Add translation",
