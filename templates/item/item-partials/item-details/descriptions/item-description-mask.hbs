@@ -1,127 +1,130 @@
 <div class="item__left--main">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.attributes"}}</legend>
-        {{#each item.system.attributes}}
-        <div class="form-group">
-            <label>{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize "ED.Actor.Attributes.attributeStep"}}</label>
-            <input class="form-field" type="number" name="system.attributes.{{@key}}.step" value="{{this.step}}" />
-        </div>
-        {{/each}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.healthValues"}}</legend>
-        {{!-- Wound Threshold bonus --}}
-        {{formField systemFields.characteristics.fields.health.fields.woundThreshold name="system.characteristics.health.woundThreshold" value=item.system.characteristics.health.woundThreshold localize=true}}
-        {{!-- Unconscious Threshold bonus --}}
-        {{formField systemFields.characteristics.fields.health.fields.unconscious name="system.characteristics.health.unconscious" value=item.system.characteristics.health.unconscious localize=true}}
-        {{!-- Death Threshold bonus --}}
-        {{formField systemFields.characteristics.fields.health.fields.death name="system.characteristics.health.death" value=item.system.characteristics.health.death localize=true}}
-        {{!-- Recovery test Resource bonus --}}
-        {{formField systemFields.characteristics.fields.recoveryTestsResource.fields.value name="system.characteristics.recoveryTestsResource.value" value=item.system.characteristics.recoveryTestsResource.value localize=true}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.armorValues"}}</legend>
-        {{#each item.system.characteristics.armor}}
-        <div class="form-group">
-            <label>{{#with (lookup ../config.armor @key)}}{{localize this}}{{/with}}</label>
-            <input class="form-field" type="number" name="system.characteristics.armor.{{@key}}.value" value="{{this.value}}" />
-        </div>
-        {{/each}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.defenseValues"}}</legend>
-        {{#each item.system.characteristics.defenses}}
-        <div class="form-group">
-            <label>{{#with (lookup ../config.defense @key)}}{{localize this}}{{/with}}</label>
-            <input class="form-field" type="number" name="system.characteristics.defenses.{{@key}}.value" value="{{this.value}}" />
-        </div>
-        {{/each}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.combatValues"}}</legend>
-        {{!-- Knock Down Step bonus --}}
-        {{formField systemFields.knockDownStep name="system.knockDownStep" value=item.system.knockDownStep localize=true}}
-        {{!-- Damage Steps bonus --}}
-        {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep localize=true}}
-        {{!-- Attack Steps bonus --}}
-        {{formField systemFields.attackStep name="system.attackStep" value=item.system.attackStep localize=true}}
+  <h3>{{localize "ED.Item.Header.general"}}</h3>
 
-        {{!-- Initiative Step bonus --}}
-        {{formField systemFields.initiative name="system.initiative" value=item.system.initiative localize=true}}
-        {{!-- Actions bonus --}}
-        {{formField systemFields.actions name="system.actions" value=item.system.actions localize=true}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.movementTypes"}}</legend>
-        {{!-- Movement Walk bonus --}}
-        {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
-        {{!-- Movement Fly bonus --}}
-        {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
-        {{!-- Movement Swim bonus --}}
-        {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
-        {{!-- Movement Climb bonus --}}
-        {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
-        {{!-- Movement burrow bonus --}}
-        {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.challengingRate"}}</legend>
-        {{!-- Challenge Rate --}}
-        {{formField systemFields.challenge.fields.rate name="system.challenge.rate" value=item.system.challenge.rate localize=true}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.powers"}}</legend>
-        {{#each powerItems}}
-        {{#if @root.editable}}
-                <div class="power-item embedded-item" data-index="{{@index}}" data-type="power">
-                    <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
-                    <div class="form-group">
-                        <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
-                        <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
-                    </div>
-                    <a class="item-control power-delete-btn"
-                        data-action="deleteChild"
-                       data-uuid="{{this.uuid}}"
-                       data-type="power"
-                        title="{{localize 'ED.ToolTips.deletePower'}}">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            {{else}}
-                <div class="power-item">
-                    <div class="power-name">{{{this.enrichedLink.outerHTML}}}</div>
-                    <div class="form-group">
-                    <label>{{localize "ED.Data.Item.Mask.FIELDS.power.step.label"}}</label>
-                    <input class="form-field" type="number" name="system.powers.{{@index}}.step" value="{{this.step}}" />
-                    </div>
-                </div>
-            {{/if}}
-        {{/each}}
-    </fieldset>
-    <fieldset>
-        <legend>{{localize "ED.Item.Header.maneuver"}}</legend>
-        {{#each maneuverItems}}
-            {{#if @root.editable}}  
-            <div class="maneuver-item embedded-item" data-index="{{@index}}" data-type="maneuver">
-                <div class="maneuver-name">{{{this.enrichedLink.outerHTML}}}</div>
-                <a class="item-control maneuver-delete-btn"
-                    data-action="deleteChild"
-                   data-type="maneuver"
-                   data-uuid="{{this.uuid}}"
-                   title="{{localize 'ED.ToolTips.deleteManeuver'}}">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </div>
-            {{else}}
-                <div class="maneuver-item">
-                    <div class="maneuver-name">{{{this.enrichedLink.outerHTML}}}</div>
-                </div>
-            {{/if}}
-        {{/each}}
-    </fieldset>
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.attributes"}}</legend>
+    {{#each item.system.attributes}}
+      <div class="form-group">
+        <label>{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize "ED.Actor.Attributes.attributeStep"}}</label>
+        <input class="form-field" type="number" name="system.attributes.{{@key}}.step" value="{{this.step}}" />
+      </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.healthValues"}}</legend>
+    {{!-- Wound Threshold bonus --}}
+    {{formField systemFields.characteristics.fields.health.fields.woundThreshold name="system.characteristics.health.woundThreshold" value=item.system.characteristics.health.woundThreshold localize=true}}
+    {{!-- Unconscious Threshold bonus --}}
+    {{formField systemFields.characteristics.fields.health.fields.unconscious name="system.characteristics.health.unconscious" value=item.system.characteristics.health.unconscious localize=true}}
+    {{!-- Death Threshold bonus --}}
+    {{formField systemFields.characteristics.fields.health.fields.death name="system.characteristics.health.death" value=item.system.characteristics.health.death localize=true}}
+    {{!-- Recovery test Resource bonus --}}
+    {{formField systemFields.characteristics.fields.recoveryTestsResource.fields.value name="system.characteristics.recoveryTestsResource.value" value=item.system.characteristics.recoveryTestsResource.value localize=true}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.armorValues"}}</legend>
+    {{#each item.system.characteristics.armor}}
+      <div class="form-group">
+        <label>{{#with (lookup ../config.armor @key)}}{{localize this}}{{/with}}</label>
+        <input class="form-field" type="number" name="system.characteristics.armor.{{@key}}.value" value="{{this.value}}" />
+      </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.defenseValues"}}</legend>
+    {{#each item.system.characteristics.defenses}}
+      <div class="form-group">
+        <label>{{#with (lookup ../config.defense @key)}}{{localize this}}{{/with}}</label>
+        <input class="form-field" type="number" name="system.characteristics.defenses.{{@key}}.value" value="{{this.value}}" />
+      </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.combatValues"}}</legend>
+    {{!-- Knock Down Step bonus --}}
+    {{formField systemFields.knockDownStep name="system.knockDownStep" value=item.system.knockDownStep localize=true}}
+    {{!-- Damage Steps bonus --}}
+    {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep localize=true}}
+    {{!-- Attack Steps bonus --}}
+    {{formField systemFields.attackStep name="system.attackStep" value=item.system.attackStep localize=true}}
+
+    {{!-- Initiative Step bonus --}}
+    {{formField systemFields.initiative name="system.initiative" value=item.system.initiative localize=true}}
+    {{!-- Actions bonus --}}
+    {{formField systemFields.actions name="system.actions" value=item.system.actions localize=true}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.movementTypes"}}</legend>
+    {{!-- Movement Walk bonus --}}
+    {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
+    {{!-- Movement Fly bonus --}}
+    {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
+    {{!-- Movement Swim bonus --}}
+    {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
+    {{!-- Movement Climb bonus --}}
+    {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
+    {{!-- Movement burrow bonus --}}
+    {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.challengingRate"}}</legend>
+    {{!-- Challenge Rate --}}
+    {{formField systemFields.challenge.fields.rate name="system.challenge.rate" value=item.system.challenge.rate localize=true}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.powers"}}</legend>
+    {{#each powerItems}}
+      <div class="power-item embedded-item flexrow" data-item-id="{{id}}" data-type="power">
+        <div class="power-name">
+          {{{this.enrichedLink.outerHTML}}}
+          {{#if @root.editable}}
+            <a class="remove item-control maneuver-delete-btn"
+               data-action="deleteChild"
+               data-type="power"
+               data-uuid="{{this.uuid}}"
+               data-tooltip="{{localize 'ED.ToolTips.deletePower'}}">
+              <i class="fas {{@root.config.icons.x}}"></i>
+            </a>
+          {{/if}}
+        </div>
+        {{formGroup
+          @root/systemFields.powers.element.fields.step
+          name=(concat "system.powers." id ".step")
+          value=this.step disabled=(not @root/editable)
+        }}
+      </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.maneuver"}}</legend>
+    {{#each maneuverItems}}
+        <span class="maneuver-item embedded-item" data-index="{{@index}}" data-type="maneuver">
+          <div class="maneuver-name">
+            {{{this.enrichedLink.outerHTML}}}
+          {{#if @root.editable}}
+            <a class="remove item-control maneuver-delete-btn"
+               data-action="deleteChild"
+               data-type="maneuver"
+               data-uuid="{{this.uuid}}"
+               data-tooltip="{{localize 'ED.ToolTips.deleteManeuver'}}">
+                <i class="fas {{@root.config.icons.x}}"></i>
+            </a>
+          {{/if}}
+          </div>
+        </span>
+    {{/each}}
+  </fieldset>
 </div>
+
 <div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+  <h3>{{localize "ED.Item.Header.description"}}</h3>
+  {{> "systems/ed4e/templates/global/editor.hbs"}}
 </div>

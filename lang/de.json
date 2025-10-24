@@ -1748,10 +1748,12 @@
                 "label":                           "Gehen"
               }
             },
-            "power": {
-              "step": {
-                "hint":                            "Stufe der Kraft",
-                "label":                           "Stufe"
+            "powers": {
+              "element": {
+                "step": {
+                  "hint":                          "Stufe der Kraft",
+                  "label":                         "Stufe"
+                }
               }
             }
           }
