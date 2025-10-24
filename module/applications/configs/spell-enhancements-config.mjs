@@ -15,7 +15,8 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
       title: "ED.Dialogs.Configs.SpellEnhancement.title",
     },
     actions: {
-      addEnhancement: this._onAddEnhancement,
+      addEnhancement:    this._onAddEnhancement,
+      deleteEnhancement: this._onDeleteEnhancement,
     },
     keyPath: null,
     type:    null,
@@ -76,8 +77,6 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
 
   // endregion
 
-
-
   // region Event Handlers
 
   /**
@@ -86,6 +85,14 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
    */
   static async _onAddEnhancement( event, target ) {
     await this.document.system.addEnhancement( target.dataset.enhancementType, this.keyPath );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {SpellEnhancementsConfig}
+   */
+  static async _onDeleteEnhancement( event, target ) {
+    await this.document.system.removeEnhancement( target.dataset.enhancementType, this.keyPath );
   }
 
   // endregion

@@ -26,7 +26,19 @@
   <div class="scrollable">
     {{#if extraSuccess}}
       <fieldset>
-        <legend>{{lookup (lookup @root.config.spellEnhancements extraSuccess.type) "label"}}</legend>
+        <legend>
+          <button
+            type="button"
+            class="item-control inline-button"
+            data-tooltip="{{localize "ED.ToolTips.deleteEnhancement"}}"
+            data-action="deleteEnhancement"
+            data-key-path="{{@root.keyPath}}"
+            data-enhancement-type="{{extraSuccess.type}}"
+          >
+            <i class="fas {{@root.config.icons.delete}}" inert></i>
+            <span>{{lookup (lookup @root.config.spellEnhancements extraSuccess.type) "label"}}</span>
+          </button>
+        </legend>
         {{> "systems/ed4e/templates/form/group/general.hbs"
           dataField=extraSuccess.schema
           inputTemplate=(lookup (lookup @root.config.spellEnhancements extraSuccess.type) "inputTemplate")
@@ -40,7 +52,19 @@
 
     {{#each extraThreads}}
       <fieldset>
-        <legend>{{lookup (lookup @root.config.spellEnhancements this.type) "label"}}</legend>
+        <legend>
+          <button
+            type="button"
+            class="item-control inline-button"
+            data-tooltip="{{localize "ED.ToolTips.deleteEnhancement"}}"
+            data-action="deleteEnhancement"
+            data-key-path="{{@root.keyPath}}"
+            data-enhancement-type="{{this.type}}"
+          >
+            <i class="fas {{@root.config.icons.delete}}" inert></i>
+            <span>{{lookup (lookup @root.config.spellEnhancements this.type) "label"}}</span>
+          </button>
+        </legend>
         {{> "systems/ed4e/templates/form/group/general.hbs"
           dataField=this.schema
           inputTemplate=(lookup (lookup @root.config.spellEnhancements this.type) "inputTemplate")
