@@ -87,6 +87,12 @@ export default class ItemEd extends Item {
 
   // region Data Preparation
 
+  /** @inheritDoc */
+  prepareEmbeddedDocuments() {
+    super.prepareEmbeddedDocuments();
+    this.applyActiveEffects();
+  }
+
   /**
    * Apply any transformations to the Item data which are caused by ActiveEffects.
    * This is taken from Foundry's Actor class.
