@@ -3,7 +3,7 @@ import ConstraintsConfig from "../configs/constraints-config.mjs";
 import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-const { DragDrop, TextEditor } = foundry.applications.ux;
+const { TextEditor } = foundry.applications.ux;
 const { HTMLDocumentTagsElement }= foundry.applications.elements;
 
 
@@ -28,7 +28,17 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       left:   220,
       width:  800,
       height: 800,
-    }
+    },
+    dragDrop: [
+      {
+        dragSelector: ".draggable",
+        dropSelector: null,
+      },
+      {
+        dragSelector: "[data-drag]",
+        dropSelector: null,
+      },
+    ],
   };
 
   static PARTS = {
@@ -76,10 +86,39 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   };
   // endregion
 
+  // region Properties
+
   tabGroups = {
     sheet:             "general",
     classAdvancements: "options",
   };
+
+  /**
+   * The drag-and-drop handlers for this Application.
+   * @type {DragDrop[]}
+   */
+  #dragDrop;
+
+  // endregion
+
+  /** @inheritdoc */
+  constructor( options = {} ) {
+    super( options );
+
+    this.#dragDrop = this.#createDragDropHandlers();
+  }
+
+  // region Getters
+
+  /**
+   * The drag-and-drop handlers for this Application.
+   * @type {DragDrop[]}
+   */
+  get dragDrop() {
+    return this.#dragDrop;
+  }
+
+  // endregion
 
   // region Rendering
   async _preparePartContext( partId, contextInput, options ) {
@@ -127,21 +166,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   async _onRender( context, options ) {
     await super._onRender( context, options );
 
-    // Not our name, comes from Foundry API
-    // eslint-disable-next-line new-cap
-    new DragDrop.implementation( {
-      dragSelector: ".draggable",
-      permissions:  {
-        dragstart: this._canDragStart.bind( this ),
-        drop:      this._canDragDrop.bind( this ),
-      },
-      dropSelector: null,
-      callbacks:    {
-        dragstart: this._onDragStart.bind( this ),
-        dragover:  this._onDragOver.bind( this ),
-        drop:      this._onDrop.bind( this )
-      }
-    } ).bind( this.element );
+    this.#dragDrop.forEach( dragDropConfig => dragDropConfig.bind( this.element ) );
   }
   
   // endregion
@@ -186,6 +211,21 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
   // endregion
 
   // region Drag and Drop
+
+  #createDragDropHandlers() {
+    return this.options.dragDrop.map( dragDropConfig => {
+      dragDropConfig.permissions = {
+        dragstart: this._canDragStart.bind( this ),
+        drop:      this._canDragDrop.bind( this ),
+      };
+      dragDropConfig.callbacks = {
+        dragstart: this._onDragStart.bind( this ),
+        dragover:  this._onDragOver.bind( this ),
+        drop:      this._onDrop.bind( this ),
+      };
+      return new foundry.applications.ux.DragDrop( dragDropConfig );
+    } );
+  }
 
   // this is taken and adjusted from Foundry's ActorSheetV2 class
 
