@@ -328,18 +328,6 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
-  // region Getters
-
-  /**
-   * The extra success enhancement metric data, if any.
-   * @type {MetricData|undefined}
-   */
-  get extraSuccessEnhancement() {
-    return this.extraSuccess?.[ 0 ];
-  }
-
-  // endregion
-
   // region Checkers
 
   /**
@@ -705,8 +693,8 @@ export default class SpellData extends ItemDataModel.mixin(
   /**
    * Adds an enhancement to this spell.
    * @param {keyof MetricData.TYPES} enhancementType The type of enhancement to add.
-   * @param {"extraSuccess"|"extraThreads"} fieldName - The field to add the enhancement to.
-   * @returns {Promise<ItemEd|undefined>} - Returns the updated spell item or undefined if not updated.
+   * @param {"extraSuccess"|"extraThreads"} fieldName The field to add the enhancement to.
+   * @returns {Promise<ItemEd|undefined>} Returns the updated spell item or undefined if not updated.
    */
   async addEnhancement( enhancementType, fieldName ) {
     if ( ![ "extraSuccess", "extraThreads" ].includes( fieldName ) )
@@ -722,6 +710,35 @@ export default class SpellData extends ItemDataModel.mixin(
     return await this.parent.update( {
       [ fieldPath ]: enhancementData,
     } );
+  }
+
+  /**
+   * Removes an enhancement from this spell.
+   * @param {keyof MetricData.TYPES} enhancementType The type of enhancement to remove.
+   * @param {"extraSuccess"|"extraThreads"} fieldName The field to remove the enhancement from.
+   * @returns {Promise<ItemEd|undefined>} Returns the updated spell item or undefined if not updated.
+   */
+  async removeEnhancement( enhancementType, fieldName ) {
+    if ( ![ "extraSuccess", "extraThreads" ].includes( fieldName ) )
+      throw new Error( "Invalid field name for enhancement. Must be 'extraSuccess' or 'extraThreads'." );
+
+    const isExtraSuccess = fieldName === "extraSuccess";
+
+    const fieldPath = isExtraSuccess
+      ? `system.==${ fieldName }`
+      : this._getFieldPathForExtraThreadRemoval( enhancementType );
+
+    return await this.parent.update( {
+      [ fieldPath ]: null,
+    } );
+  }
+
+  _getFieldPathForExtraThreadRemoval( enhancementType ) {
+    const extraThreadsKeys = Object.keys( this.extraThreads || {} );
+
+    return extraThreadsKeys.includes( enhancementType ) && extraThreadsKeys.length === 1
+      ? "system.-=extraThreads"
+      : `system.extraThreads.-=${ enhancementType }`;
   }
 
   /**
