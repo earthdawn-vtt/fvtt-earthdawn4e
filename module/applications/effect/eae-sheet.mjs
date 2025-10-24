@@ -92,11 +92,12 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   // region Rendering
 
   /** @inheritDoc */
-  async _onRender( context, options ) {
-    super._onRender( context, options );
+  _configureRenderParts( options ) {
+    const parts = super._configureRenderParts( options );
 
-    // ensure mutually exclusiveness for `system.transferToTarget` and `transfer` (to actor)
-    // this.element.querySelector( "[name='system.transferToTarget']" ).addEventListener( "change", this._onTransferChange.bind( this ) );
+    if ( !this.document.system.executable ) delete parts.execution;
+
+    return parts;
   }
 
   /** @inheritDoc */
@@ -149,14 +150,9 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @returns {object} The prepared tabs for the effect sheet. 
    */
   _prepareTabs( group ) {
-    // returns a new object, so can be modified without changing TABS
     const tabs = super._prepareTabs( group );
-    const execInTabs = "execution" in tabs;
-    const executable = this.document.system.executable;
 
-    // remove execution tab if not executable
-    // no need to check opposite, as the tab is always added in ApplicationV2
-    if ( !executable && execInTabs ) delete tabs.execution;
+    if ( !this.document.system.executable ) delete tabs.execution;
 
     return tabs;
   }
