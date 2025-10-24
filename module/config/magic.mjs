@@ -197,36 +197,43 @@ preLocalize( "spellEffectTypes", { key: "label" } );
 export const spellEnhancements = {
   area: {
     label:         "ED.Config.SpellEnhancements.area",
+    icon:          "fa-arrow-up-right-and-arrow-down-left-from-center",
     inputTemplate: "systems/ed4e/templates/form/input/area-metric.hbs",
     unitConfig:    "movementUnits",
   },
   duration: {
     label:         "ED.Config.SpellEnhancements.duration",
+    icon:          "fa-clock",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "scalarTimePeriods",
   },
   effect: {
     label:         "ED.Config.SpellEnhancements.effect",
+    icon:          "fa-star",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "",
   },
   range: {
     label:         "ED.Config.SpellEnhancements.range",
+    icon:          "fa-ruler",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "movementUnits",
   },
   section: {
     label:         "ED.Config.SpellEnhancements.section",
+    icon:          "fa-arrows-left-right-to-line",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "",
   },
   special: {
     label:         "ED.Config.SpellEnhancements.special",
+    icon:          "fa-sparkles",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "",
   },
   target: {
     label:         "ED.Config.SpellEnhancements.target",
+    icon:          "fa-crosshairs-simple",
     inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
     unitConfig:    "",
   },
