@@ -57,7 +57,9 @@ export default class BaseConfigSheet extends DocumentSheetMixinEd( DocumentSheet
 
   async _renderFrame( options = {} ) {
     // Overwrite to not add the edit toggle (this shouldn't be a DocumentSheet I guess...)
-    return super._renderFrame( options );
+    const frame = /** @type {HTMLElement} */ await super._renderFrame( options );
+    frame.querySelector( "slide-toggle.mode-slider" ).remove();
+    return frame;
   }
 
   /** @inheritDoc */
