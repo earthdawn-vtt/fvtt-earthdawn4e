@@ -393,15 +393,24 @@ export default class EdRollOptions extends SparseDataModel {
   }
 
   static initTotalStep( source ) {
-    return EdRollOptions.initTotal( source, "step", 1 );
+    return Math.max(
+      EdRollOptions.initTotal( source, "step", 1 ),
+      1,
+    );
   }
 
   static initTotalStrain( source ) {
-    return EdRollOptions.initTotal( source, "strain", 0 );
+    return Math.max(
+      EdRollOptions.initTotal( source, "strain", 0 ),
+      0,
+    );
   }
 
   static initTotalTarget( source ) {
-    return EdRollOptions.initTotal( source, "target", 1 );
+    return Math.max(
+      EdRollOptions.initTotal( source, "target", 1 ),
+      1,
+    );
   }
 
   static initDiceForStep( parent ) {
@@ -525,7 +534,7 @@ export default class EdRollOptions extends SparseDataModel {
   _applyGlobalStepModifiers( data ) {
     const stepData = data.step;
     if ( !stepData ) return;
-    const actor = fromUuidSync( stepData.rollingActorUuid );
+    const actor = fromUuidSync( data.rollingActorUuid );
 
     if ( !actor ) return stepData;
 
@@ -537,7 +546,8 @@ export default class EdRollOptions extends SparseDataModel {
     }
 
     this.constructor.GLOBAL_MODIFIERS.forEach( bonus => {
-      stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = actor.system.globalBonuses[bonus].value;
+      const modifierValue = actor.system.globalBonuses[bonus].value;
+      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 )stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = modifierValue;
     } );
 
     return stepData;
