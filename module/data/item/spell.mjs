@@ -214,21 +214,22 @@ export default class SpellData extends ItemDataModel.mixin(
       } ),
       area: new fields.EmbeddedDataField( AreaMetricData, {
       } ),
-      extraSuccess: new fields.ArrayField( new fields.TypedSchemaField( MetricData.TYPES, {
-      } ),
-      {
-        required: true,
-        nullable: true,
-        initial:  [],
-        max:      1,
-      } ),
-      extraThreads: new fields.ArrayField( new fields.TypedSchemaField( MetricData.TYPES, {
-      } ),
-      {
-        required: true,
-        nullable: true,
-        initial:  [],
-      } ),
+      extraSuccess: new fields.TypedSchemaField(
+        MetricData.TYPES,
+        {
+          required: true,
+          nullable: true,
+        },
+      ),
+      extraThreads: new fields.TypedObjectField(
+        new fields.TypedSchemaField( MetricData.TYPES, {
+        } ),
+        {
+          required: true,
+          nullable: true,
+          initial:  null,
+        }
+      ),
       isWeaving: new fields.BooleanField( {
         required: true,
         nullable: false,
@@ -330,115 +331,11 @@ export default class SpellData extends ItemDataModel.mixin(
   // region Getters
 
   /**
-   * Returns the attuned matrix for this spell, if it exists.
-   * @returns {ItemEd|undefined} - Returns the attuned matrix item or undefined if not found.
+   * The extra success enhancement metric data, if any.
+   * @type {MetricData|undefined}
    */
-  getAttunedMatrix() {
-    return this.containingActor?.items.find( item => {
-      return item.system.matrix?.spells.has( this.parent.uuid );
-    } );
-  }
-
-  /**
-   * Returns all grimoires that are attuned to this spell for the given actor.
-   * @param {ActorEd} [actor] - The actor to check for attuned grimoires. If not provided, uses the containing actor of this spell.
-   * @returns {ItemEd[]} - Returns an array of grimoires that are attuned to this spell.
-   */
-  getAttunedGrimoires( actor ) {
-    const owner = actor || this.containingActor;
-    return this.actorGrimoires( owner ).filter(
-      grimoire => grimoire.system.isSpellAttuned?.( this.parent.uuid )
-    );
-  }
-
-  /**
-   * Calculates the total effect step for this spell's effect, based on the
-   * effect details and the caster's attributes.
-   * @param {ActorEd} [actor] - The actor to use for the calculation. If not provided,
-   * uses the containing actor of this spell.
-   * @returns {number} - The total effect step.
-   * @throws {Error} - Throws an error if effect details or caster are not available.
-   */
-  getEffectStepTotal( actor ) {
-    const effectDetails = this.effect?.details.effect;
-    const caster = actor || this.containingActor;
-    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
-
-    return caster.system.attributes[ effectDetails.attribute ]?.step
-      + ( effectDetails.stepModifier )
-      + ( effectDetails.addCircle
-        ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
-        : 0 );
-  }
-
-  /**
-   * Prepares the roll step data for this spell's effect, if it is of type "damage" or "effect".
-   * This includes the base step and any applicable modifiers.
-   * @param {object} options Options for the calculation.
-   * @param {ActorEd} [options.actor] The actor to use for the calculation. If not provided,
-   * uses the containing actor of this spell.
-   * @param {ItemEd} [options.willpower] The willpower item to consider for the roll, if any.
-   * This is only applied if the effect attribute is "wil".
-   * @returns {RollStepData} The prepared roll step data.
-   * @throws {Error} If the effect type is not "damage" or "effect", or if effect details or caster are not available.
-   */
-  getEffectDetailsRollStepData( options = {} ) {
-    if ( ![ "damage", "effect" ].includes( this.effect?.type ) ) throw new Error( "Effect roll step data can only be prepared for effects of type 'damage' or 'effect'." );
-
-    const { actor, willpower } = options;
-    const effectDetails = this.effect?.details[ this.effect.type ];
-    const caster = actor || this.containingActor;
-    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
-
-    const attribute = effectDetails.attribute;
-    const attributeStep = caster.system.attributes[ attribute ]?.step;
-    const stepModifier = this.effect.details[ this.effect.type ].stepModifier;
-    const circle = effectDetails.addCircle
-      ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
-      : undefined;
-    
-    const modifiers = {};
-    const stepModifierLabel = game.i18n.localize(
-      `ED.Data.Item.Spell.FIELDS.effect.details.${ this.effect.type }.stepModifier.label`
-    );
-    const disciplineName = MAGIC.spellcastingTypes[ this.spellcastingType ];
-    const circleLabel = game.i18n.format(
-      "ED.Rolls.Modifiers.spellEffectOrDamageStepCircle",
-      { discipline: disciplineName }
-    );
-
-    if ( Number.isNumeric( attributeStep ) ) {
-      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
-      if ( effectDetails.addCircle ) modifiers[ circleLabel ] = circle;
-      if ( willpower && attribute === "wil" ) modifiers[ willpower.name ] = willpower.system.level;
-      return {
-        base:      attributeStep,
-        modifiers,
-      };
-    } else if ( effectDetails.addCircle ) {
-      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
-      return {
-        base:      circle,
-        modifiers,
-      };
-    } else {
-      return {
-        base:      stepModifier,
-        modifiers,
-      };
-    }
-  }
-
-
-
-  /**
-   * Returns all grimoires of the given actor that contain this spell.
-   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
-   * @returns {ItemEd[]} - Returns an array of grimoires that contain this spell.
-   */
-  actorGrimoires( actor ) {
-    const owner = actor || this.containingActor;
-    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+  get extraSuccessEnhancement() {
+    return this.extraSuccess?.[ 0 ];
   }
 
   // endregion
@@ -492,8 +389,6 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   // endregion
-
-  // region Methods
 
   // region LP Tracking
 
@@ -795,6 +690,140 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
+  // region Methods
+
+  /**
+   * Returns all grimoires of the given actor that contain this spell.
+   * @param {ActorEd} [actor] - The actor to check for grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that contain this spell.
+   */
+  actorGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+  }
+
+  /**
+   * Adds an enhancement to this spell.
+   * @param {keyof MetricData.TYPES} enhancementType The type of enhancement to add.
+   * @param {"extraSuccess"|"extraThreads"} fieldName - The field to add the enhancement to.
+   * @returns {Promise<ItemEd|undefined>} - Returns the updated spell item or undefined if not updated.
+   */
+  async addEnhancement( enhancementType, fieldName ) {
+    if ( ![ "extraSuccess", "extraThreads" ].includes( fieldName ) )
+      throw new Error( "Invalid field name for enhancement. Must be 'extraSuccess' or 'extraThreads'." );
+
+    const enhancementData = MetricData.fromType( enhancementType );
+    const isExtraSuccess = fieldName === "extraSuccess";
+
+    const fieldPath = isExtraSuccess
+      ? `system.==${ fieldName }`
+      : `system.${ fieldName }.==${ enhancementType }`;
+
+    return await this.parent.update( {
+      [ fieldPath ]: enhancementData,
+    } );
+  }
+
+  /**
+   * Returns the attuned matrix for this spell, if it exists.
+   * @returns {ItemEd|undefined} - Returns the attuned matrix item or undefined if not found.
+   */
+  getAttunedMatrix() {
+    return this.containingActor?.items.find( item => {
+      return item.system.matrix?.spells.has( this.parent.uuid );
+    } );
+  }
+
+  /**
+   * Returns all grimoires that are attuned to this spell for the given actor.
+   * @param {ActorEd} [actor] - The actor to check for attuned grimoires. If not provided, uses the containing actor of this spell.
+   * @returns {ItemEd[]} - Returns an array of grimoires that are attuned to this spell.
+   */
+  getAttunedGrimoires( actor ) {
+    const owner = actor || this.containingActor;
+    return this.actorGrimoires( owner ).filter(
+      grimoire => grimoire.system.isSpellAttuned?.( this.parent.uuid )
+    );
+  }
+
+  /**
+   * Calculates the total effect step for this spell's effect, based on the
+   * effect details and the caster's attributes.
+   * @param {ActorEd} [actor] - The actor to use for the calculation. If not provided,
+   * uses the containing actor of this spell.
+   * @returns {number} - The total effect step.
+   * @throws {Error} - Throws an error if effect details or caster are not available.
+   */
+  getEffectStepTotal( actor ) {
+    const effectDetails = this.effect?.details.effect;
+    const caster = actor || this.containingActor;
+    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
+
+    return caster.system.attributes[ effectDetails.attribute ]?.step
+      + ( effectDetails.stepModifier )
+      + ( effectDetails.addCircle
+        ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
+        : 0 );
+  }
+
+  /**
+   * Prepares the roll step data for this spell's effect, if it is of type "damage" or "effect".
+   * This includes the base step and any applicable modifiers.
+   * @param {object} options Options for the calculation.
+   * @param {ActorEd} [options.actor] The actor to use for the calculation. If not provided,
+   * uses the containing actor of this spell.
+   * @param {ItemEd} [options.willpower] The willpower item to consider for the roll, if any.
+   * This is only applied if the effect attribute is "wil".
+   * @returns {RollStepData} The prepared roll step data.
+   * @throws {Error} If the effect type is not "damage" or "effect", or if effect details or caster are not available.
+   */
+  getEffectDetailsRollStepData( options = {} ) {
+    if ( ![ "damage", "effect" ].includes( this.effect?.type ) ) throw new Error( "Effect roll step data can only be prepared for effects of type 'damage' or 'effect'." );
+
+    const { actor, willpower } = options;
+    const effectDetails = this.effect?.details[ this.effect.type ];
+    const caster = actor || this.containingActor;
+    if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
+
+    const attribute = effectDetails.attribute;
+    const attributeStep = caster.system.attributes[ attribute ]?.step;
+    const stepModifier = this.effect.details[ this.effect.type ].stepModifier;
+    const circle = effectDetails.addCircle
+      ? caster.getDisciplineForSpellcastingType( this.spellcastingType )?.system.level
+      : undefined;
+
+    const modifiers = {};
+    const stepModifierLabel = game.i18n.localize(
+      `ED.Data.Item.Spell.FIELDS.effect.details.${ this.effect.type }.stepModifier.label`
+    );
+    const disciplineName = MAGIC.spellcastingTypes[ this.spellcastingType ];
+    const circleLabel = game.i18n.format(
+      "ED.Rolls.Modifiers.spellEffectOrDamageStepCircle",
+      { discipline: disciplineName }
+    );
+
+    if ( Number.isNumeric( attributeStep ) ) {
+      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
+      if ( effectDetails.addCircle ) modifiers[ circleLabel ] = circle;
+      if ( willpower && attribute === "wil" ) modifiers[ willpower.name ] = willpower.system.level;
+      return {
+        base:      attributeStep,
+        modifiers,
+      };
+    } else if ( effectDetails.addCircle ) {
+      if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
+      return {
+        base:      circle,
+        modifiers,
+      };
+    } else {
+      return {
+        base:      stepModifier,
+        modifiers,
+      };
+    }
+  }
+
   // endregion
 
   // region Macros
@@ -805,4 +834,5 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   // endregion
+
 }
