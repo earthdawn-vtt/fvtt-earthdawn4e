@@ -202,7 +202,7 @@ export class AreaMetricData extends MetricData {
         summary.push( `${areaType}: ${this.radius} ${this.unit}` );
         break;
       case "cone":
-        summary.push( `${this.angle}° ${areaType}: ${this.radius} ${this.unit}` );
+        summary.push( `${this.angle}° ${areaType.label}: ${this.radius} ${this.unit}` );
         break;
       case "cube":
       case "square":
