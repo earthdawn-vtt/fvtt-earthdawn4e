@@ -114,7 +114,7 @@
     {{> "systems/ed4e/templates/form/group/general.hbs"
       dataField=systemFields.extraSuccess
       inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
-      data=item.system.extraSuccess
+      data=(ed-wrapInArray item.system.extraSuccess)
       config=config
       configType="spellEnhancement"
     }}
