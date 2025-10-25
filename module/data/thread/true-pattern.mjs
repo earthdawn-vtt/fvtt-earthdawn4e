@@ -173,6 +173,22 @@ export default class TruePatternData extends SparseDataModel {
     return "patternItem";
   }
 
+  /**
+   * The number of threads currently attached to this true pattern.
+   * @type {number}
+   */
+  get numberOfAttachedThreads() {
+    return this.attachedThreads?.size ?? 0;
+  }
+
+  /**
+   * Whether more threads can be attached to this true pattern.
+   * @type {boolean}
+   */
+  get canHaveMoreThreads() {
+    return this.numberOfAttachedThreads < this.maxThreads;
+  }
+
   // endregion
 
   // region LP Tracking
@@ -201,6 +217,18 @@ export default class TruePatternData extends SparseDataModel {
    * level. Or `undefined` if the amount cannot be determined.
    */
   async getRequiredLpForLevel( level ) {
+    const newLevel = level ?? this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ newLevel + tierModifier ];
+  }
+
+  /**
+   * Get the amount of legend points required to increase the entity to the given level.
+   * @param {number} [level] The level to get the required legend points for. Defaults to the next level.
+   * @returns {number|undefined} The amount of legend points required to increase the entity to the given
+   * level. Or `undefined` if the amount cannot be determined.
+   */
+  getRequiredLpForLevelSync( level ) {
     const newLevel = level ?? this.numberOfLevels + 1;
     const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
     return LEGEND.legendPointsCost[ newLevel + tierModifier ];
@@ -243,6 +271,38 @@ export default class TruePatternData extends SparseDataModel {
   };
 
   /**
+   * Adds a thread to the attachedThreads set.
+   * @param {string} threadUuid The UUID of the thread to add.
+   * @returns {Promise<Document|object>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent.
+   */
+  async addAttachedThread( threadUuid ) {
+    const newThreads = [ ...( this.attachedThreads ?? [] ), threadUuid ];
+    const parentDocument = this.parentDocument;
+
+    const updatePath = this.schema.fields.attachedThreads.fieldPath;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newThreads } );
+    return parentDocument.update( { [ updatePath ]: newThreads, } );
+  }
+
+  /**
+   * Removes a thread from the attachedThreads set.
+   * @param {string} threadUuid The UUID of the thread to remove.
+   * @returns {Promise<Document|object>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent.
+   */
+  async removeAttachedThread( threadUuid ) {
+    const newThreads = [ ...( this.attachedThreads ?? [] ) ].filter( t => t !== threadUuid );
+    const parentDocument = this.parentDocument;
+
+    const updatePath = this.schema.fields.attachedThreads.fieldPath;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newThreads } );
+    return parentDocument.update( { [ updatePath ]: newThreads, } );
+  }
+
+  /**
    * Toggles whether the given rank/level is known to the player.
    * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
    * @returns {Promise<Document|object>} The updated parent document, or an object containing
@@ -263,6 +323,12 @@ export default class TruePatternData extends SparseDataModel {
     return parentDocument.update( { [ updatePath ]: !levelData.knownToPlayer, } );
   }
 
+  /**
+   * Toggles whether the key knowledge for the given rank/level is known to the player.
+   * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
+   * @returns {Promise<Document|object>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent.
+   */
   async toggleRankKnowledgeKnownToPlayer( level ) {
     if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
       throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );

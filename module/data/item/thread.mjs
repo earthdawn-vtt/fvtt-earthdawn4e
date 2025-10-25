@@ -2,6 +2,8 @@ import ItemDataModel from "../abstract/item-data-model.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import LpIncreaseTemplate from "./templates/lp-increase.mjs";
 import ED4E, { MAGIC } from "../../config/_module.mjs";
+import PromptFactory from "../../applications/global/prompt-factory.mjs";
+import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 
 /**
  * Data model for thread items.
@@ -80,6 +82,16 @@ export default class ThreadData extends ItemDataModel.mixin(
     }
   }
 
+  /** @inheritDoc */
+  _onDelete( options, user ) {
+    this.getConnectedDocument().then(
+      connectedDocument =>
+        connectedDocument
+          ? connectedDocument.system.truePattern.removeAttachedThread( this.parentDocument.uuid  )
+          : null,
+    );
+  }
+
   // endregion
 
   // region Rolling
@@ -154,8 +166,23 @@ export default class ThreadData extends ItemDataModel.mixin(
   }
 
   /** @inheritdoc */
+  get lpSpendingDescription() {
+    return this.level <= 0
+      ?  game.i18n.format(
+        "ED.Actor.LpTracking.Spendings.newThread",
+        { threadTarget: fromUuidSync( this.wovenToUuid ).name },
+      )
+      : super.lpSpendingDescription;
+  }
+
+  /** @inheritdoc */
   get requiredLpForIncrease() {
-    return undefined;
+    const connectedDocument = fromUuidSync( this.wovenToUuid );
+    if ( !connectedDocument.system?.truePattern ) return undefined;
+
+    const newLevel = this.level + 1;
+    if ( newLevel <= 0 ) return 0;
+    return connectedDocument.system.truePattern.getRequiredLpForLevelSync( newLevel );
   }
 
   /** @inheritdoc */
@@ -175,7 +202,45 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   async increase() {
-    ui.notifications.info( "Increasing threads is not implemented yet." );
+    const actor = this.containingActor;
+    if ( !actor ) throw new Error( "Cannot increase thread level of a thread not embedded in an actor." );
+
+    const connectedDocument = await this.getConnectedDocument();
+    if ( !connectedDocument ) throw new Error( "Cannot increase thread level of a thread not woven to any document." );
+
+    const spendLp = await PromptFactory.fromDocument( this.parentDocument ).getPrompt( "lpIncrease" );
+    if ( !spendLp
+      || spendLp === "cancel"
+      || spendLp === "close" ) return;
+
+    const newLevel = this.level + 1;
+    const requiredLp = await this.getRequiredLpForLevel( newLevel );
+
+    const updatedThread = await this.parentDocument.update( {
+      "system.level": newLevel,
+    } );
+    if ( foundry.utils.isEmpty( updatedThread ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    const updatedActor = await actor.addLpTransaction(
+      "spendings",
+      LpSpendingTransactionData.dataFromLevelItem(
+        this.parentDocument,
+        spendLp === "spendLp" ? requiredLp : 0,
+        this.lpSpendingDescription,
+      ),
+    );
+
+    if ( foundry.utils.isEmpty( updatedActor ) )
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+      );
+
+    return this.parentDocument;
   }
 
   // endregion

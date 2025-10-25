@@ -21,6 +21,7 @@ import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
+import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -835,6 +836,8 @@ export default class ActorEd extends Actor {
    * @see                             ../../documentation/User Functions/UF_LpTracking-addLpTransaction.md
    */
   async addLpTransaction( type, transactionData ) {
+    if ( ![ "earnings", "spendings" ].includes( type ) ) throw new Error( `ActorEd.addLpTransaction: Invalid transaction type '${ type }' provided.` );
+    
     const oldTransactions = this.system.lp[type];
     const TransactionModel = type === "earnings" ? LpEarningTransactionData : LpSpendingTransactionData;
     const transaction = new TransactionModel( transactionData );
@@ -962,6 +965,24 @@ export default class ActorEd extends Actor {
     );
 
     return attuneMatrixWorkflow.execute();
+  }
+
+  /**
+   * Weave a thread to a true pattern, either creating a new thread or increasing the rank of an existing one.
+   * @param {Document} document The document with the true pattern to weave the thread to.
+   * @param {ItemEd|null} thread The thread item to weave, or null to create a new one.
+   * @returns {Promise<ItemEd|undefined>} A promise that resolves to the woven thread, or undefined if weaving failed.
+   */
+  async weaveThread( document, thread = null ) {
+    const weaveThreadWorkflow = new WeaveThreadWorkflow(
+      this,
+      {
+        thread:               thread,
+        target:               document,
+        threadWeavingAbility: this.getSingleItemByEdid( getSetting( "edidThreadWeaving" ) ),
+      }
+    );
+    return weaveThreadWorkflow.execute();
   }
 
   // endregion

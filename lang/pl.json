@@ -284,6 +284,7 @@
           "learnKnack":                            "TODO: Add translation",
           "learnSpell":                            "TODO: Add translation",
           "learningTransactionDescription":        "TODO: Add translation",
+          "newThread":                             "TODO: Add translation",
           "spendingTransactionDescription":        "TODO: Add translation"
         }
       },
@@ -3192,7 +3193,8 @@
       "RollPrompt": {
         "Title": {
           "attuneGrimoire":                        "TODO: Add translation",
-          "damage":                                "TODO: Add translation"
+          "damage":                                "TODO: Add translation",
+          "weaveThread":                           "TODO: Add translation"
         },
         "devotion":                                "TODO: Add translation",
         "devotionStep":                            "TODO: Add translation",
@@ -3218,13 +3220,16 @@
         "attributeIncrease":                       "TODO: Add translation",
         "attuneMatrix":                            "TODO: Add translation",
         "buttonSelect":                            "TODO: Add translation",
+        "cannotWeaveMoreThreadsConfirm":           "TODO: Add translation",
         "characterGeneration":                     "TODO: Add translation",
+        "chooseActor":                             "TODO: Add translation",
         "chooseAdderSubstitute":                   "TODO: Add translation",
         "chooseDiscipline":                        "TODO: Add translation",
         "chooseTier":                              "TODO: Add translation",
         "classAdvancement":                        "TODO: Add translation",
         "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "TODO: Add translation",
+        "failedWeavingRollConfirm":                "TODO: Add translation",
         "halfMagicDiscipline":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdown":                               "TODO: Add translation",
@@ -3232,6 +3237,7 @@
         "learnSpell":                              "TODO: Add translation",
         "lpIncrease":                              "TODO: Add translation",
         "lpLearnKnack":                            "TODO: Add translation",
+        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
         "selectAstralSpacePollution":              "TODO: Add translation",
@@ -3245,6 +3251,8 @@
         "substitute":                              "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "talentCategory":                          "TODO: Add translation",
+        "threadRankExceedsWeavingAbilityConfirm":  "TODO: Add translation",
+        "unknownPatternKeyKnowledgeConfirm":       "TODO: Add translation",
         "useWillpower":                            "TODO: Add translation",
         "versatilityLimit":                        "TODO: Add translation"
       },
@@ -3253,16 +3261,21 @@
       },
       "armor":                                     "TODO: Add translation",
       "armorType":                                 "TODO: Add translation",
+      "cannotWeaveMoreThreadsConfirm":             "TODO: Add translation",
       "damage":                                    "TODO: Add translation",
       "damageStandard":                            "TODO: Add translation",
       "damageStun":                                "TODO: Add translation",
       "damageType":                                "TODO: Add translation",
       "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
       "doYouWantToUseWillpower":                   "TODO: Add translation",
+      "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
       "knockdownChoice":                           "TODO: Add translation",
+      "missingThreadWeavingAbilityConfirm":        "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
       "physical":                                  "TODO: Add translation",
+      "threadRankExceedsWeavingAbilityConfirm":    "TODO: Add translation",
+      "unknownPatternKeyKnowledgeConfirm":         "TODO: Add translation",
       "versatilityTalentLimit":                    "TODO: Add translation"
     },
     "Document": {
@@ -3366,7 +3379,7 @@
         "researchCheck":                           "TODO: Add translation",
         "threadItemLevelHeader":                   "TODO: Add translation",
         "truePatternBaseInformation":              "TODO: Add translation",
-        "weaveThreadCheck":                        "TODO: Add translation"
+        "weaveThread":                             "TODO: Add translation"
       },
       "Spell": {
         "binding":                                 "TODO: Add translation",
@@ -3379,6 +3392,9 @@
       "Tabs": {
         "level":                                   "TODO: Add translation",
         "talentOptions":                           "TODO: Add translation"
+      },
+      "Thread": {
+        "defaultName":                             "TODO: Add translation"
       }
     },
     "Journal": {
@@ -3447,6 +3463,7 @@
         "cantHaveEffectFromSameSource":            "TODO: Add translation",
         "cantUpdateItemWeight":                    "TODO: Add translation",
         "castSpellNoActor":                        "TODO: Add translation",
+        "chooseActorPromptNoActorAvailable":       "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
         "couldNotScrollToSourceMessage":           "TODO: Add translation",
         "firstClassViaCharGen":                    "TODO: Add translation",
@@ -3470,7 +3487,8 @@
         "spellAlreadyAttunedInGrimoire":           "TODO: Add translation",
         "spellNotReadyToCast":                     "TODO: Add translation",
         "versatilityTalentLimit":                  "TODO: Add translation",
-        "warningEffectNoActor":                    "TODO: Add translation"
+        "warningEffectNoActor":                    "TODO: Add translation",
+        "weaveThreadNoActor":                      "TODO: Add translation"
       }
     },
     "Rolls": {
@@ -3699,7 +3717,7 @@
       "threadItemShowRankToPlayer":                "TODO: Add translation",
       "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
       "threadItemWeaveNewThread":                  "TODO: Add translation",
-      "weaveThreadCheck":                          "TODO: Add translation"
+      "weaveThread":                               "TODO: Add translation"
     },
     "Update": {
       "contact":                                   "TODO: Add translation",
