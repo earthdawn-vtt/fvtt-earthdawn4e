@@ -147,7 +147,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     const truePatternType = this._target.system.truePattern.truePatternType;
     if ( !truePatternType || [ "patternItem", "groupPattern" ].includes( truePatternType ) ) return;
 
-    if ( !this._target.system.truePattern.threadItemLevels[0]?.keyKnowledge.isKnown ) {
+    if ( !this._target.system.truePattern.threadItemLevels[this._newThreadRank]?.keyKnowledge.isKnown ) {
       const continueWorkflow = await DialogEd.confirm( {
         content: game.i18n.localize( "ED.Dialogs.unknownPatternKeyKnowledgeConfirm" ),
         window:  {
