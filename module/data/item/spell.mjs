@@ -737,7 +737,7 @@ export default class SpellData extends ItemDataModel.mixin(
     const extraThreadsKeys = Object.keys( this.extraThreads || {} );
 
     return extraThreadsKeys.includes( enhancementType ) && extraThreadsKeys.length === 1
-      ? "system.-=extraThreads"
+      ? "system.==extraThreads"
       : `system.extraThreads.-=${ enhancementType }`;
   }
 
