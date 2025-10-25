@@ -222,6 +222,18 @@ export default class TruePatternData extends SparseDataModel {
     return LEGEND.legendPointsCost[ newLevel + tierModifier ];
   }
 
+  /**
+   * Get the amount of legend points required to increase the entity to the given level.
+   * @param {number} [level] The level to get the required legend points for. Defaults to the next level.
+   * @returns {number|undefined} The amount of legend points required to increase the entity to the given
+   * level. Or `undefined` if the amount cannot be determined.
+   */
+  getRequiredLpForLevelSync( level ) {
+    const newLevel = level ?? this.numberOfLevels + 1;
+    const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
+    return LEGEND.legendPointsCost[ newLevel + tierModifier ];
+  }
+
   // endregion
 
   // region Methods
