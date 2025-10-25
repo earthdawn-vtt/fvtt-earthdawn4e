@@ -92,9 +92,9 @@ export default class SelectExtraThreadsPrompt extends ApplicationEd {
     const fields = foundry.data.fields;
 
     const choices = Object.fromEntries(
-      this.#spell.system.extraThreads.map( ( ( enhancement, index ) => [
-        index,
-        enhancement.summaryString,
+      Object.entries( this.#spell.system.extraThreads ).map( ( ( [ key, enhancement ] ) => [
+        key,
+        enhancement.summaryStringSanitized,
       ] )
       ) );
 
@@ -165,7 +165,7 @@ export default class SelectExtraThreadsPrompt extends ApplicationEd {
   _processSubmitData( event, form, formData, submitOptions ) {
     const { extraThreads } = super._processSubmitData( event, form, formData, submitOptions );
     return {
-      extraThreads: Object.values( extraThreads ).filter( e => !!e ).map( index => Number( index ) ),
+      extraThreads: Array.from( Object.values( extraThreads ) ).filter( e => !!e ),
     };
   }
 
