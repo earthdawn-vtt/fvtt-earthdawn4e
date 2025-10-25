@@ -7,6 +7,11 @@
         name=(concat "system.matrix." @key)
         value=(lookup ../system.matrix @key)
         localize=true
+        disabled=(ifThen
+          (and (eq @root.document.type "talent") (eq @key "level"))
+          true
+          (not @root.editable)
+        )
       }}
     {{/unless}}
   {{/each}}
@@ -15,5 +20,6 @@
     name=(concat "system.matrix.threads.hold.value")
     value=system.matrix.threads.hold.value
     localize=true
+    disabled=(not @root.editable)
   }}
 </fieldset>

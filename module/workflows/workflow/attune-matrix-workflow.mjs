@@ -7,6 +7,7 @@ import Rollable from "./rollable.mjs";
 /**
  * @typedef {object} AttuneMatrixWorkflowOptions
  * @property {string} firstMatrix The UUID for a matrix that should be focused when displaying the attune matrix prompt.
+ * @property {boolean} [onTheFly=false] Whether the attunement is happening on the fly during casting.
  */
 
 export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
@@ -39,6 +40,12 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
   _toAttune;
 
   /**
+   * Is the attuning being done on the fly?
+   * @type {boolean}
+   */
+  _isReattuningOnTheFly;
+
+  /**
    * @param {ActorEd} attuningActor - The actor that is reattuning the matrices.
    * @param {WorkflowOptions&AttuneMatrixWorkflowOptions} options - The options for the attuning workflow.
    */
@@ -47,6 +54,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
     const { firstMatrix } = options;
 
     this._firstMatrixUuid = firstMatrix;
+    this._isReattuningOnTheFly = options.onTheFly;
 
     this._steps.push(
       this.#promptForAttuneConfiguration.bind( this ),
@@ -94,8 +102,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
    * @returns {Promise<void>}
    */
   async #checkIfReattuningOnTheFly() {
-    // Skip this step if we don't have an ability for reattuning on the fly
-    this._isReattuningOnTheFly = !!this._attuneAbility;
+    this._isReattuningOnTheFly ??= this._actor.statuses.has( "attuningOnTheFly" ) || !!this._attuneAbility;
   }
 
   /**
