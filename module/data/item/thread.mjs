@@ -182,7 +182,7 @@ export default class ThreadData extends ItemDataModel.mixin(
 
     const newLevel = this.level + 1;
     if ( newLevel <= 0 ) return 0;
-    return connectedDocument.system.truePattern.requiredLpForIncrease;
+    return connectedDocument.system.truePattern.getRequiredLpForLevelSync( newLevel );
   }
 
   /** @inheritdoc */
