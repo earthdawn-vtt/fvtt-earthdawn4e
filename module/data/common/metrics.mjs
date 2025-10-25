@@ -116,6 +116,12 @@ export class MetricData extends SparseDataModel {
     return summary.join( " " );
   }
 
+  get summaryStringSanitized() {
+    const decoder = document.createElement( "div" );
+    decoder.innerHTML = this.summaryString;
+    return decoder.textContent;
+  }
+
   get unitGroupOptions() {
     return {};
   }
