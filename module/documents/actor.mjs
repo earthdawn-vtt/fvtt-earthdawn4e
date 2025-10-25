@@ -21,6 +21,7 @@ import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
 import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
+import JumpUpWorkflow from "../workflows/workflow/jump-up-workflow.mjs";
 import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
 
 /**
@@ -569,7 +570,10 @@ export default class ActorEd extends Actor {
           updates["system.characteristics.health.wounds"] = health.wounds + 1;
           break;
         case "stun":
-          updates["system.condition.harried"] = true;
+          await this.toggleStatusEffect(
+            "harried",
+            { active: true },
+          );
           break;
         // Add more cases here for other damage types
       }
@@ -593,7 +597,7 @@ export default class ActorEd extends Actor {
       await ChatMessage.create( messageData );
     }
 
-    const knockdownTest = !this.system.condition.knockedDown && damageTaken >= health.woundThreshold + 5 && !options.isStrain;
+    const knockdownTest = !this.statuses.has( "knockedDown" ) && damageTaken >= health.woundThreshold + 5 && !options.isStrain;
     if ( knockdownTest ) await this.knockdownTest( damageTaken );
 
     return {
@@ -658,49 +662,20 @@ export default class ActorEd extends Actor {
     return knockdownWorkflow.execute();
   }
 
+  /**
+   * Perform a jump up test for this actor.
+   * @param {object} [options] Additional options for the jump up test.
+   * @param {ItemEd|null} [options.jumpUpAbility] The jump up ability used for the test
+   * @returns {Promise<EdRoll|null>} The result of the jump up test roll, or null if the test was not performed.
+   */
   async jumpUp( options = {} ) {
-    if ( !this.system.condition.knockedDown ) {
-      ui.notifications.warn( "LocalizeLabel: You are not knocked down.", { localize: true } );
-      return;
-    }
-    const { attributes } = this.system;
-    let devotionRequired = false;
-    let strain = 2;
-    let jumpUpStep = attributes.dex.step;
-
-    const selectedAbility = await fromUuid(
-      await this.getPrompt( "jumpUp" )
-    );
-
-    if ( selectedAbility ) {
-      const { attribute, level, devotionRequired: devotion, strain: abilityStrain } = selectedAbility.system;
-      jumpUpStep = ( attributes[attribute]?.step || jumpUpStep ) + level;
-      devotionRequired = !!devotion;
-      strain = { base: abilityStrain };
-    }
-
-    const chatFlavor = game.i18n.format( "ED.Chat.Flavor.jumpUp", {
-      sourceActor: this.name,
-      step:        jumpUpStep
-    } );
-
-    const difficulty = { base: 6 };
-    const jumpUpStepFinal = { base: jumpUpStep };
-    const edRollOptions = EdRollOptions.fromActor(
+    const jumpUpWorkflow = new JumpUpWorkflow(
+      this,
       {
-        testType:         "action",
-        rollType:         "jumpUp",
-        strain:           strain,
-        target:           difficulty,
-        step:             jumpUpStepFinal,
-        devotionRequired: devotionRequired,
-        chatFlavor:       chatFlavor
+        jumpUpAbility: options.jumpUpAbility ?? null,
       },
-      this
     );
-    const roll = await RollPrompt.waitPrompt( edRollOptions, options );
-
-    this.processRoll( roll );
+    return jumpUpWorkflow.execute();
   }
 
   // endregion
@@ -837,7 +812,7 @@ export default class ActorEd extends Actor {
    */
   async addLpTransaction( type, transactionData ) {
     if ( ![ "earnings", "spendings" ].includes( type ) ) throw new Error( `ActorEd.addLpTransaction: Invalid transaction type '${ type }' provided.` );
-    
+
     const oldTransactions = this.system.lp[type];
     const TransactionModel = type === "earnings" ? LpEarningTransactionData : LpSpendingTransactionData;
     const transaction = new TransactionModel( transactionData );

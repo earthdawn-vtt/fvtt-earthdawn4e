@@ -411,6 +411,38 @@ export default function registerSystemSettings() {
     } )
   } );
 
+  // Strain cost for jump up tests
+  game.settings.register( "ed4e", "jumpUpStrainCost", {
+    scope:   "world",
+    config:  true,
+    type:    new NumberField( {
+      required: true,
+      nullable: false,
+      min:      0,
+      initial:  2,
+      step:     1,
+      integer:  true,
+      label:    "ED.Settings.GameMechanics.jumpUpStrainCost",
+      hint:     "ED.Settings.GameMechanics.jumpUpStrainCostHint",
+    } ),
+  } );
+
+  // Base difficulty for jump up tests
+  game.settings.register( "ed4e", "jumpUpBaseDifficulty", {
+    scope:   "world",
+    config:  true,
+    type:    new NumberField( {
+      required: true,
+      nullable: false,
+      min:      1,
+      initial:  6,
+      step:     1,
+      integer:  true,
+      label:    "ED.Settings.GameMechanics.jumpUpBaseDifficulty",
+      hint:     "ED.Settings.GameMechanics.jumpUpBaseDifficultyHint",
+    } ),
+  } );
+
   /* -------------------------------------------------------------------------------- */
   /*                                  GM Chat Avatar                                     */
   /* -------------------------------------------------------------------------------- */

@@ -46,6 +46,8 @@ export default class RollProcessor {
   ) {
     if ( !roll ) throw new Error( "RollProcessor.process: No roll provided" );
 
+    if ( !roll._evaluated ) await roll.evaluate();
+
     // Initialize update object to collect all changes
     const updateData = {};
 
@@ -104,17 +106,15 @@ export default class RollProcessor {
   }
 
   static async _processJumpUp( roll, actor, updateData = {} ) {
-    await roll.evaluate();
     if ( roll.isSuccess ) {
-      updateData["system.condition.knockedDown"] = false;
-      // actor.toggleStatusEffect( "knockedDown", { active: false,}, );
+      actor.toggleStatusEffect( "knockedDown", { active: false,}, );
     }
     return updateData;
   }
 
   static async _processKnockdown( roll, actor, updateData = {} ) {
     if ( !roll.isSuccess ) {
-      await actor.toggleStatusEffect( "knockedDown", { active: true, overlay: true } );
+      await actor.toggleStatusEffect( "knockedDown", { active: true, } );
     }
     return updateData;
   }

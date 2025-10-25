@@ -4,94 +4,39 @@
 
 <h2 class="margin__right">{{localize "ED.Actor.Header.conditions"}}</h2>
 <div class="conditions__grid--container">
+  {{#each statusEffects}}
+    {{> "systems/ed4e/templates/global/button.hbs"
+      type="button"
+      name=@key
+      cssClass=(concat "conditions__grid--item " (ifThen this.active "active" ""))
+      action="changeCondition"
+      tooltip="ED.ToolTips.toggleConditionFromSheet"
+      label=this.name
+    }}
+  {{/each}}
+  </div>
 
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.aggressiveAttack" {{checked actor.system.condition.aggressiveAttack}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.aggressiveAttack.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.cover.partial" {{checked actor.system.condition.cover.partial}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.cover.partial.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.cover.full" {{checked actor.system.condition.cover.full}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.cover.full.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.darkness.partial" {{checked actor.system.condition.darkness.partial}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.darkness.partial.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.darkness.full" {{checked actor.system.condition.darkness.full}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.darkness.full.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.defensiveStance" {{checked actor.system.condition.defensiveStance}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.defensiveStance.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.fury" {{checked actor.system.condition.fury}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.fury.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.harried" {{checked actor.system.condition.harried}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.harried.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.partial" {{checked actor.system.condition.impairedMovement.partial}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.impairedMovement.partial.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.impairedMovement.full" {{checked actor.system.condition.impairedMovement.full}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.impairedMovement.full.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.knockedDown" {{checked actor.system.condition.knockedDown}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.knockedDown.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="checkbox" class="input__checkbox" name="system.condition.surprised" {{checked actor.system.condition.surprised}}>
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.surprised.label"}}</span>
-  </label>
-
-  <label class="conditions__grid--item">
-    <input type="number" class="input__square-input--centered" name="system.condition.overwhelmed" value="{{actor.system.condition.overwhelmed}}">    
-    <span>{{localize "ED.Data.Actor.Sentient.FIELDS.condition.overwhelmed.label"}}</span>
-  </label>
-</div>
-  
-  <h2>{{localize "ED.Actor.Header.effectsTemporary"}}
-    <a class="effect-add align-right-button" data-action="createChild" data-type="effect" data-effect-permanent="" title="{{localize " earthdawn.n.newItem" }}">
-      <i class="fas fa-plus"></i>
-    </a>
-  </h2>
-    <div class="container__block">
-      <div class="effect-card__grid--container container__header text-break__auto">
-        <div class="effect-card__grid--item"></div>
-        <div class="effect-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
-        <div class="effect-card__grid--item">{{localize "ED.Actor.Header.origin"}}</div>
-        <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.inactive"}}</div>
-        <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.duration"}}</div>
-        <div class="effect-card__grid--item"></div>
-      </div>
-      <div>
-        {{#each actor.effects as |effect id|}}
-          {{#if (not effect.system.permanent)}}
-            {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
-          {{/if}}
-        {{/each}}
-      </div>
+    <h2>{{localize "ED.Actor.Header.effectsTemporary"}}
+      <a class="effect-add align-right-button" data-action="createChild" data-type="effect" data-effect-permanent="" title="{{localize " earthdawn.n.newItem" }}">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h2>
+  <div class="container__block">
+    <div class="effect-card__grid--container container__header text-break__auto">
+      <div class="effect-card__grid--item"></div>
+      <div class="effect-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
+      <div class="effect-card__grid--item">{{localize "ED.Actor.Header.origin"}}</div>
+      <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.inactive"}}</div>
+      <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.duration"}}</div>
+      <div class="effect-card__grid--item"></div>
+    </div>
+    <div>
+      {{#each actor.effects as |effect id|}}
+        {{#if (not effect.system.permanent)}}
+          {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
+        {{/if}}
+      {{/each}}
+    </div>
     </div>
 
   <h2>{{localize "ED.Actor.Header.effectsPermanent"}}
