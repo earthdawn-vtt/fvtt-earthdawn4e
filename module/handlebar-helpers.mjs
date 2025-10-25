@@ -140,6 +140,15 @@ function formatDate( date ) {
 }
 
 /**
+ * Wraps a value in an array.
+ * @param {any} value The value to wrap.
+ * @returns {Array} An array containing the value.
+ */
+function wrapInArray( value ) {
+  return [ value ];
+}
+
+/**
  * @description Registers custom Handlebars helpers for the application.
  */
 export default function registerHandlebarHelpers() {
@@ -162,6 +171,7 @@ export default function registerHandlebarHelpers() {
     "ed-stepFromAttributeValue": stepFromAttributeValue,
     "ed-subtract":               subtract,
     "ed-toArray":                ( value ) => Array.from( value ),
+    "ed-wrapInArray":            wrapInArray,
   } );
 
 }

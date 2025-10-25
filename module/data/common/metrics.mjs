@@ -17,36 +17,7 @@ const fields = foundry.data.fields;
  */
 export class MetricData extends SparseDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.General.Metric",
-  ];
-
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
-
-  static get TYPES() {
-    // eslint-disable-next-line no-return-assign
-    return MetricData.#TYPES ??= Object.freeze( {
-      [AreaMetricData.TYPE]:     AreaMetricData,
-      [DurationMetricData.TYPE]: DurationMetricData,
-      [EffectMetricData.TYPE]:   EffectMetricData,
-      [RangeMetricData.TYPE]:    RangeMetricData,
-      [SectionMetricData.TYPE]:  SectionMetricData,
-      [SpecialMetricData.TYPE]:  SpecialMetricData,
-      [TargetMetricData.TYPE]:   TargetMetricData,
-    } );
-  }
-
-  static #TYPES;
-
-  static TYPE = "";
-
-  /* -------------------------------------------- */
-  /*      Schema                                  */
-  /* -------------------------------------------- */
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -73,9 +44,48 @@ export class MetricData extends SparseDataModel {
     };
   }
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Metric",
+  ];
+
+  static get TYPES() {
+    // eslint-disable-next-line no-return-assign
+    return MetricData.#TYPES ??= Object.freeze( {
+      [AreaMetricData.TYPE]:     AreaMetricData,
+      [DurationMetricData.TYPE]: DurationMetricData,
+      [EffectMetricData.TYPE]:   EffectMetricData,
+      [RangeMetricData.TYPE]:    RangeMetricData,
+      [SectionMetricData.TYPE]:  SectionMetricData,
+      [SpecialMetricData.TYPE]:  SpecialMetricData,
+      [TargetMetricData.TYPE]:   TargetMetricData,
+    } );
+  }
+
+  static #TYPES;
+
+  static TYPE = "";
+
+  // endregion
+
+  // region Static Methods
+
+  static fromType( type, data = {} ) {
+    const MetricClass = this.TYPES[type];
+    if ( !MetricClass ) {
+      throw new Error( `MetricData.createFromType: Unknown type "${type}"` );
+    }
+    return new MetricClass( data );
+  }
+
+  // endregion
+
+  // region Getters
 
   get isScalarUnit() {
     return this.unit in this.scalarConfig;
@@ -106,6 +116,12 @@ export class MetricData extends SparseDataModel {
     return summary.join( " " );
   }
 
+  get summaryStringSanitized() {
+    const decoder = document.createElement( "div" );
+    decoder.innerHTML = this.summaryString;
+    return decoder.textContent;
+  }
+
   get unitGroupOptions() {
     return {};
   }
@@ -128,9 +144,9 @@ export class MetricData extends SparseDataModel {
     return unitOptions;
   }
 
-  /* -------------------------------------------- */
-  /*  Helper                                      */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Methods
 
   /**
    * Get select options for a given enum to be used in {@link createSelectInput}.
@@ -150,6 +166,8 @@ export class MetricData extends SparseDataModel {
       };
     } );
   }
+
+  // endregion
 
 }
 
@@ -190,7 +208,7 @@ export class AreaMetricData extends MetricData {
         summary.push( `${areaType}: ${this.radius} ${this.unit}` );
         break;
       case "cone":
-        summary.push( `${this.angle}° ${areaType}: ${this.radius} ${this.unit}` );
+        summary.push( `${this.angle}° ${areaType.label}: ${this.radius} ${this.unit}` );
         break;
       case "cube":
       case "square":
