@@ -10,7 +10,7 @@
       {{formInput
         this
         name=this.name
-        value=(lookup (lookup ../data "extraThreads") @index)
+        value=(lookup (lookup @root.data "extraThreads") @index)
       }}
     {{/each}}
   </fieldset>
