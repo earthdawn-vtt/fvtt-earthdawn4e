@@ -331,15 +331,11 @@ export default class SpellData extends ItemDataModel.mixin(
    * @returns {number} - The spellcasting rank of the actor.
    */
   getSpellcastingRank( ) {
-    let spellcastingRank = 0;
     const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
       game.settings.get( "ed4e", "edidSpellcasting" ),
       "talent",
     );
-    if ( spellcastingTalent ) {
-      spellcastingRank = spellcastingTalent.system.level;
-    }
-    return spellcastingRank;
+    return spellcastingTalent?.system.level;
   }
   
   // endregion
@@ -389,10 +385,11 @@ export default class SpellData extends ItemDataModel.mixin(
   getRollData() {
     const rollData = super.getRollData();
     Object.assign( rollData, super.getTemplatesRollData() );
+    const spellcastingRank = this.getSpellcastingRank() ?? 0;
     return Object.assign( rollData, {
-      castingRank:      this.getSpellcastingRank(),
-      spellcastingRank: this.getSpellcastingRank(),
-      rank:             this.getSpellcastingRank(),
+      castingRank:      spellcastingRank,
+      spellcastingRank: spellcastingRank,
+      rank:             spellcastingRank,
     } );
   }
 
