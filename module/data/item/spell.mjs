@@ -639,13 +639,13 @@ export default class SpellData extends ItemDataModel.mixin(
     const caster = this.containingActor;
     if ( !caster ) throw new Error( "Cannot roll effect without a caster." );
 
-    const willpower = await this.getWillpowerForRoll( caster );
-    if ( willpower === null ) return;
+    const willforce = await this.getWillforceForRoll( caster );
+    if ( willforce === null ) return;
 
     const rollOptions = SpellEffectRollOptions.fromActor(
       {
         spell:           this.parent,
-        willpower,
+        willforce,
       },
       caster,
       {
@@ -675,22 +675,22 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
-   * Helper to get willpower for effect/damage rolls.
-   * @param {ActorEd} [actor] The actor to get willpower for. If not provided, uses the containing actor of this spell.
-   * @returns {Promise<ItemEd|undefined|null>} The willpower item if used, undefined if not used,
+   * Helper to get willforce for effect/damage rolls.
+   * @param {ActorEd} [actor] The actor to get willforce for. If not provided, uses the containing actor of this spell.
+   * @returns {Promise<ItemEd|undefined|null>} The willforce item if used, undefined if not used,
    * or null if the prompt was closed.
    * @throws {Error} If there is no caster available.
    */
-  async getWillpowerForRoll( actor ) {
+  async getWillforceForRoll( actor ) {
     const caster = actor || this.containingActor;
-    if ( !caster ) throw new Error( "Cannot get willpower without a caster." );
+    if ( !caster ) throw new Error( "Cannot get willforce without a caster." );
 
-    let willpower;
+    let willforce;
     if ( this.effect.details[ this.effect.type ].attribute === "wil" ) {
-      willpower = await caster.getPrompt( "useWillpower" );
-      if ( willpower === false ) willpower = undefined;
+      willforce = await caster.getPrompt( "useWillforce" );
+      if ( willforce === false ) willforce = undefined;
     }
-    return willpower;
+    return willforce;
   }
 
   // endregion
@@ -806,7 +806,7 @@ export default class SpellData extends ItemDataModel.mixin(
    * @param {object} options Options for the calculation.
    * @param {ActorEd} [options.actor] The actor to use for the calculation. If not provided,
    * uses the containing actor of this spell.
-   * @param {ItemEd} [options.willpower] The willpower item to consider for the roll, if any.
+   * @param {ItemEd} [options.willforce] The willforce item to consider for the roll, if any.
    * This is only applied if the effect attribute is "wil".
    * @returns {RollStepData} The prepared roll step data.
    * @throws {Error} If the effect type is not "damage" or "effect", or if effect details or caster are not available.
@@ -814,7 +814,7 @@ export default class SpellData extends ItemDataModel.mixin(
   getEffectDetailsRollStepData( options = {} ) {
     if ( ![ "damage", "effect" ].includes( this.effect?.type ) ) throw new Error( "Effect roll step data can only be prepared for effects of type 'damage' or 'effect'." );
 
-    const { actor, willpower } = options;
+    const { actor, willforce } = options;
     const effectDetails = this.effect?.details[ this.effect.type ];
     const caster = actor || this.containingActor;
     if ( !effectDetails || !caster ) throw new Error( "Cannot calculate total effect step without effect details or caster." );
@@ -839,7 +839,7 @@ export default class SpellData extends ItemDataModel.mixin(
     if ( Number.isNumeric( attributeStep ) ) {
       if ( stepModifier ) modifiers[ stepModifierLabel ] = stepModifier;
       if ( effectDetails.addCircle ) modifiers[ circleLabel ] = circle;
-      if ( willpower && attribute === "wil" ) modifiers[ willpower.name ] = willpower.system.level;
+      if ( willforce && attribute === "wil" ) modifiers[ willforce.name ] = willforce.system.level;
       return {
         base:      attributeStep,
         modifiers,

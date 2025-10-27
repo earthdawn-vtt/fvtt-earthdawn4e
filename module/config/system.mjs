@@ -37,7 +37,7 @@ export const defaultEdIds = {
   threadWeaving:       "thread-weaving",
   unarmedCombat:       "unarmed-combat",
   versatility:         "versatility",
-  willpower:           "willpower",
+  willforce:           "willforce",
 };
 
 // endregion

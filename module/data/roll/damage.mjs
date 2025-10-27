@@ -69,8 +69,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * @typedef {BaseDamageRollOptionsInitializationData} SpellDamageInitializationData
  * @property {"spell"} damageSourceType Discriminator for spell damage source.
  * @property {ItemEd} sourceDocument Item of type "spell".
- * @property {ActorEd} caster The actor that cast the spell. The caster's Willpower step is used as the base
- * @property {ItemEd} [willpower] The willpower ability of the spell's caster, if used for the damage roll.
+ * @property {ActorEd} caster The actor that cast the spell. The caster's willpower step is used as the base
+ * @property {ItemEd} [willforce] The willforce ability of the spell's caster, if used for the damage roll.
  */
 
 /**

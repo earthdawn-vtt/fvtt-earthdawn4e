@@ -6,8 +6,8 @@ import { createContentAnchor } from "../../utils.mjs";
  * @augments { EdRollOptionsInitializationData }
  * @property { ItemEd } [spell] The spell causing the effect.
  * Can be omitted if `spellUuid` in {@link SpellEffectRollOptions} is provided.
- * @property { ItemEd } [willpower] The willpower ability of the spell's caster, if used for the effect.
- * Can be omitted if `willpowerUuid` in {@link SpellEffectRollOptions} is provided.
+ * @property { ItemEd } [willforce] The willforce ability of the spell's caster, if used for the effect.
+ * Can be omitted if `willforceUuid` in {@link SpellEffectRollOptions} is provided.
  * @property { ActorEd } [caster] The actor casting the spell.
  * Can be omitted if `rollingActorUuid` in {@link SpellEffectRollOptions} is provided.
  */
@@ -16,7 +16,7 @@ import { createContentAnchor } from "../../utils.mjs";
  * Roll options for non-damage spell effects.
  * @augments { EdRollOptions }
  * @property { string } spellUuid The UUID of the spell causing the effect.
- * @property { string } willpowerUuid The UUID of the willpower ability of the spell's caster, if used for the effect.
+ * @property { string } willforceUuid The UUID of the willforce ability of the spell's caster, if used for the effect.
  */
 export default class SpellEffectRollOptions extends EdRollOptions {
 
@@ -52,7 +52,7 @@ export default class SpellEffectRollOptions extends EdRollOptions {
         required: true,
         type:     "Item",
       } ),
-      willpowerUuid: new fields.DocumentUUIDField( {
+      willforceUuid: new fields.DocumentUUIDField( {
         nullable: true,
         type:     "Item",
       } ),
@@ -65,7 +65,7 @@ export default class SpellEffectRollOptions extends EdRollOptions {
    */
   static fromData( data, options = {} ) {
     data.spellUuid ??= data.spell?.uuid;
-    data.willpowerUuid ??= data.willpower?.uuid;
+    data.willforceUuid ??= data.willforce?.uuid;
 
     return /** @type {SpellEffectRollOptions} */ super.fromData( data, options );
   }
@@ -95,12 +95,12 @@ export default class SpellEffectRollOptions extends EdRollOptions {
     if ( data.step ) return data.step;
 
     const caster = data.caster ?? fromUuidSync( data.rollingActorUuid );
-    const willpower = data.willpower ?? fromUuidSync( data.willpowerUuid );
+    const willforce = data.willforce ?? fromUuidSync( data.willforceUuid );
     const spell = data.spell ?? fromUuidSync( data.spellUuid );
 
     return spell.system.getEffectDetailsRollStepData( {
       actor: caster,
-      willpower
+      willforce
     } );
   }
 
@@ -108,11 +108,11 @@ export default class SpellEffectRollOptions extends EdRollOptions {
   static _prepareStrainData( data ) {
     if ( data.strain ) return data.strain;
 
-    const willpower = data.willpower ?? fromUuidSync( data.willpowerUuid );
-    if ( !willpower ) return null;
+    const willforce = data.willforce ?? fromUuidSync( data.willforceUuid );
+    if ( !willforce ) return null;
 
     return {
-      base: willpower.system.strain,
+      base: willforce.system.strain,
     };
   }
 
@@ -126,9 +126,9 @@ export default class SpellEffectRollOptions extends EdRollOptions {
 
     newContext.spell = await fromUuid( this.spellUuid );
     newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
-    newContext.willpower = await fromUuid( this.willpowerUuid );
-    newContext.willpowerContentAnchor = newContext.willpower
-      ? createContentAnchor( newContext.willpower ).outerHTML
+    newContext.willforce = await fromUuid( this.willforceUuid );
+    newContext.willforceContentAnchor = newContext.willforce
+      ? createContentAnchor( newContext.willforce ).outerHTML
       : null;
 
     return newContext;

@@ -251,7 +251,7 @@ export default class PromptFactory {
 class ActorPromptFactory extends PromptFactory {
 
   /**
-   * @typedef {"chooseDiscipline" | "drawWeapon" | "jumpUp" | "knockdown" | "recovery" | "takeDamage" | "attribute" | "halfMagicDiscipline" | "useWillpower" | "chooseDamageModifier"
+   * @typedef {"chooseDiscipline" | "drawWeapon" | "jumpUp" | "knockdown" | "recovery" | "takeDamage" | "attribute" | "halfMagicDiscipline" | "useWillforce" | "chooseDamageModifier"
    *   | "chooseTier" | "learnKnack" | "lpIncrease" | "learnAbility" | "talentCategory"
    * } ActorPromptType
    */
@@ -265,7 +265,7 @@ class ActorPromptFactory extends PromptFactory {
     takeDamage:            this._takeDamagePrompt.bind( this ),
     attribute:             this._attributePrompt.bind( this ),
     halfMagicDiscipline:   this._halfMagicDisciplinePrompt.bind( this ),
-    useWillpower:          this._useWillpowerPrompt.bind( this ),
+    useWillforce:          this._useWillforcePrompt.bind( this ),
     chooseDamageModifier:  this._chooseDamageModifierPrompt.bind( this ),
   };
 
@@ -563,31 +563,31 @@ class ActorPromptFactory extends PromptFactory {
   }
 
   /**
-   * Creates the use willpower dialog.
+   * Creates the use willforce dialog.
    * @returns {Promise<boolean|ItemEd|null>} A promise that resolves to:
    * <ul>
-   *   <li>the willpower item, if willpower should be used,</li>
-   *   <li>false, if willpower should not be used,</li>
+   *   <li>the willforce item, if willforce should be used,</li>
+   *   <li>false, if willforce should not be used,</li>
    *   <li>null, if the dialog was closed without a choice.</li>
-   *   <li>undefined, if no willpower item was found.</li>
+   *   <li>undefined, if no willforce item was found.</li>
    * </ul>
    */
-  async _useWillpowerPrompt() {
-    const willpower = this.document.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidWillpower" ),
+  async _useWillforcePrompt() {
+    const willforce = this.document.getSingleItemByEdid(
+      game.settings.get( "ed4e", "edidWillforce" ),
     );
-    if ( !willpower ) return;
+    if ( !willforce ) return;
 
-    const useWillpower = await DialogClass.confirm( {
+    const useWillforce = await DialogClass.confirm( {
       rejectClose: false,
       content:     game.i18n.format(
-        "ED.Dialogs.doYouWantToUseWillpower",
+        "ED.Dialogs.doYouWantToUseWillforce",
         {
-          contentLinkWillpower: createContentAnchor( willpower ).outerHTML
+          contentLinkWillforce: createContentAnchor( willforce ).outerHTML
         }
       ),
     } );
-    return useWillpower === true ? willpower : useWillpower;
+    return useWillforce === true ? willforce : useWillforce;
   }
 
   /**
