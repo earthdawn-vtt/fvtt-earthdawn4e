@@ -3254,7 +3254,7 @@
         "talentCategory":                          "TODO: Add translation",
         "threadRankExceedsWeavingAbilityConfirm":  "TODO: Add translation",
         "unknownPatternKeyKnowledgeConfirm":       "TODO: Add translation",
-        "useWillpower":                            "TODO: Add translation",
+        "useWillforce":                            "TODO: Add translation",
         "versatilityLimit":                        "TODO: Add translation"
       },
       "ToolTips": {
@@ -3268,7 +3268,7 @@
       "damageStun":                                "TODO: Add translation",
       "damageType":                                "TODO: Add translation",
       "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
-      "doYouWantToUseWillpower":                   "TODO: Add translation",
+      "doYouWantToUseWillforce":                   "TODO: Add translation",
       "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
       "knockdownChoice":                           "TODO: Add translation",
