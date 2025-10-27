@@ -148,6 +148,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       case "general":
         break;
       case "talents":
+        this._prepareTalentContext( context );
         break;
       case "skills":
         break;
@@ -173,6 +174,31 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
         break;
     }
     return context;
+  }
+
+  async _prepareTalentContext( context ) {
+    const talentsByCategory = {};
+    const knacksByTypeAndTalentId = {
+      knackAbility:  {},
+      knackManeuver: {},
+      knackKarma:    {},
+    };
+    const KNACK_TYPES = new Set( Object.keys( knacksByTypeAndTalentId ) );
+
+    for ( const item of this.document.items ) {
+      if ( item.type === "talent" ) {
+        const category = item.system.talentCategory;
+        ( talentsByCategory[category] ||= [] ).push( item );
+        continue;
+      }
+      if ( KNACK_TYPES.has( item.type ) ) {
+        const sourceItem = item.system.sourceItem;
+        ( knacksByTypeAndTalentId[item.type][sourceItem] ||= [] ).push( item );
+      }
+    }
+
+    context.talentsByCategory = talentsByCategory;
+    context.knacksByTypeAndTalentId = knacksByTypeAndTalentId;
   }
 
   // endregion
