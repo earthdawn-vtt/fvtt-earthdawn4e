@@ -3254,7 +3254,7 @@
         "talentCategory":                          "Talent Kategorie",
         "threadRankExceedsWeavingAbilityConfirm":  "Faden Rang übersteigt Fadenweben Fähigkeit",
         "unknownPatternKeyKnowledgeConfirm":       "Unbekanntes Schlüsselwissen",
-        "useWillpower":                            "Willenskraft einsetzen",
+        "useWillforce":                            "Willenskraft einsetzen",
         "versatilityLimit":                        "Vielseitigkeitslimit erreicht"
       },
       "ToolTips": {
@@ -3268,7 +3268,7 @@
       "damageStun":                                "Betäubungsschaden",
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
-      "doYouWantToUseWillpower":                   "Möchtest du {contentLinkWillpower} einsetzen?",
+      "doYouWantToUseWillforce":                   "Möchtest du {contentLinkWillforce} einsetzen?",
       "failedWeavingRollConfirm":                  "<p>Die Fadenweben Probe ist fehlgeschlagen.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",

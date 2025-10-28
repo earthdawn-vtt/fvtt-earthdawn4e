@@ -3254,7 +3254,7 @@
         "talentCategory":                          "Talent Category",
         "threadRankExceedsWeavingAbilityConfirm":  "TODO: Add translation",
         "unknownPatternKeyKnowledgeConfirm":       "TODO: Add translation",
-        "useWillpower":                            "TODO: Add translation",
+        "useWillforce":                            "TODO: Add translation",
         "versatilityLimit":                        "Versatility Limit Reached"
       },
       "ToolTips": {
@@ -3268,7 +3268,7 @@
       "damageStun":                                "Stun Damage",
       "damageType":                                "Damage Type",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
-      "doYouWantToUseWillpower":                   "TODO: Add translation",
+      "doYouWantToUseWillforce":                   "TODO: Add translation",
       "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
       "knockdownChoice":                           "Choose the Ability to resist Knock Down",

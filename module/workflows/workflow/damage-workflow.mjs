@@ -145,8 +145,8 @@ export default class CombatDamageWorkflow extends Rollable( ActorWorkflow ) {
   async _prepareRollOptions() {
     await this._prepareModifierAbilities();
     const rollData = await this._prepareRollOptionsFunction[ this._damageSourceType ]();
-    this._rollOptions = this._attacker ?
-      DamageRollOptions.fromActor( rollData, this._attacker, )
+    this._rollOptions = this._attacker
+      ? DamageRollOptions.fromActor( rollData, this._attacker, )
       : DamageRollOptions.fromData( rollData, );
   }
 
@@ -194,13 +194,13 @@ export default class CombatDamageWorkflow extends Rollable( ActorWorkflow ) {
    * @returns {Promise<SpellDamageInitializationData>} The prepared roll data.
    */
   async _prepareSpellRollData() {
-    const willpower = this._damageRollOptions?.willpower ??
-      await this._sourceDocument.system.getWillpowerForRoll( this._attacker );
+    const willforce = this._damageRollOptions?.willforce
+      ?? await this._sourceDocument.system.getWillforceForRoll( this._attacker );
     return {
       damageSourceType: this._damageSourceType,
       sourceDocument:   this._sourceDocument,
       caster:           this._attacker,
-      willpower,
+      willforce,
     };
   }
 
