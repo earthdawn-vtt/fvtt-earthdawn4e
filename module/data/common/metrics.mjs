@@ -57,13 +57,14 @@ export class MetricData extends SparseDataModel {
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
     return MetricData.#TYPES ??= Object.freeze( {
-      [AreaMetricData.TYPE]:     AreaMetricData,
-      [DurationMetricData.TYPE]: DurationMetricData,
-      [EffectMetricData.TYPE]:   EffectMetricData,
-      [RangeMetricData.TYPE]:    RangeMetricData,
-      [SectionMetricData.TYPE]:  SectionMetricData,
-      [SpecialMetricData.TYPE]:  SpecialMetricData,
-      [TargetMetricData.TYPE]:   TargetMetricData,
+      [ActiveEffectValueMetricData.TYPE]: ActiveEffectValueMetricData,
+      [AreaMetricData.TYPE]:              AreaMetricData,
+      [DurationMetricData.TYPE]:          DurationMetricData,
+      [EffectMetricData.TYPE]:            EffectMetricData,
+      [RangeMetricData.TYPE]:             RangeMetricData,
+      [SectionMetricData.TYPE]:           SectionMetricData,
+      [SpecialMetricData.TYPE]:           SpecialMetricData,
+      [TargetMetricData.TYPE]:            TargetMetricData,
     } );
   }
 
@@ -171,6 +172,25 @@ export class MetricData extends SparseDataModel {
 
 }
 
+/**
+ * Data model for storing effect metric data.
+ * @augments MetricData
+ */
+export class ActiveEffectValueMetricData extends MetricData {
+
+  static {
+    Object.defineProperty( this, "TYPE", { value: "activeEffect" } );
+  }
+
+  /* -------------------------------------------- */
+  /*  Properties                                  */
+  /* -------------------------------------------- */
+
+  get isScalarUnit() {
+    return true;
+  }
+
+}
 
 /**
  * Data model for storing area unit data.
