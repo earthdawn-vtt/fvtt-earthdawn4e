@@ -933,6 +933,7 @@ export async function preloadHandlebarsTemplates() {
 
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/other-tabs/true-pattern.hbs",
+    "systems/ed4e/templates/global/thread-basic-information.hbs",
 
     // endregion
 

@@ -1,18 +1,89 @@
 <section class="tab {{tabs.connections.cssClass}}" data-group="sheet" data-tab="connections" data-editable="{{@root.editable}}">
-<h2>Threads (temp)</h2>
+  <h2>TODO: Threads (temp)</h2>
   <div class="container__block">
-      <div class="thread-card__grid--container container__header text-break__auto" data-item-id="{{_id}}">
-        <div class="thread-card__grid--item"></div>
-        <div class="thread-card__grid--item">Name</div>
-        <div class="thread-card__grid--item">Level</div>
-        <div class="thread-card__grid--item">Type</div>
-        <div class="thread-card__grid--item">Connected Item</div>
-        <div class="thread-card__grid--item"></div>
+    <div class="thread-card__grid--container container__header text-break__auto" data-item-id="{{_id}}">
+      <div class="thread-card__grid--item"></div>
+      <div class="thread-card__grid--item">Name</div>
+      <div class="thread-card__grid--item">Level</div>
+      <div class="thread-card__grid--item">Type</div>
+      <div class="thread-card__grid--item">Connected Item</div>
+      <div class="thread-card__grid--item"></div>
+    </div>
+    <div class="threads flexcol">
+      {{#each actor.itemTypes.thread}}
+        {{> "systems/ed4e/templates/actor/cards/thread-card.hbs" this}}
+      {{/each}}
+    </div>
+  </div>
+
+  <h2>TODO: True Pattern (temp)</h2>
+  <div class="container__block">
+    {{#if showTruePattern}}
+
+      <!-- Playing controls -->
+      {{#unless editable}}
+        <div class="item-controls flexrow">
+
+          {{> "systems/ed4e/templates/global/button.hbs"
+            type="button"
+            cssClass="item-control"
+            action="itemHistoryCheck"
+            label="ED.Item.PhysicalItems.itemHistoryCheck"
+            tooltip="ED.ToolTips.itemHistoryCheck"
+            icon=(concat "fa-thin " config.icons.itemHistory)
+          }}
+
+          {{> "systems/ed4e/templates/global/button.hbs"
+            type="button"
+            cssClass="item-control"
+            action="researchCheck"
+            label="ED.Item.PhysicalItems.researchCheck"
+            tooltip="ED.ToolTips.researchCheck"
+            icon=config.icons.research
+          }}
+
+          {{> "systems/ed4e/templates/global/button.hbs"
+            type="button"
+            cssClass="item-control"
+            action="weaveThread"
+            label="ED.Item.PhysicalItems.weaveThread"
+            tooltip="ED.ToolTips.weaveThread"
+            icon=config.icons.threadWeaving
+          }}
+
+        </div>
+      {{/unless}}
+
+      <!-- Button controls -->
+      <div class="item-controls flexrow">
+        {{#if editable}}
+          {{> "systems/ed4e/templates/global/button.hbs"
+            type="button"
+            action="deleteTruePattern"
+            label="ED.Item.PhysicalItems.deleteTruePattern"
+            tooltip="ED.ToolTips.threadItemDeleteTruePattern"
+            icon=(concat "fas " config.icons.delete)
+          }}
+        {{/if}}
       </div>
-      <div class="threads flexcol">
-        {{#each actor.itemTypes.thread}}
-          {{> "systems/ed4e/templates/actor/cards/thread-card.hbs" this}}
-        {{/each}}
+
+      <!-- True Pattern Data -->
+      <div class="truePatternInputs scrollable">
+
+        <!-- basic information -->
+        {{> "systems/ed4e/templates/global/thread-basic-information.hbs"}}
+
       </div>
+
+    {{else}}
+
+      {{#if editable}}
+        <button data-action="addTruePattern" aria-label="{{localize "ED.ToolTips.threadItemAddTruePattern"}}">
+          <!--i class="fas {{config.icons.add}}" inert></i-->
+          <span>{{localize "ED.Item.PhysicalItems.addTruePattern"}}</span>
+        </button>
+      {{/if}}
+
+    {{/if}}
   </div>
 </section>
