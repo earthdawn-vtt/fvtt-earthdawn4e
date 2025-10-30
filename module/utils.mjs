@@ -458,7 +458,7 @@ export function renameKeysWithPrefix( obj ) {
   const renamedObj = {};
   for ( let key in obj ) {
     if ( obj.hasOwnProperty( key ) ) {
-      renamedObj["-=" + key] = obj[key];
+      renamedObj["-=" + key] = null;
     }
   }
   return renamedObj;
