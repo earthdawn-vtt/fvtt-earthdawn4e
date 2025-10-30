@@ -1,6 +1,7 @@
 import ActorDescriptionTemplate from "./description.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 import ActorDataModel from "../../abstract/actor-data-model.mjs";
+import TruePatternData from "../../thread/true-pattern.mjs";
 
 /**
  * A template for all actors that share the common template.
@@ -9,12 +10,6 @@ import ActorDataModel from "../../abstract/actor-data-model.mjs";
 export default class CommonTemplate extends ActorDataModel.mixin(
   ActorDescriptionTemplate
 ) {
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Actor.Common",
-  ];
 
   /** @inheritDoc */
   static defineSchema() {
@@ -55,16 +50,18 @@ export default class CommonTemplate extends ActorDataModel.mixin(
           initialKeysOnly: true,
         }
       ),
+      truePattern: TruePatternData.asEmbeddedDataField(),
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
+  // region Static Properties
 
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Common",
+  ];
+
+  // endregion
+
 }
