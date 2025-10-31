@@ -659,6 +659,7 @@
         "special":                                 "Spezial"
       },
       "SpellEnhancements": {
+        "activeEffect":                            "ActiveEffect",
         "area":                                    "Wirkungsbereich",
         "duration":                                "Dauer",
         "effect":                                  "Effekt",

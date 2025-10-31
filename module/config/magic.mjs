@@ -195,6 +195,12 @@ export const spellEffectTypes = {
 preLocalize( "spellEffectTypes", { key: "label" } );
 
 export const spellEnhancements = {
+  activeEffect: {
+    label:         "ED.Config.SpellEnhancements.activeEffect",
+    icon:          "fa-bolt",
+    inputTemplate: "systems/ed4e/templates/form/input/base-metric.hbs",
+    unitConfig:    "",
+  },
   area: {
     label:         "ED.Config.SpellEnhancements.area",
     icon:          "fa-arrow-up-right-and-arrow-down-left-from-center",

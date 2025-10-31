@@ -659,6 +659,7 @@
         "special":                                 "Special"
       },
       "SpellEnhancements": {
+        "activeEffect":                            "TODO: Add translation",
         "area":                                    "Area",
         "duration":                                "Duration",
         "effect":                                  "Effect",
