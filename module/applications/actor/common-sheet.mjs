@@ -229,8 +229,10 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
    */
   static async _onAddTruePattern( event, target ) {
     event.preventDefault();
+    const truePatternData = {};
+    if ( this.document.type === "group" ) truePatternData.tier = "warden";
     await this.document.update( {
-      "system.truePattern": new TruePatternData(),
+      "system.truePattern": new TruePatternData( truePatternData ),
     } );
     await this.render();
   }
