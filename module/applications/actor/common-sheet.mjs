@@ -3,6 +3,7 @@ import { ED4E } from "../../../earthdawn4e.mjs";
 import { getSetting } from "../../settings.mjs";
 import TruePatternData from "../../data/thread/true-pattern.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -123,6 +124,11 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     const newContext = await super._preparePartContext( partId, context, options );
     switch ( partId ) {
       case "connections":
+        newContext.threadConnectedItems = {};
+        for ( const thread of this.document.itemTypes.thread ) {
+          const connectedItem = await thread.system.getConnectedDocument();
+          context.threadConnectedItems[ thread.id ] = connectedItem ? createContentAnchor( connectedItem ).outerHTML : null;
+        }
         newContext.canHaveTruePattern = TruePatternData.isAllowedInDocument( this.document );
         newContext.showTruePattern = this.document.system.truePattern !== null
           && ( game.user.isGM || this.document.system.truePattern?.knownToPlayer );
