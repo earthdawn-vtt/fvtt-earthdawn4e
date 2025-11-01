@@ -46,7 +46,9 @@ export default class TruePatternData extends SparseDataModel {
           }
         ),
         {
-          required: true,
+          required: false,
+          nullable: true,
+          initial:  null,
         },
       ),
       attachedThreads:    new fields.SetField(
@@ -142,7 +144,8 @@ export default class TruePatternData extends SparseDataModel {
    * @type {boolean}
    */
   get isThreadItem() {
-    return this.numberOfLevels >= 0;
+    return this.parentDocument.documentName === "Item"
+      && this.numberOfLevels > 0;
   }
 
   /**
@@ -169,7 +172,7 @@ export default class TruePatternData extends SparseDataModel {
    */
   get truePatternType() {
     if ( this.isThreadItem ) return "threadItem";
-    if ( this.parentDocument === "group" ) return "groupPattern";
+    if ( this.parentDocument.type === "group" ) return "groupPattern";
     return "patternItem";
   }
 
