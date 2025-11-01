@@ -17,11 +17,12 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static DEFAULT_OPTIONS = {
     classes:  [ "actor", ],
     actions:  {
-      addTruePattern:       ActorSheetEd._onAddTruePattern,
-      deleteTruePattern:    ActorSheetEd._onDeleteTruePattern,
-      expandItem:           ActorSheetEd._onCardExpand,
-      executeFavoriteMacro: ActorSheetEd._executeFavoriteMacro,
-      deleteFavorite:       ActorSheetEd._deleteFavorite,
+      addTruePattern:                 ActorSheetEd._onAddTruePattern,
+      deleteTruePattern:              ActorSheetEd._onDeleteTruePattern,
+      deleteFavorite:                 ActorSheetEd._deleteFavorite,
+      executeFavoriteMacro:           ActorSheetEd._executeFavoriteMacro,
+      expandItem:                     ActorSheetEd._onCardExpand,
+      toggleTruePatternKnownToPlayer: ActorSheetEd._onToggleTruePatternKnownToPlayer,
     },
   };
 
@@ -244,6 +245,19 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       "system.truePattern": null,
     } );
     await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleTruePatternKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const currentValue = this.document.system.truePattern?.knownToPlayer;
+
+    if ( foundry.utils.getType( currentValue ) === "boolean" ) await this.document.update( {
+      "system.truePattern.knownToPlayer": !currentValue,
+    } );
   }
 
   /**
