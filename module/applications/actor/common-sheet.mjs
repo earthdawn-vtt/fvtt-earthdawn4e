@@ -269,7 +269,11 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     event.preventDefault();
 
     const actor = game.user.character
-      ?? await PromptFactory.chooseActorPrompt( [], "character", {} );
+      ?? await PromptFactory.chooseActorPrompt(
+        [],
+        game.user.isGM ? "" : "character",
+        {}
+      );
     if ( !actor ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
       return;

@@ -312,7 +312,11 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     const actor = this.document.system.containingActor
       ?? game.user.character
       ?? canvas.tokens.controlled[0]?.actor
-      ?? await PromptFactory.chooseActorPrompt( [], "character", {} );
+      ?? await PromptFactory.chooseActorPrompt(
+        [],
+        game.user.isGM ? "" : "character",
+        {}
+      );
     if ( !actor ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
       return;
