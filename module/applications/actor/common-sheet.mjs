@@ -23,6 +23,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       executeFavoriteMacro:           ActorSheetEd._executeFavoriteMacro,
       expandItem:                     ActorSheetEd._onCardExpand,
       toggleTruePatternKnownToPlayer: ActorSheetEd._onToggleTruePatternKnownToPlayer,
+      weaveThread:                    ActorSheetEd._onWeaveThread,
     },
   };
 
@@ -258,6 +259,23 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     if ( foundry.utils.getType( currentValue ) === "boolean" ) await this.document.update( {
       "system.truePattern.knownToPlayer": !currentValue,
     } );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onWeaveThread( event, target ) {
+    event.preventDefault();
+
+    const actor = game.user.character
+      ?? await PromptFactory.chooseActorPrompt( [], "character", {} );
+    if ( !actor ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
+      return;
+    }
+
+    await actor.weaveThread( this.document );
   }
 
   /**
