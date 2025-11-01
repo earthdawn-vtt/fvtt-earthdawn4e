@@ -4,7 +4,7 @@
       {{> "systems/ed4e/templates/global/button.hbs"
         type="button"
         cssClass="item-control inline-button"
-        icon=(concat "fa-light fa-xs " (ifThen item.system.truePattern.knownToPlayer @root/config.icons.eye @root/config.icons.eyeSlash))
+        icon=(concat "fa-light fa-xs " (ifThen document.system.truePattern.knownToPlayer @root/config.icons.eye @root/config.icons.eyeSlash))
         action="toggleTruePatternKnownToPlayer"
         label="ED.Item.PhysicalItems.truePatternBaseInformation"
         tooltip=(localize (ifThen item.system.truePattern.knownToPlayer "ED.ToolTips.threadItemHideTruePatternFromPlayer" "ED.ToolTips.threadItemShowTruePatternToPlayer"))
