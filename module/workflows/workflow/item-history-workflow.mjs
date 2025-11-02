@@ -14,6 +14,12 @@ import AbilityRollOptions from "../../data/roll/ability.mjs";
 
 export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
 
+  static MAX_POSSIBLE_TYPES = {
+    THREAD_ITEM_LEVEL:     "ED.Chat.Flavor.ItemHistoryMaxPossibleTypes.threadItemLevel",
+    MAX_RANK:              "ED.Chat.Flavor.ItemHistoryMaxPossibleTypes.maxRank",
+    NUMBER_UNKNOWN_LEVELS: "ED.Chat.Flavor.ItemHistoryMaxPossibleTypes.numberOfUnknownLevels",
+  };
+
   /**
    * The ability used for the item history roll
    * @type {ItemEd|null}
@@ -49,6 +55,13 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
    * @type {number}
    */
   _numObtainedKnowledge = 0;
+
+  /**
+   * The type of the maximum possible knowledge obtainable from the roll (e.g. "thread item level", or "max rank").
+   * @type {string}
+   * @private
+   */
+  _typeMaxPossible = "";
 
   /**
    * @inheritDoc
@@ -103,11 +116,27 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
   }
 
   async #initializeKeyKnowledge() {
-    this._maxObtainableKnowledge = Math.min(
-      this._itemHistoryAbility.system.level,
-      this._numThreadItemLevels,
-      this._target.system.truePattern.numberOfUnknownLevels,
-    );
+    this.#determineMaxObtainableKnowledge();
+  }
+
+  #determineMaxObtainableKnowledge() {
+    this._maxObtainableKnowledge = this._itemHistoryAbility.system.level;
+    this._typeMaxPossible = ItemHistoryWorkflow.MAX_POSSIBLE_TYPES.MAX_RANK;
+
+    if ( this._numThreadItemLevels !== undefined ) {
+      const numUnknownLevels = this._target.system.truePattern.numberOfUnknownLevels;
+      if ( numUnknownLevels < this._maxObtainableKnowledge ) {
+        this._maxObtainableKnowledge = numUnknownLevels;
+        this._typeMaxPossible = ItemHistoryWorkflow.MAX_POSSIBLE_TYPES.NUMBER_UNKNOWN_LEVELS;
+      }
+    }
+
+    if ( this._numThreadItemLevels !== undefined ) {
+      if ( this._numThreadItemLevels < this._maxObtainableKnowledge ) {
+        this._maxObtainableKnowledge = this._numThreadItemLevels;
+        this._typeMaxPossible = ItemHistoryWorkflow.MAX_POSSIBLE_TYPES.THREAD_ITEM_LEVEL;
+      }
+    }
   }
 
   async #validate() {}
@@ -144,6 +173,7 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
       {
         numKeyKnowledgeObtained:  this._numObtainedKnowledge,
         numMaxPossible:           this._maxObtainableKnowledge,
+        typeMaxPossible:          game.i18n.localize( this._typeMaxPossible ),
       },
     );
 
