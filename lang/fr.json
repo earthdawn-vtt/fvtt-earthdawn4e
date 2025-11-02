@@ -359,13 +359,20 @@
         "s":                                       "TODO: Add translation"
       },
       "Flavor": {
+        "ItemHistoryMaxPossibleTypes": {
+          "maxRank":                               "TODO: Add translation",
+          "numberOfUnknownLevels":                 "TODO: Add translation",
+          "threadItemLevel":                       "TODO: Add translation"
+        },
         "aHorror":                                 "TODO: Add translation",
+        "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
         "damageRollOptions":                       "TODO: Add translation",
         "horrorMarkRollOptions":                   "TODO: Add translation",
         "ignoresArmor":                            "TODO: Add translation",
         "invalidDiceFormula":                      "TODO: Add translation",
+        "itemHistory":                             "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
         "knockdownTest":                           "TODO: Add translation",
         "provideDiceFormula":                      "TODO: Add translation",
@@ -2882,6 +2889,10 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "hasDeeds": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "knownToPlayer": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
@@ -2902,7 +2913,8 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
-          }
+          },
+          "thisTruePatternNeedsHasDeeds":          "TODO: Add translation"
         }
       },
       "placeholderBlankSelectOption":              "TODO: Add translation"
@@ -3195,6 +3207,7 @@
         "Title": {
           "attuneGrimoire":                        "TODO: Add translation",
           "damage":                                "TODO: Add translation",
+          "itemHistory":                           "TODO: Add translation",
           "jumpUp":                                "TODO: Add translation",
           "weaveThread":                           "TODO: Add translation"
         },
@@ -3231,6 +3244,7 @@
         "classAdvancement":                        "TODO: Add translation",
         "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "TODO: Add translation",
+        "failedRollConfirm":                       "TODO: Add translation",
         "failedWeavingRollConfirm":                "TODO: Add translation",
         "halfMagicDiscipline":                     "TODO: Add translation",
         "jumpUp":                                  "TODO: Add translation",
@@ -3239,6 +3253,8 @@
         "learnSpell":                              "TODO: Add translation",
         "lpIncrease":                              "TODO: Add translation",
         "lpLearnKnack":                            "TODO: Add translation",
+        "missingItemHistoryAbilityConfirm":        "TODO: Add translation",
+        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
         "rollPrompt":                              "TODO: Add translation",
         "selectAstralSpacePollution":              "TODO: Add translation",
@@ -3269,9 +3285,12 @@
       "damageType":                                "TODO: Add translation",
       "doYouWantToAttuneGrimoireBeforeCasting":    "TODO: Add translation",
       "doYouWantToUseWillforce":                   "TODO: Add translation",
+      "failedRollOfTypeConfirm":                   "TODO: Add translation",
       "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "TODO: Add translation",
       "knockdownChoice":                           "TODO: Add translation",
+      "missingItemHistoryAbilityConfirm":          "TODO: Add translation",
+      "missingThreadWeavingAbilityConfirm":        "TODO: Add translation",
       "mystical":                                  "TODO: Add translation",
       "physical":                                  "TODO: Add translation",
       "threadRankExceedsWeavingAbilityConfirm":    "TODO: Add translation",
@@ -3476,6 +3495,7 @@
         "matrixBrokenCannotWeave":                 "TODO: Add translation",
         "needTargetsToApplyFromChat":              "TODO: Add translation",
         "noActiveSpellSelected":                   "TODO: Add translation",
+        "noActorSelected":                         "TODO: Add translation",
         "noLp":                                    "TODO: Add translation",
         "noMoreClassLevelsToIncrease":             "TODO: Add translation",
         "noRecoveryTestsAvailable":                "TODO: Add translation",
