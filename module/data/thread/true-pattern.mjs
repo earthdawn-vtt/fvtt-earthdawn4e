@@ -158,7 +158,6 @@ export default class TruePatternData extends SparseDataModel {
     );
   }
 
-
   /**
    * Whether this data represents a thread item (has thread item levels).
    * @type {boolean}
