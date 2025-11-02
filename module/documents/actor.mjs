@@ -23,6 +23,7 @@ import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 import JumpUpWorkflow from "../workflows/workflow/jump-up-workflow.mjs";
 import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
+import ItemHistoryWorkflow from "../workflows/workflow/item-history-workflow.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -895,6 +896,37 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Performs an item history check for this true pattern.
+   * @param {Document} target The target document for the item history check. Has to have a true pattern.
+   * @returns {Promise<EdRoll>} The item history workflow instance.
+   */
+  async itemHistoryCheck( target ) {
+    const itemHistoryWorkflow = new ItemHistoryWorkflow(
+      this,
+      {
+        target,
+      },
+    );
+    return /** @type {EdRoll} */ itemHistoryWorkflow.execute();
+  }
+
+  /**
+   * Reattunes spells by executing an attunement workflow with the provided matrix.
+   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
+   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
+   */
+  async reattuneSpells( matrixUuid ) {
+    const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
+      this,
+      {
+        firstMatrix: matrixUuid,
+      },
+    );
+
+    return attuneMatrixWorkflow.execute();
+  }
+
+  /**
    * Selects a grimoire to attune a given spell to.
    * @param {ItemEd} [spell] - The spell to attune to a grimoire. If not provided, all grimoires will be selectable.
    * @returns {Promise<Document|null>} A promise that resolves to the selected grimoire item, or null if no grimoire was selected.
@@ -924,22 +956,6 @@ export default class ActorEd extends Actor {
         },
       ),
     );
-  }
-
-  /**
-   * Reattunes spells by executing an attunement workflow with the provided matrix.
-   * @param {string} [matrixUuid] - Optionally the uuid of a matrix that should be focused in the prompt.
-   * @returns {Promise<any>} A promise that resolves when the attunement workflow execution is complete.
-   */
-  async reattuneSpells( matrixUuid ) {
-    const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
-      this,
-      {
-        firstMatrix: matrixUuid,
-      },
-    );
-
-    return attuneMatrixWorkflow.execute();
   }
 
   /**
