@@ -18,3 +18,4 @@ export { default as CombatDamageWorkflow } from "./damage-workflow.mjs";
 export { default as WeaveThreadWorkflow } from "./weave-thread-workflow.mjs";
 export { default as Rollable } from "./rollable.mjs";
 export { default as JumpUpWorkflow } from "./jump-up-workflow.mjs";
+export { default as ItemHistoryWorkflow } from "./item-history-workflow.mjs";
