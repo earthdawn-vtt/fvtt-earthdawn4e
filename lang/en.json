@@ -359,13 +359,20 @@
         "s":                                       "Roll step dice (e.g. 8, 15)"
       },
       "Flavor": {
+        "ItemHistoryMaxPossibleTypes": {
+          "maxRank":                               "TODO: Add translation",
+          "numberOfUnknownLevels":                 "TODO: Add translation",
+          "threadItemLevel":                       "TODO: Add translation"
+        },
         "aHorror":                                 "A horror",
+        "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "{dealtTo} has taken damage.",
         "attuningRollOptions":                     "{sourceActor} attempts \"{attuningItem}\" using {attuningAbility}",
         "damageRollOptions":                       "Damage from {damageSource}:",
         "horrorMarkRollOptions":                   "{horror} attempts to place a horror mark on {caster}.",
         "ignoresArmor":                            "Ignores armor",
         "invalidDiceFormula":                      "Invalid die formula",
+        "itemHistory":                             "TODO: Add translation",
         "jumpUp":                                  "{sourceActor} attempts to jump up with step {step}.",
         "knockdownTest":                           "{sourceActor} makes a knockdown test with step {step}.",
         "provideDiceFormula":                      "Please provide a die formula (e.g., 1d6, 2d10+3)",
@@ -2882,6 +2889,10 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
+            "hasDeeds": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
             "knownToPlayer": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
@@ -2902,7 +2913,8 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
-          }
+          },
+          "thisTruePatternNeedsHasDeeds":          "TODO: Add translation"
         }
       },
       "placeholderBlankSelectOption":              "---"
@@ -3195,6 +3207,7 @@
         "Title": {
           "attuneGrimoire":                        "Patterncraft to Attune Grimoire",
           "damage":                                "TODO: Add translation",
+          "itemHistory":                           "TODO: Add translation",
           "jumpUp":                                "TODO: Add translation",
           "weaveThread":                           "TODO: Add translation"
         },
@@ -3231,6 +3244,7 @@
         "classAdvancement":                        "Class Advancement",
         "confirmDelete":                           "TODO: Add translation",
         "drawWeapon":                              "Draw Weapon",
+        "failedRollConfirm":                       "TODO: Add translation",
         "failedWeavingRollConfirm":                "TODO: Add translation",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
@@ -3239,6 +3253,8 @@
         "learnSpell":                              "Learn Spell",
         "lpIncrease":                              "Increase Legend Points",
         "lpLearnKnack":                            "Learn Knack",
+        "missingItemHistoryAbilityConfirm":        "TODO: Add translation",
+        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
         "recovery":                                "Recovery",
         "rollPrompt":                              "Roll Dialog",
         "selectAstralSpacePollution":              "Select Astral Pollution",
@@ -3269,9 +3285,12 @@
       "damageType":                                "Damage Type",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
       "doYouWantToUseWillforce":                   "TODO: Add translation",
+      "failedRollOfTypeConfirm":                   "TODO: Add translation",
       "failedWeavingRollConfirm":                  "TODO: Add translation",
       "ignoreArmor":                               "Ignore Armor",
       "knockdownChoice":                           "Choose the Ability to resist Knock Down",
+      "missingItemHistoryAbilityConfirm":          "TODO: Add translation",
+      "missingThreadWeavingAbilityConfirm":        "TODO: Add translation",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage",
       "threadRankExceedsWeavingAbilityConfirm":    "TODO: Add translation",
@@ -3476,6 +3495,7 @@
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
         "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
         "noActiveSpellSelected":                   "The matrix has no active spell selected.",
+        "noActorSelected":                         "TODO: Add translation",
         "noLp":                                    "No Legend Points specified!",
         "noMoreClassLevelsToIncrease":             "No more circles or levels available to increase.",
         "noRecoveryTestsAvailable":                "No recovery tests available.",
