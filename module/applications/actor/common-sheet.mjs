@@ -1,6 +1,9 @@
 import DocumentSheetMixinEd from "../api/document-sheet-mixin.mjs";
 import { ED4E } from "../../../earthdawn4e.mjs";
 import { getSetting } from "../../settings.mjs";
+import TruePatternData from "../../data/thread/true-pattern.mjs";
+import PromptFactory from "../global/prompt-factory.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -15,9 +18,13 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static DEFAULT_OPTIONS = {
     classes:  [ "actor", ],
     actions:  {
-      expandItem:           ActorSheetEd._onCardExpand,
-      executeFavoriteMacro: ActorSheetEd._executeFavoriteMacro,
-      deleteFavorite:       ActorSheetEd._deleteFavorite,
+      addTruePattern:                 ActorSheetEd._onAddTruePattern,
+      deleteTruePattern:              ActorSheetEd._onDeleteTruePattern,
+      deleteFavorite:                 ActorSheetEd._deleteFavorite,
+      executeFavoriteMacro:           ActorSheetEd._executeFavoriteMacro,
+      expandItem:                     ActorSheetEd._onCardExpand,
+      toggleTruePatternKnownToPlayer: ActorSheetEd._onToggleTruePatternKnownToPlayer,
+      weaveThread:                    ActorSheetEd._onWeaveThread,
     },
   };
 
@@ -112,6 +119,24 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     return context;
   }
 
+  /** @inheritDoc */
+  async _preparePartContext( partId, context, options ) {
+    const newContext = await super._preparePartContext( partId, context, options );
+    switch ( partId ) {
+      case "connections":
+        newContext.threadConnectedItems = {};
+        for ( const thread of this.document.itemTypes.thread ) {
+          const connectedItem = await thread.system.getConnectedDocument();
+          context.threadConnectedItems[ thread.id ] = connectedItem ? createContentAnchor( connectedItem ).outerHTML : null;
+        }
+        newContext.canHaveTruePattern = TruePatternData.isAllowedInDocument( this.document );
+        newContext.showTruePattern = this.document.system.truePattern !== null
+          && ( game.user.isGM || this.document.system.truePattern?.knownToPlayer );
+        break;
+    }
+    return newContext;
+  }
+
   /** @inheritdoc */
   async _renderHTML( context, options ) {
     return super._renderHTML( context, options );
@@ -138,6 +163,10 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     itemDescription.toggleClass( "card__description--toggle" );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
   static async _executeFavoriteMacro( event, target ) {
     const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
     if ( !macro ) {
@@ -147,6 +176,10 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     macro.execute();
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
   static async _deleteFavorite( event, target ) {
     const macroUuid = target.dataset.macroUuid;
   
@@ -190,6 +223,78 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     } );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
+  static async _onAddTruePattern( event, target ) {
+    event.preventDefault();
+    const truePatternData = {};
+    if ( this.document.type === "group" ) truePatternData.tier = "warden";
+    await this.document.update( {
+      "system.truePattern": new TruePatternData( truePatternData ),
+    } );
+    await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
+  static async _onDeleteTruePattern( event, target ) {
+    event.preventDefault();
+    const confirmedDelete = await PromptFactory.genericDeleteConfirmationPrompt(
+      this.document.system.schema.fields.truePattern.label,
+      event.shiftKey,
+
+    );
+    if ( !confirmedDelete ) return;
+
+    await this.document.update( {
+      "system.truePattern": null,
+    } );
+    await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {PhysicalItemSheetEd}
+   */
+  static async _onToggleTruePatternKnownToPlayer( event, target ) {
+    event.preventDefault();
+    const currentValue = this.document.system.truePattern?.knownToPlayer;
+
+    if ( foundry.utils.getType( currentValue ) === "boolean" ) await this.document.update( {
+      "system.truePattern.knownToPlayer": !currentValue,
+    } );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ThreadItemSheet}
+   */
+  static async _onWeaveThread( event, target ) {
+    event.preventDefault();
+
+    const actor = game.user.character
+      ?? await PromptFactory.chooseActorPrompt(
+        [],
+        game.user.isGM ? "" : "character",
+        {}
+      );
+    if ( !actor ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.weaveThreadNoActor" ) );
+      return;
+    }
+
+    await actor.weaveThread( this.document );
+  }
+
+  /**
+   * Handles adding an item to the actor's favorites.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @returns {Promise<void>}
+   */
   async _onAddToFavorites( target ) {
     const itemUuid = target.closest( ".favoritable" ).dataset.uuid;
     if ( !itemUuid ) {
@@ -206,6 +311,4 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
   // endregion
 
-
-  
 }

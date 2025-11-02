@@ -9,12 +9,6 @@ import MappingField from "../../fields/mapping-field.mjs";
  */
 export default class SentientTemplate extends CommonTemplate {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Actor.Sentient",
-  ];
-
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -350,13 +344,27 @@ export default class SentientTemplate extends CommonTemplate {
           } )
       } ), {
         initialKeysOnly: false,
-      } )
+      } ),
     } );
   }
 
-  // region Properties
+  // region Static Properties
 
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Sentient",
+  ];
+
+  /**
+   * The actor types that are considered sentient actors.
+   * @type {[string]}
+   */
   static SENTIENT_ACTOR_TYPES = [ "character", "npc", "creature", "spirit", "horror", "dragon" ];
+
+  // endregion
+
+  // region Getters
 
   get hasSpellsAttuned() {
     return this.parent.getMatrices().some(
@@ -375,6 +383,15 @@ export default class SentientTemplate extends CommonTemplate {
     return !this.isDead
       && this.characteristics.health.unconscious > 0
       && this.characteristics.health.damage.total >= this.characteristics.health.unconscious;
+  }
+
+  // endregion
+
+  // region Checkers
+
+  isAboutToDie( newDamageTotal ) {
+    return !this.isDead
+      && newDamageTotal >= this.characteristics.health.death;
   }
 
   // endregion
@@ -576,11 +593,6 @@ export default class SentientTemplate extends CommonTemplate {
   }
 
   // endregion
-
-  isAboutToDie( newDamageTotal ) {
-    return !this.isDead
-      && newDamageTotal >= this.characteristics.health.death;
-  }
 
   // region Migrations
 

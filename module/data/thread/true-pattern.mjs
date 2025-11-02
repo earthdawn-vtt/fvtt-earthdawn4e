@@ -46,7 +46,9 @@ export default class TruePatternData extends SparseDataModel {
           }
         ),
         {
-          required: true,
+          required: false,
+          nullable: true,
+          initial:  null,
         },
       ),
       attachedThreads:    new fields.SetField(
@@ -142,7 +144,8 @@ export default class TruePatternData extends SparseDataModel {
    * @type {boolean}
    */
   get isThreadItem() {
-    return this.numberOfLevels >= 0;
+    return this.parentDocument.documentName === "Item"
+      && this.numberOfLevels > 0;
   }
 
   /**
@@ -169,7 +172,7 @@ export default class TruePatternData extends SparseDataModel {
    */
   get truePatternType() {
     if ( this.isThreadItem ) return "threadItem";
-    if ( this.parentDocument === "group" ) return "groupPattern";
+    if ( this.parentDocument.type === "group" ) return "groupPattern";
     return "patternItem";
   }
 
@@ -199,12 +202,6 @@ export default class TruePatternData extends SparseDataModel {
    * @type {number|undefined}
    */
   get requiredLpForIncrease() {
-    /* PG p. 229: "The Legend Point cost of Thread Ranks woven to the True
-        Patterns of people and places is the same as for improving Ranks of
-        a Novice talent" */
-    /* PG p. 224: "The Legend Point cost of a thread item usually follows the
-        progressions used to increase talent Ranks, but exactly which
-        progression (Novice, Journeyman, Warden, or Master) depends on the item." */
     const level = this.numberOfLevels + 1;
     const tierModifier = LEGEND.lpIndexModForTier[ 1 ][ this.tier ?? "novice" ];
     return LEGEND.legendPointsCost[ level + tierModifier ];

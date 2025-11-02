@@ -76,29 +76,7 @@
     <div class="truePatternInputs scrollable">
 
       <!-- basic information -->
-      <fieldset>
-        <legend>
-          {{#if (and @root/isGM @root/editable)}}
-            {{> "systems/ed4e/templates/global/button.hbs"
-              type="button"
-              cssClass="item-control inline-button"
-              icon=(concat "fa-light fa-xs " (ifThen item.system.truePattern.knownToPlayer @root/config.icons.eye @root/config.icons.eyeSlash))
-              action="toggleTruePatternKnownToPlayer"
-              label="ED.Item.PhysicalItems.truePatternBaseInformation"
-              tooltip=(localize (ifThen item.system.truePattern.knownToPlayer "ED.ToolTips.threadItemHideTruePatternFromPlayer" "ED.ToolTips.threadItemShowTruePatternToPlayer"))
-            }}
-          {{else}}
-            {{localize "ED.Item.PhysicalItems.truePatternBaseInformation"}}
-          {{/if}}
-        </legend>
-        {{formGroup systemFields.truePattern.fields.maxThreads value=item.system.truePattern.maxThreads
-                    disabled=(not editable)}}
-        {{formGroup systemFields.truePattern.fields.mysticalDefense value=item.system.truePattern.mysticalDefense
-                    disabled=(not editable)}}
-        {{formGroup systemFields.truePattern.fields.tier value=item.system.truePattern.tier disabled=(not editable)}}
-        {{formGroup systemFields.truePattern.fields.attachedThreads value=item.system.truePattern.attachedThreads
-                    disabled=(not editable)}}
-      </fieldset>
+      {{> "systems/ed4e/templates/global/true-pattern-basic-information.hbs"}}
 
       <!--thread item levels-->
       {{#each item.system.truePattern.threadItemLevels}}

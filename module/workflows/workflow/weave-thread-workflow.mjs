@@ -97,13 +97,11 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
         getSetting( "edidThreadWeaving" ),
       );
       if ( !this._threadWeavingAbility ) {
-        const continueWorkflow = await DialogEd.confirm( {
-          content: game.i18n.localize( "ED.Dialogs.missingThreadWeavingAbilityConfirm" ),
-          window:  {
-            title:   game.i18n.localize( "ED.Dialogs.Title.missingThreadWeavingAbilityConfirm" ),
-          },
-        } );
-        if ( continueWorkflow !== true ) this.cancel();
+        throw new WorkflowInterruptError(
+          this,
+          game.i18n.localize( "ED.Notifications.Error.missingThreadWeavingAbilityConfirm" ),
+          "Weaving actor does not have a thread weaving ability.",
+        );
       }
     }
   }
