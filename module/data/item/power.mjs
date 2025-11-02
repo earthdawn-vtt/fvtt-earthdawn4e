@@ -242,25 +242,24 @@ export default class PowerData extends ActionTemplate.mixin(
   async rollAbility() {
     if ( !this.isActorEmbedded ) return;
 
-    const rollOptions = this.baseRollOptions;
-    const rollOptionsUpdate = {
-      ...rollOptions.toObject(),
-      rollingActorUuid: this.containingActor.uuid,
-      target:           {
-        tokens: game.user.targets.map( token => token.document.uuid ),
-        base:   this.getDifficulty(),
+    const rollOptions = AbilityRollOptions.fromActor(
+      {
+        ability: this.parentDocument,
       },
-      chatFlavor:       "AbilityTemplate: Ability ROLL",
-      rollType:         "ability",
-    };
+      this.containingActor,
+    );
 
     const roll = await RollPrompt.waitPrompt(
-      new AbilityRollOptions( rollOptionsUpdate ),
+      rollOptions,
       {
         rollData: this.containingActor,
       }
     );
-    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
+    return RollProcessor.process(
+      roll,
+      this.containingActor,
+      { rollToMessage: true }
+    );
   }
 
   async rollAttack() {
