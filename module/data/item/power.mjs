@@ -18,17 +18,7 @@ export default class PowerData extends ActionTemplate.mixin(
   TargetTemplate,
 )  {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Power",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -101,15 +91,19 @@ export default class PowerData extends ActionTemplate.mixin(
 
   // endregion
 
-  // region Properties
+  // region Static Properties
 
-  /**
-   *@type {boolean}
-   */
-  get isCreatureAttack() {
-    return this.rollType === "attack";
-  }
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Power",
+  ];
 
+  // endregion
+
+  // region Getters
+
+  /** @inheritDoc */
   get baseRollOptions() {
     const rollOptions = super.baseRollOptions;
     const abilityRollOptions = {
@@ -139,6 +133,17 @@ export default class PowerData extends ActionTemplate.mixin(
     };
 
     return new AbilityRollOptions( abilityRollOptions );
+  }
+
+  /**
+   *@type {boolean}
+   */
+  get isCreatureAttack() {
+    return this.rollType === "attack";
+  }
+
+  get rankFinal() {
+    return this.powerStep;
   }
 
   // endregion
@@ -174,9 +179,9 @@ export default class PowerData extends ActionTemplate.mixin(
     const newPowerStep = systemChanges.hasOwnProperty( "powerStep" ) ? systemChanges.powerStep : currentPowerStep;
 
     // if rollType is being changed away from attack/damage, clear damage step
-    if ( systemChanges.hasOwnProperty( "rollType" ) &&
-      !isAttackOrDamage( newRollType ) &&
-      Number.isNumeric( currentDamageStep ) ) {
+    if ( systemChanges.hasOwnProperty( "rollType" )
+      && !isAttackOrDamage( newRollType )
+      && Number.isNumeric( currentDamageStep ) ) {
       changes.system.damageStep = null;
       return;
     }
@@ -199,7 +204,6 @@ export default class PowerData extends ActionTemplate.mixin(
         game.i18n.localize( "ED.Notifications.Info.damageStepRequiresAttackOrDamage" )
       );
       changes.system.rollType = "attack";
-      return;
     }
 
   }
