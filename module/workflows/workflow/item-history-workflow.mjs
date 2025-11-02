@@ -117,6 +117,9 @@ export default class ItemHistoryWorkflow extends Rollable( ActorWorkflow ) {
     this._rollOptions = AbilityRollOptions.fromActor(
       {
         ability:    this._itemHistoryAbility,
+        target:     {
+          base: this._target.system.truePattern.mysticalDefense,
+        },
       },
       this._actor,
     );
