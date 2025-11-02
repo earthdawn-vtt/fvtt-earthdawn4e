@@ -8,6 +8,7 @@
 import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
 
 /**
  * @typedef {object} RollableWorkflowOptions
@@ -154,6 +155,26 @@ export default function Rollable( WorkflowClass ) {
           rollToMessage: false, // Handled in _rollToChat if needed
         }
       );
+    }
+
+    /**
+     * Confirm with the user to continue if the roll was a failure.
+     * @returns {Promise<void>}
+     */
+    async _confirmRoll() {
+      this._result = undefined;
+      if ( !this._roll.isSuccess ) {
+        const continueWorkflow = await DialogEd.confirm( {
+          content: game.i18n.format(
+            "ED.Dialogs.failedRollOfTypeConfirm",
+            { rollType: this._rollOptions?.rollType }
+          ),
+          window:  {
+            title: game.i18n.localize( "ED.Dialogs.Title.failedRollConfirm" ),
+          }
+        } );
+        if ( continueWorkflow !== true ) this.cancel();
+      }
     }
 
     /**
