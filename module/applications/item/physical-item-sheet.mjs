@@ -1,4 +1,3 @@
-import ED4E from "../../config/_module.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 import TruePatternData from "../../data/thread/true-pattern.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
@@ -66,6 +65,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       id:         "-true-pattern",
       classes:    [ "true-pattern", "scrollable" ],
       scrollable: [ "", "div.truePatternInputs", ],
+      templates:  [
+        "systems/ed4e/templates/thread-magic/true-pattern-tabs.hbs",
+      ],
     },
   };
 
@@ -81,7 +83,40 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       initial:     "general",
       labelPrefix: "ED.Tabs.ItemSheet",
     },
+    truePattern: {
+      initial:     "details",
+      labelPrefix: "ED.Tabs.TruePattern",
+      tabs:        [
+        { id:    "details", },
+      ],
+    },
   };
+
+  // endregion
+
+  // region Tabs
+
+  /** @inheritDoc */
+  _getTabsConfig( group ) {
+    const originalTabsConfig = super._getTabsConfig( group );
+
+    if ( group !== "truePattern" ) return originalTabsConfig;
+
+    // create a tabConfig entry for each thread rank
+    const tabsConfig = {
+      ...this.constructor.TABS[ group ],
+    };
+    const threadRanks = Object.values( this.document.system.truePattern?.threadItemLevels ) || [];
+    const threadRankTabs = threadRanks.map( levelData => {
+      return {
+        id:    `level-${ levelData.level }`,
+        label: game.i18n.format( "ED.Tabs.TruePattern.rankLevel", { level: levelData.level } ),
+      };
+    } );
+    tabsConfig.tabs.push( ...threadRankTabs );
+
+    return tabsConfig;
+  }
 
   // endregion
 
@@ -116,16 +151,11 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
   /** @inheritDoc */
   async _prepareContext( options ) {
-    const context = super._prepareContext( options );
+    const context = await super._prepareContext( options );
     foundry.utils.mergeObject(
       context,
       {
-        item:                   this.document,
-        system:                 this.document.system,
         options:                this.options,
-        systemFields:           this.document.system.schema.fields,
-        config:                 ED4E,
-        isGM:                   game.user.isGM,
       },
     );
 
@@ -138,7 +168,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       }
     );
 
-
+    // foundry doesn't support tabs preparation for multiple tab groups yet, so we have to do it ourselves :/
+    context.tabs = this._prepareTabs( "sheet" );
+    context.threadRankTabs = this._prepareTabs( "truePattern" );
 
     return context;
   }
