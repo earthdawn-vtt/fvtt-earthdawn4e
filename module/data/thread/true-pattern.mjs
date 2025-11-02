@@ -153,7 +153,7 @@ export default class TruePatternData extends SparseDataModel {
    */
   get hasDeeds() {
     if ( !this.isThreadItem ) return false;
-    return this.threadItemLevels.some(
+    return Object.values( this.threadItemLevels ).some(
       levelData => levelData.deed.trim().length > 0
     );
   }
