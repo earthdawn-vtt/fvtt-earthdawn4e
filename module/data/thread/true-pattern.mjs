@@ -140,12 +140,48 @@ export default class TruePatternData extends SparseDataModel {
   // region Getters
 
   /**
+   * Whether more threads can be attached to this true pattern.
+   * @type {boolean}
+   */
+  get canHaveMoreThreads() {
+    return this.numberOfAttachedThreads < this.maxThreads;
+  }
+
+  /**
+   * Whether this thread item has any deeds defined in its levels.
+   * @type {boolean}
+   */
+  get hasDeeds() {
+    if ( !this.isThreadItem ) return false;
+    return this.threadItemLevels.some(
+      levelData => levelData.deed.trim().length > 0
+    );
+  }
+
+
+  /**
    * Whether this data represents a thread item (has thread item levels).
    * @type {boolean}
    */
   get isThreadItem() {
     return this.parentDocument.documentName === "Item"
       && this.numberOfLevels > 0;
+  }
+
+  /**
+   * The next level number for a new ThreadItemLevel. Starts at 1 if no levels exist.
+   * @type {number}
+   */
+  get newLevelNumber() {
+    return ( this.numberOfLevels ?? 0 ) + 1;
+  }
+
+  /**
+   * The number of threads currently attached to this true pattern.
+   * @type {number}
+   */
+  get numberOfAttachedThreads() {
+    return this.attachedThreads?.size ?? 0;
   }
 
   /**
@@ -159,14 +195,6 @@ export default class TruePatternData extends SparseDataModel {
   }
 
   /**
-   * The next level number for a new ThreadItemLevel. Starts at 1 if no levels exist.
-   * @type {number}
-   */
-  get newLevelNumber() {
-    return ( this.numberOfLevels ?? 0 ) + 1;
-  }
-
-  /**
    * The type of this true pattern, as defined in {@link MAGIC.truePatternTypes}.
    * @type {string}
    */
@@ -174,22 +202,6 @@ export default class TruePatternData extends SparseDataModel {
     if ( this.isThreadItem ) return "threadItem";
     if ( this.parentDocument.type === "group" ) return "groupPattern";
     return "patternItem";
-  }
-
-  /**
-   * The number of threads currently attached to this true pattern.
-   * @type {number}
-   */
-  get numberOfAttachedThreads() {
-    return this.attachedThreads?.size ?? 0;
-  }
-
-  /**
-   * Whether more threads can be attached to this true pattern.
-   * @type {boolean}
-   */
-  get canHaveMoreThreads() {
-    return this.numberOfAttachedThreads < this.maxThreads;
   }
 
   // endregion
