@@ -291,7 +291,20 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
    * @this {ThreadItemSheet}
    */
   static async _onItemHistoryCheck( event, target ) {
-    ui.notifications.info( "Not implemented yet." );
+    const actor = this.document.system.containingActor
+      ?? game.user.character
+      ?? canvas.tokens.controlled[0]?.actor
+      ?? await PromptFactory.chooseActorPrompt(
+        [],
+        game.user.isGM ? "" : "character",
+        {}
+      );
+    if ( !actor ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActorSelected" ) );
+      return;
+    }
+
+    await actor.itemHistoryCheck( this.document );
   }
 
   /**

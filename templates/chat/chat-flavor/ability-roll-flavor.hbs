@@ -1,24 +1,37 @@
-<div class="custom-flavor">{{ customFlavor }}</div>
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.ability.label}}}</div>
+
+<div class="text--center">{{{abilityContentAnchor}}}</div>
+
+<div class="ability-visualization">
+
+  <div class="custom-flavor text--center">
+    {{{ customFlavor }}}
+  </div>
+
+  <div class="message-buttons flexrow">
+    {{#if hasEffects}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
+    {{/if}}
+
+    {{#each messageButtons}}
+      {{> "systems/ed4e/templates/global/button.hbs" this}}
+    {{/each}}
+  </div>
+
+</div>
+
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
 {{else}}
   {{#if (ne target.total 0)}}
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
   {{/if}}
   <div class="message-buttons flexrow">
-    {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
   </div>
   <div class="modifier-lists flexrow">
     {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-      {{#if target.public}}
-        {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-      {{/if}}
+    {{#if target.public}}
+      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+    {{/if}}
   </div>
 {{/if}}
-
-{{!-- 
-todo:
-
-#284 assign effect button if rolled item contains an effect with the flag "transfer to actor" set to false.
-#711 show target actor name if a target is chosen 
---}}

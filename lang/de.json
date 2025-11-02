@@ -359,20 +359,27 @@
         "s":                                       "Earthdawn Würfelwurf mit einer Stufe"
       },
       "Flavor": {
+        "ItemHistoryMaxPossibleTypes": {
+          "maxRank":                               "Maximaler Rang",
+          "numberOfUnknownLevels":                 "Anzahl unbekannter Schlüsselwissen",
+          "threadItemLevel":                       "Anzahl Fadenränge"
+        },
         "aHorror":                                 "Ein Dämon",
+        "abilityRollOptions":                      "{sourceActor} würfelt {ability} mit Stufe {step}",
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
         "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
         "damageRollOptions":                       "Schaden durch {damageSource}:",
         "horrorMarkRollOptions":                   "{horror} versucht ein Dämonenmal auf {caster} zu platzieren.",
         "ignoresArmor":                            "Ignoriert Rüstung",
         "invalidDiceFormula":                      "Ungültige Würfelformel",
+        "itemHistory":                             "Du bringst<br>{numKeyKnowledgeObtained} von {numMaxPossible}<br>({typeMaxPossible})<br>möglichen Schlüsselwissen in Erfahrung.",
         "jumpUp":                                  "{sourceActor} versucht aufzuspringen mit Stufe {step}.",
         "knockdownTest":                           "{sourceActor} macht eine Niederschlagsprobe mit Stufe {step}.",
         "provideDiceFormula":                      "Bitte gib eine Würfelformel an (z.B. 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} würfelt {ability} ({step})",
         "rollAttribute":                           "{actor} würfelt {attribute} ({step})",
         "rollEquipment":                           "{sourceActor} würfelt {equipment} ({step})",
-        "rollHalfMagic":                           "{actor} würfelt Halbmagie für die Dizipline {discipline}, basierend auf {attribute} mit Stufe {step}",
+        "rollHalfMagic":                           "{actor} würfelt Halbmagie für die Disziplin {discipline}, basierend auf {attribute} mit Stufe {step}",
         "rollInitiative":                          "{sourceActor} würfelt {initiative} ({step})",
         "rollRecovery":                            "{sourceActor} nutzt Erholungsproben für {recoveryMode}",
         "rollSubstitute":                          "{actor} würfelt {attribute} ({step}) um {substitute} zu ersetzen",
@@ -2882,6 +2889,10 @@
               "hint":                              "Struktur zur Erstellung von Verzauberungen",
               "label":                             "Verzauberungsstruktur"
             },
+            "hasDeeds": {
+              "hint":                              "Benötigt diese Wahre Struktur Taten um Fäden zu weben?",
+              "label":                             "Benötigt Taten"
+            },
             "knownToPlayer": {
               "hint":                              "Werden die Daten dieser Wahren Struktur nicht-GMs angezeigt?",
               "label":                             "Wahre Struktur bekannt"
@@ -2902,7 +2913,8 @@
               "hint":                              "Kategorie der wahren Struktur",
               "label":                             "Kategorie"
             }
-          }
+          },
+          "thisTruePatternNeedsHasDeeds":          "Für diese Wahre Struktur müssen Taten erfüllt werden um Fäden zu weben."
         }
       },
       "placeholderBlankSelectOption":              "---"
@@ -3195,6 +3207,7 @@
         "Title": {
           "attuneGrimoire":                        "Struktur Verstehen um Grimoire abzustimmen",
           "damage":                                "Schaden würfeln ({damageSourceType})",
+          "itemHistory":                           "Artefaktgeschichte würfeln",
           "jumpUp":                                "Aufspringen würfeln",
           "weaveThread":                           "Faden weben"
         },
@@ -3231,6 +3244,7 @@
         "classAdvancement":                        "Klassenaufstieg",
         "confirmDelete":                           "Löschen bestätigen",
         "drawWeapon":                              "Waffe ziehen",
+        "failedRollConfirm":                       "Probe fehlgeschlagen",
         "failedWeavingRollConfirm":                "Fadenweben Probe fehlgeschlagen",
         "halfMagicDiscipline":                     "Disziplinauswahl für Halbmagie",
         "jumpUp":                                  "Aufspringen",
@@ -3239,6 +3253,8 @@
         "learnSpell":                              "Zauber lernen",
         "lpIncrease":                              "Legendenpunkte erhöhen",
         "lpLearnKnack":                            "Lerne Kniff",
+        "missingItemHistoryAbilityConfirm":        "Fehlende Artefaktgeschichte Fähigkeit",
+        "missingThreadWeavingAbilityConfirm":      "Fehlende Fadenweben Fähigkeit",
         "recovery":                                "Erholung",
         "rollPrompt":                              "Würfel Dialog",
         "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
@@ -3269,9 +3285,12 @@
       "damageType":                                "Schadensart",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Möchtest du das Grimoire vor dem Wirken des Zaubers abstimmen?",
       "doYouWantToUseWillforce":                   "Möchtest du {contentLinkWillforce} einsetzen?",
+      "failedRollOfTypeConfirm":                   "<p>Die {rollType} Probe ist fehlgeschlagen.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "failedWeavingRollConfirm":                  "<p>Die Fadenweben Probe ist fehlgeschlagen.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "ignoreArmor":                               "Ignoriere Rüstung",
       "knockdownChoice":                           "Wähle die Fähigkeit um dem Niederschlag zu widerstehen",
+      "missingItemHistoryAbilityConfirm":          "<p>Du besitzt nicht die erforderliche Artefaktgeschichte Fähigkeit.</p><p>Möchtest du trotzdem fortfahren?</p>",
+      "missingThreadWeavingAbilityConfirm":        "<p>Du besitzt nicht die erforderliche Fadenweben Fähigkeit um diesen Faden zu weben.</p><p>Möchtest du trotzdem fortfahren?</p>",
       "mystical":                                  "Mystischer Schaden",
       "physical":                                  "Körperlicher Schaden",
       "threadRankExceedsWeavingAbilityConfirm":    "<p>Der Rang des Fadens übersteigt deine Fadenweben Fähigkeit.</p><p>Möchtest du trotzdem fortfahren?</p>",
@@ -3476,6 +3495,7 @@
         "matrixBrokenCannotWeave":                 "Die Matrix ist beschädigt und kann nicht benutzt werden.",
         "needTargetsToApplyFromChat":              "Es müssen Ziele ausgewählt werden, um den Effekt aus dem Chat anzuwenden.",
         "noActiveSpellSelected":                   "Die Matrix hat keinen aktiven Zauber ausgewählt.",
+        "noActorSelected":                         "Es wurde kein Actor ausgewählt.",
         "noLp":                                    "Keine Legendenpunkte angegeben!",
         "noMoreClassLevelsToIncrease":             "Es gibt keine weiteren Ränge/Kreise, die erhöht werden können.",
         "noRecoveryTestsAvailable":                "Keine Erholungsproben mehr verfügbar.",

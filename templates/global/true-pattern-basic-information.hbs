@@ -20,4 +20,10 @@
   {{formGroup systemFields.truePattern.fields.tier value=document.system.truePattern.tier disabled=(not editable)}}
   {{formGroup systemFields.truePattern.fields.attachedThreads value=document.system.truePattern.attachedThreads
               disabled=(not editable)}}
+  {{#if (and document.system.truePattern.hasDeeds document.system.truePattern.knownToPlayer)}}
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      localizedLabel=(localize "ED.Data.Other.TruePattern.FIELDS.hasDeeds.label")
+      hint=(localize "ED.Data.Other.TruePattern.thisTruePatternNeedsHasDeeds")
+    }}
+  {{/if}}
 </fieldset>

@@ -18,8 +18,13 @@ Expects parameters:
   {{#if dataField.label}}
     <label>{{localize dataField.label}}</label>
   {{/if}}
+  {{#if localizedLabel}}
+    <label>{{localizedLabel}}</label>
+  {{/if}}
   <div class="form-fields">
-    {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField fieldPath=fieldPath config=config}}
+    {{#if (lookup . "inputTemplate")}}
+      {{> (lookup . "inputTemplate") data=data fields=fields dataField=dataField fieldPath=fieldPath config=config}}
+    {{/if}}
   </div>
-  <p class="hint">{{localize (ifThen dataField.hint dataField.hint data.hint)}}</p>
+  <p class="hint">{{localize (ifThen dataField.hint dataField.hint (ifThen data.hint data.hint hint))}}</p>
 </div>

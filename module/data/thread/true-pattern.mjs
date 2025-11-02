@@ -140,12 +140,72 @@ export default class TruePatternData extends SparseDataModel {
   // region Getters
 
   /**
+   * Whether more threads can be attached to this true pattern.
+   * @type {boolean}
+   */
+  get canHaveMoreThreads() {
+    return this.numberOfAttachedThreads < this.maxThreads;
+  }
+
+  /**
+   * Whether this thread item has any deeds defined in its levels.
+   * @type {boolean}
+   */
+  get hasDeeds() {
+    if ( !this.isThreadItem ) return false;
+    return Object.values( this.threadItemLevels ).some(
+      levelData => levelData.deed.trim().length > 0
+    );
+  }
+
+  /**
    * Whether this data represents a thread item (has thread item levels).
    * @type {boolean}
    */
   get isThreadItem() {
     return this.parentDocument.documentName === "Item"
       && this.numberOfLevels > 0;
+  }
+
+  /**
+   * The next level number for a new ThreadItemLevel. Starts at 1 if no levels exist.
+   * @type {number}
+   */
+  get newLevelNumber() {
+    return ( this.numberOfLevels ?? 0 ) + 1;
+  }
+
+  /**
+   * The number of threads currently attached to this true pattern.
+   * @type {number}
+   */
+  get numberOfAttachedThreads() {
+    return this.attachedThreads?.size ?? 0;
+  }
+
+  /**
+   * The number of ranks/levels known to the player for this thread item.
+   * Undefined if not a thread item.
+   * @type {undefined|number}
+   */
+  get numberOfKnownLevels() {
+    if ( !this.isThreadItem ) return undefined;
+    let knownLevels = 0;
+    for ( let level = 1; level <= this.numberOfLevels; level++ ) {
+      const levelData = this.threadItemLevels[ level ];
+      if ( levelData.knownToPlayer ) knownLevels++;
+    }
+    return knownLevels;
+  }
+
+  /**
+   * The number of ranks/levels unknown to the player for this thread item.
+   * Undefined if not a thread item.
+   * @type {undefined|number}
+   */
+  get numberOfUnknownLevels() {
+    if ( !this.isThreadItem ) return undefined;
+    return this.numberOfLevels - this.numberOfKnownLevels;
   }
 
   /**
@@ -159,14 +219,6 @@ export default class TruePatternData extends SparseDataModel {
   }
 
   /**
-   * The next level number for a new ThreadItemLevel. Starts at 1 if no levels exist.
-   * @type {number}
-   */
-  get newLevelNumber() {
-    return ( this.numberOfLevels ?? 0 ) + 1;
-  }
-
-  /**
    * The type of this true pattern, as defined in {@link MAGIC.truePatternTypes}.
    * @type {string}
    */
@@ -174,22 +226,6 @@ export default class TruePatternData extends SparseDataModel {
     if ( this.isThreadItem ) return "threadItem";
     if ( this.parentDocument.type === "group" ) return "groupPattern";
     return "patternItem";
-  }
-
-  /**
-   * The number of threads currently attached to this true pattern.
-   * @type {number}
-   */
-  get numberOfAttachedThreads() {
-    return this.attachedThreads?.size ?? 0;
-  }
-
-  /**
-   * Whether more threads can be attached to this true pattern.
-   * @type {boolean}
-   */
-  get canHaveMoreThreads() {
-    return this.numberOfAttachedThreads < this.maxThreads;
   }
 
   // endregion
@@ -300,12 +336,67 @@ export default class TruePatternData extends SparseDataModel {
   }
 
   /**
+   * Reveals the next unknown rank/level to the player.
+   * @param {number} [numberOfRanks] The number of ranks to reveal.
+   * @returns {Promise<Document|object|undefined>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent, or undefined if all ranks are already known.
+   */
+  async revealNextRanks( numberOfRanks = 1 ) {
+    if ( !this.isThreadItem ) {
+      throw new Error( "Cannot reveal next rank for non-thread item." );
+    }
+
+    if ( numberOfRanks < 1 ) {
+      throw new Error( "Number of ranks to reveal must be at least 1." );
+    }
+
+    let result;
+    if ( numberOfRanks === 1 ) {
+      result = await this._revealSingleNextRank();
+    } else {
+      // handle separately to avoid multiple document updates
+      const updateData = {};
+      const firstUnknownLevel = this.numberOfKnownLevels + 1;
+      for ( let level = firstUnknownLevel; level < firstUnknownLevel + numberOfRanks; level++ ) {
+        const levelData = this.threadItemLevels[ level ];
+        if ( !levelData || levelData.knownToPlayer ) break;
+        const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.knownToPlayer`;
+        updateData[ updatePath ] = true;
+      }
+
+      if ( Object.keys( updateData ).length === 0 ) {
+        // all ranks are already known
+        return;
+      }
+      result = await this.parentDocument.update( updateData );
+    }
+
+    return result;
+  }
+
+  /**
+   * Reveals a single unknown rank/level to the player.
+   * @returns {Promise<Document|object|undefined>} The updated parent document, or an object containing
+   * differential keys and values that were changed if no parent, or undefined if all ranks are already known.
+   */
+  async _revealSingleNextRank() {
+    for ( let level = 1; level <= this.numberOfLevels; level++ ) {
+      const levelData = this.threadItemLevels[ level ];
+      if ( !levelData.knownToPlayer ) {
+        return this.toggleRankKnownToPlayer( level, { known: true } );
+      }
+    }
+  }
+
+  /**
    * Toggles whether the given rank/level is known to the player.
    * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
+   * @param {object} options Additional options.
+   * @param {boolean} [options.known] Force the rank to be known or unknown to the player.
    * @returns {Promise<Document|object>} The updated parent document, or an object containing
    * differential keys and values that were changed if no parent.
    */
-  async toggleRankKnownToPlayer( level ) {
+  async toggleRankKnownToPlayer( level, options = {} ) {
     if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
       throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
     }
@@ -316,17 +407,21 @@ export default class TruePatternData extends SparseDataModel {
     const parentDocument = this.parentDocument;
     const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.knownToPlayer`;
 
-    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.knownToPlayer } );
-    return parentDocument.update( { [ updatePath ]: !levelData.knownToPlayer, } );
+    const newValue = options.known ?? !levelData.knownToPlayer;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newValue } );
+    return parentDocument.update( { [ updatePath ]: newValue, } );
   }
 
   /**
    * Toggles whether the key knowledge for the given rank/level is known to the player.
    * @param {number} level The rank/level to toggle. Must be between 1 and numberOfLevels.
+   * @param {object} options Additional options.
+   * @param {boolean} [options.known] Force the rank to be known or unknown to the player.
    * @returns {Promise<Document|object>} The updated parent document, or an object containing
    * differential keys and values that were changed if no parent.
    */
-  async toggleRankKnowledgeKnownToPlayer( level ) {
+  async toggleRankKnowledgeKnownToPlayer( level, options = {} ) {
     if ( !this.isThreadItem || this.numberOfLevels < level || level < 1 ) {
       throw new Error( `Cannot toggle known rank ${ level } for thread item with ${ this.numberOfLevels } levels.` );
     }
@@ -337,8 +432,10 @@ export default class TruePatternData extends SparseDataModel {
     const parentDocument = this.parentDocument;
     const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ level }.keyKnowledge.isKnown`;
 
-    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: !levelData.keyKnowledge.isKnown } );
-    return parentDocument.update( { [ updatePath ]: !levelData.keyKnowledge.isKnown, } );
+    const newValue = options.known ?? !levelData.keyKnowledge.isKnown;
+
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: newValue } );
+    return parentDocument.update( { [ updatePath ]: newValue, } );
   }
 
   // endregion

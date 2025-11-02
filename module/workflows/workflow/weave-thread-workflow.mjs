@@ -69,7 +69,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
     );
     this._initRollableSteps();
     this._steps.push(
-      this.#confirmRoll.bind( this ),
+      this._confirmRoll.bind( this ),
       this.#createThread.bind( this ),
       this.#updateTargetThreads.bind( this ),
       this.#increaseThreadLevel.bind( this ),
@@ -165,19 +165,6 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
       },
       this._actor,
     );
-  }
-
-  async #confirmRoll() {
-    this._result = undefined;
-    if ( !this._roll.isSuccess ) {
-      const continueWorkflow = await DialogEd.confirm( {
-        content: game.i18n.localize( "ED.Dialogs.failedWeavingRollConfirm" ),
-        window:  {
-          title: game.i18n.localize( "ED.Dialogs.Title.failedWeavingRollConfirm" ),
-        }
-      } );
-      if ( continueWorkflow !== true ) this.cancel();
-    }
   }
 
   async #createThread() {

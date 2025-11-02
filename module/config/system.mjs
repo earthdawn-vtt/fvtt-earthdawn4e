@@ -27,6 +27,7 @@ export const reservedEdid = {
 export const defaultEdIds = {
   creatureAttack:      "creature-attack",
   grimoire:            "grimoire",
+  itemHistory:         "item-history",
   learnImprovedSpells: "learn-improved-spells",
   languageRW:          "language-rw",
   languageSpeak:       "language-speak",
