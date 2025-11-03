@@ -95,7 +95,7 @@ export const elementSubtypes = {
 };
 preLocalize(
   "elementSubtypes",
-  { keys: [ "air", "earth", "fire", "water", "wood" ] }
+  { keys: [ "electric", "metal", "acid", "cold", ] }
 );
 
 /**
