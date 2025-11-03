@@ -197,11 +197,6 @@ export default class SpellData extends ItemDataModel.mixin(
           nullable: true,
           blank:    false,
           trim:     true,
-          choices:  Object.values(
-            ED4E.elementSubtypes
-          ).map(
-            subtypes => Object.keys( subtypes )
-          ).flat(),
         } )
       },
       {
@@ -260,7 +255,23 @@ export default class SpellData extends ItemDataModel.mixin(
 
   // endregion
 
-  // region Properties
+  // region Getters
+
+  /**
+   * @description The difficulty number to dispel this spell.
+   * @type {number}
+   */
+  get dispelDifficulty() {
+    return this.level + 10;
+  }
+
+  /**
+   * The available choices for the elemental subtype based on the selected element type.
+   * @type {object}
+   */
+  get elementalSubtypeChoices() {
+    return MAGIC.elementSubtypes[ this.element?.type ] ?? {};
+  }
 
   /**
    * @description Whether this spell is an illusion and therefore can be sensed.
@@ -276,14 +287,6 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   get isWeavingComplete() {
     return this.isWeaving && this.wovenThreads >= this.totalRequiredThreads;
-  }
-
-  /**
-   * @description The difficulty number to dispel this spell.
-   * @type {number}
-   */
-  get dispelDifficulty() {
-    return this.level + 10;
   }
 
   /**
@@ -326,18 +329,6 @@ export default class SpellData extends ItemDataModel.mixin(
     return this.threads.woven;
   }
 
-  /**
-   * Returns the spellcasting rank of the actor if it is embedded.
-   * @returns {number} - The spellcasting rank of the actor.
-   */
-  getSpellcastingRank( ) {
-    const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
-      game.settings.get( "ed4e", "edidSpellcasting" ),
-      "talent",
-    );
-    return spellcastingTalent?.system.level;
-  }
-  
   // endregion
 
   // region Checkers
@@ -457,6 +448,18 @@ export default class SpellData extends ItemDataModel.mixin(
   // endregion
 
   // region Spellcasting
+
+  /**
+   * Returns the spellcasting rank of the actor if it is embedded.
+   * @returns {number} - The spellcasting rank of the actor.
+   */
+  getSpellcastingRank( ) {
+    const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
+      game.settings.get( "ed4e", "edidSpellcasting" ),
+      "talent",
+    );
+    return spellcastingTalent?.system.level;
+  }
 
   /**
    * Cast this spell using the given spellcasting ability.
