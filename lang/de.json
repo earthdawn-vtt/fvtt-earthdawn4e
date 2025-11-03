@@ -3716,6 +3716,10 @@
       },
       "Scene": {
         "earthdawn":                               "Earthdawn"
+      },
+      "TruePattern": {
+        "details":                                 "Details",
+        "rankLevel":                               "Rang {level}"
       }
     },
     "ToolTips": {
