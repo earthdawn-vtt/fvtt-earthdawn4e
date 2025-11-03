@@ -3716,6 +3716,10 @@
       },
       "Scene": {
         "earthdawn":                               "TODO: Add translation"
+      },
+      "TruePattern": {
+        "details":                                 "TODO: Add translation",
+        "rankLevel":                               "TODO: Add translation"
       }
     },
     "ToolTips": {
