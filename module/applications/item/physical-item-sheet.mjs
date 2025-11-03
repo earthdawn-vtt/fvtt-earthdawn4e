@@ -106,7 +106,8 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     const tabsConfig = {
       ...this.constructor.TABS[ group ],
     };
-    const threadRanks = Object.values( this.document.system.truePattern?.threadItemLevels ) || [];
+    const threadItemLevels = this.document.system.truePattern?.threadItemLevels;
+    const threadRanks = threadItemLevels ? Object.values( threadItemLevels ) : [];
     const threadRankTabs = threadRanks.map( levelData => {
       return {
         id:    `level-${ levelData.level }`,
