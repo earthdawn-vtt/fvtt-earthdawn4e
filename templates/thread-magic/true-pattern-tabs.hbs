@@ -1,4 +1,4 @@
-<div class="truePatternInputs scrollable flexrow">
+<div class="truePatternInputs flexrow scrollable">
 
   <!--tabs nav-->
   {{> "templates/generic/tab-navigation.hbs"
@@ -6,79 +6,82 @@
     tabs=threadRankTabs
   }}
 
-  <!-- basic information -->
-  {{> "systems/ed4e/templates/thread-magic/true-pattern-basic-information.hbs"}}
+  <!-- tabs -->
+  <div class="tabs-container flexcol">
+    <!-- basic information -->
+    {{> "systems/ed4e/templates/thread-magic/true-pattern-basic-information.hbs"}}
 
-  <!--thread item levels-->
-  {{#each item.system.truePattern.threadItemLevels}}
-    {{#if this.isVisible}}
+    <!--thread item levels-->
+    {{#each item.system.truePattern.threadItemLevels}}
+      {{#if this.isVisible}}
 
-      <section
-        class="tab {{lookup (lookup @root.threadRankTabs (concat "level-" this.level)) "cssClass"}}"
-        data-group="truePattern"
-        data-tab="level-{{this.level}}"
-      >
+        <section
+          class="tab {{lookup (lookup @root.threadRankTabs (concat "level-" this.level)) "cssClass"}} scrollable flexcol"
+          data-group="truePattern"
+          data-tab="level-{{this.level}}"
+        >
 
-        <fieldset data-level="{{this.level}}">
-          <legend>
-            {{#if (and @root/isGM @root/editable)}}
-              {{> "systems/ed4e/templates/global/button.hbs"
-                type="button"
-                cssClass="item-control inline-button"
-                icon=(concat "fa-light fa-xs " (ifThen this.knownToPlayer @root/config.icons.eye @root/config.icons.eyeSlash))
-                action="toggleRankKnownToPlayer"
-                label=(localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level)
-                tooltip=(localize (ifThen this.knownToPlayer "ED.ToolTips.threadItemHideRankFromPlayer" "ED.ToolTips.threadItemShowRankToPlayer"))
-              }}
-            {{else}}
-              {{localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level}}
-            {{/if}}
-          </legend>
-
-          <fieldset>
+          <fieldset data-level="{{this.level}}">
             <legend>
               {{#if (and @root/isGM @root/editable)}}
                 {{> "systems/ed4e/templates/global/button.hbs"
                   type="button"
                   cssClass="item-control inline-button"
-                  icon=(concat "fa-light fa-xs " (ifThen this.keyKnowledge.isKnown @root/config.icons.eye @root/config.icons.eyeSlash))
-                  action="toggleRankKnowledgeKnownToPlayer"
-                  label=(localize this.schema.fields.keyKnowledge.label)
-                  tooltip=(localize (ifThen this.keyKnowledge.isKnown "ED.ToolTips.threadItemHideRankKnowledgeToPlayer" "ED.ToolTips.threadItemShowRankKnowledgeToPlayer"))
+                  icon=(concat "fa-light fa-xs " (ifThen this.knownToPlayer @root/config.icons.eye @root/config.icons.eyeSlash))
+                  action="toggleRankKnownToPlayer"
+                  label=(localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level)
+                  tooltip=(localize (ifThen this.knownToPlayer "ED.ToolTips.threadItemHideRankFromPlayer" "ED.ToolTips.threadItemShowRankToPlayer"))
                 }}
               {{else}}
-                {{localize this.schema.fields.keyKnowledge.label}}
+                {{localize "ED.Item.PhysicalItems.threadItemLevelHeader" level=this.level}}
               {{/if}}
             </legend>
 
-            {{formGroup this.schema.fields.keyKnowledge.fields.question
-                        name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.question")
-                        value=this.keyKnowledge.question disabled=(not @root/editable)}}
+            <fieldset>
+              <legend>
+                {{#if (and @root/isGM @root/editable)}}
+                  {{> "systems/ed4e/templates/global/button.hbs"
+                    type="button"
+                    cssClass="item-control inline-button"
+                    icon=(concat "fa-light fa-xs " (ifThen this.keyKnowledge.isKnown @root/config.icons.eye @root/config.icons.eyeSlash))
+                    action="toggleRankKnowledgeKnownToPlayer"
+                    label=(localize this.schema.fields.keyKnowledge.label)
+                    tooltip=(localize (ifThen this.keyKnowledge.isKnown "ED.ToolTips.threadItemHideRankKnowledgeToPlayer" "ED.ToolTips.threadItemShowRankKnowledgeToPlayer"))
+                  }}
+                {{else}}
+                  {{localize this.schema.fields.keyKnowledge.label}}
+                {{/if}}
+              </legend>
+
+              {{formGroup this.schema.fields.keyKnowledge.fields.question
+                          name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.question")
+                          value=this.keyKnowledge.question disabled=(not @root/editable)}}
+              {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
+                {{formGroup this.schema.fields.keyKnowledge.fields.answer
+                            name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.answer")
+                            value=this.keyKnowledge.answer disabled=(not @root/editable)}}
+              {{/if}}
+            </fieldset>
+
             {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
-              {{formGroup this.schema.fields.keyKnowledge.fields.answer
-                          name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.answer")
-                          value=this.keyKnowledge.answer disabled=(not @root/editable)}}
+
+              {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @key ".deed")
+                          value=this.deed disabled=(not @root/editable)}}
+              {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @key ".effect")
+                          value=this.effect disabled=(not @root/editable)}}
+              {{formGroup this.schema.fields.activeEffects
+                          name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                          value=this.activeEffects disabled=(not @root/editable)}}
+              {{formGroup this.schema.fields.abilities
+                          name=(concat "system.truePattern.threadItemLevels." @key ".abilities") value=this.abilities
+                          disabled=(not @root/editable)}}
             {{/if}}
           </fieldset>
 
-          {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
+        </section>
 
-            {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @key ".deed")
-                        value=this.deed disabled=(not @root/editable)}}
-            {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @key ".effect")
-                        value=this.effect disabled=(not @root/editable)}}
-            {{formGroup this.schema.fields.activeEffects
-                        name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
-                        value=this.activeEffects disabled=(not @root/editable)}}
-            {{formGroup this.schema.fields.abilities
-                        name=(concat "system.truePattern.threadItemLevels." @key ".abilities") value=this.abilities
-                        disabled=(not @root/editable)}}
-          {{/if}}
-        </fieldset>
-
-      </section>
-
-    {{/if}}
-  {{/each}}
+      {{/if}}
+    {{/each}}
+  </div>
 
 </div>

@@ -63,8 +63,8 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
     "true-pattern": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/true-pattern.hbs",
       id:         "-true-pattern",
-      classes:    [ "true-pattern", "scrollable" ],
-      scrollable: [ "", "div.truePatternInputs", ],
+      classes:    [ "true-pattern" ],
+      scrollable: [ "", ".scrollable[data-group=\"truePattern\"]", ],
       templates:  [
         "systems/ed4e/templates/thread-magic/true-pattern-tabs.hbs",
       ],
