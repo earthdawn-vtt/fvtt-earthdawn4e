@@ -2808,3 +2808,19 @@ section.spells .matrix-cards .matrix-card .spell-link {
     border: inherit;
   }
 }*/
+section[data-tab="true-pattern"] {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: min(100%, 100vh);
+}
+section[data-tab="true-pattern"] .truePatternInputs {
+  gap: 1rem;
+  min-height: 0;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+section[data-tab="true-pattern"] .truePatternInputs nav.tabs {
+  flex: 0 0 60px;
+  max-width: 100px;
+}
