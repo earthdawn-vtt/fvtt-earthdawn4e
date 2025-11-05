@@ -1,5 +1,5 @@
 # earthdawn4eV2
 
 # Credits
-Icons made by {AUTHOR1,AUTHOR2...}. Available on
+Icons made by {Lorc}. Available on
 https://game-icons.net.
