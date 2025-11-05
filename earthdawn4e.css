@@ -1261,7 +1261,7 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
-  /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend/Movement ======================= */
+  /* ======================= Favourites/Recovery/Karma/Devotion/Initiative/Legend/Movement/Special Abilities ======================= */
   /* ======================= General tab ======================= */
   /* ======================= Notes tab ======================= */
   /* ======================= Abilities tab ======================= */
@@ -1354,9 +1354,11 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(5),
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--item:nth-child(4),
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--item:nth-child(6),
-.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--item:nth-child(6) {
+.application.sheet.earthdawn4e.actor .window-content .thread-card__grid--item:nth-child(6),
+.application.sheet.earthdawn4e.actor .window-content .special-abilities-card__grid--item:nth-child(3) {
   padding: 0 4px 0 0;
   color: var(--color-button-icon);
+  text-align: right;
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2),
@@ -1446,6 +1448,11 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container {
   display: grid;
   grid-template-columns: minmax(30px, 1fr) minmax(30px, 1fr) minmax(100px, 20%);
+}
+.application.sheet.earthdawn4e.actor .window-content .special-abilities-card__grid--container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(30px, 30px) minmax(30px, 1fr) minmax(30px, 20%);
 }
 .application.sheet.earthdawn4e.actor .window-content .general .layout__col--2:first-of-type {
   flex: 0 0 260px;
