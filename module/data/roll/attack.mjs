@@ -1,5 +1,6 @@
 import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 /**
  * @typedef { object } EdAttackRollOptionsInitializationData
@@ -155,8 +156,18 @@ export default class AttackRollOptions extends EdRollOptions {
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
 
+    newContext.attackAbility = await fromUuid( this.attackAbilityUuid );
+    newContext.attackAbilityContentAnchor = newContext.attackAbility
+      ? createContentAnchor( newContext.attackAbility ).outerHTML
+      : undefined;
+    newContext.weapon = await fromUuid( this.weaponUuid );
+    newContext.weaponContentAnchor = newContext.weapon
+      ? createContentAnchor( newContext.weapon ).outerHTML
+      : undefined;
+
     newContext.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
-    newContext.reactionsByTarget = await this._getDefendantReactions();
+    newContext.reactionsByTarget = await this._getDefendantItems( "", "reaction" );
+    newContext.maneuversByTarget = await this._getDefendantItems( "maneuver", "" );
     newContext.maneuvers = await this._getManeuvers();
 
     newContext.weaponType = this.weaponType;
@@ -165,19 +176,25 @@ export default class AttackRollOptions extends EdRollOptions {
       "unarmed": "systems/ed4e/assets/icons/fist-smashing.svg",
     };
 
+    newContext.randomId = foundry.utils.randomID();
+
     return newContext;
   }
 
-  async _getDefendantReactions() {
+  /**
+   * Get the items with the given roll type for all targeted actors.
+   * @param {string} itemType The type of the items to get.
+   * @param {string} rollType The roll type of the items to get.
+   * @returns {Promise<{}>} A mapping of target actor names to their items with the given roll type.
+   */
+  async _getDefendantItems( itemType = "", rollType = "" ) {
     const reactionsByTarget = {};
     for ( const targetedTokenUuid of this.target.tokens ) {
       const targetedActor = ( await fromUuid( targetedTokenUuid ) ).actor;
       if ( targetedActor ) {
         const reactions = targetedActor.items.filter(
-          item => (
-            item.system.rollType === "reaction" )
-            && ( item.system.rollTypeDetails?.reaction?.defenseType === "physical"
-            )
+          item => ( !itemType || item.type === itemType )
+            && ( !rollType || item.system.rollType === rollType )
         );
         if ( reactions ) reactionsByTarget[targetedActor.name] = reactions;
       }
