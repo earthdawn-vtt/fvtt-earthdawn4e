@@ -920,6 +920,50 @@ h3.label--rail .label__text::after {
   font-weight: bold;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
+.chat-message .flavor-text .attack-visualization h4 {
+  text-decoration-line: underline overline;
+}
+.chat-message .flavor-text .attack-visualization .target-entry {
+  padding: 0.4em 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 0.5em;
+}
+.chat-message .flavor-text .attack-visualization .target-entry img {
+  flex-grow: 1;
+}
+.chat-message .flavor-text .attack-visualization .target-entry .target-name {
+  flex-grow: 1;
+  font-size: larger;
+}
+.chat-message .flavor-text .attack-visualization .target-entry .target-actions {
+  flex-grow: 2;
+  text-align: right;
+}
+.chat-message .flavor-text .attack-visualization details[open] summary i {
+  rotate: 90deg;
+}
+.chat-message .flavor-text .attack-visualization summary {
+  list-style: none;
+  cursor: pointer;
+}
+.chat-message .flavor-text .attack-visualization summary:hover i {
+  rotate: 90deg;
+}
+.chat-message .flavor-text .attack-visualization .knack-maneuvers {
+  text-align: center;
+}
+.chat-message .flavor-text .attack-visualization .knack-maneuvers summary:after,
+.chat-message .flavor-text .attack-visualization .knack-maneuvers summary:before {
+  content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+  text-decoration: line-through;
+}
+.chat-message .flavor-text .attack-visualization div.reaction-buttons {
+  padding-top: 0.8em;
+}
+.chat-message .flavor-text .attack-visualization details div.reaction-buttons {
+  text-align: right;
+}
 .chat-message .flavor-text .damage-visualization {
   align-items: center;
   text-align: center;
@@ -956,6 +1000,10 @@ h3.label--rail .label__text::after {
 }
 .chat-message .flavor-text .damage-visualization .armor-indicator.none {
   color: #777;
+}
+.chat-message .flavor-text:has(.attack-visualization) {
+  background-image: url('assets/chat/messages/background-attack.svg');
+  background-repeat: no-repeat;
 }
 .chat-message .flavor-text:has(.thread-weaving-visualization) {
   background-image: url('assets/icons/thread-transparent.svg');
