@@ -346,7 +346,7 @@ slide-toggle[checked] .slide-toggle-thumb {
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
-  color: white;
+  color: var(--color-text-primary);
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -373,6 +373,7 @@ slide-toggle[checked] .slide-toggle-thumb {
 }
 .input__clear-input--centered {
   font-size: 16px;
+  color: var(--color-text-primary);
   background-color: transparent;
   text-align: center;
   padding: 0.2em;
@@ -1648,6 +1649,11 @@ h3.label--rail .label__text::after {
   gap: 0.5rem;
   margin: 0 0 10px 0;
 }
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--container a.button.active,
+.application.sheet.earthdawn4e.actor .window-content .conditions__grid--container button.active {
+  outline: none;
+  box-shadow: none;
+}
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
   display: flex;
   align-items: center;
@@ -1996,6 +2002,16 @@ h3.label--rail .label__text::after {
 }
 .application.sheet.earthdawn4e.actor .window-resizable-handle {
   z-index: 5;
+}
+.application.sheet.earthdawn4e.actor .prosemirror .editor-content h1,
+.application.sheet.earthdawn4e.actor .prosemirror .editor-content h2,
+.application.sheet.earthdawn4e.actor .prosemirror .editor-content h3,
+.application.sheet.earthdawn4e.actor .prosemirror .editor-content p {
+  font-size: var(--font-size-15);
+  border: none;
+  background: none;
+  box-shadow: none;
+  text-align: left;
 }
 .ability-card__grid--item .roll-icon__hover,
 .knack-card__grid--item .roll-icon__hover,

@@ -16,6 +16,7 @@
           <div class="top-columns__grid--item top-col--left">
 
             <div class="defenses__block">
+
               <h3 class="header--centered label--rail">
                 <span class="label__text">{{localize "ED.Actor.Header.defenses"}}</span>
               </h3>
@@ -26,12 +27,12 @@
                     {{localize "ED.Actor.Characteristics.physicalDefense"}}
                   </label>
                   <div class="buffer-input">
-                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
                     <input id="characteristic-defense-physical"
-                           class="input__rectangle-input--centered"
+                           class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                            name="system.characteristics.defenses.physical.value"
                            value="{{actor.system.characteristics.defenses.physical.value}}">
-                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
                   </div>
                 </div>
 
@@ -40,12 +41,12 @@
                     {{localize "ED.Actor.Characteristics.mysticalDefense"}}
                   </label>
                   <div class="buffer-input">
-                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
                     <input id="characteristic-defense-mystical"
-                           class="input__rectangle-input--centered"
+                           class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                            name="system.characteristics.defenses.mystical.value"
                            value="{{actor.system.characteristics.defenses.mystical.value}}">
-                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
                   </div>
                 </div>
 
@@ -54,12 +55,12 @@
                     {{localize "ED.Actor.Characteristics.socialDefense"}}
                   </label>
                   <div class="buffer-input">
-                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
                     <input id="characteristic-defense-social"
-                           class="input__rectangle-input--centered"
+                           class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                            name="system.characteristics.defenses.social.value"
                            value="{{actor.system.characteristics.defenses.social.value}}">
-                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
                   </div>
                 </div>
               </div>
@@ -76,12 +77,12 @@
                     {{localize "ED.Actor.Characteristics.physicalArmor"}}
                   </label>
                   <div class="buffer-input">
-                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
                     <input id="characteristic-armor-physical"
-                           class="input__rectangle-input--centered"
+                           class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                            name="system.characteristics.armor.physical.value"
                            value="{{actor.system.characteristics.armor.physical.value}}">
-                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
                   </div>
                 </div>
 
@@ -90,12 +91,12 @@
                     {{localize "ED.Actor.Characteristics.mysticalArmor"}}
                   </label>
                   <div class="buffer-input">
-                    <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
                     <input id="characteristic-armor-mystical"
-                           class="input__rectangle-input--centered"
+                           class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                            name="system.characteristics.armor.mystical.value"
                            value="{{actor.system.characteristics.armor.mystical.value}}">
-                    <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
                   </div>
                 </div>
               </div>

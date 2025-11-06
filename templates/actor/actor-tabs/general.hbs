@@ -197,22 +197,22 @@
             <div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
             <div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
           </div>
-           <div class="initiative-npc__grid--container">
-
-            <div class="buffer-input">
-              {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-              <input id="characteristic-initiative"
-                    class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                    name="system.initiative"
-                    value="{{actor.system.initiative}}">
-              {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+          <div class="initiative-npc__grid--container">
+            <div class="initiative__grid--item">
+              <div class="buffer-input">
+                {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+                <input id="characteristic-initiative"
+                      class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+                      name="system.initiative"
+                      value="{{actor.system.initiative}}">
+                {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+              </div>
             </div>
-
-            <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+            <div class="initiative__grid--item">
+              <input class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                     name="system.actions"
                     value="{{actor.system.actions}}">
-
-           </div>
+            </div>
           </div>
         {{/if}}
       </div>
@@ -257,7 +257,7 @@
           </label>
 
           <div class="movement__grid--item">
-            <h3>{{localize "ED.Actor.Buttons.jumpUp"}}</label>
+            <h3>{{localize "ED.Actor.Buttons.jumpUp"}}</h3>
           </div>
 
           <div class="movement__grid--item">
@@ -314,7 +314,6 @@
             {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
           </div>
 
-
           <button type="button"
               class="action-buttons icon--button icon icon--jump-up"
               data-action="jumpUp"
@@ -336,7 +335,7 @@
         <span class="favorite__header-label">{{localize "ED.Actor.Header.favorites"}}</span>
       </h2>
       <div class="container__block container__custom">
-        <div class="favorite__grid--container">  {{!-- keep this OPEN --}}
+        <div class="favorite__grid--container">
           {{#each favoriteItems as |favorite|}}
             <div class="favorite-item-row {{#if @root.editable}}has-delete{{/if}} {{#unless favorite.isValid}}favorite-broken{{/unless}}">
               {{#if favorite.isValid}}          
@@ -364,6 +363,8 @@
             </div>
           {{/each}}
         </div>
+      </div>
+
     </div>
   </div>
 </section>
