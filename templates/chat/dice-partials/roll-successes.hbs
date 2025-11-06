@@ -1,6 +1,6 @@
 <div class="roll-successes flexrow">
   <span title="{{localize "ED.Rolls.targetDifficulty"}}">
-  <i class="fa-light fa-crosshairs"></i>{{ifThen target.public target.total "???"}}
+  <i class="fa-light fa-crosshairs"></i>{{ifThen (or target.public isGM) target.total "???"}}
   </span>
   &#124;
   <span title="{{localize "ED.Rolls.rollResult"}}">
