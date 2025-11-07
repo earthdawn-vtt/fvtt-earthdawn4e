@@ -256,7 +256,7 @@
 									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 									name="system.initiative"
 									value="{{actor.system.initiative}}">
-								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 							</div>
 						</div>
 						<div
@@ -282,13 +282,13 @@
 								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}"
 								data-tooltip-direction="UP"
 								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}">
-								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 								<input
 									id="characteristic-initiative"
 									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 									name="system.initiative"
 									value="{{actor.system.initiative}}">
-								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 							</div>
 						</div>
 						<div class="initiative__grid--item">
@@ -372,14 +372,14 @@
 						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.hint'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.hint'}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 						<input
 							id="movement-walk"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							name="system.characteristics.movement.walk"
 							type="number"
 							value="{{actor.system.characteristics.movement.walk}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -387,14 +387,14 @@
 						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.hint'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.hint'}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 						<input
 							id="movement-climb"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							name="system.characteristics.movement.climb"
 							type="number"
 							value="{{actor.system.characteristics.movement.climb}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -402,14 +402,14 @@
 						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.hint'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.hint'}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 						<input
 							id="movement-fly"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							name="system.characteristics.movement.fly"
 							type="number"
 							value="{{actor.system.characteristics.movement.fly}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -417,14 +417,14 @@
 						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.hint'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.hint'}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 						<input
 							id="movement-swim"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							name="system.characteristics.movement.swim"
 							type="number"
 							value="{{actor.system.characteristics.movement.swim}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<div
@@ -432,14 +432,14 @@
 						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.hint'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.hint'}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 						<input
 							id="movement-burrow"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							name="system.characteristics.movement.burrow"
 							type="number"
 							value="{{actor.system.characteristics.movement.burrow}}">
-						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
 					<button
