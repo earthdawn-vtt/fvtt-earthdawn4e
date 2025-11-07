@@ -119,20 +119,23 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   };
 
   /**
-   * @returns {object} An object containing localized error messages.
+   * Error messages for character generation validation.
+   * @type {Record<string, string>}
    */
-  static get errorMessages() {
-    return {
-      noNamegiver:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.noNamegiver" ),
-      noClass:             game.i18n.localize( "ED.Dialogs.CharGen.Errors.noClass" ),
-      attributes:          game.i18n.localize( "ED.Dialogs.CharGen.Errors.attributes" ),
-      talentRanksLeft:     game.i18n.localize( "ED.Dialogs.CharGen.Errors.talentRanksLeft" ),
-      skillRanksLeft:      game.i18n.localize( "ED.Dialogs.CharGen.Errors.skillRanksLeft" ),
-      notFinished:         game.i18n.localize( "ED.Dialogs.CharGen.Errors.notFinished" ),
-      maxLanguagesToSpeak: game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak" ),
-      maxLanguagesToRead:  game.i18n.localize( "ED.Dialogs.CharGen.Errors.maxLanguagesToRead" ),
-    };
-  }
+  static ERROR_MESSAGES = {
+    noNamegiver:         "ED.Dialogs.CharGen.Errors.noNamegiver",
+    noClass:             "ED.Dialogs.CharGen.Errors.noClass",
+    attributes:          "ED.Dialogs.CharGen.Errors.attributes",
+    talentRanksLeft:     "ED.Dialogs.CharGen.Errors.talentRanksLeft",
+    skillRanksLeft:      "ED.Dialogs.CharGen.Errors.skillRanksLeft",
+    notFinished:         "ED.Dialogs.CharGen.Errors.notFinished",
+    maxLanguagesToSpeak: "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak",
+    maxLanguagesToRead:  "ED.Dialogs.CharGen.Errors.maxLanguagesToRead",
+  };
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * Wait for dialog to be resolved.
@@ -210,10 +213,6 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       new this( data, options, docCollections ).render( true, { focus: true } );
     } );
   }
-
-  // endregion
-
-  // region Static Methods
 
   /**
    * Retrieves a list of equipment items of the specified type.
@@ -395,7 +394,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
    */
   _displayValidationError( level, type ) {
-    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.errorMessages[type] ) );
+    if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.ERROR_MESSAGES[type] ) );
   }
 
   // endregion
