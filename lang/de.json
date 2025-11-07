@@ -96,7 +96,7 @@
         "dexterity":                               "Geschick",
         "dexterityAbbr":                           "Ges",
         "increase":                                "Steig.",
-        "increaseAbbr":                            "TODO: Add translation",
+        "increaseAbbr":                            "Steig.",
         "perception":                              "Wahrnehmung",
         "perceptionAbbr":                          "Wah",
         "strength":                                "Stärke",
@@ -109,11 +109,11 @@
       "Buttons": {
         "halfMagic":                               "Halbmagie",
         "initiative":                              "Initiative",
-        "jumpUp":                                  "Aufspringen",
-        "knockdownTest":                           "Niederschlag",
+        "jumpUp":                                  "Aufspr.",
+        "knockdownTest":                           "Nieder.",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
-        "showInChat":                              "TODO: Add translation",
+        "showInChat":                              "Zeige im Chat",
         "tailAttack":                              "Schwanzangriff",
         "takeDamage":                              "Schaden",
         "unarmedAttack":                           "Unbewaffneter Angriff",
@@ -173,19 +173,19 @@
           "brokenReference":                       "Defekter Favorit",
           "macroNotFound":                         "Das Makro für diesen Favoriten existiert nicht mehr und kann nicht ausgeführt werden."
         },
-        "abilities":                               "TODO: Add translation",
+        "abilities":                               "Fähigkeiten",
         "action":                                  "Aktion",
         "active":                                  "Aktiv",
         "ammunition":                              "Munition",
         "amount":                                  "Menge",
         "armor":                                   "Rüstung",
-        "artisanSkills":                           "TODO: Add translation",
+        "artisanSkills":                           "Kunsthandwerk",
         "attacks":                                 "Angriffe",
         "attribute":                               "Attribut",
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
         "castingDifficulty":                       "Zauberschwierigkeit",
-        "challengeRating":                         "TODO: Add translation",
+        "challengeRating":                         "Herausforderungsgrad",
         "circle":                                  "Kreis",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
@@ -201,16 +201,16 @@
         "encumbrance":                             "Belastung",
         "equipment":                               "Ausrüstung",
         "equippedStatus":                          "Ausgerüstet",
-        "extraSuccesses":                          "Zusätzliche Erfolge",
+        "extraSuccesses":                          "Erfolge",
         "favorites":                               "Favoriten",
-        "generalSkills":                           "TODO: Add translation",
+        "generalSkills":                           "Allgemeine Fertigkeiten",
         "healthRating":                            "Gesundheit",
         "inactive":                                "Ausgeschaltet?",
         "information":                             "Informationen",
         "initiative":                              "Initiative",
         "initiativePenalty":                       "Initiative Malus",
         "karma":                                   "Karma",
-        "knowledgeSkills":                         "TODO: Add translation",
+        "knowledgeSkills":                         "Wissensfertigkeiten",
         "languages":                               "Sprachen",
         "languagesSpoken":                         "Gesprochene Sprachen",
         "languagesWritten":                        "Geschriebene Sprachen",
@@ -302,7 +302,7 @@
         "brokenFavoriteReference":                 "Dieser Favorit verweist auf ein Makro, das nicht mehr existiert. Sie können diesen Favoriten löschen.",
         "carried":                                 "Getragen",
         "damagePhysical":                          "Körperlich",
-        "damageSubdual":                           "TODO: Add translation",
+        "damageSubdual":                           "Betäubungsschaden",
         "equipped":                                "Ausgerüstet",
         "extraSuccesses":                          "Benötigte extra Erfolge",
         "karmaAlways":                             "Benutze immer Karma",
@@ -1010,16 +1010,16 @@
               },
               "legendPoints": {
                 "legendCurrent": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Aktuelle Legendenpunkte des Akteurs",
+                  "label":                         "Aktuell"
                 },
                 "legendStatus": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Ruhm Status des Akteurs",
+                  "label":                         "Status"
                 },
                 "legendTotal": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Gesamtlegendenpunkte des Akteurs",
+                  "label":                         "Gesamt"
                 }
               },
               "movement": {
@@ -1186,8 +1186,8 @@
               "label":                             "Initiative"
             },
             "initiativePenalty": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Initiativemalus des Akteurs",
+              "label":                             "Initiativemalus"
             },
             "karma": {
               "freeAttributePoints": {
@@ -3593,14 +3593,16 @@
         "label":                                   "Debugging Einstellungen"
       },
       "Edid": {
-        "creatureAttack":                          "ED-ID für Kreaturenangriff",
-        "creatureAttackHint":                      "Identifiziert die Fähigkeit als Kreaturenangriff",
-        "knockdown":                               "TODO: Add translation",
-        "knockdownHint":                           "TODO: Add translation",
+        "grimoire":                                "ED-ID für Grimoire",
+        "grimoireHint":                            "Identifiziert einen Ausrüstungsgegenstand als Grimoire",
+        "itemHistory":                             "ED-ID für Artefaktgeschichte",
+        "itemHistoryHint":                         "Identifiziert die Fähigkeit die für Artefaktgeschichte verwendet wird",
         "languageRW":                              "ED-ID für Lesen/Schreiben",
         "languageRWHint":                          "Identifiziert die Fähigkeit Lesen/Schreiben",
         "languageSpeak":                           "ED-ID für Fremdsprachen",
         "languageSpeakHint":                       "Identifiziert die Fähigkeit Fremdsprachen",
+        "learnImprovedSpells":                     "ED-ID für Verbesserte Zauber lernen",
+        "learnImprovedSpellsHint":                 "Identifiziert die Fähigkeit die für Verbesserte Zauber lernen verwendet wird",
         "patterncraft":                            "ED-ID für Strukturverstehen",
         "patterncraftHint":                        "Identifiziert die Fähigkeit die für Strukturverstehen verwendet wird",
         "questorDevotion":                         "ED-ID für Questor-Weihekraft",
@@ -3616,7 +3618,9 @@
         "unarmedCombat":                           "ED-ID für Waffenlosen Kampf",
         "unarmedCombatHint":                       "Identifiziert die Fähigkeit die für den Waffenlosen Kampf verwendet wird",
         "versatility":                             "ED-ID für Vielseitigkeit",
-        "versatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird"
+        "versatilityHint":                         "Identifiziert die Fähigkeit die für Vielseitigkeit verwendet wird",
+        "willforce":                               "ED-ID für Willenskraft",
+        "willforceHint":                           "Identifiziert die Fähigkeit die für Willenskraft verwendet wird"
       },
       "Encumbrance": {
         "encumbrance":                             "Belastung",
@@ -3628,7 +3632,7 @@
         "jumpUpStrainCost":                        "Überanstrengungsschaden für Aufspringen",
         "jumpUpStrainCostHint":                    "Wie viel Überanstrengungsschaden verursacht das Aufspringen?",
         "languages":                               "Sprachen",
-        "languagesHint":                           "Welche Sprachen sollen verwendet werden?",
+        "languagesHint":                           "Welche Sprachen sollen verwendet werden? Das Löschen von Sprachen kann existierende Charaktere ungültig machen. Bitte überprüft zuvor, ob die Sprache bei keinem Charakter ausgewählt ist.",
         "minimumDifficulty":                       "Minimale Schwierigkeit",
         "minimumDifficultyHint":                   "Setze die minimale Schwierigkeit für Proben",
         "spellcastingTypes":                       "Spruchzauberei Typen",
