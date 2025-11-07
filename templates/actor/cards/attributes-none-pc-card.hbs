@@ -1,12 +1,14 @@
 {{#each actor.system.attributes}}
   <div class="attribute-card__grid--container attribute__roll">
-    <button type="button"
-        class="action-buttons icon--button icon icon--d20 rollable"
-        data-action="rollable"
-        data-roll-type="attribute"
-        data-attribute="{{@key}}"
-        data-tooltip=""
-        aria-label="{{localize 'ED.Roll.Attribute'}}">
+    <button
+      type="button"
+      class="action-buttons icon--button icon icon--d20 rollable"
+      data-action="rollable"
+      data-roll-type="attribute"
+      data-attribute="{{@key}}"
+      data-tooltip="Roll {{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}"
+      data-tooltip-direction="UP"
+      aria-label="{{localize 'ED.Roll.Attribute'}}">
     </button>
 
     <div class="attribute-card__grid--item attribute__name">
@@ -19,20 +21,29 @@
     <div class="attribute-card__grid--item"></div>
 
     {{#unless @root.editable}}
-    <div class="attribute-card__grid--item">
-        <div class="buffer-input">
-            <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>            
-                <input class="input__clear-input--centered" value="{{this.step}}" readonly>
-            <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
-        </div>        
-    </div>
+      <div class="attribute-card__grid--item">
+        <div
+          class="buffer-input"
+          data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
+          data-tooltip-direction="UP"
+          aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
+          <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
+          <input class="input__clear-input--centered" value="{{this.step}}" readonly>
+          <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+        </div>
+      </div>
     {{/unless}}
+
     {{#if @root.editable}}
-    <div class="attribute-card__grid--item ">
-        <div class="buffer-input">
-            <input class="input__square-input--centered" value="{{this.step}}" readonly>
-        </div>        
-    </div>
+      <div class="attribute-card__grid--item">
+        <div
+          class="buffer-input"
+          data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
+          data-tooltip-direction="UP"
+          aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
+          <input class="input__square-input--centered" value="{{this.step}}" readonly>
+        </div>
+      </div>
     {{/if}}
   </div>
 {{/each}}
