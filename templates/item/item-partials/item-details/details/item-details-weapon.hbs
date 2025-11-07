@@ -6,7 +6,10 @@
     {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
     {{formField systemFields.wieldingType name="system.wieldingType" value=item.system.wieldingType localize=true}}
   </fieldset>
-  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
   {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+  <fieldset>
+    <legend>{{localize "TODO.Item Details"}}</legend>
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
   {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
+  </fieldset>
 </div>

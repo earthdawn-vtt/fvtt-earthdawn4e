@@ -2,12 +2,15 @@ import ActorWorkflow from "./actor-workflow.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import { getSetting } from "../../settings.mjs";
 import AttackRollOptions from "../../data/roll/attack.mjs";
-import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import Rollable from "./rollable.mjs";
 
 /**
  * @typedef {object} AttackWorkflowOptions
- * @property {"tail"|"unarmed"|"weapon"} [attackType="unarmed"] The type of attack being performed.
+ * @property {"tail"|"unarmed"|"weapon"} [attackType] The type of attack being performed. Defaults to "unarmed", if no
+ * weapon is provided.
+ * @property {ItemEd} [weapon] The weapon being used for the attack.
+ * @property {ItemEd} [attackAbility] The ability used for the attack. Can be omitted to have it determined from
+ * the attackType and/or weapon.
  */
 
 export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
@@ -36,18 +39,17 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
    */
   constructor( attacker, options = {} ) {
     super( attacker, options );
-    this._attackType = options.attackType ?? "unarmed";
 
-    if ( this._attackType !== "unarmed" ) this._steps.push( this.#setWeapon.bind( this ) );
-    this._steps.push(
-      this.#setAbility.bind( this ),
-      this.#createRollOptions.bind( this ),
-      this.#createAttackRoll.bind( this ),
-      this.#rollAttack.bind( this ),
-      this._evaluateResultRoll.bind( this ),
-      this._processRoll.bind( this ),
-      this._rollToChat.bind( this ),
-    );
+    this._rollToMessage = true;
+
+    this._ability = options.attackAbility;
+    this._weapon = options.weapon;
+    this._attackType = options.attackType
+    ?? this._weapon ? "weapon" : "unarmed";
+
+    if ( !this._weapon && this._attackType !== "unarmed" ) this._steps.push( this.#setWeapon.bind( this ) );
+    if ( !this._ability ) this._steps.push( this.#setAbility.bind( this ) );
+    this._initRollableSteps();
   }
 
   async #setWeapon() {
@@ -73,57 +75,16 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
-  async #createRollOptions() {
+  /** @inheritdoc */
+  async _prepareRollOptions() {
     this._rollOptions = AttackRollOptions.fromActor(
       {
-        ...this.getCommonAttackRollData(),
-        weaponType: this._weapon?.system.weaponType ?? "unarmed",
-        weaponUuid: this._weapon?.uuid ?? null,
-        chatFlavor: game.i18n.format( `TODO.ED.Chat.Flavor.${this._attackType}Attack`, {} )
+        weapon:        this._weapon ?? null,
+        attackAbility: this._ability ?? null,
+        attacker:      this._actor,
       },
       this._actor,
     );
-  }
-
-  async #createAttackRoll() {
-    this._roll = await RollPrompt.waitPrompt(
-      this._rollOptions,
-      {
-        rollData: this._actor,
-      }
-    );
-  }
-
-  async #rollAttack() {
-    // currently used as intended, as roll processing is still part of the actor document
-    this._result = this._roll;
-  }
-
-  getCommonAttackRollData() {
-    const targetTokens = game.user.targets;
-    const maxDifficulty = Math.max( ...[ ...targetTokens ].map(
-      token => token.actor.system.characteristics.defenses.physical.value
-    ) );
-
-    return {
-      step:       {
-        base:      this._ability?.system.rankFinal ?? this._actor.system.attributes.dex.step,
-        modifiers: {},
-      },
-      extraDice:  {},
-      target:     {
-        base:      maxDifficulty,
-        modifiers: {},
-        public:    false,
-        tokens:    targetTokens.map( token => token.document.uuid ),
-      },
-      strain:     {
-        base:      0,
-        modifiers: {},
-      },
-      testType:   "action",
-      rollType:   "attack",
-    };
   }
 
 }

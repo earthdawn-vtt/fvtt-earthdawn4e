@@ -632,6 +632,8 @@ export default class EdRollOptions extends SparseDataModel {
   async getFlavorTemplateData( context ) {
     return {
       ...context,
+      config:       ED4E,
+      isGM:         game.user.isGM,
       customFlavor: context.customFlavor || this._getChatFlavor(),
     };
   }

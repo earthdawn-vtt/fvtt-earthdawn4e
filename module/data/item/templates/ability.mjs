@@ -4,10 +4,10 @@ import ED4E from "../../../config/_module.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
-import AttackRollOptions from "../../roll/attack.mjs";
 import AbilityRollOptions from "../../roll/ability.mjs";
 import RollProcessor from "../../../services/roll-processor.mjs";
 import CombatDamageWorkflow from "../../../workflows/workflow/damage-workflow.mjs";
+import AttackWorkflow from "../../../workflows/workflow/attack-workflow.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -271,27 +271,15 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
       }
     }
 
-    const rollOptions = this.baseRollOptions;
-    const rollOptionsUpdate = {
-      ...rollOptions.toObject(),
-      rollingActorUuid: this.containingActor.uuid,
-      target:           { 
-        tokens: game.user.targets.map( token => token.document.uuid ),
-        base:   this.getDifficulty(),
-      },
-      weaponType:       this.rollTypeDetails.attack.weaponType,
-      weaponUuid:       weapon?.uuid ?? null,
-      chatFlavor:       "AbilityTemplate: ATTACK ROLL",
-      rollType:         "attack", // for now just basic attack, later maybe `attack${ this.rollTypeDetails.attack.weaponType }`,
-    };
-
-    const roll = await RollPrompt.waitPrompt(
-      new AttackRollOptions( rollOptionsUpdate ),
+    const attackWorkflow = new AttackWorkflow(
+      this.containingActor,
       {
-        rollData: this.containingActor,
-      }
+        attackAbility: this.parentDocument,
+        weapon:        weapon ?? undefined,
+      },
     );
-    return RollProcessor.process( roll, this.containingActor, { rollToMessage: true } );
+
+    return /** @type {EdRoll} */ attackWorkflow.execute();
   }
 
   async rollDamage() {
