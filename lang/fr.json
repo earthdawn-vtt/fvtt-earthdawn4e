@@ -3593,14 +3593,16 @@
         "label":                                   "TODO: Add translation"
       },
       "Edid": {
-        "creatureAttack":                          "TODO: Add translation",
-        "creatureAttackHint":                      "TODO: Add translation",
-        "knockdown":                               "TODO: Add translation",
-        "knockdownHint":                           "TODO: Add translation",
+        "grimoire":                                "TODO: Add translation",
+        "grimoireHint":                            "TODO: Add translation",
+        "itemHistory":                             "TODO: Add translation",
+        "itemHistoryHint":                         "TODO: Add translation",
         "languageRW":                              "TODO: Add translation",
         "languageRWHint":                          "TODO: Add translation",
         "languageSpeak":                           "TODO: Add translation",
         "languageSpeakHint":                       "TODO: Add translation",
+        "learnImprovedSpells":                     "TODO: Add translation",
+        "learnImprovedSpellsHint":                 "TODO: Add translation",
         "patterncraft":                            "TODO: Add translation",
         "patterncraftHint":                        "TODO: Add translation",
         "questorDevotion":                         "TODO: Add translation",
@@ -3616,7 +3618,9 @@
         "unarmedCombat":                           "TODO: Add translation",
         "unarmedCombatHint":                       "TODO: Add translation",
         "versatility":                             "TODO: Add translation",
-        "versatilityHint":                         "TODO: Add translation"
+        "versatilityHint":                         "TODO: Add translation",
+        "willforce":                               "TODO: Add translation",
+        "willforceHint":                           "TODO: Add translation"
       },
       "Encumbrance": {
         "encumbrance":                             "TODO: Add translation",
