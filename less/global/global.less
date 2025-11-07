@@ -48,13 +48,14 @@
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
-  color: white;
+  color: var(--color-text-primary);
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
   text-align: center;
   width: 25px;
   height: 25px;
+  pointer-events: auto;
 }
 .input__rectangle-input--centered {
   width: 40px;
@@ -72,19 +73,29 @@
   border-radius: 50%;
   padding-top: 5px;
   background: rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
 }
 .input__clear-input--centered {
-  font-size: 16px;
-  background-color: transparent;
-  text-align: center;
-  padding: 0.2em;
-  width: 30px;
-  height: 25px;
-  border: 0;
-  cursor: pointer;
-  user-select: none;
-  pointer-events: none;  
+	font-size: 16px;
+	color: var(--color-text-primary);
+	background-color: transparent;
+	text-align: center;
+	padding: 0.2em;
+	width: 30px;
+	height: 25px;
+	border: 0;
+	cursor: help;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	caret-color: transparent;
+	outline: 0;
+	pointer-events: auto;
+
+	&::selection { background: transparent; }
 }
+
 
 //###########################################################
 //                       Fonts

@@ -23,11 +23,18 @@
           </div>
         {{/unless}}
 
+        {{#if (ne actor.type "character")}}
+        <h2>{{localize "ED.Actor.Header.challengeRating"}}</h2>
+        <div class="container__block">
+          <div>{{formField systemFields.challenge.fields.rate value=actor.system.challenge.rate name="system.challenge.rate" localize=true}}</div>          
+        </div>
+        {{/if}}   
+
         <!-- Circles -->
         <h2>{{localize "ED.Actor.Header.vocations"}}</h2>
         <div class="class-card__grid--body"></div>
 
-        <!-- Disciplines Header -->
+        <!-- Class Header -->
         <div class="container__block">
           <div class="class-card__grid--container container__header text-break__auto disciplines__grid">
             <div class="class-card__grid--item"></div>
@@ -80,38 +87,58 @@
           <h2 class="legend__header one-line__vertical-align margin__none">
             <span class="legend__header-label">Legend</span>
             <span class="legend__header-icons">
-              <button class="legend-point__history icon--button"
-                  data-action="legendPointHistory">
-                  <i class="fa-solid fa-scroll"
-                  title="{{localize "ED.Actor.Buttons.legendHistory"}}"></i>
+              <button
+                class="legend-point__history icon--button"
+                data-action="legendPointHistory"
+                data-tooltip="{{localize 'ED.Actor.Buttons.legendHistory'}}"
+                data-tooltip-direction="UP"
+                aria-label="{{localize 'ED.Actor.Buttons.legendHistory'}}">
+                <i class="fa-solid fa-scroll" aria-hidden="true"></i>
               </button>
             </span>
           </h2>
+
           <div class="container__block container__custom">
             <div class="legend__grid--container container__header">
-              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendCurrent"}}</div>
-              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendTotal"}}</div>
-              <div class="legend__grid--item">{{localize "ED.Actor.Header.legendStatus"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendCurrent.label"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendTotal.label"}}</div>
+              <div class="legend__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendStatus.label"}}</div>
             </div>
+
             <div class="legend__grid--container">
               <div class="legend__grid--item">
-                <input class="input__rectangle-lp-input--centered"
-                      name="system.lp.current"
-                      value="{{actor.system.lp.current}}">
+                <input
+                  class="input__rectangle-lp-input--centered"
+                  name="system.lp.current"
+                  value="{{actor.system.lp.current}}"
+                  data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendCurrent.hint'}}"
+                  data-tooltip-direction="UP"
+                  aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendCurrent.hint'}}">
               </div>
+
               <div class="legend__grid--item">
-                <input class="input__rectangle-lp-input--centered"
-                      name="system.lp.total"
-                      value="{{actor.system.lp.total}}">
+                <input
+                  class="input__rectangle-lp-input--centered"
+                  name="system.lp.total"
+                  value="{{actor.system.lp.total}}"
+                  data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendTotal.hint'}}"
+                  data-tooltip-direction="UP"
+                  aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendTotal.hint'}}">
               </div>
+
               <div class="legend__grid--item">
-                <input class="input__square-input--centered"
-                      name="system.lp.status"
-                      value="{{actor.system.lp.status}}">
+                <input
+                  class="input__square-input--centered"
+                  name="system.lp.status"
+                  value="{{actor.system.lp.status}}"
+                  data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendStatus.hint'}}"
+                  data-tooltip-direction="UP"
+                  aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.legendPoints.legendStatus.hint'}}">
               </div>
             </div>
           </div>
         {{/if}}
+
 
         <!-- Languages -->
         {{#if systemFields.languages}}
@@ -142,21 +169,22 @@
 
       <!-- Right Column: Biography -->
       <div class="layout__col--2">
-
-        <h2>{{localize "ED.Actor.Header.biography"}}</h2>
-        {{> "systems/ed4e/templates/global/editor.hbs"}}
-
-        {{#if (ne actor.type "character")}}
-          <div>
-            {{formField systemFields.challenge.fields.rate value=actor.system.challenge.rate name="system.challenge.rate" localize=true}}
-          </div>
-        {{/if}}        {{#if (eq this.actor.type "character")}}
+    
+        {{#if (eq this.actor.type "character")}}
           {{> "systems/ed4e/templates/actor/cards/special-abilities-characters.hbs"}}
         {{else}}
-          {{#if (or (eq this.actor.type "npc") (eq this.actor.type "creature") (eq this.actor.type "spirit") (eq this.actor.type "horror") (eq this.actor.type "dragon"))}}
+          {{#if (or (eq this.actor.type "npc")
+                    (eq this.actor.type "creature")
+                    (eq this.actor.type "spirit")
+                    (eq this.actor.type "horror")
+                    (eq this.actor.type "dragon"))}}
             {{> "systems/ed4e/templates/actor/cards/special-abilities-npc.hbs"}}
           {{/if}}
         {{/if}}
+
+        
+        <h2>{{localize "ED.Actor.Header.biography"}}</h2>
+        {{> "systems/ed4e/templates/global/editor.hbs"}}
 
       </div>
     </div>

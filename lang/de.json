@@ -96,6 +96,7 @@
         "dexterity":                               "Geschick",
         "dexterityAbbr":                           "Ges",
         "increase":                                "Steig.",
+        "increaseAbbr":                            "TODO: Add translation",
         "perception":                              "Wahrnehmung",
         "perceptionAbbr":                          "Wah",
         "strength":                                "Stärke",
@@ -112,6 +113,7 @@
         "knockdownTest":                           "Niederschlag",
         "legendHistory":                           "LP Übersicht",
         "recovery":                                "Erholung",
+        "showInChat":                              "TODO: Add translation",
         "tailAttack":                              "Schwanzangriff",
         "takeDamage":                              "Schaden",
         "unarmedAttack":                           "Unbewaffneter Angriff",
@@ -183,6 +185,7 @@
         "attributes":                              "Attribute",
         "biography":                               "Biographie",
         "castingDifficulty":                       "Zauberschwierigkeit",
+        "challengeRating":                         "TODO: Add translation",
         "circle":                                  "Kreis",
         "conditions":                              "Zustände",
         "controlIcons":                            "Bedienung",
@@ -234,6 +237,7 @@
         "recovery":                                "Erholung",
         "shields":                                 "Schilde",
         "skills":                                  "Fertigkeiten",
+        "socialDefense":                           "TODO: Add translation",
         "specialAbility":                          "Sonstige Fähigkeit",
         "spells":                                  "Zauber",
         "step":                                    "Stufe",
@@ -1004,6 +1008,20 @@
                   "label":                         "Wunden"
                 }
               },
+              "legendPoints": {
+                "legendCurrent": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "legendStatus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "legendTotal": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
               "movement": {
                 "burrow": {
                   "hint":                          "Bewegungsgeschwindigkeit des Akteurs beim Graben",
@@ -1166,6 +1184,10 @@
             "initiative": {
               "hint":                              "Initiative des Akteurs",
               "label":                             "Initiative"
+            },
+            "initiativePenalty": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
             },
             "karma": {
               "freeAttributePoints": {

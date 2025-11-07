@@ -1,127 +1,156 @@
 <section class="health__block">
-  <h3 class="header--centered label--rail">
-    <span class="label__text">{{localize "ED.Actor.Header.healthRating"}}</span>
-  </h3>
+	<h3 class="header--centered label--rail">
+		<span class="label__text">{{localize "ED.Actor.Header.healthRating"}}</span>
+	</h3>
 
-  <div class="damage__grid--container">
+	<div class="damage__grid--container">
 
-    <div class="damage__grid--item damage-type__take">
-      <label for="characteristic-take-damage">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.label"}}
-      </label>
-    <button type="button"
-        class="action-buttons icon--button icon icon--punch"
-        data-action="takeDamage"
-        data-tooltip=""
-        aria-label="{{localize 'ED.Actor.Buttons.takeDamage'}}">
-    </button>
-    </div>
+		<div class="damage__grid--item damage-type__take">
+			<label for="characteristic-take-damage">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.label"}}
+			</label>
+			<button
+				type="button"
+				class="action-buttons icon--button icon icon--punch"
+				data-action="takeDamage"
+				data-tooltip="{{localize 'ED.Actor.Buttons.takeDamage'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{localize 'ED.Actor.Buttons.takeDamage'}}">
+			</button>
+		</div>
 
-    <div class="damage__grid--item damage-type__normal">
-      <label for="characteristic-damage-normal">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.standard.label"}}
-      </label>
-        <input id="characteristic-damage-normal"
-               type="number"
-               class="input__rectangle-input--centered"
-               name="system.characteristics.health.damage.standard"
-               value="{{actor.system.characteristics.health.damage.standard}}">
-    </div>
+		<div class="damage__grid--item damage-type__normal">
+			<label for="characteristic-damage-normal">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.standard.label"}}
+			</label>
+			<input
+				id="characteristic-damage-normal"
+				type="number"
+				class="input__rectangle-input--centered"
+				name="system.characteristics.health.damage.standard"
+				value="{{actor.system.characteristics.health.damage.standard}}"
+				data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.standard.hint'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.standard.hint'}}">
+		</div>
 
-    <div class="damage__grid--item damage-type__stun">
-      <label for="characteristic-damage-stun">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.stun.label"}}
-      </label>
-        <input id="characteristic-damage-stun"
-               type="number"
-               class="input__rectangle-input--centered"
-               name="system.characteristics.health.damage.stun"
-               value="{{actor.system.characteristics.health.damage.stun}}">
-    </div>
+		<div class="damage__grid--item damage-type__stun">
+			<label for="characteristic-damage-stun">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.stun.label"}}
+			</label>
+			<input
+				id="characteristic-damage-stun"
+				type="number"
+				class="input__rectangle-input--centered"
+				name="system.characteristics.health.damage.stun"
+				value="{{actor.system.characteristics.health.damage.stun}}"
+				data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.stun.hint'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.stun.hint'}}">
+		</div>
 
-    <div class="damage__grid--item damage-type__total">
-      <label for="characteristic-damage-total">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.total.label"}}
-      </label>
-      <input id="characteristic-damage-total"
-             class="input__rectangle-input--centered"
-             value="{{actor.system.characteristics.health.damage.total}}"
-             readonly>
-    </div>
+		<div class="damage__grid--item damage-type__total">
+			<label for="characteristic-damage-total">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.total.label"}}
+			</label>
+			<input
+				id="characteristic-damage-total"
+				class="input__rectangle-input--centered"
+				value="{{actor.system.characteristics.health.damage.total}}"
+				readonly
+				data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.total.hint'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.damage.total.hint'}}">
+		</div>
 
-    <div class="damage__grid--item">
-      <label for="characteristic-wounds">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}
-      </label>
-         <input id="characteristic-wounds"
-               type="number"
-               class="input__rectangle-input--centered"
-               name="system.characteristics.health.wounds"
-               value="{{actor.system.characteristics.health.wounds}}">
-    </div>
+		<div class="damage__grid--item">
+			<label for="characteristic-wounds">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label"}}
+			</label>
+			<input
+				id="characteristic-wounds"
+				type="number"
+				class="input__rectangle-input--centered"
+				name="system.characteristics.health.wounds"
+				value="{{actor.system.characteristics.health.wounds}}"
+				data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.hint'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.hint'}}">
+		</div>
 
-    <div class="damage__grid--item damage__bar">
-      <div class="damage-bar"
-           style="--d-std:  {{actor.system.characteristics.health.damage.standard}};
-                  --d-stun: {{actor.system.characteristics.health.damage.stun}};
-                  --d-max:  {{actor.system.characteristics.health.death}};
-                  --u:      {{actor.system.characteristics.health.unconscious}};">
-        <div class="damage-bar__segment damage-bar__standard"
-             title="{{localize 'ED.Actor.Tooltips.damagePhysical'}}"></div>
-        <div class="damage-bar__segment damage-bar__stun"
-             title="{{localize 'ED.Actor.Tooltips.damageSubdual'}}"></div>
-        <div class="damage-bar__segment damage-bar__remainder"></div>
-        <span class="damage-bar__marker damage-bar__marker--unconscious"
-              title="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label'}}"></span>
-      </div>
-    </div>
-  </div>
+		<div class="damage__grid--item damage__bar">
+			<div class="damage-bar"
+				style="--d-std:  {{actor.system.characteristics.health.damage.standard}};
+						--d-stun: {{actor.system.characteristics.health.damage.stun}};
+						--d-max:  {{actor.system.characteristics.health.death}};
+						--u:      {{actor.system.characteristics.health.unconscious}};">
+				<div class="damage-bar__segment damage-bar__standard"
+					title="{{localize 'ED.Actor.Tooltips.damagePhysical'}}"></div>
+				<div class="damage-bar__segment damage-bar__stun"
+					title="{{localize 'ED.Actor.Tooltips.damageSubdual'}}"></div>
+				<div class="damage-bar__segment damage-bar__remainder"></div>
+				<span class="damage-bar__marker damage-bar__marker--unconscious"
+					title="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label'}}"></span>
+			</div>
+		</div>
+	</div>
 
-  <div class="health__grid--container">
-    <div class="health__grid--item">
-      <label for="characteristic-health-unconscious">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label"}}
-      </label>
-      <div class="buffer-input">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
-        <input id="characteristic-health-unconscious"
-              type="number"
-              class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-              name="system.characteristics.health.unconscious"
-              value="{{actor.system.characteristics.health.unconscious}}">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
-      </div>
-    </div>
+	<div class="health__grid--container">
+		<div class="health__grid--item">
+			<label for="characteristic-health-unconscious">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label"}}
+			</label>
+			<div class="buffer-input">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+				<input
+					id="characteristic-health-unconscious"
+					type="number"
+					class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+					name="system.characteristics.health.unconscious"
+					value="{{actor.system.characteristics.health.unconscious}}"
+					data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.hint'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.hint'}}">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+			</div>
+		</div>
 
-    <div class="health__grid--item">
-      <label for="characteristic-health-death">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label"}}
-      </label>
-      <div class="buffer-input">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
-        <input id="characteristic-health-death"
-              type="number"
-              class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-              name="system.characteristics.health.death"
-              value="{{actor.system.characteristics.health.death}}">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
-      </div>
-    </div>
+		<div class="health__grid--item">
+			<label for="characteristic-health-death">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label"}}
+			</label>
+			<div class="buffer-input">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+				<input
+					id="characteristic-health-death"
+					type="number"
+					class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+					name="system.characteristics.health.death"
+					value="{{actor.system.characteristics.health.death}}"
+					data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.hint'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.hint'}}">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+			</div>
+		</div>
 
-    <div class="health__grid--item">
-      <label for="characteristic-wound-threshold">
-        {{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label"}}
-      </label>
-      <div class="buffer-input">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-        <input id="characteristic-wound-threshold"
-              type="number"
-              class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-              name="system.characteristics.health.woundThreshold"
-              value="{{actor.system.characteristics.health.woundThreshold}}">
-        {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-      </div>
-    </div>
-  </div>
-
+		<div class="health__grid--item">
+			<label for="characteristic-wound-threshold">
+				{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label"}}
+			</label>
+			<div class="buffer-input">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+				<input
+					id="characteristic-wound-threshold"
+					type="number"
+					class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+					name="system.characteristics.health.woundThreshold"
+					value="{{actor.system.characteristics.health.woundThreshold}}"
+					data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label'}}">
+				{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+			</div>
+		</div>
+	</div>
 </section>

@@ -485,6 +485,12 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 0.5rem;
       margin: 0 0 10px 0;
+
+      a.button.active,
+      button.active {
+        outline: none;
+        box-shadow: none;;
+      }
     }
 
     .conditions__grid--item {
@@ -782,5 +788,17 @@
 
   .window-resizable-handle {
     z-index: 5;
+  }
+
+  // Temp Editor //
+
+  .prosemirror .editor-content {
+    h1, h2, h3, p {
+      font-size: var(--font-size-15);
+      border: none;
+      background: none;
+      box-shadow: none;
+      text-align: left;
+    }
   }
 }

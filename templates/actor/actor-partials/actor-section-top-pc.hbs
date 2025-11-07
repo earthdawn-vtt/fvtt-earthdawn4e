@@ -1,111 +1,129 @@
 <section class="actor-section__top">
-  <div class="top">
-    <div class="image-characteristics__grid-container">
+	<div class="top">
+		<div class="image-characteristics__grid-container">
 
-      <div class="image__grid-item">
-        <img class="actor-image" data-action="editImage" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
-      </div>
+			<div class="image__grid-item">
+				<img class="actor-image" data-action="editImage" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+			</div>
 
-      <div class="actor-top__grid--item">
-        <div class="top-columns__grid--container">
+			<div class="actor-top__grid--item">
+				<div class="top-columns__grid--container">
 
-          <div class="top-columns__grid--item top-col--left">
+					<div class="top-columns__grid--item top-col--left">
 
-            <div class="defenses__block">
-              <h3 class="header--centered label--rail">
-                <span class="label__text">{{localize "ED.Actor.Header.defenses"}}</span>
-              </h3>
+						<!-- DEFENSES -->
+						<div class="defenses__block">
 
-              <div class="defenses__grid--container">
-                <div class="defenses__grid--item">
-                  <label for="characteristic-defense-physical">
-                    {{localize "ED.Actor.Characteristics.physicalDefense"}}
-                  </label>
-                  <div class="buffer-input">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                    <input id="characteristic-defense-physical"
-                          class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                          name="system.characteristics.defenses.physical.value"
-                          value="{{actor.system.characteristics.defenses.physical.value}}">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-                  </div>
-                </div>
+							<h3 class="header--centered label--rail">
+								<span class="label__text">{{localize "ED.Actor.Header.defenses"}}</span>
+							</h3>
 
-                <div class="defenses__grid--item">
-                  <label for="characteristic-defense-mystical">
-                    {{localize "ED.Actor.Characteristics.mysticalDefense"}}
-                  </label>
-                  <div class="buffer-input">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                    <input id="characteristic-defense-mystical"
-                          class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                          name="system.characteristics.defenses.mystical.value"
-                          value="{{actor.system.characteristics.defenses.mystical.value}}">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-                  </div>
-                </div>
+							<div class="defenses__grid--container">
+								<div class="defenses__grid--item">
+									<label for="characteristic-defense-physical">
+										{{localize "ED.Actor.Characteristics.physicalDefense"}}
+									</label>
+									<div class="buffer-input"
+										data-tooltip="{{localize 'ED.Actor.Header.physicalDefense'}}"
+										data-tooltip-direction="UP"
+										aria-label="{{localize 'ED.Actor.Header.physicalDefense'}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+										<input id="characteristic-defense-physical"
+											class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+											name="system.characteristics.defenses.physical.value"
+											value="{{actor.system.characteristics.defenses.physical.value}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+									</div>
+								</div>
 
-                <div class="defenses__grid--item">
-                  <label for="characteristic-defense-social">
-                    {{localize "ED.Actor.Characteristics.socialDefense"}}
-                  </label>
-                  <div class="buffer-input">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                    <input id="characteristic-defense-social"
-                          class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                          name="system.characteristics.defenses.social.value"
-                          value="{{actor.system.characteristics.defenses.social.value}}">
-                    {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-                  </div>
-                </div>
-              </div>
-            </div>
+								<div class="defenses__grid--item">
+									<label for="characteristic-defense-mystical">
+										{{localize "ED.Actor.Characteristics.mysticalDefense"}}
+									</label>
+									<div class="buffer-input"
+										data-tooltip="{{localize 'ED.Actor.Header.mysticalDefense'}}"
+										data-tooltip-direction="UP"
+										aria-label="{{localize 'ED.Actor.Header.mysticalDefense'}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+										<input id="characteristic-defense-mystical"
+											class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+											name="system.characteristics.defenses.mystical.value"
+											value="{{actor.system.characteristics.defenses.mystical.value}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+									</div>
+								</div>
 
-            <!-- ARMOR -->
-            <div class="armor__block">
-              <h3 class="header--centered label--rail">
-                <span class="label__text">{{localize "ED.Actor.Header.armor"}}</span>
-              </h3>
-                <div class="armor__grid--container">
-                  <div class="armor__grid--item">
-                    <label for="characteristic-armor-physical">
-                      {{localize "ED.Actor.Characteristics.physicalArmor"}}
-                    </label>
-                    <div class="buffer-input">
-                      {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                      <input id="characteristic-armor-physical"
-                            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                            name="system.characteristics.armor.physical.value"
-                            value="{{actor.system.characteristics.armor.physical.value}}">
-                      {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-                    </div>
-                  </div>
-                  <div class="armor__grid--item">
-                    <label for="characteristic-armor-mystical">
-                      {{localize "ED.Actor.Characteristics.mysticalArmor"}}
-                    </label>
-                    <div class="buffer-input">
-                      {{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
-                      <input id="characteristic-armor-mystical"
-                            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                            name="system.characteristics.armor.mystical.value"
-                            value="{{actor.system.characteristics.armor.mystical.value}}">
-                      {{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
+								<div class="defenses__grid--item">
+									<label for="characteristic-defense-social">
+										{{localize "ED.Actor.Characteristics.socialDefense"}}
+									</label>
+									<div class="buffer-input"
+										data-tooltip="{{localize 'ED.Actor.Header.socialDefense'}}"
+										data-tooltip-direction="UP"
+										aria-label="{{localize 'ED.Actor.Header.socialDefense'}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+										<input id="characteristic-defense-social"
+											class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+											name="system.characteristics.defenses.social.value"
+											value="{{actor.system.characteristics.defenses.social.value}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+									</div>
+								</div>
+							</div>
+						</div>
 
-          <!-- CENTER COLUMN: HEALTH partial (unchanged name) -->
-          <div class="top-columns__grid--item top-col--center">
-            {{> "systems/ed4e/templates/actor/cards/health-character-card.hbs"}}
-          </div>
+						<!-- ARMOR -->
+						<div class="armor__block">
 
-        </div>
-      </div>
-      <!-- /actor-top__grid--item -->
+							<h3 class="header--centered label--rail"
+								<span class="label__text">{{localize "ED.Actor.Header.armor"}}</span>
+							</h3>
 
-    </div>
-  </div>
+							<div class="armor__grid--container">
+								<div class="armor__grid--item">
+									<label for="characteristic-armor-physical">
+										{{localize "ED.Actor.Characteristics.physicalArmor"}}
+									</label>
+									<div class="buffer-input"
+										data-tooltip="{{localize 'ED.Actor.Header.physicalArmor'}}"
+										data-tooltip-direction="UP"
+										aria-label="{{localize 'ED.Actor.Header.physicalArmor'}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+										<input id="characteristic-armor-physical"
+											class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+											name="system.characteristics.armor.physical.value"
+											value="{{actor.system.characteristics.armor.physical.value}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+									</div>
+								</div>
+
+								<div class="armor__grid--item">
+									<label for="characteristic-armor-mystical">
+										{{localize "ED.Actor.Characteristics.mysticalArmor"}}
+									</label>
+									<div class="buffer-input"
+										data-tooltip="{{localize 'ED.Actor.Header.mysticalArmor'}}"
+										data-tooltip-direction="UP"
+										aria-label="{{localize 'ED.Actor.Header.mysticalArmor'}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+										<input id="characteristic-armor-mystical"
+											class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+											name="system.characteristics.armor.mystical.value"
+											value="{{actor.system.characteristics.armor.mystical.value}}">
+										{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="top-columns__grid--item top-col--center">
+						{{> "systems/ed4e/templates/actor/cards/health-character-card.hbs"}}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

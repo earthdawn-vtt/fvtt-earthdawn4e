@@ -4,21 +4,25 @@
         <div class="ability-card__grid--item icons__dice {{#if (or (ne this.system.attribute "") (ne this.system.strain 0))}}has-overlay{{/if}}">
         <img class="ability-icon" src="{{img}}" alt="{{name}}">
         {{#if (ne this.system.attribute "")}}
-            <button type="button"
-                    class="icon--button icon icon--d20 rollable icon--overlay"
-                    data-action="rollable"
-                    data-roll-type="ability"
-                    data-tooltip="{{localize ''}}"  
-                    aria-label="{{localize 'ED.Roll.Ability'}}">
+            <button
+                type="button"
+                class="icon--button icon icon--d20 rollable icon--overlay"
+                data-action="rollable"
+                data-roll-type="ability"
+                data-tooltip="Roll {{name}}"
+                data-tooltip-direction="UP"
+                aria-label="Roll {{name}}">
             </button>
         {{else}}
             {{#if (ne this.system.strain 0)}}
-            <button type="button"
-                    class="icon--button icon icon--blood take-strain icon--overlay"
-                    data-action="takeStrain"
-                    data-attribute="{{@key}}"
-                    data-tooltip="{{localize ''}}"  
-                    aria-label="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}">
+            <button
+                type="button"
+                class="icon--button icon icon--blood take-strain icon--overlay"
+                data-action="takeStrain"
+                data-attribute="{{@key}}"
+                data-tooltip="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}"
+                data-tooltip-direction="UP"
+                aria-label="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}">
             </button>
             {{/if}}
         {{/if}}
