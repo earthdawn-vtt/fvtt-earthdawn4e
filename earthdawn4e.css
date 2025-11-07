@@ -353,6 +353,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   text-align: center;
   width: 25px;
   height: 25px;
+  pointer-events: auto;
 }
 .input__rectangle-input--centered {
   width: 40px;
@@ -370,6 +371,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   border-radius: 50%;
   padding-top: 5px;
   background: rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
 }
 .input__clear-input--centered {
   font-size: 16px;
@@ -380,9 +382,17 @@ slide-toggle[checked] .slide-toggle-thumb {
   width: 30px;
   height: 25px;
   border: 0;
-  cursor: pointer;
+  cursor: help;
   user-select: none;
-  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  caret-color: transparent;
+  outline: 0;
+  pointer-events: auto;
+}
+.input__clear-input--centered::selection {
+  background: transparent;
 }
 .application .font__bold {
   font-weight: bold;

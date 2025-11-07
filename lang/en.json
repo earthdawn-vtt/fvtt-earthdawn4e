@@ -95,7 +95,8 @@
         "charismaAbbr":                            "Cha",
         "dexterity":                               "Dexterity",
         "dexterityAbbr":                           "Dex",
-        "increase":                                "Inc",
+        "increase":                                "Increase",
+        "increaseAbbr":                            "Inc",
         "perception":                              "Perception",
         "perceptionAbbr":                          "Per",
         "strength":                                "Strength",
@@ -109,9 +110,10 @@
         "halfMagic":                               "Half Magic",
         "initiative":                              "Initiative",
         "jumpUp":                                  "Jump Up",
-        "knockdownTest":                           "Knock down",
-        "legendHistory":                           "LP History",
-        "recovery":                                "Recovery",
+        "knockdownTest":                           "Knock Down",
+        "legendHistory":                           "Legend Point History",
+        "recovery":                                "Take Recovery Test",
+        "showInChat":                              "Show In Chat",
         "tailAttack":                              "Tail Attack",
         "takeDamage":                              "Take Damage",
         "unarmedAttack":                           "Unarmed Attack",
@@ -235,6 +237,7 @@
         "recovery":                                "Recovery",
         "shields":                                 "Shields",
         "skills":                                  "Skills",
+        "socialDefense":                           "Social Defense",
         "specialAbility":                          "Special Abilities",
         "spells":                                  "Spells",
         "step":                                    "Step",
@@ -929,7 +932,7 @@
         "NoneCharacter": {
           "FIELDS": {
             "actions": {
-              "hint":                              "How many actions does the actor have per round?",
+              "hint":                              "Number of Actions Per Round",
               "label":                             "Actions"
             },
             "challenge": {
@@ -972,20 +975,20 @@
                   "hint":                          "Total damage of the actor",
                   "label":                         "Damage",
                   "standard": {
-                    "hint":                        "Normal damage taken by the actor",
+                    "hint":                        "Normal Damage Taken",
                     "label":                       "Normal"
                   },
                   "stun": {
-                    "hint":                        "Stun damage of the actor",
+                    "hint":                        "Stun Damage Taken",
                     "label":                       "Stun"
                   },
                   "total": {
-                    "hint":                        "Combined total of normal and stun damage",
+                    "hint":                        "Combined Total of Normal And Stun",
                     "label":                       "Total"
                   }
                 },
                 "death": {
-                  "hint":                          "Death Rating of the actor",
+                  "hint":                          "Death Rating",
                   "label":                         "Death"
                 },
                 "maxWounds": {
@@ -993,7 +996,7 @@
                   "label":                         "Maximum Wounds"
                 },
                 "unconscious": {
-                  "hint":                          "Unconsciousness Rating of the actor",
+                  "hint":                          "Unconsciousness Rating",
                   "label":                         "Unconsciousness"
                 },
                 "woundThreshold": {
@@ -1001,29 +1004,43 @@
                   "label":                         "Wound Threshold"
                 },
                 "wounds": {
-                  "hint":                          "Wounds of the actor",
+                  "hint":                          "Current Wounds Taken",
                   "label":                         "Wounds"
+                }
+              },
+              "legendPoints": {
+                "legendCurrent": {
+                  "hint":                          "Current Legend Points",
+                  "label":                         "Current"
+                },
+                "legendStatus": {
+                  "hint":                          "Legendary Status",
+                  "label":                         "Status"
+                },
+                "legendTotal": {
+                  "hint":                          "Legend Point Total",
+                  "label":                         "Total"
                 }
               },
               "movement": {
                 "burrow": {
-                  "hint":                          "Movement speed when burrowing",
+                  "hint":                          "Burrowing Speed",
                   "label":                         "Burrow"
                 },
                 "climb": {
-                  "hint":                          "Movement speed when climbing",
+                  "hint":                          "Climbing Speed",
                   "label":                         "Climb"
                 },
                 "fly": {
-                  "hint":                          "Movement speed when flying",
+                  "hint":                          "Flying Speed",
                   "label":                         "Fly"
                 },
                 "swim": {
-                  "hint":                          "Movement speed when swimming",
+                  "hint":                          "Swimming Speed",
                   "label":                         "Swim"
                 },
                 "walk": {
-                  "hint":                          "Movement speed when walking",
+                  "hint":                          "Walking Speed",
                   "label":                         "Walk"
                 }
               },
@@ -1031,11 +1048,11 @@
                 "hint":                            "Recovery Tests of the actor",
                 "label":                           "Recovery Tests",
                 "max": {
-                  "hint":                          "Maximum Recovery Tests per day",
+                  "hint":                          "Maximum Recovery Tests Per Day",
                   "label":                         "Daily"
                 },
                 "step": {
-                  "hint":                          "Step of the actor's Recovery Tests",
+                  "hint":                          "Recovery Test Step",
                   "label":                         "Step"
                 },
                 "stunRecoveryAvailable": {
@@ -1043,7 +1060,7 @@
                   "label":                         "Stun Recovery Available?"
                 },
                 "value": {
-                  "hint":                          "Current number of Recovery Tests",
+                  "hint":                          "Current Number of Recovery Tests",
                   "label":                         "Current"
                 }
               }
@@ -1124,15 +1141,15 @@
             },
             "devotion": {
               "max": {
-                "hint":                            "Maximum Devotion of the actor",
+                "hint":                            "Maximum Devotion Points",
                 "label":                           "Maximum"
               },
               "step": {
-                "hint":                            "Step of the actor's Devotion",
+                "hint":                            "Devotion Dice Step",
                 "label":                           "Step"
               },
               "value": {
-                "hint":                            "Current Devotion of the actor",
+                "hint":                            "Current Devotion Points",
                 "label":                           "Current"
               }
             },
@@ -1166,7 +1183,11 @@
             },
             "initiative": {
               "hint":                              "Initiative of the actor",
-              "label":                             "Initiative"
+              "label":                             "Initiative Step"
+            },
+            "initiativePenalty": {
+              "hint":                              "Initiative Penalty of the actor",
+              "label":                             "Initiative Penalty"
             },
             "karma": {
               "freeAttributePoints": {
@@ -1174,11 +1195,11 @@
                 "label":                           "Free Attribute Points"
               },
               "max": {
-                "hint":                            "Maximum Karma of the actor",
+                "hint":                            "Maximum Karma Points",
                 "label":                           "Maximum"
               },
               "step": {
-                "hint":                            "Step of the actor's Karma",
+                "hint":                            "Karma Dice Step",
                 "label":                           "Step"
               },
               "useAlways": {
@@ -1186,7 +1207,7 @@
                 "label":                           "Always Use Karma?"
               },
               "value": {
-                "hint":                            "Current Karma of the actor",
+                "hint":                            "Current Karma Points",
                 "label":                           "Current"
               }
             },
