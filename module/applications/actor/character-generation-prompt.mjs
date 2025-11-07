@@ -1,5 +1,5 @@
 import { documentsToSelectChoices, filterObject, getAllDocuments } from "../../utils.mjs";
-import ED4E from "../../config/_module.mjs";
+import ED4E, { LEGEND } from "../../config/_module.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
 import ApplicationEd from "../api/application.mjs";
@@ -201,8 +201,8 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     data.updateSource( {
       abilities: {
         language: {
-          [skillLanguageSpeak.uuid]: skillLanguageSpeak.system.level,
-          [skillLanguageRW.uuid]:    skillLanguageRW.system.level,
+          [skillLanguageSpeak.uuid]: LEGEND.availableRanks.speak,
+          [skillLanguageRW.uuid]:    LEGEND.availableRanks.readWrite,
         }
       }
     } );
