@@ -96,6 +96,7 @@
         "dexterity":                               "TODO: Add translation",
         "dexterityAbbr":                           "TODO: Add translation",
         "increase":                                "TODO: Add translation",
+        "increaseAbbr":                            "TODO: Add translation",
         "perception":                              "TODO: Add translation",
         "perceptionAbbr":                          "TODO: Add translation",
         "strength":                                "TODO: Add translation",
@@ -112,6 +113,7 @@
         "knockdownTest":                           "TODO: Add translation",
         "legendHistory":                           "TODO: Add translation",
         "recovery":                                "TODO: Add translation",
+        "showInChat":                              "TODO: Add translation",
         "tailAttack":                              "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "unarmedAttack":                           "TODO: Add translation",
@@ -235,6 +237,7 @@
         "recovery":                                "TODO: Add translation",
         "shields":                                 "TODO: Add translation",
         "skills":                                  "TODO: Add translation",
+        "socialDefense":                           "TODO: Add translation",
         "specialAbility":                          "TODO: Add translation",
         "spells":                                  "TODO: Add translation",
         "step":                                    "TODO: Add translation",
@@ -1005,6 +1008,20 @@
                   "label":                         "TODO: Add translation"
                 }
               },
+              "legendPoints": {
+                "legendCurrent": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "legendStatus": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                },
+                "legendTotal": {
+                  "hint":                          "TODO: Add translation",
+                  "label":                         "TODO: Add translation"
+                }
+              },
               "movement": {
                 "burrow": {
                   "hint":                          "TODO: Add translation",
@@ -1165,6 +1182,10 @@
               }
             },
             "initiative": {
+              "hint":                              "TODO: Add translation",
+              "label":                             "TODO: Add translation"
+            },
+            "initiativePenalty": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
