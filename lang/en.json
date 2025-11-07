@@ -256,7 +256,7 @@
       },
       "Initiative": {
         "penalty":                                 "Penalty",
-        "roll":                                    "Initiative Roll",
+        "roll":                                    "Roll Initiative",
         "step":                                    "Step"
       },
       "Karma": {
@@ -306,7 +306,7 @@
         "equipped":                                "Equipped",
         "extraSuccesses":                          "Extra Successes",
         "karmaAlways":                             "Use Karma always",
-        "karmaRitualTooltip":                      "Karma Ritual",
+        "karmaRitualTooltip":                      "Perform Karma Ritual",
         "mainHand":                                "Main Hand",
         "offHand":                                 "Off Hand",
         "owned":                                   "TODO: Add translation",
