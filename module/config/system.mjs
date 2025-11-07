@@ -25,7 +25,6 @@ export const reservedEdid = {
  * @enum {string}
  */
 export const defaultEdIds = {
-  creatureAttack:      "creature-attack",
   grimoire:            "grimoire",
   itemHistory:         "item-history",
   learnImprovedSpells: "learn-improved-spells",

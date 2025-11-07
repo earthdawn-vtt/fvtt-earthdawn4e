@@ -3593,14 +3593,16 @@
         "label":                                   "Debug Settings"
       },
       "Edid": {
-        "creatureAttack":                          "ED-ID for Creature Attack",
-        "creatureAttackHint":                      "Identifies the ability as Creature Attack",
-        "knockdown":                               "ED-ID for Knock Down",
-        "knockdownHint":                           "Identifies the Knock Down ability",
+        "grimoire":                                "TODO: Add translation",
+        "grimoireHint":                            "TODO: Add translation",
+        "itemHistory":                             "TODO: Add translation",
+        "itemHistoryHint":                         "TODO: Add translation",
         "languageRW":                              "ED-ID for Read/Write",
         "languageRWHint":                          "Identifies the Read/Write ability",
         "languageSpeak":                           "ED-ID for Speak Language",
         "languageSpeakHint":                       "Identifies the Speak Language ability",
+        "learnImprovedSpells":                     "TODO: Add translation",
+        "learnImprovedSpellsHint":                 "TODO: Add translation",
         "patterncraft":                            "ED-ID for Patterncraft",
         "patterncraftHint":                        "Identifies the ability used for Patterncraft",
         "questorDevotion":                         "ED-ID for Questor Devotion",
@@ -3616,7 +3618,9 @@
         "unarmedCombat":                           "ED-ID for Unarmed Combat",
         "unarmedCombatHint":                       "Identifies the ability used for Unarmed Combat",
         "versatility":                             "ED-ID for Versatility",
-        "versatilityHint":                         "Identifies the ability used for Versatility"
+        "versatilityHint":                         "Identifies the ability used for Versatility",
+        "willforce":                               "TODO: Add translation",
+        "willforceHint":                           "TODO: Add translation"
       },
       "Encumbrance": {
         "encumbrance":                             "Encumbrance",
