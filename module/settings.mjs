@@ -349,11 +349,12 @@ export default function registerSystemSettings() {
 
   // Languages
   game.settings.register( "ed4e", "languages", {
-    name:   "ED.Settings.GameMechanics.languages",
-    hint:   "ED.Settings.GameMechanics.languagesHint",
-    scope:  "world",
-    config: true,
-    type:   new SetField(
+    name:           "ED.Settings.GameMechanics.languages",
+    hint:           "ED.Settings.GameMechanics.languagesHint",
+    scope:          "world",
+    config:         true,
+    requiresReload: true,
+    type:           new SetField(
       new StringField( {
         blank: false,
       } ),
