@@ -491,17 +491,17 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       icon:     `fas ${ED4E.icons.cancel}`,
       action:   "close",
     }, ];
-    if ( context.hasPreviousStep ) context.buttons.push( {
+    context.buttons.push( {
       type:     "button",
       label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
-      cssClass: "previous",
+      cssClass: `previous ${ context.hasPreviousStep ? "" : "invisible" }`,
       icon:     `fas ${ED4E.icons.previousCharGen}`,
       action:   "previous",
     } );
-    if ( context.hasNextStep ) context.buttons.push( {
+    context.buttons.push( {
       type:     "button",
       label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
-      cssClass: "next",
+      cssClass: `next ${ context.hasNextStep ? "" : "invisible" }`,
       icon:     `fa-regular ${ED4E.icons.nextCharGen}`,
       action:   "next",
     } );
