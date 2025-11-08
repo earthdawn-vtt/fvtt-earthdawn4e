@@ -269,14 +269,13 @@ export default class CharacterGenerationData extends SparseDataModel {
   set classAbilities( selectedClassDocument ) {
     // Only update data if namegiver changes
     if ( !selectedClassDocument || ( this.selectedClass === selectedClassDocument.uuid ) ) return;
-    // Don't do anything if the class no abilities/levels
-    if ( selectedClassDocument.system.advancement.levels.length < 1 ) return;
 
+    const abilities = selectedClassDocument.system.advancement.levels?.[0].abilities ?? [];
     this.updateSource( {
       abilities: {
-        class:   Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.class.map( ability => [ ability, 0 ] ) ),
-        free:    Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.free.map( ability => [ ability, 0 ] ) ),
-        special: Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.special.map( ability => [ ability, 0 ] ) ),
+        "==class":   Object.fromEntries( abilities.class.map( ability => [ ability, 0 ] ) ),
+        "==free":    Object.fromEntries( abilities.free.map( ability => [ ability, 0 ] ) ),
+        "==special": Object.fromEntries( abilities.special.map( ability => [ ability, 0 ] ) ),
       }
     } );
   }

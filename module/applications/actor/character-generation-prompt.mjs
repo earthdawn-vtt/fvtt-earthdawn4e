@@ -460,6 +460,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     context.previews = await this.charGenData.getCharacteristicsPreview();
 
     // Spells
+    context.castingType = this.castingType;
     context.availableSpellPoints = await this.charGenData.getAvailableSpellPoints();
     context.maxSpellPoints = await this.charGenData.getMaxSpellPoints();
     context.spells = this.spells.filter( spell => spell.system.spellcastingType === this.castingType );
@@ -545,6 +546,16 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   // region Tabs
 
   /** @inheritdoc */
+  _prepareTabs( group ) {
+    const tabs = super._prepareTabs( group );
+    if ( !this.castingType && group === "primary" ) {
+      tabs.spells.cssClass ??= "";
+      tabs.spells.cssClass += " disabled";
+    }
+    return tabs;
+  }
+
+  /** @inheritdoc */
   changeTab( tab, group, {event, navElement, force=false, updatePosition=true}={} ) {
     super.changeTab( tab, group, {event, navElement, force, updatePosition} );
 
@@ -587,6 +598,14 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       } else {
         this.charGenData.classAbilities = await fromUuid( data.selectedClass );
       }
+    } else {
+      this.charGenData.updateSource( {
+        abilities: {
+          "==class":   {},
+          "==free":    {},
+          "==special": {},
+        },
+      } );
     }
 
     // process selected class option ability
@@ -629,9 +648,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   static _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
 
-    // if ( !this._validateOnChangeTab() ) return;
-
     this._currentStep++;
+    if ( !this.castingType && this._steps[this._currentStep] === "spells" )  this._currentStep++;
+
     this.changeTab( this._steps[this._currentStep], "primary" );
   }
 
@@ -641,9 +660,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   static _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
 
-    // if ( !this._validateOnChangeTab() ) return;
-
     this._currentStep--;
+    if ( !this.castingType && this._steps[this._currentStep] === "spells" )  this._currentStep--;
+
     this.changeTab( this._steps[this._currentStep], "primary" );
   }
 

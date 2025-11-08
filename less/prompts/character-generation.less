@@ -1,19 +1,21 @@
 @char-gen-color-shadow: color-mix(in srgb, white, transparent 80%);
 @char-gen-text-shadow: 1px 1px 2px @char-gen-color-shadow;
 @char-gen-button-focus-outline: 2px solid white;
-@char-gen-meter-color: linear-gradient(90deg, rgba(89, 78, 99, 0.7) 0%, rgba(83, 96, 110, 0.7) 100%);
+@char-gen-meter-color: rgba(89, 78, 99, 0.7);
 @char-gen-meter-box-shadow: 0 2px 3px rgba(0,0,0,0.7) inset;
-@char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
 @char-gen-meter-border-radius: 5px;
+@char-gen-header-border: 2px solid @char-gen-color-shadow;
 
 body.theme-dark {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
   --char-gen-assign-value-entry-hover-background: black;
+  --char-gen-meter-background: color-mix(in srgb, white, transparent 70%);
 }
 
 body.theme-light {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent.png");
   --char-gen-assign-value-entry-hover-background: lightgrey;
+  --char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
 }
 
 @keyframes fadeIn {
@@ -51,6 +53,12 @@ form.ed4e.character-generation {
 
       &.active {
         font-size: x-large;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: default;
       }
     }
   }
@@ -109,12 +117,12 @@ form.ed4e.character-generation {
         -webkit-appearance: none;
         -moz-appearance: none;
 
-        background: @char-gen-meter-background;
+        background: var(--char-gen-meter-background);
         box-shadow: @char-gen-meter-box-shadow;
         border-radius: @char-gen-meter-border-radius;
 
         &::-webkit-meter-bar {
-          background: @char-gen-meter-background;
+          background: var(--char-gen-meter-background);
           box-shadow: @char-gen-meter-box-shadow;
           border-radius: @char-gen-meter-border-radius;
         }
@@ -123,7 +131,7 @@ form.ed4e.character-generation {
         &:-moz-meter-optimum::-moz-meter-bar,
         &:-moz-meter-sub-optimum::-moz-meter-bar,
         &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-          background: @char-gen-meter-color;
+          background: @char-gen-meter-color url(assets/sheet/mottle.png) center center / auto repeat;
         }
 
 
@@ -330,6 +338,40 @@ form.ed4e.character-generation {
       }
       span.preview-value.attribute-cost-higher {
         text-align: left;
+      }
+
+    }
+
+    &[data-tab="spells"] {
+      justify-content: flex-start;
+      text-align: center;
+      gap: 1em;
+
+
+      div {
+
+        &.spell-assignment {
+          gap: 1.5em;
+        }
+
+        &.value-entry.headers {
+          border-bottom: @char-gen-header-border;
+        }
+
+        &.spell-name {
+          padding: 1em;
+        }
+
+        &.spell {
+          &:hover {
+            background: var(--char-gen-assign-value-entry-hover-background);
+          }
+        }
+
+      }
+
+      h6 {
+        padding: 0.5em;
       }
 
     }
