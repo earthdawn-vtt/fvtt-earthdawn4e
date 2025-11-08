@@ -15,10 +15,12 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "character-generation", ],
     window:   {
+      frame:       false,
+      positioned:  false,
       icon:        "fa-thin fa-user",
       title:       "ED.Dialogs.Title.characterGeneration",
       resizable:   true,
-      minimizable: true,
+      minimizable: false,
     },
     actions: {
       next:            this._nextTab,
@@ -514,7 +516,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /** @inheritdoc */
   async _preparePartContext( partId, context, options ) {
-    await super._preparePartContext( partId, context, options );
+    const newContext = await super._preparePartContext( partId, context, options );
     switch ( partId ) {
       case "tabs": break;
       case "namegiver":
@@ -533,7 +535,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
         break;
     }
 
-    return context;
+    return newContext;
   }
 
   // endregion

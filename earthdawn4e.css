@@ -1098,6 +1098,118 @@ h3.label--rail .label__text::after {
   padding-top: 8px;
   padding-bottom: 4px;
 }
+form.ed4e.character-generation {
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+form.ed4e.character-generation nav {
+  max-width: 80%;
+}
+form.ed4e.character-generation nav a {
+  padding: 0.5em 1em;
+  border-radius: 5em;
+  font-family: 'Warhorse-DecoBB', serif;
+}
+form.ed4e.character-generation nav a.active {
+  font-size: x-large;
+}
+form.ed4e.character-generation section {
+  width: 80%;
+  max-width: 80%;
+  height: 62%;
+  max-height: 62%;
+  margin-bottom: 1.5em;
+  align-items: stretch;
+}
+form.ed4e.character-generation section h1,
+form.ed4e.character-generation section h2 {
+  font-family: 'ArnoPro-Bold', serif;
+}
+form.ed4e.character-generation section h3,
+form.ed4e.character-generation section h4 {
+  font-family: 'ArnoPro-Regular', serif;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.character-generation-overview {
+  justify-content: center;
+  align-items: center;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection {
+  min-height: 0;
+  max-height: 95%;
+  flex: 1.618003 1.618003;
+  justify-content: space-between;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection {
+  flex: 0 0 auto;
+  margin-bottom: 1em;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection select {
+  width: 61.8%;
+  border: none;
+  height: 34px;
+  appearance: none;
+  background: black;
+  font-variant: small-caps;
+  font-size: larger;
+  text-align: center;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection img {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  align-self: center;
+  mask-image: radial-gradient(circle, black, black 65%, transparent 85%);
+  animation: fadeIn 1s 0ms forwards;
+}
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+form.ed4e.character-generation footer {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10%;
+}
+form.ed4e.character-generation footer button {
+  border: none;
+  background: url("assets/character-generation/pill.webp") no-repeat center center / contain;
+  background-size: 100% 100%;
+  font-size: large;
+  color: var(--button-text-color);
+}
+form.ed4e.character-generation footer button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.theme-dark form.ed4e.character-generation footer button {
+  background: url("assets/character-generation/pill_dark.webp") no-repeat center center / contain;
+  background-size: 100% 100%;
+}
+body.theme-dark form.ed4e.character-generation {
+  background: url("assets/character-generation/background_parchment_transparent_dark.png");
+  background-size: 100% 100%;
+}
+body.theme-light form.ed4e.character-generation {
+  background: url("assets/character-generation/background_parchment_transparent.png");
+  background-size: 100% 100%;
+}
 .app.window-app.form.earthdawn4e.roll-prompt header,
 .app.window-app.form.earthdawn4e.assign-legend header {
   position: relative;
