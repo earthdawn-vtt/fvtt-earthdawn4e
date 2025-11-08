@@ -15,7 +15,7 @@
       <h3>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h3>
 
       <select id="char-gen-namegiver-select" name="namegiver">
-        <option value="">&ndash;&ndash;&ndash;</option>
+        <option value="">{{localize "ED.Data.placeholderBlankSelectOption"}}</option>
         {{selectOptions namegivers selected=namegiver valueAttr="uuid" labelAttr="name"}}
       </select>
 

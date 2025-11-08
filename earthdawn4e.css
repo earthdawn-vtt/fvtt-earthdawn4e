@@ -448,6 +448,9 @@ slide-toggle[checked] .slide-toggle-thumb {
 .display__inline-block {
   display: inline-block;
 }
+.invisible {
+  visibility: hidden;
+}
 .space__small {
   padding-top: 5px;
 }
@@ -1098,6 +1101,16 @@ h3.label--rail .label__text::after {
   padding-top: 8px;
   padding-bottom: 4px;
 }
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 form.ed4e.character-generation {
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -1108,6 +1121,7 @@ form.ed4e.character-generation {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1.5em;
 }
 form.ed4e.character-generation nav {
   max-width: 80%;
@@ -1121,11 +1135,10 @@ form.ed4e.character-generation nav a.active {
   font-size: x-large;
 }
 form.ed4e.character-generation section {
-  width: 80%;
   max-width: 80%;
-  height: 62%;
+  min-height: 0;
   max-height: 62%;
-  margin-bottom: 1.5em;
+  flex: 1 1 auto;
   align-items: stretch;
 }
 form.ed4e.character-generation section h1,
@@ -1136,21 +1149,7 @@ form.ed4e.character-generation section h3,
 form.ed4e.character-generation section h4 {
   font-family: 'ArnoPro-Regular', serif;
 }
-form.ed4e.character-generation section[data-tab="namegiver"] div.character-generation-overview {
-  justify-content: center;
-  align-items: center;
-}
-form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection {
-  min-height: 0;
-  max-height: 95%;
-  flex: 1.618003 1.618003;
-  justify-content: space-between;
-}
-form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection {
-  flex: 0 0 auto;
-  margin-bottom: 1em;
-}
-form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection select {
+form.ed4e.character-generation section select {
   width: 61.8%;
   border: none;
   height: 34px;
@@ -1159,6 +1158,20 @@ form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selec
   font-variant: small-caps;
   font-size: larger;
   text-align: center;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.character-generation-overview {
+  justify-content: center;
+  align-items: center;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection {
+  min-height: 0;
+  max-height: 95%;
+  flex: 1.61803399 1.61803399;
+  justify-content: space-between;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection {
+  flex: 0 0 auto;
+  margin-bottom: 1em;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection img {
   flex: 1 1 auto;
@@ -1170,15 +1183,56 @@ form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selec
   mask-image: radial-gradient(circle, black, black 65%, transparent 85%);
   animation: fadeIn 1s 0ms forwards;
 }
-@keyframes fadeIn {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+form.ed4e.character-generation section[data-tab="classes"] {
+  text-align: center;
+  gap: 1em;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer {
+  justify-content: space-between;
+  align-content: space-between;
+  max-height: 100%;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection {
+  min-height: 0;
+  max-height: 80%;
+  flex: 0 1 auto;
+  gap: 1em;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.discipline-questor-switch-group {
+  flex-shrink: 0;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.discipline-questor-switch-group label {
+  font-family: 'Warhorse-DecoBB', serif;
+  text-align: center;
+  font-size: large;
+  text-shadow: 1px 1px 2px pink;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.discipline-questor-switch-group label .deselected-class-type {
+  opacity: 0.5;
+  font-size: small;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.discipline-questor-switch-group label .deselected-class-type:hover {
+  opacity: 0.75;
+  cursor: pointer;
+  font-size: medium;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.available-disciplines-questors-choices {
+  flex-shrink: 0;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.class-image-preview {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  animation: fadeIn 1s 0ms forwards;
+  align-content: center;
+  justify-content: center;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.class-image-preview img {
+  object-fit: contain;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-abilities-selection {
+  flex: 1.61803399 1.61803399;
+  animation: fadeIn 1s 0ms forwards;
 }
 form.ed4e.character-generation footer {
   width: 80%;

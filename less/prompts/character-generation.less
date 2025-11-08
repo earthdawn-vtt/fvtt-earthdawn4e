@@ -1,3 +1,16 @@
+@char-gen-text-shadow: 1px 1px 2px pink;
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  } to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+
+
 form.ed4e.character-generation {
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -9,6 +22,7 @@ form.ed4e.character-generation {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1.5em;
 
   nav {
     max-width: 80%;
@@ -25,12 +39,11 @@ form.ed4e.character-generation {
   }
 
   section {
-    width: 80%;
     max-width: 80%;
-    height: 62%;
+    min-height: 0;
     max-height: 62%;
 
-    margin-bottom: 1.5em;
+    flex: 1 1 auto;
 
     align-items: stretch;
 
@@ -41,6 +54,16 @@ form.ed4e.character-generation {
       .ArnoProRegular();
     }
 
+    select {
+      width: @golden-ratio-percentage-bigger;
+      border: none;
+      height: 34px;
+      appearance: none;
+      background: black;
+      font-variant: small-caps;
+      font-size: larger;
+      text-align: center;
+    }
 
     &[data-tab="namegiver"] {
 
@@ -53,23 +76,12 @@ form.ed4e.character-generation {
         min-height: 0;
         max-height: 95%;
 
-        flex: 1.618003 1.618003;
+        flex: @golden-ratio @golden-ratio;
         justify-content: space-between;
 
         .namegiver-header-and-selection{
           flex: 0 0 auto;
           margin-bottom: 1em;
-
-          select {
-            width: @golden-ratio-percentage-bigger;
-            border: none;
-            height: 34px;
-            appearance: none;
-            background: black;
-            font-variant: small-caps;
-            font-size: larger;
-            text-align: center;
-          }
         }
 
         img {
@@ -83,16 +95,71 @@ form.ed4e.character-generation {
           mask-image: radial-gradient(circle, black, black 65%, transparent 85%);
 
           animation: fadeIn 1s 0ms forwards;
-          @keyframes fadeIn {
-            from {
-              transform: translateY(30px);
-              opacity: 0;
-            } to {
-                transform: translateY(0);
-                opacity: 1;
+        }
+      }
+
+    }
+
+    &[data-tab="classes"] {
+      text-align: center;
+      gap: 1em;
+
+      div.class-type-and-explainer {
+        justify-content: space-between;
+        align-content: space-between;
+        max-height: 100%;
+
+        div.class-selection {
+          min-height: 0;
+          max-height: 80%;
+          flex: 0 1 auto;
+          gap: 1em;
+
+          div.discipline-questor-switch-group {
+            flex-shrink: 0;
+
+            label {
+              .WarhorseDeco();
+              text-align: center;
+              font-size: large;
+              text-shadow: @char-gen-text-shadow;
+
+              .deselected-class-type {
+                opacity: 0.5;
+                font-size: small;
+
+                &:hover {
+                  opacity: 0.75;
+                  cursor: pointer;
+                  font-size: medium;
+                }
               }
+
+            }
+          }
+
+          div.available-disciplines-questors-choices {
+            flex-shrink: 0;
+          }
+
+          div.class-image-preview {
+            display: flex;
+            flex: 1 1 auto;
+            min-height: 0;
+            animation: fadeIn 1s 0ms forwards;
+            align-content: center;
+            justify-content: center;
+
+            img {
+              object-fit: contain;
+            }
           }
         }
+      }
+
+      div.class-abilities-selection {
+        flex: @golden-ratio @golden-ratio;
+        animation: fadeIn 1s 0ms forwards;
       }
 
     }
