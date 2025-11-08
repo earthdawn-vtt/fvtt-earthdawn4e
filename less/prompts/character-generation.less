@@ -1,4 +1,10 @@
-@char-gen-text-shadow: 1px 1px 2px pink;
+@char-gen-color-shadow: color-mix(in srgb, white, transparent 80%);
+@char-gen-text-shadow: 1px 1px 2px @char-gen-color-shadow;
+@char-gen-button-focus-outline: 2px solid white;
+@char-gen-meter-color: linear-gradient(90deg, rgba(89, 78, 99, 0.7) 0%, rgba(83, 96, 110, 0.7) 100%);
+@char-gen-meter-box-shadow: 0 2px 3px rgba(0,0,0,0.7) inset;
+@char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
+@char-gen-meter-border-radius: 5px;
 
 @keyframes fadeIn {
   from {
@@ -54,6 +60,16 @@ form.ed4e.character-generation {
       .ArnoProRegular();
     }
 
+    button {
+      background: black;
+      border: none;
+      box-shadow: 1px 1px 2px @char-gen-color-shadow inset;
+
+      &:focus {
+        outline: @char-gen-button-focus-outline;
+      }
+    }
+
     select {
       width: @golden-ratio-percentage-bigger;
       border: none;
@@ -65,11 +81,42 @@ form.ed4e.character-generation {
       text-align: center;
     }
 
+    meter {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      background: @char-gen-meter-background;
+      box-shadow: @char-gen-meter-box-shadow;
+      border-radius: @char-gen-meter-border-radius;
+
+      &::-webkit-meter-bar {
+        background: @char-gen-meter-background;
+        box-shadow: @char-gen-meter-box-shadow;
+        border-radius: @char-gen-meter-border-radius;
+      }
+
+      &::-moz-meter-bar,
+      &:-moz-meter-optimum::-moz-meter-bar,
+      &:-moz-meter-sub-optimum::-moz-meter-bar,
+      &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+        background: @char-gen-meter-color;
+      }
+
+
+      &::-webkit-meter-optimum-value,
+      &::-webkit-meter-suboptimum-value,
+      &::-webkit-meter-even-less-good-value {
+        border-radius: 3px;
+      }
+    }
+
     &[data-tab="namegiver"] {
 
       div.character-generation-overview {
         justify-content: center;
         align-items: center;
+        padding-left: 10%;
       }
 
       div.namegiver-selection {
@@ -78,6 +125,7 @@ form.ed4e.character-generation {
 
         flex: @golden-ratio @golden-ratio;
         justify-content: space-between;
+        text-align: center;
 
         .namegiver-header-and-selection{
           flex: 0 0 auto;
@@ -88,7 +136,7 @@ form.ed4e.character-generation {
           flex: 1 1 auto;
           width: auto;
           max-width: 100%;
-          max-height: 100%;
+          max-height: 80%;
           object-fit: contain;
           align-self: center;
 
@@ -159,7 +207,26 @@ form.ed4e.character-generation {
 
       div.class-abilities-selection {
         flex: @golden-ratio @golden-ratio;
+        min-height: 0;
+
         animation: fadeIn 1s 0ms forwards;
+
+        div.rank-assignment {
+
+          div.available-talent-ranks {
+            button {
+              flex: 1 1 auto;
+            }
+            label {
+              flex: 2 2 auto;
+            }
+            meter {
+              flex: 16 16 auto;
+            }
+          }
+
+        }
+
       }
 
     }
@@ -193,6 +260,12 @@ form.ed4e.character-generation {
                 url("assets/character-generation/pill_dark.webp")
                 no-repeat center center / contain;
         background-size: 100% 100%;
+      }
+
+      &:hover:enabled {
+        transform: scale(1.05);
+        transition: transform 0.2s;
+        cursor: pointer;
       }
     }
   }
