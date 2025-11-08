@@ -409,6 +409,8 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     context.config = ED4E;
     context.options = options;
 
+    context.charGenData = this.charGenData;
+
     // Character generation data properties
     context.namegiver = this.charGenData.namegiver;
     context.isAdept = this.charGenData.isAdept;
