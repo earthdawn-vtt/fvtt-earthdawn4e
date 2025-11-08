@@ -6,6 +6,14 @@
 @char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
 @char-gen-meter-border-radius: 5px;
 
+body.theme-dark {
+  --char-gen-assign-value-entry-hover-background: black;
+}
+
+body.theme-light {
+  --char-gen-assign-value-entry-hover-background: lightgrey;
+}
+
 @keyframes fadeIn {
   from {
     transform: translateY(30px);
@@ -111,7 +119,44 @@ form.ed4e.character-generation {
       }
     }
 
+    div.entry-listing {
+
+      div.assign-value-entries {
+        display: flex;
+        flex-direction: column;
+
+        div.assign-value-entry {
+          padding: 0.5em;
+
+          &:hover {
+            background: var(--char-gen-assign-value-entry-hover-background);
+          }
+
+          div.entry-name {
+            flex: @golden-ratio @golden-ratio;
+          }
+
+          label {
+            position: relative;
+
+            input[type="radio"] {
+              position: absolute;
+              opacity: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+
+      }
+
+    }
+
     &[data-tab="namegiver"] {
+      justify-content: space-between;
+      width: 100%;
 
       div.character-generation-overview {
         justify-content: center;
@@ -194,11 +239,11 @@ form.ed4e.character-generation {
             display: flex;
             flex: 1 1 auto;
             min-height: 0;
-            animation: fadeIn 1s 0ms forwards;
             align-content: center;
             justify-content: center;
 
             img {
+              max-height: 80%;
               object-fit: contain;
             }
           }
@@ -208,8 +253,15 @@ form.ed4e.character-generation {
       div.class-abilities-selection {
         flex: @golden-ratio @golden-ratio;
         min-height: 0;
+        justify-content: space-between;
+        gap: 2em;
 
-        animation: fadeIn 1s 0ms forwards;
+        opacity: 1;
+        transition: opacity 0.8s ease-in;
+        &.invisible {
+          opacity: 0;
+          pointer-events: none;
+        }
 
         div.rank-assignment {
 
@@ -224,6 +276,12 @@ form.ed4e.character-generation {
               flex: 16 16 auto;
             }
           }
+
+        }
+
+        div.talent-listing {
+
+          align-items: flex-start;
 
         }
 
