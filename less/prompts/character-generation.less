@@ -7,10 +7,12 @@
 @char-gen-meter-border-radius: 5px;
 
 body.theme-dark {
+  --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
   --char-gen-assign-value-entry-hover-background: black;
 }
 
 body.theme-light {
+  --char-gen-background-image: url("assets/character-generation/background_parchment_transparent.png");
   --char-gen-assign-value-entry-hover-background: lightgrey;
 }
 
@@ -26,6 +28,8 @@ body.theme-light {
 
 
 form.ed4e.character-generation {
+  background: var(--char-gen-background-image);
+  background-size: 100% 100%;
   backdrop-filter: blur(10px);
   z-index: 100;
   position: absolute;
@@ -36,7 +40,6 @@ form.ed4e.character-generation {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  gap: 1.5em;
 
   nav {
     max-width: 80%;
@@ -55,7 +58,7 @@ form.ed4e.character-generation {
   section {
     max-width: 80%;
     min-height: 0;
-    max-height: 62%;
+    max-height: 70%;
 
     flex: 1 1 auto;
 
@@ -89,34 +92,48 @@ form.ed4e.character-generation {
       text-align: center;
     }
 
-    meter {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+    div.availability-meter {
 
-      background: @char-gen-meter-background;
-      box-shadow: @char-gen-meter-box-shadow;
-      border-radius: @char-gen-meter-border-radius;
+      button {
+        flex: 1 1 auto;
+      }
+      label {
+        flex: 2 2 auto;
+      }
+      meter {
+        flex: 16 16 auto;
+      }
 
-      &::-webkit-meter-bar {
+      meter {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
         background: @char-gen-meter-background;
         box-shadow: @char-gen-meter-box-shadow;
         border-radius: @char-gen-meter-border-radius;
+
+        &::-webkit-meter-bar {
+          background: @char-gen-meter-background;
+          box-shadow: @char-gen-meter-box-shadow;
+          border-radius: @char-gen-meter-border-radius;
+        }
+
+        &::-moz-meter-bar,
+        &:-moz-meter-optimum::-moz-meter-bar,
+        &:-moz-meter-sub-optimum::-moz-meter-bar,
+        &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+          background: @char-gen-meter-color;
+        }
+
+
+        &::-webkit-meter-optimum-value,
+        &::-webkit-meter-suboptimum-value,
+        &::-webkit-meter-even-less-good-value {
+          border-radius: 3px;
+        }
       }
 
-      &::-moz-meter-bar,
-      &:-moz-meter-optimum::-moz-meter-bar,
-      &:-moz-meter-sub-optimum::-moz-meter-bar,
-      &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-        background: @char-gen-meter-color;
-      }
-
-
-      &::-webkit-meter-optimum-value,
-      &::-webkit-meter-suboptimum-value,
-      &::-webkit-meter-even-less-good-value {
-        border-radius: 3px;
-      }
     }
 
     div.entry-listing {
@@ -152,6 +169,11 @@ form.ed4e.character-generation {
 
       }
 
+    }
+
+    span.preview-value {
+      opacity: 0.65;
+      font-size: small;
     }
 
     &[data-tab="namegiver"] {
@@ -263,28 +285,51 @@ form.ed4e.character-generation {
           pointer-events: none;
         }
 
-        div.rank-assignment {
-
-          div.available-talent-ranks {
-            button {
-              flex: 1 1 auto;
-            }
-            label {
-              flex: 2 2 auto;
-            }
-            meter {
-              flex: 16 16 auto;
-            }
-          }
-
-        }
-
         div.talent-listing {
 
           align-items: flex-start;
 
         }
 
+      }
+
+    }
+
+    &[data-tab="attributes"] {
+      justify-content: space-between;
+      text-align: center;
+
+      div.explainer {
+        justify-content: flex-start;
+
+        h3 {
+          margin-bottom: 0;
+        }
+      }
+
+      div.char-gen-attribute-modification {
+        min-height: 0;
+        justify-content: space-between;
+        gap: 2em;
+      }
+
+      div.char-gen-characteristics-preview {
+        align-items: flex-start;
+      }
+
+      div.value-entry {
+        padding: 0.2em;
+
+        div.entry-name {
+          flex: @golden-ratio @golden-ratio;
+        }
+      }
+
+      span.preview-value.attribute-cost-lower {
+        text-align: right;
+      }
+      span.preview-value.attribute-cost-higher {
+        text-align: left;
       }
 
     }
@@ -328,14 +373,4 @@ form.ed4e.character-generation {
     }
   }
 
-}
-
-body.theme-dark form.ed4e.character-generation {
-  background: url("assets/character-generation/background_parchment_transparent_dark.png");
-  background-size: 100% 100%;
-}
-
-body.theme-light form.ed4e.character-generation {
-  background: url("assets/character-generation/background_parchment_transparent.png");
-  background-size: 100% 100%;
 }
