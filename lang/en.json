@@ -3068,6 +3068,7 @@
         "chooseSpellsRules":                       "Select spells from the lists below.<br>Maximum number of spells equals Perception step.<br>Circle 1 spells cost 1 point, Circle 2 spells cost 2 points.",
         "chooseTalentsRules":                      "Here are the Discipline talents and optional Novice talents.<br>You may choose one optional talent to raise with the Discipline talents.<br>Free talents always match Circle rank.<br>Assigned rank equals starting rank.",
         "circle":                                  "Circle {level}",
+        "classImageAlt":                           "TODO: Add translation",
         "discipline":                              "Discipline",
         "disciplineTalents":                       "Discipline Talents",
         "initiative":                              "Initiative Step / Dice",
