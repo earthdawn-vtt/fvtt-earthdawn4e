@@ -47,18 +47,18 @@ export const defaultEdIds = {
  */
 export const typeGroups = {
   Item: {
-    Equipment:    [ "armor", "equipment", "shield", "weapon" ],
-    Powers:       [ "maneuver", "power" ],
-    Abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
-    Conditions:   [ "curseMark", "effect", "poisonDisease" ],
-    Magic:        [ "spell", "spellKnack", "bindingSecret", ],
-    Classes:      [ "discipline", "path", "questor" ],
-    Other:        [ "mask", "namegiver", "shipWeapon" ]
+    equipment:    [ "armor", "equipment", "shield", "weapon" ],
+    powers:       [ "maneuver", "power" ],
+    abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
+    conditions:   [ "curseMark", "effect", "poisonDisease" ],
+    magic:        [ "spell", "spellKnack", "bindingSecret", ],
+    classes:      [ "discipline", "path", "questor" ],
+    other:        [ "mask", "namegiver", "shipWeapon" ]
   },
   Actor: {
-    Namegivers:   [ "character", "npc" ],
-    Creatures:    [ "creature", "spirit", "horror", "dragon" ],
-    Other:        [ "group", "vehicle", "trap", "loot" ]
+    namegivers:   [ "character", "npc" ],
+    creatures:    [ "creature", "spirit", "horror", "dragon" ],
+    other:        [ "group", "vehicle", "trap", "loot" ]
   }
 };
 

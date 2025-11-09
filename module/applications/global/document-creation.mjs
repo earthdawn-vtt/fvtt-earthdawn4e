@@ -115,7 +115,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     const typesRadio = Object.fromEntries(
       Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
         return [
-          typeGroup,
+          game.i18n.localize( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
           types.reduce(
             ( accumulator, type ) =>  {
               let label = CONFIG[this.documentType].typeLabels?.[type];
