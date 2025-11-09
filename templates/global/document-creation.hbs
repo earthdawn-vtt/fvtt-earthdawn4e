@@ -1,30 +1,45 @@
-<div id="document-create">
-  <div class="form-group">
-    <label>{{localize "ED.Document.name"}}</label>
-    <div class="form-fields">
-      <input type="text" name="name" placeholder="{{defaultName}}" value="{{name}}" autofocus>
-    </div>
-  </div>
+<div class="ed-document-creation flexcol">
 
-  {{#if hasFolders}}
+  <div class="name-and-folder-inputs flexrow">
     <div class="form-group">
-      <label>{{ localize "DOCUMENT.Folder" }}</label>
-      <div class="form-fields">
-        <select name="folder">
-          <option value=""></option>
-          {{selectOptions folders selected=folder valueAttr="id" labelAttr="name"}}
-        </select>
-      </div>
-    </div>
-  {{/if}}
 
+      <label>{{localize "ED.Document.name"}}</label>
+      <div class="form-fields">
+        <input type="text" name="name" placeholder="{{defaultName}}" value="{{name}}" autofocus>
+      </div>
+
+    </div>
+
+    {{#if hasFolders}}
+      <div class="form-group">
+
+        <label>{{ localize "DOCUMENT.Folder" }}</label>
+        <div class="form-fields">
+          <select name="folder">
+            <option value=""></option>
+            {{selectOptions folders selected=folder valueAttr="id" labelAttr="name"}}
+          </select>
+        </div>
+
+      </div>
+    {{/if}}
+  </div>
+{{log this}}
   <div class="type-selection scrollable flexcol">
-    <header id='typeSelectionHeader'>{{localize "ED.Document.type"}}</header>
+
+    <header id='typeSelectionHeader'>
+      <h4>{{localize "ED.Document.type"}}</h4>
+    </header>
+
     {{#each typesRadio}}
-      <header class='type-group-label'>{{@key}}</header>
-      <div class='form-fields'>
+      <header class='type-group-label'>
+        <h5>{{@key}}</h5>
+      </header>
+      <div class='form-fields flexrow'>
         {{radioBoxes 'type' this checked=../currentType}}
       </div>
     {{/each}}
+
   </div>
+
 </div>

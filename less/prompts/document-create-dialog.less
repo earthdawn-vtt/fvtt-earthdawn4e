@@ -1,0 +1,77 @@
+form#document-create-dialog {
+
+  background: var(--background-mottle-blue-dk);
+  --document-create-radio-button-background: var(--background-mottle-blue-md);
+
+  &.create-item {
+    background: var(--background-mottle-blue-dk);
+    --document-create-radio-button-background: var(--background-mottle-blue-md)
+  }
+
+  &.create-actor {
+    background: var(--background-mottle-green-dk);
+    --document-create-radio-button-background: var(--background-mottle-green-md)
+  }
+
+  div.ed-document-creation {
+
+    justify-content: space-around;
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+
+    .name-and-folder-inputs {
+
+      justify-content: center;
+      gap: 1rem;
+
+    }
+
+    .type-selection {
+
+      gap: 0.5em;
+
+      .form-fields {
+
+        flex-wrap: wrap;
+
+        label {
+          flex: 1 1 auto;
+          position: relative;
+
+          justify-content: center;
+
+          padding: 1em;
+
+          background: var(--document-create-radio-button-background);
+          opacity: 0.2;
+
+          font-size: medium;
+          text-align: center;
+          text-transform: capitalize;
+
+          &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+          }
+
+          input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+          }
+
+          &:has(input[type="radio"]:checked) {
+            font-variant: small-caps;
+            opacity: 1;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
