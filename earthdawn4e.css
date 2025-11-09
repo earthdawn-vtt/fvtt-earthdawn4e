@@ -433,27 +433,6 @@ slide-toggle[checked] .slide-toggle-thumb {
   margin: 0;
   font-family: inherit;
 }
-.text--center {
-  text-align: center;
-}
-.text--left {
-  text-align: left;
-}
-.text--right {
-  text-align: right;
-}
-.text--justify {
-  text-align: justify;
-}
-.item--center {
-  align-items: center;
-}
-.item--top {
-  align-items: top;
-}
-.item--top {
-  align-items: end;
-}
 .display__inline-block {
   display: inline-block;
 }
@@ -1649,13 +1628,18 @@ h3.label--rail .label__text::after {
   display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
-.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2) {
-  text-align: left;
-}
-.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
+}
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container input,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container input,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container select,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container select {
+  height: 24px;
+  line-height: 24px;
+  padding: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
