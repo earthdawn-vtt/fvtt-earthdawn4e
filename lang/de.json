@@ -3068,6 +3068,7 @@
         "chooseSpellsRules":                       "Wähle Zauber aus den unten aufgeführten Listen aus.<br>Es können Zauber gleich der Wahrnehmungsstufe gewählt werden.<br> Kreis 1 Zauber kosten 1 Punkt, Kreis 2 Zauber kosten 2.",
         "chooseTalentsRules":                      "Hier sind die Talente des ersten Kreises und die optionalen Novizentalente aufgeführt.<br> Ein Optionales Talent kann ausgewählt werden und zusammen mit den Disziplintalenten gesteigert werden.<br> Freie Talente haben immer einen Rang der dem Kreis entspricht.<br> Der zugewiesene Rang entspricht dem Startrang.",
         "circle":                                  "Kreis {level}",
+        "classImageAlt":                           "Bild der ausgewählten Berufung",
         "discipline":                              "Disziplin",
         "disciplineTalents":                       "Disziplin Talente",
         "initiative":                              "Initiativestufe / Würfel",
