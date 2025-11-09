@@ -14,14 +14,11 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     { resolve, documentCls, pack = null, parent = null, options = {} } = {},
   ) {
     const documentType = documentCls.name;
-    const documentTypeLocalized = game.i18n.localize(
-      `ED.Document.${documentType.toLowerCase()}`,
-    );
     const classes = options.classes || [];
     classes.push( `create-${documentType.toLowerCase()}` );
     const window = options.window || {};
     window.title ??= game.i18n.format( "ED.Document.create", {
-      type: documentTypeLocalized,
+      type: documentType,
     } );
 
     foundry.utils.mergeObject( options, {
@@ -36,7 +33,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     this.documentType = documentType;
     this.pack = pack;
     this.parent = parent;
-    this.documentTypeLocalized = documentTypeLocalized;
 
     this._updateCreationData( data );
   }
@@ -141,7 +137,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
       {
         type:  "button",
         label: game.i18n.format( "ED.Document.create", {
-          type: this.documentTypeLocalized,
+          type: this.documentType,
         } ),
         cssClass: "finish",
         action:   "createDocument",
@@ -149,7 +145,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     ];
 
     return {
-      documentTypeLocalized: this.documentTypeLocalized,
       folders,
       name:                  createData.name,
       defaultName:           this.documentCls.implementation.defaultName( {
