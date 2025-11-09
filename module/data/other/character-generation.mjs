@@ -36,6 +36,14 @@ export default class CharacterGenerationData extends SparseDataModel {
     const fields = foundry.data.fields;
     return {
 
+      name: new fields.StringField( {
+        required: true,
+        nullable: false,
+        initial:  () => ED4E.characterNames[
+          Math.floor( Math.random() * ED4E.characterNames.length )
+        ],
+      } ),
+
       // Namegiver
       namegiver: new fields.DocumentUUIDField( {
         required: true,

@@ -191,11 +191,42 @@ form.ed4e.character-generation {
       justify-content: space-between;
       width: 100%;
 
-      div.character-generation-overview {
-        justify-content: center;
-        align-items: center;
-        padding-left: 10%;
+      div {
+
+        &.overview-and-name-selection {
+          justify-content: flex-start;
+          gap: 5em;
+
+          .character-generation-overview {
+            justify-content: center;
+            align-items: center;
+            padding-left: 10%;
+          }
+
+          .name-selection {
+            text-align: center;
+
+              input[type="text"] {
+                width: auto;
+                font-size: large;
+                text-align: center;
+                padding: 0.5em;
+                border: none;
+                background: var(--char-gen-input-background-color);
+                box-shadow: @char-gen-inset-shadow;
+
+                &:focus {
+                  outline: @char-gen-button-focus-outline;
+                }
+
+            }
+
+          }
+
+        }
+
       }
+
 
       div.namegiver-selection {
         min-height: 0;

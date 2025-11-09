@@ -1,10 +1,21 @@
 <section class="tab {{tabs.namegiver.cssClass}} flexrow" data-group="primary" data-tab="namegiver">
 
-  <div class="character-generation-overview explainer flexcol">
+  <div class="overview-and-name-selection flexcol">
 
-    <h3>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h3>
+    <div class="character-generation-overview explainer flexcol">
 
-    <p>{{{charGenRules}}}</p>
+      <h3>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h3>
+
+      <p>{{{charGenRules}}}</p>
+
+    </div>
+
+    <div class="name-selection">
+
+      <h5>{{localize "ED.Dialogs.CharGen.chooseName"}}</h5>
+        <input type="text" id="char-gen-first-name-input" name="name" value="{{charGenData.name}}" />
+
+    </div>
 
   </div>
 
@@ -22,7 +33,7 @@
     </div>
 
     {{#if namegiverDocument}}
-    <img src="{{namegiverDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.namegiverImageAlt"}}">
+      <img src="{{namegiverDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.namegiverImageAlt"}}">
     {{/if}}
 
   </div>
