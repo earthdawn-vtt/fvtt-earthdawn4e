@@ -749,15 +749,14 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
    */
   static async _onSelectEquipment( _, target ) {
     const equipmentUuid = target.dataset.uuid;
-    let result;
-    if ( target.attr.checked ) {
-      // add the equipment
-      result = this.charGenData.addEquipment( equipmentUuid );
+
+    if ( target.checked ) {
+      await this.charGenData.addEquipment( equipmentUuid );
     } else {
-      // unselect the equipment
-      result = this.charGenData.removeEquipment( equipmentUuid );
+      await this.charGenData.removeEquipment( equipmentUuid );
     }
-    result.then( _ => this.render );
+
+    await this.render();
   }
 
   // endregion

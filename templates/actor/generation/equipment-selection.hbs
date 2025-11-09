@@ -1,42 +1,56 @@
-<section class="tab {{tabs.equipment.cssClass}} scrollable" data-group="primary" data-tab="equipment">
-  <h3>{{localize "ED.Dialogs.CharGen.Title.equipment"}}</h3>
-  <div>
+<section class="tab {{tabs.equipment.cssClass}} flexcol" data-group="primary" data-tab="equipment">
+
+  <div class="explainer languages-explainer flexcol">
+
+    <h3>{{localize "ED.Dialogs.CharGen.Title.equipment"}}</h3>
     <p>{{{chooseEquipmentRules}}}</p>
+
   </div>
-  {{!-- <div>
-    <h5>{{localize "ED.Dialogs.CharGen.Title.armor"}}</h5>
-    {{#each equipment.armor}}
-      <div>
-        <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
-        <label for="{{this.uuid}}">{{this.name}}</label>
+
+  <div class="equipment-selection-lists flexcol scrollable">
+
+    <div class="equipment-selection select-armor flexcol">
+
+      <h5>{{localize "ED.Dialogs.CharGen.Title.armor"}}</h5>
+      <div class="checkbox-options armor-options flexrow">
+        {{#each equipment.armor}}
+          <label for="{{this.uuid}}">
+            <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
+            {{this.name}}
+          </label>
+        {{/each}}
       </div>
-    {{/each}}
-  </div> --}}
-  <div>
-    <h5>{{localize "ED.Dialogs.CharGen.Title.equipment"}}</h5>
-    {{#each equipment.equipment}}
-      <div>
-        <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
-        <label for="{{this.uuid}}">{{this.name}}</label>
+
+    </div>
+
+    <div class="equipment-selection select-equipment flexcol">
+
+      <h5>{{localize "ED.Dialogs.CharGen.Title.equipment"}}</h5>
+      <div class="checkbox-options equipment-options flexrow">
+        {{#each equipment.equipment}}
+          <label for="{{this.uuid}}">
+            <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
+            {{this.name}}
+          </label>
+        {{/each}}
       </div>
-    {{/each}}
+
+    </div>
+
+    <div class="equipment-selection select-weapon flexcol">
+
+      <h5>{{localize "ED.Dialogs.CharGen.Title.weapons"}}</h5>
+      <div class="checkbox-options weapon-options flexrow">
+        {{#each equipment.weapons}}
+          <label for="{{this.uuid}}">
+            <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
+            {{this.name}}
+          </label>
+        {{/each}}
+      </div>
+
+    </div>
+
   </div>
-  {{!-- <div>
-    <h5>{{localize "ED.Dialogs.CharGen.Title.shields"}}</h5>
-    {{#each equipment.shields}}
-      <div>
-        <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
-        <label for="{{this.uuid}}">{{this.name}}</label>
-      </div>
-    {{/each}}
-  </div> --}}
-  <div>
-    <h5>{{localize "ED.Dialogs.CharGen.Title.weapons"}}</h5>
-    {{#each equipment.weapons}}
-      <div>
-        <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
-        <label for="{{this.uuid}}">{{this.name}}</label>
-      </div>
-    {{/each}}
-  </div>
+
 </section>

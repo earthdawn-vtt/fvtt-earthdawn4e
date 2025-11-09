@@ -5,6 +5,7 @@
 @char-gen-meter-box-shadow: 0 2px 3px rgba(0,0,0,0.7) inset;
 @char-gen-meter-border-radius: 5px;
 @char-gen-header-border: 2px solid @char-gen-color-shadow;
+@char-gen-inset-shadow: 1px 1px 2px @char-gen-color-shadow inset;
 
 body.theme-dark {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
@@ -84,7 +85,7 @@ form.ed4e.character-generation {
     button {
       background: var(--char-gen-input-background-color);
       border: none;
-      box-shadow: 1px 1px 2px @char-gen-color-shadow inset;
+      box-shadow: @char-gen-inset-shadow;
 
       &:focus {
         outline: @char-gen-button-focus-outline;
@@ -451,6 +452,68 @@ form.ed4e.character-generation {
           gap: 1em;
         }
 
+      }
+    }
+
+    &[data-tab="equipment"] {
+      justify-content: space-between;
+      text-align: center;
+      gap: 2em;
+      max-width: 70%;
+
+      div {
+        &.explainer {
+          ul {
+            text-align: left;
+          }
+        }
+
+        &.equipment-selection-lists {
+          justify-content: flex-start;
+          gap: 2em;
+
+          .equipment-selection {
+
+            .checkbox-options{
+              justify-content: space-between;
+              align-items: stretch;
+              align-content: space-between;
+              gap: 0.3em;
+
+              label {
+                flex: 1 1 auto;
+                position: relative;
+                padding: 0.5em;
+
+                &:hover {
+                  background: var(--char-gen-assign-value-entry-hover-background);
+                  text-shadow: @char-gen-text-shadow;
+                }
+
+                input[type="checkbox"] {
+                  position: absolute;
+                  opacity: 0;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+
+                }
+
+                &:has(input[type="checkbox"]:checked) {
+                  background: @char-gen-color-shadow;
+                  box-shadow: @char-gen-inset-shadow;
+                  text-shadow: @char-gen-text-shadow;
+                  font-variant: small-caps;
+                }
+
+              }
+
+            }
+
+          }
+
+        }
       }
     }
 
