@@ -1,17 +1,18 @@
-@char-gen-color-shadow: color-mix(in srgb, white, transparent 80%);
-@char-gen-text-shadow: 1px 1px 2px @char-gen-color-shadow;
 @char-gen-button-focus-outline: 2px solid white;
 @char-gen-meter-color: rgba(89, 78, 99, 0.7);
 @char-gen-meter-box-shadow: 0 2px 3px rgba(0,0,0,0.7) inset;
 @char-gen-meter-border-radius: 5px;
-@char-gen-header-border: 2px solid @char-gen-color-shadow;
-@char-gen-inset-shadow: 1px 1px 2px @char-gen-color-shadow inset;
+@char-gen-header-border: 2px solid var(--char-gen-color-shadow);
 
 body.theme-dark {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
   --char-gen-assign-value-entry-hover-background: black;
   --char-gen-meter-background: color-mix(in srgb, white, transparent 70%);
   --char-gen-input-background-color: black;
+  --char-gen-text-color: var(--color-light-3);
+  --char-gen-color-shadow: color-mix(in srgb, white, transparent 80%);
+  --char-gen-text-shadow: 1px 1px 2px var(--char-gen-color-shadow);
+  --char-gen-inset-shadow: 1px 1px 2px var(--char-gen-color-shadow) inset;
 }
 
 body.theme-light {
@@ -19,6 +20,9 @@ body.theme-light {
   --char-gen-assign-value-entry-hover-background: lightgrey;
   --char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
   --char-gen-input-background-color: lightgrey;
+  --char-gen-color-shadow: color-mix(in srgb, black, transparent 80%);
+  --char-gen-text-shadow: 1px 1px 2px var(--char-gen-color-shadow);
+  --char-gen-inset-shadow: 1px 1px 2px var(--char-gen-color-shadow) inset;
 }
 
 @keyframes fadeIn {
@@ -33,6 +37,7 @@ body.theme-light {
 
 
 form.ed4e.character-generation {
+  color: var(--color-text-primary);
   background: var(--char-gen-background-image);
   background-size: 100% 100%;
   backdrop-filter: blur(10px);
@@ -85,7 +90,7 @@ form.ed4e.character-generation {
     button {
       background: var(--char-gen-input-background-color);
       border: none;
-      box-shadow: @char-gen-inset-shadow;
+      box-shadow: var(--char-gen-inset-shadow);
 
       &:focus {
         outline: @char-gen-button-focus-outline;
@@ -213,7 +218,7 @@ form.ed4e.character-generation {
                 padding: 0.5em;
                 border: none;
                 background: var(--char-gen-input-background-color);
-                box-shadow: @char-gen-inset-shadow;
+                box-shadow: var(--char-gen-inset-shadow);
 
                 &:focus {
                   outline: @char-gen-button-focus-outline;
@@ -279,7 +284,7 @@ form.ed4e.character-generation {
               .WarhorseDeco();
               text-align: center;
               font-size: large;
-              text-shadow: @char-gen-text-shadow;
+              text-shadow: var(--char-gen-text-shadow);
 
               .deselected-class-type {
                 opacity: 0.5;
@@ -518,7 +523,7 @@ form.ed4e.character-generation {
 
                 &:hover {
                   background: var(--char-gen-assign-value-entry-hover-background);
-                  text-shadow: @char-gen-text-shadow;
+                  text-shadow: var(--char-gen-text-shadow);
                 }
 
                 input[type="checkbox"] {
@@ -532,9 +537,9 @@ form.ed4e.character-generation {
                 }
 
                 &:has(input[type="checkbox"]:checked) {
-                  background: @char-gen-color-shadow;
-                  box-shadow: @char-gen-inset-shadow;
-                  text-shadow: @char-gen-text-shadow;
+                  background: var(--char-gen-color-shadow);
+                  box-shadow: var(--char-gen-inset-shadow);
+                  text-shadow: var(--char-gen-text-shadow);
                   font-variant: small-caps;
                 }
 
