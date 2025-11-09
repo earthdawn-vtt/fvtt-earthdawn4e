@@ -117,8 +117,21 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
 
     const types = CONFIG.ED4E.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
-      Object.entries( types ).map( ( [ k, v ], i ) => {
-        return [ k, v.reduce( ( a, v ) => ( { ...a, [v]: v } ), {} ) ];
+      Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
+        return [
+          typeGroup,
+          types.reduce(
+            ( accumulator, type ) =>  {
+              let label = CONFIG[this.documentType].typeLabels?.[type];
+              label = label && game.i18n.has( label ) ? game.i18n.localize( label ) : type;
+              return {
+                ...accumulator,
+                [type]: label
+              };
+            } ,
+            {}
+          )
+        ];
       } ),
     );
 
@@ -171,9 +184,9 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    */
   _updateCreationData( data = {} ) {
     // Fill in default type if missing
-    data.type ||=
-      CONFIG[this.documentType].defaultType ||
-      game.documentTypes[this.documentType][1];
+    data.type
+      ||= CONFIG[this.documentType].defaultType
+      || game.documentTypes[this.documentType][1];
 
     foundry.utils.mergeObject( this.createData, data, {
       inplace: true,
@@ -224,8 +237,8 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     let promise;
 
     if (
-      createData.type === "character" &&
-      game.settings.get( "ed4e", "autoOpenCharGen" )
+      createData.type === "character"
+      && game.settings.get( "ed4e", "autoOpenCharGen" )
     ) {
       const useCharGen = await DocumentCreateDialog._showCharGenPrompt();
       if ( useCharGen ) {
