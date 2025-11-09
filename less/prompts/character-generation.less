@@ -10,12 +10,14 @@ body.theme-dark {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
   --char-gen-assign-value-entry-hover-background: black;
   --char-gen-meter-background: color-mix(in srgb, white, transparent 70%);
+  --char-gen-input-background-color: black;
 }
 
 body.theme-light {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent.png");
   --char-gen-assign-value-entry-hover-background: lightgrey;
   --char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
+  --char-gen-input-background-color: lightgrey;
 }
 
 @keyframes fadeIn {
@@ -80,7 +82,7 @@ form.ed4e.character-generation {
     }
 
     button {
-      background: black;
+      background: var(--char-gen-input-background-color);
       border: none;
       box-shadow: 1px 1px 2px @char-gen-color-shadow inset;
 
@@ -94,7 +96,7 @@ form.ed4e.character-generation {
       border: none;
       height: 34px;
       appearance: none;
-      background: black;
+      background: var(--char-gen-input-background-color);
       font-variant: small-caps;
       font-size: larger;
       text-align: center;
@@ -396,6 +398,57 @@ form.ed4e.character-generation {
 
           }
 
+        }
+
+      }
+    }
+
+    &[data-tab="languages"] {
+      justify-content: flex-start;
+      text-align: center;
+      gap: 5em;
+
+      multi-select {
+        flex: 1 1 auto;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        select {
+          width: auto;
+          padding: 0.5em 0.8em;
+        }
+
+        div {
+          &.input-element-tags{
+            flex-direction: column;
+            flex: @golden-ratio @golden-ratio;
+            align-items: stretch;
+
+          }
+
+          &.tag {
+            justify-content: flex-end;
+            text-align: center;
+            font-size: medium;
+            padding: 0.5em 0.8em;
+            border: none;
+
+            &:hover {
+              background: var(--char-gen-input-background-color);
+            }
+
+            span {
+              flex: 1 1 auto;
+            }
+          }
+        }
+
+      }
+
+      div {
+
+        .language-selection {
+          gap: 1em;
         }
 
       }
