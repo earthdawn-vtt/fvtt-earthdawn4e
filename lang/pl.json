@@ -3820,6 +3820,11 @@
       "eae":                                       "TODO: Add translation"
     },
     "Actor": {
+      "TypeGroups": {
+        "creatures":                               "TODO: Add translation",
+        "namegivers":                              "TODO: Add translation",
+        "other":                                   "TODO: Add translation"
+      },
       "character":                                 "TODO: Add translation",
       "creature":                                  "TODO: Add translation",
       "dragon":                                    "TODO: Add translation",
@@ -3837,6 +3842,15 @@
       "pile":                                      "TODO: Add translation"
     },
     "Item": {
+      "TypeGroups": {
+        "abilities":                               "TODO: Add translation",
+        "classes":                                 "TODO: Add translation",
+        "conditions":                              "TODO: Add translation",
+        "equipment":                               "TODO: Add translation",
+        "magic":                                   "TODO: Add translation",
+        "other":                                   "TODO: Add translation",
+        "powers":                                  "TODO: Add translation"
+      },
       "armor":                                     "TODO: Add translation",
       "bindingSecret":                             "TODO: Add translation",
       "curseMark":                                 "TODO: Add translation",
