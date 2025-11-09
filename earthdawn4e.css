@@ -1101,6 +1101,25 @@ h3.label--rail .label__text::after {
   padding-top: 8px;
   padding-bottom: 4px;
 }
+body.theme-dark {
+  --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
+  --char-gen-assign-value-entry-hover-background: black;
+  --char-gen-meter-background: color-mix(in srgb, white, transparent 70%);
+  --char-gen-input-background-color: black;
+  --char-gen-text-color: var(--color-light-3);
+  --char-gen-color-shadow: color-mix(in srgb, white, transparent 80%);
+  --char-gen-text-shadow: 1px 1px 2px var(--char-gen-color-shadow);
+  --char-gen-inset-shadow: 1px 1px 2px var(--char-gen-color-shadow) inset;
+}
+body.theme-light {
+  --char-gen-background-image: url("assets/character-generation/background_parchment_transparent.png");
+  --char-gen-assign-value-entry-hover-background: lightgrey;
+  --char-gen-meter-background: color-mix(in srgb, black, transparent 70%);
+  --char-gen-input-background-color: lightgrey;
+  --char-gen-color-shadow: color-mix(in srgb, black, transparent 80%);
+  --char-gen-text-shadow: 1px 1px 2px var(--char-gen-color-shadow);
+  --char-gen-inset-shadow: 1px 1px 2px var(--char-gen-color-shadow) inset;
+}
 @keyframes fadeIn {
   from {
     transform: translateY(30px);
@@ -1112,6 +1131,9 @@ h3.label--rail .label__text::after {
   }
 }
 form.ed4e.character-generation {
+  color: var(--color-text-primary);
+  background: var(--char-gen-background-image);
+  background-size: 100% 100%;
   backdrop-filter: blur(10px);
   z-index: 100;
   position: absolute;
@@ -1121,7 +1143,6 @@ form.ed4e.character-generation {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  gap: 1.5em;
 }
 form.ed4e.character-generation nav {
   max-width: 80%;
@@ -1134,10 +1155,15 @@ form.ed4e.character-generation nav a {
 form.ed4e.character-generation nav a.active {
   font-size: x-large;
 }
+form.ed4e.character-generation nav a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
 form.ed4e.character-generation section {
   max-width: 80%;
   min-height: 0;
-  max-height: 62%;
+  max-height: 70%;
   flex: 1 1 auto;
   align-items: stretch;
 }
@@ -1149,25 +1175,119 @@ form.ed4e.character-generation section h3,
 form.ed4e.character-generation section h4 {
   font-family: 'ArnoPro-Regular', serif;
 }
+form.ed4e.character-generation section button {
+  background: var(--char-gen-input-background-color);
+  border: none;
+  box-shadow: var(--char-gen-inset-shadow);
+}
+form.ed4e.character-generation section button:focus {
+  outline: 2px solid white;
+}
 form.ed4e.character-generation section select {
   width: 61.8%;
   border: none;
   height: 34px;
   appearance: none;
-  background: black;
+  background: var(--char-gen-input-background-color);
   font-variant: small-caps;
   font-size: larger;
   text-align: center;
 }
-form.ed4e.character-generation section[data-tab="namegiver"] div.character-generation-overview {
+form.ed4e.character-generation section div.availability-meter button {
+  flex: 1 1 auto;
+}
+form.ed4e.character-generation section div.availability-meter label {
+  flex: 2 2 auto;
+}
+form.ed4e.character-generation section div.availability-meter meter {
+  flex: 16 16 auto;
+}
+form.ed4e.character-generation section div.availability-meter meter {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: var(--char-gen-meter-background);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7) inset;
+  border-radius: 5px;
+}
+form.ed4e.character-generation section div.availability-meter meter::-webkit-meter-bar {
+  background: var(--char-gen-meter-background);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7) inset;
+  border-radius: 5px;
+}
+form.ed4e.character-generation section div.availability-meter meter::-moz-meter-bar,
+form.ed4e.character-generation section div.availability-meter meter:-moz-meter-optimum::-moz-meter-bar,
+form.ed4e.character-generation section div.availability-meter meter:-moz-meter-sub-optimum::-moz-meter-bar,
+form.ed4e.character-generation section div.availability-meter meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+  background: rgba(89, 78, 99, 0.7) url(assets/sheet/mottle.png) center center / auto repeat;
+}
+form.ed4e.character-generation section div.availability-meter meter::-webkit-meter-optimum-value,
+form.ed4e.character-generation section div.availability-meter meter::-webkit-meter-suboptimum-value,
+form.ed4e.character-generation section div.availability-meter meter::-webkit-meter-even-less-good-value {
+  border-radius: 3px;
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries {
+  display: flex;
+  flex-direction: column;
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries div.assign-value-entry {
+  padding: 0.5em;
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries div.assign-value-entry:hover {
+  background: var(--char-gen-assign-value-entry-hover-background);
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries div.assign-value-entry div.entry-name {
+  flex: 1.61803399 1.61803399;
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries div.assign-value-entry label {
+  position: relative;
+}
+form.ed4e.character-generation section div.entry-listing div.assign-value-entries div.assign-value-entry label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+form.ed4e.character-generation section span.preview-value {
+  opacity: 0.65;
+  font-size: small;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] {
+  justify-content: space-between;
+  width: 100%;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.overview-and-name-selection {
+  justify-content: flex-start;
+  gap: 5em;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.overview-and-name-selection .character-generation-overview {
   justify-content: center;
   align-items: center;
+  padding-left: 10%;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.overview-and-name-selection .name-selection {
+  text-align: center;
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.overview-and-name-selection .name-selection input[type="text"] {
+  width: auto;
+  font-size: large;
+  text-align: center;
+  padding: 0.5em;
+  border: none;
+  background: var(--char-gen-input-background-color);
+  box-shadow: var(--char-gen-inset-shadow);
+}
+form.ed4e.character-generation section[data-tab="namegiver"] div.overview-and-name-selection .name-selection input[type="text"]:focus {
+  outline: 2px solid white;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection {
   min-height: 0;
   max-height: 95%;
   flex: 1.61803399 1.61803399;
   justify-content: space-between;
+  text-align: center;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selection .namegiver-header-and-selection {
   flex: 0 0 auto;
@@ -1177,7 +1297,7 @@ form.ed4e.character-generation section[data-tab="namegiver"] div.namegiver-selec
   flex: 1 1 auto;
   width: auto;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 80%;
   object-fit: contain;
   align-self: center;
   mask-image: radial-gradient(circle, black, black 65%, transparent 85%);
@@ -1205,7 +1325,7 @@ form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-ex
   font-family: 'Warhorse-DecoBB', serif;
   text-align: center;
   font-size: large;
-  text-shadow: 1px 1px 2px pink;
+  text-shadow: var(--char-gen-text-shadow);
 }
 form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.discipline-questor-switch-group label .deselected-class-type {
   opacity: 0.5;
@@ -1223,16 +1343,166 @@ form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-ex
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
-  animation: fadeIn 1s 0ms forwards;
   align-content: center;
   justify-content: center;
 }
 form.ed4e.character-generation section[data-tab="classes"] div.class-type-and-explainer div.class-selection div.class-image-preview img {
+  max-height: 80%;
   object-fit: contain;
 }
 form.ed4e.character-generation section[data-tab="classes"] div.class-abilities-selection {
   flex: 1.61803399 1.61803399;
-  animation: fadeIn 1s 0ms forwards;
+  min-height: 0;
+  justify-content: space-between;
+  gap: 2em;
+  opacity: 1;
+  transition: opacity 0.8s ease-in;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-abilities-selection.invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+form.ed4e.character-generation section[data-tab="classes"] div.class-abilities-selection div.talent-listing {
+  align-items: flex-start;
+}
+form.ed4e.character-generation section[data-tab="attributes"] {
+  justify-content: space-between;
+  text-align: center;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.explainer {
+  justify-content: flex-start;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.explainer h3 {
+  margin-bottom: 0;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.char-gen-attribute-modification {
+  min-height: 0;
+  justify-content: space-between;
+  gap: 2em;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.char-gen-characteristics-preview {
+  align-items: flex-start;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.value-entry {
+  padding: 0.2em;
+}
+form.ed4e.character-generation section[data-tab="attributes"] div.value-entry div.entry-name {
+  flex: 1.61803399 1.61803399;
+}
+form.ed4e.character-generation section[data-tab="attributes"] span.preview-value.attribute-cost-lower {
+  text-align: right;
+}
+form.ed4e.character-generation section[data-tab="attributes"] span.preview-value.attribute-cost-higher {
+  text-align: left;
+}
+form.ed4e.character-generation section[data-tab="spells"] {
+  justify-content: flex-start;
+  text-align: center;
+  gap: 1em;
+}
+form.ed4e.character-generation section[data-tab="spells"] div.spell-assignment {
+  gap: 1.5em;
+}
+form.ed4e.character-generation section[data-tab="spells"] div.value-entry.headers {
+  border-bottom: 2px solid var(--char-gen-color-shadow);
+}
+form.ed4e.character-generation section[data-tab="spells"] div.spell-name {
+  padding: 1em;
+}
+form.ed4e.character-generation section[data-tab="spells"] div.spell:hover {
+  background: var(--char-gen-assign-value-entry-hover-background);
+}
+form.ed4e.character-generation section[data-tab="spells"] h6 {
+  padding: 0.5em;
+}
+form.ed4e.character-generation section[data-tab="skills"] {
+  justify-content: flex-start;
+  text-align: center;
+  gap: 1em;
+}
+form.ed4e.character-generation section[data-tab="skills"] div.skill-assignment {
+  flex: 1 1 auto;
+  gap: 2em;
+}
+form.ed4e.character-generation section[data-tab="skills"] div.skill-assignment .skill-options .entry-listing {
+  flex: 1.61803399 1.61803399;
+}
+form.ed4e.character-generation section[data-tab="languages"] {
+  justify-content: flex-start;
+  text-align: center;
+  gap: 5em;
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select {
+  flex: 1 1 auto;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select select {
+  width: auto;
+  padding: 0.5em 0.8em;
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select div.input-element-tags {
+  flex-direction: column;
+  flex: 1.61803399 1.61803399;
+  align-items: stretch;
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select div.tag {
+  justify-content: flex-end;
+  text-align: center;
+  font-size: medium;
+  padding: 0.5em 0.8em;
+  border: none;
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select div.tag:hover {
+  background: var(--char-gen-input-background-color);
+}
+form.ed4e.character-generation section[data-tab="languages"] multi-select div.tag span {
+  flex: 1 1 auto;
+}
+form.ed4e.character-generation section[data-tab="languages"] div .language-selection {
+  gap: 1em;
+}
+form.ed4e.character-generation section[data-tab="equipment"] {
+  justify-content: space-between;
+  text-align: center;
+  gap: 2em;
+  max-width: 70%;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.explainer ul {
+  text-align: left;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists {
+  justify-content: flex-start;
+  gap: 2em;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists .equipment-selection .checkbox-options {
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: space-between;
+  gap: 0.3em;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists .equipment-selection .checkbox-options label {
+  flex: 1 1 auto;
+  position: relative;
+  padding: 0.5em;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists .equipment-selection .checkbox-options label:hover {
+  background: var(--char-gen-assign-value-entry-hover-background);
+  text-shadow: var(--char-gen-text-shadow);
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists .equipment-selection .checkbox-options label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+form.ed4e.character-generation section[data-tab="equipment"] div.equipment-selection-lists .equipment-selection .checkbox-options label:has(input[type="checkbox"]:checked) {
+  background: var(--char-gen-color-shadow);
+  box-shadow: var(--char-gen-inset-shadow);
+  text-shadow: var(--char-gen-text-shadow);
+  font-variant: small-caps;
 }
 form.ed4e.character-generation footer {
   width: 80%;
@@ -1256,13 +1526,10 @@ form.ed4e.character-generation footer button:disabled {
   background: url("assets/character-generation/pill_dark.webp") no-repeat center center / contain;
   background-size: 100% 100%;
 }
-body.theme-dark form.ed4e.character-generation {
-  background: url("assets/character-generation/background_parchment_transparent_dark.png");
-  background-size: 100% 100%;
-}
-body.theme-light form.ed4e.character-generation {
-  background: url("assets/character-generation/background_parchment_transparent.png");
-  background-size: 100% 100%;
+form.ed4e.character-generation footer button:hover:enabled {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 .app.window-app.form.earthdawn4e.roll-prompt header,
 .app.window-app.form.earthdawn4e.assign-legend header {
