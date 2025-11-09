@@ -445,6 +445,15 @@ slide-toggle[checked] .slide-toggle-thumb {
 .text--justify {
   text-align: justify;
 }
+.item--center {
+  align-items: center;
+}
+.item--top {
+  align-items: top;
+}
+.item--top {
+  align-items: end;
+}
 .display__inline-block {
   display: inline-block;
 }
@@ -576,6 +585,34 @@ h3.label--rail .label__text::after {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+.effect-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
+  column-gap: var(--grid-col-gap-sm);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: normal;
+  height: 30px;
+  padding-bottom: 1px;
+}
+.effect-card__grid--container.container__header {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-text-banner);
+  text-transform: uppercase;
+  line-height: 19px;
+  height: 19px;
+}
+.effect-card__grid--item:nth-child(2) {
+  text-align: left;
+}
+.effect-card__grid--item:nth-child(6) {
+  text-align: right;
+}
+.effect-icon {
+  border: none;
 }
 .actor {
   /* generic icon button */
