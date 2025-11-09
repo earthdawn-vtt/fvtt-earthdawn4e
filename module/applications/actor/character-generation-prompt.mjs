@@ -82,7 +82,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       template:   "systems/ed4e/templates/actor/generation/skill-selection.hbs",
       id:         "-skills",
       classes:    [ "skill" ],
-      scrollable: [ "" ],
+      scrollable: [ "", "div.skill-assignment.scrollable" ],
     },
     "languages": {
       template:   "systems/ed4e/templates/actor/generation/language-selection.hbs",
@@ -643,9 +643,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   // region Event Handlers
 
   /**
-   * @param {*} _ - Unused parameter.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _nextTab( _ ) {
+  static async _nextTab( _ ) {
     if ( !this._hasNextStep() ) return;
 
     this._currentStep++;
@@ -655,9 +656,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
-   * @param {*} _ - Unused parameter.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _previousTab( _ ) {
+  static async _previousTab( _ ) {
     if ( !this._hasPreviousStep() ) return;
 
     this._currentStep--;
@@ -667,11 +669,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
-   * Handles the finish generation event.
-   * @param {Event} event - The event that triggered the finish generation process.
-   * @returns {void} This function does not return a value.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _finishGeneration( event ) {
+  static async _finishGeneration( event ) {
     event.preventDefault();
     event.stopPropagation();
     event.stopImmediatePropagation();
@@ -686,39 +687,41 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onSelectTalentOption( _, target ) {
+  static async _onSelectTalentOption( _, target ) {
     target.querySelector( "input[type=\"radio\"]" ).click();
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onChangeRank( _, target ) {
+  static async _onChangeRank( _, target ) {
     const abilityUuid = target.dataset.abilityUuid;
     const abilityType = target.dataset.abilityType;
     const changeType = target.dataset.changeType;
-    this.charGenData.changeAbilityRank( abilityUuid, abilityType, changeType ).then( _ => this.render() );
+    await this.charGenData.changeAbilityRank( abilityUuid, abilityType, changeType );
+    await this.render();
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onChangeAttributeModifier( _, target ) {
+  static async _onChangeAttributeModifier( _, target ) {
     const attribute = target.dataset.attribute;
     const changeType = target.dataset.changeType;
-    this.charGenData.changeAttributeModifier( attribute, changeType ).then( _ => this.render() );
+    await this.charGenData.changeAttributeModifier( attribute, changeType );
+    await this.render();
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onClickSpell( _, target ) {
+  static async _onClickSpell( _, target ) {
     const spellSelected = target.dataset.spellSelected;
     let result;
     if ( spellSelected === "false" ) {
@@ -732,19 +735,19 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onReset( _, target ) {
+  static async _onReset( _, target ) {
     const resetType = target.dataset.resetType;
     this.charGenData.resetPoints( resetType ).then( _ => this.render() );
   }
 
   /**
-   * @param {*} _ - Unused parameter.
-   * @param {HTMLElement} target - The HTML element that triggered the action.
+   * @type {ApplicationClickAction}
+   * @this {CharacterGenerationPrompt}
    */
-  static _onSelectEquipment( _, target ) {
+  static async _onSelectEquipment( _, target ) {
     const equipmentUuid = target.dataset.uuid;
     let result;
     if ( target.attr.checked ) {

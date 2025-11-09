@@ -545,10 +545,22 @@ export default class CharacterGenerationData extends SparseDataModel {
     return abilityType;
   }
 
-  _getAvailabilityType( abilityType ) {
-    if (
-      [ "artisan", "knowledge" ].includes( abilityType )
-    ) return this.availableRanks[abilityType] > 0 ? abilityType : "general";
+  _getAvailabilityType( abilityType, costDifference ) {
+    // for artisan and knowledge skill:
+    // when spending points (costDifference > 0) use the abilityType available ranks first, if not enough use general
+    // when refunding points (costDifference < 0) make sure that the available ranks of the given type
+    // are their maximum  minus the current assigned ranks after refunding to general
+    if ( [ "artisan", "knowledge" ].includes( abilityType ) ) {
+      const assignedRanks = sum( Object.values( this.abilities[abilityType] ) ) + costDifference;
+      const availableRanks = this.availableRanks[abilityType];
+      const maxAvailableRanks = ED4E.availableRanks[abilityType];
+      if ( costDifference > 0 ) {
+        if ( availableRanks > 0 ) return abilityType;
+        return "general";
+      }
+      if ( assignedRanks <= ( maxAvailableRanks + costDifference ) ) return abilityType;
+      return "general";
+    }
     return this._getAbilityClassType( abilityType ) ;
   }
 
@@ -659,8 +671,14 @@ export default class CharacterGenerationData extends SparseDataModel {
             ( uuid, _ ) => [ uuid, 0 ]
           );
         }
-        const skillLanguageSpeak = await getSingleGlobalItemByEdid( game.settings.get( "ed4e", "edidLanguageSpeak" ) );
-        const skillLanguageRW = await getSingleGlobalItemByEdid( game.settings.get( "ed4e", "edidLanguageRW" ) );
+        const skillLanguageSpeak = await getSingleGlobalItemByEdid(
+          game.settings.get( "ed4e", "edidLanguageSpeak" ),
+          "skill",
+        );
+        const skillLanguageRW = await getSingleGlobalItemByEdid(
+          game.settings.get( "ed4e", "edidLanguageRW" ),
+          "skill",
+        );
         skillsPayload.language = {
           [skillLanguageSpeak.uuid]: ED4E.availableRanks.speak,
           [skillLanguageRW.uuid]:    ED4E.availableRanks.readWrite

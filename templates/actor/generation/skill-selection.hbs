@@ -1,173 +1,220 @@
-<section class="tab {{tabs.skills.cssClass}} scrollable" data-group="primary" data-tab="skills">
+<section class="tab {{tabs.skills.cssClass}} flexcol" data-group="primary" data-tab="skills">
 
-  <h3>{{localize "ED.Dialogs.CharGen.chooseSkills"}}</h3>
+  <div class="explainer attributes-explainer flexcol">
+    <h3>{{localize "ED.Dialogs.CharGen.chooseSkills"}}</h3>
+    <p class="explainer-text">
+      {{{localize "ED.Dialogs.CharGen.chooseSkillsRules"}}}
+    </p>
+  </div>
 
-  <!-- Skills explainer -->
-  <p class="explainer-text">
-    {{{localize "ED.Dialogs.CharGen.chooseSkillsRules"}}}
-  </p>
-  
-  <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
-              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-action="reset" data-reset-type="skills">
-        <i class="fa-light fa-arrows-rotate"></i>
-        {{localize "ED.Dialogs.CharGen.Buttons.resetSkills"}}
-      </button>
+  <div class="availability-meter available-attribute-points flexrow">
+    <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
+            title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-action="reset" data-reset-type="skills">
+      <i class="fa-light fa-arrows-rotate"></i>
+      {{localize "ED.Dialogs.CharGen.Buttons.resetSkills"}}
+    </button>
+  </div>
 
-  <div class="flexcol skill-assignment">
+
+  <div class="skill-assignment flexcol scrollable">
 
     <!-- Artisan Skills -->
     <div class="skill-options artisan-skills flexrow">
-      <table>
-        <tr>
-          <th>{{localize "ED.Dialogs.CharGen.Title.artisanSkills"}}</th>
-        </tr>
+
+      <div class="entry-listing">
+        <div class="entry-listing-header">
+          <h4>{{localize "ED.Dialogs.CharGen.Title.artisanSkills"}}</h4>
+        </div>
+
+        <div class="assign-value-entries">
         {{#each skills.artisan}}
-          <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
-            <td class=" ability-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
+
+          <div class="assign-value-entry flexrow" data-skill-uuid="{{this.uuid}}">
+
+            <div class="entry-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
               {{this.name}}
-            </td>
-            <td class="flexrow rank-change">
-              {{#if (ed-hasOwnProperty @root.abilities.artisan this.uuid)}}
-                <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
-                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
-                  <i class="fa-light fa-circle-minus"></i>
-              {{/if}}
-                </span>
-                <span class="rank-change-value">
-                  {{lookup @root.abilities.artisan this.uuid}}
-                </span>
-                <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
-                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
+            </div>
+
+            <div class="flexrow rank-change">
+              <span class="decrease-value-button rank-decrease rank-change-icon {{#unless (ed-hasOwnProperty @root.abilities.artisan this.uuid)}}invisible{{/unless}}"
+                    title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
+                <i class="fa-light fa-circle-minus"></i>
+              </span>
+              <span class="rank-change-value">
+                {{lookup @root.abilities.artisan this.uuid}}
+              </span>
+              <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
+                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="artisan">
                   <i class="fa-light fa-circle-plus"></i>
                 </span>
-            </td>
-          </tr>
+            </div>
+
+          </div>
+
         {{else}}
           {{localize "ED.Dialogs.CharGen.noArtisanSkillsAvailable"}}
         {{/each}}
-      </table>
+        </div>
 
-      <span class="flexcol availability-meter available-ranks available-artisan-ranks">
+      </div>
+
+      <div class="flexcol availability-meter available-ranks available-artisan-ranks">
         <label class="flexcol">
-          {{!-- {{localize "ED.Dialogs.CharGen.requiredArtisanSkillPoints"}}: {{availableRanks.artisan}} --}}
           {{localize "ED.Dialogs.CharGen.requiredArtisanSkillPoints"}}
         </label>
         <meter value="{{availableRanks.artisan}}" min="0" max="{{config.availableRanks.artisan}}"></meter>
-      </span>
+      </div>
+
     </div>
 
     <!-- Knowledge Skills -->
     <div class="skill-options knowledge-skills flexrow">
-      <table>
-        <tr>
-          <th>{{localize "ED.Dialogs.CharGen.Title.knowledgeSkills"}}</th>
-        </tr>
-        {{#each skills.knowledge}}
-          <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
-            <td class=" ability-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
-              {{this.name}}
-            </td>
-            <td class="flexrow rank-change">              {{#if (ed-hasOwnProperty @root.abilities.knowledge this.uuid)}}
-                <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
-                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
-                  <i class="fa-light fa-circle-minus"></i>
-                </span>
-              {{/if}}
-                <span class="rank-change-value">
-                {{lookup @root.abilities.knowledge this.uuid}}
-                </span>
-              <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
-                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
-                <i class="fa-light fa-circle-plus"></i>
-              </span>
-            </td>
-          </tr>
-        {{else}}
-          {{localize "ED.Dialogs.CharGen.noKnowledgeSkillsAvailable"}}
-        {{/each}}
-      </table>
 
-      <span class="flexcol availability-meter available-ranks available-knowledge-ranks">
+      <div class="entry-listing">
+        <div class="entry-listing-header">
+          <h4>{{localize "ED.Dialogs.CharGen.Title.knowledgeSkills"}}</h4>
+        </div>
+
+        <div class="assign-value-entries">
+          {{#each skills.knowledge}}
+
+            <div class="assign-value-entry flexrow" data-skill-uuid="{{this.uuid}}">
+
+              <div class="entry-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
+                {{this.name}}
+              </div>
+
+              <div class="flexrow rank-change">
+              <span class="decrease-value-button rank-decrease rank-change-icon {{#unless (ed-hasOwnProperty @root.abilities.knowledge this.uuid)}}invisible{{/unless}}"
+                    title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
+                <i class="fa-light fa-circle-minus"></i>
+              </span>
+                <span class="rank-change-value">
+                  {{lookup @root.abilities.knowledge this.uuid}}
+                </span>
+                <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
+                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="knowledge">
+                  <i class="fa-light fa-circle-plus"></i>
+                </span>
+              </div>
+
+            </div>
+
+          {{else}}
+            {{localize "ED.Dialogs.CharGen.noKnowledgeSkillsAvailable"}}
+          {{/each}}
+        </div>
+
+      </div>
+
+      <div class="flexcol availability-meter available-ranks available-knowledge-ranks">
         <label class="flexcol">
-          {{localize "ED.Dialogs.CharGen.requiredKnowledgeSkillPoints"}}: {{availableRanks.knowledge}}{{!--format "X.availablePointsKarma" points=... --}}
+          {{localize "ED.Dialogs.CharGen.requiredKnowledgeSkillPoints"}}
         </label>
         <meter value="{{availableRanks.knowledge}}" min="0" max="{{config.availableRanks.knowledge}}"></meter>
-      </span>
+      </div>
+
     </div>
 
     <!-- Language Skills -->
     <div class="skill-options language-skills flexrow">
-      <table>
-        <tr>
-          <th>{{localize "ED.Dialogs.CharGen.Title.languageSkills"}}</th>
-        </tr>
-        {{#each skills.language}}
-          <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
-            <td class=" ability-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
-              {{this.name}}
-            </td>
-            <td class="flexrow rank-change">              {{#if (ed-hasOwnProperty @root.abilities.language this.uuid)}}
-                <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
-                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
-                  <i class="fa-light fa-circle-minus"></i>
-                </span>
-              {{/if}}
-                <span class="rank-change-value">
-                {{lookup @root.abilities.language this.uuid}}
-                </span>
-              <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
-                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
-                <i class="fa-light fa-circle-plus"></i>
-              </span>
-            </td>
-          </tr>
-        {{else}}
-          {{localize "ED.Dialogs.CharGen.noLanguageSkillsAvailable"}}
-        {{/each}}
-      </table>
 
-      <span class="flexcol available-ranks available-language-ranks">
-        {{localize "ED.Dialogs.CharGen.minimumLanguageSkillPoints"}}
-      </span>
+      <div class="entry-listing">
+        <div class="entry-listing-header">
+          <h4>{{localize "ED.Dialogs.CharGen.Title.languageSkills"}}</h4>
+        </div>
+
+        <div class="assign-value-entries">
+          {{#each skills.language}}
+
+            <div class="assign-value-entry flexrow" data-skill-uuid="{{this.uuid}}">
+
+              <div class="entry-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
+                {{this.name}}
+              </div>
+
+              <div class="flexrow rank-change">
+              <span class="decrease-value-button rank-decrease rank-change-icon {{#unless (ed-hasOwnProperty @root.abilities.language this.uuid)}}invisible{{/unless}}"
+                    title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
+                <i class="fa-light fa-circle-minus"></i>
+              </span>
+                <span class="rank-change-value">
+                  {{lookup @root.abilities.language this.uuid}}
+                </span>
+                <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
+                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="language">
+                  <i class="fa-light fa-circle-plus"></i>
+                </span>
+              </div>
+
+            </div>
+
+          {{else}}
+            {{localize "ED.Dialogs.CharGen.noLanguageSkillsAvailable"}}
+          {{/each}}
+        </div>
+
+      </div>
+
+      <div class="flexcol availability-meter available-ranks available-knowledge-ranks">
+        <label class="flexcol">
+          {{localize "ED.Dialogs.CharGen.minimumLanguageSkillPoints"}}
+        </label>
+      </div>
+
     </div>
 
     <!-- General Skills -->
     <div class="skill-options general-skills flexrow">
-      <table>
-        <tr>
-          <th>{{localize "ED.Dialogs.CharGen.Title.generalSkills"}}</th>
-        </tr>
-        {{#each skills.general}}
-          <tr class="flexrow" data-skill-uuid="{{this.uuid}}">
-            <td class=" ability-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
-              {{this.name}}
-            </td>
-            <td class="flexrow rank-change">              {{#if (ed-hasOwnProperty @root.abilities.general this.uuid)}}
-                <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
-                      data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
-                  <i class="fa-light fa-circle-minus"></i>
-                </span>
-              {{/if}}
+
+      <div class="entry-listing">
+        <div class="entry-listing-header">
+          <h4>{{localize "ED.Dialogs.CharGen.Title.generalSkills"}}</h4>
+        </div>
+
+        <div class="assign-value-entries">
+          {{#each skills.general}}
+
+            <div class="assign-value-entry flexrow" data-skill-uuid="{{this.uuid}}">
+
+              <div class="entry-name" data-skill-uuid="{{this.uuid}}" title="{{this.system.description}}">
+                {{this.name}}
+              </div>
+
+              <div class="flexrow rank-change">
+              <span class="decrease-value-button rank-decrease rank-change-icon {{#unless (ed-hasOwnProperty @root.abilities.general this.uuid)}}invisible{{/unless}}"
+                    title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
+                    data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
+                <i class="fa-light fa-circle-minus"></i>
+              </span>
                 <span class="rank-change-value">
-                {{lookup @root.abilities.general this.uuid}}
+                  {{lookup @root.abilities.general this.uuid}}
                 </span>
-              <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
-                    data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
+                <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
+                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this.uuid}}" data-ability-type="general">
                   <i class="fa-light fa-circle-plus"></i>
                 </span>
-            </td>
-          </tr>
-        {{else}}
-          {{localize "ED.Dialogs.CharGen.noGeneralSkillsAvailable"}}
-        {{/each}}
-      </table>
+              </div>
 
-      <span class="flexcol availability-meter available-ranks available-general-ranks">
+            </div>
+
+          {{else}}
+            {{localize "ED.Dialogs.CharGen.noGeneralSkillsAvailable"}}
+          {{/each}}
+        </div>
+
+      </div>
+
+      <div class="flexcol availability-meter available-ranks available-knowledge-ranks">
         <label class="flexcol">
-          {{localize "ED.Dialogs.CharGen.availableSkillPoints"}}: {{availableRanks.general}}
+          {{localize "ED.Dialogs.CharGen.availableSkillPoints" points=availableRanks.general}}
         </label>
         <meter value="{{availableRanks.general}}" min="0" max="{{config.availableRanks.general}}"></meter>
-      </span>
+      </div>
+
     </div>
 
   </div>

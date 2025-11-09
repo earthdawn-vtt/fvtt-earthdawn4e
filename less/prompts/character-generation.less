@@ -376,6 +376,31 @@ form.ed4e.character-generation {
 
     }
 
+    &[data-tab="skills"] {
+      justify-content: flex-start;
+      text-align: center;
+      gap: 1em;
+
+      div {
+
+        &.skill-assignment {
+          flex: 1 1 auto;
+
+          gap: 2em;
+
+          .skill-options {
+
+            .entry-listing {
+              flex: @golden-ratio @golden-ratio;
+            }
+
+          }
+
+        }
+
+      }
+    }
+
   }
 
   footer {

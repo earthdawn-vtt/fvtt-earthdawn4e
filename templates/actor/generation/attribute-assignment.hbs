@@ -16,7 +16,7 @@
         <i class="fa-light fa-arrows-rotate"></i>
         {{localize "ED.Dialogs.CharGen.Buttons.resetAttributes"}}
       </button>
-      <label>{{localize "ED.Dialogs.CharGen.availableAttributePoints"}}: {{availableAttributePoints}} (Extra&nbsp;Karma) {{!--format "X.availablePointsKarma" points=... --}}</label>
+      <label>{{localize "ED.Dialogs.CharGen.availableAttributePoints" points=availableAttributePoints}}</label>
       <meter value="{{availableAttributePoints}}" min="0" max="{{maxAttributePoints}}">
       </meter>
     </div>
