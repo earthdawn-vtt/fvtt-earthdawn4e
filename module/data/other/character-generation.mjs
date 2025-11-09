@@ -29,21 +29,20 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 export default class CharacterGenerationData extends SparseDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.CharacterGeneration",
-  ];
-
-  static minAttributeModifier = -2;
-  static maxAttributeModifier = 8;
-
-  static minAbilityRank = 0;
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
+
+      name: new fields.StringField( {
+        required: true,
+        nullable: false,
+        initial:  () => ED4E.characterNames[
+          Math.floor( Math.random() * ED4E.characterNames.length )
+        ],
+      } ),
 
       // Namegiver
       namegiver: new fields.DocumentUUIDField( {
@@ -176,6 +175,26 @@ export default class CharacterGenerationData extends SparseDataModel {
     };
   }
 
+  // endregion
+
+  //  region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.CharacterGeneration",
+  ];
+
+  static minAttributeModifier = -2;
+
+  static maxAttributeModifier = 8;
+
+  static minAbilityRank = 0;
+
+  // endregion
+
+  // region Getters
+
   get namegiverDocument() {
     return fromUuid( this.namegiver );
   }
@@ -258,14 +277,13 @@ export default class CharacterGenerationData extends SparseDataModel {
   set classAbilities( selectedClassDocument ) {
     // Only update data if namegiver changes
     if ( !selectedClassDocument || ( this.selectedClass === selectedClassDocument.uuid ) ) return;
-    // Don't do anything if the class no abilities/levels
-    if ( selectedClassDocument.system.advancement.levels.length < 1 ) return;
 
+    const abilities = selectedClassDocument.system.advancement.levels?.[0].abilities ?? [];
     this.updateSource( {
       abilities: {
-        class:   Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.class.map( ability => [ ability, 0 ] ) ),
-        free:    Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.free.map( ability => [ ability, 0 ] ) ),
-        special: Object.fromEntries( selectedClassDocument.system.advancement.levels[0].abilities.special.map( ability => [ ability, 0 ] ) ),
+        "==class":   Object.fromEntries( abilities.class.map( ability => [ ability, 0 ] ) ),
+        "==free":    Object.fromEntries( abilities.free.map( ability => [ ability, 0 ] ) ),
+        "==special": Object.fromEntries( abilities.special.map( ability => [ ability, 0 ] ) ),
       }
     } );
   }
@@ -273,7 +291,11 @@ export default class CharacterGenerationData extends SparseDataModel {
   get namegiverAbilities() {
     return this.abilities.namegiver;
   }
-  
+
+  // endregion
+
+  // region Setters
+
   set namegiverAbilities( namegiverDocument ) {
     // Only update data if namegiver changes
     if ( !namegiverDocument || ( this.namegiver === namegiverDocument.uuid ) ) return;
@@ -284,6 +306,10 @@ export default class CharacterGenerationData extends SparseDataModel {
       }
     } );
   }
+
+  // endregion
+
+  // region Get-Methods
   
   async getNamegiverAbilities() {
     const namegiver = await this.namegiverDocument;
@@ -397,6 +423,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     };
   }
 
+  // endregion
+
+  // region Abilities
+
   async addAbility( abilityUuid, abilityType ) {
     const abilityData = this.abilities[abilityType];
     abilityData[abilityUuid] = 0;
@@ -443,10 +473,9 @@ export default class CharacterGenerationData extends SparseDataModel {
         newRank--;
         break;
     }
-    let isRankValid = (
-      newRank >= CharacterGenerationData.minAbilityRank
-      && newRank <= game.settings.get( "ed4e", "charGenMaxRank" )
-    );
+
+    let isRankValid = newRank >= CharacterGenerationData.minAbilityRank
+      && newRank <= game.settings.get( "ed4e", "charGenMaxRank" );
     if ( abilityType === "language" ) {
       const languageSkill = await fromUuid( abilityUuid );
       if ( languageSkill.system.edid === game.settings.get( "ed4e", "edidLanguageSpeak" ) ) isRankValid &&= newRank >= ED4E.availableRanks.speak;
@@ -516,6 +545,37 @@ export default class CharacterGenerationData extends SparseDataModel {
     } );
   }
 
+  _getAbilityClassType( abilityType ) {
+    const isClass = [ "class", "optional", "free", "namegiver" ].includes( abilityType );
+    if ( isClass && this.isAdept ) return "talent";
+    if ( isClass && !this.isAdept ) return "devotion";
+    if ( abilityType === "language" ) return "general";
+    return abilityType;
+  }
+
+  _getAvailabilityType( abilityType, costDifference ) {
+    // for artisan and knowledge skill:
+    // when spending points (costDifference > 0) use the abilityType available ranks first, if not enough use general
+    // when refunding points (costDifference < 0) make sure that the available ranks of the given type
+    // are their maximum  minus the current assigned ranks after refunding to general
+    if ( [ "artisan", "knowledge" ].includes( abilityType ) ) {
+      const assignedRanks = sum( Object.values( this.abilities[abilityType] ) ) + costDifference;
+      const availableRanks = this.availableRanks[abilityType];
+      const maxAvailableRanks = ED4E.availableRanks[abilityType];
+      if ( costDifference > 0 ) {
+        if ( availableRanks > 0 ) return abilityType;
+        return "general";
+      }
+      if ( assignedRanks <= ( maxAvailableRanks + costDifference ) ) return abilityType;
+      return "general";
+    }
+    return this._getAbilityClassType( abilityType ) ;
+  }
+
+  // endregion
+
+  // region Spells
+
   async addSpell( spellUuid ) {
     if ( !spellUuid ) return {};
 
@@ -540,6 +600,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     return this.updateSource( { spells: newSpellSet } );
   }
 
+  // endregion
+
+  // region Equipment
+
   async addEquipment( equipmentUuid ) {
     if ( !equipmentUuid ) return {};
     return this.updateSource( {
@@ -553,6 +617,10 @@ export default class CharacterGenerationData extends SparseDataModel {
     newEquipmentSet.delete( equipmentUuid );
     return this.updateSource( { equipment: newEquipmentSet } );
   }
+
+  // endregion
+
+  // region Methods
 
   async resetPoints( type ) {
     const updateData = await this.getResetData( type );
@@ -611,8 +679,14 @@ export default class CharacterGenerationData extends SparseDataModel {
             ( uuid, _ ) => [ uuid, 0 ]
           );
         }
-        const skillLanguageSpeak = await getSingleGlobalItemByEdid( game.settings.get( "ed4e", "edidLanguageSpeak" ) );
-        const skillLanguageRW = await getSingleGlobalItemByEdid( game.settings.get( "ed4e", "edidLanguageRW" ) );
+        const skillLanguageSpeak = await getSingleGlobalItemByEdid(
+          game.settings.get( "ed4e", "edidLanguageSpeak" ),
+          "skill",
+        );
+        const skillLanguageRW = await getSingleGlobalItemByEdid(
+          game.settings.get( "ed4e", "edidLanguageRW" ),
+          "skill",
+        );
         skillsPayload.language = {
           [skillLanguageSpeak.uuid]: ED4E.availableRanks.speak,
           [skillLanguageRW.uuid]:    ED4E.availableRanks.readWrite
@@ -645,18 +719,6 @@ export default class CharacterGenerationData extends SparseDataModel {
     return updateData;
   }
 
-  _getAbilityClassType( abilityType ) {
-    const isClass = [ "class", "optional", "free", "namegiver" ].includes( abilityType );
-    if ( isClass && this.isAdept ) return "talent";
-    if ( isClass && !this.isAdept ) return "devotion";
-    if ( abilityType === "language" ) return "general";
-    return abilityType;
-  }
+  // endregion
 
-  _getAvailabilityType( abilityType ) {
-    if (
-      [ "artisan", "knowledge" ].includes( abilityType )
-    ) return this.availableRanks[abilityType] > 0 ? abilityType : "general";
-    return this._getAbilityClassType( abilityType ) ;
-  }
 }

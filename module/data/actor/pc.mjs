@@ -104,7 +104,7 @@ export default class PcData extends NamegiverTemplate {
     const additionalKarma = generation.availableAttributePoints;
 
     const newActor = await ActorEd.create( {
-      name:   "Rename me! I was just created",
+      name:   generation.name,
       type:   "character",
       system: {
         attributes: attributeData,

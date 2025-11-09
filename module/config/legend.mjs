@@ -3,6 +3,90 @@ import { preLocalize } from "../utils.mjs";
 
 // region Character Generation
 
+/* cspell:disable */
+/**
+ * A list of character names for random generation.
+ * @type {string[]}
+ */
+export const characterNames = [
+  "Oortal",
+  "Caelarion",
+  "Krolok",
+  "Mordom Churran",
+  "Orliana",
+  "Thalindra",
+  "Varek",
+  "Zyraeth",
+  "Luthien",
+  "Gorath",
+  "Elandra",
+  "Torbran",
+  "Sylvara",
+  "Rankle",
+  "Havelock Vetinari",
+  "Rinswind",
+  "Angua von Unterwald",
+  "Death",
+  "Joker",
+  "Oma Wetterwachs",
+  "Threeflowers",
+  "Käpt'n Blaubär",
+  "Hewey",
+  "Dewey",
+  "Louey",
+  "Shin Chan",
+  "Anpanman",
+  "Doraemon",
+  "Funassyi",
+  "Totoro",
+  "Kiki",
+  "クレヨンしんちゃん",
+  "アンパンマン",
+  "ドラえもん",
+  "ふなっしー",
+  "トトロ",
+  "キキ",
+  "Granny Weatherwachs",
+  "Rigart Morbiculum",
+  "Selene Darkwhisper",
+  "Wrylinder the Morbid",
+  "Jan Acken",
+  "Siglind",
+  "Thea",
+  "Dorn Redaxe",
+  "Lyra Windrider",
+  "Katja Unwetter",
+  "Stef Mist",
+  "Garrick Stonefist",
+  "Elara Moonshadow",
+  "Thalor Brightblade",
+  "Mira Silverleaf",
+  "Dain Ironfoot",
+  "Liora Dawnstar",
+  "Fenris Blackwood",
+  "Sylas Nightshade",
+  "Aria Stormrider",
+  "Borin Oakenshield",
+  "Elysia Frostwind",
+  "Gideon Fireforge",
+  "Isolde Shadowbane",
+  "Kael Thunderstrike",
+  "Julian Hartig",
+  "Tim Rice",
+  "Douglas C. Adams",
+  "Ursuala K. Legguin",
+  "Terriffer Pratchott",
+  "Nala Lesman",
+  "Andrea Nortion",
+  "Anne McCaffrey",
+  "Clara A. Smith",
+];
+/* cspell:enable */
+
+/**
+ * The maximum ranks available for abilities during character creation.
+ * @type {{talent: number, devotion: number, knowledge: number, artisan: number, general: number, speak: number, readWrite: number}}
+ */
 export const availableRanks = {
   talent:    8,
   devotion:  1,
@@ -242,5 +326,6 @@ export const tier = {
 preLocalize( "tier" );
 
 // endregion
+
 
 

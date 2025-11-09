@@ -1,13 +1,21 @@
-<section class="tab {{tabs.languages.cssClass}} scrollable" data-group="primary" data-tab="languages">
-  <h3>{{localize "ED.Dialogs.CharGen.Title.languages"}}</h3>
+<section class="tab {{tabs.languages.cssClass}} flexcol" data-group="primary" data-tab="languages">
 
-  <!-- Skills explainer -->
-  <p class="explainer-text">
-    {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
-  </p>
+  <div class="explainer languages-explainer flexcol">
 
-  {{localize "ED.Dialogs.CharGen.Title.speak"}}
-  {{formField schema.fields.languages.fields.speak value=languages.speak name="languages.speak"}}
-  {{localize "ED.Dialogs.CharGen.Title.readWrite"}}
-  {{formField schema.fields.languages.fields.readWrite value=languages.readWrite name="languages.readWrite"}}
+    <h3>{{localize "ED.Dialogs.CharGen.Title.languages"}}</h3>
+    <p class="explainer-text">
+      {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
+    </p>
+
+  </div>
+
+  <div class="language-selection speak-languages-selection flexcol">
+    <h5>{{localize "ED.Dialogs.CharGen.Title.speak"}}</h5>
+    {{formInput schema.fields.languages.fields.speak value=languages.speak name="languages.speak"}}
+  </div>
+  <div class="language-selection read-write-languages-selection flexcol">
+    <h5>{{localize "ED.Dialogs.CharGen.Title.readWrite"}}</h5>
+    {{formInput schema.fields.languages.fields.readWrite value=languages.readWrite name="languages.readWrite"}}
+  </div>
+
 </section>
