@@ -1,18 +1,18 @@
-<div class="card__effect">
-    <div class="effect-card__grid--container item-id" data-item-id="{{_id}}">
-        <div class="effect-card__grid--item"><img class="effect-icon" src="{{img}}"/></div>
-        <div class="effect-card__grid--item card__name">{{name}}</div>
-        <div class="effect-card__grid--item undefined">{{origin}}</div>
-        <div class="effect-card__grid--item text__alignment--center undefined">
-          {{formInput schema.fields.disabled name="disabled" value=disabled classes="link-checkbox-effect" }}
-<!--          TODO: manual handling of value change-->
+    <div class="card__effect">
+        <div class="effect-card__grid--container item-id" data-item-id="{{_id}}">
+            <div class="effect-card__grid--item"><img class="effect-icon" src="{{img}}"/></div>
+            <div class="effect-card__grid--item card__name text__alignment--left">{{name}}</div>
+            <div class="effect-card__grid--item undefined text__alignment--left">{{origin}}</div>
+            <div class="effect-card__grid--item text__alignment--center undefined">
+            {{formInput schema.fields.disabled name="disabled" value=disabled classes="link-checkbox-effect" }}
+            </div>
+            <div class="effect-card__grid--item text__alignment--center">{{duration.remaining}}/{{duration.rounds}}</div>
+            <div class="effect-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-effect.hbs"}}</div>
         </div>
-        <div class="effect-card__grid--item text__alignment--center">{{duration.remaining}}/{{duration.rounds}}</div>
-        <div class="effect-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-effect.hbs"}}</div>
-    </div>
-    <div class="card__description card__description--toggle display__inline-block">
-        <span class="card__description--content">
-            {{{system.description.value}}}
-        </span>
+        <div class="card__description card__description--toggle display__inline-block">
+            <span class="card__description--content">
+                {{{system.description.value}}}
+            </span>
+        </div>
     </div>
 </div>

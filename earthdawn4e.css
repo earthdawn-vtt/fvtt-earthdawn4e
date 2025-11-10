@@ -433,18 +433,6 @@ slide-toggle[checked] .slide-toggle-thumb {
   margin: 0;
   font-family: inherit;
 }
-.text--center {
-  text-align: center;
-}
-.text--left {
-  text-align: left;
-}
-.text--right {
-  text-align: right;
-}
-.text--justify {
-  text-align: justify;
-}
 .display__inline-block {
   display: inline-block;
 }
@@ -586,6 +574,34 @@ h3.label--rail .label__text::after {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+.effect-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
+  column-gap: var(--grid-col-gap-sm);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: normal;
+  height: 30px;
+  padding-bottom: 1px;
+}
+.effect-card__grid--container.container__header {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-text-banner);
+  text-transform: uppercase;
+  line-height: 19px;
+  height: 19px;
+}
+.effect-card__grid--item:nth-child(2) {
+  text-align: left;
+}
+.effect-card__grid--item:nth-child(6) {
+  text-align: right;
+}
+.effect-icon {
+  border: none;
 }
 .actor {
   /* generic icon button */
@@ -2102,13 +2118,18 @@ form.ed4e.character-generation footer button:hover:enabled {
   display: grid;
   grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
-.application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2) {
-  text-align: left;
-}
-.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
-.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container {
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container {
   display: grid;
   grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
+}
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container input,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container input,
+.application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container select,
+.application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container select {
+  height: 24px;
+  line-height: 24px;
+  padding: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
