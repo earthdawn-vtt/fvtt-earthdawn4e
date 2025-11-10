@@ -481,6 +481,13 @@ slide-toggle[checked] .slide-toggle-thumb {
   background-clip: padding-box;
   overflow: auto;
   position: relative;
+  overflow: visible !important;
+  max-height: none !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.container__block::-webkit-scrollbar {
+  display: none;
 }
 .container__header {
   position: sticky;
@@ -1814,6 +1821,8 @@ form.ed4e.character-generation footer button:hover:enabled {
   align-items: center;
   justify-content: center;
   padding-bottom: 1px;
+  overflow: visible !important;
+  max-height: none !important;
 }
 .application.sheet.earthdawn4e.actor .window-content .class-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--container.container__header,
