@@ -220,6 +220,10 @@
   --color-button-slide-thumb: var(--color-text-primary);
   --color-button-slide-background-on: var(--color-gold-2);
   --color-button-slide-background-off: black;
+  --background-sheet-item: url(assets/sheet/parchment-dark.webp) repeat;
+}
+:root .theme-light.application.sheet.earthdawn4e.item {
+  --background-sheet-item: url(assets/sheet/parchment.webp) repeat;
 }
 /* ---------------------------------- */
 /*  Slide Toggles                     */
@@ -1776,9 +1780,30 @@ form.ed4e.character-generation footer button:hover:enabled {
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
 }
+.application.sheet.earthdawn4e.item {
+  background: var(--background-sheet-item);
+}
+.application.sheet.earthdawn4e.item input[type=text],
+.application.sheet.earthdawn4e.item input[type=number],
+.application.sheet.earthdawn4e.item input[type=password],
+.application.sheet.earthdawn4e.item input[type=date],
+.application.sheet.earthdawn4e.item input[type=time],
+.application.sheet.earthdawn4e.item input[type=datetime-local],
+.application.sheet.earthdawn4e.item input[type=search],
+.application.sheet.earthdawn4e.item input[type=file],
+.application.sheet.earthdawn4e.item select {
+  background: revert;
+}
+.application.sheet.earthdawn4e.item .window-content {
+  backdrop-filter: unset;
+  -webkit-backdrop-filter: none;
+}
 .application.sheet.earthdawn4e.item .standard-form {
   gap: 0;
   padding: 0 15px 5px;
+}
+.application.sheet.earthdawn4e.item .standard-form .tab {
+  gap: 0;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {
@@ -1809,6 +1834,8 @@ form.ed4e.character-generation footer button:hover:enabled {
 }
 .application.sheet.earthdawn4e.item nav.tabs {
   margin: 8px 0;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header {
   display: grid !important;
@@ -1820,6 +1847,7 @@ form.ed4e.character-generation footer button:hover:enabled {
   width: 64px;
   height: 64px;
   object-fit: cover;
+  margin-top: 10px;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body {
   display: grid;
@@ -1832,6 +1860,7 @@ form.ed4e.character-generation footer button:hover:enabled {
   text-align: center;
   width: 100%;
   padding: 0;
+  background: none;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary {
   display: flex;

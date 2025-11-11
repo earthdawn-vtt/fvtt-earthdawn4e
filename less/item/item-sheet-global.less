@@ -1,22 +1,45 @@
 .application.sheet.earthdawn4e.item {
 
+    background: var(--background-sheet-item);
+    
+    input[type=text],
+    input[type=number],
+    input[type=password],
+    input[type=date],
+    input[type=time],
+    input[type=datetime-local],
+    input[type=search],
+    input[type=file],
+    select {
+        background: revert;
+    }
+
+    .window-content {
+        backdrop-filter: unset;
+        -webkit-backdrop-filter: none;
+    }
+
     .standard-form {
         gap: 0;
         padding: 0 15px 5px;
+
+        .tab {
+            gap: 0;
+        }
     }
 
     .prosemirror menu,
     .prose-mirror menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 0;
     }
 
     .prosemirror menu button,
     .prose-mirror menu button {
-    padding: 6px;
+        padding: 6px;
     }
 
     .label--rail {
@@ -45,5 +68,7 @@
 
     nav.tabs {
         margin: 8px 0;
+        text-transform: uppercase;
+        font-weight: bold;
     }
 }

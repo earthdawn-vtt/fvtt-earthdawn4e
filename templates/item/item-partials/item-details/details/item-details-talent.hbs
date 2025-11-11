@@ -4,23 +4,117 @@
   <legend>{{localize "ED.Item.Header.talentSource"}}</legend>
 
   {{!-- class Identifier --}}
-  {{formField systemFields.source.fields.class name="system.source.class" value=item.system.source.class localize=true }}
+  <div class="form-group">
+    <label>{{localize systemFields.source.fields.class.label}}</label>
+
+    {{#if systemFields.source.fields.class.choices}}
+      <select
+        name="system.source.class"
+        data-dtype="{{systemFields.source.fields.class.type}}">
+        {{selectOptions
+          systemFields.source.fields.class.choices
+          selected=item.system.source.class
+          localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.source.class"
+        value="{{item.system.source.class}}"
+        data-dtype="{{systemFields.source.fields.class.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.source.fields.class.hint}}</p>
+    {{/if}}
+  </div>
 
   {{!-- Added at Level --}}
-  {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
+  <div class="form-group">
+    <label>{{localize systemFields.source.fields.atLevel.label}}</label>
+
+    {{#if systemFields.source.fields.atLevel.choices}}
+      <select
+        name="system.source.atLevel"
+        data-dtype="{{systemFields.source.fields.atLevel.type}}">
+        {{selectOptions
+          systemFields.source.fields.atLevel.choices
+          selected=item.system.source.atLevel
+          localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.source.atLevel"
+        value="{{item.system.source.atLevel}}"
+        data-dtype="{{systemFields.source.fields.atLevel.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.source.fields.atLevel.hint}}</p>
+    {{/if}}
+  </div>
 </fieldset>
 
-{{! -- Knacks -- }}
+{{!-- Knacks --}}
 {{#if (or (ed-hasItems item.system.knacks.learned) (ed-hasItems item.system.knacks.available))}}
   <fieldset>
     <legend>{{localize "ED.Item.Header.talentKnacks"}}</legend>
 
+    {{!-- Available knacks --}}
     {{#if (ed-hasItems item.system.knacks.available)}}
-      {{formField systemFields.knacks.fields.available name="system.knacks.available" value=item.system.knacks.available localize=true}}
+      <div class="form-group">
+        <label>{{localize systemFields.knacks.fields.available.label}}</label>
+
+        {{#if systemFields.knacks.fields.available.choices}}
+          <select
+            name="system.knacks.available"
+            data-dtype="{{systemFields.knacks.fields.available.type}}">
+            {{selectOptions
+              systemFields.knacks.fields.available.choices
+              selected=item.system.knacks.available
+              localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.knacks.available"
+            value="{{item.system.knacks.available}}"
+            data-dtype="{{systemFields.knacks.fields.available.type}}" />
+        {{/if}}
+
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.knacks.fields.available.hint}}</p>
+        {{/if}}
+      </div>
     {{/if}}
 
+    {{!-- Learned knacks --}}
     {{#if (ed-hasItems item.system.knacks.learned)}}
-      {{formField systemFields.knacks.fields.learned name="system.knacks.learned" value=item.system.knacks.learned localize=true}}
+      <div class="form-group">
+        <label>{{localize systemFields.knacks.fields.learned.label}}</label>
+
+        {{#if systemFields.knacks.fields.learned.choices}}
+          <select
+            name="system.knacks.learned"
+            data-dtype="{{systemFields.knacks.fields.learned.type}}">
+            {{selectOptions
+              systemFields.knacks.fields.learned.choices
+              selected=item.system.knacks.learned
+              localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.knacks.learned"
+            value="{{item.system.knacks.learned}}"
+            data-dtype="{{systemFields.knacks.fields.learned.type}}" />
+        {{/if}}
+
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.knacks.fields.learned.hint}}</p>
+        {{/if}}
+      </div>
     {{/if}}
   </fieldset>
 {{/if}}
