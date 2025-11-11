@@ -1,0 +1,60 @@
+.application.sheet.earthdawn4e.item {
+
+  .sheet-header {
+
+    @left-header: 64px;
+
+    &.item-header {
+      display: grid !important;
+      grid-template-columns: @left-header 1fr;
+      column-gap: 0.5rem;
+      align-items: flex-start;
+
+      .item-header__image {
+        .item-image {
+          width: @left-header;
+          height: @left-header;
+          object-fit: cover;
+        }
+      }
+
+      .item-header__body {
+        display: grid;
+        grid-template-rows: min-content min-content auto;
+        row-gap: 0.25rem;
+
+        .item-header__title {
+          input {
+            .WarhorseDeco();
+            font-size: var(--font-size-24);
+            text-align: center;
+            width: 100%;
+            padding: 0;
+          }
+        }
+      
+        .item-summary {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          width: 100%;
+
+          .summary-header__title {
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            white-space: nowrap;
+          }
+
+          p {
+            .ArnoProRegular();
+            font-style: italic;
+            text-align: center;
+            margin: 3px 0 0 0;
+
+          }
+        }
+      }
+    }
+  }
+}

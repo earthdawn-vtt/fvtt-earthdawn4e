@@ -1,52 +1,50 @@
 <section class="tab {{tabs.classes.cssClass}}" data-group="sheet" data-tab="classes" data-editable="{{@root.editable}}">
 
-<div>
-    <div class="class-card__grid--container font__bold text-break__auto">
-        <div class="class-card__grid--item text__alignment--center"></div>
-        <div class="class-card__grid--item">{{localize "ED.Actor.Header.disciplines"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}
+    <div>
+        <div class="class-card__grid--container font__bold text-break__auto">
+            <div class="class-card__grid--item text__alignment--center"></div>
+            <div class="class-card__grid--item">{{localize "ED.Actor.Header.disciplines"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}
+            </div>
         </div>
-    </div>
-    {{#each actor.itemTypes.discipline}}
-    <div class="item-id item-name__card" data-item-id="{{_id}}">
-        {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
-    </div>
-    {{/each}}
-</div>
-
-<hr>
-
-<div class="space__small">
-    <div class="class-card__grid--container font__bold text-break__auto">
-        <div class="class-card__grid--item text__alignment--center"></div>
-        <div class="class-card__grid--item">{{localize "ED.Actor.Header.paths"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}
+        {{#each actor.itemTypes.discipline}}
+        <div class="item-id item-name__card" data-item-id="{{_id}}">
+            {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
         </div>
+        {{/each}}
     </div>
-    {{#each actor.itemTypes.path}}
-    <div class="item-id item-name__card" data-item-id="{{_id}}">
-        {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
-    </div>
-    {{/each}}
-</div>
 
-<hr>
+    <hr>
 
-<div class="space__small">
-    <div class="class-card__grid--container font__bold text-break__auto">
-        <div class="class-card__grid--item text__alignment--center"></div>
-        <div class="class-card__grid--item">{{localize "ED.Actor.Header.questor"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
-        <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}
+    <div class="space__small">
+        <div class="class-card__grid--container font__bold text-break__auto">
+            <div class="class-card__grid--item text__alignment--center"></div>
+            <div class="class-card__grid--item">{{localize "ED.Actor.Header.paths"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
         </div>
+        {{#each actor.itemTypes.path}}
+        <div class="item-id item-name__card" data-item-id="{{_id}}">
+            {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+        </div>
+        {{/each}}
     </div>
-    {{#each actor.itemTypes.questor}}
-    <div class="item-id item-name__card" data-item-id="{{_id}}">
-        {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+
+    <hr>
+
+    <div class="space__small">
+        <div class="class-card__grid--container font__bold text-break__auto">
+            <div class="class-card__grid--item text__alignment--center"></div>
+            <div class="class-card__grid--item">{{localize "ED.Actor.Header.questor"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.rank"}}</div>
+            <div class="class-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.controlIcons"}}</div>
+        </div>
+        {{#each actor.itemTypes.questor}}
+        <div class="item-id item-name__card" data-item-id="{{_id}}">
+            {{> "systems/ed4e/templates/actor/cards/class-card.hbs"}}
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>
 
 </section>

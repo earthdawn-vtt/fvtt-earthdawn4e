@@ -1,10 +1,99 @@
+{{!-- Level / Rank --}}
 {{#if systemFields.level}}
-{{!-- Rank --}}
-  {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+  <div class="form-group">
+    <label>{{localize systemFields.level.label}}</label>
+
+    {{#if systemFields.level.choices}}
+      <select
+        name="system.level"
+        data-dtype="{{systemFields.level.type}}">
+        {{selectOptions systemFields.level.choices selected=item.system.level localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.level"
+        value="{{item.system.level}}"
+        data-dtype="{{systemFields.level.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.level.hint}}</p>
+    {{/if}}
+  </div>
 {{/if}}
+
 {{!-- Strain --}}
-{{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
+{{#if systemFields.strain}}
+  <div class="form-group">
+    <label>{{localize systemFields.strain.label}}</label>
+
+    {{#if systemFields.strain.choices}}
+      <select
+        name="system.strain"
+        data-dtype="{{systemFields.strain.type}}">
+        {{selectOptions systemFields.strain.choices selected=item.system.strain localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.strain"
+        value="{{item.system.strain}}"
+        data-dtype="{{systemFields.strain.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.strain.hint}}</p>
+    {{/if}}
+  </div>
+{{/if}}
+
 {{!-- Attribute --}}
-{{formField systemFields.attribute name="system.attribute" value=item.system.attribute localize=true}}
+{{#if systemFields.attribute}}
+  <div class="form-group">
+    <label>{{localize systemFields.attribute.label}}</label>
+
+    {{#if systemFields.attribute.choices}}
+      <select
+        name="system.attribute"
+        data-dtype="{{systemFields.attribute.type}}">
+        {{selectOptions systemFields.attribute.choices selected=item.system.attribute localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.attribute"
+        value="{{item.system.attribute}}"
+        data-dtype="{{systemFields.attribute.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.attribute.hint}}</p>
+    {{/if}}
+  </div>
+{{/if}}
+
 {{!-- Action --}}
-{{formField systemFields.action name="system.action" value=item.system.action localize=true}}
+{{#if systemFields.action}}
+  <div class="form-group">
+    <label>{{localize systemFields.action.label}}</label>
+
+    {{#if systemFields.action.choices}}
+      <select
+        name="system.action"
+        data-dtype="{{systemFields.action.type}}">
+        {{selectOptions systemFields.action.choices selected=item.system.action localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.action"
+        value="{{item.system.action}}"
+        data-dtype="{{systemFields.action.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.action.hint}}</p>
+    {{/if}}
+  </div>
+{{/if}}
