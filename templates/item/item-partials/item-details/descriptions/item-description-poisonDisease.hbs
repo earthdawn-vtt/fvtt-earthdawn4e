@@ -1,8 +1,6 @@
 <section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
   <div class="item-body__description">
 
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
-
     {{!-- Damage Step --}}
     {{#if systemFields.effect.fields.damageStep}}
       <div class="form-group">

@@ -20,13 +20,27 @@
     }
 
     .standard-form {
-        gap: 0;
-        padding: 0 15px 5px;
+    gap: 0;
+    padding: 0 15px 5px;
 
         .tab {
+            display: none;      // restore Foundry’s hiding
             gap: 0;
         }
+
+        .tab.active {
+            display: block;     // or flex if you prefer
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+        }
     }
+
 
     .prosemirror menu,
     .prose-mirror menu {

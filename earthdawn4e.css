@@ -1803,7 +1803,18 @@ form.ed4e.character-generation footer button:hover:enabled {
   padding: 0 15px 5px;
 }
 .application.sheet.earthdawn4e.item .standard-form .tab {
+  display: none;
   gap: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form .tab.active {
+  display: block;
+}
+.application.sheet.earthdawn4e.item .standard-form .form-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {
