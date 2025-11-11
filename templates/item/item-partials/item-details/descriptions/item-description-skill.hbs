@@ -1,12 +1,78 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
+  <div class="item-body__description">
+
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
+
     {{!-- Tier --}}
-    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
-    {{!-- Type --}}
-    {{formField systemFields.skillType name="system.skillType" value=item.system.skillType localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
-</div>
+    {{#if systemFields.tier}}
+      <div class="form-group">
+        <label>{{localize systemFields.tier.label}}</label>
+
+        {{#if systemFields.tier.choices}}
+          <select
+            name="system.tier"
+            data-dtype="{{systemFields.tier.type}}">
+            {{selectOptions
+              systemFields.tier.choices
+              selected=item.system.tier
+              localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.tier"
+            value="{{item.system.tier}}"
+            data-dtype="{{systemFields.tier.type}}" />
+        {{/if}}
+
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.tier.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Skill Type --}}
+    {{#if @root.editable}}
+        {{#if systemFields.skillType}}
+        <div class="form-group">
+            <label>{{localize systemFields.skillType.label}}</label>
+
+            {{#if systemFields.skillType.choices}}
+            <select
+                name="system.skillType"
+                data-dtype="{{systemFields.skillType.type}}">
+                {{selectOptions
+                systemFields.skillType.choices
+                selected=item.system.skillType
+                localize=true}}
+            </select>
+            {{else}}
+            <input
+                type="text"
+                name="system.skillType"
+                value="{{item.system.skillType}}"
+                data-dtype="{{systemFields.skillType.type}}" />
+            {{/if}}
+
+            {{#if @root.editable}}
+            <p class="hint">{{localize systemFields.skillType.hint}}</p>
+            {{/if}}
+        </div>
+        {{/if}}
+    {{/if}}
+  </div>
+
+  <div class="item-description sheet__editor">
+    <h3 class="label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
+
+    {{#if @root.editable}}
+      {{> "systems/ed4e/templates/global/editor.hbs"}}
+    {{else}}
+      {{{enrichedDescription}}}
+    {{/if}}
+  </div>
+</section>
