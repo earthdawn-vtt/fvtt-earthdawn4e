@@ -1,5 +1,33 @@
 <div>
-    {{!-- LP Cost if this is not calculated by min Level --}}
-    {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost localize=true}}
+
+    {{#if systemFields.lpCost}}
+        <fieldset>
+        <div class="form-group">
+            <label>{{localize systemFields.lpCost.label}}</label>
+
+            {{#if systemFields.lpCost.choices}}
+            <select
+                name="system.lpCost"
+                data-dtype="{{systemFields.lpCost.type}}">
+                {{selectOptions
+                systemFields.lpCost.choices
+                selected=item.system.lpCost
+                localize=true}}
+            </select>
+            {{else}}
+            <input
+                type="text"
+                name="system.lpCost"
+                value="{{item.system.lpCost}}"
+                data-dtype="{{systemFields.lpCost.type}}" />
+            {{/if}}
+
+            {{#if @root.editable}}
+            <p class="hint">{{localize systemFields.lpCost.hint}}</p>
+            {{/if}}
+        </div>
+        </fieldset>
+    {{/if}}
+
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
 </div>
