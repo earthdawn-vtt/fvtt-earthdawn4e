@@ -1,222 +1,49 @@
-.item-sheet {
+.application.sheet.earthdawn4e.item {
 
+    .standard-form {
+        gap: 0;
+        padding: 0 15px 5px;
+    }
 
+    .prosemirror menu,
+    .prose-mirror menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    }
 
-    .window-content {
-        padding: 0px;
+    .prosemirror menu button,
+    .prose-mirror menu button {
+    padding: 6px;
+    }
 
-        .item {
-            height: 700px;
+    .label--rail {
+        font-size: var(--font-size-14);
+        text-transform: uppercase;
+        line-height: 1.3;
+    }
 
-            .body {
-                height: 600px;
+    .item-body {
+
+        .form-group {
+            padding-top: 5px;
+        }
+
+        .item-description {
+            font-size: var(--font-size-14);
+            margin-top: 10px;
+        }
+
+        &--readonly {
+            .item-description__toggle {
+                display: none;
             }
         }
     }
 
-    .window-header,
-    .window-content {
-        padding: 0px 0px 0px 0px;
-        border: none;
-    }
-
-    .window-header {
-        position: relative;
-        z-index: 2;
-        background: transparent;
-        padding-top: 6px;
-
-        .window-title,
-        .window-title i {
-            position: relative;
-            font-size: large;
-            z-index: 2;
-            left: 60px;
-        }
-
-        a {
-            position: relative;
-            z-index: 2;
-            right: 60px;
-        }
-    }
-
-    .body {
-        position: relative;
-        background-image: url('assets/sheet/background.png');
-        background-size: cover;
-        margin-top: -60px;
-        padding: 60px 10px 75px 10px;
-        color: black;
-        background-repeat: repeat;
-    }
-
-    .app {
-        box-shadow: 0px 20px 18px rgb(0, 0, 0);
-        background: transparent;
-    }
-
-    .header-item__frame {
-        height: 50px;
-        margin-top: -60px;
-        position: absolute;
-        z-index: 1;
-        opacity: 0.9;
-
-        .app {
-            background: transparent;
-        }
-
-        img {
-            border: none;
-        }
-    }
-
-    .window-resizable-handle {
-        z-index: 2;
-    }
-
-    .item__top {
-        position: absolute;
-        height: 50px;
-        margin-top: 2px;
-        padding-top: 10px;
-        z-index: 6;
-        width: 100%;
-    }
-
-    .header__no-border {
-        border-bottom: none;
-    }
-
-    .item__name {
-        background: transparent;
-                border: none;
-                color: red;
-                width: 100%;
-                text-align: center;
-    }
-
-    .item__left--top {
-        margin-top: 40px;
-        float: left;
-        width: 140px;
-        height: 140px;
-
-        img {
-            margin: 6px;
-            border: none;
-        }
-    }
-
-    .item__right--top {
-        margin-top: 70px;
-        float: left;
-        width: calc(100% - 140px);
-        height: 120px;
-        padding: 5px;
-
-    }
-
-
-    .item__navigator {
-        height: 70px;
-        padding-top: 5px;
-    }
-
-    .item__main {
-        height: 550px;
-        margin-bottom: 2px;
-        margin-top: 125px;
-
-
-        .item__left--main {
-            float: left;
-            width: 35%;
-            height: 550px;
-            padding: 5px;
-        }
-
-        .item__right--main {
-            float: left;
-            width: 65%;
-            height: 550px;
-            padding: 5px;
-        }
-
-    }
-
-    .footer-item__frame {
-        position: absolute;
-        bottom: -55px;
-        border: none;
-        z-index: 1;
-        opacity: 0.9;
-        transform: rotate(180deg);
-
-        .app {
-            background: transparent;
-        }
-
-        img {
-            border: none;
-        }
-    }
-
-    .input__circle-input {
-        border: 1px solid;
-        text-align: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        padding-top: 5px;
-        background: none;
-    }
-
-    .input__number-input {
-        width: 45px;
-        padding-top: 5px;
-        height: 20px;
-    }
-
-    .input__select-input {
-        padding-top: 3px;
-        height: 20px;
-    }
-
-    .label__left {
-        // float: left;
-        width: 50%;
-        //background-color: aqua;
-    }
-
-    .item-data__input--line {
-        line-height: 35px;
-        vertical-align: middle;
-    }
-
-    .item-data__checkbox--line {
-        vertical-align: middle;
-    }
-
-    .input__text-input {
-        width: 120px;
-        height: 20px;
-    }
-
-
-    .editor {
-        min-height: 500px;
-        max-height: 100%;
-        display: flex;
-        flex-direction: column;
-
-        .editor,
-        .prosemirror,
-        .editor-container,
-        .editor-content {
-            min-height: 400px;
-            max-height: 100%;
-        }
+    nav.tabs {
+        margin: 8px 0;
     }
 }

@@ -215,9 +215,16 @@
   --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
+:root .application.sheet.earthdawn4e.item,
+:root .theme-dark.application.sheet.earthdawn4e.item {
+  --color-button-slide-thumb: var(--color-text-primary);
+  --color-button-slide-background-on: var(--color-gold-2);
+  --color-button-slide-background-off: black;
+}
 /* ---------------------------------- */
 /*  Slide Toggles                     */
 /* ---------------------------------- */
+/* GLOBAL slide-toggle – applies to every <slide-toggle> in the system */
 slide-toggle {
   --slide-toggle-height: 20px;
   --slide-toggle-width: 36px;
@@ -226,13 +233,14 @@ slide-toggle {
   --slide-toggle-track-color-checked: var(--color-button-slide-background-on);
   --slide-toggle-thumb-color: var(--color-button-slide-thumb);
   --slide-toggle-thumb-width: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
-  --slide-toggle-thumb-height: var(--slide-toggle-thumb-width);
+  --slide-toggle-thumb-height: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
   --slide-toggle-transition-time: 250ms;
+  /* unknown HTML elements sometimes need this */
   display: inline-block;
   width: var(--slide-toggle-width);
   height: var(--slide-toggle-height);
   cursor: var(--cursor-pointer);
-  /* Checked state */
+  /* checked state */
 }
 slide-toggle .slide-toggle-track {
   width: 100%;
@@ -242,7 +250,7 @@ slide-toggle .slide-toggle-track {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   padding: var(--slide-toggle-padding);
 }
 slide-toggle .slide-toggle-thumb {
@@ -908,6 +916,46 @@ h3.label--rail .label__text::after {
 }
 .wounds-bar[data-full="1"] .wounds-bar-taken {
   background: var(--color-meter-6);
+}
+/* global/editor.less */
+/* scope to your system */
+.application.sheet.earthdawn4e {
+  /* display mode */
+  /* edit mode */
+}
+.application.sheet.earthdawn4e .editor:not(.prosemirror):not(.editor--compact) .editor-content {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 206, 113, 0.2);
+  border-radius: 4px;
+  padding: 0.4rem 0.55rem 0.6rem;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+.application.sheet.earthdawn4e .editor.prosemirror:not(.editor--compact) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.application.sheet.earthdawn4e .editor.prosemirror:not(.editor--compact) > menu {
+  /* toolbar styling... */
+}
+.application.sheet.earthdawn4e .editor.prosemirror:not(.editor--compact) .editor-content {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 206, 113, 0.2);
+  border-radius: 4px;
+  padding: 0.4rem 0.55rem 0.6rem;
+  min-height: 50px;
+  height: auto;
+  max-height: 14rem;
+  overflow: auto;
+}
+.application.sheet.earthdawn4e .editor.prosemirror.editing-source:not(.editor--compact) textarea {
+  /* same idea... */
+}
+.application.sheet.earthdawn4e .editor .editor-content,
+.application.sheet.earthdawn4e .editor.prosemirror .editor-content {
+  color: #fff;
 }
 .chat-message {
   background-image: url('assets/sheet/background_lighter.PNG');
@@ -1727,6 +1775,81 @@ form.ed4e.character-generation footer button:hover:enabled {
   transform: scale(0.9);
   box-shadow: 0 0 5px #333;
   filter: invert(100%);
+}
+.application.sheet.earthdawn4e.item .standard-form {
+  gap: 0;
+  padding: 0 15px 5px;
+}
+.application.sheet.earthdawn4e.item .prosemirror menu,
+.application.sheet.earthdawn4e.item .prose-mirror menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+}
+.application.sheet.earthdawn4e.item .prosemirror menu button,
+.application.sheet.earthdawn4e.item .prose-mirror menu button {
+  padding: 6px;
+}
+.application.sheet.earthdawn4e.item .label--rail {
+  font-size: var(--font-size-14);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.application.sheet.earthdawn4e.item .item-body .form-group {
+  padding-top: 5px;
+}
+.application.sheet.earthdawn4e.item .item-body .item-description {
+  font-size: var(--font-size-14);
+  margin-top: 10px;
+}
+.application.sheet.earthdawn4e.item .item-body--readonly .item-description__toggle {
+  display: none;
+}
+.application.sheet.earthdawn4e.item nav.tabs {
+  margin: 8px 0;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header {
+  display: grid !important;
+  grid-template-columns: 64px 1fr;
+  column-gap: 0.5rem;
+  align-items: flex-start;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__image .item-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body {
+  display: grid;
+  grid-template-rows: min-content min-content auto;
+  row-gap: 0.25rem;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title input {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-size: var(--font-size-24);
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary .summary-header__title {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary p {
+  font-family: 'ArnoPro-Regular', serif;
+  font-style: italic;
+  text-align: center;
+  margin: 3px 0 0 0;
 }
 .application.sheet.ed4e:where(:not(.minimized)) > header {
   background: transparent;
