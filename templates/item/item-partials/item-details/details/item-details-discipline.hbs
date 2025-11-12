@@ -1,4 +1,30 @@
 <div id="detail-information-discipline-item">
-    {{!-- Discipline Index identifier for multiple disciplines --}}
-    {{formField systemFields.order name="system.order" value=item.system.order localize=true}}
+  <fieldset>
+    {{#if systemFields.order}}
+      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize systemFields.order.label}}</label>
+
+        {{#if systemFields.order.choices}}
+          <select
+            name="system.order"
+            data-dtype="{{systemFields.order.type}}">
+            {{selectOptions
+              systemFields.order.choices
+              selected=item.system.order
+              localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="number"
+            name="system.order"
+            value="{{item.system.order}}"
+            data-dtype="{{systemFields.order.type}}" />
+        {{/if}}
+
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.order.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+  </fieldset>
 </div>
