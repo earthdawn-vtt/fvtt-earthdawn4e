@@ -30,13 +30,7 @@
     {{!-- Price (value + denomination) --}}
     {{#if systemFields.price}}
       <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>
-          {{#if systemFields.price.fields.value.label}}
-            {{localize systemFields.price.fields.value.label}}
-          {{else}}
-            {{localize "ED.Item.Header.price"}}
-          {{/if}}
-        </label>
+        <label>{{localize systemFields.price.fields.value.label}}</label>
 
         <div class="form-fields">
           {{!-- value --}}
