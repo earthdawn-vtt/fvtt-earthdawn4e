@@ -1,13 +1,56 @@
 <fieldset>
   <legend>{{localize "ED.Item.Header.actionType"}}</legend>
 
-  {{!-- ability action type --}}
-  {{formGroup systemFields.rollType name="system.rollType" value=item.system.rollType localize=true}}
+  {{!-- ability action type (top-level, explicit) --}}
+  <div class="form-group">
+    <label>{{localize systemFields.rollType.label}}</label>
 
+    {{#if systemFields.rollType.choices}}
+      <select
+        name="system.rollType"
+        data-dtype="{{systemFields.rollType.type}}">
+        {{selectOptions
+          systemFields.rollType.choices
+          selected=item.system.rollType
+          localize=true}}
+      </select>
+    {{else}}
+      <input
+        type="text"
+        name="system.rollType"
+        value="{{item.system.rollType}}"
+        data-dtype="{{systemFields.rollType.type}}" />
+    {{/if}}
+
+    {{#if @root.editable}}
+      <p class="hint">{{localize systemFields.rollType.hint}}</p>
+    {{/if}}
+  </div>
+
+  {{!-- roll-type-specific subfields --}}
   {{#each systemFields.rollTypeDetails.fields as |field key|}}
     {{#if (eq key ../item.system.rollType)}}
       {{#each field.fields as |subField subKey|}}
-        {{formGroup subField name=(concat "system.rollTypeDetails." key "." subKey) value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey) localize=true}}
+
+        {{!-- EDIT MODE: show full formGroup with hint --}}
+        {{#if @root.editable}}
+          {{formGroup
+            subField
+            name=(concat "system.rollTypeDetails." key "." subKey)
+            value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey)
+            localize=true
+          }}
+        {{!-- VIEW MODE: same field, but no hint --}}
+        {{else}}
+          {{formGroup
+            subField
+            name=(concat "system.rollTypeDetails." key "." subKey)
+            value=(lookup (lookup ../../item.system.rollTypeDetails key) subKey)
+            localize=true
+            hint=false
+          }}
+        {{/if}}
+
       {{/each}}
     {{/if}}
   {{/each}}

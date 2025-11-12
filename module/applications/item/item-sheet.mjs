@@ -26,8 +26,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     position: {
       top:    50,
       left:   220,
-      width:  800,
-      height: 800,
+      width:  520,
     },
     dragDrop: [
       {

@@ -1,22 +1,238 @@
-<div id="base-information-armor-item" class="item__left--main">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
+  <div id="base-information-armor-item" class="item-body__description">
+
     {{!-- Physical Armor --}}
-    {{formField systemFields.physical.fields.armor name="system.physical.armor" value=item.system.physical.armor localize=true}}
-    {{!-- Mystical Armor --}}
-    {{formField systemFields.mystical.fields.armor name="system.mystical.armor" value=item.system.mystical.armor localize=true}}
-    {{!-- Physical Forge Bonus --}}
-    {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
-    {{!-- Mystical Forge Bonus --}}
-    {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
+    {{#if systemFields.physical.fields.armor}}
+      <div class="form-group">
+        <label>{{localize systemFields.physical.fields.armor.label}}</label>
+        <input
+          type="number"
+          name="system.physical.armor"
+          value="{{item.system.physical.armor}}"
+          data-dtype="{{systemFields.physical.fields.armor.type}}" />
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.physical.fields.armor.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Mystic Armor --}}
+    {{#if systemFields.mystical.fields.armor}}
+      <div class="form-group">
+        <label>{{localize systemFields.mystical.fields.armor.label}}</label>
+        <input
+          type="number"
+          name="system.mystical.armor"
+          value="{{item.system.mystical.armor}}"
+          data-dtype="{{systemFields.mystical.fields.armor.type}}" />
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.mystical.fields.armor.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Forge Bonus (Physical) --}}
+    {{#if systemFields.physical.fields.forgeBonus}}
+        {{#if @root.editable}}
+            <div class="form-group">
+            <label>{{localize systemFields.physical.fields.forgeBonus.label}}</label>
+            <input
+                type="number"
+                name="system.physical.forgeBonus"
+                value="{{item.system.physical.forgeBonus}}"
+                data-dtype="{{systemFields.physical.fields.forgeBonus.type}}" />
+            <p class="hint">{{localize systemFields.physical.fields.forgeBonus.hint}}</p>
+            </div>
+        {{else}}
+            {{#if item.system.physical.forgeBonus}}
+            <div class="form-group">
+                <label>{{localize systemFields.physical.fields.forgeBonus.label}}</label>
+                <input
+                type="number"
+                name="system.physical.forgeBonus"
+                value="{{item.system.physical.forgeBonus}}"
+                data-dtype="{{systemFields.physical.fields.forgeBonus.type}}" />
+            </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+
+    {{!-- Forge Bonus (Mystic) --}}
+    {{#if systemFields.mystical.fields.forgeBonus}}
+        {{#if @root.editable}}
+            <div class="form-group">
+            <label>{{localize systemFields.mystical.fields.forgeBonus.label}}</label>
+            <input
+                type="number"
+                name="system.mystical.forgeBonus"
+                value="{{item.system.mystical.forgeBonus}}"
+                data-dtype="{{systemFields.mystical.fields.forgeBonus.type}}" />
+            <p class="hint">{{localize systemFields.mystical.fields.forgeBonus.hint}}</p>
+            </div>
+        {{else}}
+            {{#if item.system.mystical.forgeBonus}}
+            <div class="form-group">
+                <label>{{localize systemFields.mystical.fields.forgeBonus.label}}</label>
+                <input
+                type="number"
+                name="system.mystical.forgeBonus"
+                value="{{item.system.mystical.forgeBonus}}"
+                data-dtype="{{systemFields.mystical.fields.forgeBonus.type}}" />
+            </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+
+
     {{!-- Initiative Penalty --}}
-    {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
-    {{!-- living Armor? --}}
-    {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
-    {{!-- Physical Item Parameter --}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
-</div>
-<div class="item__right--main sheet__editor">
-    {{!-- Description --}}
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
-</div>
+    {{#if systemFields.initiativePenalty}}
+      <div class="form-group">
+        <label>{{localize systemFields.initiativePenalty.label}}</label>
+        <input
+          type="number"
+          name="system.initiativePenalty"
+          value="{{item.system.initiativePenalty}}"
+          data-dtype="{{systemFields.initiativePenalty.type}}" />
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.initiativePenalty.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Living (checkbox) --}}
+    {{#if systemFields.isLiving}}
+        {{#if @root.editable}}
+            <div class="form-group">
+            <label>{{localize systemFields.isLiving.label}}</label>
+            <input
+                type="checkbox"
+                name="system.isLiving"
+                data-dtype="{{systemFields.isLiving.type}}"
+                {{#if item.system.isLiving}}checked{{/if}} />
+            <p class="hint">{{localize systemFields.isLiving.hint}}</p>
+            </div>
+        {{else}}
+            {{#if item.system.isLiving}}
+            <div class="form-group">
+                <label>{{localize systemFields.isLiving.label}}</label>
+                <input
+                type="checkbox"
+                name="system.isLiving"
+                data-dtype="{{systemFields.isLiving.type}}"
+                checked
+                disabled />
+            </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+
+
+    {{!-- Blood Magic Damage --}}
+    {{#if systemFields.bloodMagicDamage}}
+        {{#if @root.editable}}
+            <div class="form-group">
+            <label>{{localize systemFields.bloodMagicDamage.label}}</label>
+            <input
+                type="number"
+                name="system.bloodMagicDamage"
+                value="{{item.system.bloodMagicDamage}}"
+                data-dtype="{{systemFields.bloodMagicDamage.type}}" />
+            <p class="hint">{{localize systemFields.bloodMagicDamage.hint}}</p>
+            </div>
+        {{else}}
+            {{#if item.system.bloodMagicDamage}}
+            <div class="form-group">
+                <label>{{localize systemFields.bloodMagicDamage.label}}</label>
+                <input
+                type="number"
+                name="system.bloodMagicDamage"
+                value="{{item.system.bloodMagicDamage}}"
+                data-dtype="{{systemFields.bloodMagicDamage.type}}" />
+            </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+
+
+    {{!-- Price (amount + currency) --}}
+    {{#if systemFields.price}}
+      <div class="form-group">
+        <label>{{localize systemFields.price.fields.value.label}}</label>
+
+      <div class="price-inputs" style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem; width:100%;">
+            <input
+              type="number"
+              name="system.price.value"
+              value="{{item.system.price.value}}"
+              data-dtype="{{systemFields.price.fields.value.type}}" />
+            <select
+              name="system.price.denomination"
+              data-dtype="{{systemFields.price.fields.denomination.type}}">
+              {{selectOptions
+                systemFields.price.fields.denomination.choices
+                selected=item.system.price.denomination
+                localize=true}}
+            </select>
+        </div>
+
+        {{#if @root.editable}}
+            <p class="hint">{{localize systemFields.price.fields.value.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Weight --}}
+    {{#if systemFields.weight}}
+      <div class="form-group">
+        <label>{{localize systemFields.weight.fields.value.label}}</label>
+        <input
+          type="number"
+          name="system.weight"
+          value="{{item.system.weight.value}}"
+          data-dtype="{{systemFields.weight.fields.value.type}}" />
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.weight.fields.value.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Availability --}}
+    {{#if systemFields.availability}}
+      <div class="form-group">
+        <label>{{localize systemFields.availability.label}}</label>
+        {{#if systemFields.availability.choices}}
+          <select
+            name="system.availability"
+            data-dtype="{{systemFields.availability.type}}">
+            {{selectOptions
+              systemFields.availability.choices
+              selected=item.system.availability
+              localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.availability"
+            value="{{item.system.availability}}"
+            data-dtype="{{systemFields.availability.type}}" />
+        {{/if}}
+        {{#if @root.editable}}
+          <p class="hint">{{localize systemFields.availability.hint}}</p>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="item-description sheet__editor">
+    <h3 class="label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
+    {{#if @root.editable}}
+      {{> "systems/ed4e/templates/global/editor.hbs"}}
+    {{else}}
+      {{{enrichedDescription}}}
+    {{/if}}
+  </div>
+</section>

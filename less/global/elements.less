@@ -2,6 +2,7 @@
 /*  Slide Toggles                     */
 /* ---------------------------------- */
 
+/* GLOBAL slide-toggle – applies to every <slide-toggle> in the system */
 slide-toggle {
   --slide-toggle-height: 20px;
   --slide-toggle-width: 36px;
@@ -10,9 +11,10 @@ slide-toggle {
   --slide-toggle-track-color-checked: var(--color-button-slide-background-on);
   --slide-toggle-thumb-color: var(--color-button-slide-thumb);
   --slide-toggle-thumb-width: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
-  --slide-toggle-thumb-height: var(--slide-toggle-thumb-width);
+  --slide-toggle-thumb-height: calc(var(--slide-toggle-height) - var(--slide-toggle-padding) * 2);
   --slide-toggle-transition-time: 250ms;
 
+  /* unknown HTML elements sometimes need this */
   display: inline-block;
   width: var(--slide-toggle-width);
   height: var(--slide-toggle-height);
@@ -26,7 +28,7 @@ slide-toggle {
     box-shadow: 0 0 8px rgb(0 0 0 / 45%);
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     padding: var(--slide-toggle-padding);
   }
 
@@ -40,10 +42,18 @@ slide-toggle {
     transition: margin-left var(--slide-toggle-transition-time) ease;
   }
 
-  /* Checked state */
-  &[checked] .slide-toggle-track { background: var(--slide-toggle-track-color-checked); }
-  &[checked] .slide-toggle-thumb { margin-left: calc(100% - var(--slide-toggle-thumb-width)); }
+  /* checked state */
+  &[checked] {
+    .slide-toggle-track {
+      background: var(--slide-toggle-track-color-checked);
+    }
+
+    .slide-toggle-thumb {
+      margin-left: calc(100% - var(--slide-toggle-thumb-width));
+    }
+  }
 }
+
 
 /* ---------------------------------- */
 /*  Favorite Items                    */

@@ -1,15 +1,41 @@
-    {{!-- itemStatus --}}
-    {{formField systemFields.itemStatus name="system.itemStatus" value=item.system.itemStatus localize=true}}
+<fieldset> 
+  {{#if systemFields.itemStatus}}
+    <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+      <label>{{localize systemFields.itemStatus.label}}</label>
 
-    {{#if item.isOwned}}
-        {{!-- automatic Weight Calculation --}}
-        {{> "systems/ed4e/templates/item/item-partials/item-details/partials/tailor-to-namegiver.hbs"}}
-    {{/if}}
+      {{#if systemFields.itemStatus.choices}}
+        <select
+          name="system.itemStatus"
+          data-dtype="{{systemFields.itemStatus.type}}">
+          {{selectOptions
+            systemFields.itemStatus.choices
+            selected=item.system.itemStatus
+            localize=true}}
+        </select>
+      {{else}}
+        <input
+          type="text"
+          name="system.itemStatus"
+          value="{{item.system.itemStatus}}"
+          data-dtype="{{systemFields.itemStatus.type}}" />
+      {{/if}}
 
-    {{#if system.matrix}}
-      {{> "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs"}}
-    {{/if}}
+      {{#if @root.editable}}
+        <p class="hint">{{localize systemFields.itemStatus.hint}}</p>
+      {{/if}}
+    </div>
+  {{/if}}
+</fieldset>
 
-    {{#if system.grimoire}}
-      {{> "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs"}}
-    {{/if}}
+{{#if item.isOwned}}
+  {{!-- automatic Weight Calculation / tailor-to-namegiver --}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/tailor-to-namegiver.hbs"}}
+{{/if}}
+
+{{#if system.matrix}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs"}}
+{{/if}}
+
+{{#if system.grimoire}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs"}}
+{{/if}}
