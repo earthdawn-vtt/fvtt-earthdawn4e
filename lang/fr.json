@@ -1634,7 +1634,10 @@
           }
         },
         "Fields": {
-          "dispelDifficulty":                      "TODO: Add translation",
+          "dispelDifficulty": {
+            "hint":                                "TODO: Add translation",
+            "label":                               "TODO: Add translation"
+          },
           "sensingDifficulty":                     "TODO: Add translation"
         },
         "Grimoire": {
