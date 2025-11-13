@@ -2,112 +2,241 @@
 
   {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
 
-  {{!-- Effect --}}
+  {{!-- ================= Spell Effect ================= --}}
   <fieldset>
     <legend>{{localize "ED.Item.Header.spellEffect"}}</legend>
 
     {{!-- Effect Type --}}
-    {{formGroup systemFields.effect.fields.type name="system.effect.type" value=item.system.effect.type localize=true}}
+    <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+      <label>{{localize systemFields.effect.fields.type.label}}</label>
+      {{#if systemFields.effect.fields.type.choices}}
+        <select
+          name="system.effect.type"
+          data-dtype="{{systemFields.effect.fields.type.type}}">
+          {{selectOptions systemFields.effect.fields.type.choices selected=item.system.effect.type localize=true}}
+        </select>
+      {{else}}
+        <input
+          type="text"
+          name="system.effect.type"
+          value="{{item.system.effect.type}}"
+          data-dtype="{{systemFields.effect.fields.type.type}}" />
+      {{/if}}
+      {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.type.hint}}</p>{{/if}}
+    </div>
 
+    {{!-- Damage branch --}}
     {{#if (eq item.system.effect.type "damage")}}
-      {{formGroup
-        systemFields.effect.fields.details.fields.damage.fields.damageType
-        name="system.effect.details.damage.damageType"
-        value=item.system.effect.details.damage.damageType
-      }}
-      {{formGroup
-        systemFields.effect.fields.details.fields.damage.fields.armorType
-        name="system.effect.details.damage.armorType"
-        value=item.system.effect.details.damage.armorType
-      }}
+      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize systemFields.effect.fields.details.fields.damage.fields.damageType.label}}</label>
+        {{#if systemFields.effect.fields.details.fields.damage.fields.damageType.choices}}
+          <select
+            name="system.effect.details.damage.damageType"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.damageType.type}}">
+            {{selectOptions systemFields.effect.fields.details.fields.damage.fields.damageType.choices
+                            selected=item.system.effect.details.damage.damageType
+                            localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.effect.details.damage.damageType"
+            value="{{item.system.effect.details.damage.damageType}}"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.damageType.type}}" />
+        {{/if}}
+        {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.damage.fields.damageType.hint}}</p>{{/if}}
+      </div>
+
+      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize systemFields.effect.fields.details.fields.damage.fields.armorType.label}}</label>
+        {{#if systemFields.effect.fields.details.fields.damage.fields.armorType.choices}}
+          <select
+            name="system.effect.details.damage.armorType"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.armorType.type}}">
+            {{selectOptions systemFields.effect.fields.details.fields.damage.fields.armorType.choices
+                            selected=item.system.effect.details.damage.armorType
+                            localize=true}}
+          </select>
+        {{else}}
+          <input
+            type="text"
+            name="system.effect.details.damage.armorType"
+            value="{{item.system.effect.details.damage.armorType}}"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.armorType.type}}" />
+        {{/if}}
+        {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.damage.fields.armorType.hint}}</p>{{/if}}
+      </div>
+
       <fieldset>
         <legend>{{localize "ED.Item.Header.spellDamageStep"}}</legend>
-        {{formGroup
-          systemFields.effect.fields.details.fields.damage.fields.attribute
-          name="system.effect.details.damage.attribute"
-          value=item.system.effect.details.damage.attribute
-        }}
-        {{formGroup
-          systemFields.effect.fields.details.fields.damage.fields.stepModifier
-          name="system.effect.details.damage.stepModifier"
-          value=item.system.effect.details.damage.stepModifier
-        }}
-        {{formGroup
-          systemFields.effect.fields.details.fields.damage.fields.addCircle
-          name="system.effect.details.damage.addCircle"
-          value=item.system.effect.details.damage.addCircle
-        }}
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.damage.fields.attribute.label}}</label>
+          {{#if systemFields.effect.fields.details.fields.damage.fields.attribute.choices}}
+            <select
+              name="system.effect.details.damage.attribute"
+              data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.attribute.type}}">
+              {{selectOptions systemFields.effect.fields.details.fields.damage.fields.attribute.choices
+                              selected=item.system.effect.details.damage.attribute
+                              localize=true}}
+            </select>
+          {{else}}
+            <input
+              type="text"
+              name="system.effect.details.damage.attribute"
+              value="{{item.system.effect.details.damage.attribute}}"
+              data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.attribute.type}}" />
+          {{/if}}
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.damage.fields.attribute.hint}}</p>{{/if}}
+        </div>
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.damage.fields.stepModifier.label}}</label>
+          <input
+            type="number"
+            name="system.effect.details.damage.stepModifier"
+            value="{{item.system.effect.details.damage.stepModifier}}"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.stepModifier.type}}" />
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.damage.fields.stepModifier.hint}}</p>{{/if}}
+        </div>
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.damage.fields.addCircle.label}}</label>
+          <input
+            type="checkbox"
+            name="system.effect.details.damage.addCircle"
+            data-dtype="{{systemFields.effect.fields.details.fields.damage.fields.addCircle.type}}"
+            {{#if item.system.effect.details.damage.addCircle}}checked{{/if}} />
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.damage.fields.addCircle.hint}}</p>{{/if}}
+        </div>
       </fieldset>
-    {{else if (eq item.system.effect.type "effect")}}
+    {{/if}}
+
+    {{!-- Effect branch --}}
+    {{#if (eq item.system.effect.type "effect")}}
       <fieldset>
         <legend>{{localize "ED.Item.Header.spellEffectStep"}}</legend>
-      {{formGroup
-        systemFields.effect.fields.details.fields.effect.fields.attribute
-        name="system.effect.details.effect.attribute"
-        value=item.system.effect.details.effect.attribute
-      }}
-      {{formGroup
-        systemFields.effect.fields.details.fields.effect.fields.stepModifier
-        name="system.effect.details.effect.stepModifier"
-        value=item.system.effect.details.effect.stepModifier
-      }}
-      {{formGroup
-        systemFields.effect.fields.details.fields.effect.fields.addCircle
-        name="system.effect.details.effect.addCircle"
-        value=item.system.effect.details.effect.addCircle
-      }}
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.effect.fields.attribute.label}}</label>
+          {{#if systemFields.effect.fields.details.fields.effect.fields.attribute.choices}}
+            <select
+              name="system.effect.details.effect.attribute"
+              data-dtype="{{systemFields.effect.fields.details.fields.effect.fields.attribute.type}}">
+              {{selectOptions systemFields.effect.fields.details.fields.effect.fields.attribute.choices
+                              selected=item.system.effect.details.effect.attribute
+                              localize=true}}
+            </select>
+          {{else}}
+            <input
+              type="text"
+              name="system.effect.details.effect.attribute"
+              value="{{item.system.effect.details.effect.attribute}}"
+              data-dtype="{{systemFields.effect.fields.details.fields.effect.fields.attribute.type}}" />
+          {{/if}}
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.effect.fields.attribute.hint}}</p>{{/if}}
+        </div>
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.effect.fields.stepModifier.label}}</label>
+          <input
+            type="number"
+            name="system.effect.details.effect.stepModifier"
+            value="{{item.system.effect.details.effect.stepModifier}}"
+            data-dtype="{{systemFields.effect.fields.details.fields.effect.fields.stepModifier.type}}" />
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.effect.fields.stepModifier.hint}}</p>{{/if}}
+        </div>
+
+        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+          <label>{{localize systemFields.effect.fields.details.fields.effect.fields.addCircle.label}}</label>
+          <input
+            type="checkbox"
+            name="system.effect.details.effect.addCircle"
+            data-dtype="{{systemFields.effect.fields.details.fields.effect.fields.addCircle.type}}"
+            {{#if item.system.effect.details.effect.addCircle}}checked{{/if}} />
+          {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.effect.fields.addCircle.hint}}</p>{{/if}}
+        </div>
       </fieldset>
-    {{else if (eq item.system.effect.type "macro")}}
-      {{formGroup
-        systemFields.effect.fields.details.fields.macro.fields.macroUuid
-        name="system.effect.details.macro.macroUuid"
-        value=item.system.effect.details.macro.macroUuid
-      }}
-    {{else if (eq item.system.effect.type "special")}}
-      {{formGroup
-        systemFields.effect.fields.details.fields.special.fields.description
-        name="system.effect.details.special.description"
-        value=item.system.effect.details.special.description
-      }}
+    {{/if}}
+
+    {{!-- Macro branch --}}
+    {{#if (eq item.system.effect.type "macro")}}
+      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize systemFields.effect.fields.details.fields.macro.fields.macroUuid.label}}</label>
+        <input
+          type="text"
+          name="system.effect.details.macro.macroUuid"
+          value="{{item.system.effect.details.macro.macroUuid}}"
+          data-dtype="{{systemFields.effect.fields.details.fields.macro.fields.macroUuid.type}}" />
+        {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.macro.fields.macroUuid.hint}}</p>{{/if}}
+      </div>
+    {{/if}}
+
+    {{!-- Special branch --}}
+    {{#if (eq item.system.effect.type "special")}}
+      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize systemFields.effect.fields.details.fields.special.fields.description.label}}</label>
+        <input
+          type="text"
+          name="system.effect.details.special.description"
+          value="{{item.system.effect.details.special.description}}"
+          data-dtype="{{systemFields.effect.fields.details.fields.special.fields.description.type}}" />
+        {{#if @root.editable}}<p class="hint">{{localize systemFields.effect.fields.details.fields.special.fields.description.hint}}</p>{{/if}}
+      </div>
     {{/if}}
   </fieldset>
 
+  {{!-- ================= Details ================= --}}
   <fieldset>
     <legend>{{localize "ED.Item.Header.details"}}</legend>
 
-    {{!-- Spell Illusion --}}
+    {{!-- Illusion sensing difficulty (computed, readonly) --}}
     {{#if item.system.isIllusion}}
-      <div class="form-group label-top">
-        <label>
-          {{localize "ED.Data.Item.Fields.sensingDifficulty"}}
-        </label>
+      <div class="form-group label-top {{#unless @root.editable}}form-group--merge{{/unless}}">
+        <label>{{localize "ED.Data.Item.Fields.sensingDifficulty"}}</label>
         <div class="form-fields">
           <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
         </div>
       </div>
     {{/if}}
 
-    {{!-- Dispel Difficulty --}}
-    <div class="form-group label-top">
-      <label>
-        {{localize "ED.Data.Item.Fields.dispelDifficulty"}}
-      </label>
-      <div class="form-fields">
-        <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
-      </div>
-    </div>
+{{!-- Dispel difficulty (computed, readonly) --}}
+<div class="form-group label-top {{#unless @root.editable}}form-group--merge{{/unless}}">
+  <label>{{localize "ED.Data.Item.Fields.dispelDifficulty.label"}}</label>
+  <div class="form-fields">
+    <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
+  </div>
+  {{#if @root.editable}}<p class="hint">{{localize "ED.Data.Item.Fields.dispelDifficulty.hint"}}</p>{{/if}}
+</div>
 
-    {{> "systems/ed4e/templates/form/group/general.hbs"
-      dataField=systemFields.area
-      inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs"
-      data=item.system.area
-      fields=item.system.area.schema.fields
-      fieldPath=systemFields.area.fieldPath
-      config=config
-    }}
+    {{!-- Area --}}
+    {{#if @root.editable}}
+      {{> "systems/ed4e/templates/form/group/general.hbs"
+        dataField=systemFields.area
+        inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs"
+        data=item.system.area
+        fields=item.system.area.schema.fields
+        fieldPath=systemFields.area.fieldPath
+        config=config
+      }}
+    {{else}}
+      <div class="form-group form-group--merge">
+        <label>{{localize systemFields.area.label}}</label>
+        <div class="form-fields">
+          {{!-- Render the same inner UI the partial would, but without its hint --}}
+          {{> "systems/ed4e/templates/form/input/area-metric.hbs"
+            data=item.system.area
+            fields=item.system.area.schema.fields
+            fieldPath=systemFields.area.fieldPath
+            config=config
+            readonly=true}}
+        </div>
+      </div>
+    {{/if}}
 
   </fieldset>
 
+  {{!-- ================= Enhancements ================= --}}
   <fieldset>
     <legend>{{localize "ED.Item.Header.spellEnhancement"}}</legend>
 
@@ -117,6 +246,7 @@
       data=(ed-wrapInArray item.system.extraSuccess)
       config=config
       configType="spellEnhancement"
+      showHint=false
     }}
 
     {{> "systems/ed4e/templates/form/group/general.hbs"
@@ -125,7 +255,8 @@
       data=item.system.extraThreads
       config=config
       configType="spellEnhancement"
+      showHint=false
     }}
-
   </fieldset>
+
 </div>

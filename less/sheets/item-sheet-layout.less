@@ -23,6 +23,10 @@
     gap: 0;
     padding: 0 15px 5px;
 
+    fieldset > legend {
+      margin: 0;
+      padding: 0;
+    }
 
     .tab {
       display: none;
@@ -70,6 +74,7 @@
     margin: 8px 0;
     text-transform: uppercase;
     font-weight: bold;
+    border: 0;
   }
 
   /* -------------------- Header -------------------- */
@@ -146,5 +151,7 @@
         display: none;
       }
     }
+
+    .metric-group[data-nohint] .hint { display: none !important; }
   }
 }

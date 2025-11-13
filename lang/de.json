@@ -1634,7 +1634,10 @@
           }
         },
         "Fields": {
-          "dispelDifficulty":                      "Neutralisierungsschwerigkeit",
+          "dispelDifficulty": {
+            "hint":                                "TODO: Add translation",
+            "label":                               "TODO: Add translation"
+          },
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
         "Grimoire": {
