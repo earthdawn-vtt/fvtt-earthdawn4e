@@ -35,6 +35,15 @@
             {{/if}}
           {{/if}}
 
+          {{!-- Spellcasting type, if present --}}
+          {{#if systemFields.spellcastingType}}
+            {{#if systemFields.spellcastingType.choices}}
+              {{localize (lookup systemFields.spellcastingType.choices item.system.spellcastingType)}}
+            {{else}}
+              {{item.system.spellcastingType}}
+            {{/if}}
+          {{/if}}
+
         {{/unless}}
 
         {{localize (concat "TYPES.Item." item.type)}}

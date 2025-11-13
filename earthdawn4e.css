@@ -589,7 +589,7 @@ h3.label--rail .label__text::after {
 }
 .effect-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 25px) minmax(200px, 1fr) minmax(200px, 200px) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
+  grid-template-columns: minmax(25px, 25px) minmax(70px, 1fr) minmax(70px, 1fr) minmax(60px, 60px) minmax(60px, 60px) minmax(50px, 50px);
   column-gap: var(--grid-col-gap-sm);
   align-items: center;
   justify-content: center;
@@ -2830,6 +2830,10 @@ section.spells .matrix-cards .matrix-card .spell-link {
   gap: 0;
   padding: 0 15px 5px;
 }
+.application.sheet.earthdawn4e.item .standard-form fieldset > legend {
+  margin: 0;
+  padding: 0;
+}
 .application.sheet.earthdawn4e.item .standard-form .tab {
   display: none;
   gap: 0;
@@ -2870,6 +2874,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   margin: 8px 0;
   text-transform: uppercase;
   font-weight: bold;
+  border: 0;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header {
   display: grid !important;
@@ -2923,6 +2928,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .item-body--readonly .item-description__toggle {
   display: none;
+}
+.application.sheet.earthdawn4e.item .item-body .metric-group[data-nohint] .hint {
+  display: none !important;
 }
 .denomination__value-currency .denomination__value {
   width: 75%;

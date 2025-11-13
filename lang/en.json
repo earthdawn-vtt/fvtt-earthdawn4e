@@ -1634,7 +1634,10 @@
           }
         },
         "Fields": {
-          "dispelDifficulty":                      "Dispel Difficulty",
+          "dispelDifficulty": {
+            "hint":                                "Difficulty to Dispel Spell",
+            "label":                               "Dispel Difficulty"
+          },
           "sensingDifficulty":                     "Sensing Difficulty"
         },
         "Grimoire": {
