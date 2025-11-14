@@ -60,7 +60,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     if ( !this.isActorEmbedded ) return undefined;
 
     return {
-      newLevel:   this.level + 1,
+      newLevel:   this.unmodifiedLevel + 1,
       requiredLp: this.requiredLpForIncrease,
     };
   }
@@ -80,7 +80,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     const tierModifier = ED4E.lpIndexModForTier[1][this.tier];
 
     return ED4E.legendPointsCost[
-      this.level
+      this.unmodifiedLevel
     + 1 // new level
     +  tierModifier
     ];

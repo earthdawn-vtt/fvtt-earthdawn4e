@@ -84,7 +84,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   get requiredLpForIncrease() {
     // Questor devotion is treated as a journeyman talent
-    return ED4E.legendPointsCost[ this.level + 1 + ED4E.lpIndexModForTier[1].journeyman ];
+    return ED4E.legendPointsCost[ this.unmodifiedLevel + 1 + ED4E.lpIndexModForTier[1].journeyman ];
   }
 
   /** @inheritDoc */
@@ -150,7 +150,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const updatedQuestor = await super.increase();
     if ( updatedQuestor?.system.level !== nextLevel ) {
       ui.notifications.warn(

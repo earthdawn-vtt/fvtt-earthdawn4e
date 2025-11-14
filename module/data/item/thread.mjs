@@ -121,7 +121,7 @@ export default class ThreadData extends ItemDataModel.mixin(
     const actor = this.containingActor;
 
     return {
-      newLevel:   this.level + 1,
+      newLevel:   this.unmodifiedLevel + 1,
       requiredLp: this.requiredLpForIncrease,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -167,7 +167,7 @@ export default class ThreadData extends ItemDataModel.mixin(
 
   /** @inheritdoc */
   get lpSpendingDescription() {
-    return this.level <= 0
+    return this.unmodifiedLevel <= 0
       ?  game.i18n.format(
         "ED.Actor.LpTracking.Spendings.newThread",
         { threadTarget: fromUuidSync( this.wovenToUuid ).name },
@@ -180,7 +180,7 @@ export default class ThreadData extends ItemDataModel.mixin(
     const connectedDocument = fromUuidSync( this.wovenToUuid );
     if ( !connectedDocument.system?.truePattern ) return undefined;
 
-    const newLevel = this.level + 1;
+    const newLevel = this.unmodifiedLevel + 1;
     if ( newLevel <= 0 ) return 0;
     return connectedDocument.system.truePattern.getRequiredLpForLevelSync( newLevel );
   }
@@ -195,7 +195,7 @@ export default class ThreadData extends ItemDataModel.mixin(
     const connectedDocument = await this.getConnectedDocument();
     if ( !connectedDocument ) return undefined;
 
-    const newLevel = level ?? this.level + 1;
+    const newLevel = level ?? this.unmodifiedLevel + 1;
     if ( newLevel <= 0 ) return 0;
     return connectedDocument.system.truePattern.getRequiredLpForLevel( newLevel );
   }
@@ -213,7 +213,7 @@ export default class ThreadData extends ItemDataModel.mixin(
       || spendLp === "cancel"
       || spendLp === "close" ) return;
 
-    const newLevel = this.level + 1;
+    const newLevel = this.unmodifiedLevel + 1;
     const requiredLp = await this.getRequiredLpForLevel( newLevel );
 
     const updatedThread = await this.parentDocument.update( {

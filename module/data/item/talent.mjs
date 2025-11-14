@@ -121,7 +121,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     const actor = this.containingActor;
 
     return {
-      newLevel:   this.level + 1,
+      newLevel:   this.unmodifiedLevel + 1,
       requiredLp: this.requiredLpForIncrease,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -147,7 +147,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // for talents which are not tied to any class (versatility or others)
     if ( !sourceClass ) {
       return ED4E.legendPointsCost[
-        this.level
+        this.unmodifiedLevel
         + 1 // new level
         + ED4E.lpIndexModForTier[1][this.tier]
       ];
@@ -156,11 +156,11 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // each tier starts at the next value in the fibonacci sequence
     let tierModifier = ED4E.lpIndexModForTier[sourceClass.system.order][this.tier];
 
-    if ( actor.isMultiDiscipline && this.level === 0 )
+    if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 )
       return ED4E.multiDisciplineNewTalentLpCost[sourceClass.system.order][actor.minCircle];
 
     return ED4E.legendPointsCost[
-      this.level
+      this.unmodifiedLevel
     + 1 // new level
     + ( tierModifier || 0 )
     ];
