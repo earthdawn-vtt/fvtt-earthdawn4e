@@ -3820,6 +3820,11 @@
       "eae":                                       "Aktiver Effekt"
     },
     "Actor": {
+      "TypeGroups": {
+        "creatures":                               "Kreaturen",
+        "namegivers":                              "Namensgeber",
+        "other":                                   "Andere"
+      },
       "character":                                 "Charakter",
       "creature":                                  "Kreatur",
       "dragon":                                    "Drache",
@@ -3837,6 +3842,15 @@
       "pile":                                      "Stapel"
     },
     "Item": {
+      "TypeGroups": {
+        "abilities":                               "Fähigkeiten",
+        "classes":                                 "Berufungen",
+        "conditions":                              "Zustände",
+        "equipment":                               "Ausrüstung",
+        "magic":                                   "Magie",
+        "other":                                   "Andere",
+        "powers":                                  "Kräfte"
+      },
       "armor":                                     "Rüstung",
       "bindingSecret":                             "Bindungsgeheimnis",
       "curseMark":                                 "Fluch / Dämonenmal",
