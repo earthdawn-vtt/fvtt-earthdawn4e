@@ -30,6 +30,10 @@
         </select>
       </div>
 
+      {{#if selectedClass}}
+        <p>{{{ed-linkForUuid selectedClass}}}</p>
+      {{/if}}
+
       <div class="class-image-preview">
         {{#if classDocument}}
           <img src="{{classDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.classImageAlt"}}">
