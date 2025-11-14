@@ -1,4 +1,4 @@
-<div id="base-information-armor-item" class="item__left--main">
+<div id="base-description-armor-item" class="item-description__armor" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Physical Armor --}}
     {{formField systemFields.physical.fields.armor name="system.physical.armor" value=item.system.physical.armor localize=true}}

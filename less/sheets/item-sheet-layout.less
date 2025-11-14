@@ -2,6 +2,10 @@
 
   background: var(--background-sheet-item);
 
+  .item-name {
+    display: none;
+  }
+
   input[type=text],
   input[type=number],
   input[type=password],
@@ -36,18 +40,26 @@
       display: block;
     }
 
-    .form-group {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0;
-      padding-top: 5px;
+  .form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding-top: 5px;
 
       > .hint {
         grid-column: 1 / -1;
         margin: 0;
       }
+    }
+
+    [data-editable="editable"] .form-group > .hint {
+      display: block;
+    }
+
+    [data-editable="readonly"] .form-group > .hint {
+      display: none;
     }
   }
 

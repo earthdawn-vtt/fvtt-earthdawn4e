@@ -1,4 +1,4 @@
-<div>
+<div id="base-details-equipment-item" class="item-details__equipment" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     {{formField systemFields.consumable name="system.consumable" value=item.system.consumable localize=true}}
     {{#if (eq item.system.consumable true)}}
         {{!-- ammunition --}}

@@ -1,4 +1,4 @@
-<div>
+<div id="base-details-armor-item" class="item-details__armor" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     {{!-- Piecemeal Armor --}}
     {{formField systemFields.piecemeal.fields.isPiecemeal name="system.piecemeal.isPiecemeal" value=item.system.piecemeal.isPiecemeal localize=true}}
     {{#if (eq item.system.piecemeal.isPiecemeal true)}}

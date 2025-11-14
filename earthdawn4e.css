@@ -2811,6 +2811,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
 }
+.application.sheet.earthdawn4e.item .item-name {
+  display: none;
+}
 .application.sheet.earthdawn4e.item input[type=text],
 .application.sheet.earthdawn4e.item input[type=number],
 .application.sheet.earthdawn4e.item input[type=password],
@@ -2852,6 +2855,12 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .standard-form .form-group > .hint {
   grid-column: 1 / -1;
   margin: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="editable"] .form-group > .hint {
+  display: block;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
+  display: none;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {

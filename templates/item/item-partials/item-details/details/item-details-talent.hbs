@@ -1,26 +1,30 @@
-{{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs"}}
+<div id="base-details-spellKnack-item" class="item-details__spellKnack" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-<fieldset>
-  <legend>{{localize "ED.Item.Header.talentSource"}}</legend>
+  {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-abilities.hbs"}}
 
-  {{!-- class Identifier --}}
-  {{formField systemFields.source.fields.class name="system.source.class" value=item.system.source.class localize=true }}
-
-  {{!-- Added at Level --}}
-  {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
-</fieldset>
-
-{{! -- Knacks -- }}
-{{#if (or (ed-hasItems item.system.knacks.learned) (ed-hasItems item.system.knacks.available))}}
   <fieldset>
-    <legend>{{localize "ED.Item.Header.talentKnacks"}}</legend>
+    <legend>{{localize "ED.Item.Header.talentSource"}}</legend>
 
-    {{#if (ed-hasItems item.system.knacks.available)}}
-      {{formField systemFields.knacks.fields.available name="system.knacks.available" value=item.system.knacks.available localize=true}}
-    {{/if}}
+    {{!-- class Identifier --}}
+    {{formField systemFields.source.fields.class name="system.source.class" value=item.system.source.class localize=true }}
 
-    {{#if (ed-hasItems item.system.knacks.learned)}}
-      {{formField systemFields.knacks.fields.learned name="system.knacks.learned" value=item.system.knacks.learned localize=true}}
-    {{/if}}
+    {{!-- Added at Level --}}
+    {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}
   </fieldset>
-{{/if}}
+
+  {{! -- Knacks -- }}
+  {{#if (or (ed-hasItems item.system.knacks.learned) (ed-hasItems item.system.knacks.available))}}
+    <fieldset>
+      <legend>{{localize "ED.Item.Header.talentKnacks"}}</legend>
+
+      {{#if (ed-hasItems item.system.knacks.available)}}
+        {{formField systemFields.knacks.fields.available name="system.knacks.available" value=item.system.knacks.available localize=true}}
+      {{/if}}
+
+      {{#if (ed-hasItems item.system.knacks.learned)}}
+        {{formField systemFields.knacks.fields.learned name="system.knacks.learned" value=item.system.knacks.learned localize=true}}
+      {{/if}}
+    </fieldset>
+  {{/if}}
+
+</div>
