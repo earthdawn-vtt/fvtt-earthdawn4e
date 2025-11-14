@@ -1,16 +1,33 @@
+.theme-dark {
+  --document-create-background: var(--background-mottle-blue-dk);
+  --document-create-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-background: var(--background-mottle-green-dk);
+  --document-create-item-background: var(--background-mottle-blue-dk);
+  --document-create-item-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-radio-button-background: var(--background-mottle-green-md);
+}
+
+.theme-light {
+  --document-create-background: var(--background-mottle-blue-xlt);
+  --document-create-radio-button-background: var(--background-mottle-blue-lt);
+  --document-create-actor-background: var(--background-mottle-green-xlt);
+  --document-create-item-background: var(--background-mottle-blue-xlt);
+  --document-create-item-radio-button-background: var(--background-mottle-blue-lt);
+  --document-create-actor-radio-button-background: var(--background-mottle-green-lt);
+}
+
 form#document-create-dialog {
 
-  background: var(--background-mottle-blue-dk);
-  --document-create-radio-button-background: var(--background-mottle-blue-md);
+  background: var(--document-create-background);
 
   &.create-item {
-    background: var(--background-mottle-blue-dk);
-    --document-create-radio-button-background: var(--background-mottle-blue-md)
+    background: var(--document-create-item-background);
+    --document-create-radio-button-background: var(--document-create-item-radio-button-background);
   }
 
   &.create-actor {
-    background: var(--background-mottle-green-dk);
-    --document-create-radio-button-background: var(--background-mottle-green-md)
+    background: var(--document-create-actor-background);
+    --document-create-radio-button-background: var(--document-create-actor-radio-button-background);
   }
 
   div.ed-document-creation {
