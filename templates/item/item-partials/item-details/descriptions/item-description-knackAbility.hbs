@@ -1,4 +1,4 @@
-<div id="base-description-knackAbility-item" class="item-description__knackAbility" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-knackAbility-item" class="item-description__knackAbility item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     <h3>{{localize "ED.Item.Header.general"}}</h3>
 
@@ -9,9 +9,18 @@
 
   {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
 
-</div>
-
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

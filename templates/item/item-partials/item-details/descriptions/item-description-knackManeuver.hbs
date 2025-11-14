@@ -1,6 +1,4 @@
-<div id="base-description-knackManeuver-item" class="item-description__knackManeuver" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-
-  <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-knackManeuver-item" class="item-description__knackManeuver item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
   {{!-- Source --}}
   <div class="knack-ability__source-min-level">
@@ -10,7 +8,6 @@
     <div class="knack-ability__min-level">
       {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
     </div>
-    {{!-- Required Extra Successes --}}
     {{formField systemFields.extraSuccesses name="system.extraSuccesses" value=item.system.extraSuccesses localize=true}}
   </div>
 
@@ -28,9 +25,18 @@
     config=config
   }}
 
-</div>
-
-<div class="item__right--main sheet__editor">
-  <h3>{{localize "ED.Item.Header.description"}}</h3>
-  {{> "systems/ed4e/templates/global/editor.hbs"}}
+  <div class="item-section__description">
+      <h3 class="item-header__descrption label--rail">
+          <span class="label__text">
+              {{localize "ED.Item.Header.description"}}
+          </span>
+      </h3>
+      <span class="item-body__description">
+          {{#if @root.editable}}
+              {{> "systems/ed4e/templates/global/editor.hbs"}}
+          {{else}}
+              {{{enrichedDescription}}}
+          {{/if}}
+      </span>
+  </div>
 </div>

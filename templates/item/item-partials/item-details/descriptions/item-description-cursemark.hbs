@@ -1,15 +1,29 @@
-<div id="base-description-curseMark-item" class="item-description__curseMark" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-curseMark-item" class="item-description__curseMark item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Curse Step --}}
     {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
+
     {{!-- Curse Type --}}
     {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
+
     {{!-- active --}}
     {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
+
     {{!-- detected --}}
     {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

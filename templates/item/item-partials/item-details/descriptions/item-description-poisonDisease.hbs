@@ -1,25 +1,44 @@
-<div id="base-description-poisonDisease-item" class="item-description__poisonDisease" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-poisonDisease-item" class="item-description__poisonDisease item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Damage Step --}}
     {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
+
     {{!-- Paralyze Step --}}
     {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
+
     {{!-- Debilitation Step --}}
     {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
+
     {{!-- Interval Total effects --}}
     {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
+
     {{!-- Interval time in between --}}
     {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
+
     {{!-- Onset time --}}
     {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
+
     {{!-- duration --}}
     {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
+
     {{!-- activation --}}
     {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
+
     {{!-- death --}}
     {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

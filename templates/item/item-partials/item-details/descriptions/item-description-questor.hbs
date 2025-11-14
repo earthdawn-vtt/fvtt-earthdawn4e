@@ -1,9 +1,20 @@
-<div id="base-description-questor-item" class="item-description__questor" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-questor-item" class="item-description__questor item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Rank --}}
     {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

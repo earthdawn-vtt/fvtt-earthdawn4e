@@ -1,14 +1,18 @@
 <div id="base-details-armor-item" class="item-details__armor" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
     {{!-- Piecemeal Armor --}}
     {{formField systemFields.piecemeal.fields.isPiecemeal name="system.piecemeal.isPiecemeal" value=item.system.piecemeal.isPiecemeal localize=true}}
+    
+    {{!-- Piecemeal Armor Size --}}
     {{#if (eq item.system.piecemeal.isPiecemeal true)}}
-        {{!-- Piecemeal Armor Size --}}
         {{formField systemFields.piecemeal.fields.size name="system.piecemeal.size" type="number" value=item.system.piecemeal.size localize=true}}
     {{/if}}
+    
     {{!-- usable Item ?--}}
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
     {{#if (eq item.system.usableItem.isUsableItem true)}}
         {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
     {{/if}}
     {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
+    
 </div>

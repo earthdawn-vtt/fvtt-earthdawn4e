@@ -127,18 +127,11 @@
           }
         }
 
-        .item-summary {
+        .item-body__summary {
           display: flex;
           flex-direction: column;
           gap: 0.25rem;
           width: 100%;
-
-          .summary-header__title {
-            font-weight: bold;
-            display: block;
-            text-align: center;
-            white-space: nowrap;
-          }
 
           p {
             .ArnoProRegular();
@@ -153,17 +146,20 @@
 
   /* -------------------- Body -------------------- */
   .item-body {
-    .item-description {
-      font-size: var(--font-size-14);
-      margin-top: 10px;
-    }
+    .item-section__description {
 
-    &--readonly {
-      .item-description__toggle {
-        display: none;
+      margin-top: 14px; 
+
+      .editor.prosemirror:not(.editor--compact)
+      .editor-content {
+        min-height: 500px;
+        height: 500px;
+      }
+
+      .prosemirror,
+      prose-mirror {
+        min-height: 500px;
       }
     }
-
-    .metric-group[data-nohint] .hint { display: none !important; }
   }
 }

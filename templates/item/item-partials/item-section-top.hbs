@@ -33,12 +33,7 @@
         {{localize (concat "TYPES.Item." item.type)}}
       </span>
     </h3>
-    <span class="item-summary">
-      {{#if @root.editable}}
-        <span class="summary-header__title">
-          {{localize "ED.Item.Header.summary"}}
-        </span>
-      {{/if}}
+    <span class="item-body__summary">
       {{#if @root.editable}}
         {{> "systems/ed4e/templates/global/editor-brief.hbs"}}
       {{else}}

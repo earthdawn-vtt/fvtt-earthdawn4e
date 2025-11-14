@@ -1,4 +1,4 @@
-<div id="base-description-weapon-item" class="item-description__weapon" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-weapon-item" class="item-description__weapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Weapon Type --}}
     {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
@@ -36,9 +36,19 @@
     {{!-- Amount --}}
     {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
-</div>
-<div class="item__right--main sheet__editor">
-    {{!-- Description --}}
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

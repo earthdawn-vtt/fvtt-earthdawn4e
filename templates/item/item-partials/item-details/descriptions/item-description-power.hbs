@@ -1,15 +1,29 @@
-<div id="base-description-power-item" class="item-description__power" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-power-item" class="item-description__power item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Power Step --}}
     {{formField systemFields.powerStep name="system.powerStep" value=item.system.powerStep hint="" localize=true}}
+
     {{!-- Damage Step --}}
     {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep hint="" localize=true}}
+
     {{!-- Strain --}}
     {{formField systemFields.strain name="system.strain" value=item.system.strain hint="" localize=true}}
+
     {{!-- Action --}}
     {{formField systemFields.action name="system.action" value=item.system.action hint="" localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

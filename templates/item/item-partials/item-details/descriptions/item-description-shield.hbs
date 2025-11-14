@@ -1,22 +1,37 @@
-<div id="base-description-shield-item" class="item-description__shield" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-shield-item" class="item-description__shield item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Physical Defense Bonus --}}
     {{formField systemFields.defenseBonus.fields.physical name="system.defenseBonus.physical" value=item.system.defenseBonus.physical localize=true}}
+
     {{!-- Mystic Defense Bonus --}}
     {{formField systemFields.defenseBonus.fields.mystical name="system.defenseBonus.mystical" value=item.system.defenseBonus.mystical localize=true}}
+
     {{!-- SHatter Threshold --}}
     {{formField systemFields.shatterThreshold name="system.shatterThreshold" value=item.system.shatterThreshold localize=true}}
+
     {{!-- shattered --}}
     {{formField systemFields.shattered name="system.shattered" value=item.system.shattered localize=true}}
+
     {{!-- Initiative Penalty --}}
     {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
+
     {{!-- living armor --}}
     {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
 
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
-</div>
-<div class="item__right--main sheet__editor">
-    {{!-- Description --}}
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>
