@@ -2,11 +2,7 @@
 
   background: var(--background-sheet-item);
 
-  .item-name {
-    display: none;
-  }
-
-  input[type=text],
+   input[type=text],
   input[type=number],
   input[type=password],
   input[type=date],
@@ -21,46 +17,6 @@
   .window-content {
     backdrop-filter: unset;
     -webkit-backdrop-filter: none;
-  }
-
-  .standard-form {
-    gap: 0;
-    padding: 0 15px 5px;
-
-    fieldset > legend {
-      margin: 0;
-      padding: 0;
-    }
-
-    .tab {
-      display: none;
-      gap: 0;
-    }
-    .tab.active {
-      display: block;
-    }
-
-  .form-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0;
-    padding-top: 5px;
-
-      > .hint {
-        grid-column: 1 / -1;
-        margin: 0;
-      }
-    }
-
-    [data-editable="editable"] .form-group > .hint {
-      display: block;
-    }
-
-    [data-editable="readonly"] .form-group > .hint {
-      display: none;
-    }
   }
 
   .prosemirror menu,
@@ -146,6 +102,7 @@
 
   /* -------------------- Body -------------------- */
   .item-body {
+    
     .item-section__description {
 
       margin-top: 14px; 
@@ -160,6 +117,50 @@
       prose-mirror {
         min-height: 500px;
       }
+    }
+  }
+
+    .standard-form {
+    gap: 0;
+    padding: 0 15px 5px;
+
+    fieldset > legend {
+      margin: 0;
+      padding: 0;
+    }
+
+    &fieldset {
+      padding: 0;
+    }
+
+    .tab {
+      display: none;
+      gap: 0;
+    }
+    .tab.active {
+      display: block;
+    }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding-top: 5px;
+
+      > .hint {
+        grid-column: 1 / -1;
+        margin: 0;
+      }
+    }
+
+    [data-editable="editable"] .form-group > .hint {
+      display: block;
+    }
+
+    [data-editable="readonly"] .form-group > .hint {
+      display: none;
     }
   }
 }
