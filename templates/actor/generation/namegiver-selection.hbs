@@ -13,7 +13,7 @@
     <div class="name-selection">
 
       <h5>{{localize "ED.Dialogs.CharGen.chooseName"}}</h5>
-        <input type="text" id="char-gen-first-name-input" name="name" value="{{charGenData.name}}" />
+      <input type="text" id="char-gen-first-name-input" name="name" value="{{charGenData.name}}" />
 
     </div>
 
@@ -30,9 +30,13 @@
         {{selectOptions namegivers selected=namegiver valueAttr="uuid" labelAttr="name"}}
       </select>
 
+      {{#if namegiverDocument }}
+        <p>{{{ed-linkForUuid namegiverDocument.uuid}}}</p>
+      {{/if}}
+
     </div>
 
-    {{#if namegiverDocument}}
+    {{#if namegiverDocument }}
       <img src="{{namegiverDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.namegiverImageAlt"}}">
     {{/if}}
 
