@@ -72,7 +72,7 @@
 					data-tooltip-direction="UP"
 					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
 					{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
-						<input class="input__clear-input--centered" value="{{this.step}}" readonly>
+						<input class="input__clear-input--centered" value="{{this.step}}" readonly data-name="system.attributes.{{@key}}.step">
 					{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
 					data-tooltip-direction="UP"
 					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
-					<input class="input__square-input--centered" value="{{this.step}}" readonly>
+					<input class="input__square-input--centered" value="{{this.step}}" readonly data-name="system.attributes.{{@key}}.step">
 				</div>
 			</div>
 		{{/if}}

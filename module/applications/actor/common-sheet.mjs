@@ -268,7 +268,8 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     if ( ![ "increase", "decrease" ].includes( overrideOperation ) ) throw new Error( `Unknown override operation: ${overrideOperation}` );
 
     const sign = ( overrideOperation === "decrease" ) ? -1 : 1;
-    const changeKey = target.parentElement.querySelector( "input" ).name;
+    const changeInputElement = target.parentElement.querySelector( "input" );
+    const changeKey = changeInputElement.name || changeInputElement.dataset.name;
     const changeValue = ( event.shiftKey ? 5 : 1 ) * sign;
 
     await this.document.manualOverride( changeKey, changeValue );
