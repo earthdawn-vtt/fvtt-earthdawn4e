@@ -251,7 +251,7 @@
 								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}"
 								data-tooltip-direction="UP"
 								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}">
-								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
 								<input
 									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 									name="system.initiative"

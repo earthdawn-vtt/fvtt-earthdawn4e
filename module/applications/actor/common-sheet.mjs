@@ -20,9 +20,10 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     actions:  {
       addTruePattern:                 ActorSheetEd._onAddTruePattern,
       deleteTruePattern:              ActorSheetEd._onDeleteTruePattern,
-      deleteFavorite:                 ActorSheetEd._deleteFavorite,
-      executeFavoriteMacro:           ActorSheetEd._executeFavoriteMacro,
+      deleteFavorite:                 ActorSheetEd._onDeleteFavorite,
+      executeFavoriteMacro:           ActorSheetEd._onExecuteFavoriteMacro,
       expandItem:                     ActorSheetEd._onCardExpand,
+      manualOverride:                 ActorSheetEd._onManualOverride,
       toggleTruePatternKnownToPlayer: ActorSheetEd._onToggleTruePatternKnownToPlayer,
       weaveThread:                    ActorSheetEd._onWeaveThread,
     },
@@ -147,6 +148,20 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   // region Event Handlers
 
   /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
+  static async _onAddTruePattern( event, target ) {
+    event.preventDefault();
+    const truePatternData = {};
+    if ( this.document.type === "group" ) truePatternData.tier = "warden";
+    await this.document.update( {
+      "system.truePattern": new TruePatternData( truePatternData ),
+    } );
+    await this.render();
+  }
+
+  /**
    * Expanding or collapsing the item description
    * @param {Event} event - The event that triggered the form submission.
    * @param {HTMLElement} target - The HTML element that triggered the action.
@@ -167,36 +182,23 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
    * @type {ApplicationClickAction}
    * @this {ActorSheetEd}
    */
-  static async _executeFavoriteMacro( event, target ) {
-    const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
-    if ( !macro ) {
-      ui.notifications.warn( game.i18n.localize( "ED.Actor.Header.Favorites.macroNotFound" ) );
-      return;
-    }
-    macro.execute();
-  }
-
-  /**
-   * @type {ApplicationClickAction}
-   * @this {ActorSheetEd}
-   */
-  static async _deleteFavorite( event, target ) {
+  static async _onDeleteFavorite( event, target ) {
     const macroUuid = target.dataset.macroUuid;
-  
+
     // Use shift-click for quick delete like deleteChild does
     if ( getSetting( "quickDeleteEmbeddedOnShiftClick" ) && event.shiftKey ) {
       const currentFavorites = this.document.system.favorites || [];
       const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
-    
+
       // Delete the macro from the world
       const macro = await fromUuid( macroUuid );
       if ( macro ) await macro.delete();
-    
+
       return this.document.update( {
         "system.favorites": updatedFavorites
       } );
     }
-  
+
     const type = `${game.i18n.localize( "ED.Dialogs.DeleteFavorite.favorite" )}`;
     return Dialog.confirm( {
       title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
@@ -206,11 +208,11 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       yes: async () => {
         const currentFavorites = this.document.system.favorites || [];
         const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
-      
+
         // Delete the macro from the world
         const macro = await fromUuid( macroUuid );
         if ( macro ) await macro.delete();
-      
+
         await this.document.update( {
           "system.favorites": updatedFavorites
         } );
@@ -221,20 +223,6 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
         width: 400
       }
     } );
-  }
-
-  /**
-   * @type {ApplicationClickAction}
-   * @this {ActorSheetEd}
-   */
-  static async _onAddTruePattern( event, target ) {
-    event.preventDefault();
-    const truePatternData = {};
-    if ( this.document.type === "group" ) truePatternData.tier = "warden";
-    await this.document.update( {
-      "system.truePattern": new TruePatternData( truePatternData ),
-    } );
-    await this.render();
   }
 
   /**
@@ -254,6 +242,37 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       "system.truePattern": null,
     } );
     await this.render();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
+  static async _onExecuteFavoriteMacro( event, target ) {
+    const macro = /** @type {Macro} */ await fromUuid( target.dataset.macroUuid );
+    if ( !macro ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Actor.Header.Favorites.macroNotFound" ) );
+      return;
+    }
+    macro.execute();
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEd}
+   */
+  static async _onManualOverride( event, target ) {
+    event.preventDefault();
+
+    const overrideOperation = target.dataset.overrideOperation?.toLowerCase();
+    if ( ![ "increase", "decrease" ].includes( overrideOperation ) ) throw new Error( `Unknown override operation: ${overrideOperation}` );
+
+    const sign = ( overrideOperation === "decrease" ) ? -1 : 1;
+    const changeInputElement = target.parentElement.querySelector( "input" );
+    const changeKey = changeInputElement.name || changeInputElement.dataset.name;
+    const changeValue = ( event.shiftKey ? 5 : 1 ) * sign;
+
+    await this.document.manualOverride( changeKey, changeValue );
   }
 
   /**

@@ -27,9 +27,9 @@
           data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
           data-tooltip-direction="UP"
           aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
-          <button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>
-          <input class="input__clear-input--centered" value="{{this.step}}" readonly>
-          <button type="button" class="buffer buffer--plus" aria-label="Increase"></button>
+          <button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>
+          <input class="input__clear-input--centered" value="{{this.step}}" readonly data-name="system.attributes.{{@key}}.step">
+          <button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>
         </div>
       </div>
     {{/unless}}
