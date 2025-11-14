@@ -66,8 +66,8 @@ export default class LpIncreaseTemplate extends SystemDataModel {
     return game.i18n.format(
       "ED.Actor.LpTracking.Spendings.spendingTransactionDescription",
       {
-        previousLevel: this.level,
-        newLevel:      this.level + 1,
+        previousLevel: this.unmodifiedLevel,
+        newLevel:      this.unmodifiedLevel + 1,
       },
     );
   }
@@ -87,6 +87,14 @@ export default class LpIncreaseTemplate extends SystemDataModel {
    */
   get requiredMoneyForIncrease() {
     throw new Error( "A subclass of the LpIncreaseTemplate must implement the requiredMoneyForIncrease getter." );
+  }
+
+  /**
+   * The unmodified level of the ability, without adjustments like active effects.
+   * @type {number}
+   */
+  get unmodifiedLevel() {
+    return this._source.level;
   }
 
   // endregion
