@@ -110,17 +110,23 @@
   --color-green-md-tr: rgba(28, 59, 36, 0.35);
   --color-green-lt: #3a763e;
   --color-green-lt-tr: rgba(58, 118, 62, 0.35);
+  --color-green-xlt: #91c396;
+  --color-green-xlt-tr: rgba(145, 195, 150, 0.35);
   --color-blue-dk: #03040a;
   --color-blue-dk-tr: rgba(3, 4, 10, 0.35);
   --color-blue-md: #151236;
   --color-blue-md-tr: rgba(21, 18, 54, 0.35);
   --color-blue-lt: #373d75;
   --color-blue-lt-tr: rgba(55, 61, 117, 0.35);
+  --color-blue-xlt: #8a9dc6;
+  --color-blue-xlt-tr: rgba(138, 157, 198, 0.35);
   --color-basic-text-dk: #2e2730;
   --color-basic-text-lt: #f5e5de;
+  --background-mottle-green-xlt: var(--color-green-xlt) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-green-lt: var(--color-green-lt) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-green-md: var(--color-green-md) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-green-dk: var(--color-green-dk) url(assets/sheet/mottle.png) center center / auto repeat;
+  --background-mottle-blue-xlt: var(--color-blue-xlt) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-blue-lt: var(--color-blue-lt) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-blue-md: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-blue-dk: var(--color-blue-dk) url(assets/sheet/mottle.png) center center / auto repeat;
@@ -1175,6 +1181,72 @@ h3.label--rail .label__text::after {
   height: max-content;
   padding-top: 8px;
   padding-bottom: 4px;
+}
+body.theme-dark {
+  --document-create-background: var(--background-mottle-blue-dk);
+  --document-create-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-background: var(--background-mottle-green-dk);
+  --document-create-item-background: var(--background-mottle-blue-dk);
+  --document-create-item-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-radio-button-background: var(--background-mottle-green-md);
+}
+body.theme-light {
+  --document-create-background: url('assets/sheet/background_lighter.PNG');
+  --document-create-radio-button-background: floralwhite;
+  --document-create-actor-background: var(--document-create-background);
+  --document-create-item-background: var(--document-create-background);
+  --document-create-item-radio-button-background: floralwhite;
+  --document-create-actor-radio-button-background: floralwhite;
+}
+form#document-create-dialog {
+  background: var(--document-create-background);
+}
+form#document-create-dialog.create-item {
+  background: var(--document-create-item-background);
+  --document-create-radio-button-background: var(--document-create-item-radio-button-background);
+}
+form#document-create-dialog.create-actor {
+  background: var(--document-create-actor-background);
+  --document-create-radio-button-background: var(--document-create-actor-radio-button-background);
+}
+form#document-create-dialog div.ed-document-creation {
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+form#document-create-dialog div.ed-document-creation .name-and-folder-inputs {
+  justify-content: center;
+  gap: 1rem;
+}
+form#document-create-dialog div.ed-document-creation .type-selection {
+  gap: 0.5em;
+}
+form#document-create-dialog div.ed-document-creation .type-selection .form-fields {
+  flex-wrap: wrap;
+}
+form#document-create-dialog div.ed-document-creation .type-selection .form-fields label {
+  flex: 1 1 auto;
+  position: relative;
+  justify-content: center;
+  padding: 1em;
+  background: var(--document-create-radio-button-background);
+  opacity: 0.2;
+  font-size: medium;
+  text-align: center;
+  text-transform: capitalize;
+}
+form#document-create-dialog div.ed-document-creation .type-selection .form-fields label:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+form#document-create-dialog div.ed-document-creation .type-selection .form-fields label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+form#document-create-dialog div.ed-document-creation .type-selection .form-fields label:has(input[type="radio"]:checked) {
+  font-variant: small-caps;
+  opacity: 1;
 }
 body.theme-dark {
   --char-gen-background-image: url("assets/character-generation/background_parchment_transparent_dark.png");
