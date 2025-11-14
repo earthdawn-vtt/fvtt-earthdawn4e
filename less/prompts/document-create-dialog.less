@@ -1,4 +1,4 @@
-.theme-dark {
+body.theme-dark {
   --document-create-background: var(--background-mottle-blue-dk);
   --document-create-radio-button-background: var(--background-mottle-blue-md);
   --document-create-actor-background: var(--background-mottle-green-dk);
@@ -7,13 +7,13 @@
   --document-create-actor-radio-button-background: var(--background-mottle-green-md);
 }
 
-.theme-light {
-  --document-create-background: var(--background-mottle-blue-xlt);
-  --document-create-radio-button-background: var(--background-mottle-blue-lt);
-  --document-create-actor-background: var(--background-mottle-green-xlt);
-  --document-create-item-background: var(--background-mottle-blue-xlt);
-  --document-create-item-radio-button-background: var(--background-mottle-blue-lt);
-  --document-create-actor-radio-button-background: var(--background-mottle-green-lt);
+body.theme-light {
+  --document-create-background: url('assets/sheet/background_lighter.PNG');
+  --document-create-radio-button-background: floralwhite;
+  --document-create-actor-background: var(--document-create-background);
+  --document-create-item-background: var(--document-create-background);
+  --document-create-item-radio-button-background: floralwhite;
+  --document-create-actor-radio-button-background: floralwhite;
 }
 
 form#document-create-dialog {
