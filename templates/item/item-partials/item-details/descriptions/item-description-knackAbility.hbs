@@ -1,42 +1,26 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-description-knackAbility-item" class="item-description__knackAbility item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     <h3>{{localize "ED.Item.Header.general"}}</h3>
 
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
-    {{!-- Standard Effect (boolean) --}}
-    {{#if systemFields.standardEffect}}
-      <div class="form-group">
-        <label>{{localize systemFields.standardEffect.label}}</label>
+    {{!-- Standard Effect --}}
+    {{formField systemFields.standardEffect name="system.standardEffect" value=item.system.standardEffect localize=true}}
 
-        <input
-          type="checkbox"
-          name="system.standardEffect"
-          data-dtype="{{systemFields.standardEffect.type}}"
-          {{#if item.system.standardEffect}}checked{{/if}} />
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.standardEffect.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

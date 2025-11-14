@@ -1,75 +1,23 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div id="base-information-discipline-item" class="item-body__description">
+<div id="base-description-discipline-item" class="item-description__discipline item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    {{!-- Circle / Level --}}
-    {{#if systemFields.level}}
-      <div class="form-group">
-        <label>{{localize systemFields.level.label}}</label>
+    {{!-- Circle --}}
+    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
 
-        {{#if systemFields.level.choices}}
-          <select
-            name="system.level"
-            data-dtype="{{systemFields.level.type}}">
-            {{selectOptions
-              systemFields.level.choices
-              selected=item.system.level
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="number"
-            name="system.level"
-            value="{{item.system.level}}"
-            data-dtype="{{systemFields.level.type}}" />
-        {{/if}}
+    {{!-- durability --}}
+    {{formField systemFields.durability name="system.durability" value=item.system.durability localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.level.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Durability --}}
-    {{#if systemFields.durability}}
-      <div class="form-group">
-        <label>{{localize systemFields.durability.label}}</label>
-
-        {{#if systemFields.durability.choices}}
-          <select
-            name="system.durability"
-            data-dtype="{{systemFields.durability.type}}">
-            {{selectOptions
-              systemFields.durability.choices
-              selected=item.system.durability
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="number"
-            name="system.durability"
-            value="{{item.system.durability}}"
-            data-dtype="{{systemFields.durability.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.durability.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-  </div>
-
-  <div id="description-discipline-item" class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

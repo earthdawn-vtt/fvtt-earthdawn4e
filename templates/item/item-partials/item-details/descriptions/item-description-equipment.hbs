@@ -1,48 +1,22 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-description-equipment-item" class="item-description__equipment item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
     {{!-- Amount --}}
-    {{#if systemFields.amount}}
-      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.amount.label}}</label>
+    {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
 
-        {{#if systemFields.amount.choices}}
-          <select
-            name="system.amount"
-            data-dtype="{{systemFields.amount.type}}">
-            {{selectOptions
-              systemFields.amount.choices
-              selected=item.system.amount
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="number"
-            name="system.amount"
-            value="{{item.system.amount}}"
-            data-dtype="{{systemFields.amount.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.amount.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

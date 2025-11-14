@@ -1,108 +1,18 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-partial-physical-item" class="item-partial__physical" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    {{!-- Blood Magic Damage --}}
-    {{#if systemFields.bloodMagicDamage}}
-      {{#if @root.editable}}
-        <div class="form-group">
-          <label>{{localize systemFields.bloodMagicDamage.label}}</label>
-          <input
-            type="number"
-            name="system.bloodMagicDamage"
-            value="{{item.system.bloodMagicDamage}}"
-            data-dtype="{{systemFields.bloodMagicDamage.type}}" />
-          <p class="hint">{{localize systemFields.bloodMagicDamage.hint}}</p>
-        </div>
-      {{else}}
-        {{#if item.system.bloodMagicDamage}}
-          <div class="form-group form-group--merge">
-            <label>{{localize systemFields.bloodMagicDamage.label}}</label>
-            <input
-              type="number"
-              name="system.bloodMagicDamage"
-              value="{{item.system.bloodMagicDamage}}"
-              data-dtype="{{systemFields.bloodMagicDamage.type}}" />
-          </div>
-        {{/if}}
-      {{/if}}
-    {{/if}}
+        {{!-- Blood Magic Damage --}}
+        {{formField systemFields.bloodMagicDamage name="system.bloodMagicDamage" value=item.system.bloodMagicDamage localize=true}}
 
-    {{!-- Price (value + denomination) --}}
-    {{#if systemFields.price}}
-      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.price.fields.value.label}}</label>
+        {{!-- Price and Currency --}}
+        {{formField systemFields.price.fields.value name="system.price.value" value=item.system.price.value localize=true}}
 
-        <div class="form-fields">
-          {{!-- value --}}
-          <input
-            type="number"
-            name="system.price.value"
-            value="{{item.system.price.value}}"
-            data-dtype="{{systemFields.price.fields.value.type}}" />
+        {{!-- Denomination --}}
+        {{formInput systemFields.price.fields.denomination name="system.price.denomination" value=item.system.price.denomination}}
 
-          {{!-- denomination --}}
-          <select
-            name="system.price.denomination"
-            data-dtype="{{systemFields.price.fields.denomination.type}}">
-            {{selectOptions
-              systemFields.price.fields.denomination.choices
-              selected=item.system.price.denomination
-              localize=true}}
-          </select>
-        </div>
+        {{!-- weight --}}
+        {{formField systemFields.weight.fields.value name="system.weight.value" value=item.system.weight.value localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">
-            {{#if systemFields.price.fields.value.hint}}
-              {{localize systemFields.price.fields.value.hint}}
-            {{else}}
-              {{localize systemFields.price.hint}}
-            {{/if}}
-          </p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Weight --}}
-    {{#if systemFields.weight.fields.value}}
-      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.weight.fields.value.label}}</label>
-        <input
-          type="number"
-          name="system.weight.value"
-          value="{{item.system.weight.value}}"
-          data-dtype="{{systemFields.weight.fields.value.type}}" />
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.weight.fields.value.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Availability --}}
-    {{#if systemFields.availability}}
-      <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.availability.label}}</label>
-
-        {{#if systemFields.availability.choices}}
-          <select
-            name="system.availability"
-            data-dtype="{{systemFields.availability.type}}">
-            {{selectOptions
-              systemFields.availability.choices
-              selected=item.system.availability
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.availability"
-            value="{{item.system.availability}}"
-            data-dtype="{{systemFields.availability.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.availability.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-</section>
+        {{!-- Availability --}}
+        {{formField systemFields.availability name="system.availability" value=item.system.availability localize=true}}
+        
+</div>

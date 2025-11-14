@@ -1,280 +1,44 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-description-poisonDisease-item" class="item-description__poisonDisease item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Damage Step --}}
-    {{#if systemFields.effect.fields.damageStep}}
-      <div class="form-group">
-        <label>{{localize systemFields.effect.fields.damageStep.label}}</label>
+    {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
 
-        {{#if systemFields.effect.fields.damageStep.choices}}
-          <select
-            name="system.effect.damageStep"
-            data-dtype="{{systemFields.effect.fields.damageStep.type}}">
-            <option value="" {{#unless item.system.effect.damageStep}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.effect.fields.damageStep.choices
-              selected=item.system.effect.damageStep
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.effect.damageStep"
-            value="{{item.system.effect.damageStep}}"
-            data-dtype="{{systemFields.effect.fields.damageStep.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.effect.fields.damageStep.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Paralysis Step --}}
-    {{#if systemFields.effect.fields.paralysisStep}}
-      <div class="form-group">
-        <label>{{localize systemFields.effect.fields.paralysisStep.label}}</label>
-
-        {{#if systemFields.effect.fields.paralysisStep.choices}}
-          <select
-            name="system.effect.paralysisStep"
-            data-dtype="{{systemFields.effect.fields.paralysisStep.type}}">
-            <option value="" {{#unless item.system.effect.paralysisStep}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.effect.fields.paralysisStep.choices
-              selected=item.system.effect.paralysisStep
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.effect.paralysisStep"
-            value="{{item.system.effect.paralysisStep}}"
-            data-dtype="{{systemFields.effect.fields.paralysisStep.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.effect.fields.paralysisStep.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{!-- Paralyze Step --}}
+    {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
 
     {{!-- Debilitation Step --}}
-    {{#if systemFields.effect.fields.debilitationStep}}
-      <div class="form-group">
-        <label>{{localize systemFields.effect.fields.debilitationStep.label}}</label>
+    {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
 
-        {{#if systemFields.effect.fields.debilitationStep.choices}}
-          <select
-            name="system.effect.debilitationStep"
-            data-dtype="{{systemFields.effect.fields.debilitationStep.type}}">
-            <option value="" {{#unless item.system.effect.debilitationStep}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.effect.fields.debilitationStep.choices
-              selected=item.system.effect.debilitationStep
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.effect.debilitationStep"
-            value="{{item.system.effect.debilitationStep}}"
-            data-dtype="{{systemFields.effect.fields.debilitationStep.type}}" />
-        {{/if}}
+    {{!-- Interval Total effects --}}
+    {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.effect.fields.debilitationStep.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{!-- Interval time in between --}}
+    {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
 
-    {{!-- Interval Total Effects --}}
-    {{#if systemFields.interval.fields.totalEffects}}
-      <div class="form-group">
-        <label>{{localize systemFields.interval.fields.totalEffects.label}}</label>
+    {{!-- Onset time --}}
+    {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
 
-        {{#if systemFields.interval.fields.totalEffects.choices}}
-          <select
-            name="system.interval.totalEffects"
-            data-dtype="{{systemFields.interval.fields.totalEffects.type}}">
-            <option value="" {{#unless item.system.interval.totalEffects}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.interval.fields.totalEffects.choices
-              selected=item.system.interval.totalEffects
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.interval.totalEffects"
-            value="{{item.system.interval.totalEffects}}"
-            data-dtype="{{systemFields.interval.fields.totalEffects.type}}" />
-        {{/if}}
+    {{!-- duration --}}
+    {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.interval.fields.totalEffects.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{!-- activation --}}
+    {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
 
-    {{!-- Interval Time In Between --}}
-    {{#if systemFields.interval.fields.timeInBetween}}
-      <div class="form-group">
-        <label>{{localize systemFields.interval.fields.timeInBetween.label}}</label>
+    {{!-- death --}}
+    {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
 
-        {{#if systemFields.interval.fields.timeInBetween.choices}}
-          <select
-            name="system.interval.timeInBetween"
-            data-dtype="{{systemFields.interval.fields.timeInBetween.type}}">
-            <option value="" {{#unless item.system.interval.timeInBetween}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.interval.fields.timeInBetween.choices
-              selected=item.system.interval.timeInBetween
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.interval.timeInBetween"
-            value="{{item.system.interval.timeInBetween}}"
-            data-dtype="{{systemFields.interval.fields.timeInBetween.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.interval.fields.timeInBetween.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Onset Time --}}
-    {{#if systemFields.onsetTime}}
-      <div class="form-group">
-        <label>{{localize systemFields.onsetTime.label}}</label>
-
-        {{#if systemFields.onsetTime.choices}}
-          <select
-            name="system.onsetTime"
-            data-dtype="{{systemFields.onsetTime.type}}">
-            <option value="" {{#unless item.system.onsetTime}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.onsetTime.choices
-              selected=item.system.onsetTime
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.onsetTime"
-            value="{{item.system.onsetTime}}"
-            data-dtype="{{systemFields.onsetTime.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.onsetTime.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Duration --}}
-    {{#if systemFields.duration}}
-      <div class="form-group">
-        <label>{{localize systemFields.duration.label}}</label>
-
-        {{#if systemFields.duration.choices}}
-          <select
-            name="system.duration"
-            data-dtype="{{systemFields.duration.type}}">
-            <option value="" {{#unless item.system.duration}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.duration.choices
-              selected=item.system.duration
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.duration"
-            value="{{item.system.duration}}"
-            data-dtype="{{systemFields.duration.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.duration.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Activation --}}
-    {{#if systemFields.activation}}
-      <div class="form-group">
-        <label>{{localize systemFields.activation.label}}</label>
-
-        {{#if systemFields.activation.choices}}
-          <select
-            name="system.activation"
-            data-dtype="{{systemFields.activation.type}}">
-            <option value="" {{#unless item.system.activation}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.activation.choices
-              selected=item.system.activation
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.activation"
-            value="{{item.system.activation}}"
-            data-dtype="{{systemFields.activation.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.activation.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Death --}}
-    {{#if systemFields.death}}
-      <div class="form-group">
-        <label>{{localize systemFields.death.label}}</label>
-
-        {{#if systemFields.death.choices}}
-          <select
-            name="system.death"
-            data-dtype="{{systemFields.death.type}}">
-            <option value="" {{#unless item.system.death}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.death.choices
-              selected=item.system.death
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.death"
-            value="{{item.system.death}}"
-            data-dtype="{{systemFields.death.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.death.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

@@ -1,78 +1,25 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-description-skill-item" class="item-description__skill item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
     {{!-- Tier --}}
-    {{#if systemFields.tier}}
-      <div class="form-group">
-        <label>{{localize systemFields.tier.label}}</label>
+    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
 
-        {{#if systemFields.tier.choices}}
-          <select
-            name="system.tier"
-            data-dtype="{{systemFields.tier.type}}">
-            {{selectOptions
-              systemFields.tier.choices
-              selected=item.system.tier
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.tier"
-            value="{{item.system.tier}}"
-            data-dtype="{{systemFields.tier.type}}" />
-        {{/if}}
+    {{!-- Type --}}
+    {{formField systemFields.skillType name="system.skillType" value=item.system.skillType localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.tier.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Skill Type --}}
-    {{#if @root.editable}}
-        {{#if systemFields.skillType}}
-        <div class="form-group">
-            <label>{{localize systemFields.skillType.label}}</label>
-
-            {{#if systemFields.skillType.choices}}
-            <select
-                name="system.skillType"
-                data-dtype="{{systemFields.skillType.type}}">
-                {{selectOptions
-                systemFields.skillType.choices
-                selected=item.system.skillType
-                localize=true}}
-            </select>
-            {{else}}
-            <input
-                type="text"
-                name="system.skillType"
-                value="{{item.system.skillType}}"
-                data-dtype="{{systemFields.skillType.type}}" />
-            {{/if}}
-
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
             {{#if @root.editable}}
-            <p class="hint">{{localize systemFields.skillType.hint}}</p>
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
             {{/if}}
-        </div>
-        {{/if}}
-    {{/if}}
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+        </span>
+    </div>
+</div>

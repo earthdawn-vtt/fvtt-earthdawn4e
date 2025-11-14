@@ -2811,6 +2811,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
 }
+.application.sheet.earthdawn4e.item .item-name {
+  display: none;
+}
 .application.sheet.earthdawn4e.item input[type=text],
 .application.sheet.earthdawn4e.item input[type=number],
 .application.sheet.earthdawn4e.item input[type=password],
@@ -2852,6 +2855,12 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .standard-form .form-group > .hint {
   grid-column: 1 / -1;
   margin: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="editable"] .form-group > .hint {
+  display: block;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
+  display: none;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {
@@ -2904,33 +2913,28 @@ section.spells .matrix-cards .matrix-card .spell-link {
   padding: 0;
   background: none;
 }
-.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary {
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-body__summary {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
 }
-.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary .summary-header__title {
-  font-weight: bold;
-  display: block;
-  text-align: center;
-  white-space: nowrap;
-}
-.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-summary p {
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-body__summary p {
   font-family: 'ArnoPro-Regular', serif;
   font-style: italic;
   text-align: center;
   margin: 3px 0 0 0;
 }
-.application.sheet.earthdawn4e.item .item-body .item-description {
-  font-size: var(--font-size-14);
-  margin-top: 10px;
+.application.sheet.earthdawn4e.item .item-body .item-section__description {
+  margin-top: 14px;
 }
-.application.sheet.earthdawn4e.item .item-body--readonly .item-description__toggle {
-  display: none;
+.application.sheet.earthdawn4e.item .item-body .item-section__description .editor.prosemirror:not(.editor--compact) .editor-content {
+  min-height: 500px;
+  height: 500px;
 }
-.application.sheet.earthdawn4e.item .item-body .metric-group[data-nohint] .hint {
-  display: none !important;
+.application.sheet.earthdawn4e.item .item-body .item-section__description .prosemirror,
+.application.sheet.earthdawn4e.item .item-body .item-section__description prose-mirror {
+  min-height: 500px;
 }
 .denomination__value-currency .denomination__value {
   width: 75%;

@@ -1,95 +1,41 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div id="base-description-knackKarma-item" class="item-description__knackkarma item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
-
-    {{!-- Source Item --}}
-    {{#if systemFields.sourceItem}}
-      <div class="form-group">
-        <label>{{localize systemFields.sourceItem.label}}</label>
-
-        {{#if systemFields.sourceItem.choices}}
-          <select
-            name="system.sourceItem"
-            data-dtype="{{systemFields.sourceItem.type}}">
-            <option value="" {{#unless item.system.sourceItem}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.sourceItem.choices
-              selected=item.system.sourceItem
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.sourceItem"
-            value="{{item.system.sourceItem}}"
-            data-dtype="{{systemFields.sourceItem.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.sourceItem.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Minimum Level --}}
-    {{#if systemFields.minLevel}}
-      <div class="form-group">
-        <label>{{localize systemFields.minLevel.label}}</label>
-
-        {{#if systemFields.minLevel.choices}}
-          <select
-            name="system.minLevel"
-            data-dtype="{{systemFields.minLevel.type}}">
-            <option value="" {{#unless item.system.minLevel}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.minLevel.choices
-              selected=item.system.minLevel
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="number"
-            name="system.minLevel"
-            value="{{item.system.minLevel}}"
-            data-dtype="{{systemFields.minLevel.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.minLevel.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Requirements --}}
-    {{> "systems/ed4e/templates/form/group/general.hbs"
-      dataField=systemFields.requirements
-      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
-      data=item.system.requirements
-      config=config
-    }}
-
-    {{!-- Restrictions --}}
-    {{> "systems/ed4e/templates/form/group/general.hbs"
-      dataField=systemFields.restrictions
-      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
-      data=item.system.restrictions
-      config=config
-    }}
-
+  {{!-- Source --}}
+  <div class="knack-ability__source-min-level">
+    <div class="knack-ability__source">
+      {{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+    </div>
+    <div class="knack-ability__min-level">
+      {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+    </div>
   </div>
 
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.requirements
+    inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+    data=item.system.requirements
+    config=config
+  }}
 
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+  {{> "systems/ed4e/templates/form/group/general.hbs"
+    dataField=systemFields.restrictions
+    inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+    data=item.system.restrictions
+    config=config
+  }}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

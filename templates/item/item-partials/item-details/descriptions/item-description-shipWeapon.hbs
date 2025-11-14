@@ -1,19 +1,35 @@
-<div>
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+<div id="base-description-shipWeapon-item" class="item-description__shipWeapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Fire Power Points --}}
     {{formField systemFields.firePowerPoints name="system.firePowerPoints" value=item.system.firePowerPoints localize=true}}
+    
     {{!-- Crew required to fire the weapon --}}
     {{formField systemFields.crewWeapon name="system.crewWeapon" value=item.system.crewWeapon localize=true}}
+    
     {{!-- Short Range --}}
     {{formField systemFields.range.fields.short name="system.range.short" value=item.system.range.short localize=true}}
+    
     {{!-- Long Range --}}
     {{formField systemFields.range.fields.long name="system.range.long" value=item.system.range.long localize=true}}
+    
     {{!-- Salvo Cost --}}
     {{formField systemFields.salvoCost name="system.salvoCost" value=item.system.salvoCost localize=true}}
+    
     {{!-- Weapon Damage against single Namegiver --}}
     {{formField systemFields.characterDamage name="system.characterDamage" value=item.system.characterDamage localize=true}}
-</div>
-<div class="item__right--main sheet__editor">
-    <h3>{{localize "ED.Item.Header.description"}}</h3>
-    {{> "systems/ed4e/templates/global/editor.hbs"}}
+
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

@@ -7,56 +7,33 @@
       data-action="editImage"
       data-edit="img" />
   </div>
-
   <div class="item-header__body">
     <h3 class="header__no-border item-header__title">
       <input
-        name="name"
         type="text"
-        value="{{item.name}}">
+        value="{{item.name}}" />
     </h3>
 
     <h3 class="item-header__type label--rail">
       <span class="label__text">
-
         {{#unless @root.editable}}
-
           {{!-- Talent category, if present --}}
           {{#if systemFields.talentCategory}}
             {{#if systemFields.talentCategory.choices}}
               {{localize (lookup systemFields.talentCategory.choices item.system.talentCategory)}}
             {{/if}}
           {{/if}}
-
           {{!-- Skill type, if present --}}
           {{#if systemFields.skillType}}
             {{#if systemFields.skillType.choices}}
               {{localize (lookup systemFields.skillType.choices item.system.skillType)}}
             {{/if}}
           {{/if}}
-
-          {{!-- Spellcasting type, if present --}}
-          {{#if systemFields.spellcastingType}}
-            {{#if systemFields.spellcastingType.choices}}
-              {{localize (lookup systemFields.spellcastingType.choices item.system.spellcastingType)}}
-            {{else}}
-              {{item.system.spellcastingType}}
-            {{/if}}
-          {{/if}}
-
         {{/unless}}
-
         {{localize (concat "TYPES.Item." item.type)}}
       </span>
     </h3>
-
-    <span class="item-summary">
-      {{#if @root.editable}}
-        <span class="summary-header__title">
-          {{localize "ED.Item.Header.summary"}}
-        </span>
-      {{/if}}
-
+    <span class="item-body__summary">
       {{#if @root.editable}}
         {{> "systems/ed4e/templates/global/editor-brief.hbs"}}
       {{else}}

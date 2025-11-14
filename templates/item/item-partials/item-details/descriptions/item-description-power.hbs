@@ -1,135 +1,29 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div id="base-information-attack-item" class="item-body__description">
+<div id="base-description-power-item" class="item-description__power item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Power Step --}}
-    {{#if systemFields.powerStep}}
-      <div class="form-group">
-        <label>{{localize systemFields.powerStep.label}}</label>
-
-        {{#if systemFields.powerStep.choices}}
-          <select
-            name="system.powerStep"
-            data-dtype="{{systemFields.powerStep.type}}">
-            <option value="" {{#unless item.system.powerStep}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.powerStep.choices
-              selected=item.system.powerStep
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.powerStep"
-            value="{{item.system.powerStep}}"
-            data-dtype="{{systemFields.powerStep.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.powerStep.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{formField systemFields.powerStep name="system.powerStep" value=item.system.powerStep hint="" localize=true}}
 
     {{!-- Damage Step --}}
-    {{#if systemFields.damageStep}}
-      <div class="form-group">
-        <label>{{localize systemFields.damageStep.label}}</label>
-
-        {{#if systemFields.damageStep.choices}}
-          <select
-            name="system.damageStep"
-            data-dtype="{{systemFields.damageStep.type}}">
-            <option value="" {{#unless item.system.damageStep}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.damageStep.choices
-              selected=item.system.damageStep
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.damageStep"
-            value="{{item.system.damageStep}}"
-            data-dtype="{{systemFields.damageStep.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.damageStep.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep hint="" localize=true}}
 
     {{!-- Strain --}}
-    {{#if systemFields.strain}}
-      <div class="form-group">
-        <label>{{localize systemFields.strain.label}}</label>
-
-        {{#if systemFields.strain.choices}}
-          <select
-            name="system.strain"
-            data-dtype="{{systemFields.strain.type}}">
-            <option value="" {{#unless item.system.strain}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.strain.choices
-              selected=item.system.strain
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.strain"
-            value="{{item.system.strain}}"
-            data-dtype="{{systemFields.strain.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.strain.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{formField systemFields.strain name="system.strain" value=item.system.strain hint="" localize=true}}
 
     {{!-- Action --}}
-    {{#if systemFields.action}}
-      <div class="form-group">
-        <label>{{localize systemFields.action.label}}</label>
+    {{formField systemFields.action name="system.action" value=item.system.action hint="" localize=true}}
 
-        {{#if systemFields.action.choices}}
-          <select
-            name="system.action"
-            data-dtype="{{systemFields.action.type}}">
-            <option value="" {{#unless item.system.action}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.action.choices
-              selected=item.system.action
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.action"
-            value="{{item.system.action}}"
-            data-dtype="{{systemFields.action.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.action.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

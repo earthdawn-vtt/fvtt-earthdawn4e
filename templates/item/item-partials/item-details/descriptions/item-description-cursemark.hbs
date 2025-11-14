@@ -1,109 +1,29 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div id="base-information-curse-item" class="item-body__description">
+<div id="base-description-curseMark-item" class="item-description__curseMark item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Curse Step --}}
-    {{#if systemFields.step}}
-      <div class="form-group">
-        <label>{{localize systemFields.step.label}}</label>
-
-        {{#if systemFields.step.choices}}
-          <select
-            name="system.step"
-            data-dtype="{{systemFields.step.type}}">
-            <option value="" {{#unless item.system.step}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.step.choices
-              selected=item.system.step
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.step"
-            value="{{item.system.step}}"
-            data-dtype="{{systemFields.step.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.step.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
 
     {{!-- Curse Type --}}
-    {{#if systemFields.type}}
-      <div class="form-group">
-        <label>{{localize systemFields.type.label}}</label>
+    {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
 
-        {{#if systemFields.type.choices}}
-          <select
-            name="system.type"
-            data-dtype="{{systemFields.type.type}}">
-            <option value="" {{#unless item.system.type}}selected{{/unless}}></option>
-            {{selectOptions
-              systemFields.type.choices
-              selected=item.system.type
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.type"
-            value="{{item.system.type}}"
-            data-dtype="{{systemFields.type.type}}" />
-        {{/if}}
+    {{!-- active --}}
+    {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.type.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+    {{!-- detected --}}
+    {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
 
-    {{!-- Active (boolean) --}}
-    {{#if systemFields.active}}
-      <div class="form-group">
-        <label>{{localize systemFields.active.label}}</label>
-        <input
-          type="checkbox"
-          name="system.active"
-          data-dtype="{{systemFields.active.type}}"
-          {{#if item.system.active}}checked{{/if}} />
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.active.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Detected (boolean) --}}
-    {{#if systemFields.detected}}
-      <div class="form-group">
-        <label>{{localize systemFields.detected.label}}</label>
-        <input
-          type="checkbox"
-          name="system.detected"
-          data-dtype="{{systemFields.detected.type}}"
-          {{#if item.system.detected}}checked{{/if}} />
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.detected.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

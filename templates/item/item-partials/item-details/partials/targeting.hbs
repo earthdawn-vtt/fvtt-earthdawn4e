@@ -2,80 +2,9 @@
   <legend>{{localize "ED.Item.Header.targetingDetails"}}</legend>
 
   {{!-- Fixed Difficulty --}}
-  <div class="form-group">
-    <label>{{localize systemFields.difficulty.fields.fixed.label}}</label>
-
-    {{#if systemFields.difficulty.fields.fixed.choices}}
-      <select
-        name="system.difficulty.fixed"
-        data-dtype="{{systemFields.difficulty.fields.fixed.type}}">
-        {{selectOptions
-          systemFields.difficulty.fields.fixed.choices
-          selected=item.system.difficulty.fixed
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.difficulty.fixed"
-        value="{{item.system.difficulty.fixed}}"
-        data-dtype="{{systemFields.difficulty.fields.fixed.type}}" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.difficulty.fields.fixed.hint}}</p>
-    {{/if}}
-  </div>
-
+  {{formField systemFields.difficulty.fields.fixed name="system.difficulty.fixed" value=item.system.difficulty.fixed localize=true}}
   {{!-- Target Difficulty Parameter --}}
-  <div class="form-group">
-    <label>{{localize systemFields.difficulty.fields.target.label}}</label>
-
-    {{#if systemFields.difficulty.fields.target.choices}}
-      <select
-        name="system.difficulty.target"
-        data-dtype="{{systemFields.difficulty.fields.target.type}}">
-        {{selectOptions
-          systemFields.difficulty.fields.target.choices
-          selected=item.system.difficulty.target
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.difficulty.target"
-        value="{{item.system.difficulty.target}}"
-        data-dtype="{{systemFields.difficulty.fields.target.type}}" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.difficulty.fields.target.hint}}</p>
-    {{/if}}
-  </div>
-
+  {{formField systemFields.difficulty.fields.target name="system.difficulty.target" value=item.system.difficulty.target localize=true}}
   {{!-- Group Difficulty Parameter --}}
-  <div class="form-group">
-    <label>{{localize systemFields.difficulty.fields.group.label}}</label>
-
-    {{#if systemFields.difficulty.fields.group.choices}}
-      <select
-        name="system.difficulty.group"
-        data-dtype="{{systemFields.difficulty.fields.group.type}}">
-        {{selectOptions
-          systemFields.difficulty.fields.group.choices
-          selected=item.system.difficulty.group
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.difficulty.group"
-        value="{{item.system.difficulty.group}}"
-        data-dtype="{{systemFields.difficulty.fields.group.type}}" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.difficulty.fields.group.hint}}</p>
-    {{/if}}
-  </div>
+  {{formField systemFields.difficulty.fields.group name="system.difficulty.group" value=item.system.difficulty.group localize=true}}
 </fieldset>

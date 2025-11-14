@@ -1,180 +1,40 @@
 {{!-- Spellcasting Type --}}
-{{#if @root.editable}}
-    <div class="form-group">
-      <label>{{localize systemFields.spellcastingType.label}}</label>
-      {{#if systemFields.spellcastingType.choices}}
-        <select name="system.spellcastingType" data-dtype="{{systemFields.spellcastingType.type}}">
-          {{selectOptions systemFields.spellcastingType.choices selected=item.system.spellcastingType localize=true}}
-        </select>
-      {{else}}
-        <input type="text"
-              name="system.spellcastingType"
-              value="{{item.system.spellcastingType}}"
-              data-dtype="{{systemFields.spellcastingType.type}}" />
-      {{/if}}
-      {{#if @root.editable}}<p class="hint">{{localize systemFields.spellcastingType.hint}}</p>{{/if}}
-    </div>
-{{/if}}
-
-{{!-- Circle / Level --}}
-<div class="form-group">
-  <label>{{localize systemFields.level.label}}</label>
-  <input type="number"
-          name="system.level"
-          value="{{item.system.level}}"
-          data-dtype="{{systemFields.level.type}}" />
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.level.hint}}</p>{{/if}}
-</div>
-
+{{formGroup systemFields.spellcastingType name="system.spellcastingType" value=item.system.spellcastingType localize=true}}
+{{!-- Circle --}}
+{{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
 {{!-- Required Threads --}}
-<div class="form-group">
-  <label>{{localize systemFields.threads.fields.required.label}}</label>
-  <input type="number"
-          name="system.threads.required"
-          value="{{item.system.threads.required}}"
-          data-dtype="{{systemFields.threads.fields.required.type}}" />
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.threads.fields.required.hint}}</p>{{/if}}
-</div>
-
+{{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
 {{!-- Weaving Difficulty --}}
-<div class="form-group">
-  <label>{{localize systemFields.spellDifficulty.fields.weaving.label}}</label>
-  <input type="number"
-          name="system.spellDifficulty.weaving"
-          value="{{item.system.spellDifficulty.weaving}}"
-          data-dtype="{{systemFields.spellDifficulty.fields.weaving.type}}" />
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.spellDifficulty.fields.weaving.hint}}</p>{{/if}}
-</div>
-
+{{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
 {{!-- Reattune Difficulty --}}
-<div class="form-group">
-  <label>{{localize systemFields.spellDifficulty.fields.reattune.label}}</label>
-  <input type="number"
-          name="system.spellDifficulty.reattune"
-          value="{{item.system.spellDifficulty.reattune}}"
-          data-dtype="{{systemFields.spellDifficulty.fields.reattune.type}}" />
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.spellDifficulty.fields.reattune.hint}}</p>{{/if}}
-</div>
+{{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+{{!-- Spellcasting Difficulty --}}
+{{!--formGroup systemFields.spellcastingDifficulty name="system.spellcastingDifficulty" value=item.system.spellcastingDifficulty localize=true--}}
+{{!-- effect --}}
 
-{{!-- Element Type --}}
-<div class="form-group">
-  <label>{{localize systemFields.element.fields.type.label}}</label>
-  {{#if systemFields.element.fields.type.choices}}
-    <select name="system.element.type" data-dtype="{{systemFields.element.fields.type.type}}">
-      {{selectOptions systemFields.element.fields.type.choices selected=item.system.element.type localize=true}}
-    </select>
-  {{else}}
-    <input type="text"
-            name="system.element.type"
-            value="{{item.system.element.type}}"
-            data-dtype="{{systemFields.element.fields.type.type}}" />
-  {{/if}}
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.element.fields.type.hint}}</p>{{/if}}
-</div>
+{{!-- elements --}}
+{{formGroup systemFields.element.fields.type name="system.element.type" value=item.system.element.type}}
+{{formGroup systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype choices=item.system.elementalSubtypeChoices}}
+{{!-- target --}}
+{{!--formGroup systemFields.target name="system.target" value=item.system.target localize=true--}}
 
-{{!-- Element Subtype --}}
-<div class="form-group">
-  <label>{{localize systemFields.element.fields.subtype.label}}</label>
-  {{#if item.system.elementalSubtypeChoices}}
-    <select name="system.element.subtype" data-dtype="{{systemFields.element.fields.subtype.type}}">
-      {{selectOptions item.system.elementalSubtypeChoices selected=item.system.element.subtype localize=true}}
-    </select>
-  {{else if systemFields.element.fields.subtype.choices}}
-    <select name="system.element.subtype" data-dtype="{{systemFields.element.fields.subtype.type}}">
-      {{selectOptions systemFields.element.fields.subtype.choices selected=item.system.element.subtype localize=true}}
-    </select>
-  {{else}}
-    <input type="text"
-            name="system.element.subtype"
-            value="{{item.system.element.subtype}}"
-            data-dtype="{{systemFields.element.fields.subtype.type}}" />
-  {{/if}}
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.element.fields.subtype.hint}}</p>{{/if}}
-</div>
-
-{{!-- Keywords --}}
-{{formGroup
-  systemFields.keywords
-  name="system.keywords"
-  value=item.system.keywords
-  localize=true
-  hint=false}}
-{{#if @root.editable}}<p class="hint">{{localize systemFields.keywords.hint}}</p>{{/if}}
-
-{{!-- Duration --}}
-<div class="form-group metric--duration">
-  <label>{{localize systemFields.duration.label}}</label>
-
-  {{#if (or
-    (eq item.system.duration.unit "inst")
-    (eq item.system.duration.unit "perm")
-    (eq item.system.duration.unit "spec"))}}
-    <div class="metric-inputs" style="display:grid; grid-template-columns: 1fr; width:100%;">
-      <select
-        name="{{systemFields.duration.fieldPath}}.unit"
-        data-dtype="{{systemFields.duration.fields.unit.type}}">
-        {{selectOptions
-          systemFields.duration.fields.unit.choices
-          selected=item.system.duration.unit
-          localize=true}}
-      </select>
-    </div>
-  {{else}}
-    <div class="metric-inputs" style="display:grid; grid-template-columns: 60px 1fr; gap:0.5rem; width:100%;">
-      <input
-        type="number"
-        name="{{systemFields.duration.fieldPath}}.value"
-        value="{{item.system.duration.value}}"
-        data-dtype="{{systemFields.duration.fields.value.type}}" />
-      <select
-        name="{{systemFields.duration.fieldPath}}.unit"
-        data-dtype="{{systemFields.duration.fields.unit.type}}">
-        {{selectOptions
-          systemFields.duration.fields.unit.choices
-          selected=item.system.duration.unit
-          localize=true}}
-      </select>
-    </div>
-  {{/if}}
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.duration.hint}}</p>{{/if}}
-</div>
-
-
-{{!-- Range --}}
-<div class="form-group metric--range">
-  <label>{{localize systemFields.range.label}}</label>
-  {{#if (or
-    (eq item.system.range.unit "self")
-    (eq item.system.range.unit "touch")
-    (eq item.system.range.unit "spec")
-    (eq item.system.range.unit "any"))}}
-    <div class="metric-inputs" style="display:grid; grid-template-columns: 1fr; width:100%;">
-      <select
-        name="{{systemFields.range.fieldPath}}.unit"
-        data-dtype="{{systemFields.range.fields.unit.type}}">
-        {{selectOptions
-          systemFields.range.fields.unit.choices
-          selected=item.system.range.unit
-          localize=true}}
-      </select>
-    </div>
-  {{else}}
-    <div class="metric-inputs" style="display:grid; grid-template-columns: 60px 1fr; gap:0.5rem; width:100%;">
-      <input
-        type="number"
-        name="{{systemFields.range.fieldPath}}.value"
-        value="{{item.system.range.value}}"
-        data-dtype="{{systemFields.range.fields.value.type}}" />
-      <select
-        name="{{systemFields.range.fieldPath}}.unit"
-        data-dtype="{{systemFields.range.fields.unit.type}}">
-        {{selectOptions
-          systemFields.range.fields.unit.choices
-          selected=item.system.range.unit
-          localize=true}}
-      </select>
-    </div>
-  {{/if}}
-  {{#if @root.editable}}<p class="hint">{{localize systemFields.range.hint}}</p>{{/if}}
-</div>
-
+{{!-- keywords --}}
+{{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
+{{!-- duration --}}
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.duration
+  inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+  data=item.system.duration
+  fields=item.system.duration.schema.fields
+  fieldPath=systemFields.duration.fieldPath
+  config=config
+}}
+{{!-- range --}}
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.range
+  inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+  data=item.system.range
+  fields=item.system.range.schema.fields
+  fieldPath=systemFields.range.fieldPath
+  config=config
+}}

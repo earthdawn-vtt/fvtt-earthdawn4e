@@ -1,4 +1,4 @@
-<div class="item__left--main">
+<div id="base-description-mask-item" class="item-description__mask item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
   <h3>{{localize "ED.Item.Header.general"}}</h3>
 
   <fieldset>
@@ -122,9 +122,19 @@
         </span>
     {{/each}}
   </fieldset>
-</div>
 
-<div class="item__right--main sheet__editor">
-  <h3>{{localize "ED.Item.Header.description"}}</h3>
-  {{> "systems/ed4e/templates/global/editor.hbs"}}
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

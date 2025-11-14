@@ -1,79 +1,25 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
-    
+<div id="base-description-talent-item" class="item-description__talent item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
     {{!-- Tier --}}
-    {{#if systemFields.tier}}
-      <div class="form-group">
-        <label>{{localize systemFields.tier.label}}</label>
+    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
 
-        {{#if systemFields.tier.choices}}
-          <select
-            name="system.tier"
-            data-dtype="{{systemFields.tier.type}}">
-            {{selectOptions
-              systemFields.tier.choices
-              selected=item.system.tier
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.tier"
-            value="{{item.system.tier}}"
-            data-dtype="{{systemFields.tier.type}}" />
-        {{/if}}
+    {{!-- talent Category --}}
+    {{formField systemFields.talentCategory name="system.talentCategory" value=item.system.talentCategory localize=true}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.tier.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Category --}}
-    {{#if @root.editable}}
-      {{#if systemFields.talentCategory}}
-        <div class="form-group">
-          <label>{{localize systemFields.talentCategory.label}}</label>
-
-          {{#if systemFields.talentCategory.choices}}
-            <select
-              name="system.talentCategory"
-              data-dtype="{{systemFields.talentCategory.type}}">
-              {{selectOptions
-                systemFields.talentCategory.choices
-                selected=item.system.talentCategory
-                localize=true}}
-            </select>
-          {{else}}
-            <input
-              type="text"
-              name="system.talentCategory"
-              value="{{item.system.talentCategory}}"
-              data-dtype="{{systemFields.talentCategory.type}}" />
-          {{/if}}
-
-          {{#if @root.editable}}
-            <p class="hint">{{localize systemFields.talentCategory.hint}}</p>
-          {{/if}}
-        </div>
-      {{/if}}
-
-    {{/if}}
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    <div class="item-section__description">
+        <h3 class="item-header__descrption label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

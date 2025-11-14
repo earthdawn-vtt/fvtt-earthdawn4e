@@ -1,4 +1,6 @@
-<fieldset>
-  <legend>{{localize "ED.Item.Header.spell"}}</legend>
-  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/spell.hbs"}}
-</fieldset>
+<div id="base-details-spellKnack-item" class="item-details__spellKnack" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.spell"}}</legend>
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/spell.hbs"}}
+  </fieldset>
+</div>

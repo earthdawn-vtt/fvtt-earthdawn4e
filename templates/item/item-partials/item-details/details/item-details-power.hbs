@@ -1,165 +1,18 @@
-{{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
-{{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
-
-{{!-- Damage Settings (only for attack/damage roll types) --}}
-{{#if (or (eq item.system.rollType "attack") (eq item.system.rollType "damage"))}}
-  <fieldset>
-    <legend>{{localize "ED.Item.Header.damageSettings"}}</legend>
-
-    {{!-- Damage Type --}}
-    <div class="form-group">
-      <label>{{localize systemFields.damage.fields.type.label}}</label>
-
-      {{#if systemFields.damage.fields.type.choices}}
-        <select
-          name="system.damage.type"
-          data-dtype="{{systemFields.damage.fields.type.type}}">
-          {{selectOptions
-            systemFields.damage.fields.type.choices
-            selected=item.system.damage.type
-            localize=true}}
-        </select>
-      {{else}}
-        <input
-          type="text"
-          name="system.damage.type"
-          value="{{item.system.damage.type}}"
-          data-dtype="{{systemFields.damage.fields.type.type}}" />
-      {{/if}}
-
-      {{#if @root.editable}}
-        <p class="hint">{{localize systemFields.damage.fields.type.hint}}</p>
-      {{/if}}
-    </div>
-
-    {{!-- Armor Type --}}
-    <div class="form-group">
-      <label>{{localize systemFields.damage.fields.armorType.label}}</label>
-
-      {{#if systemFields.damage.fields.armorType.choices}}
-        <select
-          name="system.damage.armorType"
-          data-dtype="{{systemFields.damage.fields.armorType.type}}">
-          {{selectOptions
-            systemFields.damage.fields.armorType.choices
-            selected=item.system.damage.armorType
-            localize=true}}
-        </select>
-      {{else}}
-        <input
-          type="text"
-          name="system.damage.armorType"
-          value="{{item.system.damage.armorType}}"
-          data-dtype="{{systemFields.damage.fields.armorType.type}}" />
-      {{/if}}
-
-      {{#if @root.editable}}
-        <p class="hint">{{localize systemFields.damage.fields.armorType.hint}}</p>
-      {{/if}}
-    </div>
-
-    {{!-- Ignore Armor --}}
-    <div class="form-group">
-      <label>{{localize systemFields.damage.fields.ignoreArmor.label}}</label>
-
-      {{#if systemFields.damage.fields.ignoreArmor.choices}}
-        <select
-          name="system.damage.ignoreArmor"
-          data-dtype="{{systemFields.damage.fields.ignoreArmor.type}}">
-          {{selectOptions
-            systemFields.damage.fields.ignoreArmor.choices
-            selected=item.system.damage.ignoreArmor
-            localize=true}}
-        </select>
-      {{else}}
-        <input
-          type="text"
-          name="system.damage.ignoreArmor"
-          value="{{item.system.damage.ignoreArmor}}"
-          data-dtype="{{systemFields.damage.fields.ignoreArmor.type}}" />
-      {{/if}}
-
-      {{#if @root.editable}}
-        <p class="hint">{{localize systemFields.damage.fields.ignoreArmor.hint}}</p>
-      {{/if}}
-    </div>
-
-  </fieldset>
-{{/if}}
-
-<fieldset>
-  <legend>{{localize "ED.Item.Header.elementSettings"}}</legend>
-
-  {{!-- Element Type --}}
-  <div class="form-group">
-    <label>{{localize systemFields.element.fields.type.label}}</label>
-
-    {{#if systemFields.element.fields.type.choices}}
-      <select
-        name="system.element.type"
-        data-dtype="{{systemFields.element.fields.type.type}}">
-        {{selectOptions
-          systemFields.element.fields.type.choices
-          selected=item.system.element.type
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.element.type"
-        value="{{item.system.element.type}}"
-        data-dtype="{{systemFields.element.fields.type.type}}" />
+<div id="base-details-power-item" class="item-details__power" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
+    {{#if (or (eq item.system.rollType "attack") (eq item.system.rollType "damage"))}}
+    <fieldset>
+        <legend>{{localize "ED.Item.Header.damageSettings"}}</legend>
+        {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
+        {{formField systemFields.damage.fields.armorType name="system.damage.armorType" value=item.system.damage.armorType localize=true}}
+        {{formField systemFields.damage.fields.ignoreArmor name="system.damage.ignoreArmor" value=item.system.damage.ignoreArmor localize=true}}
+    </fieldset>
     {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.element.fields.type.hint}}</p>
-    {{/if}}
-  </div>
-
-  {{!-- Element Subtype --}}
-  <div class="form-group">
-    <label>{{localize systemFields.element.fields.subtype.label}}</label>
-
-    {{!-- prefer dynamic list from config based on selected element type --}}
-    {{#if (lookup config.MAGIC.elementSubtypes item.system.element.type)}}
-      <select
-        name="system.element.subtype"
-        data-dtype="String">
-        {{#each (lookup config.MAGIC.elementSubtypes item.system.element.type) as |label key|}}
-          <option
-            value="{{key}}"
-            {{#if (eq ../item.system.element.subtype key)}}selected{{/if}}>
-            {{localize label}}
-          </option>
-        {{/each}}
-      </select>
-
-    {{!-- fallback to schema-defined choices --}}
-    {{else if systemFields.element.fields.subtype.choices}}
-      <select
-        name="system.element.subtype"
-        data-dtype="String">
-        {{#each systemFields.element.fields.subtype.choices as |label key|}}
-          <option
-            value="{{key}}"
-            {{#if (eq ../../item.system.element.subtype key)}}selected{{/if}}>
-            {{localize label}}
-          </option>
-        {{/each}}
-      </select>
-
-    {{!-- last fallback: plain text --}}
-    {{else}}
-      <input
-        type="text"
-        name="system.element.subtype"
-        value="{{item.system.element.subtype}}"
-        data-dtype="String" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.element.fields.subtype.hint}}</p>
-    {{/if}}
-  </div>
-</fieldset>
-
+    <fieldset>
+        <legend>{{localize "ED.Item.Header.elementSettings"}}</legend>
+        {{formField systemFields.element.fields.type name="system.element.type" value=item.system.element.type localize=true}}
+        {{formField systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype localize=true
+        choices=(lookup config.MAGIC.elementSubtypes item.system.element.type)}}
+    </fieldset>
+</div>

@@ -1,14 +1,16 @@
-{{!-- weight Multiplier--}}
-{{formField systemFields.weightMultiplier name="system.weightMultiplier" value=item.system.weightMultiplier localize=true}}
-{{!-- Tail Attack --}}
-{{formField systemFields.tailAttack name="system.tailAttack" value=item.system.tailAttack localize=true}}
-{{!-- One Handed Weapon Size Minimum--}}
-{{formField systemFields.weaponSize.fields.oneHanded.fields.min name="system.weaponSize.oneHanded.min" value=item.system.weaponSize.oneHanded.min localize=true}}
-{{!-- One Handed Weapon Size Maximum--}}
-{{formField systemFields.weaponSize.fields.oneHanded.fields.max name="system.weaponSize.oneHanded.max" value=item.system.weaponSize.oneHanded.max localize=true}}
-{{!-- Two Handed Weapon Size Minimum--}}
-{{formField systemFields.weaponSize.fields.twoHanded.fields.min name="system.weaponSize.twoHanded.min" value=item.system.weaponSize.twoHanded.min localize=true}}
-{{!-- Two Handed Weapon Size Maximum--}}
-{{formField systemFields.weaponSize.fields.twoHanded.fields.max name="system.weaponSize.twoHanded.max" value=item.system.weaponSize.twoHanded.max localize=true}}
-{{!-- living armor only --}}
-{{formField systemFields.livingArmorOnly name="system.livingArmorOnly" value=item.system.livingArmorOnly localize=true}}
+<div id="base-details-namegiver-item" class="item-details__namegiver" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    {{!-- weight Multiplier--}}
+    {{formField systemFields.weightMultiplier name="system.weightMultiplier" value=item.system.weightMultiplier localize=true}}
+    {{!-- Tail Attack --}}
+    {{formField systemFields.tailAttack name="system.tailAttack" value=item.system.tailAttack localize=true}}
+    {{!-- One Handed Weapon Size Minimum--}}
+    {{formField systemFields.weaponSize.fields.oneHanded.fields.min name="system.weaponSize.oneHanded.min" value=item.system.weaponSize.oneHanded.min localize=true}}
+    {{!-- One Handed Weapon Size Maximum--}}
+    {{formField systemFields.weaponSize.fields.oneHanded.fields.max name="system.weaponSize.oneHanded.max" value=item.system.weaponSize.oneHanded.max localize=true}}
+    {{!-- Two Handed Weapon Size Minimum--}}
+    {{formField systemFields.weaponSize.fields.twoHanded.fields.min name="system.weaponSize.twoHanded.min" value=item.system.weaponSize.twoHanded.min localize=true}}
+    {{!-- Two Handed Weapon Size Maximum--}}
+    {{formField systemFields.weaponSize.fields.twoHanded.fields.max name="system.weaponSize.twoHanded.max" value=item.system.weaponSize.twoHanded.max localize=true}}
+    {{!-- living armor only --}}
+    {{formField systemFields.livingArmorOnly name="system.livingArmorOnly" value=item.system.livingArmorOnly localize=true}}
+</div>
