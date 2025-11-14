@@ -3761,6 +3761,7 @@
     },
     "ToolTips": {
       "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
+      "activeEffectFinalValue":                    "TODO: Add translation",
       "addSpell":                                  "Create a new spell and add it to this character's Grimoire.",
       "addThreadItemLevel":                        "TODO: Add translation",
       "attuneMatrix":                              "Attune Matrix",
