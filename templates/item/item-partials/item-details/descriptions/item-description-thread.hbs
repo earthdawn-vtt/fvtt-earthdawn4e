@@ -1,4 +1,4 @@
-<div class="item__left--main">
+<div id="base-description-thread-item" class="item-description__thread" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
   <h3>{{localize "ED.Item.Header.general"}}</h3>
   {{formGroup systemFields.wovenToUuid value=system.wovenToUuid disabled=(not editable)}}

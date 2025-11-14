@@ -1,4 +1,4 @@
-<div id="base-information-discipline-item">
+<div id="base-description-discipline-item" class="item-description__discipline" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Circle --}}
     {{formField systemFields.level name="system.level" value=item.system.level localize=true}}

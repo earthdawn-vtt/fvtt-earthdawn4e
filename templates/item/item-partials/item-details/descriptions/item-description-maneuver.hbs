@@ -1,4 +1,4 @@
-<div class="item__left--main">
+<div id="base-description-maneuver-item" class="item-description__maneuver" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Strain --}}
     {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}

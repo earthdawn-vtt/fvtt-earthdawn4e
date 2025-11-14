@@ -1,4 +1,4 @@
-<div class="item__left--main">
+<div id="base-description-poisonDisease-item" class="item-description__poisonDisease" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
     <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{!-- Damage Step --}}
     {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
