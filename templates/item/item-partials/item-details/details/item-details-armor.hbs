@@ -1,41 +1,14 @@
 <div>
-
-    <fieldset>
-        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-            <label>{{localize systemFields.piecemeal.fields.isPiecemeal.label}}</label>
-            <input
-            type="checkbox"
-            name="system.piecemeal.isPiecemeal"
-            data-dtype="{{systemFields.piecemeal.fields.isPiecemeal.type}}"
-            {{#if item.system.piecemeal.isPiecemeal}}checked{{/if}} />
-            {{#if @root.editable}}
-                <p class="hint">{{localize systemFields.piecemeal.fields.isPiecemeal.hint}}</p>
-            {{/if}}
-        </div>
-
-        {{#if (eq item.system.piecemeal.isPiecemeal true)}}
-            {{#if systemFields.piecemeal.fields.size}}
-            <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-                <label>{{localize systemFields.piecemeal.fields.size.label}}</label>
-                <input
-                type="number"
-                name="system.piecemeal.size"
-                value="{{item.system.piecemeal.size}}"
-                data-dtype="{{systemFields.piecemeal.fields.size.type}}" />
-                {{#if @root.editable}}
-                    <p class="hint">{{localize systemFields.piecemeal.fields.size.hint}}</p>
-                {{/if}}
-            </div>
-            {{/if}}
-        {{/if}}
-    </fieldset> 
-
-  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
-
-  {{#if (eq item.system.usableItem.isUsableItem true)}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
-  {{/if}}
-
-  {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
-
+    {{!-- Piecemeal Armor --}}
+    {{formField systemFields.piecemeal.fields.isPiecemeal name="system.piecemeal.isPiecemeal" value=item.system.piecemeal.isPiecemeal localize=true}}
+    {{#if (eq item.system.piecemeal.isPiecemeal true)}}
+        {{!-- Piecemeal Armor Size --}}
+        {{formField systemFields.piecemeal.fields.size name="system.piecemeal.size" type="number" value=item.system.piecemeal.size localize=true}}
+    {{/if}}
+    {{!-- usable Item ?--}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
+    {{#if (eq item.system.usableItem.isUsableItem true)}}
+        {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+    {{/if}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
 </div>

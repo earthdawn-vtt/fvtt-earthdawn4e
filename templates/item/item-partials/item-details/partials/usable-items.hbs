@@ -1,84 +1,9 @@
-<fieldset>
-    {{#if systemFields.usableItem.fields.isUsableItem}}
-    <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.usableItem.fields.isUsableItem.label}}</label>
-
-        <input
-        type="checkbox"
-        name="system.usableItem.isUsableItem"
-        data-dtype="{{systemFields.usableItem.fields.isUsableItem.type}}"
-        {{#if item.system.usableItem.isUsableItem}}checked{{/if}} />
-
-        {{#if @root.editable}}
-        <p class="hint">{{localize systemFields.usableItem.fields.isUsableItem.hint}}</p>
-        {{/if}}
-    </div>
-    {{/if}}
-
-    {{!-- Extra usable settings (only if toggle is on) --}}
-    {{#if (eq item.system.usableItem.isUsableItem true)}}
-
+{{formField systemFields.usableItem.fields.isUsableItem name="system.usableItem.isUsableItem" value=item.system.usableItem.isUsableItem localize=true}}
+{{#if (eq item.system.usableItem.isUsableItem true)}}
     {{!-- Arbitrary Step --}}
-    {{#if systemFields.usableItem.fields.arbitraryStep}}
-        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.usableItem.fields.arbitraryStep.label}}</label>
-
-        <input
-            type="number"
-            name="system.usableItem.arbitraryStep"
-            value="{{item.system.usableItem.arbitraryStep}}"
-            data-dtype="{{systemFields.usableItem.fields.arbitraryStep.type}}" />
-
-        {{#if @root.editable}}
-            <p class="hint">{{localize systemFields.usableItem.fields.arbitraryStep.hint}}</p>
-        {{/if}}
-        </div>
-    {{/if}}
-
+    {{formField systemFields.usableItem.fields.arbitraryStep name="system.usableItem.arbitraryStep" value=item.system.usableItem.arbitraryStep localize=true}}
     {{!-- Action --}}
-    {{#if systemFields.usableItem.fields.action}}
-        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.usableItem.fields.action.label}}</label>
-
-        {{#if systemFields.usableItem.fields.action.choices}}
-            <select
-            name="system.usableItem.action"
-            data-dtype="{{systemFields.usableItem.fields.action.type}}">
-            {{selectOptions
-                systemFields.usableItem.fields.action.choices
-                selected=item.system.usableItem.action
-                localize=true}}
-            </select>
-        {{else}}
-            <input
-            type="text"
-            name="system.usableItem.action"
-            value="{{item.system.usableItem.action}}"
-            data-dtype="{{systemFields.usableItem.fields.action.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-            <p class="hint">{{localize systemFields.usableItem.fields.action.hint}}</p>
-        {{/if}}
-        </div>
-    {{/if}}
-
+    {{formField systemFields.usableItem.fields.action name="system.usableItem.action" value=item.system.usableItem.action localize=true}}
     {{!-- Recovery Test Reference Value --}}
-    {{#if systemFields.usableItem.fields.recoveryPropertyValue}}
-        <div class="form-group {{#unless @root.editable}}form-group--merge{{/unless}}">
-        <label>{{localize systemFields.usableItem.fields.recoveryPropertyValue.label}}</label>
-
-        <input
-            type="number"
-            name="system.usableItem.recoveryPropertyValue"
-            value="{{item.system.usableItem.recoveryPropertyValue}}"
-            data-dtype="{{systemFields.usableItem.fields.recoveryPropertyValue.type}}" />
-
-        {{#if @root.editable}}
-            <p class="hint">{{localize systemFields.usableItem.fields.recoveryPropertyValue.hint}}</p>
-        {{/if}}
-        </div>
-    {{/if}}
-
-    {{/if}}
-</fieldset>
+    {{formField systemFields.usableItem.fields.recoveryPropertyValue name="system.usableItem.recoveryPropertyValue" type="number" value=item.system.usableItem.recoveryPropertyValue localize=true}}
+{{/if}}

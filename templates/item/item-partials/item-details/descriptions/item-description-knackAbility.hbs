@@ -1,42 +1,17 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div class="item-body__description">
+<div class="item__left--main">
 
     <h3>{{localize "ED.Item.Header.general"}}</h3>
 
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
-    {{!-- Standard Effect (boolean) --}}
-    {{#if systemFields.standardEffect}}
-      <div class="form-group">
-        <label>{{localize systemFields.standardEffect.label}}</label>
+    {{!-- Standard Effect --}}
+    {{formField systemFields.standardEffect name="system.standardEffect" value=item.system.standardEffect localize=true}}
 
-        <input
-          type="checkbox"
-          name="system.standardEffect"
-          data-dtype="{{systemFields.standardEffect.type}}"
-          {{#if item.system.standardEffect}}checked{{/if}} />
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
 
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.standardEffect.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
+</div>
 
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+<div class="item__right--main sheet__editor">
+    <h3>{{localize "ED.Item.Header.description"}}</h3>
+    {{> "systems/ed4e/templates/global/editor.hbs"}}
+</div>

@@ -1,3 +1,14 @@
 <div>
-
+    <div class="sheet-header__indent--left">
+        <h3 id="Name" class="header__no-border">
+            <input class="" name="name" type="text" value="{{item.name}}" placeholder="Name" />
+        </h3>
+    </div>
+    <div class="sheet-header__indent--right">
+        <h3 class="header__no-border item__name">
+            <label>
+                {{localize "ED.Item.Header.type"}}: {{localize (concat "TYPES.Item." item.type)}}
+            </label>
+        </h3>
+    </div>
 </div>

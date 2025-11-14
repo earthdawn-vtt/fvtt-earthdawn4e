@@ -1,62 +1,6 @@
-{{!-- Source Item --}}
-{{#if systemFields.sourceItem}}
-  <div class="form-group">
-    <label>{{localize systemFields.sourceItem.label}}</label>
+{{formGroup systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+{{formGroup systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
 
-    {{#if systemFields.sourceItem.choices}}
-      <select
-        name="system.sourceItem"
-        data-dtype="{{systemFields.sourceItem.type}}">
-        <option value="" {{#unless item.system.sourceItem}}selected{{/unless}}></option>
-        {{selectOptions
-          systemFields.sourceItem.choices
-          selected=item.system.sourceItem
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.sourceItem"
-        value="{{item.system.sourceItem}}"
-        data-dtype="{{systemFields.sourceItem.type}}" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.sourceItem.hint}}</p>
-    {{/if}}
-  </div>
-{{/if}}
-
-{{!-- Minimum Level --}}
-{{#if systemFields.minLevel}}
-  <div class="form-group">
-    <label>{{localize systemFields.minLevel.label}}</label>
-
-    {{#if systemFields.minLevel.choices}}
-      <select
-        name="system.minLevel"
-        data-dtype="{{systemFields.minLevel.type}}">
-        <option value="" {{#unless item.system.minLevel}}selected{{/unless}}></option>
-        {{selectOptions
-          systemFields.minLevel.choices
-          selected=item.system.minLevel
-          localize=true}}
-      </select>
-    {{else}}
-      <input
-        type="text"
-        name="system.minLevel"
-        value="{{item.system.minLevel}}"
-        data-dtype="{{systemFields.minLevel.type}}" />
-    {{/if}}
-
-    {{#if @root.editable}}
-      <p class="hint">{{localize systemFields.minLevel.hint}}</p>
-    {{/if}}
-  </div>
-{{/if}}
-
-{{!-- Requirements (keep existing partial) --}}
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.requirements
   inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
@@ -64,7 +8,6 @@
   config=config
 }}
 
-{{!-- Restrictions (keep existing partial) --}}
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.restrictions
   inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"

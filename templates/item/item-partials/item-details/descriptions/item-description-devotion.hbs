@@ -1,93 +1,14 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <div id="base-information-devotion-item" class="item-body__description">
-
+<div id="base-information-devotion-item" class="item__left--main">
+    <h3>{{localize "ED.Item.Header.general"}}</h3>
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
-
     {{!-- Tier --}}
-    {{#if systemFields.tier}}
-      <div class="form-group">
-        <label>{{localize systemFields.tier.label}}</label>
-
-        {{#if systemFields.tier.choices}}
-          <select
-            name="system.tier"
-            data-dtype="{{systemFields.tier.type}}">
-            {{selectOptions
-              systemFields.tier.choices
-              selected=item.system.tier
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.tier"
-            value="{{item.system.tier}}"
-            data-dtype="{{systemFields.tier.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.tier.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Devotion Point Required (checkbox) --}}
-    {{#if systemFields.devotionRequired}}
-      <div class="form-group">
-        <label>{{localize systemFields.devotionRequired.label}}</label>
-        <input
-          type="checkbox"
-          name="system.devotionRequired"
-          data-dtype="{{systemFields.devotionRequired.type}}"
-          {{#if item.system.devotionRequired}}checked{{/if}} />
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.devotionRequired.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-    {{!-- Durability --}}
-    {{#if systemFields.durability}}
-      <div class="form-group">
-        <label>{{localize systemFields.durability.label}}</label>
-
-        {{#if systemFields.durability.choices}}
-          <select
-            name="system.durability"
-            data-dtype="{{systemFields.durability.type}}">
-            {{selectOptions
-              systemFields.durability.choices
-              selected=item.system.durability
-              localize=true}}
-          </select>
-        {{else}}
-          <input
-            type="text"
-            name="system.durability"
-            value="{{item.system.durability}}"
-            data-dtype="{{systemFields.durability.type}}" />
-        {{/if}}
-
-        {{#if @root.editable}}
-          <p class="hint">{{localize systemFields.durability.hint}}</p>
-        {{/if}}
-      </div>
-    {{/if}}
-
-  </div>
-
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
+    {{!-- Devotion Required --}}
+    {{formField systemFields.devotionRequired name="system.devotionRequired" value=item.system.devotionRequired localize=true}}
+    {{!-- durability --}}
+    {{formField systemFields.durability name="system.durability" value=item.system.durability localize=true}}
+</div>
+<div class="item__right--main sheet__editor">
+    <h3>{{localize "ED.Item.Header.description"}}</h3>
+    {{> "systems/ed4e/templates/global/editor.hbs"}}
+</div>

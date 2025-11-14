@@ -1,20 +1,8 @@
-<section class="item-body {{#if @root.editable}}item-body--editable{{else}}item-body--readonly{{/if}}">
-  <!-- General -->
-  <div id="base-information-spell-item" class="item-body__description">
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/spell.hbs"}}
-  </div>
-
-  <!-- Description -->
-  <div class="item-description sheet__editor">
-    <h3 class="label--rail">
-      <span class="label__text">
-        {{localize "ED.Item.Header.description"}}
-      </span>
-    </h3>
-    {{#if @root.editable}}
-      {{> "systems/ed4e/templates/global/editor.hbs"}}
-    {{else}}
-      {{{enrichedDescription}}}
-    {{/if}}
-  </div>
-</section>
+<div class="item__left--main">
+  <h3>{{localize "ED.Item.Header.general"}}</h3>
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/spell.hbs"}}
+</div>
+<div class="item__right--main sheet__editor">
+  <h3>{{localize "ED.Item.Header.description"}}</h3>
+  {{> "systems/ed4e/templates/global/editor.hbs"}}
+</div>

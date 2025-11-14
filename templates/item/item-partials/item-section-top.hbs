@@ -1,67 +1,12 @@
-<header class="sheet-header item-header {{#if @root.editable}}item-header--editable{{else}}item-header--readonly{{/if}}">
-  <div class="item-header__image">
-    <img
-      class="item-image"
-      src="{{item.img}}"
-      title="{{item.name}}"
-      data-action="editImage"
-      data-edit="img" />
-  </div>
+<div>
+    <div class="partial__two">
+        <img class="item-image" src="{{item.img}}" title="{{item.name}}" data-action="editImage" data-edit="img" />
+    </div>
 
-  <div class="item-header__body">
-    <h3 class="header__no-border item-header__title">
-      <input
-        name="name"
-        type="text"
-        value="{{item.name}}">
-    </h3>
 
-    <h3 class="item-header__type label--rail">
-      <span class="label__text">
-
-        {{#unless @root.editable}}
-
-          {{!-- Talent category, if present --}}
-          {{#if systemFields.talentCategory}}
-            {{#if systemFields.talentCategory.choices}}
-              {{localize (lookup systemFields.talentCategory.choices item.system.talentCategory)}}
-            {{/if}}
-          {{/if}}
-
-          {{!-- Skill type, if present --}}
-          {{#if systemFields.skillType}}
-            {{#if systemFields.skillType.choices}}
-              {{localize (lookup systemFields.skillType.choices item.system.skillType)}}
-            {{/if}}
-          {{/if}}
-
-          {{!-- Spellcasting type, if present --}}
-          {{#if systemFields.spellcastingType}}
-            {{#if systemFields.spellcastingType.choices}}
-              {{localize (lookup systemFields.spellcastingType.choices item.system.spellcastingType)}}
-            {{else}}
-              {{item.system.spellcastingType}}
-            {{/if}}
-          {{/if}}
-
-        {{/unless}}
-
-        {{localize (concat "TYPES.Item." item.type)}}
-      </span>
-    </h3>
-
-    <span class="item-summary">
-      {{#if @root.editable}}
-        <span class="summary-header__title">
-          {{localize "ED.Item.Header.summary"}}
-        </span>
-      {{/if}}
-
-      {{#if @root.editable}}
+    <div class="sheet__editor partial__two item__right--main">
+        {{!-- Description --}}
+        <h3>{{localize "ED.Item.Header.summary"}}</h3>
         {{> "systems/ed4e/templates/global/editor-brief.hbs"}}
-      {{else}}
-        {{{enrichedBriefDescription}}}
-      {{/if}}
-    </span>
-  </div>
-</header>
+    </div>
+</div>
