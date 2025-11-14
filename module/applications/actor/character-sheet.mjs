@@ -18,7 +18,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       karmaRitual:        ActorSheetEdCharacter.karmaRitual,
       legendPointHistory: ActorSheetEdCharacter.legendPointHistory,
       takeStrain:         ActorSheetEdCharacter.takeStrain,
-      manualOverride:     ActorSheetEdCharacter._onManualOverride,
     },
     position: {
       top:    50, 
@@ -257,19 +256,6 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
       ability.system.strain,
       ability
     );
-  }
-
-  static async _onManualOverride( event, target ) {
-    event.preventDefault();
-
-    const overrideOperation = target.dataset.overrideOperation?.toLowerCase();
-    if ( ![ "increase", "decrease" ].includes( overrideOperation ) ) throw new Error( `Unknown override operation: ${overrideOperation}` );
-
-    const sign = ( overrideOperation === "decrease" ) ? -1 : 1;
-    const changeKey = target.parentElement.querySelector( "input" ).name;
-    const changeValue = ( event.shiftKey ? 5 : 1 ) * sign;
-
-    await this.document.manualOverride( changeKey, changeValue );
   }
 
   // endregion

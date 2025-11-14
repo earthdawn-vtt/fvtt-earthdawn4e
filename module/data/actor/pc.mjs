@@ -7,7 +7,6 @@ import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
-import UIDField from "../fields/uid-field.mjs";
 
 /**
  * System data definition for PCs.
@@ -74,14 +73,8 @@ export default class PcData extends NamegiverTemplate {
         {
           required: true,
           initial:  new LpTrackingData()
-        }
-
+        },
       ),
-      manualOverrideEffectId: new UIDField( {
-        required: true,
-        nullable: true,
-        initial:  null,
-      } ),
     } );
     return superSchema;
   }

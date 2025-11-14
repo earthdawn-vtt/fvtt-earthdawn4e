@@ -2,6 +2,7 @@ import ActorDescriptionTemplate from "./description.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 import ActorDataModel from "../../abstract/actor-data-model.mjs";
 import TruePatternData from "../../thread/true-pattern.mjs";
+import UIDField from "../../fields/uid-field.mjs";
 
 /**
  * A template for all actors that share the common template.
@@ -50,6 +51,11 @@ export default class CommonTemplate extends ActorDataModel.mixin(
           initialKeysOnly: true,
         }
       ),
+      manualOverrideEffectId: new UIDField( {
+        required: true,
+        nullable: true,
+        initial:  null,
+      } ),
       truePattern: TruePatternData.asEmbeddedDataField(),
     } );
   }
