@@ -531,9 +531,21 @@ export async function linkForUuid( uuid ) {
 export function linkForUuidSync( uuid ) {
   const parsedUuid = foundry.utils.parseUuid( uuid );
   const doc = fromUuidSync( uuid, { strict: false } );
-  if ( !doc ) return `<a class="content-link broken" data-icon="fas fa-unlink" data-uuid="${uuid} ">${uuid}</a>`;
   const name = doc?.name ?? "";
   const packId = parsedUuid.collection?.metadata?.id ?? "";
+
+  if ( !doc ) return `
+    <a
+      class="content-link broken"
+      data-uuid="${uuid} "
+      data-type="${parsedUuid.type}"
+      data-tooltip="${doc?.type}"
+      data-pack="${packId}"
+    >
+      <i class="fas fa-link-slash"></i>
+      ${uuid}
+    </a>`;
+
   return `
       <a 
         class="content-link" draggable="true" 
