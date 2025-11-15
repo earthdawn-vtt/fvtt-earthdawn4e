@@ -17,6 +17,7 @@
   .window-content {
     backdrop-filter: unset;
     -webkit-backdrop-filter: none;
+    padding: 0 1rem 0.5rem;
   }
 
   .prosemirror menu,
@@ -39,10 +40,11 @@
   }
 
   nav.tabs {
-    margin: 8px 0;
+    margin: 8px 0 12px;
     text-transform: uppercase;
     font-weight: bold;
-    border: 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--color-gold-3);
   }
 
   /* -------------------- Header -------------------- */
@@ -120,9 +122,13 @@
     }
   }
 
-    .standard-form {
+  .standard-form fieldset {
     gap: 0;
-    padding: 0 15px 5px;
+    padding: 10px;
+  }
+
+  .standard-form {
+    gap: 0;
 
     fieldset > legend {
       margin: 0;
