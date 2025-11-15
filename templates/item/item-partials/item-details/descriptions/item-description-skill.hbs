@@ -6,7 +6,9 @@
     {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
 
     {{!-- Type --}}
-    {{formField systemFields.skillType name="system.skillType" value=item.system.skillType localize=true}}
+    {{#if @root.editable}}
+        {{formField systemFields.skillType name="system.skillType" value=item.system.skillType localize=true}}
+    {{/if}}
 
     <div class="item-section__description">
         <h3 class="item-header__descrption label--rail">

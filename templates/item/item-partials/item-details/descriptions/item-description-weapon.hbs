@@ -1,21 +1,35 @@
 <div id="base-description-weapon-item" class="item-description__weapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Weapon Type --}}
-    {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
+    {{#if @root.editable}}
+        {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
+    {{/if}}
     {{#if this.item.system.isRanged}}
         {{!-- Weapon SubType --}}
         {{formField systemFields.weaponSubType name="system.weaponSubType" value=item.system.weaponSubType localize=true}}
         {{!-- ammunition - Type --}}
         {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
     {{/if}}
+    
     {{!-- Damage Attribute --}}
     {{formField systemFields.damage.fields.attribute name="system.damage.attribute" value=item.system.damage.attribute localize=true}}
+    
     {{!-- Damage base Step --}}
     {{formField systemFields.damage.fields.baseStep name="system.damage.baseStep" value=item.system.damage.baseStep localize=true}}
+    
+    {{!-- forgeBonus --}}
+    {{#if @root.editable}}
+        {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
+    {{else if item.system.forgeBonus}}
+        {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
+    {{/if}}
+
     {{!-- Weapon Size --}}
     {{formField systemFields.size name="system.size" value=item.system.size  type="number" localize=true}}
+    
     {{!-- Dexterity Minimum --}}
     {{formField systemFields.dexterityMinimum name="system.dexterityMinimum" value=item.system.dexterityMinimum localize=true}}
+    
     {{!-- Strength Minimum --}}
     {{formField systemFields.strengthMinimum name="system.strengthMinimum" value=item.system.strengthMinimum localize=true}}
     {{#if this.item.system.isRanged}}
@@ -31,10 +45,10 @@
         {{!-- Range--}}
         {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
     {{/if}}
-    {{!-- forgeBonus --}}
-    {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
+    
     {{!-- Amount --}}
     {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+    
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
     <div class="item-section__description">

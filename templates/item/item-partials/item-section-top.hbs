@@ -17,22 +17,53 @@
     <h3 class="item-header__type label--rail">
       <span class="label__text">
         {{#unless @root.editable}}
+
           {{!-- Talent category, if present --}}
           {{#if systemFields.talentCategory}}
             {{#if systemFields.talentCategory.choices}}
               {{localize (lookup systemFields.talentCategory.choices item.system.talentCategory)}}
             {{/if}}
           {{/if}}
+
           {{!-- Skill type, if present --}}
           {{#if systemFields.skillType}}
             {{#if systemFields.skillType.choices}}
               {{localize (lookup systemFields.skillType.choices item.system.skillType)}}
             {{/if}}
           {{/if}}
+
+          {{!-- Is Living, if TRUE --}}
+          {{#if systemFields.isLiving}}
+            {{#if item.system.isLiving}}
+              {{localize systemFields.isLiving.label}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- Weapon type, if present (choices are objects with .label) --}}
+          {{#if systemFields.weaponType}}
+            {{#if item.system.weaponType}}
+              {{#with (lookup systemFields.weaponType.choices item.system.weaponType) as |wt|}}
+                {{#if wt.label}}
+                  {{localize wt.label}}
+                {{/if}}
+              {{/with}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- Spellcasting type, if present --}}
+          {{#if systemFields.spellcastingType}}
+            {{#if systemFields.spellcastingType.choices}}
+              {{localize (lookup systemFields.spellcastingType.choices item.system.spellcastingType)}}
+            {{/if}}
+          {{/if}}
+
         {{/unless}}
+
         {{localize (concat "TYPES.Item." item.type)}}
       </span>
     </h3>
+
+
     <span class="item-body__summary">
       {{#if @root.editable}}
         {{> "systems/ed4e/templates/global/editor-brief.hbs"}}
@@ -40,5 +71,6 @@
         {{{enrichedBriefDescription}}}
       {{/if}}
     </span>
+
   </div>
 </header>

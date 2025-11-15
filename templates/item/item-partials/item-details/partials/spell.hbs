@@ -1,13 +1,20 @@
 {{!-- Spellcasting Type --}}
-{{formGroup systemFields.spellcastingType name="system.spellcastingType" value=item.system.spellcastingType localize=true}}
+{{#if @root.editable}}
+  {{formGroup systemFields.spellcastingType name="system.spellcastingType" value=item.system.spellcastingType localize=true}}
+{{/if}}
+
 {{!-- Circle --}}
 {{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
+
 {{!-- Required Threads --}}
 {{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
+
 {{!-- Weaving Difficulty --}}
 {{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
+
 {{!-- Reattune Difficulty --}}
 {{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+
 {{!-- Spellcasting Difficulty --}}
 {{!--formGroup systemFields.spellcastingDifficulty name="system.spellcastingDifficulty" value=item.system.spellcastingDifficulty localize=true--}}
 {{!-- effect --}}
@@ -15,11 +22,13 @@
 {{!-- elements --}}
 {{formGroup systemFields.element.fields.type name="system.element.type" value=item.system.element.type}}
 {{formGroup systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype choices=item.system.elementalSubtypeChoices}}
+
 {{!-- target --}}
 {{!--formGroup systemFields.target name="system.target" value=item.system.target localize=true--}}
 
 {{!-- keywords --}}
 {{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
+
 {{!-- duration --}}
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.duration
@@ -29,6 +38,7 @@
   fieldPath=systemFields.duration.fieldPath
   config=config
 }}
+
 {{!-- range --}}
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.range

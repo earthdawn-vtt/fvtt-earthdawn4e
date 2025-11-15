@@ -7,16 +7,33 @@
     {{formField systemFields.mystical.fields.armor name="system.mystical.armor" value=item.system.mystical.armor localize=true}}
     
     {{!-- Physical Forge Bonus --}}
-    {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
+    {{#if @root.editable}}
+        {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
+    {{else if item.system.physical.forgeBonus}} 
+        {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
+    {{/if}}  
     
     {{!-- Mystical Forge Bonus --}}
-    {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
+    {{#if @root.editable}}
+        {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
+    {{else if item.system.mystical.forgeBonus}}
+        {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
+    {{/if}}
     
+    {{!-- Max Dexterity Bonus --}}
+    {{formField systemFields.maxDexterityBonus name="system.maxDexterityBonus" value=item.system.maxDexterityBonus localize=true}}
+    
+    {{!-- Weight Penalty --}}
+    {{formField systemFields.weightPenalty name="system.weightPenalty" value=item.system.weightPenalty localize=true}}
+
     {{!-- Initiative Penalty --}}
     {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
     
     {{!-- living Armor? --}}
-    {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
+    
+    {{#if @root.editable}}
+        {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
+    {{/if}}
     
     {{!-- Physical Item Parameter --}}
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
