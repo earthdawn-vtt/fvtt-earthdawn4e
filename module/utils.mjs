@@ -531,9 +531,24 @@ export async function linkForUuid( uuid ) {
 export function linkForUuidSync( uuid ) {
   const parsedUuid = foundry.utils.parseUuid( uuid );
   const doc = fromUuidSync( uuid, { strict: false } );
-  if ( !doc ) return `<a class="content-link broken" data-icon="fas fa-unlink" data-uuid="${uuid} ">${uuid}</a>`;
   const name = doc?.name ?? "";
   const packId = parsedUuid.collection?.metadata?.id ?? "";
+  const tooltipType = game.i18n.localize(
+    CONFIG[ parsedUuid.type ].typeLabels[ doc?.type ]
+  );
+
+  if ( !doc ) return `
+    <a
+      class="content-link broken"
+      data-uuid="${uuid} "
+      data-type="${parsedUuid.type}"
+      data-tooltip="${tooltipType}"
+      data-pack="${packId}"
+    >
+      <i class="fas fa-link-slash"></i>
+      ${uuid}
+    </a>`;
+
   return `
       <a 
         class="content-link" draggable="true" 
@@ -541,7 +556,7 @@ export function linkForUuidSync( uuid ) {
         data-uuid="${uuid}"
         data-id="${parsedUuid.id}"
         data-type="${parsedUuid.type}"
-        data-tooltip="${doc?.type}"
+        data-tooltip="${tooltipType}"
         data-pack="${packId}"
       >
       <i class="fas fa-suitcase"></i>

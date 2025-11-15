@@ -43,16 +43,22 @@
           </div>
 
           {{#each this}}
-            <div class="value-entry spell flexrow">
+            <div
+              class="value-entry spell flexrow"
+              data-action="changeSpell"
+              data-spell-uuid="{{ifThen this.[0] this.0.uuid this.1.uuid}}"
+              data-spell-selected="{{ifThen this.[0] "false" "true"}}"
+              data-tooltip="{{ifThen this.[0] (localize "ED.Dialogs.CharGen.ToolTips.addSpell") (localize "ED.Dialogs.CharGen.ToolTips.removeSpell")}}"
+            >
               {{#if this.[0]}}
-                <div class="entry-name spell-name" data-action="changeSpell" data-spell-uuid="{{this.0.uuid}}" data-spell-selected="{{ifThen this.[0] "false" "true"}}" title="{{localize "ED.Dialogs.CharGen.ToolTips.addSpell"}}">
-                  {{this.0.name}}
+                <div class="entry-name spell-name">
+                  {{{ed-linkForUuid this.0.uuid}}}
                 </div>
                 <div class="entry-name"></div>
               {{else}}
                 <div class="entry-name"></div>
-                <div class="entry-name spell-name" data-action="changeSpell" data-spell-uuid="{{this.1.uuid}}" data-spell-selected="{{ifThen this.[1] "true" "false"}}" title="{{localize "ED.Dialogs.CharGen.ToolTips.removeSpell"}}">
-                  {{this.1.name}}
+                <div class="entry-name spell-name">
+                  {{{ed-linkForUuid this.1.uuid}}}
                 </div>
               {{/if}}
             </div>

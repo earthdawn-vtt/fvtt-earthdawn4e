@@ -14,7 +14,7 @@
       <h5>{{localize "ED.Dialogs.CharGen.Title.armor"}}</h5>
       <div class="checkbox-options armor-options flexrow">
         {{#each equipment.armor}}
-          <label for="{{this.uuid}}">
+          <label for="{{this.uuid}}" data-tooltip="{{{this.system.description.value}}}">
             <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
             {{this.name}}
           </label>
@@ -28,7 +28,7 @@
       <h5>{{localize "ED.Dialogs.CharGen.Title.equipment"}}</h5>
       <div class="checkbox-options equipment-options flexrow">
         {{#each equipment.equipment}}
-          <label for="{{this.uuid}}">
+          <label for="{{this.uuid}}" data-tooltip="{{{this.system.description.value}}}">
             <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
             {{this.name}}
           </label>
@@ -42,7 +42,7 @@
       <h5>{{localize "ED.Dialogs.CharGen.Title.weapons"}}</h5>
       <div class="checkbox-options weapon-options flexrow">
         {{#each equipment.weapons}}
-          <label for="{{this.uuid}}">
+          <label for="{{this.uuid}}" data-tooltip="{{{this.system.description.value}}}">
             <input type="checkbox" data-uuid="{{this.uuid}}" name="equipment" data-action="selectEquipment" value="{{this.uuid}}" {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}>
             {{this.name}}
           </label>

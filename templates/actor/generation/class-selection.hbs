@@ -30,6 +30,10 @@
         </select>
       </div>
 
+      {{#if selectedClass}}
+        <p>{{{ed-linkForUuid selectedClass}}}</p>
+      {{/if}}
+
       <div class="class-image-preview">
         {{#if classDocument}}
           <img src="{{classDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.classImageAlt"}}">
@@ -95,7 +99,7 @@
               <div class="entry-name" data-ability-uuid="{{this}}">
                 <label for="char-gen-ability-option-radio">
                   <input type="radio" id="char-gen-ability-option-radio" name="abilityOption" value="{{this}}" {{checked (ed-hasOwnProperty @root.abilities.optional this)}}>
-                  {{ed-nameFromUuid this}}
+                  {{{ed-linkForUuid this}}}
                 </label>
               </div>
 
@@ -146,7 +150,7 @@
                 <div class="assign-value-entry flexrow">
 
                   <div class="entry-name" data-ability-uuid="{{this}}">
-                    {{ed-nameFromUuid this}}
+                    {{{ed-linkForUuid this}}}
                   </div>
 
                   {{#if (eq @../key "class")}}
@@ -189,7 +193,7 @@
           {{#each namegiverAbilities}}
             <div class="assign-value-entry flexrow" data-ability-uuid="{{this}}">
               <div class="entry-name" title="{{this.system.description}}">
-                {{ed-nameFromUuid this}}
+                {{{ed-linkForUuid this}}}
               </div>
               <div class="flexrow rank-change">
             <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
