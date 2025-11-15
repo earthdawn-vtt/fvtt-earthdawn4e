@@ -2883,9 +2883,6 @@ section.spells .matrix-cards .matrix-card .spell-link {
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
 }
-.application.sheet.earthdawn4e.item .item-name {
-  display: none;
-}
 .application.sheet.earthdawn4e.item input[type=text],
 .application.sheet.earthdawn4e.item input[type=number],
 .application.sheet.earthdawn4e.item input[type=password],
@@ -2900,39 +2897,6 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .window-content {
   backdrop-filter: unset;
   -webkit-backdrop-filter: none;
-}
-.application.sheet.earthdawn4e.item .standard-form {
-  gap: 0;
-  padding: 0 15px 5px;
-}
-.application.sheet.earthdawn4e.item .standard-form fieldset > legend {
-  margin: 0;
-  padding: 0;
-}
-.application.sheet.earthdawn4e.item .standard-form .tab {
-  display: none;
-  gap: 0;
-}
-.application.sheet.earthdawn4e.item .standard-form .tab.active {
-  display: block;
-}
-.application.sheet.earthdawn4e.item .standard-form .form-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  padding-top: 5px;
-}
-.application.sheet.earthdawn4e.item .standard-form .form-group > .hint {
-  grid-column: 1 / -1;
-  margin: 0;
-}
-.application.sheet.earthdawn4e.item .standard-form [data-editable="editable"] .form-group > .hint {
-  display: block;
-}
-.application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
-  display: none;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {
@@ -3007,6 +2971,42 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .item-body .item-section__description .prosemirror,
 .application.sheet.earthdawn4e.item .item-body .item-section__description prose-mirror {
   min-height: 500px;
+}
+.application.sheet.earthdawn4e.item .standard-form {
+  gap: 0;
+  padding: 0 15px 5px;
+}
+.application.sheet.earthdawn4e.item .standard-form fieldset > legend {
+  margin: 0;
+  padding: 0;
+}
+.application.sheet.earthdawn4e.item .standard-formfieldset {
+  padding: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form .tab {
+  display: none;
+  gap: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form .tab.active {
+  display: block;
+}
+.application.sheet.earthdawn4e.item .standard-form .form-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding-top: 5px;
+}
+.application.sheet.earthdawn4e.item .standard-form .form-group > .hint {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="editable"] .form-group > .hint {
+  display: block;
+}
+.application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
+  display: none;
 }
 .denomination__value-currency .denomination__value {
   width: 75%;

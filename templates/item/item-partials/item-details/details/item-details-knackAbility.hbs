@@ -1,5 +1,10 @@
 <div id="base-details-knackAbility-item" class="item-details__knackAbility" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
     {{!-- LP Cost if this is not calculated by min Level --}}
-    {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost localize=true}}
+    <fieldset>
+        <legend></legend>
+        {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost localize=true}}
+    </fieldset>
+
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
 </div>

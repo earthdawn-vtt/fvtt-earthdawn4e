@@ -1,17 +1,31 @@
 <div id="base-details-physicalItems-item" class="item-details__physicalItems" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+<fieldset>
+    <legend></legend>
+
   {{!-- itemStatus --}}
   {{formField systemFields.itemStatus name="system.itemStatus" value=item.system.itemStatus localize=true}}
+</fieldset>
 
   {{#if item.isOwned}}
+  <fieldset>
+    <legend></legend>
       {{!-- automatic Weight Calculation --}}
       {{> "systems/ed4e/templates/item/item-partials/item-details/partials/tailor-to-namegiver.hbs"}}
+  </fieldset>
   {{/if}}
 
   {{#if system.matrix}}
+  <fieldset>
+    <legend></legend>
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/matrix.hbs"}}
+  </fieldset>
   {{/if}}
 
   {{#if system.grimoire}}
+  <fieldset>
+    <legend></legend>
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/grimoire.hbs"}}
   {{/if}}
+  </fieldset>
 </div>    
