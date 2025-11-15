@@ -1558,6 +1558,7 @@ form.ed4e.character-generation section[data-tab="spells"] div.spell-name {
 }
 form.ed4e.character-generation section[data-tab="spells"] div.spell:hover {
   background: var(--char-gen-assign-value-entry-hover-background);
+  cursor: pointer;
 }
 form.ed4e.character-generation section[data-tab="spells"] h6 {
   padding: 0.5em;
