@@ -61,7 +61,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @type {string}
    */
   get currentTier() {
-    return this.advancement?.levels[this.level - 1]?.tier ?? "";
+    return this.advancement?.levels[this.unmodifiedLevel - 1]?.tier ?? "";
   }
 
   /** @inheritDoc */
@@ -82,7 +82,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   /** @inheritDoc */
   get requiredLpForIncrease() {
     if ( this.parent.type !== "discipline" ) return 0;
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const disciplineSortingFactor = this.order - 1;
     const nextLevelTier = nextLevel === 0 ? "novice" : this.advancement.levels.find( l => l.level === nextLevel )?.tier;
     return ED4E.legendPointsCost[
@@ -149,7 +149,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const nextLevelData = this.advancement.levels.find( l => l.level === nextLevel );
     if ( !nextLevelData ) {
       ui.notifications.warn( "ED.Notifications.Warn.noMoreClassLevelsToIncrease" );

@@ -19,7 +19,7 @@
           </div>
           <div class="value">
             {{formInput changeFields.value name=(concat "system.changes." i ".value") value=change.value
-                        dataset=(ed-makeTooltip (concat (localize "TODO.ED.finalValue: ") (lookup (lookup @root/source.changes i) "value")))
+                        dataset=(ed-makeTooltip (localize "ED.ToolTips.activeEffectFinalValue" value=(lookup (lookup @root/source.changes i) "value")))
             }}
           </div>
           <div class="priority">

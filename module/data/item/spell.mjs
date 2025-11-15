@@ -398,14 +398,14 @@ export default class SpellData extends ItemDataModel.mixin(
    * @type {number}
    */
   get learningDifficulty() {
-    return this.level + 5;
+    return this.unmodifiedLevel + 5;
   }
 
   /** @inheritDoc */
   get requiredLpToLearn() {
     switch ( game.settings.get( "ed4e", "lpTrackingSpellCost" ) ) {
-      case "noviceTalent": return ED4E.legendPointsCost[ this.level ];
-      case "circleX100": return this.level * 100;
+      case "noviceTalent": return ED4E.legendPointsCost[ this.unmodifiedLevel ];
+      case "circleX100": return this.unmodifiedLevel * 100;
       case "free":
       default: return 0;
     }

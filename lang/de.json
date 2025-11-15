@@ -3761,6 +3761,7 @@
     },
     "ToolTips": {
       "activeEffectCantBeEnabledOnClassItems":     "Dieser Effekt kann nicht aktiviert werden, da er bei Kreisaufstieg hinzugefügt wird (automatisch/manuell).",
+      "activeEffectFinalValue":                    "Finaler Wert: {value}",
       "addSpell":                                  "Erstelle einen neuen Zauber und füge ihn dem Grimoire dieses Characters hinzu.",
       "addThreadItemLevel":                        "Füge einen neuen Rang hinzu.",
       "attuneMatrix":                              "Matrix&nbsp;abstimmen",

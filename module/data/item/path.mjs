@@ -58,14 +58,14 @@ export default class PathData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseData() {
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
 
     const actor = this.containingActor;
     if ( !actor ) return null;
     const pathTalent = actor.items.find( item => item.type === "talent" && item.system.edid === this.edid );
 
     return {
-      learn:              this.level === 0,
+      learn:              this.unmodifiedLevel === 0,
       nextLevel,
       nextLevelData:      this.advancement.levels.find( l => l.level === nextLevel ),
       nextTalentLpCost:   ED4E.legendPointsCost[ nextLevel + ED4E.lpIndexModForTier[ this.currentTier ] ],
@@ -88,12 +88,12 @@ export default class PathData extends ClassTemplate.mixin(
         {
           name:      "ED.Dialogs.Legend.Validation.pathTalent",
           value:     talentRequirements.name,
-          fulfilled: talentRequirements.level >= this.level,
+          fulfilled: talentRequirements.level >= this.unmodifiedLevel,
         },
         {
           name:      "ED.Dialogs.Legend.Validation.requiredPathRank",
           value:     talentRequirements.system.level,
-          fulfilled: talentRequirements.level >= this.level,
+          fulfilled: talentRequirements.level >= this.unmodifiedLevel,
         },
       ]
     };
@@ -113,12 +113,12 @@ export default class PathData extends ClassTemplate.mixin(
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, "knackAbility" );
-    const pathKnackLink = pathKnack ? 
-      createContentLink( pathKnack.uuid, pathKnack.name ) 
+    const pathKnackLink = pathKnack 
+      ? createContentLink( pathKnack.uuid, pathKnack.name ) 
       : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
     const pathTalent = await getSingleGlobalItemByEdid( item.system.edid, "talent" );
-    const pathTalentLink = pathTalent ? 
-      createContentLink( pathTalent.uuid, pathTalent.name ) 
+    const pathTalentLink = pathTalent 
+      ? createContentLink( pathTalent.uuid, pathTalent.name ) 
       : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
 
     if ( !pathKnack || !pathTalent ) {
@@ -190,7 +190,7 @@ export default class PathData extends ClassTemplate.mixin(
   async increase() {
     if ( !this.isActorEmbedded ) return;
   
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const pathTalent = await fromUuid( this.pathTalent );
     if ( pathTalent.system.level < nextLevel ) {
       const content =  `

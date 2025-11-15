@@ -54,7 +54,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
     const actor = this.parent.actor;
 
     return {
-      newLevel:   this.level + 1,
+      newLevel:   this.unmodifiedLevel + 1,
       requiredLp: this.requiredLpForIncrease,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -65,7 +65,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get increaseRules() {
-    const trainingTime = ED4E.trainingTime[this.level];
+    const trainingTime = ED4E.trainingTime[this.unmodifiedLevel];
     return game.i18n.format(
       "ED.Dialogs.Legend.Rules.skillIncreaseShortRequirements",
       { trainingTime: trainingTime }
@@ -80,7 +80,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
     const tierModifier = ED4E.lpIndexModForTier[2][this.tier];
 
     return ED4E.legendPointsCost[
-      this.level
+      this.unmodifiedLevel
     + 1 // new level
     +  tierModifier
     ];
@@ -90,7 +90,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
    * @inheritDoc
    */
   get requiredMoneyForIncrease() {
-    return ( this.level + 1 ) * 10;
+    return ( this.unmodifiedLevel + 1 ) * 10;
   }
 
   /**

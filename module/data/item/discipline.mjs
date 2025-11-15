@@ -63,7 +63,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseData() {
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     let talentRequirements = [];
 
     switch ( game.settings.get( "ed4e", "lpTrackingCircleTalentRequirements" ) ) {
@@ -82,7 +82,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
     }
 
     return {
-      learn:            this.level === 0,
+      learn:            this.unmodifiedLevel === 0,
       nextLevel,
       nextLevelData:    this.advancement.levels.find( l => l.level === nextLevel ),
       nextTalentLpCost: ED4E.legendPointsCost[ nextLevel + ED4E.lpIndexModForTier[ this.currentTier ] ],
@@ -134,7 +134,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get requiredMoneyForIncrease() {
-    return ED4E.disciplineTeacherCost[ this.level + 1 ];
+    return ED4E.disciplineTeacherCost[ this.unmodifiedLevel + 1 ];
   }
 
   /**
@@ -148,7 +148,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   }
 
   get _talentRequirementsStandard() {
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const disciplineTalents = this.getTalentsByCategory( "discipline" );
     const unfulfilledTalents = disciplineTalents.filter( talent => talent.system.level < nextLevel );
     const fulfilled = unfulfilledTalents.length === 0;
@@ -177,14 +177,14 @@ export default class DisciplineData extends ClassTemplate.mixin(
   }
 
   get _talentRequirementsOptional() {
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const allCorrespondingTalents = this.talentsFromDiscipline.filter(
       talent => talent.system.talentCategory !== "free"
     );
 
     // check if there is a talent from the current circle on the new level
     const talentsFromCurrentCircle = allCorrespondingTalents.filter(
-      talent => talent.system.source.atLevel === this.level
+      talent => talent.system.source.atLevel === this.unmodifiedLevel
     );
     const hasTalentFromCurrentCircle = talentsFromCurrentCircle.some(
       talent => talent.system.level === nextLevel
@@ -227,7 +227,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   }
 
   get _talentRequirementsHouseRule() {
-    const nextLevel = this.level + 1;
+    const nextLevel = this.unmodifiedLevel + 1;
     const tierInfos = {
       novice:     this.getTalentsByTier( "novice" ),
       journeyman: this.getTalentsByTier( "journeyman" ),
@@ -235,10 +235,10 @@ export default class DisciplineData extends ClassTemplate.mixin(
       master:     this.getTalentsByTier( "master" ),
     };
     const minTalentsPerTier = {
-      novice:     Math.min( this.level + 4, 8 ),
-      journeyman: Math.min( this.level >= 6 ? this.level - 5 : 0, 4 ),
-      warden:     Math.min( this.level >= 10 ? this.level - 9 : 0, 4 ),
-      master:     Math.min( this.level >= 14 ? this.level - 13 : 0, 2 ),
+      novice:     Math.min( this.unmodifiedLevel + 4, 8 ),
+      journeyman: Math.min( this.unmodifiedLevel >= 6 ? this.unmodifiedLevel - 5 : 0, 4 ),
+      warden:     Math.min( this.unmodifiedLevel >= 10 ? this.unmodifiedLevel - 9 : 0, 4 ),
+      master:     Math.min( this.unmodifiedLevel >= 14 ? this.unmodifiedLevel - 13 : 0, 2 ),
     };
 
     const hasRequiredNoviceTalents = tierInfos.novice.length >= minTalentsPerTier.novice;
@@ -248,7 +248,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
 
     const hasTalentFromCurrentCircle = this.talentsFromDiscipline.some(
       talent =>
-        talent.system.source.atLevel === this.level
+        talent.system.source.atLevel === this.unmodifiedLevel
         && talent.system.level === nextLevel
     );
 

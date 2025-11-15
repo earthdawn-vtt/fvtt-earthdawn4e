@@ -183,12 +183,12 @@ export default class SpellKnackData extends SpellData.mixin(
 
   /** @inheritDoc */
   get requiredLpForLearning() {
-    return LEGEND.legendPointsCost[ this.level ];
+    return LEGEND.legendPointsCost[ this.unmodifiedLevel ];
   }
 
   /** @inheritDoc */
   get requiredMoneyForLearning() {
-    return ( this.level ) * 100;
+    return ( this.unmodifiedLevel ) * 100;
   }
 
   /** @inheritDoc */

@@ -96,7 +96,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
       || spendLp === "cancel"
       || spendLp === "close" ) return;
 
-    const currentLevel = this.level;
+    const currentLevel = this.unmodifiedLevel;
 
     const updatedItem = await this.parent.update( {
       "system.level": currentLevel + 1,
@@ -143,7 +143,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
    * @returns {Promise<ItemEd|undefined>} The updated item if successful, otherwise undefined.
    */
   async adjustLevel( amount ) {
-    const currentLevel = this.level;
+    const currentLevel = this.unmodifiedLevel;
     const updatedItem = await this.parent.update( {
       "system.level": currentLevel + amount,
     } );
