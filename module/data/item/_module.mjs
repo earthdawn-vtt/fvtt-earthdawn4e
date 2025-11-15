@@ -3,7 +3,6 @@ import BindingSecretData from "./binding-secrets.mjs";
 import CurseHorrorMarkData from "./curse-horror-mark.mjs";
 import DevotionData from "./devotion.mjs";
 import DisciplineData from "./discipline.mjs";
-import EffectData from "./effect.mjs";
 import EquipmentData from "./equipment.mjs";
 import KnackAbilityData from "./knack-ability.mjs";
 import KnackKarmaData from "./knack-karma.mjs";
@@ -31,7 +30,6 @@ export {
   CurseHorrorMarkData,
   DevotionData,
   DisciplineData,
-  EffectData,
   EquipmentData,
   KnackAbilityData,
   KnackKarmaData,
@@ -71,7 +69,6 @@ export const config = {
   curseMark:      CurseHorrorMarkData,
   devotion:       DevotionData,
   discipline:     DisciplineData,
-  effect:         EffectData,
   equipment:      EquipmentData,
   knackAbility:   KnackAbilityData,
   knackKarma:     KnackKarmaData,
