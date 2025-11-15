@@ -1,5 +1,5 @@
 <div id="base-description-weapon-item" class="item-description__weapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    <h3>{{localize "ED.Item.Header.general"}}</h3>
+
     {{!-- Weapon Type --}}
     {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
     {{#if this.item.system.isRanged}}
