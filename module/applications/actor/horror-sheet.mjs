@@ -1,4 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
+import HorrorData from "../../data/actor/horror.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -21,7 +22,7 @@ export default class ActorSheetEdHorror extends ActorSheetEdSentient {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "horror" ],
+    classes:  [ HorrorData.metadata.type, ],
     actions:  {
     },
     position: {

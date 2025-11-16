@@ -1,5 +1,6 @@
 import ED4E from "../../config/_module.mjs";
 import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
+import PcData from "../../data/actor/pc.mjs";
 
 /**
  * An actor sheet application designed for actors of type "PC"
@@ -12,7 +13,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "character" ],
+    classes:  [ PcData.metadata.type ],
     actions:  {
       upgradeItem:        ActorSheetEdCharacter.upgradeItem,
       karmaRitual:        ActorSheetEdCharacter.karmaRitual,

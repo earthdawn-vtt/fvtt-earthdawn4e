@@ -1,6 +1,7 @@
 import getDice from "./step-tables.mjs";
 import { sum } from "../utils.mjs";
 import ED4E from "../config/_module.mjs";
+import BaseMessageData from "../data/chat/base-message.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
@@ -184,8 +185,7 @@ export default class EdRoll extends Roll {
     // us ternary operator to also check for empty strings, nullish coalescing operator (??) only checks null or undefined
     const baseTerm = formula
       ? formula
-      : // : ( `${getDice( step )}[${game.i18n.localize( "ED.Rolls.step )} ${step}]` );
-      `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
+      : `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
         edRollOptions.step.total
       }]`;
     super( baseTerm, data, edRollOptions );
@@ -446,7 +446,9 @@ export default class EdRoll extends Roll {
     if ( !this._evaluated ) await this.evaluate();
 
     messageData.flavor = await this.getChatFlavor();
-    messageData.type = ( this.options.rollType in CONFIG.ChatMessage.typeLabels ) ? this.options.rollType : "common";
+    messageData.type = ( this.options.rollType in CONFIG.ChatMessage.typeLabels )
+      ? this.options.rollType
+      : BaseMessageData.metadata.type;
 
     return super.toMessage( messageData, options );
   }

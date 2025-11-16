@@ -7,6 +7,8 @@ import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import ArmorData from "../item/armor.mjs";
+import ShieldData from "../item/shield.mjs";
 
 const fUtils = foundry.utils;
 
@@ -157,7 +159,7 @@ export default class PcData extends NamegiverTemplate {
 
     const newActor = await ActorEd.create( {
       name:   generation.name,
-      type:   "character",
+      type:   this.metadata.type,
       system: {
         attributes: attributeData,
         karma:      {
@@ -704,7 +706,10 @@ export default class PcData extends NamegiverTemplate {
 
     // item based
     const penaltyEquipment = this.parent.items.filter( item =>
-      [ "armor", "shield" ].includes( item.type ) && item.system.equipped
+      [
+        ArmorData.metadata.type,
+        ShieldData.metadata.type,
+      ].includes( item.type ) && item.system.equipped
     );
     this.initiativePenalty = sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );
     this.initiative -= this.initiativePenalty;

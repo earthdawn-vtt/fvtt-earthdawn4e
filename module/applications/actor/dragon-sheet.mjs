@@ -1,4 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
+import DragonData from "../../data/actor/dragon.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -22,7 +23,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "dragon" ],
+    classes:  [ DragonData.metadata.type, ],
     actions:  {
     },
     position: {

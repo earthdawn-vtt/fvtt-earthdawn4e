@@ -1,6 +1,7 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
 import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
+import PcData from "../data/actor/pc.mjs";
 
 /**
  * TODO
@@ -120,7 +121,7 @@ async function _createDebugDocuments() {
 
   // Prepare documents
 
-  const character = createdActors["character"];
+  const character = createdActors[ PcData.metadata.type ];
   await character.createEmbeddedDocuments( "Item", [
     createdItems.armor.toObject(),
     createdItems.devotion.toObject(),

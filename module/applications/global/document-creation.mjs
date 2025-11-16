@@ -232,7 +232,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     let promise;
 
     if (
-      createData.type === "character"
+      createData.type === PcData.metadata.type
       && game.settings.get( "ed4e", "autoOpenCharGen" )
     ) {
       const useCharGen = await DocumentCreateDialog._showCharGenPrompt();

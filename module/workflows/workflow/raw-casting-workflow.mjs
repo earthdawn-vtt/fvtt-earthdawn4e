@@ -5,6 +5,8 @@ import RollPrompt from "../../applications/global/roll-prompt.mjs";
 import WarpingRollOptions from "../../data/roll/warping.mjs";
 import DamageRollOptions from "../../data/roll/damage.mjs";
 import HorrorMarkRollOptions from "../../data/roll/horror-mark.mjs";
+import HorrorData from "../../data/actor/horror.mjs";
+import SpiritData from "../../data/actor/spirit.mjs";
 
 /**
  * @typedef {object} RawCastingWorkflowOptions
@@ -58,7 +60,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
    * @type {boolean}
    */
   get _sufferRawConsequences() {
-    return ![ "horror", "spirit" ].includes( this._actor.type );
+    return ![ HorrorData.metadata.type, SpiritData.metadata.type ].includes( this._actor.type );
   }
 
   /**
