@@ -196,7 +196,6 @@
 								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 							</div>
 						</div>
-
 					{{else}}
 						<div class="recovery__grid--item">
 							<input
@@ -217,13 +216,20 @@
 								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.hint'}}">
 						</div>
 						<div class="recovery__grid--item">
-							<input
-								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-								name="system.characteristics.recoveryTestsResource.step"
-								value="{{actor.system.characteristics.recoveryTestsResource.step}}"
+							<div
+								class="buffer-input"
 								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}"
 								data-tooltip-direction="UP"
 								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+								<input
+									id="recovery-step"
+									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+									name="system.characteristics.recoveryTestsResource.step"
+									type="number"
+									value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+							</div>
 						</div>
 					{{/if}}
 				</div>
