@@ -33,7 +33,6 @@
         </div>
       </div>
     {{/unless}}
-
     {{#if @root.editable}}
       <div class="attribute-card__grid--item">
         <div
@@ -41,9 +40,14 @@
           data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
           data-tooltip-direction="UP"
           aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
-          <input class="input__square-input--centered" value="{{this.step}}" readonly>
+          <input
+            class="input__square-input--centered"
+            name="system.attributes.{{@key}}.step"
+            type="number"
+            value="{{this.step}}" />
         </div>
       </div>
     {{/if}}
+
   </div>
 {{/each}}
