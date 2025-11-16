@@ -88,7 +88,7 @@ export default class PcData extends NamegiverTemplate {
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: "pc",
+      type: "character",
     }, {
       inplace: false
     },
