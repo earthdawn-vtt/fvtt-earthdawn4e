@@ -4,6 +4,14 @@ import { createContentAnchor } from "../../utils.mjs";
 
 export default class SpellcastingMessageData extends BaseMessageData {
 
+  // region Schema
+
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {} );
+  }
+
+  // endregion
+
   // region Static Properties
 
   /** @inheritdoc */
@@ -21,11 +29,17 @@ export default class SpellcastingMessageData extends BaseMessageData {
     },
   };
 
-  // endregion
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "spellcasting",
+    }, {
+      inplace: false
+    },
+  ) );
 
-  static defineSchema() {
-    return this.mergeSchema( super.defineSchema(), {} );
-  }
+  // endregion
 
   // region Properties
 

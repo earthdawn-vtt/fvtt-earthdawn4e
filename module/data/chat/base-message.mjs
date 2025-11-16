@@ -19,12 +19,23 @@ export default class BaseMessageData extends SystemDataModel {
    */
   static BASE_DATA_MODEL = BaseMessageData;
 
+  /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     actions: {
       applyEffect:    this._onApplyEffect,
       scrollToSource: this._onScrollToSource,
     },
   };
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "common",
+    }, {
+      inplace: false
+    },
+  ) );
 
   // endregion
 
@@ -46,39 +57,6 @@ export default class BaseMessageData extends SystemDataModel {
   }
 
   // endregion
-
-  /**
-   * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
-   * @param {object} options Options provided directly to the constructor
-   * @param {object} [options.actions] - Action handlers defined for this Application.
-   * @returns {object} Configured options for the application instance
-   * @see {foundry.applications.types.ApplicationConfiguration#actions}
-   * @protected
-   */
-  _initializeOptions( options ) {
-
-    // Options initialization order
-    const order = [ options ];
-    for ( const cls of this.constructor.inheritanceChain() ) {
-      order.unshift( cls.DEFAULT_OPTIONS );
-    }
-
-    // Intelligently merge with parent class options
-    const applicationOptions = {};
-    for ( const opts of order ) {
-      for ( const [ k, v ] of Object.entries( opts ) ) {
-        if ( ( k in applicationOptions ) ) {
-          const v0 = applicationOptions[k];
-          if ( Array.isArray( v0 ) ) applicationOptions[k].push( ...v );                // Concatenate arrays
-          else if ( foundry.utils.getType( v0 ) === "Object" ) Object.assign( v0, v );   // Merge objects
-          else applicationOptions[k] = foundry.utils.deepClone( v );                  // Override option
-        }
-        else applicationOptions[k] = foundry.utils.deepClone( v );
-      }
-    }
-
-    return applicationOptions;
-  }
 
   // region Properties
 
@@ -121,6 +99,43 @@ export default class BaseMessageData extends SystemDataModel {
     // Configure Options
     this.options = Object.freeze( this._initializeOptions( {} ) );
   }
+
+  // region Initialization
+
+  /**
+   * Initialize the default options for this. Analogous to {@link ApplicationV2#_initializeApplicationOptions}
+   * @param {object} options Options provided directly to the constructor
+   * @param {object} [options.actions] - Action handlers defined for this Application.
+   * @returns {object} Configured options for the application instance
+   * @see {foundry.applications.types.ApplicationConfiguration#actions}
+   * @protected
+   */
+  _initializeOptions( options ) {
+
+    // Options initialization order
+    const order = [ options ];
+    for ( const cls of this.constructor.inheritanceChain() ) {
+      order.unshift( cls.DEFAULT_OPTIONS );
+    }
+
+    // Intelligently merge with parent class options
+    const applicationOptions = {};
+    for ( const opts of order ) {
+      for ( const [ k, v ] of Object.entries( opts ) ) {
+        if ( ( k in applicationOptions ) ) {
+          const v0 = applicationOptions[k];
+          if ( Array.isArray( v0 ) ) applicationOptions[k].push( ...v );                // Concatenate arrays
+          else if ( foundry.utils.getType( v0 ) === "Object" ) Object.assign( v0, v );   // Merge objects
+          else applicationOptions[k] = foundry.utils.deepClone( v );                  // Override option
+        }
+        else applicationOptions[k] = foundry.utils.deepClone( v );
+      }
+    }
+
+    return applicationOptions;
+  }
+
+  // endregion
 
   // region Event Handlers
 

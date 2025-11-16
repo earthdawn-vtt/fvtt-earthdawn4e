@@ -2,6 +2,14 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class ThreadWeavingMessageData extends BaseMessageData {
 
+  // region Schema
+
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {} );
+  }
+
+  // endregion
+
   // region Static Properties
 
   /** @inheritdoc */
@@ -16,11 +24,17 @@ export default class ThreadWeavingMessageData extends BaseMessageData {
     },
   };
 
-  // endregion
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "threadWeaving",
+    }, {
+      inplace: false
+    },
+  ) );
 
-  static defineSchema() {
-    return this.mergeSchema( super.defineSchema(), {} );
-  }
+  // endregion
 
   // region Properties
 
