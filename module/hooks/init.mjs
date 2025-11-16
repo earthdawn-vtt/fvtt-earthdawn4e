@@ -105,52 +105,52 @@ function registerSheetApps() {
     makeDefault: true
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCharacter, {
-    types:       [ "character" ],
+    types:       [ data.actor.PcData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdCharacter"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdNpc, {
-    types:       [ "npc" ],
+    types:       [ data.actor.NpcData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdNpc"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdGroup, {
-    types:       [ "group" ],
+    types:       [ data.actor.GroupData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdGroup"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdVehicle, {
-    types:       [ "vehicle" ],
+    types:       [ data.actor.VehicleData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdVehicle"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdLoot, {
-    types:       [ "loot" ],
+    types:       [ data.actor.LootData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdLoot"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdTrap, {
-    types:       [ "trap" ],
+    types:       [ data.actor.TrapData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdTrap"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCreature, {
-    types:       [ "creature" ],
+    types:       [ data.actor.CreatureData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdCreature"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdSpirit, {
-    types:       [ "spirit" ],
+    types:       [ data.actor.SpiritData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdSpirit"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdDragon, {
-    types:       [ "dragon" ],
+    types:       [ data.actor.DragonData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdDragon"
   } );
   Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdHorror, {
-    types:       [ "horror" ],
+    types:       [ data.actor.HorrorData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.actorSheetEdHorror"
   } );
@@ -179,22 +179,31 @@ function registerSheetApps() {
     label:       "ED.Documents.itemSheetEd"
   } );
   Items.registerSheet( "earthdawn4e", applications.item.ClassItemSheetEd, {
-    types:       [ "discipline", "questor", "path" ],
+    types:       [
+      data.item.DisciplineData.metadata.type,
+      data.item.QuestorData.metadata.type,
+      data.item.PathData.metadata.type,
+    ],
     makeDefault: true,
     label:       "ED.Documents.itemSheetEdClass"
   } );
   Items.registerSheet( "earthdawn4e", applications.item.PhysicalItemSheetEd, {
-    types:       [ "armor", "equipment", "shield", "weapon" ],
+    types:       [
+      data.item.ArmorData.metadata.type,
+      data.item.EquipmentData.metadata.type,
+      data.item.ShieldData.metadata.type,
+      data.item.WeaponData.metadata.type,
+    ],
     makeDefault: true,
     label:       "ED.Documents.itemSheetEdPhysical"
   } );
   Items.registerSheet( "earthdawn4e", applications.item.MaskItemSheetEd, {
-    types:       [ "mask" ],
+    types:       [ data.item.MaskData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.itemSheetEdMask"
   } );
   Items.registerSheet( "earthdawn4e", applications.item.ThreadItemSheetEd, {
-    types:       [ "thread" ],
+    types:       [ data.item.ThreadData.metadata.type ],
     makeDefault: true,
     label:       "ED.Documents.itemSheetEdThread"
   } );
