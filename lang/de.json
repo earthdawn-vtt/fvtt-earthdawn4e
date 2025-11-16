@@ -3355,6 +3355,10 @@
       "journalSheetEd":                            "Journal-Bogen",
       "sceneConfigEd":                             "Szene Konfiguration"
     },
+    "Form": {
+      "no":                                        "TODO: Add translation",
+      "yes":                                       "TODO: Add translation"
+    },
     "Item": {
       "CreateData": {
         "nameQuestorDevotion":                     "Questor Weihekraft",
