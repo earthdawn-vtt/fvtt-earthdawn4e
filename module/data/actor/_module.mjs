@@ -25,16 +25,3 @@ export {default as CommonTemplate} from "./templates/common.mjs";
 export {default as SentientTemplate} from "./templates/sentient.mjs";
 export {default as NamegiverTemplate} from "./templates/namegiver.mjs";
 export {default as NoneCharacterTemplate} from "./templates/none-character.mjs";
-
-export const config = {
-  creature:  CreatureData,
-  dragon:    DragonData,
-  group:     GroupData,
-  horror:    HorrorData,
-  loot:      LootData,
-  npc:       NpcData,
-  character: PcData,
-  spirit:    SpiritData,
-  trap:      TrapData,
-  vehicle:   VehicleData
-};

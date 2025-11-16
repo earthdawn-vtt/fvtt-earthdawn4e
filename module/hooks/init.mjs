@@ -21,6 +21,64 @@ const { Actors, Items, Journal, Scenes } = foundry.documents.collections;
 /**
  *
  */
+function setupDocumentClasses() {
+  for ( const DocumentClass of Object.values( documents ) ) {
+    if ( !foundry.utils.isSubclass( DocumentClass, foundry.abstract.Document ) ) continue;
+    CONFIG[DocumentClass.documentName].documentClass = DocumentClass;
+  }
+}
+
+/**
+ *
+ */
+function setupCollections() {
+  CONFIG.User.collection = documents.collections.UsersEd;
+}
+
+/**
+ *
+ */
+function setupUI() {
+  CONFIG.ui.combat = applications.combat.CombatTrackerEd;
+}
+
+/**
+ *
+ */
+function setupCanvas() {
+  CONFIG.Token.objectClass = canvas.TokenEd;
+  CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
+}
+
+/**
+ *
+ */
+function setupStatusEffects() {
+  CONFIG.statusEffects = ED4E.statusEffects.map( ( status ) => {
+    return {
+      _id: staticStatusId( status.id ),
+      ...status
+    };
+  } );
+  Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
+}
+
+/**
+ *
+ */
+function setupDataModels() {
+  for ( const [ doc, models ] of Object.entries( data ) ) {
+    if ( !CONST.ALL_DOCUMENT_TYPES.includes( doc ) ) continue;
+    for ( const ModelClass of Object.values( models ) ) {
+      if ( ModelClass.metadata?.type ) CONFIG[doc].dataModels[ModelClass.metadata.type] = ModelClass;
+      if ( ModelClass.metadata?.icon ) CONFIG[doc].typeIcons[ModelClass.metadata.type] = ModelClass.metadata.icon;
+    }
+  }
+}
+
+/**
+ *
+ */
 export default function () {
   Hooks.once( "init", () => {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
@@ -28,20 +86,14 @@ export default function () {
 
     // region Record Configuration Values
 
-    // Hook up document classes and collections
     CONFIG.ED4E = ED4E;
-    CONFIG.ActiveEffect.documentClass = documents.EarthdawnActiveEffect;
-    CONFIG.Actor.documentClass = documents.ActorEd;
-    CONFIG.ChatMessage.documentClass = documents.ChatMessageEd;
-    CONFIG.Combat.documentClass = documents.CombatEd;
-    CONFIG.Combatant.documentClass = documents.CombatantEd;
-    CONFIG.Item.documentClass = documents.ItemEd;
-    CONFIG.JournalEntry.documentClass = documents.JournalEntryEd;
-    CONFIG.Token.objectClass = canvas.TokenEd;
-    CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
-    CONFIG.ui.combat = applications.combat.CombatTrackerEd;
-    CONFIG.User.collection = documents.collections.UsersEd;
 
+    setupDocumentClasses();
+    setupCanvas();
+    setupUI();
+    setupCollections();
+
+    // Set up Queries
     Object.assign( CONFIG.queries, ED4E.queries );
 
     // Register Roll Extensions
@@ -50,21 +102,9 @@ export default function () {
     // Register text editor enrichers
     enrichers.registerCustomEnrichers();
 
-    // Set Status Effects
-    CONFIG.statusEffects = ED4E.statusEffects.map( ( status ) => {
-      return {
-        _id: staticStatusId( status.id ),
-        ...status,
-      };
-    } );
-    Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
+    setupStatusEffects();
 
-    // Hook up system data types
-    CONFIG.ActiveEffect.dataModels = data.effects.config;
-    CONFIG.Actor.dataModels = data.actor.config;
-    CONFIG.ChatMessage.dataModels = data.chat.config;
-    CONFIG.Combatant.dataModels = data.combatant.config;
-    CONFIG.Item.dataModels = data.item.config;
+    setupDataModels();
 
     // endregion
 
@@ -73,7 +113,7 @@ export default function () {
 
     // region Register Sheet Application Classes
 
-    Actors.unregisterSheet( "core", foundry.appv1.sheets.ActorSheet );
+    // Actors.unregisterSheet( "core", foundry.appv1.sheets.ActorSheet );
     Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEd, {
       makeDefault: true
     } );
@@ -146,7 +186,7 @@ export default function () {
       { makeDefault: true },
     );
 
-    Items.unregisterSheet( "core", foundry.appv1.sheets.ItemSheet );
+    // Items.unregisterSheet( "core", foundry.appv1.sheets.ItemSheet );
     Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
       makeDefault: true,
       label:       "ED.Documents.itemSheetEd"
@@ -172,7 +212,7 @@ export default function () {
       label:       "ED.Documents.itemSheetEdThread"
     } );
 
-    Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
+    // Journal.unregisterSheet( "core", foundry.appv1.sheets.JournalSheet );
     Journal.registerSheet( "earthdawn4e", applications.journal.JournalSheetEd, {
       makeDefault: true,
       label:       "ED.Documents.journalSheetEd"

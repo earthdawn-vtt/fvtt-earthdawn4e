@@ -62,31 +62,3 @@ export {default as LpIncreaseTemplate} from "./templates/lp-increase.mjs";
 export {default as MatrixTemplate} from "./templates/matrix.mjs";
 export {default as PhysicalItemTemplate} from "./templates/physical-item.mjs";
 export {default as TargetTemplate} from "./templates/targeting.mjs";
-
-export const config = {
-  armor:          ArmorData,
-  bindingSecret:  BindingSecretData,
-  curseMark:      CurseHorrorMarkData,
-  devotion:       DevotionData,
-  discipline:     DisciplineData,
-  equipment:      EquipmentData,
-  knackAbility:   KnackAbilityData,
-  knackKarma:     KnackKarmaData,
-  knackManeuver:  KnackManeuverData,
-  maneuver:       ManeuverData,
-  mask:           MaskData,
-  namegiver:      NamegiverData,
-  path:           PathData,
-  poisonDisease:  PoisonDiseaseData,
-  power:          PowerData,
-  questor:        QuestorData,
-  shield:         ShieldData,
-  shipWeapon:     ShipWeaponData,
-  skill:          SkillData,
-  specialAbility: SpecialAbilityData,
-  spellKnack:     SpellKnackData,
-  spell:          SpellData,
-  talent:         TalentData,
-  thread:         ThreadData,
-  weapon:         WeaponData
-};
