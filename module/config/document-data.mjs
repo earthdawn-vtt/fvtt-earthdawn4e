@@ -1,4 +1,5 @@
 import { preLocalize } from "../utils.mjs";
+import EarthdawnActiveEffectData from "../data/effects/eae.mjs";
 
 
 export const documentData = {
@@ -7,7 +8,7 @@ export const documentData = {
       manualOverride: {
         name:        "ED.ActiveEffect.CreateData.nameManualOverride",
         description: "ED.ActiveEffect.CreateData.descriptionManualOverride",
-        type:        "eae",
+        type:        EarthdawnActiveEffectData.metadata.type,
         system:      {
           duration: {
             type: "permanent",

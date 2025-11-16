@@ -1,4 +1,5 @@
 import { getSetting } from "../../settings.mjs";
+import EarthdawnActiveEffectData from "../../data/effects/eae.mjs";
 
 const { TextEditor } = foundry.applications.ux;
 
@@ -165,7 +166,7 @@ const DocumentSheetMixinEd = Base => {
       switch ( type ) {
         case "effect": {
           return ActiveEffect.implementation.create( {
-            type:     "eae",
+            type:     EarthdawnActiveEffectData.metadata.type,
             name:     game.i18n.localize( "ED.ActiveEffect.newEffectName" ),
             icon:     "icons/svg/aura.svg",
             changes:  [ {} ],

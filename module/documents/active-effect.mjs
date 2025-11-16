@@ -1,11 +1,12 @@
 import ClassTemplate from "../data/item/templates/class.mjs";
+import EarthdawnConditionEffectData from "../data/effects/eae-condition.mjs";
 
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
   static async _fromStatusEffect( statusId, effectData, options ) {
     foundry.utils.mergeObject( effectData, {
-      type:             "condition",
+      type:             EarthdawnConditionEffectData.metadata.type,
       "system.primary": statusId,
     } );
 
