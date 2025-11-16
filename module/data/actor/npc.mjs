@@ -9,16 +9,7 @@ export default class NpcData extends NamegiverTemplate.mixin(
   NoneCharacterTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Actor.Npc",
-  ];
-
-  /** @inheritDoc */
-  static _systemType = "npc";
-
-  /* -------------------------------------------- */
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -26,9 +17,29 @@ export default class NpcData extends NamegiverTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Data Preparation              */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Npc",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "npc",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
@@ -36,24 +47,6 @@ export default class NpcData extends NamegiverTemplate.mixin(
     // this.#prepareBaseAttributes();
   }
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /*   /!**
-     * Prepare calculated attribute values and corresponding steps.
-     * @private
-     *!/
-    #prepareBaseAttributes() {
-      for ( const attributeData of Object.values( this.attributes ) ) {
-        attributeData.baseStep = attributeData.step;
-      }
-    } */
-
-  /* -------------------------------------------- */
-  /*  Migrations                  */
-  /* -------------------------------------------- */
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

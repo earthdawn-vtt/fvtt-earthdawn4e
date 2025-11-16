@@ -34,12 +34,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   ];
 
   /**
-   * System type that this system data model represents ( e.g. "character", "npc", "vehicle" ).
-   * @type {string}
-   */
-  static _systemType;
-
-  /**
    * Base templates used for construction.
    * @type {*[]}
    * @private
@@ -127,8 +121,13 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // region Getters
 
-  get metadata() {
-    return this.constructor.metadata;
+  /**
+   * Get the actor that contains this data model or undefined if it is not embedded.
+   * @type {ActorEd|undefined}
+   */
+  get containingActor() {
+    if ( !this.parent ) return undefined;
+    return this.parent.actor ?? this.parent.containingActor;
   }
 
   /**
@@ -137,15 +136,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
    */
   get embeddedDescriptionKeyPath() {
     return null;
-  }
-
-  /**
-   * Get the actor that contains this data model or undefined if it is not embedded.
-   * @type {ActorEd|undefined}
-   */
-  get containingActor() {
-    if ( !this.parent ) return undefined;
-    return this.parent.actor ?? this.parent.containingActor;
   }
 
   /**
@@ -159,6 +149,14 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   }
 
   /**
+   * Metadata that describes this DataModel.
+   * @type {SystemDataModelMetadata}
+   */
+  get metadata() {
+    return this.constructor.metadata;
+  }
+
+  /**
    * A reference to the parent Document of this data model, or undefined if one does not exist.
    * @type {Document|undefined}
    */
@@ -166,6 +164,14 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
     if ( !this.parent ) return undefined;
     return this.parent instanceof foundry.abstract.Document ? this.parent : this.parent.parentDocument;
   }
+
+  /**
+   * System type that this system data model represents ( e.g. "character", "npc", "vehicle" ).
+   * @type {string}
+   */
+  get systemType() {
+    return this.constructor.metadata.type;
+  };
 
   // endregion
 

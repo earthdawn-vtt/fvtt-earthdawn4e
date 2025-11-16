@@ -9,6 +9,17 @@ export default class HorrorData extends SentientTemplate.mixin(
   NoneCharacterTemplate
 ) {
 
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    return super.defineSchema();
+  }
+
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -16,22 +27,15 @@ export default class HorrorData extends SentientTemplate.mixin(
   ];
 
   /** @inheritDoc */
-  static _systemType = "horror";
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "horror",
+    }, {
+      inplace: false
+    },
+  ) );
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /** @inheritDoc */
-  static defineSchema() {
-    return super.defineSchema();
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

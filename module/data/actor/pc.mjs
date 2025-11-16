@@ -8,6 +8,8 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 
+const fUtils = foundry.utils;
+
 /**
  * System data definition for PCs.
  * @mixin
@@ -17,14 +19,7 @@ import DialogEd from "../../applications/api/dialog.mjs";
  */
 export default class PcData extends NamegiverTemplate {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Actor.Pc",
-  ];
-
-  /** @inheritDoc */
-  static _systemType = "character";
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -79,6 +74,70 @@ export default class PcData extends NamegiverTemplate {
     return superSchema;
   }
 
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Pc",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( fUtils.mergeObject(
+    super.metadata,
+    {
+      type: "pc",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Getters
+
+  /**
+   * Get the field paths for all attribute values.
+   * @type {string[]}
+   */
+  get _attributeValueKeys() {
+    return Object.keys( ED4E.attributes ).map( key => `system.attributes.${ key }.value` );
+  }
+
+  /**
+   * Get the durability bonus based on the highest durability item. Includes the durability bonus from active effects,
+   * e.g. from group threads.
+   * @type {number}
+   */
+  get #durabilityUnconsciousness(){
+    const durabilityItems = this.parent.durabilityItems;
+    if ( !durabilityItems.length ) return 0;
+
+    const durabilityByCircle = {};
+    const maxLevelDurabilityItem = durabilityItems.reduce(
+      ( max, item ) => (
+        item.system.level > max.system.level
+        || ( item.system.level === max.system.level && item.system.durability > max.system.durability )
+      ) ? item : max,
+      { system: { level: 0 } }
+    );
+    const maxLevel = maxLevelDurabilityItem?.system?.level ?? 0;
+
+    // Iterate through levels from 1 to the maximum level
+    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
+      // Find the maximum durability for the current level
+      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
+        return ( currentLevel <= item.system.level && item.system.durability > max )
+          ? item.system.durability
+          : max;
+      }, 0 );
+    }
+    return sum( Object.values( durabilityByCircle ) ) + ( this.durabilityBonus * maxLevelDurabilityItem.system.durability );
+  }
+
+  // endregion
 
   // region Character Generation
 
@@ -111,10 +170,10 @@ export default class PcData extends NamegiverTemplate {
     const namegiverDocument = await generation.namegiverDocument;
     const classDocument = await generation.classDocument;
     const allAbilityDocuments = await generation.abilityDocuments;
-    
+
     // Filter abilities: include if level > 0 OR if it's an other ability (includes namegiver talents)
     const abilities = allAbilityDocuments
-      .filter( documentData => 
+      .filter( documentData =>
         documentData.system.level > 0 || documentData.system.talentCategory === "other"
       )
       .map(
@@ -190,10 +249,10 @@ export default class PcData extends NamegiverTemplate {
     // If this is a questor class, set the questorDevotion field to the devotion UUID
     if ( classAfterCreation.type === "questor" ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
-      const questorDevotionItem = newActor.items.find( item => 
-        item.type === "devotion" && item.system.edid === edidQuestorDevotion 
+      const questorDevotionItem = newActor.items.find( item =>
+        item.type === "devotion" && item.system.edid === edidQuestorDevotion
       );
-      
+
       if ( questorDevotionItem ) {
         await classAfterCreation.update( {
           "system.questorDevotion": questorDevotionItem.uuid
@@ -208,54 +267,7 @@ export default class PcData extends NamegiverTemplate {
 
   // endregion
 
-
-  // region Properties
-
-  /**
-   * Get the field paths for all attribute values.
-   * @type {string[]}
-   */
-  get _attributeValueKeys() {
-    return Object.keys( ED4E.attributes ).map( key => `system.attributes.${ key }.value` );
-  }
-
-  /**
-   * Get the durability bonus based on the highest durability item. Includes the durability bonus from active effects,
-   * e.g. from group threads.
-   * @type {number}
-   */
-  get #durabilityUnconsciousness(){
-    const durabilityItems = this.parent.durabilityItems;
-    if ( !durabilityItems.length ) return 0;
-
-    const durabilityByCircle = {};
-    const maxLevelDurabilityItem = durabilityItems.reduce(
-      ( max, item ) => (
-        item.system.level > max.system.level
-        || ( item.system.level === max.system.level && item.system.durability > max.system.durability )
-      ) ? item : max,
-      { system: { level: 0 } }
-    );
-    const maxLevel = maxLevelDurabilityItem?.system?.level ?? 0;
-
-    // Iterate through levels from 1 to the maximum level
-    for ( let currentLevel = 1; currentLevel <= maxLevel; currentLevel++ ) {
-      // Find the maximum durability for the current level
-      durabilityByCircle[currentLevel] = durabilityItems.reduce( ( max, item ) => {
-        return ( currentLevel <= item.system.level && item.system.durability > max )
-          ? item.system.durability
-          : max;
-      }, 0 );
-    }
-    return sum( Object.values( durabilityByCircle ) ) + ( this.durabilityBonus * maxLevelDurabilityItem.system.durability );
-  }
-
-  // endregion
-
-
-  /* -------------------------------------------- */
-  /*  Legend Building (LP)                        */
-  /* -------------------------------------------- */
+  // region LP Tracking
 
   /**
    * Increase an attribute value of this actor.
@@ -350,6 +362,7 @@ export default class PcData extends NamegiverTemplate {
     }
   }
 
+  // endregion
 
   // region Data Preparation
 
@@ -708,16 +721,5 @@ export default class PcData extends NamegiverTemplate {
   // endregion
 
   // endregion
-
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 
 }
