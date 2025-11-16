@@ -10,11 +10,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Skill",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -27,6 +23,30 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Skill",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "skill",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Getters
 
   /**
    * @inheritDoc
@@ -135,12 +155,18 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
     };
   }
 
+  // endregion
+
+  // region LP Tracking
+
   /**
    * @inheritDoc
    */
   async increase() {
     return super.increase();
   }
+
+  // endregion
 
   // region Rolling
 

@@ -99,6 +99,16 @@ export default class PowerData extends ActionTemplate.mixin(
     "ED.Data.Item.Power",
   ];
 
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "power",
+    }, {
+      inplace: false
+    },
+  ) );
+
   // endregion
 
   // region Getters

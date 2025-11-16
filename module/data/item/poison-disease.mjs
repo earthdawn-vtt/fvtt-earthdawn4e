@@ -20,11 +20,7 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 )  {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.PoisonDisease",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -35,23 +31,23 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           required: true,
           nullable: false,
           min:      0,
-          initial:  0,   
+          initial:  0,
           integer:  true,
-        } ), 
+        } ),
         paralysisStep: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
         debilitationStep: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
       } ),
       interval: new fields.SchemaField( {
         totalEffects: new fields.NumberField( {
@@ -60,14 +56,14 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
         timeInBetween: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
       } ),
       onsetTime: new fields.NumberField( {
         required: true,
@@ -75,14 +71,14 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
       duration: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
       activation: new fields.StringField( {
         required: true,
         blank:    false,
@@ -95,6 +91,28 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.PoisonDisease",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "poisonDisease",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

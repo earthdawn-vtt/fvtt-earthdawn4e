@@ -13,11 +13,7 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Shield",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -67,6 +63,28 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Shield",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "shield",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

@@ -52,6 +52,16 @@ export default class PathData extends ClassTemplate.mixin(
     "ED.Data.Item.Path",
   ];
 
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "path",
+    }, {
+      inplace: false
+    },
+  ) );
+
   // endregion
 
   // region Properties

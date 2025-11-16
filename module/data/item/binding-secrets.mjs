@@ -8,6 +8,19 @@ export default class BindingSecretData extends SpellData.mixin(
   ItemDescriptionTemplate
 )  {
 
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -15,11 +28,16 @@ export default class BindingSecretData extends SpellData.mixin(
   ];
 
   /** @inheritDoc */
-  static defineSchema() {
-    return this.mergeSchema( super.defineSchema(), {
-            
-    } );
-  }
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "bindingSecret",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

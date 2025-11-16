@@ -14,11 +14,7 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.ShipWeapon",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -30,15 +26,15 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
       crewWeapon: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
-        
-      } ), 
+
+      } ),
       range: new fields.SchemaField( {
         short: new fields.NumberField( {
           required: true,
@@ -46,14 +42,14 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
         long: new fields.NumberField( {
           required: true,
           nullable: false,
           min:      0,
           initial:  0,
           integer:  true,
-        } ), 
+        } ),
       } ),
       salvoCost: new fields.NumberField( {
         required: true,
@@ -61,16 +57,38 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
       characterDamage: new fields.NumberField( {
         required: true,
         nullable: false,
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.ShipWeapon",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "shipWeapon",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

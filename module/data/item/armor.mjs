@@ -95,6 +95,16 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
     "ED.Data.Item.Armor",
   ];
 
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "armor",
+    }, {
+      inplace: false
+    },
+  ) );
+
   // endregion
 
   // region Rolling

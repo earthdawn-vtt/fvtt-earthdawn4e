@@ -26,17 +26,7 @@ export default class SpellData extends ItemDataModel.mixin(
   TargetTemplate
 )  {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Spell",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -232,6 +222,30 @@ export default class SpellData extends ItemDataModel.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Spell",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "spell",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Static Methods
 
 
   /**

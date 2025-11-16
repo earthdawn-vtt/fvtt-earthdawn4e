@@ -13,20 +13,7 @@ export default class SpellKnackData extends SpellData.mixin(
   KnackTemplate,
 )  {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.SpellKnack",
-  ];
-
-  /** @inheritdoc */
-  static SOURCE_ITEM_TYPE = "spell";
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -48,6 +35,29 @@ export default class SpellKnackData extends SpellData.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.SpellKnack",
+  ];
+
+  /** @inheritdoc */
+  static SOURCE_ITEM_TYPE = "spell";
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "spellKnack",
+    }, {
+      inplace: false
+    },
+  ) );
 
   // endregion
 

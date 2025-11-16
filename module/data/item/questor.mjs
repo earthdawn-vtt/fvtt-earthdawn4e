@@ -15,22 +15,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
 ) {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Questor",
-  ];
-
-  /** @inheritdoc */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    hasLinkedItems: true,
-  }, {inplace: false} ) );
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -52,6 +37,26 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   // endregion
 
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Questor",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      hasLinkedItems:    true,
+      type:              "questor",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region LP Tracking
 

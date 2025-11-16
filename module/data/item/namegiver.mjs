@@ -24,6 +24,8 @@ export default class NamegiverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
 
+  // region Schema
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -107,6 +109,10 @@ export default class NamegiverData extends ItemDataModel.mixin(
     } );
   }
 
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -114,9 +120,17 @@ export default class NamegiverData extends ItemDataModel.mixin(
   ];
 
   /** @inheritDoc */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    singleton: true
-  }, {inplace: false} ) );
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      singleton: true,
+      type:      "namegiver",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 
