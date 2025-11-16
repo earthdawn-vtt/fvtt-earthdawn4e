@@ -1,4 +1,5 @@
 :root {
+
   .application.sheet.earthdawn4e.actor,
   .theme-dark.application.sheet.earthdawn4e.actor {
     --color-primary: var(--color-blue-dk);
@@ -114,10 +115,15 @@
     --color-button-slide-thumb: var(--color-text-primary);
     --color-button-slide-background-on: var(--color-gold-2);;
     --color-button-slide-background-off: black;
+
+    --color-shadow: 0 0 10px 1px rgb(1, 1, 1);
+    
     --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
   }
 
   .theme-light.application.sheet.earthdawn4e.item {
-      --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
+    --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
+    
+    --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
   }
 }
