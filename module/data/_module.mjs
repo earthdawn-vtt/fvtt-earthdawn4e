@@ -10,3 +10,8 @@ export * as item from "./item/_module.mjs";
 export * as roll from "./roll/_module.mjs";
 export * as other from "./other/_module.mjs";
 export * as thread from "./thread/_module.mjs";
+
+export * as Actor from "./actor/_module.mjs";
+export * as ChatMessage from "./chat/_module.mjs";
+export * as Combatant from "./combatant/_module.mjs";
+export * as Item from "./item/_module.mjs";
