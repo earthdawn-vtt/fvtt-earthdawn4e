@@ -24,6 +24,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   /**
    * @typedef {object} SystemDataModelMetadata
    * @property {typeof DataModel} [systemFlagsModel]  Model that represents flags data within the ed4e namespace.
+   * @property {string} [type]                      System type that this system data model represents ( e.g. "character", "npc", "vehicle" ).
    */
 
   // region Static Properties
