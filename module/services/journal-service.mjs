@@ -240,8 +240,8 @@ export default class JournalService {
       }
 
       // Fall back to name + content length comparison for uniqueness
-      return page.name === targetPage.name &&
-             page.content.length === targetPage.content.length;
+      return page.name === targetPage.name
+             && page.content.length === targetPage.content.length;
     } );
   }
 

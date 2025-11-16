@@ -101,9 +101,9 @@ function triggerCrCalc( argString ) {
  * @returns {boolean} Always returns false to prevent further processing.
  */
 function triggerHelp( argString ) {
-  const helpText =
-    CONFIG.ED4E.chatCommands[argString.toLowerCase()] ??
-    `${ game.i18n.localize( "ED.Chat.Commands.helpHeader" ) }<br>
+  const helpText
+    = CONFIG.ED4E.chatCommands[argString.toLowerCase()]
+    ?? `${ game.i18n.localize( "ED.Chat.Commands.helpHeader" ) }<br>
     /char - ${ game.i18n.localize( "ED.Chat.Commands.char" ) }<br>
     /coin - ${ game.i18n.localize( "ED.Chat.Commands.coin" ) }<br>
     /group - ${ game.i18n.localize( "ED.Chat.Commands.group" ) }<br>

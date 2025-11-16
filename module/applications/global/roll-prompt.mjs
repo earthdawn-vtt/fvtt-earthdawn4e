@@ -227,8 +227,8 @@ export default class RollPrompt extends ApplicationEd {
     const newValue = event.currentTarget.value;
     const resource = event.currentTarget.dataset.resource;
     if (
-      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary &&
-      newValue > this.edRollOptions[resource].available
+      this.edRollOptions.testType !== CONFIG.ED4E.testTypes.arbitrary
+      && newValue > this.edRollOptions[resource].available
     ) {
       ui.notifications.warn(
         `Localize: Not enough ${resource}. You can use it, but only max available will be deducted from current.`,
