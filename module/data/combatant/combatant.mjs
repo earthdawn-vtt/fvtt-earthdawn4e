@@ -2,11 +2,7 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 
 export default class CombatantData extends SystemDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.General.Combatant",
-  ];
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -31,5 +27,27 @@ export default class CombatantData extends SystemDataModel {
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Combatant",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "base",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
 }
