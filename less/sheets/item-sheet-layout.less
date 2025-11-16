@@ -158,7 +158,7 @@
 
   .item-body {
 
-  .item-section__description {
+  .item-section--description {
     margin-top: 14px;
 
     .editor.prosemirror:not(.editor--compact)
@@ -185,6 +185,7 @@
       display: flex;
       gap: 0.2rem;
       width: 50%;
+      line-height: 20px;
 
       .item-line__label {
         font-weight: 500;
@@ -197,10 +198,14 @@
       white-space: nowrap;
     }
 
+    .item-line__value {
+      text-transform: capitalize;
+    }
+
     .item-line__dots {
       flex: 1 1 auto;
       border-bottom: 1px dotted currentColor;
-      transform: translateY(-0.32em);
+      transform: translateY(-0.40em);
     }
 
     .item-section--price {

@@ -1,10 +1,67 @@
-{{#if systemFields.level}}
 {{!-- Rank --}}
-  {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+<div class="item-section--level item-group">
+{{#if @root.editable}}
+    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+{{else}}
+    <div class="item-line item-line__level">
+    <span class="item-line__label">
+        {{localize systemFields.level.label}}:
+    </span>
+    <span class="item-line__dots" aria-hidden="true"></span>
+    <span class="item-line__value">
+        {{item.system.level}}
+    </span>
+    </div>
 {{/if}}
+</div>
+
 {{!-- Strain --}}
-{{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
+<div class="item-section item-section--strain item-group">
+{{#if @root.editable}}
+    {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
+{{else}}
+    <div class="item-line item-line__strain">
+    <span class="item-line__label">
+        {{localize systemFields.strain.label}}:
+    </span>
+    <span class="item-line__dots" aria-hidden="true"></span>
+    <span class="item-line__value">
+        {{item.system.strain}}
+    </span>
+    </div>
+{{/if}}
+</div>
+
 {{!-- Attribute --}}
-{{formField systemFields.attribute name="system.attribute" value=item.system.attribute localize=true}}
+<div class="item-section item-section--attribute item-group">
+{{#if @root.editable}}
+    {{formField systemFields.attribute name="system.attribute" value=item.system.attribute localize=true}}
+{{else}}
+    <div class="item-line item-line__attribute">
+    <span class="item-line__label">
+        {{localize systemFields.attribute.label}}:
+    </span>
+    <span class="item-line__dots" aria-hidden="true"></span>
+    <span class="item-line__value">
+        {{item.system.attribute}}
+    </span>
+    </div>
+{{/if}}
+</div>
+
 {{!-- Action --}}
-{{formField systemFields.action name="system.action" value=item.system.action localize=true}}
+<div class="item-section item-section--action item-group">
+{{#if @root.editable}}
+    {{formField systemFields.action name="system.action" value=item.system.action localize=true}}
+{{else}}
+    <div class="item-line item-line__action">
+    <span class="item-line__label">
+        {{localize systemFields.action.label}}:
+    </span>
+    <span class="item-line__dots" aria-hidden="true"></span>
+    <span class="item-line__value">
+        {{item.system.action}}
+    </span>
+    </div>
+{{/if}}
+</div>

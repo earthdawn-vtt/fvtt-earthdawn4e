@@ -2938,15 +2938,15 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .item-body {
   /* <-- key change is here */
 }
-.application.sheet.earthdawn4e.item .item-body .item-section__description {
+.application.sheet.earthdawn4e.item .item-body .item-section--description {
   margin-top: 14px;
 }
-.application.sheet.earthdawn4e.item .item-body .item-section__description .editor.prosemirror:not(.editor--compact) .editor-content {
+.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content {
   min-height: 500px;
   height: 500px;
 }
-.application.sheet.earthdawn4e.item .item-body .item-section__description .prosemirror,
-.application.sheet.earthdawn4e.item .item-body .item-section__description prose-mirror {
+.application.sheet.earthdawn4e.item .item-body .item-section--description .prosemirror,
+.application.sheet.earthdawn4e.item .item-body .item-section--description prose-mirror {
   min-height: 500px;
 }
 .application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-group {
@@ -2957,6 +2957,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   display: flex;
   gap: 0.2rem;
   width: 50%;
+  line-height: 20px;
 }
 .application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-group .item-line .item-line__label {
   font-weight: 500;
@@ -2966,10 +2967,13 @@ section.spells .matrix-cards .matrix-card .spell-link {
   font-size: var(--font-size-13);
   white-space: nowrap;
 }
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__value {
+  text-transform: capitalize;
+}
 .application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__dots {
   flex: 1 1 auto;
   border-bottom: 1px dotted currentColor;
-  transform: translateY(-0.32em);
+  transform: translateY(-0.4em);
 }
 .application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-section--price {
   padding-top: 10px;

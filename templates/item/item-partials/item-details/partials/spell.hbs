@@ -4,42 +4,140 @@
 {{/if}}
 
 {{!-- Circle --}}
-{{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
+<div class="item-section item-section--circle item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.level name="system.level" value=item.system.level localize=true}}
+  {{else}}
+    <div class="item-line item-line--circle">
+      <span class="item-line__label">
+        {{localize systemFields.level.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.level}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
 {{!-- Required Threads --}}
-{{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
+<div class="item-section item-section--threads-required item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.threads.fields.required name="system.threads.required" value=item.system.threads.required localize=true}}
+  {{else}}
+    <div class="item-line item-line--threads-required">
+      <span class="item-line__label">
+        {{localize systemFields.threads.fields.required.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.threads.required}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
 {{!-- Weaving Difficulty --}}
-{{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
+<div class="item-section item-section--weaving-difficulty item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.spellDifficulty.fields.weaving name="system.spellDifficulty.weaving" value=item.system.spellDifficulty.weaving localize=true}}
+  {{else}}
+    <div class="item-line item-line--weaving-difficulty">
+      <span class="item-line__label">
+        {{localize systemFields.spellDifficulty.fields.weaving.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.spellDifficulty.weaving}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
 {{!-- Reattune Difficulty --}}
-{{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+<div class="item-section item-section--reattune-difficulty item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.spellDifficulty.fields.reattune name="system.spellDifficulty.reattune" value=item.system.spellDifficulty.reattune localize=true}}
+  {{else}}
+    <div class="item-line item-line--reattune-difficulty">
+      <span class="item-line__label">
+        {{localize systemFields.spellDifficulty.fields.reattune.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.spellDifficulty.reattune}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
-{{!-- Spellcasting Difficulty --}}
-{{!--formGroup systemFields.spellcastingDifficulty name="system.spellcastingDifficulty" value=item.system.spellcastingDifficulty localize=true--}}
-{{!-- effect --}}
+{{!-- Elements: Type --}}
+<div class="item-section item-section--element-type item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.element.fields.type name="system.element.type" value=item.system.element.type}}
+  {{else if item.system.element.type}}
+    <div class="item-line item-line--element-type">
+      <span class="item-line__label">
+        {{localize systemFields.element.fields.type.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.element.type}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
-{{!-- elements --}}
-{{formGroup systemFields.element.fields.type name="system.element.type" value=item.system.element.type}}
-{{formGroup systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype choices=item.system.elementalSubtypeChoices}}
+{{!-- Elements: Subtype --}}
+<div class="item-section item-section--element-subtype item-group">
+  {{#if @root.editable}}
+    {{formGroup systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype choices=item.system.elementalSubtypeChoices}}
+  {{else if item.system.elementalSubtypeChoices}}
+    <div class="item-line item-line--element-subtype">
+      <span class="item-line__label">
+        {{localize systemFields.element.fields.subtype.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.element.subtype}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
-{{!-- target --}}
-{{!--formGroup systemFields.target name="system.target" value=item.system.target localize=true--}}
-
-{{!-- keywords --}}
+{{!-- Keywords --}}
 {{formGroup systemFields.keywords name="system.keywords" value=item.system.keywords localize=true}}
 
-{{!-- duration --}}
-{{> "systems/ed4e/templates/form/group/general.hbs"
-  dataField=systemFields.duration
-  inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
-  data=item.system.duration
-  fields=item.system.duration.schema.fields
-  fieldPath=systemFields.duration.fieldPath
-  config=config
-}}
+{{!-- Duration --}}
+<div class="item-section item-section--duration item-group">
+  {{#if @root.editable}}
 
-{{!-- range --}}
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.duration
+      inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"
+      data=item.system.duration
+      fields=item.system.duration.schema.fields
+      fieldPath=systemFields.duration.fieldPath
+      config=config
+    }}
+
+  {{else}}
+    <div class="item-line item-line--duration">
+      <span class="item-line__label">
+        {{localize systemFields.duration.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.duration.value}}
+        {{#if item.system.duration.unit}}
+          {{localize (lookup systemFields.duration.fields.unit.choices item.system.duration.unit)}}
+        {{/if}}
+      </span>
+    </div>
+  {{/if}}
+</div>
+
+{{!-- Range --}}
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.range
   inputTemplate="systems/ed4e/templates/form/input/base-metric.hbs"

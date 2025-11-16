@@ -1,15 +1,42 @@
 <div id="base-description-knackManeuver-item" class="item-description__knackManeuver item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-  {{!-- Source --}}
-  <div class="knack-ability__source-min-level">
-    <div class="knack-ability__source">
-      {{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
-    </div>
-    <div class="knack-ability__min-level">
+  {{!-- Source Item --}}
+  {{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+
+  {{!-- Minimum Level --}}
+  <div class="item-section item-section--min-level item-group">
+    {{#if @root.editable}}
       {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
-    </div>
-    {{formField systemFields.extraSuccesses name="system.extraSuccesses" value=item.system.extraSuccesses localize=true}}
+    {{else}}
+      <div class="item-line item-line--min-level">
+        <span class="item-line__label">
+          {{localize systemFields.minLevel.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.minLevel}}
+        </span>
+      </div>
+    {{/if}}
   </div>
+
+  {{!-- Required Extra Successes --}}
+  <div class="item-section item-section--extra-successes item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.extraSuccesses name="system.extraSuccesses" value=item.system.extraSuccesses localize=true}}
+    {{else}}
+      <div class="item-line item-line--extra-successes">
+        <span class="item-line__label">
+          {{localize systemFields.extraSuccesses.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.extraSuccesses}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
 
   {{> "systems/ed4e/templates/form/group/general.hbs"
     dataField=systemFields.requirements

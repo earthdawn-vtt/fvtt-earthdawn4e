@@ -1,10 +1,25 @@
 <div id="base-description-questor-item" class="item-description__questor item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Rank --}}
-    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    <div class="item-section item-section--circle item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    {{else}}
+        <div class="item-line item-line--circle">
+        <span class="item-line__label">
+            {{localize systemFields.level.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.level}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
             <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>

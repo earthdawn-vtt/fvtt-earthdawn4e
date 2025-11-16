@@ -1,34 +1,161 @@
 <div id="base-description-poisonDisease-item" class="item-description__poisonDisease item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Damage Step --}}
-    {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
+    <div class="item-section item-section--damage-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.damageStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.damageStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
     {{!-- Paralyze Step --}}
-    {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
+    <div class="item-section item-section--paralysis-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--paralysis-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.paralysisStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.paralysisStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
     {{!-- Debilitation Step --}}
-    {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
+    <div class="item-section item-section--debilitation-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--debilitation-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.debilitationStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.debilitationStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- Interval Total effects --}}
-    {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
+    {{!-- Interval Total Effects --}}
+    <div class="item-section item-section--interval-total-effects item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
+    {{else}}
+        <div class="item-line item-line--interval-total-effects">
+        <span class="item-line__label">
+            {{localize systemFields.interval.fields.totalEffects.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.interval.totalEffects}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- Interval time in between --}}
-    {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
+    {{!-- Interval Time In Between --}}
+    <div class="item-section item-section--interval-time-between item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
+    {{else}}
+        <div class="item-line item-line--interval-time-between">
+        <span class="item-line__label">
+            {{localize systemFields.interval.fields.timeInBetween.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.interval.timeInBetween}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- Onset time --}}
-    {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
+    {{!-- Onset Time --}}
+    <div class="item-section item-section--onset-time item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
+    {{else}}
+        <div class="item-line item-line--onset-time">
+        <span class="item-line__label">
+            {{localize systemFields.onsetTime.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.onsetTime}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- duration --}}
-    {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
+    {{!-- Duration --}}
+    <div class="item-section item-section--duration item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
+    {{else}}
+        <div class="item-line item-line--duration">
+        <span class="item-line__label">
+            {{localize systemFields.duration.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.duration}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- activation --}}
-    {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
+    {{!-- Activation --}}
+    <div class="item-section item-section--activation item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
+    {{else}}
+        <div class="item-line item-line--activation">
+        <span class="item-line__label">
+            {{localize systemFields.activation.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.activation}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- death --}}
-    {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
+    {{!-- Death --}}
+    <div class="item-section item-section--death item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
+    {{else}}
+        <div class="item-line item-line--death">
+        <span class="item-line__label">
+            {{localize systemFields.death.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.death}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
             <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>

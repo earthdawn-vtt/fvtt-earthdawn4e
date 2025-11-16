@@ -3,12 +3,26 @@
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
     {{!-- Standard Effect --}}
-    {{formField systemFields.standardEffect name="system.standardEffect" value=item.system.standardEffect localize=true}}
+    <div class="item-section item-section--standard-effect item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.standardEffect name="system.standardEffect" value=item.system.standardEffect localize=true}}
+    {{else if item.system.standardEffect}}
+        <div class="item-line item-line--standard-effect">
+        <span class="item-line__label">
+            {{localize systemFields.standardEffect.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.standardEffect}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
             <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>

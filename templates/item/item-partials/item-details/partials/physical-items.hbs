@@ -1,13 +1,13 @@
 <div id="base-partial-physical-item"
-     class="item-partial__physical item-body"
+     class="item-body item-body--physical"
      data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
   {{!-- Blood Magic Damage --}}
-  <div class="item-section--bloodMagic item-group">
+  <div class="item-section item-section--blood-magic item-group">
     {{#if @root.editable}}
       {{formField systemFields.bloodMagicDamage name="system.bloodMagicDamage" value=item.system.bloodMagicDamage localize=true}}
     {{else if item.system.bloodMagicDamage}}
-      <div class="item-line item-line--bloodmagic">
+      <div class="item-line item-line--blood-magic">
         <span class="item-line__label">
           {{localize systemFields.bloodMagicDamage.label}}:
         </span>
@@ -20,7 +20,7 @@
   </div>
 
   {{!-- Price and Denomination --}}
-  <div class="item-section--price item-group">
+  <div class="item-section item-section--price item-group">
     {{#if @root.editable}}
       <div class="form-group">
         <label>{{localize systemFields.price.fields.value.label}}</label>
@@ -47,7 +47,7 @@
   </div>
 
   {{!-- Availability --}}
-  <div class="item-section--availability item-group">
+  <div class="item-section item-section--availability item-group">
     {{#if @root.editable}}
       {{formField systemFields.availability name="system.availability" value=item.system.availability localize=true}}
     {{else}}
@@ -64,7 +64,7 @@
   </div>
 
   {{!-- Weight --}}
-  <div class="item-section--weight item-group">
+  <div class="item-section item-section--weight item-group">
     {{#if @root.editable}}
       {{formField systemFields.weight.fields.value name="system.weight.value" value=item.system.weight.value localize=true}}
     {{else}}

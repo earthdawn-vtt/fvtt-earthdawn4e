@@ -5,55 +5,241 @@
         {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
     {{/if}}
     {{#if this.item.system.isRanged}}
-        {{!-- Weapon SubType --}}
-        {{formField systemFields.weaponSubType name="system.weaponSubType" value=item.system.weaponSubType localize=true}}
-        {{!-- ammunition - Type --}}
-        {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
+        {{!-- Weapon Subtype --}}
+        <div class="item-section item-section--weapon-subtype item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.weaponSubType name="system.weaponSubType" value=item.system.weaponSubType localize=true}}
+        {{else}}
+            <div class="item-line item-line--weapon-subtype">
+            <span class="item-line__label">
+                {{localize systemFields.weaponSubType.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.weaponSubType}}
+            </span>
+            </div>
+        {{/if}}
+        </div>
+
+        {{!-- Ammunition – Type --}}
+        <div class="item-section item-section--ammunition-type item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
+        {{else}}
+            <div class="item-line item-line--ammunition-type">
+            <span class="item-line__label">
+                {{localize systemFields.ammunition.fields.type.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.ammunition.type}}
+            </span>
+            </div>
+        {{/if}}
+        </div>
     {{/if}}
     
     {{!-- Damage Attribute --}}
-    {{formField systemFields.damage.fields.attribute name="system.damage.attribute" value=item.system.damage.attribute localize=true}}
-    
-    {{!-- Damage base Step --}}
-    {{formField systemFields.damage.fields.baseStep name="system.damage.baseStep" value=item.system.damage.baseStep localize=true}}
-    
-    {{!-- forgeBonus --}}
+    <div class="item-section item-section--damage-attribute item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.damage.fields.attribute name="system.damage.attribute" value=item.system.damage.attribute localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-attribute">
+        <span class="item-line__label">
+            {{localize systemFields.damage.fields.attribute.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.damage.attribute}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
+
+    {{!-- Damage Base Step --}}
+    <div class="item-section item-section--damage-base-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.damage.fields.baseStep name="system.damage.baseStep" value=item.system.damage.baseStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-base-step">
+        <span class="item-line__label">
+            {{localize systemFields.damage.fields.baseStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.damage.baseStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
+
+    {{!-- Forge Bonus --}}
+    <div class="item-section item-section--forge-bonus item-group">
     {{#if @root.editable}}
         {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
     {{else if item.system.forgeBonus}}
-        {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
+        <div class="item-line item-line--forge-bonus">
+        <span class="item-line__label">
+            {{localize systemFields.forgeBonus.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.forgeBonus}}
+        </span>
+        </div>
     {{/if}}
+    </div>
 
     {{!-- Weapon Size --}}
-    {{formField systemFields.size name="system.size" value=item.system.size  type="number" localize=true}}
-    
-    {{!-- Dexterity Minimum --}}
-    {{formField systemFields.dexterityMinimum name="system.dexterityMinimum" value=item.system.dexterityMinimum localize=true}}
-    
-    {{!-- Strength Minimum --}}
-    {{formField systemFields.strengthMinimum name="system.strengthMinimum" value=item.system.strengthMinimum localize=true}}
-    {{#if this.item.system.isRanged}}
-        {{!-- short range Min --}}
-        {{formField systemFields.range.fields.shortMin name="system.range.shortMin" value=item.system.range.shortMin localize=true}}
-        {{!-- short range Max --}}
-        {{formField systemFields.range.fields.shortMax name="system.range.shortMax" value=item.system.range.shortMax localize=true}}
-        {{!-- long range Min--}}
-        {{formField systemFields.range.fields.longMin name="system.range.longMin" value=item.system.range.longMin localize=true}}
-        {{!-- long range Max--}}
-        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+    <div class="item-section item-section--size item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.size name="system.size" value=item.system.size type="number" localize=true}}
     {{else}}
-        {{!-- Range--}}
-        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+        <div class="item-line item-line--size">
+        <span class="item-line__label">
+            {{localize systemFields.size.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.size}}
+        </span>
+        </div>
     {{/if}}
-    
-    {{!-- Amount --}}
-    {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+    </div>
+
+    {{!-- Dexterity Minimum --}}
+    <div class="item-section item-section--dexterity-minimum item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.dexterityMinimum name="system.dexterityMinimum" value=item.system.dexterityMinimum localize=true}}
+    {{else}}
+        <div class="item-line item-line--dexterity-minimum">
+        <span class="item-line__label">
+            {{localize systemFields.dexterityMinimum.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.dexterityMinimum}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
+
+    {{!-- Strength Minimum --}}
+    <div class="item-section item-section--strength-minimum item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.strengthMinimum name="system.strengthMinimum" value=item.system.strengthMinimum localize=true}}
+    {{else}}
+        <div class="item-line item-line--strength-minimum">
+        <span class="item-line__label">
+            {{localize systemFields.strengthMinimum.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.strengthMinimum}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
+
+    {{#if this.item.system.isRanged}}
+
+    {{!-- Short Range Min --}}
+    <div class="item-section item-section--range-short-min item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.shortMin name="system.range.shortMin" value=item.system.range.shortMin localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-short-min">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.shortMin.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.shortMin}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+
+    {{!-- Short Range Max --}}
+    <div class="item-section item-section--range-short-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.shortMax name="system.range.shortMax" value=item.system.range.shortMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-short-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.shortMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.shortMax}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+
+    {{!-- Long Range Min --}}
+    <div class="item-section item-section--range-long-min item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMin name="system.range.longMin" value=item.system.range.longMin localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-min">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMin.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMin}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+
+    {{!-- Long Range Max --}}
+    <div class="item-section item-section--range-long-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMax}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+
+    {{else}}
+
+    {{!-- Melee / Single Range (using longMax) --}}
+    <div class="item-section item-section--range-long-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMax}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+    {{/if}}
     
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
-            <span class="label__text">
+    {{!-- Amount --}}
+    {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>
         </h3>

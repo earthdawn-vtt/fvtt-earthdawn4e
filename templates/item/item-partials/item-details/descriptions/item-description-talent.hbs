@@ -1,27 +1,47 @@
-<div id="base-description-talent-item" class="item-description__talent item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-talent-item"
+     class="item-body item-body--talent"
+     data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
 
-    {{!-- Tier --}}
-    {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
-
-    {{!-- talent Category --}}
+  {{!-- Tier --}}
+  <div class="item-section item-section--tier item-group">
     {{#if @root.editable}}
-        {{formField systemFields.talentCategory name="system.talentCategory" value=item.system.talentCategory localize=true}}
-    {{/if}}
-
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
-            <span class="label__text">
-                {{localize "ED.Item.Header.description"}}
-            </span>
-        </h3>
-        <span class="item-body__description">
-            {{#if @root.editable}}
-                {{> "systems/ed4e/templates/global/editor.hbs"}}
-            {{else}}
-                {{{enrichedDescription}}}
-            {{/if}}
+      {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
+    {{else}}
+      <div class="item-line item-line--tier">
+        <span class="item-line__label">
+          {{localize systemFields.tier.label}}:
         </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.tier}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Talent Category --}}
+  <div class="item-section item-section--talent-category item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.talentCategory name="system.talentCategory" value=item.system.talentCategory localize=true}}
+    {{/if}}
+  </div>
+
+  {{!-- Description --}}
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
+    <div class="item-section__description">
+      {{#if @root.editable}}
+        {{> "systems/ed4e/templates/global/editor.hbs"}}
+      {{else}}
+        {{{enrichedDescription}}}
+      {{/if}}
     </div>
+  </div>
+
 </div>

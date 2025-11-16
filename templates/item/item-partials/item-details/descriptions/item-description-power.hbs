@@ -1,19 +1,80 @@
 <div id="base-description-power-item" class="item-description__power item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Power Step --}}
-    {{formField systemFields.powerStep name="system.powerStep" value=item.system.powerStep hint="" localize=true}}
+    <div class="item-section item-section--power-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.powerStep name="system.powerStep" value=item.system.powerStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--power-step">
+        <span class="item-line__label">
+            {{localize systemFields.powerStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.powerStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
     {{!-- Damage Step --}}
-    {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep hint="" localize=true}}
+    <div class="item-section item-section--damage-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-step">
+        <span class="item-line__label">
+            {{localize systemFields.damageStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.damageStep}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
     {{!-- Strain --}}
-    {{formField systemFields.strain name="system.strain" value=item.system.strain hint="" localize=true}}
+    <div class="item-section item-section--strain item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
+    {{else}}
+        <div class="item-line item-line--strain">
+        <span class="item-line__label">
+            {{localize systemFields.strain.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.strain}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
     {{!-- Action --}}
-    {{formField systemFields.action name="system.action" value=item.system.action hint="" localize=true}}
+    <div class="item-section item-section--action item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.action name="system.action" value=item.system.action localize=true}}
+    {{else}}
+        <div class="item-line item-line--action">
+        <span class="item-line__label">
+            {{localize systemFields.action.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if systemFields.action.choices}}
+            {{localize (lookup systemFields.action.choices item.system.action)}}
+            {{else}}
+            {{item.system.action}}
+            {{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
             <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>

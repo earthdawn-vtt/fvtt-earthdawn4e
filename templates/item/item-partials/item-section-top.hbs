@@ -59,7 +59,16 @@
 
         {{/unless}}
 
-        {{localize (concat "TYPES.Item." item.type)}}
+        {{#if @root.editable}}
+          {{localize (concat "TYPES.Item." item.type)}}
+        {{else}}
+          {{#if item.system.type}}
+            {{localize (lookup systemFields.type.choices item.system.type)}}
+          {{else}}
+            {{localize (concat "TYPES.Item." item.type)}}
+          {{/if}}
+        {{/if}}
+
       </span>
     </h3>
 

@@ -3355,6 +3355,10 @@
       "journalSheetEd":                            "Journal Sheet",
       "sceneConfigEd":                             "Scene Configuration"
     },
+    "Form": {
+      "no":                                        "No",
+      "yes":                                       "Yes"
+    },
     "Item": {
       "CreateData": {
         "nameQuestorDevotion":                     "Questor Devotion",
