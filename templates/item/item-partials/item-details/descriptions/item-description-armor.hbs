@@ -1,39 +1,115 @@
-<div id="base-description-armor-item" class="item-description__armor item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
-    
-    {{!-- Physical Armor --}}
-    {{formField systemFields.physical.fields.armor name="system.physical.armor" value=item.system.physical.armor localize=true}}
-    
-    {{!-- Mystical Armor --}}
-    {{formField systemFields.mystical.fields.armor name="system.mystical.armor" value=item.system.mystical.armor localize=true}}
-    
-    {{!-- Physical Forge Bonus --}}
-    {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
-    
-    {{!-- Mystical Forge Bonus --}}
-    {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
-    
-    {{!-- Initiative Penalty --}}
-    {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
-    
-    {{!-- living Armor? --}}
-    {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
-    
-    {{!-- Physical Item Parameter --}}
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
+<div id="base-description-armor-item"
+     class="item-body item-body--armor"
+     data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
-            <span class="label__text">
-                {{localize "ED.Item.Header.description"}}
-            </span>
-        </h3>
-        <span class="item-body__description">
-            {{#if @root.editable}}
-                {{> "systems/ed4e/templates/global/editor.hbs"}}
-            {{else}}
-                {{{enrichedDescription}}}
-            {{/if}}
+  {{!-- Physical Armor --}}
+  <div class="item-section item-section--physical-armor item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.physical.fields.armor name="system.physical.armor" value=item.system.physical.armor localize=true}}
+    {{else}}
+      <div class="item-line item-line--physical-armor">
+        <span class="item-line__label">
+          {{localize systemFields.physical.fields.armor.label}}:
         </span>
-    </div>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{{item.system.physical.armor}}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Mystical Armor --}}
+  <div class="item-section item-section--mystical-armor item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.mystical.fields.armor name="system.mystical.armor" value=item.system.mystical.armor localize=true}}
+    {{else}}
+      <div class="item-line item-line--mystical-armor">
+        <span class="item-line__label">
+          {{localize systemFields.mystical.fields.armor.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{{item.system.mystical.armor}}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Physical Forge Bonus --}}
+  <div class="item-section item-section--physical-forge item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.physical.fields.forgeBonus name="system.physical.forgeBonus" value=item.system.physical.forgeBonus localize=true}}
+    {{else if item.system.physical.forgeBonus}}
+      <div class="item-line item-line--physical-forge">
+        <span class="item-line__label">
+          {{localize systemFields.physical.fields.forgeBonus.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{{item.system.physical.forgeBonus}}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Mystical Forge Bonus --}}
+  <div class="item-section item-section--mystical-forge item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.mystical.fields.forgeBonus name="system.mystical.forgeBonus" value=item.system.mystical.forgeBonus localize=true}}
+    {{else if item.system.mystical.forgeBonus}}
+      <div class="item-line item-line--mystical-forge">
+        <span class="item-line__label">
+          {{localize systemFields.mystical.fields.forgeBonus.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{{item.system.mystical.forgeBonus}}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Initiative Penalty --}}
+  <div class="item-section item-section--initiative-penalty item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
+    {{else}}
+      <div class="item-line item-line--initiative-penalty">
+        <span class="item-line__label">
+          {{localize systemFields.initiativePenalty.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.initiativePenalty}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Living Armor --}}
+  <div class="item-section item-section--living-armor item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
+    {{/if}}
+  </div>
+
+  {{!-- Physical Item Parameter --}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
+
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
+    <span class="item-body__description">
+      {{#if @root.editable}}
+        {{> "systems/ed4e/templates/global/editor.hbs"}}
+      {{else}}
+        {{{enrichedDescription}}}
+      {{/if}}
+    </span>
+  </div>
 
 </div>

@@ -3355,6 +3355,10 @@
       "journalSheetEd":                            "TODO: Add translation",
       "sceneConfigEd":                             "TODO: Add translation"
     },
+    "Form": {
+      "no":                                        "TODO: Add translation",
+      "yes":                                       "TODO: Add translation"
+    },
     "Item": {
       "CreateData": {
         "nameQuestorDevotion":                     "TODO: Add translation",

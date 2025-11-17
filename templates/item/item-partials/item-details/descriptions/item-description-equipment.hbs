@@ -1,22 +1,28 @@
-<div id="base-description-equipment-item" class="item-description__equipment item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-equipment-item"
+     class="item-body item-body--equipment"
+     data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
+  {{!-- Amount --}}
+  <div class="item-section item-section--amount item-group">
+      {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+  </div>
 
-    {{!-- Amount --}}
-    {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
+  {{!-- Description --}}
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
     <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
-            <span class="label__text">
-                {{localize "ED.Item.Header.description"}}
-            </span>
-        </h3>
-        <span class="item-body__description">
-            {{#if @root.editable}}
-                {{> "systems/ed4e/templates/global/editor.hbs"}}
-            {{else}}
-                {{{enrichedDescription}}}
-            {{/if}}
-        </span>
+      {{#if @root.editable}}
+        {{> "systems/ed4e/templates/global/editor.hbs"}}
+      {{else}}
+        {{{enrichedDescription}}}
+      {{/if}}
     </div>
+  </div>
+
 </div>

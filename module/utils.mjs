@@ -817,7 +817,6 @@ export async function preloadHandlebarsTemplates() {
 
     // region Item partials
 
-    "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
     "systems/ed4e/templates/item/item-partials/item-section-navigator.hbs",
     "systems/ed4e/templates/item/item-partials/item-section-main.hbs",
     "systems/ed4e/templates/item/item-partials/item-description.hbs",

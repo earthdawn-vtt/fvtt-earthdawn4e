@@ -226,9 +226,11 @@
   --color-button-slide-thumb: var(--color-text-primary);
   --color-button-slide-background-on: var(--color-gold-2);
   --color-button-slide-background-off: black;
+  --color-shadow: 0 0 10px 1px #010101;
   --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
 }
 :root .theme-light.application.sheet.earthdawn4e.item {
+  --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
   --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
 }
 /* ---------------------------------- */
@@ -2884,6 +2886,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
 }
+.application.sheet.earthdawn4e.item .scrollable {
+  padding-right: 4px;
+}
 .application.sheet.earthdawn4e.item input[type=text],
 .application.sheet.earthdawn4e.item input[type=number],
 .application.sheet.earthdawn4e.item input[type=password],
@@ -2898,6 +2903,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .window-content {
   backdrop-filter: unset;
   -webkit-backdrop-filter: none;
+  padding: 0 1rem 0.5rem;
 }
 .application.sheet.earthdawn4e.item .prosemirror menu,
 .application.sheet.earthdawn4e.item .prose-mirror menu {
@@ -2914,13 +2920,13 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .label--rail {
   font-size: var(--font-size-14);
   text-transform: uppercase;
-  line-height: 1.3;
 }
 .application.sheet.earthdawn4e.item nav.tabs {
-  margin: 8px 0;
+  margin: 8px 0 12px;
   text-transform: uppercase;
   font-weight: bold;
-  border: 0;
+  border-top: 0;
+  border-bottom: 1px solid var(--color-gold-3);
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header {
   display: grid !important;
@@ -2933,7 +2939,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   height: 70px;
   border: 2px solid var(--color-gold-3);
   border-radius: 4px;
-  box-shadow: 0 0 10px 1px black;
+  box-shadow: var(--color-shadow);
   object-fit: cover;
   margin-top: 8px;
 }
@@ -2962,20 +2968,12 @@ section.spells .matrix-cards .matrix-card .spell-link {
   text-align: center;
   margin: 3px 0 0 0;
 }
-.application.sheet.earthdawn4e.item .item-body .item-section__description {
-  margin-top: 14px;
-}
-.application.sheet.earthdawn4e.item .item-body .item-section__description .editor.prosemirror:not(.editor--compact) .editor-content {
-  min-height: 500px;
-  height: 500px;
-}
-.application.sheet.earthdawn4e.item .item-body .item-section__description .prosemirror,
-.application.sheet.earthdawn4e.item .item-body .item-section__description prose-mirror {
-  min-height: 500px;
+.application.sheet.earthdawn4e.item .standard-form fieldset {
+  gap: 0;
+  padding: 10px;
 }
 .application.sheet.earthdawn4e.item .standard-form {
   gap: 0;
-  padding: 0 15px 5px;
 }
 .application.sheet.earthdawn4e.item .standard-form fieldset > legend {
   margin: 0;
@@ -2983,6 +2981,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .standard-formfieldset {
   padding: 0;
+  border: 1px s var(--color-gold-3);
 }
 .application.sheet.earthdawn4e.item .standard-form .tab {
   display: none;
@@ -3008,6 +3007,49 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
   display: none;
+}
+.application.sheet.earthdawn4e.item .item-body {
+  /* <-- key change is here */
+}
+.application.sheet.earthdawn4e.item .item-body .item-section--description {
+  margin-top: 14px;
+}
+.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content {
+  min-height: 500px;
+  height: 500px;
+}
+.application.sheet.earthdawn4e.item .item-body .item-section--description .prosemirror,
+.application.sheet.earthdawn4e.item .item-body .item-section--description prose-mirror {
+  min-height: 500px;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-group {
+  display: flex;
+  justify-content: center;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-group .item-line {
+  display: flex;
+  gap: 0.2rem;
+  width: 50%;
+  line-height: 20px;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-group .item-line .item-line__label {
+  font-weight: 500;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__label,
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__value {
+  font-size: var(--font-size-13);
+  white-space: nowrap;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__value {
+  text-transform: capitalize;
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-line__dots {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted currentColor;
+  transform: translateY(-0.4em);
+}
+.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-section--price {
+  padding-top: 10px;
 }
 .denomination__value-currency .denomination__value {
   width: 75%;

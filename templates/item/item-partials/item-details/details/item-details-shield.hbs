@@ -1,7 +1,12 @@
 <div id="base-details-shield-item" class="item-details__shield" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
     {{!-- Tartsche - usable with a bow --}}
-    {{formField systemFields.bowUsage name="system.bowUsage" value=item.system.bowUsage localize=true}}
-        {{!-- usable Item ?--}}
+    <fieldset>
+        <legend></legend> 
+            {{formField systemFields.bowUsage name="system.bowUsage" value=item.system.bowUsage localize=true}}
+    </fieldset>
+
+    {{!-- usable Item ?--}}
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
     {{#if (eq item.system.usableItem.isUsableItem true)}}
         {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}

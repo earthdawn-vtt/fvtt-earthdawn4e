@@ -20,11 +20,6 @@ export default class MaskItemSheetEd extends ItemSheetEd {
 
   /** @inheritDoc */
   static PARTS = {
-    header: {
-      template: "systems/ed4e/templates/item/item-partials/item-section-name.hbs",
-      id:       "item-name",
-      classes:  [ "item-name" ]
-    },
     top: {
       template: "systems/ed4e/templates/item/item-partials/item-section-top.hbs",
       id:       "top",

@@ -1,29 +1,78 @@
-<div id="base-description-curseMark-item" class="item-description__curseMark item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+<div id="base-description-curseMark-item" class="item-body item-body--curse-mark" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
     {{!-- Curse Step --}}
-    {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
+    <div class="item-section item-section--curse-step item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
+        {{else}}
+        <div class="item-line item-line--curse-step">
+            <span class="item-line__label">
+                {{localize systemFields.step.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.step}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
 
     {{!-- Curse Type --}}
-    {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
+    <div class="item-section item-section--curse-type item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
+        {{/if}}
+    </div>
 
-    {{!-- active --}}
-    {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
+    {{!-- Active --}}
+    <div class="item-section item-section--active item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
+    {{else}}
+        <div class="item-line item-line--active">
+        <span class="item-line__label">
+            {{localize systemFields.active.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.active}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    {{!-- detected --}}
-    {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
+    {{!-- Detected --}}
+    <div class="item-section item-section--detected item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
+    {{else}}
+        <div class="item-line item-line--detected">
+        <span class="item-line__label">
+            {{localize systemFields.detected.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.detected}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
 
-    <div class="item-section__description">
-        <h3 class="item-header__descrption label--rail">
+
+    {{!-- Description --}}
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
             <span class="label__text">
                 {{localize "ED.Item.Header.description"}}
             </span>
         </h3>
-        <span class="item-body__description">
-            {{#if @root.editable}}
-                {{> "systems/ed4e/templates/global/editor.hbs"}}
-            {{else}}
-                {{{enrichedDescription}}}
-            {{/if}}
-        </span>
+        <div class="item-section__description">
+        {{#if @root.editable}}
+            {{> "systems/ed4e/templates/global/editor.hbs"}}
+        {{else}}
+            {{{enrichedDescription}}}
+        {{/if}}
+        </div>
     </div>
+
 </div>
