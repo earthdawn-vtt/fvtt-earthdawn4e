@@ -1,4 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
+import TrapData from "../../data/actor/trap.mjs";
 
 /**
  * An actor sheet application designed for actors of type "Trap"
@@ -16,7 +17,7 @@ export default class ActorSheetEdTrap extends ActorSheetEd {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "Vehicle" ],
+    classes:  [ TrapData.metadata.type, ],
     actions:  {
     },
     position: {

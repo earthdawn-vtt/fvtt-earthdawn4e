@@ -48,6 +48,16 @@ export default class DisciplineData extends ClassTemplate.mixin(
     "ED.Data.Item.Discipline",
   ];
 
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "discipline",
+    }, {
+      inplace: false
+    },
+  ) );
+
   // endregion
 
   // region Getters

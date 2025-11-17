@@ -1,6 +1,8 @@
 import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
 
+const fUtils = foundry.utils;
+
 /**
  * System data definition for dragons.
  * @mixin
@@ -9,6 +11,17 @@ export default class DragonData extends SentientTemplate.mixin(
   NoneCharacterTemplate
 ) {
 
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    return super.defineSchema();
+  }
+
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -16,22 +29,15 @@ export default class DragonData extends SentientTemplate.mixin(
   ];
 
   /** @inheritDoc */
-  static _systemType = "dragon";
+  static metadata = Object.freeze( fUtils.mergeObject(
+    super.metadata,
+    {
+      type: "dragon",
+    }, {
+      inplace: false
+    },
+  ) );
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /** @inheritDoc */
-  static defineSchema() {
-    return super.defineSchema();
-  }
-
-  /* -------------------------------------------- */
-  /*  Migrations                                  */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static migrateData( source ) {
-    super.migrateData( source );
-    // specific migration functions
-  }
 }

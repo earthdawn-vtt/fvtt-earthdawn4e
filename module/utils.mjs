@@ -772,11 +772,6 @@ export async function preloadHandlebarsTemplates() {
 
     // region Actor partials
 
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-trap.hbs",
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-loot.hbs",
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-group.hbs",
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-namegiver.hbs",
-    "systems/ed4e/templates/actor/actor-partials/actor-section-buttons-vehicle.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
     "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs",
@@ -821,7 +816,6 @@ export async function preloadHandlebarsTemplates() {
     "systems/ed4e/templates/item/item-partials/item-section-main.hbs",
     "systems/ed4e/templates/item/item-partials/item-description.hbs",
     "systems/ed4e/templates/item/item-partials/item-details.hbs",
-    "systems/ed4e/templates/item/item-partials/item-sheet.hbs",
 
     "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs",
     "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs",

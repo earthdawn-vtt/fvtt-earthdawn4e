@@ -9,11 +9,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Maneuver",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -28,6 +24,28 @@ export default class ManeuverData extends ItemDataModel.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Maneuver",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "maneuver",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

@@ -11,11 +11,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
   ItemDescriptionTemplate
 )  {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Devotion",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -34,6 +30,30 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Devotion",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "devotion",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Getters
 
   /**
    * @inheritDoc
@@ -130,6 +150,10 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     };
   }
 
+  // endregion
+
+  // region LP Tracking
+
   /**
    * @inheritDoc
    */
@@ -167,6 +191,8 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
     if ( !learnedItem.system.tier )await learnedItem.system.chooseTier();
     return learnedItem;
   }
+
+  // endregion
 
   // region Rolling
 

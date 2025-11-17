@@ -1,4 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
+import VehicleData from "../../data/actor/vehicle.mjs";
 
 /**
  * An actor sheet application designed for actors of type "Vehicle"
@@ -16,7 +17,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "Vehicle" ],
+    classes:  [ VehicleData.metadata.type, ],
     actions:  {
     },
     position: {

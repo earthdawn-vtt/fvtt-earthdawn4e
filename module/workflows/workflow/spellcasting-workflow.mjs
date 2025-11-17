@@ -7,6 +7,9 @@ import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
 import AttuneMatrixWorkflow from "./attune-matrix-workflow.mjs";
 import AttuneGrimoireWorkflow from "./attune-grimoire-workflow.mjs";
+import DragonData from "../../data/actor/dragon.mjs";
+import HorrorData from "../../data/actor/horror.mjs";
+import SpiritData from "../../data/actor/spirit.mjs";
 
 /**
  * @typedef {object} SpellcastingWorkflowOptions
@@ -28,7 +31,11 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
   };
 
   get _isRawCaster() {
-    return [ "dragon", "horror", "spirit" ].includes( this._actor.type );
+    return [
+      DragonData.metadata.type,
+      HorrorData.metadata.type,
+      SpiritData.metadata.type,
+    ].includes( this._actor.type );
   }
 
   /**

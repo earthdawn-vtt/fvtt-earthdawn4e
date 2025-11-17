@@ -11,19 +11,7 @@ const { createFormGroup, createSelectInput } = foundry.applications.fields;
  */
 export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectData {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.ActiveEffect.EaeCondition",
-  ];
-
-  static metadata = Object.freeze(
-    foundry.utils.mergeObject( super.metadata, {
-      type: "condition",
-    } , {
-      inplace: false
-    } ),
-  );
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -40,7 +28,27 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     } );
   }
 
-  // region Properties
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.EaeCondition",
+  ];
+
+  static metadata = Object.freeze(
+    foundry.utils.mergeObject( super.metadata, {
+      type: "condition",
+    } , {
+      inplace: false
+    } ),
+  );
+
+  // endregion
+
+  // region Getters
 
   get hasLevelNames() {
     return CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levelNames?.length > 0;
@@ -126,6 +134,21 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   // region Levels
 
+  getNameWithLevel( level ) {
+    const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
+    const baseName = this.parent._source.name;
+    if ( !status || !status?.levels ) return baseName;
+
+    if ( status.levelNames ) {
+      const levelName = status.levelNames[ level ] ?? "";
+      return `${baseName} (${levelName})`;
+    }
+
+    if ( level === 1 ) return baseName;
+
+    return `${baseName} (${level})`;
+  }
+
   /**
    * Increase the level of a status that can either be stacked or has discrete stages.
    * @param {number} [levels]   Amount of levels to increase by. Defaults to 1.
@@ -165,19 +188,4 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
   }
 
   // endregion
-
-  getNameWithLevel( level ) {
-    const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
-    const baseName = this.parent._source.name;
-    if ( !status || !status?.levels ) return baseName;
-
-    if ( status.levelNames ) {
-      const levelName = status.levelNames[ level ] ?? "";
-      return `${baseName} (${levelName})`;
-    }
-
-    if ( level === 1 ) return baseName;
-
-    return `${baseName} (${level})`;
-  }
 }

@@ -1,6 +1,7 @@
 import { COMMON_EAE_CHANGES } from "./effects.mjs";
 import { preLocalize } from "../utils.mjs";
 import SentientTemplate from "../data/actor/templates/sentient.mjs";
+import EarthdawnConditionEffectData from "../data/effects/eae-condition.mjs";
 
 const STATUS_CHANGES = {
   aggressive: [
@@ -166,7 +167,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.aggressive,
     system:  {
       changes: STATUS_CHANGES.aggressive,
@@ -181,7 +182,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:   "attackStun",
@@ -192,7 +193,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:   "attuningOnTheFly",
@@ -202,7 +203,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:    "condition",
+    type:    EarthdawnConditionEffectData.metadata.type,
     changes: [ {} ],
     system:  {
       changes: [ {} ],
@@ -217,7 +218,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.blindness,
     system:  {
       // only for sight based tests
@@ -233,7 +234,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.blindsided,
     system:  {
       // only against the attack that caused the blindsided effect
@@ -249,7 +250,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.calledShot,
     system:  {
       changes: STATUS_CHANGES.calledShot,
@@ -263,7 +264,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:    "condition",
+    type:    EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:    "cover",
@@ -275,7 +276,7 @@ export const statusEffects = [
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  COMMON_EAE_CHANGES.coverPartial,
     system:  {
       changes: COMMON_EAE_CHANGES.coverPartial,
@@ -291,7 +292,7 @@ export const statusEffects = [
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  COMMON_EAE_CHANGES.darknessPartial,
     system:  {
       changes: COMMON_EAE_CHANGES.darknessPartial,
@@ -305,7 +306,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.dazzled,
     system:  {
       // only for sight based tests
@@ -329,7 +330,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.defensive,
     system:  {
       changes: STATUS_CHANGES.defensive,
@@ -344,7 +345,7 @@ export const statusEffects = [
     levels:    Number.POSITIVE_INFINITY, // no limit theoretically? or like an ability up to 15?
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.fury,
     system:  {
       // add custom handling: only up to level of fury
@@ -359,7 +360,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.grappled,
     system:  {
       // can't move, can take no actions without beating the unarmed combat test
@@ -375,7 +376,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.harried,
     system:  {
       changes: STATUS_CHANGES.harried,
@@ -391,7 +392,7 @@ export const statusEffects = [
     levels:     2,
     reference:  "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  COMMON_EAE_CHANGES.impairedLight,
     system:  {
       changes: COMMON_EAE_CHANGES.impairedLight,
@@ -406,7 +407,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:    "knockedDown",
@@ -416,7 +417,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.knockedDown,
     system:  {
       // unset other combat options, can't be used
@@ -432,7 +433,7 @@ export const statusEffects = [
     levels:    Number.POSITIVE_INFINITY, // no limit
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.overwhelmed,
     system:  {
       changes: STATUS_CHANGES.overwhelmed,
@@ -447,7 +448,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:   "shatterShield",
@@ -458,7 +459,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:   "splitMovement",
@@ -469,7 +470,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:    "surprised",
@@ -479,7 +480,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes:  STATUS_CHANGES.surprised,
     duration: STATUS_DURATIONS.surprised,
     system:   {
@@ -497,7 +498,7 @@ export const statusEffects = [
     combatOption: true,
     reference:    "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
   },
   {
     id:    "unconscious",
@@ -507,7 +508,7 @@ export const statusEffects = [
 
     reference: "TODO: Compendium UUID to explanation",
 
-    type:     "condition",
+    type:     EarthdawnConditionEffectData.metadata.type,
     changes: [ {} ],
     system:  {
       changes: [ {} ],

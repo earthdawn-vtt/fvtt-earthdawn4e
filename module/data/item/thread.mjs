@@ -52,6 +52,16 @@ export default class ThreadData extends ItemDataModel.mixin(
     "ED.Data.Other.Thread",
   ];
 
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "thread",
+    }, {
+      inplace: false
+    },
+  ) );
+
   // endregion
 
   // region Life Cycle Events

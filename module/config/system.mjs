@@ -50,7 +50,7 @@ export const typeGroups = {
     equipment:    [ "armor", "equipment", "shield", "weapon" ],
     powers:       [ "maneuver", "power" ],
     abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
-    conditions:   [ "curseMark", "effect", "poisonDisease" ],
+    conditions:   [ "curseMark", "poisonDisease" ],
     magic:        [ "spell", "spellKnack", "bindingSecret", ],
     classes:      [ "discipline", "path", "questor" ],
     other:        [ "mask", "namegiver", "shipWeapon" ]

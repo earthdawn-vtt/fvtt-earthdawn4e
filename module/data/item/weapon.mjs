@@ -25,13 +25,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   RollableTemplate,
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Weapon",
-  ];
-
-  static _itemStatusOrder = [ "owned", "carried", "mainHand", "offHand", "twoHands", "tail" ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -151,9 +145,31 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Getters                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Weapon",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "weapon",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  static _itemStatusOrder = [ "owned", "carried", "mainHand", "offHand", "twoHands", "tail" ];
+
+  // endregion
+
+  // region Getters
 
   /** @override */
   get ammoAmount() {
@@ -189,8 +205,32 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     } else return this.damage.baseStep + this.forgeBonus;
   }
 
+  /**
+   * Checks if the weapon is currently equipped based on its item status and wielding type.
+   * @type {boolean}
+   */
   get equipped() {
     return this.itemStatus === this.wieldingType;
+  }
+
+  /**
+   * Checks if the weapon is a ranged weapon based on its weapon type.
+   * @type {boolean}
+   */
+  get isRanged() {
+    return Object.keys(
+      filterObject( ED4E.weaponType, ( _, value ) => value.ranged )
+    ).includes( this.weaponType );
+  }
+
+  /**
+   * Checks if the weapon type is a two-handed ranged weapon. True if the weapon
+   * type is either 'bow' or 'crossbow', and false otherwise.
+   * @type {boolean}
+   */
+  get isTwoHandedRanged() {
+    return false;
+    // TODO: add additional datafield
   }
 
   /** @override */
@@ -213,36 +253,42 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
     return this._rotateValidItemStatus( this.statusIndex, true );
   }
 
-  /**
-   * Checks if the weapon type is a two-handed ranged weapon. True if the weapon
-   * type is either 'bow' or 'crossbow', and false otherwise.
-   * @type {boolean}
-   */
-  get isTwoHandedRanged() {
-    return false;
-    // TODO: add additional datafield
-  }
+  // endregion
 
-  get isRanged() {
-    return Object.keys( 
-      filterObject( ED4E.weaponType, ( _, value ) => value.ranged ) 
-    ).includes( this.weaponType );
-  }
-
-  /* -------------------------------------------- */
-  /*  Methods                   */
-  /* -------------------------------------------- */
+  // region Checkers
 
   /**
-   * Rotates the status of the item based on the current status.
-   * The rotation follows the order defined in `_itemStatusOrder`.
-   * @param {number} currentStatusIndex - The index of the current status in `_itemStatusOrder`.
-   * @param {boolean} backwards - If true, rotates the status backwards. If false or not provided, rotates the status forwards.
-   * @returns {string} The next valid status for the item if rotating forwards, or the previous valid status if rotating backwards.
+   * Check if the weapon is possible for the given handling type based on the  limits given in the namegiver.
+   * @param {string} handlingType The handling type to check for. One of "mainHand", "offHand", "oneHand", "twoHands", "tail".
+   * @param {ItemEd} namegiver The namegiver document.
+   * @returns {boolean} True if the weapon is within the limits of the namegiver for the given handling.
+   * If no namegiver or appropriate limits are given, returns `undefined`.
    */
-  _rotateValidItemStatus( currentStatusIndex, backwards = false ) {
-    return backwards ? this._getPreviousItemStatus( currentStatusIndex ) : this._getNextItemStatus( currentStatusIndex );
+  canBeHandledWith( handlingType, namegiver ) {
+    const hasTailAttack = namegiver?.system.tailAttack;
+    const weaponSizeLimits = namegiver?.system.weaponSize;
+    const size = this.size;
+    if ( !weaponSizeLimits || size === null || hasTailAttack === null ) return undefined;
+
+    switch ( handlingType ) {
+      case "oneHand":
+      case "mainHand":
+      case "offHand":
+        return inRange( size, weaponSizeLimits.oneHanded.min, weaponSizeLimits.oneHanded.max )
+          && !this.isTwoHandedRanged;
+      case "twoHands":
+        return inRange( size, weaponSizeLimits.twoHanded.min, weaponSizeLimits.twoHanded.max )
+          || this.isTwoHandedRanged;
+      case "tail":
+        return hasTailAttack && size <= 2;
+      default:
+        return undefined;
+    }
   }
+
+  // endregion
+
+  // region Item Status
 
   /**
    * Determines the next status of the item based on the current status.
@@ -315,6 +361,28 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   }
 
   /**
+   * Rotates the status of the item based on the current status.
+   * The rotation follows the order defined in `_itemStatusOrder`.
+   * @param {number} currentStatusIndex - The index of the current status in `_itemStatusOrder`.
+   * @param {boolean} backwards - If true, rotates the status backwards. If false or not provided, rotates the status forwards.
+   * @returns {string} The next valid status for the item if rotating forwards, or the previous valid status if rotating backwards.
+   */
+  _rotateValidItemStatus( currentStatusIndex, backwards = false ) {
+    return backwards ? this._getPreviousItemStatus( currentStatusIndex ) : this._getNextItemStatus( currentStatusIndex );
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  /**
    * Rolls the damage for the weapon.
    * @param {object} [rollOptionsData] Additional data for the roll options.
    * @param {EdRoll} [rollOptionsData.attackRoll] The attack roll triggering this damage roll. Necessary to determine
@@ -331,44 +399,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
       } );
 
     return /** @type {EdRoll} */ damageWorkflow.execute();
-  }
-
-  /**
-   * Check if the weapon is possible for the given handling type based on the  limits given in the namegiver.
-   * @param {string} handlingType The handling type to check for. One of "mainHand", "offHand", "oneHand", "twoHands", "tail".
-   * @param {ItemEd} namegiver The namegiver document.
-   * @returns {boolean} True if the weapon is within the limits of the namegiver for the given handling.
-   * If no namegiver or appropriate limits are given, returns `undefined`.
-   */
-  canBeHandledWith( handlingType, namegiver ) {
-    const hasTailAttack = namegiver?.system.tailAttack;
-    const weaponSizeLimits = namegiver?.system.weaponSize;
-    const size = this.size;
-    if ( !weaponSizeLimits || size === null || hasTailAttack === null ) return undefined;
-
-    switch ( handlingType ) {
-      case "oneHand":
-      case "mainHand":
-      case "offHand":
-        return inRange( size, weaponSizeLimits.oneHanded.min, weaponSizeLimits.oneHanded.max )
-          && !this.isTwoHandedRanged;
-      case "twoHands":
-        return inRange( size, weaponSizeLimits.twoHanded.min, weaponSizeLimits.twoHanded.max )
-          || this.isTwoHandedRanged;
-      case "tail":
-        return hasTailAttack && size <= 2;
-      default:
-        return undefined;
-    }
-  }
-
-  // region Rolling
-
-  /** @inheritDoc */
-  getRollData() {
-    const rollData = super.getRollData();
-    Object.assign( rollData, super.getTemplatesRollData() );
-    return Object.assign( rollData, {} );
   }
 
   // endregion

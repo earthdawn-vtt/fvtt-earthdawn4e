@@ -2,19 +2,7 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class DamageMessageData extends BaseMessageData {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.General.DamageMessage",
-  ];
-
-  static DEFAULT_OPTIONS = {
-    actions: {
-      "apply-damage":  this._onApplyDamage,
-      "take-damage":   this._onTakeDamage,
-      "undo-damage":   this._onUndoDamage,
-    },
-  };
+  //  region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -43,6 +31,36 @@ export default class DamageMessageData extends BaseMessageData {
       ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.DamageMessage",
+  ];
+
+  static DEFAULT_OPTIONS = {
+    actions: {
+      "apply-damage":  this._onApplyDamage,
+      "take-damage":   this._onTakeDamage,
+      "undo-damage":   this._onUndoDamage,
+    },
+  };
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "damage",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rendering
 

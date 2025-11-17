@@ -1,6 +1,7 @@
 import ItemSheetEd from "./item-sheet.mjs";
 import TruePatternData from "../../data/thread/true-pattern.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
+import PcData from "../../data/actor/pc.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
@@ -323,7 +324,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       ?? canvas.tokens.controlled[0]?.actor
       ?? await PromptFactory.chooseActorPrompt(
         [],
-        game.user.isGM ? "" : "character",
+        game.user.isGM ? "" : PcData.metadata.type,
         {}
       );
     if ( !actor ) {
@@ -354,7 +355,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       ?? canvas.tokens.controlled[0]?.actor
       ?? await PromptFactory.chooseActorPrompt(
         [],
-        game.user.isGM ? "" : "character",
+        game.user.isGM ? "" : PcData.metadata.type,
         {}
       );
     if ( !actor ) {

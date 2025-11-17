@@ -12,11 +12,7 @@ import { mapObject } from "../../utils.mjs";
  */
 export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.ActiveEffect.Eae",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -51,6 +47,28 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
         } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.ActiveEffect.Eae",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "eae",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   //  region Life Cycle Events
 

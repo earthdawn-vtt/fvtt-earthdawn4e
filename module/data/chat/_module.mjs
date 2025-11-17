@@ -13,12 +13,3 @@ export {
   SpellcastingMessageData,
   ThreadWeavingMessageData,
 };
-
-export const config = {
-  attack:        AttackMessageData,
-  common:        BaseMessageData,
-  damage:        DamageMessageData,
-  initiative:    InitiativeMessageData,
-  spellcasting:  SpellcastingMessageData,
-  threadWeaving: ThreadWeavingMessageData,
-};

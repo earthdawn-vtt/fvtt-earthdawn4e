@@ -90,9 +90,9 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
 
   /** @inheritDoc */
   _getChatFlavorData() {
-    const horror = this.horrorUuid ?
-      createContentAnchor( fromUuidSync( this.horrorUuid ) ).outerHTML :
-      game.i18n.localize( "ED.Chat.Flavor.aHorror" );
+    const horror = this.horrorUuid
+      ? createContentAnchor( fromUuidSync( this.horrorUuid ) ).outerHTML
+      : game.i18n.localize( "ED.Chat.Flavor.aHorror" );
     return {
       caster:   createContentAnchor( fromUuidSync( this.casterUuid ) ).outerHTML,
       horror,

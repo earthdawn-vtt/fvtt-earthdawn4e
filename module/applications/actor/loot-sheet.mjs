@@ -1,4 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
+import LootData from "../../data/actor/loot.mjs";
 
 /**
  * An actor sheet application designed for actors of type "Loot"
@@ -16,7 +17,7 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "Vehicle" ],
+    classes:  [ LootData.metadata.type, ],
     actions:  {
     },
     position: {

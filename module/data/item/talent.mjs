@@ -17,11 +17,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   MatrixTemplate,
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Talent",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -74,14 +70,30 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     } );
   }
 
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
 
   /** @inheritdoc */
-  static metadata = Object.freeze( foundry.utils.mergeObject( super.metadata, {
-    hasLinkedItems: true,
-  }, {inplace: false} ) );
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Talent",
+  ];
 
-  /* -------------------------------------------- */
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      hasLinkedItems: true,
+      type:           "talent",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritdoc */
   static _cleanData( source, options ) {
@@ -91,9 +103,9 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     }
   }
 
-  /* -------------------------------------------- */
-  /*  LP Tracking                                 */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Getters
 
   /**
    * @inheritDoc
@@ -214,6 +226,10 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     };
   }
 
+  // endregion
+
+  // region LP Tracking
+
   /**
    * @inheritDoc
    */
@@ -222,6 +238,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   }
 
   // region Learning
+
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     // dropping an item on the actor has no createData. This is only used when learning a
@@ -281,6 +298,10 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     return learnedItem;
   }
 
+  // endregion
+
+  // endregion
+
   // region Life Cycle Events
 
   /** @inheritdoc */
@@ -301,10 +322,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
 
   // endregion
 
-
-  /* -------------------------------------------- */
-  /*  Drop Events                                 */
-  /* -------------------------------------------- */
+  // region Drag and Drop
 
   async _onDropKnack( event, document ) {
     const item = this.parent;
@@ -317,6 +335,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     } );
     return true;
   }
+
+  // endregion
 
   // region Rolling
 

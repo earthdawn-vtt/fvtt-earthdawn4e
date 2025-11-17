@@ -2,21 +2,9 @@ import BaseMessageData from "./base-message.mjs";
 
 export default class AttackMessageData extends BaseMessageData {
 
+  // region Schema
+
   /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.General.AttackMessage",
-  ];
-
-  static DEFAULT_OPTIONS = {
-    actions: {
-      "applyEffect":  this._onApplyEffect,
-      "rollDamage":   this._onRollDamage,
-      "maneuver":      this._onUseManeuver,
-      "reaction":      this._onUseReaction,
-    },
-  };
-
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
@@ -39,9 +27,39 @@ export default class AttackMessageData extends BaseMessageData {
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.AttackMessage",
+  ];
+
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    actions: {
+      "applyEffect":  this._onApplyEffect,
+      "rollDamage":   this._onRollDamage,
+      "maneuver":      this._onUseManeuver,
+      "reaction":      this._onUseReaction,
+    },
+  };
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "attack",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Getters
 
   /**
    * The Actor that is attacking.
@@ -59,9 +77,9 @@ export default class AttackMessageData extends BaseMessageData {
     return this.roll.options.target.tokens.map( token => fromUuidSync( token ) );
   }
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Life Cycle Events
 
   /** @inheritDoc */
   async _preCreate( data, options, user ) {
@@ -79,10 +97,9 @@ export default class AttackMessageData extends BaseMessageData {
     this.updateSource( updates );
   }
 
+  // endregion
 
-  /* -------------------------------------------- */
-  /*  Listeners                                   */
-  /* -------------------------------------------- */
+  // region Event Handlers
 
   /**
    * @type {ApplicationClickAction}
@@ -105,11 +122,19 @@ export default class AttackMessageData extends BaseMessageData {
     }
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {AttackMessageData}
+   */
   static async _onApplyEffect( event, button ) {
     event.preventDefault();
     console.log( "In _onApplyEffect ChatMessage listener" );
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {AttackMessageData}
+   */
   static async _onUseManeuver( event, button ) {
     event.preventDefault();
     ui.notifications.info( "Maneuvers are not done yet. We're working on it :)" );
@@ -119,6 +144,10 @@ export default class AttackMessageData extends BaseMessageData {
     console.log( "Ability: ", ability ); */
   }
 
+  /**
+   * @type {ApplicationClickAction}
+   * @this {AttackMessageData}
+   */
   static async _onUseReaction( event, button ) {
     event.preventDefault();
     const ability = await fromUuid( event.srcElement.dataset.abilityUuid );
@@ -126,5 +155,7 @@ export default class AttackMessageData extends BaseMessageData {
     // update the original chat message success result #908
     return await ability.system.rollAbility();
   }
+
+  // endregion
 
 }

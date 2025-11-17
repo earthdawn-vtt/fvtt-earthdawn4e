@@ -46,11 +46,7 @@ export default class MaskData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 ) {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Mask",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -208,7 +204,29 @@ export default class MaskData extends ItemDataModel.mixin(
     } );
   }
 
-  // Checkers
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Mask",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "mask",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Checkers
 
   /**
    * Checks if the mask has a power with the given UUID.
@@ -221,7 +239,7 @@ export default class MaskData extends ItemDataModel.mixin(
 
   // endregion
 
-  // Methods
+  // region Methods
 
   /**
    * Adds a power to the mask.
@@ -293,6 +311,8 @@ export default class MaskData extends ItemDataModel.mixin(
       [`system.${itemType}s`]: oldData.filter( entry => entry !== itemUuid )
     } );
   }
+
+  // endregion
 
   // region Rolling
 

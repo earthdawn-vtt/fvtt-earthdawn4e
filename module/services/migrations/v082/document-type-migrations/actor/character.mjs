@@ -41,8 +41,8 @@ export default class CharacterMigration extends BaseMigration {
 
     // Check if migration has already been performed by looking for new format
     const hasNewFormat = Object.keys( source.system.attributes ).some( key => 
-      [ "dex", "str", "tou", "per", "wil", "cha" ].includes( key ) && 
-      source.system.attributes[ key ]?.hasOwnProperty( "initialValue" )
+      [ "dex", "str", "tou", "per", "wil", "cha" ].includes( key ) 
+      && source.system.attributes[ key ]?.hasOwnProperty( "initialValue" )
     );
 
     if ( hasNewFormat ) {

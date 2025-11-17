@@ -5,6 +5,17 @@ import CommonTemplate from "./templates/common.mjs";
  */
 export default class VehicleData extends CommonTemplate {
 
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    return super.defineSchema();
+  }
+
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -12,12 +23,15 @@ export default class VehicleData extends CommonTemplate {
   ];
 
   /** @inheritDoc */
-  static _systemType = "Vehicle";
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "vehicle",
+    }, {
+      inplace: false
+    },
+  ) );
 
-  /* -------------------------------------------- */
+  // endregion
 
-  /** @inheritDoc */
-  static defineSchema() {
-    return super.defineSchema();
-  }
 }

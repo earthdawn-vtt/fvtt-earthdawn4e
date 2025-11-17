@@ -92,10 +92,10 @@ export default class MigrationManager {
     const sys = source.system;
     
     // Old earthdawn4e had flat attribute structure - check key indicators
-    return sys?.dexterityvalue !== undefined || 
-           sys?.strengthvalue !== undefined ||
-           sys?.dexterityStep !== undefined ||
-           sys?.strengthStep !== undefined;
+    return sys?.dexterityvalue !== undefined 
+           || sys?.strengthvalue !== undefined
+           || sys?.dexterityStep !== undefined
+           || sys?.strengthStep !== undefined;
   }
 
   /**

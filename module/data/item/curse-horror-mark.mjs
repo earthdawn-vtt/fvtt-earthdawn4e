@@ -16,11 +16,7 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
   ItemDescriptionTemplate
 )  {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.CurseHorrorMark",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -32,7 +28,7 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
         min:      0,
         initial:  0,
         integer:  true,
-      } ), 
+      } ),
       type: new fields.StringField( {
         required: true,
         nullable: true,
@@ -56,6 +52,28 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.CurseHorrorMark",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "curseMark",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 

@@ -10,6 +10,19 @@ export default class KnackManeuverData extends ManeuverData.mixin(
   KnackTemplate,
 ) {
 
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
+
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
     ...super.LOCALIZATION_PREFIXES,
@@ -17,11 +30,16 @@ export default class KnackManeuverData extends ManeuverData.mixin(
   ];
 
   /** @inheritDoc */
-  static defineSchema() {
-    return this.mergeSchema( super.defineSchema(), {
-            
-    } );
-  }
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: "knackManeuver",
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
 
   // region Rolling
 
