@@ -336,6 +336,14 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
+   * The unmodified level of the spell, without adjustments like active effects.
+   * @type {number}
+   */
+  get unmodifiedLevel() {
+    return this._source.level;
+  }
+
+  /**
    * The number of threads that have been woven for this spell.
    * @type {number}
    */
