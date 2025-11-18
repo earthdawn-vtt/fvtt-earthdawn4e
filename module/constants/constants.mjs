@@ -4,7 +4,7 @@
  * The system types for various Foundry VTT documents.
  * @type {{ActiveEffect: Record<symbol,string>, Actor: Record<symbol, string>, ChatMessage: Record<symbol,string>, Combatant: Record<symbol,string>, Item: Record<symbol,string>}}
  */
-export const systemTypes = {
+export const SYSTEM_TYPES = {
   ActiveEffect: {
     eae:       "eae",
     condition: "condition"

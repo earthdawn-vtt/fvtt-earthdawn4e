@@ -17,7 +17,7 @@ import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import ArmorData from "../item/armor.mjs";
 import ShieldData from "../item/shield.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
 
@@ -99,7 +99,7 @@ export default class PcData extends NamegiverTemplate {
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: systemTypes.Actor.pc,
+      type: SYSTEM_TYPES.Actor.pc,
     }, {
       inplace: false
     },

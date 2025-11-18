@@ -1,5 +1,5 @@
 import CommonTemplate from "./templates/common.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * System data definition for vehicles.
@@ -27,7 +27,7 @@ export default class VehicleData extends CommonTemplate {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: systemTypes.Actor.vehicle,
+      type: SYSTEM_TYPES.Actor.vehicle,
     }, {
       inplace: false
     },

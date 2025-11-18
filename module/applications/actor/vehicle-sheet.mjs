@@ -1,5 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * An actor sheet application designed for actors of type "Vehicle"
@@ -17,7 +17,7 @@ export default class ActorSheetEdVehicle extends ActorSheetEd {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ systemTypes.Actor.vehicle, ],
+    classes:  [ SYSTEM_TYPES.Actor.vehicle, ],
     actions:  {
     },
     position: {

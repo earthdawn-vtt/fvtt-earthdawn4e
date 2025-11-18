@@ -1,5 +1,5 @@
 import CommonTemplate from "./templates/common.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
 
@@ -29,7 +29,7 @@ export default class GroupData extends CommonTemplate {
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: systemTypes.Actor.group,
+      type: SYSTEM_TYPES.Actor.group,
     }, {
       inplace: false
     },

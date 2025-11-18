@@ -1,7 +1,7 @@
 import BaseMessageData from "./base-message.mjs";
 import { CHAT } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 export default class SpellcastingMessageData extends BaseMessageData {
 
@@ -34,7 +34,7 @@ export default class SpellcastingMessageData extends BaseMessageData {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: systemTypes.ChatMessage.spellcasting,
+      type: SYSTEM_TYPES.ChatMessage.spellcasting,
     }, {
       inplace: false
     },

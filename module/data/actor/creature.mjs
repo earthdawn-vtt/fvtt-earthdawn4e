@@ -1,6 +1,6 @@
 import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
-import { systemTypes } from "../../constants/constants.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
 
@@ -33,7 +33,7 @@ export default class CreatureData extends SentientTemplate.mixin(
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: systemTypes.Actor.creature,
+      type: SYSTEM_TYPES.Actor.creature,
     }, {
       inplace: false
     },
