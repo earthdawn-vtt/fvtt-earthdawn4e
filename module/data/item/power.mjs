@@ -7,6 +7,7 @@ import AbilityRollOptions from "../roll/ability.mjs";
 import AttackRollOptions from "../roll/attack.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Power items.
@@ -103,7 +104,7 @@ export default class PowerData extends ActionTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "power",
+      type: SYSTEM_TYPES.Item.power,
     }, {
       inplace: false
     },

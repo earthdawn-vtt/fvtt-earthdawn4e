@@ -4,6 +4,7 @@ import { getSingleGlobalItemByEdid } from "../../utils.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import { LEGEND, } from "../../config/_module.mjs";
 import { getDefaultEdid, } from "../../settings.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Spell items.
@@ -53,7 +54,7 @@ export default class SpellKnackData extends SpellData.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "spellKnack",
+      type: SYSTEM_TYPES.Item.spellKnack,
     }, {
       inplace: false
     },

@@ -1,5 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Maneuver items.
@@ -39,7 +40,7 @@ export default class ManeuverData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "maneuver",
+      type: SYSTEM_TYPES.Item.maneuver,
     }, {
       inplace: false
     },

@@ -5,6 +5,7 @@ import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const DialogClass = DialogEd;
 
@@ -85,7 +86,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     super.metadata,
     {
       hasLinkedItems: true,
-      type:           "talent",
+      type:           SYSTEM_TYPES.Item.talent,
     }, {
       inplace: false
     },

@@ -1,5 +1,6 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
@@ -99,7 +100,7 @@ export default class ArmorData extends PhysicalItemTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "armor",
+      type: SYSTEM_TYPES.Item.armor,
     }, {
       inplace: false
     },

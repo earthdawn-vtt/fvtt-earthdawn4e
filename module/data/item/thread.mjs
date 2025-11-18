@@ -4,6 +4,7 @@ import LpIncreaseTemplate from "./templates/lp-increase.mjs";
 import ED4E, { MAGIC } from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model for thread items.
@@ -56,7 +57,7 @@ export default class ThreadData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "thread",
+      type: SYSTEM_TYPES.Item.thread,
     }, {
       inplace: false
     },

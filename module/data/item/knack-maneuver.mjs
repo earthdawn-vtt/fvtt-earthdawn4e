@@ -1,6 +1,7 @@
 import ManeuverData from "./maneuver.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on items that are used to represent custom active effects.
@@ -33,7 +34,7 @@ export default class KnackManeuverData extends ManeuverData.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "knackManeuver",
+      type: SYSTEM_TYPES.Item.knackManeuver,
     }, {
       inplace: false
     },

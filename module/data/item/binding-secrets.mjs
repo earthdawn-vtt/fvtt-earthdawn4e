@@ -1,5 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SpellData from "./spell.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Spell items.
@@ -31,7 +32,7 @@ export default class BindingSecretData extends SpellData.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "bindingSecret",
+      type: SYSTEM_TYPES.Item.bindingSecret,
     }, {
       inplace: false
     },

@@ -1,6 +1,7 @@
 import AbilityTemplate from "./templates/ability.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Knack items.
@@ -45,7 +46,7 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "knackAbility",
+      type: SYSTEM_TYPES.Item.knackAbility,
     }, {
       inplace: false
     },

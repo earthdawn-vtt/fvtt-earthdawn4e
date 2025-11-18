@@ -1,5 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Special items.
@@ -31,7 +32,7 @@ export default class SpecialAbilityData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "specialAbility",
+      type: SYSTEM_TYPES.Item.specialAbility,
     }, {
       inplace: false
     },

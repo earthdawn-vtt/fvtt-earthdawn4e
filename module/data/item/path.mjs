@@ -3,6 +3,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on path items.
@@ -56,7 +57,7 @@ export default class PathData extends ClassTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "path",
+      type: SYSTEM_TYPES.Item.path,
     }, {
       inplace: false
     },

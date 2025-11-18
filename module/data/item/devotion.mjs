@@ -3,6 +3,7 @@ import ED4E from "../../config/_module.mjs";
 import { createContentLink } from "../../utils.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Devotion items.
@@ -45,7 +46,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "devotion",
+      type: SYSTEM_TYPES.Item.devotion,
     }, {
       inplace: false
     },
