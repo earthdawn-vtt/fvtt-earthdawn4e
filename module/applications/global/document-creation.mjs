@@ -1,4 +1,5 @@
 import PcData from "../../data/actor/pc.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -232,7 +233,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     let promise;
 
     if (
-      createData.type === PcData.metadata.type
+      createData.type === SYSTEM_TYPES.Actor.pc
       && game.settings.get( "ed4e", "autoOpenCharGen" )
     ) {
       const useCharGen = await DocumentCreateDialog._showCharGenPrompt();

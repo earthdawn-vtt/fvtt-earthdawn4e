@@ -1,5 +1,5 @@
 import ActorSheetEd from "./common-sheet.mjs";
-import GroupData from "../../data/actor/group.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * An actor sheet application designed for actors of type "group"
@@ -19,7 +19,7 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
   static DEFAULT_OPTIONS = {
     id:       "character-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ GroupData.metadata.type, ],
+    classes:  [ SYSTEM_TYPES.Actor.group, ],
     actions:  {
     },
     position: {

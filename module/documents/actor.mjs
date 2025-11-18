@@ -24,14 +24,7 @@ import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 import JumpUpWorkflow from "../workflows/workflow/jump-up-workflow.mjs";
 import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
 import ItemHistoryWorkflow from "../workflows/workflow/item-history-workflow.mjs";
-import HorrorData from "../data/actor/horror.mjs";
-import SpiritData from "../data/actor/spirit.mjs";
-import ArmorData from "../data/item/armor.mjs";
-import DisciplineData from "../data/item/discipline.mjs";
-import DevotionData from "../data/item/devotion.mjs";
-import WeaponData from "../data/item/weapon.mjs";
-import ShieldData from "../data/item/shield.mjs";
-import EquipmentData from "../data/item/equipment.mjs";
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -117,8 +110,8 @@ export default class ActorEd extends Actor {
   get durabilityItems() {
     return this.items.filter(
       item => [
-        DisciplineData.metadata.type,
-        DevotionData.metadata.type,
+        SYSTEM_TYPES.Item.discipline,
+        SYSTEM_TYPES.Item.devotion,
       ].includes( item.type ) && item.system.durability > 0
     );
   }
@@ -716,7 +709,7 @@ export default class ActorEd extends Actor {
     };
 
     switch ( itemToUpdate.type ) {
-      case ArmorData.metadata.type:
+      case SYSTEM_TYPES.Item.armor:
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true ) {
@@ -725,7 +718,7 @@ export default class ActorEd extends Actor {
           }
           if ( itemToUpdate.system.piecemeal?.isPiecemeal ) {
             if ( !this.wearsPiecemealArmor ) {
-              addUnequipItemUpdate( ArmorData.metadata.type, [ "equipped" ] );
+              addUnequipItemUpdate( SYSTEM_TYPES.Item.armor, [ "equipped" ] );
             } else {
               // A complete set of piecemeal armor can have up to 5 size points. Armor pieces come in three sizes and
               // cost a corresponding number of points: large (3), medium (2), and small (1). A set of piecemeal armor
@@ -754,12 +747,12 @@ export default class ActorEd extends Actor {
             }
           } else {
             // Unequip other armor
-            if ( nextStatus === "equipped" ) addUnequipItemUpdate( ArmorData.metadata.type, [ "equipped" ] );
+            if ( nextStatus === "equipped" ) addUnequipItemUpdate( SYSTEM_TYPES.Item.armor, [ "equipped" ] );
           }
         }
         updates.push( originalItemUpdate );
         break;
-      case WeaponData.metadata.type:
+      case SYSTEM_TYPES.Item.weapon:
 
         switch ( nextStatus ) {
           case "twoHands": {
@@ -781,7 +774,7 @@ export default class ActorEd extends Actor {
 
         updates.push( originalItemUpdate );
         break;
-      case ShieldData.metadata.type:
+      case SYSTEM_TYPES.Item.shield:
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true  ) {
@@ -803,7 +796,7 @@ export default class ActorEd extends Actor {
 
         updates.push( originalItemUpdate );
         break;
-      case EquipmentData.metadata.type:
+      case SYSTEM_TYPES.Item.equipment:
       default:
         updates.push( originalItemUpdate );
         break;
@@ -1279,7 +1272,7 @@ export default class ActorEd extends Actor {
    * @returns {ItemEd|null} The thread weaving item, or null if none was found.
    */
   getThreadWeavingByCastingType( spellcastingType ) {
-    if ( [ HorrorData.metadata.type, SpiritData.metadata.type ].includes( this.type ) ) {
+    if ( [ SYSTEM_TYPES.Actor.horror, SYSTEM_TYPES.Actor.spirit ].includes( this.type ) ) {
       return this.getSingleItemByEdid(
         getSetting( "edidSpellcasting" )
       ) ?? this.itemTypes.power.find( power => power.system.rollType === "spellcasting" );

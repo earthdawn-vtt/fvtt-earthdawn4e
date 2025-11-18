@@ -15,8 +15,6 @@ import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
-import ArmorData from "../item/armor.mjs";
-import ShieldData from "../item/shield.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
@@ -716,8 +714,8 @@ export default class PcData extends NamegiverTemplate {
     // item based
     const penaltyEquipment = this.parent.items.filter( item =>
       [
-        ArmorData.metadata.type,
-        ShieldData.metadata.type,
+        SYSTEM_TYPES.Item.armor,
+        SYSTEM_TYPES.Item.shield,
       ].includes( item.type ) && item.system.equipped
     );
     this.initiativePenalty = sum( penaltyEquipment.map( item => item.system.initiativePenalty ) );

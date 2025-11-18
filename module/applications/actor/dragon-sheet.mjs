@@ -1,5 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
-import DragonData from "../../data/actor/dragon.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -23,7 +23,7 @@ export default class ActorSheetEdDragon extends ActorSheetEdSentient {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ DragonData.metadata.type, ],
+    classes:  [ SYSTEM_TYPES.Actor.dragon, ],
     actions:  {
     },
     position: {

@@ -1,5 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
-import SpiritData from "../../data/actor/spirit.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -22,7 +22,7 @@ export default class ActorSheetEdSpirit extends ActorSheetEdSentient {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ SpiritData.metadata.type ],
+    classes:  [ SYSTEM_TYPES.Actor.spirit ],
     actions:  {
     },
     position: {
