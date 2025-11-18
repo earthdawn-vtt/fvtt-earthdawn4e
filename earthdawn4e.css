@@ -208,7 +208,7 @@
   --color-meter-divide: #c0c0c0;
   --border-main: 2px solid var(--color-gold-2);
   --border-button: 2px solid var(--color-gold-3);
-  --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
+  --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
 :root .theme-light.application.sheet.earthdawn4e.actor.character {
@@ -218,7 +218,7 @@
   --color-secondary-tr: var(--color-green-md-tr);
   --color-tertiary: var(--color-green-dk);
   --color-tertiary-tr: var(--color-green-dk-tr);
-  --background-sheet-actor: url(assets/sheet/parchment.webp) repeat;
+  --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
 :root .application.sheet.earthdawn4e.item,
