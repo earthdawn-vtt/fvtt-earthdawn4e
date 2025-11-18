@@ -1,4 +1,5 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import { SYSTEM_TYPES as systemType } from "../../constants/constants.mjs";
 
 export default class CombatantData extends SystemDataModel {
 
@@ -42,7 +43,7 @@ export default class CombatantData extends SystemDataModel {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "base",
+      type: systemType.Combatant.base,
     }, {
       inplace: false
     },
