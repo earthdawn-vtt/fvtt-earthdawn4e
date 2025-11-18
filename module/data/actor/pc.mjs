@@ -1,5 +1,13 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
-import { getArmorFromAttribute, getAttributeStep, getDefenseValue, getSingleGlobalItemByEdid, mapObject, sum, sumProperty } from "../../utils.mjs";
+import {
+  getArmorFromAttribute,
+  getAttributeStep,
+  getDefenseValue,
+  getSingleGlobalItemByEdid,
+  mapObject,
+  sum,
+  sumProperty
+} from "../../utils.mjs";
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
@@ -9,6 +17,7 @@ import { getSetting } from "../../settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import ArmorData from "../item/armor.mjs";
 import ShieldData from "../item/shield.mjs";
+import { systemTypes } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
 
@@ -90,7 +99,7 @@ export default class PcData extends NamegiverTemplate {
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: "character",
+      type: systemTypes.Actor.pc,
     }, {
       inplace: false
     },

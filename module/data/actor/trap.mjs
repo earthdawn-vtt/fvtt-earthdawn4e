@@ -1,4 +1,5 @@
 import CommonTemplate from "./templates/common.mjs";
+import { systemTypes } from "../../constants/constants.mjs";
 
 /**
  * System data definition for traps.
@@ -26,7 +27,7 @@ export default class TrapData extends CommonTemplate {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "trap",
+      type: systemTypes.Actor.trap,
     }, {
       inplace: false
     },

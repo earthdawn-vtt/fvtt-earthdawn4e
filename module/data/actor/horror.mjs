@@ -1,5 +1,6 @@
 import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
+import { systemTypes } from "../../constants/constants.mjs";
 
 /**
  * System data definition for dragons.
@@ -30,7 +31,7 @@ export default class HorrorData extends SentientTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "horror",
+      type: systemTypes.Actor.horror,
     }, {
       inplace: false
     },
