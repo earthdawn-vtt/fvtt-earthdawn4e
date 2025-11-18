@@ -1,4 +1,5 @@
 import BaseMessageData from "./base-message.mjs";
+import { systemTypes } from "../../constants/constants.mjs";
 
 export default class AttackMessageData extends BaseMessageData {
 
@@ -51,7 +52,7 @@ export default class AttackMessageData extends BaseMessageData {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "attack",
+      type: systemTypes.ChatMessage.attack,
     }, {
       inplace: false
     },

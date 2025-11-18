@@ -1,4 +1,5 @@
 import BaseMessageData from "./base-message.mjs";
+import { systemTypes } from "../../constants/constants.mjs";
 
 export default class InitiativeMessageData extends BaseMessageData {
 
@@ -8,7 +9,7 @@ export default class InitiativeMessageData extends BaseMessageData {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "initiative",
+      type: systemTypes.ChatMessage.initiative,
     }, {
       inplace: false
     },
