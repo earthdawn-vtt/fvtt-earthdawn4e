@@ -1,4 +1,5 @@
 import EarthdawnActiveEffectData from "./eae.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { NumberField, StringField } = foundry.data.fields;
 const { createFormGroup, createSelectInput } = foundry.applications.fields;
@@ -40,7 +41,7 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   static metadata = Object.freeze(
     foundry.utils.mergeObject( super.metadata, {
-      type: "condition",
+      type: SYSTEM_TYPES.ActiveEffect.condition,
     } , {
       inplace: false
     } ),
