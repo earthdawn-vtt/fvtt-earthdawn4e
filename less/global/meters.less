@@ -40,14 +40,16 @@
 }
 .encumbrance__fill {
     height: 100%;
-    width: 0%;
+    width: var(--fill-width, 0%);
     transition: width 0.3s ease, background-color 0.3s ease;
     background-color: var(--color-meter-background);
-    &.low { background-color: var(--color-meter-1); }
-    &.medium { background-color: var(--color-meter-2); }
-    &.high { background-color: var(--color-meter-3); }
-    &.over { background-color: var(--color-meter-4); }
+
+    &.low     { background-color: var(--color-meter-1); }
+    &.medium  { background-color: var(--color-meter-2); }
+    &.high    { background-color: var(--color-meter-3); }
+    &.over    { background-color: var(--color-meter-4); }
 }
+
 .encumbrance__marker {
     position: absolute;
     top: 0;
@@ -57,6 +59,12 @@
     pointer-events: none;
     &.marker__x { left: 50%; }
     &.marker__x15 { left: 75%; }
+}
+
+.encumbrance__row {
+    input.input__clear-input--centered {
+    font-size: var(--font-size-13);
+  }
 }
 
 /* ======================= Wounds meter ======================= */

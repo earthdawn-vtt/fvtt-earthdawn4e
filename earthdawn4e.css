@@ -394,7 +394,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   pointer-events: auto;
 }
 .input__clear-input--centered {
-  font-size: 16px;
+  font-size: var(--font-size-17);
   color: var(--color-text-primary);
   background-color: transparent;
   text-align: center;
@@ -877,7 +877,7 @@ h3.label--rail .label__text::after {
 }
 .encumbrance__fill {
   height: 100%;
-  width: 0%;
+  width: var(--fill-width, 0%);
   transition: width 0.3s ease, background-color 0.3s ease;
   background-color: var(--color-meter-background);
 }
@@ -906,6 +906,9 @@ h3.label--rail .label__text::after {
 }
 .encumbrance__marker.marker__x15 {
   left: 75%;
+}
+.encumbrance__row input.input__clear-input--centered {
+  font-size: var(--font-size-13);
 }
 /* ======================= Wounds meter ======================= */
 .wounds-bar {
