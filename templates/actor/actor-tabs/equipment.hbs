@@ -6,7 +6,8 @@
         <div class="encumbrance__container">
             <div class="encumbrance__row">
                 <span class="encumbrance__label">{{localize "ED.Actor.Header.encumbrance"}}:</span>
-                <input id="encumbrance__value" class="input__rectangle-input--centered"
+                <input id="encumbrance__value"
+                    class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                     type="number"
                     value="{{actor.system.encumbrance.value}}"
                     min="0" step="1"
@@ -17,7 +18,7 @@
                         const val  = parseFloat(this.value);
                         const rangeMax = max * 2;
                         const percent = (val / rangeMax) * 100;
-                        fill.style.setProperty('--fill-width', percent + '%');
+                        fill.style.width = percent + '%';             // ← changed line
                         fill.classList.remove('low','medium','high','over');
                         if (val <= max) fill.classList.add('low');
                         else if (val <= max * 1.5) fill.classList.add('medium');
@@ -25,7 +26,8 @@
                         else fill.classList.add('over');
                     ">
                 <span>/</span>
-                <input id="encumbrance__max" class="input__rectangle-input--centered"
+                <input id="encumbrance__max"
+                class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
                     type="number"
                     value="{{actor.system.encumbrance.max}}"
                     min="1" step="1"
