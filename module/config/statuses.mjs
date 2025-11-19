@@ -338,7 +338,7 @@ export const statusEffects = [
   },
   {
     id:   "fury",
-    hud:  { actorTypes: [ "creature" ] },
+    hud:  { actorTypes: [ SYSTEM_TYPES.Actor.creature, ] },
     name: "ED.ActiveEffect.Status.fury",
     img:  "systems/ed4e/assets/icons/enraged.svg",
 

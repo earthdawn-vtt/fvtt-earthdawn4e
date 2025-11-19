@@ -187,7 +187,7 @@ export default class PcData extends NamegiverTemplate {
       )
       .map(
         documentData => {
-          if ( documentData.type !== "specialAbility" ) {
+          if ( documentData.type !== SYSTEM_TYPES.Item.specialAbility ) {
             documentData.system.source ??= {};
             documentData.system.source.class ??= classDocument.uuid;
           }
@@ -195,12 +195,12 @@ export default class PcData extends NamegiverTemplate {
         }
       );
 
-    if ( classDocument.type === "questor" ) {
+    if ( classDocument.type === SYSTEM_TYPES.Item.questor ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
 
       if ( !abilities.find( item => item.system.edid === edidQuestorDevotion ) ) {
 
-        let questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
+        let questorDevotion = await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
         questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
 
         await questorDevotion.update( {
@@ -256,10 +256,10 @@ export default class PcData extends NamegiverTemplate {
     } );
 
     // If this is a questor class, set the questorDevotion field to the devotion UUID
-    if ( classAfterCreation.type === "questor" ) {
+    if ( classAfterCreation.type === SYSTEM_TYPES.Item.questor ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
       const questorDevotionItem = newActor.items.find( item =>
-        item.type === "devotion" && item.system.edid === edidQuestorDevotion
+        item.type === SYSTEM_TYPES.Item.devotion && item.system.edid === edidQuestorDevotion
       );
 
       if ( questorDevotionItem ) {
@@ -493,8 +493,8 @@ export default class PcData extends NamegiverTemplate {
    */
   #prepareBloodMagic() {
     const bloodDamageItems = this.parent.items.filter(
-      item => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== "path" && item.system.equipped )
-        || ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === "path" )
+      item => ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type !== SYSTEM_TYPES.Item.path && item.system.equipped )
+        || ( item.system.hasOwnProperty( "bloodMagicDamage" ) &&  item.type === SYSTEM_TYPES.Item.path )
     );
     const bloodDamage = sumProperty( bloodDamageItems, "system.bloodMagicDamage" );
     this.characteristics.health.bloodMagic.damage += bloodDamage;
@@ -554,7 +554,7 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #prepareKarma() {
-    const highestCircle = this.parent?.getHighestClass( "discipline" )?.system.level ?? 0;
+    const highestCircle = this.parent?.getHighestClass( SYSTEM_TYPES.Item.discipline )?.system.level ?? 0;
     const karmaModifier = this.parent?.namegiver?.system.karmaModifier ?? 0;
 
     this.karma.max = karmaModifier * highestCircle + this.karma.freeAttributePoints;

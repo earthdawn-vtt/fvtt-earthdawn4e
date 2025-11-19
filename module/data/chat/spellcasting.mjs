@@ -125,7 +125,7 @@ export default class SpellcastingMessageData extends BaseMessageData {
     </div>`;
 
     const message = await CONFIG.ChatMessage.documentClass.create( {
-      type:    "common",
+      type:    SYSTEM_TYPES.ChatMessage.common,
       content,
       speaker: ChatMessage.getSpeaker( { actor: this.caster } ),
     } );

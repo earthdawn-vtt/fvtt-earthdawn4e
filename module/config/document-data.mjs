@@ -21,7 +21,7 @@ export const documentData = {
     skill: {
       languageSpeak: {
         name:   "ED.Item.CreateData.nameSpeakLanguage",
-        type:   "skill",
+        type:   SYSTEM_TYPES.Item.skill,
         system: {
           description: { value: "ED.SpeakLanguage Skill Description" },
           // edid needs to be set on creation since settings are not ready on init
@@ -31,7 +31,7 @@ export const documentData = {
       },
       languageRW: {
         name:   "ED.Item.CreateData.nameReadWriteLanguage",
-        type:   "skill",
+        type:   SYSTEM_TYPES.Item.skill,
         system: {
           description: { value: "ED.ReadWriteLanguage Skill Description" },
           // edid needs to be set on creation since settings are not ready on init
@@ -43,7 +43,7 @@ export const documentData = {
     devotion: {
       questor: {
         name:   "ED.Item.CreateData.nameQuestorDevotion",
-        type:   "devotion",
+        type:   SYSTEM_TYPES.Item.devotion,
         system: {
           description: { value: "ED.Devotion.Questor Description" },
           // edid needs to be set on creation since settings are not ready on init

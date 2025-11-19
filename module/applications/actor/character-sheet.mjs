@@ -177,7 +177,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     const KNACK_TYPES = new Set( Object.keys( knacksByTypeAndTalentId ) );
 
     for ( const item of this.document.items ) {
-      if ( item.type === "talent" ) {
+      if ( item.type === SYSTEM_TYPES.Item.talent ) {
         const category = item.system.talentCategory;
         ( talentsByCategory[category] ||= [] ).push( item );
         continue;
@@ -206,7 +206,7 @@ export default class ActorSheetEdCharacter extends ActorSheetEdNamegiver {
     if ( target.dataset.attribute ) {
       const attribute = target.dataset.attribute;
       await this.document.system.increaseAttribute( attribute );
-    } else if ( target.closest( "div.thread-card__grid--container" )?.dataset.itemType === "thread" ) {
+    } else if ( target.closest( "div.thread-card__grid--container" )?.dataset.itemType === SYSTEM_TYPES.Item.thread ) {
       const thread = this.document.items.get( target.parentElement.dataset.itemId );
       const connectedDocument = await thread.system.getConnectedDocument();
       await this.document.weaveThread( connectedDocument, thread  );

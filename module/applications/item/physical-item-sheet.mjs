@@ -182,7 +182,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
     let changed = false;
 
-    if ( item.type === "spell" && this.item.system.isGrimoire ) {
+    if ( item.type === SYSTEM_TYPES.Item.spell && this.item.system.isGrimoire ) {
       // If the item is a spell and the item is a grimoire, add it to the grimoire
       await this.item.system.addSpellToGrimoire( item );
     }

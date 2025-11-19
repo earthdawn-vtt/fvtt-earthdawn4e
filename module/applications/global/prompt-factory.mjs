@@ -7,6 +7,7 @@ import DialogEd from "../api/dialog.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import ChooseAdderSubstitutePrompt from "./choose-adder-substitute.mjs";
 import { getSetting } from "../../settings.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
@@ -807,7 +808,7 @@ class ItemPromptFactory extends PromptFactory {
 
     const versatilityEdId = game.settings.get( "ed4e", "edidVersatility" );
 
-    const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, "talent" );
+    const versatilityItem = this.document.actor.getSingleItemByEdid( versatilityEdId, SYSTEM_TYPES.Item.talent );
     // eslint-disable-next-line no-unused-vars
     const { versatility, ...categoriesWithoutVersatility } = ED4E.talentCategory;
 

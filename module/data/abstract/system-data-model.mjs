@@ -1,3 +1,5 @@
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+
 const { TextEditor } = foundry.applications.ux;
 
 /**
@@ -265,7 +267,7 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   async _preCreate( data, options, user ) {
     if ( await super._preCreate( data, options, user ) === false ) return false;
     const actor = this.parent?.actor;
-    if ( ( actor?.type !== "character" ) || !this.metadata?.singleton ) return;
+    if ( ( actor?.type !== SYSTEM_TYPES.Actor.pc ) || !this.metadata?.singleton ) return;
     if ( actor.itemTypes[data.type]?.length ) {
       ui.notifications.error( game.i18n.format( "ED.Notifications.Error.actorWarningSingleton", {
         itemType:  game.i18n.localize( CONFIG.Item.typeLabels[data.type] ),

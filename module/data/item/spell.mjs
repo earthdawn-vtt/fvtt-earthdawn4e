@@ -479,7 +479,7 @@ export default class SpellData extends ItemDataModel.mixin(
   getSpellcastingRank( ) {
     const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
       game.settings.get( "ed4e", "edidSpellcasting" ),
-      "talent",
+      SYSTEM_TYPES.Item.talent,
     );
     return spellcastingTalent?.system.level;
   }

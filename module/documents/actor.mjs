@@ -65,10 +65,10 @@ export default class ActorEd extends Actor {
    */
   get availableLearnImprovedSpells() {
     const rankPatterncraft = this.getSingleItemByEdid(
-      getDefaultEdid( "patterncraft" ), "talent"
+      getDefaultEdid( "patterncraft" ), SYSTEM_TYPES.Item.talent
     )?.system.level || 0;
     const numLearnImprovedSpellKnack = this.getItemsByEdid(
-      getDefaultEdid( "learnImprovedSpells" ), "knackAbility"
+      getDefaultEdid( "learnImprovedSpells" ), SYSTEM_TYPES.Item.knackAbility
     )?.length || 0;
     const numLearnedSpellKnacks = this.itemTypes.spellKnack.length;
 
@@ -121,7 +121,7 @@ export default class ActorEd extends Actor {
    * @type {ItemEd[]}
    */
   get equippedWeapons() {
-    return this.itemTypes["weapon"].filter(
+    return this.itemTypes[ SYSTEM_TYPES.Item.weapon ].filter(
       item => [ "mainHand", "offHand", "twoHands", "tail" ].includes( item.system.itemStatus )
     );
   }
@@ -176,7 +176,7 @@ export default class ActorEd extends Actor {
   get spellKnacksBySpellId() {
     const spellKnacks = {};
     for ( const spellKnack of this.itemTypes.spellKnack ) {
-      const spellId = this.getSingleItemByEdid( spellKnack.system.sourceItem, "spell" )?.id;
+      const spellId = this.getSingleItemByEdid( spellKnack.system.sourceItem, SYSTEM_TYPES.Item.spell )?.id;
       if ( !spellId ) continue;
       spellKnacks[spellId] ??= [];
       spellKnacks[spellId].push( spellKnack );
@@ -757,17 +757,17 @@ export default class ActorEd extends Actor {
         switch ( nextStatus ) {
           case "twoHands": {
             const equippedShield = this.itemTypes.shield.find( shield => shield.system.itemStatus === "equipped" );
-            addUnequipItemUpdate( "weapon", [ "mainHand", "offHand", "twoHands" ] );
-            if ( !( itemToUpdate.system.isTwoHandedRanged && equippedShield?.system?.bowUsage ) ) addUnequipItemUpdate( "shield", [ "equipped" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ "mainHand", "offHand", "twoHands" ] );
+            if ( !( itemToUpdate.system.isTwoHandedRanged && equippedShield?.system?.bowUsage ) ) addUnequipItemUpdate( SYSTEM_TYPES.Item.shield, [ "equipped" ] );
             break;
           }
           case "mainHand":
           case "offHand": {
-            addUnequipItemUpdate( "weapon", [ nextStatus, "twoHands" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ nextStatus, "twoHands" ] );
             break;
           }
           case "tail": {
-            addUnequipItemUpdate( "weapon", [ "tail" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ "tail" ] );
             break;
           }
         }
@@ -782,7 +782,7 @@ export default class ActorEd extends Actor {
             break;
           }
           // Unequip other shields
-          addUnequipItemUpdate( "shield", [ "equipped" ] );
+          addUnequipItemUpdate( SYSTEM_TYPES.Item.shield, [ "equipped" ] );
           // If there's a bow and the shield allows it, no need to unequip the weapon
           const bowAllowed = equippedWeapons[0]?.system.isTwoHandedRanged && itemToUpdate.system.bowUsage;
           // If there's a two-handed weapon or two one-handed weapons, unequip one

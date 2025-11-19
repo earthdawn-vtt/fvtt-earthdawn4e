@@ -2,6 +2,7 @@ import ED4E from "../../../config/_module.mjs";
 import EdRollOptions from "../../roll/common.mjs";
 import { filterObject } from "../../../utils.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 const { fields } = foundry.data;
 
@@ -62,7 +63,7 @@ export default class RollableTemplate extends SystemDataModel {
 
   /** @inheritDoc */
   getDefaultMacroCommand( item, options = {} ) {
-    const physicalItemTypes = [ "armor", "equipment", "shield", "weapon" ];
+    const physicalItemTypes = [ SYSTEM_TYPES.Item.armor, SYSTEM_TYPES.Item.equipment, SYSTEM_TYPES.Item.shield, SYSTEM_TYPES.Item.weapon, ];
     if ( physicalItemTypes.includes( item.type ) ) {
       // Physical items have to use actor.rollEquipment() instead of item.system.roll()
       return `const item = await fromUuid("${this.parent.uuid}");\nawait item.actor.rollEquipment(item);`;

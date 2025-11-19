@@ -1,6 +1,7 @@
 import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import AttuneGrimoireWorkflow from "../../../workflows/workflow/attune-grimoire-workflow.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 const { fields } = foundry.data;
 
@@ -119,13 +120,13 @@ export default class GrimoireTemplate extends SystemDataModel {
    * @returns {Promise<Item|undefined>} The updated grimoire item or undefined if the spell was not added.
    */
   async addSpellToGrimoire( spell ) {
-    if ( !this.isGrimoire || spell.type !== "spell" ) {
+    if ( !this.isGrimoire || spell.type !== SYSTEM_TYPES.Item.spell ) {
       if ( !this.isGrimoire ) {
         ui.notifications.error(
           game.i18n.localize( "ED.Notifications.Error.grimoireAddNotAGrimoire" ),
         );
       }
-      if ( spell.type !== "spell" ) {
+      if ( spell.type !== SYSTEM_TYPES.Item.spell ) {
         ui.notifications.error(
           game.i18n.localize( "ED.Notifications.Error.grimoireAddNotASpell" ),
         );
@@ -217,7 +218,7 @@ export default class GrimoireTemplate extends SystemDataModel {
     }
 
     const spell = await fromUuid( spellUuid );
-    if ( !spell || spell.type !== "spell" ) {
+    if ( !spell || spell.type !== SYSTEM_TYPES.Item.spell ) {
       ui.notifications.error(
         game.i18n.localize( "ED.Notifications.Error.grimoireSetActiveNotASpell" ),
       );

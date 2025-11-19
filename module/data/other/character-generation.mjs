@@ -10,6 +10,7 @@ import {
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * The data model from which a new character is generated.
@@ -318,7 +319,7 @@ export default class CharacterGenerationData extends SparseDataModel {
     const abilitiesUuid = namegiver.system.abilities || [];
     const abilities = await Promise.all( abilitiesUuid.map( async ( abilityUuid ) => {
       const ability = await fromUuid( abilityUuid );
-      return ability.type === "talent" ? abilityUuid : null;
+      return ability.type === SYSTEM_TYPES.Item.talent ? abilityUuid : null;
     } ) );
   
     return abilities.filter( uuid => uuid !== null );
@@ -681,11 +682,11 @@ export default class CharacterGenerationData extends SparseDataModel {
         }
         const skillLanguageSpeak = await getSingleGlobalItemByEdid(
           game.settings.get( "ed4e", "edidLanguageSpeak" ),
-          "skill",
+          SYSTEM_TYPES.Item.skill,
         );
         const skillLanguageRW = await getSingleGlobalItemByEdid(
           game.settings.get( "ed4e", "edidLanguageRW" ),
-          "skill",
+          SYSTEM_TYPES.Item.skill,
         );
         skillsPayload.language = {
           [skillLanguageSpeak.uuid]: ED4E.availableRanks.speak,
