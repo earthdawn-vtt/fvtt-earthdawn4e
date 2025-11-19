@@ -2,6 +2,7 @@ import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
 import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 import PcData from "../data/actor/pc.mjs";
+import DialogEd from "../applications/api/dialog.mjs";
 
 /**
  * TODO
@@ -40,25 +41,27 @@ export default function () {
   Hooks.on( "ready", async () => {
     if ( game.settings.get( "ed4e", "updateNews" ) ) return;
     // Fetch the HTML file content
-    const html = await renderTemplate( "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs" );
+    const html = await foundry.applications.handlebars.renderTemplate( "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs" );
     // Create a dialog to display the update message
-    new Dialog( {
+    DialogEd.wait( {
       title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
       content: html,
-      buttons: {
-        ok: {
+      buttons: [
+        {
+          action:   "ok",
           label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
-          callback: () => {}
+          callback: () => {},
+          default:  true,
         },
-        notAgain: {
+        {
+          action:   "notAgain",
           label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
           callback: () => {
             game.settings.set( "ed4e", "updateNews", true );
           }
         }
-      },
-      default: "ok"
-    } ).render( true );
+      ],
+    } );
   } );
 }
 
