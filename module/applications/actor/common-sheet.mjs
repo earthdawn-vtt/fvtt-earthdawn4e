@@ -6,6 +6,7 @@ import PromptFactory from "../global/prompt-factory.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import GroupData from "../../data/actor/group.mjs";
 import PcData from "../../data/actor/pc.mjs";
+import DialogEd from "../api/dialog.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 
@@ -202,7 +203,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     }
 
     const type = `${game.i18n.localize( "ED.Dialogs.DeleteFavorite.favorite" )}`;
-    return Dialog.confirm( {
+    return DialogEd.confirm( {
       title:   `${game.i18n.format( "DOCUMENT.Delete", { type } )}`,
       content: `<h4>${game.i18n.localize( "AreYouSure" )}</h4>
               <p>${game.i18n.format( "SIDEBAR.DeleteWarning", { type } )}</p>
