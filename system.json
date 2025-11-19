@@ -200,10 +200,8 @@
   "documentTypes": {
     "ActiveEffect": {
       "eae": {
-        "gmOnlyFields": ["executionScript"]
       },
       "condition": {
-        "gmOnlyFields": ["executionScript"]
       }
     },
     "Actor": {
