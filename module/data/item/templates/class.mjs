@@ -4,6 +4,7 @@ import LearnableTemplate from "./learnable.mjs";
 import ClassAdvancementDialog from "../../../applications/advancement/class-advancement.mjs";
 import ED4E from "../../../config/_module.mjs";
 import ItemDataModel from "../../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 /**
  * Data model template with information on "class"-like items: paths, disciplines, and questors.
@@ -81,7 +82,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   get requiredLpForIncrease() {
-    if ( this.parent.type !== "discipline" ) return 0;
+    if ( this.parent.type !== SYSTEM_TYPES.Item.discipline ) return 0;
     const nextLevel = this.unmodifiedLevel + 1;
     const disciplineSortingFactor = this.order - 1;
     const nextLevelTier = nextLevel === 0 ? "novice" : this.advancement.levels.find( l => l.level === nextLevel )?.tier;
@@ -211,9 +212,9 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const highestDiscipline = this.containingActor.highestDiscipline;
 
     const resourceStep = nextLevelData.resourceStep;
-    if ( this.parent.type === "discipline" && this.parent.id === highestDiscipline.id ) {
+    if ( this.parent.type === SYSTEM_TYPES.Item.discipline && this.parent.id === highestDiscipline.id ) {
       await this.containingActor.update( { "system.karma.step": resourceStep } );
-    } else if ( this.parent.type === "questor" ) {
+    } else if ( this.parent.type === SYSTEM_TYPES.Item.questor ) {
       await this.containingActor.update( { "system.devotion.step": resourceStep } );
     }
   }

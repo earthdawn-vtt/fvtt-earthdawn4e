@@ -5,6 +5,7 @@ import ED4E from "../../config/_module.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollableTemplate from "./templates/rollable.mjs";
 import CombatDamageWorkflow from "../../workflows/workflow/damage-workflow.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on weapon items.
@@ -159,7 +160,7 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "weapon",
+      type: SYSTEM_TYPES.Item.weapon,
     }, {
       inplace: false
     },

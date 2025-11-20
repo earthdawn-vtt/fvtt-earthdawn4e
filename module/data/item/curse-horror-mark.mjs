@@ -3,6 +3,7 @@ import ActorEd from "../../documents/actor.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
 /**
@@ -67,7 +68,7 @@ export default class CurseHorrorMarkData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "curseMark",
+      type: SYSTEM_TYPES.Item.curseMark,
     }, {
       inplace: false
     },

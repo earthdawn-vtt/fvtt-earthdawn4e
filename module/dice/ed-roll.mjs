@@ -1,7 +1,7 @@
 import getDice from "./step-tables.mjs";
 import { sum } from "../utils.mjs";
 import ED4E from "../config/_module.mjs";
-import BaseMessageData from "../data/chat/base-message.mjs";
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
@@ -448,7 +448,7 @@ export default class EdRoll extends Roll {
     messageData.flavor = await this.getChatFlavor();
     messageData.type = ( this.options.rollType in CONFIG.ChatMessage.typeLabels )
       ? this.options.rollType
-      : BaseMessageData.metadata.type;
+      : SYSTEM_TYPES.ChatMessage.common;
 
     return super.toMessage( messageData, options );
   }

@@ -5,6 +5,7 @@ import FormulaField from "../fields/formula-field.mjs";
 import ED4E from "../../config/_module.mjs";
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 import { mapObject } from "../../utils.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
 /**
@@ -61,7 +62,7 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "eae",
+      type: SYSTEM_TYPES.ActiveEffect.eae,
     }, {
       inplace: false
     },

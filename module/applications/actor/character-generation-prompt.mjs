@@ -3,6 +3,7 @@ import ED4E, { LEGEND } from "../../config/_module.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
 import ApplicationEd from "../api/application.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
 export default class CharacterGenerationPrompt extends ApplicationEd {
@@ -148,12 +149,12 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     const data = charGenData ?? new CharacterGenerationData();
 
     const docCollections = {
-      namegivers:   await getAllDocuments( "Item", "namegiver", false, "OBSERVER" ),
-      disciplines:  await getAllDocuments( "Item", "discipline", false, "OBSERVER" ),
-      questors:     await getAllDocuments( "Item", "questor", false, "OBSERVER" ),
+      namegivers:   await getAllDocuments( "Item", SYSTEM_TYPES.Item.namegiver, false, "OBSERVER" ),
+      disciplines:  await getAllDocuments( "Item", SYSTEM_TYPES.Item.discipline, false, "OBSERVER" ),
+      questors:     await getAllDocuments( "Item", SYSTEM_TYPES.Item.questor, false, "OBSERVER" ),
       skills:       await getAllDocuments(
         "Item",
-        "skill",
+        SYSTEM_TYPES.Item.skill,
         false,
         "OBSERVER",
         [ "system.tier" ],
@@ -161,17 +162,17 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       ),
       spells: await getAllDocuments(
         "Item",
-        "spell",
+        SYSTEM_TYPES.Item.spell,
         false,
         "OBSERVER",
         [ "system.level" ],
         ( x ) => x.system.level <= game.settings.get( "ed4e", "charGenMaxSpellCircle" ),
       ),
       equipment: {
-        armor:     await this.getEquipmentItems( "armor" ),
-        equipment: await this.getEquipmentItems( "equipment" ),
-        shields:   await this.getEquipmentItems( "shield" ),
-        weapons:   await this.getEquipmentItems( "weapon" ),
+        armor:     await this.getEquipmentItems( SYSTEM_TYPES.Item.armor ),
+        equipment: await this.getEquipmentItems( SYSTEM_TYPES.Item.equipment ),
+        shields:   await this.getEquipmentItems( SYSTEM_TYPES.Item.shield ),
+        weapons:   await this.getEquipmentItems( SYSTEM_TYPES.Item.weapon ),
       }
     };
 

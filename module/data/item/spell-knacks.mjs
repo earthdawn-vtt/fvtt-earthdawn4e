@@ -4,6 +4,7 @@ import { getSingleGlobalItemByEdid } from "../../utils.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import { LEGEND, } from "../../config/_module.mjs";
 import { getDefaultEdid, } from "../../settings.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Spell items.
@@ -47,13 +48,13 @@ export default class SpellKnackData extends SpellData.mixin(
   ];
 
   /** @inheritdoc */
-  static SOURCE_ITEM_TYPE = "spell";
+  static SOURCE_ITEM_TYPE = SYSTEM_TYPES.Item.spell;
 
   /** @inheritDoc */
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "spellKnack",
+      type: SYSTEM_TYPES.Item.spellKnack,
     }, {
       inplace: false
     },
@@ -91,8 +92,8 @@ export default class SpellKnackData extends SpellData.mixin(
   async _copySourceSpellData( data ) {
     const actor = this.containingActor;
     const sourceSpell = actor
-      ? await actor.getSingleItemByEdid( data.system.sourceItem, "spell" )
-      : await getSingleGlobalItemByEdid( data.system.sourceItem, "spell" );
+      ? await actor.getSingleItemByEdid( data.system.sourceItem, SYSTEM_TYPES.Item.spell )
+      : await getSingleGlobalItemByEdid( data.system.sourceItem, SYSTEM_TYPES.Item.spell );
     if ( !sourceSpell ) return;
 
     foundry.utils.mergeObject(
@@ -130,14 +131,14 @@ export default class SpellKnackData extends SpellData.mixin(
     const actor = this.parent._actor;
 
     return {
-      spell:        actor.getSingleItemByEdid( this.sourceItem, "spell" ),
+      spell:        actor.getSingleItemByEdid( this.sourceItem, SYSTEM_TYPES.Item.spell ),
       patterncraft: actor.getSingleItemByEdid(
         getDefaultEdid( "patterncraft" ),
-        "talent",
+        SYSTEM_TYPES.Item.talent,
       ),
       learnImprovedSpells: actor.getSingleItemByEdid(
         getDefaultEdid( "learnImprovedSpells" ),
-        "knackAbility",
+        SYSTEM_TYPES.Item.knackAbility,
       ),
       requiredMoney: this.requiredMoneyForLearning,
       requiredLp:    this.requiredLpForLearning,

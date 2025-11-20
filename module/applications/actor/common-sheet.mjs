@@ -4,8 +4,7 @@ import { getSetting } from "../../settings.mjs";
 import TruePatternData from "../../data/thread/true-pattern.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { createContentAnchor } from "../../utils.mjs";
-import GroupData from "../../data/actor/group.mjs";
-import PcData from "../../data/actor/pc.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import DialogEd from "../api/dialog.mjs";
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -157,7 +156,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
   static async _onAddTruePattern( event, target ) {
     event.preventDefault();
     const truePatternData = {};
-    if ( this.document.type === GroupData.metadata.type ) truePatternData.tier = "warden";
+    if ( this.document.type === SYSTEM_TYPES.Actor.group ) truePatternData.tier = "warden";
     await this.document.update( {
       "system.truePattern": new TruePatternData( truePatternData ),
     } );
@@ -301,7 +300,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     const actor = game.user.character
       ?? await PromptFactory.chooseActorPrompt(
         [],
-        game.user.isGM ? "" : PcData.metadata.type,
+        game.user.isGM ? "" : SYSTEM_TYPES.Actor.pc,
         {}
       );
     if ( !actor ) {

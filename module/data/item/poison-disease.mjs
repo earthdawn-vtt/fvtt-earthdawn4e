@@ -1,6 +1,7 @@
 import ED4E from "../../config/_module.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Poison and Disease items.
@@ -106,7 +107,7 @@ export default class PoisonDiseaseData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "poisonDisease",
+      type: SYSTEM_TYPES.Item.poisonDisease,
     }, {
       inplace: false
     },

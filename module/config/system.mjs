@@ -1,3 +1,5 @@
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
+
 export const SYSTEM_ID = "ed4";
 
 export const ASCII = `_______________________________
@@ -47,18 +49,18 @@ export const defaultEdIds = {
  */
 export const typeGroups = {
   Item: {
-    equipment:    [ "armor", "equipment", "shield", "weapon" ],
-    powers:       [ "maneuver", "power" ],
-    abilities:    [ "devotion", "knackAbility", "knackManeuver","knackKarma", "skill", "specialAbility", "talent" ],
-    conditions:   [ "curseMark", "poisonDisease" ],
-    magic:        [ "spell", "spellKnack", "bindingSecret", ],
-    classes:      [ "discipline", "path", "questor" ],
-    other:        [ "mask", "namegiver", "shipWeapon" ]
+    equipment:    [ SYSTEM_TYPES.Item.armor, SYSTEM_TYPES.Item.equipment, SYSTEM_TYPES.Item.shield, SYSTEM_TYPES.Item.weapon ],
+    powers:       [ SYSTEM_TYPES.Item.maneuver, SYSTEM_TYPES.Item.power ],
+    abilities:    [ SYSTEM_TYPES.Item.devotion, SYSTEM_TYPES.Item.knackAbility, SYSTEM_TYPES.Item.knackManeuver,SYSTEM_TYPES.Item.knackKarma, SYSTEM_TYPES.Item.skill, SYSTEM_TYPES.Item.specialAbility, SYSTEM_TYPES.Item.talent ],
+    conditions:   [ SYSTEM_TYPES.Item.curseMark, SYSTEM_TYPES.Item.poisonDisease ],
+    magic:        [ SYSTEM_TYPES.Item.spell, SYSTEM_TYPES.Item.spellKnack, SYSTEM_TYPES.Item.bindingSecret, ],
+    classes:      [ SYSTEM_TYPES.Item.discipline, SYSTEM_TYPES.Item.path, SYSTEM_TYPES.Item.questor ],
+    other:        [ SYSTEM_TYPES.Item.mask, SYSTEM_TYPES.Item.namegiver, SYSTEM_TYPES.Item.shipWeapon ],
   },
   Actor: {
-    namegivers:   [ "character", "npc" ],
-    creatures:    [ "creature", "spirit", "horror", "dragon" ],
-    other:        [ "group", "vehicle", "trap", "loot" ]
+    namegivers:   [ SYSTEM_TYPES.Actor.pc, SYSTEM_TYPES.Actor.npc ],
+    creatures:    [ SYSTEM_TYPES.Actor.creature, SYSTEM_TYPES.Actor.spirit, SYSTEM_TYPES.Actor.horror, SYSTEM_TYPES.Actor.dragon ],
+    other:        [ SYSTEM_TYPES.Actor.group, SYSTEM_TYPES.Actor.vehicle, SYSTEM_TYPES.Actor.trap, SYSTEM_TYPES.Actor.loot ],
   }
 };
 

@@ -1,15 +1,12 @@
 import ClassTemplate from "../data/item/templates/class.mjs";
-import EarthdawnConditionEffectData from "../data/effects/eae-condition.mjs";
-import DisciplineData from "../data/item/discipline.mjs";
-import QuestorData from "../data/item/questor.mjs";
-import PathData from "../data/item/path.mjs";
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
   /** @inheritDoc */
   static async _fromStatusEffect( statusId, effectData, options ) {
     foundry.utils.mergeObject( effectData, {
-      type:             EarthdawnConditionEffectData.metadata.type,
+      type:             SYSTEM_TYPES.ActiveEffect.condition,
       "system.primary": statusId,
     } );
 
@@ -99,9 +96,9 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
     // class effects are handled in the class data classes
     const isClassEffect = [
-      DisciplineData.metadata.type,
-      QuestorData.metadata.type,
-      PathData.metadata.type,
+      SYSTEM_TYPES.Item.discipline,
+      SYSTEM_TYPES.Item.questor,
+      SYSTEM_TYPES.Item.path,
     ].includes(
       data.system?.source?.documentOriginType
     );

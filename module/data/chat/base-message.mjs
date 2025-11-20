@@ -1,4 +1,5 @@
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 export default class BaseMessageData extends SystemDataModel {
 
@@ -31,7 +32,7 @@ export default class BaseMessageData extends SystemDataModel {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "common",
+      type: SYSTEM_TYPES.ChatMessage.common,
     }, {
       inplace: false
     },

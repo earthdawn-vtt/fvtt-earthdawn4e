@@ -1,4 +1,5 @@
 import BaseMessageData from "./base-message.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 export default class ThreadWeavingMessageData extends BaseMessageData {
 
@@ -28,7 +29,7 @@ export default class ThreadWeavingMessageData extends BaseMessageData {
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "threadWeaving",
+      type: SYSTEM_TYPES.ChatMessage.threadWeaving,
     }, {
       inplace: false
     },

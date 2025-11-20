@@ -12,6 +12,7 @@ import SpellcastingRollOptions from "../roll/spellcasting.mjs";
 import RollProcessor from "../../services/roll-processor.mjs";
 import SpellEffectRollOptions from "../roll/spelleffect.mjs";
 import CombatDamageWorkflow from "../../workflows/workflow/damage-workflow.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
 const { fields } = foundry.data;
@@ -237,7 +238,7 @@ export default class SpellData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "spell",
+      type: SYSTEM_TYPES.Item.spell,
     }, {
       inplace: false
     },
@@ -478,7 +479,7 @@ export default class SpellData extends ItemDataModel.mixin(
   getSpellcastingRank( ) {
     const spellcastingTalent = this.containingActor?.getSingleItemByEdid(
       game.settings.get( "ed4e", "edidSpellcasting" ),
-      "talent",
+      SYSTEM_TYPES.Item.talent,
     );
     return spellcastingTalent?.system.level;
   }

@@ -1,5 +1,6 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on namegiver items.
@@ -82,7 +83,7 @@ export default class ShipWeaponData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "shipWeapon",
+      type: SYSTEM_TYPES.Item.shipWeapon,
     }, {
       inplace: false
     },

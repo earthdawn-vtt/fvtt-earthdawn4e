@@ -2,6 +2,7 @@ import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import { linkForUuidSync } from "../../utils.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -52,7 +53,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "discipline",
+      type: SYSTEM_TYPES.Item.discipline,
     }, {
       inplace: false
     },

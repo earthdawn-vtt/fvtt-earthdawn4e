@@ -3,6 +3,7 @@ import { getSetting } from "../../settings.mjs";
 import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 import DialogEd from "../api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
@@ -10,7 +11,7 @@ export default class MaskItemSheetEd extends ItemSheetEd {
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    classes:  [ "mask" ],
+    classes:  [ SYSTEM_TYPES.Item.mask ],
     actions:  {
       deleteChild:        MaskItemSheetEd._onDeleteChild,
     },
@@ -169,10 +170,10 @@ export default class MaskItemSheetEd extends ItemSheetEd {
 
     let changed = false;
 
-    if ( item.type === "power" ) {
+    if ( item.type === SYSTEM_TYPES.Item.power ) {
       await this.item.system.addPowerToMask( item );
     }
-    else if ( item.type === "maneuver" ) {
+    else if ( item.type === SYSTEM_TYPES.Item.maneuver ) {
       await this.item.system.addManeuverToMask( item );
     }
 

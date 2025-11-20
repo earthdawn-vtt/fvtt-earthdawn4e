@@ -2,6 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import MovementFields from "../actor/templates/movement.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on namegiver items.
@@ -124,7 +125,7 @@ export default class NamegiverData extends ItemDataModel.mixin(
     super.metadata,
     {
       singleton: true,
-      type:      "namegiver",
+      type:      SYSTEM_TYPES.Item.namegiver,
     }, {
       inplace: false
     },

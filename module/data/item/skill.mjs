@@ -1,6 +1,7 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Skill items.
@@ -38,7 +39,7 @@ export default class SkillData extends IncreasableAbilityTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "skill",
+      type: SYSTEM_TYPES.Item.skill,
     }, {
       inplace: false
     },

@@ -1,6 +1,7 @@
 import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * @typedef { object } EdAttackRollOptionsInitializationData
@@ -167,7 +168,7 @@ export default class AttackRollOptions extends EdRollOptions {
 
     newContext.targets = await Promise.all( this.target.tokens.map( tokens => fromUuid( tokens ) ) );
     newContext.reactionsByTarget = await this._getDefendantItems( "", "reaction" );
-    newContext.maneuversByTarget = await this._getDefendantItems( "maneuver", "" );
+    newContext.maneuversByTarget = await this._getDefendantItems( SYSTEM_TYPES.Item.maneuver, "" );
     newContext.maneuvers = await this._getManeuvers();
 
     newContext.weaponType = this.weaponType;

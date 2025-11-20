@@ -1,6 +1,7 @@
 import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import ApplicationEd from "../api/application.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
 export default class LearnSpellPrompt extends ApplicationEd {
@@ -132,7 +133,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
         game.settings.get( "ed4e", "edidSpellcasting" ),
-        "talent",
+        SYSTEM_TYPES.Item.talent,
       ),
       {
         target:     { base: this.spell.system.learningDifficulty },
@@ -163,7 +164,7 @@ export default class LearnSpellPrompt extends ApplicationEd {
     const roll = await this.actor.rollAbility(
       this.actor.getSingleItemByEdid(
         game.settings.get( "ed4e", "edidPatterncraft" ),
-        "talent"
+        SYSTEM_TYPES.Item.talent,
       ),
       {
         target:     { base: this.spell.system.learningDifficulty },
@@ -217,11 +218,11 @@ export default class LearnSpellPrompt extends ApplicationEd {
 
     context.hasPatterncraft = !!this.actor.getSingleItemByEdid(
       game.settings.get( "ed4e", "edidPatterncraft" ),
-      "talent"
+      SYSTEM_TYPES.Item.talent
     );
     context.hasSpellcasting = !!this.actor.getSingleItemByEdid(
       game.settings.get( "ed4e", "edidSpellcasting" ),
-      "talent"
+      SYSTEM_TYPES.Item.talent
     );
 
     context.buttons = [

@@ -1,5 +1,6 @@
 import NoneCharacterTemplate from "./templates/none-character.mjs";
 import NamegiverTemplate from "./templates/namegiver.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * System data definition for NPCs.
@@ -31,7 +32,7 @@ export default class NpcData extends NamegiverTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "npc",
+      type: SYSTEM_TYPES.Actor.npc,
     }, {
       inplace: false
     },

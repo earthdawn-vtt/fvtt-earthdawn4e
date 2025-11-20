@@ -1,3 +1,5 @@
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+
 /**
  * Type Transformation Manager for handling document type transformations during migrations.
  * This manager coordinates type transformations from various source systems to the current ed4e system.
@@ -395,10 +397,10 @@ export default class TypeTransformationManager {
       // Fix only specific actors
       characterActors = actorIds
         .map( id => game.actors.get( id ) )
-        .filter( actor => actor && actor.type === "character" );
+        .filter( actor => actor && actor.type === SYSTEM_TYPES.Actor.pc );
     } else {
       // Fix all character actors
-      characterActors = game.actors.filter( actor => actor.type === "character" );
+      characterActors = game.actors.filter( actor => actor.type === SYSTEM_TYPES.Actor.pc );
     }
     
     // Loop through character actors
@@ -408,7 +410,7 @@ export default class TypeTransformationManager {
         // Get the full system data
         const fullSystemData = foundry.utils.deepClone( actor.system );
         await actor.update( {
-          type:       "character",
+          type:       SYSTEM_TYPES.Actor.pc,
           "==system": fullSystemData
         }, {
           recursive: false,  // This is required for type changes

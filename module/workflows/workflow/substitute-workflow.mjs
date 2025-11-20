@@ -3,6 +3,7 @@ import Rollable from "./rollable.mjs";
 import EdRollOptions from "../../data/roll/common.mjs";
 import ED4E from "../../config/_module.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const DialogClass = DialogEd;
 
@@ -99,7 +100,7 @@ export default class SubstituteWorkflow extends Rollable( ActorWorkflow ) {
     for ( const [ key, mode ] of Object.entries( modes ) ) {
       // check for namegiver item with tail attack
       if ( key === "tailAttack" ) {     
-        const namegivers = this._actor.items.filter( i => i.type === "namegiver" );
+        const namegivers = this._actor.items.filter( i => i.type === SYSTEM_TYPES.Item.namegiver );
         if ( namegivers[0]?.system.tailAttack !== true ) continue;
       }
       buttons.push( {

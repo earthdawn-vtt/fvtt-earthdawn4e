@@ -4,6 +4,7 @@ import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { getSetting } from "../../settings.mjs";
 import ThreadWeavingRollOptions from "../../data/roll/weaving.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * @typedef {object} WeaveThreadWorkflowOptions
@@ -177,7 +178,7 @@ export default class WeaveThreadWorkflow extends Rollable( ActorWorkflow ) {
           threadTarget: this._target.name
         }
       ),
-      type:   "thread",
+      type:   SYSTEM_TYPES.Item.thread,
       system: {
         wovenToUuid: this._target.uuid,
       },

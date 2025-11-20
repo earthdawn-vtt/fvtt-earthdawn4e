@@ -1,5 +1,5 @@
 import ActorSheetEdSentient from "./sentient-sheet.mjs";
-import CreatureData from "../../data/actor/creature.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Extend the basic ActorSheet with modifications
@@ -19,7 +19,7 @@ export default class ActorSheetEdCreature extends ActorSheetEdSentient {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ CreatureData.metadata.type, ],
+    classes:  [ SYSTEM_TYPES.Actor.creature, ],
     actions:  {
     },
     position: {

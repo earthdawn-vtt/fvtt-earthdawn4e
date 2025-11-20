@@ -1,6 +1,7 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on equipment items.
@@ -53,7 +54,7 @@ export default class EquipmentData extends PhysicalItemTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "equipment",
+      type: SYSTEM_TYPES.Item.equipment,
     }, {
       inplace: false
     },

@@ -86,7 +86,7 @@ export async function getSingleGlobalItemByEdid( edid, type ) {
  * ```
  * await ed4e.utils.getAllDocuments(
  * "Item",
- * "spell",
+ * SYSTEM_TYPES.Item.spell,
  * false,
  * ["system.level", "system.tier"],
  * x => ( x.system.level > 3 ) && ( x.system.binding === true )

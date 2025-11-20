@@ -5,6 +5,7 @@ import EdIdField from "../../fields/edid-field.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import ED4E from "../../../config/_module.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 /**
  * Data model template for Knacks
@@ -110,7 +111,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
     const actor = this.parent._actor;
 
     return {
-      talent:     actor.getSingleItemByEdid( this.sourceItem, "talent" ),
+      talent:     actor.getSingleItemByEdid( this.sourceItem, SYSTEM_TYPES.Item.talent ),
       requiredLp: this.requiredLpForLearning,
       hasDamage:  actor.hasDamage( "standard" ),
       hasWounds:  actor.hasWounds( "standard" ),
@@ -192,7 +193,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
     if ( !actor.getSingleItemByEdid(
       item.system.sourceItem,
-      this.SOURCE_ITEM_TYPE ?? "talent",
+      this.SOURCE_ITEM_TYPE ?? SYSTEM_TYPES.Item.talent,
     ) ) {
       ui.notifications.warn( game.i18n.format(
         "ED.Notifications.Warn.learningKnackNoSourceItem",

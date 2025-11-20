@@ -3,6 +3,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on path items.
@@ -56,7 +57,7 @@ export default class PathData extends ClassTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "path",
+      type: SYSTEM_TYPES.Item.path,
     }, {
       inplace: false
     },
@@ -72,7 +73,7 @@ export default class PathData extends ClassTemplate.mixin(
 
     const actor = this.containingActor;
     if ( !actor ) return null;
-    const pathTalent = actor.items.find( item => item.type === "talent" && item.system.edid === this.edid );
+    const pathTalent = actor.items.find( item => item.type === SYSTEM_TYPES.Item.talent && item.system.edid === this.edid );
 
     return {
       learn:              this.unmodifiedLevel === 0,
@@ -122,11 +123,11 @@ export default class PathData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
-    const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, "knackAbility" );
+    const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.knackAbility );
     const pathKnackLink = pathKnack 
       ? createContentLink( pathKnack.uuid, pathKnack.name ) 
       : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
-    const pathTalent = await getSingleGlobalItemByEdid( item.system.edid, "talent" );
+    const pathTalent = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.talent );
     const pathTalentLink = pathTalent 
       ? createContentLink( pathTalent.uuid, pathTalent.name ) 
       : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
@@ -138,7 +139,7 @@ export default class PathData extends ClassTemplate.mixin(
 
 
     let learnedPathTalent;
-    if ( !actor.items.find( talent => talent.type === "talent" && talent.system.edid === item.system.edid ) ) {
+    if ( !actor.items.find( talent => talent.type === SYSTEM_TYPES.Item.talent && talent.system.edid === item.system.edid ) ) {
       const content = ` 
       <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathTalentPrompt", {pathTalent: item.name,} ) }</p>
       <p>${ pathTalentLink }</p>
@@ -156,7 +157,7 @@ export default class PathData extends ClassTemplate.mixin(
     }
 
     let learnedPathKnack;
-    if ( !actor.items.find( knack => knack.type === "knackAbility" && knack.system.edid === item.system.edid ) ) {
+    if ( !actor.items.find( knack => knack.type === SYSTEM_TYPES.Item.knackAbility && knack.system.edid === item.system.edid ) ) {
       const content = ` 
       <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathKnackPrompt", {pathKnack: item.name,} ) }</p>
       <p>${ pathKnackLink }</p>

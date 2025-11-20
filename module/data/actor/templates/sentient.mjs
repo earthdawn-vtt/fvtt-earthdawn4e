@@ -2,6 +2,7 @@ import CommonTemplate from "./common.mjs";
 import MovementFields from "./movement.mjs";
 import ED4E from "../../../config/_module.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 /**
  * A template for all actors that represent sentient beings and have such stats.
@@ -360,7 +361,7 @@ export default class SentientTemplate extends CommonTemplate {
    * The actor types that are considered sentient actors.
    * @type {[string]}
    */
-  static SENTIENT_ACTOR_TYPES = [ "character", "npc", "creature", "spirit", "horror", "dragon" ];
+  static SENTIENT_ACTOR_TYPES = [ SYSTEM_TYPES.Actor.pc, SYSTEM_TYPES.Actor.npc, SYSTEM_TYPES.Actor.creature, SYSTEM_TYPES.Actor.spirit, SYSTEM_TYPES.Actor.horror, SYSTEM_TYPES.Actor.dragon, ];
 
   // endregion
 

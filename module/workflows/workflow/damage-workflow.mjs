@@ -3,6 +3,7 @@ import SentientTemplate from "../../data/actor/templates/sentient.mjs";
 import DamageRollOptions from "../../data/roll/damage.mjs";
 import ActorWorkflow from "./actor-workflow.mjs";
 import { COMBAT } from "../../config/_module.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * @typedef {WorkflowOptions} CombatDamageWorkflowOptions
@@ -34,7 +35,13 @@ export default class CombatDamageWorkflow extends Rollable( ActorWorkflow ) {
 
   ALLOWED_SOURCE_DOCUMENT_TYPES = [
     ...SentientTemplate.SENTIENT_ACTOR_TYPES,
-    "weapon", "power", "spell", "knackAbility", "devotion", "skill", "talent",
+    SYSTEM_TYPES.Item.weapon,
+    SYSTEM_TYPES.Item.power,
+    SYSTEM_TYPES.Item.spell,
+    SYSTEM_TYPES.Item.knackAbility,
+    SYSTEM_TYPES.Item.devotion,
+    SYSTEM_TYPES.Item.skill,
+    SYSTEM_TYPES.Item.talent,
   ];
 
   // endregion
@@ -162,7 +169,7 @@ export default class CombatDamageWorkflow extends Rollable( ActorWorkflow ) {
   _determineDamageSourceType( options ) {
     const documentType = options.sourceDocument.type;
     if ( SentientTemplate.SENTIENT_ACTOR_TYPES.includes( documentType ) ) return "unarmed";
-    if ( [ "power", "spell", "weapon", ].includes( documentType ) ) return documentType;
+    if ( [ SYSTEM_TYPES.Item.power, SYSTEM_TYPES.Item.spell, SYSTEM_TYPES.Item.weapon, ].includes( documentType ) ) return documentType;
     // rollable abilities
     return "arbitrary";
   }

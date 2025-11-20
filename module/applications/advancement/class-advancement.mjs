@@ -3,6 +3,7 @@ import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { getAllDocuments } from "../../utils.mjs";
 import ApplicationEd from "../api/application.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -227,7 +228,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
 
     const availableSpells = this.classItem.system.getCastingType() ? ( await getAllDocuments(
       "Item",
-      "spell",
+      SYSTEM_TYPES.Item.spell,
       true,
       "OBSERVER",
       [ "system.spellcastingType" ],

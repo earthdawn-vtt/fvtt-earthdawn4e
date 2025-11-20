@@ -1,5 +1,6 @@
 // Import configuration
 import ED4E from "../config/_module.mjs";
+import ED4E_CONSTANTS from "../constants/_module.mjs";
 import  "../tours/ed-tours.mjs";
 import registerHandlebarHelpers from "../handlebar-helpers.mjs";
 import { initializeMigrations } from "../services/migrations/_module.mjs";
@@ -237,6 +238,7 @@ export default function () {
     console.log( "ED4e | Initializing the ED4e Game System" );
 
     CONFIG.ED4E = ED4E;
+    globalThis.ED4E_CONSTANTS = ED4E_CONSTANTS;
 
     setupDocumentClasses();
     setupCanvas();

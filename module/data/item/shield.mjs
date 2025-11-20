@@ -1,5 +1,6 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on shield items.
@@ -78,7 +79,7 @@ export default class ShieldData extends PhysicalItemTemplate.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "shield",
+      type: SYSTEM_TYPES.Item.shield,
     }, {
       inplace: false
     },

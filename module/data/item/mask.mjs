@@ -2,6 +2,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemDataModel from "../abstract/item-data-model.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import ED4E from "../../config/_module.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on mask items.
@@ -218,7 +219,7 @@ export default class MaskData extends ItemDataModel.mixin(
   static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
-      type: "mask",
+      type: SYSTEM_TYPES.Item.mask,
     }, {
       inplace: false
     },
@@ -247,7 +248,7 @@ export default class MaskData extends ItemDataModel.mixin(
    * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if the power was not added.
    */
   async addPowerToMask( power ) {
-    if ( power.type !== "power" ) {
+    if ( power.type !== SYSTEM_TYPES.Item.power ) {
       ui.notifications.error(
         game.i18n.localize( "ED.Notifications.Error.maskAddNotAPower" ),
       );
@@ -271,7 +272,7 @@ export default class MaskData extends ItemDataModel.mixin(
    * @returns {Promise<Item|undefined>} The updated mask item or undefined if the power was not added.
    */
   async addManeuverToMask( power ) {
-    if ( power.type !== "maneuver" ) {
+    if ( power.type !== SYSTEM_TYPES.Item.maneuver ) {
       ui.notifications.error(
         game.i18n.localize( "ED.Notifications.Warn.maskAddAlreadyInMask" ),
       );
@@ -296,9 +297,9 @@ export default class MaskData extends ItemDataModel.mixin(
    * @returns {Promise<ItemEd|undefined>} The updated mask item or undefined if no action was taken
    */
   async removeItemFromMask( itemUuid, itemType ) {
-    if ( ![ "power", "maneuver" ].includes( itemType ) ) return;
+    if ( ![ SYSTEM_TYPES.Item.power, SYSTEM_TYPES.Item.maneuver ].includes( itemType ) ) return;
 
-    const isPower = itemType === "power";
+    const isPower = itemType === SYSTEM_TYPES.Item.power;
     const oldData = isPower ? this.powers : this.maneuvers;
 
     if ( isPower && this.hasPower( itemUuid ) ) {

@@ -1,5 +1,5 @@
 import ActorSheetEdNamegiver from "./namegiver-sheet.mjs";
-import NpcData from "../../data/actor/npc.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * An actor sheet application designed for actors of type "NPC"
@@ -18,7 +18,7 @@ export default class ActorSheetEdNpc extends ActorSheetEdNamegiver {
   static DEFAULT_OPTIONS = {
     id:       "actor-sheet-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ NpcData.metadata.type, ],
+    classes:  [ SYSTEM_TYPES.Actor.npc, ],
     actions:  {
     },
     position: {

@@ -1,4 +1,5 @@
 import CommonTemplate from "./templates/common.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const fUtils = foundry.utils;
 
@@ -28,7 +29,7 @@ export default class LootData extends CommonTemplate {
   static metadata = Object.freeze( fUtils.mergeObject(
     super.metadata,
     {
-      type: "loot",
+      type: SYSTEM_TYPES.Actor.loot,
     }, {
       inplace: false
     },

@@ -24,14 +24,7 @@ import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 import JumpUpWorkflow from "../workflows/workflow/jump-up-workflow.mjs";
 import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
 import ItemHistoryWorkflow from "../workflows/workflow/item-history-workflow.mjs";
-import HorrorData from "../data/actor/horror.mjs";
-import SpiritData from "../data/actor/spirit.mjs";
-import ArmorData from "../data/item/armor.mjs";
-import DisciplineData from "../data/item/discipline.mjs";
-import DevotionData from "../data/item/devotion.mjs";
-import WeaponData from "../data/item/weapon.mjs";
-import ShieldData from "../data/item/shield.mjs";
-import EquipmentData from "../data/item/equipment.mjs";
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -72,10 +65,10 @@ export default class ActorEd extends Actor {
    */
   get availableLearnImprovedSpells() {
     const rankPatterncraft = this.getSingleItemByEdid(
-      getDefaultEdid( "patterncraft" ), "talent"
+      getDefaultEdid( "patterncraft" ), SYSTEM_TYPES.Item.talent
     )?.system.level || 0;
     const numLearnImprovedSpellKnack = this.getItemsByEdid(
-      getDefaultEdid( "learnImprovedSpells" ), "knackAbility"
+      getDefaultEdid( "learnImprovedSpells" ), SYSTEM_TYPES.Item.knackAbility
     )?.length || 0;
     const numLearnedSpellKnacks = this.itemTypes.spellKnack.length;
 
@@ -117,8 +110,8 @@ export default class ActorEd extends Actor {
   get durabilityItems() {
     return this.items.filter(
       item => [
-        DisciplineData.metadata.type,
-        DevotionData.metadata.type,
+        SYSTEM_TYPES.Item.discipline,
+        SYSTEM_TYPES.Item.devotion,
       ].includes( item.type ) && item.system.durability > 0
     );
   }
@@ -128,7 +121,7 @@ export default class ActorEd extends Actor {
    * @type {ItemEd[]}
    */
   get equippedWeapons() {
-    return this.itemTypes["weapon"].filter(
+    return this.itemTypes[ SYSTEM_TYPES.Item.weapon ].filter(
       item => [ "mainHand", "offHand", "twoHands", "tail" ].includes( item.system.itemStatus )
     );
   }
@@ -183,7 +176,7 @@ export default class ActorEd extends Actor {
   get spellKnacksBySpellId() {
     const spellKnacks = {};
     for ( const spellKnack of this.itemTypes.spellKnack ) {
-      const spellId = this.getSingleItemByEdid( spellKnack.system.sourceItem, "spell" )?.id;
+      const spellId = this.getSingleItemByEdid( spellKnack.system.sourceItem, SYSTEM_TYPES.Item.spell )?.id;
       if ( !spellId ) continue;
       spellKnacks[spellId] ??= [];
       spellKnacks[spellId].push( spellKnack );
@@ -716,7 +709,7 @@ export default class ActorEd extends Actor {
     };
 
     switch ( itemToUpdate.type ) {
-      case ArmorData.metadata.type:
+      case SYSTEM_TYPES.Item.armor:
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true ) {
@@ -725,7 +718,7 @@ export default class ActorEd extends Actor {
           }
           if ( itemToUpdate.system.piecemeal?.isPiecemeal ) {
             if ( !this.wearsPiecemealArmor ) {
-              addUnequipItemUpdate( ArmorData.metadata.type, [ "equipped" ] );
+              addUnequipItemUpdate( SYSTEM_TYPES.Item.armor, [ "equipped" ] );
             } else {
               // A complete set of piecemeal armor can have up to 5 size points. Armor pieces come in three sizes and
               // cost a corresponding number of points: large (3), medium (2), and small (1). A set of piecemeal armor
@@ -754,34 +747,34 @@ export default class ActorEd extends Actor {
             }
           } else {
             // Unequip other armor
-            if ( nextStatus === "equipped" ) addUnequipItemUpdate( ArmorData.metadata.type, [ "equipped" ] );
+            if ( nextStatus === "equipped" ) addUnequipItemUpdate( SYSTEM_TYPES.Item.armor, [ "equipped" ] );
           }
         }
         updates.push( originalItemUpdate );
         break;
-      case WeaponData.metadata.type:
+      case SYSTEM_TYPES.Item.weapon:
 
         switch ( nextStatus ) {
           case "twoHands": {
             const equippedShield = this.itemTypes.shield.find( shield => shield.system.itemStatus === "equipped" );
-            addUnequipItemUpdate( "weapon", [ "mainHand", "offHand", "twoHands" ] );
-            if ( !( itemToUpdate.system.isTwoHandedRanged && equippedShield?.system?.bowUsage ) ) addUnequipItemUpdate( "shield", [ "equipped" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ "mainHand", "offHand", "twoHands" ] );
+            if ( !( itemToUpdate.system.isTwoHandedRanged && equippedShield?.system?.bowUsage ) ) addUnequipItemUpdate( SYSTEM_TYPES.Item.shield, [ "equipped" ] );
             break;
           }
           case "mainHand":
           case "offHand": {
-            addUnequipItemUpdate( "weapon", [ nextStatus, "twoHands" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ nextStatus, "twoHands" ] );
             break;
           }
           case "tail": {
-            addUnequipItemUpdate( "weapon", [ "tail" ] );
+            addUnequipItemUpdate( SYSTEM_TYPES.Item.weapon, [ "tail" ] );
             break;
           }
         }
 
         updates.push( originalItemUpdate );
         break;
-      case ShieldData.metadata.type:
+      case SYSTEM_TYPES.Item.shield:
         if ( nextStatus === "equipped" ) {
           // check if namegiver item allows only living armor/shields
           if ( this.namegiver?.system.livingArmorOnly && itemToUpdate.system.isLiving === false && enforceLivingArmor === true  ) {
@@ -789,7 +782,7 @@ export default class ActorEd extends Actor {
             break;
           }
           // Unequip other shields
-          addUnequipItemUpdate( "shield", [ "equipped" ] );
+          addUnequipItemUpdate( SYSTEM_TYPES.Item.shield, [ "equipped" ] );
           // If there's a bow and the shield allows it, no need to unequip the weapon
           const bowAllowed = equippedWeapons[0]?.system.isTwoHandedRanged && itemToUpdate.system.bowUsage;
           // If there's a two-handed weapon or two one-handed weapons, unequip one
@@ -803,7 +796,7 @@ export default class ActorEd extends Actor {
 
         updates.push( originalItemUpdate );
         break;
-      case EquipmentData.metadata.type:
+      case SYSTEM_TYPES.Item.equipment:
       default:
         updates.push( originalItemUpdate );
         break;
@@ -1279,7 +1272,7 @@ export default class ActorEd extends Actor {
    * @returns {ItemEd|null} The thread weaving item, or null if none was found.
    */
   getThreadWeavingByCastingType( spellcastingType ) {
-    if ( [ HorrorData.metadata.type, SpiritData.metadata.type ].includes( this.type ) ) {
+    if ( [ SYSTEM_TYPES.Actor.horror, SYSTEM_TYPES.Actor.spirit ].includes( this.type ) ) {
       return this.getSingleItemByEdid(
         getSetting( "edidSpellcasting" )
       ) ?? this.itemTypes.power.find( power => power.system.rollType === "spellcasting" );

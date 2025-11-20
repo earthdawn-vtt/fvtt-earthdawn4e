@@ -5,6 +5,7 @@ import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { isEmpty } = foundry.utils;
 
@@ -50,7 +51,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     super.metadata,
     {
       hasLinkedItems:    true,
-      type:              "questor",
+      type:              SYSTEM_TYPES.Item.questor,
     }, {
       inplace: false
     },
@@ -101,7 +102,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     // get the questor devotion
     const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
     let questorDevotion = await fromUuid( item.system.questorDevotion );
-    questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, "devotion" );
+    questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
     questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
 
     await questorDevotion.update( {

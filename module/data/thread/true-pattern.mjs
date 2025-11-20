@@ -1,6 +1,7 @@
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import ED4E, { LEGEND } from "../../config/_module.mjs";
 import ThreadItemLevelData from "./thread-item-level.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 export default class TruePatternData extends SparseDataModel {
 
@@ -83,22 +84,22 @@ export default class TruePatternData extends SparseDataModel {
    */
   static ALLOWED_TYPES = {
     "Actor": [
-      "character",
-      "npc",
-      "creature",
-      "spirit",
-      "horror",
-      "dragon",
-      "group",
-      "vehicle",
+      SYSTEM_TYPES.Actor.pc,
+      SYSTEM_TYPES.Actor.npc,
+      SYSTEM_TYPES.Actor.creature,
+      SYSTEM_TYPES.Actor.spirit,
+      SYSTEM_TYPES.Actor.horror,
+      SYSTEM_TYPES.Actor.dragon,
+      SYSTEM_TYPES.Actor.group,
+      SYSTEM_TYPES.Actor.vehicle,
     ],
     "Item":  [
-      "armor",
-      "equipment",
-      "path",
-      "shield",
-      "weapon",
-      "shipWeapon",
+      SYSTEM_TYPES.Item.armor,
+      SYSTEM_TYPES.Item.equipment,
+      SYSTEM_TYPES.Item.path,
+      SYSTEM_TYPES.Item.shield,
+      SYSTEM_TYPES.Item.weapon,
+      SYSTEM_TYPES.Item.shipWeapon,
     ],
   };
 
@@ -224,7 +225,7 @@ export default class TruePatternData extends SparseDataModel {
    */
   get truePatternType() {
     if ( this.isThreadItem ) return "threadItem";
-    if ( this.parentDocument.type === "group" ) return "groupPattern";
+    if ( this.parentDocument.type === SYSTEM_TYPES.Actor.group ) return "groupPattern";
     return "patternItem";
   }
 

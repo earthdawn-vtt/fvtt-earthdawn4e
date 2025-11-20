@@ -1,17 +1,18 @@
 import BaseMigration from "../../../common/base-migration.mjs";
 import KnackSourceTalentMigration from "../../field-migrations/knack-source.mjs";
 import NamegiverMigration from "../item/namegiver.mjs";
+import { SYSTEM_TYPES } from "../../../../../constants/constants.mjs";
 
 export default class CharacterMigration extends BaseMigration {
   
   static async migrateEarthdawnData( source ) {
-    source.type = "character";
+    source.type = SYSTEM_TYPES.Actor.pc;
 
     const knackTypes = [
-      "knackAbility",
-      "knackKarma",
-      "knackManeuver",
-      "spellKnack"
+      SYSTEM_TYPES.Item.knackAbility,
+      SYSTEM_TYPES.Item.knackKarma,
+      SYSTEM_TYPES.Item.knackManeuver,
+      SYSTEM_TYPES.Item.spellKnack,
     ];
     if ( source.items ) {
       for ( const item of source.items ) {

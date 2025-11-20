@@ -1,7 +1,7 @@
 import ItemSheetEd from "./item-sheet.mjs";
 import TruePatternData from "../../data/thread/true-pattern.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
-import PcData from "../../data/actor/pc.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
@@ -182,7 +182,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
 
     let changed = false;
 
-    if ( item.type === "spell" && this.item.system.isGrimoire ) {
+    if ( item.type === SYSTEM_TYPES.Item.spell && this.item.system.isGrimoire ) {
       // If the item is a spell and the item is a grimoire, add it to the grimoire
       await this.item.system.addSpellToGrimoire( item );
     }
@@ -324,7 +324,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       ?? canvas.tokens.controlled[0]?.actor
       ?? await PromptFactory.chooseActorPrompt(
         [],
-        game.user.isGM ? "" : PcData.metadata.type,
+        game.user.isGM ? "" : SYSTEM_TYPES.Actor.pc,
         {}
       );
     if ( !actor ) {
@@ -355,7 +355,7 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       ?? canvas.tokens.controlled[0]?.actor
       ?? await PromptFactory.chooseActorPrompt(
         [],
-        game.user.isGM ? "" : PcData.metadata.type,
+        game.user.isGM ? "" : SYSTEM_TYPES.Actor.pc,
         {}
       );
     if ( !actor ) {
