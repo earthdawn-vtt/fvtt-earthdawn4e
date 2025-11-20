@@ -27,6 +27,16 @@
       font-size: @font-size-large;
     }
 
+    .chat-sub-header-tags {
+        text-align: center;
+        margin: 0.3em 0;
+        font-size: medium;
+        font-variant: petite-caps;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+    }
+
     .custom-flavor {
       margin: 0.5em 0;
       font-size: medium;
@@ -173,6 +183,11 @@
 
     &:has(.attack-visualization) {
       background-image: url('assets/chat/messages/background-attack.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.jump-up-visualization) {
+      background-image: url('assets/chat/messages/background-jump-up.svg');
       background-repeat: no-repeat;
     }
 
