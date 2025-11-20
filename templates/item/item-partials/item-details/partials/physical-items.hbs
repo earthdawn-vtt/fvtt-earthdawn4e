@@ -3,6 +3,7 @@
      data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
   {{!-- Blood Magic Damage --}}
+
   <div class="item-section item-section--blood-magic item-group">
     {{#if @root.editable}}
       {{formField systemFields.bloodMagicDamage name="system.bloodMagicDamage" value=item.system.bloodMagicDamage localize=true}}
@@ -18,6 +19,12 @@
       </div>
     {{/if}}
   </div>
+
+  {{#unless isEquipment}}
+    <span class="item-line--space">
+      <br>
+    </span>
+  {{/unless}}
 
   {{!-- Price and Denomination --}}
   <div class="item-section item-section--price item-group">

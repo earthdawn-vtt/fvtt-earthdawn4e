@@ -131,23 +131,14 @@
   --background-mottle-blue-md: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-blue-dk: var(--color-blue-dk) url(assets/sheet/mottle.png) center center / auto repeat;
 }
-:root .application.sheet.earthdawn4e.actor,
-:root .theme-dark.application.sheet.earthdawn4e.actor {
-  --color-primary: var(--color-blue-dk);
-  --color-primary-tr: var(--color-blue-dk-tr);
-  --color-secondary: var(--color-blue-md);
-  --color-secondary-tr: var(--color-blue-md-tr);
-  --color-tertiary: var(--color-blue-lt);
-  --color-tertiary-tr: var(--color-blue-lt-tr);
+:root .application.sheet.earthdawn4e,
+:root .theme-dark.application.sheet.earthdawn4e {
   --color-primary-grey: var(--color-grey-lt);
   --color-primary-grey-tr: var(--color-grey-lt-tr);
   --color-secondary-grey: var(--color-grey-md);
   --color-secondary-grey-tr: var(--color-grey-md-tr);
   --color-tertiary-grey: var(--color-grey-dk);
   --color-tertiary-grey-tr: var(--color-grey-dk-tr);
-  --color-text-primary: var(--color-basic-text-lt);
-  --color-text-banner: var(--color-basic-text-lt);
-  --color-input-square: var(--color-primary);
   --color-button-icon: var(--color-gold-5);
   --color-button-icon-hover: var(--color-basic-text-lt);
   --color-button-panel-on: var(--color-secondary);
@@ -159,10 +150,46 @@
   --color-button-slide-thumb: var(--color-button-icon);
   --color-button-slide-background-on: var(--color-tertiary);
   --color-button-slide-background-off: var(--color-primary);
-  --color-meter-background: var(--color-grey-lt-tr);
-  --color-meter-divide: var(--color-primary);
   --border-main: 2px solid var(--color-gold-3);
   --border-button: 1px solid var(--color-gold-2);
+  --color-meter-background: var(--color-grey-lt-tr);
+  --color-meter-divide: var(--color-primary);
+}
+:root .application.sheet.earthdawn4e,
+:root .theme-light.application.sheet.earthdawn4e {
+  --color-primary-grey: var(--color-grey-lt);
+  --color-primary-grey-tr: var(--color-grey-lt-tr);
+  --color-secondary-grey: var(--color-grey-md);
+  --color-secondary-grey-tr: var(--color-grey-md-tr);
+  --color-tertiary-grey: var(--color-grey-dk);
+  --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+  --color-button-icon: var(--color-gold-4);
+  --color-button-icon-hover: var(--color-gold-5);
+  --color-button-panel-on: var(--color-primary);
+  --color-button-panel-off: var(--color-primary-tr);
+  --color-button-panel-text-on: var(--color-basic-text-lt);
+  --color-button-panel-text-off: var(--color-basic-text-dk);
+  --color-button-check-on: var(--color-button-icon);
+  --color-button-check-off: var(--color-grey-md);
+  --color-button-slide-thumb: var(--color-button-icon);
+  --color-button-slide-background-on: var(--color-secondary);
+  --color-button-slide-background-off: var(--color-secondary-grey);
+  --border-main: 2px solid var(--color-gold-2);
+  --border-button: 2px solid var(--color-gold-3);
+  --color-meter-background: var(--color-grey-md-tr);
+  --color-meter-divide: #c0c0c0;
+}
+:root .application.sheet.earthdawn4e.actor,
+:root .theme-dark.application.sheet.earthdawn4e.actor {
+  --color-primary: var(--color-blue-dk);
+  --color-primary-tr: var(--color-blue-dk-tr);
+  --color-secondary: var(--color-blue-md);
+  --color-secondary-tr: var(--color-blue-md-tr);
+  --color-tertiary: var(--color-blue-lt);
+  --color-tertiary-tr: var(--color-blue-lt-tr);
+  --color-text-primary: var(--color-basic-text-lt);
+  --color-text-banner: var(--color-basic-text-lt);
+  --color-input-square: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -177,6 +204,7 @@
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
+:root .application.sheet.earthdawn4e.actor,
 :root .theme-light.application.sheet.earthdawn4e.actor {
   --color-primary: var(--color-blue-lt);
   --color-primary-tr: var(--color-blue-lt-tr);
@@ -184,12 +212,6 @@
   --color-secondary-tr: var(--color-blue-md-tr);
   --color-tertiary: var(--color-blue-dk);
   --color-tertiary-tr: var(--color-blue-dk-tr);
-  --color-primary-grey: var(--color-grey-lt);
-  --color-primary-grey-tr: var(--color-grey-lt-tr);
-  --color-secondary-grey: var(--color-grey-md);
-  --color-secondary-grey-tr: var(--color-grey-md-tr);
-  --color-tertiary-grey: var(--color-grey-dk);
-  --color-tertiary-grey-tr: var(--color-grey-dk-tr);
   --color-text-primary: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary-grey-tr);
@@ -211,6 +233,7 @@
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
+:root .application.sheet.earthdawn4e.actor.character,
 :root .theme-light.application.sheet.earthdawn4e.actor.character {
   --color-primary: var(--color-green-lt);
   --color-primary-tr: var(--color-green-lt-tr);
@@ -223,13 +246,30 @@
 }
 :root .application.sheet.earthdawn4e.item,
 :root .theme-dark.application.sheet.earthdawn4e.item {
-  --color-button-slide-thumb: var(--color-text-primary);
+  --color-primary: ;
+  --color-primary-tr: ;
+  --color-secondary: ;
+  --color-secondary-tr: ;
+  --color-tertiary: ;
+  --color-tertiary-tr: ;
+  --color-text-primary: ;
+  --color-text-header: ;
+  --color-button-slide-thumb: var(--color-gold-5);
   --color-button-slide-background-on: var(--color-gold-2);
   --color-button-slide-background-off: black;
   --color-shadow: 0 0 10px 1px #010101;
   --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
 }
+:root .application.sheet.earthdawn4e,
 :root .theme-light.application.sheet.earthdawn4e.item {
+  --color-primary: ;
+  --color-primary-tr: ;
+  --color-secondary: ;
+  --color-secondary-tr: ;
+  --color-tertiary: ;
+  --color-tertiary-tr: ;
+  --color-text-primary: ;
+  --color-text-header: ;
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
   --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
 }
@@ -2267,7 +2307,7 @@ form.ed4e.character-generation footer button:hover:enabled {
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container {
   display: grid;
-  grid-template-columns: minmax(25px, 50px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
+  grid-template-columns: minmax(25px, 25px) minmax(150px, 1fr) minmax(20px, 20px) minmax(60px, 60px) minmax(40px, 40px) minmax(40px, 40px) minmax(60px, 60px) minmax(60px, 60px) minmax(80px, 80px);
 }
 .application.sheet.earthdawn4e.actor .window-content .knack-card__grid--container input,
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container input,
@@ -2275,7 +2315,6 @@ form.ed4e.character-generation footer button:hover:enabled {
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container select {
   height: 24px;
   line-height: 24px;
-  padding: 0;
 }
 .application.sheet.earthdawn4e.actor .window-content .spell-card__grid--container {
   display: grid;
@@ -2904,6 +2943,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   background: var(--background-sheet-item);
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
+  /* -------------------- Effects -------------------- */
 }
 .application.sheet.earthdawn4e.item .scrollable {
   padding-right: 4px;
@@ -3067,8 +3107,12 @@ section.spells .matrix-cards .matrix-card .spell-link {
   border-bottom: 1px dotted currentColor;
   transform: translateY(-0.4em);
 }
-.application.sheet.earthdawn4e.item .item-body[data-editable="readonly"] .item-section--price {
-  padding-top: 10px;
+.application.sheet.earthdawn4e.item .item-body .item-line--space {
+  display: block;
+  line-height: 8px;
+}
+.application.sheet.earthdawn4e.item .item-body .item-section--amount {
+  padding-top: 6px;
 }
 .denomination__value-currency .denomination__value {
   width: 75%;

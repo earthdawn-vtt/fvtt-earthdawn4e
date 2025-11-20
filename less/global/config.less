@@ -1,24 +1,15 @@
 :root {
 
-  .application.sheet.earthdawn4e.actor,
-  .theme-dark.application.sheet.earthdawn4e.actor {
-    --color-primary: var(--color-blue-dk);
-    --color-primary-tr: var(--color-blue-dk-tr);
-    --color-secondary: var(--color-blue-md);
-    --color-secondary-tr: var(--color-blue-md-tr);
-    --color-tertiary: var(--color-blue-lt);
-    --color-tertiary-tr: var(--color-blue-lt-tr);
+  //--------------- General ------------------//
+
+  .application.sheet.earthdawn4e,
+  .theme-dark.application.sheet.earthdawn4e {
     --color-primary-grey: var(--color-grey-lt);
     --color-primary-grey-tr: var(--color-grey-lt-tr);
     --color-secondary-grey: var(--color-grey-md);
     --color-secondary-grey-tr: var(--color-grey-md-tr);
     --color-tertiary-grey: var(--color-grey-dk);
     --color-tertiary-grey-tr: var(--color-grey-dk-tr);
-  
-    --color-text-primary: var(--color-basic-text-lt);
-    --color-text-banner: var(--color-basic-text-lt);
-
-    --color-input-square: var(--color-primary);
 
     --color-button-icon: var(--color-gold-5);
     --color-button-icon-hover: var(--color-basic-text-lt);
@@ -32,11 +23,55 @@
     --color-button-slide-background-on: var(--color-tertiary);
     --color-button-slide-background-off: var(--color-primary);
 
-    --color-meter-background: var(--color-grey-lt-tr);
-    --color-meter-divide: var(--color-primary);
-
     --border-main: 2px solid var(--color-gold-3);
     --border-button: 1px solid var(--color-gold-2);
+
+    --color-meter-background: var(--color-grey-lt-tr);
+    --color-meter-divide: var(--color-primary);
+  }
+  .application.sheet.earthdawn4e,
+  .theme-light.application.sheet.earthdawn4e {
+    --color-primary-grey: var(--color-grey-lt);
+    --color-primary-grey-tr: var(--color-grey-lt-tr);
+    --color-secondary-grey: var(--color-grey-md);
+    --color-secondary-grey-tr: var(--color-grey-md-tr);
+    --color-tertiary-grey: var(--color-grey-dk);
+    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+
+    --color-button-icon: var(--color-gold-4);
+    --color-button-icon-hover: var(--color-gold-5);
+    --color-button-panel-on: var(--color-primary);
+    --color-button-panel-off: var(--color-primary-tr);
+    --color-button-panel-text-on: var(--color-basic-text-lt);
+    --color-button-panel-text-off: var(--color-basic-text-dk);
+    --color-button-check-on: var(--color-button-icon);
+    --color-button-check-off: var(--color-grey-md);
+    --color-button-slide-thumb: var(--color-button-icon);
+    --color-button-slide-background-on: var(--color-secondary);
+    --color-button-slide-background-off: var(--color-secondary-grey);
+
+    --border-main: 2px solid var(--color-gold-2);
+    --border-button: 2px solid var(--color-gold-3);
+
+    --color-meter-background: var(--color-grey-md-tr);
+    --color-meter-divide: rgb(192, 192, 192);
+  }
+
+  //--------------- Actors ------------------//
+
+  .application.sheet.earthdawn4e.actor,
+  .theme-dark.application.sheet.earthdawn4e.actor {
+    --color-primary: var(--color-blue-dk);
+    --color-primary-tr: var(--color-blue-dk-tr);
+    --color-secondary: var(--color-blue-md);
+    --color-secondary-tr: var(--color-blue-md-tr);
+    --color-tertiary: var(--color-blue-lt);
+    --color-tertiary-tr: var(--color-blue-lt-tr);
+
+    --color-text-primary: var(--color-basic-text-lt);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-input-square: var(--color-primary);
 
     --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
     --background-banner-actor: var(--background-mottle-blue-lt);
@@ -54,7 +89,7 @@
     }
   }
 
-  // Light theme
+  .application.sheet.earthdawn4e.actor,
   .theme-light.application.sheet.earthdawn4e.actor {
     --color-primary: var(--color-blue-lt);
     --color-primary-tr: var(--color-blue-lt-tr);
@@ -62,12 +97,6 @@
     --color-secondary-tr: var(--color-blue-md-tr);
     --color-tertiary: var(--color-blue-dk);
     --color-tertiary-tr: var(--color-blue-dk-tr);
-    --color-primary-grey: var(--color-grey-lt);
-    --color-primary-grey-tr: var(--color-grey-lt-tr);
-    --color-secondary-grey: var(--color-grey-md);
-    --color-secondary-grey-tr: var(--color-grey-md-tr);
-    --color-tertiary-grey: var(--color-grey-dk);
-    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
 
     --color-text-primary: var(--color-basic-text-dk);
     --color-text-banner: var(--color-basic-text-lt);
@@ -107,21 +136,43 @@
       --background-banner-actor: var(--background-mottle-green-lt);
     }
   }
-}
 
-:root {
+  //--------------- items ------------------//
+
   .application.sheet.earthdawn4e.item,
   .theme-dark.application.sheet.earthdawn4e.item {
-    --color-button-slide-thumb: var(--color-text-primary);
-    --color-button-slide-background-on: var(--color-gold-2);;
+
+    --color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;
+
+    --color-text-primary: ;
+    --color-text-header: ;
+
+    --color-button-slide-thumb: var(--color-gold-5);
+    --color-button-slide-background-on: var(--color-gold-2);
     --color-button-slide-background-off: black;
 
     --color-shadow: 0 0 10px 1px rgb(1, 1, 1);
     
     --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
   }
-
+  .application.sheet.earthdawn4e,
   .theme-light.application.sheet.earthdawn4e.item {
+
+    --color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;
+
+    --color-text-primary: ;
+    --color-text-header: ;
+
     --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
     
     --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
