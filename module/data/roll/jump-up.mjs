@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import { getSetting } from "../../settings.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 /**
  * Roll options for jump up tests.
@@ -14,8 +15,23 @@ import { getSetting } from "../../settings.mjs";
 /**
  * Roll options for jump up tests.
  * @augments {EdRollOptions}
+ * @property {string} [jumpUpAbilityUuid] The UUID of the jump up ability used for the test.
  */
 export default class JumpUpRollOptions extends EdRollOptions {
+
+  // region Schema
+
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+      jumpUpAbilityUuid: new foundry.data.fields.DocumentUUIDField( {
+        required: true,
+        type:     "Item",
+        embedded: true,
+      } ),
+    } );
+  }
+
+  // endregion
 
   // region Static Properties
 
@@ -34,16 +50,6 @@ export default class JumpUpRollOptions extends EdRollOptions {
   // endregion
 
   // region Static Methods
-
-  static defineSchema() {
-    return this.mergeSchema( super.defineSchema(), {
-      jumpUpAbilityUuid: new foundry.data.fields.DocumentUUIDField( {
-        required: true,
-        type:     "Item",
-        embedded: true,
-      } ),
-    } );
-  }
 
   /**
    *  @inheritDoc
@@ -104,6 +110,12 @@ export default class JumpUpRollOptions extends EdRollOptions {
   // region Rendering
 
   /** @inheritDoc */
+  _getChatFlavor() {
+    const jumpUpAbility = fromUuidSync( this.jumpUpAbilityUuid );
+    return jumpUpAbility?.system.summary?.value ?? "";
+  }
+
+  /** @inheritDoc */
   _getChatFlavorData() {
     return {
       /* sourceActor:         createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
@@ -115,6 +127,9 @@ export default class JumpUpRollOptions extends EdRollOptions {
   /** @inheritdoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
+
+    newContext.jumpUpAbility = /** @type {ItemEd} */ await fromUuid( this.jumpUpAbilityUuid );
+    newContext.jumpUpAbilityContentAnchor = newContext.jumpUpAbility ? createContentAnchor( newContext.jumpUpAbility )?.outerHTML : undefined;
 
     return newContext;
   }
