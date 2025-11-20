@@ -96,20 +96,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
       || spendLp === "cancel"
       || spendLp === "close" ) return;
 
-    const currentLevel = this.unmodifiedLevel;
-
-    const updatedItem = await this.parent.update( {
-      "system.level": currentLevel + 1,
-    } );
-
-    if ( foundry.utils.isEmpty( updatedItem ) ) {
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
-      );
-      return;
-    }
-
-    const updatedActor = await this.parent.actor.addLpTransaction(
+    await this.parent.actor.addLpTransaction(
       "spendings",
       LpSpendingTransactionData.dataFromLevelItem(
         this.parent,
@@ -118,12 +105,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
       ),
     );
 
-    if ( foundry.utils.isEmpty( updatedActor ) )
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
-      );
-
-    return this.parent;
+    return this.adjustLevel( 1 );
   }
 
   /** @inheritDoc */
@@ -144,7 +126,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
    */
   async adjustLevel( amount ) {
     const currentLevel = this.unmodifiedLevel;
-    const updatedItem = await this.parent.update( {
+    const updatedItem = await this.parentDocument.update( {
       "system.level": currentLevel + amount,
     } );
 

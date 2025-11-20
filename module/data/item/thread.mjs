@@ -226,16 +226,6 @@ export default class ThreadData extends ItemDataModel.mixin(
     const newLevel = this.unmodifiedLevel + 1;
     const requiredLp = await this.getRequiredLpForLevel( newLevel );
 
-    const updatedThread = await this.parentDocument.update( {
-      "system.level": newLevel,
-    } );
-    if ( foundry.utils.isEmpty( updatedThread ) ) {
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
-      );
-      return;
-    }
-
     const updatedActor = await actor.addLpTransaction(
       "spendings",
       LpSpendingTransactionData.dataFromLevelItem(
@@ -250,7 +240,17 @@ export default class ThreadData extends ItemDataModel.mixin(
         game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
       );
 
-    return this.parentDocument;
+    const updatedThread = await this.parentDocument.update( {
+      "system.level": newLevel,
+    } );
+    if ( foundry.utils.isEmpty( updatedThread ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    return updatedThread;
   }
 
   // endregion
