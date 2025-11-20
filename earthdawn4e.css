@@ -1959,6 +1959,17 @@ form.ed4e.character-generation footer button:hover:enabled {
 .application.sheet.earthdawn4e.actor .standard-form {
   gap: 0;
 }
+.application.sheet.earthdawn4e.actor input[type=text],
+.application.sheet.earthdawn4e.actor input[type=number],
+.application.sheet.earthdawn4e.actor input[type=password],
+.application.sheet.earthdawn4e.actor input[type=date],
+.application.sheet.earthdawn4e.actor input[type=time],
+.application.sheet.earthdawn4e.actor input[type=datetime-local],
+.application.sheet.earthdawn4e.actor input[type=search],
+.application.sheet.earthdawn4e.actor input[type=file],
+.application.sheet.earthdawn4e.actor select {
+  color: var(--color-text-primary);
+}
 .application.sheet.earthdawn4e.actor .window-content {
   backdrop-filter: none;
   /* ======================= Generic containers ======================= */
@@ -2718,6 +2729,9 @@ form.ed4e.character-generation footer button:hover:enabled {
   background: none;
   box-shadow: none;
   text-align: left;
+}
+.application.sheet.earthdawn4e.actor nav.tabs [data-tab] {
+  color: var(--color-text-primary);
 }
 .ability-card__grid--item .roll-icon__hover,
 .knack-card__grid--item .roll-icon__hover,

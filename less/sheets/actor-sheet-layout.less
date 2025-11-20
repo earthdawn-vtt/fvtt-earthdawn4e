@@ -12,6 +12,18 @@
     gap: 0;
   }
 
+  input[type=text],
+  input[type=number],
+  input[type=password],
+  input[type=date],
+  input[type=time],
+  input[type=datetime-local],
+  input[type=search],
+  input[type=file],
+  select {
+    color: var(--color-text-primary);
+  }
+
   .window-content {
     backdrop-filter: none;
 
@@ -807,4 +819,11 @@
       text-align: left;
     }
   }
+
+  // Navigator //
+
+  nav.tabs [data-tab] {
+    color: var(--color-text-primary);
+  }
+
 }
