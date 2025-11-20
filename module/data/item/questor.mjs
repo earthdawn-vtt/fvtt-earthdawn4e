@@ -187,7 +187,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     // possibly update the associated devotion
     const questorDevotion = await fromUuid( this.questorDevotion );
-    if ( !questorDevotion ) return this.parent;
+    if ( !questorDevotion ) return this.parentDocument;
 
     const content =  `
         <p>
@@ -205,7 +205,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       await questorDevotion.update( { "system.level": nextLevel } )
     ) ) ui.notifications.warn( "ED.Notifications.Warn.questorItemNotUpdated" );
 
-    return this.parent;
+    return this.parentDocument;
   }
 
   // endregion

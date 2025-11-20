@@ -161,7 +161,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( !proceed ) return;
 
     // update the class first
-    const updatedClass = await this.parent.update( { "system.level": nextLevel } );
+    const updatedClass = await this.parentDocument.update( { "system.level": nextLevel } );
     if ( updatedClass.system.level !== nextLevel ) {
       ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
     }
@@ -188,7 +188,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     await this._increaseFreeAbilities( nextLevel );
 
     // we only land here if the class increase was successful
-    return this.parent;
+    return updatedClass;
   }
 
   async _increaseFreeAbilities( nextLevel ) {

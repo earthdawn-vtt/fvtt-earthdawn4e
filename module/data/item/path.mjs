@@ -228,7 +228,7 @@ export default class PathData extends ClassTemplate.mixin(
       return;
     }
   
-    return this.parent;
+    return updatedPath;
   }
 
   // endregion
