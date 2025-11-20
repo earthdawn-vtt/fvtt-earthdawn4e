@@ -1,9 +1,11 @@
 <div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.spellEffect.label}}}</div>
 
-<div class="text--center">{{{spellContentAnchor}}}</div>
-{{#if willforce}}
-  <div class="text--center">{{{willforceContentAnchor}}}</div>
-{{/if}}
+<div class="chat-sub-header-tags flexcol">
+  {{{spellContentAnchor}}}
+  {{#if willforce}}
+    {{{willforceContentAnchor}}}
+  {{/if}}
+</div>
 
 {{#if (eq ruleOfOne true)}}
   <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>

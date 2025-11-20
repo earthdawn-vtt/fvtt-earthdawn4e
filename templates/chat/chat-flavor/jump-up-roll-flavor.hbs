@@ -1,8 +1,14 @@
-<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.ability.label}}}</div>
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.jumpUp.label}}}</div>
 
-<div class="chat-sub-header-tags flexcol">{{{abilityContentAnchor}}}</div>
+<div class="chat-sub-header-tags flexcol">
+  {{#if jumpUpAbilityContentAnchor}}
+    {{{jumpUpAbilityContentAnchor}}}
+  {{else}}
+    {{localize "ED.Chat.Flavor.jumpUpRollDefault"}}
+  {{/if}}
+</div>
 
-<div class="ability-visualization">
+<div class="jump-up-visualization">
 
   <div class="custom-flavor text--center">
     {{{ customFlavor }}}

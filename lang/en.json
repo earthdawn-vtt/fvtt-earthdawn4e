@@ -378,6 +378,7 @@
         "invalidDiceFormula":                      "Invalid die formula",
         "itemHistory":                             "TODO: Add translation",
         "jumpUp":                                  "{sourceActor} attempts to jump up with step {step}.",
+        "jumpUpRollDefault":                       "TODO: Add translation",
         "knockdownTest":                           "{sourceActor} makes a knockdown test with step {step}.",
         "provideDiceFormula":                      "Please provide a die formula (e.g., 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} rolls {ability} ({step})",
