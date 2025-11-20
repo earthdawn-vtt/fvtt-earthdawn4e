@@ -252,8 +252,8 @@
   --color-secondary-tr: ;
   --color-tertiary: ;
   --color-tertiary-tr: ;
-  --color-text-primary: ;
-  --color-text-header: ;
+  --color-text-primary: var(--color-basic-text-lt);
+  --color-text-banner: var(--color-basic-text-lt);
   --color-button-slide-thumb: var(--color-gold-5);
   --color-button-slide-background-on: var(--color-gold-2);
   --color-button-slide-background-off: black;
@@ -268,8 +268,8 @@
   --color-secondary-tr: ;
   --color-tertiary: ;
   --color-tertiary-tr: ;
-  --color-text-primary: ;
-  --color-text-header: ;
+  --color-text-primary: var(--color-basic-text-dk);
+  --color-text-banner: var(--color-basic-text-lt);
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
   --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
 }
