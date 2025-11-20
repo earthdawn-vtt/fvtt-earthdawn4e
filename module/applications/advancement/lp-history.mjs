@@ -49,7 +49,7 @@ export default class LegendPointHistory extends ApplicationEd {
     classes:  [ "legend-point__history", ],
     window:   {
       icon:  "fa-thin fa-list-timeline",
-      title: "X-Localize Legend Point History",
+      title: "ED.Dialogs.Title.lpHistory",
     },
     actions: {
       saveChanges:        this._saveChanges,

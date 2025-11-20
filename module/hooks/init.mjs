@@ -49,6 +49,7 @@ function setupUI() {
 function setupCanvas() {
   CONFIG.Token.objectClass = canvas.TokenEd;
   CONFIG.Token.hudClass = applications.hud.TokenHUDEd;
+  CONFIG.Combat.fallbackTurnMarker = "systems/ed4e/assets/foundry/pause.png";
 }
 
 /**
