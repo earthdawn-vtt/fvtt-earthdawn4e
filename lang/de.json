@@ -214,6 +214,7 @@
         "languages":                               "Sprachen",
         "languagesSpoken":                         "Gesprochene Sprachen",
         "languagesWritten":                        "Geschriebene Sprachen",
+        "legend":                                  "Legendenpunkte",
         "legendCurrent":                           "LP Aktuell",
         "legendHistory":                           "LP Übersicht",
         "legendSpend":                             "LP Ausgegeben",

@@ -214,6 +214,7 @@
         "languages":                               "Languages",
         "languagesSpoken":                         "Languages Spoken",
         "languagesWritten":                        "Languages Written",
+        "legend":                                  "TODO: Add translation",
         "legendCurrent":                           "Current",
         "legendHistory":                           "LP History",
         "legendSpend":                             "Spent",

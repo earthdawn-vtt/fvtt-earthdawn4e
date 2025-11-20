@@ -176,7 +176,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
           "ED.Chat.Flavor.rollRecovery",
           {
             sourceActor:  this._actor.name,
-            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ].label,
+            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ],
           },
         ),
       },
