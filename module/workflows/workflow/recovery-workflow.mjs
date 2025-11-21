@@ -3,7 +3,6 @@ import RecoveryRollOptions from "../../data/roll/recovery.mjs";
 import ED4E from "../../config/_module.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import Rollable from "./rollable.mjs";
-import RollProcessor from "../../services/roll-processor.mjs";
 
 
 /**
@@ -13,8 +12,12 @@ import RollProcessor from "../../services/roll-processor.mjs";
 
 /**
  * Workflow for handling actor recovery tests, including standard recovery, full rest, and stun recovery
+ * @augments {ActorWorkflow}
+ * @mixes Rollable
  */
 export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
+
+  // region Properties
 
   /**
    * The characteristics system fields of the actor performing the recovery
@@ -29,6 +32,10 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   _recoveryMode;
+
+  // endregion
+
+  // region Getters
 
   /**
    * Is the recovery mode a standard recovery?
@@ -57,38 +64,37 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     return this._recoveryMode === "recoverStun";
   }
 
-  /**
-   * The {@link EdRollOptions} for the recovery roll.
-   * @type {EdRollOptions}
-   * @private
-   */
-  _rollOptions;
+  // endregion
 
-  /**
-   * The roll being performed for recovery.
-   * @type {EdRoll}
-   * @private
-   */
-  _roll;
+  // region Checkers
+
+  _canHealWound( availableRecoveryTests ) {
+    return !this._actor.hasDamage( "standard" )
+      && this._actor.hasWounds( "standard" )
+      && availableRecoveryTests > 0;
+  }
+
+  // endregion
 
   /**
    * @param {ActorEd} actor The actor performing the recovery
-   * @param {RecoveryWorkflowOptions} [options] Options for the recovery workflow
+   * @param {RecoveryWorkflowOptions&Partial<RollableWorkflowOptions>} [options] Options for the recovery workflow
    */
   constructor( actor, options = {} ) {
     super( actor, options );
 
     this._recoveryMode = options.recoveryMode || "recovery";
     this._actorCharacteristics = actor.system.characteristics;
+    this._rollToMessage = options.rollToMessage ?? true;
 
     this._steps = [
       this._validateRecovery.bind( this ),
-      this._prepareRecoveryRollOptions.bind( this ),
-      this._performRecoveryRoll.bind( this ),
-      this._processRecovery.bind( this ),
-      this._rollToChat.bind( this ),
     ];
+
+    this._initRollableSteps();
   }
+
+  // region Workflow Steps
 
   /**
    * Validates that recovery is needed and possible based on the recovery mode
@@ -141,64 +147,29 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     }
   }
 
-  /**
-   * Prepares the recovery roll options
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _prepareRecoveryRollOptions() {
+  /** @inheritDoc */
+  async _prepareRollOptions() {
     if ( this._isFullRest && !this._actor.hasDamage( "standard" ) ) {
       this._rollOptions = null;
       this._roll = null;
       return;
     }
 
-    const stepModifiers = {};
-    const recoveryModifier = this._actor.system.globalBonuses?.allRecoveryTests.value ?? 0;
-    if ( recoveryModifier ) {
-      stepModifiers[ED4E.EFFECTS.globalBonuses.allRecoveryTests.label] = recoveryModifier;
-    }
-    if ( this._isStunRecovery && this._actorCharacteristics.recoveryTestsResource.stunRecoveryAvailable ) {
-      stepModifiers[ game.i18n.localize(
-        "ED.Rolls.Modifiers.stunRecoveryWillpower"
-      ) ] = this._actor.system.attributes.wil.step;
-    }
-
     this._rollOptions = RecoveryRollOptions.fromActor(
       {
         recoveryMode: this._recoveryMode,
         ignoreWounds: false, // TODO: Implement ignore wounds option
-        step:         {
-          base:      this._actorCharacteristics.recoveryTestsResource.step,
-          modifiers: stepModifiers,
-        },
-        chatFlavor: game.i18n.format(
-          "ED.Chat.Flavor.rollRecovery",
-          {
-            sourceActor:  this._actor.name,
-            recoveryMode: ED4E.WORKFLOWS.recoveryModes[ this._recoveryMode ],
-          },
-        ),
+        actor:        this._actor,
       },
       this._actor,
     );
   }
 
-  /**
-   * Performs the recovery roll
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _performRecoveryRoll() {
-    if ( this._roll === null ) {
-      this._roll = null;
-      this._result = null;
-      return;
-    }
+  /** @inheritDoc */
+  async _createRoll() {
+    if ( this._rollOptions === null ) return;
 
-    await this._createRoll();
-    await this._roll.evaluate();
-    this._result = this._roll;
+    return super._createRoll();
   }
 
   /**
@@ -206,13 +177,12 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
    * @returns {Promise<void>}
    * @private
    */
-  async _processRecovery() {
+  async _processRoll() {
+    if ( this._roll ) return super._processRoll();
+
     let availableRecoveryTests = this._actorCharacteristics.recoveryTestsResource.value;
     let stunRecoveryAvailable = this._actorCharacteristics.recoveryTestsResource.stunRecoveryAvailable;
-    let damageStandard = this._actorCharacteristics.health.damage.standard;
-    let damageStun = this._actorCharacteristics.health.damage.stun;
     let wounds = this._actorCharacteristics.health.wounds;
-    let healing = 0;
 
     if ( this._isFullRest ) {
       stunRecoveryAvailable = true;
@@ -223,34 +193,6 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       }
     }
 
-    if ( this._roll ) {
-      // Healing is the total of the roll minus any wounds, or at least 1
-      healing = Math.max(
-        this._roll.total - ( this._roll.options.ignoreWounds ? 0 : wounds ),
-        1
-      );
-    }
-
-    if ( this._isStunRecovery ) {
-      stunRecoveryAvailable = false;
-      damageStun = Math.max( damageStun - healing, 0 );
-      availableRecoveryTests -= 1;
-    }
-
-    if (
-      this._isRecovery
-      || ( this._isFullRest && this._actor.hasDamage( "standard" ) )
-    ) {
-      const healingLeft = Math.max( healing - damageStandard, 0 );
-      damageStandard = Math.max( damageStandard - healing, 0 );
-      damageStun = Math.max( damageStun - healingLeft, 0 );
-      availableRecoveryTests -= 1;
-    }
-
-    if ( this._roll ) {
-      await RollProcessor.process( this._roll, this._actor, { rollToMessage: false, } );
-    }
-
     await this._actor.update( {
       "system.characteristics": {
         "recoveryTestsResource": {
@@ -258,20 +200,13 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
           "stunRecoveryAvailable": stunRecoveryAvailable,
         },
         "health":                {
-          "damage": {
-            "standard": damageStandard,
-            "stun":     damageStun,
-          },
           "wounds": wounds,
         },
       },
     } );
-    
+
   }
 
-  _canHealWound( availableRecoveryTests ) {
-    return !this._actor.hasDamage( "standard" )
-      && this._actor.hasWounds( "standard" )
-      && availableRecoveryTests > 0;
-  }
+  // endregion
+
 }
