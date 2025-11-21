@@ -296,6 +296,11 @@ export const eaeChangeKeysActor = [
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
   },
+  {
+    value:          "system.characteristics.recoveryTestsResource.step",
+    label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label",
+    group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+  },
   // karma
   {
     value:          "system.karma.value",
