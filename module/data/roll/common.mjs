@@ -81,6 +81,7 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * @property { RollTargetData | null } target All information of the targets array. Defenses, number, resistance.
  * @property { RollStrainData | null } strain How much strain this roll will cost
  * @property { string } [chatFlavor=""] The text that is added to the ChatMessage when this call is put to chat.
+ * @property { string | null } [rollingActorUuid=null] The UUID of the actor performing the roll.
  * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
  * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
  */
