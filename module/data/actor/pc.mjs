@@ -618,7 +618,7 @@ export default class PcData extends NamegiverTemplate {
       "system.encumbrance.bonus",
       "system.initiative",
       "system.characteristics.health.death",
-      "this.characteristics.recoveryTestsResource.step",
+      "system.characteristics.recoveryTestsResource.step",
     ] );
   }
 
