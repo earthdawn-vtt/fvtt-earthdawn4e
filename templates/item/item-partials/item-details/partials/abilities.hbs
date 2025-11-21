@@ -1,19 +1,21 @@
 {{!-- Rank --}}
-<div class="item-section--level item-group">
-{{#if @root.editable}}
-    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
-{{else}}
-    <div class="item-line item-line__level">
-    <span class="item-line__label">
-        {{localize systemFields.level.label}}:
-    </span>
-    <span class="item-line__dots" aria-hidden="true"></span>
-    <span class="item-line__value">
-        {{item.system.level}}
-    </span>
+{{#unless isKnackAbility}}
+    <div class="item-section--level item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    {{else}}
+        <div class="item-line item-line__level">
+        <span class="item-line__label">
+            {{localize systemFields.level.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.level}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-{{/if}}
-</div>
+{{/unless}}
 
 {{!-- Strain --}}
 <div class="item-section item-section--strain item-group">
