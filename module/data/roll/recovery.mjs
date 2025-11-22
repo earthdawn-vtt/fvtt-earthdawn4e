@@ -6,6 +6,8 @@ import ED4E from "../../config/_module.mjs";
  * @augments { EdRollOptionsInitializationData }
  * @property { string } recoveryMode The recovery mode, which can be one
  * of the keys in {@link module:config~WORKFLOWS~recoveryModes}.
+ * @property { { standard: number, stun: number } } initialDamage The damage values before the recovery roll.
+ * @property { number } initialWounds The number of wounds before the recovery roll.
  * @property { boolean } [ignoreWounds=false] Whether to ignore penalties from wounds during the recovery roll.
  * @property { ActorEd } [actor] The actor performing the recovery roll. Can be omitted if `rollingActorUuid` from
  * {@link EdRollOptions} is provided.
@@ -16,6 +18,8 @@ import ED4E from "../../config/_module.mjs";
  * @augments { EdRollOptions }
  * @property { string } recoveryMode The recovery mode, which can be one
  * of the keys in {@link module:config~WORKFLOWS~recoveryModes}.
+ * @property { { standard: number, stun: number } } initialDamage The damage values before the recovery roll.
+ * @property { number } initialWounds The number of wounds before the recovery roll.
  * @property { boolean } [ignoreWounds=false] Whether to ignore penalties from wounds during the recovery roll.
  */
 export default class RecoveryRollOptions extends EdRollOptions {
@@ -28,6 +32,29 @@ export default class RecoveryRollOptions extends EdRollOptions {
       recoveryMode: new fields.StringField( {
         initial:  "recovery",
         choices:  ED4E.WORKFLOWS.recoveryMode,
+      } ),
+      initialDamage: new fields.SchemaField(
+        {
+          standard: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            integer:  true,
+            step:     1,
+          } ),
+          stun:     new fields.NumberField( {
+            required: true,
+            nullable: false,
+            integer:  true,
+            step:     1,
+          } ),
+        },
+        {},
+      ),
+      initialWounds: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        integer:  true,
+        step:     1,
       } ),
       ignoreWounds: new fields.BooleanField( {
         initial:  false,
@@ -101,6 +128,37 @@ export default class RecoveryRollOptions extends EdRollOptions {
       base:    actor.system.characteristics.recoveryTestsResource.step,
       modifiers,
     };
+  }
+
+  // endregion
+
+  // region Rendering
+
+  /**
+   * Prepares data for rendering flavor templates in roll chat messages.
+   * Subclasses of EdRollOptions can override this method to add roll-type specific data
+   * to the base FlavorTemplateData.
+   * @param {object} context - Initial template data containing base roll information
+   * @returns {Promise<FlavorTemplateData>} Enhanced template data for the specific roll type
+   */
+  async getFlavorTemplateData( context ) {
+    const newContext = await super.getFlavorTemplateData( context );
+
+    newContext.isFullRest = this.recoveryMode === "fullRest";
+    newContext.isStunRecovery = this.recoveryMode === "recoverStun";
+    newContext.isRecovery = this.recoveryMode === "recovery";
+
+    newContext.wounds = newContext.rollingActor.system.characteristics.health.wounds;
+    newContext.amountHealed = newContext.rollingActor.getAmountHealing( newContext.result, this.ignoreWounds );
+    newContext.initialDamage = this.initialDamage;
+    newContext.newDamage = {
+      standard: newContext.rollingActor.system.characteristics.health.damage.standard,
+      stun:     newContext.rollingActor.system.characteristics.health.damage.stun,
+    };
+    newContext.initialWounds = this.initialWounds;
+    newContext.newWounds = newContext.rollingActor.system.characteristics.health.wounds;
+
+    return newContext;
   }
 
   // endregion

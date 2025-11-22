@@ -157,9 +157,14 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
 
     this._rollOptions = RecoveryRollOptions.fromActor(
       {
-        recoveryMode: this._recoveryMode,
-        ignoreWounds: false, // TODO: Implement ignore wounds option
-        actor:        this._actor,
+        recoveryMode:  this._recoveryMode,
+        initialDamage: {
+          standard: this._actorCharacteristics.health.damage.standard,
+          stun:     this._actorCharacteristics.health.damage.stun,
+        },
+        initialWounds: this._actorCharacteristics.health.wounds,
+        ignoreWounds:  false, // TODO: Implement ignore wounds option
+        actor:         this._actor,
       },
       this._actor,
     );

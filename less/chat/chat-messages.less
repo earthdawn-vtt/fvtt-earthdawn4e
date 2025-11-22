@@ -1,4 +1,17 @@
+body.theme-dark {
+  --color-chat-heal-value-background: rgba(217, 212, 200, 1);
+  --color-chat-heal-value-background-fade: rgba(217, 212, 200, 0.2);
+}
+
+body.theme-light {
+  --color-chat-heal-value-background: rgba(217, 212, 200, 1);
+  --color-chat-heal-value-background-fade: rgba(217, 212, 200, 0.2);
+}
+
+
 .chat-message {
+  --chat-heal-value-background: linear-gradient(90deg, transparent 0%, var(--color-chat-heal-value-background-fade) 5%, var(--color-chat-heal-value-background) 50%, var(--color-chat-heal-value-background-fade) 95%, transparent 0%);
+
   background-image: url('assets/sheet/background_lighter.PNG');
 
   .message-sender {
@@ -181,6 +194,34 @@
       }
     }
 
+    .recovery-visualization {
+      align-items: center;
+      text-align: center;
+      margin: 0.8em 0;
+
+      .recovery-mode-indicator {
+        align-self: stretch;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0.3em 0.8em;
+        border-radius: 4px;
+        background-image: var(--chat-heal-value-background);
+
+        .recovery-value {
+          font-size: x-large;
+        }
+
+        .amount-healed-value {
+        }
+
+      }
+
+      .health-after-recovery {
+        font-size: medium;
+        text-align: center;
+      }
+    }
+
     &:has(.attack-visualization) {
       background-image: url('assets/chat/messages/background-attack.svg');
       background-repeat: no-repeat;
@@ -203,6 +244,11 @@
 
     &:has(.damage-visualization) {
       background-image: url('assets/icons/damage-transparent.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.recovery-visualization) {
+      background-image: url('assets/chat/messages/background-recovery.svg');
       background-repeat: no-repeat;
     }
 
