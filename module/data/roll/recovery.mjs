@@ -157,6 +157,7 @@ export default class RecoveryRollOptions extends EdRollOptions {
     };
     newContext.initialWounds = this.initialWounds;
     newContext.newWounds = newContext.rollingActor.system.characteristics.health.wounds;
+    newContext.hasHealedWound = newContext.newWounds < this.initialWounds;
 
     return newContext;
   }

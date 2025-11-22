@@ -49,6 +49,8 @@ export default class RollProcessor {
 
     if ( !roll._evaluated ) await roll.evaluate();
 
+    if ( roll.isDummy ) return roll;
+
     // Initialize update object to collect all changes
     const updateData = {};
 

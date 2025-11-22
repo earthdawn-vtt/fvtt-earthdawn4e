@@ -74,6 +74,14 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
       && availableRecoveryTests > 0;
   }
 
+  _needsNoRoll() {
+    return this._isFullRest && !this._actor.hasDamage( "standard" );
+  }
+
+  _needsRoll() {
+    return !this._needsNoRoll();
+  }
+
   // endregion
 
   /**
@@ -129,8 +137,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
     }
 
     if (
-      this._isFullRest
-      && !this._actor.hasDamage( "standard" )
+      this._needsNoRoll()
       && !this._actor.hasWounds( "standard" )
     ) {
       ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.noFullRestRecoveryNeeded" ) );
@@ -149,12 +156,6 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
 
   /** @inheritDoc */
   async _prepareRollOptions() {
-    if ( this._isFullRest && !this._actor.hasDamage( "standard" ) ) {
-      this._rollOptions = null;
-      this._roll = null;
-      return;
-    }
-
     this._rollOptions = RecoveryRollOptions.fromActor(
       {
         recoveryMode:  this._recoveryMode,
@@ -165,6 +166,7 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
         initialWounds: this._actorCharacteristics.health.wounds,
         ignoreWounds:  false, // TODO: Implement ignore wounds option
         actor:         this._actor,
+        _dummy:         this._needsNoRoll(),
       },
       this._actor,
     );
@@ -172,8 +174,6 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
 
   /** @inheritDoc */
   async _createRoll() {
-    if ( this._rollOptions === null ) return;
-
     return super._createRoll();
   }
 
@@ -183,19 +183,17 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
    * @private
    */
   async _processRoll() {
-    if ( this._roll ) return super._processRoll();
+    if ( this._needsRoll() ) return super._processRoll();
 
-    let availableRecoveryTests = this._actorCharacteristics.recoveryTestsResource.value;
-    let stunRecoveryAvailable = this._actorCharacteristics.recoveryTestsResource.stunRecoveryAvailable;
+    if ( !this._isFullRest ) return;
+
     let wounds = this._actorCharacteristics.health.wounds;
+    let availableRecoveryTests = this._actorCharacteristics.recoveryTestsResource.max;
+    const stunRecoveryAvailable = true;
 
-    if ( this._isFullRest ) {
-      stunRecoveryAvailable = true;
-      availableRecoveryTests = this._actorCharacteristics.recoveryTestsResource.max;
-      if ( this._canHealWound( availableRecoveryTests ) ) {
-        wounds = Math.max( wounds - 1, 0 );
-        availableRecoveryTests -= 1;
-      }
+    if ( this._canHealWound( availableRecoveryTests ) ) {
+      wounds = Math.max( wounds - 1, 0 );
+      availableRecoveryTests -= 1;
     }
 
     await this._actor.update( {
@@ -209,6 +207,8 @@ export default class RecoveryWorkflow extends Rollable( ActorWorkflow ) {
         },
       },
     } );
+
+    return super._processRoll();
 
   }
 

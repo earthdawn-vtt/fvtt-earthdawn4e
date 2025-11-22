@@ -30,7 +30,39 @@ const { renderTemplate } = foundry.applications.handlebars;
 
 export default class EdRoll extends Roll {
 
-  // region Properties
+  // region Constructor
+
+  constructor( formula = undefined, data = {}, edRollOptions = {} ) {
+    const getBaseTerm = ( formula, edRollOptions ) => {
+      if ( edRollOptions._dummy ) return "1";
+
+      return formula
+        ? formula
+        : `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
+          edRollOptions.step.total
+        }]`;
+    };
+
+    const baseTerm = getBaseTerm( formula, edRollOptions );
+    super( baseTerm, data, edRollOptions );
+
+    this.flavorTemplate = ED4E.rollTypes[this.options.rollType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
+
+    if ( !this.options.extraDiceAdded ) this.#addExtraDice();
+    if ( !this.options.configured ) this.#configureModifiers();
+  }
+
+  // endregion
+
+  // region Static Properties
+  /**
+   * @inheritDoc
+   */
+  static TOOLTIP_TEMPLATE = "systems/ed4e/templates/chat/tooltip.hbs";
+
+  // endregion
+
+  // region Getters
 
   /**
    * Return the total result of the Roll expression if it has been evaluated. This
@@ -59,6 +91,14 @@ export default class EdRoll extends Roll {
   get isBasicSuccess() {
     if ( !this.canCalculateSuccesses ) return undefined;
     return this.total >= this.options.target.total;
+  }
+
+  /**
+   * Whether this roll is a dummy roll.
+   * @type {boolean}
+   */
+  get isDummy() {
+    return this.options._dummy === true;
   }
 
   get isSuccess() {
@@ -130,79 +170,6 @@ export default class EdRoll extends Roll {
     if ( !this.validEdRoll ) return undefined;
     return this.options.successes?.additionalExtra ?? 0;
   }
-
-  /**
-   * @description                     Returns the formula string based on strings instead of dice.
-   * @type {string}
-   */
-  get #stepsFormula() {
-    const formulaParts = [
-      game.i18n.format(
-        "ED.Rolls.formulaStep", {
-          step: this.options.step.total
-        }
-      ),
-    ];
-    if ( this.options.karma?.pointsUsed > 0 ) formulaParts.push(
-      game.i18n.format(
-        "ED.Rolls.formulaKarma",
-        {
-          step:   this.options.karma.step,
-          amount: this.options.karma.pointsUsed
-        }
-      )
-    );
-    if ( this.options.devotion?.pointsUsed > 0 ) formulaParts.push(
-      game.i18n.format(
-        "ED.Rolls.formulaDevotion",
-        {
-          step:   this.options.devotion.step,
-          amount: this.options.devotion.pointsUsed
-        }
-      )
-    );
-
-    formulaParts.push( ...Object.entries(
-      this.options.extraDice
-    ).map(
-      ( [ label, step ] ) => game.i18n.format(
-        "ED.Rolls.formulaExtraStep",
-        {
-          label,
-          step
-        }
-      )
-    ) );
-
-    return formulaParts.filterJoin( " + " );
-  }
-
-  // endregion
-
-  // region Constructor
-
-  constructor( formula = undefined, data = {}, edRollOptions = {} ) {
-    // us ternary operator to also check for empty strings, nullish coalescing operator (??) only checks null or undefined
-    const baseTerm = formula
-      ? formula
-      : `(${getDice( edRollOptions.step.total )})[${game.i18n.localize( "ED.Rolls.step" )} ${
-        edRollOptions.step.total
-      }]`;
-    super( baseTerm, data, edRollOptions );
-
-    this.flavorTemplate = ED4E.rollTypes[this.options.rollType]?.flavorTemplate ?? ED4E.testTypes.arbitrary.flavorTemplate;
-
-    if ( !this.options.extraDiceAdded ) this.#addExtraDice();
-    if ( !this.options.configured ) this.#configureModifiers();
-  }
-
-  // endregion
-
-  // region Static Properties
-  /**
-   * @inheritDoc
-   */
-  static TOOLTIP_TEMPLATE = "systems/ed4e/templates/chat/tooltip.hbs";
 
   // endregion
 
@@ -412,7 +379,7 @@ export default class EdRoll extends Roll {
       )
     );
 
-    const parts = Object.keys( partsByFlavor ).map( part => {
+    const parts = this.isDummy ? [] : Object.keys( partsByFlavor ).map( part => {
       return {
         formula: partsByFlavor[part].map( d => d.expression ).join( " + " ),
         total:   sum( partsByFlavor[part].map( d => d.total ) ),
@@ -436,11 +403,11 @@ export default class EdRoll extends Roll {
   async render( {flavor, template=this.constructor.CHAT_TEMPLATE, isPrivate=false}={} ) {
     if ( !this._evaluated ) await this.evaluate();
     const chatData = {
-      formula: isPrivate ? "???" : this.#stepsFormula,
+      formula: this.#getRenderedStepsFormula( isPrivate ),
       flavor:  isPrivate ? null : flavor,
       user:    game.user.id,
       tooltip: isPrivate ? "" : await this.getTooltip(),
-      total:   isPrivate ? "?" : Math.round( this.total * 100 ) / 100
+      total:   this.#getRenderedTotal( isPrivate ),
     };
     return renderTemplate( template, chatData );
   }
@@ -455,6 +422,64 @@ export default class EdRoll extends Roll {
       : SYSTEM_TYPES.ChatMessage.common;
 
     return super.toMessage( messageData, options );
+
   }
+
+  /**
+   * @description                     Returns the formula string based on strings instead of dice.
+   * @type {string}
+   */
+  #getRenderedStepsFormula( isPrivate = false ) {
+    if ( isPrivate ) return "???";
+    if ( this.isDummy ) return "---";
+
+    const formulaParts = [
+      game.i18n.format(
+        "ED.Rolls.formulaStep", {
+          step: this.options.step.total
+        }
+      ),
+    ];
+    if ( this.options.karma?.pointsUsed > 0 ) formulaParts.push(
+      game.i18n.format(
+        "ED.Rolls.formulaKarma",
+        {
+          step:   this.options.karma.step,
+          amount: this.options.karma.pointsUsed
+        }
+      )
+    );
+    if ( this.options.devotion?.pointsUsed > 0 ) formulaParts.push(
+      game.i18n.format(
+        "ED.Rolls.formulaDevotion",
+        {
+          step:   this.options.devotion.step,
+          amount: this.options.devotion.pointsUsed
+        }
+      )
+    );
+
+    formulaParts.push( ...Object.entries(
+      this.options.extraDice
+    ).map(
+      ( [ label, step ] ) => game.i18n.format(
+        "ED.Rolls.formulaExtraStep",
+        {
+          label,
+          step
+        }
+      )
+    ) );
+
+    return formulaParts.filterJoin( " + " );
+  }
+
+  #getRenderedTotal( isPrivate = false ) {
+    if ( isPrivate ) return "?";
+    if ( this.isDummy ) return "-";
+
+    return  Math.round( this.total * 100 ) / 100;
+  }
+
   // endregion
 }

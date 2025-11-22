@@ -32,6 +32,12 @@ body.theme-light {
   background-image: url('assets/sheet/background_lighter.PNG');
   filter: var(--chat-message-filter);
 
+  &:has(.dummy) {
+    .message-content {
+      display: none;
+    }
+  }
+
   img {
     filter: var(--filter-chat-message-images);
   }
@@ -238,7 +244,7 @@ body.theme-light {
 
       }
 
-      .health-after-recovery {
+      .p {
         font-size: medium;
         text-align: center;
       }
