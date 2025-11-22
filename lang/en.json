@@ -375,7 +375,9 @@
         "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "{dealtTo} has taken damage.",
         "attuningRollOptions":                     "{sourceActor} attempts \"{attuningItem}\" using {attuningAbility}",
+        "damageAfterRecovery":                     "TODO: Add translation",
         "damageRollOptions":                       "Damage from {damageSource}:",
+        "fullRestRecovery":                        "TODO: Add translation",
         "horrorMarkRollOptions":                   "{horror} attempts to place a horror mark on {caster}.",
         "ignoresArmor":                            "Ignores armor",
         "invalidDiceFormula":                      "Invalid die formula",
@@ -396,11 +398,14 @@
         "spellNoSpecialDescription":               "Spell has no special effects",
         "spellcastingRollOptions":                 "{sourceActor} casts<br>{spell} with<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard roll",
+        "stunDamageAfterRecovery":                 "TODO: Add translation",
         "takeDamage":                              "Take damage",
         "takeStrainDamage":                        "{actor} takes {amount} strain from {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} weaves threads for {spell}",
         "undoDamage":                              "Revert damage",
-        "warpingRollOptions":                      "Distortion Check<br/>{sourceActor} casts raw magic in a region with pollution: {pollution}"
+        "warpingRollOptions":                      "Distortion Check<br/>{sourceActor} casts raw magic in a region with pollution: {pollution}",
+        "woundsAfterRecovery":                     "TODO: Add translation",
+        "woundsIgnoredDuringRecovery":             "TODO: Add translation"
       },
       "Header": {
         "arbitraryTest":                           "Arbitrary Test",
