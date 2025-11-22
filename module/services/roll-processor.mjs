@@ -144,10 +144,7 @@ export default class RollProcessor {
       }
     }
 
-    healing = Math.max(
-      roll.total - ( roll.options.ignoreWounds ? 0 : wounds ),
-      1
-    );
+    healing = actor.getAmountHealing( roll.total, roll.options.ignoreWounds );
 
     if ( isStunRecovery ) {
       stunRecoveryAvailable = false;
