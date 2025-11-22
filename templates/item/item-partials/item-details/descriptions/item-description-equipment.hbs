@@ -2,12 +2,12 @@
      class="item-body item-body--equipment"
      data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs" isEquipment=true}}
+
   {{!-- Amount --}}
-  <div class="item-section item-section--amount item-group">
+  <div class="item-section item-section--amount item-group ">
       {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
   </div>
-
-  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
   {{!-- Description --}}
   <div class="item-section item-section--description">

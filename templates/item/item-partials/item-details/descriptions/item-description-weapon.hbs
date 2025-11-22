@@ -235,7 +235,9 @@
     {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
 
     {{!-- Amount --}}
-    {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+    <div class="item-section item-section--amount item-group">
+        {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+    </div>
 
   <div class="item-section item-section--description">
     <h3 class="item-section__header item-section__header--description label--rail">

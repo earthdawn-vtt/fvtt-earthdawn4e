@@ -1,25 +1,5 @@
 <div id="base-description-knackManeuver-item" class="item-description__knackManeuver item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-  {{!-- Source Item --}}
-  {{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
-
-  {{!-- Minimum Level --}}
-  <div class="item-section item-section--min-level item-group">
-    {{#if @root.editable}}
-      {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
-    {{else}}
-      <div class="item-line item-line--min-level">
-        <span class="item-line__label">
-          {{localize systemFields.minLevel.label}}:
-        </span>
-        <span class="item-line__dots" aria-hidden="true"></span>
-        <span class="item-line__value">
-          {{item.system.minLevel}}
-        </span>
-      </div>
-    {{/if}}
-  </div>
-
   {{!-- Required Extra Successes --}}
   <div class="item-section item-section--extra-successes item-group">
     {{#if @root.editable}}
@@ -37,6 +17,42 @@
     {{/if}}
   </div>
 
+  <span class="item-line--space">
+    <br>
+  </span>
+
+  {{!-- Source Item --}}
+    <div class="item-section item-section--source-item item-group">
+  {{#if @root.editable}}{{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+  {{else if item.system.sourceItem}}
+    <div class="item-line item-line--source-item">
+      <span class="item-line__label">
+        {{localize systemFields.sourceItem.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.sourceItem}}
+      </span>
+    </div>
+  {{/if}}
+  </div>
+
+  {{!-- Minimum Level --}}
+  <div class="item-section item-section--min-level item-group">
+    {{#if @root.editable}}
+      {{formInput systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+    {{else}}
+      <div class="item-line item-line--min-level">
+        <span class="item-line__label">
+          {{localize systemFields.minLevel.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.minLevel}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
   {{> "systems/ed4e/templates/form/group/general.hbs"
     dataField=systemFields.requirements

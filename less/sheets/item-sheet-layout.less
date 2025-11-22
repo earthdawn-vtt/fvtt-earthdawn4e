@@ -110,6 +110,9 @@
   .standard-form fieldset {
     gap: 0;
     padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-gold-3);
   }
 
   .standard-form {
@@ -121,8 +124,7 @@
     }
 
     &fieldset {
-      padding: 0;
-      border: 1px s var(--color-gold-3);
+      padding: 0;      
     }
 
     .tab {
@@ -158,60 +160,68 @@
 
   .item-body {
 
-  .item-section--description {
-    margin-top: 14px;
+    .item-section--description {
+      margin-top: 14px;
 
-    .editor.prosemirror:not(.editor--compact)
-    .editor-content {
-      min-height: 500px;
-      height: 500px;
-    }
+      .editor.prosemirror:not(.editor--compact)
+      .editor-content {
+        min-height: 500px;
+        height: 500px;
+      }
 
-    .prosemirror,
-    prose-mirror {
-      min-height: 500px;
-    }
-  }
-
-  /* <-- key change is here */
-  &[data-editable="readonly"] {
-
-    .item-group {
-      display: flex;
-      justify-content: center;
-    }
-
-    .item-group .item-line {
-      display: flex;
-      gap: 0.2rem;
-      width: 50%;
-      line-height: 20px;
-
-      .item-line__label {
-        font-weight: 500;
+      .prosemirror,
+      prose-mirror {
+        min-height: 500px;
       }
     }
 
-    .item-line__label,
-    .item-line__value {
-      font-size: var(--font-size-13);
-      white-space: nowrap;
+    /* <-- key change is here */
+    &[data-editable="readonly"] {
+
+      .item-group {
+        display: flex;
+        justify-content: center;
+      }
+
+      .item-group .item-line {
+        display: flex;
+        gap: 0.2rem;
+        width: 50%;
+        line-height: 20px;
+
+        .item-line__label {
+          font-weight: 500;
+        }
+      }
+
+      .item-line__label,
+      .item-line__value {
+        font-size: var(--font-size-13);
+        white-space: nowrap;
+      }
+
+      .item-line__value {
+        text-transform: capitalize;
+      }
+
+      .item-line__dots {
+        flex: 1 1 auto;
+        border-bottom: 1px dotted currentColor;
+        transform: translateY(-0.40em);
+      }
     }
 
-    .item-line__value {
-      text-transform: capitalize;
+    .item-line--space {
+      display: block;
+      line-height: 9px;
     }
 
-    .item-line__dots {
-      flex: 1 1 auto;
-      border-bottom: 1px dotted currentColor;
-      transform: translateY(-0.40em);
-    }
-
-    .item-section--price {
-      padding-top: 10px;
+    .item-section--amount {
+      padding-top: 6px;
     }
   }
-}
 
+  /* -------------------- Effects -------------------- */
+
+  
 }

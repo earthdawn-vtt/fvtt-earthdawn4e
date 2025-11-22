@@ -1,4 +1,18 @@
-{{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+{{!-- Source Item --}}
+<div class="item-section item-section--source-item item-group">
+  {{#if @root.editable}}{{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+  {{else if item.system.sourceItem}}
+    <div class="item-line item-line--source-item">
+      <span class="item-line__label">
+        {{localize systemFields.sourceItem.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.sourceItem}}
+      </span>
+    </div>
+  {{/if}}
+</div>
 
 <div class="item-section item-section--min-level item-group">
   {{#if @root.editable}}
@@ -15,7 +29,6 @@
     </div>
   {{/if}}
 </div>
-
 
 {{> "systems/ed4e/templates/form/group/general.hbs"
   dataField=systemFields.requirements

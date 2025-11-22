@@ -65,7 +65,6 @@
         line-height: 19px;
         height: 19px;
       }
-  
     }   
 
     .ability-card__grid--item:nth-child(8),
@@ -390,7 +389,7 @@
     .knack-maneuver-card__grid--container {
       display: grid;
       grid-template-columns:
-        minmax(25px, 50px)
+        minmax(25px, 25px)
         minmax(150px, 1fr)
         minmax(20px, 20px)
         minmax(60px, 60px)
@@ -404,7 +403,6 @@
       select {
         height: 24px;
         line-height: 24px;
-        padding: 0;
       }
     }
 
@@ -809,4 +807,11 @@
       text-align: left;
     }
   }
+
+  // Navigator //
+
+  nav.tabs [data-tab] {
+    color: var(--color-text-primary);
+  }
+
 }

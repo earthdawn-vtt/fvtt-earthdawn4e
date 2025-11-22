@@ -1,36 +1,21 @@
 {{!-- Rank --}}
-<div class="item-section--level item-group">
-{{#if @root.editable}}
-    {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
-{{else}}
-    <div class="item-line item-line__level">
-    <span class="item-line__label">
-        {{localize systemFields.level.label}}:
-    </span>
-    <span class="item-line__dots" aria-hidden="true"></span>
-    <span class="item-line__value">
-        {{item.system.level}}
-    </span>
+{{#unless isKnackAbility}}
+    <div class="item-section--level item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    {{else}}
+        <div class="item-line item-line__level">
+        <span class="item-line__label">
+            {{localize systemFields.level.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.level}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-{{/if}}
-</div>
-
-{{!-- Strain --}}
-<div class="item-section item-section--strain item-group">
-{{#if @root.editable}}
-    {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
-{{else}}
-    <div class="item-line item-line__strain">
-    <span class="item-line__label">
-        {{localize systemFields.strain.label}}:
-    </span>
-    <span class="item-line__dots" aria-hidden="true"></span>
-    <span class="item-line__value">
-        {{item.system.strain}}
-    </span>
-    </div>
-{{/if}}
-</div>
+{{/unless}}
 
 {{!-- Attribute --}}
 <div class="item-section item-section--attribute item-group">
@@ -61,6 +46,23 @@
     <span class="item-line__dots" aria-hidden="true"></span>
     <span class="item-line__value">
         {{item.system.action}}
+    </span>
+    </div>
+{{/if}}
+</div>
+
+{{!-- Strain --}}
+<div class="item-section item-section--strain item-group">
+{{#if @root.editable}}
+    {{formField systemFields.strain name="system.strain" value=item.system.strain localize=true}}
+{{else}}
+    <div class="item-line item-line__strain">
+    <span class="item-line__label">
+        {{localize systemFields.strain.label}}:
+    </span>
+    <span class="item-line__dots" aria-hidden="true"></span>
+    <span class="item-line__value">
+        {{item.system.strain}}
     </span>
     </div>
 {{/if}}
