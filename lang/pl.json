@@ -374,9 +374,11 @@
         "aHorror":                                 "TODO: Add translation",
         "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
+        "arbitraryRollOptions":                    "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
         "damageAfterRecovery":                     "TODO: Add translation",
         "damageRollOptions":                       "TODO: Add translation",
+        "edRollOptions":                           "TODO: Add translation",
         "fullRestRecovery":                        "TODO: Add translation",
         "horrorMarkRollOptions":                   "TODO: Add translation",
         "ignoresArmor":                            "TODO: Add translation",
@@ -403,6 +405,7 @@
         "takeStrainDamage":                        "TODO: Add translation",
         "threadWeavingRollOptions":                "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation",
+        "warpingAstralSpaceType":                  "TODO: Add translation",
         "warpingRollOptions":                      "TODO: Add translation",
         "woundsAfterRecovery":                     "TODO: Add translation",
         "woundsIgnoredDuringRecovery":             "TODO: Add translation"
@@ -411,7 +414,9 @@
         "arbitraryTest":                           "TODO: Add translation",
         "attackManeuvers":                         "TODO: Add translation",
         "attackReactions":                         "TODO: Add translation",
-        "attackTargets":                           "TODO: Add translation"
+        "attackTargets":                           "TODO: Add translation",
+        "initiativeIncreaseAbilities":             "TODO: Add translation",
+        "initiativeReplacementEffect":             "TODO: Add translation"
       }
     },
     "Conditions": {

@@ -374,9 +374,11 @@
         "aHorror":                                 "A horror",
         "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "{dealtTo} has taken damage.",
+        "arbitraryRollOptions":                    "TODO: Add translation",
         "attuningRollOptions":                     "{sourceActor} attempts \"{attuningItem}\" using {attuningAbility}",
         "damageAfterRecovery":                     "TODO: Add translation",
         "damageRollOptions":                       "Damage from {damageSource}:",
+        "edRollOptions":                           "TODO: Add translation",
         "fullRestRecovery":                        "TODO: Add translation",
         "horrorMarkRollOptions":                   "{horror} attempts to place a horror mark on {caster}.",
         "ignoresArmor":                            "Ignores armor",
@@ -403,6 +405,7 @@
         "takeStrainDamage":                        "{actor} takes {amount} strain from {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} weaves threads for {spell}",
         "undoDamage":                              "Revert damage",
+        "warpingAstralSpaceType":                  "TODO: Add translation",
         "warpingRollOptions":                      "Distortion Check<br/>{sourceActor} casts raw magic in a region with pollution: {pollution}",
         "woundsAfterRecovery":                     "TODO: Add translation",
         "woundsIgnoredDuringRecovery":             "TODO: Add translation"
@@ -411,7 +414,9 @@
         "arbitraryTest":                           "Arbitrary Test",
         "attackManeuvers":                         "Maneuvers",
         "attackReactions":                         "Reactions",
-        "attackTargets":                           "Targets"
+        "attackTargets":                           "Targets",
+        "initiativeIncreaseAbilities":             "TODO: Add translation",
+        "initiativeReplacementEffect":             "TODO: Add translation"
       }
     },
     "Conditions": {

@@ -1,4 +1,5 @@
 import EdRollOptions from "./common.mjs";
+import { createContentAnchor } from "../../utils.mjs";
 
 /**
  * Roll options for initiative rolls.
@@ -7,6 +8,28 @@ import EdRollOptions from "./common.mjs";
  * @property { Set<string> } [increaseAbilities] A set of UUIDs of items that add steps to the initiative roll.
  */
 export default class InitiativeRollOptions extends EdRollOptions {
+
+  // region Schema
+
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return this.mergeSchema( super.defineSchema(), {
+      replacementEffect: new fields.DocumentUUIDField( {
+        nullable: true,
+        initial:  null,
+        type:     "Item",
+        embedded: true,
+      } ),
+      increaseAbilities: new fields.SetField( new fields.DocumentUUIDField( {
+        nullable: true,
+        initial:  null,
+        type:     "Item",
+        embedded: true,
+      } ), {} ),
+    } );
+  }
+
+  // endregion
 
   // region Static Properties
 
@@ -32,24 +55,6 @@ export default class InitiativeRollOptions extends EdRollOptions {
 
   // region Static Methods
 
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    return this.mergeSchema( super.defineSchema(), {
-      replacementEffect: new fields.DocumentUUIDField( {
-        nullable: true,
-        initial:  null,
-        type:     "Item",
-        embedded: true,
-      } ),
-      increaseAbilities: new fields.SetField( new fields.DocumentUUIDField( {
-        nullable: true,
-        initial:  null,
-        type:     "Item",
-        embedded: true,
-      } ), {} ),
-    } );
-  }
-
   /** @inheritDoc */
   static fromData( data, options = {} ) {
     return /** @type { InitiativeRollOptions } */ super.fromData( data, options );
@@ -67,8 +72,16 @@ export default class InitiativeRollOptions extends EdRollOptions {
   /** @inheritDoc */
   async getFlavorTemplateData( context ) {
     const newContext = await super.getFlavorTemplateData( context );
-    newContext.replacementEffect = this.replacementEffect;
-    newContext.increaseAbilities = this.increaseAbilities;
+    newContext.replacementEffect = await fromUuid( this.replacementEffect );
+    newContext.replacementEffectContentLink = newContext.replacementEffect
+      ? createContentAnchor( newContext.replacementEffect ).outerHTML
+      : null;
+    newContext.increaseAbilities = await Promise.all(
+      this.increaseAbilities.map( uuid => fromUuid( uuid ) )
+    );
+    newContext.increaseAbilitiesContentLinks = newContext.increaseAbilities.map( ability =>
+      createContentAnchor( ability ).outerHTML
+    );
     return newContext;
   }
 

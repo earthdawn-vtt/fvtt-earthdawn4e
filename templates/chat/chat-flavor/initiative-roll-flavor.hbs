@@ -1,14 +1,21 @@
-<div class="custom-flavor">{{ customFlavor }}</div>
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.initiative.label}}}</div>
 
-<div class="roll-used-abilities flexcol">
-  {{#if replacementEffect}}{{{ed-linkForUuid replacementEffect}}}{{/if}}
-  {{#each increaseAbilities}}{{{ed-linkForUuid this}}}{{/each}}
+<div class="chat-sub-header-tags initiative flexcol">
+
+  {{#if replacementEffectContentLink}}
+    <h6>{{localize "ED.Chat.Header.initiativeReplacementEffect"}}</h6>
+    {{{replacementEffectContentLink}}}
+  {{/if}}
+
+  {{#if increaseAbilitiesContentLinks.length}}
+    <h6>{{localize "ED.Chat.Header.initiativeIncreaseAbilities"}}</h6>
+    {{#each increaseAbilitiesContentLinks}}{{{this}}}{{/each}}
+  {{/if}}
+
 </div>
 
-{{#if (eq ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-  <div class="modifier-lists flexrow">
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-  </div>
-{{/if}}
+<div class="initiative-visualization">
+
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

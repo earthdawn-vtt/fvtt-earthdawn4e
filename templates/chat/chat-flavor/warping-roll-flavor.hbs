@@ -1,3 +1,17 @@
-{{> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" }}
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.warping.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">
+  {{{spellContentAnchor}}}
+</div>
+
+<div class="warping-visualization">
+
+  <div class="astral-region-type">
+    <p>
+      {{localize "ED.Chat.Flavor.warpingAstralSpaceType" astralSpaceType=astralSpacePollution}}
+    </p>
+  </div>
+
+</div>
 
 {{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}
