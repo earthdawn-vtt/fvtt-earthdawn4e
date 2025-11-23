@@ -246,6 +246,12 @@
 }
 :root .application.sheet.earthdawn4e.item,
 :root .theme-dark.application.sheet.earthdawn4e.item {
+  /*--color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;*/
   --color-text-primary: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-button-slide-thumb: var(--color-gold-5);
@@ -256,6 +262,12 @@
 }
 :root .application.sheet.earthdawn4e,
 :root .theme-light.application.sheet.earthdawn4e.item {
+  /*--color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;*/
   --color-text-primary: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
@@ -394,7 +406,6 @@ input[type=search],
 input[type=file],
 select {
   color: var(--color-text-primary);
-  box-shadow: none;
 }
 .header__no-border {
   border: none;
@@ -1012,41 +1023,8 @@ h3.label--rail .label__text::after {
 .application.sheet.earthdawn4e .editor.prosemirror .editor-content {
   color: #fff;
 }
-body.theme-dark {
-  --color-chat-heal-value-background: #d9d4c8;
-  --color-chat-heal-value-background-fade: rgba(217, 212, 200, 0.2);
-  --chat-message-background: url('assets/sheet/background_lighter.PNG');
-  --chat-message-filter: invert(100%);
-  --color-chat-dice-total-roll-success: rgba(218, 175, 218, 0.49);
-  --color-chat-dice-total-roll-failure: rgba(167, 236, 236, 0.5);
-  --color-dice-tooltip-die-min: #18520b;
-  --color-dice-tooltip-die-max: #aa0200;
-  --filter-dice-tooltip-die-max: sepia(0.5) hue-rotate(-60deg);
-  --filter-dice-tooltip-die-min: sepia(0.5) hue-rotate(120deg);
-  --filter-chat-message-images: invert(100%);
-}
-body.theme-light {
-  --color-chat-heal-value-background: #d9d4c8;
-  --color-chat-heal-value-background-fade: rgba(217, 212, 200, 0.2);
-  --chat-message-background: url('assets/sheet/background_lighter.PNG');
-  --chat-message-filter: invert(0%);
-  --color-chat-dice-total-roll-success: darkseagreen;
-  --color-dice-tooltip-die-min: #aa0200;
-  --color-dice-tooltip-die-max: #18520b;
-  --filter-dice-tooltip-die-max: sepia(0.5) hue-rotate(60deg);
-  --filter-dice-tooltip-die-min: sepia(0.5) hue-rotate(-60deg);
-  --filter-chat-message-images: invert(0%);
-}
 .chat-message {
-  --chat-heal-value-background: linear-gradient(90deg, transparent 0%, var(--color-chat-heal-value-background-fade) 5%, var(--color-chat-heal-value-background) 50%, var(--color-chat-heal-value-background-fade) 95%, transparent 0%);
   background-image: url('assets/sheet/background_lighter.PNG');
-  filter: var(--chat-message-filter);
-}
-.chat-message:has(.dummy) .message-content {
-  display: none;
-}
-.chat-message img {
-  filter: var(--filter-chat-message-images);
 }
 .chat-message .message-sender {
   font-size: larger;
@@ -1064,6 +1042,9 @@ body.theme-light {
   object-fit: scale-down;
   max-height: 40px;
 }
+.chat-message .flavor-text p {
+  text-align: center;
+}
 .chat-message .flavor-text .chat-flavor-header {
   text-align: center;
   margin: 0.3em 0;
@@ -1077,6 +1058,15 @@ body.theme-light {
   align-items: center;
   justify-content: center;
   align-content: center;
+}
+.chat-message .flavor-text .chat-sub-header-tags.horror-mark {
+  justify-content: space-between;
+}
+.chat-message .flavor-text .chat-sub-header-tags.horror-mark > a:first-child {
+  text-align: left;
+}
+.chat-message .flavor-text .chat-sub-header-tags.horror-mark > a:last-child {
+  text-align: right;
 }
 .chat-message .flavor-text .custom-flavor {
   margin: 0.5em 0;
@@ -1183,25 +1173,12 @@ body.theme-light {
 .chat-message .flavor-text .damage-visualization .armor-indicator.none {
   color: #777;
 }
-.chat-message .flavor-text .recovery-visualization {
-  align-items: center;
+.chat-message .flavor-text .horror-mark-visualization {
+  justify-content: space-between;
   text-align: center;
-  margin: 0.8em 0;
 }
-.chat-message .flavor-text .recovery-visualization .recovery-mode-indicator {
-  align-self: stretch;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0.3em 0.8em;
-  border-radius: 4px;
-  background-image: var(--chat-heal-value-background);
-}
-.chat-message .flavor-text .recovery-visualization .recovery-mode-indicator .recovery-value {
-  font-size: x-large;
-}
-.chat-message .flavor-text .recovery-visualization .p {
-  font-size: medium;
-  text-align: center;
+.chat-message .flavor-text .horror-mark-visualization .marking-indicator {
+  font-size: xxx-large;
 }
 .chat-message .flavor-text:has(.attack-visualization) {
   background-image: url('assets/chat/messages/background-attack.svg');
@@ -1212,19 +1189,31 @@ body.theme-light {
   background-repeat: no-repeat;
 }
 .chat-message .flavor-text:has(.thread-weaving-visualization) {
-  background-image: url('assets/icons/thread-transparent.svg');
+  background-image: url('assets/chat/messages/background-threadweaving.svg');
   background-repeat: no-repeat;
 }
 .chat-message .flavor-text:has(.spellcasting-visualization) {
-  background-image: url('assets/icons/cast-transparent.svg');
+  background-image: url('assets/chat/messages/background-spellcasting.svg');
   background-repeat: no-repeat;
 }
 .chat-message .flavor-text:has(.damage-visualization) {
-  background-image: url('assets/icons/damage-transparent.svg');
+  background-image: url('assets/chat/messages/background-damage.svg');
   background-repeat: no-repeat;
 }
-.chat-message .flavor-text:has(.recovery-visualization) {
-  background-image: url('assets/chat/messages/background-recovery.svg');
+.chat-message .flavor-text:has(.warping-visualization) {
+  background-image: url('assets/chat/messages/background-warping.svg');
+  background-repeat: no-repeat;
+}
+.chat-message .flavor-text:has(.horror-mark-visualization) {
+  background-image: url('assets/chat/messages/background-horror-mark.svg');
+  background-repeat: no-repeat;
+}
+.chat-message .flavor-text:has(.knock-down-visualization) {
+  background-image: url('assets/chat/messages/background-knock-down.svg');
+  background-repeat: no-repeat;
+}
+.chat-message .flavor-text:has(.initiative-visualization) {
+  background-image: url('assets/chat/messages/background-initiative.svg');
   background-repeat: no-repeat;
 }
 .chat-message .flavor-text .message-buttons {
@@ -1265,18 +1254,10 @@ body.theme-light {
   word-break: unset;
 }
 .chat-message .dice-total.roll-success {
-  background-color: var(--color-chat-dice-total-roll-success);
+  background-color: darkseagreen;
 }
 .chat-message .dice-total.roll-failure {
-  background-color: var(--color-chat-dice-total-roll-failure);
-}
-.chat-message .dice-tooltip .dice-rolls .roll.min {
-  color: var(--color-dice-tooltip-die-min);
-  filter: var(--filter-dice-tooltip-die-min);
-}
-.chat-message .dice-tooltip .dice-rolls .roll.max {
-  color: var(--color-dice-tooltip-die-max);
-  filter: var(--filter-dice-tooltip-die-max);
+  background-color: indianred;
 }
 .chat-message .roll-failure {
   background-color: indianred;
