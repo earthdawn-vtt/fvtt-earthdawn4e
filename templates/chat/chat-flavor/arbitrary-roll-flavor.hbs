@@ -1,24 +1,6 @@
-{{!-- 
-Arbitrary Flavor contains:
-- Test result
-- Optional: Successes if Difficulty is entered.
-- Optional: Take damage if Damage type is set to true
-- Optional: Assign damage if Damage type is set to true
---}}
-<div class="custom-flavor">{{ customFlavor }}</div>
-{{#if (eq  ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-{{#if (ne target.total 0)}}
-{{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-{{/if}}
-{{/if}}
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.arbitrary.label}}}</div>
 
-{{!-- 
-not sure why arbitrary rolls shall hold target modifiers. the type of a roll is unclear isn't it?
-  maybe for equipment rolls???
-<div class="modifier-lists flexrow">
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-  {{#if target.public}}
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-  {{/if}} --}}
+
+<div class="custom-flavor">{{ customFlavor }}</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

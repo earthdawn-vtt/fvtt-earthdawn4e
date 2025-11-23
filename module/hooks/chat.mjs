@@ -150,7 +150,8 @@ function triggerRollStep( argString ) {
       undefined,
       {},
       new EdRollOptions( {
-        step: {
+        rollType: "arbitrary",
+        step:     {
           total: Number( currentStep )
         }
       } )
