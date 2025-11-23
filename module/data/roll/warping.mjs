@@ -20,23 +20,7 @@ import { createContentAnchor } from "../../utils.mjs";
  */
 export default class WarpingRollOptions extends EdRollOptions {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.WarpingRollOptions",
-  ];
-
-  /** @inheritdoc */
-  static TEST_TYPE = "action";
-
-  /** @inheritdoc */
-  static ROLL_TYPE = "warping";
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -55,6 +39,26 @@ export default class WarpingRollOptions extends EdRollOptions {
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.WarpingRollOptions",
+  ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "warping";
+
+  // endregion
+
+  // region Static Methods
 
   /**
    *  @inheritDoc
@@ -114,6 +118,21 @@ export default class WarpingRollOptions extends EdRollOptions {
     return {
       base: actor.system.characteristics.defenses.mystical.baseValue,
     };
+  }
+
+  // endregion
+
+  // region Rendering
+
+  /** @inheritDoc */
+  async getFlavorTemplateData( context ) {
+    const newContext = await super.getFlavorTemplateData( context );
+
+    newContext.spell = await fromUuid( this.spellUuid );
+    newContext.spellContentAnchor = createContentAnchor( newContext.spell ).outerHTML;
+    newContext.astralSpacePollution = MAGIC.astralSpacePollution[ this.astralSpacePollution ].label;
+
+    return newContext;
   }
 
   // endregion

@@ -62,6 +62,11 @@ body.theme-light {
   }
 
   .flavor-text {
+
+    p {
+      text-align: center;
+    }
+
     .chat-flavor-header {
       text-align: center;
       margin: 0.3em 0;
@@ -272,6 +277,11 @@ body.theme-light {
 
     &:has(.damage-visualization) {
       background-image: url('assets/chat/messages/background-damage.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.warping-visualization) {
+      background-image: url('assets/chat/messages/background-warping.svg');
       background-repeat: no-repeat;
     }
 
