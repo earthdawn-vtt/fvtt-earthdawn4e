@@ -985,6 +985,19 @@ export default class ActorEd extends Actor {
   // region Rolls
 
   /**
+   * Calculate the amount of healing possible.
+   * @param {number} amount          The amount of healing to be applied.
+   * @param {boolean} [ignoreWounds]   Whether wounds should be ignored when calculating healing.
+   * @returns {number}                  The amount of healing possible (minimum 1).
+   */
+  getAmountHealing( amount, ignoreWounds = false ) {
+    return Math.max(
+      amount - ( ignoreWounds ? 0 : this.system.characteristics.health.wounds ),
+      1
+    );
+  }
+
+  /**
    * @description                       Attribute Roll.
    * @param {string} attributeId        The 3-letter id for the attribute (e.g. "per").
    * @returns {Promise<any>}            A promise that resolves when the attunement workflow execution is complete.

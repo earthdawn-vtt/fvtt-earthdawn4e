@@ -375,7 +375,9 @@
         "abilityRollOptions":                      "TODO: Add translation",
         "actorTookDamage":                         "TODO: Add translation",
         "attuningRollOptions":                     "TODO: Add translation",
+        "damageAfterRecovery":                     "TODO: Add translation",
         "damageRollOptions":                       "TODO: Add translation",
+        "fullRestRecovery":                        "TODO: Add translation",
         "horrorMarkRollOptions":                   "TODO: Add translation",
         "ignoresArmor":                            "TODO: Add translation",
         "invalidDiceFormula":                      "TODO: Add translation",
@@ -396,11 +398,14 @@
         "spellNoSpecialDescription":               "TODO: Add translation",
         "spellcastingRollOptions":                 "TODO: Add translation",
         "standardDiceRoll":                        "TODO: Add translation",
+        "stunDamageAfterRecovery":                 "TODO: Add translation",
         "takeDamage":                              "TODO: Add translation",
         "takeStrainDamage":                        "TODO: Add translation",
         "threadWeavingRollOptions":                "TODO: Add translation",
         "undoDamage":                              "TODO: Add translation",
-        "warpingRollOptions":                      "TODO: Add translation"
+        "warpingRollOptions":                      "TODO: Add translation",
+        "woundsAfterRecovery":                     "TODO: Add translation",
+        "woundsIgnoredDuringRecovery":             "TODO: Add translation"
       },
       "Header": {
         "arbitraryTest":                           "TODO: Add translation",

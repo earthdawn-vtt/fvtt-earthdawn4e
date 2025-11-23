@@ -18,6 +18,7 @@ export default class RollProcessor {
     "initiative": ( roll, actor, updateData = {} ) => { return updateData; },
     "jumpUp":     RollProcessor._processJumpUp,
     "knockdown":  RollProcessor._processKnockdown,
+    "recovery":   RollProcessor._processRecovery,
     // Add other specialized processors here
   };
 
@@ -47,6 +48,8 @@ export default class RollProcessor {
     if ( !roll ) throw new Error( "RollProcessor.process: No roll provided" );
 
     if ( !roll._evaluated ) await roll.evaluate();
+
+    if ( roll.isDummy ) return roll;
 
     // Initialize update object to collect all changes
     const updateData = {};
@@ -107,7 +110,7 @@ export default class RollProcessor {
 
   static async _processJumpUp( roll, actor, updateData = {} ) {
     if ( roll.isSuccess ) {
-      actor.toggleStatusEffect( "knockedDown", { active: false,}, );
+      await actor.toggleStatusEffect( "knockedDown", { active: false,}, );
     }
     return updateData;
   }
@@ -116,6 +119,62 @@ export default class RollProcessor {
     if ( !roll.isSuccess ) {
       await actor.toggleStatusEffect( "knockedDown", { active: true, } );
     }
+    return updateData;
+  }
+
+  static async _processRecovery( roll, actor, updateData = {} ) {
+    let availableRecoveryTests = actor.system.characteristics.recoveryTestsResource.value;
+    let stunRecoveryAvailable = actor.system.characteristics.recoveryTestsResource.stunRecoveryAvailable;
+    let damageStandard = actor.system.characteristics.health.damage.standard;
+    let damageStun = actor.system.characteristics.health.damage.stun;
+    let wounds = actor.system.characteristics.health.wounds;
+    let healing = 0;
+
+    const isFullRest = roll.options.recoveryMode === "fullRest";
+    const isRecovery = roll.options.recoveryMode === "recovery";
+    const isStunRecovery = roll.options.recoveryMode === "recoverStun";
+    const canHealWound = !actor.hasDamage( "standard" )
+      && actor.hasWounds( "standard" )
+      && availableRecoveryTests > 0;
+
+    if ( isFullRest ) {
+      stunRecoveryAvailable = true;
+      availableRecoveryTests = actor.system.characteristics.recoveryTestsResource.max;
+      if ( canHealWound ) {
+        wounds = Math.max( wounds - 1, 0 );
+        availableRecoveryTests -= 1;
+      }
+    }
+
+    healing = actor.getAmountHealing( roll.total, roll.options.ignoreWounds );
+
+    if ( isStunRecovery ) {
+      stunRecoveryAvailable = false;
+      damageStun = Math.max( damageStun - healing, 0 );
+      availableRecoveryTests -= 1;
+    }
+
+    if ( isRecovery || ( isFullRest && actor.hasDamage( "standard" ) ) ) {
+      const healingLeft = Math.max( healing - damageStandard, 0 );
+      damageStandard = Math.max( damageStandard - healing, 0 );
+      damageStun = Math.max( damageStun - healingLeft, 0 );
+      availableRecoveryTests -= 1;
+    }
+
+    updateData.system ??= {};
+    updateData.system.characteristics ??= {};
+    updateData.system.characteristics.recoveryTestsResource = {
+      value:                 availableRecoveryTests,
+      stunRecoveryAvailable: stunRecoveryAvailable,
+    };
+    updateData.system.characteristics.health = {
+      damage: {
+        standard: damageStandard,
+        stun:     damageStun,
+      },
+      wounds: wounds,
+    };
+
     return updateData;
   }
 }

@@ -73,11 +73,16 @@ export const icons = {
     tainted:       "fa-regular radiation",
     corrupt:       "fa-regular fa-biohazard",
   },
-  GroupDifficulty: {
+  GroupDifficulty:  {
     group:          "fa-users",
     highest:        "fa-arrow-up",
     lowest:         "fa-arrow-down",
     x:              "fa-xmark",
+  },
+  RecoveryMode:     {
+    recovery:      "fa-heart",
+    fullRest:      "fa-campfire",
+    recoverStun:   "fa-spiral",
   },
   Tabs:             {
     lpEarned:        "fa-light fa-hexagon-plus",

@@ -81,86 +81,19 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * @property { RollTargetData | null } target All information of the targets array. Defenses, number, resistance.
  * @property { RollStrainData | null } strain How much strain this roll will cost
  * @property { string } [chatFlavor=""] The text that is added to the ChatMessage when this call is put to chat.
+ * @property { string | null } [rollingActorUuid=null] The UUID of the actor performing the roll.
  * @property { ( 'action' | 'effect' | 'arbitrary' ) } testType The type of the test. See {@link module:config~ROLLS~testTypes}.
  * @property { string } rollType The type of the roll. See {@link module:config~ROLLS~rollTypes}.
+ * @property { { guaranteed: number | null, additionalExtra: number | null } | null } successes
+ *           Predefined successes for this roll. `guaranteed` are successes that are always counted.
+ *           `additionalExtra` are successes that are only counted if extra successes are rolled.
+ * @property { boolean } _dummy Whether this roll is a dummy roll that has no mechanical effect or meaningful content. It
+ *                             does not consume resources, does not apply strain, has no meaningful result. Can be used
+ *                             to simulate rolls for chat messages or other non-mechanical purposes.
  */
 export default class EdRollOptions extends SparseDataModel {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.RollOptions",
-  ];
-
-  /**
-   * The type of test that this roll represents.
-   * @type {string}
-   */
-  static TEST_TYPE = "arbitrary";
-
-  /**
-   * The type of roll that this represents.
-   * @type {string}
-   */
-  static ROLL_TYPE = "arbitrary";
-
-  /**
-   * The global bonuses that are applied to the step of all rolls of this type.
-   * @type {[string]}
-   */
-  static GLOBAL_MODIFIERS = [
-    "allTests",
-  ];
-
-  /**
-   * @description Bonus resources to be added globally
-   * @type { RollResourceData }
-   */
-  static get _bonusResource() {
-    const fields = foundry.data.fields;
-    return new fields.SchemaField(
-      {
-        pointsUsed: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        available: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  0,
-          min:      0,
-          step:     1,
-          integer:  true,
-        } ),
-        step: new fields.NumberField( {
-          required: true,
-          nullable: false,
-          initial:  this.initResourceStep,
-          min:      1,
-          step:     1,
-          integer:  true,
-        } ),
-        dice: new FormulaField( {
-          required: true,
-          initial:  this.initDiceForStep,
-        } ),
-      },
-      {
-        required: true,
-        nullable: true,
-      },
-    );
-  }
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -335,8 +268,91 @@ export default class EdRollOptions extends SparseDataModel {
         nullable: true,
         initial:  null,
       } ),
+      _dummy: new fields.BooleanField( {
+        required: true,
+        nullable: false,
+        initial:  false,
+      } ),
     };
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.RollOptions",
+  ];
+
+  /**
+   * The type of test that this roll represents.
+   * @type {string}
+   */
+  static TEST_TYPE = "arbitrary";
+
+  /**
+   * The type of roll that this represents.
+   * @type {string}
+   */
+  static ROLL_TYPE = "arbitrary";
+
+  /**
+   * The global bonuses that are applied to the step of all rolls of this type.
+   * @type {[string]}
+   */
+  static GLOBAL_MODIFIERS = [
+    "allTests",
+  ];
+
+  /**
+   * @description Bonus resources to be added globally
+   * @type { RollResourceData }
+   */
+  static get _bonusResource() {
+    const fields = foundry.data.fields;
+    return new fields.SchemaField(
+      {
+        pointsUsed: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        available: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  0,
+          min:      0,
+          step:     1,
+          integer:  true,
+        } ),
+        step: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          initial:  this.initResourceStep,
+          min:      1,
+          step:     1,
+          integer:  true,
+        } ),
+        dice: new FormulaField( {
+          required: true,
+          initial:  this.initDiceForStep,
+        } ),
+      },
+      {
+        required: true,
+        nullable: true,
+      },
+    );
+  }
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * Creates a new instance of EdRollOptions from the provided data and actor. Subclasses may extend this method.

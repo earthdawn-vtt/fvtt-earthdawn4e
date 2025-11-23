@@ -1,4 +1,6 @@
 {{#if parts.length}}
+  {{#unless roll.isDummy}}
+
   <div class="dice-tooltip">
     <div class="wrapper">
       {{#each parts}}
@@ -19,4 +21,6 @@
       {{/each}}
     </div>
   </div>
+
+  {{/unless}}
 {{/if}}

@@ -1,8 +1,87 @@
-<div class="custom-flavor">{{ customFlavor }}</div>
-{{#if (eq ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-<div class="modifier-lists flexrow">
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.recovery.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">{{lookup CONFIG.ED4E.WORKFLOWS.recoveryModes rollOptions.recoveryMode}}</div>
+
+<div class="recovery-visualization flexcol">
+
+  {{#unless rollOptions._dummy}}
+
+    <div class="recovery-mode-indicator flexcol">
+      <div class="recovery-value {{rollOptions.recoveryMode}}">
+      <span class="recovery-mode-icon
+        fa-sharp-duotone fa-thin {{CONFIG.SYSTEM.icons.RecoveryMode.recovery}}
+        "></span>
+        <span class="amount-healed-value">{{ amountHealed }}</span>
+      </div>
+    </div>
+
+    <div class="health-after-recovery">
+
+      <p class="damage-after-recovery">
+        {{#if amountHealed}}
+          {{#if isStunRecovery}}
+            {{{localize "ED.Chat.Flavor.stunDamageAfterRecovery"
+                        newStunDamage=newDamage.stun
+                        initialStunDamage=initialDamage.stun
+            }}}
+          {{else}}
+            {{{localize "ED.Chat.Flavor.damageAfterRecovery"
+                        newStandardDamage=newDamage.standard
+                        initialStandardDamage=initialDamage.standard
+                        newStunDamage=newDamage.stun
+                        initialStunDamage=initialDamage.stun
+            }}}
+          {{/if}}
+        {{/if}}
+      </p>
+
+      <p class="wound-after-recovery">
+        {{{localize "ED.Chat.Flavor.woundsAfterRecovery"
+                    newWounds=newWounds
+                    initialWounds=initialWounds
+        }}}
+        <br>
+        {{#if rollOptions.ignoreWounds}}
+          {{{localize "ED.Chat.Flavor.woundsIgnoredDuringRecovery"}}}
+        {{/if}}
+      </p>
+
+    </div>
+
+  {{/unless}}
+
+  {{#if isFullRest}}
+
+    <div class="full-rest-recovery flexcol">
+
+      <p class="full-rest-recovery">
+        {{{localize "ED.Chat.Flavor.fullRestRecovery"}}}
+      </p>
+
+      {{#if hasHealedWound}}
+
+        <p class="wound-after-recovery">
+          {{{localize "ED.Chat.Flavor.woundsAfterRecovery"
+                      newWounds=newWounds
+                      initialWounds=initialWounds
+          }}}
+        </p>
+
+      {{/if}}
+
+    </div>
+
+  {{/if}}
+
 </div>
-{{/if}}
+
+{{#unless rollOptions._dummy}}
+
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+  </div>
+{{else}}
+
+  <div class="dummy"></div>
+
+{{/unless}}
