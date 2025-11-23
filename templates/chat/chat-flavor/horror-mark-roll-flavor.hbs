@@ -1,17 +1,19 @@
-{{> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" }}
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.horrorMark.label}}}</div>
+
+<div class="chat-sub-header-tags horror-mark flexrow">
+  {{{horrorContentAnchor}}}
+  {{{casterContentAnchor}}}
+</div>
 
 <div class="horror-mark-visualization flexrow">
-  <div class="horror-container">
+  <div class="horror-container avatar">
     <img src="{{horror.img}}" class="horror-image" alt="Horror" />
-    <div class="entity-name">{{horror.name}}</div>
   </div>
   <div class="marking-indicator flexcol">
-    <i class="fas fa-skull"></i>
-    <i class="fas fa-arrow-right marking-arrow"></i>
+    &raquo;
   </div>
   <div class="caster-container avatar">
     <img src="{{caster.img}}" class="caster-image" alt="Caster" />
-    <div class="entity-name">{{caster.name}}</div>
   </div>
 </div>
 

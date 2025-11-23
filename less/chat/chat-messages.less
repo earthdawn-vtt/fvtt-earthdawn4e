@@ -81,6 +81,18 @@ body.theme-light {
       align-items: center;
       justify-content: center;
       align-content: center;
+
+      &.horror-mark {
+        justify-content: space-between;
+
+        & > a:first-child {
+          text-align: left;
+        }
+        & > a:last-child {
+          text-align: right;
+        }
+      }
+
     }
 
     .custom-flavor {
@@ -227,6 +239,15 @@ body.theme-light {
       }
     }
 
+    .horror-mark-visualization {
+      justify-content: space-between;
+      text-align: center;
+
+      .marking-indicator {
+        font-size: xxx-large;
+      }
+    }
+
     .recovery-visualization {
       align-items: center;
       text-align: center;
@@ -282,6 +303,11 @@ body.theme-light {
 
     &:has(.warping-visualization) {
       background-image: url('assets/chat/messages/background-warping.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.horror-mark-visualization) {
+      background-image: url('assets/chat/messages/background-horror-mark.svg');
       background-repeat: no-repeat;
     }
 

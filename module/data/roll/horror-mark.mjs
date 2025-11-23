@@ -25,23 +25,7 @@ import { getSetting } from "../../settings.mjs";
  */
 export default class HorrorMarkRollOptions extends EdRollOptions {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.HorrorMarkRollOptions",
-  ];
-
-  /** @inheritdoc */
-  static TEST_TYPE = "action";
-
-  /** @inheritdoc */
-  static ROLL_TYPE = "horrorMark";
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -64,6 +48,26 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.HorrorMarkRollOptions",
+  ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "horrorMark";
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * @inheritDoc
@@ -154,7 +158,11 @@ export default class HorrorMarkRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.horror = await fromUuid( this.horrorUuid );
+    newContext.horrorContentAnchor = newContext.horror
+      ? createContentAnchor( newContext.horror ).outerHTML
+      : "<a class=\"content-link\">???</a>";
     newContext.caster = await fromUuid( this.casterUuid );
+    newContext.casterContentAnchor = createContentAnchor( newContext.caster ).outerHTML;
 
     return newContext;
   }
