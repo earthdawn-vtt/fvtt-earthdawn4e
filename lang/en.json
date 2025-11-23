@@ -3836,9 +3836,9 @@
     },
     "Actor": {
       "TypeGroups": {
-        "creatures":                               "TODO: Add translation",
-        "namegivers":                              "TODO: Add translation",
-        "other":                                   "TODO: Add translation"
+        "creatures":                               "Creatures",
+        "namegivers":                              "Namegivers",
+        "other":                                   "Other"
       },
       "character":                                 "Character",
       "creature":                                  "Creature",
