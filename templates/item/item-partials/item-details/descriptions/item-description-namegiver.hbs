@@ -1,98 +1,178 @@
 <div id="base-description-namegiver-item" class="item-description__namegiver item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
 
-<div class="item-section--attributes">
+  <div class="item-section--attributes">
     {{#if @root.editable}}
-    {{!-- Dexterity Value --}}
-    <div class="item-section item-section--dexterity-value item-group">
+
+      {{!-- Dexterity Value --}}
+      <div class="item-section item-section--dexterity-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.dexterityValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.dexterityValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.dex"
-                type="number"
-                value="{{item.system.attributeValues.dex}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.dex"
+              type="number"
+              value="{{item.system.attributeValues.dex}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
-    {{!-- Strength Value --}}
-    <div class="item-section item-section--strength-value item-group">
+      </div>
+
+      {{!-- Strength Value --}}
+      <div class="item-section item-section--strength-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.strengthValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.strengthValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.str"
-                type="number"
-                value="{{item.system.attributeValues.str}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.str"
+              type="number"
+              value="{{item.system.attributeValues.str}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
-    {{!-- Toughness Value --}}
-    <div class="item-section item-section--toughness-value item-group">
+      </div>
+
+      {{!-- Toughness Value --}}
+      <div class="item-section item-section--toughness-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.toughnessValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.toughnessValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.tou"
-                type="number"
-                value="{{item.system.attributeValues.tou}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.tou"
+              type="number"
+              value="{{item.system.attributeValues.tou}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
-    {{!-- Perception Value --}}
-    <div class="item-section item-section--perception-value item-group">
+      </div>
+
+      {{!-- Perception Value --}}
+      <div class="item-section item-section--perception-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.perceptionValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.perceptionValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.per"
-                type="number"
-                value="{{item.system.attributeValues.per}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.per"
+              type="number"
+              value="{{item.system.attributeValues.per}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
-    {{!-- Willpower Value --}}
-    <div class="item-section item-section--willpower-value item-group">
+      </div>
+
+      {{!-- Willpower Value --}}
+      <div class="item-section item-section--willpower-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.willpowerValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.willpowerValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.wil"
-                type="number"
-                value="{{item.system.attributeValues.wil}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.wil"
+              type="number"
+              value="{{item.system.attributeValues.wil}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
-    {{!-- Charisma Value --}}
-    <div class="item-section item-section--charisma-value item-group">
+      </div>
+
+      {{!-- Charisma Value --}}
+      <div class="item-section item-section--charisma-value item-group">
         <div class="form-group">
-            <label>{{localize "ED.Item.Namegiver.charismaValue"}}:</label>
-            <div class="form-fields">
+          <label>{{localize "ED.Item.Namegiver.charismaValue"}}:</label>
+          <div class="form-fields">
             <input
-                name="system.attributeValues.cha"
-                type="number"
-                value="{{item.system.attributeValues.cha}}"
-                data-dtype="Number" />
-            </div>
+              name="system.attributeValues.cha"
+              type="number"
+              value="{{item.system.attributeValues.cha}}"
+              data-dtype="Number" />
+          </div>
         </div>
-    </div>
+      </div>
+
     {{else}}
-    <div class="item-line item-line--attributes">
-      <span class="item-line__row">
-        DEX {{item.system.attributeValues.dex}},
-        STR {{item.system.attributeValues.str}},
-        TOU {{item.system.attributeValues.tou}};
-        PER {{item.system.attributeValues.per}},
-        WIL {{item.system.attributeValues.wil}},
-        CHA {{item.system.attributeValues.cha}}
-      </span>
-    </div>
+
+      {{!-- Dexterity --}}
+      <div class="item-section item-section--dexterity-value item-group">
+        <div class="item-line item-line--dexterity-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.dexterityValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.dex}}
+          </span>
+        </div>
+      </div>
+
+      {{!-- Strength --}}
+      <div class="item-section item-section--strength-value item-group">
+        <div class="item-line item-line--strength-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.strengthValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.str}}
+          </span>
+        </div>
+      </div>
+
+      {{!-- Toughness --}}
+      <div class="item-section item-section--toughness-value item-group">
+        <div class="item-line item-line--toughness-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.toughnessValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.tou}}
+          </span>
+        </div>
+      </div>
+
+      {{!-- Perception --}}
+      <div class="item-section item-section--perception-value item-group">
+        <div class="item-line item-line--perception-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.perceptionValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.per}}
+          </span>
+        </div>
+      </div>
+
+      {{!-- Willpower --}}
+      <div class="item-section item-section--willpower-value item-group">
+        <div class="item-line item-line--willpower-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.willpowerValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.wil}}
+          </span>
+        </div>
+      </div>
+
+      {{!-- Charisma --}}
+      <div class="item-section item-section--charisma-value item-group">
+        <div class="item-line item-line--charisma-value">
+          <span class="item-line__label">
+            {{localize "ED.Item.Namegiver.charismaValue"}}:
+          </span>
+          <span class="item-line__dots" aria-hidden="true"></span>
+          <span class="item-line__value">
+            {{item.system.attributeValues.cha}}
+          </span>
+        </div>
+      </div>
+
     {{/if}}
-</div>
+  </div>
+
+  <span class="item-line--space">
+    <br>
+  </span>
 
 
   {{!-- Karma Modifier --}}
@@ -112,91 +192,94 @@
     {{/if}}
   </div>
 
-{{!-- Movement: Walk --}}
-<div class="item-section item-section--movement-walk item-group">
-  {{#if @root.editable}}
-    {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
-  {{else if item.system.movement.walk}}
-    <div class="item-line item-line--movement-walk">
-      <span class="item-line__label">
-        {{localize systemFields.movement.fields.walk.label}}:
-      </span>
-      <span class="item-line__dots" aria-hidden="true"></span>
-      <span class="item-line__value">
-        {{item.system.movement.walk}}
-      </span>
-    </div>
-  {{/if}}
-</div>
+  <span class="item-line--space">
+    <br>
+  </span>
 
-{{!-- Movement: Fly --}}
-<div class="item-section item-section--movement-fly item-group">
-  {{#if @root.editable}}
-    {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
-  {{else if item.system.movement.fly}}
-    <div class="item-line item-line--movement-fly">
-      <span class="item-line__label">
-        {{localize systemFields.movement.fields.fly.label}}:
-      </span>
-      <span class="item-line__dots" aria-hidden="true"></span>
-      <span class="item-line__value">
-        {{item.system.movement.fly}}
-      </span>
-    </div>
-  {{/if}}
-</div>
+  {{!-- Movement: Walk --}}
+  <div class="item-section item-section--movement-walk item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
+    {{else if item.system.movement.walk}}
+      <div class="item-line item-line--movement-walk">
+        <span class="item-line__label">
+          {{localize systemFields.movement.fields.walk.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.movement.walk}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
-{{!-- Movement: Swim --}}
-<div class="item-section item-section--movement-swim item-group">
-  {{#if @root.editable}}
-    {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
-  {{else if item.system.movement.swim}}
-    <div class="item-line item-line--movement-swim">
-      <span class="item-line__label">
-        {{localize systemFields.movement.fields.swim.label}}:
-      </span>
-      <span class="item-line__dots" aria-hidden="true"></span>
-      <span class="item-line__value">
-        {{item.system.movement.swim}}
-      </span>
-    </div>
-  {{/if}}
-</div>
+  {{!-- Movement: Fly --}}
+  <div class="item-section item-section--movement-fly item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
+    {{else if item.system.movement.fly}}
+      <div class="item-line item-line--movement-fly">
+        <span class="item-line__label">
+          {{localize systemFields.movement.fields.fly.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.movement.fly}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
-{{!-- Movement: Burrow --}}
-<div class="item-section item-section--movement-burrow item-group">
-  {{#if @root.editable}}
-    {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
-  {{else if item.system.movement.burrow}}
-    <div class="item-line item-line--movement-burrow">
-      <span class="item-line__label">
-        {{localize systemFields.movement.fields.burrow.label}}:
-      </span>
-      <span class="item-line__dots" aria-hidden="true"></span>
-      <span class="item-line__value">
-        {{item.system.movement.burrow}}
-      </span>
-    </div>
-  {{/if}}
-</div>
+  {{!-- Movement: Swim --}}
+  <div class="item-section item-section--movement-swim item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
+    {{else if item.system.movement.swim}}
+      <div class="item-line item-line--movement-swim">
+        <span class="item-line__label">
+          {{localize systemFields.movement.fields.swim.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.movement.swim}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
-{{!-- Movement: Climb --}}
-<div class="item-section item-section--movement-climb item-group">
-  {{#if @root.editable}}
-    {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
-  {{else if item.system.movement.climb}}
-    <div class="item-line item-line--movement-climb">
-      <span class="item-line__label">
-        {{localize systemFields.movement.fields.climb.label}}:
-      </span>
-      <span class="item-line__dots" aria-hidden="true"></span>
-      <span class="item-line__value">
-        {{item.system.movement.climb}}
-      </span>
-    </div>
-  {{/if}}
-</div>
+  {{!-- Movement: Burrow --}}
+  <div class="item-section item-section--movement-burrow item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
+    {{else if item.system.movement.burrow}}
+      <div class="item-line item-line--movement-burrow">
+        <span class="item-line__label">
+          {{localize systemFields.movement.fields.burrow.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.movement.burrow}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
+  {{!-- Movement: Climb --}}
+  <div class="item-section item-section--movement-climb item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
+    {{else if item.system.movement.climb}}
+      <div class="item-line item-line--movement-climb">
+        <span class="item-line__label">
+          {{localize systemFields.movement.fields.climb.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.movement.climb}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
 
   {{!-- Abilities --}}
   {{formField systemFields.abilities name="system.abilities" value=item.system.abilities localize=true}}
