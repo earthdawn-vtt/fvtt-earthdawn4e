@@ -26,18 +26,4 @@
 
 </div>
 
-{{#if (eq ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-  {{#if (ne target.total 0)}}
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-  {{/if}}
-  <div class="message-buttons flexrow">
-  </div>
-  <div class="modifier-lists flexrow">
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-    {{#if target.public}}
-      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-    {{/if}}
-  </div>
-{{/if}}
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}
