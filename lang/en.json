@@ -2854,44 +2854,44 @@
         "ThreadItemLevel": {
           "FIELDS": {
             "abilities": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "The abilities gained for this level's effects",
+              "label":                             "Abilities"
             },
             "activeEffects": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "The active effects gained for this level's effects",
+              "label":                             "Active Effects"
             },
             "deed": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "The deed to perform to be able to weave threads to the item",
+              "label":                             "Deed"
             },
             "effect": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "The effects gained at this level",
+              "label":                             "Effect"
             },
             "keyKnowledge": {
               "answer": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "The answer that is needed to weave a thread to the item",
+                "label":                           "Answer"
               },
-              "hint":                              "TODO: Add translation",
+              "hint":                              "The key knowledge needed to weave a thread to the item",
               "isKnown": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "The key knowledge has been learned by the player",
+                "label":                           "Is Known"
               },
-              "label":                             "TODO: Add translation",
+              "label":                             "Key Knowledge",
               "question": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "The question to answer to weave a thread to the item",
+                "label":                           "Question"
               }
             },
             "knownToPlayer": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "the key knowledge is known to the player",
+              "label":                             "Known"
             },
             "level": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Thread Item Level",
+              "label":                             "Level"
             }
           }
         },
@@ -2917,35 +2917,35 @@
           "FIELDS": {
             "attachedThreads": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Attached Threads"
             },
             "enchantmentPattern": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Enchantment Pattern"
             },
             "hasDeeds": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Has Deeds"
             },
             "knownToPlayer": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Known to Player"
             },
             "maxThreads": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Maximum Threads"
             },
             "mysticalDefense": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Mystical Defense"
             },
             "threadItemLevels": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Thread Item Level"
             },
             "tier": {
               "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "label":                             "Tier"
             }
           },
           "thisTruePatternNeedsHasDeeds":          "TODO: Add translation"

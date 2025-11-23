@@ -246,12 +246,6 @@
 }
 :root .application.sheet.earthdawn4e.item,
 :root .theme-dark.application.sheet.earthdawn4e.item {
-  --color-primary: ;
-  --color-primary-tr: ;
-  --color-secondary: ;
-  --color-secondary-tr: ;
-  --color-tertiary: ;
-  --color-tertiary-tr: ;
   --color-text-primary: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-button-slide-thumb: var(--color-gold-5);
@@ -262,12 +256,6 @@
 }
 :root .application.sheet.earthdawn4e,
 :root .theme-light.application.sheet.earthdawn4e.item {
-  --color-primary: ;
-  --color-primary-tr: ;
-  --color-secondary: ;
-  --color-secondary-tr: ;
-  --color-tertiary: ;
-  --color-tertiary-tr: ;
   --color-text-primary: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
@@ -406,6 +394,7 @@ input[type=search],
 input[type=file],
 select {
   color: var(--color-text-primary);
+  box-shadow: none;
 }
 .header__no-border {
   border: none;
