@@ -374,9 +374,11 @@
         "aHorror":                                 "Ein Dämon",
         "abilityRollOptions":                      "{sourceActor} würfelt {ability} mit Stufe {step}",
         "actorTookDamage":                         "{dealtTo} hat Schaden erlitten.",
+        "arbitraryRollOptions":                    "Würfelwurf",
         "attuningRollOptions":                     "{sourceActor} versucht \"{attuningItem}\" und benutzt dafür {attuningAbility}",
         "damageAfterRecovery":                     "Standard: {initialStandardDamage} &rArr; {newStandardDamage}<br>Betäubung: {initialStunDamage} &rArr; {newStunDamage}",
         "damageRollOptions":                       "Schaden durch {damageSource}:",
+        "edRollOptions":                           "Earthdawn Würfelwurf",
         "fullRestRecovery":                        "Erholungsproben aufgefüllt",
         "horrorMarkRollOptions":                   "{horror} versucht ein Dämonenmal auf {caster} zu platzieren.",
         "ignoresArmor":                            "Ignoriert Rüstung",
@@ -403,6 +405,7 @@
         "takeStrainDamage":                        "{actor} nimmt {amount} Überanstrengungsschaden durch {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} webt Fäden für {threadTarget}",
         "undoDamage":                              "Setze den Schaden zurück",
+        "warpingAstralSpaceType":                  "Astralraum-Kategorie: {astralSpaceType}",
         "warpingRollOptions":                      "Verzerrungsprobe<br/>{sourceActor} wirkt rohe Magie in einer Region mit Verunreinigung: {pollution}",
         "woundsAfterRecovery":                     "Wunden: {initialWounds} &rArr; {newWounds}",
         "woundsIgnoredDuringRecovery":             "Wunden ignoriert"
@@ -411,7 +414,9 @@
         "arbitraryTest":                           "Willkürlicher Test",
         "attackManeuvers":                         "Manöver",
         "attackReactions":                         "Reaktionen",
-        "attackTargets":                           "Ziele"
+        "attackTargets":                           "Ziele",
+        "initiativeIncreaseAbilities":             "Steigernde Fähigkeiten",
+        "initiativeReplacementEffect":             "Ersetzende Fähigkeit"
       }
     },
     "Conditions": {
