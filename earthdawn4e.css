@@ -3124,6 +3124,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title h3 input[type=text] {
   background: none;
   text-align: center;
+  margin: -4px 0 -4px;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-body__summary {
   display: flex;
