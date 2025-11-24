@@ -240,7 +240,7 @@
         "recovery":                                "Erholung",
         "shields":                                 "Schilde",
         "skills":                                  "Fertigkeiten",
-        "socialDefense":                           "TODO: Add translation",
+        "socialDefense":                           "Soziale Verteidigung",
         "specialAbility":                          "Sonstige Fähigkeit",
         "spells":                                  "Zauber",
         "step":                                    "Stufe",
@@ -1649,8 +1649,8 @@
         },
         "Fields": {
           "dispelDifficulty": {
-            "hint":                                "TODO: Add translation",
-            "label":                               "TODO: Add translation"
+            "hint":                                "Der Mindestwurf zur Neutralisierung eines Zaubers",
+            "label":                               "Neutralisierungsschwierigkeit"
           },
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
