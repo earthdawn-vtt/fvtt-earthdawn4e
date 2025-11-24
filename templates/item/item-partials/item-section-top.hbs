@@ -1,17 +1,32 @@
 <header class="sheet-header item-header {{#if @root.editable}}item-header--editable{{else}}item-header--readonly{{/if}}">
   <div class="item-header__image">
-    <img
-      class="item-image"
-      src="{{item.img}}"
-      title="{{item.name}}"
-      data-action="editImage"
-      data-edit="img" />
+    {{#if @root.editable}}
+      <img
+        class="item-image"
+        src="{{item.img}}"
+        title="{{item.name}}"
+        data-action="editImage"
+        data-edit="img"
+      />
+    {{else}}
+      <img
+        class="item-image item-image--readonly"
+        src="{{item.img}}"
+        title="{{item.name}}"
+      />
+    {{/if}}
   </div>
   <div class="item-header__body">
     <div class="header__no-border item-header__title">
+      {{#if @root.editable}}
         <h3 id="Name" class="header__no-border">
-            <input class="" name="name" type="text" value="{{item.name}}" placeholder="Name" />
+          <input class="" name="name" type="text" value="{{item.name}}" placeholder="Name"/>
         </h3>
+      {{else}}
+        <h3 id="Name" class="header__no-border">
+          {{item.name}}
+        </h3>
+      {{/if}}
     </div>
 
     <h3 class="item-header__type label--rail">

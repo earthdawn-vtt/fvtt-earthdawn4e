@@ -54,7 +54,7 @@
               </legend>
 
               {{!-- Key Knowledge --}}
-              <div class="item-section--threads">
+              <div class="item-section--knowledge">
 
                 {{!-- Question --}}
                 <div class="text-box--question">
@@ -177,12 +177,34 @@
                   </div>
                 </div>
 
-                {{formGroup this.schema.fields.activeEffects
-                            name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
-                            value=this.activeEffects disabled=(not @root/editable)}}
-                {{formGroup this.schema.fields.abilities
-                            name=(concat "system.truePattern.threadItemLevels." @key ".abilities")
-                            value=this.abilities disabled=(not @root/editable)}}
+                {{!-- Active Effects --}}
+                {{#if @root.editable}}
+                  {{formGroup this.schema.fields.activeEffects
+                              name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                              value=this.activeEffects
+                              disabled=false}}
+                {{else}}
+                  {{formGroup this.schema.fields.activeEffects
+                              name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                              value=this.activeEffects
+                              disabled=true
+                              hint=false}}
+                {{/if}}
+
+                {{!-- Abilities --}}
+                {{#if @root.editable}}
+                  {{formGroup this.schema.fields.abilities
+                              name=(concat "system.truePattern.threadItemLevels." @key ".abilities")
+                              value=this.abilities
+                              disabled=false}}
+                {{else}}
+                  {{formGroup this.schema.fields.abilities
+                              name=(concat "system.truePattern.threadItemLevels." @key ".abilities")
+                              value=this.abilities
+                              disabled=true
+                              hint=false}}
+                {{/if}}
+
 
               {{/if}}
             </div>

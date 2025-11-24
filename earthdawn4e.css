@@ -3112,13 +3112,18 @@ section.spells .matrix-cards .matrix-card .spell-link {
   grid-template-rows: min-content min-content auto;
   row-gap: 0.25rem;
 }
-.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title input {
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title h3 {
   font-family: 'Warhorse-DecoBB', serif;
-  font-size: var(--font-size-24);
+  font-size: var(--font-size-26);
   text-align: center;
   width: 100%;
-  padding: 0;
+  margin: 4px 0 0;
+  padding: 0 0 2px;
   background: none;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title h3 input[type=text] {
+  background: none;
+  text-align: center;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-body__summary {
   display: flex;
