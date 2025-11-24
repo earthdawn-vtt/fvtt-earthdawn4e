@@ -1,8 +1,8 @@
-<div class="truePatternInputs flexrow scrollable">
+<div class="truePatternInputs flexcol">
 
   <!--tabs nav-->
   {{> "templates/generic/tab-navigation.hbs"
-    verticalTabs=true
+    horizontalTabs=true
     tabs=threadRankTabs
   }}
 
@@ -16,7 +16,7 @@
       {{#if this.isVisible}}
 
         <section
-          class="tab {{lookup (lookup @root.threadRankTabs (concat "level-" this.level)) "cssClass"}} scrollable flexcol"
+          class="tab {{lookup (lookup @root.threadRankTabs (concat "level-" this.level)) "cssClass"}} flexcol"
           data-group="truePattern"
           data-tab="level-{{this.level}}"
         >
@@ -53,29 +53,162 @@
                 {{/if}}
               </legend>
 
-              {{formGroup this.schema.fields.keyKnowledge.fields.question
-                          name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.question")
-                          value=this.keyKnowledge.question disabled=(not @root/editable)}}
-              {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
-                {{formGroup this.schema.fields.keyKnowledge.fields.answer
-                            name=(concat "system.truePattern.threadItemLevels." @key ".keyKnowledge.answer")
-                            value=this.keyKnowledge.answer disabled=(not @root/editable)}}
-              {{/if}}
+              {{!-- Key Knowledge --}}
+              <div class="item-section--knowledge">
+
+                {{!-- Question --}}
+                <div class="text-box--question">
+                  <div class="form-group">
+                    <label>{{localize this.schema.fields.keyKnowledge.fields.question.label}}</label>
+                    {{#if @root.editable}}
+                      <p class="hint">
+                        {{localize this.schema.fields.keyKnowledge.fields.question.hint}}
+                      </p>
+                    {{/if}}
+                    <div class="form-fields">
+                      {{#if @root.editable}}
+
+                        <div
+                          class="text-box--input"
+                          contenteditable="true"
+                          data-edit="system.truePattern.threadItemLevels.{{@key}}.keyKnowledge.question"
+                          data-dtype="String"
+                        >{{{this.keyKnowledge.question}}}</div>
+
+                      {{else if this.keyKnowledge.question}}
+                        <div class="text-box--display">
+                          {{{this.keyKnowledge.question}}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+
+                {{!-- Answer --}}
+                {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
+                  <div class="text-box--answer">
+                    <div class="form-group">
+                      <label>{{localize this.schema.fields.keyKnowledge.fields.answer.label}}</label>
+                    {{#if @root.editable}}
+                      <p class="hint">
+                        {{localize this.schema.fields.keyKnowledge.fields.answer.hint}}
+                      </p>
+                    {{/if}}
+                      <div class="form-fields">
+                        {{#if @root.editable}}
+
+                          <div
+                            class="text-box--input"
+                            contenteditable="true"
+                            data-edit="system.truePattern.threadItemLevels.{{@key}}.keyKnowledge.answer"
+                            data-dtype="String"
+                          >{{{this.keyKnowledge.answer}}}</div>
+
+                        {{else if this.keyKnowledge.answer}}
+                          <div class="text-box--display">
+                            {{{this.keyKnowledge.answer}}}
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
+
+              </div>
             </fieldset>
 
-            {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
+            {{!-- Thread Level Information --}}
+            <div class="item-section--threads">
+              {{#if (or this.keyKnowledge.isKnown @root/isGM)}}
 
-              {{formGroup this.schema.fields.deed name=(concat "system.truePattern.threadItemLevels." @key ".deed")
-                          value=this.deed disabled=(not @root/editable)}}
-              {{formGroup this.schema.fields.effect name=(concat "system.truePattern.threadItemLevels." @key ".effect")
-                          value=this.effect disabled=(not @root/editable)}}
-              {{formGroup this.schema.fields.activeEffects
-                          name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
-                          value=this.activeEffects disabled=(not @root/editable)}}
-              {{formGroup this.schema.fields.abilities
-                          name=(concat "system.truePattern.threadItemLevels." @key ".abilities") value=this.abilities
-                          disabled=(not @root/editable)}}
-            {{/if}}
+                {{!-- Deed --}}
+                <div class="text-box--deed">
+                  <div class="form-group">
+                    <label>{{localize this.schema.fields.deed.label}}</label>
+                    {{#if @root.editable}}
+                      <p class="hint">
+                        {{localize this.schema.fields.deed.hint}}
+                      </p>
+                    {{/if}}
+                    <div class="form-fields">
+                      {{#if @root.editable}}
+
+                        <div
+                          class="text-box--input"
+                          contenteditable="true"
+                          data-edit="system.truePattern.threadItemLevels.{{@key}}.deed"
+                          data-dtype="String"
+                        >{{{this.deed}}}</div>
+
+                      {{else if this.deed}}
+                        <div class="text-box--display">
+                          {{{this.deed}}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+
+                {{!-- Effect --}}
+                <div class="text-box--effect">
+                  <div class="form-group">
+                    <label>{{localize this.schema.fields.effect.label}}</label>
+                    {{#if @root.editable}}
+                      <p class="hint">
+                        {{localize this.schema.fields.effect.hint}}
+                      </p>
+                    {{/if}}
+                    <div class="form-fields">
+                      {{#if @root.editable}}
+
+                        <div
+                          class="text-box--input"
+                          contenteditable="true"
+                          data-edit="system.truePattern.threadItemLevels.{{@key}}.effect"
+                          data-dtype="String"
+                        >{{{this.effect}}}</div>
+
+                      {{else if this.effect}}
+                        <div class="text-box--display">
+                          {{{this.effect}}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+
+                {{!-- Active Effects --}}
+                {{#if @root.editable}}
+                  {{formGroup this.schema.fields.activeEffects
+                              name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                              value=this.activeEffects
+                              disabled=false}}
+                {{else}}
+                  {{formGroup this.schema.fields.activeEffects
+                              name=(concat "system.truePattern.threadItemLevels." @key ".activeEffects")
+                              value=this.activeEffects
+                              disabled=true
+                              hint=false}}
+                {{/if}}
+
+                {{!-- Abilities --}}
+                {{#if @root.editable}}
+                  {{formGroup this.schema.fields.abilities
+                              name=(concat "system.truePattern.threadItemLevels." @key ".abilities")
+                              value=this.abilities
+                              disabled=false}}
+                {{else}}
+                  {{formGroup this.schema.fields.abilities
+                              name=(concat "system.truePattern.threadItemLevels." @key ".abilities")
+                              value=this.abilities
+                              disabled=true
+                              hint=false}}
+                {{/if}}
+
+
+              {{/if}}
+            </div>
+
           </fieldset>
 
         </section>

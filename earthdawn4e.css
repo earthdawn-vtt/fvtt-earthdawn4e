@@ -84,20 +84,20 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --color-transparent: rgba(0, 0, 0, 0);
-  --color-white-tr: rgba(255, 255, 255, 0.3);
-  --color-text-primary: #e6d2c8;
-  --color-gold-1: #32281e;
-  --color-gold-2: #463714;
-  --color-gold-3: #6d4f1a;
-  --color-gold-4: #a17619;
-  --color-gold-5: #c8aa6e;
+  --color-white-tr: rgba(255, 255, 255, 0.25);
+  --color-black-tr: rgba(0, 0, 0, 0.25);
   --color-meter-1: rgba(238, 227, 103);
   --color-meter-2: rgba(204, 143, 31);
   --color-meter-3: rgba(134, 77, 11);
   --color-meter-4: rgba(155, 16, 16);
   --color-meter-5: #16479b;
   --color-meter-6: #0b5f1e;
-  --color-text-banner: var(--color-text-primary);
+  --color-text-banner: var(--color-text-body);
+  --color-gold-xdk: #32281e;
+  --color-gold-dk: #4d3e1b;
+  --color-gold-md: #745a2d;
+  --color-gold-lt: #a7863f;
+  --color-gold-xlt: #cab488;
   --color-grey-dk: #222222;
   --color-grey-gk-tr: rgba(34, 34, 34, 0.3);
   --color-grey-md: #5e5e5e;
@@ -139,8 +139,8 @@
   --color-secondary-grey-tr: var(--color-grey-md-tr);
   --color-tertiary-grey: var(--color-grey-dk);
   --color-tertiary-grey-tr: var(--color-grey-dk-tr);
-  --color-button-icon: var(--color-gold-5);
-  --color-button-icon-hover: var(--color-basic-text-lt);
+  --color-button-icon: var(--color-gold-lt);
+  --color-button-icon-hover: var(--color-gold-xlt);
   --color-button-panel-on: var(--color-secondary);
   --color-button-panel-off: var(--color-primary);
   --color-button-panel-text-on: var(--color-basic-text-lt);
@@ -150,12 +150,11 @@
   --color-button-slide-thumb: var(--color-button-icon);
   --color-button-slide-background-on: var(--color-tertiary);
   --color-button-slide-background-off: var(--color-primary);
-  --border-main: 2px solid var(--color-gold-3);
-  --border-button: 1px solid var(--color-gold-2);
+  --border-main: 2px solid var(--color-gold-md);
+  --border-input: 1px solid var(--color-gold-md);
   --color-meter-background: var(--color-grey-lt-tr);
   --color-meter-divide: var(--color-primary);
 }
-:root .application.sheet.earthdawn4e,
 :root .theme-light.application.sheet.earthdawn4e {
   --color-primary-grey: var(--color-grey-lt);
   --color-primary-grey-tr: var(--color-grey-lt-tr);
@@ -163,8 +162,10 @@
   --color-secondary-grey-tr: var(--color-grey-md-tr);
   --color-tertiary-grey: var(--color-grey-dk);
   --color-tertiary-grey-tr: var(--color-grey-dk-tr);
-  --color-button-icon: var(--color-gold-4);
-  --color-button-icon-hover: var(--color-gold-5);
+  --color-button-icon: var(--color-gold-md);
+  --color-button-icon-hover: var(--color-gold-lt);
+  --color-button-header-icon: var(--color-gold-lt);
+  --color-button-header-icon-hover: var(--color-gold-xlt);
   --color-button-panel-on: var(--color-primary);
   --color-button-panel-off: var(--color-primary-tr);
   --color-button-panel-text-on: var(--color-basic-text-lt);
@@ -174,8 +175,7 @@
   --color-button-slide-thumb: var(--color-button-icon);
   --color-button-slide-background-on: var(--color-secondary);
   --color-button-slide-background-off: var(--color-secondary-grey);
-  --border-main: 2px solid var(--color-gold-2);
-  --border-button: 2px solid var(--color-gold-3);
+  --border-main: 2px solid var(--color-gold-dk);
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
 }
@@ -187,7 +187,7 @@
   --color-secondary-tr: var(--color-blue-md-tr);
   --color-tertiary: var(--color-blue-lt);
   --color-tertiary-tr: var(--color-blue-lt-tr);
-  --color-text-primary: var(--color-basic-text-lt);
+  --color-text-body: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
@@ -204,7 +204,6 @@
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
-:root .application.sheet.earthdawn4e.actor,
 :root .theme-light.application.sheet.earthdawn4e.actor {
   --color-primary: var(--color-blue-lt);
   --color-primary-tr: var(--color-blue-lt-tr);
@@ -212,28 +211,16 @@
   --color-secondary-tr: var(--color-blue-md-tr);
   --color-tertiary: var(--color-blue-dk);
   --color-tertiary-tr: var(--color-blue-dk-tr);
-  --color-text-primary: var(--color-basic-text-dk);
+  --color-text-body: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary-grey-tr);
-  --color-button-icon: var(--color-gold-4);
-  --color-button-icon-hover: var(--color-gold-5);
-  --color-button-panel-on: var(--color-primary);
-  --color-button-panel-off: var(--color-primary-tr);
-  --color-button-panel-text-on: var(--color-basic-text-lt);
-  --color-button-panel-text-off: var(--color-basic-text-dk);
-  --color-button-check-on: var(--color-button-icon);
-  --color-button-check-off: var(--color-grey-md);
-  --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-background-on: var(--color-secondary);
-  --color-button-slide-background-off: var(--color-secondary-grey);
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
-  --border-main: 2px solid var(--color-gold-2);
-  --border-button: 2px solid var(--color-gold-3);
+  --border-main: 2px solid var(--color-gold-dk);
+  --border-button: 2px solid var(--color-gold-md);
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
-:root .application.sheet.earthdawn4e.actor.character,
 :root .theme-light.application.sheet.earthdawn4e.actor.character {
   --color-primary: var(--color-green-lt);
   --color-primary-tr: var(--color-green-lt-tr);
@@ -252,15 +239,14 @@
     --color-secondary-tr: ;
     --color-tertiary: ;
     --color-tertiary-tr: ;*/
-  --color-text-primary: var(--color-basic-text-lt);
+  --color-text-body: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
-  --color-button-slide-thumb: var(--color-gold-5);
-  --color-button-slide-background-on: var(--color-gold-2);
+  --color-button-slide-thumb: var(--color-gold-lt);
+  --color-button-slide-background-on: var(--color-gold-dk);
   --color-button-slide-background-off: black;
   --color-shadow: 0 0 10px 1px #010101;
   --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
 }
-:root .application.sheet.earthdawn4e,
 :root .theme-light.application.sheet.earthdawn4e.item {
   /*--color-primary: ;
     --color-primary-tr: ;
@@ -268,7 +254,7 @@
     --color-secondary-tr: ;
     --color-tertiary: ;
     --color-tertiary-tr: ;*/
-  --color-text-primary: var(--color-basic-text-dk);
+  --color-text-body: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
   --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
@@ -391,7 +377,7 @@ slide-toggle[checked] .slide-toggle-thumb {
   vertical-align: middle;
 }
 .application .window-header button.header-control {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
 }
 .application .controls-dropdown {
   z-index: 99;
@@ -405,7 +391,7 @@ input[type=datetime-local],
 input[type=search],
 input[type=file],
 select {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   box-shadow: none;
 }
 .header__no-border {
@@ -418,9 +404,9 @@ select {
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   background: var(--color-input-square);
-  border: var(--border-button);
+  border: var(--border-input);
   border-radius: 3px;
   text-align: center;
   width: 25px;
@@ -447,7 +433,7 @@ select {
 }
 .input__clear-input--centered {
   font-size: var(--font-size-17);
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   background-color: transparent;
   text-align: center;
   padding: 0.2em;
@@ -481,6 +467,10 @@ select {
 .application .h1,
 .application h2 {
   font-family: 'Warhorse-DecoBB', serif;
+  margin: 0;
+}
+.application h2 {
+  font-size: 1rem;
 }
 .application h3,
 .application h5,
@@ -489,21 +479,13 @@ select {
   font-size: 1rem;
   margin: 0;
 }
-.application .editor p {
-  font-family: 'ArnoPro-Regular', serif;
-}
-.sheet h1,
-.sheet h2 {
-  font-family: 'Warhorse-DecoBB', serif;
-  margin: 0;
-}
-.sheet h2 {
-  font-size: 1rem;
-}
-.sheet h3 {
+.application h3 {
   font-size: 0.9rem;
   margin: 0;
   font-family: inherit;
+}
+.application .editor p {
+  font-family: 'ArnoPro-Regular', serif;
 }
 .display__inline-block {
   display: inline-block;
@@ -586,11 +568,11 @@ h3.label--rail .label__text::after {
 }
 h3.label--rail .label__text::before {
   right: 100%;
-  background: linear-gradient(to left, transparent 0, var(--color-gold-3) var(--size-rail-fade), var(--color-gold-3) 100%);
+  background: linear-gradient(to left, transparent 0, var(--color-gold-md) var(--size-rail-fade), var(--color-gold-md) 100%);
 }
 h3.label--rail .label__text::after {
   left: 100%;
-  background: linear-gradient(to right, transparent 0, var(--color-gold-3) var(--size-rail-fade), var(--color-gold-3) 100%);
+  background: linear-gradient(to right, transparent 0, var(--color-gold-md) var(--size-rail-fade), var(--color-gold-md) 100%);
 }
 .buffer-input {
   display: inline-flex;
@@ -711,6 +693,15 @@ h3.label--rail .label__text::after {
 .actor .icon--button:hover,
 .actor .item-control:hover {
   color: var(--color-button-icon-hover);
+  text-shadow: none;
+}
+.actor h2 .icon--button,
+.actor h2 .item-control {
+  color: var(--color-button-header-icon);
+}
+.actor h2 .icon--button:hover,
+.actor h2 .item-control:hover {
+  color: var(--color-button-header-icon-hover);
   text-shadow: none;
 }
 .actor .icon--button.icon {
@@ -1450,7 +1441,7 @@ body.theme-light {
   }
 }
 form.ed4e.character-generation {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   background: var(--char-gen-background-image);
   background-size: 100% 100%;
   backdrop-filter: blur(10px);
@@ -2343,7 +2334,6 @@ form.ed4e.character-generation footer button:hover:enabled {
   font-size: 0.6rem;
   font-weight: normal;
   margin-top: -10px;
-  opacity: 0.85;
 }
 .application.sheet.earthdawn4e.actor .window-content .movement-type__grid--item {
   display: flex;
@@ -2487,7 +2477,7 @@ form.ed4e.character-generation footer button:hover:enabled {
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item span {
   font-size: smaller;
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
   background-color: var(--color-button-panel-on);
@@ -2832,7 +2822,7 @@ form.ed4e.character-generation footer button:hover:enabled {
   text-align: left;
 }
 .application.sheet.earthdawn4e.actor nav.tabs [data-tab] {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
 }
 .ability-card__grid--item .roll-icon__hover,
 .knack-card__grid--item .roll-icon__hover,
@@ -3059,6 +3049,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   /* -------------------- Header -------------------- */
   /* -------------------- Body -------------------- */
   /* -------------------- Effects -------------------- */
+  /* -------------------- Threads -------------------- */
 }
 .application.sheet.earthdawn4e.item .scrollable {
   padding-right: 4px;
@@ -3100,7 +3091,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   text-transform: uppercase;
   font-weight: bold;
   border-top: 0;
-  border-bottom: 1px solid var(--color-gold-3);
+  border-bottom: 1px solid var(--color-gold-md);
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header {
   display: grid !important;
@@ -3111,7 +3102,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__image .item-image {
   width: 70px;
   height: 70px;
-  border: 2px solid var(--color-gold-3);
+  border: 2px solid var(--color-gold-md);
   border-radius: 4px;
   box-shadow: var(--color-shadow);
   object-fit: cover;
@@ -3122,13 +3113,19 @@ section.spells .matrix-cards .matrix-card .spell-link {
   grid-template-rows: min-content min-content auto;
   row-gap: 0.25rem;
 }
-.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title input {
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title h3 {
   font-family: 'Warhorse-DecoBB', serif;
-  font-size: var(--font-size-24);
+  font-size: var(--font-size-26);
   text-align: center;
   width: 100%;
-  padding: 0;
+  margin: 4px 0 0;
+  padding: 0 0 2px;
   background: none;
+}
+.application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-header__title h3 input[type=text] {
+  background: none;
+  text-align: center;
+  margin: -4px 0 -4px;
 }
 .application.sheet.earthdawn4e.item .sheet-header.item-header .item-header__body .item-body__summary {
   display: flex;
@@ -3147,7 +3144,7 @@ section.spells .matrix-cards .matrix-card .spell-link {
   padding: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--color-gold-3);
+  border-color: var(--color-gold-md);
 }
 .application.sheet.earthdawn4e.item .standard-form {
   gap: 0;
@@ -3177,6 +3174,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .standard-form .form-group > .hint {
   grid-column: 1 / -1;
   margin: 0;
+}
+.application.sheet.earthdawn4e.item .standard-form .form-group > label {
+  line-height: revert;
 }
 .application.sheet.earthdawn4e.item .standard-form [data-editable="editable"] .form-group > .hint {
   display: block;
@@ -3230,6 +3230,28 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .item-body .item-section--amount {
   padding-top: 6px;
+}
+.application.sheet.earthdawn4e.item .item-section--threads {
+  display: grid;
+  gap: 10px;
+}
+.application.sheet.earthdawn4e.item .text-box--title {
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.application.sheet.earthdawn4e.item .text-box--input {
+  cursor: pointer;
+  border: 1px solid rgba(255, 206, 113, 0.2);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.18);
+  color: white;
+  padding: 6px;
+}
+.application.sheet.earthdawn4e.item .text-box--display {
+  color: var(--color-text-body);
+}
+.application.sheet.earthdawn4e.item .truePatternInputs .form-group {
+  grid-template-columns: repeat(1, 1fr);
 }
 .denomination__value-currency .denomination__value {
   width: 75%;
@@ -3776,19 +3798,3 @@ section.spells .matrix-cards .matrix-card .spell-link {
     border: inherit;
   }
 }*/
-section[data-tab="true-pattern"] {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  max-height: min(100%, 100vh);
-}
-section[data-tab="true-pattern"] .truePatternInputs {
-  gap: 1rem;
-  min-height: 0;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-section[data-tab="true-pattern"] .truePatternInputs nav.tabs {
-  flex: 0 0 60px;
-  max-width: 100px;
-}

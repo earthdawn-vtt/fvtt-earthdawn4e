@@ -3775,6 +3775,7 @@
       },
       "TruePattern": {
         "details":                                 "Details",
+        "rank":                                    "TODO: Add translation",
         "rankLevel":                               "Rang {level}"
       }
     },

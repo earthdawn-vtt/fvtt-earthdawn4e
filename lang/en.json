@@ -2937,11 +2937,11 @@
               "label":                             "Known to Player"
             },
             "maxThreads": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Maximum number of threads that can be woven into this item",
               "label":                             "Maximum Threads"
             },
             "mysticalDefense": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "The mystical defense is the target number to weave threads into this item",
               "label":                             "Mystical Defense"
             },
             "threadItemLevels": {
@@ -2949,7 +2949,7 @@
               "label":                             "Thread Item Level"
             },
             "tier": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "The tier of the thread item",
               "label":                             "Tier"
             }
           },
@@ -3440,16 +3440,16 @@
         "sourceDiscipline":                        "Source Discipline"
       },
       "PhysicalItems": {
-        "addThreadItemLevel":                      "TODO: Add translation",
-        "addTruePattern":                          "TODO: Add translation",
-        "createThreadItemThread":                  "TODO: Add translation",
-        "deleteThreadItemLevel":                   "TODO: Add translation",
-        "deleteTruePattern":                       "TODO: Add translation",
+        "addThreadItemLevel":                      "Add Thread Level",
+        "addTruePattern":                          "Add True Pattern",
+        "createThreadItemThread":                  "Create Thread Item",
+        "deleteThreadItemLevel":                   "Delete Thread Level",
+        "deleteTruePattern":                       "Delete True Pattern",
         "hasTruePattern":                          "This item has a true magical pattern",
         "itemHistoryCheck":                        "Item History Check",
         "researchCheck":                           "Research Check",
-        "threadItemLevelHeader":                   "TODO: Add translation",
-        "truePatternBaseInformation":              "TODO: Add translation",
+        "threadItemLevelHeader":                   "Level",
+        "truePatternBaseInformation":              "Base Information",
         "weaveThread":                             "Weave Thread Check"
       },
       "Spell": {
@@ -3465,7 +3465,7 @@
         "talentOptions":                           "Optional Talents"
       },
       "Thread": {
-        "defaultName":                             "TODO: Add translation"
+        "defaultName":                             "Thread"
       }
     },
     "Journal": {
@@ -3763,7 +3763,7 @@
         "details":                                 "Details",
         "effects":                                 "Effects",
         "general":                                 "General",
-        "true-pattern":                            "TODO: Add translation"
+        "true-pattern":                            "Threads"
       },
       "LpHistory": {
         "chronological":                           "Chronological",
@@ -3774,8 +3774,9 @@
         "earthdawn":                               "Earthdawn"
       },
       "TruePattern": {
-        "details":                                 "TODO: Add translation",
-        "rankLevel":                               "TODO: Add translation"
+        "details":                                 "Details",
+        "rank":                                    "Rank",
+        "rankLevel":                               "{level}"
       }
     },
     "ToolTips": {
