@@ -151,6 +151,7 @@
   --color-button-slide-background-on: var(--color-tertiary);
   --color-button-slide-background-off: var(--color-primary);
   --border-main: 2px solid var(--color-gold-md);
+  --border-input: 1px solid var(--color-gold-md);
   --color-meter-background: var(--color-grey-lt-tr);
   --color-meter-divide: var(--color-primary);
 }
@@ -405,7 +406,7 @@ select {
 .input__rectangle-lp-input--centered {
   color: var(--color-text-body);
   background: var(--color-input-square);
-  border: var(--border-button);
+  border: var(--border-input);
   border-radius: 3px;
   text-align: center;
   width: 25px;
