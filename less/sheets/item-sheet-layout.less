@@ -47,7 +47,7 @@
     text-transform: uppercase;
     font-weight: bold;
     border-top: 0;
-    border-bottom: 1px solid var(--color-gold-3);
+    border-bottom: 1px solid var(--color-gold-md);
   }
 
   /* -------------------- Header -------------------- */
@@ -64,7 +64,7 @@
         .item-image {
           width: @left-header;
           height: @left-header;
-          border: 2px solid var(--color-gold-3);
+          border: 2px solid var(--color-gold-md);
           border-radius: 4px;
           box-shadow: var(--color-shadow);
           object-fit: cover;
@@ -112,7 +112,7 @@
     padding: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--color-gold-3);
+    border-color: var(--color-gold-md);
   }
 
   .standard-form {
@@ -135,17 +135,21 @@
       display: block;
     }
 
-  .form-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0;
-    padding-top: 5px;
+    .form-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+      padding-top: 5px;
 
       > .hint {
         grid-column: 1 / -1;
         margin: 0;
+      }
+
+      > label {
+        line-height: revert;
       }
     }
 
@@ -223,5 +227,35 @@
 
   /* -------------------- Effects -------------------- */
 
+
+  /* -------------------- Threads -------------------- */
   
+  .item-section--threads {
+    display: grid;
+    gap: 10px;
+  }
+
+  .text-box--title {
+    padding-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .text-box--input {
+    cursor: pointer;
+    border: 1px solid rgba(255, 206, 113, 0.2);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.18);
+    color: white;
+    padding: 6px;
+  }
+
+  .text-box--display {
+    color: var(--color-text-body);
+  }
+
+  .truePatternInputs {
+    .form-group {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
 }

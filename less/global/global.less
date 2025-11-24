@@ -28,7 +28,7 @@
 //###########################################################
 
 .application .window-header button.header-control {
-  color: var(--color-text-primary)
+  color: var(--color-text-body)
 }
 .application .controls-dropdown {
   z-index: 99;
@@ -47,7 +47,7 @@ input[type=datetime-local],
 input[type=search],
 input[type=file],
 select {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   box-shadow: none;
 }
 
@@ -61,7 +61,7 @@ select {
 .input__square-input--centered,
 .input__rectangle-input--centered,
 .input__rectangle-lp-input--centered {
-  color: var(--color-text-primary);
+  color: var(--color-text-body);
   background: var(--color-input-square);
   border: var(--border-button);
   border-radius: 3px;
@@ -90,7 +90,7 @@ select {
 }
 .input__clear-input--centered {
 	font-size: var(--font-size-17);
-	color: var(--color-text-primary);
+	color: var(--color-text-body);
 	background-color: transparent;
 	text-align: center;
 	padding: 0.2em;
@@ -129,30 +129,23 @@ select {
   }
   .h1, h2 {
     .WarhorseDeco();
+    margin: 0;
+  }
+  h2 {
+    font-size: 1rem;
   }
   h3, h5, h6 {
     .WarhorseDeco();
     font-size: 1rem;
     margin: 0;
   }
-  .editor p {
-    .ArnoProRegular()
-  }
-}
-// End legancy
-
-.sheet {
-  h1, h2 {
-    .WarhorseDeco();
-    margin: 0;
-  }
-  h2 {
-    font-size: 1rem;
-  }
   h3 {
     font-size: 0.9rem;
     margin: 0;
     font-family: inherit;
+  }
+  .editor p {
+    .ArnoProRegular()
   }
 }
 
@@ -272,8 +265,8 @@ h3.label--rail .label__text::before {
   background: linear-gradient(
     to left,
     transparent 0,
-    var(--color-gold-3) var(--size-rail-fade),
-    var(--color-gold-3) 100%
+    var(--color-gold-md) var(--size-rail-fade),
+    var(--color-gold-md) 100%
   );
 }
 h3.label--rail .label__text::after {
@@ -281,8 +274,8 @@ h3.label--rail .label__text::after {
   background: linear-gradient(
     to right,
     transparent 0,
-    var(--color-gold-3) var(--size-rail-fade),
-    var(--color-gold-3) 100%
+    var(--color-gold-md) var(--size-rail-fade),
+    var(--color-gold-md) 100%
   );
 }
 
