@@ -12,7 +12,10 @@ const { TextEditor } = foundry.applications.ux;
  */
 const DocumentSheetMixinEd = Base => {
   const mixin = foundry.applications.api.HandlebarsApplicationMixin;
+
   return class DocumentSheetEd extends mixin( Base ) {
+
+    // region Static Properties
 
     /**
      * Different sheet modes.
@@ -39,13 +42,16 @@ const DocumentSheetMixinEd = Base => {
         resizable:      true,
       },
       actions: {
-        createChild:  DocumentSheetEd._onCreateChild,
-        deleteChild:  DocumentSheetEd._onDeleteChild,
-        displayChild: DocumentSheetEd._onDisplayChild,
-        editChild:    DocumentSheetEd._onEditChild,
-        editImage:    DocumentSheetEd._onEditImage,
+        createChild:        DocumentSheetEd._onCreateChild,
+        deleteChild:        DocumentSheetEd._onDeleteChild,
+        displayChild:       DocumentSheetEd._onDisplayChild,
+        editChild:          DocumentSheetEd._onEditChild,
+        editImage:          DocumentSheetEd._onEditImage,
+        toggleActiveEffect: DocumentSheetEd._onToggleActiveEffect,
       },
     };
+
+    // endregion
 
     // region Properties
 
@@ -56,13 +62,14 @@ const DocumentSheetMixinEd = Base => {
     _sheetMode = this.constructor.SHEET_MODES.PLAY;
 
     /**
-     * Is the sheet currently in 'Play' mode?
-     * @type {boolean}
+     * A set of uuids of embedded documents whose descriptions have been expanded on this sheet.
+     * @type {Set<string>}
      */
-    get isPlayMode() {
-      // noinspection JSPotentiallyInvalidUsageOfThis
-      return this._sheetMode === this.constructor.SHEET_MODES.PLAY;
-    }
+    _expandedItems = new Set();
+
+    // endregion
+
+    // region Getters
 
     /**
      * Is the sheet currently in 'Edit' mode?
@@ -74,10 +81,14 @@ const DocumentSheetMixinEd = Base => {
     }
 
     /**
-     * A set of uuids of embedded documents whose descriptions have been expanded on this sheet.
-     * @type {Set<string>}
+     * Is the sheet currently in 'Play' mode?
+     * @type {boolean}
      */
-    _expandedItems = new Set();
+    get isPlayMode() {
+      // noinspection JSPotentiallyInvalidUsageOfThis
+      return this._sheetMode === this.constructor.SHEET_MODES.PLAY;
+    }
+
 
     // endregion
 
@@ -259,6 +270,16 @@ const DocumentSheetMixinEd = Base => {
         left: this.position.left + 10,
       } );
       return fp.browse();
+    }
+
+    /**
+     * @type {ApplicationClickAction}
+     * @this {DocumentSheetEd}
+     */
+    static async _onToggleActiveEffect( event, target ) {
+      const effect = /** @type {EarthdawnActiveEffect} */await fromUuid( target.dataset.effectUuid );
+
+      await effect.toggleActive();
     }
 
     // endregion
