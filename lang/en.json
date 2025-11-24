@@ -3864,13 +3864,13 @@
     },
     "Item": {
       "TypeGroups": {
-        "abilities":                               "TODO: Add translation",
-        "classes":                                 "TODO: Add translation",
-        "conditions":                              "TODO: Add translation",
-        "equipment":                               "TODO: Add translation",
-        "magic":                                   "TODO: Add translation",
-        "other":                                   "TODO: Add translation",
-        "powers":                                  "TODO: Add translation"
+        "abilities":                               "Abilities",
+        "classes":                                 "Disciplines, Paths & Questors",
+        "conditions":                              "Conditions",
+        "equipment":                               "Equipment",
+        "magic":                                   "Magic",
+        "other":                                   "Other",
+        "powers":                                  "Powers"
       },
       "armor":                                     "Armor",
       "bindingSecret":                             "Binding Secret",
