@@ -54,6 +54,13 @@
             {{/if}}
           {{/if}}
 
+          {{!-- If Thread Item --}}
+          {{#each item.system.truePattern.threadItemLevels}}
+            {{#if @first}}
+              {{localize "ED.Item.Thread.defaultName"}}
+            {{/if}}
+          {{/each}}
+
           {{!-- Weapon type, if present (choices are objects with .label) --}}
           {{#if systemFields.weaponType}}
             {{#if item.system.weaponType}}
