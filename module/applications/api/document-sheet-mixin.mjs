@@ -6,9 +6,10 @@ const { TextEditor } = foundry.applications.ux;
 
 /**
  * Sheet class mixin to add common functionality shared by all types of document sheets.
- * @param {*} Base              The base class.
+ * @param {typeof DocumentSheetV2} Base              The base class.
  * @returns {DocumentSheetEd}   Extended class.
- * @mixin
+ * @augments {DocumentSheetV2}
+ * @mixes HandlebarsApplicationMixin
  */
 const DocumentSheetMixinEd = Base => {
   const mixin = foundry.applications.api.HandlebarsApplicationMixin;
@@ -136,6 +137,20 @@ const DocumentSheetMixinEd = Base => {
       );
 
       return context;
+    }
+
+    // endregion
+
+    // region Form Handling
+
+    /** @inheritdoc */
+    _processFormData( event, form, formData ) {
+      const formDataObject = formData.object;
+
+      // Prevent submitting values overridden by effects
+      const overrides = foundry.utils.flattenObject( this.document.overrides ) ?? {};
+      for ( const key of Object.keys( overrides ) ) delete formDataObject[ key ];
+      return foundry.utils.expandObject( formDataObject );
     }
 
     // endregion
