@@ -1,21 +1,50 @@
-<section class="tab {{tabs.languages.cssClass}} flexcol" data-group="primary" data-tab="languages">
+<section class="tab languages {{tabs.languages.cssClass}}" data-group="primary" data-tab="languages">
 
-  <div class="explainer languages-explainer flexcol">
+  {{!-- Header --}}
+  <h2 class="languages__header header-bar">
+    {{localize "ED.Dialogs.CharGen.Title.languages"}}
+  </h2>
 
-    <h3>{{localize "ED.Dialogs.CharGen.Title.languages"}}</h3>
-    <p class="explainer-text">
-      {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
-    </p>
+  {{!-- Single main container --}}
+  <div class="container__block container__custom">
 
-  </div>
+    {{!-- Explainer --}}
+    <div class="container__section languages-explainer">
+      <p class="explainer-text">
+        {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
+      </p>
+    </div>
 
-  <div class="language-selection speak-languages-selection flexcol">
-    <h5>{{localize "ED.Dialogs.CharGen.Title.speak"}}</h5>
-    {{formInput schema.fields.languages.fields.speak value=languages.speak name="languages.speak"}}
-  </div>
-  <div class="language-selection read-write-languages-selection flexcol">
-    <h5>{{localize "ED.Dialogs.CharGen.Title.readWrite"}}</h5>
-    {{formInput schema.fields.languages.fields.readWrite value=languages.readWrite name="languages.readWrite"}}
+    {{!-- Speak languages --}}
+    <div class="container__section language-selection speak-languages-selection">
+      <h3 class="item-section__header item-section__header--speak-language container__header">
+        <span class="label__text">
+          {{localize "ED.Dialogs.CharGen.Title.speak"}}
+        </span>
+      </h3>
+
+      {{formInput
+        schema.fields.languages.fields.speak
+        value=languages.speak
+        name="languages.speak"
+      }}
+    </div>
+
+    {{!-- Read/Write languages --}}
+    <div class="container__section language-selection read-write-languages-selection">
+      <h3 class="item-section__header item-section__header--read-write container__header">
+        <span class="label__text">
+          {{localize "ED.Dialogs.CharGen.Title.readWrite"}}
+        </span>
+      </h3>
+
+      {{formInput
+        schema.fields.languages.fields.readWrite
+        value=languages.readWrite
+        name="languages.readWrite"
+      }}
+    </div>
+
   </div>
 
 </section>

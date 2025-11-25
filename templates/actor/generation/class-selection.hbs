@@ -1,220 +1,284 @@
-<section class="tab {{tabs.classes.cssClass}} flexrow" data-group="primary" data-tab="classes">
+<section class="tab classes {{tabs.classes.cssClass}}" data-group="primary" data-tab="classes">
 
-  <div class="class-type-and-explainer explainer flexcol">
+  {{!-- Header --}}
+  <h2 class="classes__header header-bar">
+    {{localize "ED.Dialogs.CharGen.chooseClass"}}
+  </h2>
 
-    <div class="class-selection flexcol">
-      <h3>{{localize "ED.Dialogs.CharGen.chooseClass"}}</h3>
+  {{!-- Single main container --}}
+  <div class="container__block container__custom">
 
-      <!-- choose class type: discipline or questor -->
-      <div class="discipline-questor-switch-group flexrow">
-        <label class="discipline-questor-switch-group flexrow">
-        <span class="{{#unless isAdept}}deselected-class-type{{/unless}}">
-          {{localize "ED.Dialogs.CharGen.discipline"}}
-        </span>
-          <input type="checkbox" name="isAdept" {{checked isAdept}} hidden="">
-          <span class="{{#if isAdept}}deselected-class-type{{/if}}">
-            {{localize "ED.Dialogs.CharGen.questor"}}
-          </span>
-        </label>
-      </div>
+    <div class="layout__row">
 
-      <!-- Choose class -->
-      <div class="available-disciplines-questors-choices flexrow">
-        <select id="char-gen-class-select" name="selectedClass">
-          <option value="">{{localize "ED.Data.placeholderBlankSelectOption"}}</option>
-          {{#if isAdept}}
-            {{selectOptions disciplineRadioChoices selected=selectedClass}}
-          {{else}}
-            {{selectOptions questorRadioChoices selected=selectedClass}}
+      {{!-- LEFT COLUMN: class selection + image + explainer --}}
+      <div class="layout__col layout__col--2">
+
+        {{!-- Class selection --}}
+        <div class="container__section class-selection">
+
+          {{!-- choose class type: discipline or questor --}}
+          <div class="discipline-questor-switch-group flexrow">
+            <label class="discipline-questor-switch-group flexrow">
+              <span class="{{#unless isAdept}}deselected-class-type{{/unless}}">
+                {{localize "ED.Dialogs.CharGen.discipline"}}
+              </span>
+              <input type="checkbox" name="isAdept" {{checked isAdept}} hidden="">
+              <span class="{{#if isAdept}}deselected-class-type{{/if}}">
+                {{localize "ED.Dialogs.CharGen.questor"}}
+              </span>
+            </label>
+          </div>
+
+          {{!-- Choose class --}}
+          <div class="available-disciplines-questors-choices flexrow">
+            <select id="char-gen-class-select" name="selectedClass">
+              <option value="">{{localize "ED.Data.placeholderBlankSelectOption"}}</option>
+              {{#if isAdept}}
+                {{selectOptions disciplineRadioChoices selected=selectedClass}}
+              {{else}}
+                {{selectOptions questorRadioChoices selected=selectedClass}}
+              {{/if}}
+            </select>
+          </div>
+
+          {{#if selectedClass}}
+          <p class="discipline-selection__link">
+            {{{ed-linkForUuid selectedClass}}}
+          </p>
           {{/if}}
-        </select>
-      </div>
 
-      {{#if selectedClass}}
-        <p>{{{ed-linkForUuid selectedClass}}}</p>
-      {{/if}}
+          <div class="class-image-preview">
+            {{#if classDocument}}
+              <img src="{{classDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.classImageAlt"}}">
+            {{/if}}
+          </div>
 
-      <div class="class-image-preview">
-        {{#if classDocument}}
-          <img src="{{classDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.classImageAlt"}}">
-        {{/if}}
-      </div>
-    </div>
-
-    <!-- Abilities explainer -->
-    <div class="abilities-explainer">
-      <h3>{{localize "ED.Dialogs.CharGen.abilities"}}</h3>
-      <p class="explainer-text">
-        {{#if isAdept}}
-          {{{localize "ED.Dialogs.CharGen.chooseTalentsRules"}}}
-        {{else}}
-          {{{localize "ED.Dialogs.CharGen.chooseDevotionRules"}}}
-        {{/if}}
-      </p>
-    </div>
-
-  </div>
-
-  <div class="class-abilities-selection flexcol {{#unless classDocument}}invisible{{/unless}}">
-
-    <!-- Rank assignment -->
-    <div class="rank-assignment">
-
-      <!-- Available Ranks Indicator -->
-      <div class="availability-meter available-talent-ranks flexrow">
-        <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
-                title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-action="reset" data-reset-type="classAbilities">
-          <i class="fa-light fa-arrows-rotate"></i>
-          {{localize "ED.Dialogs.CharGen.Buttons.resetRanks"}}
-        </button>
-        <label>
-          <span>{{localize "ED.Dialogs.CharGen.availableRanks"}}: {{lookup availableRanks (ifThen isAdept "talent" "devotion" )}}</span>
-        </label>
-        <meter value="{{lookup availableRanks (ifThen isAdept "talent" "devotion" )}}" min="0" max="{{lookup config.availableRanks (ifThen isAdept "talent" "devotion" )}}">
-        </meter>
-
-
-      </div>
-
-    </div>
-
-    <!-- Ability selection -->
-    <div class="talent-listing flexrow">
-
-      <!-- Optional Abilities -->
-      <div class="optional-talents-pool entry-listing">
-
-        <div class="entry-listing-header">
-          {{#if isAdept}}
-            <h4>{{localize "ED.Dialogs.CharGen.optionalTalents"}}</h4>
-          {{else}}
-            <h4>{{localize "ED.Dialogs.CharGen.optionalDevotions"}}</h4>
-          {{/if}}
         </div>
 
-        <div class="assign-value-entries">
-          {{#each classDocument.system.advancement.abilityOptions.novice}}
-            <div class="assign-value-entry flexrow">
+      </div> {{!-- /LEFT COLUMN --}}
 
-              <div class="entry-name" data-ability-uuid="{{this}}">
-                <label for="char-gen-ability-option-radio">
-                  <input type="radio" id="char-gen-ability-option-radio" name="abilityOption" value="{{this}}" {{checked (ed-hasOwnProperty @root.abilities.optional this)}}>
-                  {{{ed-linkForUuid this}}}
-                </label>
-              </div>
+      {{!-- RIGHT COLUMN: talents/devotions + namegiver abilities --}}
+      <div class="layout__col layout__col--1">
 
-              <div class="flexrow rank-change">
-                {{#if (ed-hasOwnProperty @root.abilities.optional this)}}
-                  <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                        data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="optional">
-              <i class="fa-light fa-circle-minus"></i>
-            </span>
-                  <span class="rank-change-value">
-                    {{lookup @root.abilities.optional this}}
-                  </span>
-                  <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                        data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="optional">
-              <i class="fa-light fa-circle-plus"></i>
-            </span>
+        <div class="container__section class-abilities-selection flexcol {{#unless classDocument}}invisible{{/unless}}">
+
+          {{!-- Abilities explainer --}}
+          <div class="container__section abilities-explainer">
+            <h3 class="item-section__header item-section__header--abilities container__header">
+              <span class="label__text">
+                {{localize "ED.Dialogs.CharGen.abilities"}}
+              </span>
+            </h3>
+            <p class="explainer-text">
+              {{#if isAdept}}
+                {{{localize "ED.Dialogs.CharGen.chooseTalentsRules"}}}
+              {{else}}
+                {{{localize "ED.Dialogs.CharGen.chooseDevotionRules"}}}
+              {{/if}}
+            </p>
+          </div>
+
+          {{!-- Rank assignment --}}
+          <div class="rank-assignment">
+            <div class="availability-meter available-talent-ranks flexrow">
+              <button class="reset-points"
+                      id="char-gen-clear-talent-ranks-button"
+                      type="button"
+                      title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}"
+                      data-action="reset"
+                      data-reset-type="classAbilities">
+                <i class="fa-light fa-arrows-rotate"></i>
+                {{localize "ED.Dialogs.CharGen.Buttons.resetRanks"}}
+              </button>
+              <label>
+                <span>
+                  {{localize "ED.Dialogs.CharGen.availableRanks"}}:
+                  {{lookup availableRanks (ifThen isAdept "talent" "devotion")}}
+                </span>
+              </label>
+              <meter
+                value="{{lookup availableRanks (ifThen isAdept "talent" "devotion")}}"
+                min="0"
+                max="{{lookup config.availableRanks (ifThen isAdept "talent" "devotion")}}">
+              </meter>
+            </div>
+          </div>
+
+          {{!-- Ability selection --}}
+          <div class="talent-listing flexrow">
+
+            {{!-- Optional Abilities --}}
+            <div class="optional-talents-pool entry-listing">
+
+              <div class="entry-listing-header">
+                {{#if isAdept}}
+                  <h4>{{localize "ED.Dialogs.CharGen.optionalTalents"}}</h4>
+                {{else}}
+                  <h4>{{localize "ED.Dialogs.CharGen.optionalDevotions"}}</h4>
                 {{/if}}
               </div>
 
-            </div>
-          {{/each}}
-        </div>
+              <div class="assign-value-entries">
+                {{#each classDocument.system.advancement.abilityOptions.novice}}
+                  <div class="assign-value-entry flexrow">
 
-      </div>
+                    <div class="entry-name" data-ability-uuid="{{this}}">
+                      <label for="char-gen-ability-option-radio">
+                        <input type="radio"
+                               id="char-gen-ability-option-radio"
+                               name="abilityOption"
+                               value="{{this}}"
+                               {{checked (ed-hasOwnProperty @root.abilities.optional this)}}>
+                        {{{ed-linkForUuid this}}}
+                      </label>
+                    </div>
 
-      <!-- Class Abilities -->
-      <div class="class-talents-pool entry-listing">
-
-        <div class="entry-listing-header">
-          {{#if isAdept}}
-            <h4>{{localize "ED.Dialogs.CharGen.disciplineTalents" classType=classDocument.type}}</h4>
-          {{else}}
-            <h4>{{localize "ED.Dialogs.CharGen.questorDevotion" classType=classDocument.type}}</h4>
-          {{/if}}
-        </div>
-
-        <div class="assign-value-entries-categorized">
-
-          {{#each classDocument.system.advancement.levels.0.abilities}}
-
-            {{#if (ed-hasItems this)}}
-              <h5>{{lookup @root.config.abilityPools @key}}</h5>
-            {{/if}}
-
-            <div class="assign-value-entries">
-
-              {{#each this}}
-                <div class="assign-value-entry flexrow">
-
-                  <div class="entry-name" data-ability-uuid="{{this}}">
-                    {{{ed-linkForUuid this}}}
-                  </div>
-
-                  {{#if (eq @../key "class")}}
                     <div class="flexrow rank-change">
+                      {{#if (ed-hasOwnProperty @root.abilities.optional this)}}
+                        <span class="decrease-value-button rank-decrease rank-change-icon"
+                              title="{{localize 'X.Decrease Rank Value'}}"
+                              data-change-type="decrease"
+                              data-action="decreaseAbility"
+                              data-ability-uuid="{{this}}"
+                              data-ability-type="optional">
+                          <i class="fa-light fa-circle-minus"></i>
+                        </span>
+                        <span class="rank-change-value">
+                          {{lookup @root.abilities.optional this}}
+                        </span>
+                        <span class="increase-value-button rank-increase rank-change-icon"
+                              title="{{localize 'X.Increase Rank Value'}}"
+                              data-change-type="increase"
+                              data-action="increaseAbility"
+                              data-ability-uuid="{{this}}"
+                              data-ability-type="optional">
+                          <i class="fa-light fa-circle-plus"></i>
+                        </span>
+                      {{/if}}
+                    </div>
 
-                      <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
-                            data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
+                  </div>
+                {{/each}}
+              </div>
+
+            </div>
+
+            {{!-- Class Abilities --}}
+            <div class="class-talents-pool entry-listing">
+
+              <div class="entry-listing-header">
+                {{#if isAdept}}
+                  <h4>{{localize "ED.Dialogs.CharGen.disciplineTalents" classType=classDocument.type}}</h4>
+                {{else}}
+                  <h4>{{localize "ED.Dialogs.CharGen.questorDevotion" classType=classDocument.type}}</h4>
+                {{/if}}
+              </div>
+
+              <div class="assign-value-entries-categorized">
+
+                {{#each classDocument.system.advancement.levels.0.abilities}}
+
+                  {{#if (ed-hasItems this)}}
+                    <h5>{{lookup @root.config.abilityPools @key}}</h5>
+                  {{/if}}
+
+                  <div class="assign-value-entries">
+
+                    {{#each this}}
+                      <div class="assign-value-entry flexrow">
+
+                        <div class="entry-name" data-ability-uuid="{{this}}">
+                          {{{ed-linkForUuid this}}}
+                        </div>
+
+                        {{#if (eq @../key "class")}}
+                          <div class="flexrow rank-change">
+
+                            <span class="decrease-value-button rank-decrease rank-change-icon"
+                                  title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
+                                  data-change-type="decrease"
+                                  data-action="decreaseAbility"
+                                  data-ability-uuid="{{this}}"
+                                  data-ability-type="{{@../key}}">
+                              <i class="fa-light fa-circle-minus"></i>
+                            </span>
+                            <span class="rank-change-value">
+                              {{lookup @root.abilities.class this}}
+                            </span>
+                            <span class="increase-value-button rank-increase rank-change-icon"
+                                  title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
+                                  data-change-type="increase"
+                                  data-action="increaseAbility"
+                                  data-ability-uuid="{{this}}"
+                                  data-ability-type="{{@../key}}">
+                              <i class="fa-light fa-circle-plus"></i>
+                            </span>
+
+                          </div>
+                        {{/if}}
+
+                      </div>
+                    {{/each}}
+
+                  </div>
+                {{/each}}
+
+              </div>
+
+            </div>
+          </div>
+
+          {{!-- Namegiver Abilities (adept only) --}}
+          {{#if isAdept}}
+            <div class="namegiver-abilities entry-listing">
+
+              <h3 class="item-section__header item-section__header--namegiver-abilities container__header">
+                <span class="label__text">
+                  {{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}
+                </span>
+              </h3>
+
+              <div class="assign-value-entries">
+
+                {{#each namegiverAbilities}}
+                  <div class="assign-value-entry flexrow" data-ability-uuid="{{this}}">
+                    <div class="entry-name" title="{{this.system.description}}">
+                      {{{ed-linkForUuid this}}}
+                    </div>
+                    <div class="flexrow rank-change">
+                      <span class="decrease-value-button rank-decrease rank-change-icon"
+                            title="{{localize 'X.Decrease Rank Value'}}"
+                            data-change-type="decrease"
+                            data-action="decreaseAbility"
+                            data-ability-uuid="{{this}}"
+                            data-ability-type="namegiver">
                         <i class="fa-light fa-circle-minus"></i>
                       </span>
                       <span class="rank-change-value">
-                        {{lookup @root.abilities.class this}}
+                        {{lookup @root.abilities.namegiver this}}
                       </span>
-                      <span class="increase-value-button rank-increase rank-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
-                            data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="{{@../key}}">
-                <i class="fa-light fa-circle-plus"></i>
-              </span>
-
+                      <span class="increase-value-button rank-increase rank-change-icon"
+                            title="{{localize 'X.Increase Rank Value'}}"
+                            data-change-type="increase"
+                            data-action="increaseAbility"
+                            data-ability-uuid="{{this}}"
+                            data-ability-type="namegiver">
+                        <i class="fa-light fa-circle-plus"></i>
+                      </span>
                     </div>
-                  {{/if}}
+                  </div>
+                {{/each}}
 
-                </div>
-              {{/each}}
-
-            </div>
-          {{/each}}
-
-        </div>
-
-      </div>
-    </div>
-
-    {{#if isAdept}}
-      <!-- Namegiver Abilities -->
-      <div class="namegiver-abilities entry-listing">
-
-        <h3>{{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}</h3>
-
-        <div class="assign-value-entries">
-
-          {{#each namegiverAbilities}}
-            <div class="assign-value-entry flexrow" data-ability-uuid="{{this}}">
-              <div class="entry-name" title="{{this.system.description}}">
-                {{{ed-linkForUuid this}}}
-              </div>
-              <div class="flexrow rank-change">
-            <span class="decrease-value-button rank-decrease rank-change-icon" title="{{localize 'X.Decrease Rank Value'}}"
-                  data-change-type="decrease" data-action="decreaseAbility" data-ability-uuid="{{this}}" data-ability-type="namegiver">
-              <i class="fa-light fa-circle-minus"></i>
-            </span>
-                <span class="rank-change-value">
-                  {{lookup @root.abilities.namegiver this}}
-                </span>
-                <span class="increase-value-button rank-increase rank-change-icon" title="{{localize 'X.Increase Rank Value'}}"
-                      data-change-type="increase" data-action="increaseAbility" data-ability-uuid="{{this}}" data-ability-type="namegiver">
-              <i class="fa-light fa-circle-plus"></i>
-            </span>
               </div>
             </div>
-          {{/each}}
+          {{/if}}
 
-        </div>
-      </div>
-    {{/if}}
+        </div> {{!-- /class-abilities-selection --}}
 
-  </div>
+      </div> {{!-- /RIGHT COLUMN --}}
+
+    </div> {{!-- /layout__row --}}
+
+  </div> {{!-- /container__block --}}
 
 </section>

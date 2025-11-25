@@ -109,24 +109,13 @@ select {
 	&::selection { background: transparent; }
 }
 
-
 //###########################################################
 //                       Fonts
 //###########################################################
-// Legacy
-.application {
-  .font__bold {
-    font-weight: bold;
-  }
-  .font__no-underline {
-    border-bottom: none;
-  }
-  .font__italic {
-    font-style: italic;
-  }
-  .text-break__auto {
-    word-break: normal;
-  }
+
+.application,
+body {
+
   .h1, h2 {
     .WarhorseDeco();
     margin: 0;
@@ -143,9 +132,6 @@ select {
     font-size: 0.9rem;
     margin: 0;
     font-family: inherit;
-  }
-  .editor p {
-    .ArnoProRegular()
   }
 }
 
@@ -184,8 +170,6 @@ select {
 
 .header-bar {
   background: var(--background-banner-actor);
-}
-.header-bar {
   color: var(--color-text-banner);
   width: 100%;
   line-height: 26px;
@@ -227,11 +211,26 @@ select {
 
 .container__section {
   position: relative;
-  margin-bottom: 5px;
 }
 
 * {
   scrollbar-color: var(--color-tertiary) var(--color-transparent);
+}
+
+//###########################################################
+//                       Container Header Bar
+//###########################################################
+
+.container__header {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-text-banner);
+  text-transform: uppercase;
+  line-height: 19px;
+  height: 19px;
+  font-weight: normal;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 //###########################################################
@@ -368,3 +367,19 @@ h3.label--rail .label__text::after {
 .effect-card__grid--item:nth-child(2) { text-align: left; }
 .effect-card__grid--item:nth-child(6) { text-align: right; }
 .effect-icon { border: none; }
+
+//###########################################################
+//                       Effects
+//###########################################################
+
+.button-bar {
+  background: var(--background-banner-actor);
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-radius: 40px;
+  box-shadow: inset 0 0 12px 6px rgba(0, 0, 0, 1);
+  margin: 7px 0 5px 0;
+}
