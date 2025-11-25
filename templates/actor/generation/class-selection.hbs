@@ -48,12 +48,10 @@
         </div>
       </div> 
 
-      {{!-- RIGHT COLUMN: talents/devotions + namegiver abilities --}}
       <div class="layout__col layout__col--1">
 
         <div class="container__section class-abilities-selection flexcol {{#unless classDocument}}invisible{{/unless}}">
 
-          {{!-- Abilities explainer --}}
           <div class="container__section abilities-explainer">
             <h3 class="item-section__header item-section__header--abilities label--rail">
               <span class="label__text">
@@ -68,10 +66,22 @@
               {{/if}}
             </p>
           </div>
-
-          {{!-- Rank assignment --}}
+ 
           <div class="rank-assignment">
-            <div class="availability-meter available-talent-ranks flexrow">
+            <div class="availability-meter available-talent-ranks">
+              <div class="availability-meter__info">
+                <label>
+                  <span>
+                    {{localize "ED.Dialogs.CharGen.availableRanks"}}:
+                    {{lookup availableRanks (ifThen isAdept "talent" "devotion")}}
+                  </span>
+                </label>
+                <meter
+                  value="{{lookup availableRanks (ifThen isAdept "talent" "devotion")}}"
+                  min="0"
+                  max="{{lookup config.availableRanks (ifThen isAdept "talent" "devotion")}}">
+                </meter>
+              </div>
               <button class="reset-points"
                       id="char-gen-clear-talent-ranks-button"
                       type="button"
@@ -81,37 +91,32 @@
                 <i class="fa-light fa-arrows-rotate"></i>
                 {{localize "ED.Dialogs.CharGen.Buttons.resetRanks"}}
               </button>
-              <label>
-                <span>
-                  {{localize "ED.Dialogs.CharGen.availableRanks"}}:
-                  {{lookup availableRanks (ifThen isAdept "talent" "devotion")}}
-                </span>
-              </label>
-              <meter
-                value="{{lookup availableRanks (ifThen isAdept "talent" "devotion")}}"
-                min="0"
-                max="{{lookup config.availableRanks (ifThen isAdept "talent" "devotion")}}">
-              </meter>
             </div>
           </div>
 
-          {{!-- Ability selection --}}
-          <div class="talent-listing flexrow">
+          <div class="entry-listing-header">
+            {{#if isAdept}}
+              <h3 class="label--rail">
+                <span class="label__text">
+                  {{localize "ED.Dialogs.CharGen.optionalTalents"}}
+                </span>
+              </h3>
+            {{else}}
+              <h3 class="label--rail">
+                <span class="label__text">
+                  {{localize "ED.Dialogs.CharGen.optionalDevotions"}}
+                </span>
+              </h3>
+            {{/if}}
+          </div>
 
-            {{!-- Optional Abilities --}}
+          <div class="talent-listing">
+
             <div class="optional-talents-pool entry-listing">
-
-              <div class="entry-listing-header">
-                {{#if isAdept}}
-                  <h4>{{localize "ED.Dialogs.CharGen.optionalTalents"}}</h4>
-                {{else}}
-                  <h4>{{localize "ED.Dialogs.CharGen.optionalDevotions"}}</h4>
-                {{/if}}
-              </div>
 
               <div class="assign-value-entries">
                 {{#each classDocument.system.advancement.abilityOptions.novice}}
-                  <div class="assign-value-entry flexrow">
+                  <div class="assign-value-entry">
 
                     <div class="entry-name" data-ability-uuid="{{this}}">
                       <label for="char-gen-ability-option-radio">
@@ -124,7 +129,7 @@
                       </label>
                     </div>
 
-                    <div class="flexrow rank-change">
+                    <div class="rank-change">
                       {{#if (ed-hasOwnProperty @root.abilities.optional this)}}
                         <span class="decrease-value-button rank-decrease rank-change-icon"
                               title="{{localize 'X.Decrease Rank Value'}}"
@@ -159,19 +164,23 @@
 
               <div class="entry-listing-header">
                 {{#if isAdept}}
-                  <h4>{{localize "ED.Dialogs.CharGen.disciplineTalents" classType=classDocument.type}}</h4>
+                  <h3 class="label--rail">
+                    <span class="label__text">
+                      {{localize "ED.Dialogs.CharGen.disciplineTalents" classType=classDocument.type}}
+                    </span>
+                  </h3>
                 {{else}}
-                  <h4>{{localize "ED.Dialogs.CharGen.questorDevotion" classType=classDocument.type}}</h4>
+                    <h3 class="label--rail">
+                    <span class="label__text">
+                      {{localize "ED.Dialogs.CharGen.questorDevotion" classType=classDocument.type}}
+                    </span>
+                  </h3>                  
                 {{/if}}
               </div>
 
               <div class="assign-value-entries-categorized">
 
                 {{#each classDocument.system.advancement.levels.0.abilities}}
-
-                  {{#if (ed-hasItems this)}}
-                    <h5>{{lookup @root.config.abilityPools @key}}</h5>
-                  {{/if}}
 
                   <div class="assign-value-entries">
 
@@ -223,11 +232,11 @@
           {{#if isAdept}}
             <div class="namegiver-abilities entry-listing">
 
-              <h3 class="item-section__header item-section__header--namegiver-abilities container__header">
-                <span class="label__text">
-                  {{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}
-                </span>
-              </h3>
+                  <h3 class="item-section__header item-section__header--namegiver-abilities label--rail">
+                    <span class="label__text">
+                      {{localize "ED.Dialogs.CharGen.Title.namegiverAbilities"}}
+                    </span>
+                  </h3>  
 
               <div class="assign-value-entries">
 
@@ -263,6 +272,7 @@
               </div>
             </div>
           {{/if}}
+
 
         </div> {{!-- /class-abilities-selection --}}
 

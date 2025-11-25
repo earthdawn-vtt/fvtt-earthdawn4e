@@ -32,15 +32,19 @@ form.ed4e.character-generation {
   section[data-tab="namegiver"] {
     justify-content: space-between;
     width: 60%;
+
     .container__block {
       padding: 10px;
+
       p {
         margin: 0;
       }
+
       input[type=text] {
         text-align: center;
       }
     }
+
     .namegiver-selection__link {
       padding-top: 10px;
       text-align: center;
@@ -74,6 +78,73 @@ form.ed4e.character-generation {
       padding-top: 10px;
     }
 
+    .availability-meter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-auto-rows: auto;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .availability-meter__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      meter {
+        width: 100%;
+      }
+    }
+    
+    .availability-meter .reset-points {
+      justify-self: end;
+    }
+
+    .talent-listing,
+    .namegiver-abilities {
+      .content-link {
+        text-transform: capitalize;
+        font-weight: normal;
+      }
+    }
+
+    .optional-talents-pool .assign-value-entries {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .entry-listing-header {
+      padding-top: 10px;
+    }
+
+    .class-talents-pool,
+    .namegiver-abilities {
+      .assign-value-entries {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .assign-value-entry {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 12px 4px;
+      }
+
+      .rank-change {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+    }
+
+    .item-section__header--namegiver-abilities {
+      padding-top: 5px;
+    }
   }
 
   // Languages
@@ -89,7 +160,6 @@ form.ed4e.character-generation {
       justify-content: flex-start;
     }
   }
-
 
   .form-footer {
     gap: 20px;

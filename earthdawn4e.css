@@ -1482,6 +1482,61 @@ form.ed4e.character-generation section[data-tab="classes"] .abilities-explainer 
 form.ed4e.character-generation section[data-tab="classes"] .rank-assignment {
   padding-top: 10px;
 }
+form.ed4e.character-generation section[data-tab="classes"] .availability-meter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-auto-rows: auto;
+  gap: 10px;
+  text-align: center;
+}
+form.ed4e.character-generation section[data-tab="classes"] .availability-meter__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form.ed4e.character-generation section[data-tab="classes"] .availability-meter__info meter {
+  width: 100%;
+}
+form.ed4e.character-generation section[data-tab="classes"] .availability-meter .reset-points {
+  justify-self: end;
+}
+form.ed4e.character-generation section[data-tab="classes"] .talent-listing .content-link,
+form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .content-link {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .entry-listing-header {
+  padding-top: 10px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .assign-value-entries,
+form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .assign-value-entries {
+  display: flex;
+  flex-direction: column;
+}
+form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .assign-value-entry,
+form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .assign-value-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 12px 4px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .rank-change,
+form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .rank-change {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+form.ed4e.character-generation section[data-tab="classes"] .item-section__header--namegiver-abilities {
+  padding-top: 5px;
+}
 form.ed4e.character-generation section[data-tab="languages"] {
   width: 30%;
 }
