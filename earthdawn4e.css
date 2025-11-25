@@ -1629,9 +1629,14 @@ form.ed4e.character-generation section[data-tab="attributes"] .health-and-charac
 form.ed4e.character-generation section[data-tab="languages"] {
   width: 30%;
 }
+form.ed4e.character-generation section[data-tab="languages"] .container__block {
+  padding: 10px;
+}
+form.ed4e.character-generation section[data-tab="languages"] .container__block .language-selection {
+  padding-top: 10px;
+}
 form.ed4e.character-generation section[data-tab="languages"] p {
   margin: 0;
-  padding: 5px;
 }
 form.ed4e.character-generation section[data-tab="languages"] .tags {
   justify-content: flex-start;
