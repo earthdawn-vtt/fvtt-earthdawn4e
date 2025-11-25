@@ -330,13 +330,19 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // region Data Preparation
 
-
+  /**
+   * Apply the active effects which match the provided change keys.
+   * @param {string[]} keys         The change keys to apply.
+   * @param {object} [options]       Additional options.
+   * @param {boolean} [options.ignore]  If true, apply all active effects except those matching the provided keys.
+   */
   _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
-    if ( !this.parent ) return;
+    const parentDoc = this.parentDocument;
+    if ( !parentDoc ) return;
 
-    this.parent.statuses.clear();
+    parentDoc.statuses.clear();
 
-    const changes = Array.from( this.parent.allApplicableEffects()
+    const changes = Array.from( parentDoc.allApplicableEffects()
       .filter( effect => effect.active )
       .flatMap( effect => {
         effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
@@ -355,7 +361,12 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       return acc;
     }, {} );
 
-    this.overrides = foundry.utils.expandObject( overrides );
+    if ( ignore === true ) parentDoc.overrides = {};
+    parentDoc.overrides ??= {};
+    foundry.utils.mergeObject(
+      parentDoc.overrides,
+      foundry.utils.expandObject( overrides ),
+    );
   }
 
   /**
