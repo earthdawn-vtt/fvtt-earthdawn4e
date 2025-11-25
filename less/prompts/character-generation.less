@@ -13,15 +13,22 @@ form.ed4e.character-generation {
     gap: 25px;
   }
 
+  .label--rail {
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
   // Global Formatting
 
   .content-link {
     border: 0;
     text-transform: uppercase;
     font-weight: bold;
+    background: transparent;
   }
 
   // Namegiver
+
   section[data-tab="namegiver"] {
     justify-content: space-between;
     width: 60%;
@@ -47,6 +54,26 @@ form.ed4e.character-generation {
       text-align: center;
     }
 
+    .discipline-questor-switch-group {
+      .WarhorseDeco();
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 5px 8px;
+
+      span {
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+
+    .abilities-explainer {
+      padding-top: 12px;
+    }
+
+    .rank-assignment {
+      padding-top: 10px;
+    }
+
   }
 
   // Languages
@@ -55,7 +82,7 @@ form.ed4e.character-generation {
     width: 30%;
 
     .container__section {
-      margin-top: 5px;
+      margin: 4px 0;
     }
 
     .tags {

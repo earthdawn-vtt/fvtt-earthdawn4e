@@ -1,24 +1,16 @@
 <section class="tab classes {{tabs.classes.cssClass}}" data-group="primary" data-tab="classes">
 
-  {{!-- Header --}}
   <h2 class="classes__header header-bar">
     {{localize "ED.Dialogs.CharGen.chooseClass"}}
   </h2>
 
-  {{!-- Single main container --}}
   <div class="container__block container__custom">
-
     <div class="layout__row">
-
-      {{!-- LEFT COLUMN: class selection + image + explainer --}}
       <div class="layout__col layout__col--2">
-
-        {{!-- Class selection --}}
         <div class="container__section class-selection">
 
-          {{!-- choose class type: discipline or questor --}}
-          <div class="discipline-questor-switch-group flexrow">
-            <label class="discipline-questor-switch-group flexrow">
+          <div class="discipline-questor-switch-group flexrow label--rail">
+            <label class="discipline-questor-switch-label flexrow">
               <span class="{{#unless isAdept}}deselected-class-type{{/unless}}">
                 {{localize "ED.Dialogs.CharGen.discipline"}}
               </span>
@@ -54,8 +46,7 @@
           </div>
 
         </div>
-
-      </div> {{!-- /LEFT COLUMN --}}
+      </div> 
 
       {{!-- RIGHT COLUMN: talents/devotions + namegiver abilities --}}
       <div class="layout__col layout__col--1">
@@ -64,7 +55,7 @@
 
           {{!-- Abilities explainer --}}
           <div class="container__section abilities-explainer">
-            <h3 class="item-section__header item-section__header--abilities container__header">
+            <h3 class="item-section__header item-section__header--abilities label--rail">
               <span class="label__text">
                 {{localize "ED.Dialogs.CharGen.abilities"}}
               </span>

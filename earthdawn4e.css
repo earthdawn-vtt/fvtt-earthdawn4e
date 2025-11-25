@@ -1436,10 +1436,15 @@ form.ed4e.character-generation {
 form.ed4e.character-generation .layout__row {
   gap: 25px;
 }
+form.ed4e.character-generation .label--rail {
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
 form.ed4e.character-generation .content-link {
   border: 0;
   text-transform: uppercase;
   font-weight: bold;
+  background: transparent;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] {
   justify-content: space-between;
@@ -1461,11 +1466,27 @@ form.ed4e.character-generation section[data-tab="namegiver"] .namegiver-selectio
 form.ed4e.character-generation section[data-tab="classes"] .discipline-selection__link {
   text-align: center;
 }
+form.ed4e.character-generation section[data-tab="classes"] .discipline-questor-switch-group {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 5px 8px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .discipline-questor-switch-group span {
+  align-items: center;
+  cursor: pointer;
+}
+form.ed4e.character-generation section[data-tab="classes"] .abilities-explainer {
+  padding-top: 12px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .rank-assignment {
+  padding-top: 10px;
+}
 form.ed4e.character-generation section[data-tab="languages"] {
   width: 30%;
 }
 form.ed4e.character-generation section[data-tab="languages"] .container__section {
-  margin-top: 5px;
+  margin: 4px 0;
 }
 form.ed4e.character-generation section[data-tab="languages"] .tags {
   justify-content: flex-start;
