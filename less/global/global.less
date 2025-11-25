@@ -221,7 +221,7 @@ body {
 //                       Container Header Bar
 //###########################################################
 
-.container__header {
+.container__header-mixin() {
   background-color: var(--color-secondary-grey);
   color: var(--color-text-banner);
   text-transform: uppercase;
@@ -232,6 +232,15 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.container__header {
+  .container__header-mixin();
+}
+
+.attributes-grid__header {
+  .container__header-mixin();
+}
+
 
 //###########################################################
 //                       Header Rail Formatting

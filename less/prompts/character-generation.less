@@ -54,6 +54,12 @@ form.ed4e.character-generation {
   // Classes
 
   section[data-tab="classes"] {
+    width: 60%;
+
+    .container__block {
+      padding: 10px;
+    }
+
     .discipline-selection__link {
       text-align: center;
     }
@@ -147,13 +153,111 @@ form.ed4e.character-generation {
     }
   }
 
+  // Attributes
+
+  section[data-tab="attributes"] {
+    width: 40%;
+
+    .container__block {
+      padding: 10px;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .label--rail {
+      margin-top: 10px;
+    }
+
+    .rank-assignment {
+      .availability-meter {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 40px 10px;
+      }
+
+      .availability-meter__info {
+        display: flex;
+        flex-direction: column;
+        
+        label {
+          text-align: center;
+        }
+      }
+
+      .availability-meter__info meter {
+        display: block;
+        width: 80%;
+        align-self: center;
+        box-sizing: border-box;
+      }
+    }
+
+    .char-gen-attributes {
+
+      .attributes-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        row-gap: 4px;
+      }
+
+      .attributes-grid__header,
+      .attributes-grid__cell {
+        font-size: var(--font-size-14);
+        height: 22px;
+        padding: 2px 8px;
+        text-align: center;
+      }
+
+      .rank-change.attribute-change {
+        display: inline-flex;
+        text-align: center;
+        gap: 0.25rem;
+      }
+
+      .attribute-change-value {
+        min-width: 1.5rem;
+        text-align: center;
+      }
+
+      .attributes-grid__cell--cost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+    }
+
+    .health-and-characteristics {
+      .container__header {
+        display: flex;
+        text-align: center;
+        margin-top: 5px;
+        font-size: var(--font-size-13);
+
+      }
+      .entry-name {
+        text-align: left;
+      }
+
+      .value-entry {
+        display: flex;
+        text-align: center;
+      }
+    }
+  }
+
   // Languages
 
   section[data-tab="languages"] {
     width: 30%;
 
-    .container__section {
-      margin: 4px 0;
+    p {
+      margin: 0;
+      padding: 5px;
     }
 
     .tags {
