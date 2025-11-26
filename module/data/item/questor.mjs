@@ -29,6 +29,7 @@ export default class QuestorData extends ClassTemplate.mixin(
         foundry.documents.Item,
         {
           idOnly:    true,
+          nullable:  true,
         }
       ),
     } );

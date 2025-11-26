@@ -49,15 +49,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           }
         ),
         learned:   new fields.SetField(
-          new fields.DocumentUUIDField( {
-            required:        true,
-            nullable:        false,
-            validate:        ( value, _ ) => {
-              if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
-              return undefined; // undefined means do further validation
+          new fields.ForeignDocumentField(
+            foundry.documents.Item,
+            {
+              idOnly:         true,
             },
-            validationError:  "must be a knack type",
-          } ),
+          ),
           {
             required: true,
             nullable: false,
