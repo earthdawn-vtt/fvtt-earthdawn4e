@@ -399,8 +399,8 @@ export default class ActorEd extends Actor {
       // Add path bonuses to their source disciplines
       for ( const pathData of paths ) {
         const pathItem = await fromUuid( pathData.sourceUuid );
-        if ( pathItem?.system.sourceDiscipline ) {
-          const sourceDisciplineId = pathItem.system.sourceDiscipline;
+        if ( pathItem?.system.sourceDisciplineId ) {
+          const sourceDisciplineId = pathItem.system.sourceDisciplineId;
           if ( !disciplinePathBonuses.has( sourceDisciplineId ) ) {
             disciplinePathBonuses.set( sourceDisciplineId, 0 );
           }
@@ -443,7 +443,7 @@ export default class ActorEd extends Actor {
         // Enable paths for the winning discipline
         for ( const pathData of paths ) {
           const pathItem = await fromUuid( pathData.sourceUuid );
-          if ( pathItem?.system.sourceDiscipline === winningDisciplineId ) {
+          if ( pathItem?.system.sourceDisciplineId === winningDisciplineId ) {
             shouldBeActive.add( pathData.effect.id );
           }
         }
