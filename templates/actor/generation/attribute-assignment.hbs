@@ -1,366 +1,392 @@
 <section class="tab {{tabs.attributes.cssClass}} flexcol" data-group="primary" data-tab="attributes">
 
-  <!-- Attributes explainer -->
-  <div class="explainer attributes-explainer flexcol">
-    <h3>{{localize "ED.Dialogs.CharGen.chooseAttributes"}}</h3>
-    <p class="explainer-text">
-      {{{localize "ED.Dialogs.CharGen.chooseAttributesRules"}}}
-    </p>
-  </div>
+  <h2 class="classes__header header-bar">
+    {{localize "ED.Dialogs.CharGen.chooseAttributes"}}
+  </h2>
 
-  <div class="char-gen-attribute-modification flexcol">
-    <!-- available attribute points indicator -->
-    <div class="availability-meter available-attribute-points flexrow">
-      <button class="reset-points" id="char-gen-clear-talent-ranks-button" type="button"
-              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}" data-action="reset" data-reset-type="attributes">
-        <i class="fa-light fa-arrows-rotate"></i>
-        {{localize "ED.Dialogs.CharGen.Buttons.resetAttributes"}}
-      </button>
-      <label>{{localize "ED.Dialogs.CharGen.availableAttributePoints" points=availableAttributePoints}}</label>
-      <meter value="{{availableAttributePoints}}" min="0" max="{{maxAttributePoints}}">
-      </meter>
+  <div class="container__block container__custom">
+    <div class="layout__row explainer attributes-explainer">
+      <p class="explainer-text">
+        {{{localize "ED.Dialogs.CharGen.chooseAttributesRules"}}}
+      </p>
     </div>
 
-    <!-- attribute modification -->
-    <div class="char-gen-attributes assign-value-entries">
+    <div class="char-gen-attribute-modification flexcol">
 
-      <div class="entry-listing">
+      <div class="rank-assignment">
+        <div class="availability-meter available-attribute-points">
+          <div class="availability-meter__info">
+            <label>
+              <span>
+                {{localize "ED.Dialogs.CharGen.availableAttributePoints" points=availableAttributePoints}}
+              </span>
+            </label>
+            <meter
+              value="{{availableAttributePoints}}"
+              min="0"
+              max="{{maxAttributePoints}}">
+            </meter>
+          </div>
+          <button
+            class="reset-points"
+            id="char-gen-clear-attribute-points-button"
+            type="button"
+            title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}"
+            data-action="reset"
+            data-reset-type="attributes"
+          >
+            <i class="fa-light fa-arrows-rotate"></i>
+            {{localize "ED.Dialogs.CharGen.Buttons.resetAttributes"}}
+          </button>
+        </div>
 
-        {{#if namegiverDocument}}
-          <div class="entry-columns flexrow">
+        <!-- attribute modification -->
+        <div class="char-gen-attributes entry-listing">
 
-            <div class="assign-value-entries attribute">
+          {{#if namegiverDocument}}
 
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.attribute"}}</h5>
+            <div class="attributes-grid">
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.attribute"}}
+              </div>
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.baseValue"}}
+              </div>
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.cost"}}
+              </div>
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.change"}}
+              </div>
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.value"}}
+              </div>
+              <div class="attributes-grid__header">
+                {{localize "ED.Dialogs.CharGen.Title.step"}}
               </div>
 
               {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                  <div class="entry-name">{{lookup (lookup @root.config.attributes @key) "abbreviation"}}</div>
+
+                <div class="attributes-grid__cell attributes-grid__cell--attribute">
+                  {{lookup (lookup @root.config.attributes @key) "label"}}
                 </div>
-              {{/each}}
 
-            </div>
-
-            <div class="assign-value-entries base-value">
-
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.baseValue"}}</h5>
-              </div>
-
-              {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                  <div class="entry-name">{{lookup @root.namegiverDocument.system.attributeValues @key}}</div>
+                <div class="attributes-grid__cell attributes-grid__cell--base">
+                  {{lookup @root.namegiverDocument.system.attributeValues @key}}
                 </div>
 
-              {{/each}}
-
-            </div>
-
-            <div class="assign-value-entries cost">
-
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.cost"}}</h5>
-              </div>
-
-              {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                <span class="preview-value attribute-cost-preview attribute-cost-lower">
-                  {{ed-signedNumber ( ed-subtract (lookup @root.config.attributePointsCost (ed-subtract this.change 1)) this.cost )}}
-                </span>
-                  <div class="entry-name">{{this.cost}}</div>
+                <div class="attributes-grid__cell attributes-grid__cell--cost">
+                  <span class="preview-value attribute-cost-preview attribute-cost-lower">
+                    {{ed-signedNumber ( ed-subtract (lookup @root.config.attributePointsCost (ed-subtract this.change 1)) this.cost )}}
+                  </span>
+                  <span class="attribute-cost-current">
+                    {{this.cost}}
+                  </span>
                   <span class="preview-value attribute-cost-preview attribute-cost-higher">
                     {{ed-signedNumber ( ed-subtract (lookup @root.config.attributePointsCost (ed-add this.change 1)) this.cost )}}
                   </span>
                 </div>
-              {{/each}}
 
-            </div>
-
-            <div class="assign-value-entries change">
-
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.change"}}</h5>
-              </div>
-
-              {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                  <div class="rank-change attribute-change flexrow">
-                  <span class="decrease-value-button attribute-decrease attribute-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseAttributeValue"}}"
-                        data-change-type="decrease" data-action="decrease" data-attribute="{{@key}}">
-                        <i class="fa-light fa-circle-minus"></i>
-                      </span>
-                    <span class="attribute-change-value"> {{this.change}} </span>
-                    <span class="increase-value-button attribute-increase attribute-change-icon" title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseAttributeValue"}}"
-                          data-change-type="increase" data-action="increase" data-attribute="{{@key}}">
-                        <i class="fa-light fa-circle-plus"></i>
-                      </span>
+                <div class="attributes-grid__cell attributes-grid__cell--change">
+                  <div class="rank-change attribute-change">
+                    <span
+                      class="decrease-value-button attribute-decrease attribute-change-icon"
+                      title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseAttributeValue"}}"
+                      data-change-type="decrease"
+                      data-action="decrease"
+                      data-attribute="{{@key}}"
+                    >
+                      <i class="fa-light fa-circle-minus"></i>
+                    </span>
+                    <span class="attribute-change-value">
+                      {{this.change}}
+                    </span>
+                    <span
+                      class="increase-value-button attribute-increase attribute-change-icon"
+                      title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseAttributeValue"}}"
+                      data-change-type="increase"
+                      data-action="increase"
+                      data-attribute="{{@key}}"
+                    >
+                      <i class="fa-light fa-circle-plus"></i>
+                    </span>
                   </div>
                 </div>
 
-              {{/each}}
+                <div class="attributes-grid__cell attributes-grid__cell--value">
+                  {{lookup @root.finalAttributeValues @key}}
+                </div>
 
-            </div>
-
-            <div class="assign-value-entries value">
-
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.value"}}</h5>
-              </div>
-
-              {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                  <div class="entry-name">{{lookup @root.finalAttributeValues @key}}</div>
+                <div class="attributes-grid__cell attributes-grid__cell--step">
+                  {{lookup @root.config.characteristicsTable.step (lookup @root.finalAttributeValues @key)}}
                 </div>
 
               {{/each}}
 
             </div>
 
-            <div class="assign-value-entries step">
+          {{else}}
+            <div>{{localize "ED.Dialogs.CharGen.noNamegiverSelected"}}</div>
+          {{/if}}
 
-              <div class="entry-listing-header">
-                <h5>{{localize "ED.Dialogs.CharGen.Title.value"}}</h5>
+        </div>
+
+        <!-- Previews -->
+        <h3 class="item-section__header item-section__header--abilities label--rail">
+          <span class="label__text">
+            {{localize "ED.Dialogs.CharGen.Title.health"}}
+          </span>
+        </h3>
+
+        <div class="char-gen-characteristics-preview health-and-characteristics">
+          <div class="entry-listing char-gen-preview-health">
+            <div class="assign-value-entries">
+
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.unconsciousDeathRate"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate"
+                      unconscious=previews.health.unconsciousness.previous
+                      death=previews.health.death.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate"
+                      unconscious=previews.health.unconsciousness.current
+                      death=previews.health.death.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate"
+                      unconscious=previews.health.unconsciousness.next
+                      death=previews.health.death.next}}
+                  </span>
+                </div>
               </div>
 
-              {{#each attributes}}
-                <div class="assign-value-entry flexrow">
-                  <div class="entry-name">{{lookup @root.config.characteristicsTable.step (lookup @root.finalAttributeValues @key)}}</div>
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.woundThreshold"}}
                 </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.health.woundThreshold.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.health.woundThreshold.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.health.woundThreshold.next}}
+                  </span>
+                </div>
+              </div>
 
-              {{/each}}
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.recoveryPerDay"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.health.recoveryPerDay.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.health.recoveryPerDay.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.health.recoveryPerDay.next}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.recoveryDice"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewRecoveryDice"
+                      step=previews.health.recoveryStep.previous
+                      dice=(ed-diceFormulaForStep previews.health.recoveryStep.previous)}}
+                  </span>
+                  <span class="current-value">
+                    {{localize "ED.Dialogs.CharGen.previewRecoveryDice"
+                      step=previews.health.recoveryStep.current
+                      dice=(ed-diceFormulaForStep previews.health.recoveryStep.current)}}
+                  </span>
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewRecoveryDice"
+                      step=previews.health.recoveryStep.next
+                      dice=(ed-diceFormulaForStep previews.health.recoveryStep.next)}}
+                  </span>
+                </div>
+              </div>
 
             </div>
-
           </div>
-        {{else}}
-          <div>{{localize "ED.Dialogs.CharGen.noNamegiverSelected"}}</div>
-        {{/if}}
+        </div>
 
-      </div>
+        <div class="char-gen-characteristics-preview health-and-characteristics">
+          <div class="entry-listing char-gen-preview-characteristics">
+            <div class="assign-value-entries">
 
-    </div>
+              <!-- Defenses -->
+              <div class="value-entry flexrow">
+                <h3 class="entry-name label--rail">
+                  <span class="label__text">
+                    {{localize "ED.Dialogs.CharGen.Title.defenses"}}
+                  </span>
+                </h3>
+              </div>
 
-  </div>
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.physicalDefense"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.physical.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.defenses.physical.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.physical.next}}
+                  </span>
+                </div>
+              </div>
 
-  <hr>
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.mysticDefense"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.mystic.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.defenses.mystic.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.mystic.next}}
+                  </span>
+                </div>
+              </div>
 
-  <!-- Previews -->
-  <div class="char-gen-characteristics-preview health-and-characteristics flexrow">
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.socialDefense"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.social.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.defenses.social.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.defenses.social.next}}
+                  </span>
+                </div>
+              </div>
 
-    <div class="entry-listing char-gen-preview-health">
+              <!-- Armor -->
+              <div class="value-entry flexrow">
+                <h3 class="entry-name label--rail">
+                  <span class="label__text">
+                    {{localize "ED.Dialogs.CharGen.Title.armor"}}
+                  </span>
+                </h3>
+              </div>
 
-      <div class="entry-listing-header">
-        <h5>{{localize "ED.Dialogs.CharGen.Title.health"}}</h5>
-      </div>
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.physicalArmor"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.armor.physical.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.armor.physical.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.armor.physical.next}}
+                  </span>
+                </div>
+              </div>
 
-      <div class="assign-value-entries">
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.mysticArmor"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.armor.mystic.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.armor.mystic.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.armor.mystic.next}}
+                  </span>
+                </div>
+              </div>
 
-        <div class="value-entry flexrow">
+              <!-- Other -->
+              <div class="value-entry flexrow">
+                <h3 class="entry-name label--rail">
+                  <span class="label__text">
+                    {{localize "ED.Dialogs.CharGen.Title.other"}}
+                  </span>
+                </h3>
+              </div>
 
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.unconsciousDeathRate"}} </div>
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.carryCapacity"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{previews.characteristics.other.carryingCapacity.previous}}
+                  </span>
+                  <span class="current-value">
+                    {{previews.characteristics.other.carryingCapacity.current}}
+                  </span>
+                  <span class="preview-value">
+                    {{previews.characteristics.other.carryingCapacity.next}}
+                  </span>
+                </div>
+              </div>
 
-          <div class="entry-values flexrow">
+              <div class="value-entry flexrow">
+                <div class="entry-name">
+                  {{localize "ED.Dialogs.CharGen.initiative"}}
+                </div>
+                <div class="entry-values flexrow">
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewInitiative"
+                      step=previews.characteristics.other.initiativeStep.previous
+                      dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.previous)}}
+                  </span>
+                  <span class="current-value">
+                    {{localize "ED.Dialogs.CharGen.previewInitiative"
+                      step=previews.characteristics.other.initiativeStep.current
+                      dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.current)}}
+                  </span>
+                  <span class="preview-value">
+                    {{localize "ED.Dialogs.CharGen.previewInitiative"
+                      step=previews.characteristics.other.initiativeStep.next
+                      dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.next)}}
+                  </span>
+                </div>
+              </div>
 
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate" unconscious=previews.health.unconsciousness.previous death=previews.health.death.previous}}
-            </span>
-            {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate" unconscious=previews.health.unconsciousness.current death=previews.health.death.current}}
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewUnconsciousDeathRate" unconscious=previews.health.unconsciousness.next death=previews.health.death.next}}
-            </span>
-
+            </div>
           </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.woundThreshold"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.health.woundThreshold.previous}}</span>
-            {{previews.health.woundThreshold.current}}
-            <span class="preview-value">{{previews.health.woundThreshold.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.recoveryPerDay"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.health.recoveryPerDay.previous}}</span>
-            {{previews.health.recoveryPerDay.current}}
-            <span class="preview-value">{{previews.health.recoveryPerDay.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.recoveryDice"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewRecoveryDice" step=previews.health.recoveryStep.previous dice=(ed-diceFormulaForStep previews.health.recoveryStep.previous)}}
-            </span>
-            {{localize "ED.Dialogs.CharGen.previewRecoveryDice" step=previews.health.recoveryStep.current dice=(ed-diceFormulaForStep previews.health.recoveryStep.current)}}
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewRecoveryDice" step=previews.health.recoveryStep.next dice=(ed-diceFormulaForStep previews.health.recoveryStep.next)}}
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-    <div class="entry-listing char-gen-preview-characteristics">
-
-      <div class="entry-listing-header">
-        <h5>{{localize "ED.Dialogs.CharGen.Title.characteristics"}}</h5>
-      </div>
-
-      <div class="assign-value-entries">
-
-        <!--Defenses-->
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.Title.defenses"}} </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.physicalDefense"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.defenses.physical.previous}}</span>
-            {{previews.characteristics.defenses.physical.current}}
-            <span class="preview-value">{{previews.characteristics.defenses.physical.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.mysticDefense"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.defenses.mystic.previous}}</span>
-            {{previews.characteristics.defenses.mystic.current}}
-            <span class="preview-value">{{previews.characteristics.defenses.mystic.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.socialDefense"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.defenses.social.previous}}</span>
-            {{previews.characteristics.defenses.social.current}}
-            <span class="preview-value">{{previews.characteristics.defenses.social.next}}</span>
-
-          </div>
-
-        </div>
-
-        <!--Armor-->
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.Title.armor"}} </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.physicalArmor"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.armor.physical.previous}}</span>
-            {{previews.characteristics.armor.physical.current}}
-            <span class="preview-value">{{previews.characteristics.armor.physical.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.mysticArmor"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.armor.mystic.previous}}</span>
-            {{previews.characteristics.armor.mystic.current}}
-            <span class="preview-value">{{previews.characteristics.armor.mystic.next}}</span>
-
-          </div>
-
-        </div>
-
-        <!--Other-->
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.Title.other"}} </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.carryCapacity"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">{{previews.characteristics.other.carryingCapacity.previous}}</span>
-            {{previews.characteristics.other.carryingCapacity.current}}
-            <span class="preview-value">{{previews.characteristics.other.carryingCapacity.next}}</span>
-
-          </div>
-
-        </div>
-
-        <div class="value-entry flexrow">
-
-          <div class="entry-name"> {{localize "ED.Dialogs.CharGen.initiative"}} </div>
-
-          <div class="entry-values flexrow">
-
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewInitiative" step=previews.characteristics.other.initiativeStep.previous dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.previous)}}
-            </span>
-            {{localize "ED.Dialogs.CharGen.previewInitiative" step=previews.characteristics.other.initiativeStep.current dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.current)}}
-            <span class="preview-value">
-              {{localize "ED.Dialogs.CharGen.previewInitiative" step=previews.characteristics.other.initiativeStep.next dice=(ed-diceFormulaForStep previews.characteristics.other.initiativeStep.next)}}
-            </span>
-
-          </div>
-
         </div>
 
       </div>
-
-
-    </div>
 
   </div>
 

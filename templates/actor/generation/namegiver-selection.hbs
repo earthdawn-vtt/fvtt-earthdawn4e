@@ -1,45 +1,73 @@
-<section class="tab {{tabs.namegiver.cssClass}} flexrow" data-group="primary" data-tab="namegiver">
+<section class="tab namegiver {{tabs.namegiver.cssClass}}" data-group="primary" data-tab="namegiver">
+  
+  <div class="layout__row">
 
-  <div class="overview-and-name-selection flexcol">
+    <!-- LEFT COLUMN -->
+    <div class="layout__col layout__col--2">
 
-    <div class="character-generation-overview explainer flexcol">
+      <h2 class="overview__header header-bar">
+        {{localize "ED.Dialogs.CharGen.Title.overview"}}
+      </h2>
 
-      <h3>{{localize "ED.Dialogs.CharGen.Title.overview"}}</h3>
+      <div class="container__block container__custom">
+        <p class="character-generation-overview__text">
+          {{{charGenRules}}}
+        </p>
 
-      <p>{{{charGenRules}}}</p>
+        <div class="container__section name-selection">
+          <h3 class="label--rail">
+            <span class="label__text">
+              {{localize "ED.Dialogs.CharGen.chooseName"}}
+            </span>
+          </h3>
 
+            <div class="form-group">
+              <input
+                type="text"
+                id="char-gen-first-name-input"
+                name="name"
+                value="{{charGenData.name}}"
+                class="input__rectangle-input--full"
+              />
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="name-selection">
+    <!-- RIGHT COLUMN -->
+    <div class="layout__col layout__col--1">
 
-      <h5>{{localize "ED.Dialogs.CharGen.chooseName"}}</h5>
-      <input type="text" id="char-gen-first-name-input" name="name" value="{{charGenData.name}}" />
+      <h2 class="choose-namegiver__header header-bar">
+        {{localize "ED.Dialogs.CharGen.chooseNamegiver"}}
+      </h2>
 
+      <div class="container__block container__custom">
+        <div class="form-group">
+          <select
+            id="char-gen-namegiver-select"
+            name="namegiver"
+            class="select__rectangle-select--full"
+          >
+            <option value="">
+              {{localize "ED.Data.placeholderBlankSelectOption"}}
+            </option>
+            {{selectOptions namegivers selected=namegiver valueAttr="uuid" labelAttr="name"}}
+          </select>
+        </div>
+        {{#if namegiverDocument}}
+          <p class="namegiver-selection__link">
+            {{{ed-linkForUuid namegiverDocument.uuid}}}
+          </p>
+          <div class="container__section namegiver-image">
+            <div class="image__frame image__frame--portrait">
+              <img
+                src="{{namegiverDocument.img}}"
+                alt="{{localize "ED.Dialogs.CharGen.namegiverImageAlt"}}"
+              >
+            </div>
+          </div>
+        {{/if}}
+      </div>
     </div>
-
   </div>
-
-  <div class="namegiver-selection flexcol">
-
-    <div class="namegiver-header-and-selection" >
-
-      <h3>{{localize "ED.Dialogs.CharGen.chooseNamegiver"}}</h3>
-
-      <select id="char-gen-namegiver-select" name="namegiver">
-        <option value="">{{localize "ED.Data.placeholderBlankSelectOption"}}</option>
-        {{selectOptions namegivers selected=namegiver valueAttr="uuid" labelAttr="name"}}
-      </select>
-
-      {{#if namegiverDocument }}
-        <p>{{{ed-linkForUuid namegiverDocument.uuid}}}</p>
-      {{/if}}
-
-    </div>
-
-    {{#if namegiverDocument }}
-      <img src="{{namegiverDocument.img}}" alt="{{localize "ED.Dialogs.CharGen.namegiverImageAlt"}}">
-    {{/if}}
-
-  </div>
-
 </section>
