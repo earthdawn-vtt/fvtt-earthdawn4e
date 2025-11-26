@@ -3016,16 +3016,19 @@
         },
         "Errors": {
           "attributes":                            "TODO: Add translation",
+          "classRanksLeft":                        "TODO: Add translation",
           "maxLanguagesToRead":                    "TODO: Add translation",
           "maxLanguagesToSpeak":                   "TODO: Add translation",
+          "minLanguages":                          "TODO: Add translation",
+          "minLanguagesToRead":                    "TODO: Add translation",
+          "minLanguagesToSpeak":                   "TODO: Add translation",
           "noClass":                               "TODO: Add translation",
           "noMoreAttributeChange":                 "TODO: Add translation",
           "noMoreSkillRanks":                      "TODO: Add translation",
           "noMoreSpellPoints":                     "TODO: Add translation",
           "noNamegiver":                           "TODO: Add translation",
           "notFinished":                           "TODO: Add translation",
-          "skillRanksLeft":                        "TODO: Add translation",
-          "talentRanksLeft":                       "TODO: Add translation"
+          "skillRanksLeft":                        "TODO: Add translation"
         },
         "Title": {
           "armor":                                 "TODO: Add translation",
@@ -3059,9 +3062,20 @@
           "addSpell":                              "TODO: Add translation",
           "decreaseAttributeValue":                "TODO: Add translation",
           "decreaseRankValue":                     "TODO: Add translation",
+          "finish":                                "TODO: Add translation",
           "increaseAttributeValue":                "TODO: Add translation",
           "increaseRankValue":                     "TODO: Add translation",
           "removeSpell":                           "TODO: Add translation"
+        },
+        "Validation": {
+          "Categories": {
+            "attributes":                          "TODO: Add translation",
+            "class":                               "TODO: Add translation",
+            "classRanks":                          "TODO: Add translation",
+            "languages":                           "TODO: Add translation",
+            "namegiver":                           "TODO: Add translation",
+            "skills":                              "TODO: Add translation"
+          }
         },
         "abilities":                               "TODO: Add translation",
         "availableAttributePoints":                "TODO: Add translation",
