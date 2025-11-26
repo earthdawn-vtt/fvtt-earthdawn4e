@@ -3016,16 +3016,19 @@
         },
         "Errors": {
           "attributes":                            "Bist du dir sicher, dass du alle unverbrauchten Attributspunkte in Karma verwandeln möchtest?",
+          "classRanksLeft":                        "Du musst alle Ränge in deiner Berufung vergeben um fortzufahren.",
           "maxLanguagesToRead":                    "Du kannst maximal soviele Sprachen lesen/schreiben wie du Rang in der Fertigkeit Lesen/Schreiben hast",
           "maxLanguagesToSpeak":                   "Du kannst maximal soviele Sprachen sprechen wie du Rang in der Fertigkeit Fremdsprachen hast",
+          "minLanguages":                          "Du hast noch Sprachen zur Verfügung die du auswählen kannst.",
+          "minLanguagesToRead":                    "Du hast noch nicht alle Sprachen die du lesen/schreiben kannst ausgewählt",
+          "minLanguagesToSpeak":                   "Du hast noch nicht alle Sprachen die du sprechen kannst ausgewählt",
           "noClass":                               "Du musst eine Disziplin oder Questor auswählen um fortzufahren.",
           "noMoreAttributeChange":                 "Du hast dieses Attribute nicht weiter Steigern. Es können maximal -2 Attributspunkte abgezogen und +8 Attributspunkte hinzgefügt werden.",
           "noMoreSkillRanks":                      "Du hast keine weiteren Fertigkeitsränge zur Verfügung. Das maximum ist 3.",
           "noMoreSpellPoints":                     "Du kannst keine weiteren Zaubersprüche auswählen. Deine Wahrnehmungsstufe bestimmt die Anzahl der Zauber (Der Kreis entspricht den Kosten).",
           "noNamegiver":                           "Du musst einen Namensgeber auswählen um fortzufahren.",
           "notFinished":                           "Du kannst die Charaktererschaffung noch nicht abschließen, du musst zuvor noch einiges erledigen.",
-          "skillRanksLeft":                        "Du musst alle Fertigkeitsränge vergeben um fortzufahren.",
-          "talentRanksLeft":                       "Du musst alle Talentränge vergeben um fortzufahren."
+          "skillRanksLeft":                        "Du musst alle Fertigkeitsränge vergeben um fortzufahren."
         },
         "Title": {
           "armor":                                 "Rüstung",
@@ -3059,9 +3062,20 @@
           "addSpell":                              "Füge den Zauber hinzu",
           "decreaseAttributeValue":                "Verringere den Attributswert",
           "decreaseRankValue":                     "Verringere den Rang",
+          "finish":                                "Sieht gut aus, weiter gehts! Erstelle den Charakter",
           "increaseAttributeValue":                "Erhöhe den Attributswert",
           "increaseRankValue":                     "Erhöhe den Rang",
           "removeSpell":                           "Entferne den Zauber"
+        },
+        "Validation": {
+          "Categories": {
+            "attributes":                          "Attribute",
+            "class":                               "Berufung",
+            "classRanks":                          "Disziplin/Questor Ränge",
+            "languages":                           "Sprachen",
+            "namegiver":                           "Namensgebende",
+            "skills":                              "Fertigkeiten Ränge"
+          }
         },
         "abilities":                               "Wähle deine Fähigkeiten",
         "availableAttributePoints":                "Verfügbare Attributspunkte: {points} (Extra Karma)",
