@@ -3016,16 +3016,19 @@
         },
         "Errors": {
           "attributes":                            "Are you sure you want to convert all unspent attribute points into Karma?",
+          "classRanksLeft":                        "You must assign all ranks in your discipline/questor to continue.",
           "maxLanguagesToRead":                    "You can read/write at most as many languages as your Read/Write skill rank",
           "maxLanguagesToSpeak":                   "You can speak at most as many languages as your Speak Language skill rank",
+          "minLanguages":                          "TODO: Add translation",
+          "minLanguagesToRead":                    "TODO: Add translation",
+          "minLanguagesToSpeak":                   "TODO: Add translation",
           "noClass":                               "You must choose a Discipline or Questor to continue.",
           "noMoreAttributeChange":                 "You cannot increase this attribute further. A maximum of -2 points may be reduced and +8 points may be added.",
           "noMoreSkillRanks":                      "No more skill ranks available. The maximum is 3.",
           "noMoreSpellPoints":                     "You cannot choose more spells. Your Perception step determines the number of spells (the Circle equals the cost).",
           "noNamegiver":                           "You must select a Namegiver to continue.",
           "notFinished":                           "You cannot complete character creation yet, there are still steps remaining.",
-          "skillRanksLeft":                        "You must assign all skill ranks to continue.",
-          "talentRanksLeft":                       "You must assign all talent ranks to continue."
+          "skillRanksLeft":                        "You must assign all skill ranks to continue."
         },
         "Title": {
           "armor":                                 "Armor",
@@ -3059,9 +3062,20 @@
           "addSpell":                              "Add Spell",
           "decreaseAttributeValue":                "Decrease Attribute Value",
           "decreaseRankValue":                     "Decrease Rank",
+          "finish":                                "TODO: Add translation",
           "increaseAttributeValue":                "Increase Attribute Value",
           "increaseRankValue":                     "Increase Rank",
           "removeSpell":                           "Remove Spell"
+        },
+        "Validation": {
+          "Categories": {
+            "attributes":                          "TODO: Add translation",
+            "class":                               "TODO: Add translation",
+            "classRanks":                          "TODO: Add translation",
+            "languages":                           "TODO: Add translation",
+            "namegiver":                           "TODO: Add translation",
+            "skills":                              "TODO: Add translation"
+          }
         },
         "abilities":                               "Choose Your Abilities",
         "availableAttributePoints":                "Available Attribute Points: {points}",
