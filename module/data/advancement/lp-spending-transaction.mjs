@@ -4,11 +4,7 @@ import SystemDataModel from "../abstract/system-data-model.mjs";
 
 export default class LpSpendingTransactionData extends LpTransactionData {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.LpSpendingTransaction",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -44,6 +40,20 @@ export default class LpSpendingTransactionData extends LpTransactionData {
     } );
   }
 
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpSpendingTransaction",
+  ];
+
+  // endregion
+
+  // region Static Methods
+
   /**
    * Creates data needed for a new spending transaction from an item with a level.
    * @param {ItemEd} item         The item to be leveled up,
@@ -65,6 +75,10 @@ export default class LpSpendingTransactionData extends LpTransactionData {
       itemUuid:   item.uuid,
     };
   }
+
+  // endregion
+
+  // region Rendering
 
   /**
    * @inheritDoc
@@ -100,4 +114,7 @@ export default class LpSpendingTransactionData extends LpTransactionData {
         </tr>
       `;
   }
+
+  // endregion
+
 }
