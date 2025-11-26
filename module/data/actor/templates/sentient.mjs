@@ -10,6 +10,8 @@ import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
  */
 export default class SentientTemplate extends CommonTemplate {
 
+  // region Schema
+
   /** @inheritDoc */
   static defineSchema() {
     const fields = foundry.data.fields;
@@ -205,10 +207,12 @@ export default class SentientTemplate extends CommonTemplate {
         } ),
         ...MovementFields.movement
       } ),
-      concentrationSource: new fields.DocumentUUIDField( {
-        required: false,
-        empty:    false,
-      } ),
+      concentrationSource: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly: true,
+        }
+      ),
       devotion: new fields.SchemaField( {
         value: new fields.NumberField( {
           required: true,
@@ -348,6 +352,8 @@ export default class SentientTemplate extends CommonTemplate {
       } ),
     } );
   }
+
+  // endregion
 
   // region Static Properties
 

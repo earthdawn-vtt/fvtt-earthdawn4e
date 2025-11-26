@@ -112,10 +112,9 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     this.#threadWeavingTalentField = this.#getThreadWeavingTalentField();
 
     if ( onTheFly ) {
-      const threadWeavingUuid = this.#actor.system.concentrationSource;
-      this._data.threadWeavingId = foundry.utils.parseUuid( threadWeavingUuid )?.id
-        ?? Object.keys( this.#threadWeavingTalentField.choices )[0];
-      this.#threadWeavingTalent = fromUuidSync( threadWeavingUuid );
+      const threadWeavingId = this.#actor.system.concentrationSource;
+      this._data.threadWeavingId = threadWeavingId ?? Object.keys( this.#threadWeavingTalentField.choices )[0];
+      this.#threadWeavingTalent = this.#actor.items.get( this._data.threadWeavingId );
     }
 
   }

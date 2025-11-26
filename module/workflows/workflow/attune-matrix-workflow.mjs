@@ -176,7 +176,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
       },
     );
     await this._actor.update( {
-      "system.concentrationSource": this._attuneAbility.uuid,
+      "system.concentrationSource": this._attuneAbility.id,
     } );
 
     this.cancel();
