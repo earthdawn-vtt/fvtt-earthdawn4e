@@ -47,7 +47,6 @@ export const documentData = {
         system: {
           description: { value: "ED.Devotion.Questor Description" },
           // edid needs to be set on creation since settings are not ready on init
-          // edid: game.settings.get( "ed4e", "edidQuestorDevotion" ),
           attribute:   "cha",
           action:      "sustained",
           difficulty:  {fixed: 10},

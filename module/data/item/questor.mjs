@@ -11,6 +11,9 @@ const { isEmpty } = foundry.utils;
 
 /**
  * Data model template with information on the questor path items.
+ * @augments ClassTemplate
+ * @mixes ItemDescriptionTemplate
+ * @property {string} questorDevotionId   The ID of the associated devotion item.
  */
 export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
@@ -22,17 +25,12 @@ export default class QuestorData extends ClassTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      questorDevotion: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-        validate: ( value, options ) => {
-          const item = fromUuidSync( value, {strict: false} );
-          if ( item.system?.edid !== game.settings.get( "ed4e", "edidQuestorDevotion" ) ) return false;
-          return undefined;
-        },
-        validationError: "must be a questor talent with the questor edId.",
-      } ),
+      questorDevotionId: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly:    true,
+        }
+      ),
     } );
   }
 
@@ -101,7 +99,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     // get the questor devotion
     const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
-    let questorDevotion = await fromUuid( item.system.questorDevotion );
+    let questorDevotion = actor.items.get( item.system.questorDevotionId );
     questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
     questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
 
@@ -135,8 +133,8 @@ export default class QuestorData extends ClassTemplate.mixin(
     const questorCreateData = foundry.utils.mergeObject(
       createData,
       {
-        "system.level":           1,
-        "system.questorDevotion": learnedDevotion?.uuid,
+        "system.level":             1,
+        "system.questorDevotionId": learnedDevotion?.id,
       }
     );
 
@@ -172,7 +170,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       || spendLp === "cancel"
       || spendLp === "close" ) return;
 
-    const updatedActor = await this.parent.actor.addLpTransaction(
+    const updatedActor = await this.containingActor.addLpTransaction(
       "spendings",
       LpSpendingTransactionData.dataFromLevelItem(
         this.parent,
@@ -187,7 +185,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       );
 
     // possibly update the associated devotion
-    const questorDevotion = await fromUuid( this.questorDevotion );
+    const questorDevotion = this.containingActor.get( this.questorDevotionId );
     if ( !questorDevotion ) return this.parentDocument;
 
     const content =  `
@@ -216,9 +214,9 @@ export default class QuestorData extends ClassTemplate.mixin(
   // region Drag and Drop
 
   async _onDropDevotion( event, document ) {
-    const questorItem = this.parent;
+    const questorItem = this.parentDocument;
     await questorItem.update( {
-      "system.questorDevotion": document.uuid,
+      "system.questorDevotionId": document.id,
     } );
     return true;
   }

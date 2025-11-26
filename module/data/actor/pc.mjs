@@ -255,7 +255,7 @@ export default class PcData extends NamegiverTemplate {
       },
     } );
 
-    // If this is a questor class, set the questorDevotion field to the devotion UUID
+    // If this is a questor class, set the questorDevotionId field to the devotion ID
     if ( classAfterCreation.type === SYSTEM_TYPES.Item.questor ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
       const questorDevotionItem = newActor.items.find( item =>
@@ -264,7 +264,7 @@ export default class PcData extends NamegiverTemplate {
 
       if ( questorDevotionItem ) {
         await classAfterCreation.update( {
-          "system.questorDevotion": questorDevotionItem.uuid
+          "system.questorDevotionId": questorDevotionItem.id
         } );
       }
     }

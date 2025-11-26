@@ -164,7 +164,7 @@ export default class DevotionData extends IncreasableAbilityTemplate.mixin(
 
     // update the corresponding questor item
     const questorItem = this.containingActor.itemTypes.questor.find(
-      ( item ) => item.system.questorDevotion === this.parent.uuid
+      ( item ) => item.system.questorDevotionId === this.parentDocument.id
     );
     if ( !questorItem ) return updatedDevotion;
 
