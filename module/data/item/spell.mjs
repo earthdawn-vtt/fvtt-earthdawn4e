@@ -456,7 +456,7 @@ export default class SpellData extends ItemDataModel.mixin(
         ),
         entityType:  learnedItem.type,
         name:        learnedItem.name,
-        itemUuid:    learnedItem.uuid,
+        itemId:      learnedItem.id,
       },
     );
 

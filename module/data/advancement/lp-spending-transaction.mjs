@@ -36,7 +36,12 @@ export default class LpSpendingTransactionData extends LpTransactionData {
           integer:  true,
         } ),
       } ),
-      itemUuid: new fields.DocumentUUIDField(),
+      itemId: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly: true,
+        },
+      ),
     } );
   }
 
@@ -59,20 +64,20 @@ export default class LpSpendingTransactionData extends LpTransactionData {
    * @param {ItemEd} item         The item to be leveled up,
    * @param {number} amount       The amount of LP spent,
    * @param {string} description  The description of the transaction.
-   * @returns {{amount, entityType, name, description, value: {before, after: number}, itemUuid}}
+   * @returns {{amount, entityType, name, description, value: {before, after: number}, itemId}}
    *  The data necessary for creating the LpTransaction.
    */
   static dataFromLevelItem( item, amount, description ) {
     return {
       amount,
       description,
-      entityType:  item.type,
+      entityType: item.type,
       name:       item.name,
       value:      {
         before: item.system.level,
         after:  item.system.level + 1,
       },
-      itemUuid:   item.uuid,
+      itemId:     item.id,
     };
   }
 
