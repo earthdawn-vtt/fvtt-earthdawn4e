@@ -1466,6 +1466,10 @@ form.ed4e.character-generation .label--rail {
   margin-bottom: 0.3125rem;
   text-transform: uppercase;
 }
+form.ed4e.character-generation .container__header {
+  text-align: center;
+  font-size: var(--font-size-13);
+}
 form.ed4e.character-generation section[data-tab="namegiver"] {
   justify-content: space-between;
   width: 60%;
@@ -1577,9 +1581,11 @@ form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attribut
   grid-template-columns: repeat(6, minmax(0, 1fr));
   row-gap: 0.25rem;
 }
+form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid__header {
+  font-size: var(--font-size-13);
+}
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid__header,
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid__cell {
-  font-size: var(--font-size-14);
   height: 1.375rem;
   padding: 0.125rem 0.5rem;
   text-align: center;
@@ -1601,9 +1607,7 @@ form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attribut
 }
 form.ed4e.character-generation section[data-tab="attributes"] .health-and-characteristics .container__header {
   display: flex;
-  text-align: center;
   margin-top: 0.3125rem;
-  font-size: var(--font-size-13);
 }
 form.ed4e.character-generation section[data-tab="attributes"] .health-and-characteristics .entry-name {
   text-align: left;
@@ -1760,6 +1764,9 @@ form.ed4e.character-generation section[data-tab="spells"] .spells-headers {
 }
 form.ed4e.character-generation section[data-tab="spells"] .spells-headers__col {
   justify-self: center;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spell {
+  text-align: center;
 }
 form.ed4e.character-generation .form-footer {
   gap: 1.25rem;

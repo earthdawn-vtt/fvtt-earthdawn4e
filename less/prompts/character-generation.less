@@ -38,6 +38,11 @@ form.ed4e.character-generation {
     text-transform: uppercase;
   }
 
+  .container__header {
+    text-align: center;
+    font-size: var(--font-size-13);
+  }
+
   // Namegiver
   section[data-tab="namegiver"] {
     justify-content: space-between;
@@ -179,9 +184,12 @@ form.ed4e.character-generation {
         row-gap: 0.25rem;
       }
 
+      .attributes-grid__header {
+        font-size: var(--font-size-13);
+      }
+
       .attributes-grid__header,
       .attributes-grid__cell {
-        font-size: var(--font-size-14);
         height: 1.375rem;
         padding: 0.125rem 0.5rem;
         text-align: center;
@@ -209,9 +217,7 @@ form.ed4e.character-generation {
     .health-and-characteristics {
       .container__header {
         display: flex;
-        text-align: center;
         margin-top: 0.3125rem;
-        font-size: var(--font-size-13);
       }
 
       .entry-name {
@@ -407,6 +413,10 @@ form.ed4e.character-generation {
 
     .spells-headers__col {
       justify-self: center;
+    }
+
+    .spell {
+      text-align: center;
     }
   }
 
