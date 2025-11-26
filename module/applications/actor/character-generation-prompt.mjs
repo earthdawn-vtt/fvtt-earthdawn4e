@@ -610,7 +610,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     }
 
     // process selected class option ability
-    if ( data.abilityOption ) {
+    if ( data.abilityOption && data.abilityOption !== this.charGenData.abilityOption ) {
       const oldOptionLevel = Object.values( this.charGenData.abilities.optional )[0];
       this.resetOptionalPoints( oldOptionLevel );
       this.charGenData.abilityOption = data.abilityOption;
