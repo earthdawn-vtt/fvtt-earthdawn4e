@@ -248,6 +248,25 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     } );
   }
 
+  /**
+   * Toggle the active state of this Active Effect. This sets the `disabled` property accordingly.
+   * @param {object} options - Additional options which modify the update request.
+   * @param {boolean} [options.active] Force the effect to be active (not disabled) if true, or inactive (disabled) if false.
+   * @returns {Promise<undefined | EarthdawnActiveEffect>} The updated Active Effect, or undefined if no update was necessary.
+   */
+  async toggleActive( options = {} ) {
+    const isDisabled = this.disabled;
+    const shouldBeActive = typeof options.active === "boolean"
+      ? options.active
+      : isDisabled;
+
+    if ( isDisabled === !shouldBeActive ) return;
+
+    return this.update( {
+      disabled: !shouldBeActive,
+    } );
+  }
+
   // endregion
 
 }
