@@ -6,7 +6,27 @@ import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
+
 export default class CharacterGenerationPrompt extends ApplicationEd {
+
+  /**
+   * Validation categories for character generation.
+   * @typedef {"namegiver" | "class" | "attributes" | "talents" | "skills"} ValidationCategoryKey
+   */
+
+  /**
+   * @typedef {object} ValidationOptions
+   * @property {string} [errorLevel="warn"] - The level of error to display (e.g., "info", "warn", "error").
+   * @property {boolean} [displayNotification=false] - Whether to display a notification if validation fails.
+   */
+
+  /**
+   * A validation function that checks a specific aspect of character generation.
+   * @callback ValidationFunction
+   * @async
+   * @param {ValidationOptions} options - Validation options.
+   * @returns {Promise<boolean>} True if the validation passes, false otherwise.
+   */
 
   // region Static Properties
 
@@ -98,7 +118,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       scrollable: [ "" ],
     },
     footer: {
-      template: "templates/generic/form-footer.hbs",
+      template: "systems/ed4e/templates/global/form-footer.hbs",
       id:       "-footer",
       classes:  [ "flexrow" ],
     }
@@ -122,6 +142,37 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   };
 
   /**
+   * Validation categories for character generation.
+   * @type {Record<ValidationCategoryKey, string>}
+   */
+  static VALIDATION_CATEGORIES = {
+    namegiver: {
+      errorLevel: "warn",
+      errorKey:   "noNamegiver",
+    },
+    class:      {
+      errorLevel: "warn",
+      errorKey:   "noClass",
+    },
+    attributes: {
+      errorLevel: "info",
+      errorKey:   "attributes",
+    },
+    classRanks: {
+      errorLevel: "warn",
+      errorKey:   "classRanksLeft",
+    },
+    skills:     {
+      errorLevel: "warn",
+      errorKey:   "skillRanksLeft",
+    },
+    languages: {
+      errorLevel: "warn",
+      errorKey:   "minLanguages",
+    }
+  };
+
+  /**
    * Error messages for character generation validation.
    * @type {Record<string, string>}
    */
@@ -129,11 +180,15 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     noNamegiver:         "ED.Dialogs.CharGen.Errors.noNamegiver",
     noClass:             "ED.Dialogs.CharGen.Errors.noClass",
     attributes:          "ED.Dialogs.CharGen.Errors.attributes",
-    talentRanksLeft:     "ED.Dialogs.CharGen.Errors.talentRanksLeft",
+    classRanksLeft:      "ED.Dialogs.CharGen.Errors.classRanksLeft",
     skillRanksLeft:      "ED.Dialogs.CharGen.Errors.skillRanksLeft",
     notFinished:         "ED.Dialogs.CharGen.Errors.notFinished",
     maxLanguagesToSpeak: "ED.Dialogs.CharGen.Errors.maxLanguagesToSpeak",
     maxLanguagesToRead:  "ED.Dialogs.CharGen.Errors.maxLanguagesToRead",
+    minLanguagesToSpeak: "ED.Dialogs.CharGen.Errors.minLanguagesToSpeak",
+    minLanguagesToRead:  "ED.Dialogs.CharGen.Errors.minLanguagesToRead",
+    minLanguages:         "ED.Dialogs.CharGen.Errors.minLanguages",
+
   };
 
   // endregion
@@ -304,24 +359,22 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /**
    * Validates the completion of the character generation process.
-   * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
-   * @returns {boolean} True if the character generation is complete, otherwise false.
+   * @param {ValidationOptions} options - Validation options.
+   * @returns {Promise<boolean>} True if the character generation is complete, otherwise false.
    */
-  _validateCompletion( errorLevel = "error" ) {
-    return this._validateNamegiver( errorLevel, true )
-      && this._validateClass( errorLevel, true )
-      && this._validateClassRanks( errorLevel, true )
-      // this._validateAttributes( "warn", true );
-      && this._validateSkills( errorLevel, true );
+  async _validateCompletion( { errorLevel = "error", displayNotification = true } ) {
+    return await this._validateNamegiver( { errorLevel, displayNotification } )
+      && await this._validateClass( { errorLevel, displayNotification } )
+      && await this._validateClassRanks( { errorLevel, displayNotification } )
+      && await this._validateLanguages( { errorLevel, displayNotification } )
+      && await this._validateSkills( { errorLevel, displayNotification } );
   }
 
   /**
    * Validates whether a namegiver has been selected during character generation.
-   * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
-   * @param {boolean} displayNotification - Whether to display a notification if validation fails.
-   * @returns {boolean} True if a namegiver is selected, otherwise false.
+   * @type {ReturnType<ValidationFunction>}
    */
-  _validateNamegiver( errorLevel = "warn", displayNotification = false ) {
+  async _validateNamegiver( { errorLevel = "warn", displayNotification = false } ) {
     const hasNamegiver = !!this.charGenData.namegiver;
     if ( displayNotification ) {
       if ( !hasNamegiver ) this._displayValidationError( errorLevel, "noNamegiver" );
@@ -331,11 +384,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /**
    * Validates whether a class has been selected during character generation.
-   * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
-   * @param {boolean} displayNotification - Whether to display a notification if validation fails.
-   * @returns {boolean} True if a class is selected, otherwise false.
+   * @type {ReturnType<ValidationFunction>}
    */
-  _validateClass( errorLevel = "warn", displayNotification = false ) {
+  async _validateClass( { errorLevel = "warn", displayNotification = false } ) {
     const hasClass = !!this.charGenData.selectedClass;
     if ( displayNotification ) {
       if ( !hasClass ) this._displayValidationError( errorLevel, "noClass" );
@@ -345,25 +396,21 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /**
    * Validates whether the class ranks are properly assigned during character generation.
-   * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
-   * @param {boolean} displayNotification - Whether to display a notification if validation fails.
-   * @returns {boolean} True if class ranks are valid, otherwise false.
+   * @type {ReturnType<ValidationFunction>}
    */
-  _validateClassRanks( errorLevel = "warn", displayNotification = false ) {
+  async _validateClassRanks( { errorLevel = "warn", displayNotification = false } ) {
     const hasRanks = this.charGenData.availableRanks[this.charGenData.isAdept ? "talent" : "devotion"] > 0;
     if ( displayNotification ) {
-      if ( hasRanks ) this._displayValidationError( errorLevel, "talentRanksLeft" );
+      if ( hasRanks ) this._displayValidationError( errorLevel, "classRanksLeft" );
     }
     return !hasRanks;
   }
 
   /**
    * Validates whether all attribute points have been assigned during character generation.
-   * @param {string} errorLevel - The level of error to display (e.g., "info", "warn").
-   * @param {boolean} displayNotification - Whether to display a notification if validation fails.
-   * @returns {boolean} True if all attribute points are assigned, otherwise false.
+   * @type {ReturnType<ValidationFunction>}
    */
-  _validateAttributes( errorLevel = "info", displayNotification = false ) {
+  async _validateAttributes( { errorLevel = "info", displayNotification = false } ) {
     const hasAttributePoints = this.charGenData.availableAttributePoints > 0;
     if ( displayNotification ) {
       if ( hasAttributePoints ) this._displayValidationError( errorLevel, "attributes" );
@@ -373,11 +420,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /**
    * Validates whether all skill ranks have been properly assigned during character generation.
-   * @param {string} errorLevel - The level of error to display (e.g., "warn", "error").
-   * @param {boolean} displayNotification - Whether to display a notification if validation fails.
-   * @returns {boolean} True if all skill ranks are valid, otherwise false.
+   * @type {ReturnType<ValidationFunction>}
    */
-  _validateSkills( errorLevel = "warn", displayNotification = false ) {
+  async _validateSkills( { errorLevel = "warn", displayNotification = false } ) {
     const availableRanks = filterObject(
       this.charGenData.availableRanks,
       ( [ key, _ ] ) => ![ "talent", "devotion" ].includes( key )
@@ -393,6 +438,47 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   }
 
   /**
+   * Validates whether all the available amount of languages has been selected during character generation.
+   * @type {ReturnType<ValidationFunction>}
+   */
+  async _validateLanguages( { errorLevel = "warn", displayNotification = false } ) {
+    const validSpeak = await this._validateLanguageSpeak( { errorLevel, displayNotification } );
+    const validReadWrite = await this._validateLanguageReadWrite( { errorLevel, displayNotification } );
+
+    return validSpeak && validReadWrite;
+  }
+
+  /**
+   * Validate whether the available number of languages to speak has been selected.
+   * @type {ReturnType<ValidationFunction>}
+   */
+  async _validateLanguageSpeak( { errorLevel = "warn", displayNotification = false } ) {
+    const languageSkillRanks = await this.charGenData.getLanguageSkillRanks();
+    const speakAvailable = this.charGenData.languages.speak.size < languageSkillRanks.speak;
+
+    if ( displayNotification ) {
+      if ( speakAvailable ) this._displayValidationError( errorLevel, "minLanguagesToSpeak" );
+    }
+
+    return !speakAvailable;
+  }
+
+  /**
+   * Validate whether the available number of languages to read/write has been selected.
+   * @type {ReturnType<ValidationFunction>}
+   */
+  async _validateLanguageReadWrite( { errorLevel = "warn", displayNotification = false } ) {
+    const languageSkillRanks = await this.charGenData.getLanguageSkillRanks();
+    const readWriteAvailable = this.charGenData.languages.readWrite.size < languageSkillRanks.readWrite;
+
+    if ( displayNotification ) {
+      if ( readWriteAvailable ) this._displayValidationError( errorLevel, "minLanguagesToRead" );
+    }
+
+    return !readWriteAvailable;
+  }
+
+  /**
    * @param {string} level - The severity level of the validation error (e.g., "warn", "error").
    * @param {string} type - The type of equipment to retrieve (e.g., "armor", "weapon").
    */
@@ -400,9 +486,44 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     if ( level ) ui.notifications[level]( game.i18n.format( this.constructor.ERROR_MESSAGES[type] ) );
   }
 
+  /**
+   * Retrieves all error keys for invalid categories during character generation.
+   * @returns {Promise<string[]>} An array of error keys for invalid categories.
+   * @async
+   */
+  async _getInvalidCategoryKeys() {
+    const errors = [];
+    for ( const [ key, value ] of Object.entries( this.constructor.VALIDATION_CATEGORIES ) ) {
+      const isValid = await this[`_validate${ key.capitalize() }`]( {} );
+      if ( !isValid && value.errorLevel !== "info" ) errors.push( key );
+    }
+    return errors;
+  }
+
   // endregion
 
   // region Rendering
+
+  /**
+   * Generates the tooltip text for the finish button based on validation results.
+   * @returns {Promise<string>} The HTML string for the finish button tooltip.
+   * @async
+   */
+  async _getFinishButtonTooltip() {
+    const invalidCategoryKeys = await this._getInvalidCategoryKeys();
+    if ( !invalidCategoryKeys.length ) return `<p>${ game.i18n.localize( "ED.Dialogs.CharGen.ToolTips.finish" ) }</p>`;
+
+    return invalidCategoryKeys.map( categoryKey => {
+      return `<h6>${
+        game.i18n.localize( "ED.Dialogs.CharGen.Validation.Categories." + categoryKey )
+      }</h6><div>${
+        game.i18n.localize( this.constructor.ERROR_MESSAGES[
+          this.constructor.VALIDATION_CATEGORIES[categoryKey].errorKey
+        ] )
+      }</div>`;
+    }
+    ).join( "<hr>" );
+  }
 
   /** @inheritdoc */
   async _prepareContext( options = {} ) {
@@ -485,6 +606,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     context.hasPreviousStep = this._hasPreviousStep();
     context.hasNoPreviousStep = !context.hasPreviousStep;
 
+    // Validation
+    context.isValid = await this._validateCompletion( { displayNotification: false } );
+
     // Add buttons
     context.buttons = [ {
       type:     "button",
@@ -513,8 +637,10 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       cssClass: "finish",
       icon:     `fa-regular ${ED4E.icons.finishCharGen}`,
       action:   "finish",
-      disabled: !this._validateCompletion( "" ),
+      disabled: !context.isValid,
+      tooltip:  await this._getFinishButtonTooltip(),
     }, );
+
     return context;
   }
 
@@ -678,7 +804,8 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     event.stopPropagation();
     event.stopImmediatePropagation();
 
-    if ( !this._validateCompletion() ) {
+    const isValid = await this._validateCompletion( {} );
+    if ( !isValid ) {
       this._displayValidationError( "error", "notFinished" );
       return;
     }
