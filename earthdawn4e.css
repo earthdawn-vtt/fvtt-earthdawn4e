@@ -1730,7 +1730,7 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
   color: var(--color-primary);
 }
 form.ed4e.character-generation section[data-tab="spells"] {
-  width: 25%;
+  width: 40%;
 }
 form.ed4e.character-generation section[data-tab="spells"] .spells-availability .availability-meter {
   display: grid;
