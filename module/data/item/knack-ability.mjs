@@ -21,10 +21,6 @@ export default class KnackAbilityData extends AbilityTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      isPathKnack: new fields.BooleanField( {
-        required: true,
-        initial:  false,
-      } ),
       standardEffect: new fields.BooleanField( {
         required: true,
         initial:  false,
