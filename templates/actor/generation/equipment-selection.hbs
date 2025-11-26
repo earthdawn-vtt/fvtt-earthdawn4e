@@ -1,25 +1,17 @@
-<section
-  class="tab equipment {{tabs.equipment.cssClass}}"
-  data-group="primary"
-  data-tab="equipment"
->
+<section class="tab equipment {{tabs.equipment.cssClass}}" data-group="primary" data-tab="equipment">
 
-  {{!-- Header --}}
   <h2 class="equipment__header header-bar">
     {{localize "ED.Dialogs.CharGen.Title.equipment"}}
   </h2>
 
-  {{!-- Main container --}}
   <div class="container__block container__custom">
 
-    {{!-- Explainer --}}
     <div class="container__section equipment-explainer">
       <p class="explainer-text">
         {{{chooseEquipmentRules}}}
       </p>
     </div>
 
-    {{!-- Equipment lists --}}
     <div class="container__section equipment-selection-lists">
 
       {{!-- Armor --}}
@@ -105,11 +97,8 @@
             </label>
           {{/each}}
         </div>
-
       </div>
 
-    </div> {{!-- /.equipment-selection-lists --}}
-
-  </div> {{!-- /.container__block --}}
-
+    </div>
+  </div>
 </section>

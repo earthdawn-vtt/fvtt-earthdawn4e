@@ -1444,41 +1444,41 @@ form.ed4e.character-generation {
   flex-direction: column;
   align-items: center;
 }
-form.ed4e.character-generation .layout__row {
-  gap: 25px;
-}
-form.ed4e.character-generation .label--rail {
-  margin-bottom: 5px;
-  text-transform: uppercase;
-}
 form.ed4e.character-generation .content-link {
   border: 0;
-  text-transform: uppercase;
-  font-weight: bold;
   background: transparent;
+  text-transform: capitalize;
+  font-weight: normal;
+}
+form.ed4e.character-generation .container__block {
+  padding: 0.625rem;
+}
+form.ed4e.character-generation .container__block p {
+  margin: 0;
+}
+form.ed4e.character-generation .container__block .label--rail {
+  padding-top: 0.6rem;
+}
+form.ed4e.character-generation .layout__row {
+  gap: 1.5625rem;
+}
+form.ed4e.character-generation .label--rail {
+  margin-bottom: 0.3125rem;
+  text-transform: uppercase;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] {
   justify-content: space-between;
   width: 60%;
 }
-form.ed4e.character-generation section[data-tab="namegiver"] .container__block {
-  padding: 10px;
-}
-form.ed4e.character-generation section[data-tab="namegiver"] .container__block p {
-  margin: 0;
-}
-form.ed4e.character-generation section[data-tab="namegiver"] .container__block input[type=text] {
+form.ed4e.character-generation section[data-tab="namegiver"] input[type=text] {
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="namegiver"] .namegiver-selection__link {
-  padding-top: 10px;
+  padding-top: 0.625rem;
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="classes"] {
   width: 60%;
-}
-form.ed4e.character-generation section[data-tab="classes"] .container__block {
-  padding: 10px;
 }
 form.ed4e.character-generation section[data-tab="classes"] .discipline-selection__link {
   text-align: center;
@@ -1487,23 +1487,20 @@ form.ed4e.character-generation section[data-tab="classes"] .discipline-questor-s
   font-family: 'Warhorse-DecoBB', serif;
   font-weight: bold;
   text-align: center;
-  padding: 10px 5px 8px;
+  padding: 0.625rem 0.3125rem 0.5rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .discipline-questor-switch-group span {
   align-items: center;
   cursor: pointer;
 }
-form.ed4e.character-generation section[data-tab="classes"] .abilities-explainer {
-  padding-top: 12px;
-}
 form.ed4e.character-generation section[data-tab="classes"] .rank-assignment {
-  padding-top: 10px;
+  padding-top: 0.625rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .availability-meter {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-auto-rows: auto;
-  gap: 10px;
+  gap: 0.625rem;
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="classes"] .availability-meter__info {
@@ -1517,18 +1514,13 @@ form.ed4e.character-generation section[data-tab="classes"] .availability-meter__
 form.ed4e.character-generation section[data-tab="classes"] .availability-meter .reset-points {
   justify-self: end;
 }
-form.ed4e.character-generation section[data-tab="classes"] .talent-listing .content-link,
-form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .content-link {
-  text-transform: capitalize;
-  font-weight: normal;
-}
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px;
+  gap: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .entry-listing-header {
-  padding-top: 10px;
+  padding-top: 0.625rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .assign-value-entries,
 form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .assign-value-entries {
@@ -1542,7 +1534,7 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 12px 4px;
+  padding: 0 0.75rem 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .rank-change,
 form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .rank-change {
@@ -1552,26 +1544,20 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
   gap: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .item-section__header--namegiver-abilities {
-  padding-top: 5px;
+  padding-top: 0.3125rem;
 }
 form.ed4e.character-generation section[data-tab="attributes"] {
   width: 40%;
 }
-form.ed4e.character-generation section[data-tab="attributes"] .container__block {
-  padding: 10px;
-}
-form.ed4e.character-generation section[data-tab="attributes"] .container__block p {
-  margin: 0;
-}
 form.ed4e.character-generation section[data-tab="attributes"] .label--rail {
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 form.ed4e.character-generation section[data-tab="attributes"] .rank-assignment .availability-meter {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 10px;
+  gap: 0.625rem;
   align-items: center;
-  padding: 10px 40px 10px;
+  padding: 0.625rem 2.5rem;
 }
 form.ed4e.character-generation section[data-tab="attributes"] .rank-assignment .availability-meter__info {
   display: flex;
@@ -1589,13 +1575,13 @@ form.ed4e.character-generation section[data-tab="attributes"] .rank-assignment .
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  row-gap: 4px;
+  row-gap: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid__header,
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .attributes-grid__cell {
   font-size: var(--font-size-14);
-  height: 22px;
-  padding: 2px 8px;
+  height: 1.375rem;
+  padding: 0.125rem 0.5rem;
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attributes .rank-change.attribute-change {
@@ -1616,7 +1602,7 @@ form.ed4e.character-generation section[data-tab="attributes"] .char-gen-attribut
 form.ed4e.character-generation section[data-tab="attributes"] .health-and-characteristics .container__header {
   display: flex;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 0.3125rem;
   font-size: var(--font-size-13);
 }
 form.ed4e.character-generation section[data-tab="attributes"] .health-and-characteristics .entry-name {
@@ -1627,8 +1613,7 @@ form.ed4e.character-generation section[data-tab="attributes"] .health-and-charac
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="skills"] {
-  width: 50%;
-  /* Only when active should it become flex and fill the space */
+  width: 40%;
 }
 form.ed4e.character-generation section[data-tab="skills"].active {
   display: flex;
@@ -1641,15 +1626,8 @@ form.ed4e.character-generation section[data-tab="skills"] .container__block {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0.625rem;
   overflow: hidden;
-}
-form.ed4e.character-generation section[data-tab="skills"] .container__block p {
-  margin: 0;
-  padding-bottom: 10px;
-}
-form.ed4e.character-generation section[data-tab="skills"] .container__block .label--rail {
-  padding-top: 20px;
 }
 form.ed4e.character-generation section[data-tab="skills"] .layout__row {
   display: block;
@@ -1657,6 +1635,7 @@ form.ed4e.character-generation section[data-tab="skills"] .layout__row {
 form.ed4e.character-generation section[data-tab="skills"] .skills-explainer,
 form.ed4e.character-generation section[data-tab="skills"] .skills-availability {
   flex: 0 0 auto;
+  padding-top: 0.6rem;
 }
 form.ed4e.character-generation section[data-tab="skills"] .skills-list {
   flex: 1 1 auto;
@@ -1665,7 +1644,7 @@ form.ed4e.character-generation section[data-tab="skills"] .skills-list {
 form.ed4e.character-generation section[data-tab="skills"] .skills-list .skill-assignment {
   height: 100%;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="skills"] .skill-group__meter {
   display: flex;
@@ -1680,17 +1659,17 @@ form.ed4e.character-generation section[data-tab="skills"] .skill-group__meter me
   margin: 0 auto;
 }
 form.ed4e.character-generation section[data-tab="skills"] .entry-listing-header {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 form.ed4e.character-generation section[data-tab="skills"] .entry-listing .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: var(--grid-col-gap-sm);
-  row-gap: 2px;
+  row-gap: 0.125rem;
 }
 form.ed4e.character-generation section[data-tab="skills"] .assign-value-entry {
   display: grid;
-  grid-template-columns: 1fr minmax(70px, 70px);
+  grid-template-columns: 1fr minmax(4.375rem, 4.375rem);
   column-gap: var(--grid-col-gap-sm);
 }
 form.ed4e.character-generation section[data-tab="skills"] .rank-change {
@@ -1699,35 +1678,16 @@ form.ed4e.character-generation section[data-tab="skills"] .rank-change {
 form.ed4e.character-generation section[data-tab="languages"] {
   width: 30%;
 }
-form.ed4e.character-generation section[data-tab="languages"] .container__block {
-  padding: 10px;
-}
-form.ed4e.character-generation section[data-tab="languages"] .container__block .language-selection {
-  padding-top: 10px;
-}
-form.ed4e.character-generation section[data-tab="languages"] p {
-  margin: 0;
-}
 form.ed4e.character-generation section[data-tab="languages"] .tags {
   justify-content: flex-start;
 }
 form.ed4e.character-generation section[data-tab="equipment"] {
   width: 50%;
 }
-form.ed4e.character-generation section[data-tab="equipment"] .container__block {
-  padding: 10px;
-}
-form.ed4e.character-generation section[data-tab="equipment"] .container__block p {
-  margin: 0;
-  padding-bottom: 10px;
-}
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection-lists {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection {
-  /* Make each option look like a conditions__grid--item button */
+  gap: 0.625rem;
 }
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection .checkbox-options {
   display: grid;
@@ -1744,8 +1704,8 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
   text-transform: uppercase;
   background-color: var(--color-tertiary-grey);
   padding: var(--grid-col-gap-sm) 0;
-  border-radius: 4px;
-  line-height: 25px;
+  border-radius: 0.25rem;
+  line-height: 1.5;
 }
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection .checkbox-options label input[type="checkbox"] {
   position: absolute;
@@ -1765,8 +1725,44 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection .checkbox-options label:has(input[type="checkbox"]:checked) span {
   color: var(--color-primary);
 }
+form.ed4e.character-generation section[data-tab="spells"] {
+  width: 25%;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spells-availability .availability-meter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--grid-col-gap-md, 0.625rem);
+  align-items: center;
+  padding: 0.625rem 0;
+}
+form.ed4e.character-generation section[data-tab="spells"] .availability-meter__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form.ed4e.character-generation section[data-tab="spells"] .availability-meter__info label {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+form.ed4e.character-generation section[data-tab="spells"] .availability-meter__info meter {
+  display: block;
+  width: 80%;
+  box-sizing: border-box;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spells-headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  margin-bottom: 0.375rem;
+  column-gap: var(--grid-col-gap-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spells-headers__col {
+  justify-self: center;
+}
 form.ed4e.character-generation .form-footer {
-  gap: 20px;
+  gap: 1.25rem;
 }
 form.ed4e.character-generation .form-footer button {
   background: var(--background-banner-actor);
@@ -1783,6 +1779,11 @@ form.ed4e.character-generation .form-footer button {
   text-transform: uppercase;
   font-size: var(--font-size-16);
 }
+form.ed4e.character-generation footer.form-footer {
+  flex: 0 0 auto;
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+}
 form.ed4e.character-generation nav a {
   font-family: 'Warhorse-DecoBB', serif;
   padding: 1em;
@@ -1795,11 +1796,6 @@ form.ed4e.character-generation nav a.disabled {
   opacity: 0.5;
   pointer-events: none;
   cursor: default;
-}
-form.ed4e.character-generation footer.form-footer {
-  flex: 0 0 auto;
-  margin-top: auto;
-  margin-bottom: 20px;
 }
 .app.window-app.form.earthdawn4e.roll-prompt header,
 .app.window-app.form.earthdawn4e.assign-legend header {

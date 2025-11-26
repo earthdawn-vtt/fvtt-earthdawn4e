@@ -1,14 +1,11 @@
 <section class="tab languages {{tabs.languages.cssClass}}" data-group="primary" data-tab="languages">
 
-  {{!-- Header --}}
   <h2 class="languages__header header-bar">
     {{localize "ED.Dialogs.CharGen.Title.languages"}}
   </h2>
 
-  {{!-- Single main container --}}
   <div class="container__block container__custom">
 
-    {{!-- Explainer --}}
     <div class="container__section languages-explainer">
       <p class="explainer-text">
         {{{localize "ED.Dialogs.CharGen.chooseLanguagesRules"}}}
@@ -22,7 +19,6 @@
           {{localize "ED.Dialogs.CharGen.Title.speak"}}
         </span>
       </h3>
-
       {{formInput
         schema.fields.languages.fields.speak
         value=languages.speak
@@ -37,7 +33,6 @@
           {{localize "ED.Dialogs.CharGen.Title.readWrite"}}
         </span>
       </h3>
-
       {{formInput
         schema.fields.languages.fields.readWrite
         value=languages.readWrite

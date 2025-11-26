@@ -111,9 +111,8 @@
           </div>
 
           <div class="talent-listing">
-
+            
             <div class="optional-talents-pool entry-listing">
-
               <div class="assign-value-entries">
                 {{#each classDocument.system.advancement.abilityOptions.novice}}
                   <div class="assign-value-entry">
@@ -128,7 +127,6 @@
                         {{{ed-linkForUuid this}}}
                       </label>
                     </div>
-
                     <div class="rank-change">
                       {{#if (ed-hasOwnProperty @root.abilities.optional this)}}
                         <span class="decrease-value-button rank-decrease rank-change-icon"
@@ -152,11 +150,9 @@
                         </span>
                       {{/if}}
                     </div>
-
                   </div>
                 {{/each}}
               </div>
-
             </div>
 
             {{!-- Class Abilities --}}
@@ -179,21 +175,15 @@
               </div>
 
               <div class="assign-value-entries-categorized">
-
                 {{#each classDocument.system.advancement.levels.0.abilities}}
-
                   <div class="assign-value-entries">
-
                     {{#each this}}
                       <div class="assign-value-entry flexrow">
-
                         <div class="entry-name" data-ability-uuid="{{this}}">
                           {{{ed-linkForUuid this}}}
                         </div>
-
                         {{#if (eq @../key "class")}}
                           <div class="flexrow rank-change">
-
                             <span class="decrease-value-button rank-decrease rank-change-icon"
                                   title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
                                   data-change-type="decrease"
@@ -213,16 +203,12 @@
                                   data-ability-type="{{@../key}}">
                               <i class="fa-light fa-circle-plus"></i>
                             </span>
-
                           </div>
                         {{/if}}
-
                       </div>
                     {{/each}}
-
                   </div>
                 {{/each}}
-
               </div>
 
             </div>
@@ -273,13 +259,8 @@
             </div>
           {{/if}}
 
-
-        </div> {{!-- /class-abilities-selection --}}
-
-      </div> {{!-- /RIGHT COLUMN --}}
-
-    </div> {{!-- /layout__row --}}
-
-  </div> {{!-- /container__block --}}
-
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
