@@ -194,7 +194,7 @@
 }
 :root .application.sheet.earthdawn4e.actor.character,
 :root .theme-dark.application.sheet.earthdawn4e.actor.character,
-:root body.theme-dark .ed4e.character-generation {
+:root body.theme-dark form.ed4e.character-generation {
   --color-primary: var(--color-green-dk);
   --color-primary-tr: var(--color-green-dk-tr);
   --color-secondary: var(--color-green-md);
@@ -220,7 +220,8 @@
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
-:root .theme-light.application.sheet.earthdawn4e.actor.character body.theme-light .ed4e.character-generation {
+:root .theme-light.application.sheet.earthdawn4e.actor.character,
+:root body.theme-light form.ed4e.character-generation {
   --color-primary: var(--color-green-lt);
   --color-primary-tr: var(--color-green-lt-tr);
   --color-secondary: var(--color-green-md);
@@ -1706,7 +1707,7 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
   flex-direction: column;
   text-align: center;
   text-transform: uppercase;
-  background-color: var(--color-tertiary-grey);
+  background-color: var(--color-secondary-grey);
   padding: var(--grid-col-gap-sm) 0;
   border-radius: 0.25rem;
   line-height: 1.5;
