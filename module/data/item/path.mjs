@@ -7,7 +7,10 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on path items.
- * @property {string} sourceDiscipline ED-ID for source discipline related to the path
+ * @property {string} sourceDiscipline The ID of the discipline this path belongs to.
+ * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
+ * @property {string} pathKnack The ID of the knack ability associated with this path.
+ * @property {string} pathTalent The ID of the talent associated with this path.
  */
 export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
@@ -19,10 +22,12 @@ export default class PathData extends ClassTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceDiscipline: new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
-      } ),
+      sourceDiscipline: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly: true,
+        }
+      ),
       bloodMagicDamage: new fields.NumberField( {
         required: true,
         nullable: false,
