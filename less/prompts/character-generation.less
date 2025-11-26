@@ -250,6 +250,94 @@ form.ed4e.character-generation {
     }
   }
 
+  // Skills
+
+  // Skills
+  section[data-tab="skills"] {
+    width: 50%;              // match other tabs if you like
+
+    /* Only when active should it become flex and fill the space */
+    &.active {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .container__block {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      overflow: hidden;
+
+      p {
+        margin: 0;
+        padding-bottom: 10px;
+      }
+
+      .label--rail {
+        padding-top: 20px;
+      }
+    }
+
+    .layout__row {
+      display: block;
+    }
+
+    .skills-explainer,
+    .skills-availability {
+      flex: 0 0 auto;
+    }
+
+    .skills-list {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .skills-list .skill-assignment {
+      height: 100%;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .skill-group__meter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.15rem;
+
+      meter {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+
+    .entry-listing-header {
+      margin-bottom: 10px;
+    }
+
+    .entry-listing .assign-value-entries {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--grid-col-gap-sm);
+      row-gap: 2px;
+    }
+
+    .assign-value-entry {
+      display: grid;
+      grid-template-columns: 1fr minmax(70px, 70px);
+      column-gap: var(--grid-col-gap-sm);
+    }
+
+    .rank-change {
+      text-align: center;
+    }
+  }
+
   // Languages
 
   section[data-tab="languages"] {
@@ -264,14 +352,84 @@ form.ed4e.character-generation {
     }
 
     p {
-      margin: 0;
-      
+      margin: 0;      
     }
 
     .tags {
       justify-content: flex-start;
     }
   }
+
+  // Equipment
+
+  // Equipment
+
+  // Equipment
+  section[data-tab="equipment"] {
+    width: 50%;
+
+    .container__block {
+      padding: 10px;
+
+      p {
+        margin: 0;
+        padding-bottom: 10px;
+      }
+    }
+
+    .equipment-selection-lists {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .equipment-selection {
+      .checkbox-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(150px, 1fr));
+        gap: var(--grid-col-gap-sm);
+      }
+
+      /* Make each option look like a conditions__grid--item button */
+      .checkbox-options label {
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: var(--color-tertiary-grey);
+        padding: var(--grid-col-gap-sm) 0;
+        border-radius: 4px;
+        line-height: 25px;
+
+        input[type="checkbox"] {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          margin: 0;
+          cursor: pointer;
+        }
+
+        span {
+          font-size: smaller;
+          color: var(--color-text-body);
+          pointer-events: none;
+        }
+
+        &:has(input[type="checkbox"]:checked) {
+          background-color: var(--color-primary-grey);
+
+          span {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
+
 
   .form-footer {
     gap: 20px;
