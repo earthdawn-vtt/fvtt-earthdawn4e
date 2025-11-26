@@ -9,8 +9,8 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
  * Data model template with information on path items.
  * @property {string} sourceDiscipline The ID of the discipline this path belongs to.
  * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
- * @property {string} pathKnack The ID of the knack ability associated with this path.
- * @property {string} pathTalent The ID of the talent associated with this path.
+ * @property {string} pathKnackId The ID of the knack ability associated with this path.
+ * @property {string} pathTalentId The ID of the talent associated with this path.
  */
 export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
@@ -35,16 +35,18 @@ export default class PathData extends ClassTemplate.mixin(
         initial:  2,
         integer:  true,
       } ),
-      pathKnack: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-      } ),
-      pathTalent: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-      } ),
+      pathKnackId: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly: true,
+        },
+      ),
+      pathTalentId: new fields.ForeignDocumentField(
+        foundry.documents.Item,
+        {
+          idOnly: true,
+        },
+      ),
     } );
   }
 
@@ -182,9 +184,9 @@ export default class PathData extends ClassTemplate.mixin(
     const pathCreateData = foundry.utils.mergeObject(
       createData,
       {
-        "system.level":      0,
-        "system.pathTalent": learnedPathTalent?.uuid,
-        "system.pathKnack":  learnedPathKnack?.uuid,
+        "system.level":        0,
+        "system.pathTalentId": learnedPathTalent?.id,
+        "system.pathKnackId":  learnedPathKnack?.id,
       }
     );
 
@@ -207,7 +209,7 @@ export default class PathData extends ClassTemplate.mixin(
     if ( !this.isActorEmbedded ) return;
   
     const nextLevel = this.unmodifiedLevel + 1;
-    const pathTalent = await fromUuid( this.pathTalent );
+    const pathTalent = this.containingActor.items.get( this.pathTalentId );
     if ( pathTalent.system.level < nextLevel ) {
       const content =  `
           <p>
