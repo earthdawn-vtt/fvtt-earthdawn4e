@@ -21,17 +21,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   LpIncreaseTemplate
 ) {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Class",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -52,6 +42,16 @@ export default class ClassTemplate extends ItemDataModel.mixin(
       )
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Class",
+  ];
 
   // endregion
 
