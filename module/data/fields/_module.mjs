@@ -8,3 +8,4 @@ export { default as EdidField } from "./edid-field.mjs";
 export { default as FormulaField } from "./formula-field.mjs";
 export { default as IdentifierField } from "./identifier-field.mjs";
 export { default as MappingField } from "./mapping-field.mjs";
+export { default as SiblingDocumentField } from "./sibling-document-field.mjs";
