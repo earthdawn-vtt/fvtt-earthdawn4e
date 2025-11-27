@@ -2,13 +2,14 @@
 
   //--------------- General ------------------//
 
-  body.theme-dark {
-    --color-primary-grey: var(--color-grey-lt);
-    --color-primary-grey-tr: var(--color-grey-lt-tr);
+  form.ed4e,
+  body.theme-dark form.ed4e {
+    --color-primary-grey: var(--color-grey-dk);
+    --color-primary-grey-tr: var(--color-grey-dk-tr);
     --color-secondary-grey: var(--color-grey-md);
     --color-secondary-grey-tr: var(--color-grey-md-tr);
-    --color-tertiary-grey: var(--color-grey-dk);
-    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+    --color-tertiary-grey: var(--color-grey-lt);
+    --color-tertiary-grey-tr: var(--color-grey-lt-tr);
 
     --color-button-icon: var(--color-gold-lt);
     --color-button-icon-hover: var(--color-gold-xlt);
@@ -29,7 +30,7 @@
     --color-meter-divide: var(--color-primary);
   }
   
-  body.theme-light {
+  body.theme-light form.ed4e {
     --color-primary-grey: var(--color-grey-lt);
     --color-primary-grey-tr: var(--color-grey-lt-tr);
     --color-secondary-grey: var(--color-grey-md);
@@ -59,8 +60,8 @@
 
   //--------------- Actors ------------------//
 
-  .application.sheet.earthdawn4e.actor,
-  .theme-dark.application.sheet.earthdawn4e.actor {
+  .application.sheet.ed4e.actor,
+  .theme-dark.application.sheet.ed4e.actor {
     --color-primary: var(--color-blue-dk);
     --color-primary-tr: var(--color-blue-dk-tr);
     --color-secondary: var(--color-blue-md);
@@ -69,6 +70,7 @@
     --color-tertiary-tr: var(--color-blue-lt-tr);
 
     --color-text-body: var(--color-basic-text-lt);
+    --color-text-body-inv: var(--color-basic-text-dk);
     --color-text-banner: var(--color-basic-text-lt);
 
     --color-input-square: var(--color-primary);
@@ -77,8 +79,8 @@
     --background-banner-actor: var(--background-mottle-blue-lt);
   }
 
-  .application.sheet.earthdawn4e.actor.character,
-  .theme-dark.application.sheet.earthdawn4e.actor.character,
+  .application.sheet.ed4e.actor.character,
+  .theme-dark.application.sheet.ed.actor.character,
   body.theme-dark form.ed4e.character-generation {
     --color-primary: var(--color-green-dk);
     --color-primary-tr: var(--color-green-dk-tr);
@@ -88,6 +90,7 @@
     --color-tertiary-tr: var(--color-green-lt-tr);
 
     --color-text-body: var(--color-basic-text-lt);
+    --color-text-body-inv: var(--color-basic-text-dk);
     --color-text-banner: var(--color-basic-text-lt);
 
     --color-input-square: var(--color-primary);
@@ -96,7 +99,7 @@
     --background-banner-actor: var(--background-mottle-green-lt);
   }
   
-  .theme-light.application.sheet.earthdawn4e.actor {
+  .theme-light.application.sheet.ed4e.actor {
     --color-primary: var(--color-blue-lt);
     --color-primary-tr: var(--color-blue-lt-tr);
     --color-secondary: var(--color-blue-md);
@@ -105,6 +108,7 @@
     --color-tertiary-tr: var(--color-blue-dk-tr);
 
     --color-text-body: var(--color-basic-text-dk);
+    --color-text-body-inv: var(--color-basic-text-lt);
     --color-text-banner: var(--color-basic-text-lt);
 
     --color-input-square: var(--color-primary-grey-tr);
@@ -113,7 +117,7 @@
     --background-banner-actor: var(--background-mottle-blue-lt);
   }
 
-  .theme-light.application.sheet.earthdawn4e.actor.character,
+  .theme-light.application.sheet.ed4e.actor.character,
   body.theme-light form.ed4e.character-generation {
     --color-primary: var(--color-green-lt);
     --color-primary-tr: var(--color-green-lt-tr);
@@ -123,6 +127,7 @@
     --color-tertiary-tr: var(--color-green-dk-tr);
 
     --color-text-body: var(--color-basic-text-dk);
+    --color-text-body-inv: var(--color-basic-text-lt);
     --color-text-banner: var(--color-basic-text-lt);
 
     --color-input-square: var(--color-primary-grey-tr);
@@ -133,8 +138,8 @@
 
   //--------------- items ------------------//
 
-  .application.sheet.earthdawn4e.item,
-  .theme-dark.application.sheet.earthdawn4e.item {
+  .application.sheet.ed4e.item,
+  .theme-dark.application.sheet.ed4e.item {
 
     /*--color-primary: ;
     --color-primary-tr: ;
@@ -155,7 +160,7 @@
     --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
   }
   
-  .theme-light.application.sheet.earthdawn4e.item {
+  .theme-light.application.sheet.ed4e.item {
 
     /*--color-primary: ;
     --color-primary-tr: ;

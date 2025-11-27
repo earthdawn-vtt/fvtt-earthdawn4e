@@ -131,13 +131,14 @@
   --background-mottle-blue-md: var(--color-blue-md) url(assets/sheet/mottle.png) center center / auto repeat;
   --background-mottle-blue-dk: var(--color-blue-dk) url(assets/sheet/mottle.png) center center / auto repeat;
 }
-:root body.theme-dark {
-  --color-primary-grey: var(--color-grey-lt);
-  --color-primary-grey-tr: var(--color-grey-lt-tr);
+:root form.ed4e,
+:root body.theme-dark form.ed4e {
+  --color-primary-grey: var(--color-grey-dk);
+  --color-primary-grey-tr: var(--color-grey-dk-tr);
   --color-secondary-grey: var(--color-grey-md);
   --color-secondary-grey-tr: var(--color-grey-md-tr);
-  --color-tertiary-grey: var(--color-grey-dk);
-  --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+  --color-tertiary-grey: var(--color-grey-lt);
+  --color-tertiary-grey-tr: var(--color-grey-lt-tr);
   --color-button-icon: var(--color-gold-lt);
   --color-button-icon-hover: var(--color-gold-xlt);
   --color-button-panel-on: var(--color-secondary);
@@ -154,7 +155,7 @@
   --color-meter-background: var(--color-grey-lt-tr);
   --color-meter-divide: var(--color-primary);
 }
-:root body.theme-light {
+:root body.theme-light form.ed4e {
   --color-primary-grey: var(--color-grey-lt);
   --color-primary-grey-tr: var(--color-grey-lt-tr);
   --color-secondary-grey: var(--color-grey-md);
@@ -178,8 +179,8 @@
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
 }
-:root .application.sheet.earthdawn4e.actor,
-:root .theme-dark.application.sheet.earthdawn4e.actor {
+:root .application.sheet.ed4e.actor,
+:root .theme-dark.application.sheet.ed4e.actor {
   --color-primary: var(--color-blue-dk);
   --color-primary-tr: var(--color-blue-dk-tr);
   --color-secondary: var(--color-blue-md);
@@ -187,13 +188,14 @@
   --color-tertiary: var(--color-blue-lt);
   --color-tertiary-tr: var(--color-blue-lt-tr);
   --color-text-body: var(--color-basic-text-lt);
+  --color-text-body-inv: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
-:root .application.sheet.earthdawn4e.actor.character,
-:root .theme-dark.application.sheet.earthdawn4e.actor.character,
+:root .application.sheet.ed4e.actor.character,
+:root .theme-dark.application.sheet.ed.actor.character,
 :root body.theme-dark form.ed4e.character-generation {
   --color-primary: var(--color-green-dk);
   --color-primary-tr: var(--color-green-dk-tr);
@@ -202,12 +204,13 @@
   --color-tertiary: var(--color-green-lt);
   --color-tertiary-tr: var(--color-green-lt-tr);
   --color-text-body: var(--color-basic-text-lt);
+  --color-text-body-inv: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
-:root .theme-light.application.sheet.earthdawn4e.actor {
+:root .theme-light.application.sheet.ed4e.actor {
   --color-primary: var(--color-blue-lt);
   --color-primary-tr: var(--color-blue-lt-tr);
   --color-secondary: var(--color-blue-md);
@@ -215,12 +218,13 @@
   --color-tertiary: var(--color-blue-dk);
   --color-tertiary-tr: var(--color-blue-dk-tr);
   --color-text-body: var(--color-basic-text-dk);
+  --color-text-body-inv: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary-grey-tr);
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
-:root .theme-light.application.sheet.earthdawn4e.actor.character,
+:root .theme-light.application.sheet.ed4e.actor.character,
 :root body.theme-light form.ed4e.character-generation {
   --color-primary: var(--color-green-lt);
   --color-primary-tr: var(--color-green-lt-tr);
@@ -229,13 +233,14 @@
   --color-tertiary: var(--color-green-dk);
   --color-tertiary-tr: var(--color-green-dk-tr);
   --color-text-body: var(--color-basic-text-dk);
+  --color-text-body-inv: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary-grey-tr);
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-green-lt);
 }
-:root .application.sheet.earthdawn4e.item,
-:root .theme-dark.application.sheet.earthdawn4e.item {
+:root .application.sheet.ed4e.item,
+:root .theme-dark.application.sheet.ed4e.item {
   /*--color-primary: ;
     --color-primary-tr: ;
     --color-secondary: ;
@@ -250,7 +255,7 @@
   --color-shadow: 0 0 10px 1px #010101;
   --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
 }
-:root .theme-light.application.sheet.earthdawn4e.item {
+:root .theme-light.application.sheet.ed4e.item {
   /*--color-primary: ;
     --color-primary-tr: ;
     --color-secondary: ;
@@ -569,6 +574,7 @@ h3.label--rail .label__text {
   position: relative;
   z-index: 1;
   padding: 0 var(--size-rail-gap);
+  color: var(--color-text-body);
 }
 h3.label--rail .label__text::before,
 h3.label--rail .label__text::after {
@@ -1707,7 +1713,7 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
   flex-direction: column;
   text-align: center;
   text-transform: uppercase;
-  background-color: var(--color-secondary-grey);
+  background-color: var(--color-button-panel-off);
   padding: var(--grid-col-gap-sm) 0;
   border-radius: 0.25rem;
   line-height: 1.5;
@@ -1725,10 +1731,10 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
   pointer-events: none;
 }
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection .checkbox-options label:has(input[type="checkbox"]:checked) {
-  background-color: var(--color-primary-grey);
+  background-color: var(--color-button-panel-on);
 }
 form.ed4e.character-generation section[data-tab="equipment"] .equipment-selection .checkbox-options label:has(input[type="checkbox"]:checked) span {
-  color: var(--color-primary);
+  color: var(--color-text-body);
 }
 form.ed4e.character-generation section[data-tab="spells"] {
   width: 40%;
@@ -2015,6 +2021,7 @@ form.ed4e.character-generation nav a.disabled {
 .application.sheet.earthdawn4e.actor {
   font-size: var(--font-size-12);
   background: var(--background-sheet-actor);
+  color: var(--color-text-body);
   max-height: 100vh;
 }
 .application.sheet.earthdawn4e.actor .tab {
