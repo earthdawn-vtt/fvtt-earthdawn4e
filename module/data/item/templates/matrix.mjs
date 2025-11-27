@@ -9,16 +9,6 @@ const { fields } = foundry.data;
 
 export default class MatrixTemplate extends SystemDataModel {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.General.Matrix",
-  ];
-
-  // endregion
-
   // region Schema
 
   /** @inheritdoc */
@@ -90,6 +80,16 @@ export default class MatrixTemplate extends SystemDataModel {
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Matrix",
+  ];
 
   // endregion
 
