@@ -3,6 +3,7 @@ import MovementFields from "./movement.mjs";
 import ED4E from "../../../config/_module.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
+import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
 
 /**
  * A template for all actors that represent sentient beings and have such stats.
@@ -207,11 +208,8 @@ export default class SentientTemplate extends CommonTemplate {
         } ),
         ...MovementFields.movement
       } ),
-      concentrationSource: new fields.ForeignDocumentField(
+      concentrationSource: new SiblingDocumentField(
         foundry.documents.Item,
-        {
-          idOnly: true,
-        }
       ),
       devotion: new fields.SchemaField( {
         value: new fields.NumberField( {
