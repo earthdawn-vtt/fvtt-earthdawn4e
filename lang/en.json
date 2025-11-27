@@ -253,9 +253,11 @@
         "talentsVersatility":                      "Versatility Talents",
         "talentsWithoutCategory":                  "Talents without category",
         "threads":                                 "Threads",
+        "truePattern":                             "TODO: Add translation",
         "vocations":                               "Vocations",
         "weapons":                                 "Weapons",
-        "weavingDifficulty":                       "Weaving Difficulty"
+        "weavingDifficulty":                       "Weaving Difficulty",
+        "wovenThreads":                            "TODO: Add translation"
       },
       "Initiative": {
         "penalty":                                 "Penalty",
