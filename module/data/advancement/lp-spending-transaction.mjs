@@ -1,6 +1,7 @@
 import LpTransactionData from "./lp-transaction.mjs";
 import { dateToInputString } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 export default class LpSpendingTransactionData extends LpTransactionData {
 
@@ -36,11 +37,8 @@ export default class LpSpendingTransactionData extends LpTransactionData {
           integer:  true,
         } ),
       } ),
-      itemId: new fields.ForeignDocumentField(
+      itemId: new SiblingDocumentField(
         foundry.documents.Item,
-        {
-          idOnly: true,
-        },
       ),
     } );
   }
