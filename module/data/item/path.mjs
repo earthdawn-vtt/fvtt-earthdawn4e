@@ -4,6 +4,7 @@ import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 /**
  * Data model template with information on path items.
@@ -22,10 +23,10 @@ export default class PathData extends ClassTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceDisciplineId: new fields.ForeignDocumentField(
+      sourceDisciplineId: new SiblingDocumentField(
         foundry.documents.Item,
         {
-          idOnly: true,
+          systemTypes: [ SYSTEM_TYPES.Item.discipline, ],
         }
       ),
       bloodMagicDamage: new fields.NumberField( {
@@ -35,16 +36,16 @@ export default class PathData extends ClassTemplate.mixin(
         initial:  2,
         integer:  true,
       } ),
-      pathKnackId: new fields.ForeignDocumentField(
+      pathKnackId: new SiblingDocumentField(
         foundry.documents.Item,
         {
-          idOnly: true,
+          systemTypes: [ SYSTEM_TYPES.Item.knackAbility, ],
         },
       ),
-      pathTalentId: new fields.ForeignDocumentField(
+      pathTalentId: new SiblingDocumentField(
         foundry.documents.Item,
         {
-          idOnly: true,
+          systemTypes: [ SYSTEM_TYPES.Item.talent, ],
         },
       ),
     } );
