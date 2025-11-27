@@ -69,9 +69,10 @@ export default class SiblingDocumentField extends foundry.data.fields.ForeignDoc
    * @param {SiblingDocumentFieldInputConfig} config Form element configuration parameters
    */
   _toInput( config ) {
-    if ( config.parentDocument instanceof foundry.abstract.Document ) {
-      config.choices = this.getChoices( config.parentDocument );
-    }
+
+    config.choices ??= config.parentDocument instanceof foundry.abstract.Document
+      ? this.getChoices( config.parentDocument )
+      : {};
 
     return super._toInput( config );
   }
