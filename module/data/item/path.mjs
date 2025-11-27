@@ -1,9 +1,9 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as LEGEND from "../../config/legend.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 /**
@@ -87,7 +87,7 @@ export default class PathData extends ClassTemplate.mixin(
       learn:              this.unmodifiedLevel === 0,
       nextLevel,
       nextLevelData:      this.advancement.levels.find( l => l.level === nextLevel ),
-      nextTalentLpCost:   ED4E.legendPointsCost[ nextLevel + ED4E.lpIndexModForTier[ this.currentTier ] ],
+      nextTalentLpCost:   LEGEND.legendPointsCost[ nextLevel + LEGEND.lpIndexModForTier[ this.currentTier ] ],
       talentRequirements: pathTalent
     };
   }
@@ -103,7 +103,7 @@ export default class PathData extends ClassTemplate.mixin(
 
     const {  talentRequirements } = this.increaseData;
     return {
-      [ED4E.validationCategories.talentsRequirement]: [
+      [LEGEND.validationCategories.talentsRequirement]: [
         {
           name:      "ED.Dialogs.Legend.Validation.pathTalent",
           value:     talentRequirements.name,
