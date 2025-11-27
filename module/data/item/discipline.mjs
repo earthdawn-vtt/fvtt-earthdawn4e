@@ -154,7 +154,7 @@ export default class DisciplineData extends ClassTemplate.mixin(
    */
   get talentsFromDiscipline() {
     return this.containingActor.itemTypes.talent.filter(
-      talent => talent.system.source.class === this.parent.uuid
+      talent => talent.system.source?.class === this.parentDocument.id
     );
   }
 

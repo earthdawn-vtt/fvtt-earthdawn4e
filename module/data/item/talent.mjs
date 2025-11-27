@@ -152,8 +152,8 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   get requiredLpForIncrease() {
     if ( !this.isActorEmbedded ) return undefined;
 
-    const actor = this.parent.actor;
-    const sourceClass = fromUuidSync( this.source.class );
+    const actor = this.containingActor;
+    const sourceClass = actor.items.get( this.source?.class );
 
     // for talents which are not tied to any class (versatility or others)
     if ( !sourceClass ) {
@@ -290,7 +290,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // update the learned talent with the new data
     await learnedItem.update( {
       "system.talentCategory":        category ?? learnedItem.system.talentCategory,
-      "system.source.class":          learnedItem.system.source?.class ?? discipline?.uuid,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline?.id,
       "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
     
