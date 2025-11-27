@@ -30,17 +30,20 @@ export default class SiblingDocumentField extends foundry.data.fields.ForeignDoc
     super( model, options, context );
 
     let systemTypes = options.systemTypes;
-    systemTypes = [].concat( systemTypes );
-    const isValid = systemTypes.every( type => isValidSystemType( type, model.documentName ) );
-    if ( !isValid ) {
-      throw new Error( `Invalid system type for document type "${model.documentName}" provided to SiblingDocumentField: ${options.systemTypes}` );
+    if ( systemTypes ){
+      systemTypes = [].concat( systemTypes );
+      const isValid = systemTypes.every( type => isValidSystemType( type, model.documentName ) );
+      if ( !isValid ) {
+        throw new Error( `Invalid system type for document type "${ model.documentName }" provided to SiblingDocumentField: ${ options.systemTypes }` );
+      }
+
+      /**
+       * The system type of the sibling document, e.g. "talent", "ability", etc.
+       * @type {string[]}
+       */
+      this.systemTypes = systemTypes;
     }
 
-    /**
-     * The system type of the sibling document, e.g. "talent", "ability", etc.
-     * @type {string[]}
-     */
-    this.systemTypes = systemTypes;
   }
 
   /** @inheritDoc */
