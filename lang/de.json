@@ -3385,8 +3385,8 @@
       "sceneConfigEd":                             "Szene Konfiguration"
     },
     "Form": {
-      "no":                                        "TODO: Add translation",
-      "yes":                                       "TODO: Add translation"
+      "no":                                        "nein",
+      "yes":                                       "ja"
     },
     "Item": {
       "CreateData": {
