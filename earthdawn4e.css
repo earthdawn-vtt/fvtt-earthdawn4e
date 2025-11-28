@@ -139,17 +139,6 @@
   --color-secondary-grey-tr: var(--color-grey-md-tr);
   --color-tertiary-grey: var(--color-grey-lt);
   --color-tertiary-grey-tr: var(--color-grey-lt-tr);
-  --color-button-icon: var(--color-gold-lt);
-  --color-button-icon-hover: var(--color-gold-xlt);
-  --color-button-panel-on: var(--color-secondary);
-  --color-button-panel-off: var(--color-primary);
-  --color-button-panel-text-on: var(--color-basic-text-lt);
-  --color-button-panel-text-off: var(--color-basic-text-lt);
-  --color-button-check-on: var(--color-button-icon);
-  --color-button-check-off: var(--color-grey-md);
-  --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-background-on: var(--color-tertiary);
-  --color-button-slide-background-off: var(--color-primary);
   --border-main: 2px solid var(--color-gold-md);
   --border-input: 1px solid var(--color-gold-md);
   --color-meter-background: var(--color-grey-lt-tr);
@@ -162,25 +151,13 @@
   --color-secondary-grey-tr: var(--color-grey-md-tr);
   --color-tertiary-grey: var(--color-grey-dk);
   --color-tertiary-grey-tr: var(--color-grey-dk-tr);
-  --color-button-icon: var(--color-gold-md);
-  --color-button-icon-hover: var(--color-gold-lt);
-  --color-button-header-icon: var(--color-gold-lt);
-  --color-button-header-icon-hover: var(--color-gold-xlt);
-  --color-button-panel-on: var(--color-primary);
-  --color-button-panel-off: var(--color-primary-tr);
-  --color-button-panel-text-on: var(--color-basic-text-lt);
-  --color-button-panel-text-off: var(--color-basic-text-dk);
-  --color-button-check-on: var(--color-button-icon);
-  --color-button-check-off: var(--color-grey-md);
-  --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-background-on: var(--color-secondary);
-  --color-button-slide-background-off: var(--color-secondary-grey);
   --border-main: 2px solid var(--color-gold-dk);
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
 }
 :root .application.sheet.ed4e.actor,
-:root .theme-dark.application.sheet.ed4e.actor {
+:root .theme-dark.application.sheet.ed4e.actor,
+:root body.theme-dark form.ed4e.character-generation {
   --color-primary: var(--color-blue-dk);
   --color-primary-tr: var(--color-blue-dk-tr);
   --color-secondary: var(--color-blue-md);
@@ -191,6 +168,17 @@
   --color-text-body-inv: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary);
+  --color-button-icon: var(--color-gold-lt);
+  --color-button-icon-hover: var(--color-gold-xlt);
+  --color-button-panel-on: var(--color-secondary);
+  --color-button-panel-off: var(--color-primary);
+  --color-button-panel-text-on: var(--color-basic-text-lt);
+  --color-button-panel-text-off: var(--color-basic-text-lt);
+  --color-button-check-on: var(--color-button-icon);
+  --color-button-check-off: var(--color-grey-md);
+  --color-button-slide-thumb: var(--color-button-icon);
+  --color-button-slide-background-on: var(--color-tertiary);
+  --color-button-slide-background-off: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -221,6 +209,19 @@
   --color-text-body-inv: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
   --color-input-square: var(--color-primary-grey-tr);
+  --color-button-icon: var(--color-gold-md);
+  --color-button-icon-hover: var(--color-gold-lt);
+  --color-button-header-icon: var(--color-gold-lt);
+  --color-button-header-icon-hover: var(--color-gold-xlt);
+  --color-button-panel-on: var(--color-primary);
+  --color-button-panel-off: var(--color-primary-tr);
+  --color-button-panel-text-on: var(--color-basic-text-lt);
+  --color-button-panel-text-off: var(--color-basic-text-dk);
+  --color-button-check-on: var(--color-button-icon);
+  --color-button-check-off: var(--color-grey-md);
+  --color-button-slide-thumb: var(--color-button-icon);
+  --color-button-slide-background-on: var(--color-secondary);
+  --color-button-slide-background-off: var(--color-secondary-grey);
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
