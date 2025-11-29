@@ -1250,6 +1250,23 @@ body.theme-light {
   font-size: medium;
   text-align: center;
 }
+.chat-message .flavor-text .attuning-visualization {
+  justify-content: space-between;
+  text-align: center;
+  margin: 1em 0;
+}
+.chat-message .flavor-text .attuning-visualization .content-link {
+  font-size: small;
+}
+.chat-message .flavor-text .attuning-visualization .spells-to-attune {
+  text-align: left;
+}
+.chat-message .flavor-text .attuning-visualization .matrix-to-attune {
+  text-align: right;
+}
+.chat-message .flavor-text .attuning-visualization .attuning-indicator {
+  font-size: xxx-large;
+}
 .chat-message .flavor-text:has(.attack-visualization) {
   background-image: url('assets/chat/messages/background-attack.svg');
   background-repeat: no-repeat;
@@ -1288,6 +1305,10 @@ body.theme-light {
 }
 .chat-message .flavor-text:has(.recovery-visualization) {
   background-image: url('assets/chat/messages/background-recovery.svg');
+  background-repeat: no-repeat;
+}
+.chat-message .flavor-text:has(.attuning-visualization) {
+  background-image: url('assets/chat/messages/background-attuning.svg');
   background-repeat: no-repeat;
 }
 .chat-message .flavor-text .message-buttons {
