@@ -225,14 +225,14 @@
         "maneuvers":                               "Manöver",
         "movement":                                "Bewegung",
         "mysticalArmor":                           "Mystische Rüstung",
-        "mysticalDefense":                         "Mystische Verteidigung",
+        "mysticalDefense":                         "Myst. Verteidigung",
         "name":                                    "Name",
         "namegiver":                               "Namensgeber",
         "navigator":                               "Navigator",
         "origin":                                  "Herkunft",
         "paths":                                   "Pfade",
         "physicalArmor":                           "Physische Rüstung",
-        "physicalDefense":                         "Körperliche Verteidigung",
+        "physicalDefense":                         "Körp. Verteidigung",
         "powers":                                  "Kräfte",
         "questor":                                 "Questor",
         "range":                                   "Reichweite",
@@ -253,9 +253,11 @@
         "talentsVersatility":                      "Vielseitigkeitstalente",
         "talentsWithoutCategory":                  "Talente ohne Kategorie",
         "threads":                                 "Fäden",
+        "truePattern":                             "Wahre Struktur",
         "vocations":                               "Berufungen",
         "weapons":                                 "Waffen",
-        "weavingDifficulty":                       "Webschwierigkeit"
+        "weavingDifficulty":                       "Webschwierigkeit",
+        "wovenThreads":                            "Gewebte Fäden"
       },
       "Initiative": {
         "penalty":                                 "Malus",
@@ -591,7 +593,7 @@
       },
       "MatrixTypes": {
         "armored":                                 "Gepanzerte Matrix",
-        "enhanced":                                "Verbesserte Matrix",
+        "enhanced":                                "Erweiterte Matrix",
         "shared":                                  "Summenmatrix",
         "standard":                                "Standard Matrix"
       },
@@ -3223,7 +3225,7 @@
           "availableLearnImprovedSpellSlots":      "Frei Ränge (Knifflimit)",
           "availableLp":                           "Sind ausreichend Legendenpunkte vorhanden?",
           "availableMoney":                        "Ist ausreichend Silber vorhanden?",
-          "enoughTalentsOfTier":                   "Es haben noch nicht all {required} von {current} Talente den Mindstrang {nextLevel} erreicht",
+          "enoughTalentsOfTier":                   "{current} von {required} Talente haben den Mindstrang {nextLevel} erreicht",
           "enoughTalentsOnMinRank":                "Alle {required} Talente haben vorhanden",
           "hasDamage":                             "Hat Schaden",
           "hasNoDamage":                           "Hat keinen Schaden",
@@ -3237,7 +3239,7 @@
           "hasWounds":                             "Hat Wunden",
           "maxLevel":                              "Ist die Maximale Stufe erreicht?",
           "noTalentFromCurrentCircleOnNewLevel":   "Hat kein Talent des aktuellen Kreises auf dem {nextLevel} Rang",
-          "notEnoughTalentsOfTier":                "Es sind nicht genügend {required} Talente auf Rang {nextLevel}, was ist {current}",
+          "notEnoughTalentsOfTier":                "Die benötigten {required} Talente haben noch nicht den Rang {nextLevel} erreicht, zur Zeit erfüllen nur {current} Talente diese Bedingung.",
           "notEnoughTalentsOnMinRank":             "Nicht genug Talente auf dem Mindestrang {nextLevel}",
           "pathTalent":                            "Pfad-Talent",
           "requiredPathRank":                      "Erforderlicher Pfad-Rang",
@@ -3385,8 +3387,8 @@
       "sceneConfigEd":                             "Szene Konfiguration"
     },
     "Form": {
-      "no":                                        "TODO: Add translation",
-      "yes":                                       "TODO: Add translation"
+      "no":                                        "Nein",
+      "yes":                                       "Ja"
     },
     "Item": {
       "CreateData": {
