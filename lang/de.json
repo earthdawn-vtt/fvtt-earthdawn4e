@@ -1651,8 +1651,8 @@
         },
         "Fields": {
           "dispelDifficulty": {
-            "hint":                                "Der Mindestwurf zur Neutralisierung eines Zaubers",
-            "label":                               "Neutralisierungsschwierigkeit"
+            "hint":                                "Schwierigkeit um einen Zauber oder Effekt zu neutralisieren",
+            "label":                               "Neutralisierungsmindestwurf"
           },
           "sensingDifficulty":                     "Schwierigkeit des Spürens"
         },
@@ -1708,10 +1708,6 @@
         },
         "KnackAbility": {
           "FIELDS": {
-            "isPathKnack": {
-              "hint":                              "Ist dieses Kniff ein Pfadkniff?",
-              "label":                             "Pfadkniff"
-            },
             "standardEffect": {
               "hint":                              "Wird der Standardeffekt des Herkunfttalents mit ausgelöst?",
               "label":                             "Standardeffekt"
@@ -1882,15 +1878,15 @@
               "hint":                              "Blutmagieschaden des Pfades",
               "label":                             "Blutmagieschaden"
             },
-            "pathKnack": {
+            "pathKnackId": {
               "hint":                              "Kniff zum erlernen des Pfades",
               "label":                             "Pfadkniffe"
             },
-            "pathTalent": {
+            "pathTalentId": {
               "hint":                              "Pfadtalent das zum steigern verwendet wird.",
               "label":                             "Pfadtalent"
             },
-            "sourceDiscipline": {
+            "sourceDisciplineId": {
               "hint":                              "Disziplin auf der dieser Pfad basiert",
               "label":                             "Basis Disziplin"
             }
@@ -2046,7 +2042,7 @@
         },
         "Questor": {
           "FIELDS": {
-            "questorDevotion": {
+            "questorDevotionId": {
               "hint":                              "Questorweihekraft der Questorberufung",
               "label":                             "Questorweihekraft"
             }
@@ -2638,9 +2634,9 @@
               "hint":                              "Typ des Objekts auf das sich die Transaktion bezieht",
               "label":                             "Objekttyp"
             },
-            "itemUuid": {
-              "hint":                              "UUID des Objekts auf das sich die Transaktion bezieht",
-              "label":                             "Objekt-UUID"
+            "itemId": {
+              "hint":                              "ID des Objekts auf das sich die Transaktion bezieht",
+              "label":                             "Objekt-ID"
             },
             "name": {
               "hint":                              "Name des Objekts auf das sich die Transaktion bezieht",
@@ -3533,6 +3529,7 @@
       "Info": {
         "alreadyKnockedDown":                      "Der Charakter ist bereits niedergeschlagen.",
         "damageStepRequiresAttackOrDamage":        "Testtyp der Kraft auf 'Angriff' gesetzt.\nBei einer Schadensstufe in einer Kraft muss der Testtyp auf 'Angriff' oder 'Schaden' gesetzt sein.",
+        "dislodgeSpellsOnDeath":                   "Alle Zauber in einer Matrix werden entfernt, du bist gestorben.",
         "noDamageNoRecoveryNeeded":                "Dir gehts gut und hast keinen Schaden. Erholungsprobe nicht nötig.",
         "noFullRestRecoveryNeeded":                "Dir gehts gut. Keine Wunden oder Schaden. Erholungsprobe nach Rast nicht nötig.",
         "noWeaponAvailable":                       "Keine Waffe zum Anlegen vorhanden.",
