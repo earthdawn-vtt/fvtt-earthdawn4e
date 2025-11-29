@@ -1,4 +1,4 @@
-import { ED4E } from "../../../../earthdawn4e.mjs";
+import * as MAGIC from "../../../config/magic.mjs";
 import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import DialogEd from "../../../applications/api/dialog.mjs";
@@ -21,7 +21,7 @@ export default class MatrixTemplate extends SystemDataModel {
           required:        true,
           blank:           false,
           initial:         "standard",
-          choices:         ED4E.matrixTypes,
+          choices:         MAGIC.matrixTypes,
         } ),
         level: new fields.NumberField( {
           required:        true,
@@ -50,6 +50,12 @@ export default class MatrixTemplate extends SystemDataModel {
             required:        true,
             initial:         [],
           } ),
+        activeSpell: new SiblingDocumentField(
+          foundry.documents.Item,
+          {
+            systemTypes: [ SYSTEM_TYPES.Item.spell, ],
+          }
+        ),
         threads: new fields.SchemaField( {
           hold:  new fields.SchemaField( {
             value: new fields.NumberField( {
@@ -70,12 +76,6 @@ export default class MatrixTemplate extends SystemDataModel {
         }, {
           required:        true,
         } ),
-        activeSpell: new SiblingDocumentField(
-          foundry.documents.Item,
-          {
-            systemTypes: [ SYSTEM_TYPES.Item.spell, ],
-          }
-        ),
       }, {
         nullable:        true,
         initial:         null,
@@ -193,15 +193,7 @@ export default class MatrixTemplate extends SystemDataModel {
       this._prepareMatrixLevel( data );
     }
 
-    if ( !this.matrixHasMultipleSpells && this.matrixSpellId && !this.matrix.activeSpell ) {
-      // If the matrix has only one spell attuned, only that one can be active
-      data.system.matrix ??= {};
-      data.system.matrix.activeSpell = this.matrixSpellId;
-    } else if ( this.matrix?.activeSpell && !this.matrix?.spells?.has( this.matrix.activeSpell ) ) {
-      // If the active spell is not in the list of spells, reset it
-      data.system.matrix ??= {};
-      data.system.matrix.activeSpell = null;
-    }
+    this._prepareActiveSpell( data );
 
     if ( this._isBecomingMatrix( data, edidMatrix ) ) {
       this._setDefaultMatrixData( data );
@@ -214,6 +206,29 @@ export default class MatrixTemplate extends SystemDataModel {
     return data;
   }
 
+  /**
+   * Prepares the active spell data for creation or update. Modifies the given data object.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _prepareActiveSpell( data ) {
+    const hasOnlyOneNonActiveSpell = !this.matrixHasMultipleSpells && this.matrixSpellId && !this.matrix.activeSpell;
+    const hasMissingActiveSpell = this.matrix?.activeSpell && !this.matrix?.spells?.has( this.matrix.activeSpell );
+
+    if ( hasOnlyOneNonActiveSpell ) {
+      // If the matrix has only one spell attuned, only that one can be active
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = this.matrixSpellId;
+    } else if ( hasMissingActiveSpell ) {
+      // If the active spell is not in the list of spells, reset it
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = null;
+    }
+  }
+
+  /**
+   * Prepares the matrix level data for creation or update. Modifies the given data object.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   */
   _prepareMatrixLevel( data ) {
     const parentLevel = data.system?.level;
     if ( foundry.utils.getType( parentLevel ) === "number" && data.system?.matrix )
@@ -277,7 +292,7 @@ export default class MatrixTemplate extends SystemDataModel {
   _isMatrixTypeChanging( data ) {
     return (
       String( data.system?.matrix?.matrixType ) !== String( this.matrix?.matrixType )
-      && data.system?.matrix?.matrixType in ED4E.matrixTypes
+      && data.system?.matrix?.matrixType in MAGIC.matrixTypes
     );
   }
 
@@ -328,6 +343,24 @@ export default class MatrixTemplate extends SystemDataModel {
   }
 
   /**
+   * Creates the choices for matrix spell form input. These are all spells on the actor.
+   * @returns {FormSelectOption[]} A mapping of spell IDs to spell names.
+   */
+  getMatrixSpellOptions() {
+    const choices = [];
+    for ( const spell of this.containingActor?.itemTypes.spell || [] ) {
+      choices.push( {
+        dataset:  { tooltip: spell.system.summary.value },
+        selected: this.matrix?.spells?.has( spell.id ),
+        label:    spell.name,
+        value:    spell.id,
+        group:    MAGIC.spellcastingTypes[ spell.system.spellcastingType ],
+      } );
+    }
+    return choices;
+  }
+
+  /**
    * Checks if the matrix is attuned to a specific spell.
    * @param {string} spellId The ID of the spell to check.
    * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
@@ -346,7 +379,7 @@ export default class MatrixTemplate extends SystemDataModel {
    * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
    */
   _lookupMatrixDeathRating( matrixType = "standard" ) {
-    return ED4E.matrixTypes[ matrixType ].deathRating;
+    return MAGIC.matrixTypes[ matrixType ].deathRating;
   }
 
   /**
@@ -355,7 +388,7 @@ export default class MatrixTemplate extends SystemDataModel {
    * @returns {number|undefined} The maximum thread hold of the matrix, or undefined if not found.
    */
   _lookupMatrixMaxHoldThread( matrixType = "standard" ) {
-    return ED4E.matrixTypes[ matrixType ].maxHoldThread;
+    return MAGIC.matrixTypes[ matrixType ].maxHoldThread;
   }
 
   /**

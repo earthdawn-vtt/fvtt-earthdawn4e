@@ -2,30 +2,59 @@
 
   <legend>{{localize "ED.Item.Header.matrixConfiguration"}}</legend>
 
-  {{#each systemFields.matrix.fields}}
-    {{#unless (eq @key "threads")}}
-      {{formGroup
-        this
-        name=(concat "system.matrix." @key)
-        value=(lookup ../system.matrix @key)
-        localize=true
-        disabled=(ifThen
-          (and (eq @root.document.type "talent") (eq @key "level"))
-          true
-          (not @root.editable)
-        )
-        choices=@root.activeSpellChoices
-        parentDocument= @root.system.containingActor
-      }}
-    {{/unless}}
-  {{/each}}
+  {{formGroup
+    systemFields.matrix.fields.activeSpell
+    value=system.matrix.activeSpell
+    disabled=(not @root.editable)
+    choices=activeSpellChoices
+  }}
+
+  {{{matrixSpellsElement.outerHTML}}}
 
   {{formGroup
-    systemFields.matrix.fields.threads.fields.hold.fields.value
-    name=(concat "system.matrix.threads.hold.value")
-    value=system.matrix.threads.hold.value
-    localize=true
+    systemFields.matrix.fields.matrixType
+    value=system.matrix.matrixType
     disabled=(not @root.editable)
   }}
+
+  {{formGroup
+    systemFields.matrix.fields.level
+    value=system.matrix.level
+    disabled=(not @root.editable)
+  }}
+
+  <div class="form-group">
+    <label>{{systemFields.matrix.fields.threads.fields.hold.fields.value.label}} / {{systemFields.matrix.fields.threads.fields.hold.fields.max.label}}</label>
+    <div class="form-fields">
+      {{formInput
+        systemFields.matrix.fields.threads.fields.hold.fields.value
+        value=system.matrix.threads.hold.value
+        disabled=(not @root.editable)
+      }}
+      {{formInput
+        systemFields.matrix.fields.threads.fields.hold.fields.max
+        value=system.matrix.threads.hold.max
+        disabled=(not @root.editable)
+      }}
+    </div>
+    <p class="hint">{{systemFields.matrix.fields.threads.fields.hold.fields.value.hint}}&emsp;/&emsp;{{systemFields.matrix.fields.threads.fields.hold.fields.max.hint}}</p>
+  </div>
+
+  <div class="form-group">
+    <label>{{systemFields.matrix.fields.damage.label}} / {{systemFields.matrix.fields.deathRating.label}}</label>
+    <div class="form-fields">
+      {{formInput
+        systemFields.matrix.fields.damage
+        value=system.matrix.damage
+        disabled=(not @root.editable)
+      }}
+      {{formInput
+        systemFields.matrix.fields.deathRating
+        value=system.matrix.deathRating
+        disabled=(not @root.editable)
+      }}
+    </div>
+    <p class="hint">{{systemFields.matrix.fields.damage.hint}}&emsp;/&emsp;{{systemFields.matrix.fields.deathRating.hint}}</p>
+  </div>
 
 </fieldset>
