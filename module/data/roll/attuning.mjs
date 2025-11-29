@@ -1,6 +1,6 @@
 import EdRollOptions from "./common.mjs";
-import { ED4E } from "../../../earthdawn4e.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import * as MAGIC from "../../config/magic.mjs";
 
 /**
  * Roll options for attuning spells to matrices or grimoires.
@@ -14,30 +14,14 @@ import { createContentAnchor } from "../../utils.mjs";
  */
 export default class AttuningRollOptions extends EdRollOptions {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.AttuningRollOptions",
-  ];
-
-  /** @inheritdoc */
-  static TEST_TYPE = "action";
-
-  /** @inheritdoc */
-  static ROLL_TYPE = "attuning";
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       attuningType: new fields.StringField( {
         required: true,
-        choices:  ED4E.attuningType,
+        choices:  MAGIC.attuningType,
       } ),
       // thread weaving for matrices, patterncraft for grimoire
       attuningAbility: new fields.DocumentUUIDField( {
@@ -57,8 +41,37 @@ export default class AttuningRollOptions extends EdRollOptions {
       grimoirePenalty: new fields.BooleanField( {
         initial:  false,
       } ),
+      itemsToAttuneTo: new fields.SetField(
+        new fields.DocumentUUIDField( {
+          type:     "Item",
+        } ),
+        {
+          required: true,
+          min:      1,
+        },
+      ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.AttuningRollOptions",
+  ];
+
+  /** @inheritdoc */
+  static TEST_TYPE = "action";
+
+  /** @inheritdoc */
+  static ROLL_TYPE = "attuning";
+
+  // endregion
+
+  // region Static Methods
 
   /** @inheritDoc */
   static fromActor( data, actor, options = {} ) {
@@ -110,7 +123,7 @@ export default class AttuningRollOptions extends EdRollOptions {
   _getChatFlavorData() {
     return {
       sourceActor:     createContentAnchor( fromUuidSync( this.rollingActorUuid ) ).outerHTML,
-      attuningItem:    ED4E.attuningType[ this.attuningType ],
+      attuningItem:    MAGIC.attuningType[ this.attuningType ],
       attuningAbility: createContentAnchor( fromUuidSync( this.attuningAbility ) ).outerHTML,
     };
   }
@@ -132,6 +145,17 @@ export default class AttuningRollOptions extends EdRollOptions {
     const newContext = await super.getFlavorTemplateData( context );
 
     newContext.spellsToAttune = ( await this.getSpellItems() ).filter( spell => !!spell );
+    newContext.spellsToAttuneContentAnchors = newContext.spellsToAttune.map( spell =>
+      createContentAnchor( spell ).outerHTML
+    );
+    newContext.attuningTypeLabel = MAGIC.attuningType[ this.attuningType ];
+    newContext.attuningAbility = await fromUuid( this.attuningAbility );
+    newContext.attuningAbilityContentAnchor = createContentAnchor( newContext.attuningAbility ).outerHTML;
+    newContext.itemsToAttuneTo = await Promise.all( this.itemsToAttuneTo.map( itemUuid => fromUuid( itemUuid ) ) );
+    newContext.itemsToAttuneToContentAnchor = newContext.itemsToAttuneTo.map( item =>
+      createContentAnchor( item ).outerHTML
+    );
+
 
     return newContext;
   }

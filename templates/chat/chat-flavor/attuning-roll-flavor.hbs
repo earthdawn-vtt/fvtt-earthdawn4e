@@ -1,24 +1,24 @@
-<div class="custom-flavor">{{{ customFlavor }}}</div>
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.attuning.label}}}</div>
 
-<ul>
-  {{#each spellsToAttune}}
-    <li>{{{ed-linkForUuid this.uuid}}}</li>
-  {{/each}}
-</ul>
+<div class="chat-sub-header-tags flexcol">
+  {{{attuningTypeLabel}}}
+  {{{attuningAbilityContentAnchor}}}
+</div>
 
-{{#if (eq ruleOfOne true)}}
-  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
-{{else}}
-
-  <!-- Roll Successes -->
-  {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
-
-  <!-- Modifier Lists -->
-  <div class="modifier-lists flexrow">
-    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
-    {{#if target.public}}
-      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
-    {{/if}}
+<div class="attuning-visualization flexrow">
+  <div class="spells-to-attune flexcol">
+    {{#each spellsToAttuneContentAnchors}}
+      {{{this}}}
+    {{/each}}
   </div>
+  <div class="attuning-indicator flexcol">
+    &raquo;
+  </div>
+  <div class="matrix-to-attune flexcol">
+    {{#each itemsToAttuneToContentAnchor}}
+      {{{this}}}
+    {{/each}}
+  </div>
+</div>
 
-{{/if}}
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs"}}
