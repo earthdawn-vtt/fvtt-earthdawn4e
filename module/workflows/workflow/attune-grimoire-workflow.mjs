@@ -135,6 +135,7 @@ export default class AttuneGrimoireWorkflow extends Rollable( ActorWorkflow ) {
         attuningAbility: this._attuneAbility.uuid,
         spellsToAttune:  [ this._spell.uuid ],
         grimoirePenalty: !this._grimoire.system.isOwnGrimoire,
+        itemsToAttuneTo: [ this._grimoire.uuid ],
       },
       this._actor,
     );

@@ -276,6 +276,28 @@ body.theme-light {
       }
     }
 
+    .attuning-visualization {
+      justify-content: space-between;
+      text-align: center;
+        margin: 1em 0;
+
+      .content-link{
+        font-size: small;
+      }
+
+      .spells-to-attune {
+        text-align: left;
+      }
+
+      .matrix-to-attune {
+        text-align: right;
+      }
+
+      .attuning-indicator {
+        font-size: xxx-large;
+      }
+    }
+
     &:has(.attack-visualization) {
       background-image: url('assets/chat/messages/background-attack.svg');
       background-repeat: no-repeat;
@@ -323,6 +345,11 @@ body.theme-light {
 
     &:has(.recovery-visualization) {
       background-image: url('assets/chat/messages/background-recovery.svg');
+      background-repeat: no-repeat;
+    }
+
+    &:has(.attuning-visualization) {
+      background-image: url('assets/chat/messages/background-attuning.svg');
       background-repeat: no-repeat;
     }
 

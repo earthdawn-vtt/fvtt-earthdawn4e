@@ -144,6 +144,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
         attuningType:    "matrixOnTheFly",
         attuningAbility: this._attuneAbility.uuid,
         spellsToAttune:  Object.values( this._toAttune ).flat(),
+        itemsToAttuneTo: Object.keys( this._toAttune ).map( id => this._actor.items.get( id ).uuid ),
       },
       this._actor,
       {},
