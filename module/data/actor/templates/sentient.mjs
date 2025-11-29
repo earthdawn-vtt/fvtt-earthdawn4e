@@ -443,7 +443,7 @@ export default class SentientTemplate extends CommonTemplate {
     if ( this.isAboutToDie( changes.system?.characteristics?.health?.damage?.standard ) ) {
       if ( this.hasSpellsAttuned ) {
         ui.notifications.info(
-          "ED.X.TODO.{actorName} dies. All spells are dislodged from their matrices.",
+          "ED.Notifications.Info.dislodgeSpellsOnDeath",
           {
             localize: true,
             format:   {

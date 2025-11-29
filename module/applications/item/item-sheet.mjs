@@ -125,7 +125,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       case "general":
         break;
       case "details":
-        break;
+        return this._prepareDetailsContext( context, options );
       case "effects":
         break;
     }
@@ -152,6 +152,12 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
         secrets:    this.document.isOwner,
       }
     );
+
+    return context;
+  }
+
+  async _prepareDetailsContext( context, options ) {
+    context.activeSpellChoices = this.document.system.getActiveSpellChoices?.();
 
     return context;
   }

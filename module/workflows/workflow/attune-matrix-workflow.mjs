@@ -143,7 +143,11 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
       {
         attuningType:    "matrixOnTheFly",
         attuningAbility: this._attuneAbility.uuid,
-        spellsToAttune:  Object.values( this._toAttune ).flat(),
+        spellsToAttune:  Object.values(
+          this._toAttune
+        ).flat().map(
+          spellId => foundry.utils.buildUuid( { id: spellId, parent: this._actor } )
+        ),
         itemsToAttuneTo: Object.keys( this._toAttune ).map( id => this._actor.items.get( id ).uuid ),
       },
       this._actor,
@@ -203,7 +207,7 @@ export default class AttuneMatrixWorkflow extends Rollable( ActorWorkflow ) {
     const updates = Object.entries( this._toAttune ).map( ( [ matrixId, toAttune ] ) => {
       const spells = (
         Array.isArray( toAttune ) ? toAttune : [ toAttune ]
-      ).filter( spellUuid => !!spellUuid );
+      ).filter( spellId => !!spellId );
       return {
         _id:                    matrixId,
         "system.matrix.spells": spells,

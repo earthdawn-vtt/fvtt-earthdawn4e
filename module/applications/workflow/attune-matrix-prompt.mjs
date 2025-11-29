@@ -152,15 +152,15 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
   #getSpellChoicesConfig( matrix ) {
     return this.#spells.reduce( ( choices, spell ) => {
       const sameCastingTypes = this.#castingType === spell.system?.spellcastingType;
-      const spellInMatrix = matrix.system.isSpellAttuned( spell.uuid );
-      const spellSelected = this._data.toAttune[ matrix.id ]?.includes( spell.uuid );
+      const spellInMatrix = matrix.system.isSpellAttuned( spell.id );
+      const spellSelected = this._data.toAttune[ matrix.id ]?.includes( spell.id );
       if (
         ( spell.system.level > matrix.system.level )
         || ( this.#onTheFly && !spellInMatrix && !sameCastingTypes )
       ) return choices;
       choices.push( {
         valueAttr: "value",
-        value:     spell.uuid,
+        value:     spell.id,
         label:     spell.name,
         group:     ED4E.spellcastingTypes[ spell.system.spellcastingType ],
         disabled:  spellSelected && spellInMatrix,

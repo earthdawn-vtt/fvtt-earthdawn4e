@@ -3,6 +3,8 @@ import { getSetting } from "../../../settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import DialogEd from "../../../applications/api/dialog.mjs";
 import AttuneMatrixWorkflow from "../../../workflows/workflow/attune-matrix-workflow.mjs";
+import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 
 
 const { fields } = foundry.data;
@@ -40,10 +42,11 @@ export default class MatrixTemplate extends SystemDataModel {
           positive:        true,
         } ),
         spells:   new fields.SetField(
-          new fields.DocumentUUIDField( {
-            type:     "Item",
-            embedded: true,
-          } ), {
+          new SiblingDocumentField(
+            foundry.documents.Item,
+            {
+              systemTypes: [ SYSTEM_TYPES.Item.spell, ],
+            } ), {
             required:        true,
             initial:         [],
           } ),
@@ -67,13 +70,12 @@ export default class MatrixTemplate extends SystemDataModel {
         }, {
           required:        true,
         } ),
-        activeSpell: new fields.DocumentUUIDField( {
-          type:     "Item",
-          embedded: true,
-          required: true,
-          nullable: true,
-          initial:  null,
-        } ),
+        activeSpell: new SiblingDocumentField(
+          foundry.documents.Item,
+          {
+            systemTypes: [ SYSTEM_TYPES.Item.spell, ],
+          }
+        ),
       }, {
         nullable:        true,
         initial:         null,
@@ -150,15 +152,29 @@ export default class MatrixTemplate extends SystemDataModel {
    * @type { ItemEd | null }
    */
   get matrixSpell() {
-    return fromUuidSync( this.matrix?.spells?.first() );
+    return this.containingActor?.items.get( this.matrixSpellId ) || null;
   }
 
   /**
-   * The UUID of the currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * The ID of the currently attuned spell, or the first one if there are multiple. Null if none are attuned.
    * @type {string | null}
    */
-  get matrixSpellUuid() {
+  get matrixSpellId() {
     return this.matrix?.spells?.first() || null;
+  }
+
+  /**
+   * The list of all spells attuned to this matrix, if they exist in the containing actor.
+   * @type {ItemEd[]}
+   */
+  get matrixSpells() {
+    return Array.from(
+      this.matrix?.spells || []
+    ).map(
+      spellId => this.containingActor?.items.get( spellId )
+    ).filter(
+      spell => !!spell
+    );
   }
 
   // endregion
@@ -177,10 +193,10 @@ export default class MatrixTemplate extends SystemDataModel {
       this._prepareMatrixLevel( data );
     }
 
-    if ( !this.matrixHasMultipleSpells && this.matrixSpellUuid && !this.matrix.activeSpell ) {
+    if ( !this.matrixHasMultipleSpells && this.matrixSpellId && !this.matrix.activeSpell ) {
       // If the matrix has only one spell attuned, only that one can be active
       data.system.matrix ??= {};
-      data.system.matrix.activeSpell = this.matrixSpellUuid;
+      data.system.matrix.activeSpell = this.matrixSpellId;
     } else if ( this.matrix?.activeSpell && !this.matrix?.spells?.has( this.matrix.activeSpell ) ) {
       // If the active spell is not in the list of spells, reset it
       data.system.matrix ??= {};
@@ -299,29 +315,29 @@ export default class MatrixTemplate extends SystemDataModel {
   // region Methods
 
   /**
-   * Checks if the matrix is attuned to a specific spell.
-   * @param {string} spellUuid The UUID of the spell to check.
-   * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
+   * Creates the choices for the activeSpell form input.
+   * @returns {Record<string, string>} A mapping of spell IDs to spell names.
    */
-  isSpellAttuned( spellUuid ) {
-    if ( this.matrixShared ) {
-      return this.matrix?.spells?.has( spellUuid );
-    } else {
-      return this.matrixSpellUuid === spellUuid;
+  getActiveSpellChoices() {
+    const choices = {};
+    for ( const spellId of this.matrix?.spells || [] ) {
+      const spell = this.containingActor?.items.get( spellId );
+      if ( spell ) choices[ spellId ] = spell.name;
     }
+    return choices;
   }
 
   /**
-   * Remove the given spells from the matrix, or all if none are given
-   * @param {string[]} [spellsToRemove] The uuids of the spells to remove, or undefined, empty or null to remove all.
-   * @returns {Promise<Document | undefined>} The updated matrix item, or undefined if not updated
+   * Checks if the matrix is attuned to a specific spell.
+   * @param {string} spellId The ID of the spell to check.
+   * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
    */
-  async removeSpells( spellsToRemove ) {
-    const removeList = Array.from( spellsToRemove || this.matrix.spells );
-    const newSpells = this.matrix.spells.filter( spell => !removeList.includes( spell ) );
-    return this.parent?.update( {
-      "system.matrix.spells": newSpells,
-    } );
+  isSpellAttuned( spellId ) {
+    if ( this.matrixShared ) {
+      return this.matrix?.spells?.has( spellId );
+    } else {
+      return this.matrixSpellId === spellId;
+    }
   }
 
   /**
@@ -342,6 +358,19 @@ export default class MatrixTemplate extends SystemDataModel {
     return ED4E.matrixTypes[ matrixType ].maxHoldThread;
   }
 
+  /**
+   * Remove the given spells from the matrix, or all if none are given
+   * @param {string[]} [spellsToRemove] The IDs of the spells to remove, or undefined, empty or null to remove all.
+   * @returns {Promise<Document | undefined>} The updated matrix item, or undefined if not updated
+   */
+  async removeSpells( spellsToRemove ) {
+    const removeList = Array.from( spellsToRemove || this.matrix.spells );
+    const newSpells = this.matrix.spells.filter( spell => !removeList.includes( spell ) );
+    return this.parent?.update( {
+      "system.matrix.spells": newSpells,
+    } );
+  }
+
   // region Spellcasting
 
   /**
@@ -358,7 +387,7 @@ export default class MatrixTemplate extends SystemDataModel {
    */
   async getActiveSpell() {
     if ( !this.matrix.activeSpell ) await this.selectActiveSpell();
-    return fromUuid( this.matrix.activeSpell );
+    return this.containingActor?.items.get( this.matrix.activeSpell );
   }
 
   /**
@@ -366,7 +395,7 @@ export default class MatrixTemplate extends SystemDataModel {
    * @returns {boolean} True if the containing spell is actively being woven threads to, false otherwise.
    */
   matrixIsWeaving() {
-    return fromUuidSync( this.matrix?.activeSpell )?.system?.isWeaving || false;
+    return this.containingActor?.items.get( this.matrix?.activeSpell )?.system?.isWeaving || false;
   }
 
   /**
@@ -376,7 +405,7 @@ export default class MatrixTemplate extends SystemDataModel {
   async selectActiveSpell() {
     let newActiveSpell;
     if ( this.matrixHasMultipleSpells ) {
-      newActiveSpell = await fromUuid( await DialogEd.waitButtonSelect( this.matrix.spells ) );
+      newActiveSpell = await fromUuid( await DialogEd.waitButtonSelect( this.matrixSpells ) );
       if ( !newActiveSpell ) {
         ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActiveSpellSelected" ) );
         return false;

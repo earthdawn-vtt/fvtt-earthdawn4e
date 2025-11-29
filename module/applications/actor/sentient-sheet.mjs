@@ -8,6 +8,8 @@ import { staticStatusId } from "../../utils.mjs";
  */
 export default class ActorSheetEdSentient extends ActorSheetEd {
 
+  // region Static Properties
+
   static {
     this.addSheetTabs( [
       { id: "general", },
@@ -50,6 +52,10 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     },
   };
 
+  // endregion
+
+  // region Rendering
+
   /** @inheritdoc */
   async _prepareContext( options ) {
     return await super._prepareContext( options );
@@ -63,11 +69,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       case "general":
         break;
       case "spells":
-        foundry.utils.mergeObject( context, {
-          tabsSpells:         this._getSpellTabs(),
-          matrices:           this.document.getMatrices(),
-          spellKnacks:        this.document.spellKnacksBySpellId,
-        } );
+        await this._prepareSpellsContext( context, options );
         break;
       case "equipment":
         break;
@@ -88,6 +90,16 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     return context;
   };
+
+  async _prepareSpellsContext( context, options ) {
+    foundry.utils.mergeObject( context, {
+      tabsSpells:         this._getSpellTabs(),
+      matrices:           this.document.getMatrices(),
+      spellKnacks:        this.document.spellKnacksBySpellId,
+    } );
+
+    return context;
+  }
 
   /**
    * Get the sub-tabs for the spells section
@@ -120,6 +132,10 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
 
     return spellTabs;
   };
+
+  // endregion
+
+  // region Event Handlers
 
   /**
    * Handle special attack button available to actors
@@ -162,7 +178,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     const firstMatrixUuid = target.closest( ".matrix-card" )?.dataset?.uuid;
     const matrix = await fromUuid( firstMatrixUuid );
 
-    if ( !matrix.system?.matrixSpellUuid ) {
+    if ( !matrix.system?.matrixSpellId ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantCastNoSpellInMatrix" ) );
       return;
     }
@@ -336,4 +352,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       options,
     );
   }
+
+  // endregion
+
 }

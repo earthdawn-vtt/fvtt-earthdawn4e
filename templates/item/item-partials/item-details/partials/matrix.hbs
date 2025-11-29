@@ -1,5 +1,7 @@
 <fieldset>
+
   <legend>{{localize "ED.Item.Header.matrixConfiguration"}}</legend>
+
   {{#each systemFields.matrix.fields}}
     {{#unless (eq @key "threads")}}
       {{formGroup
@@ -12,9 +14,12 @@
           true
           (not @root.editable)
         )
+        choices=@root.activeSpellChoices
+        parentDocument= @root.system.containingActor
       }}
     {{/unless}}
   {{/each}}
+
   {{formGroup
     systemFields.matrix.fields.threads.fields.hold.fields.value
     name=(concat "system.matrix.threads.hold.value")
@@ -22,4 +27,5 @@
     localize=true
     disabled=(not @root.editable)
   }}
+
 </fieldset>
