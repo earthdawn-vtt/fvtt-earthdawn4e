@@ -1,4 +1,4 @@
-import ED4E from "../../config/_module.mjs";
+import * as LEGEND from "../../config/legend.mjs";
 import AbilityTemplate from "../item/templates/ability.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
@@ -9,11 +9,7 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  */
 export default class AdvancementLevelData extends SparseDataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.AdvancementLevel",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -35,7 +31,7 @@ export default class AdvancementLevelData extends SparseDataModel {
         nullable: true,
         blank:    true,
         initial:  "",
-        choices:  ED4E.tier,
+        choices:  LEGEND.tier,
       } ),
       abilities: new MappingField(
         new fields.SetField(
@@ -48,7 +44,7 @@ export default class AdvancementLevelData extends SparseDataModel {
           }
         ),
         {
-          initialKeys:     CONFIG.ED4E.abilityPools,
+          initialKeys:     LEGEND.abilityPools,
           initialKeysOnly: true,
           required:        true,
           nullable:        false,
@@ -73,11 +69,33 @@ export default class AdvancementLevelData extends SparseDataModel {
       } ),
     };
   }
-  
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.AdvancementLevel",
+  ];
+
+  // endregion
+
+  // region Static Methods
+
+  static initResourceStep( source ) {
+    return source.level >= 13 ? 5 : 4;
+  }
+
+  // endregion
+
+  // region Methods
+
   /**
    * Add abilities to the given type of pool on this level.
    * @param {[Item]} abilities              An array of ability item IDs to add.
-   * @param {ED4E.abilityPools} poolType    The type of pool the abilities are added to.
+   * @param {LEGEND.abilityPools} poolType    The type of pool the abilities are added to.
    */
   addAbilities( abilities, poolType ) {
     const propertyKey = `system.advancement.levels.${this.level-1}.abilities`;
@@ -103,7 +121,6 @@ export default class AdvancementLevelData extends SparseDataModel {
     } );
   }
 
-  static initResourceStep( source ) {
-    return source.level >= 13 ? 5 : 4;
-  }
+  // endregion
+
 }

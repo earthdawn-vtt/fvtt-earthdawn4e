@@ -6,7 +6,7 @@
     <legend>{{localize "ED.Item.Header.talentSource"}}</legend>
 
     {{!-- class Identifier --}}
-    {{formField systemFields.source.fields.class name="system.source.class" value=item.system.source.class localize=true }}
+    {{formField systemFields.source.fields.class name="system.source.class" value=item.system.source.class parentDocument=item.parent}}
 
     {{!-- Added at Level --}}
     {{formField systemFields.source.fields.atLevel name="system.source.atLevel" value=item.system.source.atLevel localize=true}}

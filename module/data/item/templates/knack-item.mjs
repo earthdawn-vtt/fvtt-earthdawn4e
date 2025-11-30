@@ -226,7 +226,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
         ),
         entityType:  learnedItem.type,
         name:        learnedItem.name,
-        itemUuid:    learnedItem.uuid,
+        itemId:      learnedItem.id,
       },
     );
 

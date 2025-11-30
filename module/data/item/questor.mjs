@@ -1,16 +1,21 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
-import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
+import * as LEGEND from "../../config/legend.mjs";
+import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 const { isEmpty } = foundry.utils;
 
 /**
  * Data model template with information on the questor path items.
+ * @augments ClassTemplate
+ * @mixes ItemDescriptionTemplate
+ * @property {string} questorDevotionId   The ID of the associated devotion item.
  */
 export default class QuestorData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
@@ -20,19 +25,14 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   static defineSchema() {
-    const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      questorDevotion: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-        validate: ( value, options ) => {
-          const item = fromUuidSync( value, {strict: false} );
-          if ( item.system?.edid !== game.settings.get( "ed4e", "edidQuestorDevotion" ) ) return false;
-          return undefined;
-        },
-        validationError: "must be a questor talent with the questor edId.",
-      } ),
+      questorDevotionId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.devotion, ],
+          nullable:    true,
+        }
+      ),
     } );
   }
 
@@ -78,7 +78,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     if ( !this.isActorEmbedded ) return undefined;
 
     return {
-      [ED4E.validationCategories.base]:               [
+      [LEGEND.validationCategories.base]:               [
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForIncrease,
@@ -90,7 +90,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   get requiredLpForIncrease() {
     // Questor devotion is treated as a journeyman talent
-    return ED4E.legendPointsCost[ this.unmodifiedLevel + 1 + ED4E.lpIndexModForTier[1].journeyman ];
+    return LEGEND.legendPointsCost[ this.unmodifiedLevel + 1 + LEGEND.lpIndexModForTier[1].journeyman ];
   }
 
   /** @inheritDoc */
@@ -101,9 +101,9 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     // get the questor devotion
     const edidQuestorDevotion = game.settings.get( "ed4e", "edidQuestorDevotion" );
-    let questorDevotion = await fromUuid( item.system.questorDevotion );
+    let questorDevotion = actor.items.get( item.system.questorDevotionId );
     questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
-    questorDevotion ??= await Item.create( ED4E.documentData.Item.devotion.questor );
+    questorDevotion ??= await Item.create( DOCUMENT_DATA.documentData.Item.devotion.questor );
 
     await questorDevotion.update( {
       system: {
@@ -135,8 +135,8 @@ export default class QuestorData extends ClassTemplate.mixin(
     const questorCreateData = foundry.utils.mergeObject(
       createData,
       {
-        "system.level":           1,
-        "system.questorDevotion": learnedDevotion?.uuid,
+        "system.level":             1,
+        "system.questorDevotionId": learnedDevotion?.id,
       }
     );
 
@@ -172,7 +172,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       || spendLp === "cancel"
       || spendLp === "close" ) return;
 
-    const updatedActor = await this.parent.actor.addLpTransaction(
+    const updatedActor = await this.containingActor.addLpTransaction(
       "spendings",
       LpSpendingTransactionData.dataFromLevelItem(
         this.parent,
@@ -187,7 +187,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       );
 
     // possibly update the associated devotion
-    const questorDevotion = await fromUuid( this.questorDevotion );
+    const questorDevotion = this.containingActor.get( this.questorDevotionId );
     if ( !questorDevotion ) return this.parentDocument;
 
     const content =  `
@@ -216,9 +216,9 @@ export default class QuestorData extends ClassTemplate.mixin(
   // region Drag and Drop
 
   async _onDropDevotion( event, document ) {
-    const questorItem = this.parent;
+    const questorItem = this.parentDocument;
     await questorItem.update( {
-      "system.questorDevotion": document.uuid,
+      "system.questorDevotionId": document.id,
     } );
     return true;
   }

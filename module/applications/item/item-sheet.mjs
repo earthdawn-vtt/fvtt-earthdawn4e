@@ -125,7 +125,7 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
       case "general":
         break;
       case "details":
-        break;
+        return this._prepareDetailsContext( context, options );
       case "effects":
         break;
     }
@@ -154,6 +154,31 @@ export default class ItemSheetEd extends DocumentSheetMixinEd( ItemSheetV2 ) {
     );
 
     return context;
+  }
+
+  async _prepareDetailsContext( context, options ) {
+    if ( this.document.system.matrix )await this._prepareMatrixContext( context, options );
+
+    return context;
+  }
+
+  async _prepareMatrixContext( context, options ) {
+    context.activeSpellChoices = this.document.system.getActiveSpellChoices?.();
+
+    const matrixSpellsField = this.document.system.schema.fields.matrix.fields.spells;
+    context.matrixSpellsElement = matrixSpellsField.toFormGroup(
+      {
+        input: foundry.applications.fields.createMultiSelectInput( {
+          disabled:    !context.editable,
+          name:        matrixSpellsField.fieldPath,
+          value:       this.document.system.matrix.spells,
+          options:     this.document.system.getMatrixSpellOptions?.() || [],
+          sort:        true,
+          type:        "multi",
+        } ),
+      },
+      {},
+    );
   }
 
   /** @inheritDoc */

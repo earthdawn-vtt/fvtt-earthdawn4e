@@ -1,5 +1,5 @@
 // Import configuration
-import ED4E from "../config/_module.mjs";
+import * as config from "../config/_module.mjs";
 import ED4E_CONSTANTS from "../constants/_module.mjs";
 import  "../tours/ed-tours.mjs";
 import registerHandlebarHelpers from "../handlebar-helpers.mjs";
@@ -56,13 +56,13 @@ function setupCanvas() {
  *
  */
 function setupStatusEffects() {
-  CONFIG.statusEffects = ED4E.statusEffects.map( ( status ) => {
+  CONFIG.statusEffects = config.STATUSES.statusEffects.map( ( status ) => {
     return {
       _id: staticStatusId( status.id ),
       ...status
     };
   } );
-  Object.assign( CONFIG.specialStatusEffects, ED4E.specialStatusEffects );
+  Object.assign( CONFIG.specialStatusEffects, config.STATUSES.specialStatusEffects );
 }
 
 /**
@@ -82,7 +82,7 @@ function setupDataModels() {
  *
  */
 function setupQueries() {
-  Object.assign( CONFIG.queries, ED4E.queries );
+  Object.assign( CONFIG.queries, config.SOCKETS.queries );
 }
 
 /**
@@ -233,14 +233,20 @@ function setupHandlebars() {
 /**
  *
  */
+function setupConfigConstants() {
+  globalThis.ED4E_CONSTANTS = ED4E_CONSTANTS;
+  CONFIG.ED4E = config.default;
+}
+
+/**
+ *
+ */
 export default function () {
   Hooks.once( "init", () => {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
     console.log( "ED4e | Initializing the ED4e Game System" );
 
-    CONFIG.ED4E = ED4E;
-    globalThis.ED4E_CONSTANTS = ED4E_CONSTANTS;
-
+    setupConfigConstants();
     setupDocumentClasses();
     setupCanvas();
     setupUI();

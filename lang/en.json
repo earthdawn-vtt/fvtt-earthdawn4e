@@ -1708,10 +1708,6 @@
         },
         "KnackAbility": {
           "FIELDS": {
-            "isPathKnack": {
-              "hint":                              "Is this knack a Path Knack?",
-              "label":                             "Path Knack"
-            },
             "standardEffect": {
               "hint":                              "Does the standard effect of the source talent also apply?",
               "label":                             "Standard Effect"
@@ -1882,15 +1878,15 @@
               "hint":                              "Blood magic damage of the path",
               "label":                             "Blood Magic Damage"
             },
-            "pathKnack": {
+            "pathKnackId": {
               "hint":                              "Knack learned from the path",
               "label":                             "Path Knack"
             },
-            "pathTalent": {
+            "pathTalentId": {
               "hint":                              "Path talent used for advancement",
               "label":                             "Path Talent"
             },
-            "sourceDiscipline": {
+            "sourceDisciplineId": {
               "hint":                              "Discipline on which this path is based",
               "label":                             "Source Discipline"
             }
@@ -2046,7 +2042,7 @@
         },
         "Questor": {
           "FIELDS": {
-            "questorDevotion": {
+            "questorDevotionId": {
               "hint":                              "Questor devotion ability",
               "label":                             "Questor Devotion"
             }
@@ -2638,9 +2634,9 @@
               "hint":                              "Type of entity the transaction refers to",
               "label":                             "Entity Type"
             },
-            "itemUuid": {
-              "hint":                              "UUID of the item the transaction refers to",
-              "label":                             "Item UUID"
+            "itemId": {
+              "hint":                              "ID of the item the transaction refers to",
+              "label":                             "Item ID"
             },
             "name": {
               "hint":                              "Name of the item the transaction refers to",
@@ -3533,6 +3529,7 @@
       "Info": {
         "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "Power test type set to 'Attack'.\nIf a power has a damage step, the test type must be set to 'Attack' or 'Damage'.",
+        "dislodgeSpellsOnDeath":                   "TODO: Add translation",
         "noDamageNoRecoveryNeeded":                "You are unharmed. No recovery test needed.",
         "noFullRestRecoveryNeeded":                "You are fine. No wounds or damage. No recovery test needed after rest.",
         "noWeaponAvailable":                       "No weapon available to equip.",

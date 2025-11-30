@@ -8,6 +8,8 @@ import AbilityRollOptions from "../../roll/ability.mjs";
 import RollProcessor from "../../../services/roll-processor.mjs";
 import CombatDamageWorkflow from "../../../workflows/workflow/damage-workflow.mjs";
 import AttackWorkflow from "../../../workflows/workflow/attack-workflow.mjs";
+import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
+import * as SYSTEM from "../../../config/system.mjs";
 
 /**
  * Data model template with information on Ability items.
@@ -53,10 +55,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         initial:  "",
       } ),
       source: new fields.SchemaField( {
-        class:   new fields.DocumentUUIDField( {
-          type:     "Item",
-          nullable: true,
-        } ),
+        class:   new SiblingDocumentField(
+          foundry.documents.Item,
+          {
+            systemTypes: [ ...SYSTEM.typeGroups.Item.classes, ],
+          },
+        ),
         atLevel: new fields.NumberField( {
           required: false,
           nullable: true,

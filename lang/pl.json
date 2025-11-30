@@ -1708,10 +1708,6 @@
         },
         "KnackAbility": {
           "FIELDS": {
-            "isPathKnack": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
-            },
             "standardEffect": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
@@ -1882,15 +1878,15 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "pathKnack": {
+            "pathKnackId": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "pathTalent": {
+            "pathTalentId": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "sourceDiscipline": {
+            "sourceDisciplineId": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
@@ -2046,7 +2042,7 @@
         },
         "Questor": {
           "FIELDS": {
-            "questorDevotion": {
+            "questorDevotionId": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             }
@@ -2638,7 +2634,7 @@
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
-            "itemUuid": {
+            "itemId": {
               "hint":                              "TODO: Add translation",
               "label":                             "TODO: Add translation"
             },
@@ -3533,6 +3529,7 @@
       "Info": {
         "alreadyKnockedDown":                      "TODO: Add translation",
         "damageStepRequiresAttackOrDamage":        "TODO: Add translation",
+        "dislodgeSpellsOnDeath":                   "TODO: Add translation",
         "noDamageNoRecoveryNeeded":                "TODO: Add translation",
         "noFullRestRecoveryNeeded":                "TODO: Add translation",
         "noWeaponAvailable":                       "TODO: Add translation",

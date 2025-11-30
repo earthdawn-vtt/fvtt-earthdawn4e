@@ -456,7 +456,7 @@ export default class SpellData extends ItemDataModel.mixin(
         ),
         entityType:  learnedItem.type,
         name:        learnedItem.name,
-        itemUuid:    learnedItem.uuid,
+        itemId:      learnedItem.id,
       },
     );
 
@@ -730,7 +730,7 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   actorGrimoires( actor ) {
     const owner = actor || this.containingActor;
-    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parent.uuid ) );
+    return owner.itemTypes.equipment.filter( item => item.system.grimoire?.spells?.has( this.parentDocument.uuid ) );
   }
 
   /**
@@ -790,7 +790,7 @@ export default class SpellData extends ItemDataModel.mixin(
    */
   getAttunedMatrix() {
     return this.containingActor?.items.find( item => {
-      return item.system.matrix?.spells.has( this.parent.uuid );
+      return item.system.matrix?.spells.has( this.parentDocument.id );
     } );
   }
 

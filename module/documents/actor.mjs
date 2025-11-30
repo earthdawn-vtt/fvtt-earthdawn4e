@@ -321,6 +321,7 @@ export default class ActorEd extends Actor {
           change,
           sourceType: effect.system.source?.documentOriginType,
           sourceUuid: effect.system.source?.documentOriginUuid,
+          sourceId:   effect.system.sourceDocumentOriginId,
           value:      Number( change.value ) || 0
         } );
       }
@@ -398,26 +399,26 @@ export default class ActorEd extends Actor {
       // Add path bonuses to their source disciplines
       for ( const pathData of paths ) {
         const pathItem = await fromUuid( pathData.sourceUuid );
-        if ( pathItem?.system.sourceDiscipline ) {
-          const sourceDisciplineUuid = pathItem.system.sourceDiscipline;
-          if ( !disciplinePathBonuses.has( sourceDisciplineUuid ) ) {
-            disciplinePathBonuses.set( sourceDisciplineUuid, 0 );
+        if ( pathItem?.system.sourceDisciplineId ) {
+          const sourceDisciplineId = pathItem.system.sourceDisciplineId;
+          if ( !disciplinePathBonuses.has( sourceDisciplineId ) ) {
+            disciplinePathBonuses.set( sourceDisciplineId, 0 );
           }
-          disciplinePathBonuses.set( sourceDisciplineUuid,
-            disciplinePathBonuses.get( sourceDisciplineUuid ) + pathData.value );
+          disciplinePathBonuses.set( sourceDisciplineId,
+            disciplinePathBonuses.get( sourceDisciplineId ) + pathData.value );
         }
       }
 
       // Find the discipline with the highest total (base + paths)
       let highestTotalDisciplinePathValue = 0;
-      let winningDisciplineUuid = null;
+      let winningDisciplineId = null;
 
       for ( const disciplineData of disciplines ) {
-        const pathBonus = disciplinePathBonuses.get( disciplineData.sourceUuid ) || 0;
+        const pathBonus = disciplinePathBonuses.get( disciplineData.sourceId ) || 0;
         const totalValue = disciplineData.value + pathBonus;
         if ( totalValue > highestTotalDisciplinePathValue ) {
           highestTotalDisciplinePathValue = totalValue;
-          winningDisciplineUuid = disciplineData.sourceUuid;
+          winningDisciplineId = disciplineData.sourceId;
         }
       }
 
@@ -432,17 +433,17 @@ export default class ActorEd extends Actor {
       }
 
       // Only the highest between discipline total and questor applies
-      if ( ( highestTotalDisciplinePathValue >= highestQuestorValue ) && winningDisciplineUuid ) {
+      if ( ( highestTotalDisciplinePathValue >= highestQuestorValue ) && winningDisciplineId ) {
         // Discipline wins - enable winning discipline and its paths
         for ( const disciplineData of disciplines ) {
-          if ( disciplineData.sourceUuid === winningDisciplineUuid ) {
+          if ( disciplineData.sourceId === winningDisciplineId ) {
             shouldBeActive.add( disciplineData.effect.id );
           }
         }
         // Enable paths for the winning discipline
         for ( const pathData of paths ) {
           const pathItem = await fromUuid( pathData.sourceUuid );
-          if ( pathItem?.system.sourceDiscipline === winningDisciplineUuid ) {
+          if ( pathItem?.system.sourceDisciplineId === winningDisciplineId ) {
             shouldBeActive.add( pathData.effect.id );
           }
         }

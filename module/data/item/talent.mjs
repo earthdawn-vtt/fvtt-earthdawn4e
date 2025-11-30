@@ -1,11 +1,12 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config/_module.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import MatrixTemplate from "./templates/matrix.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as LEGEND from "../../config/legend.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 const DialogClass = DialogEd;
 
@@ -29,7 +30,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
         blank:    true,
         initial:  "",
         trim:     true,
-        choices:  ED4E.talentCategory,
+        choices:  LEGEND.talentCategory,
       } ),
       knacks: new fields.SchemaField( {
         available: new fields.SetField(
@@ -49,15 +50,12 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           }
         ),
         learned:   new fields.SetField(
-          new fields.DocumentUUIDField( {
-            required:        true,
-            nullable:        false,
-            validate:        ( value, _ ) => {
-              if ( !fromUuidSync( value, {strict: false} )?.system?.hasMixin( KnackTemplate ) ) return false;
-              return undefined; // undefined means do further validation
+          new SiblingDocumentField(
+            foundry.documents.Item,
+            {
+              systemTypes: [ SYSTEM_TYPES.Item.knackAbility, SYSTEM_TYPES.Item.knackKarma, SYSTEM_TYPES.Item.knackManeuver, ],
             },
-            validationError:  "must be a knack type",
-          } ),
+          ),
           {
             required: true,
             nullable: false,
@@ -154,25 +152,25 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   get requiredLpForIncrease() {
     if ( !this.isActorEmbedded ) return undefined;
 
-    const actor = this.parent.actor;
-    const sourceClass = fromUuidSync( this.source.class );
+    const actor = this.containingActor;
+    const sourceClass = actor.items.get( this.source?.class );
 
     // for talents which are not tied to any class (versatility or others)
     if ( !sourceClass ) {
-      return ED4E.legendPointsCost[
+      return LEGEND.legendPointsCost[
         this.unmodifiedLevel
         + 1 // new level
-        + ED4E.lpIndexModForTier[1][this.tier]
+        + LEGEND.lpIndexModForTier[1][this.tier]
       ];
     }
 
     // each tier starts at the next value in the fibonacci sequence
-    let tierModifier = ED4E.lpIndexModForTier[sourceClass.system.order][this.tier];
+    let tierModifier = LEGEND.lpIndexModForTier[sourceClass.system.order][this.tier];
 
     if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 )
-      return ED4E.multiDisciplineNewTalentLpCost[sourceClass.system.order][actor.minCircle];
+      return LEGEND.multiDisciplineNewTalentLpCost[sourceClass.system.order][actor.minCircle];
 
-    return ED4E.legendPointsCost[
+    return LEGEND.legendPointsCost[
       this.unmodifiedLevel
     + 1 // new level
     + ( tierModifier || 0 )
@@ -193,14 +191,14 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     if ( !this.isActorEmbedded ) return undefined;
     const increaseData = this.increaseData;
     return {
-      [ED4E.validationCategories.base]:      [
+      [LEGEND.validationCategories.base]:      [
         {
           name:      "ED.Dialogs.Legend.Validation.maxLevel",
           value:     increaseData.newLevel,
           fulfilled: increaseData.newLevel <= game.settings.get( "ed4e", "lpTrackingMaxRankTalent" ),
         },
       ],
-      [ED4E.validationCategories.resources]: [
+      [LEGEND.validationCategories.resources]: [
         {
           name:      "ED.Dialogs.Legend.Validation.availableLp",
           value:     this.requiredLpForIncrease,
@@ -212,7 +210,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
           fulfilled: this.requiredMoneyForIncrease <= this.parent.actor.currentSilver,
         },
       ],
-      [ED4E.validationCategories.health]:    [
+      [LEGEND.validationCategories.health]:    [
         {
           name:      "ED.Dialogs.Legend.Validation.hasDamage",
           value:     increaseData.hasDamage ? game.i18n.localize( "ED.Dialogs.Legend.Validation.hasDamage" ) : game.i18n.localize( "ED.Dialogs.Legend.Validation.hasNoDamage" ),
@@ -292,7 +290,7 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // update the learned talent with the new data
     await learnedItem.update( {
       "system.talentCategory":        category ?? learnedItem.system.talentCategory,
-      "system.source.class":          learnedItem.system.source?.class ?? discipline?.uuid,
+      "system.source.class":          learnedItem.system.source?.class ?? discipline?.id,
       "system.source.atLevel":        learnedItem.system.source?.atLevel ?? learnedAt,
     } );
     

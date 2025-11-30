@@ -9,8 +9,8 @@ export default function () {
 }
 
 /**
- *
- * @param socket
+ * Register socket listeners
+ * @param {SocketlibSocket} socket The socket instance
  */
 function registerSocketListeners( socket ) {
   ed4e.socketHandler.register( "applyDamage", applyDamage );
@@ -37,8 +37,9 @@ function assignEffect( actor, effect ) {
 }
 
 /**
- *
- * @param data
+ * Test heartbeat socket call
+ * @param {object} data The data sent with the socket call
+ * @returns {object} The response data with the recipient user name
  */
 function heartbeat( data ) {
   console.log( "Heartbeat" );

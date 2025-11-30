@@ -29,9 +29,9 @@
   </div>
 
   <div class="spell-links-container">
-    {{#each this.system.matrix.spells}}
+    {{#each this.system.matrixSpells}}
       <div class="spell-link">
-        {{{ed-linkForUuid this}}}
+        {{{ed-linkForUuid this.uuid}}}
       </div>
     {{/each}}
   </div>

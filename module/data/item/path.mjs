@@ -1,13 +1,17 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import ED4E from "../../config/_module.mjs";
 import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as LEGEND from "../../config/legend.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 /**
  * Data model template with information on path items.
- * @property {string} sourceDiscipline ED-ID for source discipline related to the path
+ * @property {string} sourceDisciplineId The ID of the discipline this path belongs to.
+ * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
+ * @property {string} pathKnackId The ID of the knack ability associated with this path.
+ * @property {string} pathTalentId The ID of the talent associated with this path.
  */
 export default class PathData extends ClassTemplate.mixin(
   ItemDescriptionTemplate
@@ -19,10 +23,12 @@ export default class PathData extends ClassTemplate.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      sourceDiscipline: new fields.DocumentUUIDField( {
-        type:     "Item",
-        embedded: true,
-      } ),
+      sourceDisciplineId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.discipline, ],
+        }
+      ),
       bloodMagicDamage: new fields.NumberField( {
         required: true,
         nullable: false,
@@ -30,16 +36,18 @@ export default class PathData extends ClassTemplate.mixin(
         initial:  2,
         integer:  true,
       } ),
-      pathKnack: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-      } ),
-      pathTalent: new fields.DocumentUUIDField( {
-        required: true,
-        nullable: true,
-        type:     "Item",
-      } ),
+      pathKnackId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.knackAbility, ],
+        },
+      ),
+      pathTalentId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.talent, ],
+        },
+      ),
     } );
   }
 
@@ -79,7 +87,7 @@ export default class PathData extends ClassTemplate.mixin(
       learn:              this.unmodifiedLevel === 0,
       nextLevel,
       nextLevelData:      this.advancement.levels.find( l => l.level === nextLevel ),
-      nextTalentLpCost:   ED4E.legendPointsCost[ nextLevel + ED4E.lpIndexModForTier[ this.currentTier ] ],
+      nextTalentLpCost:   LEGEND.legendPointsCost[ nextLevel + LEGEND.lpIndexModForTier[ this.currentTier ] ],
       talentRequirements: pathTalent
     };
   }
@@ -95,7 +103,7 @@ export default class PathData extends ClassTemplate.mixin(
 
     const {  talentRequirements } = this.increaseData;
     return {
-      [ED4E.validationCategories.talentsRequirement]: [
+      [LEGEND.validationCategories.talentsRequirement]: [
         {
           name:      "ED.Dialogs.Legend.Validation.pathTalent",
           value:     talentRequirements.name,
@@ -177,9 +185,9 @@ export default class PathData extends ClassTemplate.mixin(
     const pathCreateData = foundry.utils.mergeObject(
       createData,
       {
-        "system.level":      0,
-        "system.pathTalent": learnedPathTalent?.uuid,
-        "system.pathKnack":  learnedPathKnack?.uuid,
+        "system.level":        0,
+        "system.pathTalentId": learnedPathTalent?.id,
+        "system.pathKnackId":  learnedPathKnack?.id,
       }
     );
 
@@ -202,7 +210,7 @@ export default class PathData extends ClassTemplate.mixin(
     if ( !this.isActorEmbedded ) return;
   
     const nextLevel = this.unmodifiedLevel + 1;
-    const pathTalent = await fromUuid( this.pathTalent );
+    const pathTalent = this.containingActor.items.get( this.pathTalentId );
     if ( pathTalent.system.level < nextLevel ) {
       const content =  `
           <p>

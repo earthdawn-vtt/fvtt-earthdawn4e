@@ -1,14 +1,11 @@
 import LpTransactionData from "./lp-transaction.mjs";
 import { dateToInputString } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 export default class LpSpendingTransactionData extends LpTransactionData {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.LpSpendingTransaction",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -40,31 +37,51 @@ export default class LpSpendingTransactionData extends LpTransactionData {
           integer:  true,
         } ),
       } ),
-      itemUuid: new fields.DocumentUUIDField(),
+      itemId: new SiblingDocumentField(
+        foundry.documents.Item,
+      ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpSpendingTransaction",
+  ];
+
+  // endregion
+
+  // region Static Methods
 
   /**
    * Creates data needed for a new spending transaction from an item with a level.
    * @param {ItemEd} item         The item to be leveled up,
    * @param {number} amount       The amount of LP spent,
    * @param {string} description  The description of the transaction.
-   * @returns {{amount, entityType, name, description, value: {before, after: number}, itemUuid}}
+   * @returns {{amount, entityType, name, description, value: {before, after: number}, itemId}}
    *  The data necessary for creating the LpTransaction.
    */
   static dataFromLevelItem( item, amount, description ) {
     return {
       amount,
       description,
-      entityType:  item.type,
+      entityType: item.type,
       name:       item.name,
       value:      {
         before: item.system.level,
         after:  item.system.level + 1,
       },
-      itemUuid:   item.uuid,
+      itemId:     item.id,
     };
   }
+
+  // endregion
+
+  // region Rendering
 
   /**
    * @inheritDoc
@@ -100,4 +117,7 @@ export default class LpSpendingTransactionData extends LpTransactionData {
         </tr>
       `;
   }
+
+  // endregion
+
 }

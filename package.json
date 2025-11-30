@@ -33,6 +33,7 @@
     "@stylistic/eslint-plugin": "^2.3.0",
     "@stylistic/eslint-plugin-migrate": "^2.3.0",
     "cspell": "^9.0.1",
+    "dpdm": "^3.14.0",
     "eslint": "^9.6.0",
     "eslint-plugin-jsdoc": "^46.8.2",
     "fast-glob": "^3.3.3",
@@ -43,7 +44,7 @@
     "gulp-less": "^5.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
-    "markdownlint-cli": "^0.44.0",
+    "markdownlint-cli": "^0.46.0",
     "merge-stream": "^2.0.0",
     "yargs": "^17.7.2"
   },

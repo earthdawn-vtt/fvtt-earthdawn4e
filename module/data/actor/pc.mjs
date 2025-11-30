@@ -189,7 +189,7 @@ export default class PcData extends NamegiverTemplate {
         documentData => {
           if ( documentData.type !== SYSTEM_TYPES.Item.specialAbility ) {
             documentData.system.source ??= {};
-            documentData.system.source.class ??= classDocument.uuid;
+            documentData.system.source.class ??= classDocument.id;
           }
           return documentData;
         }
@@ -238,9 +238,9 @@ export default class PcData extends NamegiverTemplate {
     const disciplineAfterCreation = newActor.disciplines[0];
     if ( disciplineAfterCreation ) {
       for ( const talent of newActor.itemTypes.talent ) {
-        if ( talent.system.source.class === classDocument.uuid ) await talent.update( {
+        if ( talent.system.source?.class === classDocument.id ) await talent.update( {
           "system.source": {
-            "class":   disciplineAfterCreation.uuid,
+            "class":   disciplineAfterCreation.id,
             "atLevel": 1
           }
         } );
@@ -255,7 +255,7 @@ export default class PcData extends NamegiverTemplate {
       },
     } );
 
-    // If this is a questor class, set the questorDevotion field to the devotion UUID
+    // If this is a questor class, set the questorDevotionId field to the devotion ID
     if ( classAfterCreation.type === SYSTEM_TYPES.Item.questor ) {
       const edidQuestorDevotion = getSetting( "edidQuestorDevotion" );
       const questorDevotionItem = newActor.items.find( item =>
@@ -264,7 +264,7 @@ export default class PcData extends NamegiverTemplate {
 
       if ( questorDevotionItem ) {
         await classAfterCreation.update( {
-          "system.questorDevotion": questorDevotionItem.uuid
+          "system.questorDevotionId": questorDevotionItem.id
         } );
       }
     }

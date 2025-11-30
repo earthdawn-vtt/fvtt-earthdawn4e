@@ -3,12 +3,15 @@ import MovementFields from "./movement.mjs";
 import ED4E from "../../../config/_module.mjs";
 import MappingField from "../../fields/mapping-field.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
+import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
 
 /**
  * A template for all actors that represent sentient beings and have such stats.
  * @mixin
  */
 export default class SentientTemplate extends CommonTemplate {
+
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -205,10 +208,9 @@ export default class SentientTemplate extends CommonTemplate {
         } ),
         ...MovementFields.movement
       } ),
-      concentrationSource: new fields.DocumentUUIDField( {
-        required: false,
-        empty:    false,
-      } ),
+      concentrationSource: new SiblingDocumentField(
+        foundry.documents.Item,
+      ),
       devotion: new fields.SchemaField( {
         value: new fields.NumberField( {
           required: true,
@@ -349,6 +351,8 @@ export default class SentientTemplate extends CommonTemplate {
     } );
   }
 
+  // endregion
+
   // region Static Properties
 
   /** @inheritdoc */
@@ -439,7 +443,7 @@ export default class SentientTemplate extends CommonTemplate {
     if ( this.isAboutToDie( changes.system?.characteristics?.health?.damage?.standard ) ) {
       if ( this.hasSpellsAttuned ) {
         ui.notifications.info(
-          "ED.X.TODO.{actorName} dies. All spells are dislodged from their matrices.",
+          "ED.Notifications.Info.dislodgeSpellsOnDeath",
           {
             localize: true,
             format:   {

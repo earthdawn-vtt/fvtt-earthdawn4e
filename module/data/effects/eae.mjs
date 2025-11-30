@@ -70,6 +70,93 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
   // endregion
 
+  // region Getters
+
+  /**
+   * Is this effect always active, that is, has no limited duration.
+   * @type {boolean}
+   */
+  get permanent() {
+    return this.duration.type === "permanent";
+  }
+
+  /**
+   * Is this effect applied to a separate ability, i.e., does it have `system.ability uuid`.
+   * @type {boolean}
+   */
+  get appliedToAbility() {
+    return !!this.abilityUuid;
+  }
+
+  /**
+   * Is this effect applied to an actor? Defined as either, being an actor effect, or an item effect that is
+   * transferred to the target or applied to its actor.
+   * @type {boolean}
+   */
+  get appliedToActor() {
+    return this.parent?.isActorEffect || this.transferToTarget || this.parent?.transfer;
+  }
+
+  /**
+   * Is this effect applied to an item? Defined as being an item effect that is not transferred to the target or applied
+   * to a separate ability.
+   * @type {boolean}
+   */
+  get appliedToItem() {
+    return ( this.parent?.isItemEffect && !this.transferToTarget && !this.parent?.transfer ) || this.appliedToAbility;
+  };
+
+  /**
+   * Is this effect created automatically by a document, such as an item or actor effect?
+   * @type {boolean}
+   */
+  get createdAutomatically() {
+    return !!this.document;
+  }
+
+  /**
+   * The document origin of this effect, if it was created by a document. If coming from a compendium pack, this will
+   * return the document's index entry.
+   * @type {Document | object | null | *}
+   */
+  get documentOrigin() {
+    return fromUuidSync( this.source.documentOriginUuid );
+  }
+
+  /**
+   * The document origin ID of this effect, if it was created by a document.
+   * @type {string|undefined}
+   */
+  get sourceDocumentOriginId() {
+    return foundry.utils.parseUuid( this.source?.documentOriginUuid )?.id;
+  }
+
+  /**
+   * Alias for `system.source.documentOriginUuid`.
+   * @type {string|undefined}
+   */
+  get sourceUuid() {
+    return this.source?.documentOriginUuid;
+  }
+
+  /**
+   * Alias for `system.source.documentOriginType`.
+   * @type {string|undefined}
+   */
+  get sourceType() {
+    return this.source?.documentOriginType;
+  }
+
+  /**
+   * Alias for `sourceDocumentOriginId`.
+   * @see sourceDocumentOriginId
+   */
+  get sourceId() {
+    return this.sourceDocumentOriginId;
+  }
+
+  // endregion
+
   //  region Life Cycle Events
 
   /** @inheritDoc */
@@ -159,61 +246,6 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
     if ( this.appliedToAbility ) return ( await fromUuid( this.abilityUuid ) )?.getRollData() ?? {};
     if ( this.parent?.isItemEffect ) return ( await fromUuid( this.source.documentOriginUuid ) )?.getRollData() ?? {};
     return this.parent?.target?.getRollData() ?? {};
-  }
-
-  // endregion
-
-  // region Properties
-
-  /**
-   * Is this effect always active, that is, has no limited duration.
-   * @type {boolean}
-   */
-  get permanent() {
-    return this.duration.type === "permanent";
-  }
-
-  /**
-   * Is this effect applied to a separate ability, i.e., does it have `system.ability uuid`.
-   * @type {boolean}
-   */
-  get appliedToAbility() {
-    return !!this.abilityUuid;
-  }
-
-  /**
-   * Is this effect applied to an actor? Defined as either, being an actor effect, or an item effect that is
-   * transferred to the target or applied to its actor.
-   * @type {boolean}
-   */
-  get appliedToActor() {
-    return this.parent?.isActorEffect || this.transferToTarget || this.parent?.transfer;
-  }
-
-  /**
-   * Is this effect applied to an item? Defined as being an item effect that is not transferred to the target or applied
-   * to a separate ability.
-   * @type {boolean}
-   */
-  get appliedToItem() {
-    return ( this.parent?.isItemEffect && !this.transferToTarget && !this.parent?.transfer ) || this.appliedToAbility;
-  };
-
-  /**
-   * Is this effect created automatically by a document, such as an item or actor effect?
-   * @type {boolean}
-   */
-  get createdAutomatically() {
-    return !!this.document;
-  }
-
-  /**
-   * The document origin of this effect, if it was created by a document. If coming from a compendium pack, this will
-   * return the document's index entry.
-   * @type {Document | object | null | *}
-   */
-  get documentOrigin() {
-    return fromUuidSync( this.source.documentOriginUuid );
   }
 
   // endregion
