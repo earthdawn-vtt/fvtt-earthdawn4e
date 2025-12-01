@@ -17,6 +17,7 @@
     {{/if}}
     </div>
 
+    {{#if (ne item.system.rollType "damage") }}
     {{!-- Damage Step --}}
     <div class="item-section item-section--damage-step item-group">
     {{#if @root.editable}}
@@ -33,6 +34,7 @@
         </div>
     {{/if}}
     </div>
+    {{/if}}
 
     {{!-- Strain --}}
     <div class="item-section item-section--strain item-group">
