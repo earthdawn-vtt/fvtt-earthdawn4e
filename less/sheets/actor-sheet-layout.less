@@ -480,7 +480,7 @@
       grid-auto-flow: row;
     }
 
-    /* ======================= Effects tab ======================= */
+    /* ======================= Conditions tab ======================= */
     .conditions__grid--container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -495,17 +495,6 @@
     }
 
     .conditions__grid--item {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      padding: var(--grid-col-gap-sm) 0;
-      border: var(--border-main);
-      border-radius: 4px;
-      cursor: pointer;
-      text-align: center;
-      text-transform: capitalize;
-      transition: background-color 0.3s ease;
-      background-color: var(--color-button-panel-off);
 
       span {
         font-size: smaller;
@@ -513,7 +502,7 @@
       }
 
       &.active {
-        background-color: var(--color-button-panel-on);
+        background-color: var(--color-seconda);
         border-color: var(--color-button-panel-on);
         color: var(--color-button-panel-text-on);
       }

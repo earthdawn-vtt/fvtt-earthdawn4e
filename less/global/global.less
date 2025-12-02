@@ -94,7 +94,7 @@ select {
 	background-color: transparent;
 	text-align: center;
 	padding: 0.2em;
-	width: 30px;
+	width: 38px;
 	height: 25px;
 	border: 0;
 	cursor: help;
@@ -252,6 +252,7 @@ h3.label--rail {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  text-transform: uppercase;
 }
 h3.label--rail .label__text {
   position: relative;
@@ -391,4 +392,51 @@ h3.label--rail .label__text::after {
   border-radius: 40px;
   box-shadow: inset 0 0 12px 6px rgba(0, 0, 0, 1);
   margin: 7px 0 5px 0;
+}
+
+//###########################################################
+//                       Button Toggle
+//###########################################################
+
+.type-selection {
+  .button-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--grid-col-gap-sm);
+
+    label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 35px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      min-height: 1.8rem;
+      flex: 1 0 calc(25% - var(--grid-col-gap-sm));
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid var(--color-gold-dk);
+      background: transparent;
+      font-size: var(--font-size-12);
+      text-transform: capitalize;
+      cursor: pointer;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    label:has(input[type="radio"]:checked) {
+      background: var(--color-gold-dk);
+      border-color: var(--color-gold-dk);
+    }
+  }
 }

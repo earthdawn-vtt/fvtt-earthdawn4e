@@ -140,18 +140,16 @@
   --color-tertiary-grey-tr: var(--color-grey-dk-tr);
   --color-button-icon: var(--color-gold-lt);
   --color-button-icon-hover: var(--color-gold-xlt);
-  --color-button-panel-on: var(--color-secondary);
-  --color-button-panel-off: var(--color-primary);
   --color-button-panel-text-on: var(--color-basic-text-lt);
   --color-button-panel-text-off: var(--color-basic-text-lt);
   --color-button-check-on: var(--color-button-icon);
   --color-button-check-off: var(--color-grey-md);
   --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-background-on: var(--color-tertiary);
-  --color-button-slide-background-off: var(--color-primary);
+  --color-button-slide-background-on: var(--color-grey-md);
+  --color-button-slide-background-off: black;
   --border-main: 2px solid var(--color-gold-md);
   --border-input: 1px solid var(--color-gold-md);
-  --color-meter-background: var(--color-grey-lt-tr);
+  --color-meter-background: var(--color-grey-dk);
   --color-meter-divide: var(--color-primary);
 }
 :root body.theme-light {
@@ -188,6 +186,8 @@
   --color-tertiary-tr: var(--color-blue-lt-tr);
   --color-text-body: var(--color-basic-text-lt);
   --color-text-banner: var(--color-basic-text-lt);
+  --color-button-panel-on: var(--color-secondary);
+  --color-button-panel-off: var(--color-primary);
   --color-input-square: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
@@ -216,6 +216,8 @@
   --color-tertiary-tr: var(--color-blue-dk-tr);
   --color-text-body: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
+  --color-button-panel-on: var(--color-primary);
+  --color-button-panel-off: var(--color-grey-lt);
   --color-input-square: var(--color-primary-grey-tr);
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
@@ -440,7 +442,7 @@ select {
   background-color: transparent;
   text-align: center;
   padding: 0.2em;
-  width: 30px;
+  width: 38px;
   height: 25px;
   border: 0;
   cursor: help;
@@ -564,6 +566,7 @@ h3.label--rail {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  text-transform: uppercase;
 }
 h3.label--rail .label__text {
   position: relative;
@@ -681,6 +684,43 @@ h3.label--rail .label__text::after {
   border-radius: 40px;
   box-shadow: inset 0 0 12px 6px #000000;
   margin: 7px 0 5px 0;
+}
+.type-selection .button-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-col-gap-sm);
+}
+.type-selection .button-toggle label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  min-height: 1.8rem;
+  flex: 1 0 calc(25% - var(--grid-col-gap-sm));
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--color-gold-dk);
+  background: transparent;
+  font-size: var(--font-size-12);
+  text-transform: capitalize;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+.type-selection .button-toggle input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+.type-selection .button-toggle label:has(input[type="radio"]:checked) {
+  background: var(--color-gold-dk);
+  border-color: var(--color-gold-dk);
 }
 .actor {
   /* generic icon button */
@@ -1465,7 +1505,6 @@ form.ed4e.character-generation .layout__row {
 }
 form.ed4e.character-generation .label--rail {
   margin-bottom: 0.3125rem;
-  text-transform: uppercase;
 }
 form.ed4e.character-generation .container__header {
   text-align: center;
@@ -2036,7 +2075,7 @@ form.ed4e.character-generation nav a.disabled {
   /* ======================= Equipment tab ======================= */
   /* ======================= Navigation Tabs ======================= */
   /* ======================= Threads tab ======================= */
-  /* ======================= Effects tab ======================= */
+  /* ======================= Conditions tab ======================= */
   /* ======================= Tabs ======================= */
   /* ======================= Top ======================= */
   padding: 0 5px;
@@ -2432,25 +2471,12 @@ form.ed4e.character-generation nav a.disabled {
   outline: none;
   box-shadow: none;
 }
-.application.sheet.earthdawn4e.actor .window-content .conditions__grid--item {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: var(--grid-col-gap-sm) 0;
-  border: var(--border-main);
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-  text-transform: capitalize;
-  transition: background-color 0.3s ease;
-  background-color: var(--color-button-panel-off);
-}
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item span {
   font-size: smaller;
   color: var(--color-text-body);
 }
 .application.sheet.earthdawn4e.actor .window-content .conditions__grid--item.active {
-  background-color: var(--color-button-panel-on);
+  background-color: var(--color-seconda);
   border-color: var(--color-button-panel-on);
   color: var(--color-button-panel-text-on);
 }

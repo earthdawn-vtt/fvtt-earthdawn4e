@@ -27,16 +27,14 @@
 
   <div class="type-selection scrollable flexcol">
 
-    <header id='typeSelectionHeader'>
-      <h4>{{localize "ED.Document.type"}}</h4>
-    </header>
-
     {{#each typesRadio}}
-      <header class='type-group-label'>
-        <h5>{{@key}}</h5>
-      </header>
-      <div class='form-fields flexrow'>
-        {{radioBoxes 'type' this checked=../currentType}}
+    <h3 class="type-group-label label--rail">
+      <span class="label__text">
+        {{@key}}
+      </span>
+    </h3>
+      <div class='button-toggle flexrow'>
+        {{radioBoxes 'type' this checked=../currentType}}  
       </div>
     {{/each}}
 
