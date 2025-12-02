@@ -1,4 +1,3 @@
-import RollPrompt from "../applications/global/roll-prompt.mjs";
 /**
  *
  */
@@ -53,16 +52,6 @@ export default function () {
           window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/issues/new?template=bug_report.md", "_blank" );
         } );
       }
-    }
-  } );
-
-  Hooks.on( "changeSidebarTab", ( app ) => {
-    /* -------------------------------------------- */
-    /*  Dice Icon Roll                              */
-    /* -------------------------------------------- */
-    const diceIcon = document.querySelector( "#chat-controls i.fa-dice-d20" );
-    if ( diceIcon ) {
-      diceIcon.addEventListener( "click", RollPrompt.rollArbitraryPrompt.bind( null ) );
     }
   } );
 }
