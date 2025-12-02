@@ -3,7 +3,7 @@
     "CombatantActor":                              "Combatant",
     "CombatantDefeated":                           "Combatant defeated",
     "CombatantHidden":                             "Hidden Combatant",
-    "CombatantHideStartRoundPrompt":               "TODO: Add translation",
+    "CombatantHideStartRoundPrompt":               "Hide prompt for the round start",
     "CombatantImage":                              "Combatant Image",
     "CombatantInitiative":                         "Combatant Initiative",
     "CombatantName":                               "Combatant Name",
@@ -41,8 +41,8 @@
         }
       },
       "CreateData": {
-        "descriptionManualOverride":               "TODO: Add translation",
-        "nameManualOverride":                      "TODO: Add translation"
+        "descriptionManualOverride":               "<p>Changes to various values ​​that are made directly via the character sheet's edit mode.</p>\n<p><span style=\"font-family: Courier New\"><strong>Attention</strong>: <em>This effect is automatically generated and managed by the system.</em></span></p>",
+        "nameManualOverride":                      "Manual adjustments"
       },
       "Header": {
         "applyToAbility":                          "Apply to Ability"
@@ -171,8 +171,8 @@
       },
       "Header": {
         "Favorites": {
-          "brokenReference":                       "TODO: Add translation",
-          "macroNotFound":                         "TODO: Add translation"
+          "brokenReference":                       "Defective Favorite",
+          "macroNotFound":                         "The macro for this favorite no longer exists and cannot be executed."
         },
         "abilities":                               "Abilities",
         "action":                                  "Action",
@@ -215,10 +215,10 @@
         "languages":                               "Languages",
         "languagesSpoken":                         "Languages Spoken",
         "languagesWritten":                        "Languages Written",
-        "legend":                                  "TODO: Add translation",
+        "legend":                                  "Legend Points",
         "legendCurrent":                           "Current",
         "legendHistory":                           "LP History",
-        "legendPoints":                            "TODO: Add translation",
+        "legendPoints":                            "Legend Points",
         "legendSpend":                             "Spent",
         "legendStatus":                            "Status",
         "legendTotal":                             "Total",
@@ -253,11 +253,11 @@
         "talentsVersatility":                      "Versatility Talents",
         "talentsWithoutCategory":                  "Talents without category",
         "threads":                                 "Threads",
-        "truePattern":                             "TODO: Add translation",
+        "truePattern":                             "True Pattern",
         "vocations":                               "Vocations",
         "weapons":                                 "Weapons",
         "weavingDifficulty":                       "Weaving Difficulty",
-        "wovenThreads":                            "TODO: Add translation"
+        "wovenThreads":                            "Woven Threads"
       },
       "Initiative": {
         "penalty":                                 "Penalty",
@@ -289,11 +289,11 @@
           "thread":                                "Thread"
         },
         "Spendings": {
-          "attributeIncrease":                     "TODO: Add translation",
-          "learnKnack":                            "TODO: Add translation",
-          "learnSpell":                            "TODO: Add translation",
-          "learningTransactionDescription":        "TODO: Add translation",
-          "newThread":                             "TODO: Add translation",
+          "attributeIncrease":                     "{name} was increased {timesIncreased} times.",
+          "learnKnack":                            "The knack {name} was learned",
+          "learnSpell":                            "The spell {name} was learned",
+          "learningTransactionDescription":        "Has learned {itemType} '{itemName}'.",
+          "newThread":                             "A new thread has been woven for {threadTarget}.",
           "spendingTransactionDescription":        "Increased from {PreviousLevel} to {newlevel}"
         }
       },
@@ -304,7 +304,7 @@
         }
       },
       "Tooltips": {
-        "brokenFavoriteReference":                 "TODO: Add translation",
+        "brokenFavoriteReference":                 "This favorite points to a macro that no longer exists. You can delete this favorite.",
         "carried":                                 "Carried",
         "damagePhysical":                          "Physical",
         "damageSubdual":                           "Stun",
@@ -314,12 +314,12 @@
         "karmaRitualTooltip":                      "Perform Karma Ritual",
         "mainHand":                                "Main Hand",
         "offHand":                                 "Off Hand",
-        "owned":                                   "TODO: Add translation",
-        "parentTalent":                            "TODO: Add translation",
-        "reattuneDifficulty":                      "TODO: Add translation",
-        "recoveryRestTooltip":                     "TODO: Add translation",
-        "removeFromFavorites":                     "TODO: Add translation",
-        "standardEffect":                          "TODO: Add translation",
+        "owned":                                   "Owned",
+        "parentTalent":                            "Rank of the Talent",
+        "reattuneDifficulty":                      "Reattunement Difficulty",
+        "recoveryRestTooltip":                     "Recovery",
+        "removeFromFavorites":                     "Remove from Favorites",
+        "standardEffect":                          "Standard Effect",
         "tail":                                    "Tail",
         "twoHanded":                               "Two Handed",
         "weavingDifficulty":                       "Weaving Difficulty"
@@ -369,25 +369,25 @@
       },
       "Flavor": {
         "ItemHistoryMaxPossibleTypes": {
-          "maxRank":                               "TODO: Add translation",
-          "numberOfUnknownLevels":                 "TODO: Add translation",
-          "threadItemLevel":                       "TODO: Add translation"
+          "maxRank":                               "Maximum Rank",
+          "numberOfUnknownLevels":                 "Number of Unknown Key Knowledges",
+          "threadItemLevel":                       "Number of Thread Ranks"
         },
         "aHorror":                                 "A horror",
-        "abilityRollOptions":                      "TODO: Add translation",
+        "abilityRollOptions":                      "{sourceActor} rolls {ability} with Step {step}",
         "actorTookDamage":                         "{dealtTo} has taken damage.",
-        "arbitraryRollOptions":                    "TODO: Add translation",
+        "arbitraryRollOptions":                    "Roll",
         "attuningRollOptions":                     "{sourceActor} attempts \"{attuningItem}\" using {attuningAbility}",
-        "damageAfterRecovery":                     "TODO: Add translation",
+        "damageAfterRecovery":                     "Standard: {initialStandardDamage} → {newStandardDamage}<br>Stun: {initialStunDamage} → {newStunDamage}",
         "damageRollOptions":                       "Damage from {damageSource}:",
-        "edRollOptions":                           "TODO: Add translation",
-        "fullRestRecovery":                        "TODO: Add translation",
+        "edRollOptions":                           "Earthdawn Roll",
+        "fullRestRecovery":                        "Recovery tests refilled",
         "horrorMarkRollOptions":                   "{horror} attempts to place a horror mark on {caster}.",
         "ignoresArmor":                            "Ignores armor",
         "invalidDiceFormula":                      "Invalid die formula",
-        "itemHistory":                             "TODO: Add translation",
+        "itemHistory":                             "You uncover<br>{numKeyKnowledgeObtained} of {numMaxPossible}<br>({typeMaxPossible})<br>possible Key Knowledges.",
         "jumpUp":                                  "{sourceActor} attempts to jump up with step {step}.",
-        "jumpUpRollDefault":                       "TODO: Add translation",
+        "jumpUpRollDefault":                       "Dexterity",
         "knockdownTest":                           "{sourceActor} makes a knockdown test with step {step}.",
         "provideDiceFormula":                      "Please provide a die formula (e.g., 1d6, 2d10+3)",
         "rollAbility":                             "{sourceActor} rolls {ability} ({step})",
@@ -398,27 +398,27 @@
         "rollRecovery":                            "{sourceActor} uses a recovery test for {recoveryMode}",
         "rollSubstitute":                          "{actor} rolls {attribute} ({step}) to replace {substitute}",
         "rollUnarmedDamage":                       "{sourceActor} rolls unarmed damage",
-        "spellEffectRollOptions":                  "TODO: Add translation",
+        "spellEffectRollOptions":                  "{sourceActor} casts {spell}",
         "spellNoSpecialDescription":               "Spell has no special effects",
         "spellcastingRollOptions":                 "{sourceActor} casts<br>{spell} with<br>{spellcastingAbility}",
         "standardDiceRoll":                        "Standard roll",
-        "stunDamageAfterRecovery":                 "TODO: Add translation",
+        "stunDamageAfterRecovery":                 "Stun: {initialStunDamage} → {newStunDamage}",
         "takeDamage":                              "Take damage",
         "takeStrainDamage":                        "{actor} takes {amount} strain from {ability}.",
         "threadWeavingRollOptions":                "{sourceActor} weaves threads for {spell}",
         "undoDamage":                              "Revert damage",
-        "warpingAstralSpaceType":                  "TODO: Add translation",
+        "warpingAstralSpaceType":                  "Astral Space Category: {astralSpaceType}",
         "warpingRollOptions":                      "Distortion Check<br/>{sourceActor} casts raw magic in a region with pollution: {pollution}",
-        "woundsAfterRecovery":                     "TODO: Add translation",
-        "woundsIgnoredDuringRecovery":             "TODO: Add translation"
+        "woundsAfterRecovery":                     "Wounds: {initialWounds} → {newWounds}",
+        "woundsIgnoredDuringRecovery":             "Wounds ignored"
       },
       "Header": {
         "arbitraryTest":                           "Arbitrary Test",
         "attackManeuvers":                         "Maneuvers",
         "attackReactions":                         "Reactions",
         "attackTargets":                           "Targets",
-        "initiativeIncreaseAbilities":             "TODO: Add translation",
-        "initiativeReplacementEffect":             "TODO: Add translation"
+        "initiativeIncreaseAbilities":             "Increasing Abilities",
+        "initiativeReplacementEffect":             "Replacing Ability"
       }
     },
     "Conditions": {
@@ -655,7 +655,7 @@
         "knockdown":                               "Knockdown",
         "reaction":                                "Reaction",
         "recovery":                                "Recovery",
-        "spellEffect":                             "TODO: Add translation",
+        "spellEffect":                             "Spell Effect",
         "spellcasting":                            "Spellcasting",
         "threadWeaving":                           "Thread Weaving",
         "warping":                                 "Warping"
@@ -686,7 +686,7 @@
         "special":                                 "Special"
       },
       "SpellEnhancements": {
-        "activeEffect":                            "TODO: Add translation",
+        "activeEffect":                            "Active Effect",
         "area":                                    "Area",
         "duration":                                "Duration",
         "effect":                                  "Effect",
@@ -723,7 +723,7 @@
         "seduction":                               "Seduction",
         "sloughBlame":                             "Slough Blame",
         "swimming":                                "Swimming",
-        "tailAttack":                              "TODO: Add translation",
+        "tailAttack":                              "Tail Attack",
         "throwingWeapons":                         "Throwing Weapons",
         "tracking":                                "Tracking",
         "unarmedCombat":                           "Unarmed Combat",
@@ -738,9 +738,9 @@
         "socialAbbreviation":                      "SD"
       },
       "ThreadTypes": {
-        "groupPattern":                            "TODO: Add translation",
-        "patternItem":                             "TODO: Add translation",
-        "threadItem":                              "TODO: Add translation"
+        "groupPattern":                            "Group Pattern",
+        "patternItem":                             "Pattern Item",
+        "threadItem":                              "Thread Item"
       },
       "Tier": {
         "adherent":                                "Adherent",
@@ -787,7 +787,7 @@
       }
     },
     "ContextMenu": {
-      "favoritable":                               "TODO: Add translation"
+      "favoritable":                               "Add to Favorites"
     },
     "Controls": {
       "addSpell":                                  "Add Spell",
@@ -1414,8 +1414,8 @@
               },
               "damage": {
                 "combatType": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Type of combat/weapon for which damage can be rolled",
+                  "label":                         "Combat Type"
                 },
                 "hint":                            "Damage related to this roll",
                 "label":                           "Damage"
@@ -1701,8 +1701,8 @@
               "label":                             "Restrictions"
             },
             "sourceItem": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "The ED-ID of the ability this Knack is based on",
+              "label":                             "ED-ID Base Ability"
             }
           }
         },
@@ -1725,52 +1725,52 @@
         "Mask": {
           "FIELDS": {
             "actions": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus to Actions",
+              "label":                             "Actions"
             },
             "attackStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus to Attack Step",
+              "label":                             "Attack Step"
             },
             "challenge": {
               "rate": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Adjustment to Challenge Rating",
+                "label":                           "Challenge Rating"
               }
             },
             "characteristics": {
               "health": {
                 "death": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Bonus to Death Threshold",
+                  "label":                         "Death Threshold"
                 },
                 "unconscious": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Bonus to Unconsciousness Threshold",
+                  "label":                         "Unconsciousness Threshold"
                 },
                 "woundThreshold": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Bonus to Wound Threshold",
+                  "label":                         "Wound Threshold"
                 }
               },
               "recoveryTestsResource": {
                 "value": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Additional Recovery Tests",
+                  "label":                         "Recovery Tests"
                 }
               }
             },
             "damageStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus to Damage Step",
+              "label":                             "Damage Step"
             },
             "initiative": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus to Initiative",
+              "label":                             "Initiative"
             },
             "knockDownStep": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus to Knockdown Test",
+              "label":                             "Knockdown Step"
             },
             "movement": {
               "burrow": {
@@ -1797,8 +1797,8 @@
             "powers": {
               "element": {
                 "step": {
-                  "hint":                          "TODO: Add translation",
-                  "label":                         "TODO: Add translation"
+                  "hint":                          "Power Step",
+                  "label":                         "Step"
                 }
               }
             }
@@ -2142,16 +2142,16 @@
               "details": {
                 "damage": {
                   "addCircle": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "Adds the actor's Discipline Circle to the Damage Step",
+                    "label":                       "Add Circle"
                   },
                   "armorType": {
                     "hint":                        "Armor type that protects against the spell's damage",
                     "label":                       "Armor Type"
                   },
                   "attribute": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "Attribute on which the Damage Step is based",
+                    "label":                       "Attribute"
                   },
                   "damageType": {
                     "hint":                        "Type of damage caused by the spell",
@@ -2166,18 +2166,18 @@
                 },
                 "effect": {
                   "addCircle": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "Adds the actor's Discipline Circle to the Effect Test",
+                    "label":                       "Add Circle"
                   },
                   "attribute": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "Attribute on which the Effect Step is based",
+                    "label":                       "Attribute"
                   },
                   "hint":                          "The spell causes an Active Effect",
                   "label":                         "Active Effect",
                   "stepModifier": {
-                    "hint":                        "TODO: Add translation",
-                    "label":                       "TODO: Add translation"
+                    "hint":                        "Modifier added to the Willpower Step",
+                    "label":                       "Effect Step Modifier (WIL)"
                   }
                 },
                 "hint":                            "Details of the spell effect",
@@ -2208,8 +2208,8 @@
             },
             "element": {
               "subtype": {
-                "hint":                            "TODO: Add translation",
-                "label":                           "TODO: Add translation"
+                "hint":                            "Elemental subtype of the spell",
+                "label":                           "Elemental Subtype"
               },
               "type": {
                 "hint":                            "Element type of the spell",
@@ -2217,8 +2217,8 @@
               }
             },
             "extraSuccess": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Bonus effects that can be achieved through extra successes",
+              "label":                             "Extra Successes"
             },
             "extraThreads": {
               "hint":                              "Bonus effects from extra threads",
@@ -2273,16 +2273,16 @@
         "SpellKnack": {
           "FIELDS": {
             "bloodMagic": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Is the Strain considered Blood Magic damage?",
+              "label":                             "Blood Magic"
             },
             "linkable": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Can this Knack be cast linked with other Knacks?",
+              "label":                             "Linkable"
             },
             "strain": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Strain damage caused by using this Knack",
+              "label":                             "Strain"
             }
           }
         },
@@ -2803,12 +2803,12 @@
         "Thread": {
           "FIELDS": {
             "level": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "Rank at which the Thread is woven",
+              "label":                             "Woven Rank"
             },
             "wovenToUuid": {
-              "hint":                              "TODO: Add translation",
-              "label":                             "TODO: Add translation"
+              "hint":                              "UUID of the object the Thread is woven to",
+              "label":                             "Woven To"
             }
           }
         },
@@ -2919,19 +2919,19 @@
         "TruePattern": {
           "FIELDS": {
             "attachedThreads": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Threads currently woven to this True Pattern",
               "label":                             "Attached Threads"
             },
             "enchantmentPattern": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Pattern used to create enchantments",
               "label":                             "Enchantment Pattern"
             },
             "hasDeeds": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Does this True Pattern require Deeds to weave threads?",
               "label":                             "Has Deeds"
             },
             "knownToPlayer": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Are the details of this True Pattern visible to non-GMs?",
               "label":                             "Known to Player"
             },
             "maxThreads": {
@@ -2943,7 +2943,7 @@
               "label":                             "Mystical Defense"
             },
             "threadItemLevels": {
-              "hint":                              "TODO: Add translation",
+              "hint":                              "Thread Ranks belonging to Thread Items for this True Pattern",
               "label":                             "Thread Item Level"
             },
             "tier": {
@@ -2951,7 +2951,7 @@
               "label":                             "Tier"
             }
           },
-          "thisTruePatternNeedsHasDeeds":          "TODO: Add translation"
+          "thisTruePatternNeedsHasDeeds":          "This True Pattern requires Deeds in order to weave threads."
         }
       },
       "placeholderBlankSelectOption":              "---"
@@ -3017,9 +3017,9 @@
           "classRanksLeft":                        "You must assign all ranks in your discipline/questor to continue.",
           "maxLanguagesToRead":                    "You can read/write at most as many languages as your Read/Write skill rank",
           "maxLanguagesToSpeak":                   "You can speak at most as many languages as your Speak Language skill rank",
-          "minLanguages":                          "TODO: Add translation",
-          "minLanguagesToRead":                    "TODO: Add translation",
-          "minLanguagesToSpeak":                   "TODO: Add translation",
+          "minLanguages":                          "You still have languages available that you can select.",
+          "minLanguagesToRead":                    "You have not yet selected all languages you can read/write.",
+          "minLanguagesToSpeak":                   "You have not yet selected all languages you can speak.",
           "noClass":                               "You must choose a Discipline or Questor to continue.",
           "noMoreAttributeChange":                 "You cannot increase this attribute further. A maximum of -2 points may be reduced and +8 points may be added.",
           "noMoreSkillRanks":                      "No more skill ranks available. The maximum is 3.",
@@ -3060,19 +3060,19 @@
           "addSpell":                              "Add Spell",
           "decreaseAttributeValue":                "Decrease Attribute Value",
           "decreaseRankValue":                     "Decrease Rank",
-          "finish":                                "TODO: Add translation",
+          "finish":                                "Looks good, let's continue! Create the character",
           "increaseAttributeValue":                "Increase Attribute Value",
           "increaseRankValue":                     "Increase Rank",
           "removeSpell":                           "Remove Spell"
         },
         "Validation": {
           "Categories": {
-            "attributes":                          "TODO: Add translation",
+            "attributes":                          "Attributes",
             "class":                               "TODO: Add translation",
-            "classRanks":                          "TODO: Add translation",
-            "languages":                           "TODO: Add translation",
-            "namegiver":                           "TODO: Add translation",
-            "skills":                              "TODO: Add translation"
+            "classRanks":                          "Discipline/Questor Ranks",
+            "languages":                           "Languages",
+            "namegiver":                           "Namegiver",
+            "skills":                              "Skill Ranks"
           }
         },
         "abilities":                               "Choose Your Abilities",
@@ -3089,7 +3089,7 @@
         "chooseDevotionRules":                     "Choose an optional Devotion and raise it to Rank 1.<br>The Questor Devotion is added at Rank 1 automatically.",
         "chooseEquipmentRules":                    "Each character starts with 100 silver and the following standard gear:<br><ul><li>Adventurer's Kit (backpack, bedroll, flint & steel, torch, waterskin, large sack)</li><li>Artisan Tool (matching the character's Artisan skill; requires GM approval)</li><li>Dagger or Knife (or a similar size 1 or 2 weapon)</li><li>Grimoire (only for spellcasters)</li><li>Travel Clothing (boots, belt, shirt, robe or pants, cloak)</li><li>Rations (1 week)</li></ul>",
         "chooseLanguagesRules":                    "Select the languages the character can speak and read/write.<br>Maximum is equal to ranks in Read/Write and Speak Language.",
-        "chooseName":                              "TODO: Add translation",
+        "chooseName":                              "Choose a name for your character",
         "chooseNamegiver":                         "Choose a Namegiver",
         "chooseSkills":                            "Choose Skills",
         "chooseSkillsRules":                       "Select from the lists below.<br>At least one Artisan skill and at least two Knowledge skill ranks must be chosen.",
@@ -3104,12 +3104,12 @@
         "minimumLanguageSkillPoints":              "Minimum 1 rank in Read/Write and 2 ranks in Speak Language required. Additional ranks optional.",
         "mysticArmor":                             "Mystic Armor",
         "mysticDefense":                           "Mystic Defense",
-        "namegiverImageAlt":                       "TODO: Add translation",
+        "namegiverImageAlt":                       "Image of the Namegiver",
         "noArtisanSkillsAvailable":                "No Artisan Skills Available",
         "noGeneralSkillsAvailable":                "No General Skills Available",
         "noKnowledgeSkillsAvailable":              "No Knowledge Skills Available",
         "noLanguageSkillsAvailable":               "No Language Skills Available",
-        "noNamegiverSelected":                     "TODO: Add translation",
+        "noNamegiverSelected":                     "No Namegiver selected. Please choose one to continue.",
         "optionalDevotions":                       "Optional Devotions",
         "optionalTalents":                         "Optional Talents",
         "physicalArmor":                           "Physical Armor",
@@ -3128,10 +3128,10 @@
         "woundThreshold":                          "Wound Threshold"
       },
       "ChooseAdderSubstitute": {
-        "adderHint":                               "TODO: Add translation",
-        "adderLabel":                              "TODO: Add translation",
-        "replacementHint":                         "TODO: Add translation",
-        "replacementLabel":                        "TODO: Add translation"
+        "adderHint":                               "Abilities that increase the Step ({rollType})",
+        "adderLabel":                              "Increasing Abilities",
+        "replacementHint":                         "Abilities that replace the Step ({rollType})",
+        "replacementLabel":                        "Replacing Abilities"
       },
       "Configs": {
         "Constraints": {
@@ -3144,13 +3144,13 @@
         }
       },
       "DeleteFavorite": {
-        "alsoDeletesMacro":                        "TODO: Add translation",
-        "favorite":                                "TODO: Add translation"
+        "alsoDeletesMacro":                        "Deleting the favorite also deletes the associated macro.",
+        "favorite":                                "Favorite"
       },
       "DeletePower": {
-        "confirmRemove":                           "TODO: Add translation",
-        "maneuver":                                "TODO: Add translation",
-        "power":                                   "TODO: Add translation"
+        "confirmRemove":                           "Are you sure you want to remove {type}?",
+        "maneuver":                                "this maneuver",
+        "power":                                   "this power"
       },
       "Header": {
         "activeUser":                              "Active User Characters",
@@ -3192,40 +3192,40 @@
         },
         "LpHistory": {
           "addEarning":                            "Add Legend Points",
-          "attribute":                             "TODO: Add translation",
-          "devotion":                              "TODO: Add translation",
-          "earnings":                              "TODO: Add translation",
-          "knackAbility":                          "TODO: Add translation",
-          "knackKarma":                            "TODO: Add translation",
-          "knackManeuver":                         "TODO: Add translation",
-          "knackSpell":                            "TODO: Add translation",
-          "skill":                                 "TODO: Add translation",
-          "spell":                                 "TODO: Add translation",
-          "spendings":                             "TODO: Add translation",
-          "talent":                                "TODO: Add translation",
-          "thread":                                "TODO: Add translation"
+          "attribute":                             "Attribute",
+          "devotion":                              "Devotion Powers",
+          "earnings":                              "Earnings",
+          "knackAbility":                          "Ability Knacks",
+          "knackKarma":                            "Karma Knacks",
+          "knackManeuver":                         "Maneuver Knacks",
+          "knackSpell":                            "Spell Knacks",
+          "skill":                                 "Skill",
+          "spell":                                 "Spell",
+          "spendings":                             "Spendings",
+          "talent":                                "Talents",
+          "thread":                                "Threads"
         },
         "Rules": {
           "attributeIncreaseShortRequirements":    "<ul>\n<li>Only one attribute can be increased at a time.</li>\n<li>The character must train for {learningTime} days.</li>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>Attribute training costs money: {trainingCost} silver per day.</li>\n<li>The character must have enough Legend Points.</li>\n<li>The character must wait {trainingsTimeAttribute} weeks before training another attribute.</li>\n</ul>",
           "devotionIncreaseShortRequirements":     "<ul>\n<li>The Questor may only raise one Devotion per day.</li>\n<li>The new rank may not exceed the Questor Devotion rank.</li>\n</ul>",
           "disciplineIncreaseShortRequirements":   "<ul>\n<li>Study with an adept of the discipline (Circle 5 or higher).</li>\n<li>Base silver cost equals the sum of all Circles achieved in other disciplines × 100.</li>\n<li>Learn all Circle 1 talents not yet known.</li>\n<li>Sufficient Legend Points must be available to learn all Circle 1 talents at once.</li>\n<li>The lowest Circle among all disciplines determines the cost for Rank 1 talents of the new discipline.</li>\n<li>Optional Circle 1 talents can be learned later as usual.</li>\n<li>Each talent requires 40 hours of training within one week.</li>\n</ul>",
-          "disciplineLearnShortRequirements":      "TODO: Add translation",
+          "disciplineLearnShortRequirements":      "<ul>\n<li>Study with an Adept of the desired Discipline (Fifth Circle or higher)</li>\n<li>The base cost in silver equals the sum of all Circles the student has in other Disciplines, multiplied by 100</li>\n<li>Learn all First Circle talents that are not yet known.</li>\n<li>Sufficient Legend Points must be available to learn all First Circle talents at once</li>\n<li>The lowest Circle among all previous Disciplines determines the cost for Rank 1 of the talents of the new Discipline</li>\n<li>Talent Options of the First Circle may be learned later as usual.</li>\n<li>The student must complete 40 hours of training within a week for each talent</li>\n</ul>\n",
           "pathIncreaseShortRequirements":         "To increase a rank:<ul>\n<li>Pass the corresponding path test.</li>\n<li>Obtain permission from higher-ranked members of the path.</li>\n<li>Perform the rank advancement ritual.</li>\n</ul>",
           "pathLearnShortRequirements":            "<ul>\n<li>The character must have passed the path test.</li>\n<li>The character must perform the advancement ritual with approval from a higher-ranked member.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n</ul>",
           "questorClassIncreaseShortRequirements": "<ul>\n<li>Communicate with the Passion using Questor Devotion.</li>\n<li>No test required.</li>\n<li>Only one Devotion may be gained or raised per day, per Devotion.</li>\n<li>Legend Point cost and time are the only requirements for increasing a Questor Devotion within the same category.</li>\n<li>Changing to the next category (e.g., from Disciple to Follower) requires completing a quest for the Passion.</li>\n<li>A Devotion from an earlier category may be chosen.</li>\n<li>Legend Point cost is determined by when the Devotion becomes available, even if learned later.</li>\n</ul>",
           "skillIncreaseShortRequirements":        "<ul>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>The character must train for a number of weeks equal to the new skill rank.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>Training costs usually 10 silver × the new rank per week.</li>\n<li>The previous increase must be at least {trainingTime} weeks ago.</li>\n</ul>",
           "talentIncreaseShortRequirements":       "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>",
-          "threadItemIncreaseShortRequirements":   "TODO: Add translation"
+          "threadItemIncreaseShortRequirements":   "<ul>\n<li>The required Key Knowledge must be known</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n<li>The character has sufficient Legend Points for the next Rank.</li>\n</ul>\n"
         },
         "Validation": {
-          "availableLearnImprovedSpellSlots":      "TODO: Add translation",
+          "availableLearnImprovedSpellSlots":      "Free Ranks (Knack Limit)",
           "availableLp":                           "Are enough Legend Points available?",
           "availableMoney":                        "Is enough silver available?",
           "enoughTalentsOfTier":                   "Not all {required} of {current} talents have reached the minimum rank {nextLevel}",
           "enoughTalentsOnMinRank":                "All {required} talents are present",
           "hasDamage":                             "Has Damage",
-          "hasNoDamage":                           "TODO: Add translation",
-          "hasNoWounds":                           "TODO: Add translation",
+          "hasNoDamage":                           "Has no damage",
+          "hasNoWounds":                           "Has no wounds",
           "hasRequiredJourneymanTalents":          "Has the required Journeyman Talents",
           "hasRequiredMasterTalents":              "Has the required Master Talents",
           "hasRequiredNoviceTalents":              "Has the required Novice Talents",
@@ -3239,13 +3239,13 @@
           "notEnoughTalentsOnMinRank":             "Not enough talents at minimum rank {nextLevel}",
           "pathTalent":                            "Path Talent",
           "requiredPathRank":                      "Required Path Rank",
-          "sourceSpellName":                       "TODO: Add translation",
+          "sourceSpellName":                       "Source Spell Name",
           "sourceTalentName":                      "Source Talent Name",
           "sourceTalentRank":                      "Source Talent Rank",
           "talentFromCurrentCircleOnNewLevel":     "Talent from the {circle} Circle at the new rank",
           "talentOptionLp":                        "Legend Points for Talent Option",
           "talentsRequirementFailed":              "Talent requirement failed. The following talents must reach at least rank {requiredLevel}:\n{unfulfilledTalents}",
-          "talentsRequirementFulfilled":           "TODO: Add translation"
+          "talentsRequirementFulfilled":           "Training requirements for the Circle increase are fulfilled."
         },
         "configuration":                           "Configuration",
         "increasePathTalentPrompt":                "Choose a Path Talent to increase",
@@ -3265,10 +3265,10 @@
       "RollPrompt": {
         "Title": {
           "attuneGrimoire":                        "Patterncraft to Attune Grimoire",
-          "damage":                                "TODO: Add translation",
-          "itemHistory":                           "TODO: Add translation",
-          "jumpUp":                                "TODO: Add translation",
-          "weaveThread":                           "TODO: Add translation"
+          "damage":                                "Roll Damage ({damageSourceType})",
+          "itemHistory":                           "Roll Item History",
+          "jumpUp":                                "Roll Jump Up",
+          "weaveThread":                           "Weave Thread"
         },
         "devotion":                                "Devotion",
         "devotionStep":                            "Devotion Step",
@@ -3294,27 +3294,27 @@
         "attributeIncrease":                       "Increase Attribute",
         "attuneMatrix":                            "Reattune Matrix",
         "buttonSelect":                            "Select an Option",
-        "cannotWeaveMoreThreadsConfirm":           "TODO: Add translation",
+        "cannotWeaveMoreThreadsConfirm":           "No More Threads Available",
         "characterGeneration":                     "Character Generation",
-        "chooseActor":                             "TODO: Add translation",
-        "chooseAdderSubstitute":                   "TODO: Add translation",
+        "chooseActor":                             "Choose an Actor",
+        "chooseAdderSubstitute":                   "Choose Increasing/Replacing Abilities",
         "chooseDiscipline":                        "Choose Discipline",
         "chooseTier":                              "Choose Circle",
         "classAdvancement":                        "Class Advancement",
-        "confirmDelete":                           "TODO: Add translation",
+        "confirmDelete":                           "Confirm Delete",
         "drawWeapon":                              "Draw Weapon",
-        "failedRollConfirm":                       "TODO: Add translation",
-        "failedWeavingRollConfirm":                "TODO: Add translation",
+        "failedRollConfirm":                       "Roll Failed",
+        "failedWeavingRollConfirm":                "Thread Weaving Test Failed",
         "halfMagicDiscipline":                     "Half-Magic Discipline Selection",
         "jumpUp":                                  "Jump Up",
         "knockdown":                               "Knock Down",
         "learnAbility":                            "Learn Ability",
         "learnSpell":                              "Learn Spell",
-        "lpHistory":                               "TODO: Add translation",
+        "lpHistory":                               "Legend Points History",
         "lpIncrease":                              "Increase Legend Points",
         "lpLearnKnack":                            "Learn Knack",
-        "missingItemHistoryAbilityConfirm":        "TODO: Add translation",
-        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
+        "missingItemHistoryAbilityConfirm":        "Missing Item History Ability",
+        "missingThreadWeavingAbilityConfirm":      "Missing Thread Weaving Ability",
         "recovery":                                "Recovery",
         "rollPrompt":                              "Roll Dialog",
         "selectAstralSpacePollution":              "Select Astral Pollution",
@@ -3328,9 +3328,9 @@
         "substitute":                              "Substitute Ability",
         "takeDamage":                              "Take Damage",
         "talentCategory":                          "Talent Category",
-        "threadRankExceedsWeavingAbilityConfirm":  "TODO: Add translation",
-        "unknownPatternKeyKnowledgeConfirm":       "TODO: Add translation",
-        "useWillforce":                            "TODO: Add translation",
+        "threadRankExceedsWeavingAbilityConfirm":  "Thread Rank Exceeds Thread Weaving Ability",
+        "unknownPatternKeyKnowledgeConfirm":       "Unknown Key Knowledge",
+        "useWillforce":                            "Use Willforce",
         "versatilityLimit":                        "Versatility Limit Reached"
       },
       "ToolTips": {
@@ -3338,23 +3338,23 @@
       },
       "armor":                                     "Armor",
       "armorType":                                 "Armor Type",
-      "cannotWeaveMoreThreadsConfirm":             "TODO: Add translation",
+      "cannotWeaveMoreThreadsConfirm":             "<p>No more threads can be woven to this True Pattern. The maximum has been reached.</p><p>Do you still want to continue?</p>",
       "damage":                                    "Damage",
       "damageStandard":                            "Deadly Damage",
       "damageStun":                                "Stun Damage",
       "damageType":                                "Damage Type",
       "doYouWantToAttuneGrimoireBeforeCasting":    "Do you want to attune the Grimoire before casting?",
-      "doYouWantToUseWillforce":                   "TODO: Add translation",
-      "failedRollOfTypeConfirm":                   "TODO: Add translation",
-      "failedWeavingRollConfirm":                  "TODO: Add translation",
+      "doYouWantToUseWillforce":                   "Do you want to use {contentLinkWillforce}?",
+      "failedRollOfTypeConfirm":                   "<p>The {rollType} test has failed.</p><p>Do you still want to continue?</p>",
+      "failedWeavingRollConfirm":                  "<p>The Thread Weaving test has failed.</p><p>Do you still want to continue?</p>",
       "ignoreArmor":                               "Ignore Armor",
       "knockdownChoice":                           "Choose the Ability to resist Knock Down",
-      "missingItemHistoryAbilityConfirm":          "TODO: Add translation",
-      "missingThreadWeavingAbilityConfirm":        "TODO: Add translation",
+      "missingItemHistoryAbilityConfirm":          "<p>You do not possess the required Item History ability.</p><p>Do you still want to continue?</p>",
+      "missingThreadWeavingAbilityConfirm":        "<p>You do not possess the required Thread Weaving ability to weave this thread.</p><p>Do you still want to continue?</p>",
       "mystical":                                  "Mystical Damage",
       "physical":                                  "Physical Damage",
-      "threadRankExceedsWeavingAbilityConfirm":    "TODO: Add translation",
-      "unknownPatternKeyKnowledgeConfirm":         "TODO: Add translation",
+      "threadRankExceedsWeavingAbilityConfirm":    "<p>The thread rank exceeds your Thread Weaving ability.</p><p>Do you still want to continue?</p>",
+      "unknownPatternKeyKnowledgeConfirm":         "<p>You do not possess the required Key Knowledge to learn this spell.</p><p>Do you still want to continue?</p>",
       "versatilityTalentLimit":                    "The maximum number of talents that can be learned through Versatility has already been reached. The normal maximum equals the Versatility rank.\nShould the selected talent still be learned?"
     },
     "Document": {
@@ -3376,9 +3376,9 @@
       "actorSheetEdVehicle":                       "Vehicle Sheet",
       "itemSheetEd":                               "Item Sheet",
       "itemSheetEdClass":                          "Discipline Sheet",
-      "itemSheetEdMask":                           "TODO: Add translation",
+      "itemSheetEdMask":                           "Mask Sheet",
       "itemSheetEdPhysical":                       "Equipment Sheet",
-      "itemSheetEdThread":                         "TODO: Add translation",
+      "itemSheetEdThread":                         "Thread Sheet",
       "journalSheetEd":                            "Journal Sheet",
       "sceneConfigEd":                             "Scene Configuration"
     },
@@ -3404,29 +3404,29 @@
       },
       "Header": {
         "actionType":                              "Action Type",
-        "armorValues":                             "TODO: Add translation",
-        "attributes":                              "TODO: Add translation",
-        "challengingRate":                         "TODO: Add translation",
-        "combatValues":                            "TODO: Add translation",
+        "armorValues":                             "Armor Values",
+        "attributes":                              "Attributes",
+        "challengingRate":                         "Challenge Rating",
+        "combatValues":                            "Combat Values",
         "damageSettings":                          "Damage Settings",
-        "defenseValues":                           "TODO: Add translation",
+        "defenseValues":                           "Defense Values",
         "description":                             "Description",
         "details":                                 "Details",
         "effects":                                 "Effects",
         "elementSettings":                         "Element Settings",
         "general":                                 "General",
-        "grimoireConfiguration":                   "TODO: Add translation",
-        "healthValues":                            "TODO: Add translation",
-        "knack":                                   "TODO: Add translation",
-        "maneuver":                                "TODO: Add translation",
-        "matrixConfiguration":                     "TODO: Add translation",
-        "movementTypes":                           "TODO: Add translation",
+        "grimoireConfiguration":                   "Grimoire Configuration",
+        "healthValues":                            "Health Values",
+        "knack":                                   "Knack",
+        "maneuver":                                "Maneuver",
+        "matrixConfiguration":                     "Matrix Configuration",
+        "movementTypes":                           "Movement Types",
         "navigator":                               "Navigator",
-        "powers":                                  "TODO: Add translation",
-        "spell":                                   "TODO: Add translation",
-        "spellDamageStep":                         "TODO: Add translation",
-        "spellEffect":                             "TODO: Add translation",
-        "spellEffectStep":                         "TODO: Add translation",
+        "powers":                                  "Powers",
+        "spell":                                   "Spell",
+        "spellDamageStep":                         "Damage Step",
+        "spellEffect":                             "Effect",
+        "spellEffectStep":                         "Effect Step",
         "spellEnhancement":                        "Spell Enhancement",
         "summary":                                 "Summary",
         "talentKnacks":                            "Knacks",
@@ -3496,9 +3496,9 @@
       "windling":                                  "Windling"
     },
     "Migrations": {
-      "setSpellDuration":                          "TODO: Add translation",
-      "setSpellEffect":                            "TODO: Add translation",
-      "setSpellRange":                             "TODO: Add translation"
+      "setSpellDuration":                          "|| Please revise the spell duration for this spell.",
+      "setSpellEffect":                            "|| Please revise the spell effect for this spell.",
+      "setSpellRange":                             "|| Please revise the spell range for this spell."
     },
     "Notifications": {
       "Error": {
@@ -3515,9 +3515,9 @@
         "identifierError":                         "The identifier is invalid. Please check the identifier.",
         "invalidElementSubtype":                   "Invalid element subtype. Please check the subtype.",
         "invalidRollType":                         "Invalid or missing roll type. Please check the item's details tab.",
-        "maskAddNotAPower":                        "TODO: Add translation",
+        "maskAddNotAPower":                        "The item is neither a power nor a maneuver.",
         "matrixCastingSpellNotAttuned":            "The spell is not attuned to the matrix.",
-        "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
+        "missingThreadWeavingAbilityConfirm":      "You do not possess the required Thread Weaving ability to weave this thread.",
         "noCastingMethodSelected":                 "No casting method selected.",
         "noGrimoiresAvailableToAttune":            "No Grimoires available to attune.",
         "noSpellsAvailableToAttune":               "The Grimoire has no spells available to attune.",
@@ -3527,9 +3527,9 @@
         "substituteAttributeNotFound":             "No attribute found to substitute."
       },
       "Info": {
-        "alreadyKnockedDown":                      "TODO: Add translation",
+        "alreadyKnockedDown":                      "You are already knocked down.",
         "damageStepRequiresAttackOrDamage":        "Power test type set to 'Attack'.\nIf a power has a damage step, the test type must be set to 'Attack' or 'Damage'.",
-        "dislodgeSpellsOnDeath":                   "TODO: Add translation",
+        "dislodgeSpellsOnDeath":                   "All spells are lost upon death.",
         "noDamageNoRecoveryNeeded":                "You are unharmed. No recovery test needed.",
         "noFullRestRecoveryNeeded":                "You are fine. No wounds or damage. No recovery test needed after rest.",
         "noWeaponAvailable":                       "No weapon available to equip.",
@@ -3543,24 +3543,24 @@
         "addLpTransactionProblems":                "Legend Points could not be added.",
         "attackNoWeaponFound":                     "No weapon found to perform the attack.",
         "cannotLearn":                             "An item of type \"{itemType}\" cannot be learned.",
-        "cannotLearnSpellKnack":                   "TODO: Add translation",
+        "cannotLearnSpellKnack":                   "The Spell Knack cannot be learned. The ED-ID for the spell it refers to is missing.",
         "cantCastNoSpellInMatrix":                 "The matrix has no spell selected to cast.",
-        "cantHaveEffectFromSameSource":            "TODO: Add translation",
+        "cantHaveEffectFromSameSource":            "This effect already exists. You cannot have more than one effect from the same source.",
         "cantUpdateItemWeight":                    "Item weight could not be updated.",
         "castSpellNoActor":                        "No actor found to cast the spell.",
-        "chooseActorPromptNoActorAvailable":       "TODO: Add translation",
+        "chooseActorPromptNoActorAvailable":       "No actors are available for selection.",
         "classIncreaseProblems":                   "Circle or rank could not be updated.",
         "couldNotScrollToSourceMessage":           "Could not find the source message.",
         "firstClassViaCharGen":                    "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
         "grimoireAddAlreadyInGrimoire":            "The spell is already in the Grimoire.",
         "invalidRecoveryMode":                     "Invalid recovery mode. Please check settings.",
-        "learningKnackNoSourceItem":               "TODO: Add translation",
+        "learningKnackNoSourceItem":               "The source item for the knack could not be found (ED-ID: {sourceItemEdid}).",
         "livingArmorOnly":                         "This namegiver can only wear living armor.",
-        "maskAddAlreadyInMask":                    "TODO: Add translation",
+        "maskAddAlreadyInMask":                    "The power/maneuver is already contained in the mask.",
         "matrixBrokenCannotWeave":                 "The matrix is broken and cannot be used.",
         "needTargetsToApplyFromChat":              "Targets must be selected in order to apply the effect from the chat.",
         "noActiveSpellSelected":                   "The matrix has no active spell selected.",
-        "noActorSelected":                         "TODO: Add translation",
+        "noActorSelected":                         "No actor was selected.",
         "noLp":                                    "No Legend Points specified!",
         "noMoreClassLevelsToIncrease":             "No more circles or levels available to increase.",
         "noRecoveryTestsAvailable":                "No recovery tests available.",
@@ -3574,8 +3574,8 @@
         "spellNotReadyToCast":                     "The spell is not ready to cast. Threads still required.",
         "versatilityTalentLimit":                  "The versatility talent limit has been reached.",
         "warningEffectNoActor":                    "This effect has no actor assigned. Please assign one.",
-        "weaveThreadNoActor":                      "TODO: Add translation",
-        "youAreNotKnockedDown":                    "TODO: Add translation"
+        "weaveThreadNoActor":                      "No actor could be found who can weave the thread.",
+        "youAreNotKnockedDown":                    "The character is not knocked down."
       }
     },
     "Rolls": {
@@ -3588,7 +3588,7 @@
         "bonusDamageFromExtraSuccesses":           "Bonus Damage from Extra Successes",
         "grimoirePenalty":                         "Foreign Grimoire",
         "manual":                                  "Manual Adjustment",
-        "spellEffectOrDamageStepCircle":           "TODO: Add translation",
+        "spellEffectOrDamageStepCircle":           "Circle ({discipline})",
         "stunRecoveryWillpower":                   "Willpower"
       },
       "baseValue":                                 "Base Step",
@@ -3636,16 +3636,16 @@
         "label":                                   "Debug Settings"
       },
       "Edid": {
-        "grimoire":                                "TODO: Add translation",
-        "grimoireHint":                            "TODO: Add translation",
-        "itemHistory":                             "TODO: Add translation",
-        "itemHistoryHint":                         "TODO: Add translation",
+        "grimoire":                                "ED-ID for Grimoire",
+        "grimoireHint":                            "Identifies an equipment item as a Grimoire",
+        "itemHistory":                             "ED-ID for Item History",
+        "itemHistoryHint":                         "Identifies the ability used for Item History",
         "languageRW":                              "ED-ID for Read/Write",
         "languageRWHint":                          "Identifies the Read/Write ability",
         "languageSpeak":                           "ED-ID for Speak Language",
         "languageSpeakHint":                       "Identifies the Speak Language ability",
-        "learnImprovedSpells":                     "TODO: Add translation",
-        "learnImprovedSpellsHint":                 "TODO: Add translation",
+        "learnImprovedSpells":                     "ED-ID for Learn Improved Spells",
+        "learnImprovedSpellsHint":                 "Identifies the ability used for Learning Improved Spells",
         "patterncraft":                            "ED-ID for Patterncraft",
         "patterncraftHint":                        "Identifies the ability used for Patterncraft",
         "questorDevotion":                         "ED-ID for Questor Devotion",
@@ -3662,18 +3662,18 @@
         "unarmedCombatHint":                       "Identifies the ability used for Unarmed Combat",
         "versatility":                             "ED-ID for Versatility",
         "versatilityHint":                         "Identifies the ability used for Versatility",
-        "willforce":                               "TODO: Add translation",
-        "willforceHint":                           "TODO: Add translation"
+        "willforce":                               "ED-ID for Willforce",
+        "willforceHint":                           "Identifies the ability used for Willforce"
       },
       "Encumbrance": {
         "encumbrance":                             "Encumbrance",
         "encumbranceHint":                         "Should encumbrance be tracked?"
       },
       "GameMechanics": {
-        "jumpUpBaseDifficulty":                    "TODO: Add translation",
-        "jumpUpBaseDifficultyHint":                "TODO: Add translation",
-        "jumpUpStrainCost":                        "TODO: Add translation",
-        "jumpUpStrainCostHint":                    "TODO: Add translation",
+        "jumpUpBaseDifficulty":                    "Base Difficulty for Jump Up",
+        "jumpUpBaseDifficultyHint":                "What is the base difficulty for Jump Up tests?",
+        "jumpUpStrainCost":                        "Strain Cost for Jump Up",
+        "jumpUpStrainCostHint":                    "How much strain damage does Jump Up cause?",
         "languages":                               "Languages",
         "languagesHint":                           "Which languages should be used?",
         "minimumDifficulty":                       "Minimum Difficulty",
@@ -3793,34 +3793,34 @@
       }
     },
     "ToolTips": {
-      "activeEffectCantBeEnabledOnClassItems":     "TODO: Add translation",
-      "activeEffectFinalValue":                    "TODO: Add translation",
+      "activeEffectCantBeEnabledOnClassItems":     "This effect cannot be enabled because it is added during circle advancement (automatically/manually).",
+      "activeEffectFinalValue":                    "Final value: {value}",
       "addSpell":                                  "Create a new spell and add it to this character's Grimoire.",
-      "addThreadItemLevel":                        "TODO: Add translation",
+      "addThreadItemLevel":                        "Add a new rank.",
       "attuneMatrix":                              "Attune Matrix",
       "castSpell":                                 "Cast spell freely",
       "castSpellFromMatrix":                       "Cast spell using a matrix",
-      "delete":                                    "TODO: Add translation",
-      "deleteEnhancement":                         "TODO: Add translation",
-      "deleteManeuver":                            "TODO: Add translation",
-      "deletePower":                               "TODO: Add translation",
-      "deleteThreadItemLevel":                     "TODO: Add translation",
+      "delete":                                    "Delete this item.",
+      "deleteEnhancement":                         "Delete this enhancement.",
+      "deleteManeuver":                            "Delete this maneuver from the mask.",
+      "deletePower":                               "Delete this power from the mask.",
+      "deleteThreadItemLevel":                     "Remove the last (highest) rank.",
       "extraThreads":                              "Extra Threads",
       "itemHistoryCheck":                          "Roll Item History for this thread item.",
       "numThreadsJustWoven":                       "Threads just woven",
       "numThreadsWovenTotal":                      "Total threads woven",
       "researchCheck":                             "Roll Research to uncover secrets of this thread item.",
       "scrollToSourceMessage":                     "Scroll to the chat message that generated this",
-      "threadItemAddTruePattern":                  "TODO: Add translation",
-      "threadItemDeleteTruePattern":               "TODO: Add translation",
-      "threadItemHideRankFromPlayer":              "TODO: Add translation",
-      "threadItemHideRankKnowledgeToPlayer":       "TODO: Add translation",
-      "threadItemHideTruePatternFromPlayer":       "TODO: Add translation",
-      "threadItemShowRankKnowledgeToPlayer":       "TODO: Add translation",
-      "threadItemShowRankToPlayer":                "TODO: Add translation",
-      "threadItemShowTruePatternToPlayer":         "TODO: Add translation",
-      "threadItemWeaveNewThread":                  "TODO: Add translation",
-      "toggleConditionFromSheet":                  "TODO: Add translation",
+      "threadItemAddTruePattern":                  "Add a True Pattern to this item.",
+      "threadItemDeleteTruePattern":               "Remove the True Pattern from this item.",
+      "threadItemHideRankFromPlayer":              "Hide this thread rank from players.",
+      "threadItemHideRankKnowledgeToPlayer":       "Hide the knowledge for this thread rank from players.",
+      "threadItemHideTruePatternFromPlayer":       "Hide the True Pattern from players.",
+      "threadItemShowRankKnowledgeToPlayer":       "Show the knowledge for this thread rank to players.",
+      "threadItemShowRankToPlayer":                "Show this thread rank to players.",
+      "threadItemShowTruePatternToPlayer":         "Show the True Pattern to players.",
+      "threadItemWeaveNewThread":                  "Weave a new thread to this item.",
+      "toggleConditionFromSheet":                  "<p>Enable/disable this condition on the actor.</p><p>A condition with multiple levels can be increased with left-click and decreased with right-click.</p>",
       "weaveThread":                               "Roll Thread Weaving to increase the thread rank."
     },
     "Update": {
@@ -3909,7 +3909,7 @@
       "spell":                                     "Spell",
       "spellKnack":                                "Spell Knack",
       "talent":                                    "Talent",
-      "thread":                                    "TODO: Add translation",
+      "thread":                                    "Thread",
       "weapon":                                    "Weapon"
     },
     "JournalEntryPage": {
