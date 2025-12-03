@@ -1,5 +1,6 @@
 import PcData from "../../data/actor/pc.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { sortObjectEntries } from "../../utils.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -117,7 +118,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
       Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
         return [
           game.i18n.localize( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
-          types.reduce(
+          sortObjectEntries( types.reduce(
             ( accumulator, type ) =>  {
               let label = CONFIG[this.documentType].typeLabels?.[type];
               label = label && game.i18n.has( label ) ? game.i18n.localize( label ) : type;
@@ -127,7 +128,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
               };
             } ,
             {}
-          )
+          ) ),
         ];
       } ),
     );
