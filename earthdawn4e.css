@@ -1610,8 +1610,10 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 0.5rem;
 }
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"],
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"]::before {
   font-size: var(--font-size-14);
+  --checkbox-size: var(--font-size-14);
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entry {
   display: flex;
@@ -1639,7 +1641,6 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
   margin-left: auto;
   align-items: center;
   white-space: nowrap;
-  padding-top: 2px;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change-value {
   min-width: 1.5rem;
