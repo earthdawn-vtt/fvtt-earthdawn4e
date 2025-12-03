@@ -173,6 +173,7 @@
   --color-button-slide-background-on: var(--color-grey-md);
   --color-button-slide-background-off: var(--color-grey-lt);
   --border-main: 2px solid var(--color-gold-dk);
+  --border-input: 1px solid var(--color-gold-dk);
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
 }
@@ -1626,29 +1627,35 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
 form.ed4e.character-generation section[data-tab="classes"] .item-section__header--namegiver-abilities {
   padding-top: 0.3125rem;
 }
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool {
+  /* two columns, like your screenshot */
+  /* one row per talent in each column */
+  /* radio on the LEFT, text indented to the right */
+}
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 0.5rem;
-}
-form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"],
-form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"]::before {
-  font-size: var(--font-size-14);
-  --checkbox-size: var(--font-size-14);
+  row-gap: 0.125rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entry {
   display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.1rem 0;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0.05rem 0;
 }
-form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name label {
-  display: flex;
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name .optional-talent-label {
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
+  gap: 0.3rem;
+  /* indent between radio and text */
   margin: 0;
+  width: 100%;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name input[type="radio"] {
   flex: 0 0 auto;
@@ -1656,16 +1663,28 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name .content-link,
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name a {
-  display: inline-block;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change {
   margin-left: auto;
+  display: inline-flex;
   align-items: center;
   white-space: nowrap;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change-value {
-  min-width: 1.5rem;
   text-align: center;
+  width: 15px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"] {
+  position: static;
+  font-size: var(--font-size-14);
+  --checkbox-size: var(--font-size-14);
+  -webkit-appearance: radio;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"]::before,
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"]::after {
+  content: none !important;
 }
 form.ed4e.character-generation section[data-tab="attributes"] {
   width: 40%;
