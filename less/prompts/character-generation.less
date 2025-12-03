@@ -154,34 +154,37 @@ form.ed4e.character-generation {
       padding-top: 0.3125rem;
     }
 
-     .optional-talents-pool {
+   
+    .optional-talents-pool {
+      /* two columns, like your screenshot */
       .assign-value-entries {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         column-gap: 0.5rem;
+        row-gap: 0.125rem;
       }
 
-      input[type="radio"],
-      input[type="radio"]::before {
-        font-size: var(--font-size-14);
-        --checkbox-size: var(--font-size-14);
-      }
-
+      /* one row per talent in each column */
       .assign-value-entry {
         display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.1rem 0;
       }
 
       .entry-name {
         flex: 1 1 auto;
         min-width: 0;
-        padding: 0.05rem 0;
       }
 
-      .entry-name label {
-        display: flex;
+      /* radio on the LEFT, text indented to the right */
+      .entry-name .optional-talent-label {
+        display: inline-flex;
         flex-direction: row;
         align-items: center;
+        gap: 0.3rem;    /* indent between radio and text */
         margin: 0;
+        width: 100%;
       }
 
       .entry-name input[type="radio"] {
@@ -191,20 +194,35 @@ form.ed4e.character-generation {
 
       .entry-name .content-link,
       .entry-name a {
-        display: inline-block;
+        flex: 1 1 auto;
+        min-width: 0;
       }
 
       .rank-change {
         margin-left: auto;
+        display: inline-flex;
         align-items: center;
         white-space: nowrap;
       }
 
       .rank-change-value {
-        min-width: 1.5rem;
         text-align: center;
+        width: 15px;
       }
     }
+
+    .optional-talents-pool input[type="radio"] {
+      position: static;
+      font-size: var(--font-size-14);
+      --checkbox-size: var(--font-size-14);
+      -webkit-appearance: radio;
+    }
+
+    .optional-talents-pool input[type="radio"]::before,
+    .optional-talents-pool input[type="radio"]::after {
+      content: none !important;
+    }
+
   }
 
   // Attributes
