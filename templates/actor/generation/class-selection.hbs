@@ -113,53 +113,51 @@
           <div class="talent-listing">
             
             <div class="optional-talents-pool entry-listing">
-  <div class="assign-value-entries">
-    {{#each classDocument.system.advancement.abilityOptions.novice as |abilityUuid index|}}
-      <div class="assign-value-entry" data-ability-uuid="{{abilityUuid}}">
+              <div class="assign-value-entries">
+                {{#each classDocument.system.advancement.abilityOptions.novice as |abilityUuid index|}}
+                  <div class="assign-value-entry" data-ability-uuid="{{abilityUuid}}">
 
-        <div class="entry-name">
-          <label class="optional-talent-label">
-            <input type="radio"
-                   name="abilityOption"
-                   value="{{abilityUuid}}"
-                   {{checked (ed-hasOwnProperty @root.abilities.optional abilityUuid)}}>
-            {{{ed-linkForUuid abilityUuid}}}
-          </label>
-        </div>
+                    <div class="entry-name">
+                      <label class="optional-talent-label">
+                        <input type="radio"
+                              name="abilityOption"
+                              value="{{abilityUuid}}"
+                              {{checked (ed-hasOwnProperty @root.abilities.optional abilityUuid)}}>
+                        {{{ed-linkForUuid abilityUuid}}}
+                      </label>
+                    </div>
 
-        <div class="rank-change">
-          <span class="decrease-value-button rank-decrease rank-change-icon"
-                title="{{localize 'X.Decrease Rank Value'}}"
-                data-change-type="decrease"
-                data-action="decreaseAbility"
-                data-ability-uuid="{{abilityUuid}}"
-                data-ability-type="optional">
-            <i class="fa-light fa-circle-minus"></i>
-          </span>
-          <span class="rank-change-value">
-            {{#if (ed-hasOwnProperty @root.abilities.optional abilityUuid)}}
-              {{lookup @root.abilities.optional abilityUuid}}
-            {{else}}
-              {{!-- blank placeholder so layout stays identical --}}
-              &nbsp;
-            {{/if}}
-          </span>
-          <span class="increase-value-button rank-increase rank-change-icon"
-                title="{{localize 'X.Increase Rank Value'}}"
-                data-change-type="increase"
-                data-action="increaseAbility"
-                data-ability-uuid="{{abilityUuid}}"
-                data-ability-type="optional">
-            <i class="fa-light fa-circle-plus"></i>
-          </span>
-        </div>
+                    <div class="rank-change">
+                      <span class="decrease-value-button rank-decrease rank-change-icon"
+                            title="{{localize 'X.Decrease Rank Value'}}"
+                            data-change-type="decrease"
+                            data-action="decreaseAbility"
+                            data-ability-uuid="{{abilityUuid}}"
+                            data-ability-type="optional">
+                        <i class="fa-light fa-circle-minus"></i>
+                      </span>
+                      <span class="rank-change-value">
+                        {{#if (ed-hasOwnProperty @root.abilities.optional abilityUuid)}}
+                          {{lookup @root.abilities.optional abilityUuid}}
+                        {{else}}
+                          {{!-- blank placeholder so layout stays identical --}}
+                          &nbsp;
+                        {{/if}}
+                      </span>
+                      <span class="increase-value-button rank-increase rank-change-icon"
+                            title="{{localize 'X.Increase Rank Value'}}"
+                            data-change-type="increase"
+                            data-action="increaseAbility"
+                            data-ability-uuid="{{abilityUuid}}"
+                            data-ability-type="optional">
+                        <i class="fa-light fa-circle-plus"></i>
+                      </span>
+                    </div>
 
-      </div>
-    {{/each}}
-  </div>
-</div>
-
-
+                  </div>
+                {{/each}}
+              </div>
+            </div>
 
             {{!-- Class Abilities --}}
             <div class="class-talents-pool entry-listing">
