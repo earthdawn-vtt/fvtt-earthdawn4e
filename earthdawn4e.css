@@ -1541,6 +1541,7 @@ form.ed4e.character-generation section[data-tab="classes"] .layout__row > .layou
 }
 form.ed4e.character-generation section[data-tab="classes"] .discipline-selection__link {
   text-align: center;
+  padding-top: 10px;
 }
 form.ed4e.character-generation section[data-tab="classes"] .discipline-questor-switch-group {
   font-family: 'Warhorse-DecoBB', serif;
@@ -1576,7 +1577,6 @@ form.ed4e.character-generation section[data-tab="classes"] .availability-meter .
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .entry-listing-header {
   padding-top: 0.625rem;
@@ -1593,7 +1593,7 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.15rem 0;
+  padding: 0.1rem 0;
 }
 form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .rank-change,
 form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .rank-change {
@@ -1608,6 +1608,10 @@ form.ed4e.character-generation section[data-tab="classes"] .item-section__header
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 0.5rem;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool input[type="radio"]::before {
+  font-size: var(--font-size-14);
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entry {
   display: flex;
@@ -1615,6 +1619,7 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name {
   flex: 1 1 auto;
   min-width: 0;
+  padding: 0.05rem 0;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name label {
   display: flex;
@@ -1629,12 +1634,12 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name .content-link,
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name a {
   display: inline-block;
-  margin-top: -6px;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change {
   margin-left: auto;
   align-items: center;
   white-space: nowrap;
+  padding-top: 2px;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change-value {
   min-width: 1.5rem;
