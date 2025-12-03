@@ -60,6 +60,21 @@ form.ed4e.character-generation {
   section[data-tab="classes"] {
     width: 60%;
 
+    .layout__row {
+      display: flex;
+    }
+
+    .layout__row > .layout__col--2:first-child {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    .layout__row > .layout__col--2:last-child {
+      flex: 0 0 60%;
+      max-width: 60%;
+      min-width: 0;
+    }
+
     .discipline-selection__link {
       text-align: center;
     }
@@ -124,7 +139,7 @@ form.ed4e.character-generation {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        padding: 0 0.75rem 0.25rem;
+        padding: 0.15rem 0;
       }
 
       .rank-change {
@@ -137,6 +152,51 @@ form.ed4e.character-generation {
 
     .item-section__header--namegiver-abilities {
       padding-top: 0.3125rem;
+    }
+
+     .optional-talents-pool {
+      .assign-value-entries {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .assign-value-entry {
+        display: flex;
+      }
+
+      .entry-name {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .entry-name label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+      }
+
+      .entry-name input[type="radio"] {
+        flex: 0 0 auto;
+        margin: 0;
+      }
+
+      .entry-name .content-link,
+      .entry-name a {
+        display: inline-block;
+        margin-top: -6px;
+      }
+
+      .rank-change {
+        margin-left: auto;
+        align-items: center;
+        white-space: nowrap;
+      }
+
+      .rank-change-value {
+        min-width: 1.5rem;
+        text-align: center;
+      }
     }
   }
 

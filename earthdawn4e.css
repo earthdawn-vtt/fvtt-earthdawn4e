@@ -170,8 +170,8 @@
   --color-button-check-on: var(--color-button-icon);
   --color-button-check-off: var(--color-grey-md);
   --color-button-slide-thumb: var(--color-button-icon);
-  --color-button-slide-background-on: var(--color-secondary);
-  --color-button-slide-background-off: var(--color-secondary-grey);
+  --color-button-slide-background-on: var(--color-grey-md);
+  --color-button-slide-background-off: var(--color-grey-lt);
   --border-main: 2px solid var(--color-gold-dk);
   --color-meter-background: var(--color-grey-md-tr);
   --color-meter-divide: #c0c0c0;
@@ -261,6 +261,9 @@
     --color-tertiary-tr: ;*/
   --color-text-body: var(--color-basic-text-dk);
   --color-text-banner: var(--color-basic-text-lt);
+  --color-button-slide-thumb: var(--color-gold-lt);
+  --color-button-slide-background-on: var(--color-gold-dk);
+  --color-button-slide-background-off: var(--color-grey-md);
   --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
   --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
 }
@@ -1524,6 +1527,18 @@ form.ed4e.character-generation section[data-tab="namegiver"] .namegiver-selectio
 form.ed4e.character-generation section[data-tab="classes"] {
   width: 60%;
 }
+form.ed4e.character-generation section[data-tab="classes"] .layout__row {
+  display: flex;
+}
+form.ed4e.character-generation section[data-tab="classes"] .layout__row > .layout__col--2:first-child {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+form.ed4e.character-generation section[data-tab="classes"] .layout__row > .layout__col--2:last-child {
+  flex: 0 0 60%;
+  max-width: 60%;
+  min-width: 0;
+}
 form.ed4e.character-generation section[data-tab="classes"] .discipline-selection__link {
   text-align: center;
 }
@@ -1578,7 +1593,7 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 0.75rem 0.25rem;
+  padding: 0.15rem 0;
 }
 form.ed4e.character-generation section[data-tab="classes"] .class-talents-pool .rank-change,
 form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities .rank-change {
@@ -1589,6 +1604,41 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
 }
 form.ed4e.character-generation section[data-tab="classes"] .item-section__header--namegiver-abilities {
   padding-top: 0.3125rem;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entry {
+  display: flex;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name input[type="radio"] {
+  flex: 0 0 auto;
+  margin: 0;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name .content-link,
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .entry-name a {
+  display: inline-block;
+  margin-top: -6px;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change {
+  margin-left: auto;
+  align-items: center;
+  white-space: nowrap;
+}
+form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .rank-change-value {
+  min-width: 1.5rem;
+  text-align: center;
 }
 form.ed4e.character-generation section[data-tab="attributes"] {
   width: 40%;
@@ -3179,9 +3229,6 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .standard-form [data-editable="readonly"] .form-group > .hint {
   display: none;
-}
-.application.sheet.earthdawn4e.item .item-body {
-  /* <-- key change is here */
 }
 .application.sheet.earthdawn4e.item .item-body .item-section--description {
   margin-top: 14px;
