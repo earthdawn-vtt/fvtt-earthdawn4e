@@ -1062,9 +1062,6 @@ h3.label--rail .label__text::after {
   max-height: 14rem;
   overflow: auto;
 }
-.application.sheet.earthdawn4e .editor.prosemirror.editing-source:not(.editor--compact) textarea {
-  /* same idea... */
-}
 .application.sheet.earthdawn4e .editor .editor-content,
 .application.sheet.earthdawn4e .editor.prosemirror .editor-content {
   color: #fff;
@@ -3288,7 +3285,8 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .item-body .item-section--description {
   margin-top: 14px;
 }
-.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content {
+.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content,
+.application.sheet.earthdawn4e.item .item-body .item-section--description .source-editor {
   min-height: 500px;
   height: 500px;
 }
