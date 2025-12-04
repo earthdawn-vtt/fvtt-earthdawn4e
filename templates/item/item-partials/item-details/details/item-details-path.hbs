@@ -7,8 +7,8 @@
     
     <fieldset>
         <legend></legend>    
-            {{formGroup systemFields.pathKnackId name="system.pathKnackId" value=system.pathKnackId localize=true}}
-            {{formGroup systemFields.pathTalentId name="system.pathTalentId" value=system.pathTalenId localize=true}}
+            {{formGroup systemFields.pathKnackId name="system.pathKnackId" value=item.system.pathKnackId parentDocument=item.parent}}
+            {{formGroup systemFields.pathTalentId name="system.pathTalentId" value=item.system.pathTalentId parentDocument=item.parent}}
     </fieldset>
 
 </div>
