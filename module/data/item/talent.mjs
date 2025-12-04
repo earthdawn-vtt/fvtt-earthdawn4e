@@ -167,8 +167,19 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     // each tier starts at the next value in the fibonacci sequence
     let tierModifier = LEGEND.lpIndexModForTier[sourceClass.system.order][this.tier];
 
-    if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 )
-      return LEGEND.multiDisciplineNewTalentLpCost[sourceClass.system.order][actor.minCircle];
+    // multi discipline talents of the first circle have an increased cost based on the lowest discipline other than the source discipline
+    if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 && this.source?.atLevel === 1 ) {
+      const disciplines = actor.classes.filter( classTypes => classTypes.type === SYSTEM_TYPES.Item.discipline );
+      const lowestOtherDiscipline = disciplines
+        .filter( d => d.id !== sourceClass.id )
+        .reduce( ( lowest, discipline ) => 
+          !lowest || discipline.system.level < lowest.system.level ? discipline : lowest
+        );
+
+      if ( !lowestOtherDiscipline ) return 0;
+      const costLevel = Math.min( lowestOtherDiscipline.system.level, 5 );
+      return LEGEND.multiDisciplineNewTalentLpCost[sourceClass.system.order][costLevel];
+    }
 
     return LEGEND.legendPointsCost[
       this.unmodifiedLevel

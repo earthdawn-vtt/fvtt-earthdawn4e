@@ -146,14 +146,6 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * The lowest circle of all disciplines this actor has.
-   * @type {number}
-   */
-  get minCircle() {
-    return Math.min( ...this.disciplines.map( discipline => discipline.system.level ) );
-  }
-
-  /**
    * Returns the namegiver item if this actor has one (has to be of type "character" or "npc" for this).
    * @type {Item|undefined}
    */
