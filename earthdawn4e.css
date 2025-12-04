@@ -149,8 +149,6 @@
   --color-button-slide-background-off: black;
   --border-main: 2px solid var(--color-gold-md);
   --border-input: 1px solid var(--color-gold-md);
-  --color-meter-background: var(--color-grey-dk);
-  --color-meter-divide: var(--color-primary);
 }
 :root body.theme-light {
   --color-primary-grey: var(--color-grey-lt);
@@ -174,8 +172,6 @@
   --color-button-slide-background-off: var(--color-grey-lt);
   --border-main: 2px solid var(--color-gold-dk);
   --border-input: 1px solid var(--color-gold-dk);
-  --color-meter-background: var(--color-grey-md-tr);
-  --color-meter-divide: #c0c0c0;
 }
 :root .application.sheet.earthdawn4e.actor,
 :root .theme-dark.application.sheet.earthdawn4e.actor {
@@ -190,6 +186,8 @@
   --color-button-panel-on: var(--color-secondary);
   --color-button-panel-off: var(--color-primary);
   --color-input-square: var(--color-primary);
+  --color-meter-background: var(--color-grey-lt-tr);
+  --color-meter-divide: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -220,6 +218,8 @@
   --color-button-panel-on: var(--color-primary);
   --color-button-panel-off: var(--color-grey-lt);
   --color-input-square: var(--color-primary-grey-tr);
+  --color-meter-background: var(--color-grey-md-tr);
+  --color-meter-divide: #c0c0c0;
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -969,6 +969,7 @@ h3.label--rail .label__text::after {
   transform: translateX(-50%);
 }
 /* ======================= Encumbrance meter ======================= */
+/* ======================= Encumbrance meter ======================= */
 .encumbrance__row {
   display: flex;
   align-items: center;
@@ -986,23 +987,27 @@ h3.label--rail .label__text::after {
   flex: 1;
   height: var(--size-meter-height-md);
   background: var(--color-meter-background);
+  /* range is 0 → 2 × max */
+  --e-range: calc(var(--e-max, 0) * 2);
 }
 .encumbrance__fill {
   height: 100%;
-  width: var(--fill-width, 0%);
+  /* 0 → 2×max mapped to 0–100% */
+  width: calc(min(100%, max(0%, (var(--e-value, 0) / max(var(--e-range, 1), 1)) * 100%)));
   transition: width 0.3s ease, background-color 0.3s ease;
   background-color: var(--color-meter-background);
 }
-.encumbrance__fill.low {
+/* Color by status coming from system.encumbrance.status */
+.encumbrance__bar[data-status="notEncumbered"] .encumbrance__fill {
   background-color: var(--color-meter-1);
 }
-.encumbrance__fill.medium {
+.encumbrance__bar[data-status="light"] .encumbrance__fill {
   background-color: var(--color-meter-2);
 }
-.encumbrance__fill.high {
+.encumbrance__bar[data-status="heavy"] .encumbrance__fill {
   background-color: var(--color-meter-3);
 }
-.encumbrance__fill.over {
+.encumbrance__bar[data-status="tooHeavy"] .encumbrance__fill {
   background-color: var(--color-meter-4);
 }
 .encumbrance__marker {
@@ -1012,6 +1017,8 @@ h3.label--rail .label__text::after {
   height: 100%;
   background-color: var(--color-meter-divide);
   pointer-events: none;
+  /* 1× max (50% of 0–2× range) */
+  /* 1.5× max (75% of 0–2× range) */
 }
 .encumbrance__marker.marker__x {
   left: 50%;
@@ -1021,28 +1028,6 @@ h3.label--rail .label__text::after {
 }
 .encumbrance__row input.input__clear-input--centered {
   font-size: var(--font-size-13);
-}
-/* ======================= Wounds meter ======================= */
-.wounds-bar {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  height: var(--size-meter-height-sm);
-  border-radius: var(--size-meter-radius);
-  width: 100%;
-  --meter-h: 8px;
-  background: var(--color-meter-background);
-}
-.wounds-bar-segment {
-  height: 100%;
-  flex: 0 0 auto;
-}
-.wounds-bar-taken {
-  width: calc(min(100%, max(0%, (var(--w-current, 0) / max(var(--w-max, 1), 1)) * 100%)));
-  background: var(--color-meter-4);
-}
-.wounds-bar[data-full="1"] .wounds-bar-taken {
-  background: var(--color-meter-6);
 }
 /* global/editor.less */
 /* scope to your system */

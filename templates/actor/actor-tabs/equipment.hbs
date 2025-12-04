@@ -3,47 +3,45 @@
 
 <div class="container__block">
     {{#if (eq this.actor.type "character")}}
-        <div class="encumbrance__container">
-            <div class="encumbrance__row">
-                <span class="encumbrance__label">{{localize "ED.Actor.Header.encumbrance"}}:</span>
-                <input id="encumbrance__value"
-                    class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                    type="number"
-                    value="{{actor.system.encumbrance.value}}"
-                    min="0" step="1"
-                    oninput="
-                        const c = this.closest('.encumbrance__container');
-                        const fill = c.querySelector('.encumbrance__fill');
-                        const max  = parseFloat(c.querySelector('#encumbrance__max').value);
-                        const val  = parseFloat(this.value);
-                        const rangeMax = max * 2;
-                        const percent = (val / rangeMax) * 100;
-                        fill.style.width = percent + '%';             // ← changed line
-                        fill.classList.remove('low','medium','high','over');
-                        if (val <= max) fill.classList.add('low');
-                        else if (val <= max * 1.5) fill.classList.add('medium');
-                        else if (val <= rangeMax) fill.classList.add('high');
-                        else fill.classList.add('over');
-                    ">
-                <span>/</span>
-                <input id="encumbrance__max"
-                class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
-                    type="number"
-                    value="{{actor.system.encumbrance.max}}"
-                    min="1" step="1"
-                    oninput="
-                        // Recompute the fill when max changes
-                        this.closest('.encumbrance__container')
-                            .querySelector('#encumbrance__value')
-                            .dispatchEvent(new Event('input'));
-                    ">
-                    <div class="encumbrance__bar">
-                    <div class="encumbrance__fill"></div>
-                    <div class="encumbrance__marker marker__x"></div>
-                    <div class="encumbrance__marker marker__x15"></div>
-                </div>
-            </div>
+      <div class="encumbrance__container">
+        <div class="encumbrance__row">
+          <span class="encumbrance__label">
+            {{localize "ED.Actor.Header.encumbrance"}}:
+          </span>
+
+          <input
+            id="encumbrance__value"
+            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+            type="number"
+            value="{{actor.system.encumbrance.value}}"
+            min="0"
+            step="1"
+            {{#unless @root.editable}}readonly{{/unless}}
+          >
+
+          <span>/</span>
+
+          <input
+            id="encumbrance__max"
+            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+            type="number"
+            value="{{actor.system.encumbrance.max}}"
+            min="1"
+            step="1"
+            {{#unless @root.editable}}readonly{{/unless}}
+          >
+
+          <div
+            class="encumbrance__bar"
+            style="--e-value: {{actor.system.encumbrance.value}}; --e-max: {{actor.system.encumbrance.max}};"
+            data-status="{{actor.system.encumbrance.status}}"
+          >
+            <div class="encumbrance__fill"></div>
+            <div class="encumbrance__marker marker__x"></div>
+            <div class="encumbrance__marker marker__x15"></div>
+          </div>
         </div>
+      </div>
     {{/if}}
 
   {{!-- Weapons --}}
