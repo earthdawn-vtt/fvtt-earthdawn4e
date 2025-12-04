@@ -456,6 +456,23 @@ form.ed4e.character-generation {
   // Spells
   section[data-tab="spells"] {
     width: 40%;
+    padding-bottom: 40px;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .container__block {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0.625rem;
+      overflow: hidden;
+    }
 
     .spells-availability .availability-meter {
       display: grid;
@@ -479,6 +496,20 @@ form.ed4e.character-generation {
         display: block;
         width: 80%;
         box-sizing: border-box;
+      }
+    }
+
+    .spells-selection {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+
+      .assign-value-entries {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 0.25rem;
       }
     }
 
