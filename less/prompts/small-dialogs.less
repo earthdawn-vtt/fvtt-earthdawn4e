@@ -70,3 +70,30 @@
         z-index: 5;
     } 
 }
+
+.earthdawn4e.start-round-combatant-prompt {
+  .prompt-heading {
+    .WarhorseDeco();
+    font-size: var(--font-size-23);
+    font-weight: bold;
+    margin: 0 0 8px;
+    padding: 4px 0;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .prompt-heading__name {
+      flex: 1;
+    }
+
+    .prompt-heading__portrait {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border: 2px solid var(--color-gold-md);
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+  }
+}

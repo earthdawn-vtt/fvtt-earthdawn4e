@@ -35,7 +35,7 @@ export default class StartRoundCombatantPrompt extends ApplicationEd {
   static DEFAULT_OPTIONS = {
     id:       "start-round-combatant-prompt-{id}",
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
-    classes:  [ "start-round-combatant-prompt", ],
+    classes:  [ "earthdawn4e", "start-round-combatant-prompt" ],
     window:   {
       positioned:     true,
       icon:           "",
