@@ -3349,6 +3349,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .item-body .item-section--amount {
   padding-top: 6px;
 }
+.application.sheet.earthdawn4e.item .effect-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(70px, 1fr) minmax(60px, 60px) minmax(60px, 60px) minmax(50px, 50px);
+}
 .application.sheet.earthdawn4e.item .item-section--threads {
   display: grid;
   gap: 10px;
