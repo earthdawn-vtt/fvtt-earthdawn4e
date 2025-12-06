@@ -149,8 +149,6 @@
   --color-button-slide-background-off: black;
   --border-main: 2px solid var(--color-gold-md);
   --border-input: 1px solid var(--color-gold-md);
-  --color-meter-background: var(--color-grey-dk);
-  --color-meter-divide: var(--color-primary);
 }
 :root body.theme-light {
   --color-primary-grey: var(--color-grey-lt);
@@ -174,8 +172,6 @@
   --color-button-slide-background-off: var(--color-grey-lt);
   --border-main: 2px solid var(--color-gold-dk);
   --border-input: 1px solid var(--color-gold-dk);
-  --color-meter-background: var(--color-grey-md-tr);
-  --color-meter-divide: #c0c0c0;
 }
 :root .application.sheet.earthdawn4e.actor,
 :root .theme-dark.application.sheet.earthdawn4e.actor {
@@ -190,6 +186,8 @@
   --color-button-panel-on: var(--color-secondary);
   --color-button-panel-off: var(--color-primary);
   --color-input-square: var(--color-primary);
+  --color-meter-background: var(--color-grey-lt-tr);
+  --color-meter-divide: var(--color-primary);
   --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -220,6 +218,8 @@
   --color-button-panel-on: var(--color-primary);
   --color-button-panel-off: var(--color-grey-lt);
   --color-input-square: var(--color-primary-grey-tr);
+  --color-meter-background: var(--color-grey-md-tr);
+  --color-meter-divide: #c0c0c0;
   --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
   --background-banner-actor: var(--background-mottle-blue-lt);
 }
@@ -969,6 +969,7 @@ h3.label--rail .label__text::after {
   transform: translateX(-50%);
 }
 /* ======================= Encumbrance meter ======================= */
+/* ======================= Encumbrance meter ======================= */
 .encumbrance__row {
   display: flex;
   align-items: center;
@@ -986,23 +987,27 @@ h3.label--rail .label__text::after {
   flex: 1;
   height: var(--size-meter-height-md);
   background: var(--color-meter-background);
+  /* range is 0 → 2 × max */
+  --e-range: calc(var(--e-max, 0) * 2);
 }
 .encumbrance__fill {
   height: 100%;
-  width: var(--fill-width, 0%);
+  /* 0 → 2×max mapped to 0–100% */
+  width: calc(min(100%, max(0%, (var(--e-value, 0) / max(var(--e-range, 1), 1)) * 100%)));
   transition: width 0.3s ease, background-color 0.3s ease;
   background-color: var(--color-meter-background);
 }
-.encumbrance__fill.low {
+/* Color by status coming from system.encumbrance.status */
+.encumbrance__bar[data-status="notEncumbered"] .encumbrance__fill {
   background-color: var(--color-meter-1);
 }
-.encumbrance__fill.medium {
+.encumbrance__bar[data-status="light"] .encumbrance__fill {
   background-color: var(--color-meter-2);
 }
-.encumbrance__fill.high {
+.encumbrance__bar[data-status="heavy"] .encumbrance__fill {
   background-color: var(--color-meter-3);
 }
-.encumbrance__fill.over {
+.encumbrance__bar[data-status="tooHeavy"] .encumbrance__fill {
   background-color: var(--color-meter-4);
 }
 .encumbrance__marker {
@@ -1012,6 +1017,8 @@ h3.label--rail .label__text::after {
   height: 100%;
   background-color: var(--color-meter-divide);
   pointer-events: none;
+  /* 1× max (50% of 0–2× range) */
+  /* 1.5× max (75% of 0–2× range) */
 }
 .encumbrance__marker.marker__x {
   left: 50%;
@@ -1021,28 +1028,6 @@ h3.label--rail .label__text::after {
 }
 .encumbrance__row input.input__clear-input--centered {
   font-size: var(--font-size-13);
-}
-/* ======================= Wounds meter ======================= */
-.wounds-bar {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  height: var(--size-meter-height-sm);
-  border-radius: var(--size-meter-radius);
-  width: 100%;
-  --meter-h: 8px;
-  background: var(--color-meter-background);
-}
-.wounds-bar-segment {
-  height: 100%;
-  flex: 0 0 auto;
-}
-.wounds-bar-taken {
-  width: calc(min(100%, max(0%, (var(--w-current, 0) / max(var(--w-max, 1), 1)) * 100%)));
-  background: var(--color-meter-4);
-}
-.wounds-bar[data-full="1"] .wounds-bar-taken {
-  background: var(--color-meter-6);
 }
 /* global/editor.less */
 /* scope to your system */
@@ -1076,9 +1061,6 @@ h3.label--rail .label__text::after {
   height: auto;
   max-height: 14rem;
   overflow: auto;
-}
-.application.sheet.earthdawn4e .editor.prosemirror.editing-source:not(.editor--compact) textarea {
-  /* same idea... */
 }
 .application.sheet.earthdawn4e .editor .editor-content,
 .application.sheet.earthdawn4e .editor.prosemirror .editor-content {
@@ -1629,13 +1611,11 @@ form.ed4e.character-generation section[data-tab="classes"] .item-section__header
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool {
   /* two columns, like your screenshot */
-  /* one row per talent in each column */
-  /* radio on the LEFT, text indented to the right */
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 0.5rem;
+  column-gap: 1.5rem;
   row-gap: 0.125rem;
 }
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entry {
@@ -1653,7 +1633,6 @@ form.ed4e.character-generation section[data-tab="classes"] .optional-talents-poo
   flex-direction: row;
   align-items: center;
   gap: 0.3rem;
-  /* indent between radio and text */
   margin: 0;
   width: 100%;
 }
@@ -1867,6 +1846,21 @@ form.ed4e.character-generation section[data-tab="equipment"] .equipment-selectio
 }
 form.ed4e.character-generation section[data-tab="spells"] {
   width: 40%;
+  padding-bottom: 40px;
+}
+form.ed4e.character-generation section[data-tab="spells"].active {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+form.ed4e.character-generation section[data-tab="spells"] .container__block {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem;
+  overflow: hidden;
 }
 form.ed4e.character-generation section[data-tab="spells"] .spells-availability .availability-meter {
   display: grid;
@@ -1888,6 +1882,18 @@ form.ed4e.character-generation section[data-tab="spells"] .availability-meter__i
   display: block;
   width: 80%;
   box-sizing: border-box;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spells-selection {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+form.ed4e.character-generation section[data-tab="spells"] .spells-selection .assign-value-entries {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.25rem;
 }
 form.ed4e.character-generation section[data-tab="spells"] .spells-headers {
   display: grid;
@@ -2003,6 +2009,28 @@ form.ed4e.character-generation nav a.disabled {
 .app.window-app.form.earthdawn4e.roll-prompt .window-resizable-handle,
 .app.window-app.form.earthdawn4e.assign-legend .window-resizable-handle {
   z-index: 5;
+}
+.earthdawn4e.start-round-combatant-prompt .prompt-heading {
+  font-family: 'Warhorse-DecoBB', serif;
+  font-size: var(--font-size-23);
+  font-weight: bold;
+  margin: 0 0 8px;
+  padding: 4px 0;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.earthdawn4e.start-round-combatant-prompt .prompt-heading .prompt-heading__name {
+  flex: 1;
+}
+.earthdawn4e.start-round-combatant-prompt .prompt-heading .prompt-heading__portrait {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 2px solid var(--color-gold-md);
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 .assign-lp__description {
   width: 100%;
@@ -3279,7 +3307,8 @@ section.spells .matrix-cards .matrix-card .spell-link {
 .application.sheet.earthdawn4e.item .item-body .item-section--description {
   margin-top: 14px;
 }
-.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content {
+.application.sheet.earthdawn4e.item .item-body .item-section--description .editor.prosemirror:not(.editor--compact) .editor-content,
+.application.sheet.earthdawn4e.item .item-body .item-section--description .source-editor {
   min-height: 500px;
   height: 500px;
 }
@@ -3319,6 +3348,9 @@ section.spells .matrix-cards .matrix-card .spell-link {
 }
 .application.sheet.earthdawn4e.item .item-body .item-section--amount {
   padding-top: 6px;
+}
+.application.sheet.earthdawn4e.item .effect-card__grid--container {
+  grid-template-columns: minmax(25px, 25px) minmax(70px, 1fr) minmax(60px, 60px) minmax(60px, 60px) minmax(50px, 50px);
 }
 .application.sheet.earthdawn4e.item .item-section--threads {
   display: grid;

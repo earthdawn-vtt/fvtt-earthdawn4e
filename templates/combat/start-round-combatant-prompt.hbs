@@ -1,4 +1,9 @@
 <div>
+  <header class="prompt-heading">
+    <img class="prompt-heading__portrait" src="{{combatant.img}}" alt="{{combatant.name}}" />
+    <span class="prompt-heading__name">{{combatant.name}}</span>
+  </header>
+
   <ul class="combat-options-grid">
     {{#each combatOptions}}
       <li class="combat-option" data-tooltip="{{this.name}}" aria-label="{{localize this.name}}" >

@@ -4,7 +4,9 @@
       <img class="effect-icon" src="{{img}}" />
     </div>
     <div class="effect-card__grid--item">{{name}}</div>
-    <div class="effect-card__grid--item">{{origin}}</div>
+    {{#unless isItemEffect}}
+      <div class="effect-card__grid--item">{{origin}}</div>
+    {{/unless}}
     <div class="effect-card__grid--item">
       <input type="checkbox"
              class="effect-card__grid--checkbox"
