@@ -3268,6 +3268,7 @@
           "damage":                                "Schaden würfeln ({damageSourceType})",
           "itemHistory":                           "Artefaktgeschichte würfeln",
           "jumpUp":                                "Aufspringen würfeln",
+          "rollAttribute":                         "Attributsprobe würfeln",
           "weaveThread":                           "Faden weben"
         },
         "devotion":                                "Weihepunkt",
@@ -3316,7 +3317,6 @@
         "missingItemHistoryAbilityConfirm":        "Fehlende Artefaktgeschichte Fähigkeit",
         "missingThreadWeavingAbilityConfirm":      "Fehlende Fadenweben Fähigkeit",
         "recovery":                                "Erholung",
-        "rollAttribute":                           "Würfel Attributsprobe",
         "rollPrompt":                              "Würfel Dialog",
         "selectAstralSpacePollution":              "Wähle Astrale Verunreinigung",
         "selectAttunedGrimoire":                   "Wähle ein bereits abgestimmtes Grimoire",
