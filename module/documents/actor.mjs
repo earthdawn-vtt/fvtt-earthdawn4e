@@ -1160,6 +1160,23 @@ export default class ActorEd extends Actor {
   // region Methods
 
   /**
+   * Delete a favorite macro by its UUID from the actor's favorites and delete the macro document.
+   * @param {string} macroUuid The UUID of the macro to delete from favorites.
+   * @returns {Promise<undefined|ActorEd>} A promise that resolves to the updated actor instance, or undefined if the macro was not found.
+   */
+  async deleteFavorite( macroUuid ) {
+    const currentFavorites = this.system.favorites || [];
+    const updatedFavorites = currentFavorites.filter( uuid => uuid !== macroUuid );
+
+    const macro = await fromUuid( macroUuid );
+    if ( macro ) await macro.delete();
+
+    return this.update( {
+      "system.favorites": updatedFavorites
+    } );
+  }
+
+  /**
    * Returns all adder and replacement abilities of the given roll type.
    * @param {string} rollType The roll type to filter by, see {@link ROLLS}.
    * @returns {{adders: {key: string, label: string, isReplacement: boolean}[], substitutes: {key: string, label: string, isReplacement: boolean}[]}} An object containing two arrays:
