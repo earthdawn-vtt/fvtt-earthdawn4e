@@ -25,9 +25,8 @@ export default class MatrixTemplate extends SystemDataModel {
         } ),
         level: new fields.NumberField( {
           required:        true,
-          initial:         1,
+          initial:         0,
           integer:         true,
-          positive:        true,
         } ),
         damage: new fields.NumberField( {
           required:        true,
