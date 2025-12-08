@@ -105,12 +105,6 @@ export default class QuestorData extends ClassTemplate.mixin(
     questorDevotion ??= await getSingleGlobalItemByEdid( edidQuestorDevotion, SYSTEM_TYPES.Item.devotion );
     questorDevotion ??= await Item.create( DOCUMENT_DATA.documentData.Item.devotion.questor );
 
-    await questorDevotion.update( {
-      system: {
-        edid: edidQuestorDevotion,
-      },
-    } );
-
     // "Do you want to become a questor of <passion>? This will grant you the following devotion automatically:"
     const questorDevotionLink = questorDevotion
       ? createContentLink( questorDevotion.uuid, questorDevotion.name )
@@ -130,6 +124,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     const questorDevotionData = questorDevotion?.toObject();
     questorDevotionData.name = `${questorDevotion.name} - ${item.name}`;
     questorDevotionData.system.level = 1;
+    questorDevotionData.system.edid = edidQuestorDevotion;
     const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
 
     const questorCreateData = foundry.utils.mergeObject(
