@@ -3268,6 +3268,7 @@
           "damage":                                "TODO: Add translation",
           "itemHistory":                           "TODO: Add translation",
           "jumpUp":                                "TODO: Add translation",
+          "rollAttribute":                         "TODO: Add translation",
           "weaveThread":                           "TODO: Add translation"
         },
         "devotion":                                "Devotion",
@@ -3316,7 +3317,6 @@
         "missingItemHistoryAbilityConfirm":        "TODO: Add translation",
         "missingThreadWeavingAbilityConfirm":      "TODO: Add translation",
         "recovery":                                "Recovery",
-        "rollAttribute":                           "Roll Attribute",
         "rollPrompt":                              "Roll Dialog",
         "selectAstralSpacePollution":              "Select Astral Pollution",
         "selectAttunedGrimoire":                   "Select an Already Attuned Grimoire",
