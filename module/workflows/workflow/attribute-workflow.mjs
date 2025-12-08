@@ -32,7 +32,7 @@ export default class AttributeWorkflow extends Rollable( ActorWorkflow ) {
     this._attributeId = options.attributeId;
 
     this._rollToMessage = options.rollToMessage ?? true;
-    this._rollPromptTitle = game.i18n.localize( "ED.Dialogs.Title.rollAttribute" );
+    this._rollPromptTitle = game.i18n.localize( "ED.Dialogs.RollPrompt.Title.rollAttribute" );
 
     this._initRollableSteps();
   }
