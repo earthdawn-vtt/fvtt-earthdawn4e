@@ -146,14 +146,6 @@ export default class ActorEd extends Actor {
   }
 
   /**
-   * The lowest circle of all disciplines this actor has.
-   * @type {number}
-   */
-  get minCircle() {
-    return Math.min( ...this.disciplines.map( discipline => discipline.system.level ) );
-  }
-
-  /**
    * Returns the namegiver item if this actor has one (has to be of type "character" or "npc" for this).
    * @type {Item|undefined}
    */
@@ -1267,6 +1259,18 @@ export default class ActorEd extends Actor {
    */
   getMatrices() {
     return this.items.filter( item => item.system?.hasMatrix );
+  }
+
+  /**
+   * Gets the minimum circle among the actor's disciplines.
+   * @param {boolean} [ignoreZero] Whether to ignore disciplines with a level of 0.
+   * @returns {number|null} The minimum circle level, or null if no disciplines are found or matching the criteria.
+   */
+  getMinCircle( ignoreZero = true ) {
+    const circles = this.disciplines
+      .map( discipline => discipline.system.level )
+      .filter( level => ignoreZero ? level > 0 : true );
+    return circles.length > 0 ? Math.min( ...circles ) : null;
   }
 
   /**

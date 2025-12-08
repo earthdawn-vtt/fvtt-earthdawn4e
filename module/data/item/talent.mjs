@@ -160,15 +160,15 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
       return LEGEND.legendPointsCost[
         this.unmodifiedLevel
         + 1 // new level
-        + LEGEND.lpIndexModForTier[1][this.tier]
+        + LEGEND.lpIndexModForTier[ 1 ][ this.tier ]
       ];
     }
 
     // each tier starts at the next value in the fibonacci sequence
-    let tierModifier = LEGEND.lpIndexModForTier[sourceClass.system.order][this.tier];
+    let tierModifier = LEGEND.lpIndexModForTier[ sourceClass.system.order ][ this.tier ];
 
     if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 )
-      return LEGEND.multiDisciplineNewTalentLpCost[sourceClass.system.order][actor.minCircle];
+      return LEGEND.multiDisciplineNewTalentLpCost[ sourceClass.system.order ][ actor.getMinCircle( true ) ];
 
     return LEGEND.legendPointsCost[
       this.unmodifiedLevel
