@@ -3268,6 +3268,7 @@
           "damage":                                "Schaden würfeln ({damageSourceType})",
           "itemHistory":                           "Artefaktgeschichte würfeln",
           "jumpUp":                                "Aufspringen würfeln",
+          "rollAttribute":                         "Attributsprobe würfeln",
           "weaveThread":                           "Faden weben"
         },
         "devotion":                                "Weihepunkt",
