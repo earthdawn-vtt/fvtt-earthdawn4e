@@ -1263,11 +1263,14 @@ export default class ActorEd extends Actor {
 
   /**
    * Gets the minimum circle among the actor's disciplines.
-   * @param {boolean} [ignoreZero] Whether to ignore disciplines with a level of 0.
+   * @param {object} [options] Options for filtering disciplines.
+   * @param {boolean} [options.ignoreZero] Whether to ignore disciplines with a level of 0.
+   * @param {string} [options.ignoreDisciplineId] Discipline ID to ignore in the calculation.
    * @returns {number|null} The minimum circle level, or null if no disciplines are found or matching the criteria.
    */
-  getMinCircle( ignoreZero = true ) {
+  getMinCircle( { ignoreZero = true, ignoreDisciplineId} ) {
     const circles = this.disciplines
+      .filter( discipline => discipline.id !== ignoreDisciplineId )
       .map( discipline => discipline.system.level )
       .filter( level => ignoreZero ? level > 0 : true );
     return circles.length > 0 ? Math.min( ...circles ) : null;
