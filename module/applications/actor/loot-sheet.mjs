@@ -44,8 +44,9 @@ export default class ActorSheetEdLoot extends ActorSheetEd {
       classes:  [ "tabs-navigation" ],
     },
     description: {
-      template: "systems/ed4e/templates/actor/actor-tabs/description.hbs",
-      classes:  [ "tab", "description" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/description.hbs",
+      classes:    [ "tab", "description" ],
+      scrollable: [ "", ],
     },
   };
 

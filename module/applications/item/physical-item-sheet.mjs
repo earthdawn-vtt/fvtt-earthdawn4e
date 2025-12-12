@@ -44,8 +44,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "general": {
-      template: "systems/ed4e/templates/item/item-partials/item-description.hbs",
-      classes:  [ "general", "scrollable" ]
+      template:   "systems/ed4e/templates/item/item-partials/item-description.hbs",
+      classes:    [ "general", "scrollable" ],
+      scrollable: [ "", ],
     },
     "details": {
       template:   "systems/ed4e/templates/item/item-partials/item-details.hbs",
@@ -53,8 +54,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "effects": {
-      template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
-      classes:  [ "effects", "scrollable" ]
+      template:   "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
+      classes:    [ "effects", "scrollable" ],
+      scrollable: [ "", ],
     },
     "true-pattern": {
       template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/true-pattern.hbs",

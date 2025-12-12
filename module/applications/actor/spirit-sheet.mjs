@@ -51,46 +51,57 @@ export default class ActorSheetEdSpirit extends ActorSheetEdSentient {
     general: {
       template:   "systems/ed4e/templates/actor/actor-tabs/general.hbs",
       classes:    [ "tab", "general" ],
+      scrollable: [ "", ],
     },
     talents: {
-      template: "systems/ed4e/templates/actor/actor-tabs/talents.hbs",
-      classes:  [ "tab", "talents" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/talents.hbs",
+      classes:    [ "tab", "talents" ],
+      scrollable: [ "", ],
     },
     powers: {
-      template: "systems/ed4e/templates/actor/actor-tabs/powers.hbs",
-      classes:  [ "tab", "powers" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/powers.hbs",
+      classes:    [ "tab", "powers" ],
+      scrollable: [ "", ],
     },
     skills: {
-      template: "systems/ed4e/templates/actor/actor-tabs/skills.hbs",
-      classes:  [ "tab", "skills" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/skills.hbs",
+      classes:    [ "tab", "skills" ],
+      scrollable: [ "", ],
     },
     devotions: {
-      template: "systems/ed4e/templates/actor/actor-tabs/devotions.hbs",
-      classes:  [ "tab", "devotions" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/devotions.hbs",
+      classes:    [ "tab", "devotions" ],
+      scrollable: [ "", ],
     },
     spells: {
-      template: "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
-      classes:  [ "tab", "spells" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
+      classes:    [ "tab", "spells" ],
+      scrollable: [ "", ],
     },
     equipment: {
-      template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
-      classes:  [ "tab", "equipment" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
+      classes:    [ "tab", "equipment" ],
+      scrollable: [ "", ],
     },
     notes: {
-      template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
-      classes:  [ "tab", "notes" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
+      classes:    [ "tab", "notes" ],
+      scrollable: [ "", ],
     },
     connections: {
-      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
-      classes:  [ "tab", "connections" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:    [ "tab", "connections" ],
+      scrollable: [ "", ],
     },
     specials: {
-      template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
-      classes:  [ "tab", "specials" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
+      classes:    [ "tab", "specials" ],
+      scrollable: [ "", ],
     },
     configuration: {
-      template: "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
-      classes:  [ "tab", "configuration" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
+      classes:    [ "tab", "configuration" ],
+      scrollable: [ "", ],
     },
   };
 

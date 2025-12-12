@@ -46,16 +46,19 @@ export default class ActorSheetEdGroup extends ActorSheetEd {
       classes:  [ "tabs-navigation" ],
     },
     description: {
-      template: "systems/ed4e/templates/actor/actor-tabs/description.hbs",
-      classes:  [ "tab", "description" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/description.hbs",
+      classes:    [ "tab", "description" ],
+      scrollable: [ "", ],
     },
     equipment: {
-      template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
-      classes:  [ "tab", "equipment" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
+      classes:    [ "tab", "equipment" ],
+      scrollable: [ "", ],
     },
     connections: {
-      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
-      classes:  [ "tab", "connections" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:    [ "tab", "connections" ],
+      scrollable: [ "", ],
     },
   };
 
