@@ -1,7 +1,6 @@
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import { MAGIC } from "../../config/_module.mjs";
-import * as game from "../../hooks/_module.mjs";
 
 /**
  * @typedef { object } EdSpellcastingRollOptionsInitializationData
