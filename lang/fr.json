@@ -3174,10 +3174,12 @@
           "classAbilitiesGained":                  "TODO: Add translation",
           "classIncreasedTier":                    "TODO: Add translation",
           "effectsGained":                         "TODO: Add translation",
+          "freeAbilitiesGained":                   "TODO: Add translation",
           "increaseClassTo":                       "TODO: Add translation",
           "learningClass":                         "TODO: Add translation",
           "optionalAbilityGained":                 "TODO: Add translation",
           "resourceStepIncreased":                 "TODO: Add translation",
+          "specialAbilitiesGained":                "TODO: Add translation",
           "spellsGained":                          "TODO: Add translation"
         },
         "LearnSpell": {

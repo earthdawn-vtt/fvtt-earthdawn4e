@@ -161,11 +161,8 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const { proceed, abilityChoice, spells} = await ClassAdvancementDialog.waitPrompt( this.parent );
     if ( !proceed ) return;
 
-    // update the class first
-    const updatedClass = await this.parentDocument.update( { "system.level": nextLevel } );
-    if ( updatedClass.system.level !== nextLevel ) {
-      ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
-    }
+    let updatedClass;
+    if ( nextLevel !== 1 ) updatedClass = await this.parentDocument.update( { "system.level": nextLevel } );
 
     const systemSourceData = {
       system: {
@@ -188,7 +185,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     await this._increaseResourceStep( nextLevelData );
     await this._increaseFreeAbilities( nextLevel );
 
-    // we only land here if the class increase was successful
+    if ( nextLevel === 1 && !updatedClass ) updatedClass = await this.parentDocument.update( { "system.level": nextLevel } );
+
+    if ( updatedClass?.system.level !== nextLevel ) {
+      ui.notifications.warn( "ED.Notifications.Warn.classIncreaseProblems" );
+    }
+
     return updatedClass;
   }
 
@@ -330,7 +332,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   async _learnAbilities( nextLevelData, systemSourceData ) {
     for ( const abilityUuid of nextLevelData.abilities.class ) {
-      const ability = await fromUuid( abilityUuid );
+      const ability = /** @type { ItemEd } */ await fromUuid( abilityUuid );
       await ability?.system?.constructor?.learn(
         this.containingActor,
         ability,
@@ -351,8 +353,8 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier ) {
-    const abilityChoiceItem = await fromUuid( abilityChoice );
-    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
+    const abilityChoiceItem = /** @type { ItemEd } */ await fromUuid( abilityChoice );
+    await abilityChoiceItem?.system?.constructor?.learn(
       this.containingActor,
       abilityChoiceItem,
       foundry.utils.mergeObject(
@@ -366,7 +368,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
         { inplace: false }
       )
     );
-    await learnedAbilityChoice?.system?.increase();
   }
 
   // endregion
