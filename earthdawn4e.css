@@ -576,6 +576,7 @@ h3.label--rail .label__text {
   position: relative;
   z-index: 1;
   padding: 0 var(--size-rail-gap);
+  color: var(--color-text-body);
 }
 h3.label--rail .label__text::before,
 h3.label--rail .label__text::after {
@@ -2179,6 +2180,7 @@ form.ed4e.character-generation nav a.disabled {
   font-size: var(--font-size-12);
   background: var(--background-sheet-actor);
   max-height: 100vh;
+  color: var(--color-text-body);
 }
 .application.sheet.earthdawn4e.actor .tab {
   overflow: auto;
