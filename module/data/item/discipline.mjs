@@ -116,11 +116,6 @@ export default class DisciplineData extends ClassTemplate.mixin(
     const validationData = {
       [ED4E.validationCategories.resources]:               [
         {
-          name:      "ED.Dialogs.Legend.Validation.availableLp",
-          value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
-        },
-        {
           name:      "ED.Dialogs.Legend.Validation.availableMoney",
           value:     this.requiredMoneyForIncrease,
           fulfilled: this.requiredMoneyForIncrease <= this.parent.actor.currentSilver,
