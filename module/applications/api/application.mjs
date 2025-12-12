@@ -182,6 +182,16 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
   // region Rendering
 
   /** @inheritDoc */
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+
+    if ( !options.isFirstRender
+      && !this._reRenderFooter
+      && Array.isArray( options.parts )
+    ) options.parts = options.parts.filter( part => part !== "footer" );
+  }
+  
+  /** @inheritDoc */
   async _prepareContext( options ) {
     const context = await super._prepareContext( options );
     context.data = this._data;
