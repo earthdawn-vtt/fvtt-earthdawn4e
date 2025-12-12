@@ -103,7 +103,7 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
       template:   "systems/ed4e/templates/actor/generation/skill-selection.hbs",
       id:         "-skills",
       classes:    [ "skill" ],
-      scrollable: [ "", "div.skill-assignment.scrollable" ],
+      scrollable: [ "", ".skill-assignment", ],
     },
     "languages": {
       template:   "systems/ed4e/templates/actor/generation/language-selection.hbs",

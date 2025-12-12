@@ -20,21 +20,7 @@ const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
  */
 export default class ApplicationEd extends HandlebarsApplicationMixin( ApplicationV2 ) {
 
-  // region Properties
-
-  /**
-   * Stored form data.
-   * @type {object|null}
-   */
-  _data = null;
-
-  /**
-   * Stored form data.
-   * @type {object|null}
-   */
-  get data() {
-    return this._data;
-  }
+  // region Static Properties
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
@@ -82,11 +68,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // endregion
 
-  constructor( options ) {
-    super( options );
-    this.resolve = options.resolve;
-    this._data = options.data ?? {};
-  }
+  // region Static Methods
 
   /**
    * Factory method for asynchronous behavior. Displays this application and waits for user input.
@@ -103,6 +85,44 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
         },
       );
     } );
+  }
+
+  // endregion
+
+  // region Properties
+
+  /**
+   * Stored form data.
+   * @type {object|null}
+   */
+  _data = null;
+
+  // endregion
+
+  // region Getter
+
+  /**
+   * Stored form data.
+   * @type {object|null}
+   */
+  get data() {
+    return this._data;
+  }
+
+  /**
+   * Whether to re-render the part named "footer" on each render.
+   * @type {boolean}
+   */
+  get _reRenderFooter() {
+    return false;
+  }
+
+  // endregion
+
+  constructor( options ) {
+    super( options );
+    this.resolve = options.resolve;
+    this._data = options.data ?? {};
   }
 
   // region Event Handlers

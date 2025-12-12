@@ -43,8 +43,9 @@ export default class MaskItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "effects": {
-      template: "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
-      classes:  [ "effects", "scrollable" ]
+      template:   "systems/ed4e/templates/item/item-partials/item-details/item-effects.hbs",
+      classes:    [ "effects", "scrollable" ],
+      scrollable: [ "", ],
     },
   };
 

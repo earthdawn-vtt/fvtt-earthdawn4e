@@ -48,34 +48,42 @@ export default class ActorSheetEdCreature extends ActorSheetEdSentient {
     general: {
       template:   "systems/ed4e/templates/actor/actor-tabs/general.hbs",
       classes:    [ "tab", "general" ],
+      scrollable: [ "", ],
     },
     powers: {
-      template: "systems/ed4e/templates/actor/actor-tabs/powers.hbs",
-      classes:  [ "tab", "powers" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/powers.hbs",
+      classes:    [ "tab", "powers" ],
+      scrollable: [ "", ],
     },
     spells: {
-      template: "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
-      classes:  [ "tab", "spells" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/spells.hbs",
+      classes:    [ "tab", "spells" ],
+      scrollable: [ "", ],
     },
     equipment: {
-      template: "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
-      classes:  [ "tab", "equipment" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/equipment.hbs",
+      classes:    [ "tab", "equipment" ],
+      scrollable: [ "", ],
     },
     notes: {
-      template: "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
-      classes:  [ "tab", "notes" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/notes.hbs",
+      classes:    [ "tab", "notes" ],
+      scrollable: [ "", ],
     },
     connections: {
-      template: "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
-      classes:  [ "tab", "connections" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/connections.hbs",
+      classes:    [ "tab", "connections" ],
+      scrollable: [ "", ],
     },
     specials: {
-      template: "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
-      classes:  [ "tab", "specials" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/specials.hbs",
+      classes:    [ "tab", "specials" ],
+      scrollable: [ "", ],
     },
     configuration: {
-      template: "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
-      classes:  [ "tab", "configuration" ]
+      template:   "systems/ed4e/templates/actor/actor-tabs/configuration.hbs",
+      classes:    [ "tab", "configuration" ],
+      scrollable: [ "", ],
     },
   };
 
