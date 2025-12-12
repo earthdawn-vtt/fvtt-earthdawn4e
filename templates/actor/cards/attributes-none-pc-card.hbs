@@ -41,10 +41,11 @@
           data-tooltip-direction="UP"
           aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
           <input
-            class="input__square-input--centered"
+            class="input__rectangle-input--centered"
             name="system.attributes.{{@key}}.step"
             type="number"
             value="{{this.step}}" />
+
         </div>
       </div>
     {{/if}}
