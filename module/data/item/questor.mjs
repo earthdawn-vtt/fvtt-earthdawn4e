@@ -69,31 +69,6 @@ export default class QuestorData extends ClassTemplate.mixin(
   }
 
   /** @inheritDoc */
-  get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorClassIncreaseShortRequirements" );
-  }
-
-  /** @inheritDoc */
-  get increaseValidationData() {
-    if ( !this.isActorEmbedded ) return undefined;
-
-    return {
-      [LEGEND.validationCategories.base]:               [
-        {
-          name:      "ED.Dialogs.Legend.Validation.availableLp",
-          value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
-        },
-      ],
-    };
-  }
-
-  get requiredLpForIncrease() {
-    // Questor devotion is treated as a journeyman talent
-    return LEGEND.legendPointsCost[ this.unmodifiedLevel + 1 + LEGEND.lpIndexModForTier[1].journeyman ];
-  }
-
-  /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( isEmpty ( actor.itemTypes.discipline ) ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
@@ -148,6 +123,32 @@ export default class QuestorData extends ClassTemplate.mixin(
   // region LP Increase
 
   /** @inheritDoc */
+  get increaseRules() {
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorClassIncreaseShortRequirements" );
+  }
+
+  /** @inheritDoc */
+  get increaseValidationData() {
+    if ( !this.isActorEmbedded ) return undefined;
+
+    return {
+      [LEGEND.validationCategories.base]:               [
+        {
+          name:      "ED.Dialogs.Legend.Validation.availableLp",
+          value:     this.requiredLpForIncrease,
+          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
+        },
+      ],
+    };
+  }
+
+  /** @inheritDoc */
+  get requiredLpForIncrease() {
+    // Questor devotion is treated as a journeyman talent
+    return LEGEND.legendPointsCost[ this.unmodifiedLevel + 1 + LEGEND.lpIndexModForTier[1].journeyman ];
+  }
+
+  /** @inheritDoc */
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
@@ -182,7 +183,7 @@ export default class QuestorData extends ClassTemplate.mixin(
       );
 
     // possibly update the associated devotion
-    const questorDevotion = this.containingActor.get( this.questorDevotionId );
+    const questorDevotion = this.containingActor.items.get( this.questorDevotionId );
     if ( !questorDevotion ) return this.parentDocument;
 
     const content =  `
