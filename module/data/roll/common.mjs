@@ -612,7 +612,7 @@ export default class EdRollOptions extends SparseDataModel {
     stepData.modifiers ??= {};
 
     const wounds = actor.system.characteristics.health.wounds;
-    if ( data.rollType !== "recovery" && wounds > 0 ) {
+    if ( this.constructor.ROLL_TYPE !== "recovery" && wounds > 0 ) {
       stepData.modifiers[game.i18n.localize( "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label" )] = -wounds;
     }
 
