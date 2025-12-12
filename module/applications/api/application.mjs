@@ -22,10 +22,6 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // region Static Properties
 
-  get reRenderFooter() {
-    return false;
-  }
-
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: [ "ed4e" ],
@@ -190,7 +186,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
     super._configureRenderOptions( options );
 
     if ( !options.isFirstRender
-      && !this.reRenderFooter
+      && !this._reRenderFooter
       && Array.isArray( options.parts )
     ) options.parts = options.parts.filter( part => part !== "footer" );
   }
