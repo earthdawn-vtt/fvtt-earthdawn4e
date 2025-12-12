@@ -168,7 +168,11 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
     let tierModifier = LEGEND.lpIndexModForTier[ sourceClass.system.order ][ this.tier ];
 
     if ( actor.isMultiDiscipline && this.unmodifiedLevel === 0 )
-      return LEGEND.multiDisciplineNewTalentLpCost[ sourceClass.system.order ][ actor.getMinCircle( true ) ];
+      return LEGEND.multiDisciplineNewTalentLpCost[
+        sourceClass.system.order
+      ][
+        actor.getMinCircle( { ignoreDisciplineId: sourceClass.id } )
+      ];
 
     return LEGEND.legendPointsCost[
       this.unmodifiedLevel
