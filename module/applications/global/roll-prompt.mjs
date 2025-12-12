@@ -134,13 +134,13 @@ export default class RollPrompt extends ApplicationEd {
   /** @inheritDoc */
   _configureRenderOptions( options ) {
     super._configureRenderOptions( options );
-    options.parts = [ "step" ];
 
-    if ( this.edRollOptions.target !== null ) options.parts.push( "target" );
-    if ( this.edRollOptions.strain !== null ) options.parts.push( "strain" );
+    let parts = options.parts || [];
 
-    options.parts.push( "resources" );
-    options.parts.push( "footer" );
+    if ( !this.edRollOptions.target ) parts = parts.filter( part => part !== "target" );
+    if ( !this.edRollOptions.strain ) parts = parts.filter( part => part !== "strain" );
+
+    options.parts = parts;
   }
 
   /** @inheritDoc */
