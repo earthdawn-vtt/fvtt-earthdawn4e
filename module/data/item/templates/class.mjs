@@ -332,7 +332,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   async _learnAbilities( nextLevelData, systemSourceData ) {
     for ( const abilityUuid of nextLevelData.abilities.class ) {
-      const ability = await fromUuid( abilityUuid );
+      const ability = /** @type { ItemEd } */ await fromUuid( abilityUuid );
       await ability?.system?.constructor?.learn(
         this.containingActor,
         ability,
@@ -353,8 +353,8 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _learnAbilityChoice( abilityChoice, systemSourceData, nextLevel, nextTier ) {
-    const abilityChoiceItem = await fromUuid( abilityChoice );
-    const learnedAbilityChoice = await abilityChoiceItem?.system?.constructor?.learn(
+    const abilityChoiceItem = /** @type { ItemEd } */ await fromUuid( abilityChoice );
+    await abilityChoiceItem?.system?.constructor?.learn(
       this.containingActor,
       abilityChoiceItem,
       foundry.utils.mergeObject(
@@ -368,7 +368,6 @@ export default class ClassTemplate extends ItemDataModel.mixin(
         { inplace: false }
       )
     );
-    await learnedAbilityChoice?.system?.increase();
   }
 
   // endregion
