@@ -3174,10 +3174,12 @@
           "classAbilitiesGained":                  "Gained Discipline Talents",
           "classIncreasedTier":                    "The class has been raised to {newTier}",
           "effectsGained":                         "Effects Gained",
+          "freeAbilitiesGained":                   "TODO: Add translation",
           "increaseClassTo":                       "Increase vocation to {increaseClassToLevel}",
           "learningClass":                         "Learning Vocation",
           "optionalAbilityGained":                 "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                 "Resource Step Increased",
+          "specialAbilitiesGained":                "TODO: Add translation",
           "spellsGained":                          "Spells Gained"
         },
         "LearnSpell": {
