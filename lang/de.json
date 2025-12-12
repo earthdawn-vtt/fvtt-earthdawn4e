@@ -3174,10 +3174,12 @@
           "classAbilitiesGained":                  "Erhaltene Disziplintalente",
           "classIncreasedTier":                    "WO IST DAS??? CONTEXT Die Klasse wurde auf {newTier} erhöht",
           "effectsGained":                         "Erhaltene Effekte",
+          "freeAbilitiesGained":                   "Erhaltene freie Fähigkeiten",
           "increaseClassTo":                       "Berufung auf {increaseClassToLevel} erhöhen",
           "learningClass":                         "Lerne Berufung",
           "optionalAbilityGained":                 "Du hast eine optionale Fähigkeit erhalten, die du später steigern kannst.",
           "resourceStepIncreased":                 "Die Stufe der Ressourcen wurde erhöht. Dies kann die Stufe der Ressourcen erhöhen, die du verwenden kannst.",
+          "specialAbilitiesGained":                "Erhaltene Spezialfähigkeiten",
           "spellsGained":                          "Erhaltene Zauber"
         },
         "LearnSpell": {
