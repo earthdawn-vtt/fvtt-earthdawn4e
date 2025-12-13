@@ -69,6 +69,11 @@ export default class QuestorData extends ClassTemplate.mixin(
   }
 
   /** @inheritDoc */
+  get learnRules() {
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorLearnShortRequirements" );
+  }
+
+  /** @inheritDoc */
   static async learn( actor, item, createData = {} ) {
     if ( isEmpty ( actor.itemTypes.discipline ) ) {
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.firstClassViaCharGen" ) );
@@ -125,7 +130,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
   /** @inheritDoc */
   get increaseRules() {
-    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorClassIncreaseShortRequirements" );
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.questorIncreaseShortRequirements" );
   }
 
   /** @inheritDoc */
