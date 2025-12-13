@@ -113,7 +113,8 @@ export default class MatrixMigration extends BaseMigration {
       matrixPath.threads.hold.value = ED4E.MAGIC.matrixTypes.shared.maxHoldThread;
 
     }
-    
+
+    source.type = "talent";
     return source;
   }
 }

@@ -10,6 +10,7 @@ prosemirror
 explodify
 slugify
 slugified
+noupload
 hotbar
 dtype
 crosshairs

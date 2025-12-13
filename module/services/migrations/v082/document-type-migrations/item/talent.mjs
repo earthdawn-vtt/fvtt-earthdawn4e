@@ -6,7 +6,9 @@ import BaseMigration from "../../../common/base-migration.mjs";
 
 export default class TalentMigration extends BaseMigration {
 
-  static async migrateEarthdawnData( source ) {    RollTypeMigration.migrateEarthdawnData( source );
+  static async migrateEarthdawnData( source ) {
+
+    RollTypeMigration.migrateEarthdawnData( source );
     
     EdIdMigration.migrateEarthdawnData( source );
     

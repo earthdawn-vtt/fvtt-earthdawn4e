@@ -24,6 +24,7 @@ export default class PowerMigration extends BaseMigration {
 
     if ( !source.system.rollType && source.system.powerType.slugify( { lowercase: true, strict: true } ) === "attack" ) {
       source.system.rollType = "attack";
+      source.type = "power";
     } else if ( !source.system.rollType && source.system.powerStep > 0 ){
       source.system.rollType = "ability";
     }

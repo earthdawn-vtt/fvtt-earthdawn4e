@@ -11,6 +11,7 @@ export const chatCommands = {
   group:    "ED.Chat.Commands.group",
   h:        "ED.Chat.Commands.help",
   help:     "ED.Chat.Commands.help",
+  import:   "ED.Chat.Commands.import",
   lp:       "ED.Chat.Commands.lp",
   r:        "ED.Chat.Commands.r",
   roll:     "ED.Chat.Commands.roll",
