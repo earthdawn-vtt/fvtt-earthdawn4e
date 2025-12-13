@@ -1,91 +1,15 @@
 import ClassTemplate from "../../data/item/templates/class.mjs";
-import ED4E from "../../config/_module.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
 import { getAllDocuments } from "../../utils.mjs";
 import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as SYSTEM from "../../config/system.mjs";
 
 const { isEmpty } = foundry.utils;
 
 export default class ClassAdvancementDialog extends ApplicationEd {
 
-  /**
-   * This is a very specific user function which is not following the pattern of the naming convention.
-   */
-  STEPS = [
-    "requirements",
-    "optionChoice",
-    "spellSelection",
-    "summary",
-  ];
-
-  /**
-   * Button to navigate to the previous step in the dialog.
-   * Sourced from {@link PromptFactory.goBackButton}.
-   * Used in steps where the user can go back to review or modify their choices.
-   */
-  buttonGoBack = PromptFactory.goBackButton;
-
-  /**
-   * Button to proceed to the next step in the dialog.
-   * Sourced from {@link PromptFactory.continueButton}.
-   * Marked as the default action for steps where the user can continue.
-   */
-  buttonContinue = Object.assign( PromptFactory.continueButton, { default: true } );
-
-  /**
-   * Button to finalize the dialog and complete the process.
-   * Sourced from {@link PromptFactory.completeButton}.
-   * Marked as the default action for the final step of the dialog.
-   */
-  buttonComplete = Object.assign( PromptFactory.completeButton, { default: true } );
-
-  /**
-   * @inheritDoc
-   * @param {ItemEd} classItem                  The class item for which to display advancement options. Must be on its
-   *                                            original level.
-   * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
-   */
-  constructor( classItem, options = {} ) {
-
-    if ( !classItem ) throw new Error( "A class item is required to create a class advancement dialog." );
-    if ( !( classItem.system instanceof ClassTemplate ) && !classItem.system.hasMixin( ClassTemplate ) )
-      throw new TypeError( "The provided item is not a class item." );
-
-    super( options );
-
-    this.resolve = options.resolve;
-
-    this.currentStep = 0;
-
-    this.classItem = classItem;
-    this.actor = this.classItem.actor;
-
-    this.currentLevel = this.classItem.system.level;
-    this.nextLevel = this.currentLevel + 1;
-    this.learning = this.currentLevel === 0;
-
-    this.abilityUuidsByPoolType = classItem.system.advancement.levels[ this.nextLevel - 1 ].abilities;
-    this.selectedOption = "";
-    this.selectedSpells = new Set();
-    this.effectsGained = this.classItem.system.advancement.levels[ this.nextLevel - 1 ].effects;
-  }
-
-  /**
-   * Wait for dialog to be resolved.
-   * @param {ItemEd} classItem                  The class item for which to display advancement options.
-   * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
-   * @param {object} [options.resolve]          The function to call when the dialog is resolved.
-   * @returns {Promise<
-   * {spendLp: string, abilityChoice: string, spells: Set<string>}
-   * >}                                           The selected options of the dialog. The abilityChoice
-   */
-  static async waitPrompt( classItem, options = {} ) {
-    return new Promise( ( resolve ) => {
-      options.resolve = resolve;
-      new this( classItem, options ).render( true, { focus: true } );
-    } );
-  }
+  // region Static Properties
 
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
@@ -93,7 +17,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
     classes:  [ "class-advancement-dialog" ],
     window:   {
-      icon:  `fa-thin ${ED4E.icons.classAdvancement}`,
+      icon:  `fa-thin ${SYSTEM.icons.classAdvancement}`,
       title: "ED.Dialogs.Title.classAdvancement",
     },
     actions: {
@@ -139,71 +63,101 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     },
   };
 
-  /**
-   * Handles form submission for the class advancement dialog.
-   * @param {Event} event The event object triggered by the form submission.
-   * @param {HTMLElement} form The form element.
-   * @param {object} formData The form data.
-   */
-  static async #onFormSubmission( event, form, formData ) {
-    const data = foundry.utils.expandObject( formData.object );
-    this.selectedOption = data.selectedOption ?? this.selectedOption;
-    
-    // Filter out null values from checkbox array - unchecked checkboxes become null
-    const spells = Array.isArray( data.selectedSpells ) 
-      ? data.selectedSpells.filter( spell => spell !== null )
-      : [];
-    this.selectedSpells = new Set( spells );
-    
-    // Re-render to update the UI with the new selections
-    this.render();
-  }
+  // endregion
+
+  // region Static Methods
 
   /**
-   * Handles the click event for the continue button.
-   * @param {Event} event The event object triggered by the button click.
-   * @param {HTMLElement} target The target element.
+   * Wait for dialog to be resolved.
+   * @param {ItemEd} classItem                  The class item for which to display advancement options.
+   * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
+   * @param {object} [options.resolve]          The function to call when the dialog is resolved.
+   * @returns {Promise<
+   * {spendLp: string, abilityChoice: string, spells: Set<string>}
+   * >}                                           The selected options of the dialog. The abilityChoice
    */
-  static async _continue( event, target ) {
-    const castingType = this.classItem.system.getCastingType();
-    if ( this.currentStep === 0 ) this.currentStep++;
-    else if (
-      castingType
-      && game.settings.get( "ed4e", "lpTrackingLearnSpellsOnCircleUp" )
-    ) this.currentStep++;
-    else this.currentStep = this.STEPS.length - 1;
-
-    this.render();
-  }
-
-  /**
-   * Handles the click event for the go back button.
-   * @param {Event} event The event object triggered by the button click.
-   * @param {HTMLElement} target The target element.
-   */
-  static async _goBack( event, target ) {
-    if ( this.currentStep === 1 ) this.currentStep--;
-    else if ( this.classItem.system.getCastingType() ) this.currentStep--;
-    else if ( this.currentStep === 3 ) this.currentStep = 1;
-    else return;
-
-    this.render();
-  }
-
-  /**
-   * Handles the click event for the complete button.
-   * @param {Event} event The event object triggered by the button click.
-   * @param {HTMLElement} target The target element.
-   * @returns {Promise<void>} A promise that resolves when the dialog is closed.
-   */
-  static async _complete( event, target ) {
-    this.resolve?.( {
-      proceed:       true,
-      abilityChoice: this.selectedOption,
-      spells:        this.selectedSpells,
+  static async waitPrompt( classItem, options = {} ) {
+    return new Promise( ( resolve ) => {
+      options.resolve = resolve;
+      new this( classItem, options ).render( true, { focus: true } );
     } );
-    return this.close();
   }
+
+  // endregion
+
+  // region Properties
+
+  STEPS = [
+    "requirements",
+    "optionChoice",
+    "spellSelection",
+    "summary",
+  ];
+
+  /**
+   * Button to navigate to the previous step in the dialog.
+   * Sourced from {@link PromptFactory.goBackButton}.
+   * Used in steps where the user can go back to review or modify their choices.
+   */
+  buttonGoBack = PromptFactory.goBackButton;
+
+  /**
+   * Button to proceed to the next step in the dialog.
+   * Sourced from {@link PromptFactory.continueButton}.
+   * Marked as the default action for steps where the user can continue.
+   */
+  buttonContinue = Object.assign( PromptFactory.continueButton, { default: true } );
+
+  /**
+   * Button to finalize the dialog and complete the process.
+   * Sourced from {@link PromptFactory.completeButton}.
+   * Marked as the default action for the final step of the dialog.
+   */
+  buttonComplete = Object.assign( PromptFactory.completeButton, { default: true } );
+
+  // endregion
+
+  // region Getters
+
+  /** @inheritDoc */
+  get _reRenderFooter() {
+    return true;
+  }
+
+  // endregion
+
+  /**
+   * @inheritDoc
+   * @param {ItemEd} classItem                  The class item for which to display advancement options. Must be on its
+   *                                            original level.
+   * @param {Partial<Configuration>} [options]  Options used to configure the Application instance.
+   */
+  constructor( classItem, options = {} ) {
+
+    if ( !classItem ) throw new Error( "A class item is required to create a class advancement dialog." );
+    if ( !( classItem.system instanceof ClassTemplate ) && !classItem.system.hasMixin( ClassTemplate ) )
+      throw new TypeError( "The provided item is not a class item." );
+
+    super( options );
+
+    this.resolve = options.resolve;
+
+    this.currentStep = 0;
+
+    this.classItem = classItem;
+    this.actor = this.classItem.actor;
+
+    this.currentLevel = this.classItem.system.level;
+    this.nextLevel = this.currentLevel + 1;
+    this.learning = this.currentLevel === 0;
+
+    this.abilityUuidsByPoolType = classItem.system.advancement.levels[ this.nextLevel - 1 ].abilities;
+    this.selectedOption = "";
+    this.selectedSpells = new Set();
+    this.effectsGained = this.classItem.system.advancement.levels[ this.nextLevel - 1 ].effects;
+  }
+
+  // region Rendering
 
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
@@ -218,7 +172,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
 
     context.classItem = this.classItem;
     context.learning = this.learning;
-    context.config = ED4E;
+    context.config = CONFIG.ED4E;
 
     context.writtenRules = context.learning ? this.classItem.system.learnRules : this.classItem.system.increaseRules;
     context.requirementGroups = this.classItem.system.increaseValidationData;
@@ -236,7 +190,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     ) ).filter(
       spell => !this.actor.itemTypes.spell.map( s => s.uuid ).includes( spell )
     ) : [];
-    
+
     // Group spells by level
     const spellsByLevel = {};
     for ( const spellUuid of availableSpells ) {
@@ -249,7 +203,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
         spellsByLevel[level].push( spellUuid );
       }
     }
-    
+
     // Convert to sorted array of objects for template iteration
     context.spellsByLevel = Object.keys( spellsByLevel )
       .sort( ( a, b ) => parseInt( a, 10 ) - parseInt( b, 10 ) )
@@ -257,7 +211,7 @@ export default class ClassAdvancementDialog extends ApplicationEd {
         level:  parseInt( level, 10 ),
         spells: spellsByLevel[level]
       } ) );
-    
+
     // Keep the flat list for backwards compatibility
     context.availableSpells = availableSpells;
     context.selectedSpells = Array.from( this.selectedSpells );
@@ -311,5 +265,81 @@ export default class ClassAdvancementDialog extends ApplicationEd {
 
     return context;
   }
+
+  // endregion
+
+  // region Form Handling
+
+  /**
+   * Handles form submission for the class advancement dialog.
+   * @param {Event} event The event object triggered by the form submission.
+   * @param {HTMLElement} form The form element.
+   * @param {object} formData The form data.
+   */
+  static async #onFormSubmission( event, form, formData ) {
+    const data = foundry.utils.expandObject( formData.object );
+    this.selectedOption = data.selectedOption ?? this.selectedOption;
+    
+    // Filter out null values from checkbox array - unchecked checkboxes become null
+    const spells = Array.isArray( data.selectedSpells ) 
+      ? data.selectedSpells.filter( spell => spell !== null )
+      : [];
+    this.selectedSpells = new Set( spells );
+    
+    // Re-render to update the UI with the new selections
+    this.render();
+  }
+
+  // endregion
+
+  // region Event Handlers
+
+  /**
+   * Handles the click event for the continue button.
+   * @param {Event} event The event object triggered by the button click.
+   * @param {HTMLElement} target The target element.
+   */
+  static async _continue( event, target ) {
+    const castingType = this.classItem.system.getCastingType();
+    if ( this.currentStep === 0 ) this.currentStep++;
+    else if (
+      castingType
+      && game.settings.get( "ed4e", "lpTrackingLearnSpellsOnCircleUp" )
+    ) this.currentStep++;
+    else this.currentStep = this.STEPS.length - 1;
+
+    this.render();
+  }
+
+  /**
+   * Handles the click event for the go back button.
+   * @param {Event} event The event object triggered by the button click.
+   * @param {HTMLElement} target The target element.
+   */
+  static async _goBack( event, target ) {
+    if ( this.currentStep === 1 ) this.currentStep--;
+    else if ( this.classItem.system.getCastingType() ) this.currentStep--;
+    else if ( this.currentStep === 3 ) this.currentStep = 1;
+    else return;
+
+    this.render();
+  }
+
+  /**
+   * Handles the click event for the complete button.
+   * @param {Event} event The event object triggered by the button click.
+   * @param {HTMLElement} target The target element.
+   * @returns {Promise<void>} A promise that resolves when the dialog is closed.
+   */
+  static async _complete( event, target ) {
+    this.resolve?.( {
+      proceed:       true,
+      abilityChoice: this.selectedOption,
+      spells:        this.selectedSpells,
+    } );
+    return this.close();
+  }
+
+  // endregion
 
 }
