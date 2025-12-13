@@ -3257,6 +3257,7 @@
         "learnPathKnackPrompt":                    "Wähle ein Pfad-Kniff um es zu lernen",
         "learnPathTalentPrompt":                   "Wähle ein Pfad-Talent um es zu lernen",
         "learnQuestorPrompt":                      "Wähle eine Questor-Weihekraft um sie zu lernen",
+        "noRequirementsGiven":                     "Keine Voraussetzungen angegeben",
         "pathKnackNotFound":                       "Pfad-Kniff nicht gefunden",
         "questorDevotionNotFound":                 "Questor-Weihekraft nicht gefunden",
         "writtenRules":                            "Geschriebene Regeln"
@@ -3553,6 +3554,7 @@
         "castSpellNoActor":                        "Es konnte kein Actor gefunden werden, der den Zauber wirken kann.",
         "chooseActorPromptNoActorAvailable":       "Es sind keine Actor verfügbar, die ausgewählt werden können.",
         "classIncreaseProblems":                   "Rang/Kreis konnte nicht aktualisiert werden",
+        "couldNotAddLpTransaction":                "Legendenpunkte konnten nicht eingetragen werden",
         "couldNotScrollToSourceMessage":           "Die Nachricht konnte nicht gefunden werden.",
         "firstClassViaCharGen":                    "Beim wählen der ersten Berufung sollte die Charaktererschaffung verwendet werden, da sonst die Attributepunkte nicht korrekt verteilt werden können.",
         "grimoireAddAlreadyInGrimoire":            "Der Zauber ist bereits im Grimoire enthalten.",
