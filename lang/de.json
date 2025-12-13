@@ -1407,7 +1407,7 @@
                   "hint":                          "Waffenstatus auf den sich der Würfelwurf bezieht",
                   "label":                         "Waffenstatus"
                 },
-                "weaponType": {
+                "weaponTypes": {
                   "hint":                          "Waffentyp auf den sich der Würfelwurf bezieht",
                   "label":                         "Waffentyp"
                 }
