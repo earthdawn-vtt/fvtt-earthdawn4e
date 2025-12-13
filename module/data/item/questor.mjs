@@ -100,6 +100,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     questorDevotionData.name = `${questorDevotion.name} - ${item.name}`;
     questorDevotionData.system.level = 1;
     questorDevotionData.system.edid = edidQuestorDevotion;
+    questorDevotionData.system.tier = "journeyman";
     const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
 
     const questorCreateData = foundry.utils.mergeObject(
@@ -144,6 +145,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   async increase() {
     if ( !this.isActorEmbedded ) return;
 
+    // Increase questor class
     const nextLevel = this.unmodifiedLevel + 1;
     const updatedQuestor = await super.increase();
     if ( updatedQuestor?.system.level !== nextLevel ) {
@@ -153,46 +155,37 @@ export default class QuestorData extends ClassTemplate.mixin(
       return;
     }
 
-    const promptFactory = PromptFactory.fromDocument( this.parent );
+    // Increase questor devotion
+    const questorDevotion = this.containingActor.items.get( this.questorDevotionId );
+    if ( !questorDevotion ) {
+      ui.notifications.warn( "ED.Notifications.Warn.questorItemNotUpdated" );
+      return this.parentDocument;
+    }
+
+    // Manage LP spending
+    const promptFactory = PromptFactory.fromDocument( questorDevotion );
     const spendLp = await promptFactory.getPrompt( "lpIncrease" );
 
     if ( !spendLp
       || spendLp === "cancel"
-      || spendLp === "close" ) return;
+      || spendLp === "close" ) return this.parentDocument;
 
     const updatedActor = await this.containingActor.addLpTransaction(
       "spendings",
       LpSpendingTransactionData.dataFromLevelItem(
         this.parent,
-        spendLp === "spendLp" ? this.requiredLpForIncrease : 0,
+        spendLp === "spendLp" ? questorDevotion.system.requiredLpForIncrease : 0,
         this.lpSpendingDescription,
       ),
     );
 
+    const updatedDevotion = await questorDevotion.update( { "system.level": nextLevel } );
+    if ( !updatedDevotion ) ui.notifications.warn( "ED.Notifications.Warn.questorItemNotUpdated" );
+
     if ( foundry.utils.isEmpty( updatedActor ) )
       ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+        game.i18n.localize( "ED.Notifications.Warn.couldNotAddLpTransaction" )
       );
-
-    // possibly update the associated devotion
-    const questorDevotion = this.containingActor.items.get( this.questorDevotionId );
-    if ( !questorDevotion ) return this.parentDocument;
-
-    const content =  `
-        <p>
-          ${game.i18n.format( "ED.Dialogs.Legend.increaseQuestorDevotionPrompt" )}
-        </p>
-        <p>
-          ${createContentLink( questorDevotion.uuid, questorDevotion.name )}
-        </p>
-      `;
-    const increaseDevotion = await DialogEd.confirm( {
-      rejectClose: false,
-      content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
-    } );
-    if ( increaseDevotion && !(
-      await questorDevotion.update( { "system.level": nextLevel } )
-    ) ) ui.notifications.warn( "ED.Notifications.Warn.questorItemNotUpdated" );
 
     return this.parentDocument;
   }
