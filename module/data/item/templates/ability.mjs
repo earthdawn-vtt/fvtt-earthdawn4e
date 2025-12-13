@@ -1,6 +1,5 @@
 import TargetTemplate from "./targeting.mjs";
 import ActionTemplate from "./action.mjs";
-import ED4E from "../../../config/_module.mjs";
 import LearnableTemplate from "./learnable.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import RollPrompt from "../../../applications/global/roll-prompt.mjs";
@@ -9,6 +8,11 @@ import RollProcessor from "../../../services/roll-processor.mjs";
 import CombatDamageWorkflow from "../../../workflows/workflow/damage-workflow.mjs";
 import AttackWorkflow from "../../../workflows/workflow/attack-workflow.mjs";
 import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
+import * as ACTIONS from "../../../config/actions.mjs";
+import * as ACTORS from "../../../config/actors.mjs";
+import * as ITEMS from "../../../config/items.mjs";
+import * as LEGEND from "../../../config/legend.mjs";
+import * as MAGIC from "../../../config/magic.mjs";
 import * as SYSTEM from "../../../config/system.mjs";
 
 /**
@@ -25,17 +29,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
   TargetTemplate
 ) {
 
-  // region Static Properties
-
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Item.Ability",
-  ];
-
-  // endregion
-
-  // region Static Methods
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -46,12 +40,12 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         nullable: true,
         blank:    true,
         initial:  "",
-        choices:  ED4E.attributes,
+        choices:  ACTORS.attributes,
       } ),
       tier: new fields.StringField( {
         nullable: false,
         blank:    true,
-        choices:  ED4E.tier,
+        choices:  LEGEND.tier,
         initial:  "",
       } ),
       source: new fields.SchemaField( {
@@ -78,26 +72,32 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             new fields.StringField( {
               required: true,
               blank:    false,
-              choices:  ED4E.itemStatus,
+              choices:  ITEMS.itemStatus,
             } ),
             {
               required: true,
               initial:  [],
             }
           ),
-          weaponType: new fields.StringField( {
-            required: true,
-            blank:    false,
-            initial:  "melee",
-            choices:  ED4E.weaponType,
-          } ),
+          weaponTypes: new fields.SetField(
+            new fields.StringField( {
+              required: true,
+              blank:    false,
+              initial:  "melee",
+              choices:  ITEMS.weaponType,
+            } ),
+            {
+              required: true,
+              initial:  [ "melee", ],
+            },
+          ),
         } ),
         damage:        new fields.SchemaField( {
           combatType: new fields.SetField( new fields.StringField( {
             required: true,
             nullable: true,
             blank:    false,
-            choices:  ED4E.weaponType,
+            choices:  ITEMS.weaponType,
           } ), {
             required: true,
             initial:  [],
@@ -111,7 +111,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             nullable: true,
             blank:    true,
             initial:  "physical",
-            choices:  ED4E.targetDifficulty,
+            choices:  ACTIONS.targetDifficulty,
           } ),
         } ),
         recovery:      new fields.SchemaField( {}, {} ),
@@ -123,12 +123,22 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
             blank:    false,
             trim:     true,
             initial:  null,
-            choices:  ED4E.spellcastingTypes,
+            choices:  MAGIC.spellcastingTypes,
           } ),
         }, {} ),
       } ),
     } );
   }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Ability",
+  ];
 
   // endregion
 
@@ -320,13 +330,14 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
    */
   _checkEquippedWeapons( equippedWeapons ) {
 
-    if ( this.rollTypeDetails.attack.weaponType === "unarmed" ) return "_unarmed";
+    const attackWeaponTypes = this.rollTypeDetails.attack.weaponTypes;
+    if ( attackWeaponTypes.has( "unarmed" ) ) return "_unarmed";
 
     const requiredWeaponStatus = this.rollTypeDetails.attack.weaponItemStatus;
-    const requiredWeaponType = this.rollTypeDetails.attack.weaponType;
+    const requiredWeaponTypes = attackWeaponTypes;
 
     const weaponByStatus = equippedWeapons.find( weapon => requiredWeaponStatus.has( weapon.system.itemStatus ) );
-    const weaponByType = equippedWeapons.find( weapon => weapon.system.weaponType === requiredWeaponType );
+    const weaponByType = equippedWeapons.find( weapon => requiredWeaponTypes.has( weapon.system.weaponType ) );
 
     if (
       // we need to check for the weapon  itself before comparing the uuids

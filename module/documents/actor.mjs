@@ -1211,7 +1211,7 @@ export default class ActorEd extends Actor {
     const { wieldingType, weaponType, armorType } = weapon.system;
     return this.items.find(
       item => item.system.rollType === "attack"
-        && item.system.rollTypeDetails?.attack?.weaponType === weaponType
+        && item.system.rollTypeDetails?.attack?.weaponTypes.has( weaponType )
         && item.system.rollTypeDetails?.attack?.weaponItemStatus.has( wieldingType )
         && item.system.difficulty?.target === armorType
     );
