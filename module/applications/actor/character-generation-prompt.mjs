@@ -6,7 +6,6 @@ import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 
-
 export default class CharacterGenerationPrompt extends ApplicationEd {
 
   /**
@@ -299,6 +298,15 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
   // region Properties
 
   castingType;
+
+  // endregion
+
+  // region Getters
+
+  /** @inheritdoc */
+  get _reRenderFooter() {
+    return true;
+  }
 
   // endregion
 
