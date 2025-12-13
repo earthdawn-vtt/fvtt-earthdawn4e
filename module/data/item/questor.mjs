@@ -131,15 +131,7 @@ export default class QuestorData extends ClassTemplate.mixin(
   get increaseValidationData() {
     if ( !this.isActorEmbedded ) return undefined;
 
-    return {
-      [LEGEND.validationCategories.base]:               [
-        {
-          name:      "ED.Dialogs.Legend.Validation.availableLp",
-          value:     this.requiredLpForIncrease,
-          fulfilled: this.requiredLpForIncrease <= this.containingActor.currentLp,
-        },
-      ],
-    };
+    return {};
   }
 
   /** @inheritDoc */
