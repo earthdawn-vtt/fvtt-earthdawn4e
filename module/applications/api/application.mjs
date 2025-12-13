@@ -99,7 +99,7 @@ export default class ApplicationEd extends HandlebarsApplicationMixin( Applicati
 
   // endregion
 
-  // region Getter
+  // region Getters
 
   /**
    * Stored form data.
