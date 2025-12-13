@@ -3257,6 +3257,7 @@
         "learnPathKnackPrompt":                    "Choose a Path Knack to learn",
         "learnPathTalentPrompt":                   "Choose a Path Talent to learn",
         "learnQuestorPrompt":                      "Choose a Questor Devotion to learn",
+        "noRequirementsGiven":                     "TODO: Add translation",
         "pathKnackNotFound":                       "Path Knack not found",
         "questorDevotionNotFound":                 "Questor Devotion not found",
         "writtenRules":                            "Written Rules"
@@ -3553,6 +3554,7 @@
         "castSpellNoActor":                        "No actor found to cast the spell.",
         "chooseActorPromptNoActorAvailable":       "TODO: Add translation",
         "classIncreaseProblems":                   "Circle or rank could not be updated.",
+        "couldNotAddLpTransaction":                "TODO: Add translation",
         "couldNotScrollToSourceMessage":           "Could not find the source message.",
         "firstClassViaCharGen":                    "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
         "grimoireAddAlreadyInGrimoire":            "The spell is already in the Grimoire.",
