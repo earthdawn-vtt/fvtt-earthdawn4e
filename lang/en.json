@@ -3256,8 +3256,8 @@
         "learnOnZeroOrOne":                        "Learn at Rank 0 or 1",
         "learnPathKnackPrompt":                    "Choose a Path Knack to learn",
         "learnPathTalentPrompt":                   "Choose a Path Talent to learn",
-        "learnQuestorPrompt":                      "Choose a Questor Devotion to learn",
-        "noRequirementsGiven":                     "TODO: Add translation",
+        "learnQuestorPrompt":                      "Do you want to become a questor of {passion}? This will grant you the following devotion automatically:",
+        "noRequirementsGiven":                     "No requirements given",
         "pathKnackNotFound":                       "Path Knack not found",
         "questorDevotionNotFound":                 "Questor Devotion not found",
         "writtenRules":                            "Written Rules"
