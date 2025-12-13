@@ -3257,6 +3257,7 @@
         "learnPathKnackPrompt":                    "TODO: Add translation",
         "learnPathTalentPrompt":                   "TODO: Add translation",
         "learnQuestorPrompt":                      "TODO: Add translation",
+        "noRequirementsGiven":                     "TODO: Add translation",
         "pathKnackNotFound":                       "TODO: Add translation",
         "questorDevotionNotFound":                 "TODO: Add translation",
         "writtenRules":                            "TODO: Add translation"
@@ -3553,6 +3554,7 @@
         "castSpellNoActor":                        "TODO: Add translation",
         "chooseActorPromptNoActorAvailable":       "TODO: Add translation",
         "classIncreaseProblems":                   "TODO: Add translation",
+        "couldNotAddLpTransaction":                "TODO: Add translation",
         "couldNotScrollToSourceMessage":           "TODO: Add translation",
         "firstClassViaCharGen":                    "TODO: Add translation",
         "grimoireAddAlreadyInGrimoire":            "TODO: Add translation",
