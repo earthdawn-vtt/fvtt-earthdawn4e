@@ -3,9 +3,9 @@
     <legend>{{localize "ED.Dialogs.Legend.writtenRules"}}</legend>
     {{{writtenRules}}}
   </fieldset>
-  {{#each requirementGroups}}
-    <fieldset>
-      <legend>{{localize @key}}</legend>
+  <fieldset>
+    <legend>{{localize @key}}</legend>
+    {{#each requirementGroups}}
       {{#each this as |requirement|}}
         <div class="flexrow advancement-requirement {{ifThen fulfilled "requirement-fulfilled" ""}}">
           <span class="advancement-requirement-name">
@@ -16,8 +16,8 @@
           </span>
         </div>
       {{/each}}
-    </fieldset>
-  {{else}}
-    No requirements????
-  {{/each}}
+    {{else}}
+      {{localize "ED.Dialogs.Legend.noRequirementsGiven"}}
+    {{/each}}
+  </fieldset>
 </div>
