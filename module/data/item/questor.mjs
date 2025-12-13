@@ -98,7 +98,7 @@ export default class QuestorData extends ClassTemplate.mixin(
 
     const questorDevotionData = questorDevotion?.toObject();
     questorDevotionData.name = `${questorDevotion.name} - ${item.name}`;
-    questorDevotionData.system.level = 1;
+    questorDevotionData.system.level = 0;
     questorDevotionData.system.edid = edidQuestorDevotion;
     questorDevotionData.system.tier = "journeyman";
     const learnedDevotion = ( await actor.createEmbeddedDocuments( "Item", [ questorDevotionData ] ) )?.[0];
@@ -106,7 +106,7 @@ export default class QuestorData extends ClassTemplate.mixin(
     const questorCreateData = foundry.utils.mergeObject(
       createData,
       {
-        "system.level":             1,
+        "system.level":             0,
         "system.questorDevotionId": learnedDevotion?.id,
       }
     );
