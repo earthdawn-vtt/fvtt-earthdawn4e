@@ -10,34 +10,8 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   ApplicationV2,
 ) {
-  /** @inheritDoc */
-  constructor(
-    data = {},
-    { resolve, documentCls, pack = null, parent = null, options = {} } = {},
-  ) {
-    const documentType = documentCls.name;
-    const classes = options.classes || [];
-    classes.push( `create-${documentType.toLowerCase()}` );
-    const window = options.window || {};
-    window.title ??= game.i18n.format( "ED.Document.create", {
-      type: documentType,
-    } );
 
-    foundry.utils.mergeObject( options, {
-      classes,
-      window,
-    } );
-
-    super( options );
-
-    this.resolve = resolve;
-    this.documentCls = documentCls;
-    this.documentType = documentType;
-    this.pack = pack;
-    this.parent = parent;
-
-    this._updateCreationData( data );
-  }
+  // region Static Properties
 
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
@@ -80,6 +54,10 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     },
   };
 
+  // endregion
+
+  // region Static Methods
+
   /**
    * Wait for dialog to be resolved.
    * @param {object} [data] Initial data to pass to the constructor.
@@ -93,15 +71,44 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     } );
   }
 
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Properties
 
   createData = {};
 
-  /* -------------------------------------------- */
-  /*  Rendering                                   */
-  /* -------------------------------------------- */
+  // endregion
+
+  /** @inheritDoc */
+  constructor(
+    data = {},
+    { resolve, documentCls, pack = null, parent = null, options = {} } = {},
+  ) {
+    const documentType = documentCls.name;
+    const classes = options.classes || [];
+    classes.push( `create-${documentType.toLowerCase()}` );
+    const window = options.window || {};
+    window.title ??= game.i18n.format( "ED.Document.create", {
+      type: documentType,
+    } );
+
+    foundry.utils.mergeObject( options, {
+      classes,
+      window,
+    } );
+
+    super( options );
+
+    this.resolve = resolve;
+    this.documentCls = documentCls;
+    this.documentType = documentType;
+    this.pack = pack;
+    this.parent = parent;
+
+    this._updateCreationData( data );
+  }
+
+  // region Rendering
 
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
@@ -161,9 +168,9 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     };
   }
 
-  /* -------------------------------------------- */
-  /*  Form Handling                               */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Form Handling
 
   /** @inheritDoc */
   static async #onFormSubmission( event, form, formData ) {
@@ -196,9 +203,19 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     return this.createData;
   }
 
-  /* -------------------------------------------- */
-  /*  Event Listeners and Handlers                */
-  /* -------------------------------------------- */
+  // endregion
+
+  // region Rendering
+
+  /** @inheritDoc */
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+
+    if (
+      !options.isFirstRender
+      && Array.isArray( options.parts )
+    ) options.parts = options.parts.filter( part => part !== "footer" );
+  }
 
   /** @inheritDoc */
   _onRender( context, options ) {
@@ -211,6 +228,10 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
         ),
       );
   }
+
+  // endregion
+
+  // region Event Handlers
 
   /**
    * Create the document.
@@ -282,4 +303,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     this.resolve?.( null );
     return super.close( options );
   }
+
+  // endregion
+
 }
