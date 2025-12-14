@@ -1610,9 +1610,6 @@ form.ed4e.character-generation section[data-tab="classes"] .namegiver-abilities 
 form.ed4e.character-generation section[data-tab="classes"] .item-section__header--namegiver-abilities {
   padding-top: 0.3125rem;
 }
-form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool {
-  /* two columns, like your screenshot */
-}
 form.ed4e.character-generation section[data-tab="classes"] .optional-talents-pool .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1733,7 +1730,7 @@ form.ed4e.character-generation section[data-tab="attributes"] .health-and-charac
   text-align: center;
 }
 form.ed4e.character-generation section[data-tab="skills"] {
-  width: 40%;
+  width: 60%;
 }
 form.ed4e.character-generation section[data-tab="skills"].active {
   display: flex;
@@ -1784,7 +1781,7 @@ form.ed4e.character-generation section[data-tab="skills"] .entry-listing-header 
 form.ed4e.character-generation section[data-tab="skills"] .entry-listing .assign-value-entries {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--grid-col-gap-sm);
+  column-gap: 15px;
   row-gap: 0.125rem;
 }
 form.ed4e.character-generation section[data-tab="skills"] .assign-value-entry {

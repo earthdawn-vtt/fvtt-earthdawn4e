@@ -3476,7 +3476,7 @@
         "summoning":                               "Summoning"
       },
       "Tabs": {
-        "level":                                   "Circle {circle}",
+        "level":                                   "C{circle}",
         "talentOptions":                           "Optional Talents"
       },
       "Thread": {
