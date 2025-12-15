@@ -42,13 +42,15 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         handler: ActorSheetEdSentient._onChangeCondition,
         buttons: [ 0, 2 ],
       },
-      takeDamage:       ActorSheetEdSentient.takeDamage,
+      changeItemStatus: ActorSheetEdSentient.changeItemStatus,
+      downgradeItem:    ActorSheetEdSentient._onAdjustItemLevel,
+      initiative:       ActorSheetEdSentient.rollInitiative,
+      jumpUp:           ActorSheetEdSentient.jumpUp,
       knockdown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
-      jumpUp:           ActorSheetEdSentient.jumpUp,
-      initiative:       ActorSheetEdSentient.rollInitiative,
       rollable:         ActorSheetEdSentient.rollable,
-      changeItemStatus: ActorSheetEdSentient.changeItemStatus,
+      takeDamage:       ActorSheetEdSentient.takeDamage,
+      upgradeItem:      ActorSheetEdSentient._onAdjustItemLevel,
     },
   };
 
@@ -204,6 +206,21 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
     }
 
     await this.document.castSpell( spell );
+  }
+
+  /**
+   * @type {ApplicationClickAction}
+   * @this {ActorSheetEdSentient}
+   */
+  static async _onAdjustItemLevel( event, target ) {
+    event.preventDefault();
+
+    const parentId = target.parentElement.dataset.itemId;
+    if ( !parentId ) return;
+
+    const amount = parseInt( target.dataset.amount , 10 );
+    const item = await this.document.items.get( parentId );
+    await item.system.adjustLevel?.( amount );
   }
 
   /**

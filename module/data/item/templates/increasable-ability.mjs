@@ -2,7 +2,6 @@ import LpIncreaseTemplate from "./lp-increase.mjs";
 import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../../advancement/lp-spending-transaction.mjs";
 import AbilityTemplate from "./ability.mjs";
-const isEmpty = foundry.utils.isEmpty;
 
 /**
  * Data model template with information on abilities that have rank and therefore can be increased with LP.
@@ -113,31 +112,6 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
     const learnedItem = await super.learn( actor, item, createData );
     if ( !createData?.system?.level ) learnedItem.system.level = 0;
     return learnedItem;
-  }
-
-  // endregion
-
-  // region Methods
-
-  /**
-   * Adjusts the level of the ability by adding the specified amount (positive or negative).
-   * @param {number} amount The amount to adjust the level by (positive or negative).
-   * @returns {Promise<ItemEd|undefined>} The updated item if successful, otherwise undefined.
-   */
-  async adjustLevel( amount ) {
-    const currentLevel = this.unmodifiedLevel;
-    const updatedItem = await this.parentDocument.update( {
-      "system.level": currentLevel + amount,
-    } );
-
-    if ( isEmpty( updatedItem ) ) {
-      ui.notifications.warn(
-        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
-      );
-      return;
-    }
-
-    return updatedItem;
   }
 
   // endregion

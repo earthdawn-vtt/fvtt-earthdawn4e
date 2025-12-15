@@ -120,6 +120,27 @@ export default class LpIncreaseTemplate extends SystemDataModel {
     throw new Error( "A subclass of the LpIncreaseTemplate must implement the increase method." );
   }
 
+  /**
+   * Adjusts the level of the ability by adding the specified amount (positive or negative).
+   * @param {number} amount The amount to adjust the level by (positive or negative).
+   * @returns {Promise<ItemEd|undefined>} The updated item if successful, otherwise undefined.
+   */
+  async adjustLevel( amount ) {
+    const currentLevel = this.unmodifiedLevel;
+    const updatedItem = await this.parentDocument.update( {
+      "system.level": currentLevel + amount,
+    } );
+
+    if ( foundry.utils.isEmpty( updatedItem ) ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.abilityIncreaseProblems" )
+      );
+      return;
+    }
+
+    return updatedItem;
+  }
+
   // endregion
 
   /* -------------------------------------------- */

@@ -1,13 +1,25 @@
 <div class="itemControlGroup" data-item-id="{{_id}}">
-	{{#if @root.editable}}
+  {{#if @root.editable}}
 		<a
 			class="item-control item-upgrade__ability"
 			data-action="upgradeItem"
+      data-amount="1"
 			data-tooltip="{{localize 'ED.Controls.upgrade'}}"
 			data-tooltip-direction="UP"
 			aria-label="{{localize 'ED.Controls.upgrade'}}">
 			<i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
 		</a>
+    {{#if (ne @root.document.type "character" ) }}
+      <a
+        class="item-control item-downgrade__ability"
+        data-action="downgradeItem"
+        data-amount="-1"
+        data-tooltip="{{localize 'ED.Controls.downgrade'}}"
+        data-tooltip-direction="UP"
+        aria-label="{{localize 'ED.Controls.downgrade'}}">
+        <i class="fas fa-arrow-circle-down" aria-hidden="true"></i>
+      </a>
+    {{/if}}
 	{{/if}}
 
 	<a
