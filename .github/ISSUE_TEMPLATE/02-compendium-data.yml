@@ -1,0 +1,75 @@
+name: Compendium Data
+description: Report problems with existing compendium data
+assignees: ""
+labels: ["compendium", "data", "triage"]
+title: "[COMPENDIUM DATA] - <title>"
+type: ""
+projects: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request changes for one or more compendium entries in the Earthdawn4e system for FoundryVTT.
+        For multiple, unrelated requests, please submit separate issues.
+  - type: checkboxes
+    id: compendium-checklist
+    attributes:
+      label: Compendium Data Checklist
+      description: Please check all that apply before submitting your request
+      options:
+        - label: I have searched for existing issues to see if this has already been reported
+          required: true
+    validations:
+      required: true
+  - type: dropdown
+    id: compendium
+    attributes:
+      label: Which compendium is this issue related to?
+      description: Select the relevant compendium from the list
+      multiple: true
+      options:
+        - System Manual
+        - Tour Items
+        - Core Abilities
+        - Core Equipment
+        - Macros
+    validations:
+      required: true
+  - type: dropdown
+    id: compendium-language
+    attributes:
+      label: Which version of the compendium is this issue related to?
+      description: Select the relevant language version from the list, if applicable
+      options:
+        - English
+        - German
+        - French
+        - Polish
+    validations:
+      required: false
+  - type: textarea
+    id: affected-entries
+    attributes:
+      label: Affected Compendium Entries
+      description: |
+        List the names of the compendium entries that need changes.
+      placeholder: |
+        - Entry Name
+        - Entry Name
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: Suggested Changes
+      description: |
+        What changes would you like to see made to the affected entries?
+      placeholder: Typos, attribute keys, additional configuration, etc.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: What core and system version are you reporting this for?
+      description: You can find these on the "Settings" tab in a FoundryVTT world
+      placeholder: FVTT 13.340, Earthdawn - Fourth Edition System 0.1.2
