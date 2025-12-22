@@ -1,0 +1,33 @@
+name: Feature Request
+description: Request a new feature or enhancement
+assignees: ""
+labels: ["triage"]
+title: "[FEATURE REQUEST] - <title>"
+type: "Feature Request"
+projects: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request a new feature or enhancement/update for the Earthdawn4e system for FoundryVTT.
+  - type: checkboxes
+    id: feature-checklist
+    attributes:
+      label: Feature Request Checklist
+      description: Please check all that apply before submitting your feature request
+      options:
+        - label: I have searched for existing issues to see if this has already been requested
+          required: true
+    validations:
+      required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Your Story
+      description: |
+        Describe the feature or enhancement you are requesting in detail.
+        Explain the problem it solves or the benefit it provides.
+        What should it function like?
+      placeholder: As a [Module Developer/GM/Player/...] I would like [Functionality] so I can [Purpose]
+    validations:
+        required: true
