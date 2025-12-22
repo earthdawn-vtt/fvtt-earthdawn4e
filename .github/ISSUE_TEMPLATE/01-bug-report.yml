@@ -1,0 +1,89 @@
+name: Bug Report
+description: Create a bug report
+assignees: ""
+labels: ["bug", "triage"]
+title: "[BUG] - <title>"
+type: Bug
+projects: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report an issue with the Earthdawn4e system for FoundryVTT
+  - type: checkboxes
+    id: bug-checklist
+    attributes:
+      label: Bug Checklist
+      description: Please check all that apply before submitting your bug report
+      options:
+        - label: I have searched for existing issues to see if this has already been reported
+          required: true
+        - label: The issue occurs while all Modules are disabled
+          required: true
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: What Happened?
+      description: |
+        Describe the current behavior that you are experiencing, use screenshots as needed.
+        Include any error messages from the console (F12) if relevant.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What Did You Expect to Happen?
+      description: Describe what you expected to happen instead
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Keep them simple, include screenshots as needed.
+      placeholder: |
+        1. To encounter the bug, first open up...
+        2. 
+        3.
+        ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: What core and system version are you reporting this for?
+      description: You can find these on the "Settings" tab in a FoundryVTT world
+      placeholder: FVTT 13.340, Earthdawn - Fourth Edition System 0.1.2
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: What browser are you using?
+      description: Choose all that you tested in, if relevant (Internet Explorer is not supported)
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Edge
+        - Safari
+        - Opera
+        - FoundryVTT Desktop App
+        - Other
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Anything Else?
+      description: |
+        Add any other context about the problem here.
+        
+        Links? References? Anything that will give us more context about the issue you are encountering!
+
+        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+      placeholder: Tell us more!
+    validations:
+      required: false
