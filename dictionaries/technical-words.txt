@@ -5,3 +5,5 @@ Mohrmann
 favoritable
 gulpfile
 gitmoji
+qrizzl
+patrickmohrmann
