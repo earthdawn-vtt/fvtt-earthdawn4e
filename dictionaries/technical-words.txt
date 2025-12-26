@@ -3,3 +3,5 @@ nonconstructor
 socketlib
 Mohrmann
 favoritable
+gulpfile
+gitmoji
