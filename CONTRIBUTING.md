@@ -1,0 +1,144 @@
+# Contributing to ed4e
+
+Nice! You want to be a part of the ed4e system for Foundry VTT. We're happy to see contributions.
+
+All types of contributions are valued. Please make sure check the following:
+- read this guide ;) 
+
+It will make things for us maintainers much easier, and the process faster and smoother for all.
+
+If you like to contribute but can't do it in code or don't have the time, there are other ways to help:
+- Report bugs
+- Write or improve documentation
+- Share it with others, e.g. on social media
+- Tell us your feedback
+- Star the project
+- ... and more!
+
+## Table of Contents
+
+## How can I Contribute?
+
+### 🐛 Report Bugs
+
+Before reporting a bug, please make sure to check existing issues to see if it has already been reported. If you find it,
+feel free to add additional information in the comments.
+
+When you create a new bug issue, include as many details as possible.
+
+Please use our [templates](https://github.com/patrickmohrmann/fvtt-earthdawne4e/issues/new/choose).
+
+### ✨ Suggest Features
+
+Suggest some cool new stuff! As with bug reports (and issues in general), please check existing issues first to avoid duplicates.
+
+Please use our [templates](https://github.com/patrickmohrmann/fvtt-earthdawne4e/issues/new/choose).
+
+### 📝 Improving Documentation
+
+For many people, this is the biggest chore. At the same time, it is one of the most valuable things to have. Your contributions can include:
+- Fixing typos
+- Adding examples
+- Clarifying confusing sections
+- Translating documentation
+- ... and more!
+
+### 🔧 Contribute Code and Content
+
+You can code, or create content like art, sound, or other assets? Awesome! Make sure of the following:
+- there always is an open issue for whatever it is you are contributing
+- if there is no open issue for your contribution, please open one first to discuss the change
+- make sure your issue is not a duplicate of an existing one
+
+More infos in [TODO].
+
+## Development
+
+### Getting started
+
+1. Clone the repository and place it in `Data/systems/ed4e` of your Foundry VTT user data directory.
+2. If you haven't already, install [Node.js](https://nodejs.org/en).
+3. Install dependencies by running `npm install` in the project root.
+
+### Common Commands
+| Command                                                                       | Description                                                                                               |
+|-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `npm install`                                                                 | Install project dependencies                                                                              |
+| `node <yourFoundryInstallation>main.js --dataPath=<yourFoundryDataPath>`      | Start Foundry VTT from the command line                                                                   |
+| `node gulp.js --color --gulpfile <yourSystemDirectory>/gulpfile.mjs default`  | Start watching LESS files and auto-compile to CSS                                                         |
+| `node gulp.js --color --gulpfile <yourSystemDirectory>/gulpfile.mjs buildCSS` | Build CSS once                                                                                            |
+| `node gulp.js --color --gulpfile <yourSystemDirectory>/gulpfile.mjs lint`     | Run the ESLint                                                                                            |
+| `node gulp.js --color --gulpfile <yourSystemDirectory>/gulpfile.mjs buildAll` | Build all artifacts for release (currently only CSS)                                                      |
+| `node tools/pullJSONtoLDB.mjs`                                                | Create compendia entries from JSON data files (make sure the working directory is set to the project root |
+| `node tools/pushLDBtoJSON.mjs`                                                | Export compendia entries to JSON data files (make sure the working directory is set to the project root   |
+
+### Workflow
+
+#### Branching model
+
+- `main` is the trunk and always represents the next release
+- No direct pushes to `main`
+- Work happens in branches
+- Branches are rebased on `main` before first push
+- Branches are deleted after merge
+- [Conventional Branch](https://conventional-branch.github.io) for branch names:
+  - `main` for the main branch
+  - `feature/ticket-number-clear-concise-description` for new features
+  - `bugfix/ticket-number-clear-concise-description` for bug fixes
+  - `hotfix/ticket-number-clear-concise-description` for urgent fixes
+  - `release/x.y.z` for release branches
+  - `chore/ticket-number-clear-concise-description` for non-code tasks like dependency, docs updates, etc.
+
+#### Feature branches
+
+- Work locally as long as possible
+- Clean up commits before pushing
+- Add changes to CHANGELOG.md
+- Open PRs only when the feature is coherent and builds
+
+#### Pull Requests
+
+- Keep it small and focused
+- PRs are merged using merge commits
+- At least one approval is required
+- Add a [gitmoji](https://gitmoji.dev/) at the beginning of your PR title
+- Each commit should be meaningful and buildable
+- CI must pass before merge
+
+### Coding
+
+Try to follow existing code style and patterns as best you can. Always clean up lint before submitting:
+  - `npm run lint` to check code
+  - `npm run lint:fix` to fix issues automatically
+
+Dependencies should be kept to a minimum. If you want to add a new dependency, please discuss it in the related issue first.
+
+#### Commit Messages
+[Conventional Commits](https://www.conventionalcommits.org) style for commit messages. Use type prefixes like:
+  - `feat:` for new features
+  - `fix:` for bug fixes
+  - `docs:` for documentation changes
+  - `style:` for code style changes (formatting, missing semi-colons, etc.)
+  - `refactor:` for code changes that neither fix a bug nor add a feature
+  - `test:` for adding or updating tests
+  - `chore:` for maintenance tasks
+  - `ci:` for CI/CD related changes (like auto updating lang files)
+
+The usual best practice should be followed, like using the imperative mood, keeping messages concise yet descriptive, 
+and providing additional context in the body if necessary.
+
+## Releases
+
+We follow [Semantic Versioning](https://semver.org/).
+
+Releases are created from short-lived `release/MAJOR.MINOR.PATCH` branches. They are taken care of by the maintainers.
+
+### Step-by-Step Release Process
+
+If you are a maintainer, please follow these steps to create a new release:
+1. Trigger GitHub Action Workflow "Create release branch and update system manifest and changelog"
+2. On the release branch:
+    - Final translations
+    - Styling fixes
+    - Bug fixes only
+3. Trigger GitHub Action Workflow "Release"
