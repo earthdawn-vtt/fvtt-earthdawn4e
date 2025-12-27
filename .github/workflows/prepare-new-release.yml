@@ -57,4 +57,9 @@ jobs:
       - name: Commit changes
         run: |
           git add package.json package-lock.json system.json
-          git commit -m "chore: prepare release ${{ steps.bump_version.outputs.version }}"
+          git commit -m "chore: prepare release ${{ steps.bump_version.outputs.version }}
+          
+          Triggered-By: ${{ github.triggering_actor }}
+          Executed-By: ${{ github.actor }}
+          Workflow: ${{ github.workflow }}
+          Run-ID: ${{ github.run_id }}"
