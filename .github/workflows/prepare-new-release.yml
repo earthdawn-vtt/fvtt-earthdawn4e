@@ -62,3 +62,4 @@ jobs:
             --trailer "Github-Workflow-Triggered-By:${{ github.triggering_actor }}" \
             --trailer "Github-Workflow-Executed-By: ${{ github.actor }}" \
             --trailer "Github-Workflow-Run-ID: ${{ github.run_id }}"
+          git push
