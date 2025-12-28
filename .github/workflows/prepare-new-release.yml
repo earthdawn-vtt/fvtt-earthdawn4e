@@ -47,12 +47,26 @@ jobs:
         run: |
           git checkout -b release/${{ steps.bump_version.outputs.version }}
 
-      - name: Update manifest version
+      - name: Load system id
+        id: system_id
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "./system.json"
+          prop_path: "id"
+
+      - name: Set up tag name
+        id: set_tag_name
+        run: |
+          TAG_NAME=release-${{ steps.bump_version.outputs.version }}
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Update manifest version and release URLs
         uses: TomaszKandula/variable-substitution@v1.0.2
         with:
           files: 'system.json'
         env:
           version: ${{ steps.bump_version.outputs.version }}
+          download: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/${{ steps.system_id.outputs.value }}-${{ env.TAG_NAME }}.zip
 
       - name: Commit changes
         run: |
