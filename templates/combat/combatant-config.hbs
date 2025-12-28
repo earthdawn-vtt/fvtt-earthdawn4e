@@ -1,0 +1,111 @@
+<div>
+  <fieldset>
+    <legend>{{localize "TODO.Foundry Core"}}</legend>
+
+    {{formGroup document.actor.schema.fields.name
+                value=document.actor.name
+                name="actorName"
+                id=(concat document.uuid "-actor")
+                label=(localize "COMBAT.CombatantActor")
+                disabled=true
+    }}
+    {{formGroup document.token.schema.fields.name
+                value=document.token.name
+                name="tokenName"
+                id=(concat document.uuid "-token")
+                label=(localize "COMBAT.CombatantToken")
+                disabled=true
+    }}
+    {{formGroup fields.name
+                value=source.name
+                name="name"
+                id=(concat document.uuid "-name")
+                label=(localize "COMBAT.CombatantName")
+                placeholder=document.name
+    }}
+    {{formGroup document.schema.fields.img
+                value=source.img
+                name="img"
+                id=(concat document.uuid "-img")
+                label=(localize "COMBAT.CombatantImage")
+    }}
+    {{formGroup document.schema.fields.initiative
+                value=source.initiative
+                name="initiative"
+                id=(concat document.uuid "-initiative")
+                label=(localize "COMBAT.CombatantInitiative")
+    }}
+    {{!--formGroup document.schema.fields.hidden
+                value=source.hidden
+                name="hidden"
+                id=(concat document.uuid "-hidden")
+                label=(localize "COMBAT.CombatantHidden")
+    }}
+    {{formGroup document.schema.fields.defeated
+                value=source.defeated
+                name="defeated"
+                id=(concat document.uuid "-defeated")
+                label=(localize "COMBAT.CombatantDefeated")
+    --}}
+    <div class="form-group">
+      <label for="{{document.uuid}}-name">{{localize "COMBAT.CombatantStatus"}}</label>
+      <div class="form-fields">
+        <label class="checkbox">
+          <input type="checkbox" name="hidden" {{checked source.hidden}} />
+          {{localize "COMBAT.CombatantHidden"}}
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" name="defeated" {{checked source.defeated}} />
+          {{localize "COMBAT.CombatantDefeated"}}
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.IniPrompt.configuration"}}</legend>
+
+    {{!--formGroup systemFields.replacementEffect
+                value=system.replacementEffect
+                name="system.replacementEffect"
+                id=(concat document.uuid "-replacementEffect")
+                hint=""
+    }}
+    {{formGroup systemFields.increaseAbilities
+                value=system.increaseAbilities
+                name="system.increaseAbilities"
+                id=(concat document.uuid "-increaseAbilities")
+                hint=""
+    --}}
+    {{!--formGroup systemFields.savePromptSettings
+                value=savePromptSettings
+                name="system.savePromptSettings"
+                id=(concat document.uuid "-savePromptSettings")
+                label=(localize "")
+                hint=""
+    }}
+    {{formGroup systemFields.keepInitiative
+                value=system.keepInitiative
+                name="system.keepInitiative"
+                id=(concat document.uuid "-keepInitiative")
+                label=(localize "")
+                hint=""
+    --}}
+    <div class="form-group">
+      <label for="{{document.uuid}}-iniPrompt">{{localize "ED.Dialogs.IniPrompt.configuration"}}</label>
+      <div class="form-fields">
+        <label class="checkbox">
+          <input type="checkbox" name="system.savePromptSettings" {{checked system.savePromptSettings}} />
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" name="system.keepInitiative" {{checked system.keepInitiative}} />
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <footer class="form-footer">
+    <button type="submit">
+      <i class="fa-solid fa-floppy-disk"></i> {{title}}
+    </button>
+  </footer>
+</div>

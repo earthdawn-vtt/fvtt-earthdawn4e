@@ -1,0 +1,24 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.attuning.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">
+  {{{attuningTypeLabel}}}
+  {{{attuningAbilityContentAnchor}}}
+</div>
+
+<div class="attuning-visualization flexrow">
+  <div class="spells-to-attune flexcol">
+    {{#each spellsToAttuneContentAnchors}}
+      {{{this}}}
+    {{/each}}
+  </div>
+  <div class="attuning-indicator flexcol">
+    &raquo;
+  </div>
+  <div class="matrix-to-attune flexcol">
+    {{#each itemsToAttuneToContentAnchor}}
+      {{{this}}}
+    {{/each}}
+  </div>
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs"}}

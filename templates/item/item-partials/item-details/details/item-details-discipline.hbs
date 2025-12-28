@@ -1,3 +1,9 @@
-<div>
-    <h3>item-details</h3>
+<div id="base-details-discipline-item" class="item-details__discipline" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
+    {{!-- Discipline Index identifier for multiple disciplines --}}
+    <fieldset>
+        <legend></legend>
+        {{formField systemFields.order name="system.order" value=item.system.order localize=true}}
+    </fieldset>
+    
 </div>

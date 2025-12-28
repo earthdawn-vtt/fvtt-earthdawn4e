@@ -1,8 +1,8 @@
 ---
 name: Refactoring
 about: Describe this issue template's purpose here.
-title: ''
-labels: refactoring
+title: "[REFACTORING]-"
+labels: ''
 assignees: ''
 
 ---

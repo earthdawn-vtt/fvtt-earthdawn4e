@@ -1,0 +1,92 @@
+<div class="spell-card draggable favoritable" data-uuid="{{this.uuid}}"  data-item-id="{{_id}}"
+     style="box-shadow: 0 0 10px {{lookup @root.config.spellcastingColors system.spellcastingType}}; border-color: {{lookup @root.config.spellcastingColors system.spellcastingType}};">
+
+  {{!-- Stack indicators for cards with knacks --}}
+  {{#if (lookup @root.spellKnacks id)}}
+    <div class="spell-card__stack-indicator spell-card__stack-indicator--1"></div>
+    <div class="spell-card__stack-indicator spell-card__stack-indicator--2"></div>
+  {{/if}}
+
+  {{#if @root.editable}}
+    <div class="spell-card__delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
+      <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
+    </div>
+  {{/if}}
+
+  {{!-- Spell Card Header --}}
+
+  {{!-- Header Section --}}
+  <div class="spell-card__header" data-action="editChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.edit'}}">
+    <div class="spell-card__name-section">
+      <h3 class="spell-card__name">{{name}}</h3>
+      <div class="spell-card__type">
+        {{localize (lookup @root.config.spellcastingTypes system.spellcastingType)}}
+      </div>
+    </div>
+    <div class="spell-card__circle-container">
+      <div class="spell-card__circle">
+        <span class="spell-card__circle-number">{{system.level}}</span>
+        <div class="spell-card__circle-ring"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spell-card__image-section">
+    {{#if img}}
+      <img src="{{img}}" alt="{{name}}" class="spell-card__image">
+    {{else}}
+      <div class="spell-card__image-placeholder">
+        <i class="fas fa-magic"></i>
+      </div>
+    {{/if}}
+
+    <!-- Cast action overlay -->
+    <div class="spell-card__actions-overlay">
+      <div class="action-zone cast-zone"
+           data-action="castSpell"
+           data-uuid="{{this.uuid}}"
+           data-tooltip="{{localize 'ED.ToolTips.castSpell'}}">
+        <img class="custom-icon" src="systems/ed4e/assets/icons/cast.svg" alt="Cast Spell">
+      </div>
+    </div>
+  </div>
+
+  <div class="spell-card__footer favoritable" data-uuid="{{this.uuid}}">
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <img src="systems/ed4e/assets/icons/thread.svg" alt="Threads" data-tooltip="{{localize 'ED.Actor.Header.threads'}}">
+      </div>
+      <div class="spell-card__attribute-value">{{system.threads.required}}</div>
+    </div>
+
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <img src="systems/ed4e/assets/icons/weave-threads.svg" alt="Weaving" data-tooltip="{{localize 'ED.Actor.Tooltips.weavingDifficulty'}} / {{localize 'ED.Actor.Tooltips.reattuneDifficulty'}}">
+      </div>
+      <div class="spell-card__attribute-value">{{system.spellDifficulty.weaving}}/{{system.spellDifficulty.reattune}}</div>
+    </div>
+
+    <div class="spell-card__attribute">
+      <div class="spell-card__attribute-icon">
+        <i class="fal fa-crosshairs" data-tooltip="{{localize 'ED.Actor.Header.castingDifficulty'}}"></i>
+      </div>
+      <div class="spell-card__attribute-value">{{{system.difficultyLabel}}}</div>
+    </div>
+  </div>
+
+  {{!-- Knacks container that slides out on hover --}}
+  {{#if (lookup @root.spellKnacks id)}}
+    <div class="spell-card__knacks-container">
+      {{#each (lookup @root.spellKnacks id)}}
+        <div class="spell-card__knack" data-action="editChild" data-uuid="{{this.uuid}}">
+          <span class="spell-card__knack-name">{{this.name}}</span>
+          {{#if @root.editable}}
+            <div class="spell-card__knack-delete" data-action="deleteChild" data-uuid="{{this.uuid}}" data-tooltip="{{localize 'ED.Controls.delete'}}">
+              <i class="fas {{@root.config.SYSTEM.icons.delete}}"></i>
+            </div>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

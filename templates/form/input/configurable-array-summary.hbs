@@ -1,0 +1,19 @@
+{{!--
+Expects parameters:
+@param dataField - The data field that is rendered.
+@param data - The data model from the system field.
+@param config - The global ED4E configuration object.
+@param configType - The type of config application.
+--}}
+
+<span class="flexcol">
+  {{#each data}}
+    {{{this.summaryString}}}
+  {{/each}}
+</span>
+{{> "systems/ed4e/templates/configs/configure-button.hbs"
+  dataField=dataField
+  withLabel=false
+  config=config
+  configType=configType
+}}

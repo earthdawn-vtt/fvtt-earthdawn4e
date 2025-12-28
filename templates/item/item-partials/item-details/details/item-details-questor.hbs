@@ -1,3 +1,8 @@
-<div>
-    <h3>item-details</h3>
+<div id="base-details-questor-item" class="item-details__questor" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+    <fieldset>
+        <legend></legend>   
+            {{formGroup systemFields.questorDevotionId name="system.questorDevotionId" value=system.questorDevotionId parentDocument=item.parent}}
+    </fieldset>
+    
 </div>

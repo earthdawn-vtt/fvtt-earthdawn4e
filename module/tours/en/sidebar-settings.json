@@ -1,0 +1,42 @@
+{
+  "title": "System Settings",
+  "module": "ed4e",
+  "id": "edSettings",
+  "description": "Earthdawn Specific System Settings",
+  "canBeResumed": true,
+  "display": true,
+  "steps": [
+    {
+      "id": "intro",
+      "selector": "#ed4e-sidebar",
+      "title": "System Settings",
+      "content": "System Specific Settings Options",
+      "sidebarTab": "settings",
+      "action": "none"
+    }, 
+    {
+      "id": "changelog",
+      "selector": "#ed4eChangelog",
+      "title": "Change Log",
+      "content": "Find the latest system changes",
+      "sidebarTab": "settings",
+      "action": "none"
+    },
+    {
+      "id": "help",
+      "selector": "#ed4eHelp",
+      "title": "HElp",
+      "content": "Need Help? go to the GitHub-Wiki",
+      "sidebarTab": "settings",
+      "action": "none"
+    },
+    {
+      "id": "troubleshooting",
+      "selector": "#ed4eTroubleshooting",
+      "title": "Bug!",
+      "content": "You found a but, please consider to inform us by creating a Bug issue.",
+      "sidebarTab": "settings",
+      "action": "none"
+    }
+  ]
+}

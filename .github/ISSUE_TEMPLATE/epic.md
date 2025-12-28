@@ -2,13 +2,9 @@
 name: Epic
 about: Epic
 title: ''
-labels: Epic
+labels: ''
 assignees: ''
 
 ---
 
-## Reason
-
-## Proposed Solution
-
-## Technical Details
+This Epic enables [a capability or feature area] to [achieve outcome].

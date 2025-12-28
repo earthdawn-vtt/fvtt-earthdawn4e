@@ -1,0 +1,32 @@
+<section class="actor-section__top">
+    {{#if (eq this.actor.type "character" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-pc.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "npc" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "creature" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "dragon" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs"}}
+    {{/if}} 
+    {{#if (eq this.actor.type "spirit" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "horror" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-sentient.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "loot" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-loot.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "group" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-group.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "trap" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-trap.hbs"}}
+    {{/if}}
+    {{#if (eq this.actor.type "vehicle" )}}
+        {{> "systems/ed4e/templates/actor/actor-partials/actor-section-top-vehicle.hbs"}}
+    {{/if}}
+</section>

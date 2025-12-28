@@ -1,0 +1,61 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Schlafsack",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Ein mannsgroßer Sack aus derber Wolle, der an einer Seite auf- und zugeknöpft werden kann, um das Ein- und Aussteigen zu erleichtern. Er reicht für eine Person aus und ist dünn genug, damit er zusammengerollt und verschnürt werden kann. Abenteurer nutzen Schlafsäcke als improvisierte Schlafgelegenheit in der Wildnis.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 5,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 4,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "bj6QLFwZ3RqRmvuK",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735940798047,
+    "modifiedTime": 1735945528494,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
+  },
+  "_key": "!items!bj6QLFwZ3RqRmvuK"
+}

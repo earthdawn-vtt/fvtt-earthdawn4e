@@ -1,0 +1,77 @@
+{
+  "folder": "ZrFckL8DTgKbnC1q",
+  "type": "equipment",
+  "name": "Flint & Steel",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "threadData": {
+      "isIdentified": false,
+      "isAnalyzed": false,
+      "characteristics": {
+        "defenses": {
+          "mystical": {
+            "baseValue": 0,
+            "value": 0
+          }
+        }
+      },
+      "maxThreads": 1,
+      "tier": "novice",
+      "enchantmentPattern": null,
+      "levels": []
+    },
+    "description": {
+      "value": ""
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 0,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 0,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "sANrGj1jZJeXKrHH",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1737239392988,
+    "modifiedTime": 1737239392988,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
+  },
+  "_key": "!items!sANrGj1jZJeXKrHH"
+}

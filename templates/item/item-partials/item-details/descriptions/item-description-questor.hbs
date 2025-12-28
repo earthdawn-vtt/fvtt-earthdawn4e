@@ -1,19 +1,35 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
-    {{!-- Circle / Rank --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.rank"}}:</label>
-        <input class="input__circle-input" name="system.level" type="text" value="{{item.system.level}}"
-            data-dtype="Number">
+<div id="base-description-questor-item" class="item-description__questor item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+    {{!-- Rank --}}
+    <div class="item-section item-section--circle item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    {{else}}
+        <div class="item-line item-line--circle">
+        <span class="item-line__label">
+            {{localize systemFields.level.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.level}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- durability --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.durability"}}:</label>
-        <input class="input__circle-input" name="system.durability" type="text" value="{{item.system.durability}}"
-            data-dtype="Number">
+
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
     </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
 </div>

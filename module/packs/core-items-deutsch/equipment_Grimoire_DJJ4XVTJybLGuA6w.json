@@ -1,0 +1,61 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Grimoire",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Ein Grimoire wird zwar oft als ein Zauberbuch angesehen, was ein Bündel Papiere impliziert, aber Grimoires gibt es vielen Formen und Größen, und sie können auf fast jeder Art von Material geschrieben sein. Einige sind dicke Folianten, auf deren Seiten die Zauber geschrieben stehen. Andere können Beutel voller Münzen sein, auf denen feine Runen eingraviert sind. Wieder andere können aus Knochenstäben bestehen. Grimoires können sogar auf Edelsteinen geschrieben sein, auf denen die Zauber nur im Mondlicht leuchten. Der Form eines Grimoires werden eigentlich nur durch das Wissen und die Eigenarten des Zauberers Schranken gesetzt.</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 0,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 0,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "unique",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "DJJ4XVTJybLGuA6w",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735941007493,
+    "modifiedTime": 1735945528494,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
+  },
+  "_key": "!items!DJJ4XVTJybLGuA6w"
+}

@@ -1,4 +1,33 @@
-<div>
-    <h3>item-details</h3>
-    <input type="number" name="system.weightMultiplier" value="{{item.system.weightMultiplier}}">
+<div id="base-details-namegiver-item" class="item-details__namegiver" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
+    {{!-- weight Multiplier--}}
+    <fieldset>
+        <legend></legend>
+            {{formField systemFields.weightMultiplier name="system.weightMultiplier" value=item.system.weightMultiplier localize=true}}
+    </fieldset>
+    {{!-- Tail Attack --}}
+    <fieldset>
+        <legend></legend>
+            {{formField systemFields.tailAttack name="system.tailAttack" value=item.system.tailAttack localize=true}}
+    </fieldset>
+    
+    {{!-- Weapon Size Minimum--}}
+    <fieldset>
+        <legend></legend>
+        {{!-- One Handed Weapon Size Minimum--}}
+        {{formField systemFields.weaponSize.fields.oneHanded.fields.min name="system.weaponSize.oneHanded.min" value=item.system.weaponSize.oneHanded.min localize=true}}
+        {{!-- One Handed Weapon Size Maximum--}}
+        {{formField systemFields.weaponSize.fields.oneHanded.fields.max name="system.weaponSize.oneHanded.max" value=item.system.weaponSize.oneHanded.max localize=true}}
+        {{!-- Two Handed Weapon Size Minimum--}}
+        {{formField systemFields.weaponSize.fields.twoHanded.fields.min name="system.weaponSize.twoHanded.min" value=item.system.weaponSize.twoHanded.min localize=true}}
+        {{!-- Two Handed Weapon Size Maximum--}}
+        {{formField systemFields.weaponSize.fields.twoHanded.fields.max name="system.weaponSize.twoHanded.max" value=item.system.weaponSize.twoHanded.max localize=true}}
+    </fieldset>
+
+    {{!-- living armor only --}}
+    <fieldset>
+        <legend></legend>
+            {{formField systemFields.livingArmorOnly name="system.livingArmorOnly" value=item.system.livingArmorOnly localize=true}}
+    </fieldset>
+
 </div>

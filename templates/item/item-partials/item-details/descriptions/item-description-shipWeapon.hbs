@@ -1,43 +1,120 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-shipWeapon-item" class="item-description__shipWeapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Fire Power Points --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.firePowerPoints"}}:</label>
-        <input class="input__circle-input" name="system.firePowerPoints" type="text" value="{{item.system.firePowerPoints}}"
-            data-dtype="Number">
+    <div class="item-section item-section--fire-power-points item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.firePowerPoints name="system.firePowerPoints" value=item.system.firePowerPoints localize=true}}
+    {{else}}
+        <div class="item-line item-line--fire-power-points">
+        <span class="item-line__label">
+            {{localize systemFields.firePowerPoints.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.firePowerPoints}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
     {{!-- Crew required to fire the weapon --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.crewWeapon"}}:</label>
-        <input class="input__circle-input" name="system.crewWeapon" type="text" value="{{item.system.crewWeapon}}"
-            data-dtype="Number">
+    <div class="item-section item-section--crew-weapon item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.crewWeapon name="system.crewWeapon" value=item.system.crewWeapon localize=true}}
+    {{else}}
+        <div class="item-line item-line--crew-weapon">
+        <span class="item-line__label">
+            {{localize systemFields.crewWeapon.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.crewWeapon}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
     {{!-- Short Range --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.rangeShort"}}:</label>
-        <input class="input__number-input" name="system.rangeShort" type="text" value="{{item.system.rangeShort}}"
-            data-dtype="Number">
+    <div class="item-section item-section--range-short item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.range.fields.short name="system.range.short" value=item.system.range.short localize=true}}
+    {{else}}
+        <div class="item-line item-line--range-short">
+        <span class="item-line__label">
+            {{localize systemFields.range.fields.short.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.range.short}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
     {{!-- Long Range --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.rangeLong"}}:</label>
-        <input class="input__number-input" name="system.rangeLong" type="text" value="{{item.system.rangeLong}}"
-            data-dtype="Number">
+    <div class="item-section item-section--range-long item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.range.fields.long name="system.range.long" value=item.system.range.long localize=true}}
+    {{else}}
+        <div class="item-line item-line--range-long">
+        <span class="item-line__label">
+            {{localize systemFields.range.fields.long.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.range.long}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
     {{!-- Salvo Cost --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.salvoCost"}}:</label>
-        <input class="input__circle-input" name="system.salvoCost" type="text" value="{{item.system.salvoCost}}"
-            data-dtype="Number">
+    <div class="item-section item-section--salvo-cost item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.salvoCost name="system.salvoCost" value=item.system.salvoCost localize=true}}
+    {{else}}
+        <div class="item-line item-line--salvo-cost">
+        <span class="item-line__label">
+            {{localize systemFields.salvoCost.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.salvoCost}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Weapon Damage against single Namegivers --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.ShipWeapon.characterDamage"}}:</label>
-        <input class="input__circle-input" name="system.characterDamage" type="text" value="{{item.system.characterDamage}}"
-            data-dtype="Number">
+
+    {{!-- Weapon Damage against single Namegiver --}}
+    <div class="item-section item-section--character-damage item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.characterDamage name="system.characterDamage" value=item.system.characterDamage localize=true}}
+    {{else}}
+        <div class="item-line item-line--character-damage">
+        <span class="item-line__label">
+            {{localize systemFields.characterDamage.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.characterDamage}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

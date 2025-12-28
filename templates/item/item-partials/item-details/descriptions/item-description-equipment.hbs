@@ -1,32 +1,28 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
-    {{!-- price --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.price"}}:</label>
-        <input class="input__number-input" name="system.value" type="text" value="{{item.system.value}}"
-            data-dtype="Number">
-        {{> "systems/ed4e/templates/global-templates/denomination-selector.hbs"}}
+<div id="base-description-equipment-item"
+     class="item-body item-body--equipment"
+     data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs" isEquipment=true}}
+
+  {{!-- Amount --}}
+  <div class="item-section item-section--amount item-group ">
+      {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
+  </div>
+
+  {{!-- Description --}}
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
+        {{localize "ED.Item.Header.description"}}
+      </span>
+    </h3>
+    <div class="item-section__description">
+      {{#if @root.editable}}
+        {{> "systems/ed4e/templates/global/editor.hbs"}}
+      {{else}}
+        {{{enrichedDescription}}}
+      {{/if}}
     </div>
-    {{!-- Weight --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.weight"}}:</label>
-        <input class="input__number-input" name="system.weight" type="text" value="{{item.system.weight}}"
-            data-dtype="Number">
-    </div>
-        {{!-- Amount --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.amount"}}:</label>
-        <input class="input__number-input" name="system.amount" type="text" value="{{item.system.amount}}"
-            data-dtype="Number">
-    </div>
-    {{!-- availability --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Availability.availability"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/availability-selector.hbs"}}
-    </div>
-</div>
-{{!-- Editor --}}
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+  </div>
+
 </div>

@@ -1,0 +1,12 @@
+<section class="tab spend {{tabs.spend.cssClass}} lp-history__spend scrollable" data-group="primary" data-tab="spend">
+
+  <div class="form-group">
+    <label>{{localize "ED.Dialogs.Sorting.sortBy"}}</label>
+    <div class="form-fields flexrow">
+      {{radioBoxes "sortBy" SORTING checked=sortBy localize=false}}
+    </div>
+  </div>
+
+  {{{spendingsHtmlTable}}}
+
+</section>

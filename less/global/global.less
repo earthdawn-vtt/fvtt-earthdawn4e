@@ -1,167 +1,443 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  .WarhorseDIY;
+.layout__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-col-gap-lg);
+}
+.layout__col {
+  flex: 1 1 0;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.layout__col--2 { flex: 0 0 calc(98% / 2); }
+.layout__col--3 { flex: 0 0 calc(98% / 3); }
+.layout__col--4 { flex: 0 0 calc(98% / 4); }
+.layout__col--5 { flex: 0 0 calc(98% / 5); }
+.layout__col--6 { flex: 0 0 calc(98% / 6); }
+
+//###########################################################
+// Text alignment
+//###########################################################
+
+.one-line__vertical-align > *{
+  line-height: 35px;
+  vertical-align: middle;
 }
 
-.body {
-    .ArnoProRegular;
+//###########################################################
+// Window header
+//###########################################################
+
+.application .window-header button.header-control {
+  color: var(--color-text-body)
+}
+.application .controls-dropdown {
+  z-index: 99;
+}
+
+//###########################################################
+// Input
+//###########################################################
+
+input[type=text],
+input[type=number],
+input[type=password],
+input[type=date],
+input[type=time],
+input[type=datetime-local],
+input[type=search],
+input[type=file],
+select {
+  color: var(--color-text-body);
+  box-shadow: none;
+}
+
+.header__no-border {
+  border: none;
+  input {
+    border: none;
+    background: transparent;
   }
-
-  #chat-log, .window-content, input {
-    .ArnoProRegular;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    .WarhorseDIY;
+.input__square-input--centered,
+.input__rectangle-input--centered,
+.input__rectangle-lp-input--centered {
+  color: var(--color-text-body);
+  background: var(--color-input-square);
+  border: var(--border-input);
+  border-radius: 3px;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  pointer-events: auto;
 }
-
-.partial__two {
-    float: left;
-    width: 50%;
-
+.input__rectangle-input--centered {
+  width: 40px;
+  padding-top: 2px;
 }
-
-.partial__three {
-    float: left;
-    width: 33.3%;
-
+.input__rectangle-lp-input--centered {
+  width: 80%;
+  padding-top: 2px;
 }
-
-.partial__four {
-    float: left;
-    width: 25%;
-}
-
-.partial__five {
-    float: left;
-    width: 20%;
-}
-
-.partial__six {
-    float: left;
-    width: 16.6%;
-}
-
-.partial__seventy-five-percent {
-    float: left;
-    width: 75%;
-}
-
-.partial__seventy-percent {
-    float: left;
-    width: 70%;
-}
-
-.partial__sixty-percent {
-    float: left;
-    width: 60%;
-}
-
-.partial__sixty-percent--padding {
-    padding: 5px;
-}
-
-.partial__fouty-percent {
-    float: left;
-    width: 40%;
-}
-
-.partial__fourty-percent--padding {
-    padding: 5px;
-}
-
-.partial__thirty-percent {
-    float: left;
-    width: 30%;
-}
-
-.partial__twenty-five-percent {
-    float: left;
-    width: 25%;
-}
-
-.partial__twenty-five-percent--padding {
-    padding-right: 8px;
-}
-
-//Editor - prosemirror
-
-.editor--hint {
-    margin-bottom: 0;
-    margin-left: 5px;
-}
-
 .input__circle-input--centered {
-    border: 1px solid;
-    text-align: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding-top: 5px;
-    background: none;
+  border: 1px solid;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding-top: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+}
+.input__clear-input--centered {
+	font-size: var(--font-size-17);
+	color: var(--color-text-body);
+	background-color: transparent;
+	text-align: center;
+	padding: 0.2em;
+	width: 38px;
+	height: 25px;
+	border: 0;
+	cursor: help;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	caret-color: transparent;
+	outline: 0;
+	pointer-events: auto;
+
+	&::selection { background: transparent; }
 }
 
-.input--centered {
-    text-align: center;
+//###########################################################
+//                       Fonts
+//###########################################################
+
+.application,
+body {
+
+  .h1, h2 {
+    .WarhorseDeco();
+    margin: 0;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  h3, h5, h6 {
+    .WarhorseDeco();
+    font-size: 1rem;
+    margin: 0;
+  }
+  h3 {
+    font-size: 0.9rem;
+    margin: 0;
+    font-family: inherit;
+  }
 }
 
-.header--centered {
-    text-align: center;
+//###########################################################
+//                       Displays
+//###########################################################
+.display__inline-block {
+  display: inline-block;
 }
 
-.list__ordered-column--flex {
+//###########################################################
+//                       Visibility
+//###########################################################
+.invisible {
+  visibility: hidden;
+}
+
+//###########################################################
+//                       spaces
+//###########################################################
+.space__small {
+  padding-top: 5px;
+}
+
+//###########################################################
+//                       undefined areas
+//###########################################################
+.undefined {
+  background-color: red;
+  color: black;
+}
+
+//###########################################################
+//                       Section Header Bar
+//###########################################################
+
+.header-bar {
+  background: var(--background-banner-actor);
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 0 0 12px 6px rgba(0, 0, 0, 1);
+  margin: 7px 0 5px 0;
+}
+
+//###########################################################
+//                       Container Formatting
+//###########################################################
+
+.container__block {
+  margin: -7px 0 5px 0;
+  border: var(--border-main);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px 5px 3px 5px;
+  background-clip: padding-box;
+  overflow: auto;
+  position: relative;
+  overflow: visible !important;
+  max-height: none !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar { display: none; }
+}
+
+.container__header {
+  position: sticky;
+  margin-bottom: 5px;
+  top: 0;
+  z-index: 2;
+}
+
+.container__section {
+  position: relative;
+}
+
+* {
+  scrollbar-color: var(--color-tertiary) var(--color-transparent);
+}
+
+//###########################################################
+//                       Container Header Bar
+//###########################################################
+
+.container__header-mixin() {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-text-banner);
+  text-transform: uppercase;
+  line-height: 19px;
+  height: 19px;
+  font-weight: normal;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.container__header {
+  .container__header-mixin();
+}
+
+.attributes-grid__header {
+  .container__header-mixin();
+}
+
+
+//###########################################################
+//                       Header Rail Formatting
+//###########################################################
+
+h3.label--rail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+h3.label--rail .label__text {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--size-rail-gap);
+  color: var(--color-text-body);
+}
+h3.label--rail .label__text::before,
+h3.label--rail .label__text::after {
+  content: "";
+  position: absolute;
+  top: 6.5px;
+  height: var(--size-rail-thickness);
+  width: 100vmax;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+h3.label--rail .label__text::before {
+  right: 100%;
+  background: linear-gradient(
+    to left,
+    transparent 0,
+    var(--color-gold-md) var(--size-rail-fade),
+    var(--color-gold-md) 100%
+  );
+}
+h3.label--rail .label__text::after {
+  left: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    var(--color-gold-md) var(--size-rail-fade),
+    var(--color-gold-md) 100%
+  );
+}
+
+//###########################################################
+//                       Buffer Formatting
+//###########################################################
+
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.buffer {
+  background: transparent;
+  border: none;
+  padding: 0 6px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 16px;
+  width: 14px;
+  height: auto;
+}
+
+.buffer--minus { justify-content: left; }
+.buffer--plus  { justify-content: right;; }
+
+.buffer--minus::before { content: "−"; color: var(--color-button-icon); }
+.buffer--plus::before  { content: "+"; color: var(--color-button-icon); }
+
+.buffer:hover::before {
+  color: var(--color-button-icon-hover);
+}
+
+.buffer-input {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 25px;
+  position: relative;
+}
+.buffer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+.buffer-input:hover .buffer,
+.buffer-input:focus-within .buffer {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+//###########################################################
+//                       Effects
+//###########################################################
+
+.effect-card__grid--container {
+  display: grid;
+  grid-template-columns:
+    minmax(25px, 25px)
+    minmax(70px, 1fr)
+    minmax(70px, 1fr)
+    minmax(60px, 60px)
+    minmax(60px, 60px)
+    minmax(50px, 50px);
+  column-gap: var(--grid-col-gap-sm);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: normal;
+  height: 30px;
+  padding-bottom: 1px;
+
+  &.container__header {
+    background-color: var(--color-secondary-grey);
+    color: var(--color-text-banner);
+    text-transform: uppercase;
+    line-height: 19px;
+    height: 19px;
+  }
+}
+
+.effect-card__grid--item:nth-child(2) { text-align: left; }
+.effect-card__grid--item:nth-child(6) { text-align: right; }
+.effect-icon { border: none; }
+
+//###########################################################
+//                       Effects
+//###########################################################
+
+.button-bar {
+  background: var(--background-banner-actor);
+  color: var(--color-text-banner);
+  width: 100%;
+  line-height: 26px;
+  text-align: center;
+  border: var(--border-main);
+  border-radius: 40px;
+  box-shadow: inset 0 0 12px 6px rgba(0, 0, 0, 1);
+  margin: 7px 0 5px 0;
+}
+
+//###########################################################
+//                       Button Toggle
+//###########################################################
+
+.type-selection {
+  .button-toggle {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    font-style: normal;
-}
+    flex-wrap: wrap;
+    gap: var(--grid-col-gap-sm);
 
-.list__button-column--flex {
-
-    width: 800px;
-    .buttons--left {
-        margin-left:45px;
-        margin-right: 50px;
-        float: left;
-    width: 40%;
+    label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 35px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      min-height: 1.8rem;
+      flex: 1 0 calc(25% - var(--grid-col-gap-sm));
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid var(--color-gold-dk);
+      background: transparent;
+      font-size: var(--font-size-12);
+      text-transform: capitalize;
+      cursor: pointer;
+      text-align: center;
+      white-space: nowrap;
     }
-    .buttons--right {
 
-        float: left;
-
-        
-    width: 40%;
-    margin-right: 50px;
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+      margin: 0;
+      pointer-events: none;
     }
-}
 
-.icon__position--right {
-    float: right;
-}
-
-.image__border--none {
-    border: none;
-}
-
-.text__alignment--left {
-    text-align: left;
-}
-.text__alignment--center {
-    text-align: center;
-}
- 
-.field__background-none {
-    background: none;
-    border: none;
-}
-
-input.input__number-input {
-    width: 30px;
-        padding-top: 5px;
-        height: 20px;
+    label:has(input[type="radio"]:checked) {
+      background: var(--color-gold-dk);
+      border-color: var(--color-gold-dk);
+    }
+  }
 }

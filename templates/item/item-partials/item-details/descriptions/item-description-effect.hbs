@@ -1,4 +1,17 @@
-<div class="item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+<div id="base-description-effect-item" class="item-description__effect" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

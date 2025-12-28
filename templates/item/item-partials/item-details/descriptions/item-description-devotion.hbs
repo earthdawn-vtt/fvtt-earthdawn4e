@@ -1,45 +1,70 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
-    {{!-- Rank --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.rank"}}:</label>
-        <input class="input__circle-input" name="system.level" type="text" value="{{item.system.level}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Strain --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.strainShort"}}:</label>
-        <input class="input__circle-input" name="system.strain" type="text" value="{{item.system.strain}}"
-            data-dtype="Number">
-    </div>
-    {{!-- Attribute --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Attributes.attribute"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/attribute-selector.hbs"}}
-    </div>
-    {{!-- Action --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Action.action"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/action-selector.hbs"}}
-    </div>
+<div id="base-description-devotion-item" class="item-description__devotion item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/abilities.hbs"}}
+
     {{!-- Tier --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Tier.tier"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/tier-selector.hbs"}}
+    <div class="item-section item-section--tier item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.tier name="system.tier" value=item.system.tier localize=true}}
+        {{else}}
+        <div class="item-line item-line--tier">
+            <span class="item-line__label">
+                {{localize systemFields.tier.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.tier}}
+            </span>
+        </div>
+        {{/if}}
     </div>
+
     {{!-- Devotion Required --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Devotion.devotionRequired"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.devotionRequired">
+    <div class="item-section item-section--devotion-required item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.devotionRequired name="system.devotionRequired" value=item.system.devotionRequired localize=true}}
+        {{else}}
+        <div class="item-line item-line--devotion-required">
+            <span class="item-line__label">
+                {{localize systemFields.devotionRequired.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{#if item.system.devotionRequired}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+            </span>
+        </div>
+        {{/if}}
     </div>
+
     {{!-- durability --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.durability"}}:</label>
-        <input class="input__circle-input" name="system.durability" type="text" value="{{item.system.durability}}"
-            data-dtype="Number">
+     <div class="item-section item-section--durability item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.durability name="system.durability" value=item.system.durability localize=true}}
+        {{else}}
+        <div class="item-line item-line--durability">
+            <span class="item-line__label">
+                {{localize systemFields.durability.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.durability}}
+            </span>
+        </div>
+        {{/if}}
     </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <div class="item-section__description">
+        {{#if @root.editable}}
+            {{> "systems/ed4e/templates/global/editor.hbs"}}
+        {{else}}
+            {{{enrichedDescription}}}
+        {{/if}}
+        </div>
+    </div>
 </div>

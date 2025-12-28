@@ -1,0 +1,107 @@
+@actorIcons: {
+  character: 'assets/icons/character.svg';
+  npc: 'assets/icons/npc.svg';
+  creature: 'assets/icons/creature.svg';
+  spirit: 'assets/icons/spirit.svg';
+  horror: 'assets/icons/horror.svg';
+  dragon: 'assets/icons/dragon.svg';
+  group: 'assets/icons/group.svg';
+  vehicle: 'assets/icons/vehicle.svg';
+  trap: 'assets/icons/trap.svg';
+  loot: 'assets/icons/loot.svg';
+}
+@labelOutlineThickness: 1px;
+@labelOutlineColor: white;
+
+form#document-create{
+  &>.form-group {
+    & > label, & > header {
+      font-size: larger;
+      font-weight: bold;
+    }
+  }
+
+  header.type-group-label{
+    border-bottom: double;
+    margin-top: 0.3em;
+  }
+
+  #typeSelectionHeader{
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .type-selection {
+    input{
+      margin:0;padding:0;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+    }
+
+    label:has(input[type='radio']){
+      color: magenta;
+      font-variant: all-small-caps;
+      font-size: large;
+      scale: 1;
+      margin-top: 0.6em;
+      vertical-align: middle;
+      text-shadow:    @labelOutlineThickness @labelOutlineThickness 0 @labelOutlineColor,
+        @labelOutlineThickness -@labelOutlineThickness 0 @labelOutlineColor,
+      -@labelOutlineThickness @labelOutlineThickness 0 @labelOutlineColor,
+        -@labelOutlineThickness -@labelOutlineThickness 0 @labelOutlineColor;
+
+      &:has(input:checked){
+        -webkit-filter: none;
+        -moz-filter: none;
+        filter: none;
+      }
+    }
+
+    .checkbox{
+      background-size:contain;
+      background-repeat:no-repeat;
+      display:inline-block;
+      width:100px;
+      height:70px;
+      text-shadow: 1px 1px 5px white;
+      -webkit-transition: all 100ms ease-in;
+      -moz-transition: all 100ms ease-in;
+      transition: all 100ms ease-in;
+      -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+      -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+      filter: brightness(1.8) grayscale(1) opacity(.7);
+    }
+  }
+
+  .checkbox, .type-selection input:active +.checkbox{opacity: .9;}
+  .checkbox, .type-selection input[checked=""] +.checkbox{
+    -webkit-filter: none;
+    -moz-filter: none;
+    filter: none;
+  }
+
+  .checkbox:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+    filter: brightness(1.2) grayscale(.5) opacity(.9);
+  }
+}
+
+.create-document.create-actor{
+  .type-selection label:has(input[type='radio'][value='character']){background-image:url(@actorIcons[character]);}
+  .type-selection label:has(input[type='radio'][value='npc']){background-image:url(@actorIcons[npc]);}
+  .type-selection label:has(input[type='radio'][value='creature']){background-image:url(@actorIcons[creature]);}
+  .type-selection label:has(input[type='radio'][value='spirit']){background-image:url(@actorIcons[spirit]);}
+  .type-selection label:has(input[type='radio'][value='horror']){background-image:url(@actorIcons[horror]);}
+  .type-selection label:has(input[type='radio'][value='dragon']){background-image:url(@actorIcons[dragon]);}
+  .type-selection label:has(input[type='radio'][value='group']){background-image:url(@actorIcons[group]);}
+  .type-selection label:has(input[type='radio'][value='vehicle']){background-image:url(@actorIcons[vehicle]);}
+  .type-selection label:has(input[type='radio'][value='trap']){background-image:url(@actorIcons[trap]);}
+  .type-selection label:has(input[type='radio'][value='loot']){background-image:url(@actorIcons[loot]);}
+}
+
+.create-document.create-item{
+  .type-selection label:has(input[type='radio']){background-image:url('assets/icons/meditation.svg');}
+  min-width: 750px;
+}

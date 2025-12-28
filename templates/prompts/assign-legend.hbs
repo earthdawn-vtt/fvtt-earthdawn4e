@@ -1,0 +1,49 @@
+<div>
+  <div class="assign-legend-point__body">
+    <div class="assign-lp__input">
+      <div class="assign-lp__input-area">
+        <h4>
+          {{localize "ED.Dialogs.AssignLp.legendPoints"}}
+        </h4>
+        <input class="assign-lp__amount" type='number' name="amount" value="{{object.amount}}" placeholder="0"></input>
+      </div>
+      <div class="assign-lp__input-area">
+        <h4>
+          {{localize "ED.Dialogs.AssignLp.description"}}
+        </h4>
+        <input class="assign-lp__description" type='string' name="description" value="{{object.description}}" placeholder="{{localize "ED.Dialogs.Placeholder.lpDescription"}}"></input>
+      </div>
+      <div class="actor-area">
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.Header.activeUser"}}</legend>
+    {{#each actorUserActive}}
+    <div>
+      <input type="checkbox" id="actor_{{this.actorId}}" name="selectedActors" value="{{this.actorId}}" checked>
+      <label for="actor_{{this.actorId}}">{{this.actorName}} / {{this.playerName}}</label>
+    </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.Header.inactiveUser"}}</legend>
+    {{#each actorUserInactive}}
+    <div>
+      <input type="checkbox" id="actor_{{this.actorId}}" name="selectedActors" value="{{this.actorId}}">
+      <label for="actor_{{this.actorId}}">{{this.actorName}} / {{this.playerName}}</label>
+    </div>
+    {{/each}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Dialogs.Header.actorsNoUserConfigured"}}</legend>
+    {{#each actorsNoUserConfigured}}
+    <div>
+      <input type="checkbox" id="actor_{{this.actorId}}" name="selectedActors" value="{{this.actorId}}">
+      <label for="actor_{{this.actorId}}">{{this.actorName}}</label>
+    </div>
+    {{/each}}
+  </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

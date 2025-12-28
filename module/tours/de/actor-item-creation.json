@@ -1,0 +1,74 @@
+{
+    "title": "Akteure und Items erstellen",
+    "module": "ed4e",
+    "id": "edActorItemCreation",
+    "description": "Akteure und Objekte erstellen",
+    "canBeResumed": true,
+    "display": true,
+    "steps": [
+      {
+        "id": "actorSidebar",
+        "selector": ".tabs>a[data-tab='actors']",
+        "title": "Akteur Sidebar",
+        "content": "Erstellung von Akteuren",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "createNewActor",
+        "selector": ".actors-sidebar .create-document.create-entry",
+        "title": "Akteur erstellen",
+        "content": "Klicke <strong>Akteuer erstellen</strong> um einen neuen Akteur zu erstellen.",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "actorCreationPrompt",
+        "selector": ".actors-sidebar .create-document.create-entry",
+        "title": "Akteur Typen Dialog",
+        "content": "Ein Auswahldialog erscheint mit allen Akteurtypen.",
+        "activateTab": "actors",
+        "action": "createActor"
+      },
+      {
+        "id": "chooseActorType",
+        "selector": ".app.window-app.form.earthdawn4e.create-document.create-actor",
+        "title": "Akteur Auswahl",
+        "content": "Wähle einen Akteur Typ <strong>(Doppelklick)</strong> oder bestätige mit der <strong>Akteur erstellen</strong> Option unten.",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "itemSidebar",
+        "selector": ".tabs>a[data-tab='items']",
+        "title": "Items Sidebar",
+        "content": "Erstellung von Items.",
+        "activateTab": "items",
+        "action": "none"
+      },
+      {
+        "id": "createNewItem",
+        "selector": ".items-sidebar .create-document.create-entry",
+        "title": "Item erstellen",
+        "content": "Klicke <strong>Item erstellen</strong>.",
+        "activateTab": "items",
+        "action": "none"
+      },
+      {
+        "id": "itemCreationPrompt",
+        "selector": ".items-sidebar .create-document.create-entry",
+        "title": "Item Typen Dialog",
+        "content": "Ein Auswahldialog erscheint mit allen Itemtypen.",
+        "activateTab": "items",
+        "action": "createItem"
+      },
+      {
+        "id": "chooseItemType",
+        "selector": ".app.window-app.form.earthdawn4e.create-document.create-item",
+        "title": "Item Auswahl",
+        "content": "Wähle einen Item Typ <strong>(Doppelklick)</strong>oder bestätige mit dem <strong>Item erstellen</strong>.",
+        "activateTab": "items",
+        "action": "none"
+      }
+    ]
+  }

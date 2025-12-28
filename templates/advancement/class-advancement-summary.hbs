@@ -1,0 +1,75 @@
+<div class="class-advancement-summary" {{#unless render.summary}}style="display:none;"{{/unless}}>
+  <div>
+    <p>
+      {{#if learning}}
+        {{localize "ED.Dialogs.Legend.ClassAdvancement.learningClass" type=classItem.type name=classItem.name}}
+      {{else}}
+        {{localize "ED.Dialogs.Legend.ClassAdvancement.increaseClassTo" increaseClassToLevel=nextLevel}}
+        
+      {{/if}}
+    </p>
+    {{#if tierChanged}}
+      {{localize "ED.Dialogs.Legend.ClassAdvancement.classIncreasedTier" current=tier.current next=tier.next}}
+    {{/if}}
+  </div>
+
+  {{#if gainedAbilities}}
+    <div>
+      {{#if abilityOptionGained}}
+        <label>
+          {{localize "ED.Dialogs.Legend.ClassAdvancement.optionalAbilityGained"}}
+          <div>
+            {{{ed-linkForUuid abilityOption}}}
+          </div>
+        </label>
+      {{/if}}
+
+      {{#each abilitiesGained}}
+        {{#if (ed-hasItems this)}}
+          <label>
+            {{localize (concat "ED.Dialogs.Legend.ClassAdvancement." @key "AbilitiesGained")}}
+            <div>
+              {{#each this as |uuid|}}
+                {{{ed-linkForUuid uuid}}}
+              {{/each}}
+            </div>
+          </label>
+        {{/if}}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  {{#if (ed-hasItems effectsGained)}}
+    <div>
+      <label>
+        {{localize "ED.Dialogs.Legend.ClassAdvancement.effectsGained"}}
+        <div>
+          {{#each effectsGained as |effect|}}
+            {{{ed-linkForUuid effect}}}
+          {{/each}}
+        </div>
+      </label>
+    </div>
+  {{/if}}
+
+  {{#if (ed-hasItems spellsGained)}}
+    <div>
+      <label>
+        {{localize "ED.Dialogs.Legend.ClassAdvancement.spellsGained"}}
+        <div>
+          {{#each spellsGained as |spell|}}
+            {{{ed-linkForUuid spell}}}
+          {{/each}}
+        </div>
+      </label>
+    </div>
+  {{/if}}
+
+  {{#if resourceStepChanged}}
+    <div>
+      <p>
+        {{localize "ED.Dialogs.Legend.ClassAdvancement.resourceStepIncreased" name=resourceStep.name current=resourceStep.current next=resourceStep.next}}
+      </p>
+    </div>
+  {{/if}}
+</div>

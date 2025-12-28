@@ -1,0 +1,30 @@
+<div class="itemControlGroup" data-item-id="{{_id}}">
+	<a
+		class="item-control item-display"
+		data-action="displayChild"
+		data-tooltip="{{localize 'ED.Controls.displayItem'}}"
+		data-tooltip-direction="UP"
+		aria-label="{{localize 'ED.Controls.displayItem'}}">
+		<i class="fas fa-comments" aria-hidden="true"></i>
+	</a>
+
+	<a
+		class="item-control item-delete"
+		data-action="deleteChild"
+		data-uuid="{{uuid}}"
+		data-tooltip="{{localize 'ED.Controls.delete'}}"
+		data-tooltip-direction="UP"
+		aria-label="{{localize 'ED.Controls.delete'}}">
+		<i class="fas fa-trash" aria-hidden="true"></i>
+	</a>
+
+	<a
+		class="item-control item-edit"
+		data-action="editChild"
+		data-uuid="{{uuid}}"
+		data-tooltip="{{localize 'ED.Controls.edit'}}"
+		data-tooltip-direction="UP"
+		aria-label="{{localize 'ED.Controls.edit'}}">
+		<i class="fas fa-edit" aria-hidden="true"></i>
+	</a>
+</div>

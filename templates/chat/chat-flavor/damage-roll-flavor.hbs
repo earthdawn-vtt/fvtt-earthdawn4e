@@ -1,0 +1,33 @@
+{{!--> "systems/ed4e/templates/chat/dice-partials/roll-custom-flavor.hbs" --}}
+<div class="chat-flavor-header">{{{lookup CONFIG.ED4E.COMBAT.damageSourceType rollOptions.damageSourceType}}}</div>
+
+<div class="chat-sub-header-tags flexcol">{{{ damageSourceHeader }}}</div>
+
+<div class="damage-visualization flexcol">
+  <div class="armor-indicator flexcol">
+    <div class="fa-stack {{rollOptions.armorType}}">
+      <span class="armor-icon
+        {{#if (eq rollOptions.armorType "physical")}}fa-solid fa-shield{{/if}}
+        {{#if (eq rollOptions.armorType "mystical")}}fa-duotone fa-regular fa-shield{{/if}}
+        {{#unless rollOptions.armorType}}fa-duotone fa-solid fa-shield-quartered{{/unless}}
+        fa-stack-2x"></span>
+      <span class="damage-value fa-stack-1x fa-xl fa-inverse">{{ result }}</span>
+    </div>
+    <br>
+    <div class="armor-label">
+      {{#if (eq rollOptions.armorType "physical")}}{{CONFIG.ED4E.ACTORS.armor.physical}}{{/if}}
+      {{#if (eq rollOptions.armorType "mystical")}}{{CONFIG.ED4E.ACTORS.armor.mystical}}{{/if}}
+      {{#unless rollOptions.armorType}}{{localize "ED.Chat.Flavor.ignoresArmor"}}{{/unless}}
+    </div>
+  </div>
+</div>
+
+<div class="flexrow message-buttons damage-roll-buttons" data-roll-total={{ result }}>
+  {{> "systems/ed4e/templates/chat/chat-buttons/apply-damage.hbs"}}
+  {{#if hasAssignedCharacter}}
+    {{> "systems/ed4e/templates/chat/chat-buttons/take-damage.hbs"}}
+  {{/if}}
+</div>
+<div class="modifier-lists flexrow">
+  {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+</div>

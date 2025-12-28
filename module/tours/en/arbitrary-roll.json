@@ -1,0 +1,40 @@
+{
+  "title": "Arbitrary Rolls",
+  "module": "ed4e",
+  "id": "edArbitraryRolls",
+  "description": "How to roll arbitrary steps",
+  "canBeResumed": false,
+  "display": true,
+  "preCommand": "const uuid = 'Compendium.ed4e.manual-english.JournalEntry.LB0uwkC26dySBg4p.JournalEntryPage.69Mh0NpXfSTroFUG'; const page = await fromUuid(uuid); await Journal.show(page, {force: true});",
+  "steps": [
+    {
+      "id": "step-0",
+      "selector": ".journal-entry-content",
+      "title": "System Manual",
+      "content": "The different dice rolling options are described in the system manual. this one shows 'roll from journal'",
+      "action": "none"
+    },
+    {
+      "id": "step-1",
+      "selector": ".journal--roll",
+      "title": "create fast rolling in journals",
+      "content": "It is possible to create arbitrary roll commands in a journal using @Roll(/s 14)(falling damage).",
+      "action": "none"
+    },
+    {
+      "id": "step-2",
+      "selector": "#chat-message",
+      "title": "Roll steps via chat command",
+      "content": "In the chat window, it is possible to roll steps by using the command /s .",
+      "activateTab": "chat-message",
+      "action": "arbitraryRollStep14"
+    }, 
+    {
+      "id": "step-3",
+      "selector": ".chat-control-icon",
+      "title": "Start a generic roll pop up",
+      "content": "By clicking on the dice symbol, a roll pop up appears, enabling you to roll any step and include karma and/or devotion",
+      "action": "none"
+    }
+  ]
+}

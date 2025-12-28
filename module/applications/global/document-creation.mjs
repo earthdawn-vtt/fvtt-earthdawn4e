@@ -1,0 +1,309 @@
+import PcData from "../../data/actor/pc.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { sortObjectEntries } from "../../utils.mjs";
+
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
+/**
+ * Derivate of Foundry's Item.createDialog() functionality.
+ */
+export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
+  ApplicationV2,
+) {
+
+  // region Static Properties
+
+  /** @inheritDoc */
+  static DEFAULT_OPTIONS = {
+    id:      "document-create-dialog",
+    classes: [ "earthdawn4e", "create-document" ],
+    tag:     "form",
+    window:  {
+      frame:     true,
+      resizable: true,
+      height:    900,
+      width:     800,
+    },
+    form: {
+      handler:        this.#onFormSubmission,
+      submitOnChange: true,
+      submitOnClose:  false,
+      closeOnSubmit:  false,
+    },
+    position: {
+      width: 1000,
+      top:   100,
+      left:  100,
+    },
+    actions: {
+      createDocument: this._createDocument,
+    },
+  };
+
+  /** @inheritDoc */
+  static PARTS = {
+    form: {
+      template:   "systems/ed4e/templates/global/document-creation.hbs",
+      id:         "-document-selection",
+      scrollable: [ "type-selection" ],
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs",
+      id:       "-footer",
+      classes:  [ "flexrow" ],
+    },
+  };
+
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * Wait for dialog to be resolved.
+   * @param {object} [data] Initial data to pass to the constructor.
+   * @param {object} [options] Options to pass to the constructor.
+   * @returns {Promise<Item|null>} Created item or null.
+   */
+  static waitPrompt( data, options = {} ) {
+    return new Promise( ( resolve ) => {
+      options.resolve = resolve;
+      new this( data, options ).render( { force: true, focus: true } );
+    } );
+  }
+
+  // endregion
+
+  // region Properties
+
+  createData = {};
+
+  // endregion
+
+  /** @inheritDoc */
+  constructor(
+    data = {},
+    { resolve, documentCls, pack = null, parent = null, options = {} } = {},
+  ) {
+    const documentType = documentCls.name;
+    const classes = options.classes || [];
+    classes.push( `create-${documentType.toLowerCase()}` );
+    const window = options.window || {};
+    window.title ??= game.i18n.format( "ED.Document.create", {
+      type: documentType,
+    } );
+
+    foundry.utils.mergeObject( options, {
+      classes,
+      window,
+    } );
+
+    super( options );
+
+    this.resolve = resolve;
+    this.documentCls = documentCls;
+    this.documentType = documentType;
+    this.pack = pack;
+    this.parent = parent;
+
+    this._updateCreationData( data );
+  }
+
+  // region Rendering
+
+  /** @inheritDoc */
+  async _prepareContext( options = {} ) {
+    const folders = this.parent
+      ? []
+      : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
+    // add compendium folders
+    game.packs
+      .filter( ( pack ) => pack.metadata.type === this.documentType )
+      .forEach( ( pack ) => folders.push( ...pack.folders ) );
+
+    const types = CONFIG.ED4E.typeGroups[this.documentType];
+    const typesRadio = Object.fromEntries(
+      Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
+        return [
+          game.i18n.localize( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
+          sortObjectEntries( types.reduce(
+            ( accumulator, type ) =>  {
+              let label = CONFIG[this.documentType].typeLabels?.[type];
+              label = label && game.i18n.has( label ) ? game.i18n.localize( label ) : type;
+              return {
+                ...accumulator,
+                [type]: label
+              };
+            } ,
+            {}
+          ) ),
+        ];
+      } ),
+    );
+
+    const createData = this.createData;
+
+    const buttons = [
+      {
+        type:  "button",
+        label: game.i18n.format( "ED.Document.create", {
+          type: this.documentType,
+        } ),
+        cssClass: "finish",
+        action:   "createDocument",
+      },
+    ];
+
+    return {
+      folders,
+      name:                  createData.name,
+      defaultName:           this.documentCls.implementation.defaultName( {
+        type: createData.type,
+      } ),
+      folder:      createData.folder,
+      hasFolders:  folders.length > 0,
+      currentType: createData.type,
+      types,
+      typesRadio,
+      buttons,
+    };
+  }
+
+  // endregion
+
+  // region Form Handling
+
+  /** @inheritDoc */
+  static async #onFormSubmission( event, form, formData ) {
+    const data = foundry.utils.expandObject( formData.object );
+
+    this._updateCreationData( data );
+
+    this.render();
+  }
+
+  /**
+   * Update the creation data object with the provided data.
+   * @param {object} data The data to update the creation data with.
+   * @returns {object} The updated creation data object.
+   */
+  _updateCreationData( data = {} ) {
+    // Fill in default type if missing
+    data.type
+      ||= CONFIG[this.documentType].defaultType
+      || game.documentTypes[this.documentType][1];
+
+    foundry.utils.mergeObject( this.createData, data, {
+      inplace: true,
+    } );
+    this.createData.system ??= {};
+
+    // Clean up data
+    // if ( !data.folder && !this.createData.folder ) delete this.createData.folder;
+
+    return this.createData;
+  }
+
+  // endregion
+
+  // region Rendering
+
+  /** @inheritDoc */
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+
+    if (
+      !options.isFirstRender
+      && Array.isArray( options.parts )
+    ) options.parts = options.parts.filter( part => part !== "footer" );
+  }
+
+  /** @inheritDoc */
+  _onRender( context, options ) {
+    this.element
+      .querySelectorAll( ".type-selection label" )
+      .forEach( ( element ) =>
+        element.addEventListener(
+          "dblclick",
+          this.constructor._createDocument.bind( this ),
+        ),
+      );
+  }
+
+  // endregion
+
+  // region Event Handlers
+
+  /**
+   * Create the document.
+   * @this {DocumentCreateDialog}
+   * @param {Event} event The originating click event.
+   * @returns {Promise<Item|null>} Created item or null.
+   */
+  static async _createDocument( event ) {
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    /* eslint-disable new-cap */
+    let createData = this._updateCreationData( this.createData );
+    createData.name ||= this.documentCls.implementation.defaultName( {
+      type: createData.type,
+    } );
+    createData = new this.documentCls.implementation( createData ).toObject();
+    /* eslint-enable new-cap */
+
+    let promise;
+
+    if (
+      createData.type === SYSTEM_TYPES.Actor.pc
+      && game.settings.get( "ed4e", "autoOpenCharGen" )
+    ) {
+      const useCharGen = await DocumentCreateDialog._showCharGenPrompt();
+      if ( useCharGen ) {
+        promise = PcData.characterGeneration();
+      } else {
+        const options = {};
+        if ( this.pack ) options.pack = this.pack;
+        if ( this.parent ) options.parent = this.parent;
+        options.renderSheet = true;
+
+        promise = this.documentCls.implementation.create( createData, options );
+      }
+    } else {
+      const options = {};
+      if ( this.pack ) options.pack = this.pack;
+      if ( this.parent ) options.parent = this.parent;
+      options.renderSheet = true;
+
+      promise = this.documentCls.implementation.create( createData, options );
+    }
+
+    this.resolve?.( promise );
+    return this.close();
+  }
+
+  /**
+   * A small prompt asking the user if they want to use the character generation.
+   * @returns {Promise<boolean>} True if the user wants to use the character generation, false otherwise.
+   */
+  static async _showCharGenPrompt() {
+    return foundry.applications.api.DialogV2.confirm( {
+      content:     "X-Do you want to use the character generation?",
+      rejectClose: false,
+      modal:       true,
+    } );
+  }
+
+  /**
+   * Handle the close event for the document creation dialog.
+   * @param {object} options The options to pass to the close method.
+   * @returns {Promise} The promise to resolve when the dialog is closed.
+   */
+  close( options = {} ) {
+    this.resolve?.( null );
+    return super.close( options );
+  }
+
+  // endregion
+
+}

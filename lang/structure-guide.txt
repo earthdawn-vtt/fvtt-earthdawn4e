@@ -1,0 +1,18 @@
+the structure of the lang files are:
+first level in Capital Letters provides the Kategorie:
+- Types
+- Sheets
+- Prompts
+- etc
+
+the second level with a capital first letter provides Area in the Kategorie
+- Actor
+- Items
+or 
+- Attributes
+- Characteristics
+
+The third and further level with all small letters provides the actual field/name
+- dexterity
+- physicalDefense
+- etc.

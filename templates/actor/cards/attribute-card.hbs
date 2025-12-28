@@ -1,0 +1,94 @@
+{{#each actor.system.attributes}}
+	<div class="attribute-card__grid--container attribute__roll" data-editable="{{@root.editable}}">
+		<button
+			type="button"
+			class="action-buttons icon--button icon icon--d20 rollable"
+			data-action="rollable"
+			data-roll-type="attribute"
+			data-attribute="{{@key}}"
+			data-tooltip="Roll {{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}"
+			data-tooltip-direction="UP"
+			aria-label="Roll {{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}">
+		</button>
+
+		<div class="attribute-card__grid--item attribute__name">
+			<label>
+				{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}
+			</label>
+		</div>
+
+		<div class="attribute-card__grid--item">
+			<input
+				class="input__square-input--centered"
+				name="system.attributes.{{@key}}.value"
+				value="{{value}}"
+				data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeValue'}}"
+				data-tooltip-direction="UP"
+				aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeValue'}}">
+		</div>
+
+		<div class="attribute-card__grid--item attribute__increases">
+			<span style="display:inline-flex;align-items:center;gap:.25em;flex-wrap:nowrap;white-space:nowrap;">
+				<span
+					class="circle {{#if (gte timesIncreased 1)}}filled{{/if}}"
+					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}">
+				</span>
+				<span
+					class="circle {{#if (gte timesIncreased 2)}}filled{{/if}}"
+					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}">
+				</span>
+				<span
+					class="circle {{#if (gte timesIncreased 3)}}filled{{/if}}"
+					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.increase'}}">
+				</span>
+
+				{{#if @root.editable}}
+					<button
+						type="button"
+						class="circle item-control action-buttons icon--button icon rollable"
+						data-action="upgradeItem"
+						data-attribute="{{@key}}"
+						data-tooltip="{{localize 'ED.Controls.upgrade'}}: {{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Controls.upgrade'}}: {{#with (lookup ../config.attributes @key)}}{{label}}{{/with}}">
+						<i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
+					</button>
+				{{/if}}
+			</span>
+		</div>
+
+		{{!-- Attribute Step (non-edit mode) --}}
+		{{#unless @root.editable}}
+			<div class="attribute-card__grid--item">
+				<div
+					class="buffer-input"
+					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
+					{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input class="input__clear-input--centered" value="{{this.step}}" readonly data-name="system.attributes.{{@key}}.step">
+					{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+				</div>
+			</div>
+		{{/unless}}
+
+		{{!-- Attribute Step (edit mode) --}}
+		{{#if @root.editable}}
+			<div class="attribute-card__grid--item">
+				<div
+					class="buffer-input"
+					data-tooltip="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}"
+					data-tooltip-direction="UP"
+					aria-label="{{#with (lookup ../config.attributes @key)}}{{label}}{{/with}} {{localize 'ED.Actor.Attributes.attributeStep'}}">
+					<input class="input__square-input--centered" value="{{this.step}}" readonly data-name="system.attributes.{{@key}}.step">
+				</div>
+			</div>
+		{{/if}}
+	</div>
+{{/each}}

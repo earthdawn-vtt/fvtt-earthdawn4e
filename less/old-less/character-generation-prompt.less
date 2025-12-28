@@ -1,0 +1,311 @@
+.character-generation {
+
+    .window-header {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        padding-top: 6px;
+
+        .window-title,
+        .window-title i {
+            position: relative;
+            font-size: large;
+            z-index: 2;
+            left: 60px;
+        }
+
+        a {
+            position: relative;
+            z-index: 2;
+            right: 60px;
+        }
+    }
+
+    .header-item__frame {
+        height: 50px;
+        margin-top: -60px;
+        position: absolute;
+        z-index: 1;
+        opacity: 0.9;
+
+        img {
+            border: none;
+            background: transparent;
+        }
+    }
+
+
+
+    .footer-item__frame {
+        position: absolute;
+        bottom: -35px;
+        border: none;
+        z-index: 1;
+        opacity: 0.9;
+        transform: rotate(180deg);
+
+        img {
+            border: none;
+            background: transparent;
+        }
+    }
+    .window-resizable-handle {
+        z-index: 2;
+    }
+
+    h4{
+        text-align: center;
+        margin: 0;
+        padding: .5em;
+    }
+
+    .character-generation-prompt-body {
+        margin-top: 2em;
+        flex: 5;
+
+        .availability-meter {
+            align-items: center;
+            button {
+                flex: 1;
+            }
+            label {
+                flex: 3;
+                text-align: center;
+            }
+            meter {
+                flex: 7;
+                filter: grayscale(100%);
+            }
+        }
+
+        @preview-value-opacity: .6;
+        td {
+            text-align: center;
+
+            &.attribute-change, &.rank-change {
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                span {
+                    cursor: pointer;
+                }
+            }
+
+            &.ability-name {
+                flex-grow: @golden-ratio-unitless-bigger;
+            }
+
+            &.rank-change {
+                flex-grow: @golden-ratio-unitless-smaller;
+            }
+
+            span.attribute-cost-preview {
+                opacity: @preview-value-opacity;
+            }
+        }
+
+        // navigator tab
+        .navigator-section {
+            padding: .5em;
+        }
+
+        // tabs
+
+        // namegiver
+        .tab.namegiver {
+            option {
+                text-align: center;
+            }
+        }
+
+        // discipline - questor
+        .tab.classes {
+            .discipline-questor-switch-group {
+                padding: .5em;
+                font-size: larger;
+
+                input[type="checkbox"] {
+                    display: none;
+                }
+
+                label {
+                    cursor: pointer;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    i {
+                        flex: 1;
+                    }
+
+                    span {
+                        flex: 5;
+                        font-size: large;
+
+                        &.deselected-class-type {
+                            opacity: 0.4;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    // Discipline text
+                    #char-gen-class-type-discipline-label {
+                        justify-content: right;
+                    }
+                    // Questor text
+                    #char-gen-class-type-questor-label {
+                        justify-content: left;
+                    }
+
+                    @discipline-questor-arrow-transition: rotate .4s ease ;
+                    #char-gen-class-type-select-arrow {
+                        transition: @discipline-questor-arrow-transition;
+                    }
+                    &:hover {
+                        #char-gen-class-type-select-arrow {
+                            rotate: 180deg;
+                        }
+                    }
+                }
+            }
+            .available-disciplines-questors-choices {
+                padding: .5em;
+                justify-content: space-around;
+                align-content: space-around;
+                gap: 2em;
+
+                label {
+                    padding: 0.7em;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    justify-content: center;
+                    font-size: medium;
+
+                    @color-class-choices: rgba(0, 0, 0, 0.1);
+                    border: 1px solid @color-class-choices;
+                    border-radius: 2em;
+
+                    cursor: pointer;
+
+                    &:has( input[type="radio"]:checked ) {
+                        background-color: @color-class-choices;
+                    }
+
+                    input[type="radio"] {
+                        display: none;
+                    }
+                }
+            }
+            .available-ability-options {
+                padding: .5em;
+            }
+            .talent-tables {
+                gap: 1em;
+
+                table {
+                    text-align: center;
+                    flex: 4;
+                    &.optional-talents-pool {
+
+                        td.ability-name {
+                            &:hover {
+                                cursor: pointer;
+                                transition: background-color .2s linear 0s,
+                                font-size .2s linear 0s;
+                                background-color: rgba(160, 160, 160, 0.4);
+                                font-size: larger;
+                                & label {
+                                    cursor: pointer;
+                                }
+                            }
+                            input[type="radio"] {
+                                display: none;
+                            }
+                            &:has( label input[type="radio"]:checked ) {
+                                border: 0.4em double rgba(20, 20, 20, 0.6);
+                            }
+                        }
+                    }
+                }
+
+                span,i {
+                    flex: 1;
+                    justify-content: center;
+                    align-content: center;
+                    text-align: center;
+                }
+            }
+        }
+
+        // attributes
+        .tab.attributes {
+            // gap: 2em;
+            .char-gen-attribute-modification,
+            .char-gen-characteristics-preview {
+                gap: 1em;
+            }
+            h3 {
+                padding: .2em;
+                text-align: center;
+            }
+
+            .health-and-characteristics {
+                gap: 2em;
+                table {
+                    text-align: center;
+                }
+                #char-gen-preview-characteristics {
+                    table-layout: fixed;
+                    width: 100%;
+                }
+                .preview-value {
+                    opacity: @preview-value-opacity;
+                    font-size: smaller;
+                }
+            }
+        }
+
+        // spells
+        .tab.spells {}
+
+        // skills
+        .tab.skills {
+            .skill-options {
+                table {
+                    flex-grow: @golden-ratio-unitless-bigger;
+                }
+                span.available-ranks {
+                    flex-grow: @golden-ratio-unitless-smaller;
+                }
+            }
+            .availability-meter {
+                justify-content: center;
+                margin: 0.5em 0;
+                label {
+                    flex: 1;
+                    font-size: larger;
+                    justify-content: flex-end;
+                    align-items: center;
+                }
+                meter {
+                    flex: 1;
+                }
+            }
+        }
+
+        // equipment
+        .tab.equipment {}
+    }
+
+    .character-generation-buttons {
+        flex: 1;
+        .buttons-navigation button {
+            outline: none;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+    }
+}

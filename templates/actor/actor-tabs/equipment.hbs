@@ -1,0 +1,116 @@
+<section class="tab {{tabs.equipment.cssClass}}" data-group="sheet" data-tab="equipment" data-editable="{{@root.editable}}">
+<h2>{{localize "ED.Actor.Header.equipment"}}</h2>
+
+<div class="container__block">
+    {{#if (eq this.actor.type "character")}}
+      <div class="encumbrance__container">
+        <div class="encumbrance__row">
+          <span class="encumbrance__label">
+            {{localize "ED.Actor.Header.encumbrance"}}:
+          </span>
+
+          <input
+            id="encumbrance__value"
+            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+            type="number"
+            value="{{actor.system.encumbrance.value}}"
+            min="0"
+            step="1"
+            {{#unless @root.editable}}readonly{{/unless}}
+          >
+
+          <span>/</span>
+
+          <input
+            id="encumbrance__max"
+            class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+            type="number"
+            value="{{actor.system.encumbrance.max}}"
+            min="1"
+            step="1"
+            {{#unless @root.editable}}readonly{{/unless}}
+          >
+
+          <div
+            class="encumbrance__bar"
+            style="--e-value: {{actor.system.encumbrance.value}}; --e-max: {{actor.system.encumbrance.max}};"
+            data-status="{{actor.system.encumbrance.status}}"
+          >
+            <div class="encumbrance__fill"></div>
+            <div class="encumbrance__marker marker__x"></div>
+            <div class="encumbrance__marker marker__x15"></div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  {{!-- Weapons --}}
+    <div class="container__section">
+        <div class="equipment-card__grid--container container__header text-break__auto">
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.weapons"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.damage"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.range"}}</div>
+            {{#if (eq system.weaponType "thrown")}}
+                <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.ammunition"}}</div>
+            {{else}}
+                <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.amount"}}</div>
+            {{/if}}
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.equippedStatus"}}</div>
+            <div class="equipment-card__grid--item"></div>
+        </div>
+        {{#each actor.itemTypes.weapon}}
+            {{> "systems/ed4e/templates/actor/cards/equipment-card.hbs"}}
+        {{/each}}
+    </div>
+
+  {{!-- Armor --}}
+    <div class="container__section">
+        <div class="equipment-card__grid--container container__header text-break__auto">
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.armor"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.physicalArmor"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.mysticalArmor"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.initiativePenalty"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.equippedStatus"}}</div>
+            <div class="equipment-card__grid--item"></div>
+        </div>
+        {{#each actor.itemTypes.armor}}
+            {{> "systems/ed4e/templates/actor/cards/equipment-card.hbs"}}
+        {{/each}}
+  </div>
+
+  {{!-- Shields --}}
+    <div class="container__section">
+        <div class="equipment-card__grid--container container__header text-break__auto">
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.shields"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.physicalDefense"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.mysticalDefense"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.initiativePenalty"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.equippedStatus"}}</div>
+            <div class="equipment-card__grid--item"></div>
+        </div>
+        {{#each actor.itemTypes.shield}}
+           {{> "systems/ed4e/templates/actor/cards/equipment-card.hbs"}}
+        {{/each}}
+    </div>
+
+  {{!-- Equipment --}}  
+    <div class="container__section">
+        <div class="equipment-card__grid--container container__header text-break__auto">
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.equipment"}}</div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.amount"}}</div>
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item"></div>
+            <div class="equipment-card__grid--item">{{localize "ED.Actor.Header.equippedStatus"}}</div>
+            <div class="equipment-card__grid--item"></div>
+        </div>
+        {{#each actor.itemTypes.equipment}}
+            {{> "systems/ed4e/templates/actor/cards/equipment-card.hbs"}}
+        {{/each}}
+    </div>
+</div>
+
+</section>

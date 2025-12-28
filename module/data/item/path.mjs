@@ -1,40 +1,258 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import DisciplineData from "./discipline.mjs";
+import { createContentLink, getSingleGlobalItemByEdid } from "../../utils.mjs";
+import DialogEd from "../../applications/api/dialog.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as LEGEND from "../../config/legend.mjs";
+import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
 /**
  * Data model template with information on path items.
- * @property {string} sourceDiscipline source discipline related to the path
+ * @property {string} sourceDisciplineId The ID of the discipline this path belongs to.
+ * @property {number} bloodMagicDamage The amount of blood magic damage caused by this path.
+ * @property {string} pathKnackId The ID of the knack ability associated with this path.
+ * @property {string} pathTalentId The ID of the talent associated with this path.
  */
 export default class PathData extends ClassTemplate.mixin(
-    ItemDescriptionTemplate
+  ItemDescriptionTemplate
 ) {
 
-    /** @inheritDoc */
-    static defineSchema() {
-        return this.mergeSchema( super.defineSchema(), {
-            sourceDiscipline: new foundry.data.fields.ForeignDocument( DisciplineData, {
-                idOnly: true,
-                label: "ED.Item.Class.sourceDiscipline"
-            } ),
-            bloodMagicDamage: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 0,
-                initial: 2,
-                integer: true,
-                label: "ED.Item.Class.bloodMagicDamage"
-            } ),
-        } );
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return this.mergeSchema( super.defineSchema(), {
+      sourceDisciplineId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.discipline, ],
+        }
+      ),
+      bloodMagicDamage: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  2,
+        integer:  true,
+      } ),
+      pathKnackId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.knackAbility, ],
+        },
+      ),
+      pathTalentId: new SiblingDocumentField(
+        foundry.documents.Item,
+        {
+          systemTypes: [ SYSTEM_TYPES.Item.talent, ],
+        },
+      ),
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Path",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: SYSTEM_TYPES.Item.path,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Properties
+
+  /** @inheritDoc */
+  get increaseData() {
+    const nextLevel = this.unmodifiedLevel + 1;
+
+    const actor = this.containingActor;
+    if ( !actor ) return null;
+    const pathTalent = actor.items.find( item => item.type === SYSTEM_TYPES.Item.talent && item.system.edid === this.edid );
+
+    return {
+      learn:              this.unmodifiedLevel === 0,
+      nextLevel,
+      nextLevelData:      this.advancement.levels.find( l => l.level === nextLevel ),
+      nextTalentLpCost:   LEGEND.legendPointsCost[ nextLevel + LEGEND.lpIndexModForTier[ this.currentTier ] ],
+      talentRequirements: pathTalent
+    };
+  }
+
+  /** @inheritDoc */
+  get increaseRules() {
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathIncreaseShortRequirements" );
+  }
+
+  /** @inheritDoc */
+  get increaseValidationData() {
+    if ( !this.isActorEmbedded ) return undefined;
+
+    const {  talentRequirements } = this.increaseData;
+    return {
+      [LEGEND.validationCategories.talentsRequirement]: [
+        {
+          name:      "ED.Dialogs.Legend.Validation.pathTalent",
+          value:     talentRequirements.name,
+          fulfilled: talentRequirements.level >= this.unmodifiedLevel,
+        },
+        {
+          name:      "ED.Dialogs.Legend.Validation.requiredPathRank",
+          value:     talentRequirements.system.level,
+          fulfilled: talentRequirements.level >= this.unmodifiedLevel,
+        },
+      ]
+    };
+  }
+
+  /** @inheritDoc */
+  get learnRules() {
+    return game.i18n.localize( "ED.Dialogs.Legend.Rules.pathLearnShortRequirements" );
+  }
+
+  // endregion
+
+  // region LP Tracking
+
+  // region LP Learning
+
+  /** @inheritDoc */
+  static async learn( actor, item, createData = {} ) {
+    const pathKnack = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.knackAbility );
+    const pathKnackLink = pathKnack 
+      ? createContentLink( pathKnack.uuid, pathKnack.name ) 
+      : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
+    const pathTalent = await getSingleGlobalItemByEdid( item.system.edid, SYSTEM_TYPES.Item.talent );
+    const pathTalentLink = pathTalent 
+      ? createContentLink( pathTalent.uuid, pathTalent.name ) 
+      : game.i18n.localize( "ED.Dialogs.Legend.pathKnackNotFound" );
+
+    if ( !pathKnack || !pathTalent ) {
+      ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cannotLearn" ) );
+      return;
     }
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
+    let learnedPathTalent;
+    if ( !actor.items.find( talent => talent.type === SYSTEM_TYPES.Item.talent && talent.system.edid === item.system.edid ) ) {
+      const content = ` 
+      <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathTalentPrompt", {pathTalent: item.name,} ) }</p>
+      <p>${ pathTalentLink }</p>
+      `;
+
+      const learn = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
+      } );
+      if ( !learn ) return;
+
+      if ( learn ) {
+        learnedPathTalent = await pathTalent.system.constructor.learn( actor, pathTalent );
+      }
     }
+
+    let learnedPathKnack;
+    if ( !actor.items.find( knack => knack.type === SYSTEM_TYPES.Item.knackAbility && knack.system.edid === item.system.edid ) ) {
+      const content = ` 
+      <p>${game.i18n.format( "ED.Dialogs.Legend.learnPathKnackPrompt", {pathKnack: item.name,} ) }</p>
+      <p>${ pathKnackLink }</p>
+      `;
+
+      const learn = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
+      } );
+      if ( !learn ) return;
+
+      if ( learn ) {
+        learnedPathKnack = await pathKnack.system.constructor.learn( actor, pathKnack );
+      }
+    }
+
+    const pathCreateData = foundry.utils.mergeObject(
+      createData,
+      {
+        "system.level":        0,
+        "system.pathTalentId": learnedPathTalent?.id,
+        "system.pathKnackId":  learnedPathKnack?.id,
+      }
+    );
+
+    const learnedPath = await super.learn( actor, item, pathCreateData );
+    if ( !learnedPath ) throw new Error(
+      "Error learning path item. Could not create embedded Items."
+    );
+
+    learnedPath.system.increase();
+
+    return learnedPath;
+  }
+
+  // endregion
+
+  // region LP Increase
+
+  /** @inheritDoc */
+  async increase() {
+    if ( !this.isActorEmbedded ) return;
+  
+    const nextLevel = this.unmodifiedLevel + 1;
+    const pathTalent = this.containingActor.items.get( this.pathTalentId );
+    if ( pathTalent.system.level < nextLevel ) {
+      const content =  `
+          <p>
+            ${game.i18n.format( "ED.Dialogs.Legend.increasePathTalentPrompt" )}
+          </p>
+          <p>
+            ${createContentLink( pathTalent.uuid, pathTalent.name )}
+          </p>
+        `;
+      const increasePathTalent = await DialogEd.confirm( {
+        rejectClose: false,
+        content:     await foundry.applications.ux.TextEditor.enrichHTML( content ),
+      } );
+      if ( increasePathTalent ) {
+        await pathTalent.system.increase();
+      }
+    }
+
+    const updatedPath = await super.increase();
+    if ( updatedPath?.system.level !== nextLevel ) {
+      ui.notifications.warn(
+        game.i18n.localize( "ED.Notifications.Warn.classIncreaseProblems" )
+      );
+      return;
+    }
+  
+    return updatedPath;
+  }
+
+  // endregion
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

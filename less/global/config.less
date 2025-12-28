@@ -1,61 +1,183 @@
-@font-face {
-    font-family: 'ArnoPro Bold';
-    src: url('fonts/ArnoPro-Bold.otf');
-    font-weight: bold;
-  }
-  @font-face {
-    font-family: 'ArnoPro BoldItalic';
-    src: url('fonts/ArnoPro-BoldItalic.otf');
-    font-weight: bold;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'ArnoPro Italic';
-    src: url('fonts/ArnoPro-Italic.otf');
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'ArnoPro Regular';
-    src: url('fonts/ArnoPro-Regular.otf');
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'WarhorseDIY';
-    src: url('fonts/Warhorse Deco BB diy Regular.otf');
-    font-style: normal;
+:root {
+
+  //--------------- General ------------------//
+
+  body.theme-dark {
+    --color-primary-grey: var(--color-grey-lt);
+    --color-primary-grey-tr: var(--color-grey-lt-tr);
+    --color-secondary-grey: var(--color-grey-md);
+    --color-secondary-grey-tr: var(--color-grey-md-tr);
+    --color-tertiary-grey: var(--color-grey-dk);
+    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+
+    --color-button-icon: var(--color-gold-lt);
+    --color-button-icon-hover: var(--color-gold-xlt);
+    --color-button-panel-text-on: var(--color-basic-text-lt);
+    --color-button-panel-text-off: var(--color-basic-text-lt);
+    --color-button-check-on: var(--color-button-icon);
+    --color-button-check-off: var(--color-grey-md);
+    --color-button-slide-thumb: var(--color-button-icon);
+    --color-button-slide-background-on: var(--color-grey-md);
+    --color-button-slide-background-off: black;
+
+    --border-main: 2px solid var(--color-gold-md);
+    --border-input: 1px solid var(--color-gold-md);
   }
   
-  //starting letter
-  @font-face {
-    font-family: 'OldLondon';
-    src: url('fonts/Olondon_.otf');
-    font-style: normal;
+  body.theme-light {
+    --color-primary-grey: var(--color-grey-lt);
+    --color-primary-grey-tr: var(--color-grey-lt-tr);
+    --color-secondary-grey: var(--color-grey-md);
+    --color-secondary-grey-tr: var(--color-grey-md-tr);
+    --color-tertiary-grey: var(--color-grey-dk);
+    --color-tertiary-grey-tr: var(--color-grey-dk-tr);
+
+    --color-button-icon: var(--color-gold-md);
+    --color-button-icon-hover: var(--color-gold-lt);
+    --color-button-header-icon: var(--color-gold-lt);
+    --color-button-header-icon-hover: var(--color-gold-xlt);
+    --color-button-panel-on: var(--color-primary);
+    --color-button-panel-off: var(--color-primary-tr);
+    --color-button-panel-text-on: var(--color-basic-text-lt);
+    --color-button-panel-text-off: var(--color-basic-text-dk);
+    --color-button-check-on: var(--color-button-icon);
+    --color-button-check-off: var(--color-grey-md);
+    --color-button-slide-thumb: var(--color-button-icon);
+    --color-button-slide-background-on: var(--color-grey-md);
+    --color-button-slide-background-off: var(--color-grey-lt);
+
+    --border-main: 2px solid var(--color-gold-dk);
+    --border-input: 1px solid var(--color-gold-dk);
+  }
+
+  //--------------- Actors ------------------//
+
+  .application.sheet.earthdawn4e.actor,
+  .theme-dark.application.sheet.earthdawn4e.actor {
+    --color-primary: var(--color-blue-dk);
+    --color-primary-tr: var(--color-blue-dk-tr);
+    --color-secondary: var(--color-blue-md);
+    --color-secondary-tr: var(--color-blue-md-tr);
+    --color-tertiary: var(--color-blue-lt);
+    --color-tertiary-tr: var(--color-blue-lt-tr);
+
+    --color-text-body: var(--color-basic-text-lt);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-button-panel-on: var(--color-secondary);
+    --color-button-panel-off: var(--color-primary);
+    
+    --color-input-square: var(--color-primary);
+
+    --color-meter-background: var(--color-grey-lt-tr);
+    --color-meter-divide: var(--color-primary);
+
+    --background-sheet-actor: var(--color-primary) url(assets/sheet/background-npc-dark.webp) no-repeat top left / 800px auto;
+    --background-banner-actor: var(--background-mottle-blue-lt);
+  }
+
+  .application.sheet.earthdawn4e.actor.character,
+  .theme-dark.application.sheet.earthdawn4e.actor.character,
+  body.theme-dark form.ed4e.character-generation {
+    --color-primary: var(--color-green-dk);
+    --color-primary-tr: var(--color-green-dk-tr);
+    --color-secondary: var(--color-green-md);
+    --color-secondary-tr: var(--color-green-md-tr);
+    --color-tertiary: var(--color-green-lt);
+    --color-tertiary-tr: var(--color-green-lt-tr);
+
+    --color-text-body: var(--color-basic-text-lt);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-input-square: var(--color-primary);
+
+    --background-sheet-actor: var(--color-primary) url(assets/sheet/background-pc-dark.webp) no-repeat top left / 800px auto;
+    --background-banner-actor: var(--background-mottle-green-lt);
   }
   
-  .ArnoProRegular () {
-    font-family: 'ArnoPro Regular', serif;
+  .theme-light.application.sheet.earthdawn4e.actor {
+    --color-primary: var(--color-blue-lt);
+    --color-primary-tr: var(--color-blue-lt-tr);
+    --color-secondary: var(--color-blue-md);
+    --color-secondary-tr: var(--color-blue-md-tr);
+    --color-tertiary: var(--color-blue-dk);
+    --color-tertiary-tr: var(--color-blue-dk-tr);
+
+    --color-text-body: var(--color-basic-text-dk);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-button-panel-on: var(--color-primary);
+    --color-button-panel-off: var(--color-grey-lt);
+
+    --color-input-square: var(--color-primary-grey-tr);
+
+    --color-meter-background: var(--color-grey-md-tr);
+    --color-meter-divide: rgb(192, 192, 192);
+
+    --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
+    --background-banner-actor: var(--background-mottle-blue-lt);
+  }
+
+  .theme-light.application.sheet.earthdawn4e.actor.character,
+  body.theme-light form.ed4e.character-generation {
+    --color-primary: var(--color-green-lt);
+    --color-primary-tr: var(--color-green-lt-tr);
+    --color-secondary: var(--color-green-md);
+    --color-secondary-tr: var(--color-green-md-tr);
+    --color-tertiary: var(--color-green-dk);
+    --color-tertiary-tr: var(--color-green-dk-tr);
+
+    --color-text-body: var(--color-basic-text-dk);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-input-square: var(--color-primary-grey-tr);
+
+    --background-sheet-actor: url(assets/sheet/parchment-light.webp) repeat;
+    --background-banner-actor: var(--background-mottle-green-lt);
+  }
+
+  //--------------- items ------------------//
+
+  .application.sheet.earthdawn4e.item,
+  .theme-dark.application.sheet.earthdawn4e.item {
+
+    /*--color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;*/
+
+    --color-text-body: var(--color-basic-text-lt);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-button-slide-thumb: var(--color-gold-lt);
+    --color-button-slide-background-on: var(--color-gold-dk);
+    --color-button-slide-background-off: black;
+
+    --color-shadow: 0 0 10px 1px rgb(1, 1, 1);
+    
+    --background-sheet-item: url(assets/sheet/ed-symbol-dark.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-dark.webp) repeat;
   }
   
-  .ArnoProBold () {
-    font-family: 'ArnoPro Bold', serif;
+  .theme-light.application.sheet.earthdawn4e.item {
+
+    /*--color-primary: ;
+    --color-primary-tr: ;
+    --color-secondary: ;
+    --color-secondary-tr: ;
+    --color-tertiary: ;
+    --color-tertiary-tr: ;*/
+
+    --color-text-body: var(--color-basic-text-dk);
+    --color-text-banner: var(--color-basic-text-lt);
+
+    --color-button-slide-thumb: var(--color-gold-lt);
+    --color-button-slide-background-on: var(--color-gold-dk);
+    --color-button-slide-background-off: var(--color-grey-md);
+
+    --color-shadow: 0 0 10px 1px rgba(1, 1, 1, 0.5);
+    
+    --background-sheet-item: url(assets/sheet/ed-symbol-light.png) no-repeat top left / 300px auto, url(assets/sheet/parchment-light.webp) repeat;
   }
-  
-  .ArnoProItalic () {
-    font-family: 'ArnoPro Italic', serif;
-  }
-  
-  .ArnoProBoldItalic () {
-    font-family: 'ArnoPro BoldItalic', serif;
-  }
-  
-  .WarhorseDIY () {
-    font-family: 'WarhorseDIY', serif;
-  }
-  
-  .OldLondon () {
-    font-family: 'OldLondon', serif;
-  }
-  
+}

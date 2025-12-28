@@ -1,0 +1,58 @@
+.abilities-list {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.6em;
+  border-radius: 0.3em;
+  border: 1px ridge var(--color-border-light-2);
+}
+
+.advancement-options-pools {
+  align-content: stretch;
+  row-gap: 3em;
+}
+
+.advancement__level {
+  .item-controls {
+    margin: 1em;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    a {
+      text-align: center;
+    }
+  }
+  .content {
+
+  }
+
+  .advancement__navigator {
+    flex: 1 1 auto;
+    li {
+      text-align: center;
+      margin: 0.8em auto;
+    }
+  }
+
+  .advancement__content {
+    flex: 4 4;
+
+    .title-level-number {
+      text-align: center;
+    }
+
+    .tab.item-id {
+      div {
+        margin: 1.5em auto;
+      }
+    }
+
+    label {
+      flex: 1;
+      // border: 0.1ch inset @labelOutlineColor;
+      font-variant: all-small-caps;
+      text-align: left;
+    }
+
+    span {
+      flex: 5;
+    }
+  }
+}

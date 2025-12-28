@@ -1,91 +1,105 @@
-{{#if (eq item.type "armor") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-armor.hbs"}}
-{{/if}}
+<section class="tab {{tabs.general.cssClass}}" data-group="sheet" data-tab="general">
+    {{#if (eq item.type "armor") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-armor.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "attack") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-attack.hbs"}}
-{{/if}}
+    {{#if (eq item.type "bindingSecret") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-bindingSecret.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "cursemark") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-cursemark.hbs"}}
-{{/if}}
+    {{#if (eq item.type "curseMark") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-curseMark.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "devotion") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-devotion.hbs"}}
-{{/if}}
+    {{#if (eq item.type "devotion") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-devotion.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "discipline") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-discipline.hbs"}}
-{{/if}}
+    {{#if (eq item.type "discipline") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-discipline.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "effect") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-effect.hbs"}}
-{{/if}}
+    {{#if (eq item.type "effect") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-effect.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "equipment") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-equipment.hbs"}}
-{{/if}}
+    {{#if (eq item.type "equipment") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-equipment.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "knack") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-knack.hbs"}}
-{{/if}}
+    {{#if (eq item.type "knackAbility") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-knackAbility.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "maneuver") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-maneuver.hbs"}}
-{{/if}}
+    {{#if (eq item.type "knackManeuver") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-knackManeuver.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "mask") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-mask.hbs"}}
-{{/if}}
+    {{#if (eq item.type "knackKarma") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-knackKarma.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "namegiver") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-namegiver.hbs"}}
-{{/if}}
+    {{#if (eq item.type "maneuver") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-maneuver.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "path") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-path.hbs"}}
-{{/if}}
+    {{#if (eq item.type "mask") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-mask.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "poisonDisease") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-poisonDisease.hbs"}}
-{{/if}}
+    {{#if (eq item.type "namegiver") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-namegiver.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "power") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-power.hbs"}}
-{{/if}}
+    {{#if (eq item.type "path") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-path.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "questor") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-questor.hbs"}}
-{{/if}}
+    {{#if (eq item.type "poisonDisease") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-poisonDisease.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "shield") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shield.hbs"}}
-{{/if}}
+    {{#if (eq item.type "power") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-power.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "skill") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-skill.hbs"}}
-{{/if}}
+    {{#if (eq item.type "questor") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-questor.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "specialAbility") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-specialAbility.hbs"}}
-{{/if}}
+    {{#if (eq item.type "shield") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shield.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "spell") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-spell.hbs"}}
-{{/if}}
+    {{#if (eq item.type "skill") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-skill.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "talent") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-talent.hbs"}}
-{{/if}}
+    {{#if (eq item.type "specialAbility") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-specialAbility.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "thread") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-thread.hbs"}}
-{{/if}}
+    {{#if (eq item.type "spell") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-spell.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "weapon") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-weapon.hbs"}}
-{{/if}}
+    {{#if (eq item.type "spellKnack") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-spellKnack.hbs"}}
+    {{/if}}
 
-{{#if (eq item.type "shipWeapon") }}
-{{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shipWeapon.hbs"}}
-{{/if}}
+    {{#if (eq item.type "talent") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-talent.hbs"}}
+    {{/if}}
+
+    {{#if (eq item.type "thread") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-thread.hbs"}}
+    {{/if}}
+
+    {{#if (eq item.type "weapon") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-weapon.hbs"}}
+    {{/if}}
+
+    {{#if (eq item.type "shipWeapon") }}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/descriptions/item-description-shipWeapon.hbs"}}
+    {{/if}}
+</section>

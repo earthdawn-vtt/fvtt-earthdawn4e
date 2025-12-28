@@ -1,0 +1,74 @@
+import ActorSheetEd from "./common-sheet.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+
+/**
+ * An actor sheet application designed for actors of type "Vehicle"
+ */
+export default class ActorSheetEdVehicle extends ActorSheetEd {
+
+  static {
+    this.addSheetTabs( [
+      { id: "description", },
+    ] );
+  }
+    
+  // region DEFAULT_OPTIONS
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    id:       "character-sheet-{id}",
+    uniqueId: String( ++foundry.applications.api.ApplicationV2._appId ),
+    classes:  [ SYSTEM_TYPES.Actor.vehicle, ],
+    actions:  {
+    },
+    position: {
+      top:    50, 
+      left:   220,
+      width:  750, 
+      height: 890,
+    }
+  };
+
+
+  // region PARTS
+  /** @inheritdoc */
+  static PARTS = {
+    header: {
+      template: "systems/ed4e/templates/actor/actor-partials/actor-section-name.hbs",
+      classes:  [ "sheet-header" ],
+    },
+    characteristics: {
+      template: "systems/ed4e/templates/actor/actor-partials/actor-section-top.hbs",
+      classes:  [ "characteristics" ],
+    },
+    tabs: {
+      template: "templates/generic/tab-navigation.hbs",
+      classes:  [ "tabs-navigation" ],
+    },
+    description: {
+      template:   "systems/ed4e/templates/actor/actor-tabs/description.hbs",
+      classes:    [ "tab", "description" ],
+      scrollable: [ "", ],
+    },
+  };
+
+  // region _prepareContext
+  /** @inheritdoc */
+  async _prepareContext() {
+    return await super._prepareContext();
+  }
+
+  // region _prepare Part Context
+  /** @inheritdoc */
+  async _preparePartContext( partId, contextInput, options ) {
+    const context = await super._preparePartContext( partId, contextInput, options );
+    switch ( partId ) {
+      case "header":
+      case "characteristics":
+      case "tabs": 
+        break;
+      case "description":
+        break;
+    }
+    return context;
+  }
+}

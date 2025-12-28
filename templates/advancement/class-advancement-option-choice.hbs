@@ -1,0 +1,19 @@
+<div {{#unless render.optionChoice}}style="display:none;"{{/unless}}>
+
+  <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.chooseAbilityOption"}}</p>
+
+  {{#each abilityOptionsByTier}}
+    {{#if (ed-hasItems this)}}
+      <fieldset>
+        <legend>{{lookup ../config.tier @key}}</legend>
+        {{#each this as |uuid|}}
+          <label class="checkbox">
+            <input type="radio" name="selectedOption" value="{{uuid}}" {{checked (eq uuid @root/selectedOption)}}>
+            {{{ed-linkForUuid uuid}}}
+          </label>
+        {{/each}}
+      </fieldset>
+    {{/if}}
+  {{/each}}
+
+</div>

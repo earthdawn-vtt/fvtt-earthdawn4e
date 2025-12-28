@@ -1,0 +1,367 @@
+{
+  "name": "Würfeln",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Unterschiedliche Würfeltypen",
+      "type": "text",
+      "_id": "gs0DkOFPQwZRQF9F",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Dieser Bereich befasst sich mit den unterschiedlichen Würfelmöglichkeiten im Earthdawn Foundry System. Es gibt grundsätzliche Typen:</p><ul><li><p>System Würfel</p></li><li><p>Earthdawn Würfel</p></li></ul><p>System Würfel decken alle Kernfunktionalitäten des Foundry VTTs ab. eine Beschreibung ist hier zu finden: <a href=\"Foundry Dice\">https://foundryvtt.com/article/dice/</a> </p><p>Earthdawn Würfel decken alle System specifischen Aktionen ab und werden auf den nächsten Seiten beschrieben</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.gs0DkOFPQwZRQF9F"
+    },
+    {
+      "sort": 200000,
+      "name": "Earthdawn Würfel",
+      "type": "text",
+      "_id": "rc6txXGfLR72TX2e",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Earthdawn Würfel werden im folgenden in vier Gruppen unterteilt:</p><ol><li><p>Würfel Pop-up</p></li><li><p>Willkürliche Würfe</p></li><li><p>Aktions-Würfe</p></li><li><p>Effekt-Würfe</p></li></ol>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.rc6txXGfLR72TX2e"
+    },
+    {
+      "sort": 300000,
+      "name": "Willkürliche Würfe",
+      "type": "text",
+      "_id": "BD2OJcZ9sGrpTs2T",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Willkürliche Würfel sind Akteur unabhänige Würfe, die benutzt werden um Stufen zu würfeln, jedoch ohne den Bezug zu einem Akteur.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.BD2OJcZ9sGrpTs2T"
+    },
+    {
+      "sort": 400000,
+      "name": "Action Rolls",
+      "type": "text",
+      "_id": "aaUrAqPSdC5TvZqX",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Aktionswürfe decken die meisten Charakteraktionen ab.</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.aaUrAqPSdC5TvZqX"
+    },
+    {
+      "sort": 300000,
+      "name": "Würfel Pop up vom Würfelsymbol",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Willkürliche Würfe können erzeugt werden in dem der Würfel über dem Chatfenster aktiviert wird. In diesem Würfel Pop-up fehlen einige Optionen die nur mit Akteur bezug wichtig sind.</p><img src=\"systems/ed4e/assets/manual/rolls/arbitrary-roll-dice-symbol.PNG\" />"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_id": "Itim4m4nITZCfFUx",
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.Itim4m4nITZCfFUx"
+    },
+    {
+      "sort": 300000,
+      "name": "Roll Dice From Chat",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Eine andere Möglichkeit eine Stufe zu würfeln ist, den Chat-Befehl /s zu benutzten.</p><hr /><p><em>eine Stufe würfeln sieht wie folgt:</em></p><p><em>/s 15</em></p><hr /><p>Dieses Kommando funktioniert auch hervorragend mit Chat-Makros</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_id": "PnlrbSBZ0zTBXdoG",
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.PnlrbSBZ0zTBXdoG"
+    },
+    {
+      "sort": 300000,
+      "name": "Roll dice from Journal entries (WIP)",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Eine weitere Möglichkeit Stufen zu würfeln ist, einen Klick-Eintrag in einem Journal zu erschaffen. Diese Einträge werden wie folgt erstellt:</p><p>@Roll(&lt;STUFE&gt;)(&lt;BESCHREIBUNG&gt;)</p><p>So sieht ein Eintrag im Journal aus:</p><p>@Roll(/s 14)(Fallschaden) </p><p></p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "_id": "69Mh0NpXfSTroFUG",
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.69Mh0NpXfSTroFUG"
+    },
+    {
+      "sort": 250000,
+      "name": "Würfel Pop up",
+      "type": "text",
+      "_id": "VuqlAub8BMJWA30W",
+      "title": {
+        "show": true,
+        "level": 2
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Das Würfel Pop-up ist generisch für beinahe alle Würfe im Earthdawn Foundry VTT System und taucht immer auf wenn ein wurf initiiert wurde.</p><img style=\"display:block;margin-left:auto;margin-right:auto\" src=\"systems/ed4e/assets/manual/rolls/roll-prompt.PNG\" /><p></p><p></p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {
+        "core": {
+          "sheetClass": ""
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.VuqlAub8BMJWA30W"
+    },
+    {
+      "sort": 275000,
+      "name": "Reiter: Basis Information",
+      "type": "text",
+      "_id": "UEdbZui7IFIqYTKO",
+      "title": {
+        "show": true,
+        "level": 3
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Auf dem ersten Reiter findet man die Basis-Information eines Wurfes:</p><ul><li><p>Grundstufe</p></li><li><p>Stufen-Modifikator</p></li><li><p>Schwierigkeit</p></li><li><p>Überanstrengung</p></li><li><p>Karma (die Anzahl)</p></li><li><p>Karmastufe</p></li><li><p>Weihepunkte (die Anzahl)</p></li><li><p>Weihepunktstufe</p></li></ul><p></p><p>Die <strong>Grundstufe</strong> zeigt die unmodifizierte Stufe einer Aktion oder eines Effekts.</p><p>der <strong>Modifikator</strong> zeigt die Summe aller zusätzlichen Stufen die zu der Grundstufe addiert/subtrahiert werden.</p><p>Die <strong>Schwierigkeit</strong> zeigt den zu erreichenden Mindestwurf an, basierend auf der Zielschwierigkeit und dem Gruppen-Schwierigkeits-Modifikator, welche entweder durch die Aktion oder den Effekt vorbelegt sind oder im Reiter \"Schwierigkeiten\" ausgewählt werden können. Viele Aktionsabläufe wie Angriffe oder Zauber haben automatisch festgelegte Schwierigkeits parameter (Physische-, Mystische- oder Soziale-Verteidigung). Auch diese können für diesen Wurf im Reiter \"Schwierigkeiten\" überschrieben werden. Die Berechnung von Erfolgen wird nur durchgeführt, wenn die Schwierigkeit größer 0 ist.</p><p><strong>Überanstrengung</strong> zeigt die Summe der Überanstrengung an.</p><p><strong>Karma</strong> und <strong>Weihekraft</strong> zeigen in den jeweils linken felder die Anzahl der zusätzlich genutzten Würfel an. Die rechten Felder dienen der entsprechenden Stufe. Die Stufen werden durch die Karma- / Weihekraft-Stufe des Charakters festgelegt, falls vorhanden. Die Grundstufe ist auf 4 für Karma und 3 für Weihepunkte festgelegt. Es gibt kein hartes verbot Karma- und oder Weihe-Punkte zu benutzten. jedoch gibt es eine Warnung wenn ein Charakter keine Karma / Weihepunkte zur Verfügung hat.</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "jjGwKFwrJgbS6JQL": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.338",
+        "systemId": "ed4e",
+        "systemVersion": "1.0.0",
+        "lastModifiedBy": null
+      },
+      "category": null,
+      "_key": "!journal.pages!3pYsUU5PfYDNUpM7.UEdbZui7IFIqYTKO"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "8Bui55zHy6pkFEEc": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1743367807472,
+    "modifiedTime": 1743367807472,
+    "lastModifiedBy": "8Bui55zHy6pkFEEc"
+  },
+  "categories": [],
+  "_id": "3pYsUU5PfYDNUpM7",
+  "sort": 0,
+  "_key": "!journal!3pYsUU5PfYDNUpM7"
+}

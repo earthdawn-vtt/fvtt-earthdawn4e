@@ -1,0 +1,45 @@
+{{!-- Source Item --}}
+<div class="item-section item-section--source-item item-group">
+  {{#if @root.editable}}{{formField systemFields.sourceItem name="system.sourceItem" value=item.system.sourceItem localize=true}}
+  {{else if item.system.sourceItem}}
+    <div class="item-line item-line--source-item">
+      <span class="item-line__label">
+        {{localize systemFields.sourceItem.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.sourceItem}}
+      </span>
+    </div>
+  {{/if}}
+</div>
+
+<div class="item-section item-section--min-level item-group">
+  {{#if @root.editable}}
+    {{formField systemFields.minLevel name="system.minLevel" value=item.system.minLevel}}
+  {{else if item.system.minLevel}}
+    <div class="item-line item-line--min-level">
+      <span class="item-line__label">
+        {{localize systemFields.minLevel.label}}:
+      </span>
+      <span class="item-line__dots" aria-hidden="true"></span>
+      <span class="item-line__value">
+        {{item.system.minLevel}}
+      </span>
+    </div>
+  {{/if}}
+</div>
+
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.requirements
+  inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+  data=item.system.requirements
+  config=config
+}}
+
+{{> "systems/ed4e/templates/form/group/general.hbs"
+  dataField=systemFields.restrictions
+  inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+  data=item.system.restrictions
+  config=config
+}}

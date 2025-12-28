@@ -1,0 +1,41 @@
+{
+    "title": "Willkürliche Würfel würfe",
+    "module": "ed4e",
+    "id": "edArbitraryRolls",
+    "description": "Wie man Stufen würfelt.",
+    "canBeResumed": false,
+    "display": true,
+    "preCommand": "const uuid = 'Compendium.ed4e.manual-german.JournalEntry.CUFoRMLTWmyb3BL9.JournalEntryPage.69Mh0NpXfSTroFUG'; const page = await fromUuid(uuid); await Journal.show(page, {force: true});",
+    
+    "steps": [
+      {
+        "id": "step-0",
+        "selector": ".journal-entry-content",
+        "title": "System Handbuch",
+        "content": "Die Unterschiedlichen Würfel Methoden sind alle im Handbuch beschrieben. Hier zu sehen ist das 'Würfeln aus einem Journal'",
+        "action": "none"
+      },
+      {
+        "id": "step-1",
+        "selector": ".journal--roll",
+        "title": "Erstelle schnelles Würfeln im Journal",
+        "content": "In Journals kann mit dem Befehl @Roll(/s 14)(Fallschaden) ein generischer Wurfe vorbereitet werden.",
+        "action": "none"
+      },
+      {
+        "id": "step-2",
+        "selector": "#chat-message",
+        "title": "Würfle mittels Chat eingabe",
+        "content": "Im Chatfenster kann der Befehl /s benutzt werden um eine Stufe zu würfeln.",
+        "activateTab": "chat-message",
+        "action": "arbitraryRollStep14"
+      }, 
+      {
+        "id": "step-3",
+        "selector": ".chat-control-icon",
+        "title": "Starte einen generisches Würfelfenster",
+        "content": "Mittels des Würfelsymbols kann ein Würfelfenster geöffnet werden wo eine beliebige Stufe und Karma und/oder Weihe gewürfelt werden kann",
+        "action": "none"
+      }
+    ]
+  }

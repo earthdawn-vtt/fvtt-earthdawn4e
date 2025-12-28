@@ -1,0 +1,64 @@
+{
+  "folder": "nzywVVesoSYCJBEO",
+  "type": "skill",
+  "name": "Wissen ()",
+  "system": {
+    "rollType": "",
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Der Charakter kennt sich in einem bestimmten Wissensgebiet aus. Die genaue Definition einer Wissensfertigkeit obliegt dem Spieler, wobei der Spielleiter hier das letzte Wort hat. Eine Wissensfertigkeit kann ein breites Wissensgebiet abdecken, was bedeutet, dass der Charakter ein wenig über viele Dinge weiß. Sie kann aber auch ein engeres Wissensgebiet abdecken, was bedeutet, dass der Charakter detaillierteres Wissen über einige wenige Dinge besitzt.</p><p>Das Wissensgebiet wird vom Spieler bestimmt, aber der Spielleiter legt fest, wie gut das Wissen auf eine bestimmte Fragestellung anwendbar ist.</p><p>Die Tabelle Typische Wissensfertigkeiten gibt einige Wissensfertigkeiten an, die für Charaktere geeignet oder nützlich sein könnten. Siehe @UUID[Compendium.earthdawnspielerhandbuch.spielerhandbuch.oMzuQNwWGOTKUFYB.JournalEntryPage.ss0d8rKSXSdg37E6]{Wissensfertigkeiten} für weitere Informationen über Wissensfertigkeiten und ihre Funktionsweise im Spiel.</p><p> </p><p><strong>Typische Wissensfertigkeiten:</strong></p><ul><li>Alchemie und Tränke</li><li>Altertümliche Waffen</li><li>Backen</li><li>Botanik</li><li>Dämonenkunde</li><li>Disziplinkunde</li><li>Geschichte Barsaives</li><li>Geschichte der Plage</li><li>Geschichte einer Provinz</li><li>Handelsrouten</li><li>Höfische Tänze</li><li>Landwirtschaft</li><li>Legenden und Helden</li><li>Militärorganisationen</li><li>Rassenkunde</li><li>Tierkunde</li><li class=\"MsoNormal\">Wilde Tiere</li></ul>"
+    },
+    "edid": "undefined",
+    "action": "standard",
+    "strain": 0,
+    "attribute": "per",
+    "tier": "novice",
+    "source": {
+      "class": null,
+      "atLevel": null
+    },
+    "level": 0,
+    "rollTypeDetails": {
+      "ability": {},
+      "attack": {
+        "weaponItemStatus": [],
+        "weaponType": "melee"
+      },
+      "damage": {},
+      "effect": {},
+      "initiative": {},
+      "reaction": {
+        "defenseType": "physical"
+      },
+      "recovery": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "skillType": "knowledge"
+  },
+  "_id": "JaKEKxyHzD7YvrGt",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735946668759,
+    "modifiedTime": 1735946845764,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
+  },
+  "_key": "!items!JaKEKxyHzD7YvrGt"
+}

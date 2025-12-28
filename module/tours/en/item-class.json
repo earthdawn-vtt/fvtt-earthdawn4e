@@ -1,0 +1,82 @@
+{
+  "title": "System settings",
+  "module": "ed4e",
+  "id": "edDisciplineItem",
+  "description": "Earthdawn specific System settings",
+  "canBeResumed": true,
+  "display": true,
+  "steps": [
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    }, 
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    },
+    {
+      "id": "XXXXXX",
+      "selector": "#XXXXXX",
+      "title": "XXXXXX",
+      "content": "XXXXXX",
+      "sidebarTab": "XXXXXXXX",
+      "action": "XXXXXXXX"
+    }
+  ]
+}

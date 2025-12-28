@@ -1,0 +1,62 @@
+
+.app.window-app.form.earthdawn4e.legend-point__history {
+    .window-content {
+        position: relative;
+        background-image: url('assets/sheet/background.png');
+        background-size: cover;
+        //margin-top: -60px;
+        //padding: 60px 10px 75px 10px;
+        color: black;
+        background-repeat: repeat;
+
+        .lp-history__earned {
+            
+            .legend-point__history--earned-buttons {
+                button {
+                    height: 35px;
+                    align-self: flex-end;
+                }
+            }
+
+            .add-earning-icon {
+                //position: absolute;
+                top: 5px; /* Adjust as needed */
+                right: 5px; /* Adjust as needed */
+                cursor: pointer;
+              }
+            
+        }
+        .lp-history__spend {
+            .legend-point__history--spent-buttons {
+                button {
+                    height: 35px;
+                    align-self: flex-end;
+                }
+            }
+            .spendings-details {
+                display: none;
+            }
+            
+            .spendings-details.is-visible {
+            display: block;
+            }
+
+            .lp-history__date{
+                width: 20%;
+            }
+            .lp-history__type {
+                width: 20%;
+            }
+            .lp-history__name{
+                width: 20%;
+            }
+            .lp-history__description{
+                width: 20%;
+            }
+            .lp-history__amount{
+                width: 20%;
+            }
+        }
+        
+    } 
+}

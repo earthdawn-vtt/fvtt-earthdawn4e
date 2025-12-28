@@ -1,0 +1,57 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+  {{formGroup systemFields.duration.fields.type value=source.system.duration.type rootId=rootId localize=true}}
+
+  {{#if (eq source.system.duration.type "realTime")}}
+    <fieldset>
+      {{formGroup systemFields.duration.fields.seconds value=source.system.duration.seconds rootId=rootId localize=true}}
+      <div class="form-group">
+        <label>{{localize systemFields.duration.fields.startTime.label}}</label>
+        <div class="form-fields">
+          <input type="text" value="{{ed-formatDate source.system.duration.startTime}}" readonly="" id="{{rootId}}-system.duration.startTime">
+        </div>
+        <p class="hint">{{localize systemFields.duration.fields.startTime.hint}}</p>
+      </div>
+    </fieldset>
+  {{/if}}
+
+  {{#if (eq source.system.duration.type "combat")}}
+    <fieldset>
+      <div class="form-group">
+        <label>{{localize "ED.Data.ActiveEffect.EaeDuration.FIELDS.type.label"}}</label>
+        <div class="form-fields">
+          <label for="{{rootId}}-duration.rounds">{{localize systemFields.duration.fields.rounds.label}}</label>
+          {{formInput systemFields.duration.fields.rounds value=source.system.duration.rounds
+                      id=(concat rootId "-duration.rounds")
+                      dataset=(ed-makeTooltip systemFields.duration.fields.rounds.hint)
+          }}
+          <label for="{{rootId}}-duration.turns">{{localize systemFields.duration.fields.turns.label}}</label>
+          {{formInput systemFields.duration.fields.turns value=source.system.duration.turns
+                      id=(concat rootId "-duration.turns")
+                      dataset=(ed-makeTooltip systemFields.duration.fields.turns.hint)
+          }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label>{{localize "ED.Data.ActiveEffect.EaeDuration.FIELDS.startTime.label"}}</label>
+        <div class="form-fields">
+          <label for="{{rootId}}-duration.startRound">{{localize systemFields.duration.fields.startRound.label}}</label>
+          {{formInput systemFields.duration.fields.startRound value=source.system.duration.startRound
+                      id=(concat rootId "-duration.startRound")
+                      dataset=(ed-makeTooltip systemFields.duration.fields.startRound.hint)
+          }}
+          <label for="{{rootId}}-duration.startTurn">{{localize systemFields.duration.fields.startTurn.label}}</label>
+          {{formInput systemFields.duration.fields.startTurn value=source.system.duration.startTurn
+                      id=(concat rootId "-duration.startTurn")
+                      dataset=(ed-makeTooltip systemFields.duration.fields.startTurn.hint)
+          }}
+        </div>
+      </div>
+    </fieldset>
+  {{/if}}
+
+  {{#if (eq source.system.duration.type "uses")}}
+    <fieldset>
+      {{formGroup systemFields.duration.fields.uses value=source.system.duration.uses rootId=rootId localize=true}}
+    </fieldset>
+  {{/if}}
+</section>

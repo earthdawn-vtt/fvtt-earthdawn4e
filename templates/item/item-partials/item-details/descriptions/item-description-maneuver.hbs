@@ -1,25 +1,34 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
-    {{!-- Extra Successes --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Power.powerStep"}}:</label>
-        <input class="input__circle-input" name="system.powerStep" type="text" value="{{item.system.powerStep}}"
-            data-dtype="Number">
+<div id="base-description-maneuver-item" class="item-description__maneuver item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+ 
+    {{!-- Required Extra Successes --}}
+    <div class="item-section item-section--extra-successes item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.extraSuccesses name="system.extraSuccesses" value=item.system.extraSuccesses localize=true}}
+        {{else}}
+            <div class="item-line item-line--extra-successes">
+            <span class="item-line__label">
+                {{localize systemFields.extraSuccesses.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.extraSuccesses}}
+            </span>
+            </div>
+        {{/if}}
     </div>
-    {{!-- Damage Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Knack.extraSuccesses"}}:</label>
-        <input class="input__circle-input" name="system.extraSuccesses" type="text" value="{{item.system.extraSuccesses}}"
-            data-dtype="Number">
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
     </div>
-    {{!-- Strain --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.strainShort"}}:</label>
-        <input class="input__circle-input" name="system.strain" type="text" value="{{item.system.strain}}"
-            data-dtype="Number">
-    </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
 </div>

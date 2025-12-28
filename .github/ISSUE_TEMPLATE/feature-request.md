@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Describe this issue template's purpose here.
-title: ''
+title: "[NEW FEATURE]-"
 labels: ''
 assignees: ''
 

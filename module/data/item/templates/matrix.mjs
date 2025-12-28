@@ -1,0 +1,469 @@
+import * as MAGIC from "../../../config/magic.mjs";
+import { getSetting } from "../../../settings.mjs";
+import SystemDataModel from "../../abstract/system-data-model.mjs";
+import DialogEd from "../../../applications/api/dialog.mjs";
+import AttuneMatrixWorkflow from "../../../workflows/workflow/attune-matrix-workflow.mjs";
+import SiblingDocumentField from "../../fields/sibling-document-field.mjs";
+import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
+
+
+const { fields } = foundry.data;
+
+export default class MatrixTemplate extends SystemDataModel {
+
+  // region Schema
+
+  /** @inheritdoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+      matrix: new fields.SchemaField( {
+        matrixType: new fields.StringField( {
+          required:        true,
+          blank:           false,
+          initial:         "standard",
+          choices:         MAGIC.matrixTypes,
+        } ),
+        level: new fields.NumberField( {
+          required:        true,
+          initial:         0,
+          integer:         true,
+        } ),
+        damage: new fields.NumberField( {
+          required:        true,
+          initial:         0,
+          integer:         true,
+          min:             0,
+        } ),
+        deathRating: new fields.NumberField( {
+          required:        true,
+          initial:         1,
+          integer:         true,
+          positive:        true,
+        } ),
+        spells:   new fields.SetField(
+          new SiblingDocumentField(
+            foundry.documents.Item,
+            {
+              systemTypes: [ SYSTEM_TYPES.Item.spell, ],
+            } ), {
+            required:        true,
+            initial:         [],
+          } ),
+        activeSpell: new SiblingDocumentField(
+          foundry.documents.Item,
+          {
+            systemTypes: [ SYSTEM_TYPES.Item.spell, ],
+          }
+        ),
+        threads: new fields.SchemaField( {
+          hold:  new fields.SchemaField( {
+            value: new fields.NumberField( {
+              required:        true,
+              initial:         0,
+              integer:         true,
+              min:             0,
+            } ),
+            max:   new fields.NumberField( {
+              required:        true,
+              initial:         0,
+              integer:         true,
+              min:             0,
+            } ),
+          }, {
+            required:        true,
+          } ),
+        }, {
+          required:        true,
+        } ),
+      }, {
+        nullable:        true,
+        initial:         null,
+      } ),
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.General.Matrix",
+  ];
+
+  // endregion
+
+  // region Getters
+
+  /**
+   * Whether this item has a matrix.
+   * @type {boolean}
+   */
+  get hasMatrix() {
+    return this.edid === getSetting( "edidSpellMatrix" );
+  }
+
+  /**
+   * Is this matrix broken and therefore cannot be used?
+   * @type {boolean}
+   */
+  get matrixBroken() {
+    return this.matrix?.damage >= this.matrix?.deathRating;
+  }
+
+  /**
+   * Can the matrix hold threads?
+   * @type {boolean}
+   */
+  get matrixCanHoldThread() {
+    return this.matrix?.threads?.hold?.max > 0;
+  }
+
+  /**
+   * Whether the matrix has a more than one spell attuned.
+   * @type {boolean}
+   */
+  get matrixHasMultipleSpells() {
+    return this.matrix?.spells?.size > 1;
+  }
+
+  /**
+   * The amount of damage that is prevented when attacked.
+   * @type {number}
+   */
+  get matrixMysticArmor() {
+    let armorValue = this.containingActor?.system.characteristics.armor.mystical.value || 0;
+    if ( this.matrix?.matrixType === "armored" ) armorValue += this.matrix?.level;
+    return armorValue;
+  }
+
+  /**
+   * Is this matrix a shared matrix?
+   * @type {boolean}
+   */
+  get matrixShared() {
+    return this.matrix?.matrixType === "shared";
+  }
+
+  /**
+   * The currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * @type { ItemEd | null }
+   */
+  get matrixSpell() {
+    return this.containingActor?.items.get( this.matrixSpellId ) || null;
+  }
+
+  /**
+   * The ID of the currently attuned spell, or the first one if there are multiple. Null if none are attuned.
+   * @type {string | null}
+   */
+  get matrixSpellId() {
+    return this.matrix?.spells?.first() || null;
+  }
+
+  /**
+   * The list of all spells attuned to this matrix, if they exist in the containing actor.
+   * @type {ItemEd[]}
+   */
+  get matrixSpells() {
+    return Array.from(
+      this.matrix?.spells || []
+    ).map(
+      spellId => this.containingActor?.items.get( spellId )
+    ).filter(
+      spell => !!spell
+    );
+  }
+
+  // endregion
+
+  // region Life Cycle Events
+
+  /**
+   * Prepares the matrix data for creation or update. Modifies the given data object.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   * @returns {object} The prepared data.
+   */
+  _prepareMatrixData( data ) {
+    const edidMatrix = getSetting( "edidSpellMatrix" );
+
+    if ( !this._isLosingMatrix( data, edidMatrix ) ) {
+      this._prepareMatrixLevel( data );
+    }
+
+    this._prepareActiveSpell( data );
+
+    if ( this._isBecomingMatrix( data, edidMatrix ) ) {
+      this._setDefaultMatrixData( data );
+    } else if ( this._isLosingMatrix( data, edidMatrix ) ) {
+      this._clearMatrixData( data );
+    } else if ( this._isMatrixTypeChanging( data ) ) {
+      this._updateMatrixTypeData( data );
+    }
+
+    return data;
+  }
+
+  /**
+   * Prepares the active spell data for creation or update. Modifies the given data object.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _prepareActiveSpell( data ) {
+    const hasOnlyOneNonActiveSpell = !this.matrixHasMultipleSpells && this.matrixSpellId && !this.matrix.activeSpell;
+    const hasMissingActiveSpell = this.matrix?.activeSpell && !this.matrix?.spells?.has( this.matrix.activeSpell );
+
+    if ( hasOnlyOneNonActiveSpell ) {
+      // If the matrix has only one spell attuned, only that one can be active
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = this.matrixSpellId;
+    } else if ( hasMissingActiveSpell ) {
+      // If the active spell is not in the list of spells, reset it
+      data.system.matrix ??= {};
+      data.system.matrix.activeSpell = null;
+    }
+  }
+
+  /**
+   * Prepares the matrix level data for creation or update. Modifies the given data object.
+   * @param {object} data The data to prepare, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _prepareMatrixLevel( data ) {
+    const parentLevel = data.system?.level;
+    if ( foundry.utils.getType( parentLevel ) === "number" && data.system?.matrix )
+      data.system.matrix.level = parentLevel;
+  }
+
+  /**
+   * Checks if the item is becoming a matrix with creation or update.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @param {string} edidMatrix The EDID that defines a matrix.
+   * @returns {boolean} True if the item is becoming a matrix, false otherwise.
+   */
+  _isBecomingMatrix( data, edidMatrix ) {
+    return data.system?.edid === edidMatrix && this.edid !== edidMatrix;
+  }
+
+  /**
+   * Sets the default matrix data for a new matrix.
+   * @param {object} data The data to set, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _setDefaultMatrixData( data ) {
+    data.system.matrix ??= {
+      matrixType:  "standard",
+      deathRating: this._lookupMatrixDeathRating(),
+      threads:     {
+        hold: {
+          value: this._lookupMatrixMaxHoldThread(),
+          max:   this._lookupMatrixMaxHoldThread(),
+        },
+      },
+    };
+  }
+
+  /**
+   * Checks if the item is losing its matrix status with creation or update.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @param {string} edidMatrix The EDID that defines a matrix.
+   * @returns {boolean} True if the item is losing its matrix status, false otherwise.
+   */
+  _isLosingMatrix( data, edidMatrix ) {
+    return (
+      this.edid === edidMatrix
+      && typeof data.system?.edid === "string"
+      && data.system?.edid !== edidMatrix
+    );
+  }
+
+  /**
+   * Prepares the change data to clear the matrix data from the item.
+   * @param {object} data The data to clear, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _clearMatrixData( data ) {
+    data.system.matrix = null;
+  }
+
+  /**
+   * Checks if the matrix type is changing.
+   * @param {object} data The data to check, see {@link _preCreate} and {@link _preUpdate}.
+   * @returns {boolean} True if the matrix type is changing, false otherwise.
+   */
+  _isMatrixTypeChanging( data ) {
+    return (
+      String( data.system?.matrix?.matrixType ) !== String( this.matrix?.matrixType )
+      && data.system?.matrix?.matrixType in MAGIC.matrixTypes
+    );
+  }
+
+  /**
+   * Updates the change data to reflect the new matrix type.
+   * @param {object} data The data to update, see {@link _preCreate} and {@link _preUpdate}.
+   */
+  _updateMatrixTypeData( data ) {
+    const matrixType = data.system?.matrix?.matrixType;
+    data.system.matrix.deathRating = this._lookupMatrixDeathRating( matrixType );
+    data.system.matrix.threads.hold.value = this._lookupMatrixMaxHoldThread( matrixType );
+    data.system.matrix.threads.hold.max = this._lookupMatrixMaxHoldThread( matrixType );
+  }
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    return {
+      matrixLevel:        this.matrix?.level,
+      matrixRank:         this.matrix?.level,
+      matrixDeathRating:  this.matrix?.deathRating,
+      matrixDamage:       this.matrix?.damage,
+      matrixThreadsWoven: this.matrix?.threads?.hold?.value,
+      matrixThreadsMax:   this.matrix?.threads?.hold?.max,
+      matrixThreadsHeld:  this.matrix?.threads?.hold?.max,
+      matrixHeldThreads:  this.matrix?.threads?.hold?.max,
+    };
+  }
+
+  // endregion
+
+  // region Methods
+
+  /**
+   * Creates the choices for the activeSpell form input.
+   * @returns {Record<string, string>} A mapping of spell IDs to spell names.
+   */
+  getActiveSpellChoices() {
+    const choices = {};
+    for ( const spellId of this.matrix?.spells || [] ) {
+      const spell = this.containingActor?.items.get( spellId );
+      if ( spell ) choices[ spellId ] = spell.name;
+    }
+    return choices;
+  }
+
+  /**
+   * Creates the choices for matrix spell form input. These are all spells on the actor.
+   * @returns {FormSelectOption[]} A mapping of spell IDs to spell names.
+   */
+  getMatrixSpellOptions() {
+    const choices = [];
+    for ( const spell of this.containingActor?.itemTypes.spell || [] ) {
+      choices.push( {
+        dataset:  { tooltip: spell.system.summary.value },
+        selected: this.matrix?.spells?.has( spell.id ),
+        label:    spell.name,
+        value:    spell.id,
+        group:    MAGIC.spellcastingTypes[ spell.system.spellcastingType ],
+      } );
+    }
+    return choices;
+  }
+
+  /**
+   * Checks if the matrix is attuned to a specific spell.
+   * @param {string} spellId The ID of the spell to check.
+   * @returns {boolean} True if the matrix is attuned to the spell, false otherwise.
+   */
+  isSpellAttuned( spellId ) {
+    if ( this.matrixShared ) {
+      return this.matrix?.spells?.has( spellId );
+    } else {
+      return this.matrixSpellId === spellId;
+    }
+  }
+
+  /**
+   * Looks up the death rating of the matrix based on its type.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link matrixTypes}.
+   * @returns {number|undefined} The death rating of the matrix, or undefined if not found.
+   */
+  _lookupMatrixDeathRating( matrixType = "standard" ) {
+    return MAGIC.matrixTypes[ matrixType ].deathRating;
+  }
+
+  /**
+   * Looks up the maximum thread hold of the matrix based on its type.
+   * @param {string} matrixType The type of the matrix to look up, as defined in {@link matrixTypes}.
+   * @returns {number|undefined} The maximum thread hold of the matrix, or undefined if not found.
+   */
+  _lookupMatrixMaxHoldThread( matrixType = "standard" ) {
+    return MAGIC.matrixTypes[ matrixType ].maxHoldThread;
+  }
+
+  /**
+   * Remove the given spells from the matrix, or all if none are given
+   * @param {string[]} [spellsToRemove] The IDs of the spells to remove, or undefined, empty or null to remove all.
+   * @returns {Promise<Document | undefined>} The updated matrix item, or undefined if not updated
+   */
+  async removeSpells( spellsToRemove ) {
+    const removeList = Array.from( spellsToRemove || this.matrix.spells );
+    const newSpells = this.matrix.spells.filter( spell => !removeList.includes( spell ) );
+    return this.parent?.update( {
+      "system.matrix.spells": newSpells,
+    } );
+  }
+
+  // region Spellcasting
+
+  /**
+   * Checks if threads can be woven into the matrix's spell.
+   * @returns {boolean} False if the matrix is broken, true otherwise.
+   */
+  canWeave() {
+    return !this.matrixBroken;
+  }
+
+  /**
+   * Gets the currently active spell for the matrix.
+   * @returns {Promise<Document|null>} The active spell document, or null if no active spell could be set.
+   */
+  async getActiveSpell() {
+    if ( !this.matrix.activeSpell ) await this.selectActiveSpell();
+    return this.containingActor?.items.get( this.matrix.activeSpell );
+  }
+
+  /**
+   * Whether there are currently threads being woven into the matrix.
+   * @returns {boolean} True if the containing spell is actively being woven threads to, false otherwise.
+   */
+  matrixIsWeaving() {
+    return this.containingActor?.items.get( this.matrix?.activeSpell )?.system?.isWeaving || false;
+  }
+
+  /**
+   * Selects the active spell for the matrix.
+   * @returns {Promise<boolean>} True if the active spell was successfully selected, false otherwise.
+   */
+  async selectActiveSpell() {
+    let newActiveSpell;
+    if ( this.matrixHasMultipleSpells ) {
+      newActiveSpell = await fromUuid( await DialogEd.waitButtonSelect( this.matrixSpells ) );
+      if ( !newActiveSpell ) {
+        ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.noActiveSpellSelected" ) );
+        return false;
+      }
+    } else if ( this.matrixSpell ) {
+      newActiveSpell = this.matrixSpell;
+    } else {
+      // Not attuned, try to attune a spell
+      const attuneMatrixWorkflow = new AttuneMatrixWorkflow(
+        this.containingActor,
+        { firstMatrix: this.uuid },
+      );
+
+      // If the attune workflow is successful, try to select the active spell again
+      return ( await attuneMatrixWorkflow.execute() ) ? this.selectActiveSpell() : false;
+    }
+
+    const updated = await this.parent?.update( {
+      "system.matrix.activeSpell": newActiveSpell
+    } );
+
+    return !!updated;
+  }
+
+  // endregion
+
+  // endregion
+
+}

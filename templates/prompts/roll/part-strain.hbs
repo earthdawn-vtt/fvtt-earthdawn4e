@@ -1,0 +1,21 @@
+<fieldset>
+  <legend class="modifier-description">{{localize "ED.Dialogs.RollPrompt.strain"}}:</legend>
+  {{formGroup
+    optionsFields.strain.fields.base
+    name="strain.total"
+    value=strain.base
+    hint=""
+  }}
+
+  {{#if ( ed-hasItems strain.modifiers ) }}
+    <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
+    {{#each strain.modifiers as |modifier|}}
+      {{formGroup
+        optionsFields.strain.fields.modifiers.model
+        name=(concat "strain.modifiers." @key)
+        value=modifier
+        label=@key
+      }}
+    {{/each}}
+  {{/if}}
+</fieldset>

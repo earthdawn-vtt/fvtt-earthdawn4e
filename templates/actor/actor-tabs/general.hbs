@@ -1,0 +1,526 @@
+<section class="tab general {{tabs.general.cssClass}}" data-group="sheet" data-tab="general" data-editable="{{@root.editable}}">
+	<div class="layout__row">
+		<div class="layout__col--2">
+
+			<!-- Attributes -->
+			<h2 class="attribute__header margin__none one-line__vertical-align">
+				{{localize "ED.Actor.Header.attributes"}}
+			</h2>
+
+			<div class="container__block container__custom">
+				<div class="attribute-card__grid--container container__header">
+					<div class="attribute-card__grid--item"></div>
+					<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeName"}}</div>
+					{{#if (eq this.actor.type "character")}}
+						<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeValue"}}</div>
+						<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.increaseAbbr"}}</div>
+					{{else}}
+						<div class="attribute-card__grid--item"></div>
+						<div class="attribute-card__grid--item"></div>
+					{{/if}}
+					<div class="attribute-card__grid--item">{{localize "ED.Actor.Attributes.attributeStep"}}</div>
+				</div>
+				{{#if (eq this.actor.type "character")}}
+					{{> "systems/ed4e/templates/actor/cards/attribute-card.hbs"}}
+				{{else}}
+					{{> "systems/ed4e/templates/actor/cards/attributes-none-pc-card.hbs"}}
+				{{/if}}
+			</div>
+
+			<!-- Karma -->
+			<h2 class="karma-devotion__header margin__none one-line__vertical-align">
+				<span class="karma-devotion__header-label">
+					{{localize "ED.Actor.Header.karma"}}
+				</span>
+				<span class="karma-devotion__header-icons">
+					<input
+						type="checkbox"
+						name="system.karma.useAlways"
+						{{checked actor.system.karma.useAlways}}
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.useAlways.hint'}}">
+				</span>
+				<span class="karma-devotion__header-icons">
+					{{#if (eq this.actor.type "character")}}
+						<a class="karma__ritual">
+							<button
+								class="button__Karma-refresh icon--button"
+								data-action="karmaRitual"
+								data-tooltip="{{localize 'ED.Actor.Tooltips.karmaRitualTooltip'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Actor.Tooltips.karmaRitualTooltip'}}">
+								<i class="fa-solid fa-person-rays"></i>
+							</button>
+						</a>
+					{{/if}}
+				</span>
+			</h2>
+			<div class="container__block container__custom">
+				<div class="karma-devotion__grid--container container__header">
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.value.label"}}</div>
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.max.label"}}</div>
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.karma.step.label"}}</div>
+				</div>
+				<div class="karma-devotion__grid--container">
+					<div class="karma-devotion__grid--item">
+						<input
+							class="input__rectangle-input--centered"
+							name="system.karma.value"
+							value="{{actor.system.karma.value}}"
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.value.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.value.hint'}}">
+					</div>
+					<div class="karma-devotion__grid--item">
+						<input
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							{{#unless (eq this.actor.type "character")}}name="system.karma.max"{{/unless}}
+							value="{{actor.system.karma.max}}"
+							{{#if (eq this.actor.type "character")}}readonly{{/if}}
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.max.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.max.hint'}}">
+					</div>
+					<div class="karma-devotion__grid--item">
+						<input
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.karma.step"
+							value="{{actor.system.karma.step}}"
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.step.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.karma.step.hint'}}">
+					</div>
+				</div>
+			</div>
+
+			<!-- Devotion -->
+			<h2 class="karma-devotion__header one-line__vertical-align margin__none">
+				<span class="karma-devotion__header-label">{{localize "ED.Actor.Header.devotion"}}</span>
+			</h2>
+			<div class="container__block container__custom">
+				<div class="karma-devotion__grid--container container__header">
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.value.label"}}</div>
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.max.label"}}</div>
+					<div class="karma-devotion__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.devotion.step.label"}}</div>
+				</div>
+				<div class="karma-devotion__grid--container">
+					<div class="karma-devotion__grid--item">
+						<input
+							class="input__rectangle-input--centered"
+							name="system.devotion.value"
+							value="{{actor.system.devotion.value}}"
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.value.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.value.hint'}}">
+					</div>
+					<div class="karma-devotion__grid--item">
+						<input
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							{{#unless (eq this.actor.type "character")}}name="system.devotion.max"{{/unless}}
+							value="{{actor.system.devotion.max}}"
+							{{#if (eq this.actor.type "character")}}readonly{{/if}}
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.max.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.max.hint'}}">
+					</div>
+					<div class="karma-devotion__grid--item">
+						<input
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.devotion.step"
+							value="{{actor.system.devotion.step}}"
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.step.hint'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.devotion.step.hint'}}">
+					</div>
+				</div>
+			</div>
+
+			<!-- Recovery -->
+			<h2 class="recovery__header margin__none one-line__vertical-align">
+				<span class="recovery__header-label">
+					{{localize "ED.Actor.Header.recovery"}}
+				</span>
+				<span class="recovery__header-icons">
+					<a class="button__recovery-test">
+						<button
+							class="button__recovery-rest icon--button"
+							data-action="recovery"
+							data-tooltip="{{localize 'ED.Actor.Buttons.recovery'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Actor.Buttons.recovery'}}">
+							<i class="fa-solid fa-bed"></i>
+						</button>
+					</a>
+				</span>
+			</h2>
+			<div class="container__block container__custom">
+				<div class="recovery__grid--container container__header">
+					<div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label"}}</div>
+					<div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label"}}</div>
+					<div class="recovery__grid--item">{{localize "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label"}}</div>
+				</div>
+				<div class="recovery__grid--container">
+					{{#if (eq this.actor.type "character")}}
+						<div class="recovery__grid--item">
+							<input
+								class="input__rectangle-input--centered"
+								name="system.characteristics.recoveryTestsResource.value"
+								value="{{actor.system.characteristics.recoveryTestsResource.value}}"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.hint'}}">
+						</div>
+						<div class="recovery__grid--item">
+							<input
+								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+								value="{{actor.system.characteristics.recoveryTestsResource.max}}"
+								readonly
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.hint'}}">
+						</div>
+						<div class="recovery__grid--item">
+							<div
+								class="buffer-input"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+								<input
+									id="recovery-step"
+									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+									name="system.characteristics.recoveryTestsResource.step"
+									type="number"
+									value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+							</div>
+						</div>
+					{{else}}
+						<div class="recovery__grid--item">
+							<input
+								class="input__rectangle-input--centered"
+								name="system.characteristics.recoveryTestsResource.value"
+								value="{{actor.system.characteristics.recoveryTestsResource.value}}"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.hint'}}">
+						</div>
+						<div class="recovery__grid--item">
+							<input
+								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+								name="system.characteristics.recoveryTestsResource.max"
+								value="{{actor.system.characteristics.recoveryTestsResource.max}}"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.hint'}}">
+						</div>
+						<div class="recovery__grid--item">
+							<div
+								class="buffer-input"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.hint'}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+								<input
+									id="recovery-step"
+									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+									name="system.characteristics.recoveryTestsResource.step"
+									type="number"
+									value="{{actor.system.characteristics.recoveryTestsResource.step}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+							</div>
+						</div>
+					{{/if}}
+				</div>
+			</div>
+
+			<!-- Initiative -->
+			<h2 class="initiative__header margin__none one-line__vertical-align">
+				<span class="initiative__header-label">{{localize "ED.Actor.Header.initiative"}}</span>
+				<span class="initiative__header-icons">
+					<a class="button__initiative-test">
+						<button
+							class="button__initiative icon--button"
+							data-action="initiative"
+							data-tooltip="{{localize 'ED.Actor.Initiative.roll'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Actor.Initiative.roll'}}">
+							<i class="fa-solid fa-swords"></i>
+						</button>
+					</a>
+				</span>
+			</h2>
+
+			<div class="container__block container__custom">
+				{{#if (eq this.actor.type "character")}}
+					<div class="initiative__grid--container container__header">
+						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
+						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.penalty"}}</div>
+					</div>
+					<div class="initiative__grid--container">
+						<div class="initiative__grid--item">
+							<div
+								class="buffer-input"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+								<input
+									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+									name="system.initiative"
+									value="{{actor.system.initiative}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+							</div>
+						</div>
+						<div
+							class="initiative__grid--item tooltip-only"
+							data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiativePenalty.label'}}"
+							data-tooltip-direction="UP"
+							aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiativePenalty.label'}}">
+							<input
+								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+								value="{{actor.system.initiativePenalty}}"
+								readonly>
+						</div>
+					</div>
+				{{else}}
+					<div class="initiative-npc__grid--container container__header">
+						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
+						<div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
+					</div>
+					<div class="initiative-npc__grid--container">
+						<div class="initiative__grid--item">
+							<div
+								class="buffer-input"
+								data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.initiative.label'}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+								<input
+									id="characteristic-initiative"
+									class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+									name="system.initiative"
+									value="{{actor.system.initiative}}">
+								{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+							</div>
+						</div>
+						<div class="initiative__grid--item">
+							<input
+								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+								name="system.actions"
+								value="{{actor.system.actions}}"
+								data-tooltip="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.actions.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.actions.hint'}}">
+						</div>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+
+		<div class="layout__col--2">
+      
+			<!-- Movement -->
+			<h2 class="movement__header margin__none one-line__vertical-align">
+				<span class="movement__header-label">{{localize "ED.Actor.Header.movement"}}</span>
+			</h2>
+			<div class="container__block container__custom">
+				<div class="movement__grid--container">
+
+					<label
+						class="movement-type__grid--item"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label'}}">
+						<input type="radio" class="input__checkbox" name="system.movement.mode" value="walk" {{checked (eq actor.system.movement.mode "walk")}}>
+						<i class="fa-solid fa-person-walking" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.label'}}"></i>
+					</label>
+
+					<label
+						class="movement-type__grid--item"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label'}}">
+						<input type="radio" class="input__checkbox" name="system.movement.mode" value="climb" {{checked (eq actor.system.movement.mode "climb")}}>
+						<i class="fa-solid fa-person-through-window" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.label'}}"></i>
+					</label>
+
+					<label
+						class="movement-type__grid--item"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label'}}">
+						<input type="radio" class="input__checkbox" name="system.movement.mode" value="fly" {{checked (eq actor.system.movement.mode "fly")}}>
+						<i class="fa-solid fa-person-fairy" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.label'}}"></i>
+					</label>
+
+					<label
+						class="movement-type__grid--item"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label'}}">
+						<input type="radio" class="input__checkbox" name="system.movement.mode" value="swim" {{checked (eq actor.system.movement.mode "swim")}}>
+						<i class="fa-solid fa-person-swimming" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.label'}}"></i>
+					</label>
+
+					<label
+						class="movement-type__grid--item"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label'}}"
+						data-tooltip-direction="UP"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label'}}">
+						<input type="radio" class="input__checkbox" name="system.movement.mode" value="burrow" {{checked (eq actor.system.movement.mode "burrow")}}>
+						<i class="fa-solid fa-person-digging" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label'}}"></i>
+					</label>
+
+					<div class="movement__grid--item">
+						<h3>{{localize "ED.Actor.Buttons.jumpUp"}}</h3>
+					</div>
+
+					<div class="movement__grid--item">
+						<h3>{{localize "ED.Actor.Buttons.knockdownTest"}}</h3>
+					</div>
+
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.hint'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.walk.hint'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input
+							id="movement-walk"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.characteristics.movement.walk"
+							type="number"
+							value="{{actor.system.characteristics.movement.walk}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+					</div>
+
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.hint'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.climb.hint'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input
+							id="movement-climb"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.characteristics.movement.climb"
+							type="number"
+							value="{{actor.system.characteristics.movement.climb}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+					</div>
+
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.hint'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.fly.hint'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input
+							id="movement-fly"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.characteristics.movement.fly"
+							type="number"
+							value="{{actor.system.characteristics.movement.fly}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+					</div>
+
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.hint'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.swim.hint'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input
+							id="movement-swim"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.characteristics.movement.swim"
+							type="number"
+							value="{{actor.system.characteristics.movement.swim}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+					</div>
+
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.hint'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.hint'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease" data-action="manualOverride" data-override-operation="decrease"></button>{{/unless}}
+						<input
+							id="movement-burrow"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.characteristics.movement.burrow"
+							type="number"
+							value="{{actor.system.characteristics.movement.burrow}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
+					</div>
+
+					<button
+						type="button"
+						class="action-buttons icon--button icon icon--jump-up"
+						data-action="jumpUp"
+						data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
+					</button>
+
+					<button
+						type="button"
+						class="action-buttons icon--button icon icon--knockdown"
+						data-action="knockdown"
+						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownTest'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
+					</button>
+
+				</div>
+			</div>
+
+			<!-- Favourites -->
+			<h2 class="favorite__header margin__none one-line__vertical-align">
+				<span class="favorite__header-label">{{localize "ED.Actor.Header.favorites"}}</span>
+			</h2>
+			<div class="container__block container__custom">
+				<div class="favorite__grid--container">
+					{{#each favoriteItems as |favorite|}}
+						<div class="favorite-item-row {{#if @root.editable}}has-delete{{/if}} {{#unless favorite.isValid}}favorite-broken{{/unless}}">
+							{{#if favorite.isValid}}
+								<button
+									class="action-buttons favorite-execute-btn"
+									data-action="executeFavoriteMacro"
+									data-macro-uuid="{{favorite.uuid}}"
+									data-tooltip="{{favorite.name}}"
+									data-tooltip-direction="UP"
+									aria-label="{{favorite.name}}">
+									<span class="label">{{favorite.name}}</span>
+								</button>
+							{{else}}
+								<button
+									class="action-buttons favorite-execute-btn favorite-broken-btn"
+									disabled
+									data-tooltip="{{localize 'ED.Actor.Tooltips.brokenFavoriteReference'}}"
+									data-tooltip-direction="UP"
+									aria-label="{{localize 'ED.Actor.Tooltips.brokenFavoriteReference'}}">
+									<span class="label">{{favorite.name}}</span>
+								</button>
+							{{/if}}
+
+							{{#if @root.editable}}
+								<a
+									class="item-control item-delete favorite-delete-btn"
+									data-action="deleteFavorite"
+									data-macro-uuid="{{favorite.uuid}}"
+									data-tooltip="{{localize 'ED.Actor.Tooltips.removeFromFavorites'}}"
+									data-tooltip-direction="UP"
+									aria-label="{{localize 'ED.Actor.Tooltips.removeFromFavorites'}}">
+									<i class="fas fa-trash"></i>
+								</a>
+							{{/if}}
+						</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

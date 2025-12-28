@@ -4,8 +4,8 @@
   "description": "A system for playing the 4th edition of Earthdawn in the Foundry Virtual Tabletop environment.",
   "version": "1.0.0",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11"
+    "minimum": "13.340",
+    "verified": "13.340"
   },
   "url": "https://github.com/patrickmohrmann/earthdawn4eV2",
   "manifest": "this will be replaced",
@@ -18,6 +18,10 @@
     {
       "name": "Chris",
       "discord": "qrizzl"
+    }, 
+    {
+      "name": "Alex",
+      "discord": "alegionofone"
     }
   ],
   "esmodules": [
@@ -28,9 +32,117 @@
   ],
   "flags": {
     "hotReload": {
-      "extensions": ["css", "hbs", "json"]
+      "extensions": ["css", "hbs", "json"],
+      "paths": [ "templates", "lang", "earthdawn4e.css" ]
     }
   },
+  "packs": [
+    {
+      "name": "manual-english",
+      "label": "System Manual - English",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "JournalEntry",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "manual-deutsch",
+      "label": "System Manual - Deutsch",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "JournalEntry",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "tour-items",
+      "label": "Tour Items",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-abilities-deutsch",
+      "label": "Standard Fähigkeiten - Deutsch",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-abilities-english",
+      "label": "Core Abilities - English",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-items-deutsch",
+      "label": "Standard Ausrüstung - Deutsch",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "core-items-english",
+      "label": "Core Equipment - English",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Item",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "macros",
+      "label": "Macros",
+      "banner": "systems/ed4e/assets/foundry/earthdawn-logo.png",
+      "type": "Macro",
+      "system": "ed4e",
+      "ownership": {
+        "TRUSTED": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Earthdawn Content",
+      "sorting": "m",
+      "color": "#0d4e09",
+      "packs": [
+        "manual-english",
+        "manual-deutsch",
+        "tour-items",
+        "macros",
+        "core-abilities-deutsch",
+        "core-abilities-english",
+        "core-items-deutsch",
+        "core-items-english"
+      ]
+    }
+  ],
   "languages": [
     {
       "lang": "en",
@@ -53,15 +165,18 @@
       "path": "lang/fr.json"
     }
   ],
+  "background": "systems/ed4e/assets/wallpaper/heroes-legends-and-foes-wallpaper.jpg",
   "media": [
     {
       "type": "cover",
-      "url": "systems/earthdawn4e/assets/foundry/earthdawn-logo.png",
+      "url": "systems/ed4e/assets/wallpaper/heroes-legends-and-foes-wallpaper.jpg",
       "loop": false
     }
   ],
-  "gridDistance": 2,
-  "gridUnits": "yd",
+  "grid": {
+    "distance": 2,
+    "units": "yd"
+  },
   "socket": true,
   "relationships": {
     "requires": [
@@ -70,8 +185,8 @@
         "type": "module",
         "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json",
         "compatibility": {
-          "minimum": "1.0.13",
-          "verified": "1.0.13"
+          "minimum": "1.1.0",
+          "verified": "1.1.0"
         }
       }
     ],
@@ -81,5 +196,133 @@
           "type": "module"
         }
       ]
+  },
+  "documentTypes": {
+    "ActiveEffect": {
+      "eae": {
+      },
+      "condition": {
+      }
+    },
+    "Actor": {
+      "character": {
+        "htmlFields": ["description.value"]
+      },
+      "npc": {
+        "htmlFields": ["description.value"]
+      },
+      "creature": {
+        "htmlFields": ["description.value"]
+      },
+      "spirit": {
+        "htmlFields": ["description.value"]
+      },
+      "horror": {
+        "htmlFields": ["description.value"]
+      },
+      "dragon": {
+        "htmlFields": ["description.value"]
+      },
+      "group": {
+        "htmlFields": ["description.value"]
+      },
+      "vehicle": {
+        "htmlFields": ["description.value"]
+      },
+      "trap": {
+        "htmlFields": ["description.value"]
+      },
+      "loot": {
+        "htmlFields": ["description.value"]
+      }
+    },
+    "ChatMessage": {
+      "attack": {},
+      "common": {},
+      "damage": {},
+      "initiative": {},
+      "spellcasting": {},
+      "threadWeaving": {}
+    },
+    "Item": {
+      "armor": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "bindingSecret": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "curseMark": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "devotion": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "discipline": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "effect": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "equipment": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "knackAbility": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "knackKarma": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "knackManeuver": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "maneuver": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "mask": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "namegiver": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "path": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "poisonDisease": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "power": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "questor": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "shield": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "skill": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "specialAbility": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "spell": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "spellKnack": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "talent": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "thread": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "weapon": {
+        "htmlFields": ["description.value", "summary.value"]
+      },
+      "shipWeapon": {
+        "htmlFields": ["description.value", "summary.value"]
+      }
+    }
   }
 }

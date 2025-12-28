@@ -1,0 +1,20 @@
+<fieldset class="scrollable">
+  <legend class="modifier-description">{{localize "ED.Dialogs.RollPrompt.difficulty"}}:</legend>
+  {{#if target.public}}
+    {{formGroup
+      optionsFields.target.fields.base
+      name="target.base"
+      value=target.base
+      hint=""
+    }}
+    {{formGroup
+      optionsFields.target.fields.total
+      value=target.total
+      hint=""
+      disabled=true
+      data-tooltip=""
+    }}
+  {{else}}
+    ???
+  {{/if}}
+</fieldset>

@@ -1,0 +1,107 @@
+<header class="sheet-header item-header {{#if @root.editable}}item-header--editable{{else}}item-header--readonly{{/if}}">
+  <div class="item-header__image">
+    {{#if @root.editable}}
+      <img
+        class="item-image"
+        src="{{item.img}}"
+        title="{{item.name}}"
+        data-action="editImage"
+        data-edit="img"
+      />
+    {{else}}
+      <img
+        class="item-image item-image--readonly"
+        src="{{item.img}}"
+        title="{{item.name}}"
+      />
+    {{/if}}
+  </div>
+  <div class="item-header__body">
+    <div class="header__no-border item-header__title">
+      {{#if @root.editable}}
+        <h3 id="Name" class="header__no-border">
+          <input class="" name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+        </h3>
+      {{else}}
+        <h3 id="Name" class="header__no-border">
+          {{item.name}}
+        </h3>
+      {{/if}}
+    </div>
+
+    <h3 class="item-header__type label--rail">
+      <span class="label__text">
+        {{#unless @root.editable}}
+
+          {{!-- Talent category, if present --}}
+          {{#if systemFields.talentCategory}}
+            {{#if systemFields.talentCategory.choices}}
+              {{localize (lookup systemFields.talentCategory.choices item.system.talentCategory)}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- Skill type, if present --}}
+          {{#if systemFields.skillType}}
+            {{#if systemFields.skillType.choices}}
+              {{localize (lookup systemFields.skillType.choices item.system.skillType)}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- Is Living, if TRUE --}}
+          {{#if systemFields.isLiving}}
+            {{#if item.system.isLiving}}
+              {{localize systemFields.isLiving.label}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- If Thread Item --}}
+          {{#each item.system.truePattern.threadItemLevels}}
+            {{#if @first}}
+              {{localize "ED.Item.Thread.defaultName"}}
+            {{/if}}
+          {{/each}}
+
+          {{!-- Weapon type, if present (choices are objects with .label) --}}
+          {{#if systemFields.weaponType}}
+            {{#if item.system.weaponType}}
+              {{#with (lookup systemFields.weaponType.choices item.system.weaponType) as |wt|}}
+                {{#if wt.label}}
+                  {{localize wt.label}}
+                {{/if}}
+              {{/with}}
+            {{/if}}
+          {{/if}}
+
+          {{!-- Spellcasting type, if present --}}
+          {{#if systemFields.spellcastingType}}
+            {{#if systemFields.spellcastingType.choices}}
+              {{localize (lookup systemFields.spellcastingType.choices item.system.spellcastingType)}}
+            {{/if}}
+          {{/if}}
+
+        {{/unless}}
+
+        {{#if @root.editable}}
+          {{localize (concat "TYPES.Item." item.type)}}
+        {{else}}
+          {{#if item.system.type}}
+            {{localize (lookup systemFields.type.choices item.system.type)}}
+          {{else}}
+            {{localize (concat "TYPES.Item." item.type)}}
+          {{/if}}
+        {{/if}}
+
+      </span>
+    </h3>
+
+
+    <span class="item-body__summary">
+      {{#if @root.editable}}
+        {{> "systems/ed4e/templates/global/editor-brief.hbs"}}
+      {{else}}
+        {{{enrichedBriefDescription}}}
+      {{/if}}
+    </span>
+
+  </div>
+</header>

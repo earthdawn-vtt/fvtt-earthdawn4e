@@ -1,0 +1,22 @@
+{
+  "name": "Advancement Tour",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "1V3RHNZzxzdw04Zq",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735426502281,
+    "modifiedTime": 1735426502342,
+    "lastModifiedBy": "9DL3m5MaXaCel8Ys"
+  },
+  "description": "",
+  "_key": "!folders!1V3RHNZzxzdw04Zq"
+}

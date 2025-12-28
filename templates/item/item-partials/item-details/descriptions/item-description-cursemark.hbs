@@ -1,34 +1,78 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-curseMark-item" class="item-body item-body--curse-mark" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Curse Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.step"}}:</label>
-        <input class="input__circle-input" name="system.step" type="text" value="{{item.system.step}}"
-            data-dtype="Number">
+    <div class="item-section item-section--curse-step item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.step name="system.step" value=item.system.step localize=true}}
+        {{else}}
+        <div class="item-line item-line--curse-step">
+            <span class="item-line__label">
+                {{localize systemFields.step.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.step}}
+            </span>
+        </div>
+        {{/if}}
     </div>
+
     {{!-- Curse Type --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseType"}}:</label>
-        <select class="input__select-input" name="system.type" value="{{item.system.type}}" {{#select
-            item.system.type}}>
-            <option value="minor">{{localize "ED.Item.Curse.minor"}}</option>
-            <option value="major">{{localize "ED.Item.Curse.major"}}</option>
-            <option value="horror">{{localize "ED.Item.Curse.horror"}}</option>
-            {{/select}}
-        </select>
+    <div class="item-section item-section--curse-type item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.type name="system.type" value=item.system.type localize=true}}
+        {{/if}}
     </div>
-    {{!-- active --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseActive"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.active">
+
+    {{!-- Active --}}
+    <div class="item-section item-section--active item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.active name="system.active" value=item.system.active localize=true}}
+    {{else}}
+        <div class="item-line item-line--active">
+        <span class="item-line__label">
+            {{localize systemFields.active.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.active}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- detected --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Curse.curseDetected"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.detected">
+
+    {{!-- Detected --}}
+    <div class="item-section item-section--detected item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.detected name="system.detected" value=item.system.detected localize=true}}
+    {{else}}
+        <div class="item-line item-line--detected">
+        <span class="item-line__label">
+            {{localize systemFields.detected.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.detected}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+
+
+    {{!-- Description --}}
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <div class="item-section__description">
+        {{#if @root.editable}}
+            {{> "systems/ed4e/templates/global/editor.hbs"}}
+        {{else}}
+            {{{enrichedDescription}}}
+        {{/if}}
+        </div>
+    </div>
+
 </div>

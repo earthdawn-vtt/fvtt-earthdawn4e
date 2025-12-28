@@ -1,91 +1,256 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-weapon-item" class="item-description__weapon item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Weapon Type --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.weaponType"}}:</label>
-        <select class="input__select-input" name="system.weaponType" value="{{item.system.weaponType}}" 
-        {{#select item.system.weaponType}}>
-            <option value="0">{{localize "ED.WeaponCategory.melee"}}</option>
-            <option value="1">{{localize "ED.WeaponCategory.unarmed"}}</option>
-            <option value="2">{{localize "ED.WeaponCategory.missle"}}</option>
-            <option value="3">{{localize "ED.WeaponCategory.thrown"}}</option>
-            {{/select}}
-        </select>
-    </div>
+    {{#if @root.editable}}
+        {{formField systemFields.weaponType name="system.weaponType" value=item.system.weaponType localize=true}}
+    {{/if}}
+    {{#if this.item.system.isRanged}}
+        {{!-- Weapon Subtype --}}
+        <div class="item-section item-section--weapon-subtype item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.weaponSubType name="system.weaponSubType" value=item.system.weaponSubType localize=true}}
+        {{else}}
+            <div class="item-line item-line--weapon-subtype">
+            <span class="item-line__label">
+                {{localize systemFields.weaponSubType.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.weaponSubType}}
+            </span>
+            </div>
+        {{/if}}
+        </div>
+
+        {{!-- Ammunition – Type --}}
+        <div class="item-section item-section--ammunition-type item-group">
+        {{#if @root.editable}}
+            {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
+        {{else}}
+            <div class="item-line item-line--ammunition-type">
+            <span class="item-line__label">
+                {{localize systemFields.ammunition.fields.type.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+                {{item.system.ammunition.type}}
+            </span>
+            </div>
+        {{/if}}
+        </div>
+    {{/if}}
+    
     {{!-- Damage Attribute --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.damageAttribute"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/attribute-selector.hbs"}}
+    <div class="item-section item-section--damage-attribute item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.damage.fields.attribute name="system.damage.attribute" value=item.system.damage.attribute localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-attribute">
+        <span class="item-line__label">
+            {{localize systemFields.damage.fields.attribute.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.damage.attribute}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Mystische Armor --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.damageBaseStep"}}:</label>
-        <input class="input__circle-input" name="system.damageBaseStep" type="text" value="{{item.system.damageBaseStep}}"
-            data-dtype="Number">
+
+    {{!-- Damage Base Step --}}
+    <div class="item-section item-section--damage-base-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.damage.fields.baseStep name="system.damage.baseStep" value=item.system.damage.baseStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-base-step">
+        <span class="item-line__label">
+            {{localize systemFields.damage.fields.baseStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.damage.baseStep}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Forged Physical Armor --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.size"}}:</label>
-        <input class="input__circle-input" name="system.size" type="text" value="{{item.system.size}}"
-            data-dtype="Number">
+
+    {{!-- Forge Bonus --}}
+    <div class="item-section item-section--forge-bonus item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.forgeBonus name="system.forgeBonus" value=item.system.forgeBonus localize=true}}
+    {{else if item.system.forgeBonus}}
+        <div class="item-line item-line--forge-bonus">
+        <span class="item-line__label">
+            {{localize systemFields.forgeBonus.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.forgeBonus}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Forged Mystische Armor --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Label.dexterityMinimum"}}:</label>
-        <input class="input__circle-input" name="system.dexterityMinimum" type="text" value="{{item.system.dexterityMinimum}}"
-            data-dtype="Number">
+
+    {{!-- Weapon Size --}}
+    <div class="item-section item-section--size item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.size name="system.size" value=item.system.size type="number" localize=true}}
+    {{else}}
+        <div class="item-line item-line--size">
+        <span class="item-line__label">
+            {{localize systemFields.size.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.size}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Initiative Penalty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.rangeShort"}}:</label>
-        <input class="input__circle-input" name="system.rangeShort" type="text" value="{{item.system.rangeShort}}"
-            data-dtype="Number">
+
+    {{!-- Dexterity Minimum --}}
+    <div class="item-section item-section--dexterity-minimum item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.dexterityMinimum name="system.dexterityMinimum" value=item.system.dexterityMinimum localize=true}}
+    {{else}}
+        <div class="item-line item-line--dexterity-minimum">
+        <span class="item-line__label">
+            {{localize systemFields.dexterityMinimum.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.dexterityMinimum}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Initiative Penalty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.rangeLong"}}:</label>
-        <input class="input__circle-input" name="system.rangeLong" type="text" value="{{item.system.rangeLong}}"
-            data-dtype="Number">
+
+    {{!-- Strength Minimum --}}
+    <div class="item-section item-section--strength-minimum item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.strengthMinimum name="system.strengthMinimum" value=item.system.strengthMinimum localize=true}}
+    {{else}}
+        <div class="item-line item-line--strength-minimum">
+        <span class="item-line__label">
+            {{localize systemFields.strengthMinimum.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.strengthMinimum}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Initiative Penalty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Label.ammunition"}}:</label>
-        <input class="input__circle-input" name="system.ammunition" type="text" value="{{item.system.ammunition}}"
-            data-dtype="Number">
+
+    {{#if this.item.system.isRanged}}
+
+    {{!-- Short Range Min --}}
+    <div class="item-section item-section--range-short-min item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.shortMin name="system.range.shortMin" value=item.system.range.shortMin localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-short-min">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.shortMin.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.shortMin}}
+            </span>
+        </div>
+        {{/if}}
     </div>
-    {{!-- Initiative Penalty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Weapon.Hint.forgeBonus"}}:</label>
-        <input class="input__circle-input" name="system.forgeBonus" type="text" value="{{item.system.forgeBonus}}"
-            data-dtype="Number">
+
+    {{!-- Short Range Max --}}
+    <div class="item-section item-section--range-short-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.shortMax name="system.range.shortMax" value=item.system.range.shortMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-short-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.shortMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.shortMax}}
+            </span>
+        </div>
+        {{/if}}
     </div>
-    {{!-- price --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.price"}}:</label>
-        <input class="input__number-input" name="system.value" type="text" value="{{item.system.value}}"
-            data-dtype="Number">
-        {{> "systems/ed4e/templates/global-templates/denomination-selector.hbs"}}
+
+    {{!-- Long Range Min --}}
+    <div class="item-section item-section--range-long-min item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMin name="system.range.longMin" value=item.system.range.longMin localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-min">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMin.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMin}}
+            </span>
+        </div>
+        {{/if}}
     </div>
-    {{!-- Weight --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.weight"}}:</label>
-        <input class="input__number-input" name="system.weight" type="text" value="{{item.system.weight}}"
-            data-dtype="Number">
+
+    {{!-- Long Range Max --}}
+    <div class="item-section item-section--range-long-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMax}}
+            </span>
+        </div>
+        {{/if}}
     </div>
+
+    {{else}}
+
+    {{!-- Melee / Single Range (using longMax) --}}
+    <div class="item-section item-section--range-long-max item-group">
+        {{#if @root.editable}}
+        {{formField systemFields.range.fields.longMax name="system.range.longMax" value=item.system.range.longMax localize=true}}
+        {{else}}
+        <div class="item-line item-line--range-long-max">
+            <span class="item-line__label">
+            {{localize systemFields.range.fields.longMax.label}}:
+            </span>
+            <span class="item-line__dots" aria-hidden="true"></span>
+            <span class="item-line__value">
+            {{item.system.range.longMax}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+    {{/if}}
+    
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
+
     {{!-- Amount --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.amount"}}:</label>
-        <input class="input__number-input" name="system.amount" type="text" value="{{item.system.amount}}"
-            data-dtype="Number">
+    <div class="item-section item-section--amount item-group">
+        {{formField systemFields.amount name="system.amount" value=item.system.amount localize=true}}
     </div>
-    {{!-- availability --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Availability.availability"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/availability-selector.hbs"}}
+
+  <div class="item-section item-section--description">
+    <h3 class="item-section__header item-section__header--description label--rail">
+      <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
     </div>
-</div>
-{{!-- Editor --}}
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
 </div>

@@ -1,0 +1,11 @@
+<details class="roll-target-modifiers">
+  <summary>{{ localize "ED.Rolls.targetModifiers" target=target.total}}</summary>
+  <span class="modifier-content">
+    <ul class="modifier-list target-modifiers">
+      <li>{{localize "ED.Rolls.baseValue"}}: {{formatNumber target.base decimals=0 sign=true}}</li>
+      {{#each target.modifiers}}
+        <li>{{@key}}: {{formatNumber this decimals=0 sign=true}}</li>
+      {{/each}}
+    </ul>
+  </span>
+</details>

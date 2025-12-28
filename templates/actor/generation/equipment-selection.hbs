@@ -1,0 +1,104 @@
+<section class="tab equipment {{tabs.equipment.cssClass}}" data-group="primary" data-tab="equipment">
+
+  <h2 class="equipment__header header-bar">
+    {{localize "ED.Dialogs.CharGen.Title.equipment"}}
+  </h2>
+
+  <div class="container__block container__custom">
+
+    <div class="container__section equipment-explainer">
+      <p class="explainer-text">
+        {{{chooseEquipmentRules}}}
+      </p>
+    </div>
+
+    <div class="container__section equipment-selection-lists">
+
+      {{!-- Armor --}}
+      <div class="equipment-selection select-armor">
+        <h3 class="item-section__header item-section__header--armor label--rail">
+          <span class="label__text">
+            {{localize "ED.Dialogs.CharGen.Title.armor"}}
+          </span>
+        </h3>
+
+        <div class="checkbox-options armor-options">
+          {{#each equipment.armor}}
+            <label
+              for="{{this.uuid}}"
+              data-tooltip="{{{this.system.description.value}}}"
+            >
+              <input
+                type="checkbox"
+                data-uuid="{{this.uuid}}"
+                name="equipment"
+                data-action="selectEquipment"
+                value="{{this.uuid}}"
+                {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}
+              >
+              <span>{{this.name}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </div>
+
+      {{!-- General equipment --}}
+      <div class="equipment-selection select-equipment">
+        <h3 class="item-section__header item-section__header--equipment label--rail">
+          <span class="label__text">
+            {{localize "ED.Dialogs.CharGen.Title.equipment"}}
+          </span>
+        </h3>
+
+          <div class="checkbox-options equipment-options">
+            {{#each equipment.equipment}}
+              <label
+                for="{{this.uuid}}"
+                data-tooltip="{{{this.system.description.value}}}"
+              >
+                <input
+                  type="checkbox"
+                  data-uuid="{{this.uuid}}"
+                  name="equipment"
+                  data-action="selectEquipment"
+                  value="{{this.uuid}}"
+                  {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}
+                >
+                <span>{{this.name}}</span>
+              </label>
+            {{/each}}
+          </div>
+
+      </div>
+
+      {{!-- Weapons --}}
+      <div class="equipment-selection select-weapon">
+        <h3 class="item-section__header item-section__header--weapons label--rail">
+          <span class="label__text">
+            {{localize "ED.Dialogs.CharGen.Title.weapons"}}
+          </span>
+        </h3>
+
+        <div class="checkbox-options weapon-options">
+          {{#each equipment.weapons}}
+            <label
+              for="{{this.uuid}}"
+              data-tooltip="{{{this.system.description.value}}}"
+            >
+              <input
+                type="checkbox"
+                data-uuid="{{this.uuid}}"
+                name="equipment"
+                data-action="selectEquipment"
+                value="{{this.uuid}}"
+                {{#if (ed-includes ../selectedEquipment this.uuid)}}checked{{/if}}
+              >
+              <span>{{this.name}}</span>
+            </label>
+          {{/each}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

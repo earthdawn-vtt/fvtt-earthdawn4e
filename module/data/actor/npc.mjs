@@ -1,28 +1,53 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import NamegiverTemplate from "./templates/namegiver.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * System data definition for NPCs.
  * @mixin
  */
-export default class NpcData extends NamegiverTemplate {
+export default class NpcData extends NamegiverTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
-    /** @inheritDoc */
-    static _systemType = "npc";
+  // region Schema
 
-    /* -------------------------------------------- */
+  /** @inheritDoc */
+  static defineSchema() {
+    return this.mergeSchema( super.defineSchema(), {
+    } );
+  }
 
-    /** @inheritDoc */
-    static defineSchema() {
-        return super.defineSchema();
-    }
+  // endregion
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
+  // region Static Properties
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
-    }
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Npc",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: SYSTEM_TYPES.Actor.npc,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Data Preparation
+
+  /** @inheritDoc */
+  prepareBaseData() {
+    super.prepareBaseData();
+    // this.#prepareBaseAttributes();
+  }
+
+  // endregion
+
 }

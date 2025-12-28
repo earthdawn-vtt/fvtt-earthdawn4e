@@ -1,0 +1,58 @@
+<section class="content">
+  <section class="header">
+    {{#if school}}
+      <div class="school">
+        {{#with (lookup @root.config.spellSchools school) as |schoolConfig|}}
+          <ed4e-icon src="{{ schoolConfig.icon }}"></ed4e-icon>
+        {{/with}}
+      </div>
+    {{/if}}
+    <div class="top">
+      <img src="{{ img }}" alt="{{ name }}">
+      <div class="name name-stacked">
+        <span class="title">{{ name }}</span>
+        <span class="subtitle">{{{ subtitle }}}</span>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="price">
+        {{#if price}}
+          <i class="currency {{ price.denomination }}"></i>
+          <span>{{ ed4e-numberFormat price.value }}</span>
+        {{/if}}
+      </div>
+
+      <div class="charges">
+        {{#if uses.max}}
+          <span class="value">{{ uses.value }}</span>
+          <span class="separator">&sol;</span>
+          <span class="max">{{ uses.max }}</span>
+          <span>{{ localize "ED.Config.Eae.DurationTypes.uses" }}</span>
+        {{/if}}
+      </div>
+      <div class="weight">
+        {{#if weight}}
+          <i class="fas fa-weight-hanging"></i>
+          <span>{{ weight.value }}</span>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+  {{#if isSpell}}
+    {{> "ed4e.spell-block" }}
+  {{/if}}
+  <section class="description">{{{ description.value }}}</section>
+  <ul class="pills">
+    {{#each properties}}
+      <li class="pill transparent">
+        <span class="label">{{ this }}</span>
+      </li>
+    {{/each}}
+  </ul>
+  {{#if controlHints}}
+    <div class="lock-hint">
+      <img src="systems/ed4e/assets/icons/mouse-middle.svg" alt="{{ localize "ED.Controls.middleClick" }}">
+      <span>{{ localize "ED.Controls.lockHint" }}</span>
+    </div>
+  {{/if}}
+</section>

@@ -2,15 +2,10 @@
 name: Requirement
 about: create a system requirement
 title: ''
-labels: Requirement
+labels: ''
 assignees: ''
 
 ---
 
-## Reason description
-
-
-## detail description
-
-
-## Technical notes
+# Requirement:
+The system shall [do X] when [condition], so that [reason/purpose].

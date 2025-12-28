@@ -1,27 +1,74 @@
+// variables
+@import "global/variables.less";
+@import "global/config.less";
+
+// elements
+@import "global/elements.less";
+
 //global sheet styles
 @import "global/global.less";
-@import "global/config.less";
+@import "global/icons.less";
 @import "global/logo.less";
 @import "global/pause.less";
+@import "global/forms.less";
+@import "global/meters.less";
+@import "global/editor.less";
 
-//journal sheet styles
-@import "journal/journal-global.less";
+// @import "global/system-settings.less";
+// @import "global/documentCreation.less";
+
+//chat message styles
+@import "chat/chat-messages.less";
+
+//journal prompt styles
+@import "prompts/roll-prompt.less";
+@import "prompts/document-create-dialog.less";
+@import "prompts/character-generation.less";
+// @import "prompts/legend-points-history.less";
+@import "prompts/small-dialogs.less";
+@import "prompts/assign-legend-points.less";
+@import "prompts/legend-points-history.less";
+@import "prompts/start-round-combatant-prompt.less";
 
 //item sheet styles
-@import "item/item-sheet-global.less";
-@import "item/namegiver.less";
+// @import "item/namegiver.less";
+// @import "item/class.less";
 
-//actor sheet styles
-@import "actor/actor-sheet-global.less";
-@import "actor/character/character-sheet.less";
-@import "actor/combat-modifier.less";
-@import "actor/quick-access.less";
+//actor sheet styles 
+// @import "actor/actor-sheet-global.less";
+// @import "actor/character/character-sheet.less";
+// @import "actor/combat-modifier.less";
+// @import "actor/quick-access.less";
+// @import "actor/cards.less";
+
 
 //character Sheet partials
-@import "actor/character/character-header-section.less";
-@import "actor/character/character-image-characteristics.less";
-@import "actor/character/character-discipline.less";
-@import "actor/character/character-navigator.less";
-@import "actor/character/character-attributes.less";
+// @import "actor/character/character-header-section.less";
+// @import "actor/character/character-image-characteristics.less";
+// @import "actor/character/character-discipline.less";
+// @import "actor/character/character-navigator.less";
+// @import "actor/character/character-attributes.less";
 
+//tours
+// @import "global/tours.less";
 
+// Sheets
+
+@import "sheets/global-sheet-layout.less";
+
+// Global Actor sheets
+@import "sheets/actor-sheet-layout.less";
+@import "sheets/owned-items-view.less";
+
+// Global Item sheet
+@import "sheets/item-sheet-layout.less";
+@import "sheets/physical-item-sheet-layout.less";
+@import "sheets/knack-item-sheet-layout.less";
+@import "sheets/namegiver-item-sheet-layout.less";
+@import "sheets/spell-item-sheet-layout.less";
+// @import "sheets/class.less";
+
+// Sheet Partials
+@import "sheets/spell-card.less";
+@import "sheets/spell-knack-card.less";
+@import "sheets/thread-tab.less";

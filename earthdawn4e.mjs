@@ -9,69 +9,64 @@
  */
 
 // Import configuration
-import ED4E from './module/config.mjs';
-import registerSystemSettings from './module/settings.mjs';
-import { registerHandlebarHelpers } from './module/handlebar-helpers.mjs'
-
+import ED4E from "./module/config/_module.mjs";
 
 // Import submodules
 import * as applications from "./module/applications/_module.mjs";
 import * as canvas from "./module/canvas/_module.mjs";
-import * as dataModels from "./module/data/_module.mjs";
+import * as data from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
+import * as enrichers from "./module/enrichers.mjs";
+import * as hooks from "./module/hooks/_module.mjs";
+import * as services from "./module/services/_module.mjs";
+import * as system from "./module/system/_module.mjs";
+import * as tours from "./module/tours/_module.mjs";
 import * as utils from "./module/utils.mjs";
+import * as workflows from "./module/workflows/_module.mjs";
 
 /* -------------------------------------------- */
 /*  Define Module Structure                     */
 /* -------------------------------------------- */
 
 globalThis.ed4e = {
-    applications,
-    canvas,
-    config: ED4E,
-    dataModels,
-    dice,
-    documents,
-    utils
+  applications,
+  canvas,
+  config: ED4E,
+  data,
+  dice,
+  documents,
+  enrichers,
+  hooks,
+  services,
+  system,
+  tours,
+  utils,
+  workflows,
 };
 
 /* -------------------------------------------- */
-/*  Foundry VTT Initialization                  */
+/*  Hooks                                       */
 /* -------------------------------------------- */
 
+system.registerHooks();
 
-Hooks.once( "init", () => {
-    globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
-    console.log( "ED4e | Initializing the ED4e Game System" );
 
-    // record configuration values
-    CONFIG.ED4E = ED4E;
-    CONFIG.Actor.documentClass = documents.ActorEd;
-    CONFIG.Item.documentClass = documents.ItemEd;
+/* -------------------------------------------- */
+/*  Bundled Module Exports                      */
+/* -------------------------------------------- */
 
-    // Register System Settings
-    registerSystemSettings();
-
-    // Register Handlebars Helper
-    registerHandlebarHelpers();
-
-    // Hook up system data types
-    CONFIG.Actor.dataModels = dataModels.actor.config;
-    CONFIG.Item.dataModels = dataModels.item.config;
-
-    // Register sheet application classes
-    Actors.unregisterSheet( "core", ActorSheet );
-    Actors.registerSheet( "earthdawn4e", applications.actor.ActorSheetEdCharacter, {
-        types: ["character"],
-        makeDefault: true
-    } );
-    Items.unregisterSheet( "core", ItemSheet );
-    Items.registerSheet( "earthdawn4e", applications.item.ItemSheetEd, {
-        makeDefault: true
-    } );
-
-    // Preload Handlebars templates.
-  utils.preloadHandlebarsTemplates();
-
-} );
+export {
+  applications,
+  canvas,
+  data,
+  dice,
+  documents,
+  enrichers,
+  hooks,
+  // migrations,
+  system,
+  utils,
+  workflows,
+  ED4E
+};

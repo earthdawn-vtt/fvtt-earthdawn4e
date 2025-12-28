@@ -1,0 +1,128 @@
+<section class="tab {{tabs.advancement.cssClass}} scrollable" data-group="sheet" data-tab="advancement">
+  <div id="advancement-information-class-item" class="advancement__level">
+
+    <!-- Content -->
+    <section class="content flexcol">
+
+      <nav class="classAdvancements-tabs tabs scrollable">
+        {{#each tabs.classAdvancements as |tab|}}
+          <a class="{{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+             {{#if tab.tooltip}}data-tooltip="{{tab.tooltip}}"{{/if}}>
+            {{#if tab.icon}}<i class="{{tab.icon}}"></i>{{/if}}
+            {{#if tab.label}}<label>{{localize tab.label circle=tab.level}}</label>{{/if}}
+          </a>
+        {{/each}}
+      </nav>
+
+      <!-- Button controls -->
+      <div class="item-controls flexrow">
+        <a class="advancement__title class__add-level" data-action="addClassLevel" data-type="add-class-level" title="{{localize "ED.Item.Discipline.addLevel"}}">
+          <b>{{localize "ED.Item.Discipline.addLevel"}}</b>
+          <i class="fas fa-plus"></i>
+        </a>
+        <a class="item-control class__delete-level text-align-middle" data-action="deleteClassLevel"  title="{{localize "ED.Item.Discipline.deleteItem"}}"
+           data-drop-function="delete-pool-ability">
+          <b>{{localize "ED.Item.Discipline.deleteLevel"}}</b>
+          <i class="fas fa-trash" data-drop-function="delete-pool-ability"></i>
+        </a>
+      </div>
+
+      <div class="advancement__content item-advancement-body">
+        <div id="ability-list"  class="tab {{tabs.classAdvancements.options.cssClass}} advancement-options-pools flexcol" data-group="classAdvancements" data-tab="options">
+          {{#each filteredAbilityOptions}}
+            <div class="{{@key}}-abilities">
+              <div class="form-group {{@key}}-pool">
+                <label>{{localize (lookup (lookup @root.tierDisplayNames @key) "label")}}</label>
+                <div class="form-fields">
+                  <document-tags name="system.advancement.abilityOptions.{{@key}}" value="{{ed-commaList this}}"></document-tags>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+
+        <!-- Level Contents -->
+
+        {{#each item.system.advancement.levels}}
+          <div id="level-{{this.level}}" class="tab {{lookup (lookup @root/tabs.classAdvancements (concat "level" this.level)) "cssClass"}} item-id advancement-level" name="system.advancement.level.{{@index}}.id"
+               data-tab="level{{this.level}}" data-group="classAdvancements" data-value="{{@index}}" data-level-index="{{@index}}"
+               data-level="{{this.level}}">
+
+            <!-- Level Number -->
+            <div class="title-level-number">
+              {{#if (eq @root.item.type "discipline")}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.circle.label" hint="ED.Data.Item.Class.FIELDS.circle.hint" localize=true}}
+              {{else if (eq @root.item.type "path")}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.rankPath.label" hint="ED.Data.Item.Class.FIELDS.rankPath.hint" localize=true}}
+              {{else if (eq @root.item.type "questor")}}
+              {{formField this.schema.fields.level value=this.level name=(concat "system.advancement.levels." @index ".level") readonly=true label="ED.Data.Item.Class.FIELDS.rankQuestor.label" hint="ED.Data.Item.Class.FIELDS.rankQuestor.hint" localize=true}}
+              {{else if (eq @root.item.type "path")}}
+              {{else if (eq @root.item.type "questor")}}
+              {{/if}}
+            </div>
+
+            <!-- Tier -->
+            <div class="form-group">
+              <label>{{localize "ED.Data.Item.Class.FIELDS.tier.label"}}</label>
+              <select name="system.advancement.levels.{{@index}}.tier" required>
+                {{#each @root.tierSelectOptions}}
+                  <option value="{{this.value}}" {{#if (eq ../this.tier this.value)}}selected{{/if}}>{{localize this.label}}</option>
+                {{/each}}
+              </select>
+              <p class="hint">{{localize "ED.Data.Item.Class.FIELDS.tier.hint"}}</p>
+            </div>
+
+            <!-- Resource Step -->
+            <div>
+              {{#if (eq @root.item.type "discipline")}}
+                {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") label="ED.Data.Item.Class.FIELDS.resourceStepKarma.label" hint="ED.Data.Item.Class.FIELDS.resourceStepKarma.hint" value=this.resourceStep required=true  localize=true}}
+              {{else if (eq @root.item.type "questor")}}
+                {{formField this.schema.fields.resourceStep name=(concat "system.advancement.levels." @index ".resourceStep") label="ED.Data.Item.Class.FIELDS.resourceStepDevotion.label" hint="ED.Data.Item.Class.FIELDS.resourceStepDevotion.hint" value=this.resourceStep required=true  localize=true}}
+              {{/if}}
+            </div>
+
+            <!-- Class Talents -->
+            <div class="form-group class-abilities">
+              <label>{{localize "ED.Advancement.Pools.class"}}</label>
+              <div class="form-fields">
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.class" value="{{ed-commaList this.abilities.class}}"></document-tags>
+              </div>
+              <p class="advancement-hint">{{localize "ED.Advancement.Pools.classHint"}}</p>
+            </div>
+
+
+            <!-- Free Abilities -->
+            <div class="form-group free-abilities">
+              <label>{{localize "ED.Advancement.Pools.free"}}</label>
+              <div class="form-fields">
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.free" value="{{ed-commaList this.abilities.free}}"></document-tags>
+              </div>
+              <p class="advancement-hint">{{localize "ED.Advancement.Pools.freeHint"}}</p>
+            </div>
+
+            <!-- Special Abilities -->
+            <div class="form-group special-abilities">
+              <label>{{localize "ED.Advancement.Pools.special"}}</label>
+              <div class="form-fields">
+                <document-tags name="system.advancement.levels.{{@index}}.abilities.special" value="{{ed-commaList this.abilities.special}}"></document-tags>
+              </div>
+              <p class="advancement-hint">{{localize "ED.Advancement.Pools.specialHint"}}</p>
+            </div>
+
+            <!-- Effects -->
+            <div class="form-group class-effects">
+              <label>{{localize "ED.Advancement.Pools.effects"}}</label>
+              <div class="form-fields">
+                <document-tags name="system.advancement.levels.{{@index}}.effects" value="{{ed-commaList this.effects}}"></document-tags>
+              </div>
+              <p class="advancement-hint">{{localize "ED.Advancement.Pools.effectsHint"}}</p>
+            </div>
+
+          </div>
+        {{else}}
+          {{localize "X-No levels added yet. Click the plus sign above to add some. Go ahead, just try. You can do it!"}}
+        {{/each}}
+      </div>
+    </section>
+  </div>
+</section>

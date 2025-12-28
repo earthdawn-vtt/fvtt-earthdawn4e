@@ -1,0 +1,74 @@
+{
+    "title": "Actor and item creation",
+    "module": "ed4e",
+    "id": "edActorItemCreation",
+    "description": "Create Actors and Items",
+    "canBeResumed": true,
+    "display": true,
+    "steps": [
+      {
+        "id": "actorSidebar",
+        "selector": ".tabs>a[data-tab='actors']",
+        "title": "Actor Sidebar",
+        "content": "Creation of Actors",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "createNewActor",
+        "selector": ".actors-sidebar .create-document.create-entry",
+        "title": "Create an Actor",
+        "content": "click <strong>Create Actor</strong> to create a new Actor.",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "actorCreationPrompt",
+        "selector": ".actors-sidebar .create-document.create-entry",
+        "title": "Actor Type Dialog",
+        "content": "A Dialog to chose from the different Actor types",
+        "activateTab": "actors",
+        "action": "createActor"
+      },
+      {
+        "id": "chooseActorType",
+        "selector": ".app.window-app.form.earthdawn4e.create-document.create-actor",
+        "title": "Actor selection",
+        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the button <strong>Create New Actor</strong> at the bottom.",
+        "activateTab": "actors",
+        "action": "none"
+      },
+      {
+        "id": "itemSidebar",
+        "selector": ".tabs>a[data-tab='items']",
+        "title": "Items Sidebar",
+        "content": "Creation of Items.",
+        "activateTab": "items",
+        "action": "none"
+      },
+      {
+        "id": "createNewItem",
+        "selector": ".items-sidebar .create-document.create-entry",
+        "title": "Create an Item",
+        "content": "Click <strong>Create Item</strong>.",
+        "activateTab": "items",
+        "action": "none"
+      },
+      {
+        "id": "itemCreationPrompt",
+        "selector": ".items-sidebar .create-document.create-entry",
+        "title": "Item Type Dialog",
+        "content": "A Dialog to chose from the different Item types",
+        "activateTab": "items",
+        "action": "createItem"
+      },
+      {
+        "id": "chooseItemType",
+        "selector": ".app.window-app.form.earthdawn4e.create-document.create-item",
+        "title": "Item selection",
+        "content": "Chose an Actor Type <strong>(double click)</strong> or confirm with the button <strong>Create Actor</strong> at the bottom.",
+        "activateTab": "items",
+        "action": "none"
+      }
+    ]
+  }

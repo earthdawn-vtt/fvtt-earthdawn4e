@@ -1,0 +1,41 @@
+<section class="section__main">
+    <div class="main">
+        <div class="actor-sheet-body">
+            <div class="tab tab__general" data-tab="actor-general-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/general.hbs"}}
+            </div>
+            <div class="tab tab__powers" data-tab="actor-powers-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/powers.hbs"}}
+            </div>
+            <div class="tab tab__talents" data-tab="actor-talents-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/talents.hbs"}}
+            </div>
+            <div class="tab tab__skills" data-tab="actor-skills-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/skills.hbs"}}
+            </div>
+            <div class="tab tab__devotions" data-tab="actor-devotions-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/devotions.hbs"}}
+            </div>
+            <div class="tab tab__spells" data-tab="actor-spells-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/spells.hbs"}}
+            </div>
+            <div class="tab tab__equipment" data-tab="actor-equipment-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/equipment.hbs"}}
+            </div>
+            <div class="tab tab__notes" data-tab="actor-notes-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/notes.hbs"}}
+            </div>
+            <div class="tab tab__connections" data-tab="actor-familiar-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/connections.hbs"}}
+            </div>
+            <div class="tab tab__specials" data-tab="actor-specials-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/specials.hbs"}}
+            </div>
+            {{#if (eq this.data.type "npc")}}
+            <div class="tab tab__configuration" data-tab="actor-configuration-tab">
+                {{> "systems/ed4e/templates/actor/actor-tabs/configuration.hbs"}}
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</section>

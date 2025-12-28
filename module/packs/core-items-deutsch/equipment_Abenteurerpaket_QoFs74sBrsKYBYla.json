@@ -1,0 +1,61 @@
+{
+  "folder": "2ek0Jv3jP66GlRTi",
+  "type": "equipment",
+  "name": "Abenteurerpaket",
+  "system": {
+    "difficulty": {
+      "target": "none",
+      "group": "none",
+      "fixed": null
+    },
+    "description": {
+      "value": "<p>Das Abenteurerpaket enthält grundlegende</p><p>Ausrüstung, die die meisten Abenteurer benötigen, und bietet</p><p>Spielern eine einfache Methode, Abenteurerausrüstung für ihre</p><p>Charaktere zu kaufen. Alle Charaktere beginnen das Spiel mit</p><p>einem Abenteurerpaket.</p><p>Beinhaltet:</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.qyLwljtWgScvpZn2]{Fackel}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.VYDU8AYjbfqt8hGM]{Feuerstein & Stahl}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.jGbxX7PKvQwHtnL1]{großer Sack}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.pRHY0FtscONOTBx3]{Rucksack}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.bj6QLFwZ3RqRmvuK]{Schlafsack}</p><p>@UUID[Compendium.ed4e.core-items-deutsch.Item.d2dzfa6mPibJKEO1]{Wasser- oder Weinschlauch}</p>"
+    },
+    "edid": "undefined",
+    "price": {
+      "value": 15,
+      "denomination": "silver"
+    },
+    "weight": {
+      "value": 14,
+      "multiplier": 1,
+      "calculated": false
+    },
+    "availability": "average",
+    "amount": 1,
+    "bloodMagicDamage": 0,
+    "usableItem": {
+      "isUsableItem": false,
+      "arbitraryStep": 0,
+      "action": "standard",
+      "recoveryPropertyValue": 0
+    },
+    "itemStatus": "owned",
+    "consumable": false,
+    "ammunition": {
+      "type": ""
+    },
+    "bundleSize": 0
+  },
+  "_id": "QoFs74sBrsKYBYla",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "VaFQ07fDfsV4j1VL": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.338",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": 1735940770390,
+    "modifiedTime": 1735945528494,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL",
+    "exportSource": null
+  },
+  "_key": "!items!QoFs74sBrsKYBYla"
+}

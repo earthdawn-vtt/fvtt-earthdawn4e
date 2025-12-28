@@ -1,0 +1,51 @@
+<section class="scrollable">
+  <fieldset>
+    <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendRequirements" }}</legend>
+    {{localize "ED.Dialogs.Legend.Validation.hasDamage"}} <i class="fas fa-light fa-{{ ifThen hasDamage "hexagon-xmark" "hexagon-check" }}"></i>
+    {{ formField fields.lpCost value=source.lpCost rootId=partId readonly=true label="ED.Data.Other.LearnSpell.FIELDS.lpCost.label" hint="ED.Data.Other.LearnSpell.FIELDS.lpCost.hint" localize=true}}
+    {{ formField fields.learnDifficulty value=source.learnDifficulty rootId=partId readonly=true label="ED.Data.Other.LearnSpell.FIELDS.learnDifficulty.label" hint="ED.Data.Other.LearnSpell.FIELDS.learnDifficulty.hint" localize=true}}
+  </fieldset>
+
+  <br>
+
+  <fieldset>
+    <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendTeacherTest" }}</legend>
+    {{#if hasSpellcasting}}
+      {{ formField fields.teacher value=source.teacher label="ED.Data.Other.LearnSpell.FIELDS.teacher.label" hint="ED.Data.Other.LearnSpell.FIELDS.teacher.hint" localize=true}}
+      {{#if source.teacher}}
+        {{ formField fields.teacherRank value=source.teacherRank label="ED.Data.Other.LearnSpell.FIELDS.teacherRank.label" hint="ED.Data.Other.LearnSpell.FIELDS.teacherRank.hint" localize=true}}
+        <button type="button" class="{{ ifThen source.teacherTestSuccessful "roll-success" "" }}"
+                data-action="useTeacherSpellcasting" {{#unless source.teacher}}disabled{{/unless}}
+        >
+          <i class="{{ config.icons.spellcasting }}" inert></i>
+          {{ localize "ED.Dialogs.Buttons.teacherSpellcasting" }}
+        </button>
+        {{ formField fields.teacherTestSuccessful value=source.teacherTestSuccessful label="ED.Data.Other.LearnSpell.FIELDS.teacherTestSuccessful.label" hint="ED.Data.Other.LearnSpell.FIELDS.teacherTestSuccessful.hint" localize=true}}
+      {{/if}}
+    {{else}}
+      {{localize "ED.Dialogs.Legend.LearnSpell.noSpellcastingTalentFound"}}
+    {{/if}}
+    <br>
+  </fieldset>
+
+  <br>
+
+  <fieldset>
+    <legend>{{ localize "ED.Dialogs.Legend.LearnSpell.legendPatterncraft" }}</legend>
+    {{#if hasPatterncraft}}
+      {{ formField fields.patterncraft value=source.patterncraft rootId=partId label="ED.Data.Other.LearnSpell.FIELDS.patterncraft.label" hint="ED.Data.Other.LearnSpell.FIELDS.patterncraft.hint" localize=true}}
+      {{#if source.patterncraft}}
+        {{ formField fields.useRecoveryTest value=source.useRecoveryTest rootId=partId label="ED.Data.Other.LearnSpell.FIELDS.useRecoveryTest.label" hint="ED.Data.Other.LearnSpell.FIELDS.useRecoveryTest.hint" localize=true}}
+        {{ formField actorFields.characteristics.fields.recoveryTestsResource.fields.value value=actor.system.characteristics.recoveryTestsResource.value rootId=partId readonly=true localize=true}}
+        <button type="button" class="{{ ifThen source.patterncraftSuccessful "roll-success" "" }}"
+                data-action="patterncraftTest" {{#unless source.patterncraft}}disabled{{/unless}}
+        >
+          <i class="{{ config.icons.patterncraft }}" inert></i>
+          {{ localize "ED.Dialogs.Buttons.learnSpellPatterncraftTest" }}
+        </button>
+      {{/if}}
+    {{else}}
+      {{localize "ED.Dialogs.Legend.LearnSpell.noPatterncraftTalentFound"}}
+    {{/if}}
+  </fieldset>
+</section>

@@ -1,0 +1,62 @@
+.dark-theme {
+    .character-sheet .body,
+    .item-sheet .body,
+    .content-link,
+    .fa-edit,
+    .window-content,
+    .tabs,
+    .sidebar-tab,
+    .chat-message,
+    .sidebar-tab button,
+    #chat-form textarea,
+    .prosemirror menu .pm-dropdown >*,
+    .prosemirror menu .pm-dropdown {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        background-image: none;
+
+        .input__circle-input--centered,
+        .input__number-input,
+        .input__circle-input,
+        textarea {
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+        }
+
+        button,
+        p,
+        .prototype,
+        .units,
+        form .form-group.slim .form-fields>label,
+        input[type="text"],
+        input[type="number"],
+        input[type="date"], 
+        input[type="time"],
+        .message-header,
+        .title-group {
+            color: var(--text-color);
+        }
+
+        select {
+            color: var(--text-color);
+
+            option {
+                background-color: var(--bg-color);
+            }
+        }
+
+        .karma__ritual--icon {
+            color: var(--text-color);
+        }
+
+        .header-actions>*,
+        .header-search input[type="search"],
+        #chat-controls .roll-type-select >*,
+         #chat-controls .roll-type-select {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+    }
+
+}

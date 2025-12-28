@@ -1,0 +1,16 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.spellEffect.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">
+  {{{spellContentAnchor}}}
+  {{#if willforce}}
+    {{{willforceContentAnchor}}}
+  {{/if}}
+</div>
+
+{{#if (eq ruleOfOne true)}}
+  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
+{{else}}
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+  </div>
+{{/if}}

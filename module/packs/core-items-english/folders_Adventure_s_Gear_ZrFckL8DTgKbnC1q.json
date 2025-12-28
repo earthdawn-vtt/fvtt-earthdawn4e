@@ -1,0 +1,22 @@
+{
+  "name": "Adventure's Gear",
+  "sorting": "a",
+  "folder": "v6BJ76Or4h8VGX2U",
+  "type": "Item",
+  "_id": "ZrFckL8DTgKbnC1q",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": null,
+    "modifiedTime": 1737239399466,
+    "lastModifiedBy": "VaFQ07fDfsV4j1VL"
+  },
+  "_key": "!folders!ZrFckL8DTgKbnC1q"
+}

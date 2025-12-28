@@ -1,0 +1,9 @@
+<div id="base-details-knackKarma-item" class="item-details__knackKarma" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
+    {{!-- LP Cost if this is not calculated by min Level --}}
+    <fieldset>
+        <legend></legend>
+            {{formField systemFields.lpCost name="system.lpCost" value=item.system.lpCost localize=true}}
+    </fieldset>
+    
+</div>

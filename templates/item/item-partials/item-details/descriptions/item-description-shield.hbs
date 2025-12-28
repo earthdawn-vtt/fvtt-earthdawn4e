@@ -1,55 +1,109 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-shield-item" class="item-description__shield item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Physical Defense Bonus --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Shield.Label.defenseBonusPhysical"}}:</label>
-        <input class="input__circle-input" name="system.defenseBonusPhysical" type="text" value="{{item.system.defenseBonusPhysical}}"
-            data-dtype="Number">
+    <div class="item-section item-section--defense-bonus-physical item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.defenseBonus.fields.physical name="system.defenseBonus.physical" value=item.system.defenseBonus.physical localize=true}}
+    {{else}}
+        <div class="item-line item-line--defense-bonus-physical">
+        <span class="item-line__label">
+            {{localize systemFields.defenseBonus.fields.physical.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.defenseBonus.physical}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Mystische Defense Bonus --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Shield.Label.defenseBonusMystical"}}:</label>
-        <input class="input__circle-input" name="system.defenseBonusMystical" type="text" value="{{item.system.defenseBonusMystical}}"
-            data-dtype="Number">
+
+    {{!-- Mystic Defense Bonus --}}
+    <div class="item-section item-section--defense-bonus-mystical item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.defenseBonus.fields.mystical name="system.defenseBonus.mystical" value=item.system.defenseBonus.mystical localize=true}}
+    {{else}}
+        <div class="item-line item-line--defense-bonus-mystical">
+        <span class="item-line__label">
+            {{localize systemFields.defenseBonus.fields.mystical.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.defenseBonus.mystical}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- SHatter Threshold --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Shield.Hint.shatterThreshold"}}:</label>
-        <input class="input__circle-input" name="system.shatterThreshold" type="text" value="{{item.system.shatterThreshold}}"
-            data-dtype="Number">
+
+    {{!-- Shatter Threshold --}}
+    <div class="item-section item-section--shatter-threshold item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.shatterThreshold name="system.shatterThreshold" value=item.system.shatterThreshold localize=true}}
+    {{else}}
+        <div class="item-line item-line--shatter-threshold">
+        <span class="item-line__label">
+            {{localize systemFields.shatterThreshold.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.shatterThreshold}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
+    {{!-- shattered --}}
+    <div class="item-section item-section--shattered item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.shattered name="system.shattered" value=item.system.shattered localize=true}}
+    {{else}}
+        <div class="item-line item-line--shattered">
+        <span class="item-line__label">
+            {{localize systemFields.shattered.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.shattered}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
+    </div>
+
     {{!-- Initiative Penalty --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Shield.Hint.initiativePenalty"}}:</label>
-        <input class="input__circle-input" name="system.initiativePenalty" type="text" value="{{item.system.initiativePenalty}}"
-            data-dtype="Number">
+    <div class="item-section item-section--initiative-penalty item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.initiativePenalty name="system.initiativePenalty" value=item.system.initiativePenalty localize=true}}
+    {{else}}
+        <div class="item-line item-line--initiative-penalty">
+        <span class="item-line__label">
+            {{localize systemFields.initiativePenalty.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.initiativePenalty}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- price --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.price"}}:</label>
-        <input class="input__number-input" name="system.value" type="text" value="{{item.system.value}}"
-            data-dtype="Number">
-        {{> "systems/ed4e/templates/global-templates/denomination-selector.hbs"}}
+
+    {{!-- living armor --}}
+    {{#if @root.editable}}
+        {{formField systemFields.isLiving name="system.isLiving" value=item.system.isLiving localize=true}}
+    {{/if}}
+
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/physical-items.hbs"}}
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
     </div>
-    {{!-- Weight --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.General.weight"}}:</label>
-        <input class="input__number-input" name="system.weight" type="text" value="{{item.system.weight}}"
-            data-dtype="Number">
-    </div>
-    {{!-- availability --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Availability.availability"}}:</label>
-        {{> "systems/ed4e/templates/global-templates/availability-selector.hbs"}}
-    </div>
-    {{!-- Broken --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Shield.Label.broken"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.broken">
-    </div>
-</div>
-{{!-- Editor --}}
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
 </div>

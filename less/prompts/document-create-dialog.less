@@ -1,0 +1,94 @@
+body.theme-dark {
+  --document-create-background: var(--background-mottle-blue-dk);
+  --document-create-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-background: var(--background-mottle-green-dk);
+  --document-create-item-background: var(--background-mottle-blue-dk);
+  --document-create-item-radio-button-background: var(--background-mottle-blue-md);
+  --document-create-actor-radio-button-background: var(--background-mottle-green-md);
+}
+
+body.theme-light {
+  --document-create-background: url('assets/sheet/background_lighter.PNG');
+  --document-create-radio-button-background: floralwhite;
+  --document-create-actor-background: var(--document-create-background);
+  --document-create-item-background: var(--document-create-background);
+  --document-create-item-radio-button-background: floralwhite;
+  --document-create-actor-radio-button-background: floralwhite;
+}
+
+form#document-create-dialog {
+
+  background: var(--document-create-background);
+
+  &.create-item {
+    background: var(--document-create-item-background);
+    --document-create-radio-button-background: var(--document-create-item-radio-button-background);
+  }
+
+  &.create-actor {
+    background: var(--document-create-actor-background);
+    --document-create-radio-button-background: var(--document-create-actor-radio-button-background);
+  }
+
+  div.ed-document-creation {
+
+    justify-content: space-around;
+    gap: 1rem;
+
+    margin-bottom: 1rem;
+
+    .name-and-folder-inputs {
+
+      justify-content: center;
+      gap: 1rem;
+
+    }
+
+    .type-selection {
+
+      gap: 0.5em;
+
+      .form-fields {
+
+        flex-wrap: wrap;
+
+        label {
+          flex: 1 1 auto;
+          position: relative;
+
+          justify-content: center;
+
+          padding: 1em;
+
+          background: var(--document-create-radio-button-background);
+          opacity: 0.2;
+
+          font-size: medium;
+          text-align: center;
+          text-transform: capitalize;
+
+          &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+          }
+
+          input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+          }
+
+          &:has(input[type="radio"]:checked) {
+            font-variant: small-caps;
+            opacity: 1;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,11 @@
+<details class="roll-step-modifiers">
+  <summary>{{ localize "ED.Rolls.stepModifiers" step=step.total}}</summary>
+  <span class="modifier-content">
+    <ul class="modifier-list step-modifiers">
+      <li>{{localize "ED.Rolls.baseValue"}}: {{formatNumber step.base decimals=0 sign=true}}</li>
+      {{#each step.modifiers}}
+        <li>{{@key}}: {{formatNumber this decimals=0 sign=true}}</li>
+      {{/each}}
+    </ul>
+  </span>
+</details>

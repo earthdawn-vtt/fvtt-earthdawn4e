@@ -1,60 +1,171 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-poisonDisease-item" class="item-description__poisonDisease item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Damage Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.damageStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.damageStep" type="text" value="{{item.system.effect.damageStep}}"
-            data-dtype="Number">
+    <div class="item-section item-section--damage-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.damageStep name="system.effect.damageStep" value=item.system.effect.damageStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--damage-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.damageStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.damageStep}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Paralyse Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.paralysisStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.paralysisStep" type="text" value="{{item.system.effect.paralysisStep}}"
-            data-dtype="Number">
+
+    {{!-- Paralyze Step --}}
+    <div class="item-section item-section--paralysis-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.paralysisStep name="system.effect.paralysisStep" value=item.system.effect.paralysisStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--paralysis-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.paralysisStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.paralysisStep}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
     {{!-- Debilitation Step --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.debilitationStep"}}:</label>
-        <input class="input__circle-input" name="system.effect.debilitationStep" type="text" value="{{item.system.effect.debilitationStep}}"
-            data-dtype="Number">
+    <div class="item-section item-section--debilitation-step item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.effect.fields.debilitationStep name="system.effect.debilitationStep" value=item.system.effect.debilitationStep localize=true}}
+    {{else}}
+        <div class="item-line item-line--debilitation-step">
+        <span class="item-line__label">
+            {{localize systemFields.effect.fields.debilitationStep.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.effect.debilitationStep}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Interval Total effects --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.totalEffects"}}:</label>
-        <input class="input__circle-input" name="system.interval.totalEffects" type="text" value="{{item.system.interval.totalEffects}}"
-            data-dtype="Number">
+
+    {{!-- Interval Total Effects --}}
+    <div class="item-section item-section--interval-total-effects item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.interval.fields.totalEffects name="system.interval.totalEffects" value=item.system.interval.totalEffects localize=true}}
+    {{else}}
+        <div class="item-line item-line--interval-total-effects">
+        <span class="item-line__label">
+            {{localize systemFields.interval.fields.totalEffects.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.interval.totalEffects}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Innterval time in between --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.timeInBetweenShort"}}:</label>
-        <input class="input__circle-input" name="system.interval.timeInBetween" type="text" value="{{item.system.interval.timeInBetween}}"
-            data-dtype="Number">
+
+    {{!-- Interval Time In Between --}}
+    <div class="item-section item-section--interval-time-between item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.interval.fields.timeInBetween name="system.interval.timeInBetween" value=item.system.interval.timeInBetween localize=true}}
+    {{else}}
+        <div class="item-line item-line--interval-time-between">
+        <span class="item-line__label">
+            {{localize systemFields.interval.fields.timeInBetween.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.interval.timeInBetween}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- Onset time --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.onsetTime"}}:</label>
-        <input class="input__circle-input" name="system.onsetTime" type="text" value="{{item.system.onsetTime}}"
-            data-dtype="Number">
+
+    {{!-- Onset Time --}}
+    <div class="item-section item-section--onset-time item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.onsetTime name="system.onsetTime" value=item.system.onsetTime localize=true}}
+    {{else}}
+        <div class="item-line item-line--onset-time">
+        <span class="item-line__label">
+            {{localize systemFields.onsetTime.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.onsetTime}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- duration --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.duration"}}:</label>
-        <input class="input__circle-input" name="system.duration" type="text" value="{{item.system.duration}}"
-            data-dtype="Number">
+
+    {{!-- Duration --}}
+    <div class="item-section item-section--duration item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.duration name="system.duration" value=item.system.duration localize=true}}
+    {{else}}
+        <div class="item-line item-line--duration">
+        <span class="item-line__label">
+            {{localize systemFields.duration.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.duration}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-    {{!-- activation --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.activation"}}:</label>
-        <input class="input__text-input" name="system.activation" type="text" value="{{item.system.activation}}"
-            data-dtype="String">
+
+    {{!-- Activation --}}
+    <div class="item-section item-section--activation item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.activation name="system.activation" value=item.system.activation localize=true}}
+    {{else}}
+        <div class="item-line item-line--activation">
+        <span class="item-line__label">
+            {{localize systemFields.activation.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.activation}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-        {{!-- death --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.PoisonDisease.death"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.death">
+
+    {{!-- Death --}}
+    <div class="item-section item-section--death item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.death name="system.death" value=item.system.death localize=true}}
+    {{else}}
+        <div class="item-line item-line--death">
+        <span class="item-line__label">
+            {{localize systemFields.death.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{#if item.system.death}}{{localize "ED.Form.yes"}}{{else}}{{localize "ED.Form.no"}}{{/if}}
+        </span>
+        </div>
+    {{/if}}
     </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
+
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
 </div>

@@ -1,0 +1,21 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.initiative.label}}}</div>
+
+<div class="chat-sub-header-tags initiative flexcol">
+
+  {{#if replacementEffectContentLink}}
+    <h6>{{localize "ED.Chat.Header.initiativeReplacementEffect"}}</h6>
+    {{{replacementEffectContentLink}}}
+  {{/if}}
+
+  {{#if increaseAbilitiesContentLinks.length}}
+    <h6>{{localize "ED.Chat.Header.initiativeIncreaseAbilities"}}</h6>
+    {{#each increaseAbilitiesContentLinks}}{{{this}}}{{/each}}
+  {{/if}}
+
+</div>
+
+<div class="initiative-visualization">
+
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

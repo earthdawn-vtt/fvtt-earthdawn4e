@@ -1,0 +1,49 @@
+<!--div class="custom-flavor">{{{ customFlavor }}}</div-->
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.spellcasting.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">
+  {{{spellcastingAbilityContentAnchor}}}
+  {{{spellContentAnchor}}}
+</div>
+
+<div class="spellcasting-visualization"></div>
+
+{{#if (ne target.total 0)}}
+  <div class="message-buttons flexrow">
+    {{#if (eq spell.system.effect.type "damage")}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/roll-damage.hbs"}}
+    {{/if}}
+    {{#if (eq spell.system.effect.type "effect")}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/roll-effect.hbs"}}
+    {{/if}}
+    {{#if (ed-hasItems spell.effects)}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
+    {{/if}}
+    {{#if (eq spell.system.effect.type "macro")}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/run-macro.hbs"}}
+    {{/if}}
+    {{#if (eq spell.system.effect.type "special")}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/show-special.hbs"}}
+    {{/if}}
+  </div>
+
+{{/if}}
+
+{{#if (eq ruleOfOne true)}}
+
+  <div class="roll-failure">{{localize "ED.Rolls.ruleOfOne"}}</div>
+
+{{else}}
+
+  {{#if (ne target.total 0)}}
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-successes.hbs"}}
+  {{/if}}
+
+  <div class="modifier-lists flexrow">
+    {{> "systems/ed4e/templates/chat/dice-partials/roll-step-modifier.hbs"}}
+    {{#if target.public}}
+      {{> "systems/ed4e/templates/chat/dice-partials/roll-target-modifier.hbs"}}
+    {{/if}}
+  </div>
+
+{{/if}}

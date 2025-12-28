@@ -1,0 +1,217 @@
+// Hide roll icons by default in all relevant containers
+.ability-card__grid--item,
+.knack-card__grid--item,
+.maneuver-card__grid--item,
+.knack-maneuver-card__grid--item,
+.attribute-card__grid--item,
+.equipment-card__grid--item,
+.power-card__grid--item,
+.spell-card__grid--item {
+  .roll-icon__hover,
+  .roll-icon__hover-fixed,
+  .roll-icon__pointer {
+    display: none;
+  }
+}
+// Reset item control float where needed
+.maneuver-card__grid--container .itemControlGroup,
+.equipment-card__grid--container .itemControlGroup,
+.power-card__grid--container .itemControlGroup,
+.spell-card__grid--container .itemControlGroup {
+  float: none;
+}
+// General roll icon styles
+
+// Hover animation for full grid containers
+.attribute-card__grid--container:hover {
+  .icons__dice img {
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 5px;
+  }
+}
+
+
+
+
+.card__description--toggle {
+  display: none;
+}
+
+.brief-description {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block; /* Ensure it stays inline */
+  vertical-align: top; /* Aligns with other inline elements */
+}
+
+.knack-card__single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  display: flex; /* Use flexbox to keep spans inline */
+  align-items: center; /* Align items vertically */
+}
+.knack-card__single-line.display__inline-block {
+  flex-shrink: 0; /* Prevent spans from shrinking */
+  white-space: nowrap; /* Ensure no line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  max-width: 100%; /* Ensure the span does not exceed the container's width */
+  display: inline-block; /* Ensure it stays inline */
+  vertical-align: top; /* Aligns with other inline elements */
+}
+.knack-card__single-line.display__inline-block p {
+  display: inline; /* Display paragraphs inline */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  white-space: nowrap; /* Ensure no line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  max-width: 100%; /* Ensure the paragraph does not exceed the container's width */
+}
+
+section.spells{
+  button.button-attune-matrix{
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .matrix-cards {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-gap: @gap-standard;
+
+    .matrix-card {
+      cursor: pointer;
+      text-align: center;
+      width: auto;
+      background-color: @color-overlay;
+      border-radius: @border-radius-xl;
+      justify-content: space-between;
+
+      .matrix-img {
+        align-items: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .matrix-card-figure {
+          position: relative;
+          align-items: center;
+          max-height: 10rem;
+          height: 100%; /* Fill parent height */
+          display: flex;
+          justify-content: center;
+          width: 100%;
+
+          figcaption {
+            position: absolute;
+            top: 38.2%;
+            z-index: 2;
+            width: 100%;
+            background-color: @color-overlay-x-strong;
+            text-align: center;
+            margin: 0;
+            font-size: larger;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+          }
+
+          img {
+            border: none;
+            border-radius: @border-radius-xl;
+            margin: 0 auto;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* Maintain aspect ratio while fitting in container */
+            z-index: 1;
+            display: block;
+            filter: brightness(0.3);
+          }
+
+          /* Hover overlay with split actions */
+          .matrix-actions-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: @transition-standard;
+            z-index: 3;
+            display: flex;
+            pointer-events: none; /* Initially invisible and doesn't block image */
+          }
+
+          /* Left and right action zones */
+          .action-zone {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.75); /* Darker base overlay */
+            transition: @transition-quick;
+            position: relative;
+            pointer-events: auto; /* Make clickable */
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.85); /* Even darker when hovered */
+              cursor: pointer;
+
+              /* Create a contrasting effect for the icon */
+              .custom-icon {
+                filter: brightness(1.8) drop-shadow(0 0 4px @color-secondary);
+                transform: scale(1.2);
+              }
+
+              /* Darken the neighboring zone even more for contrast */
+              & + .action-zone,
+              &:has(+ .action-zone) {
+                background-color: rgba(0, 0, 0, 0.9);
+              }
+            }
+
+            .custom-icon {
+              border: none;
+              border-radius: 0;
+              width: 2rem;
+              height: 2rem;
+              transition: @transition-quick;
+              filter: brightness(1.2); /* Slightly brighter base state */
+            }
+          }
+
+          /* Show overlay on image hover with darker base */
+          &:hover .matrix-actions-overlay {
+            opacity: 1;
+          }
+
+          /* Darken the image itself when hovering */
+          &:hover img {
+            filter: brightness(0.7);
+            transition: filter @transition-quick;
+          }
+        }
+
+      }
+
+      .spell-links-container {
+        width: 100%;
+        overflow-y: auto;
+      }
+
+      .spell-link {
+        margin-top: @space-sm;
+        margin-bottom: @space-sm;
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
+    }
+  }
+}

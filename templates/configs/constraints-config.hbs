@@ -1,0 +1,47 @@
+<section>
+  <!--TODO: ADD BUTTONS FOR ADDING/REMOVING CONSTRAINTS, OR VIA DRAG DROP-->
+
+  <div class="hint">
+    {{localize "ED.Dialogs.Configs.Constraints.hint"}}
+  </div>
+
+  <div class="tags input-element-tags">
+    {{#each availableConstraints}}
+      <div class="tag" data-key="{{this.TYPE}}">
+        <span>{{lookup (lookup ../config.constraints this.TYPE) "label"}}</span>
+      </div>
+    {{/each}}
+  </div>
+
+  <hr>
+
+  <div class="scrollable">
+    {{#each constraints as | constraint |}}
+      <fieldset>
+        {{#with (lookup ../config.constraints this.type) as | constraintConfig |}}
+          <legend>{{lookup constraintConfig "label"}}</legend>
+          {{#with (lookup constraintConfig "inputTemplate") as | inputTemplate |}}
+
+            {{> "systems/ed4e/templates/form/group/general.hbs"
+              dataField=constraint.schema
+              inputTemplate=inputTemplate
+              data=constraint
+              fields=constraint.schema.fields
+              fieldPath=(concat "system." @root.keyPath "." @index)
+              config=config
+            }}
+
+          {{else}}
+            {{formGroup
+              (lookup constraint.schema.fields constraint.type)
+              value=(lookup constraint constraint.type)
+              name=(concat "system." @root.keyPath "." @index "." constraint.type)
+              localize=true
+            }}
+
+          {{/with}}
+        {{/with}}
+      </fieldset>
+    {{/each}}
+  </div>
+</section>

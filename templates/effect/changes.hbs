@@ -1,0 +1,55 @@
+<section class="tab changes{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+  <header>
+    <div class="key">{{localize "EFFECT.ChangeKey"}}</div>
+    <div class="mode">{{localize "EFFECT.ChangeMode"}}</div>
+    <div class="value">{{localize "EFFECT.ChangeValue"}}</div>
+    <div class="priority">{{localize "EFFECT.ChangePriority"}}</div>
+    <div class="controls"><a data-action="addChange"><i class="fa-regular fa-plus-square"></i></a></div>
+  </header>
+  <ol class="scrollable">
+    {{#each source.system.changes as |change i|}}
+      {{#with ../systemFields.changes.element.fields as |changeFields|}}
+        <li data-index="{{i}}">
+          <div class="key">
+            {{formInput changeFields.key name=(concat "system.changes." i ".key") value=change.key options=@root/keyOptions}}
+          </div>
+          <div class="mode">
+            {{formInput changeFields.mode name=(concat "system.changes." i ".mode") value=change.mode choices=@root.modes}}
+          </div>
+          <div class="value">
+            {{formInput changeFields.value name=(concat "system.changes." i ".value") value=change.value
+                        dataset=(ed-makeTooltip (localize "ED.ToolTips.activeEffectFinalValue" value=(lookup (lookup @root/source.changes i) "value")))
+            }}
+          </div>
+          <div class="priority">
+            {{formInput changeFields.priority name=(concat "system.changes." i ".priority") value=change.priority
+                        placeholder=(lookup ../../priorities change.mode)}}
+          </div>
+          <div class="controls"><a data-action="deleteChange"><i class="fa-solid fa-trash"></i></a></div>
+        </li>
+      {{/with}}
+    {{/each}}
+  </ol>
+
+  <hr>
+  <fieldset>
+    <legend>{{localize "ED.ActiveEffect.Header.applyToAbility"}}</legend>
+
+    <div class="form-group">
+      <label>{{localize systemFields.abilityEdid.label}}</label>
+      <div class="form-fields">
+        <input type="text" name="system.abilityEdid" value="{{source.system.abilityEdid}}"
+               list="{{concat @root/rootId "-abilityEdid.list"}}" data-tooltip="{{localize "ED.ActiveEffect.Tooltips.abilityEdidSelection"}}"/>
+        <datalist id="{{concat @root/rootId "-abilityEdid.list"}}">
+          {{#each @root/edids}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </datalist>
+      </div>
+      <p class="hint">{{localize systemFields.abilityEdid.hint}}</p>
+    </div>
+
+  </fieldset>
+
+</section>

@@ -1,0 +1,42 @@
+<div class="class-advancement-spell-selection" {{#unless render.spellSelection}}style="display:none;"{{/unless}}>
+
+  <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.YouCanChooseSpells"}}</h3>
+
+  <div class="available-spells">
+    {{#if spellsByLevel}}
+      {{#each spellsByLevel as |levelGroup|}}
+        <div class="spell-level-group">
+          <h4>
+            {{localize "ED.Dialogs.Header.castingLevel"}} {{levelGroup.level}}
+          </h4>
+          {{#each levelGroup.spells as |uuid|}}
+            <div class="spell-option flexrow">
+              <input type="checkbox" name="selectedSpells" value="{{uuid}}" id="spell-{{../levelGroup.level}}-{{@index}}" {{#if (ed-includes ../../selectedSpells uuid)}}checked{{/if}}>
+              <label for="spell-{{../levelGroup.level}}-{{@index}}" class="spell-label">
+                {{{ed-linkForUuid uuid}}}
+              </label>
+            </div>
+          {{/each}}
+        </div>
+      {{/each}}
+    {{else}}
+      <p>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsAvailable"}}</p>
+    {{/if}}
+  </div>
+
+  <hr>
+
+  <div>
+    {{#if (ed-hasItems selectedSpells)}}
+      <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.SelectedSpells"}}</h3>
+      <ul class="selected-spells-list">
+        {{#each selectedSpells as |uuid|}}
+          <li>{{{ed-linkForUuid uuid}}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <h3>{{localize "ED.Dialogs.Legend.ClassAdvancement.NoSpellsSelected"}}</h3>
+    {{/if}}
+  </div>
+
+</div>

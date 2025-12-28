@@ -1,0 +1,32 @@
+name: Bug report to project
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add_to_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if issue has 'bug' label
+        id: check_labels
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labels = context.payload.issue.labels.map(label => label.name);
+            return labels.includes('bug');
+
+      - name: Assign bug report to project
+        if: steps.check_labels.outputs.result == 'true'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const projectId = 45;  // Replace with your project ID
+            const issueId = context.payload.issue.id;
+            await github.projects.createCard({
+              column_id: projectId,
+              content_id: issueId,
+              content_type: 'Issue'
+            });

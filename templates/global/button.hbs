@@ -1,0 +1,17 @@
+<button
+  type="{{type}}"
+  {{#if name}} name="{{name}}" {{/if}}
+  class="{{cssClass}}"
+  {{#if title}} title="{{localize title}}" {{/if}}
+  {{#if tooltip}} data-tooltip="{{{localize tooltip}}}" {{/if}}
+  {{#if action}} data-action="{{action}}" {{/if}}
+  {{#if disabled}} disabled {{/if}}
+  {{#each data}}
+    data-{{@key}}="{{this}}"
+  {{/each}}
+>
+
+  {{#if icon}} <i class="{{icon}}" inert></i> {{/if}}
+  {{#if label}} <span>{{localize label}}</span> {{/if}}
+
+</button>

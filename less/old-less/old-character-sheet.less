@@ -1,0 +1,181 @@
+.character-sheet {
+
+    .window-header,
+    .window-content {
+        padding: 0px 0px 0px 0px;
+        border: none;
+    }
+
+    .app {
+        box-shadow: 0px 20px 18px rgb(0, 0, 0);
+        background: transparent;
+    }
+
+    .header__frame {
+        position: absolute;
+        margin-top: -60px;
+        border: none;
+        z-index: 1;
+        opacity: 0.9;
+
+        .app {
+            background: transparent;
+        }
+
+        img {
+            border: none;
+        }
+    }
+
+    .footer__frame {
+        position: absolute;
+        bottom: -55px;
+        border: none;
+        z-index: 1;
+        opacity: 0.9;
+        transform: rotate(180deg);
+
+        .app {
+            background: transparent;
+        }
+
+        img {
+            border: none;
+        }
+    }
+
+    .window-resizable-handle {
+        z-index: 2;
+    }
+
+    .window-header {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        padding-top: 6px;
+
+        .window-title,
+        .window-title i {
+            position: relative;
+            font-size: large;
+            z-index: 2;
+            left: 60px;
+        }
+
+        a {
+            position: relative;
+            z-index: 2;
+            right: 60px;
+        }
+    }
+
+    .body {
+        position: relative;
+        background-image: url('assets/sheet/background.png');
+        background-size: cover;
+        margin-top: -60px;
+        padding: 60px 10px 75px 10px;
+        color: black;
+        background-repeat: no-repeat;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .disciplines-section {
+        position: absolute;
+        margin-top: 190px;
+    }
+
+    .navigator-section {
+        position: absolute;
+        margin-top: 190px;
+    }
+
+    .main-section {
+        position: absolute;
+        margin-top: 255px;
+        width: 100%;
+        height: 380px;
+
+        .left-part {
+            float: left;
+            position: inherit;
+            width: 250px;
+            left: 0px;
+            height: 100%;
+
+            .button__Karma-refresh {
+                width: 25px;
+                height: 25px;
+                border: none;
+                padding: none;
+            }
+        }
+
+        .right-part {
+            float: right;
+            position: inherit;
+            left: 200px;
+            width: calc(100% - 270px);
+            height: 100%;
+
+            .item-data__input--line {
+                line-height: 35px;
+                vertical-align: middle;
+            }
+        }
+
+        div.right-part {
+            margin: 4px, 4px;
+            padding: 4px;
+            height: 420px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: justify;
+        }
+    }
+
+    .action-button-section {
+        position: absolute;
+        margin-top: 340px;
+        width: 100%;
+        z-index: 3;
+        button {
+            width: 100px;
+        }
+    }
+    .details__section {
+        padding-right: 20px;
+    }
+
+}
+
+.legend-point__info {
+    text-align: center;
+}
+
+// .color-border {
+//     border: 1px solid red;
+//     background-color: aqua;
+// }
+
+.app.window-app.form.earthdawn4e.legend-point__history--earned {
+    .window-content {
+        form {
+            .buttons {
+                position:absolute;
+                bottom: 0;
+                margin-left:450px;
+                .button-group {
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
+

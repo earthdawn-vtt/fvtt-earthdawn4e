@@ -1,0 +1,138 @@
+<div class="card__equipment {{#if (eq this.system.usableItem.isUsableItem true)}}favoritable{{/if}}" data-uuid="{{uuid}}">
+    <div class="equipment-card__grid--container" data-item-id="{{_id}}">
+        {{#if (eq this.system.usableItem.isUsableItem true)}}
+        <div class="equipment-card__grid--item icons__dice">
+            <img class="equipment-icon" src="{{img}}" alt="{{name}}">
+            <button
+                type="button"
+                class="icon--button icon icon--d20 rollable icon--overlay"
+                data-action="rollable"
+                data-roll-type="equipment"
+                aria-label="{{localize 'ED.Roll.Equipment'}}">
+            </button>
+        </div>
+        {{else}}
+        <div class="equipment-card__grid--item icons__equipment">
+            <img class="equipment-icon__visible" src="{{img}}" alt="{{name}}">
+        </div>
+        {{/if}}
+        <div class="equipment-card__grid--item">{{name}}</div>
+        {{#if (eq this.type "armor")}}
+        <div class="equipment-card__grid--item">{{ed-add system.physical.armor system.physical.forgeBonus}}</div>
+        <div class="equipment-card__grid--item">{{ed-add system.mystical.armor system.mystical.forgeBonus}}</div>
+        <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
+            {{#if (eq this.system.itemStatus "carried" )}}
+            {{!-- carried --}}
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "owned" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "equipped" )}}
+            {{!-- equipped --}}
+            <i class="item__status fa-solid fa-helmet-battle" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{#if (eq this.type "equipment")}}
+        <div class="equipment-card__grid--item">{{system.amount}}</div>
+        <div class="equipment-card__grid--item"></div>
+        <div class="equipment-card__grid--item"></div>
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
+            {{#if (eq this.system.itemStatus "carried" )}}
+            {{!-- carried --}}
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "owned" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "equipped" )}}
+            {{!-- equipped --}}
+            <i class="item__status fa-solid fa-user" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{#if (eq this.type "shield")}}
+        <div class="equipment-card__grid--item">{{system.defenseBonus.physical}}</div>
+        <div class="equipment-card__grid--item">{{system.defenseBonus.mystical}}</div>
+        <div class="equipment-card__grid--item">{{system.initiativePenalty}}</div>
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
+        
+            {{#if (eq this.system.itemStatus "carried" )}}
+            {{!-- carried --}}
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "owned" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "equipped" )}}
+            {{!-- equipped --}}
+            <i class="item__status fa-solid fa-shield" title="{{localize "ED.Actor.Tooltips.offHand"}}"></i>
+            {{/if}}
+            
+        </div>
+        {{/if}}
+        {{#if (eq this.type "weapon")}}
+        <div class="equipment-card__grid--item">{{this.system.damageTotal}}</div>
+        {{#if system.isRanged}}
+            <div class="equipment-card__grid--item">{{system.range.shortMin}}-{{system.range.shortMax}}/{{system.range.longMin}}-{{system.range.longMax}}</div>
+            {{#if (eq system.weaponType "thrown")}}
+            <div class="equipment-card__grid--item">{{system.amount}}</div>
+            {{else}}
+            <div class="equipment-card__grid--item">{{system.ammoAmount}}</div>
+            {{/if}}
+        {{else}}
+            <div class="equipment-card__grid--item">{{system.range.longMax}}</div>
+            <div class="equipment-card__grid--item">{{system.amount}}</div>
+        {{/if}}
+        <div class="equipment-card__grid--item icon--button" data-action="changeItemStatus">
+            {{#if (eq this.system.itemStatus "carried" )}}
+            {{!-- carried --}}
+            <i class="item__status fa-regular fa-backpack" title="{{localize "ED.Actor.Tooltips.carried"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "owned" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-house" title="{{localize "ED.Actor.Tooltips.owned"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "equipped" )}}
+            {{!-- equipped --}}
+            <i class="item__status fa-solid fa-sword" title="{{localize "ED.Actor.Tooltips.equipped"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "mainHand" )}}
+            {{!-- carried --}}
+            <i class="item__status fa-solid fa-hand" title="{{localize "ED.Actor.Tooltips.mainHand"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "offHand" )}}
+            {{!-- equipped --}}
+            <i class="item__status fa-regular fa-hand" title="{{localize "ED.Actor.Tooltips.offHand"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "twoHands" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-hands" title="{{localize "ED.Actor.Tooltips.twoHanded"}}"></i>
+            {{/if}}
+            {{#if (eq this.system.itemStatus "tail" )}}
+            {{!-- owned --}}
+            <i class="item__status fa-solid fa-worm" title="{{localize "ED.Actor.Tooltips.tail"}}"></i>
+            {{/if}}
+        </div>
+        {{/if}}
+
+        <div class="equipment-card__grid--item">
+            {{> "systems/ed4e/templates/global/card-options-chat.hbs"}}
+        </div>
+    </div>
+    <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+            {{{system.description.value}}}
+        </span>
+        <span>
+            {{#each this.effects as |effects id|}}
+            {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+            {{/each}}
+        </span>
+    </div>
+</div>

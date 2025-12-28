@@ -1,29 +1,42 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * System data definition for dragons.
  * @mixin
  */
-export default class SpiritData extends SentientTemplate {
+export default class SpiritData extends SentientTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
-    /** @inheritDoc */
-    static _systemType = "spirit";
+  // region Schema
 
-    /* -------------------------------------------- */
+  /** @inheritDoc */
+  static defineSchema() {
+    return super.defineSchema();
+  }
 
-    /** @inheritDoc */
-    static defineSchema() {
-        return super.defineSchema();
-        // TODO: spirit rating (or whatever it's called in english, german "Geisterstärke")?
-    }
+  // endregion
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
+  // region Static Properties
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
-    }
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Spirit",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: SYSTEM_TYPES.Actor.spirit,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
 }

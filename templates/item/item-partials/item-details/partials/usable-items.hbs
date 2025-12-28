@@ -1,0 +1,21 @@
+<fieldset>
+    <legend></legend>
+
+    {{!-- Usable Item --}}
+    {{formField systemFields.usableItem.fields.isUsableItem name="system.usableItem.isUsableItem" value=item.system.usableItem.isUsableItem localize=true}}
+</fieldset>
+{{#if (eq item.system.usableItem.isUsableItem true)}}
+    <fieldset>
+        <legend></legend>
+
+            {{!-- Arbitrary Step --}}
+            {{formField systemFields.usableItem.fields.arbitraryStep name="system.usableItem.arbitraryStep" value=item.system.usableItem.arbitraryStep localize=true}}
+            
+            {{!-- Action --}}
+            {{formField systemFields.usableItem.fields.action name="system.usableItem.action" value=item.system.usableItem.action localize=true}}
+           
+            {{!-- Recovery Test Reference Value --}}
+            {{formField systemFields.usableItem.fields.recoveryPropertyValue name="system.usableItem.recoveryPropertyValue" type="number" value=item.system.usableItem.recoveryPropertyValue localize=true}}
+        
+    </fieldset>
+{{/if}}

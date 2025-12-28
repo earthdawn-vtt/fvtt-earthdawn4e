@@ -1,0 +1,12 @@
+  <section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+
+    {{formGroup systemFields.executeOn value=source.system.executeOn rootId=rootId localize=true}}
+
+    {{formGroup systemFields.executionScript value=source.system.executionScript rootId=rootId localize=true}}
+
+    <button type="button" data-action="execute">
+      <i class="fa-regular fa-play" inert></i>
+      <!--label></label-->
+    </button>
+
+  </section>

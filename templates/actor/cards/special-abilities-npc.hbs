@@ -1,0 +1,13 @@
+<div>
+  <h2>{{localize "ED.Actor.Header.specialAbility"}}</h2>
+    {{#each actor.itemTypes.specialAbility}}
+          <div class="container__block">
+            <div class="special-abilities-card__grid--container container__header text-break__auto paths__grid" data-item-id="{{_id}}">
+              <div class="special-abilities-card__grid--item"><img src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" /></div>
+              <div class="special-abilities-card__grid--item">{{name}}</div>
+              <div class="special-abilities-card__grid--item">{{> "systems/ed4e/templates/global/card-options-chat.hbs"}}</div>
+            </div>
+          </div>
+    {{/each}}
+</div>
+

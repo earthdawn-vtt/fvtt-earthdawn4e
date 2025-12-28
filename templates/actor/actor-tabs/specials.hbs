@@ -1,0 +1,64 @@
+<section class="tab {{tabs.specials.cssClass}}" data-group="sheet" data-tab="specials" data-editable="{{@root.editable}}">
+  
+{{!-- Conditions --}}
+
+<h2 class="margin__right">{{localize "ED.Actor.Header.conditions"}}</h2>
+<div class="conditions__grid--container">
+  {{#each statusEffects}}
+    {{> "systems/ed4e/templates/global/button.hbs"
+      type="button"
+      name=@key
+      cssClass=(concat "conditions__grid--item " (ifThen this.active "active" ""))
+      action="changeCondition"
+      tooltip="ED.ToolTips.toggleConditionFromSheet"
+      label=this.name
+    }}
+  {{/each}}
+  </div>
+
+    <h2>{{localize "ED.Actor.Header.effectsTemporary"}}
+      <a class="effect-add align-right-button" data-action="createChild" data-type="effect" data-effect-permanent="" title="{{localize " earthdawn.n.newItem" }}">
+        <i class="fas fa-plus"></i>
+      </a>
+    </h2>
+  <div class="container__block">
+    <div class="effect-card__grid--container container__header text-break__auto">
+      <div class="effect-card__grid--item"></div>
+      <div class="effect-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
+      <div class="effect-card__grid--item">{{localize "ED.Actor.Header.origin"}}</div>
+      <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.effectActive"}}</div>
+      <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.duration"}}</div>
+      <div class="effect-card__grid--item"></div>
+    </div>
+    <div>
+      {{#each actor.effects as |effect id|}}
+        {{#if (not effect.system.permanent)}}
+          {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
+        {{/if}}
+      {{/each}}
+    </div>
+    </div>
+
+  <h2>{{localize "ED.Actor.Header.effectsPermanent"}}
+    <a class="effect-add align-right-button" data-action="createChild" data-type="effect" data-effect-permanent="true" title="{{localize " earthdawn.n.newItem" }}">
+      <i class="fas fa-plus"></i>
+    </a>
+  </h2>
+    <div class="container__block">
+      <div class="effect-card__grid--container container__header text-break__auto">
+        <div class="effect-card__grid--item"></div>
+        <div class="effect-card__grid--item">{{localize "ED.Actor.Header.name"}}</div>
+        <div class="effect-card__grid--item">{{localize "ED.Actor.Header.origin"}}</div>
+        <div class="effect-card__grid--item text__alignment--center">{{localize "ED.Actor.Header.effectActive"}}</div>
+        <div class="effect-card__grid--item"></div>
+        <div class="effect-card__grid--item"></div>
+      </div>
+      <div>
+      {{#each actor.effects as |effect id|}}
+        {{#if effect.system.permanent}}
+          {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
+        {{/if}}
+      {{/each}}
+    </div>
+    </div>
+</section>

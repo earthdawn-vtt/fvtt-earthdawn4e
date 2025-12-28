@@ -1,25 +1,38 @@
-<div class="item__left--main">
-    <h3>{{localize "ED.General.coreData"}}</h3>
+<div id="base-description-path-item" class="item-description__path item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
     {{!-- Circle / Rank --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.General.rank"}}:</label>
-        <input class="input__circle-input" name="system.level" type="text" value="{{item.system.level}}"
-            data-dtype="Number">
+    <div class="item-section item-section--circle item-group">
+    {{#if @root.editable}}
+        {{formField systemFields.level name="system.level" value=item.system.level localize=true}}
+    {{else}}
+        <div class="item-line item-line--circle">
+        <span class="item-line__label">
+            {{localize systemFields.level.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+            {{item.system.level}}
+        </span>
+        </div>
+    {{/if}}
     </div>
+
+
     {{!-- sourceDiscipline --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Path.sourceDiscipline"}}:</label>
-        <input class="input__text-input" name="system.sourceDiscipline" type="text" value="{{item.system.sourceDiscipline}}"
-            data-dtype="String">
+    {{formField systemFields.sourceDisciplineId name="system.sourceDisciplineId" value=item.system.sourceDisciplineId parentDocument=item.parent}}
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
     </div>
-    {{!-- Blood Magic Damage --}}
-    <div class="item-data__input--line">
-        <label class="label__left">{{localize "ED.Item.Path.sourceDiscipline"}}:</label>
-        <input class="input__text-input" name="system.bloodMagicDamage" type="text" value="{{item.system.bloodMagicDamage}}"
-            data-dtype="Number">
-    </div>
-</div>
-<div class="item__right--main item-sheet__editor">
-    <h3>item Description</h3>
-    {{> "systems/ed4e/templates/global-templates/editor.hbs"}}
 </div>

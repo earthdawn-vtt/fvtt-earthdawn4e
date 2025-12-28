@@ -1,3 +1,18 @@
-<div>
-    <h3>item-details</h3>
+<div id="base-details-power-item" class="item-details__power" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/roll-type.hbs"}}
+    {{#if (or (eq item.system.rollType "attack") (eq item.system.rollType "damage"))}}
+    <fieldset>
+        <legend>{{localize "ED.Item.Header.damageSettings"}}</legend>
+        {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
+        {{formField systemFields.damage.fields.armorType name="system.damage.armorType" value=item.system.damage.armorType localize=true}}
+        {{formField systemFields.damage.fields.ignoreArmor name="system.damage.ignoreArmor" value=item.system.damage.ignoreArmor localize=true}}
+    </fieldset>
+    {{/if}}
+    <fieldset>
+        <legend>{{localize "ED.Item.Header.elementSettings"}}</legend>
+        {{formField systemFields.element.fields.type name="system.element.type" value=item.system.element.type localize=true}}
+        {{formField systemFields.element.fields.subtype name="system.element.subtype" value=item.system.element.subtype localize=true
+        choices=(lookup config.MAGIC.elementSubtypes item.system.element.type)}}
+    </fieldset>
 </div>

@@ -1,34 +1,131 @@
-<div>
-    <h3>item-details</h3>
-    {{!-- concentration --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.concentration"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.concentration">
-    </div>
-    {{!-- binding --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.binding"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.binding">
-    </div>
-    {{!-- spirit --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.spirit"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.spirit">
-    </div>
-    {{!-- summoning --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.summoning"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.summoning">
-    </div>
-    {{!-- resist --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.resist"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.resist">
-    </div>
+<div id="base-details-spell-item" class="item-details__spell" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+
+  {{!-- Effect --}}
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.spellEffect"}}</legend>
+
+    {{!-- Effect Type --}}
+    {{formGroup systemFields.effect.fields.type name="system.effect.type" value=item.system.effect.type localize=true}}
+
+    {{#if (eq item.system.effect.type "damage")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.damage.fields.damageType
+        name="system.effect.details.damage.damageType"
+        value=item.system.effect.details.damage.damageType
+      }}
+      {{formGroup
+        systemFields.effect.fields.details.fields.damage.fields.armorType
+        name="system.effect.details.damage.armorType"
+        value=item.system.effect.details.damage.armorType
+      }}
+      <fieldset>
+        <legend>{{localize "ED.Item.Header.spellDamageStep"}}</legend>
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.attribute
+          name="system.effect.details.damage.attribute"
+          value=item.system.effect.details.damage.attribute
+        }}
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.stepModifier
+          name="system.effect.details.damage.stepModifier"
+          value=item.system.effect.details.damage.stepModifier
+        }}
+        {{formGroup
+          systemFields.effect.fields.details.fields.damage.fields.addCircle
+          name="system.effect.details.damage.addCircle"
+          value=item.system.effect.details.damage.addCircle
+        }}
+      </fieldset>
+    {{else if (eq item.system.effect.type "effect")}}
+      <fieldset>
+        <legend>{{localize "ED.Item.Header.spellEffectStep"}}</legend>
+      {{formGroup
+        systemFields.effect.fields.details.fields.effect.fields.attribute
+        name="system.effect.details.effect.attribute"
+        value=item.system.effect.details.effect.attribute
+      }}
+      {{formGroup
+        systemFields.effect.fields.details.fields.effect.fields.stepModifier
+        name="system.effect.details.effect.stepModifier"
+        value=item.system.effect.details.effect.stepModifier
+      }}
+      {{formGroup
+        systemFields.effect.fields.details.fields.effect.fields.addCircle
+        name="system.effect.details.effect.addCircle"
+        value=item.system.effect.details.effect.addCircle
+      }}
+      </fieldset>
+    {{else if (eq item.system.effect.type "macro")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.macro.fields.macroUuid
+        name="system.effect.details.macro.macroUuid"
+        value=item.system.effect.details.macro.macroUuid
+      }}
+    {{else if (eq item.system.effect.type "special")}}
+      {{formGroup
+        systemFields.effect.fields.details.fields.special.fields.description
+        name="system.effect.details.special.description"
+        value=item.system.effect.details.special.description
+      }}
+    {{/if}}
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.details"}}</legend>
+
     {{!-- Spell Illusion --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Spell.sensingDifficulty"}}:</label>
-        <input class="input__number-input" name="system.spellIllustion.sensingDifficulty" type="text" value="{{item.system.spellIllustion.sensingDifficulty}}"
-            data-dtype="Number">
+    {{#if item.system.isIllusion}}
+      <div class="form-group label-top">
+        <label>
+          {{localize "ED.Data.Item.Fields.sensingDifficulty"}}
+        </label>
+        <div class="form-fields">
+          <input type="number" value="{{item.system.sensingDifficulty}}" readonly>
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- Dispel Difficulty --}}
+    <div class="form-group label-top">
+      <label>
+        {{localize "ED.Data.Item.Fields.dispelDifficulty.label"}}
+      </label>
+      <div class="form-fields">
+        <input type="number" value="{{item.system.dispelDifficulty}}" readonly>
+      </div>
     </div>
+
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.area
+      inputTemplate="systems/ed4e/templates/form/input/area-metric.hbs"
+      data=item.system.area
+      fields=item.system.area.schema.fields
+      fieldPath=systemFields.area.fieldPath
+      config=config
+    }}
+
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "ED.Item.Header.spellEnhancement"}}</legend>
+
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.extraSuccess
+      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+      data=(ed-wrapInArray item.system.extraSuccess)
+      config=config
+      configType="spellEnhancement"
+    }}
+
+    {{> "systems/ed4e/templates/form/group/general.hbs"
+      dataField=systemFields.extraThreads
+      inputTemplate="systems/ed4e/templates/form/input/configurable-array-summary.hbs"
+      data=item.system.extraThreads
+      config=config
+      configType="spellEnhancement"
+    }}
+
+  </fieldset>
 </div>

@@ -1,70 +1,20 @@
-<div>
-    <h3>item-details</h3>
-    {{!-- bloodMagicDamage --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.General.bloodMagicDamage"}}:</label>
-        <input class="input__number-input" name="system.bloodMagicDamage" type="text"
-            value="{{item.system.bloodMagicDamage}}" data-dtype="Number">
-    </div>
-    {{!-- usable Item --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.General.usableItem"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.usableItem.usableItemSelector" {{checked item.system.usableItem.usableItemSelector}}>
-        {{#if (eq item.system.usableItem.usableItemSelector true)}}
-        <label>{{localize "ED.Item.General.arbitraryStep"}}:</label>
-        <input class="input__number-input" name="system.arbitraryStep" type="text" value="{{item.system.arbitraryStep}}"
-            data-dtype="Number">
-        <label>{{localize "ED.Item.General.action"}}:</label>
-        <select class="input__select-input" name="system.action" value="{{item.system.usableItem.action}}" {{#select
-            item.system.usableItem.action}}>
-            <option value="none">{{localize "ED.General.none"}}</option>
-            <option value="free">{{localize "ED.Action.free"}}</option>
-            <option value="simple">{{localize "ED.Action.simple"}}</option>
-            <option value="standard">{{localize "ED.Action.standard"}}</option>
-            <option value="sustained">{{localize "ED.Action.sustained"}}</option>
-            {{/select}}
-        </select>
-        <label>{{localize "ED.Item.General.recoveryPropertyValue"}}:</label>
-        <select class="input__select-input" name="system.recoveryPropertyValue" value="{{item.system.usableItem.recoveryPropertyValue}}" {{#select
-            item.system.usableItem.recoveryPropertyValue}}>
-            <option value="0">{{localize "ED.Item.RecoveryPropertyValue.0"}}</option>
-            <option value="1">{{localize "ED.Item.RecoveryPropertyValue.1"}}</option>
-            <option value="2">{{localize "ED.Item.RecoveryPropertyValue.2"}}</option>
-            <option value="3">{{localize "ED.Item.RecoveryPropertyValue.3"}}</option>
-            <option value="4">{{localize "ED.Item.RecoveryPropertyValue.4"}}</option>
-            <option value="5">{{localize "ED.Item.RecoveryPropertyValue.5"}}</option>
-            <option value="6">{{localize "ED.Item.RecoveryPropertyValue.6"}}</option>
-            {{/select}}
-        </select>
+<div id="base-details-equipment-item" class="item-details__equipment" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+    
+    <fieldset>
+        <legend></legend>
+        {{formField systemFields.equipmentType name="system.equipmentType" value=item.system.equipmentType localize=true}}    {{formField systemFields.consumable name="system.consumable" value=item.system.consumable localize=true}}
+        {{#if (eq item.system.consumable true)}}
+            {{!-- ammunition --}}
+            {{formField systemFields.ammunition.fields.type name="system.ammunition.type" value=item.system.ammunition.type localize=true}}
+            {{!-- bundleSize --}}
+            {{formField systemFields.bundleSize name="system.bundleSize" value=item.system.bundleSize localize=true}}
         {{/if}}
-    </div>
-     {{!-- consumable Item --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.Equipment.consumable"}}:</label>
-        <input class="item-data__checkbox--line" type="checkbox" name="system.consumable" {{ checked system.consumable }}>
-    </div>
-    <div>
-        <label>{{localize "ED.Item.Equipment.ammoType"}}:</label>
-        <select class="input__select-input" name="system.ammoType" value="{{item.system.ammoType}}" {{#select
-            item.system.ammoType}}>
-            <option value="none">{{localize "ED.General.none"}}</option>
-            <option value="arrow">{{localize "ED.Item.AmmunitionType.arrow"}}</option>
-            <option value="bolt">{{localize "ED.Item.AmmunitionType.bolt"}}</option>
-            <option value="needle">{{localize "ED.Item.AmmunitionType.needle"}}</option>
-            <option value="stone">{{localize "ED.Item.AmmunitionType.stone"}}</option>
-            {{/select}}
-        </select>
-        <label>{{localize "ED.General.bundleSize"}}:</label>
-       <input class="input__number-input" name="system.bundleSize" type="number" value="{{item.system.bundleSize}}">
-    </div>
-        {{!-- equipped --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.General.equipped"}}:</label>
-       <input name="system.itemStatus.equipped" type="checkbox" {{checked item.system.itemStatus.equipped}}>
-    </div>
-    {{!-- automatic Weight Calculation --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.General.autoCalculateWeight"}}:</label>
-       <input name="system.autoCalculateWeight" type="checkbox" {{checked item.system.autoCalculateWeight}}>
-    </div>
+    </fieldset>
+
+    {{!-- usable Item ?--}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
+    {{#if (eq item.system.usableItem.isUsableItem true)}}
+        {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+    {{/if}}
+    {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
 </div>

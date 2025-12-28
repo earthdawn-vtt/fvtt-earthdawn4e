@@ -1,0 +1,98 @@
+<section class="tab spells {{tabs.spells.cssClass}}" data-group="primary" data-tab="spells">
+
+  <h2 class="spells__header header-bar">
+    {{localize "ED.Dialogs.CharGen.chooseSpells"}}
+  </h2>
+
+  <div class="container__block container__custom">
+
+    <div class="container__section spells-explainer">
+      <p class="explainer-text">
+        {{{localize "ED.Dialogs.CharGen.chooseSpellsRules"}}}
+      </p>
+    </div>
+
+    <div class="container__section spells-availability">
+      <div class="rank-assignment">
+        <div class="availability-meter available-spell-points">
+      
+          <div class="availability-meter__info">
+            <label>
+              {{localize "ED.Dialogs.CharGen.availableSpellPoints" points=availableSpellPoints}}
+            </label>
+            <meter
+              value="{{availableSpellPoints}}"
+              min="0"
+              max="{{maxSpellPoints}}"
+            ></meter>
+          </div>
+
+          <div class="availability-meter__reset">
+            <button
+              class="reset-points"
+              id="char-gen-clear-talent-ranks-button"
+              type="button"
+              title="{{localize "ED.Dialogs.ToolTips.resetAbilityRanks"}}"
+              data-reset-type="classAbilities"
+            >
+              <i class="fa-light fa-arrows-rotate"></i>
+              {{localize "ED.Dialogs.CharGen.Buttons.resetSpells"}}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container__section spells-selection">
+
+      <div class="assign-value-entries">
+
+        {{#each spellsByCircle}}
+          <div class="value-entry spell-circle-header">
+            <div class="entry-name">
+              <h3 class="item-section__header item-section__header--spell-circle label--rail">
+                <span class="label__text">
+                  {{localize "ED.Dialogs.CharGen.circle" level=@key}}
+                </span>
+              </h3>
+            </div>
+          </div>
+          <div class="spells-headers  container__header">
+            <div class="spells-headers__col">
+              {{localize "ED.Dialogs.CharGen.Title.spellOptions"}}
+            </div>
+            <div class="spells-headers__col">
+              {{localize "ED.Dialogs.CharGen.Title.chosenSpells"}}
+            </div>
+          </div>
+
+          {{#each this}}
+            <div
+              class="value-entry spell flexrow"
+              data-action="changeSpell"
+              data-spell-uuid="{{ifThen this.[0] this.0.uuid this.1.uuid}}"
+              data-spell-selected="{{ifThen this.[0] "false" "true"}}"
+              data-tooltip="{{ifThen this.[0] (localize "ED.Dialogs.CharGen.ToolTips.addSpell") (localize "ED.Dialogs.CharGen.ToolTips.removeSpell")}}"
+            >
+              {{#if this.[0]}}
+                <div class="entry-name spell-name">
+                  {{{ed-linkForUuid this.0.uuid}}}
+                </div>
+                <div class="entry-name"></div>
+              {{else}}
+                <div class="entry-name"></div>
+                <div class="entry-name spell-name">
+                  {{{ed-linkForUuid this.1.uuid}}}
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+
+        {{/each}}
+
+      </div>
+
+    </div>
+  </div>
+</section>

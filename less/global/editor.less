@@ -1,0 +1,50 @@
+/* global/editor.less */
+
+/* scope to your system */
+.application.sheet.earthdawn4e {
+
+  @ed-editor-bg: rgba(0, 0, 0, 0.25);
+  @ed-editor-border: rgba(255, 206, 113, 0.2);
+  @ed-editor-radius: 4px;
+  @ed-editor-padding: 0.4rem 0.55rem 0.6rem;
+
+  /* display mode */
+  .editor:not(.prosemirror):not(.editor--compact) {
+    .editor-content {
+      background: @ed-editor-bg;
+      border: 1px solid @ed-editor-border;
+      border-radius: @ed-editor-radius;
+      padding: @ed-editor-padding;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+    }
+  }
+
+  /* edit mode */
+  .editor.prosemirror:not(.editor--compact) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .editor.prosemirror:not(.editor--compact) > menu {
+    /* toolbar styling... */
+  }
+
+  .editor.prosemirror:not(.editor--compact) .editor-content {
+    background: @ed-editor-bg;
+    border: 1px solid @ed-editor-border;
+    border-radius: @ed-editor-radius;
+    padding: @ed-editor-padding;
+    min-height: 50px;
+    height: auto;
+    max-height: 14rem;
+    overflow: auto;
+  }
+  
+  .editor .editor-content,
+  .editor.prosemirror .editor-content {
+    color: #fff;
+  }
+}

@@ -1,0 +1,26 @@
+<fieldset class="scrollable">
+  <legend>{{localize "ED.Dialogs.RollPrompt.step"}}</legend>
+  {{formGroup
+    optionsFields.step.fields.base
+    value=step.base
+    hint=""
+    autofocus=true
+  }}
+  {{formGroup
+    optionsFields.step.fields.total
+    value=step.total
+    hint=""
+    disabled=true
+  }}
+  {{#if ( ne testType "arbitrary") }}
+    <label class="modifier-description">{{localize "ED.Dialogs.RollPrompt.modifier"}}</label>
+    {{#each step.modifiers as |modifier|}}
+      {{formGroup
+        ../optionsFields.step.fields.modifiers.model
+        name=(concat "step.modifiers." @key)
+        value=modifier
+        label=@key
+      }}
+    {{/each}}
+  {{/if}}
+</fieldset>

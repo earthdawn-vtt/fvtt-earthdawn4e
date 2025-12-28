@@ -1,0 +1,87 @@
+{
+    "title": "Disziplin Items (auch Pfade und Questoren",
+    "module": "ed4e",
+    "id": "edDisciplineItem",
+    "description": "Erstellung von Disziplinene, Pfaden und Questoren",
+    "canBeResumed": false,
+    "display": true,
+    "preCommand": "let a = await fromUuid('Compendium.ed4e.tour-items.Item.kXVgj6ztAubKigwm'); return a.sheet._render(true)",
+    "steps": [
+      {
+        "id": "step-0",
+        "selector": ".app.window-app.earthdawn4e.sheet.item.item-sheet",
+        "title": "Klassen Item",
+        "content": "Hauptansicht eines Disziplin, Pfad oder Questor items",
+        "action": "none"
+      },
+      {
+        "id": "step-1",
+        "selector": "#item-navigation",
+        "title": "Navigator",
+        "content": "Item Navigator",
+        "action": "none"
+      },
+      {
+        "id": "step-2",
+        "selector": "#base-information-discipline-item",
+        "title": "Basis Informationen",
+        "content": "Hier ist der aktuelle Kreis/Rang sowie im Falle von Discziplinen noch der Unempfindlichkeitswert.",
+        "action": "none"
+      }, 
+      {
+        "id": "step-3",
+        "selector": "#description-discipline-item",
+        "title": "Beschreibung",
+        "content": "Hier sind alle Hintergrundinformationen zu der Disziplin, dem Pfad oder dem Questor angegeben.",
+        "action": "none"
+      },
+      {
+        "id": "step-4",
+        "selector": "#detail-information-item",
+        "title": "Details",
+        "content": "Hier sind alle Diszipline Details aufgeführt. Dies ist ein technischer Abschnitt, der zur Validierung und Effekt Aktivierung dient.",
+        "appTab": "item-details-tab",
+        "action": "none"
+      },
+      {
+        "id": "step-5",
+        "selector": "#effect-information-item",
+        "title": "Effects",
+        "content": "Hier sind alle Diszipline Effekte aufgeführt. Dies ist ein technischer Abschnitt, in dem Effecte zu diesem Item hinzugefügt werden.",
+        "appTab": "item-effects-tab",
+        "action": "none"
+      },
+      {
+        "id": "step-6",
+        "selector": "#advancement-information-item",
+        "title": "Aufstieg/Kreis",
+        "content": "Hier sind die einzelnen Kreise mit ihren Boni und Modifikatoren, sowie die Talent optionen aufgeführt.",
+        "appTab": "item-class-tab",
+        "action": "none"
+      },
+      {
+        "id": "step-7",
+        "selector": ".advancement__navigator",
+        "title": "Kreisübersicht Navigation",
+        "content": "Jeder Kreis hat einen eigenen Tab. Zusätzlich gibt es noch die Übersicht über die Optionalen Talente.",
+        "appTab": "item-class-tab",
+        "action": "none"
+      },
+      {
+        "id": "step-8",
+        "selector": "#level-1",
+        "title": "Kreisübersicht",
+        "content": "in den jeweiligen Kreisen sind alle Optionen und Modifikatoren zu finden.",
+        "appTab": "item-class-tab",
+        "action": "setAdvancementCircleTabActive"
+      },
+      {
+        "id": "step-9",
+        "selector": ".item-advancement-body",
+        "title": "Optionale Talente",
+        "content": "Hier ist eine Übersicht über alle Optionalen Talente, aufgeteilt nach Kategorien, zu finden.",
+        "appTab": "item-class-tab",
+        "action": "setAdvancementPoolTabActive"
+      }
+    ]
+  }

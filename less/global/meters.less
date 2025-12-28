@@ -1,0 +1,86 @@
+/* ======================= Meters ======================= */
+.meter() {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  height: var(--size-meter-height-sm);
+
+  border-radius: var(--size-meter-radius);
+}
+.meter__segment { height: 100%; flex: 0 0 auto; }
+.meter__marker  { position: absolute; top: 0; width: 2px; height: 100%; background-color: var(--color-meter-divide); pointer-events: none; }
+
+/* ======================= Damage meter ======================= */
+.damage-bar { .meter(); }
+.damage-bar__segment   { .meter__segment; }
+.damage-bar__standard  { width: calc(~"min(100%, (var(--d-std, 0)  / max(var(--d-max, 1), 1)) * 100%)"); background: var(--color-danger,  var(--color-meter-4)); }
+.damage-bar__stun      { width: calc(~"min(100%, (var(--d-stun, 0) / max(var(--d-max, 1), 1)) * 100%)"); background: var(--color-accent,  var(--color-meter-5)); }
+.damage-bar__remainder { flex: 1 1 auto; background: var(--color-meter-background); }
+.damage-bar__marker    { .meter__marker; }
+.damage-bar__marker--unconscious { left: calc(~"(var(--u, 0) / max(var(--d-max, 1), 1)) * 100%"); transform: translateX(-50%); }
+
+/* ======================= Encumbrance meter ======================= */
+/* ======================= Encumbrance meter ======================= */
+.encumbrance__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.2rem 0 0.6rem 0;
+}
+
+.encumbrance__label {
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+
+.encumbrance__bar {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  height: var(--size-meter-height-md);
+  background: var(--color-meter-background);
+
+  /* range is 0 → 2 × max */
+  --e-range: calc(var(--e-max, 0) * 2);
+}
+
+.encumbrance__fill {
+  height: 100%;
+  /* 0 → 2×max mapped to 0–100% */
+  width: calc(~"min(100%, max(0%, (var(--e-value, 0) / max(var(--e-range, 1), 1)) * 100%))");
+  transition: width 0.3s ease, background-color 0.3s ease;
+  background-color: var(--color-meter-background);
+}
+
+/* Color by status coming from system.encumbrance.status */
+.encumbrance__bar[data-status="notEncumbered"] .encumbrance__fill {
+  background-color: var(--color-meter-1);
+}
+.encumbrance__bar[data-status="light"] .encumbrance__fill {
+  background-color: var(--color-meter-2);
+}
+.encumbrance__bar[data-status="heavy"] .encumbrance__fill {
+  background-color: var(--color-meter-3);
+}
+.encumbrance__bar[data-status="tooHeavy"] .encumbrance__fill {
+  background-color: var(--color-meter-4);
+}
+
+.encumbrance__marker {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--color-meter-divide);
+  pointer-events: none;
+
+  &.marker__x   { left: 50%; }  /* 1× max (50% of 0–2× range) */
+  &.marker__x15 { left: 75%; }  /* 1.5× max (75% of 0–2× range) */
+}
+
+.encumbrance__row {
+  input.input__clear-input--centered {
+    font-size: var(--font-size-13);
+  }
+}

@@ -1,0 +1,40 @@
+// Headers
+.application.sheet.ed4e {
+
+  &:where(:not(.minimized)) > header {
+    background: transparent;
+    position: relative;
+    z-index: 1;
+    border: none;
+
+    .window-title { visibility: hidden; }
+
+    /* Edit Mode Toggle */
+    > slide-toggle {
+      flex: none;
+      margin-inline-end: auto;
+
+      .slide-toggle-thumb {
+        line-height: 12px;
+
+        &::before {
+          content: "\f0ad";
+          font-family: var(--font-awesome);
+          color: @color-dark;
+          font-weight: bold;
+          font-size: var(--font-size-9);
+        }
+      }
+
+      &[checked] .slide-toggle-thumb::before {
+        color: @color-warning;
+      }
+    }
+  }
+  &.minimized slide-toggle { display: none; }
+
+  slide-toggle {
+    transform: scale(0.9);
+  }
+
+}

@@ -1,0 +1,49 @@
+{
+    "title": "earthdawn4e.Tours.Spellcasting.Title",
+    "description": "earthdawn4e.Tours.Spellcasting.Description",
+    "canBeResumed": true,
+    "display": true,
+    "steps": [
+      {
+        "id": "intro",
+        "selector": "#tour-spellcasting",
+        "title": "earthdawn4e.Tours.Spellcasting.Intro.Title",
+        "content": "earthdawn4e.Tours.Spellcasting.Intro.Text",
+        "sidebarTab": "settings"
+      },
+      {
+        "id": "changelog",
+        "selector": "#earthdawn4e.sidebar button.changelog",
+        "title": "earthdawn4e.Tours.Spellcasting.Changelog.Title",
+        "content": "earthdawn4e.Tours.Spellcasting.Changelog.Text",
+        "sidebarTab": "settings"
+      },
+      {
+        "id": "help",
+        "selector": "#earthdawn4e.sidebar button.help",
+        "title": "earthdawn4e.Tours.Spellcasting.Help.Title",
+        "content": "earthdawn4e.Tours.Spellcasting.Help.Text",
+        "sidebarTab": "settings"
+      },
+      {
+        "id": "troubleshooter",
+        "selector": "#earthdawn4e.sidebar button.troubleshooter",
+        "title": "earthdawn4e.Tours.Spellcasting.Troubleshooter.Title",
+        "content": "earthdawn4e.Tours.Spellcasting.Troubleshooter.Text",
+        "sidebarTab": "settings"
+      }
+      
+    ],
+    "localization": {
+      "earthdawn4e.Tours.Spellcasting.Title": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Description": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Intro.Title": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Intro.Text": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Changelog.Title": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Changelog.Text": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Help.Title": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Help.Text": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Troubleshooter.Title": "Spellcasting",
+      "earthdawn4e.Tours.Spellcasting.Troubleshooter.Text":"Spellcasting"
+  }
+}

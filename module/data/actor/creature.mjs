@@ -1,28 +1,44 @@
+import NoneCharacterTemplate from "./templates/none-character.mjs";
 import SentientTemplate from "./templates/sentient.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+
+const fUtils = foundry.utils;
 
 /**
  * System data definition for creatures.
  * @mixin
  */
-export default class CreatureData extends SentientTemplate {
+export default class CreatureData extends SentientTemplate.mixin(
+  NoneCharacterTemplate
+) {
 
-    /** @inheritDoc */
-    static _systemType = "creature";
+  // region Schema
 
-    /* -------------------------------------------- */
+  /** @inheritDoc */
+  static defineSchema() {
+    return super.defineSchema();
+  }
 
-    /** @inheritDoc */
-    static defineSchema() {
-        return super.defineSchema();
-    }
+  // endregion
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
+  // region Static Properties
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
-    }
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Actor.Creature",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( fUtils.mergeObject(
+    super.metadata,
+    {
+      type: SYSTEM_TYPES.Actor.creature,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
 }

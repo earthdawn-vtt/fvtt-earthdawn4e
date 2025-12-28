@@ -1,0 +1,48 @@
+
+<div class="card__ability favoritable" data-uuid="{{uuid}}">
+    <div class="ability-card__grid--container item-id" data-item-id="{{_id}}">
+        <div class="ability-card__grid--item icons__dice {{#if (or (ne this.system.attribute "") (ne this.system.strain 0))}}has-overlay{{/if}}">
+        <img class="ability-icon" src="{{img}}" alt="{{name}}">
+        {{#if (ne this.system.attribute "")}}
+            <button
+                type="button"
+                class="icon--button icon icon--d20 rollable icon--overlay"
+                data-action="rollable"
+                data-roll-type="ability"
+                data-tooltip="Roll {{name}}"
+                data-tooltip-direction="UP"
+                aria-label="Roll {{name}}">
+            </button>
+        {{else}}
+            {{#if (ne this.system.strain 0)}}
+            <button
+                type="button"
+                class="icon--button icon icon--blood take-strain icon--overlay"
+                data-action="takeStrain"
+                data-attribute="{{@key}}"
+                data-tooltip="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}"
+                data-tooltip-direction="UP"
+                aria-label="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}">
+            </button>
+            {{/if}}
+        {{/if}}
+        </div>
+        <div class="ability-card__grid--item card__name" data-action="expandItem">{{name}}</div>
+        <div class="ability-card__grid--item">{{system.action}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{system.level}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{this.system.rankFinal}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{system.strain}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{#if system.attribute}}{{system.attribute}}{{else}}-{{/if}}</div>
+        <div class="ability-card__grid--item text__alignment--center">{{> "systems/ed4e/templates/global/card-options-enhance.hbs"}}</div>
+    </div>
+    <div class="card__description card__description--toggle display__inline-block">
+        <span class="card__description--content">
+            {{{system.description.value}}}
+        </span>
+        <span>
+            {{#each this.effects as |effects id|}}
+            {{> "systems/ed4e/templates/actor/cards/effect-card-link.hbs" effects }}
+            {{/each}}
+        </span>
+    </div>
+</div>

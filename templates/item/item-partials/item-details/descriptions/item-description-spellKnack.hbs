@@ -1,0 +1,35 @@
+<div id="base-description-spellKnack-item" class="item-description__spellKnack item-body" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+    {{> "systems/ed4e/templates/item/item-partials/item-details/partials/knack.hbs"}}
+
+    {{formGroup
+      systemFields.bloodMagic
+      name="system.bloodMagic"
+      value=item.system.bloodMagic
+    }}
+    {{formGroup
+      systemFields.linkable
+      name="system.linkable"
+      value=item.system.linkable
+    }}
+    {{formGroup
+      systemFields.strain
+      name="system.strain"
+      value=item.system.strain
+    }}
+
+    <div class="item-section item-section--description">
+        <h3 class="item-section__header item-section__header--description label--rail">
+            <span class="label__text">
+                {{localize "ED.Item.Header.description"}}
+            </span>
+        </h3>
+        <span class="item-body__description">
+            {{#if @root.editable}}
+                {{> "systems/ed4e/templates/global/editor.hbs"}}
+            {{else}}
+                {{{enrichedDescription}}}
+            {{/if}}
+        </span>
+    </div>
+</div>

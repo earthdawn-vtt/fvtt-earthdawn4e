@@ -1,0 +1,20 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.horrorMark.label}}}</div>
+
+<div class="chat-sub-header-tags horror-mark flexrow">
+  {{{horrorContentAnchor}}}
+  {{{casterContentAnchor}}}
+</div>
+
+<div class="horror-mark-visualization flexrow">
+  <div class="horror-container avatar">
+    <img src="{{horror.img}}" class="horror-image" alt="Horror" />
+  </div>
+  <div class="marking-indicator flexcol">
+    &raquo;
+  </div>
+  <div class="caster-container avatar">
+    <img src="{{caster.img}}" class="caster-image" alt="Caster" />
+  </div>
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

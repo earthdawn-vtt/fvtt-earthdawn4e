@@ -1,0 +1,6 @@
+{{!-- Change Weight button is only available for owned items. World items can be created with the requested weight.--}}
+        {{formField systemFields.weight.fields.multiplier name="system.weight.multiplier" value=item.system.weight.multiplier localize=true}}
+        {{!-- Weight Calculated --}}
+        {{formField systemFields.weight.fields.calculated name="system.weight.calculated" value=item.system.weight.calculated localize=true}}
+        {{!-- Button to tailor item to the Namegiver weight --}}
+        <button data-action="tailorToNamegiver" class="weight-calculation--button button">{{localize "Tailor to Namegiver"}}</button>

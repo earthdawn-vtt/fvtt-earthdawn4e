@@ -1,0 +1,22 @@
+{
+  "name": "Kleidung",
+  "sorting": "a",
+  "folder": "OF0BdFFe9Or1PGUp",
+  "type": "Item",
+  "_id": "VWi8VXOIEpclXf5f",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "ed4e",
+    "systemVersion": "1.0.0",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!VWi8VXOIEpclXf5f"
+}

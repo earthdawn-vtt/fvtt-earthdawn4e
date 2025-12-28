@@ -1,34 +1,12 @@
-<div>
-    <h3>item-details</h3>
-    {{!-- bloodMagicDamage --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.Item.General.bloodMagicDamage"}}:</label>
-        <input class="input__number-input" name="system.bloodMagicDamage" type="text"
-            value="{{item.system.bloodMagicDamage}}" data-dtype="Number">
-    </div>
-    {{!-- usable Item --}}
-    <div>
-        <label>{{localize "ED.Item.General.recoveryPropertyValue"}}:</label>
-        <select class="input__select-input" name="system.recoveryPropertyValue" value="{{item.system.usableItem.recoveryPropertyValue}}" {{#select
-            item.system.usableItem.recoveryPropertyValue}}>
-            <option value="0">{{localize "ED.Item.RecoveryPropertyValue.0"}}</option>
-            <option value="1">{{localize "ED.Item.RecoveryPropertyValue.1"}}</option>
-            <option value="2">{{localize "ED.Item.RecoveryPropertyValue.2"}}</option>
-            <option value="3">{{localize "ED.Item.RecoveryPropertyValue.3"}}</option>
-            <option value="4">{{localize "ED.Item.RecoveryPropertyValue.4"}}</option>
-            <option value="5">{{localize "ED.Item.RecoveryPropertyValue.5"}}</option>
-            <option value="6">{{localize "ED.Item.RecoveryPropertyValue.6"}}</option>
-            {{/select}}
-        </select>
-    </div>
-        {{!-- equipped --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.General.equipped"}}:</label>
-       <input name="system.itemStatus.equipped" type="checkbox" {{checked item.system.itemStatus.equipped}}>
-    </div>
-        {{!-- automatic Weight Calculation --}}
-    <div class="item-data__input--line">
-        <label>{{localize "ED.General.autoCalculateWeight"}}:</label>
-       <input name="system.autoCalculateWeight" type="checkbox" {{checked item.system.autoCalculateWeight}}>
-    </div>
+<div id="base-details-weapon-item" class="item-details__weapon" data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+  {{!-- usable Item ?--}}
+  <fieldset>
+    <legend>{{localize "TODO.Weapon Specific Details"}}</legend>
+    {{formField systemFields.armorType name="system.armorType" value=item.system.armorType localize=true}}
+    {{formField systemFields.damage.fields.type name="system.damage.type" value=item.system.damage.type localize=true}}
+    {{formField systemFields.wieldingType name="system.wieldingType" value=item.system.wieldingType localize=true}}
+  </fieldset>
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/usable-items.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/partials/targeting.hbs"}}
+  {{> "systems/ed4e/templates/item/item-partials/item-details/details/item-details-physicalItems.hbs"}}
 </div>

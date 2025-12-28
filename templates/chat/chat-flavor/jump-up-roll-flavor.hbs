@@ -1,0 +1,29 @@
+<div class="chat-flavor-header">{{{CONFIG.ED4E.ROLLS.rollTypes.jumpUp.label}}}</div>
+
+<div class="chat-sub-header-tags flexcol">
+  {{#if jumpUpAbilityContentAnchor}}
+    {{{jumpUpAbilityContentAnchor}}}
+  {{else}}
+    {{localize "ED.Chat.Flavor.jumpUpRollDefault"}}
+  {{/if}}
+</div>
+
+<div class="jump-up-visualization">
+
+  <div class="custom-flavor text--center">
+    {{{ customFlavor }}}
+  </div>
+
+  <div class="message-buttons flexrow">
+    {{#if hasEffects}}
+      {{> "systems/ed4e/templates/chat/chat-buttons/assign-effect.hbs"}}
+    {{/if}}
+
+    {{#each messageButtons}}
+      {{> "systems/ed4e/templates/global/button.hbs" this}}
+    {{/each}}
+  </div>
+
+</div>
+
+{{> "systems/ed4e/templates/chat/dice-partials/roll-summary.hbs" }}

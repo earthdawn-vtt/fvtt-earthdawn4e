@@ -1,5 +1,7 @@
-import SystemDataModel from "../abstract.mjs";
+import ED4E from "../../config/_module.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on Poison and Disease items.
@@ -15,101 +17,113 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} activation            how the poison will be activated
  * @property {boolean} death                deadly poison
  */
-export default class PoisonDiseaseData extends SystemDataModel.mixin(
-    ItemDescriptionTemplate
+export default class PoisonDiseaseData extends ItemDataModel.mixin(
+  ItemDescriptionTemplate
 )  {
 
-    /** @inheritDoc */
-    static defineSchema() {
-        return this.mergeSchema( super.defineSchema(), {
-            effect: new foundry.data.fields.SchemaField( {
-                damageStep: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,   
-                    integer: true,
-                    label: "ED.Item.PoisonDisease.damageStep"
-                } ), 
-                paralysisStep: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.PoisonDisease.paralysisStep"
-                } ), 
-                debilitationStep: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.PoisonDisease.debilitationStep"
-                } ), 
-            },
-            {
-                label: "ED.Item.PoisonDisease.effect"
-            } ),
-            interval: new foundry.data.fields.SchemaField( {
-                totalEffects: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.PoisonDisease.totalEffects"
-                } ), 
-                timeInBetween: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.PoisonDisease.timeInBetween"
-                } ), 
-            },
-            {
-                label: "ED.Item.PoisonDisease.interval"
-            } ),
-            onsetTime: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 0,
-                initial: 0,
-                integer: true,
-                label: "ED.Item.PoisonDisease.onsetTime"
-            } ), 
-            duration: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 0,
-                initial: 0,
-                integer: true,
-                label: "ED.Item.PoisonDisease.duration"
-            } ), 
-            activation: new foundry.data.fields.StringField( {
-                required: true,
-                blank: false,
-                initial: "wound",
-                label: "ED.Item.PoisonDisease.activation"
-            } ),
-            death: new foundry.data.fields.BooleanField( {
-                required: true,
-                initial: false,
-                label: "ED.Item.PoisonDisease.death"
-            } ),
-            
-        } );
-    }
+  // region Schema
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
+  /** @inheritDoc */
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return this.mergeSchema( super.defineSchema(), {
+      effect: new fields.SchemaField( {
+        damageStep: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } ),
+        paralysisStep: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } ),
+        debilitationStep: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } ),
+      } ),
+      interval: new fields.SchemaField( {
+        totalEffects: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } ),
+        timeInBetween: new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      0,
+          initial:  0,
+          integer:  true,
+        } ),
+      } ),
+      onsetTime: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      duration: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      activation: new fields.StringField( {
+        required: true,
+        blank:    false,
+        initial:  "wound",
+        choices:  ED4E.PoisonActivation,
+      } ),
+      death: new fields.BooleanField( {
+        required: true,
+        initial:  false,
+      } ),
+    } );
+  }
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
-    }
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.PoisonDisease",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      type: SYSTEM_TYPES.Item.poisonDisease,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }

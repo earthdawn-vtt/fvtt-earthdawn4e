@@ -1,0 +1,23 @@
+<form class="knock-down flexcol" id="knock-down-form" autocomplete="off">
+    <!-- Buttons -->
+    <div>
+        <label class="knock-down__label">{{localize "ED.Dialogs.knockdownChoice"}}</label>
+    </div>
+
+    <div class="buttons knock-down__buttons flexcol">
+        {{#each actor as |item|}}
+            {{#if (eq item.system.edid "knock-down")}}
+            <div class="knock-down-item">
+                <button class="{{item.name}}" type="button" name="{{item.name}}" data-button="{{item.id}}">
+                    {{item.name}}
+                </button>
+            </div>
+            {{/if}}
+        {{/each}}
+        <div class="button-group flexrow">
+            <button class='cancel default button-cancel' type="cancel" name="cancel" data-button='cancel'>
+                {{ localize "ED.Dialogs.Buttons.cancel" }}
+            </button>
+        </div>
+    </div>
+</form>

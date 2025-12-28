@@ -1,0 +1,90 @@
+<div id="base-partial-physical-item"
+     class="item-body item-body--physical"
+     data-editable="{{#if @root.editable}}editable{{else}}readonly{{/if}}">
+
+  {{!-- Blood Magic Damage --}}
+
+  <div class="item-section item-section--blood-magic item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.bloodMagicDamage name="system.bloodMagicDamage" value=item.system.bloodMagicDamage localize=true}}
+    {{else if item.system.bloodMagicDamage}}
+      <div class="item-line item-line--blood-magic">
+        <span class="item-line__label">
+          {{localize systemFields.bloodMagicDamage.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.bloodMagicDamage}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{#unless isEquipment}}
+    <span class="item-line--space">
+      <br>
+    </span>
+  {{/unless}}
+
+  {{!-- Price and Denomination --}}
+  <div class="item-section item-section--price item-group">
+    {{#if @root.editable}}
+      <div class="form-group">
+        <label>{{localize systemFields.price.fields.value.label}}</label>
+        <div class="form-fields form-fields--price">
+          {{formInput systemFields.price.fields.value name="system.price.value" value=item.system.price.value}}
+          {{formInput systemFields.price.fields.denomination name="system.price.denomination" value=item.system.price.denomination}}
+        </div>
+        <p class="hint">
+          {{localize systemFields.price.fields.value.hint}}
+        </p>
+      </div>
+    {{else}}
+      <div class="item-line item-line--price">
+        <span class="item-line__label">
+          {{localize systemFields.price.fields.value.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.price.value}}
+          {{localize (lookup systemFields.price.fields.denomination.choices item.system.price.denomination)}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Availability --}}
+  <div class="item-section item-section--availability item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.availability name="system.availability" value=item.system.availability localize=true}}
+    {{else}}
+      <div class="item-line item-line--availability">
+        <span class="item-line__label">
+          {{localize systemFields.availability.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{localize (lookup systemFields.availability.choices item.system.availability)}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Weight --}}
+  <div class="item-section item-section--weight item-group">
+    {{#if @root.editable}}
+      {{formField systemFields.weight.fields.value name="system.weight.value" value=item.system.weight.value localize=true}}
+    {{else}}
+      <div class="item-line item-line--weight">
+        <span class="item-line__label">
+          {{localize systemFields.weight.fields.value.label}}:
+        </span>
+        <span class="item-line__dots" aria-hidden="true"></span>
+        <span class="item-line__value">
+          {{item.system.weight.value}}
+        </span>
+      </div>
+    {{/if}}
+  </div>
+
+</div>

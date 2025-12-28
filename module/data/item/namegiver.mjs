@@ -1,154 +1,147 @@
-import SystemDataModel from "../abstract.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import MovementFields from "../actor/templates/movement.mjs";
+import MappingField from "../fields/mapping-field.mjs";
+import ItemDataModel from "../abstract/item-data-model.mjs";
+import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 /**
  * Data model template with information on namegiver items.
- * @property {number} dexterityValue            dexterity value
- * @property {number} strengthValue             strength value
- * @property {number} constitutionValue         constitution value
- * @property {number} perceptionValue           perception value
- * @property {number} willpowerValue            willpower value
- * @property {number} charismaValue             charisma value
- * @property {number} karmamodifier             initiative value
- * @property {object} movement                  movement group object
- * @property {number} movement.walk             movement type walk modifications
- * @property {number} movement.fly              movement type fly modifications
- * @property {number} movement.swim             movement type swim modifications
- * @property {number} movement.burrow           movement type burrow modifications
- * @property {number} movement.climb            movement type climb modifications
+ * @property {object} attributeValues                           Attribute Schema Object
+ * @property {number} attributeValues.dexterityValue            dexterity value
+ * @property {number} attributeValues.strengthValue             strength value
+ * @property {number} attributeValues.toughnessValue            toughness value
+ * @property {number} attributeValues.perceptionValue           perception value
+ * @property {number} attributeValues.willpowerValue            willpower value
+ * @property {number} attributeValues.charismaValue             charisma value
+ * @property {number} karmaModifier                             initiative value
+ * @property {object} movement                                  movement Schema Object
+ * @property {number} movement.walk                             movement type walk modifications
+ * @property {number} movement.fly                              movement type fly modifications
+ * @property {number} movement.swim                             movement type swim modifications
+ * @property {number} movement.burrow                           movement type burrow modifications
+ * @property {number} movement.climb                            movement type climb modifications
  */
-export default class NamegiverData extends SystemDataModel.mixin(
-    ItemDescriptionTemplate
+export default class NamegiverData extends ItemDataModel.mixin(
+  ItemDescriptionTemplate
 ) {
-    // TODO attributes as Schemefield
-    /** @inheritDoc */
-    static defineSchema() {
-        return this.mergeSchema( super.defineSchema(), {
-            dexterityValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.dexterityValue"
-            } ), 
-            strengthValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.strengthValue"
-            } ), 
-            toughnessValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.toughnessValue"
-            } ), 
-            perceptionValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.perceptionValue"
-            } ), 
-            willpowerValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.willpowerValue"
-            } ), 
-            charismaValue: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 1,
-                initial: 10,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.charismaValue"
-            } ), 
-            karmamodifier: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                min: 0,
-                initial: 0,
-                integer: true,
-                label: "ED.Item.Namegiver.karmamodifier"
-            } ), 
-            movement: new foundry.data.fields.SchemaField( {
-                walk: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.Namegiver.walk"
-                } ),
-                fly: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.Namegiver.fly"
-                } ),
-                swim: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.Namegiver.swim"
-                } ),
-                burrow: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.Namegiver.burrow"
-                } ),
-                climb: new foundry.data.fields.NumberField( {
-                    required: true,
-                    nullable: false,
-                    min: 0,
-                    initial: 0,
-                    integer: true,
-                    label: "ED.Item.Namegiver.climb"
-                } ),
-            },
-            {
-                label: "ED.Item.Namegiver.movement"
-            } ),
-            weightMultiplier: new foundry.data.fields.NumberField( {
-                required: true,
-                nullable: false,
-                initial: 1,
-                integer: true,
-                positive: true,
-                label: "ED.Item.Namegiver.weightMultiplier"
-            } ), 
-        } );
-    }
 
-    /* -------------------------------------------- */
-    /*  Migrations                                  */
-    /* -------------------------------------------- */
+  // region Schema
 
-    /** @inheritDoc */
-    static migrateData( source ) {
-        super.migrateData( source );
-        // specific migration functions
-    }
+  /** @inheritDoc */
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return this.mergeSchema( super.defineSchema(), {
+      attributeValues: new MappingField(
+        new fields.NumberField( {
+          required: true,
+          nullable: false,
+          min:      1,
+          initial:  10,
+          integer:  true,
+          positive: true,
+        } ), {
+          initialKeys:     CONFIG.ED4E.attributes,
+          initialKeysOnly: true,
+        } ),
+      karmaModifier: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        min:      0,
+        initial:  0,
+        integer:  true,
+      } ),
+      ...MovementFields.movement,
+      weightMultiplier: new fields.NumberField( {
+        required: true,
+        nullable: false,
+        initial:  1,
+        integer:  false,
+        positive: true,
+      } ),
+      tailAttack: new fields.BooleanField( {
+        required: true,
+        initial:  false,
+      } ),
+      livingArmorOnly: new fields.BooleanField( {
+        required: true,
+        initial:  false,
+      } ),
+      weaponSize: new fields.SchemaField( {
+        oneHanded: new fields.SchemaField( {
+          min: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            initial:  1,
+            integer:  false,
+            positive: true,
+          } ),
+          max: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            initial:  3,
+            integer:  false,
+            positive: true,
+          } ),
+        } ),
+        twoHanded: new fields.SchemaField( {
+          min: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            initial:  4,
+            integer:  false,
+            positive: true,
+          } ),
+          max: new fields.NumberField( {
+            required: true,
+            nullable: false,
+            initial:  6,
+            integer:  false,
+            positive: true,
+          } )
+        } )
+      } ),
+      abilities: new fields.SetField(
+        new fields.DocumentUUIDField( ItemDataModel ),
+        {
+          required: false,
+          nullable: true,
+          initial:  [],
+        } ),
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Item.Namegiver",
+  ];
+
+  /** @inheritDoc */
+  static metadata = Object.freeze( foundry.utils.mergeObject(
+    super.metadata,
+    {
+      singleton: true,
+      type:      SYSTEM_TYPES.Item.namegiver,
+    }, {
+      inplace: false
+    },
+  ) );
+
+  // endregion
+
+  // region Rolling
+
+  /** @inheritDoc */
+  getRollData() {
+    const rollData = super.getRollData();
+    Object.assign( rollData, super.getTemplatesRollData() );
+    return Object.assign( rollData, {} );
+  }
+
+  // endregion
+
 }
