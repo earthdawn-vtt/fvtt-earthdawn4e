@@ -13,8 +13,9 @@
     "url": "https://github.com/patrickmohrmann/earthdawn4eV2/issues"
   },
   "scripts": {
-    "build": "gulp buildAll",
+    "build": "npm run build:packs && npm run build:css",
     "build:css": "gulp buildCSS",
+    "build:packs": "npm run pullJSONtoLDB",
     "build:watch": "gulp",
     "lint:lang": "node tools/lint-json.mjs",
     "lint": "gulp lint",
