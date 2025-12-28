@@ -8,7 +8,7 @@
     "verified": "13.340"
   },
   "url": "https://github.com/patrickmohrmann/earthdawn4eV2",
-  "manifest": "https://github.com/${{ github.repository }}/releases/download/$TAG/$PACKAGE_TYPE.json",
+  "manifest": "https://raw.githubusercontent.com/patrickmohrmann/fvtt-earthdawne4e/refs/heads/dev/system.json",
   "download": "https://github.com/${{ github.repository }}/releases/download/$TAG/$PACKAGE_ID-$TAG.zip",
   "authors": [
     {
