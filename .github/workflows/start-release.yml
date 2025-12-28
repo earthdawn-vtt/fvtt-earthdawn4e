@@ -63,6 +63,22 @@ jobs:
             git config --global user.name "github-actions[bot]"
             git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+        - name: Update Changelog
+          uses: stefanzweifel/changelog-updater-action@v1
+          with:
+            latest-version: ${{ env.MANIFEST_VERSION }}
+
+        - name: Commit changelog update
+          run: |
+            git add CHANGELOG.md
+            git commit -m "chore: update CHANGELOG for ${{ env.MANIFEST_VERSION }}" \
+              --trailer "Github-Workflow": ${{ github.workflow }}" \ 
+              --trailer "Github-Workflow-Triggered-By:${{ github.triggering_actor }}" \
+              --trailer "Github-Workflow-Executed-By: ${{ github.actor }}" \
+              --trailer "Github-Workflow-Run-ID: ${{ github.run_id }}" \
+            || echo "No changes to commit"
+            git push
+
         - name: Create tag
           run: |
             git tag -a ${{ env.TAG_NAME }} -m "release: ${{ env.MANIFEST_VERSION }}" \
