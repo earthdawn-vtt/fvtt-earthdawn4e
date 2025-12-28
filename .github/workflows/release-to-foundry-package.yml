@@ -1,0 +1,77 @@
+name: Use Foundry Release API to add a new release
+
+env:
+  FOUNDRY_API_ENDPOINT: https://foundryvtt.com/_api/packages/release_version/
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  release-to-foundry:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Load system manifest
+        id: manifest
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "./system.json"
+
+      - name: Set up variables
+        id: get_vars
+        run: |
+          PACKAGE_ID=${{ steps.manifest.outputs.id }}
+          PACKAGE_VERSION=${{ steps.manifest.outputs.version }}
+          MANIFEST_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/system.json"
+          NOTES="https://github.com/${{github.repository}}/releases/tag/${{ github.event.release.tag_name }}"
+          VERSION_MIN=${{ steps.manifest.outputs.compatibility.minimum }}
+          VERSION_VERIFIED=${{ steps.manifest.outputs.compatibility.verified }}
+          VERSION_MAX=${{ steps.manifest.outputs.compatibility.maximum }}
+          echo "PACKAGE_ID=$PACKAGE_ID" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+          echo "MANIFEST_URL=$MANIFEST_URL" >> $GITHUB_ENV
+          echo "NOTES=$NOTES" >> $GITHUB_ENV
+          echo "VERSION_MIN=$VERSION_MIN" >> $GITHUB_ENV
+          echo "VERSION_VERIFIED=$VERSION_VERIFIED" >> $GITHUB_ENV
+          echo "VERSION_MAX=$VERSION_MAX" >> $GITHUB_ENV
+
+      - name: Create Foundry Package Release
+        id: create_foundry_release
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ env.FOUNDRY_API_ENDPOINT }}
+          method: POST
+          customHeaders: '{"Content-Type": "application/json", "Authorization" : "${{ secrets.FOUNDRY_KEY }}"}'
+          data: >-
+            {
+              "id": "${{ env.PACKAGE_ID }}",
+              "dry-run": false,
+              "release": {
+                "version": "${{ env.PACKAGE_VERSION }}",
+                "manifest": "${{ env.MANIFEST_URL }}",
+                "notes": "${{ env.NOTES }}",
+                "compatibility": {
+                  "minimum": "${{ env.VERSION_MIN }}",
+                  "verified": "${{ env.VERSION_VERIFIED }}"
+                  "maximum": "${{ env.VERSION_MAX }}",
+                }
+              }
+            }
+
+      - name: Show response
+        run: |
+          RESPONSE=${{ steps.create_foundry_release.outputs.response }}
+          STATUS=${{ steps.create_foundry_release.outputs.status }}
+          echo "Response Status: $STATUS"
+          echo "Response Body: $RESPONSE"
+          if [[ ! $STATUS == success ]]; then
+              echo "Failed to create Foundry Package Release."
+              exit 1
+          else
+            echo "Successfully created Foundry Package Release."
+            echo "You can edit the release at: https://foundryvtt.com/packages/${{ env.PACKAGE_ID }}/edit"
+          fi
