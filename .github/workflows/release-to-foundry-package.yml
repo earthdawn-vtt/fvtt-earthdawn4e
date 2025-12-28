@@ -43,9 +43,9 @@ jobs:
         id: create_foundry_release
         uses: fjogeleit/http-request-action@v1
         with:
-          url: ${{ env.FOUNDRY_API_ENDPOINT }}
+          url: ${{ vars.FVTT_RELEASE_API_ENDPOINT }}
           method: POST
-          customHeaders: '{"Content-Type": "application/json", "Authorization" : "${{ secrets.FOUNDRY_KEY }}"}'
+          customHeaders: '{"Content-Type": "application/json", "Authorization" : "${{ secrets.FVTT_RELEASE_TOKEN }}"}'
           data: >-
             {
               "id": "${{ env.PACKAGE_ID }}",
