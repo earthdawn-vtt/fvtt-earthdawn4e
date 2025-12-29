@@ -71,7 +71,7 @@ jobs:
       - name: Set up tag name
         id: set_tag_name
         run: |
-          TAG_NAME=release-${{ steps.bump_version.outputs.version }}
+          TAG_NAME=${{ vars.RELEASE_TAG_PREFIX }}${{ steps.bump_version.outputs.version }}
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
       - name: Update manifest version and release URLs
