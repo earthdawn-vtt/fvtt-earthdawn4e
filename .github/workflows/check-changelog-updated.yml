@@ -1,8 +1,9 @@
 name: Check Changelog Updated
 
-on:
-  pull_request:
-    branches: [ "main" ]
+on: workflow_call
+
+  #pull_request:
+  #  branches: [ "main" ]
 
 jobs:
   check-changelog:
