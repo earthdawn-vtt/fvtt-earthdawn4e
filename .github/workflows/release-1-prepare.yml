@@ -16,6 +16,9 @@ on:
           - minor
           - patch
 
+permissions:
+    contents: write
+
 jobs:
   version:
     runs-on: ubuntu-latest
@@ -34,6 +37,8 @@ jobs:
         run: |
           git config --global user.name "${{ vars.BOT_USER_NAME_GITHUB_ACTIONS }}"
           git config --global user.email "${{ vars.BOT_EMAIL_GITHUB_ACTIONS }}"
+          git config --global push.autoSetupRemote true
+          git config --global --list
 
       - name: Checkout main
         run: |
@@ -42,11 +47,19 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          echo "version=$(npm --no-git-tag-version version ${{ github.event.inputs.version }})" >> $GITHUB_OUTPUT
+          NEW_VERSION=$(npm --no-git-tag-version --tag-version-prefix "" version ${{ github.event.inputs.version }})
+          if [[ -z "$NEW_VERSION" ]]; then
+            echo "Failed to bump version."
+            exit 1
+          fi
+          echo "::notice file=${{ github.workflow_ref }},line=50,title=New Version::Bumped version to $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
       - name: Create release branch
         run: |
-          git checkout -b release/${{ steps.bump_version.outputs.version }}
+          BRANCH_NAME=release/${{ steps.bump_version.outputs.version }}
+          git checkout -b $BRANCH_NAME
+          git status
 
       - name: Load system id
         id: system_id
@@ -73,8 +86,8 @@ jobs:
         run: |
           git add package.json package-lock.json system.json
           git commit -m "chore: prepare release ${{ steps.bump_version.outputs.version }}" \
-            --trailer "Github-Workflow": ${{ github.workflow }}" \ 
-            --trailer "Github-Workflow-Triggered-By:${{ github.triggering_actor }}" \
+            --trailer "Github-Workflow: ${{ github.workflow }}" \
+            --trailer "Github-Workflow-Triggered-By: ${{ github.triggering_actor }}" \
             --trailer "Github-Workflow-Executed-By: ${{ github.actor }}" \
             --trailer "Github-Workflow-Run-ID: ${{ github.run_id }}"
           git push
