@@ -1,4 +1,5 @@
-name: Create release branch and update system manifest and changelog
+name: Release [1] - Prepare New Release
+run-name: Bump ${{ inputs.version }} version and create release branch - Triggered by ${{ github.triggering_actor }}
 
 env:
   NODE_VERSION: 22

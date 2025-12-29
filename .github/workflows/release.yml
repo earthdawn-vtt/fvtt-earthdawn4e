@@ -1,5 +1,6 @@
 # Adapted from systems "dnd5e", "draw-steel", "artichron", https://www.thisdot.co/blog/tag-and-release-your-project-with-github-actions-workflows and more
-name: Release Creation
+name: Release [3] - Create Release
+run-name: Create GitHub Release - Triggered by ${{ github.triggering_actor }}
 
 env:
   NODE_VERSION: 22

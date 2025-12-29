@@ -1,7 +1,5 @@
-name: Use Foundry Release API to add a new release
-
-env:
-  FOUNDRY_API_ENDPOINT: https://foundryvtt.com/_api/packages/release_version/
+name: Release [3] - Release to Foundry VTT Package Repository
+run-name: Push ${{ github.event.release.tag_name }} to Foundry VTT Package Repository
 
 on:
   release:
