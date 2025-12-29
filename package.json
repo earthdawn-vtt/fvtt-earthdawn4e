@@ -2,15 +2,15 @@
   "name": "ed4e",
   "version": "0.0.0",
   "description": "An implementation of the ED4E game system for Foundry Virtual Tabletop (https://foundryvtt.com).",
-  "author": "Patrick & Qrizzl & alegionofone",
-  "homepage": "https://github.com/patrickmohrmann/earthdawn4eV2",
+  "author": "Patrick & Qrizzl & alegionofone & Jacklifear",
+  "homepage": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/patrickmohrmann/earthdawn4eV2"
+    "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e"
   },
   "bugs": {
-    "url": "https://github.com/patrickmohrmann/earthdawn4eV2/issues"
+    "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues"
   },
   "scripts": {
     "build": "npm run build:packs && npm run build:css",

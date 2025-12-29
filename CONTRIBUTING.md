@@ -133,15 +133,20 @@ Try to follow existing code style and patterns as best you can. Always clean up 
 Dependencies should be kept to a minimum. If you want to add a new dependency, please discuss it in the related issue first.
 
 #### Commit Messages
-[Conventional Commits](https://www.conventionalcommits.org) style for commit messages. Use type prefixes like:
+[Conventional Commits](https://www.conventionalcommits.org) style for commit messages. They are enforced through [commitlint](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional), with the following type prefixes:
+  - `build:` for build related changes or external dependencies (example scopes: gulp, npm)
+  - `chore:` for maintenance tasks
+  - `ci:` for CI/CD related changes (example scopes: github-actions, workflows, husky)
+  - `docs:` for documentation changes
   - `feat:` for new features
   - `fix:` for bug fixes
-  - `docs:` for documentation changes
-  - `style:` for code style changes (formatting, missing semi-colons, etc.)
+  - `perf:` for performance improvements
   - `refactor:` for code changes that neither fix a bug nor add a feature
+  - `revert:` for reverting previous commits
+  - `style:` for code style changes
   - `test:` for adding or updating tests
-  - `chore:` for maintenance tasks
-  - `ci:` for CI/CD related changes (like auto updating lang files)
+
+For more information you can have a look at the [Angular convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 The usual best practice should be followed, like using the imperative mood, keeping messages concise yet descriptive, 
 and providing additional context in the body if necessary.

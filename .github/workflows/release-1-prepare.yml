@@ -1,4 +1,5 @@
-name: Create release branch and update system manifest and changelog
+name: Release [1] - Prepare New Release
+run-name: Bump ${{ inputs.version }} version and create release branch - Triggered by ${{ github.triggering_actor }}
 
 env:
   NODE_VERSION: 22
@@ -15,24 +16,29 @@ on:
           - minor
           - patch
 
+permissions:
+    contents: write
+
 jobs:
   version:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Set up Node.js {{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Set up Git
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "${{ vars.BOT_USER_NAME_GITHUB_ACTIONS }}"
+          git config --global user.email "${{ vars.BOT_EMAIL_GITHUB_ACTIONS }}"
+          git config --global push.autoSetupRemote true
+          git config --global --list
 
       - name: Checkout main
         run: |
@@ -41,11 +47,19 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          echo "version=$(npm --no-git-tag-version version ${{ github.event.inputs.version }})" >> $GITHUB_OUTPUT
+          NEW_VERSION=$(npm --no-git-tag-version --tag-version-prefix "" version ${{ github.event.inputs.version }})
+          if [[ -z "$NEW_VERSION" ]]; then
+            echo "Failed to bump version."
+            exit 1
+          fi
+          echo "::notice file=${{ github.workflow_ref }},line=50,title=New Version::Bumped version to $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
       - name: Create release branch
         run: |
-          git checkout -b release/${{ steps.bump_version.outputs.version }}
+          BRANCH_NAME=release/${{ steps.bump_version.outputs.version }}
+          git checkout -b $BRANCH_NAME
+          git status
 
       - name: Load system id
         id: system_id
@@ -57,7 +71,7 @@ jobs:
       - name: Set up tag name
         id: set_tag_name
         run: |
-          TAG_NAME=release-${{ steps.bump_version.outputs.version }}
+          TAG_NAME=${{ vars.RELEASE_TAG_PREFIX }}${{ steps.bump_version.outputs.version }}
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
       - name: Update manifest version and release URLs
@@ -72,8 +86,8 @@ jobs:
         run: |
           git add package.json package-lock.json system.json
           git commit -m "chore: prepare release ${{ steps.bump_version.outputs.version }}" \
-            --trailer "Github-Workflow": ${{ github.workflow }}" \ 
-            --trailer "Github-Workflow-Triggered-By:${{ github.triggering_actor }}" \
+            --trailer "Github-Workflow: ${{ github.workflow }}" \
+            --trailer "Github-Workflow-Triggered-By: ${{ github.triggering_actor }}" \
             --trailer "Github-Workflow-Executed-By: ${{ github.actor }}" \
             --trailer "Github-Workflow-Run-ID: ${{ github.run_id }}"
           git push

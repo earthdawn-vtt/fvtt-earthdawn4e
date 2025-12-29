@@ -1,11 +1,16 @@
-name: Use Foundry Release API to add a new release
-
-env:
-  FOUNDRY_API_ENDPOINT: https://foundryvtt.com/_api/packages/release_version/
+name: Release [4] - Release to Foundry VTT Package Repository
+run-name: Push ${{ github.event.release.tag_name }} to Foundry VTT Package Repository
 
 on:
   release:
     types: [released]
+  workflow_call:
+    inputs:
+      release-tag:
+        description: "The tag name of the release to push to Foundry VTT"
+        required: true
+        type: string
+
 
 jobs:
   release-to-foundry:
@@ -26,8 +31,9 @@ jobs:
         run: |
           PACKAGE_ID=${{ steps.manifest.outputs.id }}
           PACKAGE_VERSION=${{ steps.manifest.outputs.version }}
-          MANIFEST_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/system.json"
-          NOTES="https://github.com/${{github.repository}}/releases/tag/${{ github.event.release.tag_name }}"
+          RELEASE_TAG=${{ github.event.release.tag_name || inputs.release-tag }}
+          MANIFEST_URL="https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG/system.json"
+          NOTES="https://github.com/${{github.repository}}/releases/tag/$RELEASE_TAG"
           VERSION_MIN=${{ steps.manifest.outputs.compatibility.minimum }}
           VERSION_VERIFIED=${{ steps.manifest.outputs.compatibility.verified }}
           VERSION_MAX=${{ steps.manifest.outputs.compatibility.maximum }}
