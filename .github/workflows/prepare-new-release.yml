@@ -1,0 +1,79 @@
+name: Create release branch and update system manifest and changelog
+
+env:
+  NODE_VERSION: 22
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "What type of release is this? (major, minor, patch)"
+        required: true
+        default: "minor"
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js {{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Checkout main
+        run: |
+          git checkout main
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          echo "version=$(npm --no-git-tag-version version ${{ github.event.inputs.version }})" >> $GITHUB_OUTPUT
+
+      - name: Create release branch
+        run: |
+          git checkout -b release/${{ steps.bump_version.outputs.version }}
+
+      - name: Load system id
+        id: system_id
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: "./system.json"
+          prop_path: "id"
+
+      - name: Set up tag name
+        id: set_tag_name
+        run: |
+          TAG_NAME=release-${{ steps.bump_version.outputs.version }}
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Update manifest version and release URLs
+        uses: TomaszKandula/variable-substitution@v1.0.2
+        with:
+          files: 'system.json'
+        env:
+          version: ${{ steps.bump_version.outputs.version }}
+          download: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/${{ steps.system_id.outputs.value }}-${{ env.TAG_NAME }}.zip
+
+      - name: Commit changes
+        run: |
+          git add package.json package-lock.json system.json
+          git commit -m "chore: prepare release ${{ steps.bump_version.outputs.version }}" \
+            --trailer "Github-Workflow": ${{ github.workflow }}" \ 
+            --trailer "Github-Workflow-Triggered-By:${{ github.triggering_actor }}" \
+            --trailer "Github-Workflow-Executed-By: ${{ github.actor }}" \
+            --trailer "Github-Workflow-Run-ID: ${{ github.run_id }}"
+          git push

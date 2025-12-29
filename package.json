@@ -13,8 +13,9 @@
     "url": "https://github.com/patrickmohrmann/earthdawn4eV2/issues"
   },
   "scripts": {
-    "build": "gulp buildAll",
+    "build": "npm run build:packs && npm run build:css",
     "build:css": "gulp buildCSS",
+    "build:packs": "npm run pullJSONtoLDB",
     "build:watch": "gulp",
     "lint:lang": "node tools/lint-json.mjs",
     "lint": "gulp lint",
@@ -26,6 +27,8 @@
   "devDependencies": {
     "@actions/core": "^1.11.1",
     "@babel/eslint-parser": "^7.22.15",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.11.1",
     "@foundryvtt/foundryvtt-cli": "^1.0.3",

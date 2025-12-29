@@ -1,0 +1,32 @@
+name: Check Changelog Updated
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  check-changelog:
+    runs-on: ubuntu-latest
+    name: Verify CHANGELOG.md Updated
+    permissions:
+      pull-requests: read
+
+    steps:
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            CHANGELOG.md
+
+      - name: Check if CHANGELOG.md was modified
+        if: steps.changed-files.outputs.modified_files_count != 1
+        run: |
+          echo "ERROR: CHANGELOG.md must be updated in this PR."
+          echo "Please remember to update the changelog with your changes."
+          echo "Thank you! ☺️"
+          exit 1
+
+      - name: Success message
+        run: |
+          echo "CHANGELOG.md has been updated. Thank you! 🤗"
