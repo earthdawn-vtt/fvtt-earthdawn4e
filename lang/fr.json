@@ -1233,6 +1233,10 @@
                 "label":                          "TODO: Add translation"
               }
             },
+            "knockdownStep": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
             "relations": {
               "attitude": {
                 "hint":                           "TODO: Add translation",
