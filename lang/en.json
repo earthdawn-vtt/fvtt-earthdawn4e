@@ -1227,6 +1227,10 @@
                 "label":                          "Current"
               }
             },
+            "knockdownStep": {
+              "hint":                             "Knockdown Step of the actor",
+              "label":                            "Knockdown Step"
+            },
             "relations": {
               "attitude": {
                 "hint":                           "Attitude of the actor towards others",
