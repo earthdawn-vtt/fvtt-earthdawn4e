@@ -288,6 +288,7 @@
 					<div class="initiative-npc__grid--container container__header">
 						<div class="initiative__grid--item">{{localize "ED.Actor.Initiative.step"}}</div>
 						<div class="initiative__grid--item">{{localize "ED.Data.Actor.NoneCharacter.FIELDS.actions.label"}}</div>
+						<div class="initiative__grid--item">{{localize "ED.Actor.Buttons.knockdownTest"}}</div>
 					</div>
 					<div class="initiative-npc__grid--container">
 						<div class="initiative__grid--item">
@@ -313,6 +314,15 @@
 								data-tooltip="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.actions.hint'}}"
 								data-tooltip-direction="UP"
 								aria-label="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.actions.hint'}}">
+						</div>
+						<div class="initiative__grid--item">
+							<input
+								class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+								name="system.knockdownStep"
+								value="{{actor.system.knockdownStep}}"
+								data-tooltip="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.knockdownStep.hint'}}"
+								data-tooltip-direction="UP"
+								aria-label="{{localize 'ED.Data.Actor.NoneCharacter.FIELDS.knockdownStep.hint'}}">
 						</div>
 					</div>
 				{{/if}}
