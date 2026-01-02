@@ -175,7 +175,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
     const itemDescription = $( target )
       .parent( ".item-id" )
-      .parent( ".card__ability, .card__power" )
+      .parent( ".card__ability, .card__power, .card__effect-link, .card__effect" )
       .children( ".card__description" );
 
     itemDescription.toggleClass( "card__description--toggle" );

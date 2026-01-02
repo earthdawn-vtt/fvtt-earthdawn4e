@@ -2248,6 +2248,7 @@ form.ed4e.character-generation nav a.disabled {
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container,
+.application.sheet.earthdawn4e.actor .window-content .effect-link-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container,
@@ -2276,6 +2277,7 @@ form.ed4e.character-generation nav a.disabled {
 .application.sheet.earthdawn4e.actor .window-content .knack-maneuver-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .equipment-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .effect-card__grid--container.container__header,
+.application.sheet.earthdawn4e.actor .window-content .effect-link-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--container.container__header,
 .application.sheet.earthdawn4e.actor .window-content .legend__grid--container.container__header,
@@ -2317,6 +2319,7 @@ form.ed4e.character-generation nav a.disabled {
 }
 .application.sheet.earthdawn4e.actor .window-content .attribute-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .ability-card__grid--item:nth-child(2),
+.application.sheet.earthdawn4e.actor .window-content .effect-link-card__grid--item:nth-child(3),
 .application.sheet.earthdawn4e.actor .window-content .skill-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .power-card__grid--item:nth-child(2),
 .application.sheet.earthdawn4e.actor .window-content .maneuver-card__grid--item:nth-child(2),
@@ -2408,6 +2411,11 @@ form.ed4e.character-generation nav a.disabled {
   display: grid;
   align-items: center;
   grid-template-columns: minmax(30px, 30px) minmax(30px, 1fr) minmax(30px, 20%);
+}
+.application.sheet.earthdawn4e.actor .window-content .effect-link-card__grid--container {
+  display: grid;
+  grid-template-columns: minmax(25px, 25px) minmax(25px, 25px) minmax(25px, 1fr) minmax(70px, 70px) minmax(70px, 70px) minmax(60px, 60px);
+  height: 30px;
 }
 .application.sheet.earthdawn4e.actor .window-content .general .layout__col--2:first-of-type {
   flex: 0 0 260px;

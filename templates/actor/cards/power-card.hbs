@@ -1,10 +1,9 @@
 
 <div class="card__power favoritable" data-uuid="{{uuid}}">
     <div class="power-card__grid--container item-id" data-item-id="{{_id}}">
-        {{log "this" this.name this.system.rollType}}
-        <div class="power-card__grid--item icons__dice {{#if (or (ne this.system.powerStep 0) (ne this.system.strain 0) (ne this.system.rollType ""))}}has-overlay{{/if}}">
+        <div class="power-card__grid--item icons__dice {{#if (and (or (ne this.system.powerStep 0) (ne this.system.strain 0)) this.system.rollType)}}has-overlay{{/if}}">
         <img class="power-icon" src="{{img}}" alt="{{name}}">
-        {{#if (and (ne this.system.powerStep 0) (ne this.system.rollType ""))}}
+        {{#if (and (ne this.system.powerStep 0) this.system.rollType)}}
             <button
                 type="button"
                 class="icon--button icon icon--d20 rollable icon--overlay"
@@ -15,7 +14,7 @@
                 aria-label="Roll {{name}}">
             </button>
         {{else}}
-            {{#if (and (ne this.system.strain 0) (ne this.system.rollType ""))}}
+            {{#if (and (ne this.system.strain 0) this.system.rollType)}}
             <button
                 type="button"
                 class="icon--button icon icon--blood take-strain icon--overlay"
