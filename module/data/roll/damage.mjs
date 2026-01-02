@@ -169,6 +169,8 @@ export default class DamageRollOptions extends EdRollOptions {
   /** @inheritdoc */
   static GLOBAL_MODIFIERS = [
     "allDamage",
+    "allMeleeDamage",
+    "allRangedDamage",
     ...super.GLOBAL_MODIFIERS,
   ];
 
@@ -190,6 +192,9 @@ export default class DamageRollOptions extends EdRollOptions {
       damageSourceType:       new fields.StringField( {
         required: true,
         choices:  COMBAT.damageSourceConfig,
+      } ),
+      weaponType:             new fields.StringField( {
+        choices: ED4E.weaponType,
       } ),
       armorType:              new fields.StringField( {
         required: true,
@@ -236,6 +241,15 @@ export default class DamageRollOptions extends EdRollOptions {
    */
   static fromData( data, options = {} ) {
     data.sourceUuid ??= data.sourceDocument?.uuid;
+
+    if ( !data.weaponType ) {
+      const sourceDocument = data.sourceDocument ?? fromUuidSync( data.sourceUuid );
+      if ( sourceDocument?.system?.weaponType ) {
+        data.weaponType = sourceDocument.system.weaponType;
+      } else if ( data.damageSourceType === "unarmed" ) {
+        data.weaponType = "unarmed";
+      }
+    }
 
     data.armorType ??= this._prepareArmorType( data );
     data.damageType ??= this._prepareDamageType( data );
@@ -460,6 +474,42 @@ export default class DamageRollOptions extends EdRollOptions {
     }
 
     return undefined;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  _applyGlobalStepModifiers( data ) {
+    const stepData = super._applyGlobalStepModifiers( data );
+    if ( !stepData ) return;
+
+    const actor = fromUuidSync( data.rollingActorUuid );
+    if ( !actor ) return stepData;
+
+    // Remove weapon-specific modifiers that don't match the current weapon type
+    const weaponTypeModifierMap = {
+      melee:   "allMeleeDamage",
+      unarmed: "allMeleeDamage",
+      missile: "allRangedDamage",
+      thrown:  "allRangedDamage",
+    };
+    const activeWeaponModifier = weaponTypeModifierMap[data.weaponType];
+
+    // Get all weapon-specific modifiers that were added by parent
+    const config = game.system.config.EFFECTS;
+    const weaponModifiers = [ "allMeleeDamage", "allRangedDamage" ];
+    
+    // Remove mismatched weapon modifiers
+    for ( const bonus of weaponModifiers ) {
+      if ( bonus !== activeWeaponModifier ) {
+        const modifierLabel = config.globalBonuses[bonus]?.label;
+        if ( modifierLabel ) {
+          delete stepData.modifiers[modifierLabel];
+        }
+      }
+    }
+
+    return stepData;
   }
 
   /**
