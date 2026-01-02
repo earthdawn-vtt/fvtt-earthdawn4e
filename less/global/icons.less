@@ -125,7 +125,8 @@
   }
 
   /* ======================= Abilities ======================= */
-  .ability-card__grid--container {
+  .ability-card__grid--container, 
+  .power-card__grid--container {
     .icons__dice {
       .iconCell(25px);
 
@@ -147,6 +148,8 @@
 
     &:hover .icons__dice.has-overlay .ability-icon,
     .icons__dice.has-overlay:hover .ability-icon,
+    &:hover .icons__dice.has-overlay .power-icon,
+    .icons__dice.has-overlay:hover .power-icon,
     &:hover .icons__dice.has-overlay .item__image--visible,
     .icons__dice.has-overlay:hover .item__image--visible {
       opacity: 0;

@@ -804,7 +804,8 @@ h3.label--rail .label__text::after {
 .actor .icon--button.icon.icon--blood:focus-visible {
   color: var(--color-text-lt);
 }
-.actor .ability-card__grid--container .icons__dice {
+.actor .ability-card__grid--container .icons__dice,
+.actor .power-card__grid--container .icons__dice {
   --icon-cell: 25px;
   position: relative;
   width: var(--icon-cell);
@@ -814,7 +815,9 @@ h3.label--rail .label__text::after {
   line-height: 0;
 }
 .actor .ability-card__grid--container .icons__dice .ability-icon,
-.actor .ability-card__grid--container .icons__dice .item__image--visible {
+.actor .power-card__grid--container .icons__dice .ability-icon,
+.actor .ability-card__grid--container .icons__dice .item__image--visible,
+.actor .power-card__grid--container .icons__dice .item__image--visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -823,7 +826,8 @@ h3.label--rail .label__text::after {
   z-index: 1;
   transition: opacity 120ms linear;
 }
-.actor .ability-card__grid--container .icons__dice .icon--overlay {
+.actor .ability-card__grid--container .icons__dice .icon--overlay,
+.actor .power-card__grid--container .icons__dice .icon--overlay {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -834,14 +838,24 @@ h3.label--rail .label__text::after {
   z-index: 2;
 }
 .actor .ability-card__grid--container:hover .icons__dice.has-overlay .icon--overlay,
-.actor .ability-card__grid--container .icons__dice.has-overlay:hover .icon--overlay {
+.actor .power-card__grid--container:hover .icons__dice.has-overlay .icon--overlay,
+.actor .ability-card__grid--container .icons__dice.has-overlay:hover .icon--overlay,
+.actor .power-card__grid--container .icons__dice.has-overlay:hover .icon--overlay {
   opacity: 1;
   pointer-events: auto;
 }
 .actor .ability-card__grid--container:hover .icons__dice.has-overlay .ability-icon,
+.actor .power-card__grid--container:hover .icons__dice.has-overlay .ability-icon,
 .actor .ability-card__grid--container .icons__dice.has-overlay:hover .ability-icon,
+.actor .power-card__grid--container .icons__dice.has-overlay:hover .ability-icon,
+.actor .ability-card__grid--container:hover .icons__dice.has-overlay .power-icon,
+.actor .power-card__grid--container:hover .icons__dice.has-overlay .power-icon,
+.actor .ability-card__grid--container .icons__dice.has-overlay:hover .power-icon,
+.actor .power-card__grid--container .icons__dice.has-overlay:hover .power-icon,
 .actor .ability-card__grid--container:hover .icons__dice.has-overlay .item__image--visible,
-.actor .ability-card__grid--container .icons__dice.has-overlay:hover .item__image--visible {
+.actor .power-card__grid--container:hover .icons__dice.has-overlay .item__image--visible,
+.actor .ability-card__grid--container .icons__dice.has-overlay:hover .item__image--visible,
+.actor .power-card__grid--container .icons__dice.has-overlay:hover .item__image--visible {
   opacity: 0;
 }
 .actor .equipment-card__grid--container .icons__dice,
