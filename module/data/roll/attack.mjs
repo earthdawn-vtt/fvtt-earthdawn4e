@@ -71,6 +71,8 @@ export default class AttackRollOptions extends EdRollOptions {
   static GLOBAL_MODIFIERS = [
     "allActions",
     "allAttacks",
+    "allCloseAttacks",
+    "allRangedAttacks",
     ...super.GLOBAL_MODIFIERS,
   ];
 
@@ -147,6 +149,42 @@ export default class AttackRollOptions extends EdRollOptions {
       public:    false,
       tokens:    targetTokens.map( token => token.document.uuid ),
     };
+  }
+
+  /**
+   * @inheritDoc
+   */
+  _applyGlobalStepModifiers( data ) {
+    const stepData = super._applyGlobalStepModifiers( data );
+    if ( !stepData ) return;
+
+    const actor = fromUuidSync( data.rollingActorUuid );
+    if ( !actor ) return stepData;
+
+    // Remove weapon-specific modifiers that don't match the current weapon type
+    const weaponTypeModifierMap = {
+      melee:   "allCloseAttacks",
+      unarmed: "allCloseAttacks",
+      missile: "allRangedAttacks",
+      thrown:  "allRangedAttacks",
+    };
+    const activeWeaponModifier = weaponTypeModifierMap[data.weaponType];
+
+    // Get all weapon-specific modifiers that were added by parent
+    const config = game.system.config.EFFECTS;
+    const weaponModifiers = [ "allCloseAttacks", "allRangedAttacks" ];
+    
+    // Remove mismatched weapon modifiers
+    for ( const bonus of weaponModifiers ) {
+      if ( bonus !== activeWeaponModifier ) {
+        const modifierLabel = config.globalBonuses[bonus]?.label;
+        if ( modifierLabel ) {
+          delete stepData.modifiers[modifierLabel];
+        }
+      }
+    }
+
+    return stepData;
   }
 
   // endregion
