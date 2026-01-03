@@ -1,6 +1,26 @@
-<div data-item-id="{{_id}}">
-    <div class="one-line__vertical-align">
-        <img src="{{img}}"  title="{{name}}" height="25" width="25"/>
-        {{name}}
+<div class="card__effect-link">
+  <div class="effect-link-card__grid--container item-id" data-item-id="{{_id}}">
+    <div class="effect-link-card__grid--item"></div>
+    <div class="effect-link-card__grid--item">
+      <img class="effect-icon" src="{{img}}" />
     </div>
+    <div class="effect-link-card__grid--item" data-action="expandItem">{{name}}</div>
+    <div class="effect-link-card__grid--item">
+        <label>{{localize "ED.Actor.Header.effectActive"}}</label>
+        <input type="checkbox"
+            class="effect-link-card__grid--checkbox"
+            data-action="toggleActiveEffect"
+            data-effect-id="{{id}}"
+            data-effect-uuid="{{uuid}}"
+            {{#unless disabled}}checked{{/unless}}
+        />
+    </div>
+    <div class="effect-link-card__grid--item">{{duration.remaining}}/{{duration.rounds}}</div>
+    <div class="effect-link-card__grid--item">{{> "systems/ed4e/templates/global/card-options-effect.hbs" }}</div>
+  </div>
+  <div class="card__description card__description--toggle display__inline-block">
+    <span class="card__description--content">
+      {{{this.description}}}
+    </span>
+  </div>
 </div>

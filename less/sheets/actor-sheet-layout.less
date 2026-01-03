@@ -37,6 +37,7 @@
     .knack-maneuver-card__grid--container,
     .equipment-card__grid--container,
     .effect-card__grid--container,
+    .effect-link-card__grid--container,
     .attribute-card__grid--container,
     .power-card__grid--container,
     .legend__grid--container,
@@ -80,6 +81,7 @@
 
     .attribute-card__grid--item:nth-child(2),
     .ability-card__grid--item:nth-child(2),
+    .effect-link-card__grid--item:nth-child(3),
     .skill-card__grid--item:nth-child(2),
     .power-card__grid--item:nth-child(2),
     .maneuver-card__grid--item:nth-child(2),
@@ -187,6 +189,18 @@
         minmax(30px, 30px)
         minmax(30px, 1fr)
         minmax(30px, 20%);
+    }
+
+    .effect-link-card__grid--container {
+      display: grid;
+      grid-template-columns:
+        minmax(25px, 25px)
+        minmax(25px, 25px)
+        minmax(25px, 1fr)
+        minmax(70px, 70px)
+        minmax(70px, 70px)
+        minmax(60px, 60px);
+      height: 30px;
     }
 
     /* ======================= General tab ======================= */

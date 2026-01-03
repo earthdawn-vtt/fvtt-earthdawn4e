@@ -3,7 +3,7 @@
     <div class="effect-card__grid--item">
       <img class="effect-icon" src="{{img}}" />
     </div>
-    <div class="effect-card__grid--item">{{name}}</div>
+    <div class="effect-card__grid--item" data-action="expandItem">{{name}}</div>
     {{#unless isItemEffect}}
       <div class="effect-card__grid--item">{{origin}}</div>
     {{/unless}}
@@ -20,8 +20,8 @@
     <div class="effect-card__grid--item">{{> "systems/ed4e/templates/global/card-options-effect.hbs" }}</div>
   </div>
   <div class="card__description card__description--toggle display__inline-block">
-    <span class="card__description--content">
-      {{{system.description.value}}}
+    <span class="card__description--content">}
+      {{{this.description}}}
     </span>
   </div>
 </div>
