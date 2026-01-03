@@ -2377,7 +2377,7 @@ form.ed4e.character-generation nav a.disabled {
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container {
   display: grid;
-  grid-template-columns: minmax(37px, 1fr) minmax(37px, 1fr);
+  grid-template-columns: minmax(25px, 1fr) minmax(25px, 1fr) minmax(25px, 1fr);
 }
 .application.sheet.earthdawn4e.actor .window-content .initiative__grid--container .initiative__grid--item,
 .application.sheet.earthdawn4e.actor .window-content .initiative-npc__grid--container .initiative__grid--item {

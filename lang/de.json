@@ -1227,6 +1227,10 @@
                 "label":                          "Aktuell"
               }
             },
+            "knockdownStep": {
+              "hint":                             "Niederschlagsstufe des Akteurs",
+              "label":                            "Niederschlagsstufe"
+            },
             "relations": {
               "attitude": {
                 "hint":                           "Einstellung des Akteurs gegenüber anderen Akteuren",
