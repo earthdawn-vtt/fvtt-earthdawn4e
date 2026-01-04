@@ -49,7 +49,7 @@ export default function () {
           window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki", "_blank" );
         } );
         createBugButton.addEventListener( "click", () => {
-          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/issues/new?template=bug_report.md", "_blank" );
+          window.open( "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new?template=01-bug-report.yml", "_blank" );
         } );
       }
     }
