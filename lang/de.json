@@ -3831,7 +3831,7 @@
     },
     "Update": {
       "contact":                                  "Bei Fragen oder Problemen kontaktiert uns bitte im <a href=\"https://discord.gg/earthdawn-foundry\" target=\"_blank\">Earthdawn Foundry Discord</a>.",
-      "news1_0_0":                                "<h3>Willkommen in bei der neuesten Version vom Earthdawn System für Foundry Virtual Tabletop</h3><p>Dies ist die erste Version (Beta) des überarbeiteten Earthdawn Systems.</p><p>Das System wurde von Grund auf neu überarbeitet und viele Abläufe haben sich geändert.</p><p>Alle Einzelheiten hier aufzuführen wäre zu viel, bitte lest euch die Release Notes <a href=\"https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log\" target=\"_blank\">Release Notes</a></p>",
+      "news1_0_0":                                "<h3>Willkommen in bei der neuesten Version vom Earthdawn System für Foundry Virtual Tabletop</h3><p>Dies ist die Beta Version des überarbeiteten Earthdawn Systems.</p><p>Das System wurde von Grund auf neu überarbeitet und viele Abläufe haben sich geändert.</p><p>Alle Einzelheiten hier aufzuführen wäre zu viel, schaut euch gerne das Wiki an <a href=\"https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki\" target=\"_blank\">Wiki</a> an</p>",
       "newsHeader":                               "Neuigkeiten",
       "welcome":                                  "Willkommen bei der Edition {version} vom Earthdawn Foundry System"
     }
