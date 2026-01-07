@@ -1,7 +1,8 @@
-import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as ITEMS from "../../config/items.mjs";
+import * as EFFECTS from "../../config/effects.mjs";
 
 /**
  * @typedef { object } EdAttackRollOptionsInitializationData
@@ -38,7 +39,7 @@ export default class AttackRollOptions extends EdRollOptions {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       weaponType:        new fields.StringField( {
-        choices: ED4E.weaponType,
+        choices: ITEMS.weaponType,
       } ),
       weaponUuid:        new fields.DocumentUUIDField( {
         type:     "Item",
@@ -71,8 +72,6 @@ export default class AttackRollOptions extends EdRollOptions {
   static GLOBAL_MODIFIERS = [
     "allActions",
     "allAttacks",
-    "allCloseAttacks",
-    "allRangedAttacks",
     ...super.GLOBAL_MODIFIERS,
   ];
 
@@ -115,10 +114,14 @@ export default class AttackRollOptions extends EdRollOptions {
 
     const attackAbility = data.attackAbility ?? fromUuidSync( data.attackAbilityUuid );
     const attacker = data.attacker ?? fromUuidSync( data.rollingActorUuid );
+    const weapon = data.weapon ?? fromUuidSync( data.weaponUuid );
 
+    const globalModifierKey = ITEMS.weaponTypeModifier[ weapon.system.weaponType ];
     return {
       base:      attackAbility?.system.rankFinal ?? attacker.system.attributes.dex.step,
-      modifiers: {},
+      modifiers: {
+        [ EFFECTS.globalBonuses[globalModifierKey].label ]: attacker.system.globalBonuses[ globalModifierKey ].value,
+      },
     };
   }
 
@@ -149,42 +152,6 @@ export default class AttackRollOptions extends EdRollOptions {
       public:    false,
       tokens:    targetTokens.map( token => token.document.uuid ),
     };
-  }
-
-  /**
-   * @inheritDoc
-   */
-  _applyGlobalStepModifiers( data ) {
-    const stepData = super._applyGlobalStepModifiers( data );
-    if ( !stepData ) return;
-
-    const actor = fromUuidSync( data.rollingActorUuid );
-    if ( !actor ) return stepData;
-
-    // Remove weapon-specific modifiers that don't match the current weapon type
-    const weaponTypeModifierMap = {
-      melee:   "allCloseAttacks",
-      unarmed: "allCloseAttacks",
-      missile: "allRangedAttacks",
-      thrown:  "allRangedAttacks",
-    };
-    const activeWeaponModifier = weaponTypeModifierMap[data.weaponType];
-
-    // Get all weapon-specific modifiers that were added by parent
-    const config = game.system.config.EFFECTS;
-    const weaponModifiers = [ "allCloseAttacks", "allRangedAttacks" ];
-    
-    // Remove mismatched weapon modifiers
-    for ( const bonus of weaponModifiers ) {
-      if ( bonus !== activeWeaponModifier ) {
-        const modifierLabel = config.globalBonuses[bonus]?.label;
-        if ( modifierLabel ) {
-          delete stepData.modifiers[modifierLabel];
-        }
-      }
-    }
-
-    return stepData;
   }
 
   // endregion
