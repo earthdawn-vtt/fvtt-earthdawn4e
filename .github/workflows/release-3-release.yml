@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   build:
+    if: startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -23,13 +24,6 @@ jobs:
           TAG_NAME: ${{ steps.get_vars.outputs.TAG_NAME }}
 
     steps:
-      - name: log branch names
-        run: |
-          echo "Head ref: ${{ github.head_ref }}"
-          echo "Base ref: ${{ github.base_ref }}"
-          echo "Ref: ${{ github.ref }}"
-          echo "Ref name: ${{ github.ref_name }}"
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
