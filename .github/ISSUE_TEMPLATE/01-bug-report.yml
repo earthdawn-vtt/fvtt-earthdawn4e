@@ -1,10 +1,8 @@
 name: Bug Report
 description: Create a bug report
-assignees: []
 labels: ["bug", "triage"]
 title: "[BUG] - <title>"
 type: Bug
-projects: []
 body:
   - type: markdown
     attributes:
@@ -14,7 +12,7 @@ body:
     id: bug-checklist
     attributes:
       label: Bug Checklist
-      description: Please check all that apply before submitting your bug report
+      description: Please make sure you checked the following before submitting
       options:
         - label: I have searched for existing issues to see if this has already been reported
           required: true
