@@ -1,6 +1,8 @@
 import EdRollOptions from "./common.mjs";
 import ED4E, { ACTORS, COMBAT, ENVIRONMENT, MAGIC } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import * as ITEMS from "../../config/items.mjs";
+import * as EFFECTS from "../../config/effects.mjs";
 
 
 /**
@@ -169,8 +171,6 @@ export default class DamageRollOptions extends EdRollOptions {
   /** @inheritdoc */
   static GLOBAL_MODIFIERS = [
     "allDamage",
-    "allMeleeDamage",
-    "allRangedDamage",
     ...super.GLOBAL_MODIFIERS,
   ];
 
@@ -241,15 +241,6 @@ export default class DamageRollOptions extends EdRollOptions {
    */
   static fromData( data, options = {} ) {
     data.sourceUuid ??= data.sourceDocument?.uuid;
-
-    if ( !data.weaponType ) {
-      const sourceDocument = data.sourceDocument ?? fromUuidSync( data.sourceUuid );
-      if ( sourceDocument?.system?.weaponType ) {
-        data.weaponType = sourceDocument.system.weaponType;
-      } else if ( data.damageSourceType === "unarmed" ) {
-        data.weaponType = "unarmed";
-      }
-    }
 
     data.armorType ??= this._prepareArmorType( data );
     data.damageType ??= this._prepareDamageType( data );
@@ -433,13 +424,21 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
+  // eslint-disable-next-line complexity
   static _getModifiersFromSource( sourceDocument, data ) {
+    const modifiers = {};
+
+    if ( ! foundry.utils.isEmpty( sourceDocument.system?.globalBonuses ) ) {
+      const weaponType = sourceDocument.system.weaponType || "unarmed";
+      const globalBonusKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
+      modifiers[ EFFECTS.globalBonuses[ globalBonusKey ].label ] = sourceDocument.system.globalBonuses[ globalBonusKey ].value || 0;
+    }
+
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
       return undefined;
     }
 
     if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
-      const modifiers = {};
       const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
 
       if ( increaseAbilities.length > 0 ) {
@@ -460,56 +459,20 @@ export default class DamageRollOptions extends EdRollOptions {
     if ( data.damageSourceType === "spell" ) {
       const caster = data.caster || fromUuidSync( data.rollingActorUuid );
 
-      return sourceDocument.system.getEffectDetailsRollStepData( {
+      const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
         caster,
         willpower: data.willpower
       } ).modifiers;
+      return { ...modifiers, ...spellModifiers };
     }
 
     if ( data.damageSourceType === "warping" ) {
       const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
-      return {
-        [pollutionData.label]: pollutionData.rawMagic.damageModifier,
-      };
+      modifiers[pollutionData.label] = pollutionData.rawMagic.damageModifier;
+      return modifiers;
     }
 
     return undefined;
-  }
-
-  /**
-   * @inheritDoc
-   */
-  _applyGlobalStepModifiers( data ) {
-    const stepData = super._applyGlobalStepModifiers( data );
-    if ( !stepData ) return;
-
-    const actor = fromUuidSync( data.rollingActorUuid );
-    if ( !actor ) return stepData;
-
-    // Remove weapon-specific modifiers that don't match the current weapon type
-    const weaponTypeModifierMap = {
-      melee:   "allMeleeDamage",
-      unarmed: "allMeleeDamage",
-      missile: "allRangedDamage",
-      thrown:  "allRangedDamage",
-    };
-    const activeWeaponModifier = weaponTypeModifierMap[data.weaponType];
-
-    // Get all weapon-specific modifiers that were added by parent
-    const config = game.system.config.EFFECTS;
-    const weaponModifiers = [ "allMeleeDamage", "allRangedDamage" ];
-    
-    // Remove mismatched weapon modifiers
-    for ( const bonus of weaponModifiers ) {
-      if ( bonus !== activeWeaponModifier ) {
-        const modifierLabel = config.globalBonuses[bonus]?.label;
-        if ( modifierLabel ) {
-          delete stepData.modifiers[modifierLabel];
-        }
-      }
-    }
-
-    return stepData;
   }
 
   /**
