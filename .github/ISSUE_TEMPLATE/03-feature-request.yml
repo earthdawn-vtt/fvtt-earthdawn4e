@@ -1,10 +1,8 @@
 name: Feature Request
 description: Request a new feature or enhancement
-assignees: []
 labels: ["triage"]
 title: "[FEATURE REQUEST] - <title>"
-type: "Feature Request"
-projects: []
+type: "Feature"
 body:
   - type: markdown
     attributes:
