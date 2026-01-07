@@ -167,13 +167,25 @@ preLocalize( "weaponWieldingType" );
 
 /**
  * The global modifier keys associated with each weapon type.
- * @type {{melee: string, unarmed: string, missile: string, thrown: string}}
+ * @type {{[weaponType: string]: {attack: string, damage: string}}}
  */
 export const weaponTypeModifier = {
-  melee:   "allCloseAttacks",
-  unarmed: "allCloseAttacks",
-  missile: "allRangedAttacks",
-  thrown:  "allRangedAttacks",
+  melee: {
+    attack: "allCloseAttacks",
+    damage: "allCloseDamage",
+  },
+  unarmed: {
+    attack: "allCloseAttacks",
+    damage: "allCloseDamage",
+  },
+  missile: {
+    attack: "allRangedAttacks",
+    damage: "allRangedDamage",
+  },
+  thrown: {
+    attack: "allRangedAttacks",
+    damage: "allRangedDamage",
+  },
 };
 
 // endregion

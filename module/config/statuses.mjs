@@ -11,7 +11,7 @@ const STATUS_CHANGES = {
       value: +3,
     },
     {
-      key:   "system.globalBonuses.allMeleeDamage.value",
+      key:   "system.globalBonuses.allCloseDamage.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: +3,
     },
