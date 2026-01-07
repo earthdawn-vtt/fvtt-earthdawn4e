@@ -3,7 +3,7 @@ description: Request a new feature or enhancement
 assignees: []
 labels: ["triage"]
 title: "[FEATURE REQUEST] - <title>"
-type: "Feature Request"
+type: "Feature"
 projects: []
 body:
   - type: markdown
