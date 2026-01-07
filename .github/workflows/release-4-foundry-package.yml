@@ -62,8 +62,8 @@ jobs:
                 "notes": "${{ env.NOTES }}",
                 "compatibility": {
                   "minimum": "${{ env.VERSION_MIN }}",
-                  "verified": "${{ env.VERSION_VERIFIED }}"
-                  "maximum": "${{ env.VERSION_MAX }}",
+                  "verified": "${{ env.VERSION_VERIFIED }}",
+                  "maximum": "${{ env.VERSION_MAX }}"
                 }
               }
             }
