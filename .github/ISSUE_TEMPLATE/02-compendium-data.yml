@@ -38,7 +38,7 @@ body:
   - type: dropdown
     id: compendium-language
     attributes:
-      label: Which version of the compendium is this issue related to?
+      label: Which language version of the compendium is this issue related to?
       description: Select the relevant language version from the list, if applicable
       options:
         - English
