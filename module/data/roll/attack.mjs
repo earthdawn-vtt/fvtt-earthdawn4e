@@ -116,7 +116,7 @@ export default class AttackRollOptions extends EdRollOptions {
     const attacker = data.attacker ?? fromUuidSync( data.rollingActorUuid );
     const weapon = data.weapon ?? fromUuidSync( data.weaponUuid );
 
-    const globalModifierKey = ITEMS.weaponTypeModifier[ weapon.system.weaponType ];
+    const globalModifierKey = ITEMS.weaponTypeModifier[ weapon.system.weaponType ].attack;
     return {
       base:      attackAbility?.system.rankFinal ?? attacker.system.attributes.dex.step,
       modifiers: {
