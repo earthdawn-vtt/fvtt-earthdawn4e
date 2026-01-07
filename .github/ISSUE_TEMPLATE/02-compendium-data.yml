@@ -1,10 +1,8 @@
 name: Compendium Data
 description: Report problems with existing compendium data
-assignees: []
 labels: ["compendium", "data", "triage"]
 title: "[COMPENDIUM DATA] - <title>"
 type: "Task"
-projects: []
 body:
   - type: markdown
     attributes:

@@ -1,10 +1,8 @@
 name: Bug Report
 description: Create a bug report
-assignees: []
 labels: ["bug", "triage"]
 title: "[BUG] - <title>"
 type: Bug
-projects: []
 body:
   - type: markdown
     attributes:
