@@ -6,8 +6,8 @@ env:
   NODE_VERSION: 22
 
 on:
-  pull_request:
   merge_group:
+    types: [checks_requested]
 
 permissions:
   contents: write
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   build:
-    if: startsWith(github.head_ref, 'release/') && ( github.event_name != 'pull_request' || github.event.action == 'enqueued' )
+    if: startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     permissions:
       contents: write
