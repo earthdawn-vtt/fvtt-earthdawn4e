@@ -7,7 +7,10 @@ env:
 
 on:
   pull_request:
-  merge_group:
+    types:
+      - auto_merge_enabled
+    branches:
+      - main
 
 permissions:
   contents: write
