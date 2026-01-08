@@ -71,7 +71,7 @@ jobs:
   build:
     needs: branch-gate
     name: Build and Create GitHub Release
-    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
+    if: github.event_name == 'merge_group' && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
