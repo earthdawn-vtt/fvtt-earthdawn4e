@@ -45,6 +45,17 @@ jobs:
           echo "VERSION_VERIFIED=$VERSION_VERIFIED" >> $GITHUB_ENV
           echo "VERSION_MAX=$VERSION_MAX" >> $GITHUB_ENV
 
+      - name: Log API call variables
+        id: log_api_vars
+        run: |
+          echo "::notice::FVTT_RELEASE_API_ENDPOINT: ${{ vars.FVTT_RELEASE_API_ENDPOINT }}"
+          echo "::notice::PACKAGE_ID: ${{ env.PACKAGE_ID }}"
+          echo "::notice::PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}"
+          echo "::notice::MANIFEST_URL: ${{ env.MANIFEST_URL }}"
+          echo "::notice::VERSION_MIN: ${{ env.VERSION_MIN }}"
+          echo "::notice::VERSION_VERIFIED: ${{ env.VERSION_VERIFIED }}"
+          echo "::notice::VERSION_MAX: ${{ env.VERSION_MAX }}"
+
       - name: Create Foundry Package Release
         id: create_foundry_release
         uses: fjogeleit/http-request-action@v1
