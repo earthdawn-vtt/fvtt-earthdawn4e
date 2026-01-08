@@ -1,0 +1,20 @@
+name: Release [3a] - PR Auto-Merge Enabled Gate
+
+on:
+  pull_request:
+    types:
+      - auto_merge_enabled
+    branches:
+      - main
+
+permissions:
+    contents: read
+
+jobs:
+  build:
+    name: Build and Create GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PR enqueue gate (no-op)
+        run: echo "::notice::No-op gate for PR event; satisfies required check for merge queue enqueue."

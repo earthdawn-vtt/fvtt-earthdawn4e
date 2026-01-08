@@ -6,16 +6,71 @@ env:
   NODE_VERSION: 22
 
 on:
+  pull_request:
   merge_group:
-    types: [checks_requested]
 
 permissions:
   contents: write
   id-token: write
+  pull-requests: read
 
 jobs:
+  branch-gate:
+    name: Detect release branch
+    runs-on: ubuntu-latest
+    outputs:
+      HEAD_REF_NAME: ${{ steps.detect_branch.outputs.HEAD_REF_NAME }}
+      IS_RELEASE_BRANCH: ${{ steps.detect_branch.outputs.is_release_branch }}
+
+    steps:
+      - name: Detect PR head branch
+        id: detect_branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_EVENT_MERGE_GROUP_HEAD_REF: ${{ github.event.merge_group.head_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            HEAD_REF_NAME="$GITHUB_HEAD_REF"
+          else
+            # Merge queue branch name format: gh-readonly-queue/{base_branch}/pr-{pr_number}-{head_sha}
+            PR_NUMBER_REGEX='/pr-([0-9]+)-'
+          
+            if [[ "$GITHUB_EVENT_MERGE_GROUP_HEAD_REF:-" =~ $PR_NUMBER_REGEX ]]; then
+              PR_NUMBER="${BASH_REMATCH[1]}"
+            else
+              echo "Could not extract PR number from merge queue head ref: ${GITHUB_EVENT_MERGE_GROUP_HEAD_REF:-<empty>}"
+              exit 1
+            fi
+          
+            HEAD_REF_NAME="$(gh pr view $PR_NUMBER --repo "$REPO" --json headRefName -q '.headRefName')"
+          fi
+          
+          echo "HEAD_REF_NAME=$HEAD_REF_NAME" >> $GITHUB_OUTPUT
+          echo "::notice::Computed HEAD_REF_NAME: $HEAD_REF_NAME"
+          
+          if [[ "$HEAD_REF_NAME" == release/* ]]; then
+            IS_RELEASE_BRANCH=true
+          else
+            IS_RELEASE_BRANCH=false
+          fi
+          echo "is_release_branch=$IS_RELEASE_BRANCH" >> $GITHUB_OUTPUT
+          echo "::notice::Computed IS_RELEASE_BRANCH: $IS_RELEASE_BRANCH"
+
+      - name: Log outputs
+        run: |
+          echo "steps.detect_branch.outputs.HEAD_REF_NAME = ${{ steps.detect_branch.outputs.HEAD_REF_NAME }}"
+          echo "steps.detect_branch.outputs.is_release_branch = ${{ steps.detect_branch.outputs.is_release_branch }}"
+
   build:
-    if: startsWith(github.head_ref, 'release/')
+    needs: branch-gate
+    name: Build and Create GitHub Release
+    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -129,6 +184,11 @@ jobs:
           **Installation:** To manually install this release, please use the following manifest URL: ${{ env.RELEASE_INSTALL_URL }}
           EOF
           
+          if gh release view "${{ env.TAG_NAME }}"; then
+            echo "::notice::Existing release found for tag ${{ env.TAG_NAME }}; deleting release."
+            gh release delete "${{ env.TAG_NAME }}" --yes || true
+          fi
+          
           gh release create ${{ env.TAG_NAME }} ./${{ env.ZIP_NAME }} ./system.json \
             --draft=false \
             --fail-on-no-commits \
@@ -144,3 +204,4 @@ jobs:
     uses: ./.github/workflows/release-4-foundry-package.yml
     with:
       release-tag: ${{ needs.build.outputs.TAG_NAME }}
+    secrets: inherit
