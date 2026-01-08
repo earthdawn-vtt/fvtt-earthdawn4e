@@ -187,6 +187,11 @@ jobs:
           **Installation:** To manually install this release, please use the following manifest URL: ${{ env.RELEASE_INSTALL_URL }}
           EOF
           
+          if gh release view "${{ env.TAG_NAME }}"; then
+            echo "Existing release found for tag ${{ env.TAG_NAME }}; deleting release."
+            gh release delete "${{ env.TAG_NAME }}" --yes || true
+          fi
+          
           gh release create ${{ env.TAG_NAME }} ./${{ env.ZIP_NAME }} ./system.json \
             --draft=false \
             --fail-on-no-commits \
