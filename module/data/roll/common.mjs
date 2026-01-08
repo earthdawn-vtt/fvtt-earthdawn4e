@@ -618,7 +618,7 @@ export default class EdRollOptions extends SparseDataModel {
 
     this.constructor.GLOBAL_MODIFIERS.forEach( bonus => {
       const modifierValue = actor.system.globalBonuses[bonus].value;
-      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 )stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = modifierValue;
+      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 ) stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = modifierValue;
     } );
 
     return stepData;

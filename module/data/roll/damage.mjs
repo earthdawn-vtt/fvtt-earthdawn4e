@@ -1,6 +1,8 @@
 import EdRollOptions from "./common.mjs";
 import ED4E, { ACTORS, COMBAT, ENVIRONMENT, MAGIC } from "../../config/_module.mjs";
 import { createContentAnchor } from "../../utils.mjs";
+import * as ITEMS from "../../config/items.mjs";
+import * as EFFECTS from "../../config/effects.mjs";
 
 
 /**
@@ -190,6 +192,9 @@ export default class DamageRollOptions extends EdRollOptions {
       damageSourceType:       new fields.StringField( {
         required: true,
         choices:  COMBAT.damageSourceConfig,
+      } ),
+      weaponType:             new fields.StringField( {
+        choices: ED4E.weaponType,
       } ),
       armorType:              new fields.StringField( {
         required: true,
@@ -419,13 +424,25 @@ export default class DamageRollOptions extends EdRollOptions {
    * @returns { RollModifiers | undefined } The modifiers for the step of the damage roll, or undefined if no
    * modifiers are found.
    */
+  // eslint-disable-next-line complexity
   static _getModifiersFromSource( sourceDocument, data ) {
+    const modifiers = {};
+
+    const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
+
+    if ( isUnarmedOrWeapon ) {
+      const weaponType = sourceDocument.system.weaponType || "unarmed";
+      const globalBonusKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
+      const actor = fromUuidSync( data.rollingActorUuid );
+      if ( !actor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
+      modifiers[ EFFECTS.globalBonuses[ globalBonusKey ].label ] = actor.system.globalBonuses[ globalBonusKey ].value || 0;
+    }
+
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
       return undefined;
     }
 
-    if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
-      const modifiers = {};
+    if ( isUnarmedOrWeapon ) {
       const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
 
       if ( increaseAbilities.length > 0 ) {
@@ -446,17 +463,17 @@ export default class DamageRollOptions extends EdRollOptions {
     if ( data.damageSourceType === "spell" ) {
       const caster = data.caster || fromUuidSync( data.rollingActorUuid );
 
-      return sourceDocument.system.getEffectDetailsRollStepData( {
+      const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
         caster,
         willpower: data.willpower
       } ).modifiers;
+      return { ...modifiers, ...spellModifiers };
     }
 
     if ( data.damageSourceType === "warping" ) {
       const pollutionData = MAGIC.astralSpacePollution[ data.astralSpacePollution || "safe" ];
-      return {
-        [pollutionData.label]: pollutionData.rawMagic.damageModifier,
-      };
+      modifiers[pollutionData.label] = pollutionData.rawMagic.damageModifier;
+      return modifiers;
     }
 
     return undefined;

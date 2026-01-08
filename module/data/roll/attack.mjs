@@ -1,7 +1,8 @@
-import ED4E from "../../config/_module.mjs";
 import EdRollOptions from "./common.mjs";
 import { createContentAnchor } from "../../utils.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import * as ITEMS from "../../config/items.mjs";
+import * as EFFECTS from "../../config/effects.mjs";
 
 /**
  * @typedef { object } EdAttackRollOptionsInitializationData
@@ -38,7 +39,7 @@ export default class AttackRollOptions extends EdRollOptions {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
       weaponType:        new fields.StringField( {
-        choices: ED4E.weaponType,
+        choices: ITEMS.weaponType,
       } ),
       weaponUuid:        new fields.DocumentUUIDField( {
         type:     "Item",
@@ -113,10 +114,14 @@ export default class AttackRollOptions extends EdRollOptions {
 
     const attackAbility = data.attackAbility ?? fromUuidSync( data.attackAbilityUuid );
     const attacker = data.attacker ?? fromUuidSync( data.rollingActorUuid );
+    const weapon = data.weapon ?? fromUuidSync( data.weaponUuid );
 
+    const globalModifierKey = ITEMS.weaponTypeModifier[ weapon.system.weaponType ].attack;
     return {
       base:      attackAbility?.system.rankFinal ?? attacker.system.attributes.dex.step,
-      modifiers: {},
+      modifiers: {
+        [ EFFECTS.globalBonuses[globalModifierKey].label ]: attacker.system.globalBonuses[ globalModifierKey ].value,
+      },
     };
   }
 

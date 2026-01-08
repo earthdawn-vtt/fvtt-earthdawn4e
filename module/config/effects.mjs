@@ -135,8 +135,8 @@ export const globalBonuses = {
   allKnockdownTests: {
     label:       "ED.Actor.GlobalBonus.allKnockdownTests"
   },
-  allMeleeDamage: {
-    label:       "ED.Actor.GlobalBonus.allMeleeDamage"
+  allCloseDamage: {
+    label:       "ED.Actor.GlobalBonus.allCloseDamage"
   },
   allRangedAttacks: {
     label:       "ED.Actor.GlobalBonus.allRangedAttacks"

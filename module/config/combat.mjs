@@ -12,11 +12,11 @@ export const bonusDamagePerExtraSuccess = 2;
  * @enum {string}
  */
 export const combatTypes = {
-  Aerial: {
+  aerial: {
     label:            "ED.Config.CombatTypes.aerial",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
-  Close: {
+  close: {
     label:            "ED.Config.CombatTypes.close",
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
@@ -45,7 +45,7 @@ export const combatTypes = {
     flavorTemplate:   "systems/ed4e/templates/chat/chat-flavor/attack-roll-flavor.hbs",
   },
 };
-preLocalize( "testTypes", { key: "label" } );
+preLocalize( "combatTypes", { key: "label" } );
 
 /**
  * Configuration for a damage source type
