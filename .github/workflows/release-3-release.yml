@@ -6,16 +6,59 @@ env:
   NODE_VERSION: 22
 
 on:
+  pull_request:
+    branches: [ main ]
   merge_group:
-    types: [checks_requested]
 
 permissions:
   contents: write
   id-token: write
+  pull-requests: read
 
 jobs:
+  branch-gate:
+    name: Detect release branch
+    runs-on: ubuntu-latest
+    outputs:
+      HEAD_REF_NAME: ${{ steps.detect_branch.outputs.HEAD_REF_NAME }}
+      IS_RELEASE_BRANCH: ${{ steps.detect_branch.outputs.is_release_branch }}
+
+    steps:
+      - name: Detect PR head branch
+        id: detect_branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          MERGE_GROUP_HEAD_SHA: ${{ github.event.merge_group.head_sha }}
+
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            HEAD_REF="${{ github.head_ref }}"
+          else
+            # Merge queue branch name format: gh-readonly-queue/{base_branch}/pr-{pr_number}-{head_sha}
+            PR_NUMBER_REGEX='/pr-([0-9]+)-'
+            # Extract PR number from capturing group
+            [[ ${{ github.event.merge_group.head_ref }} =~ $PR_NUMBER_REGEX ]] && PR_NUMBER=${BASH_REMATCH[1}}
+          
+            HEAD_REF_NAME="$(gh pr view $PR_NUMBER --repo "$REPO" --json headRefName -q '.headRefName')"
+          fi
+          
+          echo "HEAD_REF_NAME=$HEAD_REF_NAME" >> $GITHUB_OUTPUT
+          if [[ "$HEAD_REF_NAME" == release/* ]]; then
+            echo "is_release_branch=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_release_branch=false" >> $GITHUB_OUTPUT
+          fi
+
   build:
-    if: startsWith(github.head_ref, 'release/')
+    needs: branch-gate
+    name: Build and Create GitHub Release
+    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH
     runs-on: ubuntu-latest
     permissions:
       contents: write
