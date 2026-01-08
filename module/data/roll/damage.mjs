@@ -428,17 +428,21 @@ export default class DamageRollOptions extends EdRollOptions {
   static _getModifiersFromSource( sourceDocument, data ) {
     const modifiers = {};
 
-    if ( ! foundry.utils.isEmpty( sourceDocument.system?.globalBonuses ) ) {
+    const isUnarmedOrWeapon = [ "unarmed", "weapon", ].includes( data.damageSourceType );
+
+    if ( isUnarmedOrWeapon ) {
       const weaponType = sourceDocument.system.weaponType || "unarmed";
       const globalBonusKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
-      modifiers[ EFFECTS.globalBonuses[ globalBonusKey ].label ] = sourceDocument.system.globalBonuses[ globalBonusKey ].value || 0;
+      const actor = fromUuidSync( data.rollingActorUuid );
+      if ( !actor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
+      modifiers[ EFFECTS.globalBonuses[ globalBonusKey ].label ] = actor.system.globalBonuses[ globalBonusKey ].value || 0;
     }
 
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {
       return undefined;
     }
 
-    if ( [ "unarmed", "weapon" ].includes( data.damageSourceType ) ) {
+    if ( isUnarmedOrWeapon ) {
       const increaseAbilities = data.increaseAbilities || ( data.increaseAbilityUuids || [] ).map( uuid => fromUuidSync( uuid ) );
 
       if ( increaseAbilities.length > 0 ) {
