@@ -10,6 +10,10 @@ on:
         description: "The tag name of the release to push to Foundry VTT"
         required: true
         type: string
+    secrets:
+      FVTT_RELEASE_TOKEN:
+        required: true
+        description: "The Foundry VTT Package Repository API token"
 
 
 jobs:
@@ -34,16 +38,18 @@ jobs:
           RELEASE_TAG=${{ github.event.release.tag_name || inputs.release-tag }}
           MANIFEST_URL="https://github.com/${{ github.repository }}/releases/download/$RELEASE_TAG/system.json"
           NOTES="https://github.com/${{github.repository}}/releases/tag/$RELEASE_TAG"
-          VERSION_MIN=${{ steps.manifest.outputs.compatibility.minimum }}
-          VERSION_VERIFIED=${{ steps.manifest.outputs.compatibility.verified }}
-          VERSION_MAX=${{ steps.manifest.outputs.compatibility.maximum }}
-          echo "PACKAGE_ID=$PACKAGE_ID" >> $GITHUB_ENV
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-          echo "MANIFEST_URL=$MANIFEST_URL" >> $GITHUB_ENV
-          echo "NOTES=$NOTES" >> $GITHUB_ENV
-          echo "VERSION_MIN=$VERSION_MIN" >> $GITHUB_ENV
-          echo "VERSION_VERIFIED=$VERSION_VERIFIED" >> $GITHUB_ENV
-          echo "VERSION_MAX=$VERSION_MAX" >> $GITHUB_ENV
+          VERSION_MIN="$(jq -r '.compatibility.minimum // empty' system.json)"
+          VERSION_VERIFIED="$(jq -r '.compatibility.verified // empty' system.json)"
+          VERSION_MAX="$(jq -r '.compatibility.maximum // empty' system.json)"
+          {
+            echo "PACKAGE_ID=$PACKAGE_ID"
+            echo "PACKAGE_VERSION=$PACKAGE_VERSION"
+            echo "MANIFEST_URL=$MANIFEST_URL"
+            echo "NOTES=$NOTES"
+            echo "VERSION_MIN=$VERSION_MIN"
+            echo "VERSION_VERIFIED=$VERSION_VERIFIED"
+            echo "VERSION_MAX=$VERSION_MAX"
+          } >> "$GITHUB_ENV"
 
       - name: Log API call variables
         id: log_api_vars
@@ -59,6 +65,7 @@ jobs:
       - name: Create Foundry Package Release
         id: create_foundry_release
         uses: fjogeleit/http-request-action@v1
+        continue-on-error: true
         with:
           url: ${{ vars.FVTT_RELEASE_API_ENDPOINT }}
           method: POST

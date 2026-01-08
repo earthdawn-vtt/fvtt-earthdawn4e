@@ -207,3 +207,4 @@ jobs:
     uses: ./.github/workflows/release-4-foundry-package.yml
     with:
       release-tag: ${{ needs.build.outputs.TAG_NAME }}
+    secrets: inherit
