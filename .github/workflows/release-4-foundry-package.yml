@@ -90,12 +90,14 @@ jobs:
         run: |
           RESPONSE=${{ steps.create_foundry_release.outputs.response }}
           STATUS=${{ steps.create_foundry_release.outputs.status }}
-          echo "Response Status: $STATUS"
-          echo "Response Body: $RESPONSE"
-          if [[ ! $STATUS == success ]]; then
-              echo "Failed to create Foundry Package Release."
-              exit 1
+          echo "::notice::Response Status: $STATUS"
+          echo "::notice::Response Body: $RESPONSE"
+          
+          # Pass on HTTP 2xx
+          if [[ "$STATUS" =~ ^2[0-9][0-9]$ ]]; then
+            echo "::notice::Successfully created Foundry Package Release."
+            echo "::notice::You can edit the release at: https://foundryvtt.com/packages/${{ env.PACKAGE_ID }}/edit"
           else
-            echo "Successfully created Foundry Package Release."
-            echo "You can edit the release at: https://foundryvtt.com/packages/${{ env.PACKAGE_ID }}/edit"
+            echo "::error::Failed to create Foundry Package Release."
+            exit 1
           fi
