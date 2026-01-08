@@ -1,10 +1,14 @@
-name: release-3a-pr-gate.yml
+name: Release [3a] - PR Auto-Merge Enabled Gate
+
 on:
   pull_request:
     types:
       - auto_merge_enabled
     branches:
       - main
+
+permissions:
+    contents: read
 
 jobs:
   build:
