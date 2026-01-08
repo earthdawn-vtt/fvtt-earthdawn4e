@@ -67,11 +67,19 @@ jobs:
           echo "steps.detect_branch.outputs.HEAD_REF_NAME = ${{ steps.detect_branch.outputs.HEAD_REF_NAME }}"
           echo "steps.detect_branch.outputs.is_release_branch = ${{ steps.detect_branch.outputs.is_release_branch }}"
 
+  pr-check:
+    name: pr-build-gate
+    needs: branch-gate
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "PR gate check."
 
   build:
     needs: branch-gate
     name: Build and Create GitHub Release
-    if: github.event_name == 'merge_group' && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
+    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
