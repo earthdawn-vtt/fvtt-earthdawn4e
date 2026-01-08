@@ -188,7 +188,7 @@ jobs:
           EOF
           
           if gh release view "${{ env.TAG_NAME }}"; then
-            echo "Existing release found for tag ${{ env.TAG_NAME }}; deleting release."
+            echo "::notice::Existing release found for tag ${{ env.TAG_NAME }}; deleting release."
             gh release delete "${{ env.TAG_NAME }}" --yes || true
           fi
           
