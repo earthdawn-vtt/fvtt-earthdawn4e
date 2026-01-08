@@ -29,19 +29,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           EVENT_NAME: ${{ github.event_name }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
           GITHUB_EVENT_MERGE_GROUP_HEAD_REF: ${{ github.event.merge_group.head_ref }}
         shell: bash
         run: |
           set -euo pipefail
           
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
-            HEAD_REF_NAME="${{ github.head_ref }}"
+            HEAD_REF_NAME="$GITHUB_HEAD_REF"
           else
             # Merge queue branch name format: gh-readonly-queue/{base_branch}/pr-{pr_number}-{head_sha}
             PR_NUMBER_REGEX='/pr-([0-9]+)-'
           
-            if [[ "$GITHUB_EVENT_MERGE_GROUP_HEAD_REF" =~ $PR_NUMBER_REGEX ]]; then
-              PR_NUMBER="${BASH_REMATCH[1}}"
+            if [[ "$GITHUB_EVENT_MERGE_GROUP_HEAD_REF:-" =~ $PR_NUMBER_REGEX ]]; then
+              PR_NUMBER="${BASH_REMATCH[1]}"
             else
               echo "Could not extract PR number from merge queue head ref: ${GITHUB_EVENT_MERGE_GROUP_HEAD_REF:-<empty>}"
               exit 1
@@ -51,16 +52,26 @@ jobs:
           fi
           
           echo "HEAD_REF_NAME=$HEAD_REF_NAME" >> $GITHUB_OUTPUT
+          echo "::notice::Computed HEAD_REF_NAME: $HEAD_REF_NAME"
+          
           if [[ "$HEAD_REF_NAME" == release/* ]]; then
-            echo "is_release_branch=true" >> $GITHUB_OUTPUT
+            IS_RELEASE_BRANCH=true
           else
-            echo "is_release_branch=false" >> $GITHUB_OUTPUT
+            IS_RELEASE_BRANCH=false
           fi
+          echo "is_release_branch=$IS_RELEASE_BRANCH" >> $GITHUB_OUTPUT
+          echo "::notice::Computed IS_RELEASE_BRANCH: $IS_RELEASE_BRANCH"
+
+      - name: Log outputs
+        run: |
+          echo "steps.detect_branch.outputs.HEAD_REF_NAME = ${{ steps.detect_branch.outputs.HEAD_REF_NAME }}"
+          echo "steps.detect_branch.outputs.is_release_branch = ${{ steps.detect_branch.outputs.is_release_branch }}"
+
 
   build:
     needs: branch-gate
     name: Build and Create GitHub Release
-    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH
+    if: ( github.event_name != 'pull_request' || github.event.action == 'enqueued' ) && needs.branch-gate.outputs.IS_RELEASE_BRANCH == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
