@@ -23,7 +23,8 @@
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
     "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
     "prepare": "husky",
-    "test": "vitest"
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
@@ -36,6 +37,7 @@
     "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "@stylistic/eslint-plugin": "^2.3.0",
     "@stylistic/eslint-plugin-migrate": "^2.3.0",
+    "@vitest/coverage-v8": "^4.0.16",
     "cspell": "^9.0.1",
     "dpdm": "^3.14.0",
     "eslint": "^9.6.0",

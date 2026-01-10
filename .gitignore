@@ -1,6 +1,7 @@
 # mockup Files
 *.kra# IDE
 
+# IDE files
 .idea/
 .vs/
 .vscode/
@@ -11,7 +12,6 @@ node_modules/
 
 # Single Files
 foundry.js
-package-lock.json
 signature.json
 earthdawn4e.lock
 
@@ -19,4 +19,5 @@ earthdawn4e.lock
 /packs/
 /systems/
 
-package.json
+# Testing
+/coverage/
