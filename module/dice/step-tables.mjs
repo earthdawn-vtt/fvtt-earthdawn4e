@@ -60,10 +60,13 @@ export default function getDice( step ) {
 
 /**
  * @description step table of the third edition
- * @param { number } step The step that is to be rolled.
- * @returns { string } A dice term that can be used in for a Roll in the Foundry api.
+ * @param { number } step The step that is to be rolled. Must be between 1 and 100.
+ * @returns { string } A dice term that can be used in a Roll in the Foundry api.
+ * @throws { Error } Throws an error if the step is out of bounds.
  */
 export function get3eDice( step ) {
+  if ( step > 100 || step < 1 ) throw new Error( `The 3e step table only supports steps between 1 and 100. You provided: ${step}` );
+
   const stepsTable = [
     "0",
     "1d6 - 3",
@@ -167,10 +170,6 @@ export function get3eDice( step ) {
     "13d12 + 2d6",
     "13d12 + 1d8 + 1d6",
   ];
-  if ( step > 100 || step < 1 ) {
-    ui.notifications.error( "This Step Table does Not Support That Number" );
-    return false;
-  }
   return stepsTable[step];
 }
 
