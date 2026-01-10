@@ -22,7 +22,8 @@
     "lint:fix": "gulp lint --fix",
     "pushLDBtoJSON": "node ./tools/pushLDBtoJSON.mjs",
     "pullJSONtoLDB": "node ./tools/pullJSONtoLDB.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
