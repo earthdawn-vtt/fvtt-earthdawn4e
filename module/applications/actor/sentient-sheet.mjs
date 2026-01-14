@@ -49,6 +49,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       knockdown:        ActorSheetEdSentient.knockdownTest,
       recovery:         ActorSheetEdSentient.rollRecovery,
       rollable:         ActorSheetEdSentient.rollable,
+      takeStrain:       ActorSheetEdSentient.takeStrain,
       takeDamage:       ActorSheetEdSentient.takeDamage,
       upgradeItem:      ActorSheetEdSentient._onAdjustItemLevel,
     },
@@ -239,6 +240,23 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       armorType:    takeDamage.armorType,
       ignoreArmor:  takeDamage.ignoreArmor,
     } );
+  }
+
+  /**
+   * Handle take strain button on the actor sheet.
+   * @param {Event} event     The originating click event.
+   * @param {HTMLElement} target  The target element that was clicked.
+   * @returns {Promise<void>} - A promise that resolves when strain is applied.
+   */
+  static async takeStrain( event, target ) {
+    event.preventDefault();
+    const li = target.closest( ".item-id" );
+    const ability = this.document.items.get( li?.dataset?.itemId );
+    if ( !ability ) return;
+    await this.document.takeStrain(
+      ability.system.strain,
+      ability
+    );
   }
 
   /**
