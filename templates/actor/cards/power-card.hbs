@@ -1,19 +1,29 @@
 <div class="card__power card__ability favoritable" data-uuid="{{uuid}}">
-    <div class="power-card__grid--container item-id" data-item-id="{{_id}}">
-        <div class="power-card__grid--item icons__dice">
-            {{#if (ne this.system.powerStep 0)}}
-                <img class="power-icon" src="{{img}}"/>
-                <img class="roll-icon__hover" src="icons/svg/d20-grey.svg">
-                <img class="roll-icon__pointer rollable" data-action="rollable" src="icons/svg/d20-black.svg">
-            {{else}} 
+    <div class="power-card__grid--container ability-card__grid--container item-id" data-item-id="{{_id}}">
+        <div class="power-card__grid--item icons__dice {{#if (or (ne this.system.powerStep 0) (ne this.system.strain 0))}}has-overlay{{/if}}">
+        <img class="power-icon ability-icon" src="{{img}}" alt="{{name}}">
+        {{#if (ne this.system.powerStep 0)}}
+            <button
+                type="button"
+                class="icon--button icon icon--d20 rollable icon--overlay"
+                data-action="rollable"
+                data-tooltip="Roll {{name}}"
+                data-tooltip-direction="UP"
+                aria-label="Roll {{name}}">
+            </button>
+        {{else}}
             {{#if (ne this.system.strain 0)}}
-                <img class="power-icon" src="{{img}}" data-edit="img" title="{{name}}" height="25" width="25" />
-                <img class="roll-icon__hover-fixed blood" src="icons/svg/blood.svg">
-                <img class="roll-icon__pointer take-strain" src="systems/ed4e/assets/icons/red-blood.svg" data-attribute="{{@key}}">
-            {{else}}
-                    <img class="item__image--visible" src="{{img}}" title="{{name}}" height="25" width="25" />
-                {{/if}}
+            <button
+                type="button"
+                class="icon--button icon icon--blood take-strain icon--overlay"
+                data-action="takeStrain"
+                data-attribute="{{@key}}"
+                data-tooltip="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}"
+                data-tooltip-direction="UP"
+                aria-label="{{localize 'ED.Data.Item.Action.FIELDS.strain.label'}}">
+            </button>
             {{/if}}
+        {{/if}}
         </div>
         <div class="power-card__grid--item card__name" data-action="expandItem">{{name}}</div>
         <div class="power-card__grid--item text__alignment--center">{{system.action}}</div>
