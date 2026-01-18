@@ -28,6 +28,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
       manualOverride:                 ActorSheetEd._onManualOverride,
       toggleTruePatternKnownToPlayer: ActorSheetEd._onToggleTruePatternKnownToPlayer,
       weaveThread:                    ActorSheetEd._onWeaveThread,
+      takeStrain:                     ActorSheetEd._onTakeStrain,
     },
   };
 
@@ -174,7 +175,7 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
 
     const itemDescription = $( target )
       .parent( ".item-id" )
-      .parent( ".card__ability" )
+      .parent( ".card__ability, .card__power, .card__effect-link, .card__effect" )
       .children( ".card__description" );
 
     itemDescription.toggleClass( "card__description--toggle" );
@@ -290,6 +291,21 @@ export default class ActorSheetEd extends DocumentSheetMixinEd( ActorSheetV2 ) {
     }
 
     await actor.weaveThread( this.document );
+  }
+
+  /**
+   * Take strain damage from actions
+   * @param {Event} event - The event that triggered the form submission.
+   * @param {HTMLElement} target - The HTML element that triggered the action.
+   */
+  static async _onTakeStrain( event, target ) {
+    event.preventDefault();
+    const li = target.closest( ".item-id" );
+    const ability = this.document.items.get( li.dataset.itemId );
+    await this.document.takeStrain(
+      ability.system.strain,
+      ability
+    );
   }
 
   /**
