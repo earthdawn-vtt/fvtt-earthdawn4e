@@ -388,7 +388,7 @@ export default class DamageRollOptions extends EdRollOptions {
         const caster = data.caster || fromUuidSync( data.rollingActorUuid );
         baseStep = sourceDocument.system.getEffectDetailsRollStepData( {
           caster,
-          willpower: data.willpower
+          willforce: data.willforce
         } ).base;
         break;
       }
@@ -465,7 +465,7 @@ export default class DamageRollOptions extends EdRollOptions {
 
       const spellModifiers = sourceDocument.system.getEffectDetailsRollStepData( {
         caster,
-        willpower: data.willpower
+        willforce: data.willforce
       } ).modifiers;
       return { ...modifiers, ...spellModifiers };
     }
