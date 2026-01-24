@@ -624,7 +624,7 @@ export default class ActorEd extends Actor {
    * Check if the character has the required weapon with the correct type equipped.
    * @param {ItemEd} ability - The ability item being used.
    * @param {string} attackType - The type of attack being performed.
-   * @returns {string} - The action to take or an empty string (which should not happen!).
+   * @returns {ItemEd} Weapon for the attack.
    * @protected
    */
   async checkEquippedWeapons( ability, attackType ) {
@@ -652,23 +652,9 @@ export default class ActorEd extends Actor {
       weaponForAttack = await this.switchWeapon( weaponByStatus, requiredAttackWeaponTypes );
     }
     return weaponForAttack;
-
-
-
-
-
-    // if ( result === "switchWeapon" ) {
-    //   return this.switchWeapon( someWeapon );
-    // } else if ( result === "drawWeapon" ) {
-    //   return this.drawWeapon();
-    // } else {
-    //   // result is a weapon item
-    //   return result;
-    // }
   }
 
   /**
-   *
    * @returns {ItemEd|undefined} The weapon that was drawn or undefined if no weapon was drawn.
    */
   async drawWeapon() {
@@ -677,12 +663,18 @@ export default class ActorEd extends Actor {
     return weapon;
   }
 
+  /**
+   * Switches the currently equipped weapon to a weapon that matches the required weapon types.
+   * @param {ItemEd|null} equippedWeapon - The currently equipped weapon, or null if no weapon is equipped.
+   * @param {Set<string>} requiredWeaponStatus - A set of required weapon types for the attack.
+   * @returns {ItemEd} The weapon that was switched to.
+   */
   async switchWeapon( equippedWeapon, requiredWeaponStatus ) {
     const ownedWeaponByStatus = this.itemTypes.weapon.find(
       weapon => requiredWeaponStatus.has( weapon.system.weaponType )
     );
     if ( !ownedWeaponByStatus ) {
-      ui.notifications.error( game.i18n.localize( "ED.Notifications.error.noWeaponAvailable" ) );
+      ui.notifications.error( game.i18n.localize( "ED.Notifications.Warn.noWeaponToAttackWith" ) );
       return;
     }
     ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.switchWeapon" ) );
