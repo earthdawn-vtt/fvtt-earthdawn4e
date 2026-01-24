@@ -19,7 +19,7 @@ import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mj
 import DialogEd from "../applications/api/dialog.mjs";
 import HalfMagicWorkflow from "../workflows/workflow/half-magic-workflow.mjs";
 import SubstituteWorkflow from "../workflows/workflow/substitute-workflow.mjs";
-import { DOCUMENT_DATA, TOKEN } from "../config/_module.mjs";
+import { DOCUMENT_DATA, TOKEN, ITEMS } from "../config/_module.mjs";
 import CombatDamageWorkflow from "../workflows/workflow/damage-workflow.mjs";
 import JumpUpWorkflow from "../workflows/workflow/jump-up-workflow.mjs";
 import WeaveThreadWorkflow from "../workflows/workflow/weave-thread-workflow.mjs";
@@ -605,6 +605,10 @@ export default class ActorEd extends Actor {
   }
 
   async attack( attackType ) {
+    if ( attackType !== "unarmed" ) {
+      const weapon = await this.checkEquippedWeapons( undefined, attackType );
+      if ( !weapon ) return;
+    }
     const attackWorkflow = new AttackWorkflow(
       this,
       {
@@ -617,6 +621,53 @@ export default class ActorEd extends Actor {
   }
 
   /**
+   * Check if the character has the required weapon with the correct type equipped.
+   * @param {ItemEd} ability - The ability item being used.
+   * @param {string} attackType - The type of attack being performed.
+   * @returns {string} - The action to take or an empty string (which should not happen!).
+   * @protected
+   */
+  async checkEquippedWeapons( ability, attackType ) {
+
+    let requiredAttackWeaponTypes = new Set( attackType ? [ attackType ] : [] );
+    let requiredWieldingStatus = new Set( Object.keys( ITEMS.weaponWieldingType ) ); 
+    if ( ability ) {
+      requiredAttackWeaponTypes = ability.rollTypeDetails.attack.weaponTypes;
+      requiredWieldingStatus = ability.rollTypeDetails.attack.weaponItemStatus;
+    }
+    if ( requiredAttackWeaponTypes.has( "unarmed" ) ) return "_unarmed";
+
+    const weaponByStatus = this.equippedWeapons.find( weapon => requiredWieldingStatus.has( weapon.system.itemStatus ) );
+    const weaponByType = this.equippedWeapons.find( weapon => requiredAttackWeaponTypes.has( weapon.system.weaponType ) );
+
+    let weaponForAttack;    
+    if (
+      // we need to check for the weapon  itself before comparing the uuids
+      // otherwise if both are null, the comparison will return true
+      weaponByStatus && weaponByType
+      && ( weaponByStatus.uuid === weaponByType.uuid )
+    ) {
+      weaponForAttack = weaponByStatus;
+    } else {
+      weaponForAttack = await this.switchWeapon( weaponByStatus, requiredAttackWeaponTypes );
+    }
+    return weaponForAttack;
+
+
+
+
+
+    // if ( result === "switchWeapon" ) {
+    //   return this.switchWeapon( someWeapon );
+    // } else if ( result === "drawWeapon" ) {
+    //   return this.drawWeapon();
+    // } else {
+    //   // result is a weapon item
+    //   return result;
+    // }
+  }
+
+  /**
    *
    * @returns {ItemEd|undefined} The weapon that was drawn or undefined if no weapon was drawn.
    */
@@ -626,7 +677,14 @@ export default class ActorEd extends Actor {
     return weapon;
   }
 
-  async switchWeapon( equippedWeapon ) {
+  async switchWeapon( equippedWeapon, requiredWeaponStatus ) {
+    const ownedWeaponByStatus = this.itemTypes.weapon.find(
+      weapon => requiredWeaponStatus.has( weapon.system.weaponType )
+    );
+    if ( !ownedWeaponByStatus ) {
+      ui.notifications.error( game.i18n.localize( "ED.Notifications.error.noWeaponAvailable" ) );
+      return;
+    }
     ui.notifications.info( game.i18n.localize( "ED.Notifications.Info.switchWeapon" ) );
     if ( equippedWeapon ) await this._updateItemStates( equippedWeapon, "carried" );
     else this.itemTypes.weapon.forEach( weapon => this._updateItemStates( weapon, "carried" ) );

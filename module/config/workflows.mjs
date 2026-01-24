@@ -20,17 +20,17 @@ export const substituteModes = {
     meleeWeapons: {
       label:      "ED.Config.SubstituteModes.meleeWeapons",
       rollType:   "attack",
-      attackType: "weapon",
+      attackType: "melee",
     },
     missileWeapons: {
       label:      "ED.Config.SubstituteModes.missileWeapons",
       rollType:   "attack",
-      attackType: "weapon",
+      attackType: "missile",
     },
     throwingWeapons: {
       label:      "ED.Config.SubstituteModes.throwingWeapons",
       rollType:   "attack",
-      attackType: "weapon",
+      attackType: "thrown",
     },
     unarmedCombat: {
       label:      "ED.Config.SubstituteModes.unarmedCombat",
