@@ -44,8 +44,7 @@ export default class AttackWorkflow extends Rollable( ActorWorkflow ) {
 
     this._ability = options.attackAbility;
     this._weapon = options.weapon;
-    this._attackType = options.attackType
-    ?? this._weapon ? "weapon" : "unarmed";
+    this._attackType = options.attackType ?? ( this._weapon ? "weapon" : "unarmed" );
 
     if ( !this._weapon && this._attackType !== "unarmed" ) this._steps.push( this.#setWeapon.bind( this ) );
     if ( !this._ability ) this._steps.push( this.#setAbility.bind( this ) );
