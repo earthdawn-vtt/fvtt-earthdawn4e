@@ -339,7 +339,7 @@ export default class PcData extends NamegiverTemplate {
       ],
       rejectClose: false
     } );
-
+    if ( !spendLp ) return;
     const attributeUpdate = await actor.update( {
       [`system.attributes.${attribute}.timesIncreased`]: currentIncrease + 1
     } );
