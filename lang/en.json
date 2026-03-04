@@ -3286,14 +3286,15 @@
           "rollAttribute":                        "TODO: Add translation",
           "weaveThread":                          "Weave Thread"
         },
-        "devotion":                               "Devotion",
-        "devotionStep":                           "Devotion Step",
-        "difficulty":                             "Difficulty",
-        "karma":                                  "Karma",
-        "karmaStep":                              "Karma Step",
-        "modifier":                               "Modifier",
-        "step":                                   "Step",
-        "strain":                                 "Strain"
+        "devotion":                                "Devotion",
+        "devotionStep":                            "Devotion Step",
+        "difficulty":                              "Difficulty",
+        "karma":                                   "Karma",
+        "karmaStep":                               "Karma Step",
+        "modifier":                                "Modifier",
+        "resources":                               "Resources",
+        "step":                                    "Step",
+        "strain":                                  "Strain"
       },
       "SelectExtraThreads": {
         "selectedXofYthreads":                    "{numSelected} of maximum {maxExtraThreads} Threads selected"
