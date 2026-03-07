@@ -3760,8 +3760,8 @@
         "troubleshooting":                        "Fehlermeldung"
       },
       "Update": {
-        "updateNewsHint":                         "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
-        "updateNewsName":                         "Verstecke Update Nachrichten"
+        "hideUpdateNewsHint":                     "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
+        "hideUpdateNewsName":                     "Verstecke Update Nachrichten"
       },
       "talentsSplit":                             "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                         "Talente Gruppieren"

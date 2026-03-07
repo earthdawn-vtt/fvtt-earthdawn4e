@@ -66,16 +66,20 @@ export function getEdidSettingKey( edidName ) {
  */
 export default function registerSystemSettings() {
 
-  // region ED-IDs
+  // region News
 
-  game.settings.register( SYSTEM_ID, "updateNews", {
-    name:    "ED.Settings.Update.updateNewsName",
-    hint:    "ED.Settings.Update.updateNewsHint",
+  game.settings.register( SYSTEM_ID, "hideUpdateNews", {
+    name:    "ED.Settings.Update.hideUpdateNewsName",
+    hint:    "ED.Settings.Update.hideUpdateNewsHint",
     scope:   "user",
     type:    Boolean,
     config:  true,
     default: false
   } );
+
+  // endregion
+
+  // region ED-IDs
 
   Object.entries( SYSTEM.defaultEdIds ).forEach( ( [ name, edid ] ) => {
     game.settings.register( SYSTEM_ID, getEdidSettingKey( name ), {

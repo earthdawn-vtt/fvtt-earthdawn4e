@@ -1,9 +1,9 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
-// import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
-import { getSetting } from "../settings.mjs";
+import { getSetting, setSetting } from "../settings.mjs";
+// import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**
  *
@@ -37,32 +37,8 @@ export default function () {
 
     // endregion
 
-  } );
+    if ( getSetting( "hideUpdateNews" ) === false ) await _showUpdateNews();
 
-  Hooks.on( "ready", async () => {
-    if ( game.settings.get( "ed4e", "updateNews" ) ) return;
-    // Fetch the HTML file content
-    const html = await foundry.applications.handlebars.renderTemplate( "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs" );
-    // Create a dialog to display the update message
-    DialogEd.wait( {
-      title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
-      content: html,
-      buttons: [
-        {
-          action:   "ok",
-          label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
-          callback: () => {},
-          default:  true,
-        },
-        {
-          action:   "notAgain",
-          label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
-          callback: () => {
-            game.settings.set( "ed4e", "updateNews", true );
-          }
-        }
-      ],
-    } );
   } );
 }
 
@@ -234,4 +210,32 @@ async function _createDebugDocuments() {
     const rollMsg = await roll.toMessage();
     await rollMsg.setFlag( "world", "deleteOnStartup", true );
   }
+}
+
+/**
+ * Display the update news dialog
+ * @returns {Promise<void>}
+ */
+async function _showUpdateNews() {
+  const html = await foundry.applications.handlebars.renderTemplate(
+    "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs"
+  );
+  DialogEd.wait( {
+    title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
+    content: html,
+    buttons: [
+      {
+        action:   "ok",
+        label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
+        default: true
+      },
+      {
+        action:   "notAgain",
+        label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
+        callback: () => {
+          setSetting( "hideUpdateNews", true );
+        }
+      }
+    ]
+  } );
 }
