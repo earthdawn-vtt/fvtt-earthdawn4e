@@ -3,9 +3,10 @@ import EdRollOptions from "../data/roll/common.mjs";
 import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import { getSetting } from "../settings.mjs";
 
 /**
- * TODO
+ *
  */
 export default function () {
   Hooks.once( "ready", async () => {
@@ -15,7 +16,7 @@ export default function () {
     /*  Debug Documents                             */
     /* -------------------------------------------- */
 
-    if ( game.user.isGM ) await _createDebugDocuments();
+    if ( getSetting( "debugMode" ) ) await _createDebugDocuments();
 
     
     /* -------------------------------------------- */
