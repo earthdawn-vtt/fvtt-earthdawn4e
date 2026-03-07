@@ -12,17 +12,14 @@ export default function () {
   Hooks.once( "ready", async () => {
 
 
-    /* -------------------------------------------- */
-    /*  Debug Documents                             */
-    /* -------------------------------------------- */
+    // region Debug Documents
 
     if ( getSetting( "debugMode" ) ) await _createDebugDocuments();
 
-    
-    /* -------------------------------------------- */
-    /*  Fix Transformed Documents                   */
-    /* -------------------------------------------- */
-    
+    // endregion
+
+    // region Fix Transformed Documents
+
     // Fix all documents that were transformed during migration
     /* if ( game.user.isGM ) {
       const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
@@ -32,11 +29,14 @@ export default function () {
       }
     } */
 
+    // endregion
 
-    /* -------------------------------------------- */
-    /*  Tour                                        */
-    /* -------------------------------------------- */
+    // region Tours
+
     EdTour.travelAgency();
+
+    // endregion
+
   } );
 
   Hooks.on( "ready", async () => {
