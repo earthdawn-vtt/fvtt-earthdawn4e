@@ -451,7 +451,16 @@ export default function registerSystemSettings() {
 
   // endregion
 
-  // region Dev
+  // region Debug
+
+  game.settings.register( SYSTEM_ID, "debugMode", {
+    config: true,
+    scope:  "user",
+    type:   new BooleanField( {
+      label:    "ED.Settings.Label.debugMode",
+      hint:     "ED.Settings.Hint.debugMode",
+    } ),
+  } );
 
   // endregion
 

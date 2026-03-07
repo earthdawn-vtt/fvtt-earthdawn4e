@@ -3704,9 +3704,11 @@
         "spellcastingTypesHint":                  "Welche Spruchzauberei Typen sollen verwendet werden?"
       },
       "Hint": {
+        "debugMode":                              "Soll Debugging im ed4e System aktiviert werden?",
         "enforceLivingArmor":                     "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
       },
       "Label": {
+        "debugMode":                              "Debug-Modus",
         "enforceLivingArmor":                     "Lebendig Rüstungs Prüfung"
       },
       "LpTracking": {
