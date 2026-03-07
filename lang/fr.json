@@ -3704,9 +3704,11 @@
         "spellcastingTypesHint":                  "TODO: Add translation"
       },
       "Hint": {
+        "debugMode":                              "TODO: Add translation",
         "enforceLivingArmor":                     "TODO: Add translation"
       },
       "Label": {
+        "debugMode":                              "TODO: Add translation",
         "enforceLivingArmor":                     "TODO: Add translation"
       },
       "LpTracking": {
@@ -3758,8 +3760,8 @@
         "troubleshooting":                        "TODO: Add translation"
       },
       "Update": {
-        "updateNewsHint":                         "TODO: Add translation",
-        "updateNewsName":                         "TODO: Add translation"
+        "hideUpdateNewsHint":                     "TODO: Add translation",
+        "hideUpdateNewsName":                     "TODO: Add translation"
       },
       "talentsSplit":                             "TODO: Add translation",
       "talentsSplitHint":                         "TODO: Add translation"
