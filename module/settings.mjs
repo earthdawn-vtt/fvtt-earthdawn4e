@@ -65,9 +65,7 @@ export function getEdidSettingKey( edidName ) {
  */
 export default function registerSystemSettings() {
 
-  /* -------------------------------------------------------------------------------- */
-  /*                                      ED-IDs                                      */
-  /* -------------------------------------------------------------------------------- */
+  // region ED-IDs
 
   game.settings.register( "ed4e", "updateNews", {
     name:    "ED.Settings.Update.updateNewsName",
@@ -77,10 +75,6 @@ export default function registerSystemSettings() {
     config:  true,
     default: false
   } );
-
-  /* -------------------------------------------------------------------------------- */
-  /*                                      ED-IDs                                      */
-  /* -------------------------------------------------------------------------------- */
 
   Object.entries( SYSTEM.defaultEdIds ).forEach( ( [ name, edid ] ) => {
     game.settings.register( "ed4e", getEdidSettingKey( name ), {
@@ -93,8 +87,9 @@ export default function registerSystemSettings() {
     } );
   } );
 
+  // endregion
 
-  // region CONTROLS
+  // region Controls
 
   game.settings.register( "ed4e", "quickDeleteEmbeddedOnShiftClick", {
     config:  true,
@@ -107,29 +102,7 @@ export default function registerSystemSettings() {
 
   // endregion
 
-  /* -------------------------------------------------------------------------------- */
-  /*                                  STEP TABLES                                     */
-  /* -------------------------------------------------------------------------------- */
-
-  // Step Table used for step to dice conversion
-  game.settings.register( "ed4e", "stepTable", {
-    name:    "ED.Settings.StepTable.stepTable",
-    hint:    "ED.Settings.StepTable.hint",
-    scope:   "world",
-    config:  true,
-    default: "fourth",
-    type:    String,
-    choices: {
-      classic: "ED.Settings.StepTable.editionClassic",
-      first:   "ED.Settings.StepTable.editionFirst",
-      third:   "ED.Settings.StepTable.editionThird",
-      fourth:  "ED.Settings.StepTable.editionFourth"
-    }
-  } );
-
-  /* -------------------------------------------------------------------------------- */
-  /*                                  OWNED ITEMS                                     */
-  /* -------------------------------------------------------------------------------- */
+  // region Owned Items
 
   // Should Living Armor checked on Namegivers
   game.settings.register( "ed4e", "enforceLivingArmor", {
@@ -141,9 +114,9 @@ export default function registerSystemSettings() {
     default: true,
   } );
 
-  /* -------------------------------------------------------------------------------- */
-  /*                              CHARACTER GENERATION                                */
-  /* -------------------------------------------------------------------------------- */
+  // endregion
+
+  // region Character Generation
 
   // Auto open char gen on PC document creation
   game.settings.register( "ed4e", "autoOpenCharGen", {
@@ -192,9 +165,9 @@ export default function registerSystemSettings() {
     } ),
   } );
 
-  /* -------------------------------------------------------------------------------- */
-  /*                                  LP TRACKING                                     */
-  /* -------------------------------------------------------------------------------- */
+  // endregion
+
+  // region LP Tracking
 
   // LP Tracking On/Off
   game.settings.register( "ed4e", "lpTrackingUsed", {
@@ -330,10 +303,25 @@ export default function registerSystemSettings() {
     } ),
   } );
 
+  // endregion
 
-  /* -------------------------------------------------------------------------------- */
-  /*                                  ENCUMBRANCE                                     */
-  /* -------------------------------------------------------------------------------- */
+  // region Game Mechanics
+
+  // Step Table used for step-to-dice conversion
+  game.settings.register( "ed4e", "stepTable", {
+    name:    "ED.Settings.StepTable.stepTable",
+    hint:    "ED.Settings.StepTable.hint",
+    scope:   "world",
+    config:  true,
+    default: "fourth",
+    type:    String,
+    choices: {
+      classic: "ED.Settings.StepTable.editionClassic",
+      first:   "ED.Settings.StepTable.editionFirst",
+      third:   "ED.Settings.StepTable.editionThird",
+      fourth:  "ED.Settings.StepTable.editionFourth"
+    }
+  } );
 
   // Encumbrance options
   game.settings.register( "ed4e", "encumbrance", {
@@ -344,10 +332,6 @@ export default function registerSystemSettings() {
     default: true,
     type:    Boolean
   } );
-
-  /* -------------------------------------------------------------------------------- */
-  /*                                GAME MECHANICS                                    */
-  /* -------------------------------------------------------------------------------- */
 
   // Languages
   game.settings.register( "ed4e", "languages", {
@@ -446,9 +430,9 @@ export default function registerSystemSettings() {
     } ),
   } );
 
-  /* -------------------------------------------------------------------------------- */
-  /*                                  GM Chat Avatar                                     */
-  /* -------------------------------------------------------------------------------- */
+  // endregion
+
+  // region Chat
 
   // Chat Avatar Options
   game.settings.register( "ed4e", "chatAvatar", {
@@ -463,4 +447,7 @@ export default function registerSystemSettings() {
       selectedToken: "ED.Settings.Chat.chatAvatarToken"
     }
   } );
+
+  // endregion
+
 }
