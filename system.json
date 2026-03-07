@@ -7,8 +7,8 @@
         "minimum": "13.340",
         "verified": "13.340"
     },
-    "url": "https://github.com/patrickmohrmann/earthdawn4eV2",
-    "manifest": "https://raw.githubusercontent.com/patrickmohrmann/fvtt-earthdawne4e/refs/heads/dev/system.json",
+    "url": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e",
+    "manifest": "https://raw.githubusercontent.com/earthdawn-vtt/fvtt-earthdawn4e/refs/heads/dev/system.json",
     "download": "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/releases/download/release-0.2.0/ed4e-release-0.2.0.zip",
     "authors": [
         {

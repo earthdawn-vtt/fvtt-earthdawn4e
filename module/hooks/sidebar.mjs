@@ -43,10 +43,10 @@ export default function () {
 
         // Add click event listeners
         changeLogButton.addEventListener( "click", () => {
-          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki/Change-Log", "_blank" );
+          window.open( "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki/Change-Log", "_blank" );
         } );
         helpButton.addEventListener( "click", () => {
-          window.open( "https://github.com/patrickmohrmann/earthdawn4eV2/wiki", "_blank" );
+          window.open( "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/wiki", "_blank" );
         } );
         createBugButton.addEventListener( "click", () => {
           window.open( "https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new?template=01-bug-report.yml", "_blank" );
