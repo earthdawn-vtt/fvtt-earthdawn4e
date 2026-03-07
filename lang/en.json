@@ -3704,9 +3704,11 @@
         "spellcastingTypesHint":                  "Which spellcasting types should be used?"
       },
       "Hint": {
+        "debugMode":                              "Should debugging be used by the system?",
         "enforceLivingArmor":                     "Enforce that only living armor can be equipped."
       },
       "Label": {
+        "debugMode":                              "Debug Mode",
         "enforceLivingArmor":                     "Enforce Living Armor"
       },
       "LpTracking": {
@@ -3758,8 +3760,8 @@
         "troubleshooting":                        "Report a Bug"
       },
       "Update": {
-        "updateNewsHint":                         "If enabled, update news will no longer be displayed.",
-        "updateNewsName":                         "Hide Update News"
+        "hideUpdateNewsHint":                     "If enabled, update news will no longer be displayed.",
+        "hideUpdateNewsName":                     "Hide Update News"
       },
       "talentsSplit":                             "Group Talents by Category",
       "talentsSplitHint":                         "Group Talents"
