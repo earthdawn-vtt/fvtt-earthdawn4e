@@ -1,6 +1,6 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
-import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
+// import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 import { getSetting } from "../settings.mjs";
@@ -24,13 +24,13 @@ export default function () {
     /* -------------------------------------------- */
     
     // Fix all documents that were transformed during migration
-    if ( game.user.isGM ) {
+    /* if ( game.user.isGM ) {
       const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
       const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
       if ( hasTransformedDocs ) {
         await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
       }
-    }
+    } */
 
 
     /* -------------------------------------------- */
