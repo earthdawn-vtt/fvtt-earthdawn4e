@@ -132,7 +132,6 @@ export default class AttackMessageData extends BaseMessageData {
    */
   static async _onApplyEffect( event, button ) {
     event.preventDefault();
-    console.log( "In _onApplyEffect ChatMessage listener" );
   }
 
   /**
@@ -143,9 +142,6 @@ export default class AttackMessageData extends BaseMessageData {
     event.preventDefault();
     ui.notifications.info( "Maneuvers are not done yet. We're working on it :)" );
     // update the number of successes in the DataModel
-    /* console.log( "In _onUseManeuver ChatMessage listener" );
-    const ability = await fromUuid( button.dataset.abilityUuid );
-    console.log( "Ability: ", ability ); */
   }
 
   /**
