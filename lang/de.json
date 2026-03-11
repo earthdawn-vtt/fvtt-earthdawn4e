@@ -1599,7 +1599,7 @@
               "label":                            "Bündelgröße"
             },
             "consumable": {
-              "hint":                             "Ist dieses Ausrüstungsgegenstand verbrauchbar?",
+              "hint":                             "Ist dieser Ausrüstungsgegenstand verbrauchbar?",
               "label":                            "Verbrauchbar"
             }
           }
