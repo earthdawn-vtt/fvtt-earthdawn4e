@@ -469,6 +469,14 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   async changeAbilityRank( abilityUuid, abilityType, changeType ) {
     const isSkill = [ "artisan", "knowledge", "general", "language" ].includes( abilityType );
+    const isOptionalTalent = abilityType === "optional";
+
+    if ( isOptionalTalent && !this.abilities.optional.hasOwnProperty( abilityUuid ) ) {
+      ui.notifications.warn( game.i18n.localize(
+        "ED.Dialogs.CharGen.Errors.optionalTalentNotSelected"
+      ) );
+      return;
+    }
 
     if (
       isSkill && !this.abilities[abilityType].hasOwnProperty( abilityUuid )

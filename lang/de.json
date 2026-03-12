@@ -3037,6 +3037,7 @@
           "noMoreSpellPoints":                    "Du kannst keine weiteren Zaubersprüche auswählen. Deine Wahrnehmungsstufe bestimmt die Anzahl der Zauber (Der Kreis entspricht den Kosten).",
           "noNamegiver":                          "Du musst einen Namensgeber auswählen um fortzufahren.",
           "notFinished":                          "Du kannst die Charaktererschaffung noch nicht abschließen, du musst zuvor noch einiges erledigen.",
+          "optionalTalentNotSelected":            "Wähle zuerst ein optionales Talent aus, bevor du den Rang änderst.",
           "skillRanksLeft":                       "Du musst alle Fertigkeitsränge vergeben um fortzufahren."
         },
         "Title": {
