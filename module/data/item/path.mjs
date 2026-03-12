@@ -86,7 +86,7 @@ export default class PathData extends ClassTemplate.mixin(
     return {
       learn:              this.unmodifiedLevel === 0,
       nextLevel,
-      nextLevelData:      this.advancement.levels.find( l => l.level === nextLevel ),
+      nextLevelData:      this._getAdvancementLevelData( nextLevel ),
       nextTalentLpCost:   LEGEND.legendPointsCost[ nextLevel + LEGEND.lpIndexModForTier[ this.currentTier ] ],
       talentRequirements: pathTalent
     };
