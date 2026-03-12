@@ -570,11 +570,6 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     context.questors = this.questors;
     context.questorRadioChoices = documentsToSelectChoices( this.questors );
     context.classDocument = await this.charGenData.classDocument;
-    context.classLevelAbilities = {
-      class:   Object.keys( this.charGenData.abilities.class ?? {} ),
-      free:    Object.keys( this.charGenData.abilities.free ?? {} ),
-      special: Object.keys( this.charGenData.abilities.special ?? {} ),
-    };
 
     // Talents & Devotions
     context.maxAssignableRanks = game.settings.get( "ed4e", "charGenMaxRank" );
