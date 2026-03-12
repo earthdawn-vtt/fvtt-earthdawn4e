@@ -179,32 +179,32 @@
               </div>
 
               <div class="assign-value-entries-categorized">
-                {{#each classDocument.system.advancement.levels.0.abilities}}
+                {{#each classLevelAbilities as |abilityUuids abilityType|}}
                   <div class="assign-value-entries">
-                    {{#each this}}
+                    {{#each abilityUuids as |abilityUuid|}}
                       <div class="assign-value-entry flexrow">
-                        <div class="entry-name" data-ability-uuid="{{this}}">
-                          {{{ed-linkForUuid this}}}
+                        <div class="entry-name" data-ability-uuid="{{abilityUuid}}">
+                          {{{ed-linkForUuid abilityUuid}}}
                         </div>
-                        {{#if (eq @../key "class")}}
+                        {{#if (eq abilityType "class")}}
                           <div class="flexrow rank-change">
                             <span class="decrease-value-button rank-decrease rank-change-icon"
                                   title="{{localize "ED.Dialogs.CharGen.ToolTips.decreaseRankValue"}}"
                                   data-change-type="decrease"
                                   data-action="decreaseAbility"
-                                  data-ability-uuid="{{this}}"
-                                  data-ability-type="{{@../key}}">
+                                  data-ability-uuid="{{abilityUuid}}"
+                                  data-ability-type="{{abilityType}}">
                               <i class="fa-light fa-circle-minus"></i>
                             </span>
                             <span class="rank-change-value">
-                              {{lookup @root.abilities.class this}}
+                              {{lookup @root.abilities.class abilityUuid}}
                             </span>
                             <span class="increase-value-button rank-increase rank-change-icon"
                                   title="{{localize "ED.Dialogs.CharGen.ToolTips.increaseRankValue"}}"
                                   data-change-type="increase"
                                   data-action="increaseAbility"
-                                  data-ability-uuid="{{this}}"
-                                  data-ability-type="{{@../key}}">
+                                  data-ability-uuid="{{abilityUuid}}"
+                                  data-ability-type="{{abilityType}}">
                               <i class="fa-light fa-circle-plus"></i>
                             </span>
                           </div>
