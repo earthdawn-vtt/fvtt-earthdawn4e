@@ -3037,6 +3037,7 @@
           "noMoreSpellPoints":                    "You cannot choose more spells. Your Perception step determines the number of spells (the Circle equals the cost).",
           "noNamegiver":                          "You must select a Namegiver to continue.",
           "notFinished":                          "You cannot complete character creation yet, there are still steps remaining.",
+          "optionalTalentNotSelected":            "Select an optional talent first before changing its rank.",
           "skillRanksLeft":                       "You must assign all skill ranks to continue."
         },
         "Title": {
