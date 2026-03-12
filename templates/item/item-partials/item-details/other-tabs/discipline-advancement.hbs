@@ -87,6 +87,15 @@
               }}
             {{/each}}
 
+            <!-- Effects -->
+            <div class="form-group class-effects">
+              <label>{{localize "ED.Advancement.Pools.effects"}}</label>
+              <div class="form-fields">
+                <document-tags name="{{concat "system.advancement.levels." level ".effects"}}" value="{{ed-commaList levelData.effects}}"></document-tags>
+              </div>
+              <p class="advancement-hint">{{localize "ED.Advancement.Pools.effectsHint"}}</p>
+            </div>
+
           </div>
         {{/each}}
       </div>
