@@ -2,7 +2,8 @@ name: Deploy Documentation to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - "**"
     paths:
       - "documentation/wiki documentation/german/**"
   workflow_dispatch:
