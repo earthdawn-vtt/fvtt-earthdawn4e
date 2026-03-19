@@ -6,6 +6,7 @@ on:
       - "**"
     paths:
       - "documentation/wiki documentation/german/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
