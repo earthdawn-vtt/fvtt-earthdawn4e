@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Sheet</title>
+  <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+  <main>
+    <section class="doc-card">
+      <div class="doc-topbar">
+        <a class="doc-home-link" href="Inhaltsverzeichnis.html">Back to Table of Contents</a>
+      </div>
+      <article class="doc-content">
+<h1>Character Sheet</h1>
+<h2>Edit Mode</h2>
+<div>
+  <p>In the upper-left corner of the window, there is a small toggle button. You can use it to switch between Play and Edit mode.</p>
+  <p>This mode unlocks many editing functions or protects against accidental clicks and disruptive dialogs during play.</p>
+</div>
+<h2>Characteristics</h2>
+<div>
+  <p>At the top of the character sheet are the characteristics: defense, armor, movement, and health values. Most of these values cannot be changed directly by hand. Exceptions are damage values and the number of wounds. Those can be edited directly in their fields. All other values are calculated automatically. Characteristic values are based on calculations from the Player's Guide and depend on the character's attribute values.</p>
+  <p>To modify them, effects are required. Next to immutable values, you will find ➕ and ➖ icons beside the fields. These automatically create an effect (Active Effect) to adjust values temporarily. A normal click increases or decreases by 1. Shift+Click increases or decreases by 5.</p>
+</div>
+<h2>Navigation and Tabs</h2>
+<div>
+  <p>In the lower main section of the character sheet, there are several tabs. Click a tab name to open it.</p>
+  <p>Here is an overview of the tabs and what they contain.</p>
+  <h3>General</h3>
+  <div>
+    <p><strong>Attributes:</strong> Show the value, resulting step, and number of increases. Click the die icon to roll attribute, half-magic, or ability tests. In Play mode, the ➕ and ➖ icons are available again for temporary value changes. In Edit mode, an arrow is shown instead to trigger a permanent attribute increase.</p>
+    <p><strong>Resources:</strong></p>
+    <ul>
+      <li><strong>Recovery:</strong> Maximum and current number of recovery tests, and recovery step. Various recovery actions can be triggered here.</li>
+      <li><strong>Karma:</strong> Maximum and current number of karma points, and karma step. The karma ritual can also be triggered here.</li>
+      <li><strong>Devotion:</strong> Maximum and current number of devotion points, and devotion point step.</li>
+    </ul>
+    <p>Current resource values can be edited manually. Maximum and step can only be modified through effects.</p>
+  </div>
+  <h3>Abilities</h3>
+  <div>
+    <p>This section describes options for talents, skills, and devotion powers. Every ability that has a test displays a die icon. You can roll the related step from there. Clicking an ability name opens a short description. Additional values such as action, attribute, step, rank, and strain are shown as well.</p>
+    <p>Each ability has buttons for increase, show in chat, edit, and delete. Some of these functions are only available in Edit mode.</p>
+    <h4>Talents</h4>
+    <p>In the Talents tab, talents can be shown by category or as one combined list (configurable in system settings). Knacks such as talent knacks, karma knacks, and special maneuvers are shown under their related talent.</p>
+    <h4>Skills</h4>
+    <p>In the Skills tab, skills can be grouped by categories such as Artisan Skills, Language Skills, General Skills, and Knowledge Skills.</p>
+  </div>
+  <h3>Spells</h3>
+  <div>
+    <p>The "Spells" tab combines all spell-related information. Spells are grouped by circle by default, but can be shown in one ungrouped list in system settings. A dedicated navigator groups spells by schools (for example Elementalism, Illusionism) and provides a separate tab for matrices.</p>
+  </div>
+  <h3>Equipment</h3>
+  <div>
+    <p>The "Equipment" tab lists everything a character owns, including gear, armor, shields, and weapons. Wealth and encumbrance are also shown. Encumbrance can be disabled in game settings.</p>
+  </div>
+  <h3>Legend</h3>
+  <div>
+    <p>The "Legend" tab includes:</p>
+    <ul>
+      <li>Namegiver and a notes editor.</li>
+      <li>Disciplines, paths, and questors with ranks and circles, plus the option to start advancement.</li>
+      <li>The character's languages and the option to add additional languages.</li>
+      <li>Legend point information (Total, Current, Spent) and a button to open legend point history.</li>
+    </ul>
+    <h3>Links</h3>
+    <p>The "Reputation" tab currently only contains the character's woven threads and their own true pattern. The personal pattern is only shown if it was added explicitly.</p>
+  </div>
+  <p></p>
+  <h3>Specials</h3>
+  <div>
+    <p>The "Specials" tab is divided into three sections:</p>
+    <ul>
+      <li><strong>Status Effects:</strong> Covers situational modifiers from the Player's Guide and creates temporary effects.</li>
+      <li><strong>Temporary Effects:</strong> Effects with a limited duration.</li>
+      <li><strong>Permanent Effects:</strong> Effects with the setting "Permanent".</li>
+    </ul>
+    <p>Each effect is shown with an image, name, a checkbox (active/inactive), and a control menu. The control menu includes buttons for "Show in Chat", "Edit", and "Delete".</p>
+  </div>
+</div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
