@@ -34,7 +34,7 @@ jobs:
       - name: Prepare documentation
         run: |
           mkdir -p _site
-          cp -r "documentation/wiki documentation/" _site/
+          cp -r "documentation/wiki documentation/." _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
