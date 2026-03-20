@@ -4,13 +4,12 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - "main"
     paths:
       - "documentation/wiki documentation/german/**"
       - ".github/workflows/pages.yml"
-  merge_group:
   workflow_dispatch:
 
 permissions:
