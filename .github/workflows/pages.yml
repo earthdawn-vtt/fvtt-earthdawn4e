@@ -5,6 +5,8 @@ env:
 
 on:
   pull_request:
+    branches:
+      - main
     paths:
       - "documentation/wiki documentation/german/**"
       - ".github/workflows/pages.yml"
