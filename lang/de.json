@@ -3704,9 +3704,11 @@
         "spellcastingTypesHint":                  "Welche Spruchzauberei Typen sollen verwendet werden?"
       },
       "Hint": {
+        "debugMode":                              "Soll Debugging im ed4e System aktiviert werden?",
         "enforceLivingArmor":                     "Prüft ob ausschließlich legendige Rüstung getragen werden kann."
       },
       "Label": {
+        "debugMode":                              "Debug-Modus",
         "enforceLivingArmor":                     "Lebendig Rüstungs Prüfung"
       },
       "LpTracking": {
@@ -3758,8 +3760,8 @@
         "troubleshooting":                        "Fehlermeldung"
       },
       "Update": {
-        "updateNewsHint":                         "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
-        "updateNewsName":                         "Verstecke Update Nachrichten"
+        "hideUpdateNewsHint":                     "Wenn das Setting aktiv ist, werden die Updatenachrichten nicht mehr angezeigt.",
+        "hideUpdateNewsName":                     "Verstecke Update Nachrichten"
       },
       "talentsSplit":                             "Talente nach Kategorie gruppieren",
       "talentsSplitHint":                         "Talente Gruppieren"

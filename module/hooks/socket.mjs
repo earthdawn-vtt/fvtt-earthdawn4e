@@ -22,8 +22,6 @@ function registerSocketListeners( socket ) {
  * @inheritDoc
  */
 function applyDamage( actor, damage ) {
-  // Apply damage to the actor
-  console.log( "Applying damage to actor:", actor, damage );
   ui.notifications.info( "Damage is coming." );
 }
 
@@ -31,8 +29,6 @@ function applyDamage( actor, damage ) {
  * @inheritDoc
  */
 function assignEffect( actor, effect ) {
-  // Apply effect to the actor
-  console.log( "Applying effect to actor:", actor, effect );
   ui.notifications.info( "Effect is coming." );
 }
 

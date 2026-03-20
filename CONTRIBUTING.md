@@ -29,14 +29,14 @@ feel free to add additional information in the comments.
 
 When you create a new bug issue, include as many details as possible.
 
-Please use our [templates](https://github.com/patrickmohrmann/fvtt-earthdawne4e/issues/new/choose).
+Please use our [templates](https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new/choose).
 
 ### ✨ Suggest Features
 
 Suggest some cool new stuff! As with bug reports (and issues in general), please check existing issues first to avoid
 duplicates.
 
-Please use our [templates](https://github.com/patrickmohrmann/fvtt-earthdawne4e/issues/new/choose).
+Please use our [templates](https://github.com/earthdawn-vtt/fvtt-earthdawn4e/issues/new/choose).
 
 ### 📝 Improving Documentation
 

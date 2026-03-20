@@ -1,3 +1,5 @@
+export const SYSTEM_ID = "ed4e";
+
 // region System Types
 
 /**

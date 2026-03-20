@@ -1,67 +1,44 @@
 import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
-import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import { getSetting, setSetting } from "../settings.mjs";
+// import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**
- * TODO
+ *
  */
 export default function () {
   Hooks.once( "ready", async () => {
 
 
-    /* -------------------------------------------- */
-    /*  Debug Documents                             */
-    /* -------------------------------------------- */
+    // region Debug Documents
 
-    if ( game.user.isGM ) await _createDebugDocuments();
+    if ( getSetting( "debugMode" ) ) await _createDebugDocuments();
 
-    
-    /* -------------------------------------------- */
-    /*  Fix Transformed Documents                   */
-    /* -------------------------------------------- */
-    
+    // endregion
+
+    // region Fix Transformed Documents
+
     // Fix all documents that were transformed during migration
-    if ( game.user.isGM ) {
+    /* if ( game.user.isGM ) {
       const transformedDocuments = TypeTransformationManager.getAllTransformedDocumentIds();
       const hasTransformedDocs = Object.values( transformedDocuments ).some( ids => ids.length > 0 );
       if ( hasTransformedDocs ) {
         await TypeTransformationManager.fixAllTransformedDocuments( transformedDocuments );
       }
-    }
+    } */
 
+    // endregion
 
-    /* -------------------------------------------- */
-    /*  Tour                                        */
-    /* -------------------------------------------- */
+    // region Tours
+
     EdTour.travelAgency();
-  } );
 
-  Hooks.on( "ready", async () => {
-    if ( game.settings.get( "ed4e", "updateNews" ) ) return;
-    // Fetch the HTML file content
-    const html = await foundry.applications.handlebars.renderTemplate( "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs" );
-    // Create a dialog to display the update message
-    DialogEd.wait( {
-      title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
-      content: html,
-      buttons: [
-        {
-          action:   "ok",
-          label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
-          callback: () => {},
-          default:  true,
-        },
-        {
-          action:   "notAgain",
-          label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
-          callback: () => {
-            game.settings.set( "ed4e", "updateNews", true );
-          }
-        }
-      ],
-    } );
+    // endregion
+
+    if ( getSetting( "hideUpdateNews" ) === false ) await _showUpdateNews();
+
   } );
 }
 
@@ -233,4 +210,32 @@ async function _createDebugDocuments() {
     const rollMsg = await roll.toMessage();
     await rollMsg.setFlag( "world", "deleteOnStartup", true );
   }
+}
+
+/**
+ * Display the update news dialog
+ * @returns {Promise<void>}
+ */
+async function _showUpdateNews() {
+  const html = await foundry.applications.handlebars.renderTemplate(
+    "systems/ed4e/templates/system-messages/update-message-v1_0_0.hbs"
+  );
+  DialogEd.wait( {
+    title:   game.i18n.localize( "ED.Dialogs.Header.update" ),
+    content: html,
+    buttons: [
+      {
+        action:   "ok",
+        label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
+        default: true
+      },
+      {
+        action:   "notAgain",
+        label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
+        callback: () => {
+          setSetting( "hideUpdateNews", true );
+        }
+      }
+    ]
+  } );
 }
