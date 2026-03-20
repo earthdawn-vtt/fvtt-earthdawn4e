@@ -4,12 +4,13 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
-  push:
+  pull_request:
     branches:
-      - "main"
+      - main
     paths:
       - "documentation/wiki documentation/german/**"
       - ".github/workflows/pages.yml"
+  merge_group:
   workflow_dispatch:
 
 permissions:
@@ -34,8 +35,7 @@ jobs:
       - name: Prepare documentation
         run: |
           mkdir -p _site
-          cp -r "documentation/wiki documentation/german/." _site/
-          cp _site/Inhaltsverzeichnis.html _site/index.html
+          cp -r "documentation/wiki documentation/" _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
