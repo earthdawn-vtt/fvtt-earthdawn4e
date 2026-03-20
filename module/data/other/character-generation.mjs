@@ -281,12 +281,13 @@ export default class CharacterGenerationData extends SparseDataModel {
     // Only update data if namegiver changes
     if ( !selectedClassDocument || ( this.selectedClass === selectedClassDocument.uuid ) ) return;
 
-    const abilities = selectedClassDocument.system.advancement.levels?.[0].abilities ?? [];
+    const firstLevelAbilities = selectedClassDocument.system?.advancement?.levels?.[1]?.abilities ?? {};
+
     this.updateSource( {
       abilities: {
-        "==class":   Object.fromEntries( abilities.class.map( ability => [ ability, 0 ] ) ),
-        "==free":    Object.fromEntries( abilities.free.map( ability => [ ability, 0 ] ) ),
-        "==special": Object.fromEntries( abilities.special.map( ability => [ ability, 0 ] ) ),
+        "==class":   Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ),
+        "==free":    Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ),
+        "==special": Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ),
       }
     } );
   }
@@ -461,6 +462,14 @@ export default class CharacterGenerationData extends SparseDataModel {
 
   async changeAbilityRank( abilityUuid, abilityType, changeType ) {
     const isSkill = [ "artisan", "knowledge", "general", "language" ].includes( abilityType );
+    const isOptionalTalent = abilityType === "optional";
+
+    if ( isOptionalTalent && !this.abilities.optional.hasOwnProperty( abilityUuid ) ) {
+      ui.notifications.warn( game.i18n.localize(
+        "ED.Dialogs.CharGen.Errors.optionalTalentNotSelected"
+      ) );
+      return;
+    }
 
     if (
       isSkill && !this.abilities[abilityType].hasOwnProperty( abilityUuid )

@@ -124,6 +124,12 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     return true;
   }
 
+  _getLevelData( level ) {
+    return this.classItem?.system?._getAdvancementLevelData?.( level )
+      ?? this.classItem?.system?.advancement?.levels?.[level]
+      ?? this.classItem?.system?.advancement?.levels?.[String( level )];
+  }
+
   // endregion
 
   /**
@@ -151,10 +157,16 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     this.nextLevel = this.currentLevel + 1;
     this.learning = this.currentLevel === 0;
 
-    this.abilityUuidsByPoolType = classItem.system.advancement.levels[ this.nextLevel - 1 ].abilities;
+    const nextLevelData = this._getLevelData( this.nextLevel ) ?? {};
+
+    this.abilityUuidsByPoolType = nextLevelData.abilities ?? {
+      class:   [],
+      free:    [],
+      special: [],
+    };
     this.selectedOption = "";
     this.selectedSpells = new Set();
-    this.effectsGained = this.classItem.system.advancement.levels[ this.nextLevel - 1 ].effects;
+    this.effectsGained = nextLevelData.effects ?? [];
   }
 
   // region Rendering
@@ -221,9 +233,12 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     context.selectedSpells = Array.from( this.selectedSpells );
 
     context.nextLevel = this.nextLevel;
+    const currentLevelData = this._getLevelData( this.currentLevel ) ?? {};
+    const nextLevelData = this._getLevelData( this.nextLevel ) ?? {};
+
     context.tier = {
-      current: this.classItem.system.advancement.levels[ this.currentLevel ].tier,
-      next:    this.classItem.system.advancement.levels[ this.nextLevel - 1 ].tier,
+      current: currentLevelData.tier,
+      next:    nextLevelData.tier,
     };
     context.tierChanged = context.tier.current !== context.tier.next;
 
@@ -240,8 +255,8 @@ export default class ClassAdvancementDialog extends ApplicationEd {
     context.spellsGained = this.selectedSpells;
 
     context.resourceStep = {
-      current: this.classItem.system.advancement.levels[ this.currentLevel ].resourceStep,
-      next:    this.classItem.system.advancement.levels[ this.nextLevel - 1 ].resourceStep,
+      current: currentLevelData.resourceStep,
+      next:    nextLevelData.resourceStep,
     };
     context.resourceStepChanged = context.resourceStep.current !== context.resourceStep.next;
 

@@ -3,6 +3,7 @@ import AbilityTemplate from "../item/templates/ability.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { mapObject } from "../../utils.mjs";
+import MappingField from "../fields/mapping-field.mjs";
 
 /**
  * A level in an advancement.
@@ -33,7 +34,7 @@ export default class AdvancementLevelData extends SparseDataModel {
         initial:  "novice",
         choices:  LEGEND.tier,
       } ),
-      abilities: new fields.TypedObjectField(
+      abilities: new MappingField(
         new fields.SetField(
           new fields.DocumentUUIDField(
             AbilityTemplate ),

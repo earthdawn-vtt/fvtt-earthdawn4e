@@ -63,7 +63,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @type {string}
    */
   get currentTier() {
-    return this.advancement?.levels[this.unmodifiedLevel - 1]?.tier ?? "";
+    return this._getAdvancementLevelData( this.unmodifiedLevel )?.tier ?? "";
   }
 
   /** @inheritDoc */
@@ -86,7 +86,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( this.parent.type !== SYSTEM_TYPES.Item.discipline ) return 0;
     const nextLevel = this.unmodifiedLevel + 1;
     const disciplineSortingFactor = this.order - 1;
-    const nextLevelTier = nextLevel === 0 ? "novice" : this.advancement.levels.find( l => l.level === nextLevel )?.tier;
+    const nextLevelTier = nextLevel === 0 ? "novice" : this._getAdvancementLevelData( nextLevel )?.tier;
     return LEGEND.legendPointsCost[
       1 // new level
     + disciplineSortingFactor
@@ -120,11 +120,30 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @returns {string[]} A flat array of all ability UUIDs referenced in this class's advancement data.
    */
   getAllAbilityUuids() {
-    return this.advancement.levels
+    const levels = this._getAdvancementLevels();
+    return levels
       .flatMap( level => Array.from( level.abilities.class ) )
-      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.free ) ) )
-      .concat( this.advancement.levels.flatMap( level => Array.from( level.abilities.special ) ) )
+      .concat( levels.flatMap( level => Array.from( level.abilities.free ) ) )
+      .concat( levels.flatMap( level => Array.from( level.abilities.special ) ) )
       .concat( Object.values( this.advancement.abilityOptions ).flatMap( pool => Array.from( pool ) ) );
+  }
+
+  /**
+   * Get advancement levels as an array, regardless of whether levels are stored as an array or keyed object.
+   * @returns {object[]} The available advancement level data entries.
+   */
+  _getAdvancementLevels() {
+    return Object.values( this.advancement?.levels ?? {} );
+  }
+
+  /**
+   * Get one advancement level by its numeric level value, based on {@link AdvancementLevels}.
+   * @param {number} level The level number to look up.
+   * @returns {AdvancementLevelData|undefined} The matching advancement level data, if present.
+   */
+  _getAdvancementLevelData( level ) {
+    const levels = this.advancement?.levels ?? {};
+    return levels[level];
   }
 
   /**
@@ -152,7 +171,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( !this.isActorEmbedded ) return;
 
     const nextLevel = this.unmodifiedLevel + 1;
-    const nextLevelData = this.advancement.levels.find( l => l.level === nextLevel );
+    const nextLevelData = this._getAdvancementLevelData( nextLevel );
     if ( !nextLevelData ) {
       ui.notifications.warn( "ED.Notifications.Warn.noMoreClassLevelsToIncrease" );
       return;
