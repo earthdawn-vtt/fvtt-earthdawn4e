@@ -4,6 +4,11 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { mapObject } from "../../utils.mjs";
 
 /**
+ * @typedef {Record<number, AdvancementLevelData>} AdvancementLevels
+ * Keys are the level number of the corresponding level data.
+ */
+
+/**
  * Advancement of Disciplines, Paths and Questors
  */
 

@@ -131,23 +131,19 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   /**
    * Get advancement levels as an array, regardless of whether levels are stored as an array or keyed object.
    * @returns {object[]} The available advancement level data entries.
-   * @protected
    */
   _getAdvancementLevels() {
     return Object.values( this.advancement?.levels ?? {} );
   }
 
   /**
-   * Get one advancement level by its numeric level value.
+   * Get one advancement level by its numeric level value, based on {@link AdvancementLevels}.
    * @param {number} level The level number to look up.
-   * @returns {object|undefined} The matching advancement level data, if present.
-   * @protected
+   * @returns {AdvancementLevelData|undefined} The matching advancement level data, if present.
    */
   _getAdvancementLevelData( level ) {
     const levels = this.advancement?.levels ?? {};
-    return levels[level]
-      ?? levels[String( level )]
-      ?? this._getAdvancementLevels().find( levelData => levelData?.level === level );
+    return levels[level];
   }
 
   /**
