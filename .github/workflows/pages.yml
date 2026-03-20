@@ -6,7 +6,7 @@ env:
 on:
   push:
     branches:
-      - "main"
+      - "**"
     paths:
       - "documentation/wiki documentation/german/**"
       - ".github/workflows/pages.yml"
