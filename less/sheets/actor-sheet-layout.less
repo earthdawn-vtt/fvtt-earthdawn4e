@@ -264,18 +264,28 @@
       place-items: center;
       margin-bottom: 1px;
 
-      .icon--button.icon.icon--knockdown {
-        --icon-size: 40px;
-        --icon-mask: url("/systems/ed4e/assets/icons/knockdown.svg");
-        margin-top: -10px;
+      .movement-action__button {
+        width: 100%;
+        border: 1px solid var(--color-button-icon);
+        border-radius: 4px;
+        background: var(--color-button-icon);
+        color: var(--color-basic-text-dk);
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 0.6rem;
+        font-weight: bold;
+        white-space: nowrap;
+        min-height: 24px;
       }
 
-      .icon--button.icon.icon--jump-up {
-        --icon-size: 40px;
-        --icon-mask: url("/systems/ed4e/assets/icons/jump-up.svg");
-        margin-top: -10px;
+      .movement-action__button:hover,
+      .movement-action__button:focus-visible {
+        background: var(--color-button-icon);
+        border-color: var(--color-button-icon);
+        color: var(--color-basic-text-dk);
       }
 
+      .movement__grid--item,
       h3 {
         text-transform: uppercase;
         font-size: 0.6rem;
