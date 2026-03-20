@@ -373,13 +373,25 @@
 						<i class="fa-solid fa-person-digging" role="img" aria-label="{{localize 'ED.Data.Actor.Sentient.FIELDS.characteristics.movement.burrow.label'}}"></i>
 					</label>
 
-					<div class="movement__grid--item">
-						<h3>{{localize "ED.Actor.Buttons.jumpUp"}}</h3>
-					</div>
+					<button
+						type="button"
+						class="action-buttons movement-action__button"
+						data-action="jumpUp"
+						data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
+						{{localize "ED.Actor.Buttons.jumpUp"}}
+					</button>
 
-					<div class="movement__grid--item">
-						<h3>{{localize "ED.Actor.Buttons.knockdownTest"}}</h3>
-					</div>
+					<button
+						type="button"
+						class="action-buttons movement-action__button"
+						data-action="knockdown"
+						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownTest'}}"
+						data-tooltip-direction="DOWN"
+						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
+						{{localize "ED.Actor.Buttons.knockdownTest"}}
+					</button>
 
 					<div
 						class="buffer-input"
@@ -456,23 +468,35 @@
 						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase" data-action="manualOverride" data-override-operation="increase"></button>{{/unless}}
 					</div>
 
-					<button
-						type="button"
-						class="action-buttons icon--button icon icon--jump-up"
-						data-action="jumpUp"
+					<div
+						class="buffer-input"
 						data-tooltip="{{localize 'ED.Actor.Buttons.jumpUp'}}"
 						data-tooltip-direction="DOWN"
 						aria-label="{{localize 'ED.Actor.Buttons.jumpUp'}}">
-					</button>
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						<input
+							id="movement-jump-up"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							type="number"
+							value="{{actor.system.attributes.dex.step}}"
+							readonly>
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+					</div>
 
-					<button
-						type="button"
-						class="action-buttons icon--button icon icon--knockdown"
-						data-action="knockdown"
-						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownTest'}}"
+					<div
+						class="buffer-input"
+						data-tooltip="{{localize 'ED.Actor.Buttons.knockdownStep'}}"
 						data-tooltip-direction="DOWN"
-						aria-label="{{localize 'ED.Actor.Buttons.knockdownTest'}}">
-					</button>
+						aria-label="{{localize 'ED.Actor.Buttons.knockdownStep'}}">
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--minus" aria-label="Decrease"></button>{{/unless}}
+						<input
+							id="movement-knockdown"
+							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							type="number"
+							value="{{system.knockdownStep}}"
+							readonly>
+						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
+					</div>
 
 				</div>
 			</div>
