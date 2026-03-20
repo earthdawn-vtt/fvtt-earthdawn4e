@@ -1416,7 +1416,6 @@ body.theme-light {
   padding-top: 8px;
   padding-bottom: 4px;
 }
-
 .part-resources {
   gap: 1rem;
 }
@@ -1426,8 +1425,6 @@ body.theme-light {
 .part-resources .form-group {
   flex: 2;
 }
-
-
 body.theme-dark {
   --document-create-background: var(--background-mottle-blue-dk);
   --document-create-radio-button-background: var(--background-mottle-blue-md);
