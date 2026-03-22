@@ -97,7 +97,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
    * @this {ConstraintsConfig}
    */
   static async _onDeleteConstraint( event, target ) {
-    await this.document.system.removeConstraint?.( target.dataset.constraintType, this.keyPath );
+    await this.document.system.removeConstraint?.( target.dataset.constraintType, this.keyPath, target.dataset.storageKey );
   }
 
   // endregion

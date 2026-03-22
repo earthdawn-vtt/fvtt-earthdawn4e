@@ -255,7 +255,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
     const constraintData = ConstraintData.fromType( constraintType );
 
-    const fieldPath = `system.${ fieldName }.==${ constraintType }`;
+    const fieldPath = `system.${ fieldName }.==${ this._getNewConstraintKey( fieldName, constraintType ) }`;
 
     return await this.parent.update( {
       [ fieldPath ]: constraintData,
@@ -263,17 +263,42 @@ export default class KnackTemplate extends SystemDataModel.mixin(
   }
 
   /**
+   * Returns the key used to store a spell enhancement in a collection field
+   * such as {@link extraThreads}.
+   *
+   * The key is unique within the spell's {@link TypedObjectField} and is derived
+   * from the enhancement type.
+   * @param {"requirements"|"restrictions"} fieldName The name of the field to store the enhancement in.
+   * @param {keyof MetricData.TYPES} constraintType The enhancement type to derive the key from.
+   * @returns {string} The storage key for the enhancement in the spell's typed object field.
+   */
+  _getNewConstraintKey( fieldName, constraintType ) {
+    const existingKeys = Object.keys( this[fieldName] || {} );
+    let key = `${ constraintType }1`;
+    let index = 2;
+
+    while ( existingKeys.includes( key ) ) {
+      key = `${ constraintType }${ index }`;
+      index++;
+    }
+
+    return key;
+  }
+
+  /**
    * Removes a constraint from this knack. Sets the entire field to null if there are no more constraints.
    * @param {keyof ConstraintData.TYPES} constraintType The type of constraint to remove.
    * @param {"requirements"|"restrictions"} fieldName The field to remove the constraint from.
+   * @param {string|undefined} [storageKey] The key to remove from the collection field.
+   * If not provided, the key is derived from the constraint type.
    * @returns {Promise<ItemEd|undefined>} Returns the updated knack item or undefined if not updated.
    */
-  async removeConstraint( constraintType, fieldName ) {
+  async removeConstraint( constraintType, fieldName, storageKey ) {
     if ( ![ "requirements", "restrictions" ].includes( fieldName ) )
       throw new Error( "Invalid field name for constraint. Must be 'requirements' or 'restrictions'." );
 
 
-    const fieldPath = this._getFieldPathForConstraintRemoval( fieldName, constraintType );
+    const fieldPath = this._getFieldPathForConstraintRemoval( fieldName, constraintType, storageKey );
 
     return await this.parent.update( {
       [ fieldPath ]: null,
@@ -284,14 +309,15 @@ export default class KnackTemplate extends SystemDataModel.mixin(
    * Gets the field path in a TypedObjectField for removing a constraint.
    * @param {"requirements"|"restrictions"} fieldName The name of the field to remove the constraint from.
    * @param {keyof ConstraintData.TYPES} constraintType The type of constraint to remove.
+   * @param {string} storageKey The key to remove from the collection field.
    * @returns {string} The field path for removing the constraint.
    */
-  _getFieldPathForConstraintRemoval( fieldName, constraintType ) {
+  _getFieldPathForConstraintRemoval( fieldName, constraintType, storageKey ) {
     const constraintKeys = Object.keys( this[fieldName] || {} );
 
-    return constraintKeys.includes( constraintType ) && constraintKeys.length === 1
+    return constraintKeys.includes( storageKey ) && constraintKeys.length === 1
       ? `system.==${ fieldName }`
-      : `system.${ fieldName }.-=${ constraintType }`;
+      : `system.${ fieldName }.-=${ storageKey }`;
   }
 
   // endregion
