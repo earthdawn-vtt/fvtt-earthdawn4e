@@ -111,9 +111,9 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /**
    * Merge two schema definitions together as well as possible.
-   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
-   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
-   * @returns {DataModel}  Fully merged schema.
+   * @param {DataSchema} a  First schema that forms the basis for the merge. *Will be mutated.*
+   * @param {DataSchema} b  Second schema that will be merged in, overwriting any non-mergeable properties.
+   * @returns {DataSchema}  Fully merged schema.
    */
   static mergeSchema( a, b ) {
     Object.assign( a, b );
