@@ -40,7 +40,7 @@ export default class TypedEntryManagerMixin extends SystemDataModel {
 
   /**
    * Gets the field path in a TypedObjectField for adding an entry. Each subclass must implement this method.
-   * @param {FIELD_NAMES} fieldName The field to add the constraint to.
+   * @param {string} fieldName The field to add the constraint to as defined in {@link FIELD_NAMES}.
    * @param {keyof ENTRY_DATA_CLASS.TYPES} entryType The type of entry to add.
    * @returns {string} The field path for adding the entry.
    * @abstract
