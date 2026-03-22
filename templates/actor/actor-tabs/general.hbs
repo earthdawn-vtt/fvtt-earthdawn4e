@@ -478,8 +478,7 @@
 							id="movement-jump-up"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
 							type="number"
-							value="{{actor.system.attributes.dex.step}}"
-							readonly>
+							value="{{actor.system.attributes.dex.step}}">
 						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
@@ -492,9 +491,9 @@
 						<input
 							id="movement-knockdown"
 							class="{{#if @root.editable}}input__rectangle-input--centered{{else}}input__clear-input--centered{{/if}}"
+							name="system.knockdownStep"
 							type="number"
-							value="{{system.knockdownStep}}"
-							readonly>
+							value="{{actor.system.knockdownStep}}">
 						{{#unless @root.editable}}<button type="button" class="buffer buffer--plus" aria-label="Increase"></button>{{/unless}}
 					</div>
 
