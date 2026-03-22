@@ -1,7 +1,7 @@
 import FormulaField from "../fields/formula-field.mjs";
-import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 import * as QUANTITIES from "../../config/quantities.mjs";
+import TypedEntryData from "./typed-entry-data.mjs";
 
 const fields = foundry.data.fields;
 
@@ -16,33 +16,26 @@ const fields = foundry.data.fields;
  * @property {string} special Description of any special unit details.
  * @abstract
  */
-export class MetricData extends SparseDataModel {
+export class MetricData extends TypedEntryData {
 
   // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
-    return {
-      type: new fields.StringField( {
-        required:        true,
-        blank:           false,
-        initial:         this.TYPE,
-        validate:        value => value === this.TYPE,
-        validationError: `must be equal to "${this.TYPE}"`,
-      } ),
+    return this.mergeSchema( super.defineSchema(), {
       value:   new FormulaField( {
         required:      true,
         nullable:      true,
         deterministic: true,
       } ),
-      unit:   new fields.StringField( {
+      unit:    new fields.StringField( {
         required: true,
         nullable: true,
         blank:    false,
         trim:     true,
       } ),
-      special: new fields.StringField()
-    };
+      special: new fields.StringField(),
+    } );
   }
 
   // endregion
@@ -55,6 +48,7 @@ export class MetricData extends SparseDataModel {
     "ED.Data.General.Metric",
   ];
 
+  /** @type {TypedEntryTypes<typeof MetricData>} */
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
     return MetricData.#TYPES ??= Object.freeze( {
@@ -70,20 +64,6 @@ export class MetricData extends SparseDataModel {
   }
 
   static #TYPES;
-
-  static TYPE = "";
-
-  // endregion
-
-  // region Static Methods
-
-  static fromType( type, data = {} ) {
-    const MetricClass = this.TYPES[type];
-    if ( !MetricClass ) {
-      throw new Error( `MetricData.createFromType: Unknown type "${type}"` );
-    }
-    return new MetricClass( data );
-  }
 
   // endregion
 
