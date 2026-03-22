@@ -837,7 +837,7 @@ export default class SpellData extends ItemDataModel.mixin(
 
     const fieldPath = isExtraSuccess
       ? `system.==${ fieldName }`
-      : `system.${ fieldName }.==${ enhancementType }`;
+      : `system.${ fieldName }.==${ ( this._getNewEnhancementKey( enhancementType ) ) }`;
 
     return await this.parent.update( {
       [ fieldPath ]: enhancementData,
@@ -845,12 +845,36 @@ export default class SpellData extends ItemDataModel.mixin(
   }
 
   /**
+   * Returns the key used to store a spell enhancement in a collection field
+   * such as {@link extraThreads}.
+   *
+   * The key is unique within the spell's {@link TypedObjectField} and is derived
+   * from the enhancement type.
+   * @param {keyof MetricData.TYPES} enhancementType The enhancement type to derive the key from.
+   * @returns {string} The storage key for the enhancement in the spell's typed object field.
+   */
+  _getNewEnhancementKey( enhancementType ) {
+    const existingKeys = Object.keys( this.extraThreads || {} );
+    let key = `${ enhancementType }1`;
+    let index = 2;
+
+    while ( existingKeys.includes( key ) ) {
+      key = `${ enhancementType }${ index }`;
+      index++;
+    }
+
+    return key;
+  }
+
+  /**
    * Removes an enhancement from this spell.
    * @param {keyof MetricData.TYPES} enhancementType The type of enhancement to remove.
    * @param {"extraSuccess"|"extraThreads"} fieldName The field to remove the enhancement from.
+   * @param {string|undefined} [storageKey] The key to remove from the collection field.
+   * If not provided, the key is derived from the enhancement type.
    * @returns {Promise<ItemEd|undefined>} Returns the updated spell item or undefined if not updated.
    */
-  async removeEnhancement( enhancementType, fieldName ) {
+  async removeEnhancement( enhancementType, fieldName, storageKey ) {
     if ( ![ "extraSuccess", "extraThreads" ].includes( fieldName ) )
       throw new Error( "Invalid field name for enhancement. Must be 'extraSuccess' or 'extraThreads'." );
 
@@ -858,19 +882,24 @@ export default class SpellData extends ItemDataModel.mixin(
 
     const fieldPath = isExtraSuccess
       ? `system.==${ fieldName }`
-      : this._getFieldPathForExtraThreadRemoval( enhancementType );
+      : this._getFieldPathForExtraThreadRemoval( storageKey );
 
     return await this.parent.update( {
       [ fieldPath ]: null,
     } );
   }
 
-  _getFieldPathForExtraThreadRemoval( enhancementType ) {
+  /**
+   * Get the field path for removing an enhancement from a collection field.
+   * @param {string} storageKey The key to remove from the collection field.
+   * @returns {string} The field path for removing the enhancement.
+   */
+  _getFieldPathForExtraThreadRemoval( storageKey ) {
     const extraThreadsKeys = Object.keys( this.extraThreads || {} );
 
-    return extraThreadsKeys.includes( enhancementType ) && extraThreadsKeys.length === 1
+    return extraThreadsKeys.includes( storageKey ) && extraThreadsKeys.length === 1
       ? "system.==extraThreads"
-      : `system.extraThreads.-=${ enhancementType }`;
+      : `system.extraThreads.-=${ storageKey }`;
   }
 
   /**
