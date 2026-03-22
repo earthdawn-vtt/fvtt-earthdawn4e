@@ -89,7 +89,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
    * @this {ConstraintsConfig}
    */
   static async _onAddConstraint( event, target ) {
-    await this.document.system.addConstraint?.( target.dataset.constraintType, this.keyPath );
+    await this.document.system.addTypedEntry?.( target.dataset.constraintType, this.keyPath );
   }
 
   /**
@@ -97,7 +97,7 @@ export default class ConstraintsConfig extends BaseConfigSheet {
    * @this {ConstraintsConfig}
    */
   static async _onDeleteConstraint( event, target ) {
-    await this.document.system.removeConstraint?.( target.dataset.constraintType, this.keyPath, target.dataset.storageKey );
+    await this.document.system.removeTypedEntry?.( target.dataset.constraintType, this.keyPath, target.dataset.storageKey );
   }
 
   // endregion

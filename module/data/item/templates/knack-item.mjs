@@ -6,15 +6,20 @@ import PromptFactory from "../../../applications/global/prompt-factory.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 import * as LEGEND from "../../../config/legend.mjs";
+import TypedEntryManagerMixin from "../../common/typed-entry-manager.mjs";
 
 
 /**
  * Data model template for Knacks
  * @property {string} knackSource     UUID of Source the knack derives from
+ * @mixes LearnableTemplate
+ * @mixes TargetTemplate
+ * @mixes TypedEntryManagerMixin
  */
 export default class KnackTemplate extends SystemDataModel.mixin( 
   LearnableTemplate,
   TargetTemplate,
+  TypedEntryManagerMixin,
 ) {
 
   // region Static Properties
@@ -31,6 +36,10 @@ export default class KnackTemplate extends SystemDataModel.mixin(
    * @abstract
    */
   static SOURCE_ITEM_TYPE;
+
+  static ENTRY_DATA_CLASS = ConstraintData;
+
+  static FIELD_NAMES = [ "requirements", "restrictions" ];
 
   // endregion
 
@@ -243,81 +252,9 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
   // region Methods
 
-  /**
-   * Adds a constraint to this knack.
-   * @param {keyof ConstraintData.TYPES} constraintType The type of constraint to add.
-   * @param {"requirements"|"restrictions"} fieldName The field to add the constraint to.
-   * @returns {Promise<ItemEd|undefined>} Returns the updated knack item or undefined if not updated.
-   */
-  async addConstraint( constraintType, fieldName ) {
-    if ( ![ "requirements", "restrictions" ].includes( fieldName ) )
-      throw new Error( "Invalid field name for constraint. Must be 'requirements' or 'restrictions'." );
-
-    const constraintData = ConstraintData.fromType( constraintType );
-
-    const fieldPath = `system.${ fieldName }.==${ this._getNewConstraintKey( fieldName, constraintType ) }`;
-
-    return await this.parent.update( {
-      [ fieldPath ]: constraintData,
-    } );
-  }
-
-  /**
-   * Returns the key used to store a spell enhancement in a collection field
-   * such as {@link extraThreads}.
-   *
-   * The key is unique within the spell's {@link TypedObjectField} and is derived
-   * from the enhancement type.
-   * @param {"requirements"|"restrictions"} fieldName The name of the field to store the enhancement in.
-   * @param {keyof MetricData.TYPES} constraintType The enhancement type to derive the key from.
-   * @returns {string} The storage key for the enhancement in the spell's typed object field.
-   */
-  _getNewConstraintKey( fieldName, constraintType ) {
-    const existingKeys = Object.keys( this[fieldName] || {} );
-    let key = `${ constraintType }1`;
-    let index = 2;
-
-    while ( existingKeys.includes( key ) ) {
-      key = `${ constraintType }${ index }`;
-      index++;
-    }
-
-    return key;
-  }
-
-  /**
-   * Removes a constraint from this knack. Sets the entire field to null if there are no more constraints.
-   * @param {keyof ConstraintData.TYPES} constraintType The type of constraint to remove.
-   * @param {"requirements"|"restrictions"} fieldName The field to remove the constraint from.
-   * @param {string|undefined} [storageKey] The key to remove from the collection field.
-   * If not provided, the key is derived from the constraint type.
-   * @returns {Promise<ItemEd|undefined>} Returns the updated knack item or undefined if not updated.
-   */
-  async removeConstraint( constraintType, fieldName, storageKey ) {
-    if ( ![ "requirements", "restrictions" ].includes( fieldName ) )
-      throw new Error( "Invalid field name for constraint. Must be 'requirements' or 'restrictions'." );
-
-
-    const fieldPath = this._getFieldPathForConstraintRemoval( fieldName, constraintType, storageKey );
-
-    return await this.parent.update( {
-      [ fieldPath ]: null,
-    } );
-  }
-
-  /**
-   * Gets the field path in a TypedObjectField for removing a constraint.
-   * @param {"requirements"|"restrictions"} fieldName The name of the field to remove the constraint from.
-   * @param {keyof ConstraintData.TYPES} constraintType The type of constraint to remove.
-   * @param {string} storageKey The key to remove from the collection field.
-   * @returns {string} The field path for removing the constraint.
-   */
-  _getFieldPathForConstraintRemoval( fieldName, constraintType, storageKey ) {
-    const constraintKeys = Object.keys( this[fieldName] || {} );
-
-    return constraintKeys.includes( storageKey ) && constraintKeys.length === 1
-      ? `system.==${ fieldName }`
-      : `system.${ fieldName }.-=${ storageKey }`;
+  /** @inheritDoc */
+  _getFieldPathToAddTypedEntry( fieldName, entryType ) {
+    return `system.${ fieldName }.==${ this._getNewEntryKey( fieldName, entryType ) }`;
   }
 
   // endregion
