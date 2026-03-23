@@ -1,7 +1,9 @@
 import EdIdField from "./data/fields/edid-field.mjs";
 import * as ACTORS from "./config/actors.mjs";
+import * as CHAT from "./config/chat.mjs";
 import * as LEGEND from "./config/legend.mjs";
 import * as MAGIC from "./config/magic.mjs";
+import * as ROLLS from "./config/rolls.mjs";
 import * as SYSTEM from "./config/system.mjs";
 import { SYSTEM_ID } from "./constants/constants.mjs";
 
@@ -69,12 +71,12 @@ export default function registerSystemSettings() {
   // region News
 
   game.settings.register( SYSTEM_ID, "hideUpdateNews", {
-    name:    "ED.Settings.Update.hideUpdateNewsName",
-    hint:    "ED.Settings.Update.hideUpdateNewsHint",
-    scope:   "user",
-    type:    Boolean,
     config:  true,
-    default: false
+    scope:   "user",
+    type:    new BooleanField( {
+      label:   "ED.Settings.Update.hideUpdateNewsName",
+      hint:    "ED.Settings.Update.hideUpdateNewsHint",
+    } ),
   } );
 
   // endregion
@@ -83,12 +85,13 @@ export default function registerSystemSettings() {
 
   Object.entries( SYSTEM.defaultEdIds ).forEach( ( [ name, edid ] ) => {
     game.settings.register( SYSTEM_ID, getEdidSettingKey( name ), {
-      name:    `ED.Settings.Edid.${ name }`,
-      hint:    `ED.Settings.Edid.${ name }Hint`,
-      scope:   "world",
       config:  true,
-      default: edid,
-      type:    new EdIdField(),
+      scope:   "world",
+      type:    new EdIdField( {
+        initial:  edid,
+        label:   `ED.Settings.Edid.${ name }`,
+        hint:    `ED.Settings.Edid.${ name }Hint`,
+      } ),
     } );
   } );
 
@@ -98,6 +101,7 @@ export default function registerSystemSettings() {
 
   game.settings.register( SYSTEM_ID, "quickDeleteEmbeddedOnShiftClick", {
     config:  true,
+    scope:   "world",
     type:    new BooleanField( {
       initial:  false,
       label:    "ED.Settings.LpTracking.quickDeleteEmbeddedOnShiftClick",
@@ -109,64 +113,71 @@ export default function registerSystemSettings() {
 
   // region Owned Items
 
-  // Should Living Armor checked on Namegivers
   game.settings.register( SYSTEM_ID, "enforceLivingArmor", {
-    name:    "ED.Settings.Label.enforceLivingArmor",
-    hint:    "ED.Settings.Hint.enforceLivingArmor",
-    scope:   "world",
     config:  true,
-    type:    Boolean,
-    default: true,
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.Label.enforceLivingArmor",
+      hint:    "ED.Settings.Hint.enforceLivingArmor",
+    } ),
   } );
 
   // endregion
 
   // region Character Generation
 
-  // Auto open char gen on PC document creation
+  // Auto-open char gen on PC document creation
   game.settings.register( SYSTEM_ID, "autoOpenCharGen", {
-    name:    "ED.Settings.CharGen.autoOpenCharGen",
-    hint:    "ED.Settings.CharGen.hintAutoOpenCharGen",
-    scope:   "world",
     config:  true,
-    type:    Boolean,
-    default: true,
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.CharGen.autoOpenCharGen",
+      hint:    "ED.Settings.CharGen.hintAutoOpenCharGen",
+    } ),
   } );
 
   // Starting attribute points to spend
   game.settings.register( SYSTEM_ID, "charGenAttributePoints", {
-    name:    "ED.Settings.CharGen.attributePoints",
-    hint:    "ED.Settings.CharGen.hintAttributePoints",
-    scope:   "world",
     config:  true,
-    type:    Number,
-    default: 25,
+    scope:   "world",
+    type:    new NumberField( {
+      initial: 25,
+      min:     0,
+      step:    1,
+      label:   "ED.Settings.CharGen.attributePoints",
+      hint:    "ED.Settings.CharGen.hintAttributePoints",
+    } ),
   } );
 
   // Maximum rank that can be assigned to a talent or skill on character generation
   game.settings.register( SYSTEM_ID, "charGenMaxRank", {
-    name:    "ED.Settings.CharGen.maxRanks",
-    hint:    "ED.Settings.CharGen.hintMaxRanks",
-    scope:   "world",
     config:  true,
-    type:    Number,
-    default: 3,
+    scope:   "world",
+    type:    new NumberField( {
+      initial:  3,
+      min:      1,
+      step:     1,
+      label:   "ED.Settings.CharGen.maxRanks",
+      hint:    "ED.Settings.CharGen.hintMaxRanks",
+    } ),
   } );
 
   // Maximum circle for learnable spells at character generation
   game.settings.register( SYSTEM_ID, "charGenMaxSpellCircle", {
-    name:   "ED.Settings.CharGen.maxSpellCircle",
-    hint:   "ED.Settings.CharGen.hintMaxSpellCircle",
-    scope:  "world",
     config: true,
+    scope:  "world",
     type:   new NumberField( {
       required: true,
       nullable: false,
+      initial:  2,
       min:      1,
       step:     1,
       integer:  true,
       positive: true,
-      initial:  2,
+      label:    "ED.Settings.CharGen.maxSpellCircle",
+      hint:     "ED.Settings.CharGen.hintMaxSpellCircle",
     } ),
   } );
 
@@ -176,23 +187,22 @@ export default function registerSystemSettings() {
 
   // LP Tracking On/Off
   game.settings.register( SYSTEM_ID, "lpTrackingUsed", {
-    name:    "ED.Settings.LpTracking.lpTrackingUsed",
-    hint:    "ED.Settings.LpTracking.hintLpTrackingUsed",
-    scope:   "world",
     config:  true,
-    default: true,
-    type:    Boolean
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.LpTracking.lpTrackingUsed",
+      hint:    "ED.Settings.LpTracking.hintLpTrackingUsed",
+    } ),
   } );
 
   // LP Tracking Option Attributes
   game.settings.register( SYSTEM_ID, "lpTrackingAttributes", {
-    name:    "ED.Settings.LpTracking.attributeOptions",
-    hint:    "ED.Settings.LpTracking.hintAttributeOption",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new StringField( {
-      initial:  "spendLp",
       choices:  LEGEND.attributeIncreaseRules,
+      initial:  "spendLp",
       label:    "ED.Settings.LpTracking.attributeOptions",
       hint:     "ED.Settings.LpTracking.hintAttributeOption",
     } ),
@@ -200,73 +210,73 @@ export default function registerSystemSettings() {
 
   // LP Tracking Option Talents
   game.settings.register( SYSTEM_ID, "lpTrackingCircleTalentRequirements", {
-    name:    "ED.Settings.LpTracking.circleTalentRequirements",
-    hint:    "ED.Settings.LpTracking.hintCircleTalentRequirements",
     scope:   "world",
     config:  true,
-    default: "disciplineTalents",
-    type:    String,
-    choices: LEGEND.circleTalentRequirements,
+    type:    new StringField( {
+      choices: LEGEND.circleTalentRequirements,
+      initial: "disciplineTalents",
+      label:   "ED.Settings.LpTracking.circleTalentRequirements",
+      hint:    "ED.Settings.LpTracking.hintCircleTalentRequirements",
+    } ),
   } );
 
   // LP Tracking Option Skill Training
   game.settings.register( SYSTEM_ID, "lpTrackingRemoveSilver", {
-    name:    "ED.Settings.LpTracking.removeSilver",
-    hint:    "ED.Settings.LpTracking.hintRemoveSilver",
-    scope:   "world",
     config:  true,
-    default: true,
-    type:    Boolean
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.LpTracking.removeSilver",
+      hint:    "ED.Settings.LpTracking.hintRemoveSilver",
+    } ),
   } );
 
   // LP Tracking Max Rank Talent
   game.settings.register( SYSTEM_ID, "lpTrackingMaxRankTalent", {
-    name:    "ED.Settings.LpTracking.maxRankTalent",
-    hint:    "ED.Settings.LpTracking.hintMaxRankTalent",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new NumberField( {
+      initial: 15,
       min:     0,
       step:    1,
       integer: true,
-      initial: 15,
+      label:   "ED.Settings.LpTracking.maxRankTalent",
+      hint:    "ED.Settings.LpTracking.hintMaxRankTalent",
     } ),
   } );
 
   // LP Tracking Max Rank Skill
   game.settings.register( SYSTEM_ID, "lpTrackingMaxRankSkill", {
-    name:    "ED.Settings.LpTracking.maxRankSkill",
-    hint:    "ED.Settings.LpTracking.hintMaxRankSkill",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new NumberField( {
+      initial: 10,
       min:     0,
       step:    1,
       integer: true,
-      initial: 10,
+      label:    "ED.Settings.LpTracking.maxRankSkill",
+      hint:    "ED.Settings.LpTracking.hintMaxRankSkill",
     } ),
   } );
 
   // LP Tracking Max Rank Devotion
   game.settings.register( SYSTEM_ID, "lpTrackingMaxRankDevotion", {
-    name:    "ED.Settings.LpTracking.maxRankDevotion",
-    hint:    "ED.Settings.LpTracking.hintMaxRankDevotion",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new NumberField( {
       min:     0,
       step:    1,
       integer: true,
       initial: 12,
+      label:   "ED.Settings.LpTracking.maxRankDevotion",
+      hint:    "ED.Settings.LpTracking.hintMaxRankDevotion",
     } ),
   } );
 
   // LP Tracking Spell Cost
   game.settings.register( SYSTEM_ID, "lpTrackingSpellCost", {
-    name:    "ED.Settings.LpTracking.spellCost",
-    hint:    "ED.Settings.LpTracking.hintSpellCost",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new StringField( {
       required: true,
       nullable: false,
@@ -280,10 +290,8 @@ export default function registerSystemSettings() {
 
   // LP Tracking Use Patterncraft to Learn Spell
   game.settings.register( SYSTEM_ID, "lpTrackingLearnSpellUsePatterncraft", {
-    name:    "ED.Settings.LpTracking.learnSpellUsePatterncraft",
-    hint:    "ED.Settings.LpTracking.hintLearnSpellUsePatterncraft",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new BooleanField( {
       required: true,
       nullable: false,
@@ -295,10 +303,8 @@ export default function registerSystemSettings() {
 
   // LP Tracking Learn Spells on Circle Up
   game.settings.register( SYSTEM_ID, "lpTrackingLearnSpellsOnCircleUp", {
-    name:    "ED.Settings.LpTracking.learnSpellsOnCircleUp",
-    hint:    "ED.Settings.LpTracking.hintLearnSpellsOnCircleUp",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new BooleanField( {
       required: true,
       nullable: false,
@@ -314,36 +320,31 @@ export default function registerSystemSettings() {
 
   // Step Table used for step-to-dice conversion
   game.settings.register( SYSTEM_ID, "stepTable", {
-    name:    "ED.Settings.StepTable.stepTable",
-    hint:    "ED.Settings.StepTable.hint",
-    scope:   "world",
     config:  true,
-    default: "fourth",
-    type:    String,
-    choices: {
-      classic: "ED.Settings.StepTable.editionClassic",
-      first:   "ED.Settings.StepTable.editionFirst",
-      third:   "ED.Settings.StepTable.editionThird",
-      fourth:  "ED.Settings.StepTable.editionFourth"
-    }
+    scope:   "world",
+    type:    new StringField( {
+      initial: "fourth",
+      choices: ROLLS.stepTables,
+      label:   "ED.Settings.StepTable.stepTable",
+      hint:    "ED.Settings.StepTable.hint",
+    } ),
   } );
 
   // Encumbrance options
   game.settings.register( SYSTEM_ID, "encumbrance", {
-    name:    "ED.Settings.Encumbrance.encumbrance",
-    hint:    "ED.Settings.Encumbrance.encumbranceHint",
-    scope:   "world",
     config:  true,
-    default: true,
-    type:    Boolean
+    scope:   "world",
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.Encumbrance.encumbrance",
+      hint:    "ED.Settings.Encumbrance.encumbranceHint",
+    } ),
   } );
 
   // Languages
   game.settings.register( SYSTEM_ID, "languages", {
-    name:           "ED.Settings.GameMechanics.languages",
-    hint:           "ED.Settings.GameMechanics.languagesHint",
-    scope:          "world",
     config:         true,
+    scope:          "world",
     requiresReload: true,
     type:           new SetField(
       new StringField( {
@@ -352,17 +353,16 @@ export default function registerSystemSettings() {
       {
         empty:   false,
         initial:  Object.values( ACTORS.languages ) ,
+        label:          "ED.Settings.GameMechanics.languages",
+        hint:           "ED.Settings.GameMechanics.languagesHint",
       }
     ),
   } );
 
   // Spellcasting / Thread Weaving Types
   game.settings.register( SYSTEM_ID, "spellcastingTypes", {
-    name:    "ED.Settings.GameMechanics.spellcastingTypes",
-    hint:    "ED.Settings.GameMechanics.spellcastingTypesHint",
-    scope:   "world",
     config:  true,
-    default:  Object.values( MAGIC.spellcastingTypes ),
+    scope:   "world",
     type:    new SetField(
       new StringField( {
         blank: false,
@@ -370,27 +370,28 @@ export default function registerSystemSettings() {
       {
         empty:   false,
         initial:  Object.values( MAGIC.spellcastingTypes ),
+        name:    "ED.Settings.GameMechanics.spellcastingTypes",
+        hint:    "ED.Settings.GameMechanics.spellcastingTypesHint",
       }
     )
   } );
 
   // Split Talents
   game.settings.register( SYSTEM_ID, "talentsSplit", {
-    name:    "ED.Settings.talentsSplit",
-    hint:    "ED.Settings.talentsSplitHint",
-    scope:   "world",
     config:  true,
+    scope:   "world",
     default: true,
-    type:    Boolean
+    type:    new BooleanField( {
+      initial: true,
+      label:   "ED.Settings.talentsSplit",
+      hint:    "ED.Settings.talentsSplitHint",
+    } ),
   } );
 
   // Minimum difficulty for tests
   game.settings.register( SYSTEM_ID, "minimumDifficulty", {
-    name:    "ED.Settings.GameMechanics.minimumDifficulty",
-    hint:    "ED.Settings.GameMechanics.minimumDifficultyHint",
-    scope:   "world",
     config:  true,
-    default: 2,
+    scope:   "world",
     type:    new NumberField( {
       required: true,
       nullable: false,
@@ -405,8 +406,8 @@ export default function registerSystemSettings() {
 
   // Strain cost for jump up tests
   game.settings.register( SYSTEM_ID, "jumpUpStrainCost", {
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new NumberField( {
       required: true,
       nullable: false,
@@ -421,8 +422,8 @@ export default function registerSystemSettings() {
 
   // Base difficulty for jump up tests
   game.settings.register( SYSTEM_ID, "jumpUpBaseDifficulty", {
-    scope:   "world",
     config:  true,
+    scope:   "world",
     type:    new NumberField( {
       required: true,
       nullable: false,
@@ -441,16 +442,15 @@ export default function registerSystemSettings() {
 
   // Chat Avatar Options
   game.settings.register( SYSTEM_ID, "chatAvatar", {
-    name:    "ED.Settings.Chat.chatAvatar",
-    hint:    "ED.Settings.Chat.chatAvatarHint",
-    scope:   "world",
     config:  true,
-    default: "configuration",
-    type:    String,
-    choices: {
-      configuration: "ED.Settings.Chat.chatAvatarConfiguration",
-      selectedToken: "ED.Settings.Chat.chatAvatarToken"
-    }
+    scope:   "world",
+    type:    new StringField( {
+      initial:  "configuration",
+      choices: CHAT.chatAvatarSettings,
+      label:   "ED.Settings.Chat.chatAvatar",
+      hint:    "ED.Settings.Chat.chatAvatarHint",
+    } ),
+
   } );
 
   // endregion

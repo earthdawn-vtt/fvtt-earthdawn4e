@@ -25,3 +25,13 @@ preLocalize( "chatCommands" );
 export const flags = {
   sourceMessageUuid: "sourceMessageUuid",
 };
+
+/**
+ * The available options for automatic chat avatars.
+ * @enum {string}
+ */
+export const chatAvatarSettings = {
+  configuration: "ED.Settings.Chat.chatAvatarConfiguration",
+  selectedToken: "ED.Settings.Chat.chatAvatarToken",
+};
+preLocalize( "chatAvatarSettings" );
