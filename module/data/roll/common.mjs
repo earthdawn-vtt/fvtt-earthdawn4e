@@ -7,6 +7,14 @@ import * as ROLLS from "../../config/rolls.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 
 /**
+ * @typedef {import('../../_types.mjs').RollModifiers} RollModifiers
+ * @typedef {import('../../_types.mjs').RollStepData} RollStepData
+ * @typedef {import('../../_types.mjs').RollResourceData} RollResourceData
+ * @typedef {import('../../_types.mjs').RollTargetData} RollTargetData
+ * @typedef {import('../../_types.mjs').RollStrainData} RollStrainData
+ */
+
+/**
  * @typedef { object } EdRollOptionsInitializationData
  * @property { RollStepData } [step] The step data for the roll. Can be omitted if to be initialized automatically.
  * @property { RollTargetData } [target] The target data for the roll. Can be omitted if to be initialized automatically.
@@ -14,59 +22,11 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
  * @property { RollResourceData } [karma] The karma data for the roll. Can be omitted if to initialize to default.
  * @property { RollResourceData } [devotion] The devotion data for the roll. Can be omitted to initialize to default.
  * @property { Record<string, number> } [extraDice] Extra dice that are added to the roll, see {@link EdRollOptions.extraDice}.
+ * @property { FlavorTemplateData } [flavor] Optional flavor data.
  */
 
 /**
  * @typedef {import('../../dice/ed-roll.mjs').FlavorTemplateData} FlavorTemplateData
- */
-
-/**
- * @typedef {Record<string, number>} RollModifiers
- * @description A collection of named modifiers applied to rolls.
- * Keys are localized labels describing the source of the modifier (e.g., "Wounds", "Karma Bonus").
- * Values are numeric modifier values that will be applied to the roll (positive for bonuses, negative for penalties).
- * @example
- * // Example RollModifiers object:
- * {
- *   "Wounds": -2,
- *   "Talent Bonus": 3,
- *   "Situational Penalty": -1
- * }
- */
-
-/**
- * @typedef { object } RollStepData
- * @description Data for a roll step.
- * @property { number } base The base step that is used to determine the dice that are rolled.
- * @property { RollModifiers } [modifiers] All modifiers that are applied to the base step.
- * @property { number } [total] The final step that is used to determine the dice that are rolled.
- *                            The sum of all modifiers is added to the base value.
- */
-
-/**
- * @typedef { object } RollResourceData
- * @description Data for a roll resource like karma or devotion.
- * @property { number } pointsUsed How many points of this resource should be consumed after rolling.
- * @property { number } available How many points of this resource are available.
- * @property { number } step The step that is used to determine the dice that are rolled for this resource.
- * @property { string } dice The dice that are rolled for this resource.
- */
-
-/**
- * @typedef { object } RollTargetData
- * @description Data for the target number of a roll.
- * @property { number } base The base target number.
- * @property { RollModifiers } [modifiers] All modifiers that are applied to the base target number.
- * @property { number } [total] The final target number. The sum of all modifiers is added to the base value.
- * @property { boolean } [public] Whether the target number is shown in chat or hidden.
- */
-
-/**
- * @typedef { object } RollStrainData
- * @description Data for the strain that is taken after a roll.
- * @property { number } base The base strain that is taken.
- * @property { RollModifiers } [modifiers] All modifiers that are applied to the base strain.
- * @property { number } [total] The final strain that is taken. The sum of all modifiers is added to the base value.
  */
 
 /**

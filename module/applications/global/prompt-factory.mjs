@@ -34,9 +34,9 @@ export default class PromptFactory {
   _promptTypeMapping = {};
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "cancel".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "cancel".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get cancelButton() {
     return {
@@ -49,9 +49,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "free".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "free".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get freeButton() {
     return {
@@ -64,9 +64,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "spendLp".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "spendLp".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get spendLpButton() {
     return {
@@ -79,9 +79,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "completeButton".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "completeButton".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get completeButton() {
     return {
@@ -94,9 +94,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "goBackButton".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "goBackButton".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get goBackButton() {
     return {
@@ -109,9 +109,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "continueButton".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "continueButton".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get continueButton() {
     return {
@@ -124,9 +124,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "versatility".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "versatility".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get versatilityButton() {
     return {
@@ -139,9 +139,9 @@ export default class PromptFactory {
   }
 
   /**
-   * A {@link DialogV2Button} object for a button with data action "noDisciplineButton".
-   * @type {DialogV2Button}
-   * @returns {DialogV2Button} - The button object.
+   * A {@link foundry.applications.api.DialogV2Button} object for a button with data action "noDisciplineButton".
+   * @type {foundry.applications.api.DialogV2Button}
+   * @returns {foundry.applications.api.DialogV2Button} - The button object.
    */
   static get noDisciplineButton() {
     return {

@@ -8,26 +8,26 @@ import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as SYSTEM from "../../config/system.mjs";
 
 
+/**
+ * @typedef {"namegiver" | "class" | "attributes" | "talents" | "skills"} ValidationCategoryKey
+ * @description Validation categories for character generation.
+ */
+
+/**
+ * @typedef {object} ValidationOptions
+ * @property {string} [errorLevel="warn"] - The level of error to display (e.g., "info", "warn", "error").
+ * @property {boolean} [displayNotification=false] - Whether to display a notification if validation fails.
+ */
+
+/**
+ * A validation function that checks a specific aspect of character generation.
+ * @callback ValidationFunction
+ * @async
+ * @param {ValidationOptions} options - Validation options.
+ * @returns {Promise<boolean>} True if the validation passes, false otherwise.
+ */
+
 export default class CharacterGenerationPrompt extends ApplicationEd {
-
-  /**
-   * Validation categories for character generation.
-   * @typedef {"namegiver" | "class" | "attributes" | "talents" | "skills"} ValidationCategoryKey
-   */
-
-  /**
-   * @typedef {object} ValidationOptions
-   * @property {string} [errorLevel="warn"] - The level of error to display (e.g., "info", "warn", "error").
-   * @property {boolean} [displayNotification=false] - Whether to display a notification if validation fails.
-   */
-
-  /**
-   * A validation function that checks a specific aspect of character generation.
-   * @callback ValidationFunction
-   * @async
-   * @param {ValidationOptions} options - Validation options.
-   * @returns {Promise<boolean>} True if the validation passes, false otherwise.
-   */
 
   // region Static Properties
 
