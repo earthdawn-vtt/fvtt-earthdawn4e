@@ -12,14 +12,14 @@ export default class RollPrompt extends ApplicationEd {
   buttons = [
     {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      label:    "ED.Dialogs.Buttons.cancel",
       cssClass: "cancel",
       icon:     `fas ${SYSTEM.icons.cancel}`,
       action:   "close",
     },
     {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.roll" ),
+      label:    "ED.Dialogs.Buttons.roll",
       cssClass: "roll",
       icon:     `fa-regular ${SYSTEM.icons.dice}`,
       action:   "roll",

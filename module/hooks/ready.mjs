@@ -226,12 +226,12 @@ async function _showUpdateNews() {
     buttons: [
       {
         action:   "ok",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
+        label:    "ED.Dialogs.Buttons.ok",
         default: true
       },
       {
         action:   "notAgain",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.notAgain" ),
+        label:    "ED.Dialogs.Buttons.notAgain",
         callback: () => {
           setSetting( "hideUpdateNews", true );
         }
