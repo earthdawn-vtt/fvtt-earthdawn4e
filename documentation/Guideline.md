@@ -107,11 +107,18 @@ Every test case is a - as of now - a github issue with a description how to exec
 
 ## Coding and Documentation
 
-the following chapter is about the responsibility of developers to document the code and make sure validation is triggered.
+The following chapter is about the responsibility of developers to document the code and make sure validation is triggered.
+
+### JSDoc
+
+We use JSDoc for type safety and documentation. 
+- Use `@typedef` for complex objects, especially for function parameters and results.
+- Frequently used types should be placed in `module/_types.mjs`.
+- Document everything.
 
 ### Labels
 
-every use case and every user function has its own label in github with the same name. <br>
+Every use case and every user function has its own label in github with the same name. <br>
 Use Cases shall usually be assigned to a Story, Bug or Refactoring during creation (it is not final but provides a good starting point).
 During the development process every changed code function requires the developer to add the user function of that function or method to the issue they are working on. <br>
 This allows the developer and/or tester to easily find the tests related to that functionality by checking for the use cases the user function is linked to and set the milestone (or other tag) on the test itself. This ensures, that every functionality which is touched will be tested before the release.
