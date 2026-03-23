@@ -107,3 +107,15 @@ export const testTypes = {
   },
 };
 preLocalize( "testTypes", { key: "label" } );
+
+/**
+ * The available step tables for rolling Earthdawn dice.
+ * @enum {string}
+ */
+export const stepTables = {
+  classic: "ED.Settings.StepTable.editionClassic",
+  first:   "ED.Settings.StepTable.editionFirst",
+  third:   "ED.Settings.StepTable.editionThird",
+  fourth:  "ED.Settings.StepTable.editionFourth"
+};
+preLocalize( "stepTables", );
