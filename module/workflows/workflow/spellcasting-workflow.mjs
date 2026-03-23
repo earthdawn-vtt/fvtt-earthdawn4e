@@ -123,14 +123,14 @@ export default class SpellcastingWorkflow extends Rollable( ActorWorkflow ) {
     if ( this._spell.system.inActorGrimoires( this._actor ) ) {
       castingMethods.push( {
         action:  "grimoire",
-        label:   game.i18n.localize( "ED.Dialogs.Buttons.grimoireCasting" ),
+        label:   "ED.Dialogs.Buttons.grimoireCasting",
         icon:    "systems/ed4e/assets/icons/grimoire.svg",
         class:   buttonClass,
       } );
     }
     castingMethods.push( {
       action:  "raw",
-      label:   game.i18n.localize( "ED.Dialogs.Buttons.rawCasting" ),
+      label:   "ED.Dialogs.Buttons.rawCasting",
       icon:    "systems/ed4e/assets/icons/rawMagic.svg",
       class:   buttonClass,
     } );

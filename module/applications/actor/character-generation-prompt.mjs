@@ -627,28 +627,28 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     // Add buttons
     context.buttons = [ {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+      label:    "ED.Dialogs.Buttons.cancel",
       cssClass: "cancel",
       icon:     `fas ${SYSTEM.icons.cancel}`,
       action:   "close",
     }, ];
     context.buttons.push( {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.previousStep" ),
+      label:    "ED.Dialogs.Buttons.previousStep",
       cssClass: `previous ${ context.hasPreviousStep ? "" : "invisible" }`,
       icon:     `fas ${SYSTEM.icons.previousCharGen}`,
       action:   "previous",
     } );
     context.buttons.push( {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.nextStep" ),
+      label:    "ED.Dialogs.Buttons.nextStep",
       cssClass: `next ${ context.hasNextStep ? "" : "invisible" }`,
       icon:     `fa-regular ${SYSTEM.icons.nextCharGen}`,
       action:   "next",
     } );
     context.buttons.push( {
       type:     "button",
-      label:    game.i18n.localize( "ED.Dialogs.Buttons.finish" ),
+      label:    "ED.Dialogs.Buttons.finish",
       cssClass: "finish",
       icon:     `fa-regular ${SYSTEM.icons.finishCharGen}`,
       action:   "finish",

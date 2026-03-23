@@ -124,14 +124,14 @@ export default class LegendPointHistory extends ApplicationEd {
     context.buttons = [
       {
         type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.close" ),
+        label:    "ED.Dialogs.Buttons.close",
         cssClass: "cancel",
         icon:     "fas fa-times",
         action:   "close",
       },
       {
         type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.save" ),
+        label:    "ED.Dialogs.Buttons.save",
         cssClass: "saveChanges",
         icon:     "fa-light fa-floppy-disk",
         action:   "saveChanges",

@@ -95,14 +95,14 @@ export default class AssignLpPrompt extends ApplicationEd {
     context.buttons = [
       {
         type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.cancel" ),
+        label:    "ED.Dialogs.Buttons.cancel",
         cssClass: "cancel",
         icon:     "fas fa-times",
         action:   "close",
       },
       {
         type:     "button",
-        label:    game.i18n.localize( "ED.Dialogs.Buttons.ok" ),
+        label:    "ED.Dialogs.Buttons.ok",
         cssClass: "assignLP",
         icon:     "fas fa-check",
         action:   "assignLP",
