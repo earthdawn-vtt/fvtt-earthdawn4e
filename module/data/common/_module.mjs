@@ -1,3 +1,4 @@
+import TypedEntryData from "./typed-entry-data.mjs";
 import {
   AreaMetricData,
   DurationMetricData,
@@ -18,6 +19,7 @@ import {
   RelationConstraintData,
   SpellConstraintData,
 } from "./restrict-require.mjs";
+import TypedEntryManagerMixin from "./typed-entry-manager.mjs";
 
 export {
   AbilityConstraintData,
@@ -36,4 +38,6 @@ export {
   SpecialMetricData,
   SpellConstraintData,
   TargetMetricData,
+  TypedEntryData,
+  TypedEntryManagerMixin,
 };

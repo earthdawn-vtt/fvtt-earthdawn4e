@@ -31,6 +31,7 @@
             data-action="deleteConstraint"
             data-key-path="{{@root.keyPath}}"
             data-constraint-type="{{this.type}}"
+            data-storage-key="{{@key}}"
           >
             <i class="fas {{@root.config.icons.delete}}" inert></i>
             <span>{{lookup (lookup @root.config.LEGEND.constraints this.type) "label"}}</span>

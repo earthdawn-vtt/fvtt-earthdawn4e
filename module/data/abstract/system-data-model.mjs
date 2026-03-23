@@ -111,9 +111,9 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   /**
    * Merge two schema definitions together as well as possible.
-   * @param {DataModel} a  First schema that forms the basis for the merge. *Will be mutated.*
-   * @param {DataModel} b  Second schema that will be merged in, overwriting any non-mergeable properties.
-   * @returns {DataModel}  Fully merged schema.
+   * @param {DataSchema} a  First schema that forms the basis for the merge. *Will be mutated.*
+   * @param {DataSchema} b  Second schema that will be merged in, overwriting any non-mergeable properties.
+   * @returns {DataSchema}  Fully merged schema.
    */
   static mergeSchema( a, b ) {
     Object.assign( a, b );
@@ -217,10 +217,22 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
         template.LOCALIZATION_PREFIXES.forEach( prefix => allPrefixes.add( prefix ) );
       }
 
-      // take all instance methods and fields from template and mix in to base class
-      for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( template.prototype ) ) ) {
-        if (  [ "constructor" ].includes( key ) || this._immiscible.has( key )  ) continue;
-        Object.defineProperty( Base.prototype, key, descriptor );
+      // Take all instance methods and fields from `template` and mix in to base class.
+      // Copy inherited template members too. We intentionally allow later copies to
+      // overwrite earlier ones so nested mixins work, while final subclasses can still
+      // override any mixed-in member by defining the same name themselves.
+      const protoChain = [];
+      let proto = template.prototype;
+      while ( proto && proto !== SystemDataModel.prototype ) {
+        protoChain.unshift( proto );
+        proto = Object.getPrototypeOf( proto );
+      }
+      for ( const currentProto of protoChain ) {
+        for ( const [ key, descriptor ] of Object.entries( Object.getOwnPropertyDescriptors( currentProto ) ) ) {
+          if ( [ "constructor" ].includes( key ) || this._immiscible.has( key ) ) continue;
+          Object.defineProperty( Base.prototype, key, descriptor );
+        }
+        proto = Object.getPrototypeOf( proto );
       }
     }
 

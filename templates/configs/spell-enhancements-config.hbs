@@ -57,6 +57,7 @@
             data-action="deleteEnhancement"
             data-key-path="{{@root.keyPath}}"
             data-enhancement-type="{{this.type}}"
+            data-storage-key="{{@key}}"
           >
             <i class="fas {{@root.config.icons.delete}}" inert></i>
             <span>{{lookup (lookup @root.config.spellEnhancements this.type) "label"}}</span>

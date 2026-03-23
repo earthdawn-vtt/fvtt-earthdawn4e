@@ -85,7 +85,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
    * @this {SpellEnhancementsConfig}
    */
   static async _onAddEnhancement( event, target ) {
-    await this.document.system.addEnhancement( target.dataset.enhancementType, this.keyPath );
+    await this.document.system.addTypedEntry( target.dataset.enhancementType, this.keyPath );
   }
 
   /**
@@ -93,7 +93,7 @@ export default class SpellEnhancementsConfig extends BaseConfigSheet {
    * @this {SpellEnhancementsConfig}
    */
   static async _onDeleteEnhancement( event, target ) {
-    await this.document.system.removeEnhancement( target.dataset.enhancementType, this.keyPath );
+    await this.document.system.removeTypedEntry( target.dataset.enhancementType, this.keyPath, target.dataset.storageKey );
   }
 
   // endregion

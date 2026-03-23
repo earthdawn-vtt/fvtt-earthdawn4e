@@ -1,7 +1,7 @@
 import EdIdField from "../fields/edid-field.mjs";
-import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import TypedEntryData from "./typed-entry-data.mjs";
 
 const { fields } = foundry.data;
 
@@ -10,21 +10,13 @@ const { fields } = foundry.data;
  * Intended to be used as an EmbeddedDataField.
  * @abstract
  */
-export class ConstraintData extends SparseDataModel {
+export class ConstraintData extends TypedEntryData {
 
   // region Schema
 
   /** @inheritdoc */
   static defineSchema() {
-    return {
-      type: new fields.StringField( {
-        required:        true,
-        blank:           false,
-        initial:         this.TYPE,
-        validate:        value => value === this.TYPE,
-        validationError: `must be equal to "${this.TYPE}"`,
-      } ),
-    };
+    return this.mergeSchema( super.defineSchema(), {} );
   }
 
   // endregion
@@ -37,9 +29,10 @@ export class ConstraintData extends SparseDataModel {
     "ED.Data.General.Constraint",
   ];
 
+  /** @type {TypedEntryTypes<typeof ConstraintData>} */
   static get TYPES() {
     // eslint-disable-next-line no-return-assign
-    return ConstraintData.#TYPES ??= Object.freeze( {
+    return this.#TYPES ??= Object.freeze( {
       [AbilityConstraintData.TYPE]:    AbilityConstraintData,
       [AttributeConstraintData.TYPE]:  AttributeConstraintData,
       [ClassConstraintData.TYPE]:      ClassConstraintData,
@@ -51,27 +44,6 @@ export class ConstraintData extends SparseDataModel {
   }
 
   static #TYPES;
-
-  static TYPE = "";
-
-  // endregion
-
-  // region Static Methods
-
-  /**
-   * Create a new instance of a constraint class based on the given type.
-   * @param {string} type - The type of constraint to create.
-   * @param {object} [data] - The data to initialize the constraint with.
-   * @returns {ConstraintData} - A new instance of the constraint class.
-   * @throws {Error} - If no constraint class is found for the given type.
-   */
-  static fromType( type, data = {} ) {
-    const ConstrainClass = this.TYPES[ type ];
-    if ( !ConstrainClass ) {
-      throw new Error( `No constraint class found for type "${type}"` );
-    }
-    return new ConstrainClass( data );
-  }
 
   // endregion
 
