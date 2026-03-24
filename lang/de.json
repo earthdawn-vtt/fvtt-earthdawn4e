@@ -2545,10 +2545,6 @@
               "hint":                             "Rüstungstyp gegen den der Schaden effektiv ist",
               "label":                            "Rüstungstyp"
             },
-            "damageAbilities": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
             "damageType": {
               "hint":                             "Art des Schadens",
               "label":                            "Schadensart"
