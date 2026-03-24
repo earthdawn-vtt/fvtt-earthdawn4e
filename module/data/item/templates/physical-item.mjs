@@ -157,7 +157,6 @@ export default class PhysicalItemTemplate extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    // TODO: return object instead of array? to have meaningful keys and you don't have to remember the positions of the values in the array
     return [
       this.parent.usableItem.labels.arbitraryStep,
       this.parent.usableItem.labels.action,
