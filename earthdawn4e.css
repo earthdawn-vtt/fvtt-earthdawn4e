@@ -2045,48 +2045,23 @@ form.ed4e.character-generation nav a.disabled {
 .assign-lp__description {
   width: 100%;
 }
-.app.window-app.form.earthdawn4e.legend-point__history .window-content {
-  position: relative;
-  background-image: url('assets/sheet/background.png');
-  background-size: cover;
-  color: black;
-  background-repeat: repeat;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__earned .legend-point__history--earned-buttons button {
-  height: 35px;
-  align-self: flex-end;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__earned .add-earning-icon {
-  top: 5px;
-  /* Adjust as needed */
-  right: 5px;
-  /* Adjust as needed */
+form.application.ed4e.legend-point__history .window-content .lp-history__earned .add-earning-icon {
   cursor: pointer;
 }
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .legend-point__history--spent-buttons button {
-  height: 35px;
-  align-self: flex-end;
+form.application.ed4e.legend-point__history .window-content .lp-history__spend .lp-history__spend-sort {
+  width: 40%;
+  align-self: center;
 }
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .spendings-details {
-  display: none;
+form.application.ed4e.legend-point__history .window-content .lp-history__spend table {
+  table-layout: fixed;
+  width: 100%;
 }
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .spendings-details.is-visible {
-  display: block;
+form.application.ed4e.legend-point__history .window-content .lp-history__chronological tbody tr i.revert-transaction {
+  visibility: hidden;
 }
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__date {
-  width: 20%;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__type {
-  width: 20%;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__name {
-  width: 20%;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__description {
-  width: 20%;
-}
-.app.window-app.form.earthdawn4e.legend-point__history .window-content .lp-history__spend .lp-history__amount {
-  width: 20%;
+form.application.ed4e.legend-point__history .window-content .lp-history__chronological tbody tr:hover i.revert-transaction {
+  visibility: visible;
+  cursor: pointer;
 }
 .start-round-combatant-prompt .combat-options-grid {
   --effect-columns: 5;
