@@ -17,7 +17,6 @@ export default class connectionsMigration extends BaseMigration {
       console.log( `ED Migration | Processing connections item "${source.name || "Unnamed"}"` );
     }
 
-    // TODO: Implement connections item to group actor data transformation
     // This should prepare the data structure for eventual conversion to Actor
     
     // For now, mark it for post-processing
