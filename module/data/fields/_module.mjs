@@ -3,7 +3,6 @@
 * https://gitlab.com/peginc/swade} systems.
 */
 
-export { default as DatetimeField } from "./datetime-field.mjs";
 export { default as EdidField } from "./edid-field.mjs";
 export { default as FormulaField } from "./formula-field.mjs";
 export { default as IdentifierField } from "./identifier-field.mjs";
