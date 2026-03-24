@@ -160,31 +160,6 @@ export default class LegendPointHistory extends ApplicationEd {
     return context;
   }
 
-  /** @inheritdoc */
-  _onRender( context, options ) {
-    // TODO: @patrick - solve this in css, just hover: visibility: visible, else: hidden
-    this.element.querySelectorAll(
-      "section.chronological tbody tr"
-    ).forEach( element => {
-      element.addEventListener(
-        "mouseover",
-        () => {
-          element.querySelector(
-            "i[data-action=\"revertTransactions\"]"
-          ).style.visibility = "visible";
-        }
-      );
-      element.addEventListener(
-        "mouseout",
-        () => {
-          element.querySelector(
-            "i[data-action=\"revertTransactions\"]"
-          ).style.visibility = "hidden";
-        }
-      );
-    } );
-  }
-
   /**
    * Handles form submission for the lp history dialog.
    * @param {Event} event The event object triggered by the form submission.
