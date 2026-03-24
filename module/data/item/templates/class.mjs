@@ -215,15 +215,12 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   }
 
   async _increaseFreeAbilities( nextLevel ) {
-    // increase all abilities of category "free" to new circle, if lower
+    // increase all abilities of category "free" to the new circle, if lower
     const freeAbilities = this.containingActor.items.filter(
       i => i.system.talentCategory === "free"
         && i.system.source?.class === this.parent.id
         && i.system.level < nextLevel
     );
-    // TODO: check if there are any free abilities already on this level or higher
-    // if so, add new earnings lp transaction to refund the spent lp to raise
-    // the free talent
 
     for ( const ability of freeAbilities ) {
       await ability.update( { "system.level": nextLevel } );
