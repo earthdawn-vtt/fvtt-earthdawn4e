@@ -631,7 +631,6 @@ class ActorPromptFactory extends PromptFactory {
     } );
   }
 
-  // TODO: adapt CSS to overwrite class "form-footer" with flexcol
 }
 
 class ItemPromptFactory extends PromptFactory {
