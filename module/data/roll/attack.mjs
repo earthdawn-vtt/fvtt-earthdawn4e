@@ -225,7 +225,6 @@ export default class AttackRollOptions extends EdRollOptions {
   async _getManeuvers() {
     const actor = await fromUuid( this.rollingActorUuid );
     return actor.itemTypes.knackManeuver;
-    // TODO: this needs to be filtered by available number of successes in the ChatMessage "getHTML" method, we don't have a possibly modifier number of successes anywhere else than in the ChatMessages DataModel
   }
 
   // endregion
