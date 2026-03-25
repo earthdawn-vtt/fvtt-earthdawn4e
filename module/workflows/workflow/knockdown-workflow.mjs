@@ -97,7 +97,7 @@ export default class KnockdownWorkflow extends Rollable( ActorWorkflow ) {
    */
   async _prepareKnockdownRollOptions() {
     const stepModifiers = {};
-    const knockdownModifier = this._actor.system.globalBonuses?.allKnockdownTests.value ?? 0;
+    const knockdownModifier = this._actor.system.globalModifiers?.allKnockdownTests.value ?? 0;
     if ( knockdownModifier ) {
       stepModifiers.knockdown = knockdownModifier;
     }

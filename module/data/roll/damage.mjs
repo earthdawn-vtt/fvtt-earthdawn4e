@@ -435,10 +435,10 @@ export default class DamageRollOptions extends EdRollOptions {
 
     if ( isUnarmedOrWeapon ) {
       const weaponType = sourceDocument.system.weaponType || "unarmed";
-      const globalBonusKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
+      const globalModifierKey = ITEMS.weaponTypeModifier[ weaponType ]?.damage;
       const actor = fromUuidSync( data.rollingActorUuid );
       if ( !actor ) throw new Error( "DamageRollOptions | _getModifiersFromSource: Could not find rolling actor." );
-      modifiers[ EFFECTS.globalBonuses[ globalBonusKey ].label ] = actor.system.globalBonuses[ globalBonusKey ].value || 0;
+      modifiers[ EFFECTS.globalModifiers[ globalModifierKey ].label ] = actor.system.globalModifiers[ globalModifierKey ].value || 0;
     }
 
     if ( [ "arbitrary", "poison", ].includes( data.damageSourceType ) ) {

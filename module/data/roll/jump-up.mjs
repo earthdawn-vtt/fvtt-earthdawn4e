@@ -99,7 +99,7 @@ export default class JumpUpRollOptions extends EdRollOptions {
    */
   static #getKnockedDownModifier() {
     return STATUSES.STATUS_CONDITIONS.knockedDown.changes.find(
-      change => change.key === "system.globalBonuses.allTests.value"
+      change => change.key === "system.globalModifiers.allTests.value"
     ).value;
   }
 

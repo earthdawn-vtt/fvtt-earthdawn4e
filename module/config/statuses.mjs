@@ -6,12 +6,12 @@ import { SYSTEM_TYPES } from "../constants/constants.mjs";
 const STATUS_CHANGES = {
   aggressive: [
     {
-      key:   "system.globalBonuses.allCloseAttacks.value",
+      key:   "system.globalModifiers.allCloseAttacks.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: +3,
     },
     {
-      key:   "system.globalBonuses.allCloseDamage.value",
+      key:   "system.globalModifiers.allCloseDamage.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: +3,
     },
@@ -41,7 +41,7 @@ const STATUS_CHANGES = {
   ],
   calledShot: [
     {
-      key:   "system.globalBonuses.allAttacks.value",
+      key:   "system.globalModifiers.allAttacks.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -3,
     },
@@ -59,21 +59,21 @@ const STATUS_CHANGES = {
       value: +3,
     },
     {
-      key:   "system.globalBonuses.allTests.value",
+      key:   "system.globalModifiers.allTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -3,
     },
     {
       // defensive stance gives penalty to _all_ tests except knockdown tests
-      // add an explicit bonus to knockdown effects to neutralize the penalty from `globalBonuses.allTests`
-      key:   "system.globalBonuses.allKnockdownTests.value",
+      // add an explicit bonus to knockdown effects to neutralize the penalty from `globalModifiers.allTests`
+      key:   "system.globalModifiers.allKnockdownTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: +3,
     },
   ],
   fury: [
     {
-      key:   "system.globalBonuses.allTests",
+      key:   "system.globalModifiers.allTests",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       // ignore existing wounds and add them as bonus
       value: "2 * @wounds",
@@ -82,7 +82,7 @@ const STATUS_CHANGES = {
   grappled:    COMMON_EAE_CHANGES.noMovement,
   harried:     [
     {
-      key:   "system.globalBonuses.allActions.value",
+      key:   "system.globalModifiers.allActions.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -2,
     },
@@ -99,7 +99,7 @@ const STATUS_CHANGES = {
   ],
   knockedDown: [
     {
-      key:   "system.globalBonuses.allTests.value",
+      key:   "system.globalModifiers.allTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -3,
     },
@@ -121,7 +121,7 @@ const STATUS_CHANGES = {
   ],
   overwhelmed: [
     {
-      key:   "system.globalBonuses.allActions.value",
+      key:   "system.globalModifiers.allActions.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -1,
     },
