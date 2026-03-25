@@ -26,7 +26,7 @@
           "defense":                              "Defenses",
           "devotion":                             "Devotions",
           "encumbrance":                          "Encumbrance",
-          "globalBonuses":                        "Global Bonuses",
+          "globalModifiers":                      "Global Modifiers",
           "health":                               "Health",
           "initiative":                           "Initiative",
           "karma":                                "Karma",
@@ -154,7 +154,7 @@
         "max":                                    "Max",
         "step":                                   "Step"
       },
-      "GlobalBonus": {
+      "GlobalModifier": {
         "allActions":                             "Actions",
         "allAttacks":                             "Attacks",
         "allCloseAttacks":                        "Melee Attacks",
@@ -924,9 +924,9 @@
       "Actor": {
         "Common": {
           "FIELDS": {
-            "globalBonuses": {
-              "hint":                             "Global Bonus",
-              "label":                            "Global Bonus"
+            "globalModifiers": {
+              "hint":                             "Global Modifier",
+              "label":                            "Global Modifier"
             },
             "singleBonuses": {
               "hint":                             "Single Bonus",
@@ -3287,15 +3287,15 @@
           "rollAttribute":                        "TODO: Add translation",
           "weaveThread":                          "Weave Thread"
         },
-        "devotion":                                "Devotion",
-        "devotionStep":                            "Devotion Step",
-        "difficulty":                              "Difficulty",
-        "karma":                                   "Karma",
-        "karmaStep":                               "Karma Step",
-        "modifier":                                "Modifier",
-        "resources":                               "Resources",
-        "step":                                    "Step",
-        "strain":                                  "Strain"
+        "devotion":                               "Devotion",
+        "devotionStep":                           "Devotion Step",
+        "difficulty":                             "Difficulty",
+        "karma":                                  "Karma",
+        "karmaStep":                              "Karma Step",
+        "modifier":                               "Modifier",
+        "resources":                              "Resources",
+        "step":                                   "Step",
+        "strain":                                 "Strain"
       },
       "SelectExtraThreads": {
         "selectedXofYthreads":                    "{numSelected} of maximum {maxExtraThreads} Threads selected"
