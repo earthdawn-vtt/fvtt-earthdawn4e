@@ -136,4 +136,13 @@ export const FLAGS = {
   learnedSpellKnackThroughPath: "learnedSpellKnackThroughPath",
 };
 
+/**
+ * The system types that are not available in the current system and should not be shown when creating a new document.
+ * @type {{Actor: string[], Item: string[]}}
+ */
+export const UNAVAILABLE_SYSTEM_TYPES = {
+  Actor: [ "dragon", "horror", "loot", "spirit", "trap", "vehicle" ],
+  Item:  [ "bindingSecret", "curseMark", "mask", "poisonDisease", "shipWeapon", "spellKnack", ],
+};
+
 // endregion
