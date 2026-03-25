@@ -26,7 +26,7 @@
           "defense":                              "TODO: Add translation",
           "devotion":                             "TODO: Add translation",
           "encumbrance":                          "TODO: Add translation",
-          "globalBonuses":                        "TODO: Add translation",
+          "globalModifiers":                      "TODO: Add translation",
           "health":                               "TODO: Add translation",
           "initiative":                           "TODO: Add translation",
           "karma":                                "TODO: Add translation",
@@ -154,7 +154,7 @@
         "max":                                    "TODO: Add translation",
         "step":                                   "TODO: Add translation"
       },
-      "GlobalBonus": {
+      "GlobalModifier": {
         "allActions":                             "TODO: Add translation",
         "allAttacks":                             "TODO: Add translation",
         "allCloseAttacks":                        "TODO: Add translation",
@@ -924,7 +924,7 @@
       "Actor": {
         "Common": {
           "FIELDS": {
-            "globalBonuses": {
+            "globalModifiers": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             },
