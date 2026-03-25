@@ -573,9 +573,9 @@ export default class EdRollOptions extends SparseDataModel {
       stepData.modifiers[game.i18n.localize( "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label" )] = -wounds;
     }
 
-    this.constructor.GLOBAL_MODIFIERS.forEach( bonus => {
-      const modifierValue = actor.system.globalModifiers[bonus].value;
-      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 ) stepData.modifiers[ EFFECTS.globalModifiers[bonus].label ] = modifierValue;
+    this.constructor.GLOBAL_MODIFIERS.forEach( modifier => {
+      const modifierValue = actor.system.globalModifiers[modifier].value;
+      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 ) stepData.modifiers[ EFFECTS.globalModifiers[modifier].label ] = modifierValue;
     } );
 
     return stepData;

@@ -13,13 +13,13 @@
 
   <fieldset>
     <legend>{{localize "ED.Item.Header.healthValues"}}</legend>
-    {{!-- Wound Threshold bonus --}}
+    {{!-- Wound Threshold modifier --}}
     {{formField systemFields.characteristics.fields.health.fields.woundThreshold name="system.characteristics.health.woundThreshold" value=item.system.characteristics.health.woundThreshold localize=true}}
-    {{!-- Unconscious Threshold bonus --}}
+    {{!-- Unconscious Threshold modifier --}}
     {{formField systemFields.characteristics.fields.health.fields.unconscious name="system.characteristics.health.unconscious" value=item.system.characteristics.health.unconscious localize=true}}
-    {{!-- Death Threshold bonus --}}
+    {{!-- Death Threshold modifier --}}
     {{formField systemFields.characteristics.fields.health.fields.death name="system.characteristics.health.death" value=item.system.characteristics.health.death localize=true}}
-    {{!-- Recovery test Resource bonus --}}
+    {{!-- Recovery test Resource modifier --}}
     {{formField systemFields.characteristics.fields.recoveryTestsResource.fields.value name="system.characteristics.recoveryTestsResource.value" value=item.system.characteristics.recoveryTestsResource.value localize=true}}
   </fieldset>
 
@@ -45,30 +45,30 @@
 
   <fieldset>
     <legend>{{localize "ED.Item.Header.combatValues"}}</legend>
-    {{!-- Knock Down Step bonus --}}
+    {{!-- Knock Down Step modifier --}}
     {{formField systemFields.knockDownStep name="system.knockDownStep" value=item.system.knockDownStep localize=true}}
-    {{!-- Damage Steps bonus --}}
+    {{!-- Damage Steps modifier --}}
     {{formField systemFields.damageStep name="system.damageStep" value=item.system.damageStep localize=true}}
-    {{!-- Attack Steps bonus --}}
+    {{!-- Attack Steps modifier --}}
     {{formField systemFields.attackStep name="system.attackStep" value=item.system.attackStep localize=true}}
 
-    {{!-- Initiative Step bonus --}}
+    {{!-- Initiative Step modifier --}}
     {{formField systemFields.initiative name="system.initiative" value=item.system.initiative localize=true}}
-    {{!-- Actions bonus --}}
+    {{!-- Actions modifier --}}
     {{formField systemFields.actions name="system.actions" value=item.system.actions localize=true}}
   </fieldset>
 
   <fieldset>
     <legend>{{localize "ED.Item.Header.movementTypes"}}</legend>
-    {{!-- Movement Walk bonus --}}
+    {{!-- Movement Walk modifier --}}
     {{formField systemFields.movement.fields.walk name="system.movement.walk" value=item.system.movement.walk localize=true}}
-    {{!-- Movement Fly bonus --}}
+    {{!-- Movement Fly modifier --}}
     {{formField systemFields.movement.fields.fly name="system.movement.fly" value=item.system.movement.fly localize=true}}
-    {{!-- Movement Swim bonus --}}
+    {{!-- Movement Swim modifier --}}
     {{formField systemFields.movement.fields.swim name="system.movement.swim" value=item.system.movement.swim localize=true}}
-    {{!-- Movement Climb bonus --}}
+    {{!-- Movement Climb modifier --}}
     {{formField systemFields.movement.fields.climb name="system.movement.climb" value=item.system.movement.climb localize=true}}
-    {{!-- Movement burrow bonus --}}
+    {{!-- Movement burrow modifier --}}
     {{formField systemFields.movement.fields.burrow name="system.movement.burrow" value=item.system.movement.burrow localize=true}}
   </fieldset>
 
