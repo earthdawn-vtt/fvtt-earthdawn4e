@@ -234,7 +234,6 @@ export default class WeaponData extends PhysicalItemTemplate.mixin(
    */
   get isTwoHandedRanged() {
     return false;
-    // TODO: add additional datafield
   }
 
   /** @override */

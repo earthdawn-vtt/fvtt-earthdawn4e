@@ -240,6 +240,5 @@ function transformCreatureNpcType( originalType, actorTypeValue ) {
  * @private
  */
 function transformThreadType( systemData ) {
-  // TODO: Thread transformation not yet implemented
   return null; // No transformation for now
 }
