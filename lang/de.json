@@ -26,7 +26,7 @@
           "defense":                              "Verteidigung",
           "devotion":                             "Weihe",
           "encumbrance":                          "Traglast",
-          "globalModifiers":                      "Globale Änderungen",
+          "globalModifiers":                      "Globale Modifikatoren",
           "health":                               "Gesundheitswerte",
           "initiative":                           "Initiative",
           "karma":                                "Karma",
@@ -34,7 +34,7 @@
           "recoveryTestsResource":                "Ressource - Erholungsproben",
           "rollable":                             "Würfeln",
           "shield":                               "Schild",
-          "singleBonuses":                        "Einzelne Boni",
+          "singleModifiers":                      "Einzelne Modifikatoren",
           "targeting":                            "Ziel / Schwierigkeit",
           "weapon":                               "Waffe",
           "weaponRange":                          "Waffenreichweite"
@@ -925,12 +925,12 @@
         "Common": {
           "FIELDS": {
             "globalModifiers": {
-              "hint":                             "Globale Änderung",
-              "label":                            "Globale Änderung"
+              "hint":                             "Globale Modifikatoren",
+              "label":                            "Globale Modifikatoren"
             },
-            "singleBonuses": {
-              "hint":                             "Einzel Bonus",
-              "label":                            "Einzel Bonus"
+            "singleModifiers": {
+              "hint":                             "Einzel Modifikator",
+              "label":                            "Einzel Modifikator"
             }
           }
         },

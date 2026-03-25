@@ -159,12 +159,12 @@ export const globalModifiers = {
 };
 preLocalize( "globalModifiers", { key: "label" } );
 
-export const singleBonuses = {
+export const singleModifiers = {
   knockdownEffects: {
     label: "ED.Config.Eae.allKnockdownTests",
   },
 };
-preLocalize( "singleBonuses", { key: "label" } );
+preLocalize( "singleModifiers", { key: "label" } );
 
 /**
  * A list of select input options that map a human-readable label to the field path for the change.
