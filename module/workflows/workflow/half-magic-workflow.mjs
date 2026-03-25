@@ -48,13 +48,13 @@ export default class HalfMagicWorkflow extends Rollable( ActorWorkflow ) {
       discipline = this._actor.highestDiscipline;
     }
     const stepModifiers = {};
-    const allTestsModifiers = this._actor.system.globalBonuses?.allTests.value ?? 0;
-    const allActionsModifiers = this._actor.system.globalBonuses?.allActions.value ?? 0;
+    const allTestsModifiers = this._actor.system.globalModifiers?.allTests.value ?? 0;
+    const allActionsModifiers = this._actor.system.globalModifiers?.allActions.value ?? 0;
     if ( allTestsModifiers ) {
-      stepModifiers[EFFECTS.globalBonuses.allTests.label] = allTestsModifiers;
+      stepModifiers[EFFECTS.globalModifiers.allTests.label] = allTestsModifiers;
     }
     if ( allActionsModifiers ) {
-      stepModifiers[EFFECTS.globalBonuses.allActions.label] = allActionsModifiers;
+      stepModifiers[EFFECTS.globalModifiers.allActions.label] = allActionsModifiers;
     }
     const attribute = this._actor.system.attributes[this._attributeId];
     const finalStep = attribute.step + discipline.system.level;

@@ -31,7 +31,7 @@ export default class KnockdownRollOptions extends EdRollOptions {
   static ROLL_TYPE = "knockdown";
 
   /**
-   * The global bonuses that are applied to the step of all rolls of this type.
+   * The global modifiers that are applied to the step of all rolls of this type.
    * @type {[string]}
    */
   static GLOBAL_MODIFIERS = [

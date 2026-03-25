@@ -26,7 +26,7 @@
           "defense":                              "Verteidigung",
           "devotion":                             "Weihe",
           "encumbrance":                          "Traglast",
-          "globalBonuses":                        "Globale Boni",
+          "globalModifiers":                      "Globale Änderungen",
           "health":                               "Gesundheitswerte",
           "initiative":                           "Initiative",
           "karma":                                "Karma",
@@ -154,7 +154,7 @@
         "max":                                    "Max",
         "step":                                   "Stufe"
       },
-      "GlobalBonus": {
+      "GlobalModifier": {
         "allActions":                             "Alle Aktionen",
         "allAttacks":                             "Alle Angriffe",
         "allCloseAttacks":                        "Alle Nahkampfangriffe",
@@ -924,9 +924,9 @@
       "Actor": {
         "Common": {
           "FIELDS": {
-            "globalBonuses": {
-              "hint":                             "Globaler Bonus",
-              "label":                            "Globaler Bonus"
+            "globalModifiers": {
+              "hint":                             "Globale Änderung",
+              "label":                            "Globale Änderung"
             },
             "singleBonuses": {
               "hint":                             "Einzel Bonus",

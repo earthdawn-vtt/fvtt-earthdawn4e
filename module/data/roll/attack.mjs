@@ -122,7 +122,7 @@ export default class AttackRollOptions extends EdRollOptions {
     return {
       base:      attackAbility?.system.rankFinal ?? attacker.system.attributes.dex.step,
       modifiers: {
-        [ EFFECTS.globalBonuses[globalModifierKey].label ]: attacker.system.globalBonuses[ globalModifierKey ].value,
+        [ EFFECTS.globalModifiers[globalModifierKey].label ]: attacker.system.globalModifiers[ globalModifierKey ].value,
       },
     };
   }
