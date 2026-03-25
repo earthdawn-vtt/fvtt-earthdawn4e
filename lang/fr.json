@@ -34,7 +34,7 @@
           "recoveryTestsResource":                "TODO: Add translation",
           "rollable":                             "TODO: Add translation",
           "shield":                               "TODO: Add translation",
-          "singleBonuses":                        "TODO: Add translation",
+          "singleModifiers":                      "TODO: Add translation",
           "targeting":                            "TODO: Add translation",
           "weapon":                               "TODO: Add translation",
           "weaponRange":                          "TODO: Add translation"
@@ -928,7 +928,7 @@
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             },
-            "singleBonuses": {
+            "singleModifiers": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             }
