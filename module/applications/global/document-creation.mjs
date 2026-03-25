@@ -120,19 +120,18 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
       .filter( ( pack ) => pack.metadata.type === this.documentType )
       .forEach( ( pack ) => folders.push( ...pack.folders ) );
 
-    const types = CONFIG.ED4E.typeGroups[this.documentType];
+    const types = CONFIG.ED4E.SYSTEM.typeGroups[this.documentType];
     const typesRadio = Object.fromEntries(
       Object.entries( types ).map( ( [ typeGroup, types ], i ) => {
         return [
           game.i18n.localize( `TYPES.${ this.documentType }.TypeGroups.${ typeGroup }` ),
           sortObjectEntries( types.reduce(
             ( accumulator, type ) =>  {
+              if ( CONFIG.ED4E.SYSTEM.UNAVAILABLE_SYSTEM_TYPES[this.documentType].includes( type ) ) return accumulator;
               let label = CONFIG[this.documentType].typeLabels?.[type];
               label = label && game.i18n.has( label ) ? game.i18n.localize( label ) : type;
-              return {
-                ...accumulator,
-                [type]: label
-              };
+              accumulator[type] = label;
+              return accumulator;
             } ,
             {}
           ) ),
@@ -168,7 +167,30 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     };
   }
 
+  /** @inheritDoc */
+  _configureRenderOptions( options ) {
+    super._configureRenderOptions( options );
+
+    if (
+      !options.isFirstRender
+      && Array.isArray( options.parts )
+    ) options.parts = options.parts.filter( part => part !== "footer" );
+  }
+
+  /** @inheritDoc */
+  _onRender( context, options ) {
+    this.element
+      .querySelectorAll( ".type-selection label" )
+      .forEach( ( element ) =>
+        element.addEventListener(
+          "dblclick",
+          this.constructor._createDocument.bind( this ),
+        ),
+      );
+  }
+
   // endregion
+
 
   // region Form Handling
 
@@ -205,31 +227,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
 
   // endregion
 
-  // region Rendering
-
-  /** @inheritDoc */
-  _configureRenderOptions( options ) {
-    super._configureRenderOptions( options );
-
-    if (
-      !options.isFirstRender
-      && Array.isArray( options.parts )
-    ) options.parts = options.parts.filter( part => part !== "footer" );
-  }
-
-  /** @inheritDoc */
-  _onRender( context, options ) {
-    this.element
-      .querySelectorAll( ".type-selection label" )
-      .forEach( ( element ) =>
-        element.addEventListener(
-          "dblclick",
-          this.constructor._createDocument.bind( this ),
-        ),
-      );
-  }
-
-  // endregion
 
   // region Event Handlers
 
