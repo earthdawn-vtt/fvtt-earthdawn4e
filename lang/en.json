@@ -34,7 +34,7 @@
           "recoveryTestsResource":                "Recovery Tests",
           "rollable":                             "Rollable",
           "shield":                               "Shield",
-          "singleBonuses":                        "Bonus",
+          "singleModifiers":                      "Modifikator",
           "targeting":                            "Targeting",
           "weapon":                               "Weapon",
           "weaponRange":                          "Weapon Range"
@@ -928,9 +928,9 @@
               "hint":                             "Global Modifier",
               "label":                            "Global Modifier"
             },
-            "singleBonuses": {
-              "hint":                             "Single Bonus",
-              "label":                            "Single Bonus"
+            "singleModifiers": {
+              "hint":                             "Single Modifier",
+              "label":                            "Single Modifier"
             }
           }
         },
