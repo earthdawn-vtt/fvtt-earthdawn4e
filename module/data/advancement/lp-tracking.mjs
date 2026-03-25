@@ -136,7 +136,7 @@ export default class LpTrackingData extends foundry.abstract.DataModel {
             ${ transaction.amount }
           </td>
           <td>
-            <i class="fas fa-rotate-left" data-action="revertTransactions" data-id="${ transaction.id }" style="visibility: hidden"></i>
+            <i class="fas fa-rotate-left revert-transaction" data-action="revertTransactions" data-id="${ transaction.id }"></i>
           </td>
       </tr>
       `;
