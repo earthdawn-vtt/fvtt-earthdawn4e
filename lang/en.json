@@ -1680,7 +1680,7 @@
         "Mask": {
           "FIELDS": {
             "actions": {
-              "hint":                             "Bonus to Actions",
+              "hint":                             "Modifier to Actions",
               "label":                            "Actions"
             },
             "attackStep": {
