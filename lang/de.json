@@ -26,7 +26,7 @@
           "defense":                              "Verteidigung",
           "devotion":                             "Weihe",
           "encumbrance":                          "Traglast",
-          "globalBonuses":                        "Globale Boni",
+          "globalModifiers":                      "Globale Modifikatoren",
           "health":                               "Gesundheitswerte",
           "initiative":                           "Initiative",
           "karma":                                "Karma",
@@ -34,7 +34,7 @@
           "recoveryTestsResource":                "Ressource - Erholungsproben",
           "rollable":                             "Würfeln",
           "shield":                               "Schild",
-          "singleBonuses":                        "Einzelne Boni",
+          "singleModifiers":                      "Einzelne Modifikatoren",
           "targeting":                            "Ziel / Schwierigkeit",
           "weapon":                               "Waffe",
           "weaponRange":                          "Waffenreichweite"
@@ -154,7 +154,7 @@
         "max":                                    "Max",
         "step":                                   "Stufe"
       },
-      "GlobalBonus": {
+      "GlobalModifier": {
         "allActions":                             "Alle Aktionen",
         "allAttacks":                             "Alle Angriffe",
         "allCloseAttacks":                        "Alle Nahkampfangriffe",
@@ -924,13 +924,13 @@
       "Actor": {
         "Common": {
           "FIELDS": {
-            "globalBonuses": {
-              "hint":                             "Globaler Bonus",
-              "label":                            "Globaler Bonus"
+            "globalModifiers": {
+              "hint":                             "Globale Modifikatoren",
+              "label":                            "Globale Modifikatoren"
             },
-            "singleBonuses": {
-              "hint":                             "Einzel Bonus",
-              "label":                            "Einzel Bonus"
+            "singleModifiers": {
+              "hint":                             "Einzel Modifikator",
+              "label":                            "Einzel Modifikator"
             }
           }
         },
@@ -1680,11 +1680,11 @@
         "Mask": {
           "FIELDS": {
             "actions": {
-              "hint":                             "Bonus auf die Aktionen",
+              "hint":                             "Modifikator auf die Aktionen",
               "label":                            "Aktionen"
             },
             "attackStep": {
-              "hint":                             "Bonus auf die Angriffsstufe",
+              "hint":                             "Modifikator auf die Angriffsstufe",
               "label":                            "Angriffsstufe"
             },
             "challenge": {
@@ -1696,15 +1696,15 @@
             "characteristics": {
               "health": {
                 "death": {
-                  "hint":                         "Bonus auf die Todesschwelle",
+                  "hint":                         "Modifikator auf die Todesschwelle",
                   "label":                        "Todesschwelle"
                 },
                 "unconscious": {
-                  "hint":                         "Bonus auf die Bewusstlosigkeitsschwelle",
+                  "hint":                         "Modifikator auf die Bewusstlosigkeitsschwelle",
                   "label":                        "Bewusstlosigkeitsschwelle"
                 },
                 "woundThreshold": {
-                  "hint":                         "Bonus auf die Wundschwelle",
+                  "hint":                         "Modifikator auf die Wundschwelle",
                   "label":                        "Wundschwelle"
                 }
               },
@@ -1716,36 +1716,36 @@
               }
             },
             "damageStep": {
-              "hint":                             "Bonus auf die Schadensstufe",
+              "hint":                             "Modifikator auf die Schadensstufe",
               "label":                            "Schadensstufe"
             },
             "initiative": {
-              "hint":                             "Bonus auf die Initiative",
+              "hint":                             "Modifikator auf die Initiative",
               "label":                            "Initiative"
             },
             "knockDownStep": {
-              "hint":                             "Bonus auf den Niederschlagswurf",
+              "hint":                             "Modifikator auf den Niederschlagswurf",
               "label":                            "Niederschlagsstufe"
             },
             "movement": {
               "burrow": {
-                "hint":                           "Bonus auf die Grabbewegung",
+                "hint":                           "Modifikator auf die Grabbewegung",
                 "label":                          "Graben"
               },
               "climb": {
-                "hint":                           "Bonus auf die Kletterbewegung",
+                "hint":                           "Modifikator auf die Kletterbewegung",
                 "label":                          "Klettern"
               },
               "fly": {
-                "hint":                           "Bonus auf die Flugbewegung",
+                "hint":                           "Modifikator auf die Flugbewegung",
                 "label":                          "Fliegen"
               },
               "swim": {
-                "hint":                           "Bonus auf die Schwimmbewegung",
+                "hint":                           "Modifikator auf die Schwimmbewegung",
                 "label":                          "Schwimmen"
               },
               "walk": {
-                "hint":                           "Bonus auf die normale Bewegung",
+                "hint":                           "Modifikator auf die normale Bewegung",
                 "label":                          "Gehen"
               }
             },

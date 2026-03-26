@@ -18,14 +18,14 @@ export const COMMON_EAE_CHANGES = {
   ],
   darknessPartial: [
     {
-      key:   "system.globalBonuses.allTests.value",
+      key:   "system.globalModifiers.allTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -2,
     },
   ],
   darknessFull: [
     {
-      key:   "system.globalBonuses.allTests.value",
+      key:   "system.globalModifiers.allTests.value",
       mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
       value: -4,
     },
@@ -106,76 +106,76 @@ export const eaeExecutionTime = {
 preLocalize( "eaeExecutionTime", { keys: [ "label", "group" ] } );
 
 /**
- * Configuration data for Global Bonuses
- * @typedef {object} GlobalBonusConfiguration
+ * Configuration data for Global Modifier
+ * @typedef {object} GlobalModifierConfiguration
  * @property {string} label                               Localized label.
  * @property {{[key: string]: number|string}} [defaults]  Default values for this Attribute based on actor type.
  */
 
 /**
- * @description The global bonus configurations
- * @enum { GlobalBonusConfiguration }
+ * @description The global modifier configurations
+ * @enum { GlobalModifierConfiguration }
  */
-export const globalBonuses = {
+export const globalModifiers = {
   allActions: {
-    label:       "ED.Actor.GlobalBonus.allActions"
+    label:       "ED.Actor.GlobalModifier.allActions"
   },
   allAttacks: {
-    label:       "ED.Actor.GlobalBonus.allAttacks"
+    label:       "ED.Actor.GlobalModifier.allAttacks"
   },
   allCloseAttacks: {
-    label:       "ED.Actor.GlobalBonus.allCloseAttacks"
+    label:       "ED.Actor.GlobalModifier.allCloseAttacks"
   },
   allDamage: {
-    label:       "ED.Actor.GlobalBonus.allDamage"
+    label:       "ED.Actor.GlobalModifier.allDamage"
   },
   allEffects: {
-    label:       "ED.Actor.GlobalBonus.allEffects"
+    label:       "ED.Actor.GlobalModifier.allEffects"
   },
   allKnockdownTests: {
-    label:       "ED.Actor.GlobalBonus.allKnockdownTests"
+    label:       "ED.Actor.GlobalModifier.allKnockdownTests"
   },
   allCloseDamage: {
-    label:       "ED.Actor.GlobalBonus.allCloseDamage"
+    label:       "ED.Actor.GlobalModifier.allCloseDamage"
   },
   allRangedAttacks: {
-    label:       "ED.Actor.GlobalBonus.allRangedAttacks"
+    label:       "ED.Actor.GlobalModifier.allRangedAttacks"
   },
   allRangedDamage: {
-    label:       "ED.Actor.GlobalBonus.allRangedDamage"
+    label:       "ED.Actor.GlobalModifier.allRangedDamage"
   },
   allRecoveryTests: {
-    label:       "ED.Actor.GlobalBonus.allRecoveryTests"
+    label:       "ED.Actor.GlobalModifier.allRecoveryTests"
   },
   allSpellcasting: {
-    label:       "ED.Actor.GlobalBonus.allSpellcasting"
+    label:       "ED.Actor.GlobalModifier.allSpellcasting"
   },
   allSpellTests: {
-    label:       "ED.Actor.GlobalBonus.allSpellTests"
+    label:       "ED.Actor.GlobalModifier.allSpellTests"
   },
   allTests: {
-    label:       "ED.Actor.GlobalBonus.allTests",
+    label:       "ED.Actor.GlobalModifier.allTests",
   },
 };
-preLocalize( "globalBonuses", { key: "label" } );
+preLocalize( "globalModifiers", { key: "label" } );
 
-export const singleBonuses = {
+export const singleModifiers = {
   knockdownEffects: {
     label: "ED.Config.Eae.allKnockdownTests",
   },
 };
-preLocalize( "singleBonuses", { key: "label" } );
+preLocalize( "singleModifiers", { key: "label" } );
 
 /**
  * A list of select input options that map a human-readable label to the field path for the change.
  * @type {FormSelectOption[]}
  */
 export const eaeChangeKeysActor = [
-  ...Object.entries( globalBonuses ).map( ( [ key, { label } ] ) => {
+  ...Object.entries( globalModifiers ).map( ( [ key, { label } ] ) => {
     return {
-      value:          `system.globalBonuses.${key}.value`,
+      value:          `system.globalModifiers.${key}.value`,
       label:          label,
-      group:          "ED.ActiveEffect.ChangeKeys.Groups.globalBonuses",
+      group:          "ED.ActiveEffect.ChangeKeys.Groups.globalModifiers",
       disabled:       false,
       selected:       false,
       rule:           false,

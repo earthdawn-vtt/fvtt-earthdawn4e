@@ -15,7 +15,7 @@ export default class CommonTemplate extends ActorDataModel.mixin(
   static defineSchema() {
     const fields = foundry.data.fields;
     return this.mergeSchema( super.defineSchema(), {
-      globalBonuses: new MappingField( new fields.SchemaField( {
+      globalModifiers: new MappingField( new fields.SchemaField( {
         value: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -24,10 +24,10 @@ export default class CommonTemplate extends ActorDataModel.mixin(
           integer:  true,
         } )
       } ), {
-        initialKeys:     CONFIG.ED4E.globalBonuses,
+        initialKeys:     CONFIG.ED4E.globalModifiers,
         initialKeysOnly: true,
       } ),
-      singleBonuses: new MappingField( new fields.SchemaField( {
+      singleModifiers: new MappingField( new fields.SchemaField( {
         value: new fields.NumberField( {
           required: true,
           nullable: false,
@@ -36,7 +36,7 @@ export default class CommonTemplate extends ActorDataModel.mixin(
           integer:  true,
         } )
       } ), {
-        initialKeys:     CONFIG.ED4E.singleBonuses,
+        initialKeys:     CONFIG.ED4E.singleModifiers,
         initialKeysOnly: true,
       } ),
       favorites: new fields.SetField(

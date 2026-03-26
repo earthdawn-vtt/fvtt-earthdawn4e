@@ -256,7 +256,7 @@ export default class EdRollOptions extends SparseDataModel {
   static ROLL_TYPE = "arbitrary";
 
   /**
-   * The global bonuses that are applied to the step of all rolls of this type.
+   * The global modifiers that are applied to the step of all rolls of this type.
    * @type {[string]}
    */
   static GLOBAL_MODIFIERS = [
@@ -557,7 +557,7 @@ export default class EdRollOptions extends SparseDataModel {
   /**
    * Applies global step modifiers to the step data of the roll.
    * @param {object} data - The data object with which this model is initialized.
-   * @returns {RollStepData|undefined} The modified step data with global bonuses applied, or undefined if no step data is present.
+   * @returns {RollStepData|undefined} The modified step data with global modifiers applied, or undefined if no step data is present.
    */
   _applyGlobalStepModifiers( data ) {
     const stepData = data.step;
@@ -573,9 +573,9 @@ export default class EdRollOptions extends SparseDataModel {
       stepData.modifiers[game.i18n.localize( "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label" )] = -wounds;
     }
 
-    this.constructor.GLOBAL_MODIFIERS.forEach( bonus => {
-      const modifierValue = actor.system.globalBonuses[bonus].value;
-      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 ) stepData.modifiers[ EFFECTS.globalBonuses[bonus].label ] = modifierValue;
+    this.constructor.GLOBAL_MODIFIERS.forEach( modifier => {
+      const modifierValue = actor.system.globalModifiers[modifier].value;
+      if ( Number.isNumeric( modifierValue ) && modifierValue !== 0 ) stepData.modifiers[ EFFECTS.globalModifiers[modifier].label ] = modifierValue;
     } );
 
     return stepData;
