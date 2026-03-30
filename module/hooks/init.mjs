@@ -5,6 +5,8 @@ import * as STATUSES from "../config/statuses.mjs";
 import ED4E_CONSTANTS from "../constants/_module.mjs";
 import  "../tours/ed-tours.mjs";
 import registerHandlebarHelpers from "../handlebar-helpers.mjs";
+import { partials } from "../config/handlebars.mjs";
+
 
 // Import submodules
 import * as applications from "../applications/_module.mjs";
@@ -13,7 +15,6 @@ import * as data from "../data/_module.mjs";
 import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
-import * as utils from "../utils.mjs";
 import { staticStatusId } from "../utils.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
@@ -228,7 +229,23 @@ function registerSheetApps() {
  */
 function setupHandlebars() {
   registerHandlebarHelpers();
-  utils.preloadHandlebarsTemplates();
+  _preloadHandlebarsTemplates();
+}
+
+/**
+ * Define a set of template paths to preload.
+ * Preloaded templates are compiled and cached for fast access when rendering
+ * @returns {Promise} The promise returned by the Foundry API's `loadTemplates`.
+ */
+async function _preloadHandlebarsTemplates() {
+  const paths = {};
+  for ( const path of partials ) {
+    paths[path.replace( ".hbs", ".html" )] = path;
+    paths[`ed4e.${path.split( "/" ).pop().replace( ".hbs", "" )}`] = path;
+    paths[path] = path;
+  }
+
+  return foundry.applications.handlebars.loadTemplates( paths );
 }
 
 /**
