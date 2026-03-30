@@ -1,6 +1,7 @@
 import LpEarningTransactionData from "./lp-earning-transaction.mjs";
 import LpSpendingTransactionData from "./lp-spending-transaction.mjs";
-import { sum } from "../../utils.mjs";
+
+import { sum } from "../../utils/math.mjs";
 
 export default class LpTrackingData extends foundry.abstract.DataModel {
 

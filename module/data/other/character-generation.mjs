@@ -3,7 +3,7 @@ import {
   getSingleGlobalItemByEdid,
   mapObject,
   renameKeysWithPrefix,
-  sum,
+
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
@@ -12,6 +12,7 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../utils/earthdawn.mjs";
+import { sum } from "../../utils/math.mjs";
 
 
 /**

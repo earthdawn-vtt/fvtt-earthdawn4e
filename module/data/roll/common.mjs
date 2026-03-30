@@ -1,4 +1,3 @@
-import { sum } from "../../utils.mjs";
 import getDice from "../../dice/step-tables.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
@@ -6,6 +5,7 @@ import * as ROLLS from "../../config/rolls.mjs";
 
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { lowerCaseFirstLetter } from "../../utils/string.mjs";
+import { sum } from "../../utils/math.mjs";
 
 /**
  * @typedef {import('../../_types.mjs').RollModifiers} RollModifiers
