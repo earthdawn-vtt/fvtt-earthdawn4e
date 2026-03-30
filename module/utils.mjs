@@ -1,5 +1,4 @@
 import { SYSTEM_TYPES } from "./constants/constants.mjs";
-import * as SYSTEM from "./config/system.mjs";
 
 // region Foundry
 
@@ -573,55 +572,5 @@ export function linkForUuidSync( uuid ) {
       ${name}
     </a>`;
 }
-
-// endregion
-
-// region Validation
-
-/**
- * Ensure the provided string contains only the characters allowed in identifiers.
- * @param {string} identifier The string to be checked for validity
- * @returns {boolean} True, if the input string is a valid Foundry identifier, false otherwise.
- */
-function isValidIdentifier( identifier ){
-  return /^([A-Za-z0-9_-]+)$/i.test( identifier );
-}
-
-/** Source for regex: {@link https://ihateregex.io/expr/url-slug/} */
-export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
-
-/**
- * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
- * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
- * @param { string }  value The string to be checked for validity
- * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
- */
-export function validateEdid( value ) {
-  // `any` is a reserved word
-  if ( value === SYSTEM.reservedEdid.ANY ) {
-    return new foundry.data.validation.DataModelValidationFailure( {
-      unresolved:   true,
-      invalidValue: value,
-      message:      "any is a reserved EDID!",
-    } );
-  }
-  // if the value matches the regex we have likely a valid edid
-  if ( !value.match( SLUG_REGEX ) ) {
-    return new foundry.data.validation.DataModelValidationFailure( {
-      unresolved:   true,
-      invalidValue: value,
-      message:      value + " is not a valid EDID",
-    } );
-  }
-}
-
-export const validators = {
-  isValidIdentifier: isValidIdentifier,
-  validateEdid:      validateEdid,
-};
-
-// endregion
-
-// region Migration
 
 // endregion

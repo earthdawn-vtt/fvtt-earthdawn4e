@@ -1,5 +1,4 @@
 import * as SYSTEM from "../../config/system.mjs";
-import { validateEdid } from "../../utils.mjs";
 
 /**
  * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
@@ -37,6 +36,31 @@ export default class EdIdField extends foundry.data.fields.StringField {
       strict:    true,
       lowercase: true,
     } );
+  }
+
+  /**
+   * Taken from the ({@link https://gitlab.com/peginc/swade/-/wikis/Savage-Worlds-ID|SWADE system}).
+   * Ensure the provided string is a valid earthdawn id (a strictly slugged string).
+   * @param { string }  value The string to be checked for validity
+   * @returns {void|DataModelValidationFailure} A validation failure in case of an invalid value.
+   */
+  static validateEdid( value ) {
+    // `any` is a reserved word
+    if ( value === SYSTEM.reservedEdid.ANY ) {
+      return new foundry.data.validation.DataModelValidationFailure( {
+        unresolved:   true,
+        invalidValue: value,
+        message:      "any is a reserved EDID!"
+      } );
+    }
+    // if the value matches the regex we have likely a valid edid
+    if ( !value.match( SYSTEM.SLUG_REGEX ) ) {
+      return new foundry.data.validation.DataModelValidationFailure( {
+        unresolved:   true,
+        invalidValue: value,
+        message:      value + " is not a valid EDID"
+      } );
+    }
   }
 
   // endregion
@@ -79,7 +103,7 @@ export default class EdIdField extends foundry.data.fields.StringField {
 
   /** @inheritDoc */
   _validateType( value, _ ) {
-    return validateEdid( value );
+    return this.constructor.validateEdid( value );
   }
 
   // endregion
