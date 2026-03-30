@@ -1,7 +1,7 @@
 import getDice from "./step-tables.mjs";
-import { sum } from "../utils.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 import * as ROLLS from "../config/rolls.mjs";
+import { sum } from "../utils/math.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 
