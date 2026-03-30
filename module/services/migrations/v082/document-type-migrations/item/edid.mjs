@@ -1,6 +1,5 @@
 import ED4E from "../../../../../config/_module.mjs";
-import { determineConfigValue } from "../../../../../utils.mjs";
-import BaseMigration from "../../../common/base-migration.mjs";
+import BaseMigration, { determineConfigValue } from "../../../common/base-migration.mjs";
 import MatrixMigration from "./matrix.mjs";
 
 export default class EdIdMigration extends BaseMigration {
