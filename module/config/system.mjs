@@ -14,6 +14,12 @@ _______________________________`;
 // region ED-IDs
 
 /**
+ * The regex used to validate slugs in ED-ID fields.
+ * Source for regex: {@link https://ihateregex.io/expr/url-slug/}
+ */
+export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+
+/**
  * Reserved earthdawn ids.
  * @enum {string}
  */
