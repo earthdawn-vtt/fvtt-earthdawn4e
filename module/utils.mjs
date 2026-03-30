@@ -1,6 +1,5 @@
 import { SYSTEM_TYPES } from "./constants/constants.mjs";
 import * as SYSTEM from "./config/system.mjs";
-import { partials } from "./config/handlebars.mjs";
 
 // region Foundry
 
@@ -710,26 +709,6 @@ export function determineConfigValue( slugifiedName, configMappings ) {
     }
   }
   return null;
-}
-
-// endregion
-
-// region Handlebars - Template - Helpers
-
-/**
- * Define a set of template paths to preload.
- * Preloaded templates are compiled and cached for fast access when rendering
- * @returns {Promise} The promise returned by the Foundry API's `loadTemplates`.
- */
-export async function preloadHandlebarsTemplates() {
-  const paths = {};
-  for ( const path of partials ) {
-    paths[path.replace( ".hbs", ".html" )] = path;
-    paths[`ed4e.${path.split( "/" ).pop().replace( ".hbs", "" )}`] = path;
-    paths[path] = path;
-  }
-
-  return foundry.applications.handlebars.loadTemplates( paths );
 }
 
 // endregion
