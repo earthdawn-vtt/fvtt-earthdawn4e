@@ -1,5 +1,5 @@
-import { preLocalize } from "../utils.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import { preLocalize } from "../i18n/localization.mjs";
 
 
 export const documentData = {

@@ -1,7 +1,7 @@
 import { COMMON_EAE_CHANGES } from "./effects.mjs";
-import { preLocalize } from "../utils.mjs";
 import SentientTemplate from "../data/actor/templates/sentient.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import { preLocalize } from "../i18n/localization.mjs";
 
 const STATUS_CHANGES = {
   aggressive: [

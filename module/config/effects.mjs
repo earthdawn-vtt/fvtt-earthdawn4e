@@ -1,6 +1,6 @@
-import { preLocalize } from "../utils.mjs";
 import { armor, attributes, defense } from "./actors.mjs";
 import { movementTypes } from "./quantities.mjs";
+import { preLocalize } from "../i18n/localization.mjs";
 
 
 export const COMMON_EAE_CHANGES = {
