@@ -2,37 +2,6 @@ import { SYSTEM_TYPES } from "./constants/constants.mjs";
 import * as SYSTEM from "./config/system.mjs";
 import { partials } from "./config/handlebars.mjs";
 
-// region Earthdawn
-
-/**
- * Calculate the armor value for the given attribute value.
- * @param { number } attributeValue Willpower value for mystical armor
- * @returns { number } The respective armor value
- */
-export function getArmorFromAttribute( attributeValue ) {
-  return attributeValue <= 0 ? 0 :  Math.floor( attributeValue / 5 );
-}
-
-/**
- * Calculate the attribute step for the given attribute value.
- * @param { number } attributeValue The value of the attribute to look up the step for
- * @returns { number } The step for the given value
- */
-export function getAttributeStep( attributeValue ) {
-  return attributeValue <= 0 ? 0 : Math.ceil( attributeValue / 3 ) + 1;
-}
-
-/**
- * Calculate the defense value for the given attribute value.
- * @param { number } attributeValue Dexterity-, Perception- or Charisma value
- * @returns { number } The respective defense value
- */
-export function getDefenseValue( attributeValue ) {
-  return attributeValue <= 0 ? 0 : Math.ceil( attributeValue / 2 ) + 1;
-}
-
-// endregion
-
 // region Foundry
 
 /**

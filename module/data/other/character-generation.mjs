@@ -1,6 +1,5 @@
 import {
   filterObject,
-  getAttributeStep,
   getSingleGlobalItemByEdid,
   mapObject,
   renameKeysWithPrefix,
@@ -12,6 +11,7 @@ import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import { getAttributeStepFromValue } from "../../utils/earthdawn.mjs";
 
 
 /**
@@ -389,7 +389,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   async getMaxSpellPoints() {
-    return getAttributeStep( await this. getFinalAttributeValue( "per" ) );
+    return getAttributeStepFromValue( await this. getFinalAttributeValue( "per" ) );
   }
 
   async getAvailableSpellPoints() {

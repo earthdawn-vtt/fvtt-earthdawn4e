@@ -1,8 +1,5 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
 import {
-  getArmorFromAttribute,
-  getAttributeStep,
-  getDefenseValue,
   getSingleGlobalItemByEdid,
   mapObject,
   sum,
@@ -19,6 +16,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import { getArmorValueFromAttribute, getAttributeStepFromValue, getDefenseValueFromAttribute } from "../../utils/earthdawn.mjs";
 
 const fUtils = foundry.utils;
 
@@ -306,7 +304,7 @@ export default class PcData extends NamegiverTemplate {
       return;
     }
 
-    const attributeEnhanceStep = getAttributeStep( attributeField.value + 1 ) > attributeField.step ? attributeField.step + 1 : attributeField.step;
+    const attributeEnhanceStep = getAttributeStepFromValue( attributeField.value + 1 ) > attributeField.step ? attributeField.step + 1 : attributeField.step;
     const rule = game.settings.get( "ed4e", "lpTrackingAttributes" );
     const lpCost = onCircleIncrease && rule === "freePerCircle" ? 0 : LEGEND.legendPointsCost[currentIncrease + 1 + 4];
     const increaseValidationData = {
@@ -445,7 +443,7 @@ export default class PcData extends NamegiverTemplate {
    */
   #prepareAttributes() {
     for ( const attributeData of Object.values( this.attributes ) ) {
-      attributeData.step = getAttributeStep( attributeData.value );
+      attributeData.step = getAttributeStepFromValue( attributeData.value );
     }
   }
 
@@ -478,7 +476,7 @@ export default class PcData extends NamegiverTemplate {
   #prepareArmor() {
     // attribute based
     this.characteristics.armor.physical.baseValue = 0;
-    this.characteristics.armor.mystical.baseValue = getArmorFromAttribute( this.attributes.wil.value );
+    this.characteristics.armor.mystical.baseValue = getArmorValueFromAttribute( this.attributes.wil.value );
 
     // item based
     const armorItems = this.parent.itemTypes.armor.filter( item => item.system.equipped );
@@ -510,7 +508,7 @@ export default class PcData extends NamegiverTemplate {
   #prepareDefenses() {
     // attribute based
     for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
-      this.characteristics.defenses[defenseType].baseValue = getDefenseValue(
+      this.characteristics.defenses[defenseType].baseValue = getDefenseValueFromAttribute(
         this.attributes[ACTORS.defenseAttributeMapping[defenseType]].value
       );
     }
