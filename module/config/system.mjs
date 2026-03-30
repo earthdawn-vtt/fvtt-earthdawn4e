@@ -141,8 +141,8 @@ export const FLAGS = {
  * @type {{Actor: string[], Item: string[]}}
  */
 export const UNAVAILABLE_SYSTEM_TYPES = {
-  Actor: [ "dragon", "horror", "loot", "spirit", "trap", "vehicle" ],
-  Item:  [ "bindingSecret", "curseMark", "mask", "poisonDisease", "shipWeapon", "spellKnack", ],
+  Actor: [ "loot", "trap", "vehicle" ],
+  Item:  [ "bindingSecret", "curseMark", "poisonDisease", "shipWeapon", ],
 };
 
 // endregion
