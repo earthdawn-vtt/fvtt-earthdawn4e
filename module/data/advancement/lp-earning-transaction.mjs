@@ -1,5 +1,4 @@
 import LpTransactionData from "./lp-transaction.mjs";
-import { dateToInputString } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 
 // Affects User Functions:
@@ -35,7 +34,7 @@ export default class LpEarningTransactionData extends LpTransactionData {
     return `
         <tr class="${ classes?.join( " " ) ?? "" }" data-group="${ dataGroup ?? "" }" data-id="${ this.id }">
           <td>
-            <input name="earnings.${index}.date" type="datetime-local" value="${ dateToInputString( this.date ) }" data-dtype="String" />
+            <input name="earnings.${index}.date" type="datetime-local" value="${ this.constructor.dateToInputString( this.date ) }" data-dtype="String" />
           </td>
           <td>
             ${ this.schema.fields.description.toInput( {

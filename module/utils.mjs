@@ -370,15 +370,6 @@ export function inRange( value, min, max, includeLimits = true ) {
 // region Formatting
 
 /**
- * @description Converts a date object or integer to a string that can be used as value in a datetime input field.
- * @param { Date | integer } date The date to be converted. If integer, it is treated as a timestamp.
- * @returns { string } The date string in the format "YYYY-MM-DDTHH:MM".
- */
-export function dateToInputString( date ) {
-  return ( new Date( date ) ).toISOString().substring( 0, 16 );
-}
-
-/**
  * Converts the first letter of a string to lowercase.
  * @param { string } str The string to be modified.
  * @returns { string } The input string with its first letter converted to lowercase.

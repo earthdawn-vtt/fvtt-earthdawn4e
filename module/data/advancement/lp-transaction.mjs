@@ -2,11 +2,7 @@ import AssignLpPrompt from "../../applications/advancement/assign-legend.mjs";
 
 export default class LpTransactionData extends foundry.abstract.DataModel {
 
-  /** @inheritdoc */
-  static LOCALIZATION_PREFIXES = [
-    ...super.LOCALIZATION_PREFIXES,
-    "ED.Data.Other.LpTransaction",
-  ];
+  // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
@@ -39,6 +35,33 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
     };
   }
 
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * @description Converts a date object or integer to a string that can be used as value in a datetime input field.
+   * @param { Date | integer } date The date to be converted. If integer, it is treated as a timestamp.
+   * @returns { string } The date string in the format "YYYY-MM-DDTHH:MM".
+   */
+  static dateToInputString( date ) {
+    return ( new Date( date ) ).toISOString().substring( 0, 16 );
+  }
+
+  // endregion
+
+  // region Static Properties
+
+  /** @inheritdoc */
+  static LOCALIZATION_PREFIXES = [
+    ...super.LOCALIZATION_PREFIXES,
+    "ED.Data.Other.LpTransaction",
+  ];
+
+  // endregion
+
+  // region Getters
+
   /**
    * @description An automated description of this transaction.
    * @type {string}
@@ -47,9 +70,15 @@ export default class LpTransactionData extends foundry.abstract.DataModel {
     throw new Error( `The ${this["name"]} subclass of LpTransactionData must define its displayString` );
   }
 
+  // endregion
+
+  // region Rendering
+
   getHtmlRow( index, classes, dataGroup ) {
     throw new Error( `The ${this["name"]} subclass of LpTransactionData must define its htmlRow` );
   }
+
+  // endregion
 
   static async assignLpPrompt () {
     const transactionsPerUser = await AssignLpPrompt.waitPrompt();
