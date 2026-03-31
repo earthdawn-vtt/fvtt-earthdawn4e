@@ -1,7 +1,7 @@
-import EdRoll from "./dice/ed-roll.mjs";
-import EdRollOptions from "./data/roll/common.mjs";
-import getDice from "./dice/step-tables.mjs";
-import * as ROLLS from "./config/rolls.mjs";
+import EdRoll from "../dice/ed-roll.mjs";
+import EdRollOptions from "../data/roll/common.mjs";
+import getDice from "../dice/step-tables.mjs";
+import * as ROLLS from "../config/rolls.mjs";
 
 /**
  * Set up custom enrichers.
