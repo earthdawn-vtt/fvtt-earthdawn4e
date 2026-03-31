@@ -1,6 +1,6 @@
 import EdRollOptions from "./common.mjs";
-import { createContentAnchor } from "../../utils.mjs";
 import * as MAGIC from "../../config/magic.mjs";
+import { createContentAnchor } from "../../helper/formatting.mjs";
 
 /**
  * Roll options for attuning spells to matrices or grimoires.

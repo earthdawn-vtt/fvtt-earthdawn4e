@@ -1,11 +1,11 @@
 import EdRollOptions from "./common.mjs";
-import { createContentAnchor } from "../../utils.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 import * as COMBAT from "../../config/combat.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
 import * as ENVIRONMENT from "../../config/environment.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import * as MAGIC from "../../config/magic.mjs";
+import { createContentAnchor } from "../../helper/formatting.mjs";
 
 
 /**

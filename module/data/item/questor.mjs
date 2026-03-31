@@ -1,6 +1,5 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import { createContentLink } from "../../utils.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
 import LpSpendingTransactionData from "../advancement/lp-spending-transaction.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
@@ -9,6 +8,7 @@ import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
+import { createContentLink } from "../../helper/formatting.mjs";
 
 const { isEmpty } = foundry.utils;
 
