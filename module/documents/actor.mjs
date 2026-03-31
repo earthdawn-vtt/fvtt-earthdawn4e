@@ -6,7 +6,6 @@ import LegendPointHistory from "../applications/advancement/lp-history.mjs";
 import LpEarningTransactionData from "../data/advancement/lp-earning-transaction.mjs";
 import LpSpendingTransactionData from "../data/advancement/lp-spending-transaction.mjs";
 import LpTrackingData from "../data/advancement/lp-tracking.mjs";
-import { staticStatusId } from "../utils.mjs";
 import PromptFactory from "../applications/global/prompt-factory.mjs";
 import ClassTemplate from "../data/item/templates/class.mjs";
 import MigrationManager from "../services/migrations/migration-manager.mjs";
@@ -30,6 +29,7 @@ import * as DOCUMENT_DATA from "../config/document-data.mjs";
 import * as ITEMS from "../config/items.mjs";
 import * as TOKEN from "../config/token.mjs";
 import { sum } from "../utils/math.mjs";
+import { staticStatusId } from "../helper/document.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
