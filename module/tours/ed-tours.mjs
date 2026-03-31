@@ -1,4 +1,4 @@
-import { delay } from "../utils.mjs";
+import { delay } from "../helper/ui.mjs";
 export default class EdTour extends foundry.nue.Tour {
   static tours = [
     "systems/ed4e/module/tours/lang/actor-item-creation",
