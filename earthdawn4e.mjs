@@ -12,7 +12,7 @@ import * as hooks from "./module/hooks/_module.mjs";
 import * as services from "./module/services/_module.mjs";
 import * as system from "./module/system/_module.mjs";
 import * as tours from "./module/tours/_module.mjs";
-import * as utils from "./module/utils.mjs";
+import * as utils from "./module/utils/_module.mjs";
 import * as workflows from "./module/workflows/_module.mjs";
 
 /* -------------------------------------------- */
