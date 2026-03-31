@@ -86,35 +86,4 @@ export function resolvePath( object, path, defaultValue ){
   return path.split( "." ).reduce( ( o, p ) => o ? o[p] : defaultValue, object );
 }
 
-/**
- * Creates a new array by repeating the provided array a specified number of times.
- * @param {Array} arr    The array to be repeated.
- * @param {number} times The number of times to repeat the array.
- * @returns {Array}      A new array with the repeated elements.
- * @throws {Error}       See `strict` option at {@link foundry.utils.deepClone} for details.
- * @example
- * multiplyArray( [1, 2, 3], 3 ) => [1, 2, 3, 1, 2, 3, 1, 2, 3]
- */
-export function multiplyArray( arr, times ) {
-  const clonedArray = foundry.utils.deepClone( arr, { strict: true } );
-  return Array.from( { length: times }, () => clonedArray ).flat();
-}
-
-/**
- * Inserts an element into an array at the specified index. If the index is out of bounds,
- * the element is appended to the end of the array.
- * @param {Array} arr The array into which the element should be inserted. Will be mutated.
- * @param {any} element The element to insert into the array.
- * @param {number} [index] The index at which to insert the element. If -1 or omitted, the element is appended.
- * @returns {Array} The modified array with the new element inserted.
- */
-export function arrayInsert( arr, element, index = -1 ) {
-  if ( index < 0 || index >= arr.length ) {
-    arr.push( element );
-  } else {
-    arr.splice( index, 0, element );
-  }
-  return arr;
-}
-
 // endregion
