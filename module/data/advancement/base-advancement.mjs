@@ -1,7 +1,8 @@
 import AbilityTemplate from "../item/templates/ability.mjs";
 import AdvancementLevelData from "./advancement-level.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
-import { mapObject } from "../../utils.mjs";
+
+import { mapObject } from "../../utils/object.mjs";
 
 /**
  * @typedef {Record<number, AdvancementLevelData>} AdvancementLevels

@@ -1,4 +1,3 @@
-import { filterObject } from "../../utils.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
 import ApplicationEd from "../api/application.mjs";
@@ -8,6 +7,7 @@ import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as SYSTEM from "../../config/system.mjs";
 import { getAllDocuments } from "../../helper/document.mjs";
 import { documentsToSelectChoices } from "../../helper/handlebars.mjs";
+import { filterObject } from "../../utils/object.mjs";
 
 
 /**

@@ -1,6 +1,5 @@
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import { filterObject } from "../../utils.mjs";
 import DamageRollOptions from "../roll/damage.mjs";
 import RollableTemplate from "./templates/rollable.mjs";
 import CombatDamageWorkflow from "../../workflows/workflow/damage-workflow.mjs";
@@ -9,6 +8,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as COMBAT from "../../config/combat.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import { inRange, sum } from "../../utils/math.mjs";
+import { filterObject } from "../../utils/object.mjs";
 
 
 /**

@@ -1,4 +1,4 @@
-import { sortObjectEntries } from "../utils.mjs";
+import { sortObjectEntries } from "../utils/object.mjs";
 
 /**
  * Storage for pre-localization configuration.

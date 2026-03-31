@@ -2,8 +2,8 @@ import * as LEGEND from "../../config/legend.mjs";
 import AbilityTemplate from "../item/templates/ability.mjs";
 import IdentifierField from "../fields/identifier-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
-import { mapObject } from "../../utils.mjs";
 import MappingField from "../fields/mapping-field.mjs";
+import { mapObject } from "../../utils/object.mjs";
 
 /**
  * A level in an advancement.
