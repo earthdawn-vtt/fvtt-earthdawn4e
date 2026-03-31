@@ -1,22 +1,6 @@
 // region Foundry
 
 /**
- * Takes an array of documents and returns an object that can be used by Foundry's
- * {@link selectOptions} Handlebar helper as choices. The keys are a document's
- * UUID, the values it's name, which is rendered as representation in the HTML.
- * @param {foundry.abstract.Document[]} documents An array of documents that should
- * be the choices.
- * @returns {{}} An object in the form of the `choices` parameter of the
- * {@link selectOptions} Handlebar helper.
- */
-export function documentsToSelectChoices( documents ) {
-  return documents.reduce(
-    ( obj, doc ) => ( { ...obj, [doc.uuid]: doc.name } ),
-    {}
-  );
-}
-
-/**
  * Create a unique id for a status condition.
  * @param {string} status     The primary status.
  * @returns {string}          A unique 16-character id.
