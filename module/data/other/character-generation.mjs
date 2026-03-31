@@ -1,7 +1,7 @@
 import {
   filterObject,
   mapObject,
-  renameKeysWithPrefix,
+
 
 } from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
@@ -12,7 +12,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../utils/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
-import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
+import { getSingleGlobalItemByEdid, prefixKeysForDeletion } from "../../helper/document.mjs";
 
 
 /**
@@ -442,13 +442,13 @@ export default class CharacterGenerationData extends SparseDataModel {
     const greaterZeroPredicate = function ( key, value ) {
       return value <= 0;
     };
-    const artisanData = renameKeysWithPrefix( filterObject(
+    const artisanData = prefixKeysForDeletion( filterObject(
       this.abilities.artisan, greaterZeroPredicate
     ) );
-    const knowledgeData = renameKeysWithPrefix( filterObject(
+    const knowledgeData = prefixKeysForDeletion( filterObject(
       this.abilities.knowledge, greaterZeroPredicate
     ) );
-    const generalData = renameKeysWithPrefix( filterObject(
+    const generalData = prefixKeysForDeletion( filterObject(
       this.abilities.general, greaterZeroPredicate
     ) );
 

@@ -53,21 +53,6 @@ export function mapObject( obj, mappingFunction ) {
 }
 
 /**
- * Renames all keys of an object by prepending a specified prefix to each key.
- * @param {object} obj - The object whose keys are to be renamed.
- * @returns {object} A new object with keys renamed with the specified prefix.
- */
-export function renameKeysWithPrefix( obj ) {
-  const renamedObj = {};
-  for ( let key in obj ) {
-    if ( obj.hasOwnProperty( key ) ) {
-      renamedObj["-=" + key] = null;
-    }
-  }
-  return renamedObj;
-}
-
-/**
  * Retrieves the value of a given string property of an object which works for nested property names.
  * Taken from {@link https://stackoverflow.com/a/43849204 this answer on StackOverflow}.
  * @example
