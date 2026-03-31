@@ -1,11 +1,11 @@
 import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import { createContentLink } from "../../utils.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
+import { createContentLink } from "../../helper/formatting.mjs";
 
 /**
  * Data model template with information on path items.

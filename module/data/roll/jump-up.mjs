@@ -1,7 +1,7 @@
 import EdRollOptions from "./common.mjs";
 import { getSetting } from "../../settings.mjs";
-import { createContentAnchor } from "../../utils.mjs";
 import * as STATUSES from "../../config/statuses.mjs";
+import { createContentAnchor } from "../../helper/formatting.mjs";
 
 /**
  * Roll options for jump up tests.

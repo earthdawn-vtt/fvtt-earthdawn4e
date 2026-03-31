@@ -1,6 +1,7 @@
 import EdRollOptions from "./common.mjs";
 import { getSetting } from "../../settings.mjs";
-import { createContentAnchor } from "../../utils.mjs";
+
+import { createContentAnchor } from "../../helper/formatting.mjs";
 
 /**
  * @typedef { object } AbilityRollOptionsInitializationData
