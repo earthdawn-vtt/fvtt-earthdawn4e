@@ -1,6 +1,4 @@
 import SystemDataModel from "./system-data-model.mjs";
-import { callIfExists } from "../../utils.mjs";
-
 const { TextEditor } = foundry.applications.ux;
 
 /**
@@ -85,10 +83,7 @@ export default class ItemDataModel extends SystemDataModel {
       knackManeuver: "_onDropKnack"
     };
 
-    return callIfExists(
-      this, functionMapping[document.type],
-      event, document
-    ) ?? true;
+    return this[ functionMapping[document.type] ]?.( event, document ) ?? true;
   }
 
   // endregion

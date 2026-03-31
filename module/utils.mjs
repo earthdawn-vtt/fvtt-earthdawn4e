@@ -1,20 +1,6 @@
 // region Object Helpers
 
 /**
- * Safely call a method if it exists on the object.
- * @param {object} obj - The object to check.
- * @param {string} methodName - The name of the method to call.
- * @param {...*} args - Arguments to pass to the method.
- * @returns {*} - The result of the method call, or undefined if the method does not exist.
- */
-export function callIfExists( obj, methodName, ...args ) {
-  if ( typeof obj[methodName] === "function" ) {
-    return obj[methodName]( ...args );
-  }
-  return undefined;
-}
-
-/**
  * Sort the provided object by its values or by an inner sortKey.
  * @param {object} obj        The object to sort.
  * @param {string} [sortKey]  An inner key upon which to sort.
