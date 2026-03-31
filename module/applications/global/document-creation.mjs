@@ -1,6 +1,7 @@
 import PcData from "../../data/actor/pc.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
-import { sortObjectEntries } from "../../utils.mjs";
+
+import { sortObjectEntries } from "../../utils/object.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 

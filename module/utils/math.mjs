@@ -1,4 +1,4 @@
-import { resolvePath } from "../utils.mjs";
+import { resolvePath } from "./object.mjs";
 
 /**
  * Computes the sum of the values in an array.

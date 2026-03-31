@@ -1,11 +1,11 @@
 import EdRollOptions from "../../roll/common.mjs";
-import { filterObject } from "../../../utils.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";
 import * as ACTIONS from "../../../config/actions.mjs";
 import * as ITEMS from "../../../config/items.mjs";
 import * as MAGIC from "../../../config/magic.mjs";
 import * as ROLLS from "../../../config/rolls.mjs";
+import { filterObject } from "../../../utils/object.mjs";
 
 const { fields } = foundry.data;
 

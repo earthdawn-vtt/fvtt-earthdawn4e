@@ -1,9 +1,4 @@
-import {
-  filterObject,
-  mapObject,
 
-
-} from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
@@ -13,6 +8,7 @@ import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../utils/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
 import { getSingleGlobalItemByEdid, prefixKeysForDeletion } from "../../helper/document.mjs";
+import { filterObject, mapObject } from "../../utils/object.mjs";
 
 
 /**

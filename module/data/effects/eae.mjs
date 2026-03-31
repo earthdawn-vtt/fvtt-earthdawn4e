@@ -3,9 +3,9 @@ import EarthdawnActiveEffectChangeData from "./eae-change-data.mjs";
 import EarthdawnActiveEffectDurationData from "./eae-duration.mjs";
 import FormulaField from "../fields/formula-field.mjs";
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
-import { mapObject } from "../../utils.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
+import { mapObject } from "../../utils/object.mjs";
 
 
 /**
