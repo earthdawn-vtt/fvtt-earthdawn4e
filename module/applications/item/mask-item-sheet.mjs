@@ -1,8 +1,8 @@
 import { getSetting } from "../../settings.mjs";
-import { linkForUuid } from "../../utils.mjs";
 import ItemSheetEd from "./item-sheet.mjs";
 import DialogEd from "../api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
+import { linkForUuid } from "../../helper/formatting.mjs";
 
 const TextEditor = foundry.applications.ux.TextEditor.implementation;
 
