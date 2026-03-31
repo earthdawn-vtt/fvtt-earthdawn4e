@@ -7,7 +7,7 @@ import * as canvas from "./module/canvas/_module.mjs";
 import * as data from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
-import * as enrichers from "./module/enrichers.mjs";
+import * as enrichers from "./module/helper/enrichers.mjs";
 import * as hooks from "./module/hooks/_module.mjs";
 import * as services from "./module/services/_module.mjs";
 import * as system from "./module/system/_module.mjs";
