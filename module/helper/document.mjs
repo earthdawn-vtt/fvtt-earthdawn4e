@@ -152,3 +152,18 @@ export function staticStatusId( status ) {
   if ( status.length >= 16 ) return status.substring( 0, 16 );
   return status.padEnd( 16, "0" );
 }
+
+/**
+ * Prefixes the keys of an object with the deletion prefix for Foundry's `update` operation.
+ * @param {object} obj - The object whose keys are to be renamed.
+ * @returns {object} A new object with keys prefixed with `-=`.
+ */
+export function prefixKeysForDeletion( obj ) {
+  const renamedObj = {};
+  for ( let key in obj ) {
+    if ( obj.hasOwnProperty( key ) ) {
+      renamedObj["-=" + key] = null;
+    }
+  }
+  return renamedObj;
+}
