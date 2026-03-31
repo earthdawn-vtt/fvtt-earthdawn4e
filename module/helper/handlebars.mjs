@@ -1,6 +1,6 @@
 import getDice from "../dice/step-tables.mjs";
-import { linkForUuidSync } from "../utils.mjs";
 import * as LEGEND from "../config/legend.mjs";
+import { linkForUuidSync } from "./formatting.mjs";
 
 /**
  * @module handlebar-helpers - Provides custom Handlebars helpers for the application.

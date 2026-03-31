@@ -32,3 +32,53 @@ export function createContentAnchor( document ) {
     icon:    "fa-solid fa-suitcase"
   } );
 }
+
+/**
+ * Creates an HTML document link for the provided UUID.
+ * @param {string} uuid  UUID for which to produce the link.
+ * @returns {Promise<HTMLAnchorElement>}     Link to the item or empty string if item wasn't found.
+ */
+export async function linkForUuid( uuid ) {
+  return foundry.applications.ux.TextEditor.implementation._createContentLink( [ "", "UUID", uuid ] );
+}
+
+/**
+ * Creates an HTML document link for the provided UUID.
+ * @param {string} uuid  UUID for which to produce the link.
+ * @returns {string}     Link to the item or empty string if item wasn't found.
+ */
+export function linkForUuidSync( uuid ) {
+  const parsedUuid = foundry.utils.parseUuid( uuid );
+  const doc = fromUuidSync( uuid, { strict: false } );
+  const name = doc?.name ?? "";
+  const packId = parsedUuid.collection?.metadata?.id ?? "";
+  const tooltipType = game.i18n.localize(
+    CONFIG[parsedUuid.type].typeLabels[doc?.type]
+  );
+
+  if ( !doc ) return `
+    <a
+      class="content-link broken"
+      data-uuid="${ uuid } "
+      data-type="${ parsedUuid.type }"
+      data-tooltip="${ tooltipType }"
+      data-pack="${ packId }"
+    >
+      <i class="fas fa-link-slash"></i>
+      ${ uuid }
+    </a>`;
+
+  return `
+      <a 
+        class="content-link" draggable="true" 
+        data-link="" 
+        data-uuid="${ uuid }"
+        data-id="${ parsedUuid.id }"
+        data-type="${ parsedUuid.type }"
+        data-tooltip="${ tooltipType }"
+        data-pack="${ packId }"
+      >
+      <i class="fas fa-suitcase"></i>
+      ${ name }
+    </a>`;
+}
