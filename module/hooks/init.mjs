@@ -4,7 +4,7 @@ import * as SOCKETS from "../config/sockets.mjs";
 import * as STATUSES from "../config/statuses.mjs";
 import ED4E_CONSTANTS from "../constants/_module.mjs";
 import  "../tours/ed-tours.mjs";
-import registerHandlebarHelpers from "../handlebar-helpers.mjs";
+import registerHandlebarHelpers from "../helper/handlebars.mjs";
 import { partials } from "../config/handlebars.mjs";
 
 
