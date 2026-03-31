@@ -15,7 +15,8 @@ import * as data from "../data/_module.mjs";
 import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../enrichers.mjs";
-import { staticStatusId } from "../utils.mjs";
+
+import { staticStatusId } from "../helper/document.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
