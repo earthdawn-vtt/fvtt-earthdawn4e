@@ -109,3 +109,34 @@ export default class EdIdField extends foundry.data.fields.StringField {
   // endregion
 
 }
+
+/**
+ * Get all ED-IDs of all Items in the game world, optionally filtered by Item type.
+ * @param {string} [type] - The type of Item to narrow the search by.
+ * @returns {string[]} An array of all found ED-IDs.
+ */
+export function getAllEdIds( type ) {
+  return Array.from( new Set(
+    game.items.reduce( ( edids, item ) => {
+      if ( !type || item.type === type ) edids.push( item.system.edid );
+      return edids;
+    }, [] )
+  ) );
+}
+
+/**
+ * Get all ED-IDs of all Items in the game world, grouped by Item type. Each type also has
+ * all default ED-IDs.
+ * @param {string[]} [defaultEdIds] - An array of default ED-IDs to include in all types.
+ * @returns {Record<string, Set<string>>} An object where keys are Item types and values are sets of ED-IDs.
+ */
+export function getAllEdIdsByType( defaultEdIds = [] ) {
+  const edIdsByType = {
+    defaults: new Set( defaultEdIds )
+  };
+  for ( const /** @type {ItemEd} */ item of game.items ) {
+    if ( !edIdsByType[item.type] ) edIdsByType[item.type] = new Set( defaultEdIds );
+    edIdsByType[item.type].add( item.system.edid );
+  }
+  return edIdsByType;
+}
