@@ -1,6 +1,6 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import Rollable from "./rollable.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 
 /**
  * @typedef {object} BaseCastingWorkflowOptions

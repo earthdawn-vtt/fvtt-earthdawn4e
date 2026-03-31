@@ -1,9 +1,9 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
-import { createContentLink } from "../../utils.mjs";
 import IncreasableAbilityTemplate from "./templates/increasable-ability.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import { createContentLink } from "../../helpers/formatting.mjs";
 
 
 /**

@@ -1,4 +1,4 @@
-import { getSetting } from "../../../settings.mjs";
+import { getSetting } from "../../../helpers/settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import AttuneGrimoireWorkflow from "../../../workflows/workflow/attune-grimoire-workflow.mjs";
 import { SYSTEM_TYPES } from "../../../constants/constants.mjs";

@@ -1,4 +1,4 @@
-import { preLocalize } from "../utils.mjs";
+import { preLocalize } from "../i18n/localization.mjs";
 
 
 /**

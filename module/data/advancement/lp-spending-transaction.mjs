@@ -1,5 +1,4 @@
 import LpTransactionData from "./lp-transaction.mjs";
-import { dateToInputString } from "../../utils.mjs";
 import SystemDataModel from "../abstract/system-data-model.mjs";
 import SiblingDocumentField from "../fields/sibling-document-field.mjs";
 
@@ -91,7 +90,7 @@ export default class LpSpendingTransactionData extends LpTransactionData {
         <tr class="${ classes?.join( " " ) ?? "" }" data-group="${ dataGroup ?? "" }" data-id="${ this.id }">
           <td class="lp-history__date">
             <input name="spendings.${ index }.date" type="datetime-local" value="${
-  dateToInputString( this.date )
+  this.constructor.dateToInputString( this.date )
 }" data-dtype="String" />
           </td>
           <input type="hidden" name="spendings.${ index }.entityType" value="${ this.entityType }" />

@@ -1,4 +1,4 @@
-import { highlightElement } from "../utils.mjs";
+import { highlightElement } from "../helpers/ui.mjs";
 
 export default class ChatMessageEd extends ChatMessage {
 

@@ -1,4 +1,4 @@
-import { preLocalize } from "../utils.mjs";
+import { preLocalize } from "../i18n/localization.mjs";
 
 /**
  * The different modes of recovery available in the game.

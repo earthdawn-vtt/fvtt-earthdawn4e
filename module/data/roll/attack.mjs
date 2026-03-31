@@ -1,8 +1,8 @@
 import EdRollOptions from "./common.mjs";
-import { createContentAnchor } from "../../utils.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
  * @typedef { object } EdAttackRollOptionsInitializationData

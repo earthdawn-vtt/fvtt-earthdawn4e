@@ -1,17 +1,13 @@
-import {
-  filterObject,
-  getAttributeStep,
-  getSingleGlobalItemByEdid,
-  mapObject,
-  renameKeysWithPrefix,
-  sum,
-} from "../../utils.mjs";
 import NamegiverTemplate from "../actor/templates/namegiver.mjs";
 import MappingField from "../fields/mapping-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
+import { getAttributeStepFromValue } from "../../helpers/earthdawn.mjs";
+import { sum } from "../../utils/math.mjs";
+import { getSingleGlobalItemByEdid, prefixKeysForDeletion } from "../../helpers/document.mjs";
+import { filterObject, mapObject } from "../../utils/object.mjs";
 
 
 /**
@@ -389,7 +385,7 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   async getMaxSpellPoints() {
-    return getAttributeStep( await this. getFinalAttributeValue( "per" ) );
+    return getAttributeStepFromValue( await this. getFinalAttributeValue( "per" ) );
   }
 
   async getAvailableSpellPoints() {
@@ -441,13 +437,13 @@ export default class CharacterGenerationData extends SparseDataModel {
     const greaterZeroPredicate = function ( key, value ) {
       return value <= 0;
     };
-    const artisanData = renameKeysWithPrefix( filterObject(
+    const artisanData = prefixKeysForDeletion( filterObject(
       this.abilities.artisan, greaterZeroPredicate
     ) );
-    const knowledgeData = renameKeysWithPrefix( filterObject(
+    const knowledgeData = prefixKeysForDeletion( filterObject(
       this.abilities.knowledge, greaterZeroPredicate
     ) );
-    const generalData = renameKeysWithPrefix( filterObject(
+    const generalData = prefixKeysForDeletion( filterObject(
       this.abilities.general, greaterZeroPredicate
     ) );
 

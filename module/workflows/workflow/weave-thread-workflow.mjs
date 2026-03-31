@@ -2,7 +2,7 @@ import Rollable from "./rollable.mjs";
 import ActorWorkflow from "./actor-workflow.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import ThreadWeavingRollOptions from "../../data/roll/weaving.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 

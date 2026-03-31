@@ -1,11 +1,11 @@
-import EdIdField from "./data/fields/edid-field.mjs";
-import * as ACTORS from "./config/actors.mjs";
-import * as CHAT from "./config/chat.mjs";
-import * as LEGEND from "./config/legend.mjs";
-import * as MAGIC from "./config/magic.mjs";
-import * as ROLLS from "./config/rolls.mjs";
-import * as SYSTEM from "./config/system.mjs";
-import { SYSTEM_ID } from "./constants/constants.mjs";
+import EdIdField from "../data/fields/edid-field.mjs";
+import * as ACTORS from "../config/actors.mjs";
+import * as CHAT from "../config/chat.mjs";
+import * as LEGEND from "../config/legend.mjs";
+import * as MAGIC from "../config/magic.mjs";
+import * as ROLLS from "../config/rolls.mjs";
+import * as SYSTEM from "../config/system.mjs";
+import { SYSTEM_ID } from "../constants/constants.mjs";
 
 const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
 

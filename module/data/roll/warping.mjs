@@ -1,6 +1,6 @@
 import EdRollOptions from "./common.mjs";
-import { createContentAnchor } from "../../utils.mjs";
 import * as MAGIC from "../../config/magic.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
  * @typedef { object } EdWarpingRollOptionsInitializationData

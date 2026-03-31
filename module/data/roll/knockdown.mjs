@@ -1,5 +1,5 @@
-import { createContentAnchor } from "../../utils.mjs";
 import EdRollOptions from "./common.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
  * @typedef { object } EdKnockdownRollOptionsInitializationData

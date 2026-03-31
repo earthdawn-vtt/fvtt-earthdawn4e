@@ -1,5 +1,6 @@
 import EdRollOptions from "./common.mjs";
-import { createContentAnchor } from "../../utils.mjs";
+
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
  * Roll options for initiative rolls.

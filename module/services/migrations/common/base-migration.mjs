@@ -12,3 +12,18 @@ export default class BaseMigration {
     throw new Error( "migrateEarthdawnData must be implemented by subclass" );
   }
 }
+
+/**
+ * Determine the new target value of an item setting based on its name referenced in a config.
+ * @param {string} slugifiedName The name of the item.
+ * @param {object} configMappings The mapping of names to the target value.
+ * @returns {string|null} The target value for that item or `null` if no mapping was found.
+ */
+export function determineConfigValue( slugifiedName, configMappings ) {
+  for ( const { names, targetValue } of configMappings ) {
+    if ( names.some( itemName => slugifiedName.includes( itemName.slugify( { lowercase: true, strict: true } ) ) ) ) {
+      return targetValue;
+    }
+  }
+  return null;
+}
