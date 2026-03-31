@@ -1,6 +1,5 @@
 import {
   filterObject,
-  getSingleGlobalItemByEdid,
   mapObject,
   renameKeysWithPrefix,
 
@@ -13,6 +12,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../utils/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
+import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
 
 
 /**

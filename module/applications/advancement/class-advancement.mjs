@@ -1,9 +1,9 @@
 import ClassTemplate from "../../data/item/templates/class.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
-import { getAllDocuments } from "../../utils.mjs";
 import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as SYSTEM from "../../config/system.mjs";
+import { getAllDocuments } from "../../helper/document.mjs";
 
 const { isEmpty } = foundry.utils;
 

@@ -1,6 +1,5 @@
 import NamegiverTemplate from "./templates/namegiver.mjs";
 import {
-  getSingleGlobalItemByEdid,
   mapObject
 } from "../../utils.mjs";
 import CharacterGenerationPrompt from "../../applications/actor/character-generation-prompt.mjs";
@@ -16,6 +15,7 @@ import * as ITEMS from "../../config/items.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getArmorValueFromAttribute, getAttributeStepFromValue, getDefenseValueFromAttribute } from "../../utils/earthdawn.mjs";
 import { sum, sumProperty } from "../../utils/math.mjs";
+import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
 
 const fUtils = foundry.utils;
 

@@ -1,4 +1,4 @@
-import { documentsToSelectChoices, filterObject, getAllDocuments } from "../../utils.mjs";
+import { documentsToSelectChoices, filterObject } from "../../utils.mjs";
 import CharacterGenerationData from "../../data/other/character-generation.mjs";
 import ItemEd from "../../documents/item.mjs";
 import ApplicationEd from "../api/application.mjs";
@@ -6,6 +6,7 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as SYSTEM from "../../config/system.mjs";
+import { getAllDocuments } from "../../helper/document.mjs";
 
 
 /**
