@@ -13,7 +13,8 @@
  * @typedef {DataFieldOptions & _SiblingDocumentFieldOptions} SiblingDocumentFieldOptions
  */
 
-import { isValidSystemType } from "../../utils.mjs";
+
+import { isValidSystemType } from "../../utils/foundry.mjs";
 
 /**
  * A ForeignDocumentField which references a sibling document within the same parent document.
