@@ -1,6 +1,6 @@
 import Rollable from "./rollable.mjs";
 import ActorWorkflow from "./actor-workflow.mjs";
-import { getDefaultEdid } from "../../settings.mjs";
+import { getDefaultEdid } from "../../helpers/settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import AbilityRollOptions from "../../data/roll/ability.mjs";
 

@@ -1,4 +1,4 @@
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
 const { TextEditor } = foundry.applications.ux;

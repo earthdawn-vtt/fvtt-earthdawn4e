@@ -1,4 +1,4 @@
-import { getEdIds } from "../settings.mjs";
+import { getEdIds } from "../helpers/settings.mjs";
 import { getAllEdIdsByType } from "../data/fields/edid-field.mjs";
 
 /**

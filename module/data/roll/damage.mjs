@@ -5,7 +5,7 @@ import * as EFFECTS from "../../config/effects.mjs";
 import * as ENVIRONMENT from "../../config/environment.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import * as MAGIC from "../../config/magic.mjs";
-import { createContentAnchor } from "../../helper/formatting.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 
 /**

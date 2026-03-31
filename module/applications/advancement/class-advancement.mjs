@@ -3,7 +3,7 @@ import PromptFactory from "../global/prompt-factory.mjs";
 import ApplicationEd from "../api/application.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as SYSTEM from "../../config/system.mjs";
-import { getAllDocuments } from "../../helper/document.mjs";
+import { getAllDocuments } from "../../helpers/document.mjs";
 
 const { isEmpty } = foundry.utils;
 

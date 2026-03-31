@@ -2,7 +2,7 @@ import EdTour from "../tours/ed-tours.mjs";
 import EdRollOptions from "../data/roll/common.mjs";
 import DialogEd from "../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
-import { getSetting, setSetting } from "../settings.mjs";
+import { getSetting, setSetting } from "../helpers/settings.mjs";
 // import TypeTransformationManager from "../services/migrations/type-transformation-manager.mjs";
 
 /**

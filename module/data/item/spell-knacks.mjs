@@ -1,10 +1,10 @@
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import SpellData from "./spell.mjs";
 import KnackTemplate from "./templates/knack-item.mjs";
-import { getDefaultEdid, } from "../../settings.mjs";
+import { getDefaultEdid, } from "../../helpers/settings.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
-import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
+import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 
 /**
  * Data model template with information on Spell items.

@@ -1,5 +1,5 @@
 import * as MAGIC from "../../../config/magic.mjs";
-import { getSetting } from "../../../settings.mjs";
+import { getSetting } from "../../../helpers/settings.mjs";
 import SystemDataModel from "../../abstract/system-data-model.mjs";
 import DialogEd from "../../../applications/api/dialog.mjs";
 import AttuneMatrixWorkflow from "../../../workflows/workflow/attune-matrix-workflow.mjs";

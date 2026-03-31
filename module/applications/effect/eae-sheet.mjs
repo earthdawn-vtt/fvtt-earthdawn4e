@@ -1,4 +1,4 @@
-import { getEdIds } from "../../settings.mjs";
+import { getEdIds } from "../../helpers/settings.mjs";
 import ClassTemplate from "../../data/item/templates/class.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
 import * as SYSTEM from "../../config/system.mjs";

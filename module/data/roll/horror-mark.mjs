@@ -1,7 +1,7 @@
 import EdRollOptions from "./common.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import * as MAGIC from "../../config/magic.mjs";
-import { createContentAnchor } from "../../helper/formatting.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 /**
  * @typedef { object } EdHorrorMarkRollOptionsInitializationData

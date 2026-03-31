@@ -2,7 +2,7 @@ import ClassTemplate from "./templates/class.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
-import { linkForUuidSync } from "../../helper/formatting.mjs";
+import { linkForUuidSync } from "../../helpers/formatting.mjs";
 
 const { isEmpty } = foundry.utils;
 

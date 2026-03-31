@@ -5,8 +5,8 @@ import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as SYSTEM from "../../config/system.mjs";
-import { getAllDocuments } from "../../helper/document.mjs";
-import { documentsToSelectChoices } from "../../helper/handlebars.mjs";
+import { getAllDocuments } from "../../helpers/document.mjs";
+import { documentsToSelectChoices } from "../../helpers/handlebars.mjs";
 import { filterObject } from "../../utils/object.mjs";
 
 
