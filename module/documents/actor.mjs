@@ -13,7 +13,7 @@ import AttackWorkflow from "../workflows/workflow/attack-workflow.mjs";
 import AttributeWorkflow from "../workflows/workflow/attribute-workflow.mjs";
 import AttuneMatrixWorkflow from "../workflows/workflow/attune-matrix-workflow.mjs";
 import KnockdownWorkflow from "../workflows/workflow/knockdown-workflow.mjs";
-import { getDefaultEdid, getSetting } from "../settings.mjs";
+import { getDefaultEdid, getSetting } from "../helpers/settings.mjs";
 import RollProcessor from "../services/roll-processor.mjs";
 import RecoveryWorkflow from "../workflows/workflow/recovery-workflow.mjs";
 import SpellcastingWorkflow from "../workflows/workflow/spellcasting-workflow.mjs";
@@ -29,7 +29,7 @@ import * as DOCUMENT_DATA from "../config/document-data.mjs";
 import * as ITEMS from "../config/items.mjs";
 import * as TOKEN from "../config/token.mjs";
 import { sum } from "../utils/math.mjs";
-import { staticStatusId } from "../helper/document.mjs";
+import { staticStatusId } from "../helpers/document.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.

@@ -1,4 +1,4 @@
-import registerSystemSettings from "../settings.mjs";
+import registerSystemSettings from "../helpers/settings.mjs";
 import * as data from "../data/_module.mjs";
 import { performPreLocalization } from "../i18n/localization.mjs";
 

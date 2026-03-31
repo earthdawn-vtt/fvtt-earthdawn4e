@@ -2,7 +2,7 @@ import Rollable from "./rollable.mjs";
 import ActorWorkflow from "./actor-workflow.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import AttuningRollOptions from "../../data/roll/attuning.mjs";
 
 /**

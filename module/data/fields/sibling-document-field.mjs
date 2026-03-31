@@ -14,7 +14,7 @@
  */
 
 
-import { isValidSystemType } from "../../helper/document.mjs";
+import { isValidSystemType } from "../../helpers/document.mjs";
 
 /**
  * A ForeignDocumentField which references a sibling document within the same parent document.

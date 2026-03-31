@@ -4,7 +4,7 @@ import * as SOCKETS from "../config/sockets.mjs";
 import * as STATUSES from "../config/statuses.mjs";
 import ED4E_CONSTANTS from "../constants/_module.mjs";
 import  "../tours/ed-tours.mjs";
-import registerHandlebarHelpers from "../helper/handlebars.mjs";
+import registerHandlebarHelpers from "../helpers/handlebars.mjs";
 import { partials } from "../config/handlebars.mjs";
 
 
@@ -14,9 +14,9 @@ import * as canvas from "../canvas/_module.mjs";
 import * as data from "../data/_module.mjs";
 import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
-import * as enrichers from "../helper/enrichers.mjs";
+import * as enrichers from "../helpers/enrichers.mjs";
 
-import { staticStatusId } from "../helper/document.mjs";
+import { staticStatusId } from "../helpers/document.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;

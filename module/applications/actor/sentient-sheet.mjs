@@ -2,7 +2,7 @@ import ActorSheetEd from "./common-sheet.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 import * as STATUSES from "../../config/statuses.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
-import { staticStatusId } from "../../helper/document.mjs";
+import { staticStatusId } from "../../helpers/document.mjs";
 
 
 /**

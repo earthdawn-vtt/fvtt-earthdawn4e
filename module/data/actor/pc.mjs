@@ -3,7 +3,7 @@ import CharacterGenerationPrompt from "../../applications/actor/character-genera
 import LpTrackingData from "../advancement/lp-tracking.mjs";
 import ActorEd from "../../documents/actor.mjs";
 import PromptFactory from "../../applications/global/prompt-factory.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import DialogEd from "../../applications/api/dialog.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as ACTORS from "../../config/actors.mjs";
@@ -12,7 +12,7 @@ import * as ITEMS from "../../config/items.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getArmorValueFromAttribute, getAttributeStepFromValue, getDefenseValueFromAttribute } from "../../utils/earthdawn.mjs";
 import { sum, sumProperty } from "../../utils/math.mjs";
-import { getSingleGlobalItemByEdid } from "../../helper/document.mjs";
+import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { mapObject } from "../../utils/object.mjs";
 
 const fUtils = foundry.utils;

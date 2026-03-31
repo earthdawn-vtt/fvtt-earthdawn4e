@@ -4,10 +4,10 @@ import ItemEd from "../../documents/item.mjs";
 import LearnableTemplate from "../../data/item/templates/learnable.mjs";
 import DialogEd from "../api/dialog.mjs";
 import ChooseAdderSubstitutePrompt from "./choose-adder-substitute.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 import * as LEGEND from "../../config/legend.mjs";
-import { createContentAnchor } from "../../helper/formatting.mjs";
+import { createContentAnchor } from "../../helpers/formatting.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 

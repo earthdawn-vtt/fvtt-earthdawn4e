@@ -1,6 +1,6 @@
 import ActorWorkflow from "./actor-workflow.mjs";
 import WorkflowInterruptError from "../workflow-interrupt.mjs";
-import { getSetting } from "../../settings.mjs";
+import { getSetting } from "../../helpers/settings.mjs";
 import AttackRollOptions from "../../data/roll/attack.mjs";
 import Rollable from "./rollable.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
