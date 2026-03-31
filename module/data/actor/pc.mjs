@@ -10,7 +10,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as DOCUMENT_DATA from "../../config/document-data.mjs";
 import * as ITEMS from "../../config/items.mjs";
 import * as LEGEND from "../../config/legend.mjs";
-import { getArmorValueFromAttribute, getAttributeStepFromValue, getDefenseValueFromAttribute } from "../../utils/earthdawn.mjs";
+import { getArmorValueFromAttribute, getAttributeStepFromValue, getDefenseValueFromAttribute } from "../../helpers/earthdawn.mjs";
 import { sum, sumProperty } from "../../utils/math.mjs";
 import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { mapObject } from "../../utils/object.mjs";
