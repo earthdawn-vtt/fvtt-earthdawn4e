@@ -71,6 +71,10 @@ export const eaeDurationTypes = {
 };
 preLocalize( "eaeDurationTypes" );
 
+/**
+ * The time an executable effect is triggered.
+ * @enum {FormSelectOption}
+ */
 export const eaeExecutionTime = {
   combatStart: {
     value: "combatStart",
@@ -104,6 +108,26 @@ export const eaeExecutionTime = {
   },
 };
 preLocalize( "eaeExecutionTime", { keys: [ "label", "group" ] } );
+
+/**
+ * The target an effect should be applied to if `transfer === true`.
+ * @enum {FormSelectOption}
+ */
+export const eaeTransferTargets = {
+  ability: {
+    value: "ability",
+    label: "ED.Config.Eae.TransferTargets.ability",
+  },
+  owner: {
+    value: "owner",
+    label: "ED.Config.Eae.TransferTargets.owner",
+  },
+  target: {
+    value: "target",
+    label: "ED.Config.Eae.TransferTargets.target",
+  },
+};
+preLocalize( "eaeTransferTargets", { key: "label" } );
 
 /**
  * Configuration data for Global Modifier

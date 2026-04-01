@@ -1,5 +1,6 @@
 import FormulaField from "../fields/formula-field.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
+import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 
 /**
  * @implements {EffectChangeData}
@@ -17,13 +18,25 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
     const fields = foundry.data.fields;
 
     return {
-      key:      new fields.StringField(),
+      key:      new fields.StringField( {
+        required: true,
+      }, ),
+      type:     new fields.StringField( {
+        required: true,
+        blank:    false,
+        initial:  "add",
+        validate: ActiveEffectDataModel._validateChangeType,
+      }, ),
       value:    new FormulaField( {
-        required: false,
+        required: true,
+        nullable: true,
         blank:    true,
+        initial:  "",
       } ),
-      mode:     new fields.NumberField( {
-        initial: CONST.ACTIVE_EFFECT_MODES.ADD,
+      phase:    new fields.StringField( {
+        required: true,
+        blank:    false,
+        initial:  "initial",
       } ),
       priority: new fields.NumberField(),
     };
@@ -38,7 +51,7 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
     return {
       key:   key,
       value: 0,
-      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+      mode:  "override",
     };
   }
 
