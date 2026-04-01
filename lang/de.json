@@ -2971,7 +2971,8 @@
         "legendPoints":                           "Legendenpunkte"
       },
       "AttuneMatrices": {
-        "summary":                                "Zusammenfassung"
+        "summary":                                "Zusammenfassung",
+        "ThreadWeavingHint":                      "TODO: Add translation"
       },
       "Buttons": {
         "add":                                    "Hinzufügen",
@@ -3137,6 +3138,7 @@
         "requiredKnowledgeSkillPoints":           "Mindestens 2 Ränge in Wissensfertigkeiten müssen gewählt werden",
         "socialDefense":                          "Soziale Verteidigung",
         "unconsciousDeathRate":                   "Bewusstlosigkeits- und Todesschwelle",
+        "useCharacterGenerator":                  "Möchtest du den Charaktergenerator verwenden?",
         "woundThreshold":                         "Wundschwelle"
       },
       "ChooseAdderSubstitute": {
@@ -3353,7 +3355,8 @@
         "versatilityLimit":                       "Vielseitigkeitslimit erreicht"
       },
       "ToolTips": {
-        "resetAbilityRanks":                      "Setzt alle Ränge auf 0 zurück"
+        "resetAbilityRanks":                      "Setzt alle Ränge auf 0 zurück",
+        "newItem":                                "TODO: Add Translation"
       },
       "armor":                                    "Rüstung",
       "armorType":                                "Rüstungsart",

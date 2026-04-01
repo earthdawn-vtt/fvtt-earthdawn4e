@@ -288,7 +288,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
    */
   static async _showCharGenPrompt() {
     return foundry.applications.api.DialogV2.confirm( {
-      content:     "X-Do you want to use the character generation?",
+      content:     game.i18n.localize("ED.Dialogs.CharGen.useCharacterGenerator"),
       rejectClose: false,
       modal:       true,
     } );

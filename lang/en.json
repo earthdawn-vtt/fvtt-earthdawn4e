@@ -2022,14 +2022,14 @@
                   "label":                        "Weapon Status"
                 },
                 "weaponTypes": {
-                  "hint":                         "TODO: Add translation",
-                  "label":                        "TODO: Add translation"
+                  "hint":                         "The weapon type to which the die roll applies.",
+                  "label":                        "Weapon Type"
                 }
               },
               "damage": {
                 "combatType": {
-                  "hint":                         "TODO: Add translation",
-                  "label":                        "TODO: Add translation"
+                  "hint":                         "Type of combat/weapon for which damage can be rolled",
+                  "label":                        "Combat Type"
                 },
                 "hint":                           "Damage related to this roll",
                 "label":                          "Damage"
@@ -2546,8 +2546,8 @@
               "label":                            "Armor Type"
             },
             "damageAbilities": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
+              "hint":                             "Abilities that increase damage",
+              "label":                            "Damage Abilities"
             },
             "damageType": {
               "hint":                             "Type of damage",
@@ -2971,7 +2971,8 @@
         "legendPoints":                           "Legend Points"
       },
       "AttuneMatrices": {
-        "summary":                                "Summary"
+        "summary":                                "Summary",
+        "ThreadWeavingHint":                       "Choose a thread weaving talent to attempt to reattune on the fly"
       },
       "Buttons": {
         "add":                                    "Add",
@@ -2984,8 +2985,8 @@
         "complete":                               "Complete",
         "configure":                              "Configure",
         "continue":                               "Continue",
-        "continueWeavingSpellNo":                 "TODO: Add translation",
-        "continueWeavingSpellYes":                "TODO: Add translation",
+        "continueWeavingSpellNo":                 "Start from Scratch",
+        "continueWeavingSpellYes":                "Continue Weaving",
         "emptyAllMatrices":                       "Empty All Matrices",
         "finish":                                 "Finish",
         "free":                                   "Free",
@@ -3080,7 +3081,7 @@
         "Validation": {
           "Categories": {
             "attributes":                         "Attributes",
-            "class":                              "TODO: Add translation",
+            "class":                              "Discipline",
             "classRanks":                         "Discipline/Questor Ranks",
             "languages":                          "Languages",
             "namegiver":                          "Namegiver",
@@ -3109,7 +3110,7 @@
         "chooseSpellsRules":                      "Select spells from the lists below.<br>Maximum number of spells equals Perception step.<br>Circle 1 spells cost 1 point, Circle 2 spells cost 2 points.",
         "chooseTalentsRules":                     "Here are the Discipline talents and optional Novice talents.<br>You may choose one optional talent to raise with the Discipline talents.<br>Free talents always match Circle rank.<br>Assigned rank equals starting rank.",
         "circle":                                 "Circle {level}",
-        "classImageAlt":                          "TODO: Add translation",
+        "classImageAlt":                          "Image of the selected discipline",
         "discipline":                             "Discipline",
         "disciplineTalents":                      "Discipline Talents",
         "initiative":                             "Initiative Step / Dice",
@@ -3137,6 +3138,7 @@
         "requiredKnowledgeSkillPoints":           "At least 2 ranks in Knowledge skills must be chosen.",
         "socialDefense":                          "Social Defense",
         "unconsciousDeathRate":                   "Unconsciousness / Death Rating",
+        "useCharacterGenerator":                  "Do you want to use the character generator?",
         "woundThreshold":                         "Wound Threshold"
       },
       "ChooseAdderSubstitute": {
@@ -3186,12 +3188,12 @@
           "classAbilitiesGained":                 "Gained Discipline Talents",
           "classIncreasedTier":                   "The class has been raised to {newTier}",
           "effectsGained":                        "Effects Gained",
-          "freeAbilitiesGained":                  "TODO: Add translation",
+          "freeAbilitiesGained":                  "Acquired Free Abilities",
           "increaseClassTo":                      "Increase vocation to {increaseClassToLevel}",
           "learningClass":                        "Learning Vocation",
           "optionalAbilityGained":                "You gained an optional ability which can be increased later.",
           "resourceStepIncreased":                "Resource Step Increased",
-          "specialAbilitiesGained":               "TODO: Add translation",
+          "specialAbilitiesGained":               "Special Abilities Gained",
           "spellsGained":                         "Spells Gained"
         },
         "LearnSpell": {
@@ -3226,8 +3228,8 @@
           "disciplineLearnShortRequirements":     "<ul>\n<li>Study with an Adept of the desired Discipline (Fifth Circle or higher)</li>\n<li>The base cost in silver equals the sum of all Circles the student has in other Disciplines, multiplied by 100</li>\n<li>Learn all First Circle talents that are not yet known.</li>\n<li>Sufficient Legend Points must be available to learn all First Circle talents at once</li>\n<li>The lowest Circle among all previous Disciplines determines the cost for Rank 1 of the talents of the new Discipline</li>\n<li>Talent Options of the First Circle may be learned later as usual.</li>\n<li>The student must complete 40 hours of training within a week for each talent</li>\n</ul>\n",
           "pathIncreaseShortRequirements":        "To increase a rank:<ul>\n<li>Pass the corresponding path test.</li>\n<li>Obtain permission from higher-ranked members of the path.</li>\n<li>Perform the rank advancement ritual.</li>\n</ul>",
           "pathLearnShortRequirements":           "<ul>\n<li>The character must have passed the path test.</li>\n<li>The character must perform the advancement ritual with approval from a higher-ranked member.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n</ul>",
-          "questorIncreaseShortRequirements":     "Todo: Add translation",
-          "questorLearnShortRequirements":        "Todo: Add translation",
+          "questorIncreaseShortRequirements":     "<ul><li>Commune with their Patron using the Questor Devotion.</li><li>No test is required.</li><li>Only one Devotion may be acquired or advanced per day, and no more than one rank of a single Devotion may be advanced at a time.</li><li>Aside from the Legend Point costs and the time investment required, there are no restrictions on advancing the rank of a Questor Devotion within the same tier.</li><li>Transitioning from one tier to the next (e.g., from Disciple to Follower) requires undertaking and fulfilling a task (Quest) in the name of one's Passion.</li><li>A Devotion from a previous tier may be selected.</li><li>The Legend Point cost of a granted Devotion is based on when it becomes available, even if it is not learned until a later time.</></ul>",
+          "questorLearnShortRequirements":        "<ul>\n<li>Declare the adept's intention to become a Questor.</li>\n<li>Begin devoting the character's life to a single Passion.</li>\n<li>Live by the ideals of that Passion.</li>\n<li>Help spread its influence throughout Barsaive.</li>\n<li>In return, the character gains access to the Questor Devotion.</li>\n<li>The rank in this Devotion serves as a measure of dedication.</li>\n</ul>",
           "skillIncreaseShortRequirements":       "<ul>\n<li>The character must be rested, with no damage or wounds during training.</li>\n<li>The character must train for a number of weeks equal to the new skill rank.</li>\n<li>The character must have sufficient Legend Points for the next rank.</li>\n<li>Training costs usually 10 silver × the new rank per week.</li>\n<li>The previous increase must be at least {trainingTime} weeks ago.</li>\n</ul>",
           "talentIncreaseShortRequirements":      "<ul>\n<li>The adept must be rested, with no damage or wounds.</li>\n<li>The adept must meditate for eight uninterrupted hours.</li>\n<li>The talent cannot already have been raised that day.</li>\n<li>The adept must have sufficient Legend Points for the next rank.</li>\n</ul>",
           "threadItemIncreaseShortRequirements":  "<ul>\n<li>The required Key Knowledge must be known</li>\n<li>The character must succeed at a Thread Weaving test.</li>\n<li>The character has sufficient Legend Points for the next Rank.</li>\n</ul>\n"
@@ -3284,7 +3286,7 @@
           "damage":                               "Roll Damage ({damageSourceType})",
           "itemHistory":                          "Roll Item History",
           "jumpUp":                               "Roll Jump Up",
-          "rollAttribute":                        "TODO: Add translation",
+          "rollAttribute":                        "Roll an Attribute Check",
           "weaveThread":                          "Weave Thread"
         },
         "devotion":                                "Devotion",
@@ -3353,7 +3355,8 @@
         "versatilityLimit":                       "Versatility Limit Reached"
       },
       "ToolTips": {
-        "resetAbilityRanks":                      "Reset all Ranks to 0"
+        "resetAbilityRanks":                      "Reset all Ranks to 0",
+        "newItem":                                "New Item"
       },
       "armor":                                    "Armor",
       "armorType":                                "Armor Type",
@@ -3570,7 +3573,7 @@
         "castSpellNoActor":                       "No actor found to cast the spell.",
         "chooseActorPromptNoActorAvailable":      "No actors are available for selection.",
         "classIncreaseProblems":                  "Circle or rank could not be updated.",
-        "couldNotAddLpTransaction":               "TODO: translation",
+        "couldNotAddLpTransaction":               "Legend points could not be recorded.",
         "couldNotScrollToSourceMessage":          "Could not find the source message.",
         "firstClassViaCharGen":                   "When selecting your first Discipline, use Character Generation, or attributes may not be set correctly.",
         "grimoireAddAlreadyInGrimoire":           "The spell is already in the Grimoire.",
@@ -3608,7 +3611,7 @@
       "Modifiers": {
         "bonusDamageFromExtraSuccesses":          "Bonus Damage from Extra Successes",
         "grimoirePenalty":                        "Foreign Grimoire",
-        "jumpUpNoKnockdownPenalty":               "TODO: Translation",
+        "jumpUpNoKnockdownPenalty":               "No penalty for being Knocked Down (offset)",
         "manual":                                 "Manual Adjustment",
         "spellEffectOrDamageStepCircle":          "Circle ({discipline})",
         "stunRecoveryWillpower":                  "Willpower"

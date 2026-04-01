@@ -183,7 +183,7 @@ export default class AttuneMatrixPrompt extends ApplicationEd {
     return new foundry.data.fields.StringField( {
       choices,
       label:    "",
-      hint:     "ED.X.TODO.Choose a thread weaving talent to attune on the fly",
+      hint:     game.i18n.localize("ED.Dialogs.AttuneMatrices.ThreadWeavingHint"),
     }, {
       name: "threadWeavingId",
     } );
