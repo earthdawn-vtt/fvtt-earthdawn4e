@@ -1,4 +1,21 @@
+import * as SYSTEM from "../config/system.mjs";
+import { SYSTEM_TYPES } from "../constants/constants.mjs";
+
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
+
+  // region Static Methods
+
+  /** @inheritdoc */
+  static async createDialog( data={}, createOptions={}, {
+    folders, types, template, context, ...dialogOptions
+  }={}, renderOptions={} ) {
+
+    const filteredTypes = ( types ?? Object.values( SYSTEM_TYPES.ActiveEffect ) )
+      .filter( t => !SYSTEM.UNAVAILABLE_SYSTEM_TYPES.ActiveEffect.includes( t ) );
+    return super.createDialog( data, createOptions, { folders, types: filteredTypes, template, context, ...dialogOptions }, renderOptions );
+  }
+
+  // endregion
 
   // region Getters
 
