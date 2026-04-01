@@ -305,20 +305,21 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   // region Data Cleaning
 
   /** @inheritdoc */
-  static cleanData( source, options ) {
-    this._cleanData( source, options );
-    return super.cleanData( source, options );
+  static cleanData( data, options, _state ) {
+    this._cleanData( data, options, _state );
+    return super.cleanData( data, options, _state );
   }
 
   /**
    * Performs cleaning without calling DataModel.cleanData.
-   * @param {object} [source]         The source data
+   * @param {object} [data]         The source data
    * @param {object} [options]     Additional options (see DataModel.cleanData)
+   * @param {Partial<DataModelUpdateState>} [_state]  Internal options used during cleaning recursion
    * @protected
    */
-  static _cleanData( source, options ) {
+  static _cleanData( data, options, _state ) {
     for ( const template of this._schemaTemplates ) {
-      template._cleanData( source, options );
+      template._cleanData( data, options, _state );
     }
   }
 
