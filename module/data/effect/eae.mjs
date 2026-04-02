@@ -23,4 +23,27 @@ export default class EarthdawnActiveEffectData extends ActiveEffectDataModel {
 
   // endregion
 
+  // region Executable
+
+  /**
+   * Execute the effect's execution script.
+   * @param {{}} options - Additional options for executing the script. Currently not used.
+   * @returns {Promise} A promise that resolves once the script has been executed.
+   */
+  async execute( options = {} ) {
+    try {
+      const fn = new foundry.utils.AsyncFunction(
+        "effect",
+        "parent",
+        "options",
+        `{${ this.executionScript }\n}`,
+      );
+      await fn.call( globalThis, this.parentDocument, this.parentDocument.parent, options );
+    } catch ( error ) {
+      console.error( error );
+    }
+  }
+
+  // endregion
+
 }
