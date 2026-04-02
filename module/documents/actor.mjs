@@ -325,16 +325,16 @@ export default class ActorEd extends Actor {
     const effectsByChangeKey = new Map();
 
     for ( const effect of effects ) {
-      for ( const change of effect.changes ) {
+      for ( const change of effect.system.changes ) {
         if ( !effectsByChangeKey.has( change.key ) ) {
           effectsByChangeKey.set( change.key, [] );
         }
         effectsByChangeKey.get( change.key ).push( {
           effect,
           change,
-          sourceType: effect.system.source?.documentOriginType,
-          sourceUuid: effect.system.source?.documentOriginUuid,
-          sourceId:   effect.system.sourceDocumentOriginId,
+          sourceType: effect.originType,
+          sourceUuid: effect.origin,
+          sourceId:   effect.originId,
           value:      Number( change.value ) || 0
         } );
       }

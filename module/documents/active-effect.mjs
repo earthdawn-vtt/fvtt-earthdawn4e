@@ -57,6 +57,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   /**
+   * The document origin ID of this effect, if it was created by a document.
+   * @type {string|undefined}
+   */
+  get originId() {
+    return foundry.utils.parseUuid( this.origin )?.id;
+  }
+
+  /**
    * The system type of the origin document, if available.
    * Will be null if the origin document is not found or in a compendium.
    * @type {string|null}
