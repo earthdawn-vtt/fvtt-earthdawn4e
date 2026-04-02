@@ -29,7 +29,7 @@ import * as DOCUMENT_DATA from "../config/document-data.mjs";
 import * as ITEMS from "../config/items.mjs";
 import * as TOKEN from "../config/token.mjs";
 import { sum } from "../utils/math.mjs";
-import { staticStatusId } from "../helpers/document.mjs";
+import { createStaticStatusId } from "../helpers/document.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -359,7 +359,7 @@ export default class ActorEd extends Actor {
     }
 
     // check for effects with levels
-    const staticId = staticStatusId( statusId );
+    const staticId = createStaticStatusId( statusId );
     const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
     const effect = this.effects.get( staticId );
     // eslint-disable-next-line no-param-reassign

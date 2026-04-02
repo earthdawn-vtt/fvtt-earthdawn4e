@@ -16,7 +16,7 @@ import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../helpers/enrichers.mjs";
 
-import { staticStatusId } from "../helpers/document.mjs";
+import { createStaticStatusId } from "../helpers/document.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { CombatantConfig } = foundry.applications.sheets;
@@ -61,7 +61,7 @@ function setupCanvas() {
 function setupStatusEffects() {
   CONFIG.statusEffects = STATUSES.statusEffects.map( ( status ) => {
     return {
-      _id: staticStatusId( status.id ),
+      _id: createStaticStatusId( status.id ),
       ...status
     };
   } );
