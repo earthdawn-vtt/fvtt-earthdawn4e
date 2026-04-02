@@ -496,10 +496,6 @@ export default class ActorEd extends Actor {
   async createManualOverrideEffect() {
     const createData = foundry.utils.deepClone( DOCUMENT_DATA.documentData.ActiveEffect.base.manualOverride );
     createData.origin = this.uuid;
-    createData.system.source = {
-      documentOriginUuid: this.uuid,
-      documentOriginType: this.type,
-    };
 
     const createdEffects = await this.createActiveEffects( [ createData, ] );
     return createdEffects?.[0] ?? null;
@@ -510,7 +506,7 @@ export default class ActorEd extends Actor {
     if ( !effect ) effect = await this.initializeManualOverrideEffect();
     if ( !effect ) throw new Error( "ActorEd.manualOverride: Could not create manual override effect." );
 
-    const newValue = ( Number( effect.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
+    const newValue = ( Number( effect.system.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
     return effect.updateSystemChange( changeKey, newValue );
   }
 
@@ -521,6 +517,7 @@ export default class ActorEd extends Actor {
    */
   async initializeManualOverrideEffect() {
     const effect = await this.createManualOverrideEffect();
+    if ( !effect ) return null;
     await this.update( { "system.manualOverrideEffectId": effect.id } );
     return effect;
   }
