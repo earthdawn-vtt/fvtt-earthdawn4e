@@ -91,10 +91,10 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
    * @returns {boolean} Returns true if both effects have the same change keys, otherwise false.
    */
   hasSameChangesKeys( otherEffect ) {
-    if ( this.changes.length !== otherEffect.changes.length ) return false;
+    if ( this.system.changes.length !== otherEffect.system.changes.length ) return false;
 
-    const thisKeys = this.changes.map( c => c.key ).sort();
-    const otherKeys = otherEffect.changes.map( c => c.key ).sort();
+    const thisKeys = this.system.changes.map( c => c.key ).sort();
+    const otherKeys = otherEffect.system.changes.map( c => c.key ).sort();
     return thisKeys.every( ( key, index ) => key === otherKeys[index] );
   }
 
