@@ -148,6 +148,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     }
   }
 
+  /** @inheritdoc */
+  _onUpdate( changed, options, userId ) {
+    super._onUpdate( changed, options, userId );
+    if ( options.statusLevelDifference ) {
+      this._displayScrollingStatus( options.statusLevelDifference > 0 );
+    }
+  }
+
   // endregion
 
   // region Rendering
