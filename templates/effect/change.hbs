@@ -1,0 +1,38 @@
+<li data-index="{{index}}">
+  <div class="key">
+    {{formInput fields.key name=change.keyPath value=change.key options=change.keyOptions}}
+  </div>
+  <div class="type">
+    {{formInput fields.type name=change.typePath value=change.type choices=changeTypes}}
+  </div>
+  <div class="value">
+    {{formInput fields.value name=change.valuePath value=change.value elementType="input"}}
+  </div>
+  <div class="priority">
+    {{formInput fields.priority name=change.priorityPath value=change.priority placeholder=defaultPriority}}
+  </div>
+  <div class="controls">
+    <button type="button" class="inline-control icon fa-solid fa-trash" data-action="deleteChange"></button>
+  </div>
+</li>
+
+
+<!--
+<li data-index="{{i}}">
+  <div class="key">
+    {{formInput changeFields.key name=(concat "system.changes." i ".key") value=change.key options=@root/keyOptions}}
+  </div>
+  <div class="mode">
+    {{formInput changeFields.mode name=(concat "system.changes." i ".mode") value=change.mode choices=@root.modes}}
+  </div>
+  <div class="value">
+    {{formInput changeFields.value name=(concat "system.changes." i ".value") value=change.value
+                dataset=(ed-makeTooltip (localize "ED.ToolTips.activeEffectFinalValue" value=(lookup (lookup @root/source.changes i) "value")))
+    }}
+  </div>
+  <div class="priority">
+    {{formInput changeFields.priority name=(concat "system.changes." i ".priority") value=change.priority
+                placeholder=(lookup ../../priorities change.mode)}}
+  </div>
+  <div class="controls"><a data-action="deleteChange"><i class="fa-solid fa-trash"></i></a></div>
+</li>-->

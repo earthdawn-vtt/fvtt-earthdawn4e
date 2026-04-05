@@ -28,8 +28,8 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   static PARTS = {
     ...ActiveEffectConfig.PARTS,
     details:   { template: "systems/ed4e/templates/effect/details.hbs" },
-    duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
-    changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
+    // duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
+    // changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
     execution: { template: "systems/ed4e/templates/effect/execution.hbs" },
   };
 
@@ -91,6 +91,24 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   // endregion
 
   // region Rendering
+
+  /** @inheritDoc */
+  async _renderChange( context ) {
+    const {change, index} = context;
+    if ( typeof change.value !== "string" ) change.value = JSON.stringify( change.value );
+    Object.assign(
+      change,
+      [ "key", "type", "value", "priority" ].reduce( ( paths, fieldName ) => {
+        paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+        return paths;
+      }, {} ) );
+
+    const effect = /** @type {EarthdawnActiveEffect} */ this.document;
+    change.keyOptions = effect.getChangeKeyOptions( change.key );
+
+    return ActiveEffect.CHANGE_TYPES[change.type].render?.( context )
+      ?? foundry.applications.handlebars.renderTemplate( "systems/ed4e/templates/effect/change.hbs", context );
+  }
 
   /** @inheritDoc */
   _configureRenderParts( options ) {
