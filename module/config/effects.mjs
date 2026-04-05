@@ -7,26 +7,26 @@ export const COMMON_EAE_CHANGES = {
   coverPartial: [
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: +2,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: +2,
     },
   ],
   darknessPartial: [
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  "add",
+      type:  "add",
       value: -2,
     },
   ],
   darknessFull: [
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  "add",
+      type:  "add",
       value: -4,
     },
   ],
@@ -36,7 +36,7 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: -5,
-      mode:  "add",
+      type:  "add",
     };
   } ),
   impairedHeavy: Object.entries(
@@ -45,7 +45,7 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: -10,
-      mode:  "add",
+      type:  "add",
     };
   } ),
   noMovement: Object.entries(
@@ -54,7 +54,7 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: 0,
-      mode:  "override",
+      type:  "override",
     };
   } ),
 };

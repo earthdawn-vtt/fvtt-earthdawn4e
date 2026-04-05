@@ -57,7 +57,7 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
     return {
       key:   key,
       value: 0,
-      mode:  "override",
+      type:  "override",
     };
   }
 

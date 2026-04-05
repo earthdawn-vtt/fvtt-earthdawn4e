@@ -112,7 +112,7 @@ export default class ItemEd extends Item {
       changes.push( ...effect.changes.map( change => {
         const c = foundry.utils.deepClone( change );
         c.effect = effect;
-        c.priority = c.priority ?? ( c.mode * 10 );
+        c.priority = c.priority ?? ( c.type * 10 );
         return c;
       } ) );
     }

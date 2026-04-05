@@ -7,22 +7,22 @@ const STATUS_CHANGES = {
   aggressive: [
     {
       key:   "system.globalModifiers.allCloseAttacks.value",
-      mode:  "add",
+      type:  "add",
       value: +3,
     },
     {
       key:   "system.globalModifiers.allCloseDamage.value",
-      mode:  "add",
+      type:  "add",
       value: +3,
     },
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
   ],
@@ -30,19 +30,19 @@ const STATUS_CHANGES = {
   blindsided: [
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
   ],
   calledShot: [
     {
       key:   "system.globalModifiers.allAttacks.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
   ],
@@ -50,31 +50,31 @@ const STATUS_CHANGES = {
   defensive:  [
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: +3,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: +3,
     },
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       // defensive stance gives penalty to _all_ tests except knockdown tests
       // add an explicit bonus to knockdown effects to neutralize the penalty from `globalModifiers.allTests`
       key:   "system.globalModifiers.allKnockdownTests.value",
-      mode:  "add",
+      type:  "add",
       value: +3,
     },
   ],
   fury: [
     {
       key:   "system.globalModifiers.allTests",
-      mode:  "add",
+      type:  "add",
       // ignore existing wounds and add them as bonus
       value: "2 * @wounds",
     },
@@ -83,68 +83,68 @@ const STATUS_CHANGES = {
   harried:     [
     {
       key:   "system.globalModifiers.allActions.value",
-      mode:  "add",
+      type:  "add",
       value: -2,
     },
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -2,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -2,
     },
   ],
   knockedDown: [
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.movement.walk",
-      mode:  "override",
+      type:  "override",
       value: 2,
     },
   ],
   overwhelmed: [
     {
       key:   "system.globalModifiers.allActions.value",
-      mode:  "add",
+      type:  "add",
       value: -1,
     },
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -1,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -1,
     },
   ],
   surprised:   [
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  "add",
+      type:  "add",
       value: -3,
     },
   ],
