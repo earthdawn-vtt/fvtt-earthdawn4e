@@ -15,8 +15,6 @@ import { sum, sumProperty } from "../../utils/math.mjs";
 import { getSingleGlobalItemByEdid } from "../../helpers/document.mjs";
 import { mapObject } from "../../utils/object.mjs";
 
-const fUtils = foundry.utils;
-
 /**
  * System data definition for PCs.
  * @mixin
@@ -92,7 +90,7 @@ export default class PcData extends NamegiverTemplate {
   ];
 
   /** @inheritDoc */
-  static metadata = Object.freeze( fUtils.mergeObject(
+  static metadata = Object.freeze( foundry.utils.mergeObject(
     super.metadata,
     {
       type: SYSTEM_TYPES.Actor.pc,
