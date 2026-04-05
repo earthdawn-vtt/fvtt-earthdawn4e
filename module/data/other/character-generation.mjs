@@ -418,8 +418,8 @@ export default class CharacterGenerationData extends SparseDataModel {
   async getLanguageSkillRanks() {
     const languageSkills = await this.getLanguageDocuments();
     return {
-      speak:     this.abilities.language[languageSkills.speak.uuid],
-      readWrite: this.abilities.language[languageSkills.readWrite.uuid],
+      speak:     this.abilities.language[languageSkills.speak?.uuid],
+      readWrite: this.abilities.language[languageSkills.readWrite?.uuid],
     };
   }
 
