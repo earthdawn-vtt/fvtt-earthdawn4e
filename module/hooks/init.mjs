@@ -59,12 +59,16 @@ function setupCanvas() {
  *
  */
 function setupStatusEffects() {
-  CONFIG.statusEffects = STATUSES.statusEffects.map( ( status ) => {
-    return {
-      _id: createStaticStatusId( status.id ),
-      ...status
+  // delete Foundry's default effects (for some reason this is a Proxy...)
+  CONFIG.statusEffects.length = 0;
+  // then assign our custom status effects
+  for ( const statusEffect of STATUSES.statusEffects ) {
+    CONFIG.statusEffects[ statusEffect.id ] = {
+      _id: createStaticStatusId( statusEffect.id ),
+      ...statusEffect,
     };
-  } );
+  }
+
   Object.assign( CONFIG.specialStatusEffects, STATUSES.specialStatusEffects );
 }
 
