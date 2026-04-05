@@ -19,7 +19,7 @@ import * as enrichers from "../helpers/enrichers.mjs";
 import { createStaticStatusId } from "../helpers/document.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
-const { CombatantConfig } = foundry.applications.sheets;
+const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
 const { Actors, Items, Journal, Scenes } = foundry.documents.collections;
 
 /**
@@ -164,7 +164,7 @@ function registerSheetApps() {
     label:       "ED.Documents.actorSheetEdHorror"
   } );
 
-  /* DocumentSheetConfig.unregisterSheet( ActiveEffect, "core", ActiveEffectConfig );
+  DocumentSheetConfig.unregisterSheet( ActiveEffect, "core", ActiveEffectConfig );
   DocumentSheetConfig.registerSheet(
     ActiveEffect,
     "earthdawn4e",
@@ -173,7 +173,7 @@ function registerSheetApps() {
       makeDefault: true,
       label:       "ED.Documents.activeEffectSheetEd"
     }
-  ); */
+  );
 
   DocumentSheetConfig.unregisterSheet( Combatant, "core", CombatantConfig );
   DocumentSheetConfig.registerSheet(

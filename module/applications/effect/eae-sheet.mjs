@@ -107,9 +107,6 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
     context.systemFields = this.document.system.schema.fields;
 
-    // filter out submit button
-    context.buttons = context.buttons.filter( b => b.type !== "submit" );
-
     context.tooltips = {};
 
     return context;
@@ -139,6 +136,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
         partContext.edids = getEdIds();
         break;
       case "execution":
+        break;
+      case "footer":
+        // filter out submit button
+        context.buttons = context.buttons.filter( b => b.type !== "submit" );
         break;
     }
 
