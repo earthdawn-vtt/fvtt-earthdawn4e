@@ -18,7 +18,9 @@ export default class ActiveEffectDataModel extends SystemDataModel {
       changes:         new fields.ArrayField(
         /** @type {ElementType} */ new fields.EmbeddedDataField(
           EarthdawnActiveEffectChangeData,
-        ) ),
+        ), {
+          initial: [ new EarthdawnActiveEffectChangeData(), ],
+        } ),
       parentDocumentType:  new fields.StringField( {
         required: true,
         blank:    false,
