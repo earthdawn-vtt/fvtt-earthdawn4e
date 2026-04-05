@@ -153,6 +153,9 @@ export default class PhysicalItemSheetEd extends ItemSheetEd {
       {
         options:                this.options,
       },
+      {
+        recursive:              false,
+      },
     );
 
     context.enrichedDescription = await TextEditor.enrichHTML(

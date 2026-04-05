@@ -37,7 +37,9 @@ export default class ActorSheetEdNamegiver extends ActorSheetEdSentient {
     const context = await super._prepareContext( options );
     foundry.utils.mergeObject( context, {
       splitTalents:           game.settings.get( "ed4e", "talentsSplit" ),
-    } );
+    }, {
+      recursive: false,
+    }, );
 
     return context;
   }

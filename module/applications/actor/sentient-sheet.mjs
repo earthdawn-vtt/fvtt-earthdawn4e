@@ -100,6 +100,8 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       tabsSpells:         this._getSpellTabs(),
       matrices:           this.document.getMatrices(),
       spellKnacks:        this.document.spellKnacksBySpellId,
+    }, {
+      recursive: false,
     } );
 
     return context;

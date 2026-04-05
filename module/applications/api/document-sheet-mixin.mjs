@@ -125,6 +125,8 @@ const DocumentSheetMixinEd = Base => {
         options:      this.options,
         system:       this.document.system,
         systemFields: this.document.system.schema.fields,
+      }, {
+        recursive: false,
       } );
 
       context.enrichedDescription = await TextEditor.enrichHTML(
