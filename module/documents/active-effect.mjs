@@ -1,3 +1,4 @@
+import * as EFFECTS from "../config/effects.mjs";
 import * as SYSTEM from "../config/system.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
 
@@ -54,6 +55,26 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     }
 
     return null;
+  }
+
+  /**
+   * Whether this Active Effect's target is an Actor
+   * @type {boolean}
+   */
+  get targetsActor() {
+    return this.target?.documentName === "Actor"
+      || ( this.system.parentDocumentType === "Actor" )
+      || [ "owner", "target" ].includes( this.system.transferring.target );
+  }
+
+  /**
+   * Whether this Active Effect's target is an Item
+   * @type {boolean}
+   */
+  get targetsItem() {
+    return this.target?.documentName === "Item"
+      || ( this.system.parentDocumentType === "Item" && !this.transfer )
+      || [ "ability", ].includes( this.system.transferring.target );
   }
 
   /**
@@ -194,6 +215,18 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
         },
       );
     }
+  }
+
+  // endregion
+
+  // region Validation
+
+  /** @inheritDoc */
+  static validateJoint( data ) {
+    const transfer = data.transfer;
+    const transferTarget = data.system.transferring.target;
+    if ( transfer && !Object.keys( EFFECTS.eaeTransferTargets ).includes( transferTarget ) )
+      throw new Error( `If transfer is true, the transferring target must be one of ${Object.keys( EFFECTS.eaeTransferTargets ).join( ", " )}.` );
   }
 
   // endregion
