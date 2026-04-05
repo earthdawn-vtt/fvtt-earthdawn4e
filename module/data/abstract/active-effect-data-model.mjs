@@ -19,6 +19,12 @@ export default class ActiveEffectDataModel extends SystemDataModel {
         /** @type {ElementType} */ new fields.EmbeddedDataField(
           EarthdawnActiveEffectChangeData,
         ) ),
+      parentDocumentType:  new fields.StringField( {
+        required: true,
+        blank:    false,
+        choices:  EFFECTS.eaeDocumentTypes,
+        initial:  "Actor",
+      } ),
       execution:       new fields.SchemaField( {
         executable:       new fields.BooleanField(),
         executeOn:        new fields.StringField( {
@@ -32,9 +38,10 @@ export default class ActiveEffectDataModel extends SystemDataModel {
       } ),
       transferring:    new fields.SchemaField( {
         target: new fields.StringField( {
-          required: false,
+          required: true,
           blank:    false,
           choices:  EFFECTS.eaeTransferTargets,
+          initial:  "owner",
         } ),
         abilityEdid: new EdIdField( {
           required: false,

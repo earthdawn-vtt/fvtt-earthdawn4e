@@ -60,6 +60,20 @@ export const COMMON_EAE_CHANGES = {
 };
 
 /**
+ * Document types that Active Effects can be embedded in.
+ * @enum {{label:string}}
+ */
+export const eaeDocumentTypes = {
+  Actor: {
+    label: "DOCUMENT.Actor",
+  },
+  Item: {
+    label: "DOCUMENT.Item",
+  },
+};
+preLocalize( "eaeDocumentTypes", { key: "label" } );
+
+/**
  * @type {Record<string, {label:string; hint: string}>}
  * @see CONFIG.ActiveEffect.phases
  */
