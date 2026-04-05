@@ -231,7 +231,7 @@ preLocalize( "singleModifiers", { key: "label" } );
 
 /**
  * A list of select input options that map a human-readable label to the field path for the change.
- * @type {Array<EaeChangeConfig>}
+ * @type {EaeChangeConfig[]}
  */
 export const eaeChangeKeysActor = [
   ...Object.entries( globalModifiers ).map( ( [ key, { label } ] ) => {
@@ -432,7 +432,7 @@ export const eaeActorChangeConfigByKey = eaeChangeKeysActor.reduce( ( acc, chang
 
 /**
  * A list of select input options that map a human-readable label to the field path for the change.
- * @type {FormSelectOption[]}
+ * @type {EaeChangeConfig[]}
  */
 export const eaeChangeKeysItem = [
   // Rollable
@@ -574,3 +574,12 @@ export const eaeChangeKeysItem = [
   },
 ];
 preLocalize( "eaeChangeKeysItem", { keys: [ "label", "group" ] } );
+
+/**
+ * All available change keys indexed by the document type the effect modifies.
+ * @type {{Actor: Array<EaeChangeConfig>, Item: Array<EaeChangeConfig>}}
+ */
+export const eaeChangeKeys = {
+  Actor: eaeChangeKeysActor,
+  Item:  eaeChangeKeysItem,
+};
