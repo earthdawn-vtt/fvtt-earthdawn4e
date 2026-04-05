@@ -64,7 +64,10 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   get targetsActor() {
     return this.target?.documentName === "Actor"
       || ( this.system.parentDocumentType === "Actor" )
-      || [ "owner", "target" ].includes( this.system.transferring.target );
+      || (
+        this.transfer
+        && [ "owner", "target" ].includes( this.system.transferring.target )
+      );
   }
 
   /**
@@ -74,7 +77,20 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   get targetsItem() {
     return this.target?.documentName === "Item"
       || ( this.system.parentDocumentType === "Item" && !this.transfer )
-      || [ "ability", ].includes( this.system.transferring.target );
+      || (
+        this.transfer
+        && [ "ability", ].includes( this.system.transferring.target )
+      );
+  }
+
+  /**
+   * Retrieves the type of document being targeted for modification.
+   * @returns {string|null} Returns the document type as a string ("Actor", "Item"),
+   * or null if no valid target document type is found.
+   */
+  get targetDocumentType() {
+    return this.target?.documentName
+    || this.targetsActor ? "Actor" : this.targetsItem ? "Item" : null;
   }
 
   /**
@@ -215,6 +231,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
         },
       );
     }
+  }
+
+  /**
+   * Retrieves the change key options based on the document type this effect is applied to.
+   * @returns {EaeChangeConfig[]} An array of change key options if available; otherwise, an empty array.
+   */
+  getChangeKeyOptions() {
+    return EFFECTS.eaeChangeKeys[ this.targetDocumentType ] ?? [];
   }
 
   // endregion
