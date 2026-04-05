@@ -73,12 +73,26 @@ export default class ActiveEffectDataModel extends SystemDataModel {
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
+
+    this._prepareChangePhases();
+
     if ( this.parent.isEmbedded ) {
       const sourceId = this.parent.flags.ed4e?.sourceId
         ?? this.parent._stats.compendiumSource
         ?? this.parent.flags.core?.sourceId;
       if ( sourceId ) this.parent.actor?.sourcedEffects?.set( sourceId, this.parent );
     }
+  }
+
+  _prepareChangePhases() {
+    this.changes = this.changes.map( change => {
+      const phase = EFFECTS.eaeActorChangeConfigByKey[change.key]?.phase;
+      return  foundry.utils.mergeObject(
+        change,
+        { phase },
+        { inplace: false }
+      );
+    } );
   }
 
   // endregion

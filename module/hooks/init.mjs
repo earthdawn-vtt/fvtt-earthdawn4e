@@ -260,6 +260,13 @@ function setupConfigConstants() {
 /**
  *
  */
+function setupActiveEffects() {
+  CONFIG.ActiveEffect.phases = config.EFFECTS.eaeChangePhases;
+}
+
+/**
+ *
+ */
 export default function () {
   Hooks.once( "init", () => {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
@@ -273,6 +280,7 @@ export default function () {
     setupQueries();
     setupRolls();
     setupTextEditor();
+    setupActiveEffects();
     setupStatusEffects();
     setupDataModels();
     // initializeMigrations();

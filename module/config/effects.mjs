@@ -60,6 +60,18 @@ export const COMMON_EAE_CHANGES = {
 };
 
 /**
+ * @type {Record<string, {label:string; hint: string}>}
+ * @see CONFIG.ActiveEffect.phases
+ */
+export const eaeChangePhases = {
+  derived: {
+    hint:  "ED.Config.Eae.ChangePhases.derived.hint",
+    label: "ED.Config.Eae.ChangePhases.derived.label",
+  },
+};
+preLocalize( "eaeChangePhases", { keys: [ "hint", "label" ] } );
+
+/**
  * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
  * @enum {string}
  */
@@ -191,8 +203,21 @@ export const singleModifiers = {
 preLocalize( "singleModifiers", { key: "label" } );
 
 /**
+ * @typedef {object} _ActiveEffectPhaseAssignment
+ * @property {string} [phase] The phase in which the Active Effect should be applied to. Defaults
+ * to the initial of {@link EarthdawnActiveEffectChangeData#phase}.
+ */
+
+/**
+ * @typedef {FormSelectOption&_ActiveEffectPhaseAssignment} EaeChangeConfig
+ * @property {string} value The change key, which is the value of the input field.
+ * @description Prepared input data for human-readable change selection in Active Effects and
+ * information on handling of a given key.
+ */
+
+/**
  * A list of select input options that map a human-readable label to the field path for the change.
- * @type {FormSelectOption[]}
+ * @type {Array<EaeChangeConfig>}
  */
 export const eaeChangeKeysActor = [
   ...Object.entries( globalModifiers ).map( ( [ key, { label } ] ) => {
@@ -203,7 +228,7 @@ export const eaeChangeKeysActor = [
       disabled:       false,
       selected:       false,
       rule:           false,
-      applyIteration: 0,
+      phase:          "final",
     };
   } ),
   ...Object.entries( attributes ).map( ( [ key, { label } ] ) => {
@@ -211,7 +236,7 @@ export const eaeChangeKeysActor = [
       value:          `system.attributes.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
-      applyIteration: 0,
+      phase:          "initial",
     };
   } ),
   ...Object.entries( attributes ).map( ( [ key, { label } ] ) => {
@@ -219,7 +244,7 @@ export const eaeChangeKeysActor = [
       value:          `system.attributes.${key}.step`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
-      applyIteration: 1,
+      phase:          "derived",
     };
   } ),
   ...Object.entries( movementTypes ).map( ( [ key, label ] ) => {
@@ -227,7 +252,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.movement.${key}`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.movement",
-      applyIteration: 0,
+      phase:          "final",
     };
   } ),
   ...Object.entries( defense ).map( ( [ key, label ] ) => {
@@ -235,7 +260,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.defenses.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.defense",
-      applyIteration: 1,
+      phase:          "final",
     };
   } ),
   ...Object.entries( armor ).map( ( [ key, label ] ) => {
@@ -243,7 +268,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.armor.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-      applyIteration: 1,
+      phase:          "final",
     };
   } ),
   // initiative
@@ -251,114 +276,145 @@ export const eaeChangeKeysActor = [
     value:           "system.initiative",
     label:           "ED.Data.Actor.Sentient.FIELDS.initiative.label",
     group:           "ED.ActiveEffect.ChangeKeys.Groups.initiative",
+    phase:          "final",
   },
   // encumbrance
-  {
+  // is a modifier for the value and max really needed? this heavily complicates data preparation
+  /* {
     value:          "system.encumbrance.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+    phase:          "derived",
   },
   {
     value:          "system.encumbrance.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
-  },
+    phase:          "final",
+  }, */
   {
     value:          "system.encumbrance.bonus",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.bonus.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+    phase:          "derived",
   },
   // health
   {
     value:          "system.durabilityBonus",
     label:          "ED.Data.Actor.Pc.FIELDS.durabilityBonus.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "derived",
   },
   {
     value:          "system.characteristics.health.death",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.unconscious",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "derived",
   },
   {
     value:          "system.characteristics.health.bloodMagic.damage",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.bloodMagic.damage.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+    phase:          "derived",
   },
   {
     value:          "system.characteristics.health.bloodMagic.wounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.bloodMagic.wounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.woundThreshold",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.wounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.maxWounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.maxWounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   // recovery
   {
     value:          "system.characteristics.recoveryTestsResource.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.recoveryTestsResource.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.recoveryTestsResource.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   // karma
   {
     value:          "system.karma.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   {
     value:          "system.karma.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   {
     value:          "system.karma.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   // devotion
   {
     value:          "system.devotion.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
   {
     value:          "system.devotion.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
   {
     value:          "system.devotion.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
 ];
 preLocalize( "eaeChangeKeysActor", { keys: [ "label", "group" ] } );
+
+/**
+ * All change configs for actors indexed by the modified data model key.
+ * @type {Record<string,EaeChangeConfig>}
+ */
+export const eaeActorChangeConfigByKey = eaeChangeKeysActor.reduce( ( acc, changeConfig ) => {
+  acc[changeConfig.value] = changeConfig;
+  return acc;
+}, {} );
 
 /**
  * A list of select input options that map a human-readable label to the field path for the change.

@@ -204,29 +204,6 @@ export default class ActorEd extends Actor {
 
   // endregion
 
-  // region Data Preparation
-
-  /**
-   * Extended to apply active effects to the item.
-   * @inheritDoc
-   */
-  applyActiveEffects() {
-    this.prepareDocumentDerivedData();
-    if ( this.system.applyActiveEffects ) this.system.applyActiveEffects();
-    else super.applyActiveEffects();
-  }
-
-  /**
-   * Meant for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {
-    if ( this.system.prepareDocumentDerivedData ) this.system.prepareDocumentDerivedData();
-  }
-
-  // endregion
-
   // region Checkers
 
   /**

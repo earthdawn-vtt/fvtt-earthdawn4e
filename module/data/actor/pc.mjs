@@ -371,26 +371,19 @@ export default class PcData extends NamegiverTemplate {
 
   // region Data Preparation
 
-  applyActiveEffects() {
-    this._applySelectedActiveEffects(
-      this._attributeValueKeys,
-      { ignore: true },
-    );
-  }
-
   // region Base Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
-    this.#prepareBaseAttributes();
+    this.#prepareAttributeValues();
   }
 
   /**
    * Prepare the attribute values and apply their active effects.
    * @private
    */
-  #prepareBaseAttributes() {
+  #prepareAttributeValues() {
     for ( const attributeData of Object.values( this.attributes ) ) {
       attributeData.value = attributeData.initialValue + attributeData.timesIncreased;
     }
@@ -398,45 +391,36 @@ export default class PcData extends NamegiverTemplate {
 
   // endregion
 
-  // region Document Derived Data Preparation
+  // region Derived Data Preparation
 
   /** @inheritDoc */
-  prepareDocumentDerivedData() {
+  prepareDerivedData() {
+    super.prepareDerivedData();
 
-    // the order of operations here is crucial since the derived data depend on each other
-
-    // base effects for attribute values and durability bonus
-    this.#applyBaseEffects();
-
-    // attributes
-    this.#prepareAttributes();
-
-    // only document dependent data
+    // prepare data before active effect phase "derived"
+    this.#prepareAttributeSteps();
     this.#prepareMovement();
     this.#prepareRollResources();
-
-    // attribute dependent data
     this.#prepareCharacteristics();
     this.#prepareKnockdown();
+
+    const actor = /** @type {ActorEd} */ this.parentDocument;
+    actor.applyActiveEffects( "derived" );
+
+    // prepare data after active effect phase "derived" and before "final"
+    this.#prepareEncumbrance();
+    this.#prepareInitiative();
+    this.#prepareDerivedHealth();
+    this.#prepareRecovery();
   }
 
-  /**
-   * Apply all active effects that modify attribute values.
-   * Apply durability bonus effect to use for unconsciousness rating.
-   * @private
-   */
-  #applyBaseEffects() {
-    this._applySelectedActiveEffects( [
-      ...this._attributeValueKeys,
-      "system.durabilityBonus"
-    ] );
-  }
+  // region Data Preparation before Active Effect phase "derived"
 
   /**
    * Prepare the attribute steps based on their values and the active effects.
    * @private
    */
-  #prepareAttributes() {
+  #prepareAttributeSteps() {
     for ( const attributeData of Object.values( this.attributes ) ) {
       attributeData.step = getAttributeStepFromValue( attributeData.value );
     }
@@ -501,14 +485,14 @@ export default class PcData extends NamegiverTemplate {
    * @private
    */
   #prepareDefenses() {
-    // attribute based
+    // attribute-based
     for ( const defenseType of Object.keys( this.characteristics.defenses ) ) {
       this.characteristics.defenses[defenseType].baseValue = getDefenseValueFromAttribute(
         this.attributes[ACTORS.defenseAttributeMapping[defenseType]].value
       );
     }
 
-    // item based
+    // item-based
     const shieldItems = this.parent.itemTypes.shield.filter( item => item.system.equipped );
 
     // Calculate sum of defense bonuses, defaults to zero if no shields equipped
@@ -594,29 +578,6 @@ export default class PcData extends NamegiverTemplate {
   }
 
   // endregion
-
-  // region Derived Data Preparation
-
-  /** @inheritDoc */
-  prepareDerivedData() {
-    super.prepareDerivedData();
-    this.#prepareEncumbrance();
-    this.#prepareInitiative();
-    this.#prepareDerivedHealth();
-    this.#prepareRecovery();
-    this.#applyDerivedActiveEffects();
-  }
-
-  #applyDerivedActiveEffects() {
-    this._applySelectedActiveEffects( [
-      "system.encumbrance.value",
-      "system.encumbrance.max",
-      "system.encumbrance.bonus",
-      "system.initiative",
-      "system.characteristics.health.death",
-      "system.characteristics.recoveryTestsResource.step",
-    ] );
-  }
 
   /**
    * Prepare the derived load carried based on relevant physical items on this actor. An item is relevant if it is

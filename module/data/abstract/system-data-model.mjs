@@ -352,58 +352,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
 
   // endregion
 
-  // region Data Preparation
-
-  /**
-   * Apply the active effects which match the provided change keys.
-   * @param {string[]} keys         The change keys to apply.
-   * @param {object} [options]       Additional options.
-   * @param {boolean} [options.ignore]  If true, apply all active effects except those matching the provided keys.
-   */
-  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
-    const parentDoc = this.parentDocument;
-    if ( !parentDoc ) return;
-
-    parentDoc.statuses.clear();
-
-    const changes = Array.from( parentDoc.allApplicableEffects()
-      .filter( effect => effect.active )
-      .flatMap( effect => {
-        effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
-        return effect.changes.map( change => ( {
-          ...foundry.utils.deepClone( change ),
-          effect,
-          priority: change.priority ?? ( change.mode * 10 )
-        } ) );
-      } ) )
-      .sort( ( a, b ) => a.priority - b.priority );
-
-    const overrides = changes.reduce( ( acc, change ) => {
-      if ( keys.includes( change.key ) !== ignore ) {
-        Object.assign( acc, change.effect.apply( this.parent, change ) );
-      }
-      return acc;
-    }, {} );
-
-    if ( ignore === true ) parentDoc.overrides = {};
-    parentDoc.overrides ??= {};
-    foundry.utils.mergeObject(
-      parentDoc.overrides,
-      foundry.utils.expandObject( overrides ),
-    );
-  }
-
-  /**
-   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
-   * but before active effects are applied.
-   * Meant for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {}
-
-  // endregion
-
   // region Data Shimming
 
   /** @inheritdoc */
