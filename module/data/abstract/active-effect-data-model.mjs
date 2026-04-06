@@ -95,7 +95,7 @@ export default class ActiveEffectDataModel extends SystemDataModel {
 
   _prepareChangePhases() {
     this.changes = this.changes.map( change => {
-      const phase = EFFECTS.eaeActorChangeConfigByKey[change.key]?.phase;
+      const phase = EFFECTS.eaeActorChangeConfigByKey[change.key]?.phase ?? change.phase ?? "initial";
       return  foundry.utils.mergeObject(
         change,
         { phase },
