@@ -126,6 +126,15 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return !this.isTemporary;
   }
 
+  /**
+   * The data to evaluate formulas in this active effect against.
+   * Undefined if this effect does not have a {@link target} yet.
+   * @type {Document.system|DataModel|object|undefined}
+   */
+  get replacementData() {
+    return this.target?.getRollData();
+  }
+
   // endregion
 
   // region Checkers
@@ -199,6 +208,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       ui.notifications.warn( game.i18n.localize( "ED.Notifications.Warn.cantHaveEffectFromSameSource" ) );
       return false;
     }
+
   }
 
   /** @inheritdoc */
