@@ -32,7 +32,7 @@
     </div>
     <div>
       {{#each actor.effects as |effect id|}}
-        {{#if (not effect.system.permanent)}}
+        {{#if (not effect.isPermanent)}}
           {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
         {{/if}}
       {{/each}}
@@ -55,7 +55,7 @@
       </div>
       <div>
       {{#each actor.effects as |effect id|}}
-        {{#if effect.system.permanent}}
+        {{#if effect.isPermanent}}
           {{> "systems/ed4e/templates/global/effect-card.hbs" effect }}
         {{/if}}
       {{/each}}

@@ -118,6 +118,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return this.isEmbedded && this.active && ( this.target?.documentName === "Item" );
   }
 
+  /**
+   * Whether this Active Effect does not have a temporary duration
+   * @type {boolean}
+   */
+  get isPermanent() {
+    return !this.isTemporary;
+  }
+
   // endregion
 
   // region Checkers
