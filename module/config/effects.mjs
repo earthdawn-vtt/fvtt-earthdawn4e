@@ -74,7 +74,7 @@ export const eaeDocumentTypes = {
 preLocalize( "eaeDocumentTypes", { key: "label" } );
 
 /**
- * @type {Record<string, {label:string; hint: string}>}
+ * @enum {{label:string; hint: string}}
  * @see CONFIG.ActiveEffect.phases
  */
 export const eaeChangePhases = {
@@ -86,13 +86,10 @@ export const eaeChangePhases = {
 preLocalize( "eaeChangePhases", { keys: [ "hint", "label" ] } );
 
 /**
- * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
  * @enum {string}
+ * @see CONST.ACTIVE_EFFECT_DURATION_UNITS
  */
 export const eaeDurationTypes = {
-  combat:     "ED.Config.Eae.DurationTypes.combat",
-  permanent:  "ED.Config.Eae.DurationTypes.permanent",
-  realTime:   "ED.Config.Eae.DurationTypes.realTime",
   uses:       "ED.Config.Eae.DurationTypes.uses",
 };
 preLocalize( "eaeDurationTypes" );
