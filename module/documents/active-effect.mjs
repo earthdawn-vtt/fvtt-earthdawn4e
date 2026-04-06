@@ -90,7 +90,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
    */
   get targetDocumentType() {
     return this.target?.documentName
-    || this.targetsActor ? "Actor" : this.targetsItem ? "Item" : null;
+    || ( this.targetsActor ? "Actor" : this.targetsItem ? "Item" : null );
   }
 
   /**
