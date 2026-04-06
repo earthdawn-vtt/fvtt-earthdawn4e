@@ -7,16 +7,6 @@ import MigrationManager from "../services/migrations/migration-manager.mjs";
  */
 export default class ItemEd extends Item {
 
-  // region Initialization
-
-  /**
-   * An object that tracks which tracks the changes to the data model which were applied by active effects
-   * @type {object}
-   */
-  overrides = this.overrides ?? {};
-
-  // endregion
-
   // region Static Properties
 
   /** @inheritDoc */
@@ -26,14 +16,44 @@ export default class ItemEd extends Item {
 
   // endregion
 
+  // region Initialization
+
+  /** @inheritDoc */
+  _configure( options={} ) {
+    super._configure( options );
+    /**
+     * Track completed core ActiveEffect application phases as a backward compatibility measure for packages calling
+     * Actor#applyActiveEffects without a phase argument.
+     * @type {Set<string>}
+     * @private
+     */
+    Object.defineProperty( this, "_completedActiveEffectPhases", {value: new Set()} );
+  }
+
+  // endregion
+
   // region Properties
+
+  /**
+   * An object that tracks which tracks the changes to the data model which were applied by active effects
+   * @type {object}
+   */
+  overrides = this.overrides ?? {};
+
+  // endregion
+
+  // region Getters
 
   /**
    * Retrieve the list of ActiveEffects that are currently applied to this Item.
    * @type {ActiveEffectData[]}
    */
   get appliedEffects() {
-    return this.effects.filter( effect => effect.active );
+    const effects = [];
+    for ( const effect of this.allApplicableEffects() ) {
+      if ( effect.active ) effects.push( effect );
+    }
+    return effects;
   }
 
   /**
@@ -57,7 +77,11 @@ export default class ItemEd extends Item {
    * @type {ActiveEffectData[]}
    */
   get temporaryEffects() {
-    return this.appliedEffects.filter( effect => effect.active && effect.isTemporary );
+    const effects = [];
+    for ( const effect of this.allApplicableEffects() ) {
+      if ( effect.active && effect.isTemporary ) effects.push( effect );
+    }
+    return effects;
   }
 
   /**
@@ -65,7 +89,7 @@ export default class ItemEd extends Item {
    * @type {ActiveEffectData[]}
    */
   get permanentEffects() {
-    return this.appliedEffects.filter( effect => effect.active && effect.system?.permanent );
+    return this.appliedEffects.filter( effect => effect.active && effect.isPermanent );
   }
 
   /**
@@ -85,75 +109,118 @@ export default class ItemEd extends Item {
 
   // endregion
 
+  // region Life Cycle Events
+
+  /** @inheritDoc */
+  _onCreate( data, options, userId ) {
+    super._onCreate( data, options, userId );
+    foundry.documents.ActiveEffect.registry.addFromParent( this );
+  }
+
+  // endregion
+
   // region Data Preparation
+
+  /** @inheritDoc */
+  prepareData() {
+    super.prepareData();
+    this.applyActiveEffects( "final" );
+  }
+
+  /** @inheritDoc */
+  prepareBaseData() {
+    this._clearData();
+  }
+
+  /**
+   * Clear or replace properties not automatically reset by upstream initialization.
+   */
+  _clearData() {
+    this.overrides = {};
+    this._completedActiveEffectPhases.clear();
+  }
 
   /** @inheritDoc */
   prepareEmbeddedDocuments() {
     super.prepareEmbeddedDocuments();
-    this.applyActiveEffects();
-  }
-
-  /**
-   * Apply any transformations to the Item data which are caused by ActiveEffects.
-   * This is taken from Foundry's Actor class.
-   */
-  applyActiveEffects() {
-
-    // data preparation
-    this.prepareDocumentDerivedData();
-
-    // application
-    const overrides = {};
-
-    // Organize non-disabled effects by their application priority
-    const changes = [];
-    for ( const effect of this.allApplicableEffects() ) {
-      if ( !effect.active ) continue;
-      changes.push( ...effect.changes.map( change => {
-        const c = foundry.utils.deepClone( change );
-        c.effect = effect;
-        c.priority = c.priority ?? ( c.type * 10 );
-        return c;
-      } ) );
-    }
-    changes.sort( ( a, b ) => a.priority - b.priority );
-
-    // Apply all changes
-    for ( let change of changes ) {
-      if( !change.key ) continue;
-      const changes = change.effect.apply( this, change );
-      Object.assign( overrides, changes );
-    }
-
-    // Expand the set of final overrides
-    this.overrides = foundry.utils.expandObject( overrides );
-  }
-
-  /**
-   * Only for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {
-    if ( this.system.prepareDocumentDerivedData ) this.system.prepareDocumentDerivedData();
-  }
-
-  /**
-   * Get all ActiveEffects that may apply to this Item.
-   * This is taken from Foundry's Actor class.
-   * Legacy Transferal does not apply here, it's always the new behavior.
-   * @yields {ActiveEffect}
-   * @returns {Generator<ActiveEffect, void, void>} All effects that may apply to this item.
-   */
-  *allApplicableEffects() {
-    for ( const effect of this.effects ) {
-      if ( !effect.transfer && !effect.system.transferToTarget ) yield effect;
-    }
+    this.applyActiveEffects( "initial" );
   }
 
   // endregion
 
   // region Effects
+
+  /**
+   * Apply any transformations to the Item data which are caused by ActiveEffects.
+   * This is taken from Foundry's Actor class.
+   * @param {string} phase The application phase under which changes are to be applied.
+   * @see {foundry.documents.Actor#applyActiveEffects}
+   */
+  applyActiveEffects( phase ) {
+    const ActiveEffect = foundry.documents.ActiveEffect.implementation;
+    if ( !( phase in ActiveEffect.CHANGE_PHASES ) ) {
+      const error = new Error( `"${phase}" is not a registered ActiveEffect application phase.` );
+      Hooks.onError( "Item#applyActiveEffects", error, {log: "error"} );
+    }
+    if ( this._completedActiveEffectPhases.has( phase ) ) {
+      const error = new Error( `ActiveEffect application phase "${phase}" has already completed and cannot be run again`
+        + " in this Item's data-preparation cycle." );
+      Hooks.onError( "Actor#applyActiveEffects", error, {log: "error"} );
+      return;
+    }
+    this._completedActiveEffectPhases.add( phase );
+    // no token changes to track here, so simpler than Actor application
+
+    // organize non-disabled effects by their application priority
+    const /** @type {ActiveEffectChangeData[]} */ changes = [];
+
+    for ( const effect of this.allApplicableEffects() ) {
+      if ( !effect.active ) continue;
+
+      for ( const change of effect.system.changes ) {
+        if ( ( change.key === "" ) || ( change.phase !== phase ) ) continue;
+
+        const changeCopy = foundry.utils.deepClone( change );
+        changeCopy.effect = effect;
+        changes.push( changeCopy );
+      }
+    }
+
+    changes.sort( ( a, b ) => a.priority - b.priority );
+    ActiveEffect._shimChanges( changes );
+
+    // apply all changes
+    const overrides = {};
+    const replacementData = this.getRollData();
+    for ( const change of changes ) {
+      const result = ActiveEffect.applyChange( this, change, { replacementData, } );
+      if ( foundry.utils.isPlainObject( result ) ) Object.assign( overrides, result );
+    }
+
+    // expand the set of final overrides
+    foundry.utils.mergeObject( this.overrides, foundry.utils.expandObject( overrides ) );
+  }
+
+  /**
+   * Get all ActiveEffects that may apply to this Item.
+   * This is taken from Foundry's Actor class.
+   * @yields {ActiveEffect}
+   * @returns {Generator<ActiveEffect, void, void>} All effects that may apply to this item.
+   * @see {foundry.documents.Actor#allApplicableEffects}
+   */
+  *allApplicableEffects() {
+    for ( const effect of this.effects ) {
+      if ( effect.target?.uuid === this.uuid ) yield effect;
+    }
+  }
+
+  /**
+   * Workflows to perform following the update of ActiveEffect durations. This method is called for all users.
+   * @param {ActiveEffect[]} effects Effects whose durations were updated
+   * @param {string} event The identifier of the event that triggered the duration refresh
+   * @param {object} [context] Additional contextual information associated with the duration refresh
+   */
+  async onUpdateEffectDurations( effects, event, context ) {}
 
   // endregion
 
@@ -163,11 +230,7 @@ export default class ItemEd extends Item {
   _preCreateDescendantDocuments( parent, collection, data, options, userId ) {
     if ( collection === "effects" ) {
       const mappedData = data.map( effectData => {
-        if ( !effectData.hasOwnProperty( "system" ) ) effectData.system = {};
-        effectData.system.source = {
-          documentOriginUuid: this.uuid,
-          documentOriginType: this.type,
-        };
+        effectData.origin ??= this.uuid;
         return effectData;
       } );
       return super._preCreateDescendantDocuments( parent, collection, mappedData, options, userId );
@@ -181,26 +244,49 @@ export default class ItemEd extends Item {
     // If this is a grandchild Active Effect creation, call reset to re-prepare and apply active effects, then call
     // super which will invoke sheet re-rendering.
     if ( collection === "effects" ) this.reset();
-    return super._onCreateDescendantDocuments( parent, collection, documents, data, options, userId );
+
+    // Register created ActiveEffects
+    const methodName = ( collection === "effects" ) ? "add" : "addFromParent";
+    for ( const descendant of documents ) {
+      foundry.documents.ActiveEffect.registry[methodName]( descendant );
+    }
+
+    super._onCreateDescendantDocuments( parent, collection, documents, data, options, userId );
+    this._onEmbeddedDocumentChange();
   }
 
   /** @inheritDoc */
   // eslint-disable-next-line max-params
-  _onUpdateDescendantDocuments( parent, collection, documents, data, options, userId ) {
+  _onUpdateDescendantDocuments( parent, collection, documents, changes, options, userId ) {
     // If this is a grandchild Active Effect creation, call reset to re-prepare and apply active effects, then call
     // super which will invoke sheet re-rendering.
     if ( collection === "effects" ) this.reset();
-    return super._onUpdateDescendantDocuments( parent, collection, documents, data, options, userId );
+
+    // Register updated ActiveEffects
+    const methodName = ( collection === "effects" ) ? "add" : "addFromParent";
+    for ( const descendant of documents ) {
+      foundry.documents.ActiveEffect.registry[methodName]( descendant );
+    }
+
+    super._onUpdateDescendantDocuments( parent, collection, documents, changes, options, userId );
+    this._onEmbeddedDocumentChange();
   }
 
   /** @inheritDoc */
   // eslint-disable-next-line max-params
-  _onDeleteDescendantDocuments( parent, collection, documents, data, options, userId ) {
+  _onDeleteDescendantDocuments( parent, collection, documents, ids, options, userId ) {
     // If this is a grandchild Active Effect creation, call reset to re-prepare and apply active effects, then call
     // super which will invoke sheet re-rendering.
     if ( collection === "effects" ) this.reset();
-    return super._onDeleteDescendantDocuments( parent, collection, documents, data, options, userId );
+
+    super._onDeleteDescendantDocuments( parent, collection, documents, ids, options, userId );
+    this._onEmbeddedDocumentChange();
   }
+
+  /**
+   * Additional workflows to perform when any descendant document within this Item changes.
+   */
+  _onEmbeddedDocumentChange() {}
 
   // endregion
 
