@@ -305,10 +305,10 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     const permanentSettings = {
       disabled: disabled,
       transfer: true,
+      origin:   this.parent.uuid,
       system:   {
         duration:         { valueFormula: null, },
         transferring:     { target: "owner", },
-        origin:           this.parent.uuid,
       },
     };
 
