@@ -265,7 +265,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
     if ( newChangeKeys.length === 0 ) return;
 
     const effectsToRemove = this.containingActor.classEffects.filter( effect => {
-      if ( effect.system.source?.documentOriginUuid !== this.parent.uuid ) return false;
+      if ( effect.origin !== this.parent.uuid ) return false;
       this._validateSingleChange( effect, "existing" );
       return newChangeKeys.includes( effect.system.changes[0].key );
     } );
@@ -304,13 +304,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async _getEffectsForPermanentUse( effects, disabled = false ) {
     const permanentSettings = {
       disabled: disabled,
+      transfer: true,
       system:   {
-        duration:         { type: "permanent" },
-        transferToTarget: false,
-        source:           {
-          documentOriginUuid: this.parent.uuid,
-          documentOriginType: this.parent.type,
-        },
+        duration:         { valueFormula: null, },
+        transferring:     { target: "owner", },
+        origin:           this.parent.uuid,
       },
     };
 

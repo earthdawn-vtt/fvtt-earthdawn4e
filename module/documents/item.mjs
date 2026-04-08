@@ -99,10 +99,7 @@ export default class ItemEd extends Item {
   get targetEffects() {
     const relevantEffects = this.effects.filter( effect => effect.system.transferToTarget );
     return relevantEffects.map( effect => {
-      effect.system.source = {
-        documentOriginUuid: effect.system.source.documentOriginUuid || this.uuid,
-        documentOriginType: effect.system.source.documentOriginType || this.type,
-      };
+      effect.origin ||= this.uuid;
       return effect;
     } );
   }
