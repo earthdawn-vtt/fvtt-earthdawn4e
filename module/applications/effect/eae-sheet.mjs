@@ -114,7 +114,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   _configureRenderParts( options ) {
     const parts = super._configureRenderParts( options );
 
-    if ( !this.document.system.executable ) delete parts.execution;
+    if ( !this.document.system.execution.executable ) delete parts.execution;
 
     return parts;
   }
@@ -172,7 +172,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   _prepareTabs( group ) {
     const tabs = super._prepareTabs( group );
 
-    if ( !this.document.system.executable ) delete tabs.execution;
+    if ( !this.document.system.execution.executable ) delete tabs.execution;
 
     return tabs;
   }
