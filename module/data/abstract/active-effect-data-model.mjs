@@ -2,6 +2,7 @@ import SystemDataModel from "./system-data-model.mjs";
 import EarthdawnActiveEffectChangeData from "../effect/eae-change-data.mjs";
 import * as EFFECTS from "../../config/effects.mjs";
 import EdIdField from "../fields/edid-field.mjs";
+import FormulaField from "../fields/formula-field.mjs";
 
 /**
  * Variant of the SystemDataModel with support for custom active effects.
@@ -50,6 +51,20 @@ export default class ActiveEffectDataModel extends SystemDataModel {
           blank:    true,
         } ),
       } ),
+      duration:        new fields.SchemaField( {
+        valueFormula:  new FormulaField( {
+          required: true,
+          nullable: true,
+        } ),
+        uses:         new fields.NumberField(
+          {
+            required: true,
+            nullable: true,
+            integer:  true,
+            min:      0,
+          },
+        ),
+      } ),
     } );
   }
 
@@ -74,6 +89,24 @@ export default class ActiveEffectDataModel extends SystemDataModel {
   }, {
     inplace: false
   } ) );
+
+  // endregion
+
+  // region Static Methods
+
+  /**
+   * Evaluate a given duration value formula.
+   * @param {string} formula The formula to evaluate.
+   * @param {object} replacementData The data used to replace variables in the formula.
+   * @returns {number|null} The evaluated duration value, or null if the formula is not numeric.
+   */
+  static evaluateDurationValueFormula( formula, replacementData = {} ) {
+    try {
+      return FormulaField.evaluate( formula, replacementData, );
+    } catch ( e ) {
+      return null;
+    }
+  }
 
   // endregion
 
@@ -124,6 +157,18 @@ export default class ActiveEffectDataModel extends SystemDataModel {
       );
     }
     return true;
+  }
+
+  // endregion
+
+  // region Methods
+
+  /**
+   * Evaluate the duration value formula.
+   * @returns {number|null} The evaluated duration value, or null if the formula is not numeric.
+   */
+  evaluateDurationValueFormula() {
+    return this.constructor.evaluateDurationValueFormula( this.duration.valueFormula );
   }
 
   // endregion

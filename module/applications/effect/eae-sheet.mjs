@@ -28,7 +28,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   static PARTS = {
     ...ActiveEffectConfig.PARTS,
     details:   { template: "systems/ed4e/templates/effect/details.hbs" },
-    // duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
+    duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
     // changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
     execution: { template: "systems/ed4e/templates/effect/execution.hbs" },
   };

@@ -209,14 +209,39 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       return false;
     }
 
+    const updates = {};
+
+    updates.duration = { value: this.system.evaluateDurationValueFormula(), };
+
+    this.updateSource( updates );
+
+  }
+
+  /** @inheritDoc */
+  async _preUpdate( changes, options, user ) {
+    if ( await super._preUpdate( changes, options, user ) === false ) return false;
+
+    foundry.utils.setProperty( changes, "duration.value", this._getDurationValue ( changes ), );
+  }
+
+  /**
+   * Prepare the duration value based on changes or system data
+   * @param {object} changes The changes submitted to an update operation
+   * @returns {number|null} The duration value to be used in the update operation
+   */
+  _getDurationValue( changes ) {
+    const formula = changes.system?.duration?.valueFormula ?? this.system.duration?.valueFormula;
+    return this.system.constructor.evaluateDurationValueFormula( formula, this.replacementData, );
   }
 
   /** @inheritdoc */
   _onUpdate( changed, options, userId ) {
     super._onUpdate( changed, options, userId );
+
     if ( options.statusLevelDifference ) {
       this._displayScrollingStatus( options.statusLevelDifference > 0 );
     }
+
   }
 
   // endregion
