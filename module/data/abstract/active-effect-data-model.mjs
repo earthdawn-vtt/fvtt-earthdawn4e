@@ -56,12 +56,10 @@ export default class ActiveEffectDataModel extends SystemDataModel {
           required: true,
           nullable: true,
         } ),
-        uses:         new fields.NumberField(
+        uses:         new FormulaField(
           {
             required: true,
             nullable: true,
-            integer:  true,
-            min:      0,
           },
         ),
       } ),
@@ -106,6 +104,21 @@ export default class ActiveEffectDataModel extends SystemDataModel {
     } catch ( e ) {
       return null;
     }
+  }
+
+  // endregion
+
+  // region Getters
+
+  /**
+   * Evaluated formula of the number of times this effect can be used (`system.duration.uses`).
+   * @type {number|null}
+   */
+  get uses() {
+    return this.constructor.evaluateDurationValueFormula(
+      this.duration.uses,
+      this.parentDocument.replacementData
+    );
   }
 
   // endregion

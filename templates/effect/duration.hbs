@@ -44,7 +44,8 @@
       </div>
       <div class="form-fields">
         {{formInput systemFields.duration.fields.uses value=source.system.duration.uses id=(concat rootId "-duration.uses")
-                    aria=(object label=(localize "ED.Data.ActiveEffect.FIELDS.duration.uses.label"))}}
+                    aria=(object label=(localize "ED.Data.ActiveEffect.FIELDS.duration.uses.label"))
+                    dataset=(ed-makeTooltip (localize "ED.ToolTips.activeEffectFinalValue" value=document.system.uses) "value")}}
         <label class="flexrow" for="{{rootId}}-duration.uses">
           <span>{{localize "ED.Data.ActiveEffect.FIELDS.duration.uses.label"}}</span>
         </label>
