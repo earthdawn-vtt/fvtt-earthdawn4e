@@ -44,6 +44,13 @@
         "descriptionManualOverride":              "TODO: Add translation",
         "nameManualOverride":                     "TODO: Add translation"
       },
+      "Duration": {
+        "Units": {
+          "Groups": {
+            "other":                              "TODO: Add translation"
+          }
+        }
+      },
       "Header": {
         "applyToAbility":                         "TODO: Add translation"
       },
@@ -525,6 +532,12 @@
         "silver":                                 "TODO: Add translation"
       },
       "Eae": {
+        "ChangePhases": {
+          "derived": {
+            "hint":                               "TODO: Add translation",
+            "label":                              "TODO: Add translation"
+          }
+        },
         "DurationTypes": {
           "combat":                               "TODO: Add translation",
           "permanent":                            "TODO: Add translation",
@@ -543,6 +556,11 @@
           "roundStart":                           "TODO: Add translation",
           "turnEnd":                              "TODO: Add translation",
           "turnStart":                            "TODO: Add translation"
+        },
+        "TransferTargets": {
+          "ability":                              "TODO: Add translation",
+          "owner":                                "TODO: Add translation",
+          "target":                               "TODO: Add translation"
         },
         "allKnockdownTests":                      "TODO: Add translation"
       },
@@ -818,7 +836,7 @@
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             },
-            "mode": {
+            "phase": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             },
@@ -826,43 +844,11 @@
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             },
+            "type": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
             "value": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            }
-          }
-        },
-        "Eae": {
-          "FIELDS": {
-            "abilityEdid": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "changes": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "duration": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "executable": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "executeOn": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "executionScript": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "source": {
-              "hint":                             "TODO: Add translation",
-              "label":                            "TODO: Add translation"
-            },
-            "transferToTarget": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             }
@@ -915,6 +901,54 @@
               "label":                            "TODO: Add translation"
             },
             "uses": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            }
+          }
+        },
+        "FIELDS": {
+          "changes": {
+            "hint":                               "TODO: Add translation",
+            "label":                              "TODO: Add translation"
+          },
+          "duration": {
+            "uses": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "valueFormula": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            }
+          },
+          "execution": {
+            "executable": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "executeOn": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "hint":                               "TODO: Add translation",
+            "label":                              "TODO: Add translation",
+            "script": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            }
+          },
+          "parentDocumentType": {
+            "hint":                               "TODO: Add translation",
+            "label":                              "TODO: Add translation"
+          },
+          "transferring": {
+            "abilityEdid": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
+            },
+            "hint":                               "TODO: Add translation",
+            "label":                              "TODO: Add translation",
+            "target": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
             }
@@ -3852,6 +3886,12 @@
     }
   },
   "EFFECT": {
+    "FIELDS": {
+      "transfer": {
+        "hint":                                   "TODO: Add translation",
+        "label":                                  "TODO: Add translation"
+      }
+    },
     "TABS": {
       "changes":                                  "TODO: Add translation",
       "details":                                  "TODO: Add translation",
