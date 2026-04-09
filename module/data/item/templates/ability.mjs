@@ -245,7 +245,7 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
+    return super.migrateData( source );
     // specific migration functions
   }
 
