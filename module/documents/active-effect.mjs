@@ -385,10 +385,17 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       this._migrateTransfer( source );
 
     /**
+     * Migrate parent document type
+     * Do after `transferToTarget` to use the new transferring data.
+     */
+    if ( !source.system?.hasOwnProperty( "parentDocumentType" ) )
+      this._migrateParentDocumentType( source );
+
+    /**
      *  Migrate changes
      *  @deprecated since Foundry v14
      */
-    if ( source.system?.changes?.[0]?.hasOwnProperty( "mode" ) )
+    if ( source.system?.changes?.[0] )
       this._migrateChanges( source );
 
     /**
@@ -406,6 +413,29 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       this._migrateExecution( source );
 
     return super.migrateData( source );
+  }
+
+  static _migrateParentDocumentType( source ) {
+    const parentDocumentType = this._getParentDocumentType( source );
+    if ( source.system )
+      source.system.parentDocumentType = parentDocumentType;
+    else
+      source.system = { parentDocumentType };
+
+  }
+
+  static _getParentDocumentType( source ) {
+    if ( source.transfer ) return {
+      "ability": "Item",
+      "owner":   "Actor",
+      "target":  "Actor",
+    }[ source.system.transferring.target ];
+
+    const firstChangeKey = source.system?.changes?.[0]?.key;
+    if ( Object.keys( EFFECTS.eaeActorChangeConfigByKey ).includes( firstChangeKey ) )
+      return "Actor";
+    else
+      return "Item";
   }
 
   static _migrateOrigin( source ) {
