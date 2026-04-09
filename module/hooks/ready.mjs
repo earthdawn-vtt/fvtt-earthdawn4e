@@ -50,20 +50,14 @@ async function _createDebugDocuments() {
   /* -------------------------------------------- */
   /*  Documents                                   */
   /* -------------------------------------------- */
-  // Create on document for each type
+  // Create one document for each type
+  // after deleting already existing debug documents
 
-  game.folders.forEach( ( value, key, map ) => {
-    if ( value.flags.deleteOnStartup ) value.delete();
-  } );
-  game.items.forEach( ( value, key, map ) => {
-    if ( value.flags.deleteOnStartup ) value.delete();
-  } );
-  game.actors.forEach( ( value, key, map ) => {
-    if ( value.flags.deleteOnStartup ) value.delete();
-  } );
-  game.journal.forEach( ( value, key, map ) => {
-    if ( value.flags.deleteOnStartup ) value.delete();
-  } );
+  for ( const collection of [ "folders", "items", "actors", "journal" ] ) {
+    for ( const document of game[collection] ) {
+      if ( document.flags.deleteOnStartup ) await document.delete();
+    }
+  }
 
   const actorFolder = await Folder.create( {
     name:        "DebugActors",
@@ -143,9 +137,9 @@ async function _createDebugDocuments() {
   /* -------------------------------------------- */
   // Create a dice roll for each roll type with all possible options and evaluate it to chat
 
-  game.messages.forEach( ( value, key, map ) => {
-    if ( value.getFlag( "world", "deleteOnStartup" ) ) value.delete();
-  } );
+  for ( const message of game.messages ) {
+    if ( message.getFlag( "world", "deleteOnStartup" ) ) await message.delete();
+  }
 
   const rollParameters = {
     arbitrary: {
