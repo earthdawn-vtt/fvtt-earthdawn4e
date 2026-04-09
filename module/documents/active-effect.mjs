@@ -1,6 +1,7 @@
 import * as EFFECTS from "../config/effects.mjs";
 import * as SYSTEM from "../config/system.mjs";
 import { SYSTEM_TYPES } from "../constants/constants.mjs";
+import EarthdawnActiveEffectData from "../data/effect/eae.mjs";
 
 export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffect {
 
@@ -365,5 +366,127 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   // endregion
 
+  // region Migration
+
+  /** @inheritDoc */
+  static migrateData( source ) {
+    /**
+     *  Migrate source origin
+     *  @deprecated since Foundry v14
+     */
+    if ( source.system?.hasOwnProperty( "source" ) )
+      this._migrateOrigin( source );
+
+    /**
+     *  Migrate transfer
+     *  @deprecated since Foundry v14
+     */
+    if ( source.system?.hasOwnProperty( "transferToTarget" ) )
+      this._migrateTransfer( source );
+
+    /**
+     *  Migrate changes
+     *  @deprecated since Foundry v14
+     */
+    if ( source.system?.changes?.[0]?.hasOwnProperty( "mode" ) )
+      this._migrateChanges( source );
+
+    /**
+     *  Migrate duration
+     *  @deprecated since Foundry v14
+     */
+    if ( source.system?.duration?.hasOwnProperty( "type" ) )
+      this._migrateDuration( source );
+
+    /**
+     *  Migrate execution
+     *  @deprecated since Foundry v14
+     */
+    if ( source.system?.hasOwnProperty( "executable" ) )
+      this._migrateExecution( source );
+
+    return super.migrateData( source );
+  }
+
+  static _migrateOrigin( source ) {
+    source.origin = source.system.source.documentOriginUuid ?? null;
+  }
+
+  static _migrateTransfer( source ) {
+    const newTarget = source.system.transferToTarget === true
+      ? "target"
+      : source.system.abilityEdid
+        ? "ability"
+        : "owner";
+    const newAbilityEdid = source.system.abilityEdid ?? SYSTEM.reservedEdid.DEFAULT;
+
+    source.transfer = [ "target", "ability" ].includes( newTarget ) || source.transfer;
+    source.system.transferring = {
+      target:      newTarget,
+      abilityEdid: newAbilityEdid,
+    };
+  }
+
+  static _migrateChanges( source ) {
+    source.system.changes = source.system.changes.map( change => {
+      return {
+        ...change,
+        type:  change.type,
+        phase: EFFECTS.eaeActorChangeConfigByKey[ change.key ]?.phase ?? "initial",
+      };
+    } );
+  }
+
+  static _migrateDuration( source ) {
+    let newValueFormula = null;
+    let uses = null;
+    let durationUnits = null;
+
+    switch ( source.system.duration.type ) {
+      case "combat": {
+        if ( source.system.duration.turns !== "" ) {
+          newValueFormula = source.system.duration.turns;
+          durationUnits = "turns";
+        }
+        else { // must be rounds if type is combat and turns is empty
+          newValueFormula = source.system.duration.rounds ?? "1";
+          durationUnits = "rounds";
+        }
+        break;
+      }
+      case "permanent": {
+        newValueFormula = null;
+        break;
+      }
+      case "realTime": {
+        newValueFormula = source.system.duration.seconds;
+        durationUnits = "seconds";
+        break;
+      }
+      case "uses": {
+        uses = source.system.duration.uses;
+        break;
+      }
+    }
+
+    source.system.duration = {
+      valueFormula: newValueFormula,
+      uses,
+    };
+    source.duration = {
+      value: EarthdawnActiveEffectData.evaluateDurationValueFormula( newValueFormula, {}, {} ),
+      units: durationUnits,
+    };
+  }
+
+  static _migrateExecution( source ) {
+    source.system.execution = {
+      executable: source.system.executable,
+      executeOn:  source.system.executeOn,
+      script:     source.system.executionScript,
+    };
+  }
+
+  // endregion
 
 }
