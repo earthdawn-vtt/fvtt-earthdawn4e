@@ -429,13 +429,15 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       "ability": "Item",
       "owner":   "Actor",
       "target":  "Actor",
-    }[ source.system.transferring.target ];
+    }[ source.system?.transferring?.target ] ?? "Actor";
 
-    const firstChangeKey = source.system?.changes?.[0]?.key;
-    if ( Object.keys( EFFECTS.eaeActorChangeConfigByKey ).includes( firstChangeKey ) )
-      return "Actor";
-    else
-      return "Item";
+    const changes = source.system?.changes;
+    if ( Array.isArray( changes ) && changes.length > 0 ) {
+      const isActor = changes.some( change => Object.keys( EFFECTS.eaeActorChangeConfigByKey ).includes( change.key ) );
+      return isActor ? "Actor" : "Item";
+    }
+
+    return "Actor";
   }
 
   static _migrateOrigin( source ) {
@@ -458,11 +460,12 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   }
 
   static _migrateChanges( source ) {
-    source.system.changes = source.system.changes.map( change => {
+    const changes = source.system?.changes;
+    if ( !Array.isArray( changes ) ) return;
+    source.system.changes = changes.map( change => {
       return {
         ...change,
-        type:  change.type,
-        phase: EFFECTS.eaeActorChangeConfigByKey[ change.key ]?.phase ?? "initial",
+        phase: EFFECTS.eaeActorChangeConfigByKey[ change.key ]?.phase ?? change.phase ?? "initial",
       };
     } );
   }
