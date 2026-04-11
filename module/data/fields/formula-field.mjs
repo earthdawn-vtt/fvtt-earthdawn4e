@@ -127,7 +127,7 @@ export default class FormulaField extends foundry.data.fields.StringField {
   /** @inheritDoc */
   _toInput( config ) {
     config.placeholder ??= this.placeholderHint;
-    return super._toInput( config );
+    return foundry.applications.elements.HTMLFormulaInputElement.create( config );
   }
 
   // endregion
