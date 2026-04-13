@@ -55,7 +55,7 @@ export default class MaskData extends ItemDataModel.mixin(
     return this.mergeSchema( super.defineSchema(), {
       attributes: new MappingField( new fields.SchemaField( {
         step: new fields.NumberField( {
-          min:      0,
+          required: true,
           initial:  0,
           integer:  true,
         } )
@@ -66,26 +66,31 @@ export default class MaskData extends ItemDataModel.mixin(
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
           required: true,
+          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         fly: new fields.NumberField( {
           required: true,
+          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         swim: new fields.NumberField( {
           required: true,
+          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         burrow: new fields.NumberField( {
           required: true,
+          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         climb: new fields.NumberField( {
           required: true,
+          initial:  0,
           nullable: true,
           integer:  true,
         } )
@@ -93,7 +98,6 @@ export default class MaskData extends ItemDataModel.mixin(
       characteristics: new fields.SchemaField( {
         defenses: new MappingField( new fields.SchemaField( {
           value: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
           } ),
@@ -103,7 +107,6 @@ export default class MaskData extends ItemDataModel.mixin(
         } ),
         armor: new MappingField( new fields.SchemaField( {
           value: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
           } ) ,
@@ -113,24 +116,20 @@ export default class MaskData extends ItemDataModel.mixin(
         } ),
         health: new fields.SchemaField( {
           death: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
           } ),
           unconscious: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
           } ),
           woundThreshold: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
           } ),
         } ),
         recoveryTestsResource: new fields.SchemaField( {
           value: new fields.NumberField( {
-            min:      0,
             initial:  0,
             integer:  true,
 
@@ -138,35 +137,30 @@ export default class MaskData extends ItemDataModel.mixin(
         } ),
       }, ),
       initiative: new fields.NumberField( {
-        min:      0,
         initial:  0,
         integer:  true,
       } ),
       damageStep: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      0,
         initial:  0,
         integer:  true,
       } ),
       attackStep: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      0,
         initial:  0,
         integer:  true,
       } ),
       actions: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      0,
         initial:  0,
         integer:  true,
       } ),
       knockDownStep: new fields.NumberField( {
         required: true,
         nullable: false,
-        min:      0,
         initial:  0,
         integer:  true,
       } ),
@@ -174,7 +168,6 @@ export default class MaskData extends ItemDataModel.mixin(
         rate: new fields.NumberField( {
           required: true,
           nullable: false,
-          min:      0,
           step:     1,
           initial:  0,
           integer:  true,
