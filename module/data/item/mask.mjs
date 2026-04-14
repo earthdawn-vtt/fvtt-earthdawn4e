@@ -66,31 +66,26 @@ export default class MaskData extends ItemDataModel.mixin(
       movement: new fields.SchemaField( {
         walk: new fields.NumberField( {
           required: true,
-          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         fly: new fields.NumberField( {
           required: true,
-          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         swim: new fields.NumberField( {
           required: true,
-          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         burrow: new fields.NumberField( {
           required: true,
-          initial:  0,
           nullable: true,
           integer:  true,
         } ),
         climb: new fields.NumberField( {
           required: true,
-          initial:  0,
           nullable: true,
           integer:  true,
         } )
