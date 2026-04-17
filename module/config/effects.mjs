@@ -314,7 +314,7 @@ export const eaeChangeKeysActor = [
     value:          "system.durabilityBonus",
     label:          "ED.Data.Actor.Pc.FIELDS.durabilityBonus.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
-    phase:          "derived",
+    phase:          "initial",
   },
   {
     value:          "system.characteristics.health.death",
