@@ -119,6 +119,11 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return this.isEmbedded && this.active && ( this.target?.documentName === "Item" );
   }
 
+  /** @inheritDoc */
+  get isTemporary() {
+    return super.isTemporary || !!this.system.duration.uses;
+  }
+
   /**
    * Whether this Active Effect does not have a temporary duration
    * @type {boolean}
@@ -213,6 +218,8 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     const updates = {};
 
     updates.duration = { value: this.system.evaluateDurationValueFormula(), };
+    if ( !Number.isFinite( updates.duration.value ) )
+      updates.duration.expiry = null;
 
     this.updateSource( updates );
 
@@ -223,6 +230,8 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
     foundry.utils.setProperty( changes, "duration.value", this._getDurationValue ( changes ), );
+    if ( !Number.isFinite( changes.duration.value ) )
+      foundry.utils.setProperty( changes, "duration.expiry", null, );
   }
 
   /**
