@@ -192,7 +192,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
       this.form,
       new foundry.applications.ux.FormDataExtended( this.form )
     );
-    const systemChanges = Object.values( submitData.system.changes ) ?? [];
+    const systemChanges = Object.values( submitData.system.changes ?? [] );
     systemChanges.push( {} );
     return this.submit( { updateData: { "system.changes": systemChanges } } );
   }
