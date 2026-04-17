@@ -203,7 +203,11 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @type {ApplicationClickAction}
    */
   static async #onDeleteChange( event ) {
-    const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
+    const submitData = this._processFormData(
+      null,
+      this.form,
+      new foundry.applications.ux.FormDataExtended( this.form )
+    );
     const changes = Object.values( submitData.system.changes );
     const row = event.target.closest( "li" );
     const index = Number( row.dataset.index ) || 0;
