@@ -59,7 +59,7 @@ export default class ActorEd extends Actor {
    */
   get classEffects() {
     return this.effects.filter(
-      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.documentOriginType )
+      effect => [ "discipline", "path", "questor" ].includes( effect.originType )
     );
   }
 
