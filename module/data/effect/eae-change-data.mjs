@@ -1,5 +1,6 @@
 import ActiveEffectDataModel from "../abstract/active-effect-data-model.mjs";
 import SparseDataModel from "../abstract/sparse-data-model.mjs";
+import FormulaField from "../fields/formula-field.mjs";
 
 export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
 
@@ -19,11 +20,9 @@ export default class EarthdawnActiveEffectChangeData extends SparseDataModel {
         initial:  "add",
         validate: ActiveEffectDataModel._validateChangeType,
       }, ),
-      value:    new fields.AnyField( {
+      value:    new FormulaField( {
         required:     true,
         nullable:     true,
-        serializable: true,
-        initial:      "",
       } ),
       phase:    new fields.StringField( {
         required: true,
