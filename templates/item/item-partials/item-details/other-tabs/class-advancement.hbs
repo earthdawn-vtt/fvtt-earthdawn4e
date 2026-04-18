@@ -1,4 +1,5 @@
 <section class="tab {{tabs.advancement.cssClass}} scrollable" data-group="sheet" data-tab="advancement">
+
   <div id="advancement-information-class-item" class="advancement__level">
 
     <!-- Content -->
@@ -28,6 +29,7 @@
       </div>
 
       <div class="advancement__content item-advancement-body">
+
         <div id="ability-list"  class="tab {{tabs.classAdvancements.options.cssClass}} advancement-options-pools flexcol" data-group="classAdvancements" data-tab="options">
           {{#each filteredAbilityOptions}}
             <div class="{{@key}}-abilities">
@@ -82,17 +84,20 @@
             {{/each}}
 
             <!-- Effects -->
-            <div class="form-group class-effects">
-              <label>{{localize "ED.Advancement.Pools.effects"}}</label>
-              <div class="form-fields">
-                <document-tags name="{{concat "system.advancement.levels." level ".effects"}}" value="{{ed-commaList levelData.effects}}"></document-tags>
-              </div>
-              <p class="advancement-hint">{{localize "ED.Advancement.Pools.effectsHint"}}</p>
-            </div>
+            {{formGroup levelData.schema.fields.effects.element
+                        name=(concat "system.advancement.levels." level ".effects")
+                        value=(ed-commaList levelData.effects)
+                        label=(localize "ED.Advancement.Pools.effects")
+                        hint=(localize "ED.Advancement.Pools.effectsHint")
+            }}
 
           </div>
         {{/each}}
+
       </div>
+
     </section>
+
   </div>
+
 </section>
