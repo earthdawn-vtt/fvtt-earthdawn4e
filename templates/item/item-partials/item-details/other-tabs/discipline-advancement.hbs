@@ -51,13 +51,7 @@
 
             <!-- Level Number -->
             <div class="title-level-number">
-              {{#if (eq @root.item.type "discipline")}}
-                {{formField levelData.schema.fields.level name=(concat "system.advancement.levels." level ".level") value=levelData.level readonly=true}}
-              {{else if (eq @root.item.type "path")}}
-                {{formField levelData.schema.fields.level value=levelData.level readonly=true}}
-              {{else if (eq @root.item.type "questor")}}
-                {{formField levelData.schema.fields.level value=levelData.level readonly=true}}
-              {{/if}}
+              {{formField levelData.schema.fields.level name=(concat "system.advancement.levels." level ".level") value=levelData.level readonly=true}}
             </div>
 
             <!-- Tier -->
