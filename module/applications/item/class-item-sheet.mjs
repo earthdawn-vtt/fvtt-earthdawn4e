@@ -66,7 +66,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "advancement": {
-      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/class-advancement.hbs", 
       classes:    [ "advancement", "scrollable" ],
       scrollable: [ "" ],
     },
