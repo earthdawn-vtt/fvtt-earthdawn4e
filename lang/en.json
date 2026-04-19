@@ -951,6 +951,10 @@
             "target": {
               "hint":                             "Which target should the effect be applied to on activation?",
               "label":                            "Target"
+            },
+            "transfer": {
+              "hint":                             "If checked, this Effect will be transferred and/or applied to the given target document",
+              "label":                            "Transfer Effect to Document"
             }
           }
         }
@@ -3886,12 +3890,6 @@
     }
   },
   "EFFECT": {
-    "FIELDS": {
-      "transfer": {
-        "hint":                                   "If checked, this Effect will be transferred and/or applied to the given target document",
-        "label":                                  "Transfer Effect to Document"
-      }
-    },
     "TABS": {
       "changes":                                  "Changes",
       "details":                                  "Details",
