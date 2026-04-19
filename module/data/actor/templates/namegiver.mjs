@@ -70,7 +70,7 @@ export default class NamegiverTemplate extends SentientTemplate {
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
+    return super.migrateData( source );
     // specific migration functions
   }
 }

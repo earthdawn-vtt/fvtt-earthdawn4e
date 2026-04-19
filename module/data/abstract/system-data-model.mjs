@@ -305,20 +305,21 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
   // region Data Cleaning
 
   /** @inheritdoc */
-  static cleanData( source, options ) {
-    this._cleanData( source, options );
-    return super.cleanData( source, options );
+  static cleanData( data, options, _state ) {
+    this._cleanData( data, options, _state );
+    return super.cleanData( data, options, _state );
   }
 
   /**
    * Performs cleaning without calling DataModel.cleanData.
-   * @param {object} [source]         The source data
+   * @param {object} [data]         The source data
    * @param {object} [options]     Additional options (see DataModel.cleanData)
+   * @param {Partial<DataModelUpdateState>} [_state]  Internal options used during cleaning recursion
    * @protected
    */
-  static _cleanData( source, options ) {
+  static _cleanData( data, options, _state ) {
     for ( const template of this._schemaTemplates ) {
-      template._cleanData( source, options );
+      template._cleanData( data, options, _state );
     }
   }
 
@@ -348,58 +349,6 @@ export default class SystemDataModel extends foundry.abstract.TypeDataModel {
       template._validateJoint( data );
     }
   }
-
-  // endregion
-
-  // region Data Preparation
-
-  /**
-   * Apply the active effects which match the provided change keys.
-   * @param {string[]} keys         The change keys to apply.
-   * @param {object} [options]       Additional options.
-   * @param {boolean} [options.ignore]  If true, apply all active effects except those matching the provided keys.
-   */
-  _applySelectedActiveEffects( keys = [], { ignore = false } = {} ) {
-    const parentDoc = this.parentDocument;
-    if ( !parentDoc ) return;
-
-    parentDoc.statuses.clear();
-
-    const changes = Array.from( parentDoc.allApplicableEffects()
-      .filter( effect => effect.active )
-      .flatMap( effect => {
-        effect.statuses.forEach( statusId => this.parent.statuses.add( statusId ) );
-        return effect.changes.map( change => ( {
-          ...foundry.utils.deepClone( change ),
-          effect,
-          priority: change.priority ?? ( change.mode * 10 )
-        } ) );
-      } ) )
-      .sort( ( a, b ) => a.priority - b.priority );
-
-    const overrides = changes.reduce( ( acc, change ) => {
-      if ( keys.includes( change.key ) !== ignore ) {
-        Object.assign( acc, change.effect.apply( this.parent, change ) );
-      }
-      return acc;
-    }, {} );
-
-    if ( ignore === true ) parentDoc.overrides = {};
-    parentDoc.overrides ??= {};
-    foundry.utils.mergeObject(
-      parentDoc.overrides,
-      foundry.utils.expandObject( overrides ),
-    );
-  }
-
-  /**
-   * Called by {@link ActorEd#applyActiveEffects} after embedded document preparation,
-   * but before active effects are applied.
-   * Meant for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {}
 
   // endregion
 

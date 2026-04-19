@@ -30,6 +30,7 @@ export default [
         ...globals.browser,
         ...globals.node,
         ...globals.jquery,
+        _loc:                   false,
         ActiveEffect:           false,
         Actor:                  false,
         ActorSheet:             false,

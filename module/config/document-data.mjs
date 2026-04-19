@@ -9,11 +9,7 @@ export const documentData = {
         name:        "ED.ActiveEffect.CreateData.nameManualOverride",
         description: "ED.ActiveEffect.CreateData.descriptionManualOverride",
         type:        SYSTEM_TYPES.ActiveEffect.eae,
-        system:      {
-          duration: {
-            type: "permanent",
-          },
-        },
+        system:      {},
       },
     },
   },

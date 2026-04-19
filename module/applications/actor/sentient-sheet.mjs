@@ -2,7 +2,7 @@ import ActorSheetEd from "./common-sheet.mjs";
 import * as MAGIC from "../../config/magic.mjs";
 import * as STATUSES from "../../config/statuses.mjs";
 import PromptFactory from "../global/prompt-factory.mjs";
-import { staticStatusId } from "../../helpers/document.mjs";
+import { createStaticStatusId } from "../../helpers/document.mjs";
 
 
 /**
@@ -84,7 +84,7 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
         for ( const status of STATUSES.statusEffects ) {
           context.statusEffects[status.id] = {
             name: this.document.effects.get(
-              staticStatusId( status.id )
+              createStaticStatusId( status.id )
             )?.name ?? status.name,
             active: this.document.statuses.has( status.id ),
           };
@@ -100,6 +100,8 @@ export default class ActorSheetEdSentient extends ActorSheetEd {
       tabsSpells:         this._getSpellTabs(),
       matrices:           this.document.getMatrices(),
       spellKnacks:        this.document.spellKnacksBySpellId,
+    }, {
+      recursive: false,
     } );
 
     return context;

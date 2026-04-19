@@ -6,5 +6,4 @@ export {
   EarthdawnConditionEffectData,
 };
 
-export {default as EarthdawnActiveEffectChangeData} from "./eae-change-data.mjs";
-export {default as EarthdawnActiveEffectDurationData} from "./eae-duration.mjs";
+export { default as EarthdawnActiveEffectChangeData } from "./eae-change-data.mjs";

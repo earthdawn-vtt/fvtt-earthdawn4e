@@ -429,7 +429,7 @@ class ActorPromptFactory extends PromptFactory {
           class:    "takeDamage default button__take-damage",
           default:  false,
           callback: ( event, button, _ ) => {
-            const formData = new FormDataExtended( button.form );
+            const formData = new foundry.applications.ux.FormDataExtended( button.form );
             return formData.object;
           }
         },

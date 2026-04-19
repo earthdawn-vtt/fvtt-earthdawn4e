@@ -16,7 +16,7 @@ import * as dice from "../dice/_module.mjs";
 import * as documents from "../documents/_module.mjs";
 import * as enrichers from "../helpers/enrichers.mjs";
 
-import { staticStatusId } from "../helpers/document.mjs";
+import { createStaticStatusId } from "../helpers/document.mjs";
 
 const { DocumentSheetConfig } = foundry.applications.apps;
 const { ActiveEffectConfig, CombatantConfig } = foundry.applications.sheets;
@@ -59,12 +59,16 @@ function setupCanvas() {
  *
  */
 function setupStatusEffects() {
-  CONFIG.statusEffects = STATUSES.statusEffects.map( ( status ) => {
-    return {
-      _id: staticStatusId( status.id ),
-      ...status
+  // delete Foundry's default effects (for some reason this is a Proxy...)
+  CONFIG.statusEffects.length = 0;
+  // then assign our custom status effects
+  for ( const statusEffect of STATUSES.statusEffects ) {
+    CONFIG.statusEffects[ statusEffect.id ] = {
+      _id: createStaticStatusId( statusEffect.id ),
+      ...statusEffect,
     };
-  } );
+  }
+
   Object.assign( CONFIG.specialStatusEffects, STATUSES.specialStatusEffects );
 }
 
@@ -260,6 +264,13 @@ function setupConfigConstants() {
 /**
  *
  */
+function setupActiveEffects() {
+  CONFIG.ActiveEffect.phases = config.EFFECTS.eaeChangePhases;
+}
+
+/**
+ *
+ */
 export default function () {
   Hooks.once( "init", () => {
     globalThis.ed4e = game.ed4e = Object.assign( game.system, globalThis.ed4e );
@@ -273,6 +284,7 @@ export default function () {
     setupQueries();
     setupRolls();
     setupTextEditor();
+    setupActiveEffects();
     setupStatusEffects();
     setupDataModels();
     // initializeMigrations();

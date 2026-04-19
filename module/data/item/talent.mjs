@@ -95,10 +95,10 @@ export default class TalentData extends IncreasableAbilityTemplate.mixin(
   // region Static Methods
 
   /** @inheritdoc */
-  static _cleanData( source, options ) {
-    if ( source?.knacks?.available ) {
-      source.knacks.available = source.knacks.available.filter( knackUuid => !!fromUuidSync( knackUuid ) );
-      if ( options ) options.source = source;
+  static _cleanData( data, options, _state ) {
+    if ( data?.knacks?.available ) {
+      data.knacks.available = data.knacks.available.filter( knackUuid => !!fromUuidSync( knackUuid ) );
+      if ( _state ) _state.source = data;
     }
   }
 

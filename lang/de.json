@@ -44,6 +44,13 @@
         "descriptionManualOverride":              "<p>Änderungen an diversen Werten die direkt über den Bearbeitungsmodus des Charakterbogens vorgenommen werden.</p>\n<p><span style=\"font-family: Courier New\"><strong>Achtung</strong>: <em>Dieser Effekt ist vom System automatisch erstellt und verwaltet.</em></span></p>",
         "nameManualOverride":                     "Manuelle Anpassungen"
       },
+      "Duration": {
+        "Units": {
+          "Groups": {
+            "other":                              "Other"
+          }
+        }
+      },
       "Header": {
         "applyToAbility":                         "Auf Fähigkeit anwenden"
       },
@@ -525,6 +532,12 @@
         "silver":                                 "Silber"
       },
       "Eae": {
+        "ChangePhases": {
+          "derived": {
+            "hint":                               "Während derived data, nachdem Attributstufen und der Bewusstlosigkeitswert vorbereitet wurden.",
+            "label":                              "Abgeleitete"
+          }
+        },
         "DurationTypes": {
           "combat":                               "Kampf",
           "permanent":                            "Permanent",
@@ -543,6 +556,11 @@
           "roundStart":                           "Rundenbeginn",
           "turnEnd":                              "Zugende",
           "turnStart":                            "Zugbeginn"
+        },
+        "TransferTargets": {
+          "ability":                              "Fähigkeit",
+          "owner":                                "Besitzer_in",
+          "target":                               "Gewähltes Ziel (in Szene)"
         },
         "allKnockdownTests":                      "Alle Niederschlagsproben"
       },
@@ -815,68 +833,36 @@
         "Change": {
           "FIELDS": {
             "key": {
-              "hint":                             "Schlüssel des Effekts",
-              "label":                            "Schlüssel"
+              "hint":                             "Name des Feldes das geändert werden soll",
+              "label":                            "Feldname"
             },
-            "mode": {
-              "hint":                             "Modus des Effekts",
-              "label":                            "Modus"
+            "phase": {
+              "hint":                             "Der Zeitpunkt an dem eine Änderung ausgeführt werden soll",
+              "label":                            "Phase"
             },
             "priority": {
-              "hint":                             "Priorität des Effekts",
+              "hint":                             "Priorität der Änderung",
               "label":                            "Priorität"
             },
+            "type": {
+              "hint":                             "Art des Änderung",
+              "label":                            "Art"
+            },
             "value": {
-              "hint":                             "Wert des Effekts",
+              "hint":                             "Wert des Änderung",
               "label":                            "Wert"
-            }
-          }
-        },
-        "Eae": {
-          "FIELDS": {
-            "abilityEdid": {
-              "hint":                             "ED-ID der Zielfähigkeit des Effekts",
-              "label":                            "Fähigkeit EDID"
-            },
-            "changes": {
-              "hint":                             "Änderungen des Effekts",
-              "label":                            "Änderungen"
-            },
-            "duration": {
-              "hint":                             "Dauer des Effekts",
-              "label":                            "Dauer"
-            },
-            "executable": {
-              "hint":                             "Ausführbarer Code des Effekts",
-              "label":                            "Ausführbar"
-            },
-            "executeOn": {
-              "hint":                             "Ausführungszeitpunkt des Scripts",
-              "label":                            "Ausführungszeitpunkt"
-            },
-            "executionScript": {
-              "hint":                             "Ausführungsskript des Effekts",
-              "label":                            "Ausführungsskript"
-            },
-            "source": {
-              "hint":                             "Quelle des Effekts",
-              "label":                            "Quelle"
-            },
-            "transferToTarget": {
-              "hint":                             "Übertragung des Effekts auf das Ziel",
-              "label":                            "Übertragung auf Ziel"
             }
           }
         },
         "EaeCondition": {
           "FIELDS": {
             "level": {
-              "hint":                             "Stufe der Bedingung des Effekts",
+              "hint":                             "Stufe des Statuseffekts",
               "label":                            "Stufe"
             },
             "primary": {
-              "hint":                             "Primäre Bedingung des Effekts",
-              "label":                            "Primäre Bedingung"
+              "hint":                             "Der grundlegende Statuseffekt der mehrere Stufen hat",
+              "label":                            "Primärer Statuseffekt"
             }
           }
         },
@@ -917,6 +903,58 @@
             "uses": {
               "hint":                             "Anzahl der Anwendungen die der Effekt anhält",
               "label":                            "Anwendungen"
+            }
+          }
+        },
+        "FIELDS": {
+          "changes": {
+            "hint":                               "Änderungen des Effekts",
+            "label":                              "Änderungen"
+          },
+          "duration": {
+            "uses": {
+              "hint":                             "Wie oft dieser Effekt verwendet werden kann",
+              "label":                            "Nutzungen"
+            },
+            "valueFormula": {
+              "hint":                             "Formel zur Berechnung der Dauer des Effekts",
+              "label":                            "Dauer Formel"
+            }
+          },
+          "execution": {
+            "executable": {
+              "hint":                             "Ausführbarer Code des Effekts",
+              "label":                            "Ausführbar"
+            },
+            "executeOn": {
+              "hint":                             "Ausführungszeitpunkt des Scripts",
+              "label":                            "Ausführungszeitpunkt"
+            },
+            "hint":                               "Information zu Effekten mit ausführbaren Skripten",
+            "label":                              "Ausführbarer Effekt",
+            "script": {
+              "hint":                             "Ausführungsskript des Effekts",
+              "label":                            "Ausführungsskript"
+            }
+          },
+          "parentDocumentType": {
+            "hint":                               "Typ des Dokuments in das der Effekt eingebettet ist",
+            "label":                              "Dokumententyp"
+          },
+          "transferring": {
+            "abilityEdid": {
+              "hint":                             "ED-ID der Zielfähigkeit des Effekts",
+              "label":                            "Fähigkeit ED-ID"
+            },
+            "hint":                               "Information wie dieser Effekt übertragen werden soll",
+            "label":                              "Übertragen",
+            "target": {
+              "hint":                             "Auf welches Ziel soll der Effekt bei Aktivierung übertragen werden?",
+              "label":                            "Ziel"
+            },
+            "transfer": {
+              "hint":                             "Wenn aktiviert, wird dieser Effekt auf das angegebene Zieldokument übertragen und/oder dort angewendet",
+              "label":                            "Übertrage Effekt auf Dokument"
             }
           }
         }
@@ -3872,7 +3910,7 @@
   "TYPES": {
     "ActiveEffect": {
       "condition":                                "Effekt",
-      "eae":                                      "Aktiver Effekt"
+      "eae":                                      "Earthdawn Aktiver Effekt"
     },
     "Actor": {
       "TypeGroups": {

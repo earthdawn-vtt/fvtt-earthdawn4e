@@ -44,6 +44,13 @@
         "descriptionManualOverride":              "<p>Changes to various values ​​that are made directly via the character sheet's edit mode.</p>\n<p><span style=\"font-family: Courier New\"><strong>Attention</strong>: <em>This effect is automatically generated and managed by the system.</em></span></p>",
         "nameManualOverride":                     "Manual adjustments"
       },
+      "Duration": {
+        "Units": {
+          "Groups": {
+            "other":                              "Other"
+          }
+        }
+      },
       "Header": {
         "applyToAbility":                         "Apply to Ability"
       },
@@ -525,6 +532,12 @@
         "silver":                                 "Silver"
       },
       "Eae": {
+        "ChangePhases": {
+          "derived": {
+            "hint":                               "During derived data, after attribute steps and unconsciousness rating are prepared.",
+            "label":                              "Derived"
+          }
+        },
         "DurationTypes": {
           "combat":                               "Combat",
           "permanent":                            "Permanent",
@@ -543,6 +556,11 @@
           "roundStart":                           "Start of Round",
           "turnEnd":                              "End of Turn",
           "turnStart":                            "Start of Turn"
+        },
+        "TransferTargets": {
+          "ability":                              "Ability",
+          "owner":                                "Item Owner",
+          "target":                               "Selected Target (in Scene)"
         },
         "allKnockdownTests":                      "All Knockdown Tests"
       },
@@ -815,56 +833,24 @@
         "Change": {
           "FIELDS": {
             "key": {
-              "hint":                             "Effect key",
+              "hint":                             "They key of the property this change modifies",
               "label":                            "Key"
             },
-            "mode": {
-              "hint":                             "Mode of the effect",
-              "label":                            "Mode"
+            "phase": {
+              "hint":                             "The point in data preparation or another event a change is to be applied",
+              "label":                            "Phase"
             },
             "priority": {
-              "hint":                             "Priority of the effect",
+              "hint":                             "Priority of the change",
               "label":                            "Priority"
             },
+            "type": {
+              "hint":                             "Type of the change",
+              "label":                            "Type"
+            },
             "value": {
-              "hint":                             "Value of the effect",
+              "hint":                             "Value of the change",
               "label":                            "Value"
-            }
-          }
-        },
-        "Eae": {
-          "FIELDS": {
-            "abilityEdid": {
-              "hint":                             "ED-ID of the target ability of the effect",
-              "label":                            "Ability EDID"
-            },
-            "changes": {
-              "hint":                             "Changes made by the effect",
-              "label":                            "Changes"
-            },
-            "duration": {
-              "hint":                             "Duration of the effect",
-              "label":                            "Duration"
-            },
-            "executable": {
-              "hint":                             "Executable code of the effect",
-              "label":                            "Executable"
-            },
-            "executeOn": {
-              "hint":                             "Execution timing of the script",
-              "label":                            "Execution Time"
-            },
-            "executionScript": {
-              "hint":                             "Execution script of the effect",
-              "label":                            "Execution Script"
-            },
-            "source": {
-              "hint":                             "Source of the effect",
-              "label":                            "Source"
-            },
-            "transferToTarget": {
-              "hint":                             "Transfer of the effect to the target",
-              "label":                            "Transfer to Target"
             }
           }
         },
@@ -883,40 +869,92 @@
         "EaeDuration": {
           "FIELDS": {
             "combat": {
-              "hint":                             "Duration in combat rounds",
-              "label":                            "Combat"
+              "hint":                             "Dauer in Kampfrunden",
+              "label":                            "Kampf"
             },
             "rounds": {
-              "hint":                             "Duration in rounds",
-              "label":                            "Rounds"
+              "hint":                             "Dauer in Runden",
+              "label":                            "Runden"
             },
             "seconds": {
-              "hint":                             "Duration in seconds",
-              "label":                            "Seconds"
+              "hint":                             "Dauer in Sekunden",
+              "label":                            "Sekunden"
             },
             "startRound": {
-              "hint":                             "Round start for the effect's duration",
-              "label":                            "Start Round"
+              "hint":                             "Start der Runde für die Dauer des Effekts",
+              "label":                            "Start der Runde"
             },
             "startTime": {
-              "hint":                             "Start time of the effect's duration",
+              "hint":                             "Startzeit der Dauer des Effekts",
               "label":                            "Start"
             },
             "startTurn": {
-              "hint":                             "Turn start for the effect's duration",
-              "label":                            "Start Turn"
+              "hint":                             "Start des Zuges für die Dauer des Effekts",
+              "label":                            "Start des Zuges"
             },
             "turns": {
-              "hint":                             "Duration in turns",
-              "label":                            "Turns"
+              "hint":                             "Dauer in Zügen",
+              "label":                            "Züge"
             },
             "type": {
-              "hint":                             "Type of the effect's duration",
-              "label":                            "Duration"
+              "hint":                             "Art der Dauer des Effekts",
+              "label":                            "Dauer"
             },
             "uses": {
-              "hint":                             "Number of uses the effect lasts",
+              "hint":                             "Anzahl der Anwendungen die der Effekt anhält",
+              "label":                            "Anwendungen"
+            }
+          }
+        },
+        "FIELDS": {
+          "changes": {
+            "hint":                               "Changes made by the effect",
+            "label":                              "Changes"
+          },
+          "duration": {
+            "uses": {
+              "hint":                             "Number of times the effect can be used",
               "label":                            "Uses"
+            },
+            "valueFormula": {
+              "hint":                             "Formula for the duration of the effect",
+              "label":                            "Duration Formula"
+            }
+          },
+          "execution": {
+            "executable": {
+              "hint":                             "Executable code of the effect",
+              "label":                            "Executable"
+            },
+            "executeOn": {
+              "hint":                             "Execution timing of the script",
+              "label":                            "Execution Time"
+            },
+            "hint":                               "Information about effects with executable scripts",
+            "label":                              "Executable Effects",
+            "script": {
+              "hint":                             "Execution script of the effect",
+              "label":                            "Execution Script"
+            }
+          },
+          "parentDocumentType": {
+            "hint":                               "The type of document the effect is embedded in",
+            "label":                              "Parent Document Type"
+          },
+          "transferring": {
+            "abilityEdid": {
+              "hint":                             "ED-ID of the target ability of the effect",
+              "label":                            "Ability ED-ID"
+            },
+            "hint":                               "Information on how this effect transfers to other targets",
+            "label":                              "Transfer Targets",
+            "target": {
+              "hint":                             "Which target should the effect be applied to on activation?",
+              "label":                            "Target"
+            },
+            "transfer": {
+              "hint":                             "If checked, this Effect will be transferred and/or applied to the given target document",
+              "label":                            "Transfer Effect to Document"
             }
           }
         }
@@ -3872,7 +3910,7 @@
   "TYPES": {
     "ActiveEffect": {
       "condition":                                "Condition",
-      "eae":                                      "Active Effect"
+      "eae":                                      "Earthdawn Active Effect"
     },
     "Actor": {
       "TypeGroups": {

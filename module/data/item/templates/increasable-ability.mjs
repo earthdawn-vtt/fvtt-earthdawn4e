@@ -120,7 +120,7 @@ export default class IncreasableAbilityTemplate extends AbilityTemplate.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
+    return super.migrateData( source );
     // specific migration functions
   }
 

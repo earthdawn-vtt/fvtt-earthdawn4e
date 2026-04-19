@@ -148,7 +148,7 @@ export function isValidSystemType( systemType, documentType ) {
  * @param {string} status     The primary status.
  * @returns {string}          A unique 16-character id.
  */
-export function staticStatusId( status ) {
+export function createStaticStatusId( status ) {
   if ( status.length >= 16 ) return status.substring( 0, 16 );
   return status.padEnd( 16, "0" );
 }

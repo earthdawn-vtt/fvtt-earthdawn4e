@@ -1,27 +1,19 @@
 import EarthdawnActiveEffectData from "./eae.mjs";
 import { SYSTEM_TYPES } from "../../constants/constants.mjs";
 
-const { NumberField, StringField } = foundry.data.fields;
-const { createFormGroup, createSelectInput } = foundry.applications.fields;
-
-/**
- * System data for 'Conditions'.
- * These are created from statuses with option support for levels of severity. Can apply to an actor or item.
- * @property {string} primary     The primary status of this condition.
- * @property {number} level       The level of this condition.
- */
 export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectData {
 
   // region Schema
 
   /** @inheritDoc */
   static defineSchema() {
+    const fields = foundry.data.fields;
     return foundry.utils.mergeObject( super.defineSchema(), {
-      primary: new StringField( {
+      primary: new fields.StringField( {
         required: true,
         blank:    false,
       } ),
-      level: new NumberField( {
+      level:   new fields.NumberField( {
         nullable: true,
         initial:  null,
         integer:  true,
@@ -59,30 +51,26 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   // region Data Preparation
 
-
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
 
+    const parentDocument = /** @type {EarthdawnActiveEffect} */ this.parentDocument;
+
     // For Item status
-    this.parent.transfer = false;
+    parentDocument.transfer = false;
 
     // Add the primary status to the effect
-    this.parent.statuses.add( this.primary );
+    parentDocument.statuses.add( this.primary );
 
     // Set the level of the effect to its max if it is exceeded
     this.maxLevel = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ]?.levels || null;
     if ( !this.maxLevel || ( this.level > this.maxLevel ) ) this.level = this.maxLevel;
 
     // Set the name of the effect to include the level if it is a status condition
-    this.parent.name = this.getNameWithLevel( this.level );
+    parentDocument.name = this.getNameWithLevel( this.level );
 
     // Apply the level by multiplying the value of each change by the level
-    this.parent.changes.forEach( ( change ) => {
-      if ( Number.isNumeric( change.value ) && this.level > 1 ) {
-        change.value = Number( change.value ) * this.level;
-      }
-    } );
     this.changes.forEach( ( change ) => {
       if ( Number.isNumeric( change.value ) && this.level > 1 ) {
         change.value = Number( change.value ) * this.level;
@@ -109,6 +97,8 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
         value:    this.level,
       } );
     } else {
+      const { createFormGroup, createSelectInput, } = foundry.applications.fields;
+
       const groupConfig = {};
       groupConfig.label = this.schema.fields.level.label;
       groupConfig.classes = [ "status-level" ];
@@ -137,7 +127,7 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
 
   getNameWithLevel( level ) {
     const status = CONFIG.ED4E.STATUS_CONDITIONS[ this.primary ];
-    const baseName = this.parent._source.name;
+    const baseName = this.parentDocument._source.name;
     if ( !status || !status?.levels ) return baseName;
 
     if ( status.levelNames ) {
@@ -160,9 +150,9 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
     if ( !maxLevel || !( maxLevel > 1 ) || ( this.level === maxLevel ) ) return;
 
     const newLevel = Math.min( maxLevel, this.level + levels );
-    const disabled = this.parent?.isDisabled;
+    const disabled = this.parentDocument?.disabled;
     const diff = newLevel - this.level;
-    return this.parent.update( {
+    return this.parentDocument.update( {
       "system.level": newLevel,
       disabled:       false,
     }, {
@@ -176,11 +166,11 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
    * @returns {Promise<EarthdawnActiveEffect|undefined>} The updated effect or undefined if the level could not be decreased.
    */
   async decrease() {
-    const disabled = this.parent?.isDisabled;
+    const disabled = this.parentDocument?.isDisabled;
     const newLevel = this.level - 1;
     const diff = newLevel - this.level;
 
-    return this.parent.update( {
+    return this.parentDocument.update( {
       "system.level": newLevel,
       disabled:       false,
     }, {
@@ -189,4 +179,5 @@ export default class EarthdawnConditionEffectData extends EarthdawnActiveEffectD
   }
 
   // endregion
+
 }

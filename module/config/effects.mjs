@@ -7,26 +7,26 @@ export const COMMON_EAE_CHANGES = {
   coverPartial: [
     {
       key:   "system.characteristics.defenses.physical.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
       value: +2,
     },
     {
       key:   "system.characteristics.defenses.mystical.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
       value: +2,
     },
   ],
   darknessPartial: [
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
       value: -2,
     },
   ],
   darknessFull: [
     {
       key:   "system.globalModifiers.allTests.value",
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
       value: -4,
     },
   ],
@@ -36,7 +36,7 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: -5,
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
     };
   } ),
   impairedHeavy: Object.entries(
@@ -45,7 +45,7 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: -10,
-      mode:  CONST.ACTIVE_EFFECT_MODES.ADD,
+      type:  "add",
     };
   } ),
   noMovement: Object.entries(
@@ -54,23 +54,50 @@ export const COMMON_EAE_CHANGES = {
     return {
       key:   `system.characteristics.movement.${key}`,
       value: 0,
-      mode:  CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+      type:  "override",
     };
   } ),
 };
 
 /**
- * Indicates how the duration of an effect is determined, via real time, combat time, or times used.
+ * Document types that Active Effects can be embedded in.
+ * @enum {{label:string}}
+ */
+export const eaeDocumentTypes = {
+  Actor: {
+    label: "DOCUMENT.Actor",
+  },
+  Item: {
+    label: "DOCUMENT.Item",
+  },
+};
+preLocalize( "eaeDocumentTypes", { key: "label" } );
+
+/**
+ * @enum {{label:string; hint: string}}
+ * @see CONFIG.ActiveEffect.phases
+ */
+export const eaeChangePhases = {
+  derived: {
+    hint:  "ED.Config.Eae.ChangePhases.derived.hint",
+    label: "ED.Config.Eae.ChangePhases.derived.label",
+  },
+};
+preLocalize( "eaeChangePhases", { keys: [ "hint", "label" ] } );
+
+/**
  * @enum {string}
+ * @see CONST.ACTIVE_EFFECT_DURATION_UNITS
  */
 export const eaeDurationTypes = {
-  combat:     "ED.Config.Eae.DurationTypes.combat",
-  permanent:  "ED.Config.Eae.DurationTypes.permanent",
-  realTime:   "ED.Config.Eae.DurationTypes.realTime",
   uses:       "ED.Config.Eae.DurationTypes.uses",
 };
 preLocalize( "eaeDurationTypes" );
 
+/**
+ * The time an executable effect is triggered.
+ * @enum {FormSelectOption}
+ */
 export const eaeExecutionTime = {
   combatStart: {
     value: "combatStart",
@@ -104,6 +131,26 @@ export const eaeExecutionTime = {
   },
 };
 preLocalize( "eaeExecutionTime", { keys: [ "label", "group" ] } );
+
+/**
+ * The target an effect should be applied to if `transfer === true`.
+ * @enum {FormSelectOption}
+ */
+export const eaeTransferTargets = {
+  ability: {
+    value: "ability",
+    label: "ED.Config.Eae.TransferTargets.ability",
+  },
+  owner: {
+    value: "owner",
+    label: "ED.Config.Eae.TransferTargets.owner",
+  },
+  target: {
+    value: "target",
+    label: "ED.Config.Eae.TransferTargets.target",
+  },
+};
+preLocalize( "eaeTransferTargets", { key: "label" } );
 
 /**
  * Configuration data for Global Modifier
@@ -167,8 +214,21 @@ export const singleModifiers = {
 preLocalize( "singleModifiers", { key: "label" } );
 
 /**
+ * @typedef {object} _ActiveEffectPhaseAssignment
+ * @property {string} [phase] The phase in which the Active Effect should be applied to. Defaults
+ * to the initial of {@link EarthdawnActiveEffectChangeData#phase}.
+ */
+
+/**
+ * @typedef {FormSelectOption&_ActiveEffectPhaseAssignment} EaeChangeConfig
+ * @property {string} value The change key, which is the value of the input field.
+ * @description Prepared input data for human-readable change selection in Active Effects and
+ * information on handling of a given key.
+ */
+
+/**
  * A list of select input options that map a human-readable label to the field path for the change.
- * @type {FormSelectOption[]}
+ * @type {EaeChangeConfig[]}
  */
 export const eaeChangeKeysActor = [
   ...Object.entries( globalModifiers ).map( ( [ key, { label } ] ) => {
@@ -179,7 +239,7 @@ export const eaeChangeKeysActor = [
       disabled:       false,
       selected:       false,
       rule:           false,
-      applyIteration: 0,
+      phase:          "final",
     };
   } ),
   ...Object.entries( attributes ).map( ( [ key, { label } ] ) => {
@@ -187,7 +247,7 @@ export const eaeChangeKeysActor = [
       value:          `system.attributes.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeValue",
-      applyIteration: 0,
+      phase:          "initial",
     };
   } ),
   ...Object.entries( attributes ).map( ( [ key, { label } ] ) => {
@@ -195,7 +255,7 @@ export const eaeChangeKeysActor = [
       value:          `system.attributes.${key}.step`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.attributeStep",
-      applyIteration: 1,
+      phase:          "derived",
     };
   } ),
   ...Object.entries( movementTypes ).map( ( [ key, label ] ) => {
@@ -203,7 +263,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.movement.${key}`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.movement",
-      applyIteration: 0,
+      phase:          "final",
     };
   } ),
   ...Object.entries( defense ).map( ( [ key, label ] ) => {
@@ -211,7 +271,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.defenses.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.defense",
-      applyIteration: 1,
+      phase:          "final",
     };
   } ),
   ...Object.entries( armor ).map( ( [ key, label ] ) => {
@@ -219,7 +279,7 @@ export const eaeChangeKeysActor = [
       value:          `system.characteristics.armor.${key}.value`,
       label:          label,
       group:          "ED.ActiveEffect.ChangeKeys.Groups.armor",
-      applyIteration: 1,
+      phase:          "final",
     };
   } ),
   // initiative
@@ -227,118 +287,149 @@ export const eaeChangeKeysActor = [
     value:           "system.initiative",
     label:           "ED.Data.Actor.Sentient.FIELDS.initiative.label",
     group:           "ED.ActiveEffect.ChangeKeys.Groups.initiative",
+    phase:          "final",
   },
   // encumbrance
-  {
+  // is a modifier for the value and max really needed? this heavily complicates data preparation
+  /* {
     value:          "system.encumbrance.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+    phase:          "derived",
   },
   {
     value:          "system.encumbrance.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
-  },
+    phase:          "final",
+  }, */
   {
     value:          "system.encumbrance.bonus",
     label:          "ED.Data.Actor.Sentient.FIELDS.encumbrance.bonus.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.encumbrance",
+    phase:          "derived",
   },
   // health
   {
     value:          "system.durabilityBonus",
     label:          "ED.Data.Actor.Pc.FIELDS.durabilityBonus.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "initial",
   },
   {
     value:          "system.characteristics.health.death",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.death.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.unconscious",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.unconscious.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "derived",
   },
   {
     value:          "system.characteristics.health.bloodMagic.damage",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.bloodMagic.damage.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+    phase:          "derived",
   },
   {
     value:          "system.characteristics.health.bloodMagic.wounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.bloodMagic.wounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.bloodMagic",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.woundThreshold",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.woundThreshold.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.wounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.wounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.health.maxWounds",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.health.maxWounds.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.health",
+    phase:          "final",
   },
   // recovery
   {
     value:          "system.characteristics.recoveryTestsResource.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.recoveryTestsResource.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   {
     value:          "system.characteristics.recoveryTestsResource.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.characteristics.recoveryTestsResource.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.recoveryTestsResource",
+    phase:          "final",
   },
   // karma
   {
     value:          "system.karma.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   {
     value:          "system.karma.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   {
     value:          "system.karma.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.karma.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.karma",
+    phase:          "final",
   },
   // devotion
   {
     value:          "system.devotion.value",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.value.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
   {
     value:          "system.devotion.max",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.max.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
   {
     value:          "system.devotion.step",
     label:          "ED.Data.Actor.Sentient.FIELDS.devotion.step.label",
     group:          "ED.ActiveEffect.ChangeKeys.Groups.devotion",
+    phase:          "final",
   },
 ];
 preLocalize( "eaeChangeKeysActor", { keys: [ "label", "group" ] } );
 
 /**
+ * All change configs for actors indexed by the modified data model key.
+ * @type {Record<string,EaeChangeConfig>}
+ */
+export const eaeActorChangeConfigByKey = eaeChangeKeysActor.reduce( ( acc, changeConfig ) => {
+  acc[changeConfig.value] = changeConfig;
+  return acc;
+}, {} );
+
+/**
  * A list of select input options that map a human-readable label to the field path for the change.
- * @type {FormSelectOption[]}
+ * @type {EaeChangeConfig[]}
  */
 export const eaeChangeKeysItem = [
   // Rollable
@@ -480,3 +571,12 @@ export const eaeChangeKeysItem = [
   },
 ];
 preLocalize( "eaeChangeKeysItem", { keys: [ "label", "group" ] } );
+
+/**
+ * All available change keys indexed by the document type the effect modifies.
+ * @type {{Actor: Array<EaeChangeConfig>, Item: Array<EaeChangeConfig>}}
+ */
+export const eaeChangeKeys = {
+  Actor: eaeChangeKeysActor,
+  Item:  eaeChangeKeysItem,
+};

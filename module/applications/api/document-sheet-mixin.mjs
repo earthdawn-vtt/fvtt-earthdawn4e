@@ -125,6 +125,8 @@ const DocumentSheetMixinEd = Base => {
         options:      this.options,
         system:       this.document.system,
         systemFields: this.document.system.schema.fields,
+      }, {
+        recursive: false,
       } );
 
       context.enrichedDescription = await TextEditor.enrichHTML(
@@ -193,18 +195,15 @@ const DocumentSheetMixinEd = Base => {
         case "effect": {
           return ActiveEffect.implementation.create( {
             type:     SYSTEM_TYPES.ActiveEffect.eae,
-            name:     game.i18n.localize( "ED.ActiveEffect.newEffectName" ),
+            name:     _loc( "ED.ActiveEffect.newEffectName" ),
             icon:     "icons/svg/aura.svg",
-            changes:  [ {} ],
+            origin:   this.document.uuid,
+            duration: {
+              value: target.dataset.effectPermanent ? null : 1,
+              units: "rounds",
+            },
             system:  {
-              duration: {
-                type: target.dataset.effectPermanent ? "permanent" : "combat",
-              },
-              changes: [ {} ],
-              source:  {
-                documentOriginUuid: this.document.uuid,
-                documentOriginType: this.document.type,
-              },
+              parentDocumentType: this.document.documentName,
             },
           }, {
             parent:      this.document,

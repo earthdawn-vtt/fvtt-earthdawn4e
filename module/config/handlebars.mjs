@@ -227,7 +227,7 @@ export const partials = [
 
   // region Other Tabs
 
-  "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs",
+  "systems/ed4e/templates/item/item-partials/item-details/other-tabs/class-advancement.hbs",
   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/true-pattern.hbs",
 
   "systems/ed4e/templates/thread-magic/true-pattern-basic-information.hbs",

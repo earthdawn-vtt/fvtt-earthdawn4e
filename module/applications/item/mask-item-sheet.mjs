@@ -120,6 +120,9 @@ export default class MaskItemSheetEd extends ItemSheetEd {
         config:                 CONFIG.ED4E,
         isGM:                   game.user.isGM,
       },
+      {
+        recursive: false,
+      }
     );
 
     context.enrichedDescription = await TextEditor.enrichHTML(

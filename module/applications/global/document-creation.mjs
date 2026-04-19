@@ -104,7 +104,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     this.documentCls = documentCls;
     this.documentType = documentType;
     this.pack = pack;
-    this.parent = parent;
+    this.documentParent = parent;
 
     this._updateCreationData( data );
   }
@@ -113,7 +113,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
 
   /** @inheritDoc */
   async _prepareContext( options = {} ) {
-    const folders = this.parent
+    const folders = this.documentParent
       ? []
       : game.folders.filter( ( f ) => f.type === this.documentType && f.displayed );
     // add compendium folders
@@ -262,7 +262,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
       } else {
         const options = {};
         if ( this.pack ) options.pack = this.pack;
-        if ( this.parent ) options.parent = this.parent;
+        if ( this.documentParent ) options.parent = this.documentParent;
         options.renderSheet = true;
 
         promise = this.documentCls.implementation.create( createData, options );
@@ -270,7 +270,7 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
     } else {
       const options = {};
       if ( this.pack ) options.pack = this.pack;
-      if ( this.parent ) options.parent = this.parent;
+      if ( this.documentParent ) options.parent = this.documentParent;
       options.renderSheet = true;
 
       promise = this.documentCls.implementation.create( createData, options );

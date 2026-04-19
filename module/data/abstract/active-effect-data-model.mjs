@@ -1,9 +1,77 @@
 import SystemDataModel from "./system-data-model.mjs";
+import EarthdawnActiveEffectChangeData from "../effect/eae-change-data.mjs";
+import * as EFFECTS from "../../config/effects.mjs";
+import EdIdField from "../fields/edid-field.mjs";
+import FormulaField from "../fields/formula-field.mjs";
 
 /**
  * Variant of the SystemDataModel with support for custom active effects.
  */
 export default class ActiveEffectDataModel extends SystemDataModel {
+
+  // region Schema
+
+  /** @inheritDoc */
+  static defineSchema() {
+    const fields = foundry.data.fields;
+
+    return this.mergeSchema( super.defineSchema(), {
+      changes:         new fields.ArrayField(
+        /** @type {ElementType} */ new fields.EmbeddedDataField(
+          EarthdawnActiveEffectChangeData,
+        ), {
+          initial: [ new EarthdawnActiveEffectChangeData(), ],
+        } ),
+      parentDocumentType:  new fields.StringField( {
+        required: true,
+        blank:    false,
+        choices:  EFFECTS.eaeDocumentTypes,
+        initial:  "Actor",
+      } ),
+      execution:       new fields.SchemaField( {
+        executable:       new fields.BooleanField(),
+        executeOn:        new fields.StringField( {
+          required: false,
+          choices:  EFFECTS.eaeExecutionTime,
+        } ),
+        script:           new fields.JavaScriptField( {
+          required: false,
+          initial:  "/**\n* This scope has the following variables available:\n* - effect: The \`EarthdawnActiveEffect\` document instance this script lives on\n* - parent: The parent document of this effect, either an \`ActorEd\` or an \`ItemEd\`\n*/\n\n",
+        } ),
+      } ),
+      transferring:    new fields.SchemaField( {
+        transfer:     new fields.BooleanField( {
+          initial: false,
+        } ),
+        target:       new fields.StringField( {
+          required: true,
+          blank:    false,
+          choices:  EFFECTS.eaeTransferTargets,
+          initial:  "owner",
+        } ),
+        abilityEdid:  new EdIdField( {
+          required: false,
+          blank:    true,
+        } ),
+      } ),
+      duration:        new fields.SchemaField( {
+        valueFormula:  new FormulaField( {
+          required: true,
+          nullable: true,
+        } ),
+        uses:         new FormulaField(
+          {
+            required: true,
+            nullable: true,
+          },
+        ),
+      } ),
+    } );
+  }
+
+  // endregion
+
+  // region Static Properties
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = [
@@ -23,14 +91,57 @@ export default class ActiveEffectDataModel extends SystemDataModel {
     inplace: false
   } ) );
 
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
+  // endregion
 
-  /* -------------------------------------------- */
+  // region Static Methods
+
+  /**
+   * Evaluate a given duration value formula.
+   * @param {string} formula The formula to evaluate.
+   * @param {object} replacementData The data used to replace variables in the formula.
+   * @returns {number|null} The evaluated duration value, or null if the formula is not numeric.
+   */
+  static evaluateDurationValueFormula( formula, replacementData = {} ) {
+    try {
+      return FormulaField.evaluate( formula, replacementData, );
+    } catch ( e ) {
+      return null;
+    }
+  }
+
+  // endregion
+
+  // region Getters
+
+  /**
+   * Evaluated formula of the number of times this effect can be used (`system.duration.uses`).
+   * @type {number|null}
+   */
+  get uses() {
+    return this.constructor.evaluateDurationValueFormula(
+      this.duration.uses,
+      this.parentDocument.replacementData
+    );
+  }
+
+  /**
+   * Whether this effect is transferred to a selected target.
+   * @type {boolean}
+   */
+  get transfersToTarget() {
+    return this.transferring.transfer && ( this.transferring.target === "target" );
+  }
+
+  // endregion
+
+  // region Data Preparation
 
   /** @inheritDoc */
   prepareBaseData() {
     super.prepareBaseData();
+
+    this._prepareChangePhases();
+
     if ( this.parent.isEmbedded ) {
       const sourceId = this.parent.flags.ed4e?.sourceId
         ?? this.parent._stats.compendiumSource
@@ -38,5 +149,52 @@ export default class ActiveEffectDataModel extends SystemDataModel {
       if ( sourceId ) this.parent.actor?.sourcedEffects?.set( sourceId, this.parent );
     }
   }
+
+  _prepareChangePhases() {
+    this.changes = this.changes.map( change => {
+      const phase = EFFECTS.eaeActorChangeConfigByKey[change.key]?.phase ?? change.phase ?? "initial";
+      return  foundry.utils.mergeObject(
+        change,
+        { phase },
+        { inplace: false }
+      );
+    } );
+  }
+
+  // endregion
+
+  // region Validation
+
+  /**
+   * Validate that an {@link EffectChangeData#type} string is well-formed.
+   * @param {string} type The string to be validated
+   * @returns {true} If the type string is valid
+   * @throws {Error} An error if the type string is malformed
+   * @see {@link ActiveEffectTypeDataModel}
+   */
+  static _validateChangeType( type ) {
+    if ( type.length < 3 ) throw new Error( "must be at least three characters long" );
+    if ( !/^custom\.-?\d+$/.test( type ) && !type.split( "." ).every( s => /^[a-z0-9]+$/i.test( s ) ) ) {
+      throw new Error(
+        "A change type must either be a sequence of dot-delimited, alpha-numeric substrings or of the form"
+        + " \"custom.{number}\""
+      );
+    }
+    return true;
+  }
+
+  // endregion
+
+  // region Methods
+
+  /**
+   * Evaluate the duration value formula.
+   * @returns {number|null} The evaluated duration value, or null if the formula is not numeric.
+   */
+  evaluateDurationValueFormula() {
+    return this.constructor.evaluateDurationValueFormula( this.duration.valueFormula );
+  }
+
+  // endregion
 
 }

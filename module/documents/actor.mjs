@@ -29,7 +29,7 @@ import * as DOCUMENT_DATA from "../config/document-data.mjs";
 import * as ITEMS from "../config/items.mjs";
 import * as TOKEN from "../config/token.mjs";
 import { sum } from "../utils/math.mjs";
-import { staticStatusId } from "../helpers/document.mjs";
+import { createStaticStatusId } from "../helpers/document.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -59,7 +59,7 @@ export default class ActorEd extends Actor {
    */
   get classEffects() {
     return this.effects.filter(
-      effect => [ "discipline", "path", "questor" ].includes( effect.system.source?.documentOriginType )
+      effect => [ "discipline", "path", "questor" ].includes( effect.originType )
     );
   }
 
@@ -204,29 +204,6 @@ export default class ActorEd extends Actor {
 
   // endregion
 
-  // region Data Preparation
-
-  /**
-   * Extended to apply active effects to the item.
-   * @inheritDoc
-   */
-  applyActiveEffects() {
-    this.prepareDocumentDerivedData();
-    if ( this.system.applyActiveEffects ) this.system.applyActiveEffects();
-    else super.applyActiveEffects();
-  }
-
-  /**
-   * Meant for data/fields that depend on information of embedded documents.
-   * Apply transformations or derivations to the values of the source data object.
-   * Compute data fields whose values are not stored to the database.
-   */
-  prepareDocumentDerivedData() {
-    if ( this.system.prepareDocumentDerivedData ) this.system.prepareDocumentDerivedData();
-  }
-
-  // endregion
-
   // region Checkers
 
   /**
@@ -325,16 +302,16 @@ export default class ActorEd extends Actor {
     const effectsByChangeKey = new Map();
 
     for ( const effect of effects ) {
-      for ( const change of effect.changes ) {
+      for ( const change of effect.system.changes ) {
         if ( !effectsByChangeKey.has( change.key ) ) {
           effectsByChangeKey.set( change.key, [] );
         }
         effectsByChangeKey.get( change.key ).push( {
           effect,
           change,
-          sourceType: effect.system.source?.documentOriginType,
-          sourceUuid: effect.system.source?.documentOriginUuid,
-          sourceId:   effect.system.sourceDocumentOriginId,
+          sourceType: effect.originType,
+          sourceUuid: effect.origin,
+          sourceId:   effect.originId,
           value:      Number( change.value ) || 0
         } );
       }
@@ -359,7 +336,7 @@ export default class ActorEd extends Actor {
     }
 
     // check for effects with levels
-    const staticId = staticStatusId( statusId );
+    const staticId = createStaticStatusId( statusId );
     const hasLevels = !!CONFIG.ED4E.STATUS_CONDITIONS[ statusId ]?.levels;
     const effect = this.effects.get( staticId );
     // eslint-disable-next-line no-param-reassign
@@ -496,10 +473,6 @@ export default class ActorEd extends Actor {
   async createManualOverrideEffect() {
     const createData = foundry.utils.deepClone( DOCUMENT_DATA.documentData.ActiveEffect.base.manualOverride );
     createData.origin = this.uuid;
-    createData.system.source = {
-      documentOriginUuid: this.uuid,
-      documentOriginType: this.type,
-    };
 
     const createdEffects = await this.createActiveEffects( [ createData, ] );
     return createdEffects?.[0] ?? null;
@@ -510,7 +483,7 @@ export default class ActorEd extends Actor {
     if ( !effect ) effect = await this.initializeManualOverrideEffect();
     if ( !effect ) throw new Error( "ActorEd.manualOverride: Could not create manual override effect." );
 
-    const newValue = ( Number( effect.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
+    const newValue = ( Number( effect.system.changes.find( c => c.key === changeKey )?.value ) || 0 ) + changeValue;
     return effect.updateSystemChange( changeKey, newValue );
   }
 
@@ -521,6 +494,7 @@ export default class ActorEd extends Actor {
    */
   async initializeManualOverrideEffect() {
     const effect = await this.createManualOverrideEffect();
+    if ( !effect ) return null;
     await this.update( { "system.manualOverrideEffectId": effect.id } );
     return effect;
   }

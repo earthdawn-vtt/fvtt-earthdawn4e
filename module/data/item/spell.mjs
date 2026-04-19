@@ -61,7 +61,7 @@ export default class SpellData extends ItemDataModel.mixin(
           required: true,
           nullable: false,
           min:      ROLLS.minDifficulty,
-          initial:  ( data ) => { return data.weaving + 5 || ROLLS.minDifficulty; },
+          initial:  ( data ) => { return data?.weaving + 5 || ROLLS.minDifficulty; },
           integer:  true,
         } ),
         weaving: new fields.NumberField( {

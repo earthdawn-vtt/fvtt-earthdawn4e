@@ -259,15 +259,15 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async _replacePreviousClassEffects( newEffects ) {
     const newChangeKeys = newEffects.map( effect => {
       this._validateSingleChange( effect, "new" );
-      return effect.changes[0].key;
+      return effect.system.changes[0].key;
     } );
 
     if ( newChangeKeys.length === 0 ) return;
 
     const effectsToRemove = this.containingActor.classEffects.filter( effect => {
-      if ( effect.system.source?.documentOriginUuid !== this.parent.uuid ) return false;
+      if ( effect.origin !== this.parent.uuid ) return false;
       this._validateSingleChange( effect, "existing" );
-      return newChangeKeys.includes( effect.changes[0].key );
+      return newChangeKeys.includes( effect.system.changes[0].key );
     } );
 
     await this.containingActor.deleteEmbeddedDocuments(
@@ -290,7 +290,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
    * @protected
    */
   _validateSingleChange( effect, type ) {
-    if ( effect.changes.length !== 1 ) {
+    if ( effect.system.changes.length !== 1 ) {
       throw new Error( `ClassTemplate._addPermanentEffects: ${type} class effect has more than one change` );
     }
   }
@@ -304,13 +304,11 @@ export default class ClassTemplate extends ItemDataModel.mixin(
   async _getEffectsForPermanentUse( effects, disabled = false ) {
     const permanentSettings = {
       disabled: disabled,
+      transfer: true,
+      origin:   this.parent.uuid,
       system:   {
-        duration:         { type: "permanent" },
-        transferToTarget: false,
-        source:           {
-          documentOriginUuid: this.parent.uuid,
-          documentOriginType: this.parent.type,
-        },
+        duration:         { valueFormula: null, },
+        transferring:     { target: "owner", },
       },
     };
 
@@ -402,7 +400,7 @@ export default class ClassTemplate extends ItemDataModel.mixin(
 
   /** @inheritDoc */
   static migrateData( source ) {
-    super.migrateData( source );
+    return super.migrateData( source );
     // specific migration functions
   }
 

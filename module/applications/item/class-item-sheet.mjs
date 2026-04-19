@@ -66,7 +66,7 @@ export default class ClassItemSheetEd extends ItemSheetEd {
       scrollable: [ "" ],
     },
     "advancement": {
-      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/discipline-advancement.hbs", 
+      template:   "systems/ed4e/templates/item/item-partials/item-details/other-tabs/class-advancement.hbs", 
       classes:    [ "advancement", "scrollable" ],
       scrollable: [ "" ],
     },
@@ -183,16 +183,19 @@ export default class ClassItemSheetEd extends ItemSheetEd {
 
   /** @inheritDoc */
   async _prepareContext( options ) {
-    const context = super._prepareContext( options );
+    const context = await super._prepareContext( options );
+    context.options = this.options;
     foundry.utils.mergeObject(
       context,
       {
         item:                   this.document,
         system:                 this.document.system,
-        options:                this.options,
         systemFields:           this.document.system.schema.fields,
         config:                 CONFIG.ED4E,
       },
+      {
+        recursive: false,
+      }
     );
 
     context.enrichedDescription = await foundry.applications.ux.TextEditor.enrichHTML(

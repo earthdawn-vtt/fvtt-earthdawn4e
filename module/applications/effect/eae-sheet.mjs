@@ -29,7 +29,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     ...ActiveEffectConfig.PARTS,
     details:   { template: "systems/ed4e/templates/effect/details.hbs" },
     duration:  { template: "systems/ed4e/templates/effect/duration.hbs" },
-    changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
+    // changes:   { template: "systems/ed4e/templates/effect/changes.hbs" },
     execution: { template: "systems/ed4e/templates/effect/execution.hbs" },
   };
 
@@ -65,38 +65,31 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   // endregion
 
-  // region Form Handling
+  // region Rendering
 
   /** @inheritDoc */
-  _processFormData( event, form, formData ) {
-    const data = super._processFormData( event, form, formData );
-    return this._toggleTransfer( event, data );
+  async _renderChange( context ) {
+    const {change, index} = context;
+    if ( typeof change.value !== "string" ) change.value = JSON.stringify( change.value );
+    Object.assign(
+      change,
+      [ "key", "type", "value", "priority" ].reduce( ( paths, fieldName ) => {
+        paths[`${fieldName}Path`] = `system.changes.${index}.${fieldName}`;
+        return paths;
+      }, {} ) );
+
+    const effect = /** @type {EarthdawnActiveEffect} */ this.document;
+    change.keyOptions = effect.getChangeKeyOptions( change.key );
+
+    return ActiveEffect.CHANGE_TYPES[change.type].render?.( context )
+      ?? foundry.applications.handlebars.renderTemplate( "systems/ed4e/templates/effect/change.hbs", context );
   }
-
-  /**
-   * Toggles the transfer property based on the changed property in the form.
-   * @param {Event} event - The event that triggered the change.
-   * @param {object} submitData - The data being submitted from the form.
-   * @returns {object} The modified submitData with the toggled transfer property.
-   */
-  _toggleTransfer( event, submitData ) {
-    const changedProperty = event?.target?.name;
-    if ( changedProperty === "system.transferToTarget" && submitData.system?.transferToTarget === true )
-      submitData.transfer = false;
-    if ( changedProperty === "transfer" && submitData.transfer === true )
-      submitData.system.transferToTarget = false;
-    return submitData;
-  }
-
-  // endregion
-
-  // region Rendering
 
   /** @inheritDoc */
   _configureRenderParts( options ) {
     const parts = super._configureRenderParts( options );
 
-    if ( !this.document.system.executable ) delete parts.execution;
+    if ( !this.document.system.execution.executable ) delete parts.execution;
 
     return parts;
   }
@@ -106,9 +99,6 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
     const context = await super._prepareContext( options );
 
     context.systemFields = this.document.system.schema.fields;
-
-    // filter out submit button
-    context.buttons = context.buttons.filter( b => b.type !== "submit" );
 
     context.tooltips = {};
 
@@ -140,6 +130,10 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
         break;
       case "execution":
         break;
+      case "footer":
+        // filter out submit button
+        context.buttons = context.buttons.filter( b => b.type !== "submit" );
+        break;
     }
 
     return partContext;
@@ -153,7 +147,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
   _prepareTabs( group ) {
     const tabs = super._prepareTabs( group );
 
-    if ( !this.document.system.executable ) delete tabs.execution;
+    if ( !this.document.system.execution.executable ) delete tabs.execution;
 
     return tabs;
   }
@@ -173,7 +167,7 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
       this.form,
       new foundry.applications.ux.FormDataExtended( this.form )
     );
-    const systemChanges = Object.values( submitData.system.changes ) ?? [];
+    const systemChanges = Object.values( submitData.system.changes ?? [] );
     systemChanges.push( {} );
     return this.submit( { updateData: { "system.changes": systemChanges } } );
   }
@@ -184,7 +178,11 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
    * @type {ApplicationClickAction}
    */
   static async #onDeleteChange( event ) {
-    const submitData = this._processFormData( null, this.form, new FormDataExtended( this.form ) );
+    const submitData = this._processFormData(
+      null,
+      this.form,
+      new foundry.applications.ux.FormDataExtended( this.form )
+    );
     const changes = Object.values( submitData.system.changes );
     const row = event.target.closest( "li" );
     const index = Number( row.dataset.index ) || 0;
