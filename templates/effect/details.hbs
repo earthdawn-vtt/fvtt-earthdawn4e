@@ -22,8 +22,8 @@
 
     {{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
     {{#if (eq document.system.parentDocumentType "Item")}}
-      {{formGroup fields.transfer value=source.transfer rootId=rootId }}
-      {{#if source.transfer}}
+      {{formGroup systemFields.transferring.fields.transfer value=document.systemTransfer rootId=rootId }}
+      {{#if document.systemTransfer}}
         {{formGroup systemFields.transferring.fields.target value=document.system.transferring.target rootId=rootId}}
         {{#if (eq document.system.transferring.target "ability")}}
           {{formGroup systemFields.transferring.fields.abilityEdid value=document.system.transferring.abilityEdid rootId=rootId}}

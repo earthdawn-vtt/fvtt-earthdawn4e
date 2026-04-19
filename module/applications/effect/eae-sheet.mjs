@@ -65,31 +65,6 @@ export default class EarthdawnActiveEffectSheet extends ActiveEffectConfig {
 
   // endregion
 
-  // region Form Handling
-
-  /** @inheritDoc */
-  _processFormData( event, form, formData ) {
-    const data = super._processFormData( event, form, formData );
-    return this._toggleTransfer( event, data );
-  }
-
-  /**
-   * Toggles the transfer property based on the changed property in the form.
-   * @param {Event} event - The event that triggered the change.
-   * @param {object} submitData - The data being submitted from the form.
-   * @returns {object} The modified submitData with the toggled transfer property.
-   */
-  _toggleTransfer( event, submitData ) {
-    const changedProperty = event?.target?.name;
-    if ( changedProperty === "system.transferToTarget" && submitData.system?.transferToTarget === true )
-      submitData.transfer = false;
-    if ( changedProperty === "transfer" && submitData.transfer === true )
-      submitData.system.transferToTarget = false;
-    return submitData;
-  }
-
-  // endregion
-
   // region Rendering
 
   /** @inheritDoc */

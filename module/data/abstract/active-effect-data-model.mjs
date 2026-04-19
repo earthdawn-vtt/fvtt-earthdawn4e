@@ -40,13 +40,16 @@ export default class ActiveEffectDataModel extends SystemDataModel {
         } ),
       } ),
       transferring:    new fields.SchemaField( {
-        target: new fields.StringField( {
+        transfer:     new fields.BooleanField( {
+          initial: false,
+        } ),
+        target:       new fields.StringField( {
           required: true,
           blank:    false,
           choices:  EFFECTS.eaeTransferTargets,
           initial:  "owner",
         } ),
-        abilityEdid: new EdIdField( {
+        abilityEdid:  new EdIdField( {
           required: false,
           blank:    true,
         } ),
@@ -119,6 +122,14 @@ export default class ActiveEffectDataModel extends SystemDataModel {
       this.duration.uses,
       this.parentDocument.replacementData
     );
+  }
+
+  /**
+   * Whether this effect is transferred to a selected target.
+   * @type {boolean}
+   */
+  get transfersToTarget() {
+    return this.transferring.transfer && ( this.transferring.target === "target" );
   }
 
   // endregion

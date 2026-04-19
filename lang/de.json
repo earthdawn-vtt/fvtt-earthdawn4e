@@ -951,6 +951,10 @@
             "target": {
               "hint":                             "Auf welches Ziel soll der Effekt bei Aktivierung übertragen werden?",
               "label":                            "Ziel"
+            },
+            "transfer": {
+              "hint":                             "Wenn aktiviert, wird dieser Effekt auf das angegebene Zieldokument übertragen und/oder dort angewendet",
+              "label":                            "Übertrage Effekt auf Dokument"
             }
           }
         }
@@ -3886,12 +3890,6 @@
     }
   },
   "EFFECT": {
-    "FIELDS": {
-      "transfer": {
-        "hint":                                   "Wenn aktiviert, wird dieser Effekt auf das angegebene Zieldokument übertragen und/oder dort angewendet",
-        "label":                                  "Übertrage Effekt auf Dokument"
-      }
-    },
     "TABS": {
       "changes":                                  "Änderungen",
       "details":                                  "Details",

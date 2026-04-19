@@ -48,7 +48,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     if ( this.parent instanceof Actor ) return this.parent;
 
     // the parent must now be an Item
-    if ( !this.transfer ) return this.parent; // apply to parent item directly
+    if ( !this.systemTransfer ) return this.parent; // apply to parent item directly
     switch ( this.system.transferring.target ) {
       case "ability": return undefined;
       case "owner":   return this.parent.parent;
@@ -66,7 +66,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return this.target?.documentName === "Actor"
       || ( this.system.parentDocumentType === "Actor" )
       || (
-        this.transfer
+        this.systemTransfer
         && [ "owner", "target" ].includes( this.system.transferring.target )
       );
   }
@@ -79,7 +79,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
     return this.target?.documentName === "Item"
       || ( this.system.parentDocumentType === "Item" && !this.transfer )
       || (
-        this.transfer
+        this.systemTransfer
         && [ "ability", ].includes( this.system.transferring.target )
       );
   }
@@ -139,6 +139,14 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
    */
   get replacementData() {
     return this.target?.getRollData();
+  }
+
+  /**
+   * The transfer property of the system data model.
+   * @type {boolean}
+   */
+  get systemTransfer() {
+    return this.system.transferring.transfer;
   }
 
   // endregion
@@ -215,11 +223,17 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       return false;
     }
 
-    const updates = {};
+    const updates = {
+      system: {},
+    };
+
+    updates.system.parentDocumentType = this.parent?.documentName;
 
     updates.duration = { value: this.system.evaluateDurationValueFormula(), };
     if ( !Number.isFinite( updates.duration.value ) )
       updates.duration.expiry = null;
+
+    updates.transfer = this._getTransferValue( data );
 
     this.updateSource( updates );
 
@@ -229,18 +243,34 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
   async _preUpdate( changes, options, user ) {
     if ( await super._preUpdate( changes, options, user ) === false ) return false;
 
-    foundry.utils.setProperty( changes, "duration.value", this._getDurationValue ( changes ), );
+    const setProperty = foundry.utils.setProperty;
+
+    setProperty( changes, "duration.value", this._getDurationValue ( changes ), );
     if ( !Number.isFinite( changes.duration.value ) )
-      foundry.utils.setProperty( changes, "duration.expiry", null, );
+      setProperty( changes, "duration.expiry", null, );
+
+    setProperty( changes, "transfer", this._getTransferValue( changes ), );
+  }
+
+  /**
+   * Determine the value for the `transfer` property of the {@link BaseActiveEffect}
+   * @param {object} data The data object provided to the document creation or update request
+   * @returns {boolean} True if the effect should be transferred, false otherwise.
+   */
+  _getTransferValue( data ) {
+    const getProperty = foundry.utils.getProperty;
+    const systemTransfer = getProperty( data, "system.transferring.transfer" ) ?? this.systemTransfer;
+    const transferTarget = getProperty( data, "system.transferring.target" ) ?? this.system.transferring.target;
+    return systemTransfer && ( transferTarget === "owner" );
   }
 
   /**
    * Prepare the duration value based on changes or system data
-   * @param {object} changes The changes submitted to an update operation
+   * @param {object} data The data object provided to the document creation or update request
    * @returns {number|null} The duration value to be used in the update operation
    */
-  _getDurationValue( changes ) {
-    const formula = changes.system?.duration?.valueFormula ?? this.system.duration?.valueFormula;
+  _getDurationValue( data ) {
+    const formula = data.system?.duration?.valueFormula ?? this.system.duration?.valueFormula;
     return this.system.constructor.evaluateDurationValueFormula( formula, this.replacementData, );
   }
 
@@ -300,7 +330,7 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
 
   /** @inheritDoc */
   static validateJoint( data ) {
-    const transfer = data.transfer;
+    const transfer = foundry.utils.getProperty( data, "system.transferring.transfer" );
     const transferTarget = data.system.transferring.target;
     if ( transfer && !Object.keys( EFFECTS.eaeTransferTargets ).includes( transferTarget ) )
       throw new Error( `If transfer is true, the transferring target must be one of ${Object.keys( EFFECTS.eaeTransferTargets ).join( ", " )}.` );
@@ -438,7 +468,8 @@ export default class EarthdawnActiveEffect extends foundry.documents.ActiveEffec
       "ability": "Item",
       "owner":   "Actor",
       "target":  "Actor",
-    }[ source.system?.transferring?.target ] ?? "Actor";
+    }[ foundry.utils.getProperty( source, "system.transferring.target" ) ]
+      ?? "Actor";
 
     const changes = source.system?.changes;
     if ( Array.isArray( changes ) && changes.length > 0 ) {

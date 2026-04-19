@@ -97,7 +97,7 @@ export default class ItemEd extends Item {
    * @type {ActiveEffectData[]}
    */
   get targetEffects() {
-    const relevantEffects = this.effects.filter( effect => effect.system.transferToTarget );
+    const relevantEffects = this.effects.filter( effect => effect.system.transfersToTarget );
     return relevantEffects.map( effect => {
       effect.origin ||= this.uuid;
       return effect;
