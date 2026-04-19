@@ -951,6 +951,10 @@
             "target": {
               "hint":                             "TODO: Add translation",
               "label":                            "TODO: Add translation"
+            },
+            "transfer": {
+              "hint":                             "TODO: Add translation",
+              "label":                            "TODO: Add translation"
             }
           }
         }
@@ -3886,12 +3890,6 @@
     }
   },
   "EFFECT": {
-    "FIELDS": {
-      "transfer": {
-        "hint":                                   "TODO: Add translation",
-        "label":                                  "TODO: Add translation"
-      }
-    },
     "TABS": {
       "changes":                                  "TODO: Add translation",
       "details":                                  "TODO: Add translation",
