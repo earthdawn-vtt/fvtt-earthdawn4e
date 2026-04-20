@@ -191,7 +191,7 @@ export default class RawCastingWorkflow extends BaseCastingWorkflow {
     await this._horrorMarkRoll.toMessage(
       {},
       {
-        rollMode: "blindroll"
+        messageMode: "blind"
       },
     );
   }
