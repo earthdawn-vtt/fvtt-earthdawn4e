@@ -4,13 +4,15 @@ import * as SYSTEM from "../../config/system.mjs";
 export default class SceneConfigEd extends foundry.applications.sheets.SceneConfig {
 
   static PARTS = {
-    tabs:      { ...super.PARTS.tabs },
-    basics:    { ...super.PARTS.basics },
-    grid:      { ...super.PARTS.grid },
-    lighting:  { ...super.PARTS.lighting },
-    ambience:  { ...super.PARTS.ambience },
-    earthdawn: { template: "systems/ed4e/templates/configs/scene-config-tab-ed.hbs" },
-    footer:    { ...super.PARTS.footer },
+    tabs:        { ...super.PARTS.tabs },
+    basics:      { ...super.PARTS.basics },
+    grid:        { ...super.PARTS.grid },
+    levels:      { ...super.PARTS.levels },
+    visibility:  { ...super.PARTS.visibility },
+    environment: { ...super.PARTS.environment },
+    misc:        { ...super.PARTS.misc },
+    earthdawn:   { template: "systems/ed4e/templates/configs/scene-config-tab-ed.hbs" },
+    footer:      { ...super.PARTS.footer },
   };
 
   /** @override */
