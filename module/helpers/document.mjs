@@ -154,15 +154,15 @@ export function createStaticStatusId( status ) {
 }
 
 /**
- * Prefixes the keys of an object with the deletion prefix for Foundry's `update` operation.
- * @param {object} obj - The object whose keys are to be renamed.
- * @returns {object} A new object with keys prefixed with `-=`.
+ * Prepares the object to add a {@link _del} to each of its keys, marking them for deletion.
+ * @param {object} obj - The object whose keys are to be deleted.
+ * @returns {object} A new object with values set to {@link _del}.
  */
-export function prefixKeysForDeletion( obj ) {
+export function prepareKeysForDeletion( obj ) {
   const renamedObj = {};
   for ( let key in obj ) {
     if ( obj.hasOwnProperty( key ) ) {
-      renamedObj["-=" + key] = null;
+      renamedObj[ key ] = _del;
     }
   }
   return renamedObj;

@@ -6,7 +6,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../helpers/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
-import { getSingleGlobalItemByEdid, prefixKeysForDeletion } from "../../helpers/document.mjs";
+import { getSingleGlobalItemByEdid, prepareKeysForDeletion } from "../../helpers/document.mjs";
 import { filterObject, mapObject } from "../../utils/object.mjs";
 
 
@@ -434,17 +434,17 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   async removeRankZeroSkills() {
-    const greaterZeroPredicate = function ( key, value ) {
+    const lessOrEqualZeroPredicate = function ( key, value ) {
       return value <= 0;
     };
-    const artisanData = prefixKeysForDeletion( filterObject(
-      this.abilities.artisan, greaterZeroPredicate
+    const artisanData = prepareKeysForDeletion( filterObject(
+      this.abilities.artisan, lessOrEqualZeroPredicate
     ) );
-    const knowledgeData = prefixKeysForDeletion( filterObject(
-      this.abilities.knowledge, greaterZeroPredicate
+    const knowledgeData = prepareKeysForDeletion( filterObject(
+      this.abilities.knowledge, lessOrEqualZeroPredicate
     ) );
-    const generalData = prefixKeysForDeletion( filterObject(
-      this.abilities.general, greaterZeroPredicate
+    const generalData = prepareKeysForDeletion( filterObject(
+      this.abilities.general, lessOrEqualZeroPredicate
     ) );
 
     return this.updateSource( {
