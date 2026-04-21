@@ -299,10 +299,10 @@ export default class TruePatternData extends SparseDataModel {
     if ( this.numberOfLevels === undefined || this.numberOfLevels === 0 ) return;
     const parentDocument = this.parentDocument;
 
-    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.-=${ this.numberOfLevels }`;
+    const updatePath = `${ this.schema.fields.threadItemLevels.fieldPath }.${ this.numberOfLevels }`;
 
-    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: null } );
-    return parentDocument.update( { [ updatePath ]: null, } );
+    if ( !parentDocument ) return this.updateSource( { [ updatePath ]: _del } );
+    return parentDocument.update( { [ updatePath ]: _del, } );
   };
 
   /**
