@@ -262,8 +262,8 @@ export default class CharacterGenerationData extends SparseDataModel {
     this.updateSource( {
       abilities: {
         optional: {
-          [abilityUuid]:                                      0,
-          [`-=${Object.keys( this.abilities.optional )[0]}`]: null,
+          [ abilityUuid ]:                                      0,
+          [ Object.keys( this.abilities.optional )[ 0 ] ]:      _del,
         },
       },
     } );
