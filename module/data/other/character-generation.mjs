@@ -281,9 +281,9 @@ export default class CharacterGenerationData extends SparseDataModel {
 
     this.updateSource( {
       abilities: {
-        "==class":   Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ),
-        "==free":    Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ),
-        "==special": Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ),
+        "class":   _replace( Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ) ),
+        "free":    _replace( Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ) ),
+        "special": _replace( Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ) ),
       }
     } );
   }
