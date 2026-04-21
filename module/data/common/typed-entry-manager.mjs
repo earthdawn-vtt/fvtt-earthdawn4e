@@ -34,7 +34,7 @@ export default class TypedEntryManagerMixin extends SystemDataModel {
     const fieldPath = this._getFieldPathToAddTypedEntry( fieldName, entryType );
 
     return await this.parentDocument.update( {
-      [ fieldPath ]: entryData,
+      [ fieldPath ]: _replace( entryData ),
     } );
   }
 

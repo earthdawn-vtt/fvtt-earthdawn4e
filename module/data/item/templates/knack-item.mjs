@@ -254,7 +254,7 @@ export default class KnackTemplate extends SystemDataModel.mixin(
 
   /** @inheritDoc */
   _getFieldPathToAddTypedEntry( fieldName, entryType ) {
-    return `system.${ fieldName }.==${ this._getNewEntryKey( fieldName, entryType ) }`;
+    return `system.${ fieldName }.${ this._getNewEntryKey( fieldName, entryType ) }`;
   }
 
   // endregion

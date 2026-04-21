@@ -835,8 +835,8 @@ export default class SpellData extends ItemDataModel.mixin(
   _getFieldPathToAddTypedEntry( fieldName, entryType ) {
     const isExtraSuccess = fieldName === "extraSuccess";
     return isExtraSuccess
-      ? `system.==${ fieldName }`
-      : `system.${ fieldName }.==${ ( this._getNewEntryKey( fieldName, entryType ) ) }`;
+      ? `system.${ fieldName }`
+      : `system.${ fieldName }.${ ( this._getNewEntryKey( fieldName, entryType ) ) }`;
   }
 
   /**
