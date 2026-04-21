@@ -8,6 +8,7 @@ import * as data from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as enrichers from "./module/helpers/enrichers.mjs";
+import * as helpers from "./module/helpers/_module.mjs";
 import * as hooks from "./module/hooks/_module.mjs";
 import * as services from "./module/services/_module.mjs";
 import * as system from "./module/system/_module.mjs";
@@ -27,6 +28,7 @@ globalThis.ed4e = {
   dice,
   documents,
   enrichers,
+  helpers,
   hooks,
   services,
   system,
