@@ -3951,7 +3951,7 @@
         "trap":                                   "TODO: Add translation",
         "vehicle":                                "TODO: Add translation"
       },
-      "Items": {
+      "Item": {
         "armor":                                  "TODO: Add translation",
         "bindingSecret":                          "TODO: Add translation",
         "curseMark":                              "TODO: Add translation",
