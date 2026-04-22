@@ -155,13 +155,15 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
 
     return {
       folders,
+      config:      CONFIG[ this.documentType ] ?? {},
       name:                  createData.name,
       defaultName:           this.documentCls.implementation.defaultName( {
         type: createData.type,
       } ),
-      folder:      createData.folder,
-      hasFolders:  folders.length > 0,
-      currentType: createData.type,
+      folder:          createData.folder,
+      hasFolders:      folders.length > 0,
+      currentType:     createData.type,
+      currentTypeHint: _loc( CONFIG[ this.documentType ].typeHints?.[createData.type] ),
       types,
       typesRadio,
       buttons,
@@ -191,7 +193,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   }
 
   // endregion
-
 
   // region Form Handling
 
@@ -227,7 +228,6 @@ export default class DocumentCreateDialog extends HandlebarsApplicationMixin(
   }
 
   // endregion
-
 
   // region Event Handlers
 
