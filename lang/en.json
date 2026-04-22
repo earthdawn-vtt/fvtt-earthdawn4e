@@ -3934,6 +3934,51 @@
       "hand":                                     "Hand",
       "pile":                                     "Pile"
     },
+    "HINTS": {
+      "ActiveEffect": {
+        "condition":                              "A specific condition that has a name, e.g. Knocked Down",
+        "eae":                                    "An Active Effect tailored to this game system"
+      },
+      "Actor": {
+        "character":                              "A character for a player",
+        "creature":                               "Anything that falls under creatures (like animals)",
+        "dragon":                                 "The large, flying, powerful beings",
+        "group":                                  "A collection of Namegivers, like your player character group, a trading guild, etc.",
+        "horror":                                 "The reason we call it the Scourge (no horror constructs though)",
+        "loot":                                   "A collection of items so they can be easily placed on a scene for all your loot goblins",
+        "npc":                                    "The characters played by the game master (usually only Namegivers)",
+        "spirit":                                 "Spirits of all kinds",
+        "trap":                                   "You have to be quick to avoid it (can be placed on a scene)",
+        "vehicle":                                "An airship, for example"
+      },
+      "Items": {
+        "armor":                                  "What is worn on the body and has an armor value",
+        "bindingSecret":                          "Binding secret, from Deeper Secrets",
+        "curseMark":                              "Has a connection from a horror to a character",
+        "devotion":                               "The abilities used by questors",
+        "discipline":                             "What an adept learns and follows",
+        "equipment":                              "Everything in the inventory that is not armor, a weapon, or a shield",
+        "knackAbility":                           "A knack that changes, improves, or replaces a talent",
+        "knackKarma":                             "A knack that allows Karma to be spent for something",
+        "knackManeuver":                          "A knack that allows a special maneuver to be performed",
+        "maneuver":                               "A maneuver for which successes can be spent",
+        "mask":                                   "Used to easily create new forms of creatures",
+        "namegiver":                              "The various forms of Namegivers",
+        "path":                                   "Something an adept can use to expand a discipline, from Mystic Paths",
+        "poisonDisease":                          "A poison or disease that has negative effects on a character",
+        "power":                                  "Powers for creatures, spirits, and horrors",
+        "questor":                                "Analogous to a discipline, this describes the path of a specific passion a questor follows",
+        "shield":                                 "What is worn on the body and changes defense values",
+        "shipWeapon":                             "A weapon used on a ship",
+        "skill":                                  "Mundane skills, as opposed to magical talents",
+        "specialAbility":                         "Special abilities that do not fall under talents, skills, knacks, or similar, and have special rules",
+        "spell":                                  "A specific spell of a specific discipline",
+        "spellKnack":                             "A knack that changes, improves, or replaces a spell",
+        "talent":                                 "Magical abilities learned by adepts of a discipline",
+        "thread":                                 "A magical thread woven by a character to a true pattern",
+        "weapon":                                 "What is worn on the body and has a damage value (ouch)"
+      }
+    },
     "Item": {
       "TypeGroups": {
         "abilities":                              "Abilities",
