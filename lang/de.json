@@ -3934,6 +3934,51 @@
       "hand":                                     "Hand",
       "pile":                                     "Stapel"
     },
+    "HINTS": {
+      "ActiveEffect": {
+        "condition":                              "Eine bestimmter Zustand der einen Namen hat, z.B. Niedergeschlagen",
+        "eae":                                    "Ein Active Effect der auf dieses Spielsystem zugeschnitten ist"
+      },
+      "Actor": {
+        "character":                              "Ein Charakter für ein_e Spieler_in",
+        "creature":                               "Alles was als unter Kreatur fällt (Tiere)",
+        "dragon":                                 "Die großen fliegenden mächtigen Wesen",
+        "group":                                  "Ein Ansammlung an Namensgebenden, eure SC-Gruppe, eine Handelsgilde, etc",
+        "horror":                                 "Die warum wir es die Plage nennen (keine Konstrukte)",
+        "loot":                                   "Eine Sammlung von Items, damit man sie leicht auf einer Szene platzieren kann",
+        "npc":                                    "Die Charakter die von der Spielleitung gespielt werden (Namensgebende)",
+        "spirit":                                 "Geister aller Art",
+        "trap":                                   "Man muss schnell sein um dem auszuweichen (kann in Szene platziert werden)",
+        "vehicle":                                "Ein Luftschiff zum Beispiel"
+      },
+      "Items": {
+        "armor":                                  "Was man am Körper trägt und einen Rüstungswert hat",
+        "bindingSecret":                          "Bindungsgeheimnis, aus Deeper Secrets",
+        "curseMark":                              "Hat eine Verbindung von einem Dämon zu einem Charakter",
+        "devotion":                               "Die Fähigkeiten die von Questor_innen genutzt werden",
+        "discipline":                             "Was man als Adept_in lernt und folgt",
+        "equipment":                              "Alles im Inventar was nicht Rüstung, Waffe, oder Schild ist",
+        "knackAbility":                           "Kniff der ein Talent ändert, verbessert, oder ersetzt",
+        "knackKarma":                             "Kniff der es erlaubt Karma für eine Sache auszugeben",
+        "knackManeuver":                          "Kniff der er erlaubt ein Spezialmanöver auszuführen",
+        "maneuver":                               "Ein Manöver für das Erfolge ausgegeben werden können",
+        "mask":                                   "Wird benutzt um einfach neue Formen von Kreaturen zu erstllen",
+        "namegiver":                              "Die verschiedenen Formen der Namensgebenden",
+        "path":                                   "Womit man als Adept eine Disziplin erweitern kann, aus Mystische Pfade",
+        "poisonDisease":                          "Ein Gift oder eine Krankheit das negative Auswirkungen auf einen Charakter hat",
+        "power":                                  "Kräfte für Kreaturen, Geister und Dämonen",
+        "questor":                                "Analog zur Disziplin wird damit der Weg einer bestimmten Passion beschrieben dem Questor_innen folgen",
+        "shield":                                 "Was man am Körper trägt und die Verteidigungswerte ändert",
+        "shipWeapon":                             "Eine Waffe die auf einem Schiff eingesetzt wird",
+        "skill":                                  "Mundane Fertigkeiten, im Gegensatz zu den magischen Talenten",
+        "specialAbility":                         "Besondere Fähigkeiten die nicht unter Talente, Fertigkeiten, Kniffe oder ähnliches fallen und besondere Regeln haben",
+        "spell":                                  "Ein bestimmter Zauber einer bestimmten Disziplin",
+        "spellKnack":                             "Ein Kniff der einen Zauber ändert, verbessert oder ersetzt",
+        "talent":                                 "Magische Fähigkeiten die von den Adept_innen einer Disziplin gelernt werden",
+        "thread":                                 "Ein magischer Faden, gewebt von einem Charakter zu einer wahren Struktur",
+        "weapon":                                 "Was man am Körper trägt und einen Schadenswert hat (Aua)"
+      }
+    },
     "Item": {
       "TypeGroups": {
         "abilities":                              "Fähigkeiten",
