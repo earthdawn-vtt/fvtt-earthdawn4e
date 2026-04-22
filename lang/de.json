@@ -3951,7 +3951,7 @@
         "trap":                                   "Man muss schnell sein um dem auszuweichen (kann in Szene platziert werden)",
         "vehicle":                                "Ein Luftschiff zum Beispiel"
       },
-      "Items": {
+      "Item": {
         "armor":                                  "Was man am Körper trägt und einen Rüstungswert hat",
         "bindingSecret":                          "Bindungsgeheimnis, aus Deeper Secrets",
         "curseMark":                              "Hat eine Verbindung von einem Dämon zu einem Charakter",
