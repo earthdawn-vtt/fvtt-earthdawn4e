@@ -195,6 +195,8 @@ export default class AbilityTemplate extends ActionTemplate.mixin(
         rollData: this.containingActor,
       }
     );
+    if ( !roll ) return;
+
     return RollProcessor.process(
       roll,
       this.containingActor,
