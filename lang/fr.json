@@ -3934,6 +3934,51 @@
       "hand":                                     "TODO: Add translation",
       "pile":                                     "TODO: Add translation"
     },
+    "HINTS": {
+      "ActiveEffect": {
+        "condition":                              "TODO: Add translation",
+        "eae":                                    "TODO: Add translation"
+      },
+      "Actor": {
+        "character":                              "TODO: Add translation",
+        "creature":                               "TODO: Add translation",
+        "dragon":                                 "TODO: Add translation",
+        "group":                                  "TODO: Add translation",
+        "horror":                                 "TODO: Add translation",
+        "loot":                                   "TODO: Add translation",
+        "npc":                                    "TODO: Add translation",
+        "spirit":                                 "TODO: Add translation",
+        "trap":                                   "TODO: Add translation",
+        "vehicle":                                "TODO: Add translation"
+      },
+      "Item": {
+        "armor":                                  "TODO: Add translation",
+        "bindingSecret":                          "TODO: Add translation",
+        "curseMark":                              "TODO: Add translation",
+        "devotion":                               "TODO: Add translation",
+        "discipline":                             "TODO: Add translation",
+        "equipment":                              "TODO: Add translation",
+        "knackAbility":                           "TODO: Add translation",
+        "knackKarma":                             "TODO: Add translation",
+        "knackManeuver":                          "TODO: Add translation",
+        "maneuver":                               "TODO: Add translation",
+        "mask":                                   "TODO: Add translation",
+        "namegiver":                              "TODO: Add translation",
+        "path":                                   "TODO: Add translation",
+        "poisonDisease":                          "TODO: Add translation",
+        "power":                                  "TODO: Add translation",
+        "questor":                                "TODO: Add translation",
+        "shield":                                 "TODO: Add translation",
+        "shipWeapon":                             "TODO: Add translation",
+        "skill":                                  "TODO: Add translation",
+        "specialAbility":                         "TODO: Add translation",
+        "spell":                                  "TODO: Add translation",
+        "spellKnack":                             "TODO: Add translation",
+        "talent":                                 "TODO: Add translation",
+        "thread":                                 "TODO: Add translation",
+        "weapon":                                 "TODO: Add translation"
+      }
+    },
     "Item": {
       "TypeGroups": {
         "abilities":                              "TODO: Add translation",

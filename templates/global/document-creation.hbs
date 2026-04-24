@@ -26,18 +26,19 @@
   </div>
 
   <div class="type-selection scrollable flexcol">
-
     {{#each typesRadio}}
-    <h3 class="type-group-label label--rail">
+      <h3 class="type-group-label label--rail">
       <span class="label__text">
         {{@key}}
       </span>
-    </h3>
+      </h3>
       <div class='button-toggle flexrow'>
-        {{radioBoxes 'type' this checked=../currentType}}  
+        {{radioBoxes 'type' this checked=../currentType}}
       </div>
+      {{#if (ed-hasOwnProperty this @root/currentType)}}
+        <p class="hint">{{@root/currentTypeHint}}</p>
+      {{/if}}
     {{/each}}
-
   </div>
 
 </div>

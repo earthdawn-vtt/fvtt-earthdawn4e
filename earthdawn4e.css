@@ -1491,6 +1491,9 @@ form#document-create-dialog div.ed-document-creation .type-selection .form-field
   font-variant: small-caps;
   opacity: 1;
 }
+form#document-create-dialog div.ed-document-creation .type-selection p {
+  text-align: center;
+}
 form.ed4e.character-generation {
   color: var(--color-text-body);
   background: var(--background-sheet-actor);
