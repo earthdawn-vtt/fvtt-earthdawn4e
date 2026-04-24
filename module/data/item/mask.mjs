@@ -292,7 +292,7 @@ export default class MaskData extends ItemDataModel.mixin(
 
     if ( isPower && this.hasPower( itemUuid ) ) {
       return this.parentDocument.update( {
-        [ `system.powers.-=${ foundry.utils.parseUuid( itemUuid )?.id }` ]: null,
+        [ `system.powers.${ foundry.utils.parseUuid( itemUuid )?.id }` ]: _del,
       } );
     }
 

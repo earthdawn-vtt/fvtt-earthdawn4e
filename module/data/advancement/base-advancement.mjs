@@ -137,7 +137,7 @@ export default class AdvancementData extends SparseDataModel {
     const updates = {};
 
     for ( let level = this.numLevels; level > newMaxLevel; level-- ) {
-      updates[ `system.advancement.levels.-=${ level }` ] = null;
+      updates[ `system.advancement.levels.${ level }` ] = _del;
     }
 
     await this.parentDocument.update( updates );

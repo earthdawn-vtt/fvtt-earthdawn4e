@@ -34,7 +34,7 @@ export default class TypedEntryManagerMixin extends SystemDataModel {
     const fieldPath = this._getFieldPathToAddTypedEntry( fieldName, entryType );
 
     return await this.parentDocument.update( {
-      [ fieldPath ]: entryData,
+      [ fieldPath ]: _replace( entryData ),
     } );
   }
 
@@ -86,7 +86,7 @@ export default class TypedEntryManagerMixin extends SystemDataModel {
     const fieldPath = this._getFieldPathToRemoveTypedEntry( fieldName, entryType, storageKey );
 
     return await this.parentDocument.update( {
-      [ fieldPath ]: null,
+      [ fieldPath ]: _del,
     } );
   }
 
@@ -101,8 +101,8 @@ export default class TypedEntryManagerMixin extends SystemDataModel {
     const constraintKeys = Object.keys( this[fieldName] || {} );
 
     return constraintKeys.includes( storageKey ) && constraintKeys.length === 1
-      ? `system.==${ fieldName }`
-      : `system.${ fieldName }.-=${ storageKey }`;
+      ? `system.${ fieldName }`
+      : `system.${ fieldName }.${ storageKey }`;
   }
 
   // endregion

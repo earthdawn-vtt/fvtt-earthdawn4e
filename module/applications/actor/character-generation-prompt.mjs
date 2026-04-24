@@ -745,9 +745,9 @@ export default class CharacterGenerationPrompt extends ApplicationEd {
     } else {
       this.charGenData.updateSource( {
         abilities: {
-          "==class":   {},
-          "==free":    {},
-          "==special": {},
+          "class":   _replace( {} ),
+          "free":    _replace( {} ),
+          "special": _replace( {} ),
         },
       } );
     }

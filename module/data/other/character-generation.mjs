@@ -6,7 +6,7 @@ import * as ACTORS from "../../config/actors.mjs";
 import * as LEGEND from "../../config/legend.mjs";
 import { getAttributeStepFromValue } from "../../helpers/earthdawn.mjs";
 import { sum } from "../../utils/math.mjs";
-import { getSingleGlobalItemByEdid, prefixKeysForDeletion } from "../../helpers/document.mjs";
+import { getSingleGlobalItemByEdid, prepareKeysForDeletion } from "../../helpers/document.mjs";
 import { filterObject, mapObject } from "../../utils/object.mjs";
 
 
@@ -262,8 +262,8 @@ export default class CharacterGenerationData extends SparseDataModel {
     this.updateSource( {
       abilities: {
         optional: {
-          [abilityUuid]:                                      0,
-          [`-=${Object.keys( this.abilities.optional )[0]}`]: null,
+          [ abilityUuid ]:                                      0,
+          [ Object.keys( this.abilities.optional )[ 0 ] ]:      _del,
         },
       },
     } );
@@ -281,9 +281,9 @@ export default class CharacterGenerationData extends SparseDataModel {
 
     this.updateSource( {
       abilities: {
-        "==class":   Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ),
-        "==free":    Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ),
-        "==special": Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ),
+        "class":   _replace( Object.fromEntries( firstLevelAbilities.class.map( ability => [ ability, 0 ] ) ) ),
+        "free":    _replace( Object.fromEntries( firstLevelAbilities.free.map( ability => [ ability, 0 ] ) ) ),
+        "special": _replace( Object.fromEntries( firstLevelAbilities.special.map( ability => [ ability, 0 ] ) ) ),
       }
     } );
   }
@@ -434,17 +434,17 @@ export default class CharacterGenerationData extends SparseDataModel {
   }
 
   async removeRankZeroSkills() {
-    const greaterZeroPredicate = function ( key, value ) {
+    const lessOrEqualZeroPredicate = function ( key, value ) {
       return value <= 0;
     };
-    const artisanData = prefixKeysForDeletion( filterObject(
-      this.abilities.artisan, greaterZeroPredicate
+    const artisanData = prepareKeysForDeletion( filterObject(
+      this.abilities.artisan, lessOrEqualZeroPredicate
     ) );
-    const knowledgeData = prefixKeysForDeletion( filterObject(
-      this.abilities.knowledge, greaterZeroPredicate
+    const knowledgeData = prepareKeysForDeletion( filterObject(
+      this.abilities.knowledge, lessOrEqualZeroPredicate
     ) );
-    const generalData = prefixKeysForDeletion( filterObject(
-      this.abilities.general, greaterZeroPredicate
+    const generalData = prepareKeysForDeletion( filterObject(
+      this.abilities.general, lessOrEqualZeroPredicate
     ) );
 
     return this.updateSource( {
